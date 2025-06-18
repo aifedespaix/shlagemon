@@ -48,6 +48,15 @@
 
             button {
                 min-width: 160px;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                    object-fit: contain;
+                }
             }
         }
     }

@@ -19,8 +19,16 @@ export class ChoiceDialog {
       id: 'start',
       text: 'Salut, tu veux quel Shlagémon ?',
       responses: [
-        { label: 'Schlartichaut', nextId: 'confirmSchlartichaut' },
-        { label: 'Draschlakofeu', nextId: 'confirmDraschlakofeu' }
+        {
+          label: 'Schlartichaut',
+          nextId: 'confirmSchlartichaut',
+          imageUrl: '/items/shlagéball/shlagéball.png'
+        },
+        {
+          label: 'Draschlakofeu',
+          nextId: 'confirmDraschlakofeu',
+          imageUrl: '/items/shlagéball/shlagéball.png'
+        }
       ]
     },
     {
