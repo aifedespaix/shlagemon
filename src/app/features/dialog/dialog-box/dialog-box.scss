@@ -1,0 +1,54 @@
+.dialog-layout {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: var(--mat-sys-surface);
+
+    .dialog-avatar {
+        grid-row: 1 / span 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .speaker {
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    }
+
+    .dialog-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .dialog-text {
+            font-size: 1rem;
+            padding: 1rem;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .dialog-responses {
+            margin-top: auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+
+            button {
+                min-width: 160px;
+            }
+        }
+    }
+}

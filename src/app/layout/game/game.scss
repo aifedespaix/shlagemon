@@ -1,0 +1,62 @@
+// 🎛 Variables de grille
+$grid-size: 12;
+$col-count: $grid-size;
+$row-count: $grid-size;
+
+$left-col-span: 3;
+$right-col-span: 3;
+$side-row-span: $grid-size;
+
+$top-col-start: $left-col-span + 1;
+$top-col-span: $col-count - $left-col-span - $right-col-span;
+$top-row-span: 1;
+
+$bottom-col-start: $top-col-start;
+$bottom-col-span: $top-col-span;
+$bottom-row-start: 11;
+$bottom-row-span: 2;
+
+$center-col-start: $left-col-span + 1;
+$center-col-span: $col-count - $left-col-span - $right-col-span;
+$center-row-start: $top-row-span + 1;
+$center-row-span: $row-count - $top-row-span - $bottom-row-span;
+
+// 🌐 Grille principale
+.game {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat($col-count, 1fr);
+    grid-template-rows: repeat($row-count, 1fr);
+}
+
+// 🧱 Zones
+.left {
+    grid-column: 1 / span $left-col-span;
+    grid-row: 1 / span $side-row-span;
+    background-color: rebeccapurple;
+}
+
+.right {
+    grid-column: ($col-count - $right-col-span + 1) / span $right-col-span;
+    grid-row: 1 / span $side-row-span;
+    background-color: red;
+}
+
+.top {
+    grid-column: $top-col-start / span $top-col-span;
+    grid-row: 1 / span $top-row-span;
+    background-color: green;
+}
+
+.center {
+    grid-column: $center-col-start / span $center-col-span;
+    grid-row: $center-row-start / span $center-row-span;
+    background-color: blue;
+}
+
+.bottom {
+    grid-column: $bottom-col-start / span $bottom-col-span;
+    grid-row: $bottom-row-start / span $bottom-row-span;
+    background-color: yellow;
+}

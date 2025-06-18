@@ -1,0 +1,28 @@
+<div class="dialog-layout">
+    <!-- Colonne gauche : Avatar -->
+    <div class="dialog-avatar">
+        <img
+            [src]="avatarUrl"
+            alt="avatar"
+        />
+        <div class="speaker">{{ speaker }}</div>
+    </div>
+
+    <!-- Colonne droite : contenu principal -->
+    <div class="dialog-main">
+        <div class="dialog-text">
+            {{ currentNode?.text }}
+        </div>
+
+        <div class="dialog-responses">
+            <button
+                mat-raised-button
+                color="primary"
+                *ngFor="let response of currentNode?.responses"
+                (click)="choose(response)"
+            >
+                {{ response.label }}
+            </button>
+        </div>
+    </div>
+</div>
