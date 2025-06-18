@@ -1,0 +1,11 @@
+.schlagedex {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  .mon-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
