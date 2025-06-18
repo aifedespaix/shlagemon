@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DialogBox } from '../../dialog/dialog-box/dialog-box';
 import { DialogNode } from '../../dialog/dialog.model';
 import { GameStateService } from '../../../core/game-state.service';
+import { SchlagedexService } from '../schlagedex.service';
 
 @Component({
   selector: 'app-choice-dialog',
@@ -11,7 +12,7 @@ import { GameStateService } from '../../../core/game-state.service';
 })
 export class ChoiceDialog {
 
-  constructor(private gameState: GameStateService) { }
+  constructor(private gameState: GameStateService, private dex: SchlagedexService) { }
 
   dialogTree: DialogNode[] = [
     {
@@ -28,7 +29,10 @@ export class ChoiceDialog {
       responses: [
         {
           label: 'Merci professeur Merdant',
-          action: () => this.gameState.setHasPokemon(true)
+          action: () => {
+            this.dex.createShlagemon('Schlartichaut');
+            this.gameState.setHasPokemon(true);
+          }
         }
       ]
     },
@@ -38,7 +42,10 @@ export class ChoiceDialog {
       responses: [
         {
           label: 'Génial !',
-          action: () => this.gameState.setHasPokemon(true)
+          action: () => {
+            this.dex.createShlagemon('Draschlakofeu');
+            this.gameState.setHasPokemon(true);
+          }
         }
       ]
     }
