@@ -21,6 +21,7 @@
                 *ngFor="let response of currentNode?.responses"
                 (click)="choose(response)"
             >
+                <img *ngIf="response.imageUrl" [src]="response.imageUrl" alt="" />
                 {{ response.label }}
             </button>
         </div>
