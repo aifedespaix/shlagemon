@@ -1,0 +1,25 @@
+.header-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.spacer {
+    flex: 1;
+}
+
+.score {
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
