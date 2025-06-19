@@ -9,6 +9,7 @@ import { DexShlagemon } from '../dex-shlagemon';
   standalone: true,
   imports: [CommonModule, MatDialogModule, MatButtonModule],
   templateUrl: './shlagemon-detail-dialog.html',
+  styleUrl: './shlagemon-detail-dialog.scss',
 })
 export class ShlagemonDetailDialog {
   constructor(
