@@ -1,24 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ShlagemonDetailDialog } from './shlagemon-detail-dialog';
 import { SchlagedexService } from '../schlagedex.service';
 import { DexShlagemon } from '../dex-shlagemon';
 
 @Component({
   selector: 'app-schlagedex',
   standalone: true,
-  imports: [CommonModule, MatListModule, MatCardModule],
+  imports: [CommonModule, MatListModule, MatDialogModule, ShlagemonDetailDialog],
   templateUrl: './schlagedex.html',
   styleUrl: './schlagedex.scss'
 })
 export class Schlagedex {
-  selected?: DexShlagemon;
+  constructor(public dex: SchlagedexService, private dialog: MatDialog) {}
 
-  constructor(public dex: SchlagedexService) {}
-
-  select(mon: DexShlagemon) {
-    this.selected = mon;
+  openDialog(mon: DexShlagemon) {
+    this.dialog.open(ShlagemonDetailDialog, { data: mon });
   }
 
   imageUrl(mon: DexShlagemon) {

@@ -1,18 +1,12 @@
 .schlagedex {
-  display: flex;
-  flex-direction: column;
   padding: 1rem;
 
-  .mon-list {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    .mat-list-item {
-      cursor: pointer;
+  .mon-item {
+    cursor: pointer;
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
     }
-  }
-
-  .mon-detail {
-    margin-top: 1rem;
   }
 }
