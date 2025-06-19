@@ -1,18 +1,7 @@
 .schlagedex {
-  display: flex;
-  flex-direction: column;
   padding: 1rem;
 
-  .mon-list {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    .mat-list-item {
-      cursor: pointer;
-    }
-  }
-
-  .mon-detail {
-    margin-top: 1rem;
+  .mon-item {
+    cursor: pointer;
   }
 }
