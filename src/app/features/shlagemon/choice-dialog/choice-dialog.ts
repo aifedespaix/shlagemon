@@ -3,7 +3,7 @@ import { DialogBox } from '../../dialog/dialog-box/dialog-box';
 import { DialogNode } from '../../dialog/dialog.model';
 import { GameStateService } from '../../../core/game-state.service';
 import { SchlagedexService } from '../schlagedex.service';
-import { bulgrosboule, carapouffe, salamiches, Shlagemon } from '../../../shlagemons';
+import { bulgrosboule, carapouffe, salamiches, BaseShlagemon } from '../../../shlagemons';
 
 @Component({
   selector: 'app-choice-dialog',
@@ -15,15 +15,15 @@ export class ChoiceDialog {
 
   constructor(private gameState: GameStateService, private dex: SchlagedexService) { }
 
-  private shlagemonNextId(shlagemon: Shlagemon) {
+  private shlagemonNextId(shlagemon: BaseShlagemon) {
     return 'confirm' + shlagemon.name;
   }
 
-  private shlagemonImageUrl(shlagemon: Shlagemon) {
+  private shlagemonImageUrl(shlagemon: BaseShlagemon) {
     return `/shlagemons/${shlagemon.id}/${shlagemon.id}.png`;
   }
 
-  private generateResponse(shlagemon: Shlagemon) {
+  private generateResponse(shlagemon: BaseShlagemon) {
     return {
       label: shlagemon.name,
       nextId: this.shlagemonNextId(shlagemon),
@@ -74,7 +74,7 @@ export class ChoiceDialog {
         {
           label: 'Merci professeur Merdant',
           action: () => {
-            this.dex.createShlagemon('Schlartichaut');
+            this.dex.createShlagemon(carapouffe);
             this.gameState.setHasPokemon(true);
           }
         }
@@ -92,7 +92,7 @@ export class ChoiceDialog {
         {
           label: 'Génial !',
           action: () => {
-            this.dex.createShlagemon('Draschlakofeu');
+            this.dex.createShlagemon(salamiches);
             this.gameState.setHasPokemon(true);
           }
         }
@@ -111,7 +111,7 @@ export class ChoiceDialog {
         {
           label: 'Je l\'aime pas trop mais ok',
           action: () => {
-            this.dex.createShlagemon('Bulgrosbul');
+            this.dex.createShlagemon(bulgrosboule);
             this.gameState.setHasPokemon(true);
           }
         }

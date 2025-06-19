@@ -1,6 +1,6 @@
 export type Type = 'Slope' | 'Cuisine'
 
-export type Shlagemon = {
+export interface BaseShlagemon {
     id: string;
     name: string;
     color: string;
@@ -8,7 +8,7 @@ export type Shlagemon = {
     type: Type;
 }
 
-export const carapouffe: Shlagemon = {
+export const carapouffe: BaseShlagemon = {
     id: 'carapouffe',
     name: 'Carapouffe',
     color: '#333388',
@@ -17,7 +17,7 @@ export const carapouffe: Shlagemon = {
     type: 'Slope'
 };
 
-export const salamiches: Shlagemon = {
+export const salamiches: BaseShlagemon = {
     id: 'salamiches',
     name: 'Salamiches',
     color: '#ff5533',
@@ -27,7 +27,7 @@ export const salamiches: Shlagemon = {
     type: 'Cuisine'
 };
 
-export const bulgrosboule: Shlagemon = {
+export const bulgrosboule: BaseShlagemon = {
     id: 'bulgrosboule',
     name: 'Bulgrosboule',
     color: '#88ccff',

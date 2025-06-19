@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Shlagemon } from './shlagemon.model';
+import { DexShlagemon } from './dex-shlagemon';
+import { DexShlagemonFactory } from './dex-shlagemon.factory';
+import { BaseShlagemon } from '../../shlagemons';
 
 @Injectable({ providedIn: 'root' })
 export class SchlagedexService {
-  private monsSubject = new BehaviorSubject<Shlagemon[]>([]);
+  private monsSubject = new BehaviorSubject<DexShlagemon[]>([]);
   shlagemons$ = this.monsSubject.asObservable();
 
-  createShlagemon(name: string): Shlagemon {
-    const mon: Shlagemon = { id: name.toLowerCase(), name };
+  constructor(private factory: DexShlagemonFactory) {}
+
+  createShlagemon(base: BaseShlagemon): DexShlagemon {
+    const mon = this.factory.create(base);
     this.addShlagemon(mon);
     return mon;
   }
 
-  addShlagemon(mon: Shlagemon) {
+  addShlagemon(mon: DexShlagemon) {
     this.monsSubject.next([...this.monsSubject.value, mon]);
   }
 
-  getShlagemons(): Shlagemon[] {
+  getShlagemons(): DexShlagemon[] {
     return this.monsSubject.value;
   }
 }
