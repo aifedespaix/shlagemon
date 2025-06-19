@@ -27,7 +27,7 @@ export class ChoiceDialog {
     return {
       label: shlagemon.name,
       nextId: this.shlagemonNextId(shlagemon),
-      imageUrl: `/items/shlagéball/shlagéball.png`,
+      imageUrl: `/items/shlageball/shlageball.png`,
       color: shlagemon.color
     }
   }
