@@ -3,7 +3,7 @@ import { DialogBox } from '../../dialog/dialog-box/dialog-box';
 import { DialogNode } from '../../dialog/dialog.model';
 import { GameStateService } from '../../../core/game-state.service';
 import { SchlagedexService } from '../schlagedex.service';
-import { bulgrosboule, carapouffe, salamiches, Shlagemon } from '../../../shlagémons';
+import { bulgrosboule, carapouffe, salamiches, Shlagemon } from '../../../shlagemons';
 
 @Component({
   selector: 'app-choice-dialog',
@@ -20,7 +20,7 @@ export class ChoiceDialog {
   }
 
   private shlagemonImageUrl(shlagemon: Shlagemon) {
-    return `/shlagémons/${shlagemon.id}/${shlagemon.id}.png`;
+    return `/shlagemons/${shlagemon.id}/${shlagemon.id}.png`;
   }
 
   private generateResponse(shlagemon: Shlagemon) {
