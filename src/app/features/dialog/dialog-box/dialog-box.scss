@@ -36,7 +36,6 @@
         .dialog-text {
             font-size: 1rem;
             padding: 1rem;
-            font-family: 'Roboto', sans-serif;
         }
 
         .dialog-responses {
@@ -60,4 +59,20 @@
             }
         }
     }
+
+    .dialog-image {
+        display: flex;
+        justify-content: center;
+        margin: 16px 0;
+
+        img {
+            max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+    }
+
 }

@@ -1,15 +1,21 @@
 @use '@angular/material' as mat;
 
+$my-typography: (
+    plain-family: 'Roboto',
+    brand-family: 'Open Sans',
+    bold-weight: 900,
+    medium-weight: 500,
+    regular-weight: 300,
+);
+
+
 $theme-config: (
     color: mat.$violet-palette,
-    typography: (plain-family: Roboto,
-        brand-family: "Open Sans",
-        bold-weight: 900,
-        medium-weight: 500,
-        regular-weight: 300,
-    ),
+    typography: $my-typography,
     density: 0,
 );
+
+@include mat.core();
 
 .light-theme {
     color-scheme: light;
@@ -31,6 +37,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: Roboto, "Open Sans", sans-serif;
 }
 
 .full {

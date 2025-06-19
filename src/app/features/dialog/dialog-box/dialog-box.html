@@ -14,6 +14,16 @@
             {{ currentNode?.text }}
         </div>
 
+        <div
+            class="dialog-image"
+            *ngIf="currentNode && currentNode.imageUrl"
+        >
+            <img
+                [src]="currentNode.imageUrl"
+                alt="illustration"
+            />
+        </div>
+
         <div class="dialog-responses">
             <button
                 mat-raised-button
@@ -21,7 +31,11 @@
                 *ngFor="let response of currentNode?.responses"
                 (click)="choose(response)"
             >
-                <img *ngIf="response.imageUrl" [src]="response.imageUrl" alt="" />
+                <img
+                    *ngIf="response.imageUrl"
+                    [src]="response.imageUrl"
+                    alt=""
+                />
                 {{ response.label }}
             </button>
         </div>
