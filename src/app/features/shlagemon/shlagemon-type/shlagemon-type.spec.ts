@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Type } from './shlagemon-type';
+import { ShlagemonType } from './shlagemon-type';
 
-describe('Type', () => {
-  let component: Type;
-  let fixture: ComponentFixture<Type>;
+describe('ShlagemonType', () => {
+  let component: ShlagemonType;
+  let fixture: ComponentFixture<ShlagemonType>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Type]
+      imports: [ShlagemonType]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(Type);
+    fixture = TestBed.createComponent(ShlagemonType);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
