@@ -29,6 +29,12 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
     overflow: hidden;
 }
 
+@include vars.respond(md) {
+    :host {
+        overflow: auto;
+    }
+}
+
 .game {
     width: 100%;
     height: 100%;
@@ -95,5 +101,46 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
     .zone {
         height: auto;
         width: 100%;
+    }
+}
+
+@include vars.respond(md) {
+    @include vars.respond(sm, min) {
+        .game {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto auto;
+            height: auto;
+        }
+
+        .zone {
+            height: auto;
+            width: 100%;
+        }
+
+        .top {
+            grid-column: 1 / span 2;
+            grid-row: 1;
+        }
+
+        .left {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .right {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .center {
+            grid-column: 1 / span 2;
+            grid-row: 3;
+        }
+
+        .bottom {
+            grid-column: 1 / span 2;
+            grid-row: 4;
+        }
     }
 }
