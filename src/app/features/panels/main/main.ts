@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SchlagedexService } from '../schlagedex.service';
+import { SchlagedexService } from '../../shlagemon/schlagedex.service';
 import { Observable, map } from 'rxjs';
-import { DexShlagemon } from '../dex-shlagemon';
+import { DexShlagemon } from '../../shlagemon/dex-shlagemon';
 
 @Component({
-  selector: 'app-selected-shlagemon',
+  selector: 'app-panel-main',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './selected-shlagemon.html',
-  styleUrl: './selected-shlagemon.scss'
+  templateUrl: './main.html',
+  styleUrl: './main.scss'
 })
 export class SelectedShlagemon {
   mon$!: Observable<DexShlagemon | undefined>;

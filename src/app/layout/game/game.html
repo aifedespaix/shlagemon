@@ -3,8 +3,15 @@
         left
     </div>
     <div class="zone center">
-        <app-choice-dialog *ngIf="!(gameState.hasPokemon$ | async)" class="full" />
-        <app-selected-shlagemon *ngIf="gameState.hasPokemon$ | async" class="full" />
+
+        <ng-container *ngIf="gameState.hasPokemon$ | async; else noPokemon">
+            <app-panel-main class="full" />
+        </ng-container>
+
+        <ng-template #noPokemon>
+            <app-choice-dialog class="full" />
+        </ng-template>
+
     </div>
     <div class="zone bottom">
 
@@ -16,4 +23,3 @@
         top
     </div>
 </div>
-

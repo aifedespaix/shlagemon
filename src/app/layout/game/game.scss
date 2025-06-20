@@ -34,11 +34,18 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
 
 // 🧱 Zones communes
 .zone {
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
     background-color: var(--md-sys-color-surface-container-highest);
     border: 1px solid var(--md-sys-color-outline-variant);
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 0.5rem;
     transition: box-shadow 0.2s ease;
 
     &:hover {
@@ -70,4 +77,3 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
     grid-column: $bottom-col-start / span $bottom-col-span;
     grid-row: $bottom-row-start / span $bottom-row-span;
 }
-
