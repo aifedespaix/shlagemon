@@ -8,6 +8,7 @@
       @for (mon of mons; track mon) {
       <div
         class="list-item"
+        [class.active]="dex.getActiveShlagemon()?.id === mon.id"
         (click)="openDialog(mon)"
       >
         <div class="f-flex">
@@ -19,6 +20,13 @@
 
         </div>
         <shlagemon-type [value]="mon.type"></shlagemon-type>
+        <button
+          mat-icon-button
+          (click)="dex.setActiveShlagemon(mon); $event.stopPropagation()"
+          aria-label="Select {{mon.name}}"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
       </div>
       }
     </div>

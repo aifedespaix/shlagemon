@@ -9,16 +9,30 @@ export class SchlagedexService {
   private monsSubject = new BehaviorSubject<DexShlagemon[]>([]);
   shlagemons$ = this.monsSubject.asObservable();
 
+  private activeMonSubject = new BehaviorSubject<DexShlagemon | null>(null);
+  activeShlagemon$ = this.activeMonSubject.asObservable();
+
   constructor(private factory: DexShlagemonFactory) { }
 
   createShlagemon(base: BaseShlagemon): DexShlagemon {
     const mon = this.factory.create(base);
     this.addShlagemon(mon);
+    if (!this.activeMonSubject.value) {
+      this.setActiveShlagemon(mon);
+    }
     return mon;
   }
 
   addShlagemon(mon: DexShlagemon) {
     this.monsSubject.next([...this.monsSubject.value, mon]);
+  }
+
+  setActiveShlagemon(mon: DexShlagemon) {
+    this.activeMonSubject.next(mon);
+  }
+
+  getActiveShlagemon(): DexShlagemon | null {
+    return this.activeMonSubject.value;
   }
 
   setShlagemons(mons: DexShlagemon[]) {

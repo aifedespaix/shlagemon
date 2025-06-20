@@ -26,6 +26,11 @@
         height: 40px;
         object-fit: contain;
       }
+
+      &.active {
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+      }
     }
   }
 

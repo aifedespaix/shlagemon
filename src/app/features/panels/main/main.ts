@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SchlagedexService } from '../../shlagemon/schlagedex.service';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { DexShlagemon } from '../../shlagemon/dex-shlagemon';
 
 @Component({
@@ -12,10 +12,10 @@ import { DexShlagemon } from '../../shlagemon/dex-shlagemon';
   styleUrl: './main.scss'
 })
 export class SelectedShlagemon {
-  mon$!: Observable<DexShlagemon | undefined>;
+  mon$!: Observable<DexShlagemon | null>;
 
   constructor(private dex: SchlagedexService) {
-    this.mon$ = this.dex.shlagemons$.pipe(map(mons => mons[0]));
+    this.mon$ = this.dex.activeShlagemon$;
   }
 
   imageUrl(id: string) {
