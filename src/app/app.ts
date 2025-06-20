@@ -16,6 +16,6 @@ import { Game } from './layout/game/game';
   styleUrl: './app.scss'
 })
 export class App {
-  protected title = 'chinpokomon';
+  protected title = 'Shlagémon';
   constructor(public theme: ThemeService, _storage: StorageService) { }
 }

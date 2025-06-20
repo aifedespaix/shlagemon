@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "chinpokomon": {
+    "shlagemon": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -64,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "chinpokomon:build:production"
+              "buildTarget": "shlagemon:build:production"
             },
             "development": {
-              "buildTarget": "chinpokomon:build:development"
+              "buildTarget": "shlagemon:build:development"
             }
           },
           "defaultConfiguration": "development"

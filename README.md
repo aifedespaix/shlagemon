@@ -1,6 +1,6 @@
-# Chinpokomon
+# Shlagémon
 
-**Chinpokomon** est un projet open source construit avec [Angular](https://angular.dev) et [Express](https://expressjs.com). L'application propose un petit jeu parodique où l'on collecte des "Shlagémons".
+**Shlagémon** est un projet open source construit avec [Angular](https://angular.dev) et [Express](https://expressjs.com). L'application propose un petit jeu parodique où l'on collecte des "Shlagémons".
 
 ## Démarrage rapide
 
