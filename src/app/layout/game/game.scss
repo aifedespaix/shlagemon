@@ -22,6 +22,11 @@ $center-row-start: $top-row-span + 1;
 $center-row-span: $row-count - $top-row-span - $bottom-row-span;
 
 // 🌐 Grille principale
+:host {
+    display: block;
+    height: 100%;
+}
+
 .game {
     width: 100%;
     height: 100%;
