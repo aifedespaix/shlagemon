@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ThemeToggleComponent } from '../theme/theme-toggle.component';
+import { StorageService } from '../../core/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -21,5 +22,9 @@ import { ThemeToggleComponent } from '../theme/theme-toggle.component';
   standalone: true
 })
 export class Header {
-  constructor() { }
+  constructor(private storage: StorageService) { }
+
+  reset() {
+    this.storage.reset();
+  }
 }
