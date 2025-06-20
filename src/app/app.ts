@@ -5,6 +5,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { LayoutModule } from '@angular/cdk/layout';
 import { Header } from './layout/header/header';
 import { ThemeService } from './layout/theme/theme.service';
+import { StorageService } from './core/storage.service';
 import { MatButtonModule } from '@angular/material/button';
 import { Game } from './layout/game/game';
 
@@ -16,5 +17,5 @@ import { Game } from './layout/game/game';
 })
 export class App {
   protected title = 'chinpokomon';
-  constructor(public theme: ThemeService) { }
+  constructor(public theme: ThemeService, _storage: StorageService) { }
 }

@@ -22,6 +22,14 @@ export class SchlagedexService {
     this.monsSubject.next([...this.monsSubject.value, mon]);
   }
 
+  setShlagemons(mons: DexShlagemon[]) {
+    this.monsSubject.next([...mons]);
+  }
+
+  clear() {
+    this.monsSubject.next([]);
+  }
+
   getShlagemons(): DexShlagemon[] {
     return this.monsSubject.value;
   }
