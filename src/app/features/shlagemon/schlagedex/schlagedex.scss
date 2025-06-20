@@ -1,12 +1,32 @@
 .schlagedex {
   padding: 1rem;
+  background-color: var(--mat-sys-surface);
+  // border: 1px solid var(--mat-sys-outline-variant);
+  box-shadow: var(--mat-sys-level1);
+  border-radius: 1rem;
 
-  .mon-item {
-    cursor: pointer;
-    img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
+  .list {
+    &-item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--mat-sys-level2);
+      padding: 1rem;
+      justify-content: space-between;
+      // background-color: var(--mat-sys-secondary-container);
+
+
+      .name {
+        font-weight: bold;
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
     }
   }
+
 }

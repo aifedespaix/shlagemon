@@ -1,8 +1,42 @@
-<h2 mat-dialog-title>{{ mon.name }}</h2>
+<div class="mon-title">
+  <h2 mat-dialog-title>{{ mon.name }} - lvl <div>{{mon.lvl}}</div>
+  </h2>
+
+</div>
+
 <mat-dialog-content>
-  <img [src]="imageUrl(mon)" [alt]="mon.name" class="mon-image" />
-  <p>{{ mon.description }}</p>
+  <div class="mon-details">
+    <img
+      [src]="imageUrl(mon)"
+      [alt]="mon.name"
+      class="mon-image"
+    />
+    <p class="description">{{ mon.description }}</p>
+
+    <div class="stats">
+      <div class="stat stat-hp">
+        <span class="label">HP</span>
+        <span class="value">{{ mon.hp }}</span>
+      </div>
+      <div class="stat stat-attack">
+        <span class="label">Attaque</span>
+        <span class="value">{{ mon.attack }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Défense</span>
+        <span class="value">{{ mon.defense }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">Puanteur</span>
+        <span class="value">{{ mon.smelling }}</span>
+      </div>
+    </div>
+  </div>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Fermer</button>
+  <button
+    mat-button
+    mat-dialog-close
+  >Fermer</button>
 </mat-dialog-actions>

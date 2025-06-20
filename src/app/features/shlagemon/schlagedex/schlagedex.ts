@@ -5,16 +5,18 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ShlagemonDetailDialog } from './shlagemon-detail-dialog';
 import { SchlagedexService } from '../schlagedex.service';
 import { DexShlagemon } from '../dex-shlagemon';
+import { MatIconModule } from '@angular/material/icon';
+import { ShlagemonType } from "../shlagemon-type/shlagemon-type";
 
 @Component({
   selector: 'app-schlagedex',
   standalone: true,
-  imports: [CommonModule, MatListModule, MatDialogModule, ShlagemonDetailDialog],
+  imports: [ShlagemonType, CommonModule, MatListModule, MatDialogModule, MatIconModule],
   templateUrl: './schlagedex.html',
   styleUrl: './schlagedex.scss'
 })
 export class Schlagedex {
-  constructor(public dex: SchlagedexService, private dialog: MatDialog) {}
+  constructor(public dex: SchlagedexService, private dialog: MatDialog) { }
 
   openDialog(mon: DexShlagemon) {
     this.dialog.open(ShlagemonDetailDialog, { data: mon });

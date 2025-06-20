@@ -1,12 +1,26 @@
 <ng-container *ngIf="dex.shlagemons$ | async as mons">
-  <section *ngIf="mons.length > 0" class="schlagedex">
+  <section
+    *ngIf="mons.length > 0"
+    class="schlagedex"
+  >
     <h2 class="title">Schlagedex</h2>
-    <mat-list class="mon-list">
-      <mat-list-item *ngFor="let mon of mons" (click)="openDialog(mon)" class="mon-item">
-        <img matListAvatar [src]="imageUrl(mon)" [alt]="mon.name" />
-        <div matLine>{{ mon.name }}</div>
-        <div matLine class="secondary">{{ mon.type }}</div>
-      </mat-list-item>
-    </mat-list>
+    <div class="list">
+      @for (mon of mons; track mon) {
+      <div
+        class="list-item"
+        (click)="openDialog(mon)"
+      >
+        <div class="f-flex">
+          <img
+            [src]="imageUrl(mon)"
+            [alt]="mon.name"
+          />
+          <div class="name">{{ mon.name }}</div>
+
+        </div>
+        <shlagemon-type [value]="mon.type"></shlagemon-type>
+      </div>
+      }
+    </div>
   </section>
 </ng-container>
