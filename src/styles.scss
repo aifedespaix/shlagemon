@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use 'styles/variables' as vars;
 
 $my-typography: (
     plain-family: 'Roboto',
@@ -46,6 +47,12 @@ body {
     height: 100%;
     overflow: auto;
     box-sizing: border-box;
+}
+
+@include vars.respond(sm) {
+    .full {
+        overflow: visible;
+    }
 }
 
 .f-flex {

@@ -1,3 +1,5 @@
+@use '../../../styles/variables' as vars;
+
 // 🎛 Variables de grille
 $grid-size: 12;
 $col-count: $grid-size;
@@ -81,4 +83,17 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
 .bottom {
     grid-column: $bottom-col-start / span $bottom-col-span;
     grid-row: $bottom-row-start / span $bottom-row-span;
+}
+
+@include vars.respond(sm) {
+    .game {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .zone {
+        height: auto;
+        width: 100%;
+    }
 }
