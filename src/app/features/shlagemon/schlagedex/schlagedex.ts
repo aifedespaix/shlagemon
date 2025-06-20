@@ -12,7 +12,7 @@ import { ShlagemonType } from "../shlagemon-type/shlagemon-type";
 @Component({
   selector: 'app-schlagedex',
   standalone: true,
-  imports: [ShlagemonType, CommonModule, MatListModule, MatDialogModule, MatIconModule, MatButtonModule],
+  imports: [ShlagemonType, CommonModule, MatListModule, MatDialogModule, MatIconModule, MatButtonModule, MatButtonModule],
   templateUrl: './schlagedex.html',
   styleUrl: './schlagedex.scss'
 })
