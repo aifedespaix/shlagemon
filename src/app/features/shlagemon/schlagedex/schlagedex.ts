@@ -6,12 +6,13 @@ import { ShlagemonDetailDialog } from './shlagemon-detail-dialog';
 import { SchlagedexService } from '../schlagedex.service';
 import { DexShlagemon } from '../dex-shlagemon';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { ShlagemonType } from "../shlagemon-type/shlagemon-type";
 
 @Component({
   selector: 'app-schlagedex',
   standalone: true,
-  imports: [ShlagemonType, CommonModule, MatListModule, MatDialogModule, MatIconModule],
+  imports: [ShlagemonType, CommonModule, MatListModule, MatDialogModule, MatIconModule, MatButtonModule],
   templateUrl: './schlagedex.html',
   styleUrl: './schlagedex.scss'
 })
