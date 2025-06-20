@@ -23,8 +23,8 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
 
 // 🌐 Grille principale
 :host {
-    display: block;
     height: 100%;
+    overflow: hidden;
 }
 
 .game {
