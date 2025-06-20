@@ -28,35 +28,46 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
     display: grid;
     grid-template-columns: repeat($col-count, 1fr);
     grid-template-rows: repeat($row-count, 1fr);
+    gap: 0.5rem;
+    background-color: var(--mat-sys-surface);
 }
 
-// 🧱 Zones
+// 🧱 Zones communes
+.zone {
+    background-color: var(--md-sys-color-surface-container-highest);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+}
+
 .left {
     grid-column: 1 / span $left-col-span;
     grid-row: 1 / span $side-row-span;
-    background-color: rebeccapurple;
 }
 
 .right {
     grid-column: ($col-count - $right-col-span + 1) / span $right-col-span;
     grid-row: 1 / span $side-row-span;
-    background-color: red;
 }
 
 .top {
     grid-column: $top-col-start / span $top-col-span;
     grid-row: 1 / span $top-row-span;
-    background-color: green;
 }
 
 .center {
     grid-column: $center-col-start / span $center-col-span;
     grid-row: $center-row-start / span $center-row-span;
-    background-color: blue;
 }
 
 .bottom {
     grid-column: $bottom-col-start / span $bottom-col-span;
     grid-row: $bottom-row-start / span $bottom-row-span;
-    background-color: yellow;
 }
+
