@@ -5,7 +5,7 @@
     <div class="zone center">
 
         <ng-container *ngIf="gameState.hasPokemon$ | async; else noPokemon">
-            <app-panel-main class="full" />
+            <app-main-panel class="full" />
         </ng-container>
 
         <ng-template #noPokemon>
