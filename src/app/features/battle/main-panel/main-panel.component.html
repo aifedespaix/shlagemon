@@ -1,13 +1,17 @@
-<div class="battle" *ngIf="(player$ | async) as player && (enemy$ | async) as enemy">
-  <div class="mon player" [class.flash]="flashPlayer">
-    <img [src]="'/shlagemons/' + player.id + '/' + player.id + '.png'" [alt]="player.name">
-    <div class="name">{{player.name}}</div>
-    <mat-progress-bar mode="determinate" [value]="playerHpPercent(player.hp)"></mat-progress-bar>
-  </div>
-  <div class="mon enemy" [class.flash]="flashEnemy">
-    <img [src]="'/shlagemons/' + enemy.id + '/' + enemy.id + '.png'" [alt]="enemy.name">
-    <div class="name">{{enemy.name}}</div>
-    <mat-progress-bar mode="determinate" color="accent" [value]="enemyHpPercent(enemy.hp)"></mat-progress-bar>
-  </div>
-</div>
+<ng-container *ngIf="player$ | async as player">
+  <ng-container *ngIf="enemy$ | async as enemy">
+    <div class="battle">
+      <div class="mon player" [class.flash]="flashPlayer">
+        <img [src]="'/shlagemons/' + player.id + '/' + player.id + '.png'" [alt]="player.name">
+        <div class="name">{{player.name}}</div>
+        <mat-progress-bar mode="determinate" [value]="playerHpPercent(player.hp)"></mat-progress-bar>
+      </div>
+      <div class="mon enemy" [class.flash]="flashEnemy">
+        <img [src]="'/shlagemons/' + enemy.id + '/' + enemy.id + '.png'" [alt]="enemy.name">
+        <div class="name">{{enemy.name}}</div>
+        <mat-progress-bar mode="determinate" color="accent" [value]="enemyHpPercent(enemy.hp)"></mat-progress-bar>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
 <div class="currency">Shlagidolar : {{ shlagidolar$ | async }}</div>

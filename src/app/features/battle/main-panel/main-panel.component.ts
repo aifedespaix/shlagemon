@@ -1,17 +1,13 @@
 import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Subscription, interval, timer, Observable } from 'rxjs';
 import { DexShlagemon } from '../../shlagemon/dex-shlagemon';
 import { SchlagedexService } from '../../shlagemon/schlagedex.service';
 import { DexShlagemonFactory } from '../../shlagemon/dex-shlagemon.factory';
 import { GameService } from '../../../core/game.service';
 import { bulgrosboule, carapouffe, salamiches, BaseShlagemon } from '../../../Shlagemon/shlagemons';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-main-panel',
-  standalone: true,
-  imports: [CommonModule, MatProgressBarModule],
   templateUrl: './main-panel.component.html',
   styleUrl: './main-panel.component.scss'
 })
