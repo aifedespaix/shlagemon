@@ -10,6 +10,9 @@ export class GameStateService {
   private dialogStepSubject = new BehaviorSubject<number>(0);
   dialogStep$ = this.dialogStepSubject.asObservable();
 
+  private activeShlagemonIdSubject = new BehaviorSubject<string | null>(null);
+  activeShlagemonId$ = this.activeShlagemonIdSubject.asObservable();
+
   // Pour mettre à jour l'état
   setHasPokemon(has: boolean) {
     this.hasPokemonSubject.next(has);
@@ -19,8 +22,17 @@ export class GameStateService {
     this.dialogStepSubject.next(step);
   }
 
+  setActiveShlagemonId(id: string | null) {
+    this.activeShlagemonIdSubject.next(id);
+  }
+
+  getActiveShlagemonId(): string | null {
+    return this.activeShlagemonIdSubject.value;
+  }
+
   reset() {
     this.hasPokemonSubject.next(false);
     this.dialogStepSubject.next(0);
+    this.activeShlagemonIdSubject.next(null);
   }
 }

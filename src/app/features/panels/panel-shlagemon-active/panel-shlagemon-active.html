@@ -1,0 +1,8 @@
+<div class="active" *ngIf="mon$ | async as mon">
+  <img [src]="imageUrl(mon)" [alt]="mon.name" />
+  <div class="info">
+    <span class="name">{{ mon.name }}</span>
+    <span class="lvl">Lvl {{ mon.lvl }}</span>
+    <shlagemon-type [value]="mon.type"></shlagemon-type>
+  </div>
+</div>
