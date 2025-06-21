@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject, Subscription, interval, timer, Observable } from 'rxjs';
 import { DexShlagemon } from '../../shlagemon/dex-shlagemon';
@@ -6,6 +7,7 @@ import { SchlagedexService } from '../../shlagemon/schlagedex.service';
 import { DexShlagemonFactory } from '../../shlagemon/dex-shlagemon.factory';
 import { GameService } from '../../../core/game.service';
 import { bulgrosboule, carapouffe, salamiches, BaseShlagemon } from '../../../Shlagemon/shlagemons';
+
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
@@ -112,5 +114,9 @@ export class MainPanelComponent {
 
   enemyHpPercent(max: number) {
     return (this.enemyHp / max) * 100;
+  }
+
+  imageUrl(mon: DexShlagemon) {
+    return `/shlagemons/${mon.id}/${mon.id}.png`;
   }
 }

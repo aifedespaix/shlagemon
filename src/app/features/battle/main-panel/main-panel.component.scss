@@ -1,16 +1,20 @@
 .battle {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+  gap: 1rem;
   cursor: pointer;
 }
 
 .mon {
-  width: 45%;
+  flex: 1;
   text-align: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .mon img {
@@ -20,8 +24,17 @@
 }
 
 .name {
-  margin-bottom: 0.25rem;
   font-weight: bold;
+}
+
+.hp {
+  font-size: 0.75rem;
+}
+
+.vs {
+  font-size: 2rem;
+  font-weight: bold;
+  user-select: none;
 }
 
 .flash {
@@ -36,4 +49,5 @@
 .currency {
   margin-top: 0.5rem;
   text-align: center;
+  font-weight: bold;
 }
