@@ -4,8 +4,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MainPanelComponent } from './main-panel/main-panel.component';
 
 @NgModule({
-  declarations: [MainPanelComponent],
-  imports: [CommonModule, MatProgressBarModule],
+  imports: [CommonModule, MatProgressBarModule, MainPanelComponent],
   exports: [MainPanelComponent]
 })
 export class BattleModule {}
