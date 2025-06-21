@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { DialogBox } from '../../dialog/dialog-box/dialog-box';
 import { DialogNode } from '../../dialog/dialog.model';
 import { GameStateService } from '../../../core/game-state.service';
-import { SchlagedexService } from '../schlagedex.service';
+import { SchlagedexService } from '../../shlagemon/schlagedex.service';
 import { bulgrosboule, carapouffe, salamiches, BaseShlagemon } from '../../../Shlagemon/shlagemons';
 
 @Component({
-  selector: 'app-choice-dialog',
+  selector: 'app-panel-starter',
   imports: [DialogBox],
-  templateUrl: './choice-dialog.html',
-  styleUrl: './choice-dialog.scss'
+  templateUrl: './panel-starter.html',
+  styleUrl: './panel-starter.scss'
 })
 export class ChoiceDialog {
 

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChoiceDialog } from './choice-dialog';
+import { ChoiceDialog } from './panel-starter';
 
 describe('ChoiceDialog', () => {
   let component: ChoiceDialog;
@@ -10,7 +10,7 @@ describe('ChoiceDialog', () => {
     await TestBed.configureTestingModule({
       imports: [ChoiceDialog]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ChoiceDialog);
     component = fixture.componentInstance;

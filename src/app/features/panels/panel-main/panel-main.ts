@@ -8,8 +8,8 @@ import { DexShlagemon } from '../../shlagemon/dex-shlagemon';
   selector: 'app-panel-main',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './main.html',
-  styleUrl: './main.scss'
+  templateUrl: './panel-main.html',
+  styleUrl: './panel-main.scss'
 })
 export class SelectedShlagemon {
   mon$!: Observable<DexShlagemon | null>;

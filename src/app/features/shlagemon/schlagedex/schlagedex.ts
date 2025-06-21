@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ShlagemonDetailDialog } from './shlagemon-detail-dialog';
+import { ShlagemonDetailDialog } from '../shlagemon-detail-dialog/shlagemon-detail-dialog';
 import { SchlagedexService } from '../schlagedex.service';
 import { DexShlagemon } from '../dex-shlagemon';
 import { MatIconModule } from '@angular/material/icon';
