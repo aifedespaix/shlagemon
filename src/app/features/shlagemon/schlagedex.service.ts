@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { GameStateService } from '../../core/game-state.service';
 import { DexShlagemon } from './dex-shlagemon';
 import { DexShlagemonFactory } from './dex-shlagemon.factory';
 import { BaseShlagemon } from '../../Shlagemon/shlagemons';
@@ -12,7 +13,7 @@ export class SchlagedexService {
   private activeMonSubject = new BehaviorSubject<DexShlagemon | null>(null);
   activeShlagemon$ = this.activeMonSubject.asObservable();
 
-  constructor(private factory: DexShlagemonFactory) { }
+  constructor(private factory: DexShlagemonFactory, private game: GameStateService) { }
 
   createShlagemon(base: BaseShlagemon): DexShlagemon {
     const mon = this.factory.create(base);
@@ -29,6 +30,7 @@ export class SchlagedexService {
 
   setActiveShlagemon(mon: DexShlagemon) {
     this.activeMonSubject.next(mon);
+    this.game.setActiveShlagemonId(mon.id);
   }
 
   getActiveShlagemon(): DexShlagemon | null {
