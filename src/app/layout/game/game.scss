@@ -97,3 +97,9 @@ $center-row-span: $row-count - $top-row-span - $bottom-row-span;
         width: 100%;
     }
 }
+
+@include vars.respond(md) {
+    :host {
+        overflow: auto;
+    }
+}
