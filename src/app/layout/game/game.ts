@@ -3,6 +3,7 @@ import { Card } from '../card/card';
 import { GameStateService } from '../../core/game-state.service';
 import { ChoiceDialog } from '../../features/panels/panel-starter/panel-starter';
 import { BattleModule } from '../../features/battle/battle.module';
+import { MainPanelComponent } from '../../features/battle/main-panel/main-panel.component';
 import { ActiveShlagemonPanel } from '../../features/panels/panel-shlagemon-active/panel-shlagemon-active';
 import { Schlagedex } from '../../features/shlagemon/schlagedex/schlagedex';
 import { SchlagedexService } from '../../features/shlagemon/schlagedex.service';
