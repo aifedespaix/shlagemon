@@ -13,7 +13,8 @@ interface DialogNode {
   imageUrl?: string
 }
 
-defineProps<{ dialogTree: DialogNode[], speaker: string, avatarUrl: string }>()
+const { dialogTree, speaker, avatarUrl }
+  = defineProps<{ dialogTree: DialogNode[], speaker: string, avatarUrl: string }>()
 
 const currentNode = ref<DialogNode | undefined>()
 
