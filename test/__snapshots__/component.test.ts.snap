@@ -1,3 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`component TheCounter.vue > should render 1`] = `"<div>10 <button class="inc"> + </button><button class="dec"> - </button></div>"`;
+exports[`component Header.vue > should render 1`] = `
+"<header class="flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800"><img src="/logo.png" alt="Logo Shlagémon" class="h-8">
+  <div class="flex items-center gap-2"><button class="p-1" aria-label="Basculer en thème sombre"><span>☀️</span></button><button class="p-1" aria-label="Reset Save"> 🗑 </button></div>
+</header>"
+`;
