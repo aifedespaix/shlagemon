@@ -40,7 +40,6 @@
     "beasties": "catalog:build",
     "cypress": "catalog:dev",
     "cypress-vite": "catalog:dev",
-    "daisyui": "^5.0.43",
     "eslint": "catalog:dev",
     "eslint-plugin-cypress": "catalog:dev",
     "eslint-plugin-format": "catalog:dev",
