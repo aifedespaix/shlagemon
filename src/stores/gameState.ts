@@ -21,4 +21,6 @@ export const useGameStateStore = defineStore('gameState', () => {
   }
 
   return { hasPokemon, dialogStep, activeShlagemonId, setHasPokemon, setDialogStep, setActiveShlagemonId, reset }
+}, {
+  persist: true,
 })

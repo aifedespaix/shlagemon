@@ -8,4 +8,6 @@ export const useGameStore = defineStore('game', () => {
   }
 
   return { shlagidolar, addShlagidolar }
+}, {
+  persist: true,
 })

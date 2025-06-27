@@ -32,4 +32,6 @@ export const useSchlagedexStore = defineStore('schlagedex', () => {
   }
 
   return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, clear, createShlagemon }
+}, {
+  persist: true,
 })
