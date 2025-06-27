@@ -8,10 +8,19 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ActiveShlagemon: typeof import('./components/panels/ActiveShlagemon.vue')['default']
+    BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
+    DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Schlagedex: typeof import('./components/shlagemon/Schlagedex.vue')['default']
+    SelectedShlagemon: typeof import('./components/panels/SelectedShlagemon.vue')['default']
+    ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
+    ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
+    StarterPanel: typeof import('./components/panels/StarterPanel.vue')['default']
+    ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
   }
 }

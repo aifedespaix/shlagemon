@@ -1,5 +1,7 @@
 import type { DexShlagemon } from '../types'
+import type { BaseShlagemon } from '~/data/shlagemons'
 import { defineStore } from 'pinia'
+import { createDexShlagemon } from '~/utils/dexFactory'
 
 export const useSchlagedexStore = defineStore('schlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
@@ -23,5 +25,11 @@ export const useSchlagedexStore = defineStore('schlagedex', () => {
     shlagemons.value = []
   }
 
-  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, clear }
+  function createShlagemon(base: BaseShlagemon) {
+    const mon = createDexShlagemon(base)
+    addShlagemon(mon)
+    return mon
+  }
+
+  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, clear, createShlagemon }
 })
