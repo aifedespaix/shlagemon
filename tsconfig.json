@@ -1,34 +1,38 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
-  },
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
+    "target": "ESNext",
+    "jsx": "preserve",
+    "lib": ["DOM", "ESNext"],
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "~/*": ["src/*"]
     },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
+    "resolveJsonModule": true,
+    "types": [
+      "vitest",
+      "vite/client",
+      "vite-plugin-vue-layouts/client",
+      "vite-plugin-pwa/client",
+      "unplugin-vue-macros/macros-global",
+      "unplugin-vue-router/client"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-models",
+      "@vue-macros/volar/define-slots"
+    ]
+  },
+  "exclude": ["dist", "node_modules", "cypress"]
 }
