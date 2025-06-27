@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import ThemeToggle from '~/components/ThemeToggle.vue'
-import { useStorageStore } from '~/stores/storage'
+import { useSaveStore } from '~/stores/save'
 
-const storage = useStorageStore()
+const save = useSaveStore()
 
 function reset() {
-  storage.reset()
+  save.reset()
 }
 </script>
 
