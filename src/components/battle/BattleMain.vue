@@ -3,13 +3,14 @@ import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { starters } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
 import { useSchlagedexStore } from '~/stores/schlagedex'
+import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 
 const dex = useSchlagedexStore()
 const game = useGameStore()
 
 const playerHp = ref(0)
 const enemyHp = ref(0)
-const enemy = ref<ReturnType<typeof dex.createShlagemon> | null>(null)
+const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const battleActive = ref(false)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
@@ -20,7 +21,11 @@ function startBattle() {
   if (!active)
     return
   const base = starters[Math.floor(Math.random() * starters.length)]
-  enemy.value = dex.createShlagemon(base)
+  enemy.value = createDexShlagemon(base)
+  if (enemy.value) {
+    enemy.value.lvl = active.lvl
+    applyStats(enemy.value)
+  }
   playerHp.value = active.hp
   enemyHp.value = enemy.value.hp
   battleActive.value = true
@@ -54,8 +59,11 @@ function checkEnd() {
     if (battleInterval)
       clearInterval(battleInterval)
     battleInterval = undefined
-    if (enemyHp.value <= 0 && playerHp.value > 0)
+    if (enemyHp.value <= 0 && playerHp.value > 0) {
       game.addShlagidolar(1)
+      if (dex.activeShlagemon && enemy.value)
+        dex.gainXp(dex.activeShlagemon, xpForLevel(enemy.value.lvl))
+    }
     setTimeout(startBattle, 1000)
   }
 }

@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import type { DexShlagemon } from '~/types/shlagemon'
 import { useSchlagedexStore } from '~/stores/schlagedex'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
 const dex = useSchlagedexStore()
 const showDetail = ref(false)
-const detailMon = ref(dex.activeShlagemon as any)
+const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
-function open(mon: typeof dex.activeShlagemon.value) {
+function open(mon: DexShlagemon | null) {
   if (mon) {
     detailMon.value = mon
     showDetail.value = true

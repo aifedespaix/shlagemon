@@ -1,7 +1,7 @@
-import type { DexShlagemon } from '../types'
 import type { BaseShlagemon } from '~/data/shlagemons'
+import type { DexShlagemon } from '~/types/shlagemon'
 import { defineStore } from 'pinia'
-import { createDexShlagemon } from '~/utils/dexFactory'
+import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 
 export const useSchlagedexStore = defineStore('schlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
@@ -25,13 +25,22 @@ export const useSchlagedexStore = defineStore('schlagedex', () => {
     shlagemons.value = []
   }
 
+  function gainXp(mon: DexShlagemon, amount: number) {
+    mon.xp += amount
+    while (mon.lvl < 100 && mon.xp >= xpForLevel(mon.lvl)) {
+      mon.xp -= xpForLevel(mon.lvl)
+      mon.lvl += 1
+      applyStats(mon)
+    }
+  }
+
   function createShlagemon(base: BaseShlagemon) {
     const mon = createDexShlagemon(base)
     addShlagemon(mon)
     return mon
   }
 
-  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, clear, createShlagemon }
+  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, clear, createShlagemon, gainXp }
 }, {
   persist: true,
 })

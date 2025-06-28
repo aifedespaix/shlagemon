@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { DexShlagemon } from '~/types'
-import { computed } from 'vue'
+import type { DexShlagemon } from '~/types/shlagemon'
+import { xpForLevel } from '~/utils/dexFactory'
 
-const props = defineProps<{ mon: DexShlagemon, show: boolean }>()
+defineProps<{ mon: DexShlagemon | null, show: boolean }>()
 const emit = defineEmits(['close'])
 
 const statColors = [
@@ -23,7 +23,7 @@ const stats = computed(() => [
 </script>
 
 <template>
-  <div v-if="show" class="fixed inset-0 flex items-center justify-center bg-black/50" @click.self="emit('close')">
+  <div v-if="show && mon" class="fixed inset-0 flex items-center justify-center bg-black/50" @click.self="emit('close')">
     <div class="max-w-sm w-full rounded bg-white p-4 dark:bg-gray-900">
       <h2 class="mb-2 text-lg font-bold">
         {{ mon.name }} - lvl {{ mon.lvl }}
