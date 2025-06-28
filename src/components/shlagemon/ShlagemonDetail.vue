@@ -1,8 +1,25 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/types'
+import { computed } from 'vue'
 
-defineProps<{ mon: DexShlagemon, show: boolean }>()
+const props = defineProps<{ mon: DexShlagemon, show: boolean }>()
 const emit = defineEmits(['close'])
+
+const statColors = [
+  'bg-red-200 dark:bg-red-700',
+  'bg-emerald-200 dark:bg-emerald-700',
+  'bg-blue-200 dark:bg-blue-700',
+  'bg-amber-200 dark:bg-amber-700',
+  'bg-violet-200 dark:bg-violet-700',
+  'bg-pink-200 dark:bg-pink-700',
+]
+
+const stats = computed(() => [
+  { label: 'HP', value: props.mon.hp },
+  { label: 'Attaque', value: props.mon.attack },
+  { label: 'Défense', value: props.mon.defense },
+  { label: 'Puanteur', value: props.mon.smelling },
+])
 </script>
 
 <template>
@@ -16,18 +33,16 @@ const emit = defineEmits(['close'])
         {{ mon.description }}
       </p>
       <div class="grid grid-cols-2 gap-2 text-sm">
-        <div class="font-semibold">
-          HP
-        </div><div>{{ mon.hp }}</div>
-        <div class="font-semibold">
-          Attaque
-        </div><div>{{ mon.attack }}</div>
-        <div class="font-semibold">
-          Défense
-        </div><div>{{ mon.defense }}</div>
-        <div class="font-semibold">
-          Puanteur
-        </div><div>{{ mon.smelling }}</div>
+        <div
+          v-for="(stat, i) in stats"
+          :key="stat.label"
+          class="flex flex-col items-center rounded p-2 text-gray-900 transition-colors dark:text-white"
+          :class="statColors[i % statColors.length]"
+          hover="opacity-80"
+        >
+          <span class="font-semibold">{{ stat.label }}</span>
+          <span class="text-base">{{ stat.value }}</span>
+        </div>
       </div>
       <div class="mt-4 text-right">
         <button class="bg-primary rounded px-3 py-1 text-white" @click="emit('close')">
