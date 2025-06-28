@@ -13,6 +13,7 @@ declare module 'vue' {
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
+    ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
