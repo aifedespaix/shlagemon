@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/types/shlagemon'
+import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { xpForLevel } from '~/utils/dexFactory'
 
-defineProps<{ mon: DexShlagemon | null, show: boolean }>()
+const props = defineProps<{ mon: DexShlagemon | null, show: boolean }>()
 const emit = defineEmits(['close'])
 
 const statColors = [
@@ -14,12 +15,19 @@ const statColors = [
   'bg-pink-200 dark:bg-pink-700',
 ]
 
-const stats = computed(() => [
-  { label: 'HP', value: props.mon.hp },
-  { label: 'Attaque', value: props.mon.attack },
-  { label: 'Défense', value: props.mon.defense },
-  { label: 'Puanteur', value: props.mon.smelling },
-])
+const stats = computed(() => {
+  if (!props.mon)
+    return []
+  return [
+    { label: 'HP', value: props.mon.hp },
+    { label: 'Attaque', value: props.mon.attack },
+    { label: 'Défense', value: props.mon.defense },
+    { label: 'Puanteur', value: props.mon.smelling },
+  ]
+})
+
+const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
+const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
 </script>
 
 <template>
@@ -43,6 +51,12 @@ const stats = computed(() => [
           <span class="font-semibold">{{ stat.label }}</span>
           <span class="text-base">{{ stat.value }}</span>
         </div>
+      </div>
+      <div class="mt-4">
+        <div class="mb-1 text-center text-sm">
+          XP: {{ mon.xp }} / {{ maxXp }} — encore {{ xpLeft }}
+        </div>
+        <ProgressBar :value="mon.xp" :max="maxXp" class="w-full" />
       </div>
       <div class="mt-4 text-right">
         <button class="bg-primary rounded px-3 py-1 text-white" @click="emit('close')">
