@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/types/shlagemon'
-import { xpForLevel } from '~/utils/dexFactory'
 
 defineProps<{ mon: DexShlagemon | null, show: boolean }>()
 const emit = defineEmits(['close'])
