@@ -3,7 +3,7 @@ import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { starters } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
 import { useSchlagedexStore } from '~/stores/schlagedex'
-import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
+import { createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 
 const dex = useSchlagedexStore()
 const game = useGameStore()
@@ -22,10 +22,6 @@ function startBattle() {
     return
   const base = starters[Math.floor(Math.random() * starters.length)]
   enemy.value = createDexShlagemon(base)
-  if (enemy.value) {
-    enemy.value.lvl = active.lvl
-    applyStats(enemy.value)
-  }
   playerHp.value = active.hp
   enemyHp.value = enemy.value.hp
   battleActive.value = true
@@ -102,7 +98,7 @@ onUnmounted(() => {
       <div v-if="enemy" class="mon flex flex-col items-center" :class="{ flash: flashEnemy }">
         <img :src="`/shlagemons/${enemy.id}/${enemy.id}.png`" class="max-h-32 object-contain" alt="">
         <div class="name">
-          {{ enemy.name }}
+          {{ enemy.name }} - lvl {{ enemy.lvl }}
         </div>
         <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
         <div class="hp text-sm">
