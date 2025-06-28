@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ShlagemonType } from '~/data/shlagemons'
 
-defineProps<{ value: ShlagemonType }>()
+const { value } = defineProps<{ value: ShlagemonType }>()
 
 const textColor = computed(() => getAdjustedTextColor())
 
