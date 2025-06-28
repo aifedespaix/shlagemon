@@ -15,6 +15,7 @@ export interface BaseShlagemon {
 
 export interface DexShlagemon extends BaseShlagemon {
   lvl: number
+  xp: number
   rarity: number
   hp: number
   attack: number
