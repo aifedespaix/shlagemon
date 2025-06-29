@@ -36,8 +36,9 @@ const active = computed(() => {
   return null
 })
 
-function markDone(id: string) {
-  dialogStore.markDone(id)
+function markDone(id: string | undefined) {
+  if (id)
+    dialogStore.markDone(id)
 }
 </script>
 
@@ -45,6 +46,6 @@ function markDone(id: string) {
   <component
     :is="active?.component"
     v-if="active"
-    @done="markDone(active.id)"
+    @done="markDone($event)"
   />
 </template>

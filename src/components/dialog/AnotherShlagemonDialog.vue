@@ -23,7 +23,7 @@ const dialogTree = [
         type: 'valid',
         action: () => {
           dex.createShlagemon(mon)
-          emit('done')
+          emit('done', 'richReward')
         },
       },
     ],

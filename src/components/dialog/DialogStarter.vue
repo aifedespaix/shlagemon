@@ -59,7 +59,7 @@ const dialogTree = [
         action: () => {
           dex.createShlagemon(s)
           gameState.setHasPokemon(true)
-          emit('done')
+          emit('done', 'starter')
         },
       },
     ],
