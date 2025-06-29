@@ -20,26 +20,33 @@ function choose(r: DialogResponse) {
 </script>
 
 <template>
-  <div class="dialog grid grid-cols-4 gap-4 rounded bg-white p-4 dark:bg-gray-900">
-    <div class="col-span-1 flex flex-col items-center">
+  <div class="grid grid-cols-4 h-full gap-2 rounded" bg="white dark:gray-900">
+    <div class="flex flex-col items-center justify-center">
       <img :src="avatarUrl" alt="avatar" class="h-auto w-full object-contain">
       <div class="mt-2 text-center font-bold">
         {{ speaker }}
       </div>
     </div>
-    <div class="col-span-3 flex flex-col">
-      <div class="p-2">
+
+    <div class="col-span-3 h-full flex flex-col gap-2">
+      <div>
         {{ currentNode?.text }}
       </div>
-      <div v-if="currentNode?.imageUrl" class="my-2 flex flex-1 justify-center">
-        <img :src="currentNode.imageUrl" alt="illustration" class="h-full w-auto object-contain">
-      </div>
+
+      <ImageByBackground
+        v-if="currentNode?.imageUrl"
+        :src="currentNode.imageUrl"
+        alt="illustration"
+        class="flex-1"
+      />
+
       <div class="mt-auto flex justify-center gap-2">
         <Button
           v-for="r in currentNode?.responses"
           :key="r.label"
           :type="r.type"
-          class="flex flex-col items-center justify-center"
+          class="flex flex-1 flex-col items-center justify-center text-xs"
+          md="text-sm"
           @click="choose(r)"
         >
           <img v-if="r.imageUrl" :src="r.imageUrl" class="mr-1 h-6 w-6" alt="">

@@ -18,6 +18,7 @@ declare module 'vue' {
     DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
+    ImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']

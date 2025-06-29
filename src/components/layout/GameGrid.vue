@@ -13,7 +13,7 @@ const gameState = useGameStateStore()
       class="game flex flex-col gap-1 p-1"
       md="grid grid-cols-12 grid-rows-12 w-full h-full gap-2 p-1"
     >
-      <div class="zone" md="col-span-6 row-span-6 col-start-4 row-start-7">
+      <div class="zone" md="col-span-6 row-span-5  col-start-4 row-start-8">
         <!-- middle B zone -->
         <DialogPanel />
       </div>
@@ -23,13 +23,13 @@ const gameState = useGameStateStore()
           <PlayerInfos />
         </div>
       </div>
-      <div class="zone" md="col-span-6 row-span-4 col-start-4 row-start-2">
+      <div class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
         <!-- middle A zone -->
         <div class="zone-content">
           <BattleMain v-if="gameState.hasPokemon" />
         </div>
       </div>
-      <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-6">
+      <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
         <!-- bottom zone -->
         <div class="zone-content">
           <ActiveShlagemon />
