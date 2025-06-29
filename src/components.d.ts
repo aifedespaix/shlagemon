@@ -27,7 +27,6 @@ declare module 'vue' {
     Shlagedex: typeof import('./components/shlagemon/Shlagedex.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
     ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
-    StarterPanel: typeof import('./components/dialog/StarterPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
   }
 }

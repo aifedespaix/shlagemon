@@ -17,12 +17,8 @@ const totalInDex = starters.length
       <span class="font-bold">{{ game.shlagidolar }}</span>
     </div>
     <div class="flex flex-col items-center">
-      <span>Shlagémons</span>
-      <span class="font-bold">{{ dex.shlagemons?.length ?? 0 }}</span>
-    </div>
-    <div class="flex flex-col items-center">
-      <span>Pokédex</span>
-      <span class="font-bold">{{ totalInDex }}</span>
+      <span>Shlagédex</span>
+      <span class="font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
     </div>
   </div>
 </template>
