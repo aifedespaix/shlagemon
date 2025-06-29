@@ -15,7 +15,11 @@ export const useDialogStore = defineStore('dialog', () => {
     done.value[id] = true
   }
 
-  return { done, isDone, markDone }
+  function reset() {
+    done.value = {}
+  }
+
+  return { done, isDone, markDone, reset }
 }, {
   persist: true,
 })
