@@ -7,7 +7,11 @@ export const useGameStore = defineStore('game', () => {
     shlagidolar.value += amount
   }
 
-  return { shlagidolar, addShlagidolar }
+  function reset() {
+    shlagidolar.value = 0
+  }
+
+  return { shlagidolar, addShlagidolar, reset }
 }, {
   persist: true,
 })

@@ -20,8 +20,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     shlagemons.value = [...mons]
   }
 
-  function clear() {
+  function reset() {
     shlagemons.value = []
+    activeShlagemon.value = null
   }
 
   function gainXp(mon: DexShlagemon, amount: number) {
@@ -39,7 +40,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return mon
   }
 
-  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, clear, createShlagemon, gainXp }
+  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, gainXp }
 }, {
   persist: true,
 })
