@@ -18,7 +18,7 @@ const totalInDex = starters.length
     </div>
     <div class="flex flex-col items-center">
       <span>Shlagédex</span>
-      <span class="font-bold">{{ dex.shlagemons.length }} / {{ totalInDex }}</span>
+      <span class="font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
     </div>
   </div>
 </template>
