@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BattleMain from '~/components/battle/BattleMain.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
-import StarterPanel from '~/components/panels/StarterPanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import { useGameStateStore } from '~/stores/gameState'
 
@@ -15,7 +14,7 @@ const gameState = useGameStateStore()
   >
     <div class="zone" md="col-span-6 row-span-6 col-start-4 row-start-7">
       <!-- middle B zone -->
-      <StarterPanel v-if="!gameState.hasPokemon" />
+      <DialogStarter v-if="!gameState.hasPokemon" />
     </div>
     <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-1">
       <!-- top zone -->

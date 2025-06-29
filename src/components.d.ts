@@ -12,6 +12,7 @@ declare module 'vue' {
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     CheckBox: typeof import('./components/ui/CheckBox.vue')['default']
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
+    DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
@@ -24,7 +25,7 @@ declare module 'vue' {
     Shlagedex: typeof import('./components/shlagemon/Shlagedex.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
     ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
-    StarterPanel: typeof import('./components/panels/StarterPanel.vue')['default']
+    StarterPanel: typeof import('./components/dialog/StarterPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
   }
 }
