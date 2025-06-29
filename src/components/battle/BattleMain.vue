@@ -106,9 +106,6 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-    <div class="mt-2 text-sm">
-      Shlagidolar : {{ game.shlagidolar }}
-    </div>
   </div>
 </template>
 
