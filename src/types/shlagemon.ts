@@ -3,6 +3,10 @@ export interface ShlagemonType {
   name: string
   description: string
   color: string
+  resistance: string[]
+  weakness: string[]
+  tags: string[]
+  passiveEffects: string[]
 }
 
 export interface BaseShlagemon {

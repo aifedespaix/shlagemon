@@ -1,5 +1,4 @@
-import type { BaseShlagemon } from '~/data/shlagemons'
-import type { DexShlagemon } from '~/types/shlagemon'
+import type { BaseShlagemon, DexShlagemon } from '~/types/shlagemon'
 import { defineStore } from 'pinia'
 import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 

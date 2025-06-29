@@ -48,7 +48,6 @@ function tick() {
   setTimeout(() => (flashPlayer.value = false), 100)
   checkEnd()
 }
-
 function checkEnd() {
   if (enemyHp.value <= 0 || playerHp.value <= 0) {
     battleActive.value = false

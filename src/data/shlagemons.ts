@@ -1,38 +1,5 @@
-export interface ShlagemonType {
-  id: string
-  name: string
-  description: string
-  color: string
-}
-
-export interface BaseShlagemon {
-  id: string
-  name: string
-  color: string
-  description: string
-  type: ShlagemonType
-}
-
-export const plastoc: ShlagemonType = {
-  id: 'plastoc',
-  name: 'Plastoc',
-  description: 'Type synthétique peu écologique',
-  color: '#e86fda',
-}
-
-export const flanquant: ShlagemonType = {
-  id: 'flanquant',
-  name: 'Flanquant',
-  description: 'Type gluant et instable',
-  color: '#ffcc88',
-}
-
-export const vapotonie: ShlagemonType = {
-  id: 'vapotonie',
-  name: 'Vapotage',
-  description: 'Type intangible et toxique',
-  color: '#b6d6f2',
-}
+import type { BaseShlagemon } from '../types/shlagemon'
+import { flanquant, plastoc, vapotonie } from './shlagemons-type'
 
 export const carapouffe: BaseShlagemon = {
   id: 'carapouffe',
