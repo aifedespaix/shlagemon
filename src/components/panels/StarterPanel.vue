@@ -2,10 +2,10 @@
 import DialogBox from '~/components/dialog/DialogBox.vue'
 import { starters } from '~/data/shlagemons'
 import { useGameStateStore } from '~/stores/gameState'
-import { useSchlagedexStore } from '~/stores/schlagedex'
+import { useShlagedexStore } from '~/stores/shlagedex'
 
 const gameState = useGameStateStore()
-const dex = useSchlagedexStore()
+const dex = useShlagedexStore()
 
 function nextId(baseId: string) {
   return `confirm${baseId}`

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import BattleMain from '~/components/battle/BattleMain.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
-import SelectedShlagemon from '~/components/panels/SelectedShlagemon.vue'
 import StarterPanel from '~/components/panels/StarterPanel.vue'
-import Schlagedex from '~/components/shlagemon/Schlagedex.vue'
+import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import { useGameStateStore } from '~/stores/gameState'
 
 const gameState = useGameStateStore()
@@ -14,30 +13,31 @@ const gameState = useGameStateStore()
     class="game h-auto flex flex-col"
     md="grid grid-cols-12 grid-rows-12 h-full gap-2"
   >
-    <div class="zone left col-span-12 row-span-1" md="col-span-3 row-span-12">
+    <div class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
       <!-- left zone -->
     </div>
-    <div class="zone right col-span-12 row-span-1" md="col-span-3 row-span-12 col-start-10">
-      <Schlagedex />
+    <div class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">
+      <!-- right zone -->
+      <Shlagedex />
     </div>
-    <div class="zone top col-span-12 row-span-1" md="col-span-6 row-span-1 col-start-4">
-      <ActiveShlagemon />
+    <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-1">
+      <!-- top zone -->
+      <PlayerInfos />
     </div>
-    <div class="zone center col-span-12 row-span-1" md="col-span-6 row-span-9 col-start-4 row-start-2">
+    <div class="zone" md="col-span-6 row-span-10 col-start-4 row-start-2">
+      <!-- middle zone -->
       <BattleMain v-if="gameState.hasPokemon" />
       <StarterPanel v-else />
     </div>
-    <div class="zone bottom col-span-12 row-span-1" md="col-span-6 row-span-2 col-start-4 row-start-11">
-      <SelectedShlagemon />
+    <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-12">
+      <!-- bottom zone -->
+      <ActiveShlagemon />
     </div>
   </div>
 </template>
 
 <style scoped>
 .zone {
-  @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700;
-}
-.game {
-  background-color: var(--un-background, theme('colors.white'));
+  @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 overflow-hidden;
 }
 </style>

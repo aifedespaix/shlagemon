@@ -2,10 +2,10 @@
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { starters } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
-import { useSchlagedexStore } from '~/stores/schlagedex'
+import { useShlagedexStore } from '~/stores/shlagedex'
 import { createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 
-const dex = useSchlagedexStore()
+const dex = useShlagedexStore()
 const game = useGameStore()
 
 const playerHp = ref(0)

@@ -21,7 +21,7 @@ function getAdjustedTextColor(amount = 60) {
 </script>
 
 <template>
-  <span class="type rounded px-2 py-1" :style="{ backgroundColor: value.color, color: textColor }">
+  <span class="type rounded px-2 py-1 text-center text-xs" :style="{ backgroundColor: value.color, color: textColor }">
     {{ value.name }}
   </span>
 </template>

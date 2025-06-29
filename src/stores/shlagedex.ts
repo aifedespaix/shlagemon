@@ -3,7 +3,7 @@ import type { DexShlagemon } from '~/types/shlagemon'
 import { defineStore } from 'pinia'
 import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 
-export const useSchlagedexStore = defineStore('schlagedex', () => {
+export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
   const activeShlagemon = ref<DexShlagemon | null>(null)
 

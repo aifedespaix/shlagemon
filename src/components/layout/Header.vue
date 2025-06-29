@@ -10,8 +10,8 @@ function reset() {
 </script>
 
 <template>
-  <header class="flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800">
-    <img src="/logo.png" alt="Logo Shlagémon" class="h-8">
+  <header class="h-12 flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800">
+    <img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
     <div class="flex items-center gap-2">
       <ThemeToggle />
       <button class="p-1" aria-label="Reset Save" @click="reset">

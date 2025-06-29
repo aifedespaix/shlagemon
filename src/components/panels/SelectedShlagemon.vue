@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useSchlagedexStore } from '~/stores/schlagedex'
+import { useShlagedexStore } from '~/stores/shlagedex'
 
-const dex = useSchlagedexStore()
+const dex = useShlagedexStore()
 </script>
 
 <template>

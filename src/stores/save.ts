@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import { useGameStateStore } from './gameState'
-import { useSchlagedexStore } from './schlagedex'
+import { useShlagedexStore } from './shlagedex'
 
 export const useSaveStore = defineStore('save', () => {
   const storageKey = 'pinia'
-  const dex = useSchlagedexStore()
+  const dex = useShlagedexStore()
   const gameState = useGameStateStore()
 
   function reset() {
