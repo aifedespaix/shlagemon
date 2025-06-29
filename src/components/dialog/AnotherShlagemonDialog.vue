@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { DialogNode } from '~/types/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
 import { starters } from '~/data/shlagemons'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -19,6 +20,7 @@ const dialogTree = [
     responses: [
       {
         label: 'Merci professeur !',
+        type: 'valid',
         action: () => {
           dex.createShlagemon(mon)
           emit('done')
@@ -26,7 +28,7 @@ const dialogTree = [
       },
     ],
   },
-]
+] as DialogNode[]
 </script>
 
 <template>
