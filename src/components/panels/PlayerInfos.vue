@@ -9,7 +9,7 @@ const totalInDex = starters.length
 
 <template>
   <div
-    class="flex justify-around rounded bg-white p-2 text-xs dark:bg-gray-900"
+    class="inline-flex items-center justify-around gap-3 rounded bg-white p-2 text-xs dark:bg-gray-900"
     sm="text-sm p-3"
   >
     <div class="flex flex-col items-center">
