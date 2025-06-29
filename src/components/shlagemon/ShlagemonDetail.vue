@@ -35,6 +35,9 @@ const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
     <h2 class="mb-2 text-lg font-bold">
       {{ mon.base.name }} - lvl {{ mon.lvl }}
     </h2>
+    <p class="mb-2 text-sm text-gray-500">
+      ID: {{ mon.id }}
+    </p>
     <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="mx-auto mb-2 max-h-40 object-contain">
     <p class="mb-4 text-sm italic">
       {{ mon.base.description }}

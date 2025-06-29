@@ -17,7 +17,7 @@ function open(mon: DexShlagemon | null) {
 }
 
 function isActive(mon: DexShlagemon) {
-  return dex.activeShlagemon?.base.id === mon.base.id
+  return dex.activeShlagemon?.id === mon.id
 }
 </script>
 
@@ -29,7 +29,7 @@ function isActive(mon: DexShlagemon) {
     <div class="flex flex-col gap-2">
       <div
         v-for="mon in dex.shlagemons"
-        :key="mon.base.id"
+        :key="mon.id"
         class="flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
         :class="{ 'bg-primary/20': isActive(mon) }"
@@ -42,6 +42,7 @@ function isActive(mon: DexShlagemon) {
             <div class="name">
               {{ mon.base.name }}
             </div>
+            <span class="text-xs text-gray-500">ID: {{ mon.id }}</span>
             <ShlagemonType :value="mon.base.type" />
           </div>
         </div>

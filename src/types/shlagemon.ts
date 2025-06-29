@@ -18,6 +18,10 @@ export interface BaseShlagemon {
 }
 
 export interface DexShlagemon {
+  /**
+   * Unique identifier for each captured Shlagémon
+   */
+  id: string
   base: BaseShlagemon
   lvl: number
   xp: number
