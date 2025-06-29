@@ -13,6 +13,7 @@ export function applyStats(mon: DexShlagemon) {
 
 export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
   const mon: DexShlagemon = {
+    id: crypto.randomUUID(),
     base,
     lvl: 1,
     xp: 0,
