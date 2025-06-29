@@ -4,6 +4,8 @@ import { starters } from '~/data/shlagemons'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
+const emit = defineEmits(['done'])
+
 const gameState = useGameStateStore()
 const dex = useShlagedexStore()
 
@@ -55,6 +57,7 @@ const dialogTree = [
         action: () => {
           dex.createShlagemon(s)
           gameState.setHasPokemon(true)
+          emit('done')
         },
       },
     ],
