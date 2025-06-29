@@ -28,7 +28,7 @@ function choose(r: DialogResponse) {
       </div>
     </div>
     <div class="col-span-3 flex flex-col">
-      <div class="flex-1 p-2">
+      <div class="p-2">
         {{ currentNode?.text }}
       </div>
       <div v-if="currentNode?.imageUrl" class="my-2 flex flex-1 justify-center">
