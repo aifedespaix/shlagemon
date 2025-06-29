@@ -10,14 +10,15 @@ const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {
+    dex.setActiveShlagemon(mon)
     detailMon.value = mon
     showDetail.value = true
   }
 }
 
-const active = computed({
-  get: () => dex.activeShlagemon?.id === detailMon.value?.id,
-})
+function isActive(mon: DexShlagemon) {
+  return dex.activeShlagemon?.id === mon.id
+}
 </script>
 
 <template>
@@ -31,7 +32,8 @@ const active = computed({
         :key="mon.id"
         class="flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
-        :class="{ 'bg-primary': dex.activeShlagemon?.id === mon.id }"
+        :class="{ 'bg-primary/20': isActive(mon) }"
+        :style="isActive(mon) ? { backgroundImage: `url(/shlagemons/${mon.id}/${mon.id}.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
         @click="open(mon)"
       >
         <div class="flex items-center gap-2">
@@ -43,7 +45,12 @@ const active = computed({
             <ShlagemonType :value="mon.type" />
           </div>
         </div>
-        <CheckBox class="ml-2" :active="dex.activeShlagemon?.id === mon.id" :model-value="active" @click.stop="dex.setActiveShlagemon(mon)" />
+        <CheckBox
+          class="ml-2"
+          :model-value="isActive(mon)"
+          @update:model-value="() => dex.setActiveShlagemon(mon)"
+          @click.stop
+        />
       </div>
     </div>
     <Modal v-model="showDetail">
