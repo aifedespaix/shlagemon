@@ -27,7 +27,7 @@ const stats = computed(() => {
 })
 
 const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
-const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
+// const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
 </script>
 
 <template>
@@ -35,11 +35,8 @@ const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
     <h2 class="mb-2 text-lg font-bold">
       {{ mon.base.name }} - lvl {{ mon.lvl }}
     </h2>
-    <p class="mb-2 text-sm text-gray-500">
-      ID: {{ mon.id }}
-    </p>
     <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="mx-auto mb-2 max-h-40 object-contain">
-    <p class="mb-4 text-sm italic">
+    <p class="mb-4 max-h-25 overflow-auto text-sm italic">
       {{ mon.base.description }}
     </p>
     <div class="grid grid-cols-2 gap-2 text-sm">
@@ -56,7 +53,7 @@ const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
     </div>
     <div class="mt-4">
       <div class="mb-1 text-center text-sm">
-        XP: {{ mon.xp }} / {{ maxXp }} — encore {{ xpLeft }}
+        Éxpérience : {{ mon.xp }} / {{ maxXp }}
       </div>
       <ProgressBar :value="mon.xp" :max="maxXp" class="w-full" />
     </div>
