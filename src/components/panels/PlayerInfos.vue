@@ -1,11 +1,28 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import { starters } from '~/data/shlagemons'
+
 const game = useGameStore()
+const dex = useShlagedexStore()
+
+const totalInDex = starters.length
 </script>
 
 <template>
-  <div>
-    <div class="mt-2 text-sm">
-      Shlagidolars : {{ game.shlagidolar }}
+  <div
+    class="flex justify-around rounded bg-white p-2 text-xs dark:bg-gray-900"
+    sm="text-sm p-3"
+  >
+    <div class="flex flex-col items-center">
+      <span>Shlagidolars</span>
+      <span class="font-bold">{{ game.shlagidolar }}</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span>Shlagémons</span>
+      <span class="font-bold">{{ dex.shlagemons.length }}</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span>Pokédex</span>
+      <span class="font-bold">{{ totalInDex }}</span>
     </div>
   </div>
 </template>
