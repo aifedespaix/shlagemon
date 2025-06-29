@@ -14,7 +14,7 @@ const gameState = useGameStateStore()
   >
     <div class="zone" md="col-span-6 row-span-6 col-start-4 row-start-7">
       <!-- middle B zone -->
-      <DialogStarter v-if="!gameState.hasPokemon" />
+      <DialogPanel />
     </div>
     <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-1">
       <!-- top zone -->

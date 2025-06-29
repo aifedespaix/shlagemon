@@ -9,9 +9,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ActiveShlagemon: typeof import('./components/panels/ActiveShlagemon.vue')['default']
+    AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     CheckBox: typeof import('./components/ui/CheckBox.vue')['default']
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
+    DialogPanel: typeof import('./components/panels/DialogPanel.vue')['default']
     DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
