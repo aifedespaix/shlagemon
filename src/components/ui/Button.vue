@@ -13,7 +13,7 @@ const variantClass = computed(() => {
     case 'danger':
       return 'bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-800'
     default:
-      return 'bg-primary hover:bg-primary/80'
+      return 'bg-cyan-600 dark:bg-cyan-700 hover:bg-cyan-700 dark:hover:bg-cyan-800/80'
   }
 })
 </script>

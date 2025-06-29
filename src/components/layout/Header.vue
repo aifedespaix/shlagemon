@@ -15,7 +15,7 @@ function reset() {
     <div class="flex items-center gap-2">
       <ThemeToggle />
       <button class="p-1" aria-label="Reset Save" @click="reset">
-        🗑
+        <div class="i-carbon-trash-can text-red" />
       </button>
     </div>
   </header>

@@ -39,6 +39,7 @@ function choose(r: DialogResponse) {
           v-for="r in currentNode?.responses"
           :key="r.label"
           :type="r.type"
+          class="flex flex-col items-center justify-center"
           @click="choose(r)"
         >
           <img v-if="r.imageUrl" :src="r.imageUrl" class="mr-1 h-6 w-6" alt="">

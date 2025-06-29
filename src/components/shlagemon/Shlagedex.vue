@@ -42,7 +42,6 @@ function isActive(mon: DexShlagemon) {
             <div class="name">
               {{ mon.base.name }}
             </div>
-            <span class="text-xs text-gray-500">ID: {{ mon.id }}</span>
             <ShlagemonType :value="mon.base.type" />
           </div>
         </div>
