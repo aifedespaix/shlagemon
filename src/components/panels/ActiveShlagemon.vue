@@ -7,7 +7,7 @@ const dex = useShlagedexStore()
 
 <template>
   <div v-if="dex.activeShlagemon" class="flex items-center gap-2">
-    <div class="h-16 w-16 flex-shrink-0">
+    <div class="h-16 w-16 flex-shrink-0" md="h-full">
       <img
         :src="`/shlagemons/${dex.activeShlagemon.id}/${dex.activeShlagemon.id}.png`"
         :alt="dex.activeShlagemon.name"
