@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/types/shlagemon'
+import Modal from '~/components/modal/Modal.vue'
 import { useSchlagedexStore } from '~/stores/schlagedex'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
@@ -41,6 +42,8 @@ function open(mon: DexShlagemon | null) {
         </button>
       </div>
     </div>
-    <ShlagemonDetail :mon="detailMon" :show="showDetail" @close="showDetail = false" />
+    <Modal v-model="showDetail">
+      <ShlagemonDetail :mon="detailMon" @close="showDetail = false" />
+    </Modal>
   </section>
 </template>
