@@ -18,7 +18,7 @@ const totalInDex = starters.length
     </div>
     <div class="flex flex-col items-center">
       <span>Shlagémons</span>
-      <span class="font-bold">{{ dex.shlagemons.length }}</span>
+      <span class="font-bold">{{ dex.shlagemons?.length ?? 0 }}</span>
     </div>
     <div class="flex flex-col items-center">
       <span>Pokédex</span>
