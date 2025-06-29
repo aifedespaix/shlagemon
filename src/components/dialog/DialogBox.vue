@@ -28,11 +28,13 @@ function choose(r: DialogResponse) {
       </div>
     </div>
     <div class="col-span-3 flex flex-col">
-      <div class="flex-1 p-2">
+      <div class="p-2">
         {{ currentNode?.text }}
       </div>
-      <div v-if="currentNode?.imageUrl" class="my-2 flex justify-center">
-        <img :src="currentNode.imageUrl" alt="illustration" class="max-h-60 object-contain">
+      <div v-if="currentNode?.imageUrl" class="my-2 flex flex-1 justify-center overflow-hidden">
+        <div>
+          <img :src="currentNode.imageUrl" alt="illustration" class="max-h-60 object-contain">
+        </div>
       </div>
       <div class="mt-auto flex justify-center gap-2">
         <Button
