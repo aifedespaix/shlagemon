@@ -2,10 +2,8 @@
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="h-full flex flex-col">
     <Header />
-    <GameGrid class="flex-1">
-      <RouterView />
-    </GameGrid>
+    <GameGrid class="flex-1" />
   </div>
 </template>
