@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/types/shlagemon'
-import { useShlagedexStore } from '~/stores/shlagedex'
+import Modal from '~/components/modal/Modal.vue'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
@@ -14,6 +14,10 @@ function open(mon: DexShlagemon | null) {
     showDetail.value = true
   }
 }
+
+const active = computed({
+  get: () => dex.activeShlagemon?.id === detailMon.value?.id,
+})
 </script>
 
 <template>
@@ -27,7 +31,7 @@ function open(mon: DexShlagemon | null) {
         :key="mon.id"
         class="flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
-        :class="{ 'bg-primary text-white': dex.activeShlagemon?.id === mon.id }"
+        :class="{ 'bg-primary': dex.activeShlagemon?.id === mon.id }"
         @click="open(mon)"
       >
         <div class="flex items-center gap-2">
@@ -39,11 +43,11 @@ function open(mon: DexShlagemon | null) {
             <ShlagemonType :value="mon.type" />
           </div>
         </div>
-        <CheckBox class="ml-2" @click.stop="dex.setActiveShlagemon(mon)">
-          ✔
-        </CheckBox>
+        <CheckBox class="ml-2" :active="dex.activeShlagemon?.id === mon.id" :model-value="active" @click.stop="dex.setActiveShlagemon(mon)" />
       </div>
     </div>
-    <ShlagemonDetail :mon="detailMon" :show="showDetail" @close="showDetail = false" />
+    <Modal v-model="showDetail">
+      <ShlagemonDetail :mon="detailMon" @close="showDetail = false" />
+    </Modal>
   </section>
 </template>
