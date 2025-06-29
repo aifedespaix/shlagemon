@@ -3,8 +3,8 @@ export interface ShlagemonType {
   name: string
   description: string
   color: string
-  resistance: string[]
-  weakness: string[]
+  resistance: ShlagemonType[]
+  weakness: ShlagemonType[]
   tags: string[]
   passiveEffects: string[]
 }
