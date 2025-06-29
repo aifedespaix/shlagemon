@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { DialogNode } from '~/types/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
 import { starters } from '~/data/shlagemons'
 import { useGameStateStore } from '~/stores/gameState'
@@ -22,14 +23,14 @@ const dialogTree = [
     id: 'start',
     text: 'Salut, je suis le Professeur Merdant, mes amis disent que je sent bon.',
     responses: [
-      { label: 'Tu n\'as pas l\'air très intelligent.', nextId: '2' },
+      { label: 'Tu n\'as pas l\'air très intelligent.', nextId: '2', type: 'primary' },
     ],
   },
   {
     id: '2',
     text: 'Je t\'emmerde mon petit, pour la peine, je vais te forcer à adopter un de mes Shlagémons.',
     responses: [
-      { label: 'Ho nooon, pas un Shlagémon, ils sentent trop mauvais !', nextId: 'choice' },
+      { label: 'Ho nooon, pas un Shlagémon, ils sentent trop mauvais !', nextId: 'choice', type: 'primary' },
     ],
   },
   {
@@ -39,7 +40,7 @@ const dialogTree = [
       label: s.name,
       nextId: nextId(s.id),
       imageUrl: '/items/shlageball/shlageball.png',
-      color: s.color,
+      type: 'primary',
     })),
   },
   ...starters.map(s => ({
@@ -51,9 +52,10 @@ const dialogTree = [
         : 'Attention, il ne sait pas nager.',
     imageUrl: imageUrl(s.id),
     responses: [
-      { label: 'T\'as pas mieux que cette merde ?', nextId: 'choice' },
+      { label: 'T\'as pas mieux que cette merde ?', nextId: 'choice', type: 'danger' },
       {
         label: s.id === 'bulgrosboule' ? 'Je l\'aime pas trop mais ok' : 'Merci professeur Merdant',
+        type: 'valid',
         action: () => {
           dex.createShlagemon(s)
           gameState.setHasPokemon(true)
@@ -62,7 +64,7 @@ const dialogTree = [
       },
     ],
   })),
-]
+] as DialogNode[]
 </script>
 
 <template>

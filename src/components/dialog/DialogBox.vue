@@ -1,17 +1,6 @@
 <script setup lang="ts">
-interface DialogResponse {
-  label: string
-  imageUrl?: string
-  nextId?: string
-  action?: () => void
-  color?: string
-}
-interface DialogNode {
-  id: string
-  text: string
-  responses: DialogResponse[]
-  imageUrl?: string
-}
+import type { DialogNode, DialogResponse } from '~/types/dialog'
+import Button from '~/components/ui/Button.vue'
 
 const { dialogTree, speaker, avatarUrl }
   = defineProps<{ dialogTree: DialogNode[], speaker: string, avatarUrl: string }>()
@@ -46,15 +35,15 @@ function choose(r: DialogResponse) {
         <img :src="currentNode.imageUrl" alt="illustration" class="max-h-60 object-contain">
       </div>
       <div class="mt-auto flex justify-center gap-2">
-        <button
+        <Button
           v-for="r in currentNode?.responses"
           :key="r.label"
-          class="bg-primary hover:bg-primary/80 rounded px-2 py-1 text-white"
+          :type="r.type"
           @click="choose(r)"
         >
           <img v-if="r.imageUrl" :src="r.imageUrl" class="mr-1 h-6 w-6" alt="">
           {{ r.label }}
-        </button>
+        </Button>
       </div>
     </div>
   </div>
