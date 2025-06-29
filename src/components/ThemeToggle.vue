@@ -41,6 +41,7 @@ const toggle = useToggle(isDark)
 }
 
 .theme-toggle {
+  position: relative;
   display: flex;
   align-items: center;
   -webkit-tap-highlight-color: transparent;
@@ -59,6 +60,7 @@ const toggle = useToggle(isDark)
   inset: 0;
   height: 100%;
   transform: translateX(-100%);
+  pointer-events: none;
 }
 
 .theme-toggle-icon,
