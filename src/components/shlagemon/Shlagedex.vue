@@ -17,7 +17,7 @@ function open(mon: DexShlagemon | null) {
 }
 
 function isActive(mon: DexShlagemon) {
-  return dex.activeShlagemon?.id === mon.id
+  return dex.activeShlagemon?.base.id === mon.base.id
 }
 </script>
 
@@ -29,20 +29,20 @@ function isActive(mon: DexShlagemon) {
     <div class="flex flex-col gap-2">
       <div
         v-for="mon in dex.shlagemons"
-        :key="mon.id"
+        :key="mon.base.id"
         class="flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
         :class="{ 'bg-primary/20': isActive(mon) }"
-        :style="isActive(mon) ? { backgroundImage: `url(/shlagemons/${mon.id}/${mon.id}.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
+        :style="isActive(mon) ? { backgroundImage: `url(/shlagemons/${mon.base.id}/${mon.base.id}.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
         @click="open(mon)"
       >
         <div class="flex items-center gap-2">
-          <img :src="`/shlagemons/${mon.id}/${mon.id}.png`" :alt="mon.name" class="h-10 w-10 object-contain">
+          <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="h-10 w-10 object-contain">
           <div class="flex flex-col">
             <div class="name">
-              {{ mon.name }}
+              {{ mon.base.name }}
             </div>
-            <ShlagemonType :value="mon.type" />
+            <ShlagemonType :value="mon.base.type" />
           </div>
         </div>
         <CheckBox
