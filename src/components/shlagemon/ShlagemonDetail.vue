@@ -33,11 +33,11 @@ const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
 <template>
   <div v-if="mon" class="max-w-sm w-full rounded bg-white p-4 dark:bg-gray-900">
     <h2 class="mb-2 text-lg font-bold">
-      {{ mon.name }} - lvl {{ mon.lvl }}
+      {{ mon.base.name }} - lvl {{ mon.lvl }}
     </h2>
-    <img :src="`/shlagemons/${mon.id}/${mon.id}.png`" :alt="mon.name" class="mx-auto mb-2 max-h-40 object-contain">
+    <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="mx-auto mb-2 max-h-40 object-contain">
     <p class="mb-4 text-sm italic">
-      {{ mon.description }}
+      {{ mon.base.description }}
     </p>
     <div class="grid grid-cols-2 gap-2 text-sm">
       <div

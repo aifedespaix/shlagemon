@@ -1,5 +1,4 @@
-import type { BaseShlagemon } from '~/data/shlagemons'
-import type { DexShlagemon } from '~/types/shlagemon'
+import type { BaseShlagemon, DexShlagemon } from '~/types/shlagemon'
 
 export function xpForLevel(level: number): number {
   return Math.floor(100 * 1.1 ** (level - 1))
@@ -14,7 +13,7 @@ export function applyStats(mon: DexShlagemon) {
 
 export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
   const mon: DexShlagemon = {
-    ...base,
+    base,
     lvl: 1,
     xp: 0,
     rarity: 1,

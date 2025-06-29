@@ -82,9 +82,9 @@ onUnmounted(() => {
   <div class="battle text-center" @click="attack">
     <div v-if="dex.activeShlagemon && enemy" class="flex items-center justify-center gap-4">
       <div class="mon flex flex-col items-center" :class="{ flash: flashPlayer }">
-        <img :src="`/shlagemons/${dex.activeShlagemon.id}/${dex.activeShlagemon.id}.png`" class="max-h-32 object-contain" alt="">
+        <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
         <div class="name">
-          {{ dex.activeShlagemon.name }}
+          {{ dex.activeShlagemon.base.name }}
         </div>
         <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
         <div class="hp text-sm">
@@ -95,9 +95,9 @@ onUnmounted(() => {
         VS
       </div>
       <div v-if="enemy" class="mon flex flex-col items-center" :class="{ flash: flashEnemy }">
-        <img :src="`/shlagemons/${enemy.id}/${enemy.id}.png`" class="max-h-32 object-contain" alt="">
+        <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
         <div class="name">
-          {{ enemy.name }} - lvl {{ enemy.lvl }}
+          {{ enemy.base.name }} - lvl {{ enemy.lvl }}
         </div>
         <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
         <div class="hp text-sm">
