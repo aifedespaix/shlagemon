@@ -1,9 +1,13 @@
+import type { DexShlagemon } from '~/types/shlagemon'
 import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
+import { useShlagedexStore } from './shlagedex'
 
 export const useGameStateStore = defineStore('gameState', () => {
+  const dex = useShlagedexStore()
   const hasPokemon = ref(false)
   const dialogStep = ref(0)
-  const activeShlagemonId = ref<string | null>(null)
+  const activeShlagemon = computed<DexShlagemon | null>(() => dex.activeShlagemon)
 
   function setHasPokemon(v: boolean) {
     hasPokemon.value = v
@@ -11,16 +15,16 @@ export const useGameStateStore = defineStore('gameState', () => {
   function setDialogStep(step: number) {
     dialogStep.value = step
   }
-  function setActiveShlagemonId(id: string | null) {
-    activeShlagemonId.value = id
+  function setActiveShlagemon(mon: DexShlagemon | null) {
+    if (mon)
+      dex.setActiveShlagemon(mon)
   }
   function reset() {
     hasPokemon.value = false
     dialogStep.value = 0
-    activeShlagemonId.value = null
   }
 
-  return { hasPokemon, dialogStep, activeShlagemonId, setHasPokemon, setDialogStep, setActiveShlagemonId, reset }
+  return { hasPokemon, dialogStep, activeShlagemon, setHasPokemon, setDialogStep, setActiveShlagemon, reset }
 }, {
   persist: true,
 })
