@@ -19,6 +19,7 @@ declare module 'vue' {
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     ImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
+    ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
@@ -30,6 +31,7 @@ declare module 'vue' {
     ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
     ShlagemonRarity: typeof import('./components/shlagemon/ShlagemonRarity.vue')['default']
     ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
+    ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
   }
 }

@@ -1,5 +1,6 @@
 export * from './button'
 export * from './dialog'
+export * from './item'
 export * from './shlagemon'
 export * from './shlagemonEvolution'
 export * from './shlagemonType'
