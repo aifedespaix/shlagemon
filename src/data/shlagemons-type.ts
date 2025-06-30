@@ -1,4 +1,4 @@
-import type { ShlagemonType } from '../types/shlagemon'
+import type { ShlagemonType } from '../type/shlagemon'
 
 export const moisisme: ShlagemonType = {
   id: 'moisisme',

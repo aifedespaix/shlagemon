@@ -1,4 +1,4 @@
-import type { DexShlagemon } from '~/types/shlagemon'
+import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useShlagedexStore } from './shlagedex'

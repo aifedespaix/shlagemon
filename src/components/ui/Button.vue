@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonType } from '~/types/button'
+import type { ButtonType } from '~/type/button'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{ type?: ButtonType }>(), {

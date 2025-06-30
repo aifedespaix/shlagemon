@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DialogNode } from '~/types/dialog'
+import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
 import { starters } from '~/data/shlagemons'
 import { useGameStateStore } from '~/stores/gameState'

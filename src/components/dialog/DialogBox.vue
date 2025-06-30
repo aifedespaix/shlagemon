@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DialogNode, DialogResponse } from '~/types/dialog'
+import type { DialogNode, DialogResponse } from '~/type/dialog'
 import Button from '~/components/ui/Button.vue'
 
 const { dialogTree, speaker, avatarUrl }

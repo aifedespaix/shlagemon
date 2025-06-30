@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DexShlagemon } from '~/types/shlagemon'
+import type { DexShlagemon } from '~/type/shlagemon'
 import Modal from '~/components/modal/Modal.vue'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
