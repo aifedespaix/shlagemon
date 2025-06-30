@@ -22,6 +22,7 @@ function startBattle() {
     return
   const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
   enemy.value = createDexShlagemon(base)
+  active.hpCurrent = active.hp
   playerHp.value = active.hpCurrent
   enemyHp.value = enemy.value.hp
   battleActive.value = true
