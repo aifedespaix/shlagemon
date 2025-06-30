@@ -14,7 +14,7 @@ const inventory = useInventoryStore()
 </script>
 
 <template>
-  <div class="w-full overflow-hidden">
+  <div class="w-full overflow-auto" md="overflow-hidden">
     <div
       class="game flex flex-col gap-1 p-1"
       md="grid grid-cols-12 grid-rows-12 w-full h-full gap-2 p-1"

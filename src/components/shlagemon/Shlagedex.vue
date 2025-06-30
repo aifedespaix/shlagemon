@@ -52,7 +52,7 @@ function isActive(mon: DexShlagemon) {
         />
       </div>
     </div>
-    <Modal v-model="showDetail" @close="showDetail = false">
+    <Modal v-model="showDetail" footer-close @close="showDetail = false">
       <ShlagemonDetail :mon="detailMon" />
     </Modal>
   </section>
