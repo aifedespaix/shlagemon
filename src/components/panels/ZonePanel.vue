@@ -39,7 +39,7 @@ function onAction(id: string) {
       </Button>
     </div>
   </div>
-  <Modal v-model="showShop">
-    <ShopPanel @close="showShop = false" />
+  <Modal v-model="showShop" @close="showShop = false">
+    <ShopPanel />
   </Modal>
 </template>

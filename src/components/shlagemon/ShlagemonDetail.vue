@@ -4,7 +4,6 @@ import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { xpForLevel } from '~/utils/dexFactory'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
-const emit = defineEmits(['close'])
 
 const statColors = [
   'bg-red-200 dark:bg-red-700',
@@ -59,11 +58,6 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
         Expérience : {{ mon.xp }} / {{ maxXp }}
       </div>
       <ProgressBar :value="mon.xp" :max="maxXp" class="w-full" />
-    </div>
-    <div class="mt-4 text-right">
-      <button class="bg-primary rounded px-3 py-1 text-white" @click="emit('close')">
-        Fermer
-      </button>
     </div>
   </div>
 </template>

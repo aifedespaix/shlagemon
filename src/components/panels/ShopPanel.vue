@@ -4,7 +4,6 @@ import Button from '~/components/ui/Button.vue'
 import { shopItems } from '~/data/items'
 import { useInventoryStore } from '~/stores/inventory'
 
-const emit = defineEmits(['close'])
 const inventory = useInventoryStore()
 </script>
 
@@ -19,11 +18,6 @@ const inventory = useInventoryStore()
           Acheter
         </Button>
       </ItemCard>
-    </div>
-    <div class="mt-2 text-right">
-      <Button class="text-xs" @click="emit('close')">
-        Fermer
-      </Button>
     </div>
   </div>
 </template>

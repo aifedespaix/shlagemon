@@ -1,7 +1,17 @@
 <script setup lang="ts">
-const props = defineProps<{ modelValue: boolean }>()
+const props = withDefaults(defineProps<{
+  modelValue: boolean
+  closeOnOutsideClick?: boolean
+}>(), {
+  closeOnOutsideClick: true,
+})
 const emit = defineEmits(['update:modelValue', 'close'])
 const dialogRef = ref<HTMLDialogElement | null>(null)
+
+function onDialogClick(e: MouseEvent) {
+  if (props.closeOnOutsideClick && e.target === dialogRef.value)
+    close()
+}
 
 watch(() => props.modelValue, (v) => {
   const dialog = dialogRef.value
@@ -30,8 +40,20 @@ function close() {
 </script>
 
 <template>
-  <dialog ref="dialogRef" class="modal" @close="emit('update:modelValue', false); emit('close')">
-    <div class="modal-content">
+  <dialog
+    ref="dialogRef"
+    class="modal"
+    @click="onDialogClick"
+    @close="emit('update:modelValue', false); emit('close')"
+  >
+    <div class="modal-content relative">
+      <button
+        type="button"
+        class="absolute right-2 top-2 h-6 w-6 flex items-center justify-center rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+        @click.stop="close()"
+      >
+        &times;
+      </button>
       <slot />
     </div>
   </dialog>
