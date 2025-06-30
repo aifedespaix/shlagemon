@@ -8,13 +8,13 @@ export const shlagedexSerializer = {
       ...data,
       shlagemons: data.shlagemons.map((mon: any) => ({
         ...mon,
-        baseId: mon.base.id,
+        baseId: mon.base?.id ?? mon.baseId,
         base: undefined, // on supprime la boucle
       })),
       activeShlagemon: data.activeShlagemon
         ? {
             ...data.activeShlagemon,
-            baseId: data.activeShlagemon.base.id,
+            baseId: data.activeShlagemon.base?.id ?? data.activeShlagemon.baseId,
             base: undefined,
           }
         : null,
@@ -27,12 +27,16 @@ export const shlagedexSerializer = {
       ...parsed,
       shlagemons: parsed.shlagemons.map((mon: any) => ({
         ...mon,
-        base: baseMap[mon.baseId],
+        base: mon.base ?? baseMap[mon.baseId],
+        baseId: mon.baseId ?? mon.base?.id,
       })),
       activeShlagemon: parsed.activeShlagemon
         ? {
             ...parsed.activeShlagemon,
-            base: baseMap[parsed.activeShlagemon.baseId],
+            base: parsed.activeShlagemon.base
+              ?? baseMap[parsed.activeShlagemon.baseId],
+            baseId: parsed.activeShlagemon.baseId
+              ?? parsed.activeShlagemon.base?.id,
           }
         : null,
     }
