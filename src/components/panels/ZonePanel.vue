@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import Modal from '~/components/modal/Modal.vue'
+import ShopPanel from '~/components/panels/ShopPanel.vue'
 import Button from '~/components/ui/Button.vue'
 import { useZoneStore } from '~/stores/zone'
 
 const zone = useZoneStore()
+const showShop = ref(false)
 
 function onAction(id: string) {
-  // actions to be implemented later
-  console.warn('zone action', id)
+  if (id === 'shop') {
+    showShop.value = true
+  }
 }
 </script>
 
@@ -35,4 +39,7 @@ function onAction(id: string) {
       </Button>
     </div>
   </div>
+  <Modal v-model="showShop">
+    <ShopPanel @close="showShop = false" />
+  </Modal>
 </template>

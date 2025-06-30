@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import BattleMain from '~/components/battle/BattleMain.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
-import ShopPanel from '~/components/panels/ShopPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import { useGameStateStore } from '~/stores/gameState'
+import { useZoneStore } from '~/stores/zone'
 
 const gameState = useGameStateStore()
+const zone = useZoneStore()
 </script>
 
 <template>
@@ -28,7 +29,7 @@ const gameState = useGameStateStore()
       <div class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
         <!-- middle A zone -->
         <div class="zone-content">
-          <BattleMain v-if="gameState.hasPokemon" />
+          <BattleMain v-if="gameState.hasPokemon && zone.current.type !== 'village'" />
         </div>
       </div>
       <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
@@ -41,7 +42,6 @@ const gameState = useGameStateStore()
         <!-- left zone -->
         <div class="zone-content flex flex-col gap-2">
           <ZonePanel />
-          <ShopPanel />
         </div>
       </div>
       <div class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">
