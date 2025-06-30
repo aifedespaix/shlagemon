@@ -1,9 +1,14 @@
 <script setup lang="ts">
+import { nextTick } from 'vue'
+import Button from '~/components/ui/Button.vue'
+
 const props = withDefaults(defineProps<{
   modelValue: boolean
   closeOnOutsideClick?: boolean
+  footerClose?: boolean
 }>(), {
   closeOnOutsideClick: true,
+  footerClose: false,
 })
 const emit = defineEmits(['update:modelValue', 'close'])
 const dialogRef = ref<HTMLDialogElement | null>(null)
@@ -13,12 +18,14 @@ function onDialogClick(e: MouseEvent) {
     close()
 }
 
-watch(() => props.modelValue, (v) => {
+watch(() => props.modelValue, async (v) => {
   const dialog = dialogRef.value
   if (!dialog)
     return
   if (v) {
-    dialog.showModal()
+    await nextTick()
+    if (!dialog.open)
+      dialog.showModal()
   }
   else {
     close()
@@ -46,8 +53,9 @@ function close() {
     @click="onDialogClick"
     @close="emit('update:modelValue', false); emit('close')"
   >
-    <div class="modal-content relative">
+    <div class="modal-content relative flex flex-col">
       <button
+        v-if="!props.footerClose"
         type="button"
         class="absolute right-2 top-2 h-6 w-6 flex items-center justify-center rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
         @click.stop="close()"
@@ -55,6 +63,12 @@ function close() {
         &times;
       </button>
       <slot />
+      <div v-if="props.footerClose" class="mt-4 flex justify-end">
+        <Button type="danger" class="flex items-center gap-1" @click.stop="close()">
+          <div i-carbon-close />
+          Fermer
+        </Button>
+      </div>
     </div>
   </dialog>
 </template>
