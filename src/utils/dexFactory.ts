@@ -17,6 +17,7 @@ export function applyStats(mon: DexShlagemon) {
   mon.attack = Math.floor(mon.attack + (mon.lvl - 1) * 2)
   mon.defense = Math.floor(mon.defense + (mon.lvl - 1) * 2)
   mon.smelling = Math.floor(mon.smelling + (mon.lvl - 1) * 0.5)
+  mon.hpCurrent = mon.hp
 }
 
 export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
@@ -33,6 +34,7 @@ export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
     smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, rarity),
     sex: Math.random() < 0.5 ? 'male' : 'female',
     isShiny: Math.random() < 0.0001,
+    hpCurrent: 0,
   }
   applyStats(mon)
   return mon

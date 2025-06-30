@@ -22,4 +22,5 @@ export interface DexShlagemon extends Stats {
   rarity: number
   sex: Sex
   isShiny: boolean
+  hpCurrent: number
 }

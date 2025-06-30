@@ -22,7 +22,7 @@ function startBattle() {
     return
   const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
   enemy.value = createDexShlagemon(base)
-  playerHp.value = active.hp
+  playerHp.value = active.hpCurrent
   enemyHp.value = enemy.value.hp
   battleActive.value = true
   battleInterval = window.setInterval(tick, 1000)
@@ -44,6 +44,7 @@ function tick() {
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   playerHp.value = Math.max(0, playerHp.value - enemy.value.attack)
+  dex.activeShlagemon.hpCurrent = playerHp.value
   flashPlayer.value = true
   setTimeout(() => (flashPlayer.value = false), 100)
   checkEnd()
@@ -54,6 +55,8 @@ function checkEnd() {
     if (battleInterval)
       clearInterval(battleInterval)
     battleInterval = undefined
+    if (dex.activeShlagemon)
+      dex.activeShlagemon.hpCurrent = playerHp.value
     if (enemyHp.value <= 0 && playerHp.value > 0) {
       game.addShlagidolar(1)
       if (dex.activeShlagemon && enemy.value)

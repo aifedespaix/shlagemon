@@ -1,11 +1,14 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { shopItems } from '~/data/items'
+import { allShlagemons } from '~/data/shlagemons'
 import { useGameStore } from './game'
+import { useShlagedexStore } from './shlagedex'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Record<string, number>>({})
   const game = useGameStore()
+  const dex = useShlagedexStore()
 
   const list = computed(() =>
     Object.entries(items.value).map(([id, qty]) => ({
@@ -43,11 +46,34 @@ export const useInventoryStore = defineStore('inventory', () => {
     game.addShlagidolar(Math.floor(item.price / 2))
   }
 
+  function useItem(id: string) {
+    if (!items.value[id])
+      return false
+    if (id === 'potion') {
+      dex.healActive(50)
+      remove(id)
+      return true
+    }
+    if (id === 'spray') {
+      dex.boostDefense(5)
+      remove(id)
+      return true
+    }
+    if (id === 'shlageball') {
+      // simple capture of random shlagemon
+      const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
+      dex.createShlagemon(base)
+      remove(id)
+      return true
+    }
+    return false
+  }
+
   function reset() {
     items.value = {}
   }
 
-  return { items, list, add, remove, buy, sell, reset }
+  return { items, list, add, remove, buy, sell, useItem, reset }
 }, {
   persist: true,
 })
