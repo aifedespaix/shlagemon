@@ -33,7 +33,7 @@ function isActive(mon: DexShlagemon) {
         hover="bg-gray-100 dark:bg-gray-800"
         :class="{ 'bg-primary/20': isActive(mon) }"
         :style="isActive(mon) ? { backgroundImage: `url(/shlagemons/${mon.base.id}/${mon.base.id}.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
-        @click="open(mon)"
+        @click.stop="open(mon)"
       >
         <div class="flex items-center gap-2">
           <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="h-10 w-10 object-contain">
