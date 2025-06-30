@@ -33,5 +33,6 @@ declare module 'vue' {
     ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
     ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
+    ZonePanel: typeof import('./components/panels/ZonePanel.vue')['default']
   }
 }

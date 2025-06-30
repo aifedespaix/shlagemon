@@ -2,6 +2,7 @@
 import BattleMain from '~/components/battle/BattleMain.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
+import ZonePanel from '~/components/panels/ZonePanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import { useGameStateStore } from '~/stores/gameState'
 
@@ -38,7 +39,8 @@ const gameState = useGameStateStore()
       </div>
       <div class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
         <!-- left zone -->
-        <div class="zone-content">
+        <div class="zone-content flex flex-col gap-2">
+          <ZonePanel />
           <ShopPanel />
         </div>
       </div>
