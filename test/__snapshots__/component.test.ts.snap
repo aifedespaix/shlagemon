@@ -2,7 +2,7 @@
 
 exports[`component Header.vue > should render 1`] = `
 "<header class="h-12 flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800"><img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
-  <div class="flex items-center gap-2"><label data-v-fe097fd2="" class="theme-toggle" aria-label="Changer de thème"><span data-v-fe097fd2="" class="theme-toggle-wrap"><input data-v-fe097fd2="" id="theme-toggle" class="theme-toggle-input" type="checkbox" role="switch" name="theme" value="dark"><span class="theme-toggle-fill" data-v-fe097fd2=""></span><span class="theme-toggle-icon" data-v-fe097fd2=""><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span><span class="theme-toggle-icon-part" data-v-fe097fd2=""></span></span></span></label><button class="p-1" aria-label="Reset Save">
+  <div class="flex items-center gap-2"><button aria-label="Changer de thème" class="relative w-12 h-6 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors" type="button"><span class="absolute left-0.5 top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-white text-yellow-500 transition-all dark:bg-gray-900 dark:text-yellow-300"><div class="i-carbon-sun"></div></span></button><button class="p-1" aria-label="Reset Save">
       <div class="i-carbon-trash-can text-red"></div>
     </button></div>
 </header>"
