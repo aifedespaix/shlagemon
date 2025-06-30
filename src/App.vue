@@ -3,11 +3,11 @@
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
 useHead({
-  title: 'Shlagémon',
+  title: 'Shlagémon - Ça sent très fort',
   meta: [
     {
       name: 'description',
-      content: 'Parodie de Pokémon avec des créatures loufoques',
+      content: 'Attrapes tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
     },
     {
       name: 'theme-color',
