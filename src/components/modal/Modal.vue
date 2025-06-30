@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { nextTick } from 'vue'
 import Button from '~/components/ui/Button.vue'
 
 const props = withDefaults(defineProps<{
@@ -18,12 +17,11 @@ function onDialogClick(e: MouseEvent) {
     close()
 }
 
-watch(() => props.modelValue, async (v) => {
+watch(() => props.modelValue, (v) => {
   const dialog = dialogRef.value
   if (!dialog)
     return
   if (v) {
-    await nextTick()
     if (!dialog.open)
       dialog.showModal()
   }
