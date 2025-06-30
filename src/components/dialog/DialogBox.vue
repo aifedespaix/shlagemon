@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import Button from '~/components/ui/Button.vue'
+import ImageByBackground from '../ui/ImageByBackground.vue'
 
 const { dialogTree, speaker, avatarUrl }
   = defineProps<{ dialogTree: DialogNode[], speaker: string, avatarUrl: string }>()
@@ -22,7 +23,7 @@ function choose(r: DialogResponse) {
 <template>
   <div class="grid grid-cols-4 h-full gap-2 rounded" bg="white dark:gray-900">
     <div class="flex flex-col items-center justify-center">
-      <img :src="avatarUrl" alt="avatar" class="h-auto w-full object-contain">
+      <ImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
       <div class="mt-2 text-center font-bold">
         {{ speaker }}
       </div>

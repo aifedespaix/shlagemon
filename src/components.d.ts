@@ -28,6 +28,7 @@ declare module 'vue' {
     SelectedShlagemon: typeof import('./components/panels/SelectedShlagemon.vue')['default']
     Shlagedex: typeof import('./components/shlagemon/Shlagedex.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
+    ShlagemonRarity: typeof import('./components/shlagemon/ShlagemonRarity.vue')['default']
     ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
   }

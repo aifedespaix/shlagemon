@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
-import { starters } from '~/data/shlagemons'
+import { pikachiant } from '~/data/shlagemons'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
 const emit = defineEmits(['done'])
 const dex = useShlagedexStore()
-const mon = starters[Math.floor(Math.random() * starters.length)]
+const mon = pikachiant
 
 function imageUrl(id: string) {
   return `/shlagemons/${id}/${id}.png`

@@ -1,6 +1,7 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
+import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
@@ -42,5 +43,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, gainXp }
 }, {
-  persist: true,
+  persist: {
+    debug: true,
+    serializer: shlagedexSerializer,
+  },
 })

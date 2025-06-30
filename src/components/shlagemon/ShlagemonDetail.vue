@@ -31,12 +31,15 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
 </script>
 
 <template>
-  <div v-if="mon" class="max-w-sm w-full rounded bg-white p-4 dark:bg-gray-900">
-    <h2 class="mb-2 text-lg font-bold">
-      {{ mon.base.name }} - lvl {{ mon.lvl }}
+  <div v-if="mon" class="max-w-sm w-full rounded bg-white dark:bg-gray-900">
+    <h2 class="mb-2 flex items-center justify-between text-lg font-bold">
+      <div>
+        {{ mon.base.name }} - lvl {{ mon.lvl }}
+      </div>
+      <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
     </h2>
     <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="mx-auto mb-2 max-h-40 object-contain">
-    <p class="mb-4 max-h-25 overflow-auto text-sm italic">
+    <p class="mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
     <div class="grid grid-cols-2 gap-2 text-sm">
@@ -53,7 +56,7 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
     </div>
     <div class="mt-4">
       <div class="mb-1 text-center text-sm">
-        Éxpérience : {{ mon.xp }} / {{ maxXp }}
+        Expérience : {{ mon.xp }} / {{ maxXp }}
       </div>
       <ProgressBar :value="mon.xp" :max="maxXp" class="w-full" />
     </div>

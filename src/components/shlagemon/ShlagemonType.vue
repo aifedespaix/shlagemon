@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ShlagemonType } from '~/type/shlagemon'
+import type { ShlagemonType } from '~/type'
 
 const { value } = defineProps<{ value: ShlagemonType }>()
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { starters } from '~/data/shlagemons'
+import { allShlagemons } from '~/data/shlagemons'
 
 const game = useGameStore()
 const dex = useShlagedexStore()
 
-const totalInDex = starters.length
+const totalInDex = allShlagemons.length
 </script>
 
 <template>

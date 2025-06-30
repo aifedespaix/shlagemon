@@ -10,7 +10,6 @@ const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {
-    dex.setActiveShlagemon(mon)
     detailMon.value = mon
     showDetail.value = true
   }

@@ -1,4 +1,4 @@
-import type { ShlagemonType } from '../type/shlagemon'
+import type { ShlagemonType } from '../type'
 
 export const moisisme: ShlagemonType = {
   id: 'moisisme',
@@ -110,6 +110,17 @@ export const trouNoir: ShlagemonType = {
   passiveEffects: [],
 }
 
+export const electrochiasse: ShlagemonType = {
+  id: 'electrochiasse',
+  name: 'Électrochiasse',
+  description: `Un type instable et bruyant. Déclenche des décharges aussi imprévisibles que gênantes. Très redouté dans les lieux publics.`,
+  color: '#a4c639', // un vert douteux à mi-chemin entre la bile et la prise fondue
+  resistance: [],
+  weakness: [],
+  tags: ['dégueu', 'instable'],
+  passiveEffects: [],
+}
+
 moisisme.resistance.push(plastoc, flanquant)
 moisisme.weakness.push(vapotonie, bricoFoutoir)
 
@@ -128,10 +139,11 @@ vapotonie.weakness.push(flanquant)
 flanquant.resistance.push(yoloide)
 flanquant.weakness.push(plastoc)
 
-// ... tu peux continuer à déclarer les autres de cette manière ...
+electrochiasse.resistance.push(dramaqueen)
+electrochiasse.weakness.push(plastoc)
 
 // liste exportée
-export const shlagemonTypes: ShlagemonType[] = [
+export const shlagemonTypes: { [type: string]: ShlagemonType } = {
   moisisme,
   plastoc,
   yoloide,
@@ -142,4 +154,5 @@ export const shlagemonTypes: ShlagemonType[] = [
   bricoFoutoir,
   apericube,
   trouNoir,
-]
+  electrochiasse,
+}

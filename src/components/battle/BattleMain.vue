@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ProgressBar from '~/components/ui/ProgressBar.vue'
-import { starters } from '~/data/shlagemons'
+import { allShlagemons } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
@@ -20,7 +20,7 @@ function startBattle() {
   const active = dex.activeShlagemon
   if (!active)
     return
-  const base = starters[Math.floor(Math.random() * starters.length)]
+  const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
   enemy.value = createDexShlagemon(base)
   playerHp.value = active.hp
   enemyHp.value = enemy.value.hp

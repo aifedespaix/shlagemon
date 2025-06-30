@@ -4,13 +4,14 @@ import type { Stats } from './stats'
 
 export type Sex = 'male' | 'female'
 
-export interface BaseShlagemon extends Stats {
+export interface BaseShlagemon {
   id: string
   name: string
   color: string
   description: string
   type: ShlagemonType
   evolution?: ShlagemonEvolution[]
+  coefficient: number
 }
 
 export interface DexShlagemon extends Stats {
@@ -20,4 +21,5 @@ export interface DexShlagemon extends Stats {
   xp: number
   rarity: number
   sex: Sex
+  isShiny: boolean
 }
