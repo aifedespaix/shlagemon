@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import BattleMain from '~/components/battle/BattleMain.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
+import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import { useGameStateStore } from '~/stores/gameState'
+import { useInventoryStore } from '~/stores/inventory'
 import { useZoneStore } from '~/stores/zone'
 
 const gameState = useGameStateStore()
 const zone = useZoneStore()
+const inventory = useInventoryStore()
 </script>
 
 <template>
@@ -42,6 +45,7 @@ const zone = useZoneStore()
         <!-- left zone -->
         <div class="zone-content flex flex-col gap-2">
           <ZonePanel />
+          <InventoryPanel v-if="inventory.list.length" />
         </div>
       </div>
       <div class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">

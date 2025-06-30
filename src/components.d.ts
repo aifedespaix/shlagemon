@@ -19,6 +19,7 @@ declare module 'vue' {
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     ImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
+    InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
