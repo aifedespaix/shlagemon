@@ -22,9 +22,6 @@ function isActive(mon: DexShlagemon) {
 
 <template>
   <section v-if="dex.shlagemons.length" class="p-2">
-    <h2 class="mb-2 font-bold">
-      Shlagedex
-    </h2>
     <div class="flex flex-col gap-2">
       <div
         v-for="mon in dex.shlagemons"
