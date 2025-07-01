@@ -1,7 +1,13 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
-import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
+import {
+  applyStats,
+  baseStats,
+  createDexShlagemon,
+  statWithRarityAndCoefficient,
+  xpForLevel,
+} from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
@@ -63,7 +69,41 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return mon
   }
 
-  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, gainXp, healActive, boostDefense }
+  function captureShlagemon(base: BaseShlagemon) {
+    const existing = shlagemons.value.find(mon => mon.base.id === base.id)
+    if (existing) {
+      if (existing.rarity < 100)
+        existing.rarity += 1
+      existing.lvl = 1
+      existing.xp = 0
+      existing.hp = statWithRarityAndCoefficient(
+        baseStats.hp,
+        existing.base.coefficient,
+        existing.rarity,
+      )
+      existing.attack = statWithRarityAndCoefficient(
+        baseStats.attack,
+        existing.base.coefficient,
+        existing.rarity,
+      )
+      existing.defense = statWithRarityAndCoefficient(
+        baseStats.defense,
+        existing.base.coefficient,
+        existing.rarity,
+      )
+      existing.smelling = statWithRarityAndCoefficient(
+        baseStats.smelling,
+        existing.base.coefficient,
+        existing.rarity,
+      )
+      applyStats(existing)
+      existing.hpCurrent = existing.hp
+      return existing
+    }
+    return createShlagemon(base)
+  }
+
+  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, gainXp, healActive, boostDefense }
 }, {
   persist: {
     debug: true,

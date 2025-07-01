@@ -70,7 +70,10 @@ function checkEnd() {
 watch(
   () => dex.activeShlagemon,
   (mon) => {
-    if (mon && !battleActive.value && battleInterval === undefined)
+    if (!mon)
+      return
+    playerHp.value = mon.hpCurrent
+    if (!battleActive.value && battleInterval === undefined)
       startBattle()
   },
   { immediate: true },
