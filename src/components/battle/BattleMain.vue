@@ -40,7 +40,7 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  enemyHp.value = Math.max(0, enemyHp.value - dex.activeShlagemon.attack)
+  enemyHp.value = Math.max(0, enemyHp.value - 1)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   checkEnd()
