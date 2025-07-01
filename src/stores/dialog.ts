@@ -31,7 +31,7 @@ export const useDialogStore = defineStore('dialog', () => {
     },
   ]
 
-  const isDialogVisible = computed(() => dialogs.some(d => d.condition()))
+  const isDialogVisible = computed(() => dialogs.some(d => d.condition() && !done.value[d.id]))
 
   function isDone(id: string) {
     return done.value[id] === true
