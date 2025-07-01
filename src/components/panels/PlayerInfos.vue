@@ -17,6 +17,10 @@ const totalInDex = allShlagemons.length
       <span class="font-bold">{{ game.shlagidolar }}</span>
     </div>
     <div class="flex items-center gap-2">
+      <span>Shlagédiamonds</span>
+      <span class="font-bold">{{ game.shlagidiamond }}</span>
+    </div>
+    <div class="flex items-center gap-2">
       <span>Shlagédex</span>
       <span class="font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
     </div>
