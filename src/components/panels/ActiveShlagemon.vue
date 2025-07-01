@@ -17,7 +17,7 @@ const src = computed(() => {
   >
     <ImageByBackground v-if="dex.activeShlagemon" :src="src" class="aspect-square h-full" md="w-8" />
     <span class="font-bold">{{ dex.activeShlagemon.base.name }}</span> -
-    <span class="text-sm">niveau {{ dex.activeShlagemon.lvl }}</span>
+    <span class="text-sm">lvl {{ dex.activeShlagemon.lvl }}</span>
 
     <div class="flex-1" />
     <ShlagemonType :value="dex.activeShlagemon.base.type" />

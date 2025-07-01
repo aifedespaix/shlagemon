@@ -26,14 +26,17 @@ function isActive(mon: DexShlagemon) {
       <div
         v-for="mon in dex.shlagemons"
         :key="mon.id"
-        class="flex cursor-pointer items-center justify-between border rounded p-2"
+        class="relative flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
         :class="{ 'bg-primary/20': isActive(mon) }"
         :style="isActive(mon) ? { backgroundImage: `url(/shlagemons/${mon.base.id}/${mon.base.id}.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
         @click.stop="open(mon)"
       >
+        <div class="absolute bottom-0 right-2 text-xs">
+          lvl {{ mon.lvl }}
+        </div>
         <div class="flex items-center gap-2">
-          <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="h-10 w-10 object-contain">
+          <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="h-12 w-12 object-contain -m-y-2">
           <div class="flex flex-col">
             <div class="name">
               {{ mon.base.name }}
