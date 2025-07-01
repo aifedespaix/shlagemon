@@ -50,7 +50,7 @@ Son corps translucide laisse entrevoir un réseau veineux qui clignote au rythme
 Sa capacité spéciale, *Onde Malaise*, fige l’adversaire dans une gêne abyssale pendant plusieurs tours. On dit que croiser son regard provoque des flashbacks de soirées gênantes en boîte de province.
 
 Mewteub est rare. Trop rare. Et franchement, c’est peut-être mieux ainsi.`,
-  type: shlagemonTypes.electrochiasse,
+  type: shlagemonTypes.trouNoir,
   coefficient: 10,
 }
 
