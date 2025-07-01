@@ -17,6 +17,7 @@ export interface BaseShlagemon {
 export interface DexShlagemon extends Stats {
   id: string
   base: BaseShlagemon
+  baseStats: Stats
   lvl: number
   xp: number
   rarity: number

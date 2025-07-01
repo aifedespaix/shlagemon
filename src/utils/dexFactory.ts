@@ -9,14 +9,18 @@ export const baseStats: Stats = {
 }
 
 export function xpForLevel(level: number): number {
-  return Math.floor(100 * 1.1 ** (level - 1))
+  return Math.floor(150 * 1.2 ** (level - 1))
+}
+
+export function xpRewardForLevel(level: number): number {
+  return Math.floor(xpForLevel(level) / 3)
 }
 
 export function applyStats(mon: DexShlagemon) {
-  mon.hp = Math.floor(mon.hp + (mon.lvl - 1) * 5)
-  mon.attack = Math.floor(mon.attack + (mon.lvl - 1) * 2)
-  mon.defense = Math.floor(mon.defense + (mon.lvl - 1) * 2)
-  mon.smelling = Math.floor(mon.smelling + (mon.lvl - 1) * 0.5)
+  mon.hp = Math.floor(mon.baseStats.hp + (mon.lvl - 1) * 5)
+  mon.attack = Math.floor(mon.baseStats.attack + (mon.lvl - 1) * 2)
+  mon.defense = Math.floor(mon.baseStats.defense + (mon.lvl - 1) * 2)
+  mon.smelling = Math.floor(mon.baseStats.smelling + (mon.lvl - 1) * 0.5)
   mon.hpCurrent = mon.hp
 }
 
@@ -25,13 +29,19 @@ export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
   const mon: DexShlagemon = {
     id: crypto.randomUUID(),
     base,
+    baseStats: {
+      hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, rarity),
+      attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, rarity),
+      defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, rarity),
+      smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, rarity),
+    },
     lvl: 1,
     xp: 0,
     rarity,
-    hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, rarity),
-    attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, rarity),
-    defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, rarity),
-    smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, rarity),
+    hp: 0,
+    attack: 0,
+    defense: 0,
+    smelling: 0,
     sex: Math.random() < 0.5 ? 'male' : 'female',
     isShiny: Math.random() < 0.0001,
     hpCurrent: 0,
