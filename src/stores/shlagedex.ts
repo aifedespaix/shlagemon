@@ -97,26 +97,28 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       existing.lvl = 1
       existing.xp = 0
-      existing.hp = statWithRarityAndCoefficient(
-        baseStats.hp,
-        existing.base.coefficient,
-        existing.rarity,
-      )
-      existing.attack = statWithRarityAndCoefficient(
-        baseStats.attack,
-        existing.base.coefficient,
-        existing.rarity,
-      )
-      existing.defense = statWithRarityAndCoefficient(
-        baseStats.defense,
-        existing.base.coefficient,
-        existing.rarity,
-      )
-      existing.smelling = statWithRarityAndCoefficient(
-        baseStats.smelling,
-        existing.base.coefficient,
-        existing.rarity,
-      )
+      existing.baseStats = {
+        hp: statWithRarityAndCoefficient(
+          baseStats.hp,
+          existing.base.coefficient,
+          existing.rarity,
+        ),
+        attack: statWithRarityAndCoefficient(
+          baseStats.attack,
+          existing.base.coefficient,
+          existing.rarity,
+        ),
+        defense: statWithRarityAndCoefficient(
+          baseStats.defense,
+          existing.base.coefficient,
+          existing.rarity,
+        ),
+        smelling: statWithRarityAndCoefficient(
+          baseStats.smelling,
+          existing.base.coefficient,
+          existing.rarity,
+        ),
+      }
       applyStats(existing)
       existing.hpCurrent = existing.hp
       updateHighestLevel(existing)

@@ -4,7 +4,7 @@ import { allShlagemons } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
-import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
+import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const game = useGameStore()
@@ -68,8 +68,13 @@ function checkEnd() {
       dex.activeShlagemon.hpCurrent = playerHp.value
     if (enemyHp.value <= 0 && playerHp.value > 0) {
       game.addShlagidolar(1)
-      if (dex.activeShlagemon && enemy.value)
-        dex.gainXp(dex.activeShlagemon, xpForLevel(enemy.value.lvl), zone.current.maxLevel)
+      if (dex.activeShlagemon && enemy.value) {
+        dex.gainXp(
+          dex.activeShlagemon,
+          xpRewardForLevel(enemy.value.lvl),
+          zone.current.maxLevel,
+        )
+      }
     }
     setTimeout(startBattle, 1000)
   }
