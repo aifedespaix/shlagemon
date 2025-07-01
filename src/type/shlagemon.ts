@@ -9,7 +9,11 @@ export interface BaseShlagemon {
   name: string
   color: string
   description: string
-  type: ShlagemonType
+  /**
+   * Primary and optional secondary type of the Shlagémon.
+   * The first element represents the main type.
+   */
+  types: ShlagemonType[]
   evolution?: ShlagemonEvolution[]
   coefficient: number
 }

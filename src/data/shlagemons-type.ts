@@ -1,5 +1,60 @@
 import type { ShlagemonType } from '../type'
 
+export const crame: ShlagemonType = {
+  id: 'crame',
+  name: 'Crâme',
+  description: 'Type brûlant qui réduit tout en cendres.',
+  color: '#e25822',
+  resistance: [],
+  weakness: [],
+  tags: ['brûlant'],
+  passiveEffects: [],
+}
+
+export const mouille: ShlagemonType = {
+  id: 'mouille',
+  name: 'Mouillé',
+  description: 'Type humide qui éteint facilement les ardeurs.',
+  color: '#3b83bd',
+  resistance: [],
+  weakness: [],
+  tags: ['humide'],
+  passiveEffects: [],
+}
+
+export const moisi: ShlagemonType = {
+  id: 'moisi',
+  name: 'Moisi',
+  description: 'Type végétal en décomposition.',
+  color: '#769958',
+  resistance: [],
+  weakness: [],
+  tags: ['fongique'],
+  passiveEffects: [],
+}
+
+export const statik: ShlagemonType = {
+  id: 'statik',
+  name: 'Statik',
+  description: 'Type chargé d\'électricité statique.',
+  color: '#f9e743',
+  resistance: [],
+  weakness: [],
+  tags: ['électrique'],
+  passiveEffects: [],
+}
+
+export const caillasse: ShlagemonType = {
+  id: 'caillasse',
+  name: 'Caillasse',
+  description: 'Type roc très coriace.',
+  color: '#a79f94',
+  resistance: [],
+  weakness: [],
+  tags: ['solide'],
+  passiveEffects: [],
+}
+
 export const moisisme: ShlagemonType = {
   id: 'moisisme',
   name: 'Moisisme',
@@ -142,8 +197,21 @@ flanquant.weakness.push(plastoc)
 electrochiasse.resistance.push(dramaqueen)
 electrochiasse.weakness.push(plastoc)
 
+// liens pour les types de base
+crame.weakness.push(mouille)
+mouille.resistance.push(crame)
+mouille.weakness.push(moisi, statik)
+moisi.weakness.push(crame)
+caillasse.weakness.push(mouille)
+statik.weakness.push(caillasse)
+
 // liste exportée
 export const shlagemonTypes: { [type: string]: ShlagemonType } = {
+  crame,
+  mouille,
+  moisi,
+  statik,
+  caillasse,
   moisisme,
   plastoc,
   yoloide,
