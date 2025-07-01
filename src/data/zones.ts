@@ -1,123 +1,46 @@
 import type { Zone } from '~/type/zone'
 
-export const zonesData: Zone[] = [
-  {
-    id: 'village',
-    name: 'Village Paumé',
-    type: 'village',
-    actions: [
-      { id: 'shop', label: 'Entrer le Shop' },
-    ],
-    minLevel: 0,
-    maxLevel: 0,
-  },
-  {
-    id: 'village-boule',
-    name: 'Village Sux-Mais-Bouls',
-    type: 'village',
-    actions: [
-      { id: 'shop', label: 'Entrer le Shop' },
-    ],
-    minLevel: 40,
-    maxLevel: 0,
-  },
-  {
-    id: 'village-veaux-du-gland',
-    name: 'Veaux du Gland sur Marne',
-    type: 'village',
-    actions: [
-      { id: 'shop', label: 'Entrer le Shop' },
-    ],
-    minLevel: 80,
-    maxLevel: 0,
-  },
-  {
-    id: 'plaine',
-    name: 'Plaine Verdoyante',
-    type: 'sauvage',
-    actions: [
-      // { id: 'battle', label: 'Chercher un Shlagémon' },
-    ],
-    minLevel: 1,
-    maxLevel: 10,
-  },
-  {
-    id: 'grotte',
-    name: 'Grotte Sombre',
-    type: 'grotte',
-    actions: [
-      { id: 'explore', label: 'Explorer la Grotte' },
-    ],
-    minLevel: 10,
-    maxLevel: 20,
-  },
-  {
-    id: 'ravin-anusmerite',
-    name: 'Ravin anusmérite',
-    type: 'sauvage',
-    actions: [
-      // { id: 'battle', label: 'Chercher un Shlagémon' },
-    ],
-    minLevel: 20,
-    maxLevel: 30,
-  },
-  {
-    id: 'marais-putaclick',
-    name: 'Marais Putaclick',
-    type: 'sauvage',
-    actions: [
-      // { id: 'battle', label: 'Chercher un Shlagémon' },
-    ],
-    minLevel: 30,
-    maxLevel: 40,
-  },
-  {
-    id: 'forteresse-petmoalfiak',
-    name: 'Forteresse Pètmoalfiak',
-    type: 'grotte',
-    actions: [
-      { id: 'explore', label: 'Explorer la Forteresse' },
-    ],
-    minLevel: 40,
-    maxLevel: 50,
-  },
-  {
-    id: 'mont-dracatombe',
-    name: 'Mont Cul',
-    type: 'grotte',
-    actions: [
-      { id: 'explore', label: 'Gravir le Mont' },
-    ],
-    minLevel: 50,
-    maxLevel: 60,
-  },
-  {
-    id: 'catacombes-merdifientes',
-    name: 'Catacombes merdifientes',
-    type: 'grotte',
-    actions: [
-      { id: 'explore', label: 'Fouiller les Catacombes' },
-    ],
-    minLevel: 60,
-    maxLevel: 70,
-  },
-  {
-    id: 'route-aguicheuse',
-    name: 'Route Aguicheuse',
-    type: 'sauvage',
-    actions: [
-      // { id: 'explore', label: 'Fouiller les Catacombes' },
-    ],
-    minLevel: 70,
-    maxLevel: 80,
-  },
+interface ZoneDescription {
+  id: string
+  name: string
+  type: 'village' | 'sauvage' | 'grotte'
+  actions?: { id: string, label: string }[]
+}
+
+// Liste ordonnée de descriptions de zones, une par palier de 5 niveaux
+const zoneDescriptions: ZoneDescription[] = [
+  { id: 'plaine-kekette', name: 'Plaine Kékette', type: 'sauvage' },
+  { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage' },
+  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  { id: 'village-caca-boudin', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }] },
+  { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage' },
+  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage' },
+  { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }] },
+  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }] },
+  { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage' },
+  { id: 'mont-dracatombe', name: 'Mont Cul', type: 'grotte', actions: [{ id: 'explore', label: 'Gravir le Mont' }] },
+  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', type: 'grotte', actions: [{ id: 'explore', label: 'Fouiller les Catacombes' }] },
+  { id: 'route-aguicheuse', name: 'Route Aguicheuse', type: 'sauvage' },
+  { id: 'grotte-des-chieurs', name: 'Grotte des Chieurs', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  { id: 'village-veaux-du-gland', name: 'Veaux du Gland sur Marne', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }] },
+  { id: 'trou-du-bide', name: 'Trou du Bide', type: 'sauvage' },
+]
+
+// Génération automatique des paliers 1 → 79
+const generatedZones: Zone[] = zoneDescriptions.map((desc, index) => ({
+  ...desc,
+  minLevel: index * 5 + 1,
+  maxLevel: index * 5 + 5,
+}))
+
+// Zones spéciales
+const zonesSpeciales: Zone[] = [
   {
     id: 'zone-giga-zob',
     name: 'Zone Giga-Zob',
     type: 'sauvage',
-    actions: [
-      // { id: 'battle', label: 'Chercher un Shlagémon' },
-    ],
+    actions: [],
     minLevel: 80,
     maxLevel: 90,
   },
@@ -125,10 +48,23 @@ export const zonesData: Zone[] = [
     id: 'route-so-dom',
     name: 'Route So d\'Ôme',
     type: 'grotte',
-    actions: [
-      // { id: 'explore', label: 'Affronter la Fin' },
-    ],
-    minLevel: 90,
+    actions: [],
+    minLevel: 91,
     maxLevel: 100,
   },
+  {
+    id: 'village-paume',
+    name: 'Village Paumé',
+    type: 'village',
+    actions: [{ id: 'shop', label: 'Entrer le Shop' }],
+    minLevel: 0,
+    maxLevel: 0,
+  },
+]
+
+// Résultat final
+export const zonesData: Zone[] = [
+  ...zonesSpeciales.filter(z => z.minLevel === 0),
+  ...generatedZones,
+  ...zonesSpeciales.filter(z => z.minLevel > 0),
 ]
