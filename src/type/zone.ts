@@ -10,4 +10,8 @@ export interface Zone {
   name: string
   type: ZoneType
   actions: ZoneAction[]
+  /** Minimum level for enemies and XP gain */
+  minLevel: number
+  /** Maximum level for enemies and XP gain */
+  maxLevel: number
 }

@@ -52,14 +52,18 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }, duration)
   }
 
-  function gainXp(mon: DexShlagemon, amount: number) {
+  function gainXp(mon: DexShlagemon, amount: number, maxLevel = 100) {
+    if (mon.lvl >= maxLevel)
+      return
     mon.xp += amount
-    while (mon.lvl < 100 && mon.xp >= xpForLevel(mon.lvl)) {
+    while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
       mon.lvl += 1
       applyStats(mon)
       mon.hpCurrent = mon.hp
     }
+    if (mon.lvl >= maxLevel)
+      mon.xp = 0
   }
 
   function createShlagemon(base: BaseShlagemon) {
