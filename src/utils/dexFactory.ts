@@ -25,7 +25,8 @@ export function applyStats(mon: DexShlagemon) {
       smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
     }
   }
-  mon.hp = Math.floor(mon.baseStats.hp + (mon.lvl - 1) * 5)
+  const levelBoost = 1 + (mon.lvl - 1) * 0.02
+  mon.hp = Math.floor((mon.baseStats.hp + (mon.lvl - 1) * 5) * levelBoost)
   mon.attack = Math.floor(mon.baseStats.attack + (mon.lvl - 1) * 2)
   mon.defense = Math.floor(mon.baseStats.defense + (mon.lvl - 1) * 2)
   mon.smelling = Math.floor(mon.baseStats.smelling + (mon.lvl - 1) * 0.5)

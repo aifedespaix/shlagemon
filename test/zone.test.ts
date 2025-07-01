@@ -12,8 +12,8 @@ describe('zone store', () => {
     setActivePinia(createPinia())
     const store = useZoneStore()
     expect(store.current.id).toBe(store.zones[0].id)
-    store.setZone('grotte')
-    expect(store.current.id).toBe('grotte')
+    store.setZone('grotte-du-slip')
+    expect(store.current.id).toBe('grotte-du-slip')
   })
 })
 
@@ -36,10 +36,10 @@ describe('zone panel', () => {
     const wrapper = mount(ZonePanel, {
       global: { plugins: [pinia] },
     })
-    expect(wrapper.text()).not.toContain('Grotte Sombre')
+    expect(wrapper.text()).not.toContain('Grotte du Slip')
     for (let i = 0; i < 9; i++)
       dex.gainXp(mon, xpForLevel(mon.lvl))
     await wrapper.vm.$nextTick()
-    expect(wrapper.text()).toContain('Grotte Sombre')
+    expect(wrapper.text()).toContain('Grotte du Slip')
   })
 })
