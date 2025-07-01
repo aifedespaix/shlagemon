@@ -1,11 +1,18 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
 import Button from '~/components/ui/Button.vue'
+import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 
 const zone = useZoneStore()
+const dex = useShlagedexStore()
 const showShop = ref(false)
+
+const availableZones = computed(() =>
+  zone.zones.filter(z => z.type === 'village' || dex.highestLevel >= z.minLevel),
+)
 
 function onAction(id: string) {
   if (id === 'shop') {
@@ -18,7 +25,7 @@ function onAction(id: string) {
   <div class="flex flex-col gap-2" md="gap-3">
     <div class="flex flex-wrap justify-center gap-1" md="gap-2">
       <button
-        v-for="z in zone.zones"
+        v-for="z in availableZones"
         :key="z.id"
         class="rounded px-2 py-1 text-xs"
         :class="z.id === zone.current.id ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700'"

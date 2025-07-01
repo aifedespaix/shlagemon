@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { toast } from 'vue3-toastify'
 import { carapouffe } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
+import { xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
 
@@ -20,5 +21,18 @@ describe('shlagedex capture', () => {
     expect(toastMock).toHaveBeenCalledWith(
       `${mon.base.name} atteint la rareté ${mon.rarity} !`,
     )
+  })
+})
+
+describe('shlagedex highest level', () => {
+  it('updates when a mon levels up', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    expect(dex.highestLevel).toBe(1)
+    for (let i = 0; i < 9; i++)
+      dex.gainXp(mon, xpForLevel(mon.lvl))
+    expect(mon.lvl).toBe(10)
+    expect(dex.highestLevel).toBe(10)
   })
 })
