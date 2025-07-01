@@ -8,6 +8,8 @@ export const zonesData: Zone[] = [
     actions: [
       { id: 'shop', label: 'Entrer le Shop' },
     ],
+    minLevel: 0,
+    maxLevel: 0,
   },
   {
     id: 'grotte',
@@ -16,6 +18,8 @@ export const zonesData: Zone[] = [
     actions: [
       { id: 'explore', label: 'Explorer la Grotte' },
     ],
+    minLevel: 10,
+    maxLevel: 20,
   },
   {
     id: 'plaine',
@@ -24,5 +28,7 @@ export const zonesData: Zone[] = [
     actions: [
       { id: 'battle', label: 'Chercher un Shlagémon' },
     ],
+    minLevel: 1,
+    maxLevel: 10,
   },
 ]

@@ -3,10 +3,12 @@ import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import { createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
+import { useZoneStore } from '~/stores/zone'
+import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const game = useGameStore()
+const zone = useZoneStore()
 
 const playerHp = ref(0)
 const enemyHp = ref(0)
@@ -22,6 +24,11 @@ function startBattle() {
     return
   const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
   enemy.value = createDexShlagemon(base)
+  const min = zone.current.minLevel
+  const max = Math.max(zone.current.maxLevel - 1, min)
+  const lvl = Math.floor(Math.random() * (max - min + 1)) + min
+  enemy.value.lvl = lvl
+  applyStats(enemy.value)
   active.hpCurrent = active.hp
   playerHp.value = active.hpCurrent
   enemyHp.value = enemy.value.hp
@@ -61,7 +68,7 @@ function checkEnd() {
     if (enemyHp.value <= 0 && playerHp.value > 0) {
       game.addShlagidolar(1)
       if (dex.activeShlagemon && enemy.value)
-        dex.gainXp(dex.activeShlagemon, xpForLevel(enemy.value.lvl))
+        dex.gainXp(dex.activeShlagemon, xpForLevel(enemy.value.lvl), zone.current.maxLevel)
     }
     setTimeout(startBattle, 1000)
   }
@@ -79,6 +86,17 @@ watch(
   { immediate: true },
 )
 
+watch(
+  () => zone.current.id,
+  () => {
+    if (battleInterval)
+      clearInterval(battleInterval)
+    battleInterval = undefined
+    battleActive.value = false
+    startBattle()
+  },
+)
+
 onUnmounted(() => {
   if (battleInterval)
     clearInterval(battleInterval)
@@ -87,6 +105,9 @@ onUnmounted(() => {
 
 <template>
   <div class="battle text-center" @click="attack">
+    <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
+      {{ zone.current.name }} ({{ zone.current.minLevel }} - {{ zone.current.maxLevel }})
+    </div>
     <div v-if="dex.activeShlagemon && enemy" class="flex items-center justify-center gap-4">
       <div class="mon flex flex-col items-center" :class="{ flash: flashPlayer }">
         <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
