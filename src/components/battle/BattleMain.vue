@@ -107,7 +107,7 @@ onUnmounted(() => {
 <template>
   <div class="battle text-center" @click="attack">
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
-      {{ zone.current.name }} ({{ zone.current.minLevel }} - {{ zone.current.maxLevel }})
+      {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
     </div>
     <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 items-center justify-center gap-4">
       <div class="mon flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
