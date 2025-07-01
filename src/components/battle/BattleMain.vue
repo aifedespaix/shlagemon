@@ -67,7 +67,7 @@ function checkEnd() {
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = playerHp.value
     if (enemyHp.value <= 0 && playerHp.value > 0) {
-      game.addShlagidolar(1)
+      game.addShlagidolar(zone.rewardMultiplier)
       if (dex.activeShlagemon && enemy.value) {
         dex.gainXp(
           dex.activeShlagemon,
