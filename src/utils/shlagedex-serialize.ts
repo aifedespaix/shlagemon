@@ -23,22 +23,36 @@ export const shlagedexSerializer = {
 
   deserialize(raw: string): any {
     const parsed = JSON.parse(raw)
+
+    const shlagemons = (parsed.shlagemons || [])
+      .map((mon: any) => {
+        const base = mon.base ?? baseMap[mon.baseId]
+        if (!base)
+          return null
+        return {
+          ...mon,
+          base,
+          baseId: mon.baseId ?? base.id,
+        }
+      })
+      .filter(Boolean)
+
+    let active = parsed.activeShlagemon
+    if (active) {
+      const base = active.base ?? baseMap[active.baseId]
+      active = base
+        ? {
+            ...active,
+            base,
+            baseId: active.baseId ?? base.id,
+          }
+        : null
+    }
+
     return {
       ...parsed,
-      shlagemons: parsed.shlagemons.map((mon: any) => ({
-        ...mon,
-        base: mon.base ?? baseMap[mon.baseId],
-        baseId: mon.baseId ?? mon.base?.id,
-      })),
-      activeShlagemon: parsed.activeShlagemon
-        ? {
-            ...parsed.activeShlagemon,
-            base: parsed.activeShlagemon.base
-              ?? baseMap[parsed.activeShlagemon.baseId],
-            baseId: parsed.activeShlagemon.baseId
-              ?? parsed.activeShlagemon.base?.id,
-          }
-        : null,
+      shlagemons,
+      activeShlagemon: active ?? null,
     }
   },
 }
