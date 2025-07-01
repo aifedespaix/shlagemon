@@ -24,8 +24,9 @@ function startBattle() {
     return
   const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
   enemy.value = createDexShlagemon(base)
-  const min = zone.current.minLevel
-  const max = Math.max(zone.current.maxLevel - 1, min)
+  const min = Number(zone.current.minLevel ?? 1)
+  const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
+  const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
   enemy.value.lvl = lvl
   applyStats(enemy.value)
