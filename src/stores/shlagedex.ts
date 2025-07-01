@@ -13,11 +13,22 @@ import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
   const activeShlagemon = ref<DexShlagemon | null>(null)
+  const highestLevel = ref(0)
+
+  function updateHighestLevel(mon: DexShlagemon) {
+    if (mon.lvl > highestLevel.value)
+      highestLevel.value = mon.lvl
+  }
+
+  function recomputeHighestLevel() {
+    highestLevel.value = shlagemons.value.reduce((max, m) => Math.max(max, m.lvl), 0)
+  }
 
   function addShlagemon(mon: DexShlagemon) {
     shlagemons.value.push(mon)
     if (!activeShlagemon.value)
       activeShlagemon.value = mon
+    updateHighestLevel(mon)
   }
 
   function setActiveShlagemon(mon: DexShlagemon) {
@@ -26,11 +37,13 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   function setShlagemons(mons: DexShlagemon[]) {
     shlagemons.value = [...mons]
+    recomputeHighestLevel()
   }
 
   function reset() {
     shlagemons.value = []
     activeShlagemon.value = null
+    highestLevel.value = 0
   }
 
   function healActive(amount: number) {
@@ -61,6 +74,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.lvl += 1
       applyStats(mon)
       mon.hpCurrent = mon.hp
+      updateHighestLevel(mon)
     }
     if (mon.lvl >= maxLevel)
       mon.xp = 0
@@ -69,6 +83,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function createShlagemon(base: BaseShlagemon) {
     const mon = createDexShlagemon(base)
     addShlagemon(mon)
+    updateHighestLevel(mon)
     toast(`Tu as obtenu ${base.name} !`)
     return mon
   }
@@ -104,12 +119,15 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       )
       applyStats(existing)
       existing.hpCurrent = existing.hp
+      updateHighestLevel(existing)
       return existing
     }
-    return createShlagemon(base)
+    const created = createShlagemon(base)
+    updateHighestLevel(created)
+    return created
   }
 
-  return { shlagemons, activeShlagemon, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, gainXp, healActive, boostDefense }
+  return { shlagemons, activeShlagemon, highestLevel, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, gainXp, healActive, boostDefense }
 }, {
   persist: {
     debug: true,
