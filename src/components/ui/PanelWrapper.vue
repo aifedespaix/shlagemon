@@ -11,7 +11,7 @@ function toggle() {
   <div class="panel-wrapper" v-bind="$attrs">
     <div v-if="props.title" class="mb-1 flex cursor-pointer items-center justify-between" @click="toggle">
       <span class="font-bold">{{ props.title }}</span>
-      <div class="transition-transform" :class="opened ? 'i-carbon-chevron-up' : 'i-carbon-chevron-down'" />
+      <div class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
     <div v-show="opened" class="w-full">
       <slot />
