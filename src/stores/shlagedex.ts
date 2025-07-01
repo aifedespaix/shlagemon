@@ -72,8 +72,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function captureShlagemon(base: BaseShlagemon) {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
     if (existing) {
-      if (existing.rarity < 100)
+      if (existing.rarity < 100) {
         existing.rarity += 1
+        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+      }
       existing.lvl = 1
       existing.xp = 0
       existing.hp = statWithRarityAndCoefficient(
