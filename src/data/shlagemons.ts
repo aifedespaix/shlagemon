@@ -43,15 +43,64 @@ export const mewteub: BaseShlagemon = {
   id: 'mewteub',
   name: 'Mewteub',
   color: '#f9e743',
-  description: `Mewteub est un Shlagémon de type Slope, né d’un bug génétique entre une prise HDMI et une entité cosmique sous anxiolytiques. On murmure qu’il aurait été cloné à partir d’un vieux câble péritel tombé dans une bassine de Monster Energy. Il flotte constamment, mais sans élégance — plutôt comme une chaussette dans un jacuzzi.
-
-Son corps translucide laisse entrevoir un réseau veineux qui clignote au rythme d’un modem 56k. Il émet des sons télépathiques, tous plus gênants les uns que les autres : soupirs, "hmm" douteux et parfois des extraits de discussions MSN de 2003. Il communique principalement par vibration de teub psychique, ce qui perturbe fortement les autres Shlagémons — et les enfants non accompagnés.
-
-Sa capacité spéciale, *Onde Malaise*, fige l’adversaire dans une gêne abyssale pendant plusieurs tours. On dit que croiser son regard provoque des flashbacks de soirées gênantes en boîte de province.
-
+  description: `Mewteub est un Shlagémon de type Slope, né d’un bug génétique entre une prise HDMI et une entité cosmique sous anxiolytiques. On murmure qu’il aurait été cloné à partir d’un vieux câble péritel tombé dans une bassine de Monster Energy. Il flotte constamment, mais sans élégance — plutôt comme une chaussette dans un jacuzzi. Son corps translucide laisse entrevoir un réseau veineux qui clignote au rythme d’un modem 56k. Il émet des sons télépathiques, tous plus gênants les uns que les autres : soupirs, "hmm" douteux et parfois des extraits de discussions MSN de 2003. Il communique principalement par vibration de teub psychique, ce qui perturbe fortement les autres Shlagémons — et les enfants non accompagnés. Sa capacité spéciale, *Onde Malaise*, fige l’adversaire dans une gêne abyssale pendant plusieurs tours. On dit que croiser son regard provoque des flashbacks de soirées gênantes en boîte de province.
 Mewteub est rare. Trop rare. Et franchement, c’est peut-être mieux ainsi.`,
   type: shlagemonTypes.trouNoir,
   coefficient: 10,
+}
+
+export const sacdepates: BaseShlagemon = {
+  id: 'sacdepates',
+  name: 'Sac de Pâtes',
+  color: '#f9e743',
+  description: `Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser.`,
+  type: shlagemonTypes.trouNoir,
+  coefficient: 2,
+}
+
+export const rouxPasCool: BaseShlagemon = {
+  id: 'roux-pas-cool',
+  name: 'Roux pas Cool',
+  color: '#f9e743',
+  description: `Roux pas Cool est un Pokémon Balladépressif de type acoustique / malaise. Anciennement cool, Roux pas Cool a passé trop de temps à gratter des accords mineurs au bord d’un volcan éteint. Désormais, Roux pas Cool erre avec une guitare trop grande pour ses ailes, des taches de rousseur qui pleurent, et une chemise à carreaux qui sent l’herbe humide et les regrets. Son plumage a pris une teinte rouille triste, et sa mèche rousse cache un regard empli de remords, comme s’il réalisait constamment qu’il aurait pu évoluer en rapace légendaire, mais a préféré sortir un EP en indépendant. Il fait toujours un peu froid autour de lui, même en plein été. Sa capacité signature, Refrain Gênant, inflige un malaise profond à toute l’arène, réduisant la précision des attaques ennemies tant qu’ils détournent le regard. Il est très doué pour faire fuir les Pokémon sauvages… et les rendez-vous galants.`,
+  type: shlagemonTypes.trouNoir,
+  coefficient: 2,
+}
+
+export const canarchichon: BaseShlagemon = {
+  id: 'canarchicon',
+  name: 'Canarchicon',
+  color: '#f9e743',
+  description: `Canarchicon est un Shlagémon de type Cuisine, cousin dégénéré du célèbre canard qu'on ne nommera pas pour des raisons juridiques. Toujours armé de son poireau fatigué (qu’il appelle tendrement “Jean-Chibre”), il chancelle d’un pas bancal, probablement à cause de ses soirées passées à picoler du bouillon cube fermenté. Son œil au beurre noir laisse deviner un mode de vie instable, fait de bastons derrière des bennes à frites et de paris perdus contre des Roucool. Il ne vole pas, il flotte à moitié — sans réelle direction — au gré des vents et des vapeurs d’alcool de cuisson. Sa capacité signature, *Coup de Poireau Tournoyant*, inflige peu de dégâts mais une honte durable. Il peut aussi utiliser *Flatulence de Gras*, une attaque à effet de zone olfactif. Canarchichon n’a jamais gagné un seul combat, mais il persiste... parce qu’il a oublié qu’il pouvait abandonner.`,
+  type: shlagemonTypes.trouNoir,
+  coefficient: 2,
+}
+
+export const nosferachid: BaseShlagemon = {
+  id: 'nosferachid',
+  name: 'Nosferachid',
+  color: '#f9e743',
+  description: `Nosferachid est un Shlagémon de type Slope, nocturne et fier de l’être. Originaire d’un quartier poussiéreux à l’ombre des HLM de Kanto-Ouest, il vole en rasant les murs avec sa sacoche Louis Viton™ (orthographe non contractuelle), achetée 7 Pokédollars au marché aux puces de Celadop-les-Bains. Il arbore fièrement une casquette visière plate LV assortie, portée en biais pour maximiser l’aérodynamisme et l’attitude. Derrière ses grandes ailes décharnées se cache un petit sachet de "poudre mystique", qu’il dit être pour ses Pokémon... mais personne n’y croit. Nosferachid passe ses nuits à zoner en cercle autour des lampadaires, tout en freestyleant des menaces inaudibles à base de “j’te croque ta daronne” en ultrason. Il attaque rarement de front : il préfère t’endormir avec *Haleine Mentholée Menthe Forte* avant de te vider ton inventaire. On dit qu’il a déjà mordu un Ronflex pour une histoire de briquet. Ronflex dort encore, mais pas pour les bonnes raisons.`,
+  type: shlagemonTypes.trouNoir,
+  coefficient: 2,
+}
+
+export const dartagnan: BaseShlagemon = {
+  id: 'dartagnan',
+  name: 'D\'Art Tagnan',
+  color: '#f9e743',
+  description: `D\'Art Tagnan est un Mousquépique de type panache combatif. Toujours prêt à pérorer avant de piquer, il surgit d’un nuage de poussière dramatique en criant « En garde, manant ! », alors que personne ne l’a regardé. Avec ses dards en forme de rapières et ses antennes sculptées en bouclettes, il enchaîne les moulinets dans le vide juste pour le style. Sa moustache n’existe pas, mais il la twiste régulièrement du bout des griffes, persuadé que ça le rend irrésistible. Son chapeau à plume est greffé directement sur son crâne depuis sa naissance — selon la légende, il serait sorti de son cocon en criant « À l’attaque pour l’honneur et les gaufres ! » Il défie les Pokémon sauvages à des duels de poésie, vole au secours des baies tombées au sol, et fond en larmes si on lui abîme sa cape. Sa technique signature, Tournoyement Galant, consiste à piquer son adversaire après avoir tourné sur lui-même au moins huit fois, tout en citant du théâtre. Son flair pour le drame est tel que certains chercheurs pensent qu’il est en fait mi-insecte, mi-acteur raté.`,
+  type: shlagemonTypes.trouNoir,
+  coefficient: 2,
+}
+
+export const ptitocard: BaseShlagemon = {
+  id: 'ptitocard',
+  name: 'Ptitocard',
+  color: '#f9e743',
+  description: `Ptitocard est un Shlagémon de type Slope, aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion... mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.`,
+  type: shlagemonTypes.trouNoir,
+  coefficient: 2,
 }
 
 export const starters: BaseShlagemon[] = [carapouffe, salamiches, bulgrosboule]
@@ -61,4 +110,10 @@ export const allShlagemons: BaseShlagemon[] = [
   bulgrosboule,
   pikachiant,
   mewteub,
+  nosferachid,
+  rouxPasCool,
+  dartagnan,
+  ptitocard,
+  sacdepates,
+  canarchichon,
 ]

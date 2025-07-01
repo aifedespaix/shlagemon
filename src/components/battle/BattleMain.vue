@@ -110,7 +110,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="battle text-center" @click="attack">
+  <div class="battle text-center">
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
     </div>
@@ -128,7 +128,7 @@ onUnmounted(() => {
       <div class="vs font-bold">
         VS
       </div>
-      <div v-if="enemy" class="mon flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }" @click="attack">
+      <div v-if="enemy" class="mon flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
         <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
         <div class="name">
           {{ enemy.base.name }} - lvl {{ enemy.lvl }}
