@@ -12,18 +12,15 @@ const zoneDescriptions: ZoneDescription[] = [
   { id: 'plaine-kekette', name: 'Plaine Kékette', type: 'sauvage' },
   { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage' },
   { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
-  { id: 'village-caca-boudin', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }] },
   { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage' },
   { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
   { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage' },
-  { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }] },
   { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }] },
   { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage' },
   { id: 'mont-dracatombe', name: 'Mont Cul', type: 'grotte', actions: [{ id: 'explore', label: 'Gravir le Mont' }] },
   { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', type: 'grotte', actions: [{ id: 'explore', label: 'Fouiller les Catacombes' }] },
   { id: 'route-aguicheuse', name: 'Route Aguicheuse', type: 'sauvage' },
   { id: 'grotte-des-chieurs', name: 'Grotte des Chieurs', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
-  { id: 'village-veaux-du-gland', name: 'Veaux du Gland sur Marne', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }] },
   { id: 'trou-du-bide', name: 'Trou du Bide', type: 'sauvage' },
 ]
 
@@ -60,6 +57,9 @@ const zonesSpeciales: Zone[] = [
     minLevel: 0,
     maxLevel: 0,
   },
+  { id: 'village-caca-boudin', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }], minLevel: 75, maxLevel: 0 },
+  { id: 'village-veaux-du-gland', name: 'Veaux du Gland sur Marne', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }], minLevel: 25, maxLevel: 0 },
+  { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }], minLevel: 50, maxLevel: 0 },
 ]
 
 // Résultat final
