@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { toast } from 'vue3-toastify'
+import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { typeEffectiveness } from '~/data/typeEffectiveness'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
+import { computeDamage } from '~/utils/combat'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
@@ -60,7 +64,19 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  enemyHp.value = Math.max(0, enemyHp.value - 1)
+  const atkType = dex.activeShlagemon.base.types[0]?.name
+  const defType = enemy.value.base.types[0]?.name
+  const { damage, effect } = computeDamage(
+    dex.activeShlagemon.attack,
+    atkType,
+    defType,
+    typeEffectiveness,
+  )
+  if (effect === 'super')
+    toast('C’est super efficace !')
+  else if (effect === 'not')
+    toast('Pas très efficace...')
+  enemyHp.value = Math.max(0, enemyHp.value - damage)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   checkEnd()
@@ -69,10 +85,34 @@ function attack() {
 function tick() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  enemyHp.value = Math.max(0, enemyHp.value - dex.activeShlagemon.attack)
+  const atkType = dex.activeShlagemon.base.types[0]?.name
+  const defType = enemy.value.base.types[0]?.name
+  const { damage: dmgToEnemy, effect: eff1 } = computeDamage(
+    dex.activeShlagemon.attack,
+    atkType,
+    defType,
+    typeEffectiveness,
+  )
+  if (eff1 === 'super')
+    toast('C’est super efficace !')
+  else if (eff1 === 'not')
+    toast('Pas très efficace...')
+  enemyHp.value = Math.max(0, enemyHp.value - dmgToEnemy)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
-  playerHp.value = Math.max(0, playerHp.value - enemy.value.attack)
+  const atkType2 = enemy.value.base.types[0]?.name
+  const defType2 = dex.activeShlagemon.base.types[0]?.name
+  const { damage: dmgToPlayer, effect: eff2 } = computeDamage(
+    enemy.value.attack,
+    atkType2,
+    defType2,
+    typeEffectiveness,
+  )
+  if (eff2 === 'super')
+    toast('C’est super efficace !')
+  else if (eff2 === 'not')
+    toast('Pas très efficace...')
+  playerHp.value = Math.max(0, playerHp.value - dmgToPlayer)
   dex.activeShlagemon.hpCurrent = playerHp.value
   flashPlayer.value = true
   setTimeout(() => (flashPlayer.value = false), 100)
@@ -125,6 +165,9 @@ onUnmounted(() => {
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
+          <div class="mt-1 flex gap-1">
+            <ShlagemonType v-for="t in dex.activeShlagemon.base.types" :key="t.id" :value="t" />
+          </div>
           <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
           <div class="hp text-sm">
             {{ playerHp }} / {{ dex.activeShlagemon.hp }}
@@ -135,6 +178,9 @@ onUnmounted(() => {
         </div>
         <div v-if="enemy" class="mon flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
           <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
+          <div class="mt-1 flex gap-1">
+            <ShlagemonType v-for="t in enemy.base.types" :key="t.id" :value="t" />
+          </div>
           <div>{{ enemy.base.name }} - lvl {{ enemy.lvl }}</div>
           <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
           <div class="hp text-sm">
