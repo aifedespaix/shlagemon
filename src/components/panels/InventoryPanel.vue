@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import ItemCard from '~/components/shop/ItemCard.vue'
-import Button from '~/components/ui/Button.vue'
+import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
 import { useInventoryStore } from '~/stores/inventory'
 
 const inventory = useInventoryStore()
@@ -11,24 +10,13 @@ const inventory = useInventoryStore()
     <h2 class="mb-2 font-bold">
       Inventaire
     </h2>
-    <ItemCard
+    <InventoryItemCard
       v-for="entry in inventory.list"
       :key="entry.item.id"
       :item="entry.item"
-    >
-      <div class="flex items-center gap-1">
-        <span class="font-bold">x{{ entry.qty }}</span>
-        <Button class="text-xs" @click="inventory.useItem(entry.item.id)">
-          Utiliser
-        </Button>
-        <Button
-          type="danger"
-          class="text-xs"
-          @click="inventory.sell(entry.item.id)"
-        >
-          Vendre
-        </Button>
-      </div>
-    </ItemCard>
+      :qty="entry.qty"
+      @use="inventory.useItem(entry.item.id)"
+      @sell="inventory.sell(entry.item.id)"
+    />
   </section>
 </template>
