@@ -1,7 +1,7 @@
 import type { Stats } from '~/type'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 
-const baseStats: Stats = {
+export const baseStats: Stats = {
   hp: 250,
   attack: 15,
   defense: 10,
@@ -46,7 +46,7 @@ function generateRarity(): number {
   return Math.floor(1 + skewed * 99)
 }
 
-function statWithRarityAndCoefficient(base: number, coefficient: number, rarity: number): number {
+export function statWithRarityAndCoefficient(base: number, coefficient: number, rarity: number): number {
   const coefficientBoost = 1 + 2.5 * (coefficient - 1) / 999 // 1.0 → 3.5
   const rarityBoost = 1 + 0.25 * (rarity - 1) / 99 // 1.0 → 1.25
   const randomFactor = 0.95 + Math.random() * 0.1 // ±5%
