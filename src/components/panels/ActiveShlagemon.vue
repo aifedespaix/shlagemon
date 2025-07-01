@@ -4,7 +4,10 @@ import { useShlagedexStore } from '~/stores/shlagedex'
 
 const dex = useShlagedexStore()
 
-const src = computed(() => dex.activeShlagemon ? `/shlagemons/${dex.activeShlagemon?.base.id}/${dex.activeShlagemon.base.id}.png` : '')
+const src = computed(() => {
+  const id = dex.activeShlagemon?.base?.id
+  return id ? `/shlagemons/${id}/${id}.png` : ''
+})
 </script>
 
 <template>
