@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CaptureMenu from '~/components/battle/CaptureMenu.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useGameStore } from '~/stores/game'
@@ -17,6 +18,17 @@ const battleActive = ref(false)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 let battleInterval: number | undefined
+
+function onCapture(success: boolean) {
+  if (!success)
+    return
+  battleActive.value = false
+  if (battleInterval)
+    clearInterval(battleInterval)
+  battleInterval = undefined
+  enemy.value = null
+  setTimeout(startBattle, 1000)
+}
 
 function startBattle() {
   const active = dex.activeShlagemon
@@ -114,30 +126,33 @@ onUnmounted(() => {
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
     </div>
-    <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 items-center justify-center gap-4">
-      <div class="mon flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
-        <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
-        <div class="name">
-          {{ dex.activeShlagemon.base.name }}
+    <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 flex-col items-center gap-2">
+      <div class="w-full flex flex-1 items-center justify-center gap-4">
+        <div class="mon flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
+          <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
+          <div class="name">
+            {{ dex.activeShlagemon.base.name }}
+          </div>
+          <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
+          <div class="hp text-sm">
+            {{ playerHp }} / {{ dex.activeShlagemon.hp }}
+          </div>
         </div>
-        <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
-        <div class="hp text-sm">
-          {{ playerHp }} / {{ dex.activeShlagemon.hp }}
+        <div class="vs font-bold">
+          VS
+        </div>
+        <div v-if="enemy" class="mon flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
+          <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
+          <div class="name">
+            {{ enemy.base.name }} - lvl {{ enemy.lvl }}
+          </div>
+          <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
+          <div class="hp text-sm">
+            {{ enemyHp }} / {{ enemy.hp }}
+          </div>
         </div>
       </div>
-      <div class="vs font-bold">
-        VS
-      </div>
-      <div v-if="enemy" class="mon flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
-        <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
-        <div class="name">
-          {{ enemy.base.name }} - lvl {{ enemy.lvl }}
-        </div>
-        <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
-        <div class="hp text-sm">
-          {{ enemyHp }} / {{ enemy.hp }}
-        </div>
-      </div>
+      <CaptureMenu :enemy="enemy" @capture="onCapture" />
     </div>
   </div>
 </template>
