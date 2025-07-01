@@ -62,7 +62,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     if (id === 'shlageball') {
       // simple capture of random shlagemon
       const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
-      dex.createShlagemon(base)
+      dex.captureShlagemon(base)
       remove(id)
       return true
     }
