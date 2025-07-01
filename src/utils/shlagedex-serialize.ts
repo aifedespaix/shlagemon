@@ -1,4 +1,5 @@
 import { allShlagemons } from '~/data/shlagemons'
+import { baseStats, statWithRarityAndCoefficient } from './dexFactory'
 
 const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
 
@@ -33,6 +34,12 @@ export const shlagedexSerializer = {
           ...mon,
           base,
           baseId: mon.baseId ?? base.id,
+          baseStats: mon.baseStats ?? {
+            hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, mon.rarity ?? 1),
+            attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, mon.rarity ?? 1),
+            defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, mon.rarity ?? 1),
+            smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, mon.rarity ?? 1),
+          },
         }
       })
       .filter(Boolean)
@@ -45,6 +52,12 @@ export const shlagedexSerializer = {
             ...active,
             base,
             baseId: active.baseId ?? base.id,
+            baseStats: active.baseStats ?? {
+              hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, active.rarity ?? 1),
+              attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, active.rarity ?? 1),
+              defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, active.rarity ?? 1),
+              smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, active.rarity ?? 1),
+            },
           }
         : null
     }
