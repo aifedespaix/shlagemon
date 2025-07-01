@@ -7,9 +7,6 @@ const inventory = useInventoryStore()
 
 <template>
   <section v-if="inventory.list.length" class="flex flex-col gap-2">
-    <h2 class="mb-2 font-bold">
-      Inventaire
-    </h2>
     <InventoryItemCard
       v-for="entry in inventory.list"
       :key="entry.item.id"

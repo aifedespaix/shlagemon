@@ -23,6 +23,7 @@ declare module 'vue' {
     InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
+    PanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
