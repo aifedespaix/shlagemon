@@ -1,5 +1,6 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
+import { toast } from 'vue3-toastify'
 import { applyStats, createDexShlagemon, xpForLevel } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 
@@ -58,6 +59,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function createShlagemon(base: BaseShlagemon) {
     const mon = createDexShlagemon(base)
     addShlagemon(mon)
+    toast(`Tu as obtenu ${base.name} !`)
     return mon
   }
 
