@@ -41,7 +41,13 @@ function isActive(mon: DexShlagemon) {
             <div class="name">
               {{ mon.base.name }}
             </div>
-            <ShlagemonType :value="mon.base.type" />
+            <div class="flex gap-1">
+              <ShlagemonType
+                v-for="t in mon.base.types"
+                :key="t.id"
+                :value="t"
+              />
+            </div>
           </div>
         </div>
         <CheckBox

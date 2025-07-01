@@ -20,6 +20,12 @@ const src = computed(() => {
     <span class="text-sm">lvl {{ dex.activeShlagemon.lvl }}</span>
 
     <div class="flex-1" />
-    <ShlagemonType :value="dex.activeShlagemon.base.type" />
+    <div class="flex gap-1">
+      <ShlagemonType
+        v-for="t in dex.activeShlagemon.base.types"
+        :key="t.id"
+        :value="t"
+      />
+    </div>
   </div>
 </template>
