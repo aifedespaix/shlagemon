@@ -1,8 +1,21 @@
 import type { ShlagemonType } from '../type'
 
-export const crame: ShlagemonType = {
-  id: 'crame',
-  name: 'Crâme',
+type TypeName = 'normal' | 'feu' | 'eau' | 'plante' | 'roche' | 'electrique' | 'vol' | 'combat' | 'spectre' | 'darksasuke' | 'psy' | 'poison' | 'metal' | 'sol' | 'fee' | 'dragon' | 'glace'
+
+export const normal: ShlagemonType = {
+  id: 'normal',
+  name: 'Normy',
+  description: 'Type complètement inintéressant et trop pourri.',
+  color: '#A8A878',
+  resistance: [],
+  weakness: [],
+  tags: ['banal', 'fade'],
+  passiveEffects: [],
+}
+
+export const feu: ShlagemonType = {
+  id: 'feu',
+  name: 'Cramé',
   description: 'Type brûlant qui réduit tout en cendres.',
   color: '#e25822',
   resistance: [],
@@ -11,8 +24,8 @@ export const crame: ShlagemonType = {
   passiveEffects: [],
 }
 
-export const mouille: ShlagemonType = {
-  id: 'mouille',
+export const eau: ShlagemonType = {
+  id: 'eau',
   name: 'Mouillé',
   description: 'Type humide qui éteint facilement les ardeurs.',
   color: '#3b83bd',
@@ -22,8 +35,8 @@ export const mouille: ShlagemonType = {
   passiveEffects: [],
 }
 
-export const moisi: ShlagemonType = {
-  id: 'moisi',
+export const plante: ShlagemonType = {
+  id: 'plante',
   name: 'Moisi',
   description: 'Type végétal en décomposition.',
   color: '#769958',
@@ -33,9 +46,9 @@ export const moisi: ShlagemonType = {
   passiveEffects: [],
 }
 
-export const statik: ShlagemonType = {
-  id: 'statik',
-  name: 'Statik',
+export const electrique: ShlagemonType = {
+  id: 'electrique',
+  name: 'Électrochiasse',
   description: 'Type chargé d\'électricité statique.',
   color: '#f9e743',
   resistance: [],
@@ -44,8 +57,8 @@ export const statik: ShlagemonType = {
   passiveEffects: [],
 }
 
-export const caillasse: ShlagemonType = {
-  id: 'caillasse',
+export const roche: ShlagemonType = {
+  id: 'roche',
   name: 'Caillasse',
   description: 'Type roc très coriace.',
   color: '#a79f94',
@@ -55,172 +68,178 @@ export const caillasse: ShlagemonType = {
   passiveEffects: [],
 }
 
-export const moisisme: ShlagemonType = {
-  id: 'moisisme',
-  name: 'Moisisme',
-  description: 'Type fongique, dégoulinant, qui ronge lentement ses adversaires.',
-  color: '#6a9e3f',
+export const vol: ShlagemonType = {
+  id: 'vol',
+  name: 'AirEction',
+  description: 'Type aérien mais qui sent la teub.',
+  color: '#A4C2F4',
   resistance: [],
   weakness: [],
-  tags: ['collant', 'chaotique'],
-  passiveEffects: ['apply-poison'],
+  tags: ['aérien'],
+  passiveEffects: [],
 }
 
-export const plastoc: ShlagemonType = {
-  id: 'plastoc',
-  name: 'Plastoc',
-  description: 'Type synthétique et tape-à-l’œil, mais pas très écolo.',
-  color: '#e86fda',
+export const combat: ShlagemonType = {
+  id: 'combat',
+  name: 'Castagne',
+  description: 'Type bagarreur qui tape sans réfléchir.',
+  color: '#C03028',
+  resistance: [],
+  weakness: [],
+  tags: ['bourrin'],
+  passiveEffects: [],
+}
+
+export const spectre: ShlagemonType = {
+  id: 'spectre',
+  name: 'Spectranus',
+  description: 'Type chelou qui fout les jetons.',
+  color: '#705898',
+  resistance: [],
+  weakness: [],
+  tags: ['ectoplasmique'],
+  passiveEffects: [],
+}
+
+export const darksasuke: ShlagemonType = {
+  id: 'darksasuke',
+  name: 'Dark Sasuke',
+  description: 'Type victime, gothique et émo qui cours avec les bras en arrière.',
+  color: '#4D4D4D',
+  resistance: [],
+  weakness: [],
+  tags: ['malsain'],
+  passiveEffects: [],
+}
+
+export const psy: ShlagemonType = {
+  id: 'psy',
+  name: 'Psytrance',
+  description: `Un fan de musique de merde, il ne sait pas s'amuser sans prendre de drogue.`,
+  color: '#FF66CC',
+  resistance: [],
+  weakness: [],
+  tags: ['mental'],
+  passiveEffects: [],
+}
+
+export const poison: ShlagemonType = {
+  id: 'poison',
+  name: 'Poisonet',
+  description: 'Type toxique qui t’envoie des mails louches.',
+  color: '#A040A0',
   resistance: [],
   weakness: [],
   tags: ['toxique'],
-  passiveEffects: ['reflect-damage'],
-}
-
-export const yoloide: ShlagemonType = {
-  id: 'yoloide',
-  name: 'YOLOïde',
-  description: 'Type impulsif qui mise tout sur un coup critique.',
-  color: '#ff2222',
-  resistance: [],
-  weakness: [],
-  tags: ['chaotique'],
-  passiveEffects: ['ignore-defense'],
-}
-
-export const paperasse: ShlagemonType = {
-  id: 'paperasse',
-  name: 'Paperasse',
-  description: 'Type lent, mais inévitable. Peut paralyser n’importe quelle action.',
-  color: '#aaaaaa',
-  resistance: [],
-  weakness: [],
-  tags: ['bureaucratique'],
-  passiveEffects: ['lower-accuracy'],
-}
-
-export const vapotonie: ShlagemonType = {
-  id: 'vapotonie',
-  name: 'Vapotage',
-  description: 'Type flou, flottant et toxique. Disparaît dès qu’on le regarde.',
-  color: '#b6d6f2',
-  resistance: [],
-  weakness: [],
-  tags: ['intangible'],
-  passiveEffects: ['confuse', 'resist-status'],
-}
-
-export const flanquant: ShlagemonType = {
-  id: 'flanquant',
-  name: 'Flanquant',
-  description: 'Type gluant et instable. Ne tient jamais en place.',
-  color: '#ffcc88',
-  resistance: [],
-  weakness: [],
-  tags: ['alimentaire'],
-  passiveEffects: ['draw-attacks'],
-}
-
-export const dramaqueen: ShlagemonType = {
-  id: 'dramaqueen',
-  name: 'Dramaqueen',
-  description: 'Type théâtral qui amplifie chaque action.',
-  color: '#f39acb',
-  resistance: [],
-  weakness: [],
-  tags: ['émotif'],
   passiveEffects: [],
 }
 
-export const bricoFoutoir: ShlagemonType = {
-  id: 'brico-foutoir',
-  name: 'Brico-Foutoir',
-  description: 'Type bricoleur et imprévisible.',
-  color: '#8c7853',
+export const metal: ShlagemonType = {
+  id: 'metal',
+  name: 'Ferraille',
+  description: 'Type blindé mais rouillé qui couine à chaque pas.',
+  color: '#B8B8D0',
   resistance: [],
   weakness: [],
-  tags: ['chaotique'],
+  tags: ['métal'],
   passiveEffects: [],
 }
 
-export const apericube: ShlagemonType = {
-  id: 'apéricube',
-  name: 'Apéricube',
-  description: 'Type fromage cubique, étonnamment résistant.',
-  color: '#ffd966',
+export const sol: ShlagemonType = {
+  id: 'sol',
+  name: 'Cradouze',
+  description: 'Type terreux qui gratte les pieds.',
+  color: '#E0C068',
   resistance: [],
   weakness: [],
-  tags: ['alimentaire'],
+  tags: ['sale', 'boueux'],
   passiveEffects: [],
 }
 
-export const trouNoir: ShlagemonType = {
-  id: 'trou-noir',
-  name: 'Trou Noir',
-  description: 'Type cosmique qui aspire toute attaque.',
-  color: '#222222',
+export const fee: ShlagemonType = {
+  id: 'fee',
+  name: 'Fée Lation',
+  description: 'Type sucré en apparence, mais colle aux doigts.',
+  color: '#EE99AC',
   resistance: [],
   weakness: [],
-  tags: ['cosmique'],
+  tags: ['collant'],
   passiveEffects: [],
 }
 
-export const electrochiasse: ShlagemonType = {
-  id: 'electrochiasse',
-  name: 'Électrochiasse',
-  description: `Un type instable et bruyant. Déclenche des décharges aussi imprévisibles que gênantes. Très redouté dans les lieux publics.`,
-  color: '#a4c639', // un vert douteux à mi-chemin entre la bile et la prise fondue
+export const dragon: ShlagemonType = {
+  id: 'dragon',
+  name: 'DragonDorf',
+  description: 'Type majestueux mais trop sûr de lui, qui finit toujours battu à la fin.',
+  color: '#7038F8', // couleur violette proche du type Dragon
   resistance: [],
   weakness: [],
-  tags: ['dégueu', 'instable'],
+  tags: ['mythique'],
   passiveEffects: [],
 }
 
-moisisme.resistance.push(plastoc, flanquant)
-moisisme.weakness.push(vapotonie, bricoFoutoir)
+export const glace: ShlagemonType = {
+  id: 'glace',
+  name: 'Glaconasse',
+  description: 'Type froid comme ton ex, glissant et imprévisible.',
+  color: '#98d8d8',
+  resistance: [],
+  weakness: [],
+  tags: ['gelé', 'froid'],
+  passiveEffects: [],
+}
 
-plastoc.resistance.push(moisisme, apericube)
-plastoc.weakness.push(bricoFoutoir, trouNoir)
-
-yoloide.resistance.push(dramaqueen)
-yoloide.weakness.push(paperasse)
-
-paperasse.resistance.push(dramaqueen, bricoFoutoir)
-paperasse.weakness.push(vapotonie)
-
-vapotonie.resistance.push(moisisme)
-vapotonie.weakness.push(flanquant)
-
-flanquant.resistance.push(yoloide)
-flanquant.weakness.push(plastoc)
-
-electrochiasse.resistance.push(dramaqueen)
-electrochiasse.weakness.push(plastoc)
-
-// liens pour les types de base
-crame.weakness.push(mouille)
-mouille.resistance.push(crame)
-mouille.weakness.push(moisi, statik)
-moisi.weakness.push(crame)
-caillasse.weakness.push(mouille)
-statik.weakness.push(caillasse)
+normal.weakness.push(combat)
+feu.weakness.push(eau, sol)
+feu.resistance.push(plante, metal, fee)
+eau.weakness.push(plante, electrique)
+eau.resistance.push(feu, roche, eau)
+plante.weakness.push(feu, plante, poison, vol)
+plante.resistance.push(sol, electrique, eau)
+electrique.weakness.push(sol)
+electrique.resistance.push(vol, electrique, eau)
+roche.weakness.push(combat, eau, plante, sol, metal)
+roche.resistance.push(feu, vol, poison, fee)
+vol.weakness.push(roche, electrique, plante)
+vol.resistance.push(combat, plante, eau)
+combat.weakness.push(vol, psy, fee)
+combat.resistance.push(roche, darksasuke, poison)
+spectre.weakness.push(darksasuke, spectre)
+spectre.resistance.push(poison, combat)
+darksasuke.weakness.push(combat, fee)
+darksasuke.resistance.push(spectre, psy, plante)
+psy.weakness.push(darksasuke, spectre, poison)
+psy.resistance.push(combat, fee)
+poison.weakness.push(sol, psy)
+poison.resistance.push(plante, combat, fee)
+metal.weakness.push(combat, feu, sol)
+metal.resistance.push(poison, eau, electrique, plante, psy, roche, fee, vol)
+sol.weakness.push(plante, eau)
+sol.resistance.push(electrique, poison, feu, roche)
+fee.weakness.push(poison, metal)
+dragon.weakness.push(dragon, glace, fee)
+dragon.resistance.push(feu, eau, electrique, plante)
+dragon.resistance.push(feu, eau, electrique, plante)
+glace.weakness.push(feu, roche, combat, metal)
+glace.resistance.push(glace)
 
 // liste exportée
-export const shlagemonTypes: { [type: string]: ShlagemonType } = {
-  crame,
-  mouille,
-  moisi,
-  statik,
-  caillasse,
-  moisisme,
-  plastoc,
-  yoloide,
-  paperasse,
-  vapotonie,
-  flanquant,
-  dramaqueen,
-  bricoFoutoir,
-  apericube,
-  trouNoir,
-  electrochiasse,
+export const shlagemonTypes: { [typeName in TypeName]: ShlagemonType } = {
+  normal,
+  feu,
+  eau,
+  plante,
+  roche,
+  electrique,
+  vol,
+  combat,
+  spectre,
+  darksasuke,
+  psy,
+  poison,
+  metal,
+  sol,
+  fee,
+  dragon,
+  glace,
 }
