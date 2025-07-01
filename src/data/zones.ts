@@ -102,6 +102,16 @@ export const zonesData: Zone[] = [
     maxLevel: 70,
   },
   {
+    id: 'route-aguicheuse',
+    name: 'Route Aguicheuse',
+    type: 'sauvage',
+    actions: [
+      // { id: 'explore', label: 'Fouiller les Catacombes' },
+    ],
+    minLevel: 70,
+    maxLevel: 80,
+  },
+  {
     id: 'zone-giga-zob',
     name: 'Zone Giga-Zob',
     type: 'sauvage',
