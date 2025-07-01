@@ -86,9 +86,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="battle text-center" @click="attack">
-    <div v-if="dex.activeShlagemon && enemy" class="flex items-center justify-center gap-4">
-      <div class="mon flex flex-col items-center" :class="{ flash: flashPlayer }">
+  <div class="flex text-center">
+    <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 items-center justify-center gap-4">
+      <div class="mon flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
         <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
         <div class="name">
           {{ dex.activeShlagemon.base.name }}
@@ -101,7 +101,7 @@ onUnmounted(() => {
       <div class="vs font-bold">
         VS
       </div>
-      <div v-if="enemy" class="mon flex flex-col items-center" :class="{ flash: flashEnemy }">
+      <div v-if="enemy" class="mon flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }" @click="attack">
         <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
         <div class="name">
           {{ enemy.base.name }} - lvl {{ enemy.lvl }}
