@@ -20,6 +20,6 @@ export const useZoneStore = defineStore('zone', () => {
   return { zones, current, setZone, reset }
 }, {
   persist: {
-    paths: ['currentId'],
+    pick: ['currentId'],
   },
 })

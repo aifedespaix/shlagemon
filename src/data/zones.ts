@@ -12,6 +12,36 @@ export const zonesData: Zone[] = [
     maxLevel: 0,
   },
   {
+    id: 'village-boule',
+    name: 'Village Sux-Mais-Bouls',
+    type: 'village',
+    actions: [
+      { id: 'shop', label: 'Entrer le Shop' },
+    ],
+    minLevel: 40,
+    maxLevel: 0,
+  },
+  {
+    id: 'village-veaux-du-gland',
+    name: 'Veaux du Gland sur Marne',
+    type: 'village',
+    actions: [
+      { id: 'shop', label: 'Entrer le Shop' },
+    ],
+    minLevel: 80,
+    maxLevel: 0,
+  },
+  {
+    id: 'plaine',
+    name: 'Plaine Verdoyante',
+    type: 'sauvage',
+    actions: [
+      // { id: 'battle', label: 'Chercher un Shlagémon' },
+    ],
+    minLevel: 1,
+    maxLevel: 10,
+  },
+  {
     id: 'grotte',
     name: 'Grotte Sombre',
     type: 'grotte',
@@ -22,38 +52,28 @@ export const zonesData: Zone[] = [
     maxLevel: 20,
   },
   {
-    id: 'plaine',
-    name: 'Plaine Verdoyante',
+    id: 'ravin-anusmerite',
+    name: 'Ravin anusmérite',
     type: 'sauvage',
     actions: [
-      { id: 'battle', label: 'Chercher un Shlagémon' },
-    ],
-    minLevel: 1,
-    maxLevel: 10,
-  },
-  {
-    id: 'ravin-rattatak',
-    name: 'Ravin Rattatak',
-    type: 'sauvage',
-    actions: [
-      { id: 'battle', label: 'Chercher un Shlagémon' },
+      // { id: 'battle', label: 'Chercher un Shlagémon' },
     ],
     minLevel: 20,
     maxLevel: 30,
   },
   {
-    id: 'marais-smogogo',
-    name: 'Marais Smogogo',
+    id: 'marais-putaclick',
+    name: 'Marais Putaclick',
     type: 'sauvage',
     actions: [
-      { id: 'battle', label: 'Chercher un Shlagémon' },
+      // { id: 'battle', label: 'Chercher un Shlagémon' },
     ],
     minLevel: 30,
     maxLevel: 40,
   },
   {
-    id: 'forteresse-machoak',
-    name: 'Forteresse Machoak',
+    id: 'forteresse-petmoalfiak',
+    name: 'Forteresse Pètmoalfiak',
     type: 'grotte',
     actions: [
       { id: 'explore', label: 'Explorer la Forteresse' },
@@ -63,7 +83,7 @@ export const zonesData: Zone[] = [
   },
   {
     id: 'mont-dracatombe',
-    name: 'Mont Dracatombe',
+    name: 'Mont Cul',
     type: 'grotte',
     actions: [
       { id: 'explore', label: 'Gravir le Mont' },
@@ -72,8 +92,8 @@ export const zonesData: Zone[] = [
     maxLevel: 60,
   },
   {
-    id: 'catacombes-tenefrites',
-    name: 'Catacombes Ténéfrites',
+    id: 'catacombes-merdifientes',
+    name: 'Catacombes merdifientes',
     type: 'grotte',
     actions: [
       { id: 'explore', label: 'Fouiller les Catacombes' },
@@ -82,21 +102,21 @@ export const zonesData: Zone[] = [
     maxLevel: 70,
   },
   {
-    id: 'zone-ultraflop',
-    name: 'Zone Ultra-Flop',
+    id: 'zone-giga-zob',
+    name: 'Zone Giga-Zob',
     type: 'sauvage',
     actions: [
-      { id: 'battle', label: 'Chercher un Shlagémon' },
+      // { id: 'battle', label: 'Chercher un Shlagémon' },
     ],
     minLevel: 80,
     maxLevel: 90,
   },
   {
-    id: 'dome-mewpocalypse',
-    name: 'Dôme Mewpocalypse',
+    id: 'route-so-dom',
+    name: 'Route So d\'Ôme',
     type: 'grotte',
     actions: [
-      { id: 'explore', label: 'Affronter la Fin' },
+      // { id: 'explore', label: 'Affronter la Fin' },
     ],
     minLevel: 90,
     maxLevel: 100,

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Zone } from '~/type'
 import { computed } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
@@ -11,13 +12,22 @@ const dex = useShlagedexStore()
 const showShop = ref(false)
 
 const availableZones = computed(() =>
-  zone.zones.filter(z => z.type === 'village' || dex.highestLevel >= z.minLevel),
+  zone.zones.filter(z => (z.type === 'village' && z.minLevel <= dex.highestLevel) || dex.highestLevel >= z.minLevel),
 )
 
 function onAction(id: string) {
   if (id === 'shop') {
     showShop.value = true
   }
+}
+
+function classes(z: Zone) {
+  const classes = []
+  z.id === zone.current.id ? classes.push('bg-primary text-dark dark:bg-light') : classes.push('bg-gray-200 dark:bg-gray-700')
+  if (z.type === 'village') {
+    classes.push('bg-green-300 dark:bg-green-800')
+  }
+  return classes.join(' ')
 }
 </script>
 
@@ -28,14 +38,13 @@ function onAction(id: string) {
         v-for="z in availableZones"
         :key="z.id"
         class="rounded px-2 py-1 text-xs"
-        :class="z.id === zone.current.id ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700'"
+        :class="classes(z)"
         @click="zone.setZone(z.id)"
       >
         {{ z.name }}
       </button>
     </div>
     <div class="flex flex-col items-center gap-1" md="gap-2">
-      <span class="font-bold">{{ zone.current.name }}</span>
       <Button
         v-for="action in zone.current.actions"
         :key="action.id"
