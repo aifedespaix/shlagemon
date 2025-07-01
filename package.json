@@ -27,7 +27,9 @@
     "pinia-plugin-persistedstate": "catalog:frontend",
     "vue": "catalog:frontend",
     "vue-i18n": "catalog:frontend",
-    "vue-router": "catalog:frontend"
+    "vue-router": "catalog:frontend",
+    "vue3-toastify": "catalog:frontend"
+
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:dev",
