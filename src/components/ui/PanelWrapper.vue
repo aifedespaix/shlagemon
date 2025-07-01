@@ -13,7 +13,7 @@ function toggle() {
       <span class="font-bold">{{ props.title }}</span>
       <div class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="opened" class="w-full">
+    <div v-show="opened" class="flex-1 overflow-auto">
       <slot />
     </div>
   </div>
@@ -21,6 +21,6 @@ function toggle() {
 
 <style scoped>
 .panel-wrapper {
-  @apply overflow-hidden w-full;
+  @apply overflow-hidden w-full h-full flex flex-col;
 }
 </style>

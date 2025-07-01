@@ -13,7 +13,11 @@ export const useZoneStore = defineStore('zone', () => {
       current.value = zone
   }
 
-  return { zones, current, setZone }
+  function reset() {
+    current.value = zones.value[0]
+  }
+
+  return { zones, current, setZone, reset }
 }, {
   persist: true,
 })

@@ -10,22 +10,13 @@ const src = computed(() => dex.activeShlagemon ? `/shlagemons/${dex.activeShlage
 <template>
   <div
     v-if="dex.activeShlagemon"
-    class="w-full flex items-center justify-between gap-2 rounded bg-white dark:bg-gray-900"
+    class="h-full w-full flex items-center justify-between gap-2 rounded bg-white dark:bg-gray-900"
   >
-    <div class="flex">
-      <!-- <img
-        :src=""
-        :alt="dex.activeShlagemon.base.name"
-        class="h-full w-full object-contain"
-      > -->
-      <ImageByBackground v-if="dex.activeShlagemon" :src="src" class="aspect-square h-full bg-red" />
-      <!-- <ImageByBackground v-if="dex.activeShlagemon" :src="src" class="aspect-square h-full" /> -->
-      <span class="font-bold">{{ dex.activeShlagemon.base.name }}</span>
-    </div>
+    <ImageByBackground v-if="dex.activeShlagemon" :src="src" class="aspect-square h-full" md="w-8" />
+    <span class="font-bold">{{ dex.activeShlagemon.base.name }}</span> -
+    <span class="text-sm">niveau {{ dex.activeShlagemon.lvl }}</span>
 
-    <div class="info flex items-center gap-2">
-      <ShlagemonType :value="dex.activeShlagemon.base.type" />
-      <span>Lvl {{ dex.activeShlagemon.lvl }}</span>
-    </div>
+    <div class="flex-1" />
+    <ShlagemonType :value="dex.activeShlagemon.base.type" />
   </div>
 </template>
