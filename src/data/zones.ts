@@ -27,7 +27,7 @@ const zoneDescriptions: ZoneDescription[] = [
 // Génération automatique des paliers 1 → 79
 const generatedZones: Zone[] = zoneDescriptions.map((desc, index) => ({
   ...desc,
-  minLevel: index * 5,
+  minLevel: index * 5 || 1,
   maxLevel: index * 5 + 5,
 }))
 
