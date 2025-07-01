@@ -26,20 +26,19 @@ watch(() => props.modelValue, (v) => {
       dialog.showModal()
   }
   else {
-    close()
+    if (dialog.open)
+      close()
   }
 })
 
 function close() {
   const dialog = dialogRef.value
-  if (!dialog)
+  if (!dialog || dialog.classList.contains('closing'))
     return
   dialog.classList.add('closing')
   dialog.addEventListener('animationend', () => {
     dialog.classList.remove('closing')
     dialog.close()
-    emit('update:modelValue', false)
-    emit('close')
   }, { once: true })
 }
 </script>
