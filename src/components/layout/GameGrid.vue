@@ -5,6 +5,7 @@ import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
+import { useDialogStore } from '~/stores/dialog'
 import { useGameStateStore } from '~/stores/gameState'
 import { useInventoryStore } from '~/stores/inventory'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -14,8 +15,9 @@ const gameState = useGameStateStore()
 const zone = useZoneStore()
 const inventory = useInventoryStore()
 const shlagedex = useShlagedexStore()
+const dialogStore = useDialogStore()
 
-const isFightArea = computed(() => gameState.hasPokemon && zone.current.type !== 'village')
+const canFight = computed(() => gameState.hasPokemon && zone.current.type !== 'village')
 const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 </script>
@@ -24,11 +26,13 @@ const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
   <div class="w-full overflow-auto" md="overflow-hidden">
     <div
       class="game flex flex-col gap-1 p-1"
-      md="grid grid-cols-12 grid-rows-12 w-full h-full gap-2 p-1"
+      md="grid grid-cols-12 grid-rows-12 w-full h-full gap-2"
     >
-      <div class="zone zone-big" md="col-span-6 row-span-5  col-start-4 row-start-8">
+      <div v-if="isShlagedexVisible" class="zone zone-big" md="col-span-6 row-span-5  col-start-4 row-start-8">
         <!-- middle C zone -->
-        <DialogPanel />
+        <PanelWrapper title="Zones">
+          <ZonePanel />
+        </PanelWrapper>
       </div>
       <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-1">
         <!-- top zone -->
@@ -36,32 +40,28 @@ const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
+      <div v-if="canFight || dialogStore.isDialogVisible" class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
         <!-- middle A zone -->
-        <PanelWrapper v-if="isFightArea">
-          <BattleMain />
+        <PanelWrapper>
+          <DialogPanel v-if="dialogStore.isDialogVisible" />
+          <BattleMain v-else />
         </PanelWrapper>
       </div>
-      <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
+      <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
         <!-- middle B zone -->
         <PanelWrapper>
           <ActiveShlagemon />
         </PanelWrapper>
       </div>
-      <div class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
+      <div v-if="isInventoryVisible" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
         <!-- left zone -->
-        <div class="h-full flex flex-col gap-2">
-          <PanelWrapper v-if="isShlagedexVisible" title="Zones">
-            <ZonePanel />
-          </PanelWrapper>
-          <PanelWrapper v-if="isInventoryVisible" title="Inventaire">
-            <InventoryPanel />
-          </PanelWrapper>
-        </div>
+        <PanelWrapper v-if="isInventoryVisible" title="Inventaire">
+          <InventoryPanel />
+        </PanelWrapper>
       </div>
-      <div class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">
+      <div v-if="isShlagedexVisible" class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">
         <!-- right zone -->
-        <PanelWrapper v-if="isShlagedexVisible" title="Shlagédex">
+        <PanelWrapper title="Shlagédex">
           <Shlagedex />
         </PanelWrapper>
       </div>

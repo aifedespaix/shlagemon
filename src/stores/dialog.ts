@@ -1,11 +1,37 @@
 import { defineStore } from 'pinia'
+import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
+import DialogStarter from '~/components/dialog/DialogStarter.vue'
+import { useGameStore } from '~/stores/game'
+import { useGameStateStore } from '~/stores/gameState'
 
+interface DialogItem {
+  id: string
+  component: any
+  condition: () => boolean
+}
 export interface DialogDone {
   [id: string]: boolean
 }
 
 export const useDialogStore = defineStore('dialog', () => {
+  const gameState = useGameStateStore()
+  const game = useGameStore()
+
   const done = ref<DialogDone>({})
+  const dialogs: DialogItem[] = [
+    {
+      id: 'starter',
+      component: DialogStarter,
+      condition: () => !gameState.hasPokemon,
+    },
+    {
+      id: 'richReward',
+      component: AnotherShlagemonDialog,
+      condition: () => game.shlagidolar >= 100,
+    },
+  ]
+
+  const isDialogVisible = computed(() => dialogs.some(d => d.condition()))
 
   function isDone(id: string) {
     return done.value[id] === true
@@ -19,7 +45,7 @@ export const useDialogStore = defineStore('dialog', () => {
     done.value = {}
   }
 
-  return { done, isDone, markDone, reset }
+  return { done, isDone, markDone, reset, dialogs, isDialogVisible }
 }, {
   persist: true,
 })
