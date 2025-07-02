@@ -161,7 +161,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="battle text-center">
+  <div class="battle relative text-center">
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
     </div>
