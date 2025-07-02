@@ -11,10 +11,14 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 ### Ajouté
 
+- Amélioration UI et ergonomie
 - Progression des zones avec combats de boss et rencontres spécifiques.
-- Combats d'entraîneurs avec gestion de la vigueur et phase de changement.
-- Superposition de capture et mise en avant des "shinies".
-- Affichage de l'efficacité en combat via une bulle de notification.
+- Combats d'entraîneurs avec gestion de la vigueur et phases de changement.
+- Système de capture cohérent
+- Superposition de capture et mise en avant des "shiny".
+- Probabilité d'un Shiny : 0.01%
+- Affichage de l'efficacité en combat via une bulle de d'info.
+- Ajout d'une dizaine de Shlagémons
 
 ### Corrigé
 
