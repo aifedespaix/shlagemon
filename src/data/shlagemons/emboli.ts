@@ -9,3 +9,5 @@ export const emboli: BaseShlagemon = {
   types: [shlagemonTypes.poison],
   coefficient: 6,
 }
+
+export default emboli

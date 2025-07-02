@@ -9,3 +9,5 @@ export const ricardnin: BaseShlagemon = {
   types: [shlagemonTypes.feu, shlagemonTypes.eau],
   coefficient: 22,
 }
+
+export default ricardnin

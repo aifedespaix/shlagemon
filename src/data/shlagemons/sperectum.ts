@@ -9,3 +9,5 @@ export const sperectum: BaseShlagemon = {
   types: [shlagemonTypes.spectre],
   coefficient: 3,
 }
+
+export default sperectum

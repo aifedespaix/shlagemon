@@ -9,3 +9,5 @@ export const nanmeouesh: BaseShlagemon = {
   types: [shlagemonTypes.normal],
   coefficient: 6,
 }
+
+export default nanmeouesh
