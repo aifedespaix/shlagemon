@@ -38,7 +38,7 @@ describe('zone panel', () => {
       global: { plugins: [pinia] },
     })
     let btn = wrapper.findAll('button').find(b => b.text().includes('Grotte du Slip'))
-    expect(btn?.attributes('disabled')).toBeDefined()
+    expect(btn).toBeUndefined()
     for (let i = 0; i < 20; i++)
       progress.addWin('plaine-kekette')
     for (let i = 0; i < 20; i++)
@@ -49,7 +49,7 @@ describe('zone panel', () => {
       dex.gainXp(mon, xpForLevel(mon.lvl))
     await wrapper.vm.$nextTick()
     btn = wrapper.findAll('button').find(b => b.text().includes('Grotte du Slip'))
-    expect(btn?.attributes('disabled')).toBeUndefined()
+    expect(btn).toBeDefined()
   })
 
   it('shows king button after 20 wins', async () => {

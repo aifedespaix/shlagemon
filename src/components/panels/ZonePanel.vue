@@ -16,6 +16,8 @@ const trainerBattle = useTrainerBattleStore()
 
 const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
 
+const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
+
 function canAccess(z: Zone) {
   if (z.type === 'village')
     return z.minLevel <= dex.highestLevel
@@ -53,11 +55,10 @@ function classes(z: Zone) {
   <div class="flex flex-col gap-2" md="gap-3">
     <div class="flex flex-wrap justify-center gap-1" md="gap-2">
       <button
-        v-for="z in zone.zones"
+        v-for="z in accessibleZones"
         :key="z.id"
         class="rounded px-2 py-1 text-xs"
-        :class="[classes(z), { 'opacity-50 cursor-not-allowed': !canAccess(z) }]"
-        :disabled="!canAccess(z)"
+        :class="classes(z)"
         @click="zone.setZone(z.id)"
       >
         {{ z.name }}
