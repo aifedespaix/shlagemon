@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import BattleToast from '~/components/battle/BattleToast.vue'
-import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
@@ -15,11 +15,12 @@ const dex = useShlagedexStore()
 const game = useGameStore()
 const trainerStore = useTrainerBattleStore()
 const battle = useBattleStore()
+const panel = useMainPanelStore()
 
 const trainer = computed(() => trainerStore.current)
 const vigor = computed(() => trainerStore.vigor)
 
-const stage = ref<'before' | 'battle' | 'between' | 'after'>('before')
+const stage = ref<'before' | 'battle' | 'after'>('before')
 const enemyIndex = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const playerHp = ref(0)
@@ -157,7 +158,7 @@ function checkEnd() {
       enemyIndex.value += 1
       trainerStore.decreaseVigor(10)
       if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
-        stage.value = 'between'
+        setTimeout(startBattle, 500)
         return
       }
       if (trainer.value)
@@ -168,11 +169,8 @@ function checkEnd() {
 
     // player lost the active Shlagémon
     if (playerHp.value <= 0) {
-      const alive = dex.shlagemons.some(mon => mon.hpCurrent > 0)
-      if (alive) {
-        stage.value = 'between'
-        return
-      }
+      stage.value = 'after'
+      return
     }
 
     stage.value = 'after'
@@ -181,6 +179,7 @@ function checkEnd() {
 
 function finish() {
   trainerStore.next()
+  panel.showBattle()
 }
 
 onUnmounted(() => {
@@ -243,15 +242,6 @@ onUnmounted(() => {
           Vigueur : {{ vigor }}
         </div>
       </div>
-    </div>
-    <div v-else-if="stage === 'between'" class="flex flex-col items-center gap-2">
-      <div class="font-bold">
-        Choisis ton Shlagémon pour continuer
-      </div>
-      <Shlagedex />
-      <Button @click="startBattle">
-        Continuer le combat
-      </Button>
     </div>
     <div v-else class="flex flex-col items-center gap-2 text-center">
       <img :src="trainer.image" alt="trainer" class="h-24 object-contain">
