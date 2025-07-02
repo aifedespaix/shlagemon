@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
+import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
@@ -16,8 +17,9 @@ const game = useGameStore()
 const trainerStore = useTrainerBattleStore()
 
 const trainer = computed(() => trainerStore.current)
+const vigor = computed(() => trainerStore.vigor)
 
-const stage = ref<'before' | 'battle' | 'after'>('before')
+const stage = ref<'before' | 'battle' | 'between' | 'after'>('before')
 const enemyIndex = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const playerHp = ref(0)
@@ -31,6 +33,7 @@ watch(trainer, (t) => {
   if (t) {
     stage.value = 'before'
     enemyIndex.value = 0
+    trainerStore.resetVigor()
     if (dex.activeShlagemon)
       playerHp.value = dex.activeShlagemon.hpCurrent
   }
@@ -40,6 +43,7 @@ function startFight() {
   if (!trainer.value || !dex.activeShlagemon)
     return
   stage.value = 'battle'
+  trainerStore.resetVigor()
   dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hpCurrent || dex.activeShlagemon.hp
   playerHp.value = dex.activeShlagemon.hpCurrent
   startBattle()
@@ -49,6 +53,7 @@ function startBattle() {
   const t = trainer.value
   if (!t || !dex.activeShlagemon)
     return
+  stage.value = 'battle'
   const spec = t.shlagemons[enemyIndex.value]
   const base = allShlagemons.find(b => b.id === spec.baseId)
   if (!base)
@@ -127,17 +132,31 @@ function checkEnd() {
     battleInterval = undefined
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = playerHp.value
+
     if (enemyHp.value <= 0 && playerHp.value > 0) {
       if (dex.activeShlagemon && enemy.value)
         dex.gainXp(dex.activeShlagemon, xpRewardForLevel(enemy.value.lvl))
       enemyIndex.value += 1
+      trainerStore.decreaseVigor(10)
       if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
-        setTimeout(startBattle, 1000)
+        stage.value = 'between'
         return
       }
       if (trainer.value)
         game.addShlagidiamond(trainer.value.reward)
+      stage.value = 'after'
+      return
     }
+
+    // player lost the active Shlagémon
+    if (playerHp.value <= 0) {
+      const alive = dex.shlagemons.some(mon => mon.hpCurrent > 0)
+      if (alive) {
+        stage.value = 'between'
+        return
+      }
+    }
+
     stage.value = 'after'
   }
 }
@@ -188,6 +207,21 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
+      <div class="mt-2 w-40">
+        <ProgressBar :value="vigor" :max="100" color="bg-amber-500" />
+        <div class="text-xs">
+          Vigueur : {{ vigor }}
+        </div>
+      </div>
+    </div>
+    <div v-else-if="stage === 'between'" class="flex flex-col items-center gap-2">
+      <div class="font-bold">
+        Choisis ton Shlagémon pour continuer
+      </div>
+      <Shlagedex />
+      <Button @click="startBattle">
+        Continuer le combat
+      </Button>
     </div>
     <div v-else class="flex flex-col items-center gap-2 text-center">
       <img :src="trainer.image" alt="trainer" class="h-24 object-contain">
