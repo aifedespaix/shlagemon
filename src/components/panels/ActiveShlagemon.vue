@@ -15,7 +15,7 @@ const dex = useShlagedexStore()
       :id="dex.activeShlagemon.base.id"
       :alt="dex.activeShlagemon.base.name"
       :shiny="dex.activeShlagemon.isShiny"
-      class="aspect-square h-full"
+      class="aspect-square h-full max-h-20"
       md="w-8"
     />
     <span class="font-bold">{{ dex.activeShlagemon.base.name }}</span> -

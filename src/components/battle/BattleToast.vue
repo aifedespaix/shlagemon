@@ -17,7 +17,7 @@ const rotation = (Math.random() * 5 + 15) * (Math.random() > 0.5 ? 1 : -1)
 
 <template>
   <div
-    class="battle-toast pointer-events-none absolute left-1/2 -top-6 -translate-x-1/2"
+    class="battle-toast pointer-events-none absolute left-1/2 z-100 -top-6 -translate-x-1/2"
     :style="{ transform: `translateX(-50%) rotate(${rotation}deg)` }"
   >
     <div class="border rounded px-2 py-1 text-xs font-bold" :class="variantClasses">
