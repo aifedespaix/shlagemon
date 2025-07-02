@@ -35,12 +35,13 @@ onMounted(() => {
         alt="ball"
         class="h-16 w-16" :class="`shake-${shake}`"
       >
-      <img
-        :src="`/shlagemons/${target.base.id}/${target.base.id}.png`"
+      <ShlagemonImage
+        :id="target.base.id"
         :alt="target.base.name"
+        :shiny="target.isShiny"
         class="absolute left-1/2 top-1/2 h-12 w-12 object-contain -translate-x-1/2 -translate-y-1/2"
         :class="{ 'to-ball': shake > 0 }"
-      >
+      />
     </div>
   </div>
 </template>

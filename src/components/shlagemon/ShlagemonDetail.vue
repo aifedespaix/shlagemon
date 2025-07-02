@@ -37,7 +37,12 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
       </div>
       <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
     </h2>
-    <img :src="`/shlagemons/${mon.base.id}/${mon.base.id}.png`" :alt="mon.base.name" class="mx-auto mb-2 max-h-40 object-contain">
+    <ShlagemonImage
+      :id="mon.base.id"
+      :alt="mon.base.name"
+      :shiny="mon.isShiny"
+      class="mx-auto mb-2 max-h-40 object-contain"
+    />
     <p class="mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
