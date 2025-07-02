@@ -1,27 +1,62 @@
-import type { Zone } from '~/type/zone'
+import type { BaseShlagemon } from '~/type'
+import type { FightZoneId, Zone, ZoneType } from '~/type/zone'
+import { abraquemar, alaouakbar, bulgrosboule, canarchichon, carapouffe, dartagnan, goubite, mewteub, nosferachid, pikachiant, ptitocard, qulbudrogue, rouxPasCool, sacdepates, salamiches } from './shlagemons'
 
 interface ZoneDescription {
-  id: string
+  id: FightZoneId
   name: string
-  type: 'village' | 'sauvage' | 'grotte'
+  type: ZoneType
   actions?: { id: string, label: string }[]
+  shlagemons: BaseShlagemon[]
 }
 
 // Liste ordonnée de descriptions de zones, une par palier de 5 niveaux
 const zoneDescriptions: ZoneDescription[] = [
-  { id: 'plaine-kekette', name: 'Plaine Kékette', type: 'sauvage' },
-  { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage' },
-  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
-  { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage' },
-  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
-  { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage' },
-  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }] },
-  { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage' },
-  { id: 'mont-dracatombe', name: 'Mont Cul', type: 'grotte', actions: [{ id: 'explore', label: 'Gravir le Mont' }] },
-  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', type: 'grotte', actions: [{ id: 'explore', label: 'Fouiller les Catacombes' }] },
-  { id: 'route-aguicheuse', name: 'Route Aguicheuse', type: 'sauvage' },
-  { id: 'grotte-des-chieurs', name: 'Grotte des Chieurs', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
-  { id: 'trou-du-bide', name: 'Trou du Bide', type: 'sauvage' },
+  { id: 'plaine-kekette', name: 'Plaine Kékette', type: 'sauvage', shlagemons: [
+    sacdepates,
+    rouxPasCool,
+    canarchichon,
+  ] },
+  { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage', shlagemons: [
+    dartagnan,
+    ptitocard,
+    goubite,
+  ] },
+  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'grotte', shlagemons: [
+    nosferachid,
+    alaouakbar,
+    abraquemar,
+  ], actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage', shlagemons: [
+    qulbudrogue,
+    pikachiant,
+    goubite,
+  ] },
+  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }], shlagemons: [
+    carapouffe,
+    sacdepates,
+    ptitocard,
+  ] },
+  { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage', shlagemons: [
+    salamiches,
+    nosferachid,
+    rouxPasCool,
+  ] },
+  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }], shlagemons: [
+    bulgrosboule,
+    alaouakbar,
+    canarchichon,
+  ] },
+  { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage', shlagemons: [
+    mewteub,
+    pikachiant,
+    salamiches,
+  ] },
+  { id: 'mont-dracatombe', name: 'Mont Cul', type: 'grotte', actions: [{ id: 'explore', label: 'Gravir le Mont' }], shlagemons: [] },
+  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', type: 'grotte', shlagemons: [], actions: [{ id: 'explore', label: 'Fouiller les Catacombes' }] },
+  { id: 'route-aguicheuse', name: 'Route Aguicheuse', type: 'sauvage', shlagemons: [] },
+  { id: 'grotte-des-chieurs', name: 'Grotte des Chieurs', type: 'grotte', shlagemons: [], actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  { id: 'trou-du-bide', name: 'Trou du Bide', type: 'sauvage', shlagemons: [] },
 ]
 
 // Génération automatique des paliers 1 → 79

@@ -1,3 +1,5 @@
+import type { BaseShlagemon } from './shlagemon'
+
 export type ZoneType = 'village' | 'grotte' | 'sauvage'
 
 export interface ZoneAction {
@@ -6,7 +8,7 @@ export interface ZoneAction {
 }
 
 export interface Zone {
-  id: string
+  id: ZoneId
   name: string
   type: ZoneType
   actions: ZoneAction[]
@@ -14,4 +16,11 @@ export interface Zone {
   minLevel: number
   /** Maximum level for enemies and XP gain */
   maxLevel: number
+  shlagemons?: BaseShlagemon[]
 }
+
+export type ZoneId = FightZoneId | VillageZoneId
+
+export type VillageZoneId = 'village-paume' | 'village-caca-boudin' | 'village-veaux-du-gland' | 'village-boule'
+
+export type FightZoneId = 'plaine-kekette' | 'bois-de-bouffon' | 'grotte-du-slip' | 'ravin-fesse-molle' | 'grotte-nanard' | 'marais-moudugenou' | 'forteresse-petmoalfiak' | 'route-du-nawak' | 'mont-dracatombe' | 'catacombes-merdifientes' | 'route-aguicheuse' | 'grotte-des-chieurs' | 'trou-du-bide' | 'zone-giga-zob' | 'route-so-dom'
