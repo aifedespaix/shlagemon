@@ -65,6 +65,7 @@ const generatedZones: Zone[] = zoneDescriptions.map((desc, index) => ({
   name: desc.name,
   type: desc.type,
   actions: desc.actions ?? [],
+  shlagemons: desc.shlagemons,
   minLevel: index * 5 || 1,
   maxLevel: index * 5 + 5,
 }))
