@@ -25,6 +25,7 @@ const trainer = computed(() => trainerStore.current)
 const vigor = computed(() => trainerStore.vigor)
 
 const stage = ref<'before' | 'battle' | 'after'>('before')
+const result = ref<'none' | 'win' | 'lose'>('none')
 const enemyIndex = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const playerHp = ref(0)
@@ -79,6 +80,7 @@ watch(trainer, (t) => {
     stage.value = 'before'
     enemyIndex.value = 0
     trainerStore.resetVigor()
+    result.value = 'none'
     if (dex.activeShlagemon)
       playerHp.value = dex.activeShlagemon.hpCurrent
   }
@@ -93,8 +95,9 @@ watch(
 )
 
 function startFight() {
-  if (!trainer.value || !dex.activeShlagemon)
+  if (!trainer.value || !dex.activeShlagemon || dex.activeShlagemon.hpCurrent <= 0)
     return
+  result.value = 'none'
   stage.value = 'battle'
   trainerStore.resetVigor()
   dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hpCurrent || dex.activeShlagemon.hp
@@ -104,7 +107,7 @@ function startFight() {
 
 function startBattle() {
   const t = trainer.value
-  if (!t || !dex.activeShlagemon)
+  if (!t || !dex.activeShlagemon || dex.activeShlagemon.hpCurrent <= 0)
     return
   stage.value = 'battle'
   const spec = t.shlagemons[enemyIndex.value]
@@ -167,12 +170,14 @@ function checkEnd() {
       }
       if (trainer.value)
         game.addShlagidiamond(trainer.value.reward)
+      result.value = 'win'
       stage.value = 'after'
       return
     }
 
     // player lost the active Shlagémon
     if (playerHp.value <= 0) {
+      result.value = 'lose'
       stage.value = 'after'
       return
     }
@@ -182,10 +187,17 @@ function checkEnd() {
 }
 
 function finish() {
-  if (trainer.value?.id.startsWith('king-'))
-    progress.defeatKing(zone.current.id)
-  trainerStore.next()
-  panel.showBattle()
+  if (result.value === 'win') {
+    if (trainer.value?.id.startsWith('king-'))
+      progress.defeatKing(zone.current.id)
+    trainerStore.next()
+    panel.showBattle()
+  }
+  else if (result.value === 'lose') {
+    stage.value = 'before'
+    enemyIndex.value = 0
+    result.value = 'none'
+  }
 }
 
 onUnmounted(() => {
@@ -257,8 +269,13 @@ onUnmounted(() => {
     </div>
     <div v-else class="flex flex-col items-center gap-2 text-center">
       <img :src="trainer.image" alt="trainer" class="h-24 object-contain">
-      <div>{{ trainer.dialogAfter }}</div>
-      <div v-if="playerHp > 0" class="font-bold">
+      <div v-if="result === 'win'">
+        {{ trainer.dialogAfter }}
+      </div>
+      <div v-else class="text-red-600 font-bold dark:text-red-400">
+        Défaite...
+      </div>
+      <div v-if="result === 'win'" class="font-bold">
         +{{ trainer.reward }} Schlagédiamonds
       </div>
       <Button @click="finish">
