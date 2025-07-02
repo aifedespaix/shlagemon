@@ -4,15 +4,16 @@ import CaptureMenu from '~/components/battle/CaptureMenu.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
-import { computeDamage } from '~/utils/combat'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const game = useGameStore()
 const zone = useZoneStore()
+const battle = useBattleStore()
 
 const playerHp = ref(0)
 const enemyHp = ref(0)
@@ -71,15 +72,9 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]
-  const defType = enemy.value.base.types[0]
-  const { damage, effect } = computeDamage(
-    dex.activeShlagemon.attack,
-    atkType,
-    defType,
-  )
+  const { effect } = battle.attack(dex.activeShlagemon, enemy.value)
   showEffect('enemy', effect)
-  enemyHp.value = Math.max(0, enemyHp.value - damage)
+  enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   checkEnd()
@@ -88,29 +83,17 @@ function attack() {
 function tick() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]
-  const defType = enemy.value.base.types[0]
-  const { damage: dmgToEnemy, effect: eff1 } = computeDamage(
-    dex.activeShlagemon.attack,
-    atkType,
-    defType,
-  )
-  showEffect('enemy', eff1)
-  enemyHp.value = Math.max(0, enemyHp.value - dmgToEnemy)
+  const { player: resPlayer, enemy: resEnemy } = battle.duel(dex.activeShlagemon, enemy.value)
+  showEffect('enemy', resPlayer.effect)
+  enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
-  const atkType2 = enemy.value.base.types[0]
-  const defType2 = dex.activeShlagemon.base.types[0]
-  const { damage: dmgToPlayer, effect: eff2 } = computeDamage(
-    enemy.value.attack,
-    atkType2,
-    defType2,
-  )
-  showEffect('player', eff2)
-  playerHp.value = Math.max(0, playerHp.value - dmgToPlayer)
-  dex.activeShlagemon.hpCurrent = playerHp.value
-  flashPlayer.value = true
-  setTimeout(() => (flashPlayer.value = false), 100)
+  if (resEnemy) {
+    showEffect('player', resEnemy.effect)
+    playerHp.value = dex.activeShlagemon.hpCurrent
+    flashPlayer.value = true
+    setTimeout(() => (flashPlayer.value = false), 100)
+  }
   checkEnd()
 }
 function checkEnd() {
