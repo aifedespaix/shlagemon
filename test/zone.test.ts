@@ -25,7 +25,8 @@ describe('zone panel', () => {
     const wrapper = mount(ZonePanel, {
       global: { plugins: [pinia] },
     })
-    expect(wrapper.text()).toContain('Entrer le Shop')
+    // first zone is the noobi room which has no actions
+    expect(wrapper.text()).toContain('La Chambre du Noobi')
   })
 
   it('filters zones by level', async () => {

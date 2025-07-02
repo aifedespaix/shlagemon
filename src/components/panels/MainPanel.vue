@@ -3,6 +3,7 @@ import BattleMain from '~/components/battle/BattleMain.vue'
 import TrainerBattle from '~/components/battle/TrainerBattle.vue'
 import DialogPanel from '~/components/panels/DialogPanel.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
+import VillagePanel from '~/components/village/VillagePanel.vue'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
 
@@ -17,6 +18,8 @@ const currentComponent = computed(() => {
       return BattleMain
     case 'trainerBattle':
       return TrainerBattle
+    case 'village':
+      return VillagePanel
     default:
       return null
   }
