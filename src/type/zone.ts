@@ -17,10 +17,11 @@ export interface Zone {
   /** Maximum level for enemies and XP gain */
   maxLevel: number
   shlagemons?: BaseShlagemon[]
+  image?: string
 }
 
 export type ZoneId = FightZoneId | VillageZoneId
 
 export type VillageZoneId = 'village-paume' | 'village-caca-boudin' | 'village-veaux-du-gland' | 'village-boule'
 
-export type FightZoneId = 'plaine-kekette' | 'bois-de-bouffon' | 'grotte-du-slip' | 'ravin-fesse-molle' | 'grotte-nanard' | 'marais-moudugenou' | 'forteresse-petmoalfiak' | 'route-du-nawak' | 'mont-dracatombe' | 'catacombes-merdifientes' | 'route-aguicheuse' | 'grotte-des-chieurs' | 'trou-du-bide' | 'zone-giga-zob' | 'route-so-dom'
+export type FightZoneId = 'chambre-du-noobi' | 'plaine-kekette' | 'bois-de-bouffon' | 'grotte-du-slip' | 'ravin-fesse-molle' | 'grotte-nanard' | 'marais-moudugenou' | 'forteresse-petmoalfiak' | 'route-du-nawak' | 'mont-dracatombe' | 'catacombes-merdifientes' | 'route-aguicheuse' | 'grotte-des-chieurs' | 'trou-du-bide' | 'zone-giga-zob' | 'route-so-dom'
