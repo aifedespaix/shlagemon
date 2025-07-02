@@ -1,13 +1,8 @@
 import type { Item } from '~/type/item'
+import { balls } from './shlageball'
 
 export const shopItems: Item[] = [
-  {
-    id: 'shlageball',
-    name: 'Shlage Ball',
-    description: 'Permet de capturer des Shlagémons sauvages.',
-    price: 10,
-    image: '/items/shlageball/shlageball.png',
-  },
+  ...balls,
   {
     id: 'potion',
     name: 'Potion Dégueulasse',
