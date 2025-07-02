@@ -9,11 +9,13 @@ import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
+import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const game = useGameStore()
 const zone = useZoneStore()
+const progress = useZoneProgressStore()
 const battle = useBattleStore()
 const inventory = useInventoryStore()
 
@@ -145,6 +147,7 @@ function checkEnd() {
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = playerHp.value
     if (enemyHp.value <= 0 && playerHp.value > 0) {
+      progress.addWin(zone.current.id)
       game.addShlagidolar(zone.rewardMultiplier)
       if (dex.activeShlagemon && enemy.value) {
         dex.gainXp(
