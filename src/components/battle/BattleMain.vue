@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify'
+import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureMenu from '~/components/battle/CaptureMenu.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
@@ -20,7 +20,23 @@ const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const battleActive = ref(false)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
+const playerEffect = ref('')
+const enemyEffect = ref('')
 let battleInterval: number | undefined
+
+function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'normal') {
+  if (effect === 'normal')
+    return
+  const text = effect === 'super' ? 'C\u2019est super efficace !' : 'Pas tr\u00E8s efficace...'
+  if (target === 'enemy') {
+    enemyEffect.value = text
+    setTimeout(() => (enemyEffect.value = ''), 500)
+  }
+  else {
+    playerEffect.value = text
+    setTimeout(() => (playerEffect.value = ''), 500)
+  }
+}
 
 function onCapture(success: boolean) {
   if (!success)
@@ -62,10 +78,7 @@ function attack() {
     atkType,
     defType,
   )
-  if (effect === 'super')
-    toast('C’est super efficace !')
-  else if (effect === 'not')
-    toast('Pas très efficace...')
+  showEffect('enemy', effect)
   enemyHp.value = Math.max(0, enemyHp.value - damage)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
@@ -82,10 +95,7 @@ function tick() {
     atkType,
     defType,
   )
-  if (eff1 === 'super')
-    toast('C’est super efficace !')
-  else if (eff1 === 'not')
-    toast('Pas très efficace...')
+  showEffect('enemy', eff1)
   enemyHp.value = Math.max(0, enemyHp.value - dmgToEnemy)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
@@ -96,10 +106,7 @@ function tick() {
     atkType2,
     defType2,
   )
-  if (eff2 === 'super')
-    toast('C’est super efficace !')
-  else if (eff2 === 'not')
-    toast('Pas très efficace...')
+  showEffect('player', eff2)
   playerHp.value = Math.max(0, playerHp.value - dmgToPlayer)
   dex.activeShlagemon.hpCurrent = playerHp.value
   flashPlayer.value = true
@@ -164,7 +171,8 @@ onUnmounted(() => {
     </div>
     <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 flex-col items-center gap-2">
       <div class="w-full flex flex-1 items-center justify-center gap-4">
-        <div class="mon flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
+        <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
+          <BattleToast v-if="playerEffect" :message="playerEffect" />
           <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
           <div class="name">
             {{ dex.activeShlagemon.base.name }}
@@ -184,7 +192,8 @@ onUnmounted(() => {
         <div class="vs font-bold">
           VS
         </div>
-        <div v-if="enemy" class="mon flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
+        <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
+          <BattleToast v-if="enemyEffect" :message="enemyEffect" />
           <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
           <div class="name">
             {{ enemy.base.name }} - lvl {{ enemy.lvl }}
