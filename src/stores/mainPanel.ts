@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 import { useZoneStore } from './zone'
 
-export type MainPanel = 'village' | 'battle' | 'shop'
+export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop'
 
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
@@ -28,9 +28,13 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'battle'
   }
 
+  function showTrainerBattle() {
+    current.value = 'trainerBattle'
+  }
+
   function showVillage() {
     current.value = 'village'
   }
 
-  return { current, showShop, showBattle, showVillage }
+  return { current, showShop, showBattle, showTrainerBattle, showVillage }
 })

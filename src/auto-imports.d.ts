@@ -327,6 +327,9 @@ declare global {
   // @ts-ignore
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
+  // @ts-ignore
+  export type { MainPanel } from './stores/mainPanel'
+  import('./stores/mainPanel')
 }
 
 // for vue template auto import
@@ -529,6 +532,7 @@ declare module 'vue' {
     readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
+    readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
