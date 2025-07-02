@@ -2,7 +2,6 @@
 import type { Zone } from '~/type'
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
-import { allShlagemons } from '~/data/shlagemons'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -17,17 +16,15 @@ const trainerBattle = useTrainerBattleStore()
 
 const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
 
-const availableZones = computed(() => {
-  return zone.zones.filter((z) => {
-    if (z.type === 'village')
-      return z.minLevel <= dex.highestLevel
-    const idx = xpZones.value.findIndex(x => x.id === z.id)
-    if (idx === 0)
-      return dex.highestLevel >= z.minLevel
-    const prev = xpZones.value[idx - 1]
-    return dex.highestLevel >= z.minLevel && progress.getWins(prev.id) >= 20
-  })
-})
+function canAccess(z: Zone) {
+  if (z.type === 'village')
+    return z.minLevel <= dex.highestLevel
+  const idx = xpZones.value.findIndex(x => x.id === z.id)
+  if (idx === 0)
+    return dex.highestLevel >= z.minLevel
+  const prev = xpZones.value[idx - 1]
+  return dex.highestLevel >= z.minLevel && progress.isKingDefeated(prev.id)
+}
 
 function onAction(id: string) {
   if (id === 'shop')
@@ -37,24 +34,7 @@ function onAction(id: string) {
 }
 
 function fightKing() {
-  const z = zone.current
-  const level = z.maxLevel + 1
-  const trainer = {
-    id: `king-${z.id}`,
-    name: `Roi de ${z.name}`,
-    image: '/characters/professor/professor.png',
-    dialogBefore: 'Prépare-toi à perdre !',
-    dialogAfter: 'Tu as gagné... pour cette fois.',
-    reward: 5,
-    shlagemons: Array.from({ length: 6 }, () => {
-      const list = z.shlagemons?.length ? z.shlagemons! : allShlagemons
-      const base = list[Math.floor(Math.random() * list.length)]
-      return {
-        baseId: base.id,
-        level,
-      }
-    }),
-  }
+  const trainer = zone.getKing(zone.current.id)
   trainerBattle.setQueue([trainer])
   panel.showTrainerBattle()
 }
@@ -73,10 +53,11 @@ function classes(z: Zone) {
   <div class="flex flex-col gap-2" md="gap-3">
     <div class="flex flex-wrap justify-center gap-1" md="gap-2">
       <button
-        v-for="z in availableZones"
+        v-for="z in zone.zones"
         :key="z.id"
         class="rounded px-2 py-1 text-xs"
-        :class="classes(z)"
+        :class="[classes(z), { 'opacity-50 cursor-not-allowed': !canAccess(z) }]"
+        :disabled="!canAccess(z)"
         @click="zone.setZone(z.id)"
       >
         {{ z.name }}
@@ -92,12 +73,15 @@ function classes(z: Zone) {
         {{ action.label }}
       </Button>
       <Button
-        v-if="progress.canFightKing(zone.current.id)"
+        v-if="!progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
         class="text-xs"
         @click="fightKing"
       >
         Vaincre le roi de la zone
       </Button>
+      <div v-else-if="progress.isKingDefeated(zone.current.id)" class="text-xs font-bold">
+        Roi vaincu !
+      </div>
     </div>
   </div>
 </template>
