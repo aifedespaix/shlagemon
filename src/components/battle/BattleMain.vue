@@ -26,19 +26,43 @@ const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerEffect = ref('')
 const enemyEffect = ref('')
+const playerVariant = ref<'normal' | 'high' | 'low'>('normal')
+const enemyVariant = ref<'normal' | 'high' | 'low'>('normal')
 let battleInterval: number | undefined
 
-function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'normal') {
-  if (effect === 'normal')
+function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'normal', crit: 'critical' | 'weak' | 'normal') {
+  if (effect === 'normal' && crit === 'normal')
     return
-  const text = effect === 'super' ? 'C\u2019est super efficace !' : 'Pas tr\u00E8s efficace...'
+  const messages: string[] = []
+  if (crit === 'critical')
+    messages.push('Coup critique !')
+  else if (crit === 'weak')
+    messages.push('Coup mou...')
+  if (effect === 'super')
+    messages.push('C\u2019est super efficace !')
+  else if (effect === 'not')
+    messages.push('Pas tr\u00E8s efficace...')
+  const text = messages.join(' ')
+  const variant = effect === 'super' || crit === 'critical'
+    ? 'high'
+    : effect === 'not' || crit === 'weak'
+      ? 'low'
+      : 'normal'
   if (target === 'enemy') {
     enemyEffect.value = text
-    setTimeout(() => (enemyEffect.value = ''), 500)
+    enemyVariant.value = variant
+    setTimeout(() => {
+      enemyEffect.value = ''
+      enemyVariant.value = 'normal'
+    }, 500)
   }
   else {
     playerEffect.value = text
-    setTimeout(() => (playerEffect.value = ''), 500)
+    playerVariant.value = variant
+    setTimeout(() => {
+      playerEffect.value = ''
+      playerVariant.value = 'normal'
+    }, 500)
   }
 }
 
@@ -87,8 +111,8 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const { effect } = battle.attack(dex.activeShlagemon, enemy.value)
-  showEffect('enemy', effect)
+  const { effect, crit } = battle.attack(dex.activeShlagemon, enemy.value)
+  showEffect('enemy', effect, crit)
   enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
@@ -99,12 +123,12 @@ function tick() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
   const { player: resPlayer, enemy: resEnemy } = battle.duel(dex.activeShlagemon, enemy.value)
-  showEffect('enemy', resPlayer.effect)
+  showEffect('enemy', resPlayer.effect, resPlayer.crit)
   enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   if (resEnemy) {
-    showEffect('player', resEnemy.effect)
+    showEffect('player', resEnemy.effect, resEnemy.crit)
     playerHp.value = dex.activeShlagemon.hpCurrent
     flashPlayer.value = true
     setTimeout(() => (flashPlayer.value = false), 100)
@@ -170,7 +194,7 @@ onUnmounted(() => {
     <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 flex-col items-center gap-2">
       <div class="w-full flex flex-1 items-center justify-center gap-4">
         <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
-          <BattleToast v-if="playerEffect" :message="playerEffect" />
+          <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
           <ShlagemonImage
             :id="dex.activeShlagemon.base.id"
             :alt="dex.activeShlagemon.base.name"
@@ -196,7 +220,7 @@ onUnmounted(() => {
           VS
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
-          <BattleToast v-if="enemyEffect" :message="enemyEffect" />
+          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           <ShlagemonImage
             :id="enemy.base.id"
             :alt="enemy.base.name"

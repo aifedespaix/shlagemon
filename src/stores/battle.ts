@@ -5,6 +5,7 @@ import { computeDamage } from '~/utils/combat'
 export interface AttackResult {
   damage: number
   effect: 'super' | 'not' | 'normal'
+  crit: 'critical' | 'weak' | 'normal'
 }
 
 export const useBattleStore = defineStore('battle', () => {

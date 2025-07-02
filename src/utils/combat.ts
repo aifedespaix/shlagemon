@@ -32,8 +32,14 @@ export function computeDamage(
   base: number,
   attackType: ShlagemonType,
   targetType: ShlagemonType,
-): { damage: number, effect: 'super' | 'not' | 'normal' } {
-  const { multiplier, effect } = getTypeMultiplier(attackType, targetType)
-  const damage = Math.round(base * multiplier)
-  return { damage, effect }
+): { damage: number, effect: 'super' | 'not' | 'normal', crit: 'critical' | 'weak' | 'normal' } {
+  const { multiplier: typeMultiplier, effect } = getTypeMultiplier(attackType, targetType)
+  const variance = 0.8 + Math.random() * 0.4 // entre x0.8 et x1.2
+  let crit: 'critical' | 'weak' | 'normal' = 'normal'
+  if (variance > 1.15)
+    crit = 'critical'
+  else if (variance < 0.85)
+    crit = 'weak'
+  const damage = Math.round(base * typeMultiplier * variance)
+  return { damage, effect, crit }
 }
