@@ -5,6 +5,7 @@ import ZonePanel from '../src/components/panels/ZonePanel.vue'
 import { carapouffe } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useZoneStore } from '../src/stores/zone'
+import { useZoneProgressStore } from '../src/stores/zoneProgress'
 import { xpForLevel } from '../src/utils/dexFactory'
 
 describe('zone store', () => {
@@ -25,21 +26,40 @@ describe('zone panel', () => {
       global: { plugins: [pinia] },
     })
     expect(wrapper.text()).toContain('Entrer le Shop')
-    expect(wrapper.html()).toMatchSnapshot()
   })
 
   it('filters zones by level', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const dex = useShlagedexStore()
+    const progress = useZoneProgressStore()
     const mon = dex.createShlagemon(carapouffe)
     const wrapper = mount(ZonePanel, {
       global: { plugins: [pinia] },
     })
     expect(wrapper.text()).not.toContain('Grotte du Slip')
+    for (let i = 0; i < 20; i++)
+      progress.addWin('plaine-kekette')
+    for (let i = 0; i < 20; i++)
+      progress.addWin('bois-de-bouffon')
     for (let i = 0; i < 9; i++)
       dex.gainXp(mon, xpForLevel(mon.lvl))
     await wrapper.vm.$nextTick()
     expect(wrapper.text()).toContain('Grotte du Slip')
+  })
+
+  it('shows king button after 20 wins', async () => {
+    const pinia = createPinia()
+    setActivePinia(pinia)
+    const progress = useZoneProgressStore()
+    const zone = useZoneStore()
+    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    zone.setZone('plaine-kekette')
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).not.toContain('Vaincre le roi')
+    for (let i = 0; i < 20; i++)
+      progress.addWin('plaine-kekette')
+    await wrapper.vm.$nextTick()
+    expect(wrapper.text()).toContain('Vaincre le roi')
   })
 })

@@ -2,23 +2,57 @@
 import type { Zone } from '~/type'
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
+import { allShlagemons } from '~/data/shlagemons'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
+import { useZoneProgressStore } from '~/stores/zoneProgress'
 
 const zone = useZoneStore()
 const dex = useShlagedexStore()
 const panel = useMainPanelStore()
+const progress = useZoneProgressStore()
+const trainerBattle = useTrainerBattleStore()
 
-const availableZones = computed(() =>
-  zone.zones.filter(z => (z.type === 'village' && z.minLevel <= dex.highestLevel) || dex.highestLevel >= z.minLevel),
-)
+const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
+
+const availableZones = computed(() => {
+  return zone.zones.filter((z) => {
+    if (z.type === 'village')
+      return z.minLevel <= dex.highestLevel
+    const idx = xpZones.value.findIndex(x => x.id === z.id)
+    if (idx === 0)
+      return dex.highestLevel >= z.minLevel
+    const prev = xpZones.value[idx - 1]
+    return dex.highestLevel >= z.minLevel && progress.getWins(prev.id) >= 20
+  })
+})
 
 function onAction(id: string) {
   if (id === 'shop')
     panel.showShop()
   else if (id === 'explore')
     panel.showTrainerBattle()
+}
+
+function fightKing() {
+  const z = zone.current
+  const level = z.maxLevel + 1
+  const trainer = {
+    id: `king-${z.id}`,
+    name: `Roi de ${z.name}`,
+    image: '/characters/professor/professor.png',
+    dialogBefore: 'Prépare-toi à perdre !',
+    dialogAfter: 'Tu as gagné... pour cette fois.',
+    reward: 5,
+    shlagemons: Array.from({ length: 6 }, () => ({
+      baseId: allShlagemons[Math.floor(Math.random() * allShlagemons.length)].id,
+      level,
+    })),
+  }
+  trainerBattle.setQueue([trainer])
+  panel.showTrainerBattle()
 }
 
 function classes(z: Zone) {
@@ -52,6 +86,13 @@ function classes(z: Zone) {
         @click="onAction(action.id)"
       >
         {{ action.label }}
+      </Button>
+      <Button
+        v-if="progress.canFightKing(zone.current.id)"
+        class="text-xs"
+        @click="fightKing"
+      >
+        Vaincre le roi de la zone
       </Button>
     </div>
   </div>
