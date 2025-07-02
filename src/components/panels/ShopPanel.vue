@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ItemCard from '~/components/shop/ItemCard.vue'
 import Button from '~/components/ui/Button.vue'
-import { shopItems } from '~/data/items'
+import { shopItems } from '~/data/items/items'
 import { useInventoryStore } from '~/stores/inventory'
 
 const inventory = useInventoryStore()

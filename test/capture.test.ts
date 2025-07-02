@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { balls } from '../src/data/balls'
+import { balls } from '../src/data/items/shlageball'
 import { carapouffe } from '../src/data/shlagemons'
 import { tryCapture } from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { shopItems } from '~/data/items'
+import { shopItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { useGameStore } from './game'
 import { useShlagedexStore } from './shlagedex'

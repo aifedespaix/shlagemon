@@ -2,7 +2,7 @@
 import type { Ball, DexShlagemon } from '~/type'
 import { computed, ref } from 'vue'
 import { toast } from 'vue3-toastify'
-import { balls as ballData } from '~/data/balls'
+import { balls as ballData } from '~/data/items/shlageball'
 import { useInventoryStore } from '~/stores/inventory'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { tryCapture } from '~/utils/capture'
