@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { toast } from 'vue3-toastify'
 import { carapouffe } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
-import { xpForLevel } from '../src/utils/dexFactory'
+import { applyStats, xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
 
@@ -31,6 +31,18 @@ describe('shlagedex capture', () => {
     expect(mon.isShiny).toBe(false)
     dex.captureShlagemon(carapouffe, true)
     expect(mon.isShiny).toBe(true)
+  })
+
+  it('captures enemy with same level and rarity', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const enemy = dex.createShlagemon(carapouffe)
+    enemy.lvl = 17
+    enemy.rarity = 42
+    applyStats(enemy)
+    const captured = dex.captureEnemy(enemy)
+    expect(captured.lvl).toBe(17)
+    expect(captured.rarity).toBe(42)
   })
 })
 
