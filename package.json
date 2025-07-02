@@ -19,6 +19,7 @@
     "bd": "pnpm run build && pnpm run deploy"
   },
   "dependencies": {
+    "@floating-ui/dom": "catalog:frontend",
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
@@ -29,7 +30,6 @@
     "vue-i18n": "catalog:frontend",
     "vue-router": "catalog:frontend",
     "vue3-toastify": "catalog:frontend"
-
   },
   "devDependencies": {
     "@antfu/eslint-config": "catalog:dev",
