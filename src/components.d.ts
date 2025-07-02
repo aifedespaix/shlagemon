@@ -13,6 +13,7 @@ declare module 'vue' {
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     BattleToast: typeof import('./components/battle/BattleToast.vue')['default']
+    Bonus: typeof import('./components/icons/bonus.vue')['default']
     Button: typeof import('./components/ui/Button.vue')['default']
     CaptureMenu: typeof import('./components/battle/CaptureMenu.vue')['default']
     CaptureOverlay: typeof import('./components/battle/CaptureOverlay.vue')['default']
@@ -34,8 +35,10 @@ declare module 'vue' {
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Schlagedex: typeof import('./components/icons/schlagedex.vue')['default']
     SelectedShlagemon: typeof import('./components/panels/SelectedShlagemon.vue')['default']
     Shlagedex: typeof import('./components/shlagemon/Shlagedex.vue')['default']
+    Shlagediamond: typeof import('./components/icons/shlagediamond.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
     ShlagemonImage: typeof import('./components/shlagemon/ShlagemonImage.vue')['default']
     ShlagemonRarity: typeof import('./components/shlagemon/ShlagemonRarity.vue')['default']
@@ -44,6 +47,7 @@ declare module 'vue' {
     ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
     TrainerBattle: typeof import('./components/battle/TrainerBattle.vue')['default']
+    Xp: typeof import('./components/icons/xp.vue')['default']
     ZonePanel: typeof import('./components/panels/ZonePanel.vue')['default']
   }
 }
