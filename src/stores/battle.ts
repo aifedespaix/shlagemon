@@ -1,6 +1,7 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computeDamage } from '~/utils/combat'
+import { useShlagedexStore } from './shlagedex'
 
 export interface AttackResult {
   damage: number
@@ -9,19 +10,28 @@ export interface AttackResult {
 }
 
 export const useBattleStore = defineStore('battle', () => {
-  function attack(attacker: DexShlagemon, defender: DexShlagemon): AttackResult {
+  const dex = useShlagedexStore()
+  function attack(
+    attacker: DexShlagemon,
+    defender: DexShlagemon,
+    isPlayerAttacker = false,
+    isPlayerDefender = false,
+  ): AttackResult {
     const atkType = attacker.base.types[0]
     const defType = defender.base.types[0]
-    const result = computeDamage(attacker.attack, atkType, defType)
-    defender.hpCurrent = Math.max(0, defender.hpCurrent - result.damage)
-    return result
+    const atkBonus = isPlayerAttacker ? dex.bonusMultiplier : 1
+    const defBonus = isPlayerDefender ? dex.bonusMultiplier : 1
+    const result = computeDamage(Math.round(attacker.attack * atkBonus), atkType, defType)
+    const finalDamage = Math.max(1, Math.round(result.damage / defBonus))
+    defender.hpCurrent = Math.max(0, defender.hpCurrent - finalDamage)
+    return { ...result, damage: finalDamage }
   }
 
   function duel(player: DexShlagemon, enemy: DexShlagemon) {
-    const playerResult = attack(player, enemy)
+    const playerResult = attack(player, enemy, true, false)
     let enemyResult: AttackResult | null = null
     if (enemy.hpCurrent > 0)
-      enemyResult = attack(enemy, player)
+      enemyResult = attack(enemy, player, false, true)
     return { player: playerResult, enemy: enemyResult }
   }
 
