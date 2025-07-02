@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
+import { useAchievementsStore } from '~/stores/achievements'
 import { useDialogStore } from '~/stores/dialog'
 import { useGameStateStore } from '~/stores/gameState'
 import { useInventoryStore } from '~/stores/inventory'
@@ -16,6 +18,7 @@ const zone = useZoneStore()
 const inventory = useInventoryStore()
 const shlagedex = useShlagedexStore()
 const dialogStore = useDialogStore()
+const achievements = useAchievementsStore()
 
 const showMainPanel = computed(() =>
   dialogStore.isDialogVisible
@@ -24,6 +27,7 @@ const showMainPanel = computed(() =>
 )
 const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
+const isAchievementVisible = computed(() => achievements.hasAny)
 </script>
 
 <template>
@@ -56,10 +60,13 @@ const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
           <ActiveShlagemon />
         </PanelWrapper>
       </div>
-      <div v-if="isInventoryVisible" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
+      <div v-if="isInventoryVisible || isAchievementVisible" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
         <!-- left zone -->
         <PanelWrapper v-if="isInventoryVisible" title="Inventaire">
           <InventoryPanel />
+        </PanelWrapper>
+        <PanelWrapper v-if="isAchievementVisible" title="Succès">
+          <AchievementsPanel />
         </PanelWrapper>
       </div>
       <div v-if="isShlagedexVisible" class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">

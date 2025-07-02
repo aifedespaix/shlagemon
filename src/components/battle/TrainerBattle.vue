@@ -4,6 +4,7 @@ import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -188,8 +189,10 @@ function checkEnd() {
 
 function finish() {
   if (result.value === 'win') {
-    if (trainer.value?.id.startsWith('king-'))
+    if (trainer.value?.id.startsWith('king-')) {
       progress.defeatKing(zone.current.id)
+      notifyAchievement({ type: 'king-defeated' })
+    }
     trainerStore.next()
     panel.showBattle()
   }

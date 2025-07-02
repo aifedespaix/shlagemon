@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { shopItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
+import { notifyAchievement } from './achievements'
 import { useGameStore } from './game'
 import { useShlagedexStore } from './shlagedex'
 
@@ -49,6 +50,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   function useItem(id: string) {
     if (!items.value[id])
       return false
+    notifyAchievement({ type: 'item-used' })
     if (id === 'potion') {
       dex.healActive(50)
       remove(id)
@@ -62,7 +64,8 @@ export const useInventoryStore = defineStore('inventory', () => {
     if (id === 'shlageball') {
       // simple capture of random shlagemon
       const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
-      dex.captureShlagemon(base)
+      const mon = dex.captureShlagemon(base)
+      notifyAchievement({ type: 'capture', shiny: mon.isShiny })
       remove(id)
       return true
     }
