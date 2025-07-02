@@ -80,21 +80,23 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.xp = 0
   }
 
-  function createShlagemon(base: BaseShlagemon) {
-    const mon = createDexShlagemon(base)
+  function createShlagemon(base: BaseShlagemon, shiny = false) {
+    const mon = createDexShlagemon(base, shiny)
     addShlagemon(mon)
     updateHighestLevel(mon)
     toast(`Tu as obtenu ${base.name} !`)
     return mon
   }
 
-  function captureShlagemon(base: BaseShlagemon) {
+  function captureShlagemon(base: BaseShlagemon, shiny = false) {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
     if (existing) {
       if (existing.rarity < 100) {
         existing.rarity += 1
         toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
       }
+      if (shiny)
+        existing.isShiny = true
       existing.lvl = 1
       existing.xp = 0
       existing.baseStats = {
@@ -124,7 +126,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       updateHighestLevel(existing)
       return existing
     }
-    const created = createShlagemon(base)
+    const created = createShlagemon(base, shiny)
     updateHighestLevel(created)
     return created
   }

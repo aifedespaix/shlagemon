@@ -22,6 +22,16 @@ describe('shlagedex capture', () => {
       `${mon.base.name} atteint la rareté ${mon.rarity} !`,
     )
   })
+
+  it('turns existing mon shiny if duplicate is shiny', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.isShiny = false
+    expect(mon.isShiny).toBe(false)
+    dex.captureShlagemon(carapouffe, true)
+    expect(mon.isShiny).toBe(true)
+  })
 })
 
 describe('shlagedex highest level', () => {

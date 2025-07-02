@@ -33,7 +33,7 @@ export function applyStats(mon: DexShlagemon) {
   mon.hpCurrent = mon.hp
 }
 
-export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
+export function createDexShlagemon(base: BaseShlagemon, shiny = false): DexShlagemon {
   const rarity = generateRarity()
   const mon: DexShlagemon = {
     id: crypto.randomUUID(),
@@ -52,7 +52,7 @@ export function createDexShlagemon(base: BaseShlagemon): DexShlagemon {
     defense: 0,
     smelling: 0,
     sex: Math.random() < 0.5 ? 'male' : 'female',
-    isShiny: Math.random() < 0.0001,
+    isShiny: shiny || Math.random() < 0.0001,
     hpCurrent: 0,
   }
   applyStats(mon)
