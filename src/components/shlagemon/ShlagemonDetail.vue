@@ -33,7 +33,7 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
   <div v-if="mon" class="max-w-sm w-full rounded bg-white dark:bg-gray-900">
     <h2 class="mb-2 flex items-center justify-between text-lg font-bold">
       <div>
-        {{ mon.base.name }} - lvl {{ mon.lvl }}
+        <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>  - lvl {{ mon.lvl }}
       </div>
       <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
     </h2>
@@ -46,7 +46,7 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
       :shiny="mon.isShiny"
       class="mx-auto mb-2 max-h-40 object-contain"
     />
-    <p class="mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
+    <p class="tiny-scrollbar mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
     <div class="grid grid-cols-2 gap-2 text-sm">
@@ -69,3 +69,30 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
     </div>
   </div>
 </template>
+
+<style>
+.shiny-title {
+  /* rien de spécial ici */
+}
+
+.shiny-text {
+  background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffff, #00ff00, #ffff00, #ff9900, #ff0000);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shiny-rainbow 5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes shiny-rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>

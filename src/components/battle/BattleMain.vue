@@ -173,7 +173,7 @@ onUnmounted(() => {
             :id="dex.activeShlagemon.base.id"
             :alt="dex.activeShlagemon.base.name"
             :shiny="dex.activeShlagemon.isShiny"
-            class="max-h-32 object-contain"
+            class="max-h-32 object-contain -scale-x-100"
           />
           <div class="name">
             {{ dex.activeShlagemon.base.name }}

@@ -3,6 +3,7 @@ const props = defineProps<{ rarity: number }>()
 
 const classes = computed(() => {
   const unocss: string[] = []
+  unocss.push('text-grey-900 dark:text-grey-300')
   if (props.rarity < 10) {
     unocss.push('bg-grey-300 bg-dark:grey-800')
   }
