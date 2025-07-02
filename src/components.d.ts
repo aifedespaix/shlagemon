@@ -46,6 +46,7 @@ declare module 'vue' {
     Shlagidolar: typeof import('./components/icons/shlagidolar.vue')['default']
     ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
+    Tooltip: typeof import('./components/ui/Tooltip.vue')['default']
     TrainerBattle: typeof import('./components/battle/TrainerBattle.vue')['default']
     VillagePanel: typeof import('./components/village/VillagePanel.vue')['default']
     Xp: typeof import('./components/icons/xp.vue')['default']

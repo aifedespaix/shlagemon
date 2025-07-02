@@ -38,7 +38,7 @@ function hide() {
 <template>
   <span
     ref="wrapper"
-    class="relative inline-flex items-center"
+    class="relative inline-flex cursor-default items-center"
     @mouseenter="show"
     @mouseleave="hide"
     @focusin="show"

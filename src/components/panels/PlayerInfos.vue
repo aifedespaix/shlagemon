@@ -20,19 +20,19 @@ const totalInDex = allShlagemons.length
     class="w-full inline-flex items-center justify-around gap-3 rounded bg-white text-xs dark:bg-gray-900"
     sm="text-sm"
   >
-    <Tooltip text="Schlage Dolar">
+    <Tooltip text="Shlagidolars">
       <div class="min-w-0 flex items-center gap-1">
         <ShlagidolarIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ game.shlagidolar }}</span>
       </div>
     </Tooltip>
-    <Tooltip text="Schlage Diamant">
+    <Tooltip text="Shlagidiamond">
       <div class="min-w-0 flex items-center gap-1">
         <ShlagediamondIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ game.shlagidiamond }}</span>
       </div>
     </Tooltip>
-    <Tooltip text="Schlage Dex">
+    <Tooltip text="SchlagéDex">
       <div class="min-w-0 flex items-center gap-1">
         <SchlagedexIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
@@ -50,7 +50,7 @@ const totalInDex = allShlagemons.length
         <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
       </div>
     </Tooltip>
-    <Tooltip text="Schlage Ball">
+    <Tooltip text="SchlagéBalls">
       <div class="min-w-0 flex items-center gap-1">
         <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
         <span class="shrink-0 font-bold">{{ inventory.items.shlageball || 0 }}</span>
