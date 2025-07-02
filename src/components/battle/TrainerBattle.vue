@@ -204,6 +204,12 @@ onUnmounted(() => {
       </Button>
     </div>
     <div v-else-if="stage === 'battle'" class="w-full text-center" @click="attack">
+      <div class="mb-1 h-8 flex items-center justify-end gap-2 overflow-hidden font-bold">
+        <div>
+          {{ trainer.name }}
+        </div>
+        <img :src="trainer.image" alt="" class="h-full">
+      </div>
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
