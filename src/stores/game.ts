@@ -5,7 +5,7 @@ export const useGameStore = defineStore('game', () => {
   const shlagidiamond = ref(0)
 
   function addShlagidolar(amount: number) {
-    shlagidolar.value += amount
+    shlagidolar.value = Math.ceil(shlagidolar.value + amount)
   }
 
   function addShlagidiamond(amount: number) {
