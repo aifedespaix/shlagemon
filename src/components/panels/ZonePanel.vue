@@ -17,6 +17,8 @@ const availableZones = computed(() =>
 function onAction(id: string) {
   if (id === 'shop')
     panel.showShop()
+  else if (id === 'explore')
+    panel.showTrainerBattle()
 }
 
 function classes(z: Zone) {

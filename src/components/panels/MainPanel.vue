@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BattleMain from '~/components/battle/BattleMain.vue'
+import TrainerBattle from '~/components/battle/TrainerBattle.vue'
 import DialogPanel from '~/components/panels/DialogPanel.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
@@ -15,6 +16,8 @@ const currentComponent = computed(() => {
       return ShopPanel
     case 'battle':
       return BattleMain
+    case 'trainerBattle':
+      return TrainerBattle
     default:
       return ZonePanel
   }
