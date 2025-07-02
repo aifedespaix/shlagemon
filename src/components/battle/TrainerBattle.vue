@@ -79,6 +79,14 @@ watch(trainer, (t) => {
   }
 })
 
+watch(
+  () => dex.activeShlagemon?.hpCurrent,
+  (value) => {
+    if (typeof value === 'number')
+      playerHp.value = value
+  },
+)
+
 function startFight() {
   if (!trainer.value || !dex.activeShlagemon)
     return

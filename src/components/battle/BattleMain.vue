@@ -171,6 +171,14 @@ watch(
 )
 
 watch(
+  () => dex.activeShlagemon?.hpCurrent,
+  (value) => {
+    if (typeof value === 'number')
+      playerHp.value = value
+  },
+)
+
+watch(
   () => zone.current.id,
   () => {
     if (battleInterval)
