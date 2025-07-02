@@ -22,7 +22,7 @@ const zoneDescriptions: ZoneDescription[] = [
     ptitocard,
     goubite,
   ] },
-  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'grotte', shlagemons: [
+  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'sauvage', shlagemons: [
     nosferachid,
     alaouakbar,
     abraquemar,
@@ -32,7 +32,7 @@ const zoneDescriptions: ZoneDescription[] = [
     pikachiant,
     goubite,
   ] },
-  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Grotte' }], shlagemons: [
+  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'sauvage', actions: [{ id: 'explore', label: 'Explorer la Grotte' }], shlagemons: [
     carapouffe,
     sacdepates,
     ptitocard,
@@ -42,7 +42,7 @@ const zoneDescriptions: ZoneDescription[] = [
     nosferachid,
     rouxPasCool,
   ] },
-  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'grotte', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }], shlagemons: [
+  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'sauvage', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }], shlagemons: [
     bulgrosboule,
     alaouakbar,
     canarchichon,
