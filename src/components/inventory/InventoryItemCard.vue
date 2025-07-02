@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
+import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
 
 const props = defineProps<{ item: Item, qty: number }>()
@@ -7,6 +8,8 @@ const emit = defineEmits<{
   (e: 'use'): void
   (e: 'sell'): void
 }>()
+
+const isBall = computed(() => 'catchBonus' in props.item)
 </script>
 
 <template>
@@ -23,7 +26,11 @@ const emit = defineEmits<{
     <span class="text-xs">{{ props.item.description }}</span>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
-      <Button class="flex items-center gap-1 text-xs" @click="emit('use')">
+      <Button
+        v-if="!isBall"
+        class="flex items-center gap-1 text-xs"
+        @click="emit('use')"
+      >
         <div i-carbon-play inline-block />
         Utiliser
       </Button>
