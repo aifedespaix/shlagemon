@@ -14,7 +14,7 @@ export interface BaseShlagemon {
    * The first element represents the main type.
    */
   types: ShlagemonType[]
-  evolution?: ShlagemonEvolution[]
+  evolution?: ShlagemonEvolution
   coefficient: number
 }
 
