@@ -1,5 +1,6 @@
 import type { Trainer } from '~/types'
-import { carapouffe, salamiches } from './shlagemons'
+import { carapouffe } from './shlagemons/carapouffe'
+import { salamiches } from './shlagemons/salamiches'
 
 export const trainers: Trainer[] = [
   {

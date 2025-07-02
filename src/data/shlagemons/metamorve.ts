@@ -9,3 +9,5 @@ export const metamorve: BaseShlagemon = {
   types: [shlagemonTypes.normal],
   coefficient: 3,
 }
+
+export default metamorve
