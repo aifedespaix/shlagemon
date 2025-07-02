@@ -45,6 +45,7 @@ function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'norma
 function openCapture() {
   if (!enemy.value || (inventory.items.shlageball || 0) <= 0)
     return
+  inventory.remove('shlageball')
   battleActive.value = false
   if (battleInterval)
     clearInterval(battleInterval)
