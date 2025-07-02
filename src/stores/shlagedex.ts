@@ -14,6 +14,13 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
   const activeShlagemon = ref<DexShlagemon | null>(null)
   const highestLevel = ref(0)
+  const averageLevel = computed(() =>
+    shlagemons.value.length
+      ? shlagemons.value.reduce((s, m) => s + m.lvl, 0) / shlagemons.value.length
+      : 0,
+  )
+  const bonusPercent = computed(() => averageLevel.value * 10)
+  const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
   function updateHighestLevel(mon: DexShlagemon) {
     if (mon.lvl > highestLevel.value)
@@ -163,7 +170,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return captured
   }
 
-  return { shlagemons, activeShlagemon, highestLevel, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, gainXp, healActive, boostDefense }
+  return { shlagemons, activeShlagemon, highestLevel, averageLevel, bonusPercent, bonusMultiplier, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, gainXp, healActive, boostDefense }
 }, {
   persist: {
     debug: true,

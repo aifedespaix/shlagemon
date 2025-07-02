@@ -27,6 +27,14 @@ const totalInDex = allShlagemons.length
       <span class="shrink-0 font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
     </div>
     <div class="min-w-0 flex items-center gap-2">
+      <span class="truncate">Niv. moyen</span>
+      <span class="shrink-0 font-bold">{{ dex.averageLevel.toFixed(1) }}</span>
+    </div>
+    <div class="min-w-0 flex items-center gap-2">
+      <span class="truncate">Bonus</span>
+      <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
+    </div>
+    <div class="min-w-0 flex items-center gap-2">
       <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
       <span class="shrink-0 font-bold">{{ inventory.items.shlageball || 0 }}</span>
     </div>
