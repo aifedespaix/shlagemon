@@ -1,6 +1,11 @@
 import type { BaseShlagemon } from '~/type'
 import type { FightZoneId, Zone, ZoneType } from '~/type/zone'
 import { abraquemar, alaouakbar, bulgrosboule, canarchichon, carapouffe, dartagnan, goubite, mewteub, nosferachid, pikachiant, ptitocard, qulbudrogue, rouxPasCool, sacdepates, salamiches } from './shlagemons'
+import { emboli } from './shlagemons/emboli'
+import { metamorve } from './shlagemons/metamorve'
+import { nanmeouesh } from './shlagemons/nameouesh'
+import { ricardnin } from './shlagemons/ricardnin'
+import { sperectum } from './shlagemons/sperectum'
 
 interface ZoneDescription {
   id: FightZoneId
@@ -16,26 +21,31 @@ const zoneDescriptions: ZoneDescription[] = [
     sacdepates,
     rouxPasCool,
     canarchichon,
+    sperectum,
   ] },
   { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage', shlagemons: [
     dartagnan,
     ptitocard,
     goubite,
+    metamorve,
   ] },
   { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'sauvage', shlagemons: [
     nosferachid,
     alaouakbar,
     abraquemar,
+    emboli,
   ], actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
   { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage', shlagemons: [
     qulbudrogue,
     pikachiant,
     goubite,
+    nanmeouesh,
   ] },
   { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'sauvage', actions: [{ id: 'explore', label: 'Explorer la Grotte' }], shlagemons: [
     carapouffe,
     sacdepates,
     ptitocard,
+    ricardnin,
   ] },
   { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage', shlagemons: [
     salamiches,

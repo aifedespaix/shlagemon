@@ -23,6 +23,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 ### Corrigé
 
 - Empêcher le débordement du panneau d'information du joueur avec des points de suspension.
+- Pleins de bug corrigés, flemme de détailler
 
 ## [0.2.0] - 2025-06-30
 

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 export const useZoneProgressStore = defineStore('zoneProgress', () => {
   const wins = ref<Record<string, number>>({})
+  const fightsBeforeKing = 10
   const kingsDefeated = ref<Record<string, boolean>>({})
 
   function addWin(id: string) {
@@ -14,7 +15,7 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
   }
 
   function canFightKing(id: string) {
-    return getWins(id) >= 20
+    return getWins(id) >= fightsBeforeKing
   }
 
   function defeatKing(id: string) {

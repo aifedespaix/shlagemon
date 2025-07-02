@@ -77,7 +77,7 @@ function classes(z: Zone) {
         class="text-xs"
         @click="fightKing"
       >
-        Vaincre le roi de la zone
+        Défier le roi de la zone
       </Button>
       <div v-else-if="progress.isKingDefeated(zone.current.id)" class="text-xs font-bold">
         Roi vaincu !

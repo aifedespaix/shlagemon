@@ -1,5 +1,10 @@
 import type { BaseShlagemon } from '~/types'
 import { shlagemonTypes } from './shlagemons-type'
+import { emboli } from './shlagemons/emboli'
+import { metamorve } from './shlagemons/metamorve'
+import { nanmeouesh } from './shlagemons/nameouesh'
+import { ricardnin } from './shlagemons/ricardnin'
+import { sperectum } from './shlagemons/sperectum'
 
 export const carapouffe: BaseShlagemon = {
   id: 'carapouffe',
@@ -162,4 +167,9 @@ export const allShlagemons: BaseShlagemon[] = [
   alaouakbar,
   abraquemar,
   qulbudrogue,
+  sperectum,
+  metamorve,
+  emboli,
+  nanmeouesh,
+  ricardnin,
 ]
