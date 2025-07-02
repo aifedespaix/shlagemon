@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { toast } from 'vue3-toastify'
 import { carapouffe } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
-import { applyStats, xpForLevel } from '../src/utils/dexFactory'
+import { applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
 
@@ -33,16 +33,33 @@ describe('shlagedex capture', () => {
     expect(mon.isShiny).toBe(true)
   })
 
-  it('captures enemy with same level and rarity', () => {
+  it('captures new enemy with same level and rarity', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
-    const enemy = dex.createShlagemon(carapouffe)
+    const enemy = createDexShlagemon(carapouffe)
     enemy.lvl = 17
     enemy.rarity = 42
     applyStats(enemy)
     const captured = dex.captureEnemy(enemy)
     expect(captured.lvl).toBe(17)
     expect(captured.rarity).toBe(42)
+  })
+
+  it('increases rarity and resets level when capturing duplicate enemy', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const existing = dex.createShlagemon(carapouffe)
+    existing.rarity = 1
+    applyStats(existing)
+    const enemy = createDexShlagemon(carapouffe)
+    enemy.isShiny = true
+    enemy.lvl = 10
+    applyStats(enemy)
+    const captured = dex.captureEnemy(enemy)
+    expect(captured.id).toBe(existing.id)
+    expect(existing.rarity).toBe(2)
+    expect(existing.lvl).toBe(1)
+    expect(existing.isShiny).toBe(true)
   })
 })
 

@@ -134,13 +134,19 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function captureEnemy(enemy: DexShlagemon) {
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
     if (existing) {
-      existing.lvl = enemy.lvl
-      existing.xp = enemy.xp
-      existing.rarity = enemy.rarity
-      existing.baseStats = { ...enemy.baseStats }
-      existing.sex = enemy.sex
-      if (enemy.isShiny)
-        existing.isShiny = true
+      if (existing.rarity < 100) {
+        existing.rarity += 1
+        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+      }
+      existing.isShiny ||= enemy.isShiny
+      existing.lvl = 1
+      existing.xp = 0
+      existing.baseStats = {
+        hp: statWithRarityAndCoefficient(baseStats.hp, existing.base.coefficient, existing.rarity),
+        attack: statWithRarityAndCoefficient(baseStats.attack, existing.base.coefficient, existing.rarity),
+        defense: statWithRarityAndCoefficient(baseStats.defense, existing.base.coefficient, existing.rarity),
+        smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
+      }
       applyStats(existing)
       existing.hpCurrent = existing.hp
       updateHighestLevel(existing)
