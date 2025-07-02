@@ -4,6 +4,7 @@ import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
@@ -83,6 +84,7 @@ function onCaptureEnd(success: boolean) {
   showCapture.value = false
   if (success && enemy.value) {
     dex.captureEnemy(enemy.value)
+    notifyAchievement({ type: 'capture', shiny: enemy.value.isShiny })
     enemy.value = null
     setTimeout(startBattle, 1000)
   }
@@ -150,8 +152,12 @@ function checkEnd() {
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = playerHp.value
     if (enemyHp.value <= 0 && playerHp.value > 0) {
+      const stronger = enemy.value && dex.activeShlagemon
+        ? enemy.value.lvl > dex.activeShlagemon.lvl
+        : false
       progress.addWin(zone.current.id)
       game.addShlagidolar(zone.rewardMultiplier)
+      notifyAchievement({ type: 'battle-win', stronger })
       if (dex.activeShlagemon && enemy.value) {
         dex.gainXp(
           dex.activeShlagemon,
