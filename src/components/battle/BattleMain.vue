@@ -82,7 +82,7 @@ function openCapture() {
 function onCaptureEnd(success: boolean) {
   showCapture.value = false
   if (success && enemy.value) {
-    dex.captureShlagemon(enemy.value.base, enemy.value.isShiny)
+    dex.captureEnemy(enemy.value)
     enemy.value = null
     setTimeout(startBattle, 1000)
   }

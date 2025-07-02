@@ -131,7 +131,39 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return created
   }
 
-  return { shlagemons, activeShlagemon, highestLevel, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, gainXp, healActive, boostDefense }
+  function captureEnemy(enemy: DexShlagemon) {
+    const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
+    if (existing) {
+      if (existing.rarity < 100) {
+        existing.rarity += 1
+        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+      }
+      existing.isShiny ||= enemy.isShiny
+      existing.lvl = 1
+      existing.xp = 0
+      existing.baseStats = {
+        hp: statWithRarityAndCoefficient(baseStats.hp, existing.base.coefficient, existing.rarity),
+        attack: statWithRarityAndCoefficient(baseStats.attack, existing.base.coefficient, existing.rarity),
+        defense: statWithRarityAndCoefficient(baseStats.defense, existing.base.coefficient, existing.rarity),
+        smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
+      }
+      applyStats(existing)
+      existing.hpCurrent = existing.hp
+      updateHighestLevel(existing)
+      return existing
+    }
+    const captured: DexShlagemon = {
+      ...enemy,
+      id: crypto.randomUUID(),
+      hpCurrent: enemy.hp,
+    }
+    addShlagemon(captured)
+    updateHighestLevel(captured)
+    toast(`Tu as obtenu ${captured.base.name} !`)
+    return captured
+  }
+
+  return { shlagemons, activeShlagemon, highestLevel, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, gainXp, healActive, boostDefense }
 }, {
   persist: {
     debug: true,

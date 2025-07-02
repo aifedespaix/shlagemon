@@ -28,7 +28,7 @@ function useBall(ball: Ball) {
   inventory.remove(ball.id)
   setTimeout(() => (animBall.value = null), 500)
   if (success) {
-    dex.captureShlagemon(props.enemy.base, props.enemy.isShiny)
+    dex.captureEnemy(props.enemy)
     emit('capture', true)
     toast(`Vous avez capturé ${props.enemy.base.name} !`)
   }
