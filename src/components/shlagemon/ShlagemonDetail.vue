@@ -37,6 +37,9 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
       </div>
       <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
     </h2>
+    <div class="flex gap-2">
+      <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
+    </div>
     <ShlagemonImage
       :id="mon.base.id"
       :alt="mon.base.name"
