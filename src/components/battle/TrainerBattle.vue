@@ -5,7 +5,6 @@ import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
-import { typeEffectiveness } from '~/data/typeEffectiveness'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -85,13 +84,13 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]?.name
-  const defType = enemy.value.base.types[0]?.name
+  const atkType = dex.activeShlagemon.base.types[0]
+  const defType = enemy.value.base.types[0]
   const { damage, effect } = computeDamage(
     dex.activeShlagemon.attack,
     atkType,
     defType,
-    typeEffectiveness,
+
   )
   showEffect('enemy', effect)
   enemyHp.value = Math.max(0, enemyHp.value - damage)
@@ -103,25 +102,23 @@ function attack() {
 function tick() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]?.name
-  const defType = enemy.value.base.types[0]?.name
+  const atkType = dex.activeShlagemon.base.types[0]
+  const defType = enemy.value.base.types[0]
   const { damage: dmgToEnemy, effect: eff1 } = computeDamage(
     dex.activeShlagemon.attack,
     atkType,
     defType,
-    typeEffectiveness,
   )
   showEffect('enemy', eff1)
   enemyHp.value = Math.max(0, enemyHp.value - dmgToEnemy)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
-  const atkType2 = enemy.value.base.types[0]?.name
-  const defType2 = dex.activeShlagemon.base.types[0]?.name
+  const atkType2 = enemy.value.base.types[0]
+  const defType2 = dex.activeShlagemon.base.types[0]
   const { damage: dmgToPlayer, effect: eff2 } = computeDamage(
     enemy.value.attack,
     atkType2,
     defType2,
-    typeEffectiveness,
   )
   showEffect('player', eff2)
   playerHp.value = Math.max(0, playerHp.value - dmgToPlayer)
