@@ -1,5 +1,17 @@
 <script setup lang="ts">
-const { message } = defineProps<{ message: string }>()
+import { computed } from 'vue'
+
+const { message, variant } = defineProps<{ message: string, variant?: 'high' | 'low' | 'normal' }>()
+const variantClasses = computed(() => {
+  switch (variant) {
+    case 'high':
+      return 'bg-red-500 text-white border-yellow-300 shadow-lg dark:bg-red-600'
+    case 'low':
+      return 'bg-blue-200 text-blue-800 border-blue-300 shadow-inner dark:bg-blue-900/80 dark:text-blue-200'
+    default:
+      return 'bg-white/90 dark:bg-gray-800/90'
+  }
+})
 const rotation = (Math.random() * 5 + 15) * (Math.random() > 0.5 ? 1 : -1)
 </script>
 
@@ -8,7 +20,7 @@ const rotation = (Math.random() * 5 + 15) * (Math.random() > 0.5 ? 1 : -1)
     class="battle-toast pointer-events-none absolute left-1/2 -top-6 -translate-x-1/2"
     :style="{ transform: `translateX(-50%) rotate(${rotation}deg)` }"
   >
-    <div class="rounded bg-white/90 px-2 py-1 text-xs font-bold shadow dark:bg-gray-800/90">
+    <div class="border rounded px-2 py-1 text-xs font-bold" :class="variantClasses">
       {{ message }}
     </div>
   </div>
