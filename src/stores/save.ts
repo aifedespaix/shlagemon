@@ -5,6 +5,7 @@ import { useGameStateStore } from './gameState'
 import { useInventoryStore } from './inventory'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
+import { useZoneProgressStore } from './zoneProgress'
 
 export const useSaveStore = defineStore('save', () => {
   const dex = useShlagedexStore()
@@ -13,6 +14,7 @@ export const useSaveStore = defineStore('save', () => {
   const inventory = useInventoryStore()
   const dialog = useDialogStore()
   const zone = useZoneStore()
+  const zoneProgress = useZoneProgressStore()
 
   function reset() {
     dex.reset()
@@ -21,6 +23,7 @@ export const useSaveStore = defineStore('save', () => {
     dialog.reset()
     inventory.reset()
     zone.reset()
+    zoneProgress.reset()
   }
 
   return { reset }
