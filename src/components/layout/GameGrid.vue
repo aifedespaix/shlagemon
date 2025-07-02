@@ -85,6 +85,6 @@ const isAchievementVisible = computed(() => achievements.hasAny)
 }
 
 .zone-big {
-  @apply min-h-40 md:min-h-auto;
+  @apply max-h-40 md:max-h-none;
 }
 </style>
