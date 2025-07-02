@@ -10,8 +10,5 @@ head:
 </route>
 
 <template>
-  <div class="h-full w-full flex items-center justify-center">
-    <!-- Main content goes here -->
-    <p>Bienvenue dans Shlagémon</p>
-  </div>
+  <GameGrid class="flex-1" />
 </template>
