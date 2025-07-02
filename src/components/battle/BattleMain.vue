@@ -6,6 +6,7 @@ import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
+import { useInventoryStore } from '~/stores/inventory'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
@@ -14,6 +15,7 @@ const dex = useShlagedexStore()
 const game = useGameStore()
 const zone = useZoneStore()
 const battle = useBattleStore()
+const inventory = useInventoryStore()
 
 const playerHp = ref(0)
 const enemyHp = ref(0)
@@ -41,7 +43,7 @@ function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'norma
 }
 
 function openCapture() {
-  if (!enemy.value)
+  if (!enemy.value || (inventory.items.shlageball || 0) <= 0)
     return
   battleActive.value = false
   if (battleInterval)
@@ -220,6 +222,8 @@ onUnmounted(() => {
       <button
         type="button"
         class="absolute right-2 top-2 h-8 w-8"
+        :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
+        :disabled="(inventory.items.shlageball || 0) <= 0"
         @click="openCapture"
       >
         <img src="/items/shlageball/shlageball.png" alt="capture" class="h-full w-full">
