@@ -116,7 +116,7 @@ const zonesSpeciales: Zone[] = [
     id: 'chambre-du-noobi',
     name: 'La Chambre du Noobi',
     type: 'village',
-    image: '/zones/chambre-du-noobi.png',
+    image: '/zones/room.png',
     minLevel: 0,
     maxLevel: 0,
     actions: [],
