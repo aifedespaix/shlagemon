@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BattleToast from '~/components/battle/BattleToast.vue'
-import CaptureMenu from '~/components/battle/CaptureMenu.vue'
+import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
@@ -19,6 +19,7 @@ const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const battleActive = ref(false)
+const showCapture = ref(false)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerEffect = ref('')
@@ -39,15 +40,27 @@ function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'norma
   }
 }
 
-function onCapture(success: boolean) {
-  if (!success)
+function openCapture() {
+  if (!enemy.value)
     return
   battleActive.value = false
   if (battleInterval)
     clearInterval(battleInterval)
   battleInterval = undefined
-  enemy.value = null
-  setTimeout(startBattle, 1000)
+  showCapture.value = true
+}
+
+function onCaptureEnd(success: boolean) {
+  showCapture.value = false
+  if (success && enemy.value) {
+    dex.captureShlagemon(enemy.value.base)
+    enemy.value = null
+    setTimeout(startBattle, 1000)
+  }
+  else {
+    battleActive.value = true
+    battleInterval = window.setInterval(tick, 1000)
+  }
 }
 
 function startBattle() {
@@ -194,7 +207,14 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <CaptureMenu :enemy="enemy" @capture="onCapture" />
+      <button
+        type="button"
+        class="absolute right-2 top-2 h-8 w-8"
+        @click="openCapture"
+      >
+        <img src="/items/shlageball/shlageball.png" alt="capture" class="h-full w-full">
+      </button>
+      <CaptureOverlay v-if="showCapture && enemy" :target="enemy" @finish="onCaptureEnd" />
     </div>
   </div>
 </template>
