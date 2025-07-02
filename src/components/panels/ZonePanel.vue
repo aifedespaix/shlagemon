@@ -1,24 +1,22 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
 import { computed } from 'vue'
-import Modal from '~/components/modal/Modal.vue'
-import ShopPanel from '~/components/panels/ShopPanel.vue'
 import Button from '~/components/ui/Button.vue'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 
 const zone = useZoneStore()
 const dex = useShlagedexStore()
-const showShop = ref(false)
+const panel = useMainPanelStore()
 
 const availableZones = computed(() =>
   zone.zones.filter(z => (z.type === 'village' && z.minLevel <= dex.highestLevel) || dex.highestLevel >= z.minLevel),
 )
 
 function onAction(id: string) {
-  if (id === 'shop') {
-    showShop.value = true
-  }
+  if (id === 'shop')
+    panel.showShop()
 }
 
 function classes(z: Zone) {
@@ -55,7 +53,4 @@ function classes(z: Zone) {
       </Button>
     </div>
   </div>
-  <Modal v-model="showShop" @close="showShop = false">
-    <ShopPanel />
-  </Modal>
 </template>

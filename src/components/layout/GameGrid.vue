@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import BattleMain from '~/components/battle/BattleMain.vue'
 import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
+import MainPanel from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
@@ -17,7 +17,11 @@ const inventory = useInventoryStore()
 const shlagedex = useShlagedexStore()
 const dialogStore = useDialogStore()
 
-const canFight = computed(() => gameState.hasPokemon && zone.current.type !== 'village')
+const showMainPanel = computed(() =>
+  dialogStore.isDialogVisible
+  || gameState.hasPokemon
+  || zone.current.type === 'village',
+)
 const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 </script>
@@ -40,11 +44,10 @@ const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div v-if="canFight || dialogStore.isDialogVisible" class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
+      <div v-if="showMainPanel" class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
         <!-- middle A zone -->
         <PanelWrapper>
-          <DialogPanel v-if="dialogStore.isDialogVisible" />
-          <BattleMain v-else />
+          <MainPanel />
         </PanelWrapper>
       </div>
       <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">

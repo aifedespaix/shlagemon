@@ -24,6 +24,7 @@ declare module 'vue' {
     InventoryItemCard: typeof import('./components/inventory/InventoryItemCard.vue')['default']
     InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
+    MainPanel: typeof import('./components/panels/MainPanel.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
     PanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
