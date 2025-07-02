@@ -12,6 +12,7 @@ declare module 'vue' {
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     Button: typeof import('./components/ui/Button.vue')['default']
+    CaptureMenu: typeof import('./components/battle/CaptureMenu.vue')['default']
     CheckBox: typeof import('./components/ui/CheckBox.vue')['default']
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     DialogPanel: typeof import('./components/panels/DialogPanel.vue')['default']

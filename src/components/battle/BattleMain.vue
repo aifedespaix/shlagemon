@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
-import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import CaptureMenu from '~/components/battle/CaptureMenu.vue'
+import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
-import { typeEffectiveness } from '~/data/typeEffectiveness'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
@@ -56,13 +55,12 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]?.name
-  const defType = enemy.value.base.types[0]?.name
+  const atkType = dex.activeShlagemon.base.types[0]
+  const defType = enemy.value.base.types[0]
   const { damage, effect } = computeDamage(
     dex.activeShlagemon.attack,
     atkType,
     defType,
-    typeEffectiveness,
   )
   if (effect === 'super')
     toast('C’est super efficace !')
@@ -77,13 +75,12 @@ function attack() {
 function tick() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]?.name
-  const defType = enemy.value.base.types[0]?.name
+  const atkType = dex.activeShlagemon.base.types[0]
+  const defType = enemy.value.base.types[0]
   const { damage: dmgToEnemy, effect: eff1 } = computeDamage(
     dex.activeShlagemon.attack,
     atkType,
     defType,
-    typeEffectiveness,
   )
   if (eff1 === 'super')
     toast('C’est super efficace !')
@@ -92,13 +89,12 @@ function tick() {
   enemyHp.value = Math.max(0, enemyHp.value - dmgToEnemy)
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
-  const atkType2 = enemy.value.base.types[0]?.name
-  const defType2 = dex.activeShlagemon.base.types[0]?.name
+  const atkType2 = enemy.value.base.types[0]
+  const defType2 = dex.activeShlagemon.base.types[0]
   const { damage: dmgToPlayer, effect: eff2 } = computeDamage(
     enemy.value.attack,
     atkType2,
     defType2,
-    typeEffectiveness,
   )
   if (eff2 === 'super')
     toast('C’est super efficace !')
@@ -193,13 +189,13 @@ onUnmounted(() => {
           <div class="name">
             {{ enemy.base.name }} - lvl {{ enemy.lvl }}
           </div>
-        <div class="mt-1 flex gap-1">
-          <ShlagemonType
-            v-for="t in enemy.base.types"
-            :key="t.id"
-            :value="t"
-          />
-        </div>
+          <div class="mt-1 flex gap-1">
+            <ShlagemonType
+              v-for="t in enemy.base.types"
+              :key="t.id"
+              :value="t"
+            />
+          </div>
           <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
           <div class="hp text-sm">
             {{ enemyHp }} / {{ enemy.hp }}
