@@ -96,7 +96,10 @@ function startBattle() {
   const active = dex.activeShlagemon
   if (!active)
     return
-  const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
+  const available = zone.current.shlagemons?.length
+    ? zone.current.shlagemons
+    : allShlagemons
+  const base = available[Math.floor(Math.random() * available.length)]
   enemy.value = createDexShlagemon(base)
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))

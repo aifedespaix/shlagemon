@@ -46,10 +46,14 @@ function fightKing() {
     dialogBefore: 'Prépare-toi à perdre !',
     dialogAfter: 'Tu as gagné... pour cette fois.',
     reward: 5,
-    shlagemons: Array.from({ length: 6 }, () => ({
-      baseId: allShlagemons[Math.floor(Math.random() * allShlagemons.length)].id,
-      level,
-    })),
+    shlagemons: Array.from({ length: 6 }, () => {
+      const list = z.shlagemons?.length ? z.shlagemons! : allShlagemons
+      const base = list[Math.floor(Math.random() * list.length)]
+      return {
+        baseId: base.id,
+        level,
+      }
+    }),
   }
   trainerBattle.setQueue([trainer])
   panel.showTrainerBattle()
