@@ -1,23 +1,25 @@
 <script setup lang="ts">
 import BattleToast from '~/components/battle/BattleToast.vue'
-import CaptureMenu from '~/components/battle/CaptureMenu.vue'
+import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
-import { computeDamage } from '~/utils/combat'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const game = useGameStore()
 const zone = useZoneStore()
+const battle = useBattleStore()
 
 const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const battleActive = ref(false)
+const showCapture = ref(false)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerEffect = ref('')
@@ -38,15 +40,27 @@ function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'norma
   }
 }
 
-function onCapture(success: boolean) {
-  if (!success)
+function openCapture() {
+  if (!enemy.value)
     return
   battleActive.value = false
   if (battleInterval)
     clearInterval(battleInterval)
   battleInterval = undefined
-  enemy.value = null
-  setTimeout(startBattle, 1000)
+  showCapture.value = true
+}
+
+function onCaptureEnd(success: boolean) {
+  showCapture.value = false
+  if (success && enemy.value) {
+    dex.captureShlagemon(enemy.value.base)
+    enemy.value = null
+    setTimeout(startBattle, 1000)
+  }
+  else {
+    battleActive.value = true
+    battleInterval = window.setInterval(tick, 1000)
+  }
 }
 
 function startBattle() {
@@ -71,15 +85,9 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]
-  const defType = enemy.value.base.types[0]
-  const { damage, effect } = computeDamage(
-    dex.activeShlagemon.attack,
-    atkType,
-    defType,
-  )
+  const { effect } = battle.attack(dex.activeShlagemon, enemy.value)
   showEffect('enemy', effect)
-  enemyHp.value = Math.max(0, enemyHp.value - damage)
+  enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   checkEnd()
@@ -88,29 +96,17 @@ function attack() {
 function tick() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const atkType = dex.activeShlagemon.base.types[0]
-  const defType = enemy.value.base.types[0]
-  const { damage: dmgToEnemy, effect: eff1 } = computeDamage(
-    dex.activeShlagemon.attack,
-    atkType,
-    defType,
-  )
-  showEffect('enemy', eff1)
-  enemyHp.value = Math.max(0, enemyHp.value - dmgToEnemy)
+  const { player: resPlayer, enemy: resEnemy } = battle.duel(dex.activeShlagemon, enemy.value)
+  showEffect('enemy', resPlayer.effect)
+  enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
-  const atkType2 = enemy.value.base.types[0]
-  const defType2 = dex.activeShlagemon.base.types[0]
-  const { damage: dmgToPlayer, effect: eff2 } = computeDamage(
-    enemy.value.attack,
-    atkType2,
-    defType2,
-  )
-  showEffect('player', eff2)
-  playerHp.value = Math.max(0, playerHp.value - dmgToPlayer)
-  dex.activeShlagemon.hpCurrent = playerHp.value
-  flashPlayer.value = true
-  setTimeout(() => (flashPlayer.value = false), 100)
+  if (resEnemy) {
+    showEffect('player', resEnemy.effect)
+    playerHp.value = dex.activeShlagemon.hpCurrent
+    flashPlayer.value = true
+    setTimeout(() => (flashPlayer.value = false), 100)
+  }
   checkEnd()
 }
 function checkEnd() {
@@ -211,7 +207,14 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <CaptureMenu :enemy="enemy" @capture="onCapture" />
+      <button
+        type="button"
+        class="absolute right-2 top-2 h-8 w-8"
+        @click="openCapture"
+      >
+        <img src="/items/shlageball/shlageball.png" alt="capture" class="h-full w-full">
+      </button>
+      <CaptureOverlay v-if="showCapture && enemy" :target="enemy" @finish="onCaptureEnd" />
     </div>
   </div>
 </template>

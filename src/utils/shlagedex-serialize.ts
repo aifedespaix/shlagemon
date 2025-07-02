@@ -47,19 +47,23 @@ export const shlagedexSerializer = {
     let active = parsed.activeShlagemon
     if (active) {
       const base = active.base ?? baseMap[active.baseId]
-      active = base
-        ? {
-            ...active,
-            base,
-            baseId: active.baseId ?? base.id,
-            baseStats: active.baseStats ?? {
-              hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, active.rarity ?? 1),
-              attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, active.rarity ?? 1),
-              defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, active.rarity ?? 1),
-              smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, active.rarity ?? 1),
-            },
-          }
-        : null
+      if (base) {
+        const found = shlagemons.find((m: any) => m.id === active.id)
+        active = found || {
+          ...active,
+          base,
+          baseId: active.baseId ?? base.id,
+          baseStats: active.baseStats ?? {
+            hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, active.rarity ?? 1),
+            attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, active.rarity ?? 1),
+            defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, active.rarity ?? 1),
+            smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, active.rarity ?? 1),
+          },
+        }
+      }
+      else {
+        active = null
+      }
     }
 
     return {
