@@ -169,7 +169,12 @@ onUnmounted(() => {
       <div class="w-full flex flex-1 items-center justify-center gap-4">
         <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" />
-          <img :src="`/shlagemons/${dex.activeShlagemon.base.id}/${dex.activeShlagemon.base.id}.png`" class="max-h-32 object-contain" :alt="dex.activeShlagemon.base.name">
+          <ShlagemonImage
+            :id="dex.activeShlagemon.base.id"
+            :alt="dex.activeShlagemon.base.name"
+            :shiny="dex.activeShlagemon.isShiny"
+            class="max-h-32 object-contain"
+          />
           <div class="name">
             {{ dex.activeShlagemon.base.name }}
           </div>
@@ -190,7 +195,12 @@ onUnmounted(() => {
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" />
-          <img :src="`/shlagemons/${enemy.base.id}/${enemy.base.id}.png`" class="max-h-32 object-contain" :alt="enemy.base.name">
+          <ShlagemonImage
+            :id="enemy.base.id"
+            :alt="enemy.base.name"
+            :shiny="enemy.isShiny"
+            class="max-h-32 object-contain"
+          />
           <div class="name">
             {{ enemy.base.name }} - lvl {{ enemy.lvl }}
           </div>
