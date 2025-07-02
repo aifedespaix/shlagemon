@@ -51,6 +51,7 @@ function isActive(mon: DexShlagemon) {
                 v-for="t in mon.base.types"
                 :key="t.id"
                 :value="t"
+                class="text-0.75rem"
               />
             </div>
           </div>
