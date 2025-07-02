@@ -9,6 +9,8 @@ import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
+import { useZoneStore } from '~/stores/zone'
+import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
@@ -16,6 +18,8 @@ const game = useGameStore()
 const trainerStore = useTrainerBattleStore()
 const battle = useBattleStore()
 const panel = useMainPanelStore()
+const zone = useZoneStore()
+const progress = useZoneProgressStore()
 
 const trainer = computed(() => trainerStore.current)
 const vigor = computed(() => trainerStore.vigor)
@@ -178,6 +182,8 @@ function checkEnd() {
 }
 
 function finish() {
+  if (trainer.value?.id.startsWith('king-'))
+    progress.defeatKing(zone.current.id)
   trainerStore.next()
   panel.showBattle()
 }
