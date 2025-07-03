@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { DexShlagemon } from '~/type/shlagemon'
+import type { Ball, DexShlagemon } from '~/type'
 import { onMounted, ref } from 'vue'
+import { ballHues } from '~/utils/ball'
 import { simpleCapture } from '~/utils/capture'
 
-const props = defineProps<{ target: DexShlagemon }>()
+const props = defineProps<{ target: DexShlagemon, ball: Ball }>()
 const emit = defineEmits<{ (e: 'finish', success: boolean): void }>()
 
 const shake = ref(0)
@@ -31,9 +32,11 @@ onMounted(() => {
   <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/50">
     <div class="relative">
       <img
-        src="/items/shlageball/shlageball.png"
+        :src="props.ball.image"
         alt="ball"
-        class="h-16 w-16" :class="`shake-${shake}`"
+        class="h-16 w-16"
+        :style="{ filter: `hue-rotate(${props.ball && props.ball.id ? ballHues[props.ball.id] : '0deg'})` }"
+        :class="`shake-${shake}`"
       >
       <ShlagemonImage
         :id="target.base.id"

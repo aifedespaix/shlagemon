@@ -1,8 +1,18 @@
 <script setup lang="ts">
+import type { Item } from '~/type/item'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
+import { useBallStore } from '~/stores/ball'
 import { useInventoryStore } from '~/stores/inventory'
 
 const inventory = useInventoryStore()
+const ballStore = useBallStore()
+
+function onUse(item: Item) {
+  if ('catchBonus' in item)
+    ballStore.setBall(item.id as any)
+  else
+    inventory.useItem(item.id)
+}
 </script>
 
 <template>
@@ -12,7 +22,7 @@ const inventory = useInventoryStore()
       :key="entry.item.id"
       :item="entry.item"
       :qty="entry.qty"
-      @use="inventory.useItem(entry.item.id)"
+      @use="onUse(entry.item)"
       @sell="inventory.sell(entry.item.id)"
     />
   </section>

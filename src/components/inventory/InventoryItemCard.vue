@@ -10,7 +10,6 @@ const emit = defineEmits<{
   (e: 'sell'): void
 }>()
 
-const isBall = computed(() => 'catchBonus' in props.item)
 const showInfo = ref(false)
 const details = computed(() => props.item.details || props.item.description)
 </script>
@@ -30,7 +29,6 @@ const details = computed(() => props.item.details || props.item.description)
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
       <Button
-        v-if="!isBall"
         class="flex items-center gap-1 text-xs"
         @click="emit('use')"
       >
