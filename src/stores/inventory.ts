@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { shopItems } from '~/data/items/items'
+import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
 import { useGameStore } from './game'
@@ -13,7 +13,7 @@ export const useInventoryStore = defineStore('inventory', () => {
 
   const list = computed(() =>
     Object.entries(items.value).map(([id, qty]) => ({
-      item: shopItems.find(i => i.id === id)!,
+      item: allItems.find(i => i.id === id)!,
       qty,
     })),
   )
@@ -31,7 +31,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   }
 
   function buy(id: string) {
-    const item = shopItems.find(i => i.id === id)
+    const item = allItems.find(i => i.id === id)
     if (!item || game.shlagidolar < item.price)
       return false
     game.addShlagidolar(-item.price)
@@ -40,7 +40,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   }
 
   function sell(id: string) {
-    const item = shopItems.find(i => i.id === id)
+    const item = allItems.find(i => i.id === id)
     if (!item || !items.value[id])
       return
     remove(id)
@@ -56,12 +56,24 @@ export const useInventoryStore = defineStore('inventory', () => {
       remove(id)
       return true
     }
-    if (id === 'spray') {
+    if (id === 'defense-potion') {
       dex.boostDefense(5)
       remove(id)
       return true
     }
-    if (id === 'shlageball') {
+    if (id === 'super-potion') {
+      dex.healActive(100)
+      remove(id)
+      return true
+    }
+    if (id === 'hyper-potion') {
+      dex.healActive(200)
+      remove(id)
+      return true
+    }
+    if (id === 'shlageball'
+      || id === 'super-shlageball'
+      || id === 'hyper-shlageball') {
       // simple capture of random shlagemon
       const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
       const mon = dex.captureShlagemon(base)
