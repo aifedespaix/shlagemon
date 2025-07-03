@@ -32,7 +32,7 @@ export const shlagedexSerializer = {
 
     const baseMap = getBaseMap()
 
-    const shlagemons = (parsed.shlagemons || [])
+    let shlagemons = (parsed.shlagemons || [])
       .map((mon: any) => {
         const base = mon.base ?? baseMap[mon.baseId]
         if (!base)
