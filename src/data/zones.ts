@@ -55,7 +55,7 @@ const zoneDescriptions: ZoneDescription[] = [
     goubite,
     nanmeouesh,
   ] },
-  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'sauvage', actions: [{ id: 'explore', label: 'Explorer la Grotte' }], shlagemons: [
+  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'sauvage', actions: [], shlagemons: [
     carapouffe,
     sacdepates,
     ptitocard,
@@ -66,7 +66,7 @@ const zoneDescriptions: ZoneDescription[] = [
     nosferachid,
     rouxPasCool,
   ] },
-  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'sauvage', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }], shlagemons: [
+  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'sauvage', actions: [], shlagemons: [
     bulgrosboule,
     alakalbar,
     canarchichon,
@@ -76,10 +76,10 @@ const zoneDescriptions: ZoneDescription[] = [
     pikachiant,
     salamiches,
   ] },
-  { id: 'mont-dracatombe', name: 'Mont Cul', type: 'grotte', actions: [{ id: 'explore', label: 'Gravir le Mont' }], shlagemons: [] },
-  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', type: 'grotte', shlagemons: [], actions: [{ id: 'explore', label: 'Fouiller les Catacombes' }] },
+  { id: 'mont-dracatombe', name: 'Mont Cul', type: 'grotte', actions: [], shlagemons: [] },
+  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', type: 'grotte', shlagemons: [], actions: [] },
   { id: 'route-aguicheuse', name: 'Route Aguicheuse', type: 'sauvage', shlagemons: [] },
-  { id: 'grotte-des-chieurs', name: 'Grotte des Chieurs', type: 'grotte', shlagemons: [], actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  { id: 'grotte-des-chieurs', name: 'Grotte des Chieurs', type: 'grotte', shlagemons: [], actions: [] },
   { id: 'trou-du-bide', name: 'Trou du Bide', type: 'sauvage', shlagemons: [] },
 ]
 
@@ -121,9 +121,9 @@ const zonesSpeciales: Zone[] = [
     maxLevel: 0,
     actions: [],
   },
-  { id: 'village-paume', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }], minLevel: 75, maxLevel: 0 },
-  { id: 'village-veaux-du-gland', name: 'Veaux du Gland sur Marne', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }], minLevel: 25, maxLevel: 0 },
-  { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer le Shop' }], minLevel: 50, maxLevel: 0 },
+  { id: 'village-veaux-du-gland', name: 'Veaux du Gland sur Marne', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 10, maxLevel: 0 },
+  { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 25, maxLevel: 0 },
+  { id: 'village-paume', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 50, maxLevel: 0 },
 ]
 
 // Résultat final
