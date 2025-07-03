@@ -14,6 +14,9 @@ const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 
+const currentKing = computed(() => zone.getKing(zone.current.id))
+const kingLabel = computed(() => currentKing.value.character.gender === 'female' ? 'reine' : 'roi')
+
 const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
 
 const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
@@ -78,10 +81,10 @@ function classes(z: Zone) {
         class="text-xs"
         @click="fightKing"
       >
-        Défier le roi de la zone
+        Défier la {{ kingLabel }} de la zone
       </Button>
       <div v-else-if="progress.isKingDefeated(zone.current.id)" class="text-xs font-bold">
-        Roi vaincu !
+        {{ kingLabel.charAt(0).toUpperCase() + kingLabel.slice(1) }} vaincu{{ kingLabel === 'reine' ? 'e' : '' }} !
       </div>
     </div>
   </div>
