@@ -1,6 +1,7 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
+import { allShlagemons } from '~/data/shlagemons'
 import {
   applyStats,
   baseStats,
@@ -19,7 +20,14 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       ? shlagemons.value.reduce((s, m) => s + m.lvl, 0) / shlagemons.value.length
       : 0,
   )
-  const bonusPercent = computed(() => averageLevel.value * 10)
+  const completionPercent = computed(() =>
+    allShlagemons.length
+      ? (shlagemons.value.length / allShlagemons.length) * 100
+      : 0,
+  )
+  const bonusPercent = computed(
+    () => averageLevel.value * 10 * (completionPercent.value / 100),
+  )
   const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
   function updateHighestLevel(mon: DexShlagemon) {
@@ -177,7 +185,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return captured
   }
 
-  return { shlagemons, activeShlagemon, highestLevel, averageLevel, bonusPercent, bonusMultiplier, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, gainXp, healActive, boostDefense }
+  return { shlagemons, activeShlagemon, highestLevel, averageLevel, completionPercent, bonusPercent, bonusMultiplier, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, gainXp, healActive, boostDefense }
 }, {
   persist: {
     debug: true,
