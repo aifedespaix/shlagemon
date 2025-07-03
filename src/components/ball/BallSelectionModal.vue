@@ -21,6 +21,13 @@ function choose(id: string) {
 <template>
   <Modal v-model="ballStore.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
+      <h3 class="text-lg font-bold">
+        Choix de la Schlagéball
+      </h3>
+      <p class="text-center text-sm">
+        La Super et l'Hyper Schlagéball améliorent vos chances de capture
+        (x1.5 et x2).
+      </p>
       <Button
         v-for="ball in options"
         :key="ball.id"
