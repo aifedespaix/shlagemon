@@ -27,6 +27,7 @@ const dex = useShlagedexStore()
         v-for="t in dex.activeShlagemon.base.types"
         :key="t.id"
         :value="t"
+        size="xs"
       />
     </div>
   </div>

@@ -253,14 +253,16 @@ onUnmounted(() => {
             :shiny="dex.activeShlagemon.isShiny"
             class="max-h-32 object-contain -scale-x-100"
           />
-          <div class="name">
-            {{ dex.activeShlagemon.base.name }}
+          <div class="absolute left-0 top-0 text-sm font-bold">
+            lvl {{ dex.activeShlagemon.lvl }}
           </div>
-          <div class="mt-1 flex gap-1">
+          <div class="mt-1 flex items-center gap-1">
+            <span class="font-bold">{{ dex.activeShlagemon.base.name }}</span>
             <ShlagemonType
               v-for="t in dex.activeShlagemon.base.types"
               :key="t.id"
               :value="t"
+              size="xs"
             />
           </div>
           <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
@@ -279,14 +281,16 @@ onUnmounted(() => {
             :shiny="enemy.isShiny"
             class="max-h-32 object-contain"
           />
-          <div class="name">
-            {{ enemy.base.name }} - lvl {{ enemy.lvl }}
+          <div class="absolute left-0 top-0 text-sm font-bold">
+            lvl {{ enemy.lvl }}
           </div>
-          <div class="mt-1 flex gap-1">
+          <div class="mt-1 flex items-center gap-1">
+            <span class="font-bold">{{ enemy.base.name }}</span>
             <ShlagemonType
               v-for="t in enemy.base.types"
               :key="t.id"
               :value="t"
+              size="xs"
             />
           </div>
           <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
