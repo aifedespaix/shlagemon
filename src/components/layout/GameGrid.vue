@@ -60,7 +60,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
           <ActiveShlagemon />
         </PanelWrapper>
       </div>
-      <div v-if="isInventoryVisible || isAchievementVisible" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1">
+      <div v-if="isInventoryVisible || isAchievementVisible" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2">
         <!-- left zone -->
         <PanelWrapper v-if="isInventoryVisible" title="Inventaire">
           <InventoryPanel />

@@ -21,6 +21,6 @@ function toggle() {
 
 <style scoped>
 .panel-wrapper {
-  @apply w-full h-full flex flex-col;
+  @apply flex-1 flex flex-col;
 }
 </style>
