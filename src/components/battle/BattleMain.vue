@@ -28,6 +28,16 @@ const hasAllZoneMons = computed(() => {
   return list.every(base => dex.shlagemons.some(mon => mon.base.id === base.id))
 })
 
+const captureTooltip = computed(() =>
+  hasAllZoneMons.value
+    ? 'Vous avez capturé tous les Schlagemon de la zone'
+    : 'Vous n\'avez pas capturé tous les Schlagemon de la zone',
+)
+
+const winTooltip = computed(() =>
+  `Vous avez vaincu ${wins.value.toLocaleString()} Schlagemon dans cette zone`,
+)
+
 const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
@@ -218,8 +228,12 @@ onUnmounted(() => {
 <template>
   <div class="battle relative text-center">
     <div absolute left-2 top-2 flex items-center gap-2>
-      <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
-      <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
+      <Tooltip :text="captureTooltip">
+        <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+      </Tooltip>
+      <Tooltip :text="winTooltip">
+        <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
+      </Tooltip>
     </div>
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
