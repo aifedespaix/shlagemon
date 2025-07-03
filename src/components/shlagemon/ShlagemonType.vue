@@ -1,7 +1,25 @@
 <script setup lang="ts">
 import type { ShlagemonType } from '~/type'
 
-const { value } = defineProps<{ value: ShlagemonType }>()
+interface Props {
+  value: ShlagemonType
+  size?: 'xs' | 'sm' | 'base' | 'lg'
+}
+
+const { value, size } = withDefaults(defineProps<Props>(), { size: 'xs' })
+
+const sizeClass = computed(() => {
+  switch (size) {
+    case 'sm':
+      return 'text-sm'
+    case 'base':
+      return 'text-base'
+    case 'lg':
+      return 'text-lg'
+    default:
+      return 'text-xs'
+  }
+})
 
 const textColor = computed(() => getAdjustedTextColor())
 
@@ -21,7 +39,11 @@ function getAdjustedTextColor(amount = 60) {
 </script>
 
 <template>
-  <span class="type rounded px-2 py-1 text-center text-xs" :style="{ backgroundColor: value.color, color: textColor }">
+  <span
+    class="type rounded px-2 py-1 text-center"
+    :class="sizeClass"
+    :style="{ backgroundColor: value.color, color: textColor }"
+  >
     {{ value.name }}
   </span>
 </template>
