@@ -2,7 +2,11 @@ import { allShlagemons } from '~/data/shlagemons'
 import { baseStats, statWithRarityAndCoefficient } from './dexFactory'
 import { deduplicateDex } from './saveFix'
 
-const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
+function getBaseMap() {
+  return Object.fromEntries(
+    (allShlagemons || []).filter(Boolean).map(b => [b.id, b]),
+  )
+}
 
 export const shlagedexSerializer = {
   serialize(data: any): string {
@@ -26,7 +30,9 @@ export const shlagedexSerializer = {
   deserialize(raw: string): any {
     const parsed = JSON.parse(raw)
 
-    let shlagemons = (parsed.shlagemons || [])
+    const baseMap = getBaseMap()
+
+    const shlagemons = (parsed.shlagemons || [])
       .map((mon: any) => {
         const base = mon.base ?? baseMap[mon.baseId]
         if (!base)
