@@ -284,18 +284,19 @@ onUnmounted(() => {
         </div>
       </div>
       <Button
-        class="absolute bottom-0 right-0 flex items-center gap-2 text-xs"
-        :class="{ 'opacity-50 cursor-not-allowed': (inventory.items[ballStore.current] || 0) <= 0 }"
+        class="absolute right-50% top-8 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
+        :class="{ ' cursor-not-allowed saturate-0': (inventory.items[ballStore.current] || 0) <= 0 }"
         :disabled="(inventory.items[ballStore.current] || 0) <= 0"
         @click="openCapture"
       >
-        Capturer
-        <ImageByBackground
-          src="/items/shlageball/shlageball.png"
-          alt="capture"
-          class="h-8 w-8"
-          :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
-        />
+        <Tooltip text="Capturer le Shlagémon">
+          <ImageByBackground
+            src="/items/shlageball/shlageball.png"
+            alt="capture"
+            class="h-8 w-8 cursor-pointer"
+            :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
+          />
+        </Tooltip>
       </Button>
       <CaptureOverlay
         v-if="showCapture && enemy"
