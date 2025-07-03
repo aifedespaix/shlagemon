@@ -7,7 +7,6 @@ export type Sex = 'male' | 'female'
 export interface BaseShlagemon {
   id: string
   name: string
-  color: string
   description: string
   /**
    * Primary and optional secondary type of the Shlagémon.

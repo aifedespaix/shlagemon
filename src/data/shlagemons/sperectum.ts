@@ -4,7 +4,6 @@ import { shlagemonTypes } from '../shlagemons-type'
 export const sperectum: BaseShlagemon = {
   id: 'sperectum',
   name: 'Sperectum',
-  color: '#d4b05c',
   description: `Sperectum est la réincarnation d'un pet émis par un Shlagemon.`,
   types: [shlagemonTypes.spectre],
   coefficient: 3,

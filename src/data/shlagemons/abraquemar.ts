@@ -5,7 +5,6 @@ import { alakalbar } from './alakalbar'
 export const abraquemar: BaseShlagemon = {
   id: 'abraquemar',
   name: 'Abraquemar',
-  color: '#d4b05c',
   evolution: {
     base: alakalbar,
     condition: {
