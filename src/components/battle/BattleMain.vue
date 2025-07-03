@@ -277,7 +277,6 @@ onUnmounted(() => {
         </div>
       </div>
       <Button
-        type="button"
         class="absolute right-2 top-2 flex items-center gap-2"
         :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
         :disabled="(inventory.items.shlageball || 0) <= 0"
