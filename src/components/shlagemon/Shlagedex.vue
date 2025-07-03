@@ -1,12 +1,44 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import Modal from '~/components/modal/Modal.vue'
+import SelectOption from '~/components/ui/SelectOption.vue'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
 const dex = useShlagedexStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
+const search = ref('')
+const sortBy = ref<'level' | 'rarity' | 'name' | 'type'>('level')
+const sortOptions = [
+  { label: 'Niveau', value: 'level' },
+  { label: 'Rareté', value: 'rarity' },
+  { label: 'Nom', value: 'name' },
+  { label: 'Type', value: 'type' },
+]
+
+const displayedMons = computed(() => {
+  let mons = dex.shlagemons.slice()
+  if (search.value.trim()) {
+    const q = search.value.toLowerCase()
+    mons = mons.filter(m => m.base.name.toLowerCase().includes(q))
+  }
+  switch (sortBy.value) {
+    case 'level':
+      mons.sort((a, b) => b.lvl - a.lvl)
+      break
+    case 'rarity':
+      mons.sort((a, b) => b.rarity - a.rarity)
+      break
+    case 'name':
+      mons.sort((a, b) => a.base.name.localeCompare(b.base.name))
+      break
+    case 'type':
+      mons.sort((a, b) => (a.base.types[0]?.name || '').localeCompare(b.base.types[0]?.name || ''))
+      break
+  }
+  return mons
+})
 
 function open(mon: DexShlagemon | null) {
   if (mon) {
@@ -22,9 +54,18 @@ function isActive(mon: DexShlagemon) {
 
 <template>
   <section v-if="dex.shlagemons.length" class="p-2">
+    <div class="mb-2 flex flex-col gap-2" sm="flex-row">
+      <SelectOption v-model="sortBy" class="sm:w-40" :options="sortOptions" />
+      <input
+        v-model="search"
+        type="text"
+        placeholder="Recherche"
+        class="focus:border-primary w-full border border-gray-300 rounded bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-800 focus:outline-none"
+      >
+    </div>
     <div class="flex flex-col gap-2">
       <div
-        v-for="mon in dex.shlagemons"
+        v-for="mon in displayedMons"
         :key="mon.id"
         class="relative flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
