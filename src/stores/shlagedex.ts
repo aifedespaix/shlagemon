@@ -34,10 +34,20 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
 
+  function collectEvolutionIds(base: BaseShlagemon, ids: Set<string>, visited: Set<string>) {
+    if (visited.has(base.id))
+      return
+    visited.add(base.id)
+    ids.add(base.id)
+    if (base.evolution)
+      collectEvolutionIds(base.evolution.base, ids, visited)
+  }
+
   const completableIds = computed(() => {
     const ids = new Set<string>()
+    const visited = new Set<string>()
     for (const z of accessibleZones.value)
-      z.shlagemons?.forEach(m => ids.add(m.id))
+      z.shlagemons?.forEach(m => collectEvolutionIds(m, ids, visited))
     return ids
   })
 

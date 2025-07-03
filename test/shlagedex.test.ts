@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { toast } from 'vue3-toastify'
 import { carapouffe } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
+import { useZoneProgressStore } from '../src/stores/zoneProgress'
 import { applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
@@ -73,5 +74,19 @@ describe('shlagedex highest level', () => {
       await dex.gainXp(mon, xpForLevel(mon.lvl))
     expect(mon.lvl).toBe(10)
     expect(dex.highestLevel).toBe(10)
+  })
+})
+
+describe('completable ids', () => {
+  it('includes evolutions recursively', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const progress = useZoneProgressStore()
+    dex.highestLevel.value = 30
+    progress.defeatKing('grotte-nanard')
+    const ids = (dex as any).completableIds as Set<string>
+    expect(ids.has('salamiches')).toBe(true)
+    expect(ids.has('raptorincel')).toBe(true)
+    expect(ids.has('draco-con')).toBe(true)
   })
 })
