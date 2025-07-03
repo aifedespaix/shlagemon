@@ -8,10 +8,15 @@ const dex = useShlagedexStore()
 
 <template>
   <div class="flex flex-col gap-2 text-sm">
-    <p>Le bonus augmente les dégâts infligés par vos Schlagemon.</p>
     <p>
-      Il se base sur le pourcentage de complétion du Schlagedex et sur le niveau
-      moyen de votre équipe.
+      Le bonus du Schlagedex correspond à votre
+      <strong>Schlag&eacute;Dex potentiel</strong>.
+      Il repr&eacute;sente le bonus maximal que vous pourriez obtenir en
+      capturant tous les Schlag&eacute;mon accessibles.
+    </p>
+    <p>
+      Il se base sur le pourcentage de compl&eacute;tion de ce Schlagedex
+      potentiel ainsi que sur le niveau moyen de votre &eacute;quipe.
     </p>
     <p class="text-center text-xs font-mono">
       Bonus = niveau moyen × 2 × (taux de complétion / 100)
