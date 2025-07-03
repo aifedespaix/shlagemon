@@ -138,7 +138,7 @@ function startBattle() {
 function attack() {
   if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
     return
-  const { effect, crit } = battle.attack(dex.activeShlagemon, enemy.value)
+  const { effect, crit } = battle.attack(dex.activeShlagemon, enemy.value, false, false, true)
   showEffect('enemy', effect, crit)
   enemyHp.value = enemy.value.hpCurrent
   flashEnemy.value = true

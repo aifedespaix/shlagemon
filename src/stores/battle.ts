@@ -16,13 +16,15 @@ export const useBattleStore = defineStore('battle', () => {
     defender: DexShlagemon,
     isPlayerAttacker = false,
     isPlayerDefender = false,
+    reduced = false,
   ): AttackResult {
     const atkType = attacker.base.types[0]
     const defType = defender.base.types[0]
     const atkBonus = isPlayerAttacker ? 1 + dex.bonusPercent / 100 : 1
     const defBonus = isPlayerDefender ? 1 + dex.bonusPercent / 100 : 1
     const result = computeDamage(Math.round(attacker.attack * atkBonus), atkType, defType)
-    const finalDamage = Math.max(1, Math.round(result.damage / defBonus))
+    const roundedDamage = Math.max(1, Math.round(result.damage / defBonus))
+    const finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
     defender.hpCurrent = Math.max(0, defender.hpCurrent - finalDamage)
     return { ...result, damage: finalDamage }
   }
