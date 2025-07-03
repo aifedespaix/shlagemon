@@ -7,6 +7,7 @@ export interface Achievement {
   id: string
   title: string
   description: string
+  icon: string
 }
 
 export type AchievementEvent =
@@ -48,28 +49,75 @@ export const useAchievementsStore = defineStore('achievements', () => {
   const defs: Achievement[] = []
   const moneyThresholds = [100, 1000, 10000, 100000, 1000000]
   moneyThresholds.forEach((n) => {
-    defs.push({ id: `money-${n}`, title: `${n} Shlagidolars`, description: `Atteindre ${n} Shlagidolars` })
+    defs.push({
+      id: `money-${n}`,
+      title: `${n} Shlagidolars`,
+      description: `Accumuler au moins ${n} Shlagidolars pour montrer votre richesse.`,
+      icon: 'carbon:money',
+    })
   })
   const captureThresholds = [1, 10, 100, 1000]
   captureThresholds.forEach((n) => {
-    defs.push({ id: `capture-${n}`, title: `${n} captures`, description: `Capturer ${n} Shlagémon` })
+    defs.push({
+      id: `capture-${n}`,
+      title: `${n} captures`,
+      description: `Attraper ${n} Shlagémon différents durant vos aventures.`,
+      icon: 'mdi:pokeball',
+    })
   })
   const levelThresholds = Array.from({ length: 10 }, (_, i) => (i + 1) * 10)
   levelThresholds.forEach((lvl) => {
-    defs.push({ id: `avg-${lvl}`, title: `Niveau moyen ${lvl}`, description: `Atteindre un niveau moyen de ${lvl}` })
+    defs.push({
+      id: `avg-${lvl}`,
+      title: `Niveau moyen ${lvl}`,
+      description: `Atteindre un niveau moyen de ${lvl} pour votre équipe.`,
+      icon: 'carbon:chart-line',
+    })
   })
   const winThresholds = [1, 10, 100, 1000]
   winThresholds.forEach((n) => {
-    defs.push({ id: `win-${n}`, title: `${n} victoires`, description: `Gagner ${n} combats` })
-    defs.push({ id: `stronger-${n}`, title: `${n} victoires difficiles`, description: `Vaincre ${n} ennemis plus forts` })
+    defs.push({
+      id: `win-${n}`,
+      title: `${n} victoires`,
+      description: `Remporter ${n} combats contre vos adversaires.`,
+      icon: 'carbon:trophy',
+    })
+    defs.push({
+      id: `stronger-${n}`,
+      title: `${n} victoires difficiles`,
+      description: `Vaincre ${n} adversaires plus puissants que vous.`,
+      icon: 'carbon:fire',
+    })
   })
   // extra achievements
-  defs.push({ id: 'king-1', title: 'Premier roi', description: 'Vaincre un roi de zone' })
-  defs.push({ id: 'shiny-1', title: 'Shiny!', description: 'Capturer un Shlagémon shiny' })
-  defs.push({ id: 'item-10', title: 'Dépensier', description: 'Utiliser 10 objets' })
-  defs.push({ id: 'team-6', title: 'Équipe complète', description: 'Posséder 6 Shlagémon' })
+  defs.push({
+    id: 'king-1',
+    title: 'Premier roi',
+    description: 'Terrasser votre premier roi de zone pour restaurer la paix.',
+    icon: 'mdi:crown',
+  })
+  defs.push({
+    id: 'shiny-1',
+    title: 'Shiny!',
+    description: 'Capturer un Shlagémon shiny extrêmement rare.',
+    icon: 'carbon:star',
+  })
+  defs.push({
+    id: 'item-10',
+    title: 'Dépensier',
+    description: 'Utiliser 10 objets pendant vos combats ou explorations.',
+    icon: 'carbon:shopping-bag',
+  })
+  defs.push({
+    id: 'team-6',
+    title: 'Équipe complète',
+    description: 'Former une équipe composée de 6 Shlagémon.',
+    icon: 'carbon:user-multiple',
+  })
 
-  const list = computed(() => defs.map(d => ({ ...d, achieved: !!unlocked.value[d.id] })))
+  const list = computed(() =>
+    defs.map(d => ({ ...d, achieved: !!unlocked.value[d.id] })),
+  )
   const unlockedList = computed(() => list.value.filter(a => a.achieved))
   const hasAny = computed(() => unlockedList.value.length > 0)
 
