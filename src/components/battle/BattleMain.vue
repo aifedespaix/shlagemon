@@ -218,8 +218,8 @@ onUnmounted(() => {
 <template>
   <div class="battle relative text-center">
     <div absolute left-2 top-2 flex items-center gap-2>
-      <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins }}</span>
       <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+      <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
     </div>
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})

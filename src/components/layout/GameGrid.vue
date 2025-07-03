@@ -42,7 +42,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
           <ZonePanel />
         </PanelWrapper>
       </div>
-      <div class="zone" md="col-span-6 row-span-1 col-start-4 row-start-1 overflow-visible!">
+      <div class="zone overflow-visible" md="col-span-6 row-span-1 col-start-4 row-start-1">
         <!-- top zone -->
         <PanelWrapper is-inline>
           <PlayerInfos />
