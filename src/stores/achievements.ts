@@ -51,8 +51,8 @@ export const useAchievementsStore = defineStore('achievements', () => {
   moneyThresholds.forEach((n) => {
     defs.push({
       id: `money-${n}`,
-      title: `${n} Shlagidolars`,
-      description: `Accumuler au moins ${n} Shlagidolars pour montrer votre richesse.`,
+      title: `${n.toLocaleString()} Shlagidolars`,
+      description: `Accumuler au moins ${n.toLocaleString()} Shlagidolars pour montrer votre richesse.`,
       icon: 'carbon:money',
     })
   })
@@ -60,8 +60,8 @@ export const useAchievementsStore = defineStore('achievements', () => {
   captureThresholds.forEach((n) => {
     defs.push({
       id: `capture-${n}`,
-      title: `${n} captures`,
-      description: `Attraper ${n} Shlagémon différents durant vos aventures.`,
+      title: `${n.toLocaleString()} captures`,
+      description: `Attraper ${n.toLocaleString()} Shlagémon différents durant vos aventures.`,
       icon: 'mdi:pokeball',
     })
   })
@@ -78,14 +78,14 @@ export const useAchievementsStore = defineStore('achievements', () => {
   winThresholds.forEach((n) => {
     defs.push({
       id: `win-${n}`,
-      title: `${n} victoires`,
-      description: `Remporter ${n} combats contre vos adversaires.`,
+      title: `${n.toLocaleString()} victoires`,
+      description: `Remporter ${n.toLocaleString()} combats contre vos adversaires.`,
       icon: 'carbon:trophy',
     })
     defs.push({
       id: `stronger-${n}`,
-      title: `${n} victoires difficiles`,
-      description: `Vaincre ${n} adversaires plus puissants que vous.`,
+      title: `${n.toLocaleString()} victoires difficiles`,
+      description: `Vaincre ${n.toLocaleString()} adversaires plus puissants que vous.`,
       icon: 'carbon:fire',
     })
   })
