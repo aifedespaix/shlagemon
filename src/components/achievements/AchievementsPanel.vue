@@ -10,8 +10,8 @@ const list = computed(() => showLocked.value ? store.list : store.unlockedList)
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
-    <Button class="w-full flex items-center justify-between text-xs" @click="showLocked = !showLocked">
+  <div class="flex flex-col gap-2">
+    <Button class="w-full flex items-center justify-between text-sm" @click="showLocked = !showLocked">
       <span>{{ showLocked ? 'Masquer' : 'Afficher' }} les succès verrouillés</span>
       <CheckBox :model-value="showLocked" @update:model-value="showLocked = $event" @click.stop />
     </Button>
