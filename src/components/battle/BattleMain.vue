@@ -277,7 +277,7 @@ onUnmounted(() => {
         </div>
       </div>
       <Button
-        class="absolute right-0 top-0 flex items-center gap-2 text-xs"
+        class="absolute bottom-0 right-0 flex items-center gap-2 text-xs"
         :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
         :disabled="(inventory.items.shlageball || 0) <= 0"
         @click="openCapture"
