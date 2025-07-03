@@ -193,10 +193,21 @@ function checkEnd() {
 
 watch(
   () => dex.activeShlagemon,
-  (mon) => {
+  (mon, prev) => {
     if (!mon)
       return
     playerHp.value = mon.hpCurrent
+    if (prev && prev.id !== mon.id) {
+      mon.hpCurrent = mon.hp
+      if (enemy.value)
+        enemy.value.hpCurrent = enemy.value.hp
+      enemyHp.value = enemy.value?.hp ?? 0
+      if (battleInterval)
+        clearInterval(battleInterval)
+      battleInterval = undefined
+      battleActive.value = false
+      playerHp.value = mon.hpCurrent
+    }
     if (!battleActive.value && battleInterval === undefined)
       startBattle()
   },

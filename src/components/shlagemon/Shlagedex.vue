@@ -2,15 +2,18 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import Modal from '~/components/modal/Modal.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
 const dex = useShlagedexStore()
+const panel = useMainPanelStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const search = ref('')
 const sortBy = ref<'level' | 'rarity' | 'name' | 'type'>('level')
 const sortAsc = ref(false)
+const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
@@ -52,6 +55,12 @@ function open(mon: DexShlagemon | null) {
     detailMon.value = mon
     showDetail.value = true
   }
+}
+
+function changeActive(mon: DexShlagemon) {
+  if (isTrainerBattle.value)
+    return
+  dex.setActiveShlagemon(mon)
 }
 
 function isActive(mon: DexShlagemon) {
@@ -120,7 +129,8 @@ function isActive(mon: DexShlagemon) {
         <CheckBox
           class="ml-2"
           :model-value="isActive(mon)"
-          @update:model-value="() => dex.setActiveShlagemon(mon)"
+          :disabled="isTrainerBattle"
+          @update:model-value="() => changeActive(mon)"
           @click.stop
         />
       </div>
