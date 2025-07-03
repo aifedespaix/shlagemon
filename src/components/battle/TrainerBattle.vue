@@ -94,18 +94,19 @@ watch(
 )
 
 function startFight() {
-  if (!trainer.value || !dex.activeShlagemon || dex.activeShlagemon.hpCurrent <= 0)
+  if (!trainer.value || !dex.activeShlagemon)
     return
+  if (dex.activeShlagemon.hpCurrent <= 0)
+    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   result.value = 'none'
   stage.value = 'battle'
-  dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hpCurrent || dex.activeShlagemon.hp
   playerHp.value = dex.activeShlagemon.hpCurrent
   startBattle()
 }
 
 function startBattle() {
   const t = trainer.value
-  if (!t || !dex.activeShlagemon || dex.activeShlagemon.hpCurrent <= 0)
+  if (!t || !dex.activeShlagemon)
     return
   stage.value = 'battle'
   const spec = t.shlagemons[enemyIndex.value]
