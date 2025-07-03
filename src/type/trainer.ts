@@ -1,3 +1,5 @@
+import type { Character } from './character'
+
 export interface TrainerShlagemon {
   baseId: string
   level: number
@@ -5,8 +7,7 @@ export interface TrainerShlagemon {
 
 export interface Trainer {
   id: string
-  name: string
-  image: string
+  character: Character
   dialogBefore: string
   dialogAfter: string
   reward: number

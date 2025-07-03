@@ -127,7 +127,8 @@ function startBattle() {
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
   enemy.value.lvl = lvl
   applyStats(enemy.value)
-  active.hpCurrent = active.hp
+  if (active.hpCurrent <= 0)
+    active.hpCurrent = active.hp
   playerHp.value = active.hpCurrent
   enemyHp.value = enemy.value.hp
   battleActive.value = true
