@@ -46,6 +46,7 @@ declare module 'vue' {
     ShlagemonImage: typeof import('./components/shlagemon/ShlagemonImage.vue')['default']
     ShlagemonRarity: typeof import('./components/shlagemon/ShlagemonRarity.vue')['default']
     ShlagemonType: typeof import('./components/shlagemon/ShlagemonType.vue')['default']
+    ShlagemonXpBar: typeof import('./components/shlagemon/ShlagemonXpBar.vue')['default']
     Shlagidolar: typeof import('./components/icons/shlagidolar.vue')['default']
     ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']

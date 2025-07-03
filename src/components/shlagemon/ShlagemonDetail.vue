@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import ProgressBar from '~/components/ui/ProgressBar.vue'
-import { xpForLevel } from '~/utils/dexFactory'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 
@@ -24,9 +22,6 @@ const stats = computed(() => {
     { label: 'Puanteur', value: props.mon.smelling },
   ]
 })
-
-const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
-// const xpLeft = computed(() => props.mon ? maxXp.value - props.mon.xp : 0)
 </script>
 
 <template>
@@ -61,12 +56,7 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
         <span class="text-base">{{ stat.value.toLocaleString() }}</span>
       </div>
     </div>
-    <div class="mt-4">
-      <div class="mb-1 text-center text-sm">
-        Expérience : {{ mon.xp.toLocaleString() }} / {{ maxXp.toLocaleString() }}
-      </div>
-      <ProgressBar :value="mon.xp" :max="maxXp" class="w-full" />
-    </div>
+    <ShlagemonXpBar :mon="mon" class="mt-4" />
   </div>
 </template>
 
