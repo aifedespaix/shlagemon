@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
-import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
-import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
@@ -259,56 +258,14 @@ onUnmounted(() => {
       <div class="w-full flex flex-1 items-center justify-center gap-4">
         <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <ShlagemonImage
-            :id="dex.activeShlagemon.base.id"
-            :alt="dex.activeShlagemon.base.name"
-            :shiny="dex.activeShlagemon.isShiny"
-            class="max-h-32 object-contain -scale-x-100"
-          />
-          <div class="absolute bottom-0 left-0 text-sm font-bold">
-            lvl {{ dex.activeShlagemon.lvl }}
-          </div>
-          <div class="mt-1 flex items-center gap-1">
-            <span class="font-bold">{{ dex.activeShlagemon.base.name }}</span>
-            <ShlagemonType
-              v-for="t in dex.activeShlagemon.base.types"
-              :key="t.id"
-              :value="t"
-              size="xs"
-            />
-          </div>
-          <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
-          <div class="hp w-full text-right text-sm">
-            {{ playerHp }} / {{ dex.activeShlagemon.hp }}
-          </div>
+          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" flipped />
         </div>
         <div class="vs font-bold">
           VS
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          <ShlagemonImage
-            :id="enemy.base.id"
-            :alt="enemy.base.name"
-            :shiny="enemy.isShiny"
-            class="max-h-32 object-contain"
-          />
-          <div class="absolute bottom-0 left-0 text-sm font-bold">
-            lvl {{ enemy.lvl }}
-          </div>
-          <div class="mt-1 flex items-center gap-1">
-            <span class="font-bold">{{ enemy.base.name }}</span>
-            <ShlagemonType
-              v-for="t in enemy.base.types"
-              :key="t.id"
-              :value="t"
-              size="xs"
-            />
-          </div>
-          <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
-          <div class="w-full text-right text-sm">
-            {{ enemyHp }} / {{ enemy.hp }}
-          </div>
+          <BattleShlagemon :mon="enemy" :hp="enemyHp" color="bg-red-500" />
         </div>
       </div>
       <Button
