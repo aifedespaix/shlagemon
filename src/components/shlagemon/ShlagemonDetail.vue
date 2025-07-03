@@ -58,12 +58,12 @@ const maxXp = computed(() => props.mon ? xpForLevel(props.mon.lvl) : 0)
         hover="opacity-80"
       >
         <span class="font-semibold">{{ stat.label }}</span>
-        <span class="text-base">{{ stat.value }}</span>
+        <span class="text-base">{{ stat.value.toLocaleString() }}</span>
       </div>
     </div>
     <div class="mt-4">
       <div class="mb-1 text-center text-sm">
-        Expérience : {{ mon.xp }} / {{ maxXp }}
+        Expérience : {{ mon.xp.toLocaleString() }} / {{ maxXp.toLocaleString() }}
       </div>
       <ProgressBar :value="mon.xp" :max="maxXp" class="w-full" />
     </div>
