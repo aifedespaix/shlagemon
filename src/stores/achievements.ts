@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import { useGameStore } from './game'
 import { useShlagedexStore } from './shlagedex'
 
@@ -39,7 +39,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
     // unlocked.value = {}
   }
 
-  const unlocked = ref<Record<string, boolean>>({})
+  const unlocked = useLocalStorage<Record<string, boolean>>(
+    'shlagemon_achievements',
+    {},
+  )
 
   function unlock(id: string) {
     if (!unlocked.value[id])
@@ -173,7 +176,11 @@ export const useAchievementsStore = defineStore('achievements', () => {
   })
 
   return { list, unlockedList, hasAny, handleEvent, reset }
-}, { persist: true })
+}, {
+  persist: {
+    paths: ['counters'],
+  },
+})
 
 export function notifyAchievement(event: AchievementEvent) {
   const store = useAchievementsStore()
