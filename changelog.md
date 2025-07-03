@@ -7,6 +7,20 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 
 - Ongoing improvements and bug fixes.
 
+## [0.3.1] - 2025-07-03
+
+### Added
+
+- Tooltip component in the player panel.
+- Game grid layout adjustments.
+
+### Fixed
+
+- Allow rematch after losing trainer fight.
+- Persist defeated kings in zone progress.
+- Player info panel alignment fixes.
+- Various minor fixes.
+
 ## [0.3.0] - 2025-07-02
 
 ### Added

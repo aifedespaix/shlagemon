@@ -7,6 +7,20 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 - Améliorations continues et corrections de bogues.
 
+## [0.3.1] - 2025-07-03
+
+### Ajouté
+
+- Composant d'info-bulle sur le panneau du joueur.
+- Ajustement de la grille de jeu.
+
+### Corrigé
+
+- Possibilité de retenter un combat de dresseur après une défaite.
+- Persistance de la progression de zone avec les rois vaincus.
+- Alignement du panneau d'informations du joueur.
+- Diverses corrections mineures.
+
 ## [0.3.0] - 2025-07-02
 
 ### Ajouté
