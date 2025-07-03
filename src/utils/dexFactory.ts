@@ -33,16 +33,24 @@ export function applyStats(mon: DexShlagemon) {
   mon.hpCurrent = mon.hp
 }
 
-export function createDexShlagemon(base: BaseShlagemon, shiny = false): DexShlagemon {
+export function createDexShlagemon(
+  base: BaseShlagemon,
+  shiny = false,
+  coefficientMultiplier = 1,
+): DexShlagemon {
   const rarity = generateRarity()
+  const adjustedBase: BaseShlagemon = {
+    ...base,
+    coefficient: base.coefficient * coefficientMultiplier,
+  }
   const mon: DexShlagemon = {
     id: crypto.randomUUID(),
-    base,
+    base: adjustedBase,
     baseStats: {
-      hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, rarity),
-      attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, rarity),
-      defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, rarity),
-      smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, rarity),
+      hp: statWithRarityAndCoefficient(baseStats.hp, adjustedBase.coefficient, rarity),
+      attack: statWithRarityAndCoefficient(baseStats.attack, adjustedBase.coefficient, rarity),
+      defense: statWithRarityAndCoefficient(baseStats.defense, adjustedBase.coefficient, rarity),
+      smelling: statWithRarityAndCoefficient(baseStats.smelling, adjustedBase.coefficient, rarity),
     },
     lvl: 1,
     xp: 0,

@@ -15,6 +15,7 @@ export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
   const currentId = ref<string>(zones.value[0].id)
   const current = computed(() => zones.value.find(z => z.id === currentId.value)!)
+  const xpZones = computed(() => zones.value.filter(z => z.maxLevel > 0))
 
   const kings = ref<Record<string, Trainer>>({})
 
@@ -67,6 +68,11 @@ export const useZoneStore = defineStore('zone', () => {
     return kings.value[id]
   }
 
+  function getZoneRank(id: string): number {
+    const idx = xpZones.value.findIndex(z => z.id === id)
+    return idx >= 0 ? idx + 1 : 1
+  }
+
   const rewardMultiplier = computed(() => {
     const zone = current.value
     if (!zone.maxLevel)
@@ -84,7 +90,15 @@ export const useZoneStore = defineStore('zone', () => {
     currentId.value = zones.value[0].id
   }
 
-  return { zones, current, rewardMultiplier, setZone, getKing, reset }
+  return {
+    zones,
+    current,
+    rewardMultiplier,
+    setZone,
+    getKing,
+    getZoneRank,
+    reset,
+  }
 }, {
   persist: {
     pick: ['currentId'],
