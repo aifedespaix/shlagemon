@@ -3,6 +3,7 @@ import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
+import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import { useAchievementsStore } from '~/stores/achievements'
@@ -74,6 +75,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
           <Shlagedex />
         </PanelWrapper>
       </div>
+      <EvolutionModal />
     </div>
   </div>
 </template>

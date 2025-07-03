@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import ItemCard from '~/components/shop/ItemCard.vue'
 import Button from '~/components/ui/Button.vue'
-import { shopItems } from '~/data/items/items'
+import { getShop } from '~/data/shops'
 import { useInventoryStore } from '~/stores/inventory'
+import { useZoneStore } from '~/stores/zone'
 
 const inventory = useInventoryStore()
+const zone = useZoneStore()
+const shopItems = computed(() => getShop(zone.current.id)?.items || [])
 </script>
 
 <template>
