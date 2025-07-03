@@ -10,6 +10,7 @@ import { useAchievementsStore } from '~/stores/achievements'
 import { useDialogStore } from '~/stores/dialog'
 import { useGameStateStore } from '~/stores/gameState'
 import { useInventoryStore } from '~/stores/inventory'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 
@@ -19,6 +20,11 @@ const inventory = useInventoryStore()
 const shlagedex = useShlagedexStore()
 const dialogStore = useDialogStore()
 const achievements = useAchievementsStore()
+const mainPanel = useMainPanelStore()
+
+const showXpBar = computed(() =>
+  ['battle', 'trainerBattle'].includes(mainPanel.current),
+)
 
 const showMainPanel = computed(() =>
   dialogStore.isDialogVisible
@@ -52,7 +58,10 @@ const isAchievementVisible = computed(() => achievements.hasAny)
         <!-- middle A zone -->
         <PanelWrapper>
           <MainPanel class="flex-1" />
-          <ShlagemonXpBar v-if="shlagedex.activeShlagemon" :mon="shlagedex.activeShlagemon" />
+          <ShlagemonXpBar
+            v-if="showXpBar && shlagedex.activeShlagemon"
+            :mon="shlagedex.activeShlagemon"
+          />
         </PanelWrapper>
       </div>
       <!-- <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
