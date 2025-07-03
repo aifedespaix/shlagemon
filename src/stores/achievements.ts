@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, reactive, watch } from 'vue'
+import { toast } from 'vue3-toastify'
 import { useGameStore } from './game'
 import { useShlagedexStore } from './shlagedex'
 
@@ -19,6 +20,8 @@ export type AchievementEvent =
 export const useAchievementsStore = defineStore('achievements', () => {
   const game = useGameStore()
   const dex = useShlagedexStore()
+
+  const defMap: Record<string, Achievement> = {}
 
   const counters = reactive({
     captures: 0,
@@ -45,90 +48,112 @@ export const useAchievementsStore = defineStore('achievements', () => {
   )
 
   function unlock(id: string) {
-    if (!unlocked.value[id])
+    if (!unlocked.value[id]) {
       unlocked.value[id] = true
+      const def = defMap[id]
+      if (def)
+        toast.success(`Succès déverrouillé : ${def.title}`, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+    }
   }
 
   const defs: Achievement[] = []
   const moneyThresholds = [100, 1000, 10000, 100000, 1000000]
   moneyThresholds.forEach((n) => {
-    defs.push({
+    const def = {
       id: `money-${n}`,
       title: `${n.toLocaleString()} Shlagidolars`,
       description: `Accumuler au moins ${n.toLocaleString()} Shlagidolars pour montrer votre richesse.`,
       icon: 'carbon:money',
-    })
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
   const captureThresholds = [1, 10, 100, 1000]
   captureThresholds.forEach((n) => {
-    defs.push({
+    const def = {
       id: `capture-${n}`,
       title: `${n.toLocaleString()} captures`,
       description: `Attraper ${n.toLocaleString()} Shlagémon différents durant vos aventures.`,
       icon: 'mdi:pokeball',
-    })
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
   const levelThresholds = Array.from({ length: 10 }, (_, i) => (i + 1) * 10)
   levelThresholds.forEach((lvl) => {
-    defs.push({
+    const def = {
       id: `avg-${lvl}`,
       title: `Niveau moyen ${lvl}`,
       description: `Atteindre un niveau moyen de ${lvl} pour votre équipe.`,
       icon: 'carbon:chart-line',
-    })
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
   const winThresholds = [1, 10, 100, 1000, 10000]
   winThresholds.forEach((n) => {
-    defs.push({
+    const defWin = {
       id: `win-${n}`,
       title: `${n.toLocaleString()} victoires`,
       description: `Remporter ${n.toLocaleString()} combats contre vos adversaires.`,
       icon: 'carbon:trophy',
-    })
-    defs.push({
+    }
+    defs.push(defWin)
+    defMap[defWin.id] = defWin
+    const defStrong = {
       id: `stronger-${n}`,
       title: `${n.toLocaleString()} victoires difficiles`,
       description: `Vaincre ${n.toLocaleString()} adversaires plus puissants que vous.`,
       icon: 'carbon:fire',
-    })
+    }
+    defs.push(defStrong)
+    defMap[defStrong.id] = defStrong
   })
   const shinyThresholds = [1, 10, 100, 1000]
   shinyThresholds.forEach((n) => {
-    defs.push({
+    const def = {
       id: `shiny-${n}`,
       title: n === 1 ? 'Shiny!' : `${n.toLocaleString()} shiny`,
       description: `Capturer ${n.toLocaleString()} Shlagémon shiny extrêmement rares.`,
       icon: 'carbon:star',
-    })
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
 
   const itemThresholds = [1, 10, 100, 1000, 10000]
   itemThresholds.forEach((n) => {
-    defs.push({
+    const def = {
       id: `item-${n}`,
       title: 'Dépensier',
       description: `Utiliser ${n.toLocaleString()} objet${n > 1 ? 's' : ''} pendant vos combats ou explorations.`,
       icon: 'carbon:shopping-bag',
-    })
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
 
   const kingThresholds = [1, 2, 3, 4, 5, 6, 7]
   kingThresholds.forEach((n) => {
-    defs.push({
+    const def = {
       id: `king-${n}`,
       title: n === 1 ? 'Premier roi' : `${n} rois vaincus`,
       description: `Terrasser ${n} roi${n > 1 ? 's' : ''} de zone pour restaurer la paix.`,
       icon: 'mdi:crown',
-    })
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
 
   // extra achievements
-  defs.push({
+  const teamDef = {
     id: 'team-6',
     title: 'Équipe complète',
     description: 'Former une équipe composée de 6 Shlagémon.',
     icon: 'carbon:user-multiple',
-  })
+  }
+  defs.push(teamDef)
+  defMap[teamDef.id] = teamDef
 
   const list = computed(() =>
     defs.map(d => ({ ...d, achieved: !!unlocked.value[d.id] })),
