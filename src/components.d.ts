@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AchievementItem: typeof import('./components/achievements/AchievementItem.vue')['default']
     AchievementsPanel: typeof import('./components/achievements/AchievementsPanel.vue')['default']
     ActiveShlagemon: typeof import('./components/panels/ActiveShlagemon.vue')['default']
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
