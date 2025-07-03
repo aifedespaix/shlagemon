@@ -44,7 +44,7 @@ function classes(z: Zone) {
 
   const level = dex.activeShlagemon?.lvl || 0
   if (z.maxLevel < level)
-    classes.push('bg-blue-200 dark:bg-blue-900')
+    classes.push('bg-blue-200 dark:bg-gray-700')
   else if (level >= z.minLevel && level <= z.maxLevel)
     classes.push('bg-blue-500 dark:bg-blue-600')
   else if (z.minLevel > level && z.minLevel - level <= 5)
