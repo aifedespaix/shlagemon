@@ -77,7 +77,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
       icon: 'carbon:chart-line',
     })
   })
-  const winThresholds = [1, 10, 100, 1000]
+  const winThresholds = [1, 10, 100, 1000, 10000]
   winThresholds.forEach((n) => {
     defs.push({
       id: `win-${n}`,
@@ -92,25 +92,37 @@ export const useAchievementsStore = defineStore('achievements', () => {
       icon: 'carbon:fire',
     })
   })
+  const shinyThresholds = [1, 10, 100, 1000]
+  shinyThresholds.forEach((n) => {
+    defs.push({
+      id: `shiny-${n}`,
+      title: n === 1 ? 'Shiny!' : `${n.toLocaleString()} shiny`,
+      description: `Capturer ${n.toLocaleString()} Shlagémon shiny extrêmement rares.`,
+      icon: 'carbon:star',
+    })
+  })
+
+  const itemThresholds = [1, 10, 100, 1000, 10000]
+  itemThresholds.forEach((n) => {
+    defs.push({
+      id: `item-${n}`,
+      title: 'Dépensier',
+      description: `Utiliser ${n.toLocaleString()} objet${n > 1 ? 's' : ''} pendant vos combats ou explorations.`,
+      icon: 'carbon:shopping-bag',
+    })
+  })
+
+  const kingThresholds = [1, 2, 3, 4, 5, 6, 7]
+  kingThresholds.forEach((n) => {
+    defs.push({
+      id: `king-${n}`,
+      title: n === 1 ? 'Premier roi' : `${n} rois vaincus`,
+      description: `Terrasser ${n} roi${n > 1 ? 's' : ''} de zone pour restaurer la paix.`,
+      icon: 'mdi:crown',
+    })
+  })
+
   // extra achievements
-  defs.push({
-    id: 'king-1',
-    title: 'Premier roi',
-    description: 'Terrasser votre premier roi de zone pour restaurer la paix.',
-    icon: 'mdi:crown',
-  })
-  defs.push({
-    id: 'shiny-1',
-    title: 'Shiny!',
-    description: 'Capturer un Shlagémon shiny extrêmement rare.',
-    icon: 'carbon:star',
-  })
-  defs.push({
-    id: 'item-10',
-    title: 'Dépensier',
-    description: 'Utiliser 10 objets pendant vos combats ou explorations.',
-    icon: 'carbon:shopping-bag',
-  })
   defs.push({
     id: 'team-6',
     title: 'Équipe complète',
@@ -157,18 +169,9 @@ export const useAchievementsStore = defineStore('achievements', () => {
   watch(() => dex.averageLevel, v => checkThresholds(v, 'avg', levelThresholds), { immediate: true })
   watch(() => counters.wins, v => checkThresholds(v, 'win', winThresholds))
   watch(() => counters.winsStronger, v => checkThresholds(v, 'stronger', winThresholds))
-  watch(() => counters.itemsUsed, (v) => {
-    if (v >= 10)
-      unlock('item-10')
-  })
-  watch(() => counters.kings, (v) => {
-    if (v >= 1)
-      unlock('king-1')
-  })
-  watch(() => counters.shiny, (v) => {
-    if (v >= 1)
-      unlock('shiny-1')
-  })
+  watch(() => counters.itemsUsed, v => checkThresholds(v, 'item', itemThresholds))
+  watch(() => counters.kings, v => checkThresholds(v, 'king', kingThresholds))
+  watch(() => counters.shiny, v => checkThresholds(v, 'shiny', shinyThresholds))
 
   watch(() => dex.shlagemons.length, (v) => {
     if (v >= 6)
