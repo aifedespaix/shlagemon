@@ -69,7 +69,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
           <AchievementsPanel />
         </PanelWrapper>
       </div>
-      <div v-if="isShlagedexVisible" class="zone" md="col-span-3 row-span-12 col-start-10 row-start-1">
+      <div v-if="isShlagedexVisible" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
         <!-- right zone -->
         <PanelWrapper title="Shlagédex">
           <Shlagedex />
@@ -81,7 +81,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
 
 <style scoped>
 .zone {
-  @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 overflow-hidden;
+  @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700;
 }
 
 .zone-big {
