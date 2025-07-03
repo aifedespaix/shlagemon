@@ -214,6 +214,8 @@ watch(
 watch(
   () => zone.current.id,
   () => {
+    if (dex.activeShlagemon)
+      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
     if (battleInterval)
       clearInterval(battleInterval)
     battleInterval = undefined
