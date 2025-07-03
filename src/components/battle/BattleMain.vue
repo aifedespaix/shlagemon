@@ -44,6 +44,9 @@ const winTooltip = computed(() =>
 const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
+const enemyCaptured = computed(() =>
+  enemy.value ? dex.shlagemons.some(m => m.base.id === enemy.value.base.id) : false,
+)
 const battleActive = ref(false)
 const showCapture = ref(false)
 const captureBall = ref(balls[0])
@@ -280,7 +283,14 @@ onUnmounted(() => {
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
+          <BattleShlagemon
+            :mon="enemy"
+            :hp="enemyHp"
+            :fainted="enemyFainted"
+            color="bg-red-500"
+            show-ball
+            :owned="enemyCaptured"
+          />
         </div>
       </div>
       <Button

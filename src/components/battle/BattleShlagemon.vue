@@ -10,6 +10,8 @@ interface Props {
   flipped?: boolean
   fainted?: boolean
   levelPosition?: 'top' | 'bottom'
+  showBall?: boolean
+  owned?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -17,6 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
   flipped: false,
   fainted: false,
   levelPosition: 'bottom',
+  showBall: false,
+  owned: false,
 })
 
 const emit = defineEmits<{ (e: 'faintEnd'): void }>()
@@ -41,6 +45,13 @@ function onAnimationEnd() {
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
+      <img
+        v-if="props.showBall"
+        src="/items/shlageball/shlageball.png"
+        alt="ball"
+        class="h-4 w-4"
+        :class="{ 'opacity-50': !props.owned }"
+      >
       <span class="font-bold">{{ props.mon.base.name }}</span>
       <!-- <ShlagemonType v-for="t in props.mon.base.types" :key="t.id" :value="t" size="xs" /> -->
     </div>
