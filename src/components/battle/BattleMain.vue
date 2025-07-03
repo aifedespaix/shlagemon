@@ -168,8 +168,10 @@ function checkEnd() {
     if (battleInterval)
       clearInterval(battleInterval)
     battleInterval = undefined
-    if (dex.activeShlagemon)
-      dex.activeShlagemon.hpCurrent = playerHp.value
+    if (dex.activeShlagemon) {
+      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      playerHp.value = dex.activeShlagemon.hpCurrent
+    }
     if (enemyHp.value <= 0 && playerHp.value > 0) {
       const stronger = enemy.value && dex.activeShlagemon
         ? enemy.value.lvl > dex.activeShlagemon.lvl
