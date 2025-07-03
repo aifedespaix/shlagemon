@@ -48,7 +48,7 @@ const zoneDescriptions: ZoneDescription[] = [
     alaouakbar,
     abraquemar,
     emboli,
-  ], actions: [{ id: 'explore', label: 'Explorer la Grotte' }] },
+  ] },
   { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage', shlagemons: [
     qulbudrogue,
     pikachiant,
