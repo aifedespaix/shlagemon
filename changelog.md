@@ -5,7 +5,21 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 
 ## [Unreleased]
 
-- Ongoing improvements and bug fixes.
+### Added
+
+- Character system with new trainers (Caillou, Sachatte, Prof. Merdant, Marcon, Norman, Siphanus and Marine Lahaine).
+- Battle progress indicator and capture/win tooltips.
+- Achievements panel redesign with persistent unlocks.
+
+### Changed
+
+- Combat bonuses now use Schlagedex bonus percent.
+- Modernized achievements style.
+
+### Fixed
+
+- HP persists between wild battles.
+- Player info panel overflow and other minor bugs.
 
 ## [0.3.1] - 2025-07-03
 

@@ -5,7 +5,21 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 ## [Non publié]
 
-- Améliorations continues et corrections de bogues.
+### Ajouté
+
+- Système de personnages avec de nouveaux dresseurs (Caillou, Sachatte, Professeur Merdant, Marcon, Norman, Siphanus et Marine Lahaine).
+- Indicateur de progression du combat et bulles d'aide pour la capture et la victoire.
+- Refonte de l'onglet des succès avec sauvegarde des déblocages.
+
+### Modifié
+
+- Utilisation du bonus Schlagedex pendant les combats.
+- Style des succès modernisé.
+
+### Corrigé
+
+- Les PV sont conservés entre deux combats sauvages.
+- Correction du débordement du panneau d'informations du joueur et autres bogues mineurs.
 
 ## [0.3.1] - 2025-07-03
 
