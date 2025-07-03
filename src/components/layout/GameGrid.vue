@@ -51,7 +51,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
         <!-- middle A zone -->
         <PanelWrapper>
           <MainPanel class="flex-1" />
-          <ShlagemonXpBar :mon="shlagedex.activeShlagemon" />
+          <ShlagemonXpBar v-if="shlagedex.activeShlagemon" :mon="shlagedex.activeShlagemon" />
         </PanelWrapper>
       </div>
       <!-- <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
