@@ -26,7 +26,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       : 0,
   )
   const bonusPercent = computed(
-    () => averageLevel.value * 10 * (completionPercent.value / 100),
+    () => averageLevel.value * 2 * (completionPercent.value / 100),
   )
   const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
