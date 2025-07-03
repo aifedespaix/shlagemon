@@ -10,12 +10,17 @@ const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const search = ref('')
 const sortBy = ref<'level' | 'rarity' | 'name' | 'type'>('level')
+const sortAsc = ref(false)
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
   { label: 'Nom', value: 'name' },
   { label: 'Type', value: 'type' },
 ]
+
+watch(sortBy, (val) => {
+  sortAsc.value = val === 'name' || val === 'type'
+}, { immediate: true })
 
 const displayedMons = computed(() => {
   let mons = dex.shlagemons.slice()
@@ -25,10 +30,10 @@ const displayedMons = computed(() => {
   }
   switch (sortBy.value) {
     case 'level':
-      mons.sort((a, b) => b.lvl - a.lvl)
+      mons.sort((a, b) => a.lvl - b.lvl)
       break
     case 'rarity':
-      mons.sort((a, b) => b.rarity - a.rarity)
+      mons.sort((a, b) => a.rarity - b.rarity)
       break
     case 'name':
       mons.sort((a, b) => a.base.name.localeCompare(b.base.name))
@@ -37,6 +42,8 @@ const displayedMons = computed(() => {
       mons.sort((a, b) => (a.base.types[0]?.name || '').localeCompare(b.base.types[0]?.name || ''))
       break
   }
+  if (!sortAsc.value)
+    mons.reverse()
   return mons
 })
 
@@ -54,13 +61,26 @@ function isActive(mon: DexShlagemon) {
 
 <template>
   <section v-if="dex.shlagemons.length" class="p-2">
-    <div class="mb-2 flex flex-col gap-2" sm="flex-row">
-      <SelectOption v-model="sortBy" class="sm:w-40" :options="sortOptions" />
+    <div class="mb-2 flex flex-wrap gap-2">
+      <div class="min-w-36 flex flex-1 items-center">
+        <SelectOption
+          v-model="sortBy"
+          class="min-w-24 flex-1"
+          :options="sortOptions"
+        />
+        <button
+          class="ml-1 text-lg icon-btn"
+          :aria-label="sortAsc ? 'Tri ascendant' : 'Tri descendant'"
+          @click="sortAsc = !sortAsc"
+        >
+          <div :class="sortAsc ? 'i-carbon-sort-ascending' : 'i-carbon-sort-descending'" />
+        </button>
+      </div>
       <input
         v-model="search"
         type="text"
         placeholder="Recherche"
-        class="focus:border-primary w-full border border-gray-300 rounded bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-800 focus:outline-none"
+        class="focus:border-primary min-w-36 flex-1 border border-gray-300 rounded bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-800 focus:outline-none"
       >
     </div>
     <div class="flex flex-col gap-2">
@@ -92,7 +112,7 @@ function isActive(mon: DexShlagemon) {
                 v-for="t in mon.base.types"
                 :key="t.id"
                 :value="t"
-                class="text-0.75rem"
+                size="xs"
               />
             </div>
           </div>
