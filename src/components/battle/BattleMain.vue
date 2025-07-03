@@ -276,15 +276,16 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <button
+      <Button
         type="button"
-        class="absolute right-2 top-2 h-8 w-8"
+        class="absolute right-2 top-2 flex items-center gap-2"
         :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
         :disabled="(inventory.items.shlageball || 0) <= 0"
         @click="openCapture"
       >
-        <img src="/items/shlageball/shlageball.png" alt="capture" class="h-full w-full">
-      </button>
+        Capturer
+        <ImageByBackground src="/items/shlageball/shlageball.png" alt="capture" class="h-8 w-8" />
+      </Button>
       <CaptureOverlay v-if="showCapture && enemy" :target="enemy" @finish="onCaptureEnd" />
     </div>
   </div>
