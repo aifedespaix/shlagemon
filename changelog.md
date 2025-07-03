@@ -5,21 +5,32 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2025-07-04
+
 ### Added
 
 - Character system with new trainers (Caillou, Sachatte, Prof. Merdant, Marcon, Norman, Siphanus and Marine Lahaine).
 - Battle progress indicator and capture/win tooltips.
 - Achievements panel redesign with persistent unlocks.
+- Shlagémon stats now scale with the zone's rank.
+- Attack bonuses computed from accessible Schlagedex entries.
+- Capture icon for already owned wild Shlagémon.
+- New evolutions: Floripute and Barbebizarre.
 
 ### Changed
 
 - Combat bonuses now use Schlagedex bonus percent.
 - Modernized achievements style.
+- Zone action buttons moved to the village panel.
 
 ### Fixed
 
 - HP persists between wild battles.
 - Player info panel overflow and other minor bugs.
+- Duplicate Schlagedex entries merged when loading saves.
+- Deserialization guarded when data is missing.
+- Merge duplicates after evolution.
+- Evolution modal appears only when evolution is allowed.
 
 ## [0.3.1] - 2025-07-03
 
