@@ -28,6 +28,16 @@ export const useAchievementsStore = defineStore('achievements', () => {
     shiny: 0,
   })
 
+  function reset() {
+    // counters.captures = 0
+    // counters.wins = 0
+    // counters.winsStronger = 0
+    // counters.itemsUsed = 0
+    // counters.kings = 0
+    // counters.shiny = 0
+    // unlocked.value = {}
+  }
+
   const unlocked = ref<Record<string, boolean>>({})
 
   function unlock(id: string) {
@@ -114,7 +124,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
       unlock('team-6')
   })
 
-  return { list, unlockedList, hasAny, handleEvent }
+  return { list, unlockedList, hasAny, handleEvent, reset }
 }, { persist: true })
 
 export function notifyAchievement(event: AchievementEvent) {

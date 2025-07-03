@@ -1,12 +1,16 @@
 <script setup lang="ts">
+import type { BaseShlagemon } from '~/type'
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
-import { starters } from '~/data/shlagemons'
+import bulgrosboule from '~/data/shlagemons/bulgrosboule'
+import carapouffe from '~/data/shlagemons/carapouffe'
+import salamiches from '~/data/shlagemons/salamiches'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
 const emit = defineEmits(['done'])
 
+const starters: BaseShlagemon[] = [carapouffe, salamiches, bulgrosboule]
 const gameState = useGameStateStore()
 const dex = useShlagedexStore()
 

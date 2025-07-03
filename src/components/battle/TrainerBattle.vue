@@ -23,7 +23,6 @@ const zone = useZoneStore()
 const progress = useZoneProgressStore()
 
 const trainer = computed(() => trainerStore.current)
-const vigor = computed(() => trainerStore.vigor)
 
 const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
@@ -80,7 +79,6 @@ watch(trainer, (t) => {
   if (t) {
     stage.value = 'before'
     enemyIndex.value = 0
-    trainerStore.resetVigor()
     result.value = 'none'
     if (dex.activeShlagemon)
       playerHp.value = dex.activeShlagemon.hpCurrent
@@ -100,7 +98,6 @@ function startFight() {
     return
   result.value = 'none'
   stage.value = 'battle'
-  trainerStore.resetVigor()
   dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hpCurrent || dex.activeShlagemon.hp
   playerHp.value = dex.activeShlagemon.hpCurrent
   startBattle()
@@ -164,7 +161,6 @@ function checkEnd() {
       if (dex.activeShlagemon && enemy.value)
         dex.gainXp(dex.activeShlagemon, xpRewardForLevel(enemy.value.lvl))
       enemyIndex.value += 1
-      trainerStore.decreaseVigor(10)
       if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
         setTimeout(startBattle, 500)
         return
@@ -219,9 +215,12 @@ onUnmounted(() => {
       </Button>
     </div>
     <div v-else-if="stage === 'battle'" class="w-full text-center" @click="attack">
-      <div class="mb-1 h-8 flex items-center justify-end gap-2 overflow-hidden font-bold">
-        <div>
-          {{ trainer.name }}
+      <div class="mb-1 h-12 flex items-center justify-end gap-2 overflow-hidden font-bold">
+        <div class="h-full flex flex-col">
+          <div>{{ trainer.name }}</div>
+          <div class="flex gap-2">
+            <ImageByBackground v-for="i in trainer.shlagemons.length" :key="i" src="/items/shlageball/shlageball.png" class="h-4 w-4" :class="i <= enemyIndex ? 'saturate-0' : ''" />
+          </div>
         </div>
         <img :src="trainer.image" alt="" class="h-full">
       </div>
@@ -261,12 +260,6 @@ onUnmounted(() => {
           <div class="hp text-sm">
             {{ enemyHp }} / {{ enemy.hp }}
           </div>
-        </div>
-      </div>
-      <div class="mt-2 w-40">
-        <ProgressBar :value="vigor" :max="100" color="bg-amber-500" />
-        <div class="text-xs">
-          Vigueur : {{ vigor }}
         </div>
       </div>
     </div>

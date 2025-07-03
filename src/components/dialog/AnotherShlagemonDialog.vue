@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
-import { pikachiant } from '~/data/shlagemons'
+import { pikachiant } from '~/data/shlagemons/pikachiant'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
 const emit = defineEmits(['done'])

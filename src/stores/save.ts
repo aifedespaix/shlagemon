@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useAchievementsStore } from './achievements'
 import { useDialogStore } from './dialog'
 import { useGameStore } from './game'
 import { useGameStateStore } from './gameState'
@@ -15,6 +16,7 @@ export const useSaveStore = defineStore('save', () => {
   const dialog = useDialogStore()
   const zone = useZoneStore()
   const zoneProgress = useZoneProgressStore()
+  const achievements = useAchievementsStore()
 
   function reset() {
     dex.reset()
@@ -24,6 +26,7 @@ export const useSaveStore = defineStore('save', () => {
     inventory.reset()
     zone.reset()
     zoneProgress.reset()
+    achievements.reset()
   }
 
   return { reset }

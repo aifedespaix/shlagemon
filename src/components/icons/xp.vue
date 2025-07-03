@@ -8,7 +8,7 @@
       </linearGradient>
       <!-- Effet de halo -->
       <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="5" result="blur" />
+        <feGaussianBlur stdDeviation="2" result="blur" />
         <feMerge>
           <feMergeNode in="blur" />
           <feMergeNode in="SourceGraphic" />
@@ -22,7 +22,7 @@
     <!-- Texte XP stylisé -->
     <text
       x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
-      font-family="Verdana, sans-serif" font-weight="bold" font-size="72"
+      font-family="Verdana, sans-serif" font-weight="bold" font-size="26"
       fill="url(#xpGradient)" stroke="#178aa2" stroke-width="2" filter="url(#glow)"
     >
       XP
