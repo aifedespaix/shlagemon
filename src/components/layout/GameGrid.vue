@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
-import ActiveShlagemon from '~/components/panels/ActiveShlagemon.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
@@ -48,18 +47,18 @@ const isAchievementVisible = computed(() => achievements.hasAny)
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div v-if="showMainPanel" class="zone" md="col-span-6 row-span-5 col-start-4 row-start-2">
+      <div v-if="showMainPanel" class="zone" md="col-span-6 row-span-6 col-start-4 row-start-2">
         <!-- middle A zone -->
         <PanelWrapper>
-          <MainPanel />
+          <MainPanel class="flex-1" />
+          <ShlagemonXpBar :mon="shlagedex.activeShlagemon" />
         </PanelWrapper>
       </div>
-      <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
-        <!-- middle B zone -->
+      <!-- <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
         <PanelWrapper>
           <ActiveShlagemon />
         </PanelWrapper>
-      </div>
+      </div> -->
       <div v-if="isInventoryVisible || isAchievementVisible" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2">
         <!-- left zone -->
         <PanelWrapper v-if="isInventoryVisible" title="Inventaire">

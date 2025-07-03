@@ -31,6 +31,5 @@ const dex = useShlagedexStore()
         />
       </div>
     </div>
-    <ShlagemonXpBar :mon="dex.activeShlagemon" />
   </div>
 </template>

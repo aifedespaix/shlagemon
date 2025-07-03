@@ -232,15 +232,16 @@ onUnmounted(() => {
 
 <template>
   <div class="battle relative text-center">
-    <div absolute left-2 top-2 flex items-center gap-2>
-      <Tooltip :text="captureTooltip">
-        <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
-      </Tooltip>
-      <Tooltip :text="winTooltip">
-        <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
-      </Tooltip>
-    </div>
-    <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
+    <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
+      <div class="absolute left-0 flex gap-2">
+        <Tooltip :text="captureTooltip">
+          <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+        </Tooltip>
+        <Tooltip :text="winTooltip">
+          <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
+        </Tooltip>
+      </div>
+
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
     </div>
     <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 flex-col items-center gap-2">
@@ -253,7 +254,7 @@ onUnmounted(() => {
             :shiny="dex.activeShlagemon.isShiny"
             class="max-h-32 object-contain -scale-x-100"
           />
-          <div class="absolute left-0 top-0 text-sm font-bold">
+          <div class="absolute bottom-0 left-0 text-sm font-bold">
             lvl {{ dex.activeShlagemon.lvl }}
           </div>
           <div class="mt-1 flex items-center gap-1">
@@ -266,7 +267,7 @@ onUnmounted(() => {
             />
           </div>
           <ProgressBar :value="playerHp" :max="dex.activeShlagemon.hp" class="mt-1 w-24" />
-          <div class="hp text-sm">
+          <div class="hp w-full text-right text-sm">
             {{ playerHp }} / {{ dex.activeShlagemon.hp }}
           </div>
         </div>
@@ -281,7 +282,7 @@ onUnmounted(() => {
             :shiny="enemy.isShiny"
             class="max-h-32 object-contain"
           />
-          <div class="absolute left-0 top-0 text-sm font-bold">
+          <div class="absolute bottom-0 left-0 text-sm font-bold">
             lvl {{ enemy.lvl }}
           </div>
           <div class="mt-1 flex items-center gap-1">
@@ -294,13 +295,13 @@ onUnmounted(() => {
             />
           </div>
           <ProgressBar :value="enemyHp" :max="enemy.hp" color="bg-red-500" class="mt-1 w-24" />
-          <div class="hp text-sm">
+          <div class="w-full text-right text-sm">
             {{ enemyHp }} / {{ enemy.hp }}
           </div>
         </div>
       </div>
       <Button
-        class="absolute right-2 top-2 flex items-center gap-2"
+        class="absolute bottom-2 right-2 flex items-center gap-2"
         :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
         :disabled="(inventory.items.shlageball || 0) <= 0"
         @click="openCapture"
