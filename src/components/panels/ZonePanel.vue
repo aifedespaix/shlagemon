@@ -33,9 +33,25 @@ function canAccess(z: Zone) {
 
 function classes(z: Zone) {
   const classes: string[] = []
-  z.id === zone.current.id ? classes.push('bg-primary text-dark dark:bg-light') : classes.push('bg-gray-200 dark:bg-gray-700')
-  if (z.type === 'village')
+  if (z.id === zone.current.id) {
+    classes.push('bg-primary text-dark dark:bg-light')
+    return classes.join(' ')
+  }
+  if (z.type === 'village') {
     classes.push('bg-green-300 dark:bg-green-800')
+    return classes.join(' ')
+  }
+
+  const level = dex.activeShlagemon?.lvl || 0
+  if (z.maxLevel < level)
+    classes.push('bg-blue-200 dark:bg-blue-900')
+  else if (level >= z.minLevel && level <= z.maxLevel)
+    classes.push('bg-blue-500 dark:bg-blue-600')
+  else if (z.minLevel > level && z.minLevel - level <= 5)
+    classes.push('bg-orange-400 dark:bg-orange-800')
+  else
+    classes.push('bg-red-400 dark:bg-red-700')
+
   return classes.join(' ')
 }
 </script>
