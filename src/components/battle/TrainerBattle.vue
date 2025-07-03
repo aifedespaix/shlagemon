@@ -24,6 +24,10 @@ const zone = useZoneStore()
 const progress = useZoneProgressStore()
 
 const trainer = computed(() => trainerStore.current)
+const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
+const kingLabel = computed(() =>
+  trainer.value?.character.gender === 'female' ? 'reine' : 'roi',
+)
 
 const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
@@ -210,6 +214,14 @@ onUnmounted(() => {
 <template>
   <div v-if="trainer" class="flex flex-col items-center gap-2">
     <div v-if="stage === 'before'" class="flex flex-col items-center gap-2 text-center">
+      <template v-if="isZoneKing">
+        <div class="font-bold capitalize">
+          {{ kingLabel }} de la zone
+        </div>
+        <div class="font-bold">
+          {{ trainer.character.name }}
+        </div>
+      </template>
       <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div>{{ trainer.dialogBefore }}</div>
       <Button @click="startFight">
