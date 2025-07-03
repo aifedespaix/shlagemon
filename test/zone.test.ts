@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import ZonePanel from '../src/components/panels/ZonePanel.vue'
+import ZoneActions from '../src/components/village/ZoneActions.vue'
 import { carapouffe } from '../src/data/shlagemons'
 import { useMainPanelStore } from '../src/stores/mainPanel'
 import { useShlagedexStore } from '../src/stores/shlagedex'
@@ -59,7 +60,7 @@ describe('zone panel', () => {
     setActivePinia(pinia)
     const progress = useZoneProgressStore()
     const zone = useZoneStore()
-    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    const wrapper = mount(ZoneActions, { global: { plugins: [pinia] } })
     zone.setZone('plaine-kekette')
     await wrapper.vm.$nextTick()
     expect(wrapper.text()).not.toContain('Défier le roi')
