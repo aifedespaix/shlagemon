@@ -3,6 +3,7 @@ import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { caillou } from '~/data/characters/caillou'
+import { norman } from '~/data/characters/norman'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import { sachatte } from '~/data/characters/sachatte'
 import { allShlagemons } from '~/data/shlagemons'
@@ -23,10 +24,17 @@ export const useZoneStore = defineStore('zone', () => {
       const level = z.maxLevel + 1
 
       let character = profMerdant
-      if (id === 'plaine-kekette')
-        character = caillou
-      else if (id === 'bois-de-bouffon')
-        character = sachatte
+      switch (id) {
+        case 'plaine-kekette':
+          character = caillou
+          break
+        case 'bois-de-bouffon':
+          character = sachatte
+          break
+        case 'grotte-du-slip':
+          character = norman
+          break
+      }
 
       const trainer: Trainer = {
         id: `king-${z.id}`,
