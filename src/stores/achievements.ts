@@ -155,6 +155,54 @@ export const useAchievementsStore = defineStore('achievements', () => {
   defs.push(teamDef)
   defMap[teamDef.id] = teamDef
 
+  const dexCompletionThresholds = [10, 50, 75, 99, 100]
+  dexCompletionThresholds.forEach((pct) => {
+    const def = {
+      id: `dex-${pct}`,
+      title:
+        pct === 10
+          ? 'Petit curieux'
+          : pct === 50
+            ? 'À mi-chemin'
+            : pct === 75
+              ? 'Expert du Dex'
+              : pct === 99
+                ? 'Plus qu\'un !'
+                : 'Archiviste suprême',
+      description: `Atteindre ${pct}% de complétion du Shlagédex en capturant suffisamment de créatures.`,
+      icon: 'mdi:book-open-page-variant',
+    }
+    defs.push(def)
+    defMap[def.id] = def
+  })
+
+  const lvl100Thresholds = [1, 10, 100]
+  lvl100Thresholds.forEach((n) => {
+    const def = {
+      id: `lvl100-${n}`,
+      title:
+        n === 1
+          ? 'Champion solo'
+          : n === 10
+            ? 'Dresseur mythique'
+            : 'Légende vivante',
+      description: `Avoir ${n} Shlagémon au niveau 100 dans votre Shlagédex.`,
+      icon: 'carbon:skill-level-advanced',
+    }
+    defs.push(def)
+    defMap[def.id] = def
+  })
+
+  const fullDexDef = {
+    id: 'dex-full-100',
+    title: 'Shlagémaster ultime',
+    description:
+      'Compléter le Shlagédex avec toutes les créatures élevées au niveau 100.',
+    icon: 'mdi:account-crown',
+  }
+  defs.push(fullDexDef)
+  defMap[fullDexDef.id] = fullDexDef
+
   const list = computed(() =>
     defs.map(d => ({ ...d, achieved: !!unlocked.value[d.id] })),
   )
@@ -197,6 +245,27 @@ export const useAchievementsStore = defineStore('achievements', () => {
   watch(() => counters.itemsUsed, v => checkThresholds(v, 'item', itemThresholds))
   watch(() => counters.kings, v => checkThresholds(v, 'king', kingThresholds))
   watch(() => counters.shiny, v => checkThresholds(v, 'shiny', shinyThresholds))
+
+  const level100Count = computed(() =>
+    dex.shlagemons.filter(m => m.lvl >= 100).length,
+  )
+  watch(
+    () => dex.completionPercent,
+    v => checkThresholds(v, 'dex', dexCompletionThresholds),
+    { immediate: true },
+  )
+  watch(level100Count, v => checkThresholds(v, 'lvl100', lvl100Thresholds))
+  watch(
+    [() => dex.completionPercent, level100Count, () => dex.shlagemons.length],
+    () => {
+      if (
+        dex.completionPercent === 100
+        && dex.shlagemons.every(m => m.lvl >= 100)
+      ) {
+        unlock('dex-full-100')
+      }
+    },
+  )
 
   watch(() => dex.shlagemons.length, (v) => {
     if (v >= 6)
