@@ -12,7 +12,7 @@ function toggle() {
   <div
     class="flex flex-col border rounded p-1 text-xs transition-colors"
     :class="props.achievement.achieved
-      ? 'bg-blue-50 border-blue-300 text-blue-800 dark:bg-blue-900/40 dark:border-blue-700'
+      ? 'bg-blue-600 border-blue-500 text-white dark:bg-blue-700'
       : 'bg-gray-50 border-gray-300 text-gray-500 dark:bg-gray-800 dark:border-gray-700'"
   >
     <div class="flex cursor-pointer items-center justify-between" @click="toggle">
