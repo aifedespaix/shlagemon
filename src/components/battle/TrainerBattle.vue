@@ -211,6 +211,10 @@ function finish() {
   }
 }
 
+function cancelFight() {
+  panel.showBattle()
+}
+
 onUnmounted(() => {
   if (battleInterval)
     clearInterval(battleInterval)
@@ -232,6 +236,9 @@ onUnmounted(() => {
       <div>{{ trainer.dialogBefore }}</div>
       <Button @click="startFight">
         Démarrer le combat
+      </Button>
+      <Button type="danger" @click="cancelFight">
+        Abandonner
       </Button>
     </div>
     <div v-else-if="stage === 'battle'" class="w-full text-center" @click="attack">
