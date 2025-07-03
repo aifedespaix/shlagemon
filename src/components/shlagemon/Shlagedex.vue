@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import Modal from '~/components/modal/Modal.vue'
+import SearchInput from '~/components/ui/SearchInput.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import ShlagemonDetail from './ShlagemonDetail.vue'
@@ -85,12 +86,7 @@ function isActive(mon: DexShlagemon) {
           <div :class="sortAsc ? 'i-carbon-sort-ascending' : 'i-carbon-sort-descending'" />
         </button>
       </div>
-      <input
-        v-model="search"
-        type="text"
-        placeholder="Recherche"
-        class="focus:border-primary min-w-36 flex-1 border border-gray-300 rounded bg-white px-2 py-1 text-sm dark:border-gray-700 dark:bg-gray-800 focus:outline-none"
-      >
+      <SearchInput v-model="search" />
     </div>
     <div class="flex flex-col gap-2">
       <div
