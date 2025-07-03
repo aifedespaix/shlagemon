@@ -82,8 +82,4 @@ const isAchievementVisible = computed(() => achievements.hasAny)
 .zone {
   @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700;
 }
-
-.zone-big {
-  @apply max-h-40 md:max-h-none;
-}
 </style>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
-import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 
 interface Props {
@@ -20,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="relative flex flex-col items-center">
+  <div class="relative w-full flex flex-col items-center">
     <ShlagemonImage
       :id="props.mon.base.id"
       :alt="props.mon.base.name"
@@ -33,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
     </div>
     <div class="mt-1 flex items-center gap-1">
       <span class="font-bold">{{ props.mon.base.name }}</span>
-      <ShlagemonType v-for="t in props.mon.base.types" :key="t.id" :value="t" size="xs" />
+      <!-- <ShlagemonType v-for="t in props.mon.base.types" :key="t.id" :value="t" size="xs" /> -->
     </div>
     <ProgressBar :value="props.hp" :max="props.mon.hp" :color="props.color" class="mt-1 w-24" />
     <div class="w-full text-right text-sm">

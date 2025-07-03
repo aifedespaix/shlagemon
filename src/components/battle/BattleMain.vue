@@ -241,7 +241,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="battle relative text-center">
+  <div class="relative flex flex-col text-center">
     <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
       <div class="absolute left-0 flex gap-2">
         <Tooltip :text="captureTooltip">
@@ -269,7 +269,7 @@ onUnmounted(() => {
         </div>
       </div>
       <Button
-        class="absolute bottom-2 right-2 flex items-center gap-2"
+        class="absolute right-0 top-0 flex items-center gap-2 text-xs"
         :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
         :disabled="(inventory.items.shlageball || 0) <= 0"
         @click="openCapture"
