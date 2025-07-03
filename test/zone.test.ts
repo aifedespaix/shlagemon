@@ -48,7 +48,7 @@ describe('zone panel', () => {
     progress.defeatKing('plaine-kekette')
     progress.defeatKing('bois-de-bouffon')
     for (let i = 0; i < 9; i++)
-      dex.gainXp(mon, xpForLevel(mon.lvl))
+      await dex.gainXp(mon, xpForLevel(mon.lvl))
     await wrapper.vm.$nextTick()
     btn = wrapper.findAll('button').find(b => b.text().includes('Grotte du Slip'))
     expect(btn).toBeDefined()

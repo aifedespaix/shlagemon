@@ -10,6 +10,7 @@ import {
   xpForLevel,
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
+import { useEvolutionStore } from './evolution'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
@@ -80,7 +81,30 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }, duration)
   }
 
-  function gainXp(
+  const evolutionStore = useEvolutionStore()
+
+  async function checkEvolution(mon: DexShlagemon) {
+    const evo = mon.base.evolution
+    if (!evo)
+      return
+    if (evo.condition.type !== 'lvl' || mon.lvl < evo.condition.value)
+      return
+    const accepted = await evolutionStore.requestEvolution(mon, evo.base)
+    if (!accepted)
+      return
+    mon.base = evo.base
+    mon.baseStats = {
+      hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
+      attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
+      defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
+      smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
+    }
+    applyStats(mon)
+    mon.hpCurrent = mon.hp
+    toast(`${mon.base.name} a évolué !`)
+  }
+
+  async function gainXp(
     mon: DexShlagemon,
     amount: number,
     maxLevel = 100,
@@ -97,6 +121,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       const healAmount = Math.round((mon.hp * healPercent) / 100)
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
+      await checkEvolution(mon)
     }
     if (mon.lvl >= maxLevel)
       mon.xp = 0
