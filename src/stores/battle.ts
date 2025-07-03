@@ -19,8 +19,8 @@ export const useBattleStore = defineStore('battle', () => {
   ): AttackResult {
     const atkType = attacker.base.types[0]
     const defType = defender.base.types[0]
-    const atkBonus = isPlayerAttacker ? dex.bonusMultiplier : 1
-    const defBonus = isPlayerDefender ? dex.bonusMultiplier : 1
+    const atkBonus = isPlayerAttacker ? 1 + dex.bonusPercent / 100 : 1
+    const defBonus = isPlayerDefender ? 1 + dex.bonusPercent / 100 : 1
     const result = computeDamage(Math.round(attacker.attack * atkBonus), atkType, defType)
     const finalDamage = Math.max(1, Math.round(result.damage / defBonus))
     defender.hpCurrent = Math.max(0, defender.hpCurrent - finalDamage)
