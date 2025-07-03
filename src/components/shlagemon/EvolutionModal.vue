@@ -16,7 +16,7 @@ const store = useEvolutionStore()
         {{ store.pending?.mon.base.name }} évolue
       </h3>
       <p class="text-center">
-        « {{ store.pending?.mon.base.name }} » veut évoluer en « {{ store.pending?.to.name }} », voulez-vous le laisser faire ou l'empêcher de répandre sa... sa schlaguitude ?
+        « {{ store.pending?.mon.base.name }} » veut évoluer en « {{ store.pending?.to.name }} », voulez-vous le laisser faire ou l'empêcher de répandre sa schlaguitude ?
       </p>
       <div class="flex gap-2">
         <Button type="valid" class="flex items-center gap-1" @click="store.accept">
