@@ -119,9 +119,11 @@ function startBattle() {
   const base = allShlagemons.find(b => b.id === spec.baseId)
   if (!base)
     return
-  enemy.value = createDexShlagemon(base)
-  enemy.value.lvl = spec.level
-  applyStats(enemy.value)
+  const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
+  const created = createDexShlagemon(base, false, rank)
+  created.lvl = spec.level
+  applyStats(created)
+  enemy.value = created
   enemyHp.value = enemy.value.hp
   battleActive.value = true
   battleInterval = window.setInterval(tick, 1000)

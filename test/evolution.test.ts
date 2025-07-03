@@ -7,7 +7,7 @@ import { useShlagedexStore } from '../src/stores/shlagedex'
 import { xpForLevel } from '../src/utils/dexFactory'
 
 describe('evolution', () => {
-  it('auto evolves without prompt when allowed', async () => {
+  it('prompts before evolution when allowed', async () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const evo = useEvolutionStore()
@@ -16,10 +16,10 @@ describe('evolution', () => {
     await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
     expect(mon.base.id).toBe(alakalbar.id)
     expect(mon.lvl).toBe(3)
-    expect(spy).not.toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled()
   })
 
-  it('asks for evolution when not allowed automatically', async () => {
+  it('skips evolution when not allowed', async () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const evo = useEvolutionStore()
@@ -27,8 +27,8 @@ describe('evolution', () => {
     const mon = dex.createShlagemon(abraquemar)
     mon.allowEvolution = false
     await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
-    expect(spy).toHaveBeenCalled()
-    expect(mon.base.id).toBe(alakalbar.id)
+    expect(spy).not.toHaveBeenCalled()
+    expect(mon.base.id).toBe(abraquemar.id)
     expect(mon.lvl).toBe(3)
   })
 })

@@ -45,7 +45,9 @@ const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const enemyCaptured = computed(() =>
-  enemy.value ? dex.shlagemons.some(m => m.base.id === enemy.value?.base.id) : false,
+  enemy.value
+    ? dex.shlagemons.some(m => m.base.id === enemy.value!.base.id)
+    : false,
 )
 const battleActive = ref(false)
 const showCapture = ref(false)
@@ -131,13 +133,15 @@ function startBattle() {
     ? zone.current.shlagemons
     : allShlagemons
   const base = available[Math.floor(Math.random() * available.length)]
-  enemy.value = createDexShlagemon(base)
+  const rank = zone.getZoneRank(zone.current.id)
+  const created = createDexShlagemon(base, false, rank)
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
   const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
-  enemy.value.lvl = lvl
-  applyStats(enemy.value)
+  created.lvl = lvl
+  applyStats(created)
+  enemy.value = created
   if (active.hpCurrent <= 0)
     active.hpCurrent = active.hp
   playerHp.value = active.hpCurrent

@@ -1,7 +1,8 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
+import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
-import { allShlagemons } from '~/data/shlagemons'
+import { zonesData } from '~/data/zones'
 import {
   applyStats,
   baseStats,
@@ -11,19 +12,44 @@ import {
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useEvolutionStore } from './evolution'
+import { useZoneProgressStore } from './zoneProgress'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
   const activeShlagemon = ref<DexShlagemon | null>(null)
   const highestLevel = ref(0)
+  const progress = useZoneProgressStore()
+
+  const xpZones = computed(() => zonesData.filter(z => z.maxLevel > 0))
+
+  function canAccess(z: Zone) {
+    if (z.type === 'village')
+      return z.minLevel <= highestLevel.value
+    const idx = xpZones.value.findIndex(x => x.id === z.id)
+    if (idx === 0)
+      return highestLevel.value >= z.minLevel
+    const prev = xpZones.value[idx - 1]
+    return highestLevel.value >= z.minLevel && progress.isKingDefeated(prev.id)
+  }
+
+  const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
+
+  const completableIds = computed(() => {
+    const ids = new Set<string>()
+    for (const z of accessibleZones.value)
+      z.shlagemons?.forEach(m => ids.add(m.id))
+    return ids
+  })
+
+  const completableCount = computed(() => completableIds.value.size)
   const averageLevel = computed(() =>
     shlagemons.value.length
       ? shlagemons.value.reduce((s, m) => s + m.lvl, 0) / shlagemons.value.length
       : 0,
   )
   const completionPercent = computed(() =>
-    allShlagemons.length
-      ? (shlagemons.value.length / allShlagemons.length) * 100
+    completableCount.value
+      ? (shlagemons.value.length / completableCount.value) * 100
       : 0,
   )
   const bonusPercent = computed(
@@ -89,21 +115,46 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       return
     if (evo.condition.type !== 'lvl' || mon.lvl < evo.condition.value)
       return
-    let accepted = true
     if (!mon.allowEvolution)
-      accepted = await evolutionStore.requestEvolution(mon, evo.base)
+      return
+    const accepted = await evolutionStore.requestEvolution(mon, evo.base)
     if (!accepted)
       return
-    mon.base = evo.base
-    mon.baseStats = {
-      hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
-      attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
-      defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
-      smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
+    const existing = shlagemons.value.find(m => m.base.id === evo.base.id && m.id !== mon.id)
+    if (existing) {
+      if (existing.rarity < 100) {
+        existing.rarity += 1
+        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+      }
+      existing.lvl = 1
+      existing.xp = 0
+      existing.baseStats = {
+        hp: statWithRarityAndCoefficient(baseStats.hp, existing.base.coefficient, existing.rarity),
+        attack: statWithRarityAndCoefficient(baseStats.attack, existing.base.coefficient, existing.rarity),
+        defense: statWithRarityAndCoefficient(baseStats.defense, existing.base.coefficient, existing.rarity),
+        smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
+      }
+      applyStats(existing)
+      existing.hpCurrent = existing.hp
+      const index = shlagemons.value.findIndex(m => m.id === mon.id)
+      if (index !== -1)
+        shlagemons.value.splice(index, 1)
+      if (activeShlagemon.value?.id === mon.id)
+        activeShlagemon.value = existing
+      recomputeHighestLevel()
     }
-    applyStats(mon)
-    mon.hpCurrent = mon.hp
-    toast(`${mon.base.name} a évolué !`)
+    else {
+      mon.base = evo.base
+      mon.baseStats = {
+        hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
+        attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
+        defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
+        smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
+      }
+      applyStats(mon)
+      mon.hpCurrent = mon.hp
+      toast(`${mon.base.name} a évolué !`)
+    }
   }
 
   async function gainXp(
