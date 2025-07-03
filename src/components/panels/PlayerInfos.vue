@@ -23,13 +23,13 @@ const totalInDex = allShlagemons.length
     <Tooltip text="Shlagidolars">
       <div class="min-w-0 flex items-center gap-1">
         <ShlagidolarIcon class="h-4 w-4" />
-        <span class="shrink-0 font-bold">{{ game.shlagidolar }}</span>
+        <span class="shrink-0 font-bold">{{ game.shlagidolar.toLocaleString() }}</span>
       </div>
     </Tooltip>
     <Tooltip text="Shlagidiamond">
       <div class="min-w-0 flex items-center gap-1">
         <ShlagediamondIcon class="h-4 w-4" />
-        <span class="shrink-0 font-bold">{{ game.shlagidiamond }}</span>
+        <span class="shrink-0 font-bold">{{ game.shlagidiamond?.toLocaleString() }}</span>
       </div>
     </Tooltip>
     <Tooltip text="SchlagéDex">
@@ -53,7 +53,7 @@ const totalInDex = allShlagemons.length
     <Tooltip text="SchlagéBalls">
       <div class="min-w-0 flex items-center gap-1">
         <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
-        <span class="shrink-0 font-bold">{{ inventory.items.shlageball || 0 }}</span>
+        <span class="shrink-0 font-bold">{{ inventory.items.shlageball?.toLocaleString() || 0 }}</span>
       </div>
     </Tooltip>
   </div>
