@@ -1,3 +1,4 @@
+import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { allItems } from '~/data/items/items'
@@ -11,11 +12,18 @@ export const useInventoryStore = defineStore('inventory', () => {
   const game = useGameStore()
   const dex = useShlagedexStore()
 
+  interface ListedItem {
+    item: Item
+    qty: number
+  }
+
   const list = computed(() =>
-    Object.entries(items.value).map(([id, qty]) => ({
-      item: allItems.find(i => i.id === id)!,
-      qty,
-    })),
+    Object.entries(items.value).reduce<ListedItem[]>((acc, [id, qty]) => {
+      const item = allItems.find(i => i.id === id)
+      if (item)
+        acc.push({ item, qty })
+      return acc
+    }, []),
   )
 
   function add(id: string, qty = 1) {
