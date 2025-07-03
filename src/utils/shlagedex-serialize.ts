@@ -1,5 +1,6 @@
 import { allShlagemons } from '~/data/shlagemons'
 import { baseStats, statWithRarityAndCoefficient } from './dexFactory'
+import { deduplicateDex } from './saveFix'
 
 const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
 
@@ -25,7 +26,7 @@ export const shlagedexSerializer = {
   deserialize(raw: string): any {
     const parsed = JSON.parse(raw)
 
-    const shlagemons = (parsed.shlagemons || [])
+    let shlagemons = (parsed.shlagemons || [])
       .map((mon: any) => {
         const base = mon.base ?? baseMap[mon.baseId]
         if (!base)
@@ -45,11 +46,15 @@ export const shlagedexSerializer = {
       })
       .filter(Boolean)
 
+    shlagemons = deduplicateDex(shlagemons)
+
     let active = parsed.activeShlagemon
     if (active) {
       const base = active.base ?? baseMap[active.baseId]
       if (base) {
-        const found = shlagemons.find((m: any) => m.id === active.id)
+        const found
+          = shlagemons.find((m: any) => m.id === active.id)
+            || shlagemons.find((m: any) => m.base.id === base.id)
         active = found || {
           ...active,
           base,
