@@ -3,6 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import ZonePanel from '../src/components/panels/ZonePanel.vue'
 import { carapouffe } from '../src/data/shlagemons'
+import { useMainPanelStore } from '../src/stores/mainPanel'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useZoneStore } from '../src/stores/zone'
 import { useZoneProgressStore } from '../src/stores/zoneProgress'
@@ -66,5 +67,29 @@ describe('zone panel', () => {
       progress.addWin('plaine-kekette')
     await wrapper.vm.$nextTick()
     expect(wrapper.text()).toContain('Défier le roi de la zone')
+  })
+
+  it('disables zone buttons during trainer battle', async () => {
+    const pinia = createPinia()
+    setActivePinia(pinia)
+    const dex = useShlagedexStore()
+    dex.createShlagemon(carapouffe)
+    const panel = useMainPanelStore()
+    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    panel.showTrainerBattle()
+    await wrapper.vm.$nextTick()
+    const buttons = wrapper.findAll('div.flex-wrap button')
+    expect(buttons.length).toBeGreaterThan(0)
+    expect(buttons.every(b => b.attributes('disabled') !== undefined)).toBe(true)
+  })
+
+  it('disables zone buttons when dialog is visible', async () => {
+    const pinia = createPinia()
+    setActivePinia(pinia)
+    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    await wrapper.vm.$nextTick()
+    const buttons = wrapper.findAll('div.flex-wrap button')
+    expect(buttons.length).toBeGreaterThan(0)
+    expect(buttons.every(b => b.attributes('disabled') !== undefined)).toBe(true)
   })
 })
