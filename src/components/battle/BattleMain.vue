@@ -22,6 +22,7 @@ const progress = useZoneProgressStore()
 const battle = useBattleStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
+const equilibrerank = 2
 
 const wins = computed(() => progress.getWins(zone.current.id))
 const hasAllZoneMons = computed(() => {
@@ -133,7 +134,7 @@ function startBattle() {
     ? zone.current.shlagemons
     : allShlagemons
   const base = available[Math.floor(Math.random() * available.length)]
-  const rank = zone.getZoneRank(zone.current.id)
+  const rank = zone.getZoneRank(zone.current.id) * equilibrerank
   const created = createDexShlagemon(base, false, rank)
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))

@@ -21,6 +21,7 @@ const battle = useBattleStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
+const equilibrerank = 2
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -120,7 +121,7 @@ function startBattle() {
   if (!base)
     return
   const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
-  const created = createDexShlagemon(base, false, rank)
+  const created = createDexShlagemon(base, false, rank * equilibrerank)
   created.lvl = spec.level
   applyStats(created)
   enemy.value = created
