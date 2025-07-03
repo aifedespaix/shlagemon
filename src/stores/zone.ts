@@ -3,6 +3,8 @@ import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { caillou } from '~/data/characters/caillou'
+import { marcon } from '~/data/characters/marcon'
+import { marineLahaine } from '~/data/characters/marine-lahaine'
 import { norman } from '~/data/characters/norman'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import { sachatte } from '~/data/characters/sachatte'
@@ -33,6 +35,15 @@ export const useZoneStore = defineStore('zone', () => {
           break
         case 'grotte-du-slip':
           character = norman
+          break
+        case 'ravin-fesse-molle':
+          character = marineLahaine
+          break
+        case 'grotte-nanard':
+          character = marcon
+          break
+        case 'marais-moudugenou':
+          character = sachatte
           break
       }
 
