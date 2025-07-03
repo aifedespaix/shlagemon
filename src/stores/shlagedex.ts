@@ -89,9 +89,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       return
     if (evo.condition.type !== 'lvl' || mon.lvl < evo.condition.value)
       return
-    let accepted = true
     if (!mon.allowEvolution)
-      accepted = await evolutionStore.requestEvolution(mon, evo.base)
+      return
+    const accepted = await evolutionStore.requestEvolution(mon, evo.base)
     if (!accepted)
       return
     mon.base = evo.base
