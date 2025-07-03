@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
 import { useGameStore } from '~/stores/game'
@@ -21,12 +22,12 @@ export const useDialogStore = defineStore('dialog', () => {
   const dialogs: DialogItem[] = [
     {
       id: 'starter',
-      component: DialogStarter,
+      component: markRaw(DialogStarter),
       condition: () => !gameState.hasPokemon,
     },
     {
       id: 'richReward',
-      component: AnotherShlagemonDialog,
+      component: markRaw(AnotherShlagemonDialog),
       condition: () => game.shlagidolar >= 100,
     },
   ]
