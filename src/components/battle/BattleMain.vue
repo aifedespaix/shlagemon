@@ -20,6 +20,14 @@ const progress = useZoneProgressStore()
 const battle = useBattleStore()
 const inventory = useInventoryStore()
 
+const wins = computed(() => progress.getWins(zone.current.id))
+const hasAllZoneMons = computed(() => {
+  const list = zone.current.shlagemons
+  if (!list?.length)
+    return true
+  return list.every(base => dex.shlagemons.some(mon => mon.base.id === base.id))
+})
+
 const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
@@ -209,6 +217,10 @@ onUnmounted(() => {
 
 <template>
   <div class="battle relative text-center">
+    <div absolute left-2 top-2 flex items-center gap-2>
+      <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins }}</span>
+      <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+    </div>
     <div v-if="zone.current.maxLevel" class="mb-1 font-bold">
       {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
     </div>
