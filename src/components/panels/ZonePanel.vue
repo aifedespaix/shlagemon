@@ -2,6 +2,7 @@
 import type { Zone } from '~/type'
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
+import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -13,6 +14,11 @@ const dex = useShlagedexStore()
 const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
+const dialog = useDialogStore()
+
+const zoneButtonsDisabled = computed(
+  () => panel.current === 'trainerBattle' || dialog.isDialogVisible,
+)
 
 const currentKing = computed(() => zone.getKing(zone.current.id))
 const kingLabel = computed(() => currentKing.value.character.gender === 'female' ? 'reine' : 'roi')
@@ -61,8 +67,9 @@ function classes(z: Zone) {
         v-for="z in accessibleZones"
         :key="z.id"
         class="rounded px-2 py-1 text-xs"
-        :class="classes(z)"
-        @click="zone.setZone(z.id)"
+        :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
+        :disabled="zoneButtonsDisabled"
+        @click="!zoneButtonsDisabled && zone.setZone(z.id)"
       >
         {{ z.name }}
       </button>
