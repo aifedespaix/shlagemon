@@ -13,6 +13,7 @@ declare module 'vue' {
     ActiveShlagemon: typeof import('./components/panels/ActiveShlagemon.vue')['default']
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
+    BattleShlagemon: typeof import('./components/battle/BattleShlagemon.vue')['default']
     BattleToast: typeof import('./components/battle/BattleToast.vue')['default']
     Bonus: typeof import('./components/icons/bonus.vue')['default']
     BonusDetails: typeof import('./components/panels/BonusDetails.vue')['default']
