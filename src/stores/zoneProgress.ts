@@ -34,6 +34,7 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
   return {
     wins,
     kingsDefeated,
+    fightsBeforeKing,
     addWin,
     getWins,
     canFightKing,
