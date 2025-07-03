@@ -72,15 +72,22 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }, duration)
   }
 
-  function gainXp(mon: DexShlagemon, amount: number, maxLevel = 100) {
+  function gainXp(
+    mon: DexShlagemon,
+    amount: number,
+    maxLevel = 100,
+    healPercent = 100,
+  ) {
     if (mon.lvl >= maxLevel)
       return
     mon.xp += amount
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
       mon.lvl += 1
+      const prevHp = mon.hpCurrent
       applyStats(mon)
-      mon.hpCurrent = mon.hp
+      const healAmount = Math.round((mon.hp * healPercent) / 100)
+      mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
     }
     if (mon.lvl >= maxLevel)

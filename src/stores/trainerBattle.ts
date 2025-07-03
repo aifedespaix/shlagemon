@@ -6,6 +6,7 @@ import { trainers as trainersData } from '~/data/trainers'
 export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   const queue = ref<Trainer[]>([])
   const currentIndex = ref(0)
+  const levelUpHealPercent = ref(15)
 
   function setQueue(list: Trainer[]) {
     queue.value = list
@@ -30,5 +31,5 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   // init with default trainers
   setQueue(trainersData)
 
-  return { queue, current, next, add, setQueue, reset }
+  return { queue, current, next, add, setQueue, reset, levelUpHealPercent }
 })

@@ -164,8 +164,14 @@ function checkEnd() {
       dex.activeShlagemon.hpCurrent = playerHp.value
 
     if (enemyHp.value <= 0 && playerHp.value > 0) {
-      if (dex.activeShlagemon && enemy.value)
-        dex.gainXp(dex.activeShlagemon, xpRewardForLevel(enemy.value.lvl))
+      if (dex.activeShlagemon && enemy.value) {
+        dex.gainXp(
+          dex.activeShlagemon,
+          xpRewardForLevel(enemy.value.lvl),
+          undefined,
+          trainerStore.levelUpHealPercent,
+        )
+      }
       enemyIndex.value += 1
       if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
         setTimeout(startBattle, 500)
