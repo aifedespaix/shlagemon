@@ -45,7 +45,7 @@ const playerHp = ref(0)
 const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const enemyCaptured = computed(() =>
-  enemy.value ? dex.shlagemons.some(m => m.base.id === enemy.value.base.id) : false,
+  enemy.value ? dex.shlagemons.some(m => m.base.id === enemy.value?.base.id) : false,
 )
 const battleActive = ref(false)
 const showCapture = ref(false)
