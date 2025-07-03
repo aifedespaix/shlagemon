@@ -38,6 +38,8 @@ const battleActive = ref(false)
 let battleInterval: number | undefined
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
+const playerFainted = ref(false)
+const enemyFainted = ref(false)
 const playerEffect = ref('')
 const enemyEffect = ref('')
 const playerVariant = ref<'normal' | 'high' | 'low'>('normal')
@@ -161,36 +163,46 @@ function checkEnd() {
     battleInterval = undefined
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = playerHp.value
-
-    if (enemyHp.value <= 0 && playerHp.value > 0) {
-      if (dex.activeShlagemon && enemy.value) {
-        dex.gainXp(
-          dex.activeShlagemon,
-          xpRewardForLevel(enemy.value.lvl),
-          undefined,
-          trainerStore.levelUpHealPercent,
-        )
-      }
-      enemyIndex.value += 1
-      if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
-        setTimeout(startBattle, 500)
+    playerFainted.value = playerHp.value <= 0
+    enemyFainted.value = enemyHp.value <= 0
+    setTimeout(() => {
+      if (enemyHp.value <= 0 && playerHp.value > 0) {
+        if (dex.activeShlagemon && enemy.value) {
+          dex.gainXp(
+            dex.activeShlagemon,
+            xpRewardForLevel(enemy.value.lvl),
+            undefined,
+            trainerStore.levelUpHealPercent,
+          )
+        }
+        enemyIndex.value += 1
+        if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
+          playerFainted.value = false
+          enemyFainted.value = false
+          startBattle()
+          return
+        }
+        if (trainer.value)
+          game.addShlagidiamond(trainer.value.reward)
+        result.value = 'win'
+        stage.value = 'after'
+        playerFainted.value = false
+        enemyFainted.value = false
         return
       }
-      if (trainer.value)
-        game.addShlagidiamond(trainer.value.reward)
-      result.value = 'win'
-      stage.value = 'after'
-      return
-    }
 
-    // player lost the active Shlagémon
-    if (playerHp.value <= 0) {
-      result.value = 'lose'
-      stage.value = 'after'
-      return
-    }
+      if (playerHp.value <= 0) {
+        result.value = 'lose'
+        stage.value = 'after'
+        playerFainted.value = false
+        enemyFainted.value = false
+        return
+      }
 
-    stage.value = 'after'
+      stage.value = 'after'
+      playerFainted.value = false
+      enemyFainted.value = false
+    }, 500)
   }
 }
 
@@ -253,14 +265,14 @@ onUnmounted(() => {
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" level-position="top" />
+          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" level-position="top" />
         </div>
         <div class="vs font-bold">
           VS
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          <BattleShlagemon :mon="enemy" :hp="enemyHp" color="bg-red-500" level-position="top" />
+          <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" level-position="top" />
         </div>
       </div>
     </div>

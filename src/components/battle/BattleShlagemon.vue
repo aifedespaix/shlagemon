@@ -8,14 +8,23 @@ interface Props {
   hp: number
   color?: string
   flipped?: boolean
+  fainted?: boolean
   levelPosition?: 'top' | 'bottom'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   color: undefined,
   flipped: false,
+  fainted: false,
   levelPosition: 'bottom',
 })
+
+const emit = defineEmits<{ (e: 'faintEnd'): void }>()
+
+function onAnimationEnd() {
+  if (props.fainted)
+    emit('faintEnd')
+}
 </script>
 
 <template>
@@ -25,7 +34,8 @@ const props = withDefaults(defineProps<Props>(), {
       :alt="props.mon.base.name"
       :shiny="props.mon.isShiny"
       class="max-h-32 object-contain"
-      :class="props.flipped ? '-scale-x-100' : ''"
+      :class="[props.flipped ? '-scale-x-100' : '', { faint: props.fainted }]"
+      @animationend="onAnimationEnd"
     />
     <div class="absolute left-0 text-sm font-bold" :class="props.levelPosition === 'top' ? 'top-0' : 'bottom-0'">
       lvl {{ props.mon.lvl }}
@@ -40,3 +50,16 @@ const props = withDefaults(defineProps<Props>(), {
     </div>
   </div>
 </template>
+
+<style scoped>
+.faint {
+  animation: faint 0.5s forwards;
+}
+
+@keyframes faint {
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+</style>

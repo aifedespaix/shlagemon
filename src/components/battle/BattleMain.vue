@@ -44,6 +44,8 @@ const battleActive = ref(false)
 const showCapture = ref(false)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
+const playerFainted = ref(false)
+const enemyFainted = ref(false)
 const playerEffect = ref('')
 const enemyEffect = ref('')
 const playerVariant = ref<'normal' | 'high' | 'low'>('normal')
@@ -167,26 +169,32 @@ function checkEnd() {
     if (battleInterval)
       clearInterval(battleInterval)
     battleInterval = undefined
-    if (dex.activeShlagemon) {
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
-      playerHp.value = dex.activeShlagemon.hpCurrent
-    }
-    if (enemyHp.value <= 0 && playerHp.value > 0) {
-      const stronger = enemy.value && dex.activeShlagemon
-        ? enemy.value.lvl > dex.activeShlagemon.lvl
-        : false
-      progress.addWin(zone.current.id)
-      game.addShlagidolar(zone.rewardMultiplier)
-      notifyAchievement({ type: 'battle-win', stronger })
-      if (dex.activeShlagemon && enemy.value) {
-        dex.gainXp(
-          dex.activeShlagemon,
-          xpRewardForLevel(enemy.value.lvl),
-          zone.current.maxLevel,
-        )
+    playerFainted.value = playerHp.value <= 0
+    enemyFainted.value = enemyHp.value <= 0
+    setTimeout(() => {
+      if (dex.activeShlagemon) {
+        dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+        playerHp.value = dex.activeShlagemon.hpCurrent
       }
-    }
-    setTimeout(startBattle, 1000)
+      if (enemyHp.value <= 0 && playerHp.value > 0) {
+        const stronger = enemy.value && dex.activeShlagemon
+          ? enemy.value.lvl > dex.activeShlagemon.lvl
+          : false
+        progress.addWin(zone.current.id)
+        game.addShlagidolar(zone.rewardMultiplier)
+        notifyAchievement({ type: 'battle-win', stronger })
+        if (dex.activeShlagemon && enemy.value) {
+          dex.gainXp(
+            dex.activeShlagemon,
+            xpRewardForLevel(enemy.value.lvl),
+            zone.current.maxLevel,
+          )
+        }
+      }
+      playerFainted.value = false
+      enemyFainted.value = false
+      startBattle()
+    }, 500)
   }
 }
 
@@ -258,14 +266,14 @@ onUnmounted(() => {
       <div class="w-full flex flex-1 items-center justify-center gap-4">
         <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" flipped />
+          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" flipped />
         </div>
         <div class="vs font-bold">
           VS
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          <BattleShlagemon :mon="enemy" :hp="enemyHp" color="bg-red-500" />
+          <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
         </div>
       </div>
       <Button
