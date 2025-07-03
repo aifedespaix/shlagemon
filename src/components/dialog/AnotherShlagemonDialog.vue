@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
+import { profMerdant } from '~/data/characters/prof-merdant'
 import { pikachiant } from '~/data/shlagemons/pikachiant'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
@@ -33,8 +34,8 @@ const dialogTree = [
 
 <template>
   <DialogBox
-    speaker="Professeur Merdant"
-    avatar-url="/characters/professor/professor.png"
+    :speaker="profMerdant.name"
+    :avatar-url="`/characters/${profMerdant.id}/${profMerdant.id}.png`"
     :dialog-tree="dialogTree"
   />
 </template>

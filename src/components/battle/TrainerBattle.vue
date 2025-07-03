@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BattleToast from '~/components/battle/BattleToast.vue'
+import CharacterImage from '~/components/character/CharacterImage.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
@@ -209,7 +210,7 @@ onUnmounted(() => {
 <template>
   <div v-if="trainer" class="flex flex-col items-center gap-2">
     <div v-if="stage === 'before'" class="flex flex-col items-center gap-2 text-center">
-      <img :src="trainer.image" alt="trainer" class="h-24 object-contain">
+      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div>{{ trainer.dialogBefore }}</div>
       <Button @click="startFight">
         Démarrer le combat
@@ -218,12 +219,12 @@ onUnmounted(() => {
     <div v-else-if="stage === 'battle'" class="w-full text-center" @click="attack">
       <div class="mb-1 h-12 flex items-center justify-end gap-2 overflow-hidden font-bold">
         <div class="h-full flex flex-col">
-          <div>{{ trainer.name }}</div>
+          <div>{{ trainer.character.name }}</div>
           <div class="flex gap-2">
             <ImageByBackground v-for="i in trainer.shlagemons.length" :key="i" src="/items/shlageball/shlageball.png" class="h-4 w-4" :class="i <= enemyIndex ? 'saturate-0' : ''" />
           </div>
         </div>
-        <img :src="trainer.image" alt="" class="h-full">
+        <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-full" />
       </div>
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
@@ -265,7 +266,7 @@ onUnmounted(() => {
       </div>
     </div>
     <div v-else class="flex flex-col items-center gap-2 text-center">
-      <img :src="trainer.image" alt="trainer" class="h-24 object-contain">
+      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div v-if="result === 'win'">
         {{ trainer.dialogAfter }}
       </div>

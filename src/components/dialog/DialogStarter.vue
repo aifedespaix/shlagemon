@@ -2,6 +2,7 @@
 import type { BaseShlagemon } from '~/type'
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
+import { profMerdant } from '~/data/characters/prof-merdant'
 import bulgrosboule from '~/data/shlagemons/bulgrosboule'
 import carapouffe from '~/data/shlagemons/carapouffe'
 import salamiches from '~/data/shlagemons/salamiches'
@@ -25,7 +26,7 @@ function imageUrl(id: string) {
 const dialogTree = [
   {
     id: 'start',
-    text: 'Salut, je suis le Professeur Merdant, mes amis disent que je sent bon.',
+    text: `Salut, je suis ${profMerdant.name}, mes amis disent que je sent bon.`,
     responses: [
       { label: 'Tu n\'as pas l\'air très intelligent.', nextId: '2', type: 'primary' },
     ],
@@ -58,7 +59,7 @@ const dialogTree = [
     responses: [
       { label: 'T\'as pas mieux que cette merde ?', nextId: 'choice', type: 'danger' },
       {
-        label: s.id === 'bulgrosboule' ? 'Je l\'aime pas trop mais ok' : 'Merci professeur Merdant',
+        label: s.id === 'bulgrosboule' ? 'Je l\'aime pas trop mais ok' : `Merci ${profMerdant.name}`,
         type: 'valid',
         action: () => {
           dex.createShlagemon(s)
@@ -72,5 +73,9 @@ const dialogTree = [
 </script>
 
 <template>
-  <DialogBox speaker="Professeur Merdant" avatar-url="/characters/professor/professor.png" :dialog-tree="dialogTree" />
+  <DialogBox
+    :speaker="profMerdant.name"
+    :avatar-url="`/characters/${profMerdant.id}/${profMerdant.id}.png`"
+    :dialog-tree="dialogTree"
+  />
 </template>

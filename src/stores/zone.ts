@@ -2,6 +2,9 @@ import type { Trainer } from '~/type/trainer'
 import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import { caillou } from '~/data/characters/caillou'
+import { profMerdant } from '~/data/characters/prof-merdant'
+import { sachatte } from '~/data/characters/sachatte'
 import { allShlagemons } from '~/data/shlagemons'
 import { zonesData } from '~/data/zones'
 
@@ -18,10 +21,16 @@ export const useZoneStore = defineStore('zone', () => {
       if (!z)
         throw new Error('Zone not found')
       const level = z.maxLevel + 1
+
+      let character = profMerdant
+      if (id === 'plaine-kekette')
+        character = caillou
+      else if (id === 'bois-de-bouffon')
+        character = sachatte
+
       const trainer: Trainer = {
         id: `king-${z.id}`,
-        name: `Roi de ${z.name}`,
-        image: '/characters/professor/professor.png',
+        character,
         dialogBefore: 'Prépare-toi à perdre !',
         dialogAfter: 'Tu as gagné... pour cette fois.',
         reward: 5,
