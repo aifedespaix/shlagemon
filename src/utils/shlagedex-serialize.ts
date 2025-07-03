@@ -1,5 +1,6 @@
 import { allShlagemons } from '~/data/shlagemons'
 import { baseStats, statWithRarityAndCoefficient } from './dexFactory'
+import { deduplicateDex } from './saveFix'
 
 function getBaseMap() {
   return Object.fromEntries(
@@ -51,11 +52,15 @@ export const shlagedexSerializer = {
       })
       .filter(Boolean)
 
+    shlagemons = deduplicateDex(shlagemons)
+
     let active = parsed.activeShlagemon
     if (active) {
       const base = active.base ?? baseMap[active.baseId]
       if (base) {
-        const found = shlagemons.find((m: any) => m.id === active.id)
+        const found
+          = shlagemons.find((m: any) => m.id === active.id)
+            || shlagemons.find((m: any) => m.base.id === base.id)
         active = found || {
           ...active,
           base,
