@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../shlagemons-type'
-import dracocon from './draco-con'
+import dracoCon from './draco-con'
 
 export const raptorincel: BaseShlagemon = {
   id: 'raptorincel',
@@ -14,7 +14,7 @@ Il possède une attaque spéciale : *Flamme Frustrée*, qui explose si l’adver
 On le trouve souvent dans des grottes sombres, en train de taper sur des claviers invisibles tout en s’entraînant à l’art du regard méprisant. Son rêve ? Devenir le Shlagémon alpha… et surtout que quelqu’un daigne lui répondre un jour.`,
   types: [shlagemonTypes.feu],
   coefficient: 25,
-  evolution: { base: dracocon, condition: { type: 'lvl', value: 36 } },
+  evolution: { base: dracoCon, condition: { type: 'lvl', value: 36 } },
 }
 
 export default raptorincel

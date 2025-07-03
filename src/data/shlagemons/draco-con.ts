@@ -1,8 +1,8 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../shlagemons-type'
 
-export const dracocon: BaseShlagemon = {
-  id: 'dracocon',
+export const dracoCon: BaseShlagemon = {
+  id: 'draco-con',
   name: 'Draco-con',
   description: `Draco-con est la dernière forme de l’ancienne lignée des Salamiches. En apparence, c’est un dragon colossal, avec des ailes de moto-tuning, des flammes arc-en-bouse et des muscles qui crient "anabolisés". Mais derrière cette façade volcanique se cache une stupidité abyssale.
 
@@ -13,8 +13,8 @@ Draco-con adore faire des lives en pleine arène pour dire "yo la team" à ses 3
 Il possède la capacité *Combo Kéké*, qui mélange toutes ses attaques en un seul mouvement incohérent, mais bruyant. Résultat : les ennemis sont plus confus que blessés, et parfois, ils tombent simplement d’ennui.
 
 On dit que même le Professeur Merdant a arrêté d’essayer de l’étudier : "trop con pour la science", selon ses notes.`,
-  types: [shlagemonTypes.feu],
+  types: [shlagemonTypes.feu, shlagemonTypes.vol],
   coefficient: 50,
 }
 
-export default dracocon
+export default dracoCon
