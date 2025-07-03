@@ -54,6 +54,7 @@ export function createDexShlagemon(base: BaseShlagemon, shiny = false): DexShlag
     sex: Math.random() < 0.5 ? 'male' : 'female',
     isShiny: shiny || Math.random() < 0.0001,
     hpCurrent: 0,
+    allowEvolution: true,
   }
   applyStats(mon)
   return mon

@@ -27,4 +27,8 @@ export interface DexShlagemon extends Stats {
   sex: Sex
   isShiny: boolean
   hpCurrent: number
+  /**
+   * When true, this Shlagémon will evolve automatically without asking.
+   */
+  allowEvolution: boolean
 }
