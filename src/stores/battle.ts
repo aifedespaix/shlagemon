@@ -29,6 +29,10 @@ export const useBattleStore = defineStore('battle', () => {
     return { ...result, damage: finalDamage }
   }
 
+  function clickAttack(attacker: DexShlagemon, defender: DexShlagemon) {
+    return attack(attacker, defender, false, false, true)
+  }
+
   function duel(player: DexShlagemon, enemy: DexShlagemon) {
     const playerResult = attack(player, enemy, true, false)
     let enemyResult: AttackResult | null = null
@@ -37,5 +41,5 @@ export const useBattleStore = defineStore('battle', () => {
     return { player: playerResult, enemy: enemyResult }
   }
 
-  return { attack, duel }
+  return { attack, clickAttack, duel }
 })
