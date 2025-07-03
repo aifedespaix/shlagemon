@@ -1,13 +1,13 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../shlagemons-type'
-import { alaouakbar } from './alaouakbar'
+import { alakalbar } from './alakalbar'
 
 export const abraquemar: BaseShlagemon = {
   id: 'abraquemar',
   name: 'Abraquemar',
   color: '#d4b05c',
   evolution: {
-    base: alaouakbar,
+    base: alakalbar,
     condition: {
       type: 'lvl',
       value: 3,

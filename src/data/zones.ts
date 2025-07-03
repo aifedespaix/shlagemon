@@ -1,7 +1,7 @@
 import type { BaseShlagemon } from '~/type'
 import type { FightZoneId, Zone, ZoneType } from '~/type/zone'
 import { abraquemar } from './shlagemons/abraquemar'
-import { alaouakbar } from './shlagemons/alaouakbar'
+import { alakalbar } from './shlagemons/alakalbar'
 import { bulgrosboule } from './shlagemons/bulgrosboule'
 import { canarchichon } from './shlagemons/canarchichon'
 import { carapouffe } from './shlagemons/carapouffe'
@@ -45,7 +45,7 @@ const zoneDescriptions: ZoneDescription[] = [
   ] },
   { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'sauvage', shlagemons: [
     nosferachid,
-    alaouakbar,
+    alakalbar,
     abraquemar,
     emboli,
   ] },
@@ -68,7 +68,7 @@ const zoneDescriptions: ZoneDescription[] = [
   ] },
   { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'sauvage', actions: [{ id: 'explore', label: 'Explorer la Forteresse' }], shlagemons: [
     bulgrosboule,
-    alaouakbar,
+    alakalbar,
     canarchichon,
   ] },
   { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage', shlagemons: [
