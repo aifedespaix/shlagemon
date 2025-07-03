@@ -2,14 +2,17 @@
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
+import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
+import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
+import { ballHues } from '~/utils/ball'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
@@ -18,6 +21,7 @@ const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const battle = useBattleStore()
 const inventory = useInventoryStore()
+const ballStore = useBallStore()
 
 const wins = computed(() => progress.getWins(zone.current.id))
 const hasAllZoneMons = computed(() => {
@@ -42,6 +46,7 @@ const enemyHp = ref(0)
 const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const battleActive = ref(false)
 const showCapture = ref(false)
+const captureBall = ref(balls[0])
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerFainted = ref(false)
@@ -89,9 +94,11 @@ function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'norma
 }
 
 function openCapture() {
-  if (!enemy.value || (inventory.items.shlageball || 0) <= 0)
+  const id = ballStore.current
+  if (!enemy.value || (inventory.items[id] || 0) <= 0)
     return
-  inventory.remove('shlageball')
+  inventory.remove(id)
+  captureBall.value = balls.find(b => b.id === id) || balls[0]
   battleActive.value = false
   if (battleInterval)
     clearInterval(battleInterval)
@@ -278,14 +285,24 @@ onUnmounted(() => {
       </div>
       <Button
         class="absolute right-0 top-0 flex items-center gap-2 text-xs"
-        :class="{ 'opacity-50 cursor-not-allowed': (inventory.items.shlageball || 0) <= 0 }"
-        :disabled="(inventory.items.shlageball || 0) <= 0"
+        :class="{ 'opacity-50 cursor-not-allowed': (inventory.items[ballStore.current] || 0) <= 0 }"
+        :disabled="(inventory.items[ballStore.current] || 0) <= 0"
         @click="openCapture"
       >
         Capturer
-        <ImageByBackground src="/items/shlageball/shlageball.png" alt="capture" class="h-8 w-8" />
+        <ImageByBackground
+          src="/items/shlageball/shlageball.png"
+          alt="capture"
+          class="h-8 w-8"
+          :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
+        />
       </Button>
-      <CaptureOverlay v-if="showCapture && enemy" :target="enemy" @finish="onCaptureEnd" />
+      <CaptureOverlay
+        v-if="showCapture && enemy"
+        :target="enemy"
+        :ball="captureBall"
+        @finish="onCaptureEnd"
+      />
     </div>
   </div>
 </template>

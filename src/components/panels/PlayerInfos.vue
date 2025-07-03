@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BallSelectionModal from '~/components/ball/BallSelectionModal.vue'
 import BonusIcon from '~/components/icons/bonus.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import ShlagediamondIcon from '~/components/icons/shlagediamond.vue'
@@ -8,11 +9,14 @@ import Modal from '~/components/modal/Modal.vue'
 import BonusDetails from '~/components/panels/BonusDetails.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { useBallStore } from '~/stores/ball'
 import { useInventoryStore } from '~/stores/inventory'
+import { ballHues } from '~/utils/ball'
 
 const game = useGameStore()
 const dex = useShlagedexStore()
 const inventory = useInventoryStore()
+const ballStore = useBallStore()
 
 const showBonus = ref(false)
 
@@ -61,10 +65,19 @@ const totalInDex = allShlagemons.length
       <BonusDetails />
     </Modal>
     <Tooltip text="SchlagéBalls">
-      <div class="min-w-0 flex items-center gap-1">
-        <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
-        <span class="shrink-0 font-bold">{{ inventory.items.shlageball?.toLocaleString() || 0 }}</span>
+      <div
+        class="min-w-0 flex cursor-pointer items-center gap-1"
+        @click="ballStore.open()"
+      >
+        <img
+          src="/items/shlageball/shlageball.png"
+          alt="ball"
+          class="h-4 w-4"
+          :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
+        >
+        <span class="shrink-0 font-bold">{{ inventory.items[ballStore.current]?.toLocaleString() || 0 }}</span>
       </div>
     </Tooltip>
+    <BallSelectionModal />
   </div>
 </template>
