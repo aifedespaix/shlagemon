@@ -3,6 +3,7 @@ import type { Item } from '~/type/item'
 import { computed, ref } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import Button from '~/components/ui/Button.vue'
+import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number }>()
 const emit = defineEmits<{
@@ -12,6 +13,9 @@ const emit = defineEmits<{
 
 const showInfo = ref(false)
 const details = computed(() => props.item.details || props.item.description)
+const ballFilter = computed(() =>
+  'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
+)
 </script>
 
 <template>
@@ -22,6 +26,7 @@ const details = computed(() => props.item.details || props.item.description)
         :src="props.item.image"
         :alt="props.item.name"
         class="h-8 w-8 object-contain"
+        :style="ballFilter"
       >
       <span class="font-bold">{{ props.item.name }}</span>
     </div>
@@ -54,6 +59,7 @@ const details = computed(() => props.item.details || props.item.description)
           :src="props.item.image"
           :alt="props.item.name"
           class="h-16 w-16 object-contain"
+          :style="ballFilter"
         >
         <h3 class="text-lg font-bold">
           {{ props.item.name }}

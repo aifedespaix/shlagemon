@@ -40,6 +40,7 @@ export const shlagedexSerializer = {
             defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, mon.rarity ?? 1),
             smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, mon.rarity ?? 1),
           },
+          allowEvolution: mon.allowEvolution ?? true,
         }
       })
       .filter(Boolean)
@@ -59,6 +60,7 @@ export const shlagedexSerializer = {
             defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, active.rarity ?? 1),
             smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, active.rarity ?? 1),
           },
+          allowEvolution: active.allowEvolution ?? true,
         }
       }
       else {

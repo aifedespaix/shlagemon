@@ -7,13 +7,27 @@ import { useShlagedexStore } from '../src/stores/shlagedex'
 import { xpForLevel } from '../src/utils/dexFactory'
 
 describe('evolution', () => {
-  it('evolves when reaching level condition', async () => {
+  it('auto evolves without prompt when allowed', async () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const evo = useEvolutionStore()
-    vi.spyOn(evo, 'requestEvolution').mockResolvedValue(true)
+    const spy = vi.spyOn(evo, 'requestEvolution').mockResolvedValue(true)
     const mon = dex.createShlagemon(abraquemar)
     await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
+    expect(mon.base.id).toBe(alakalbar.id)
+    expect(mon.lvl).toBe(3)
+    expect(spy).not.toHaveBeenCalled()
+  })
+
+  it('asks for evolution when not allowed automatically', async () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const evo = useEvolutionStore()
+    const spy = vi.spyOn(evo, 'requestEvolution').mockResolvedValue(true)
+    const mon = dex.createShlagemon(abraquemar)
+    mon.allowEvolution = false
+    await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
+    expect(spy).toHaveBeenCalled()
     expect(mon.base.id).toBe(alakalbar.id)
     expect(mon.lvl).toBe(3)
   })
