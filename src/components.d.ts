@@ -15,6 +15,7 @@ declare module 'vue' {
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     BattleToast: typeof import('./components/battle/BattleToast.vue')['default']
     Bonus: typeof import('./components/icons/bonus.vue')['default']
+    BonusDetails: typeof import('./components/panels/BonusDetails.vue')['default']
     Button: typeof import('./components/ui/Button.vue')['default']
     CaptureMenu: typeof import('./components/battle/CaptureMenu.vue')['default']
     CaptureOverlay: typeof import('./components/battle/CaptureOverlay.vue')['default']
