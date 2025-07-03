@@ -64,13 +64,13 @@ describe('shlagedex capture', () => {
 })
 
 describe('shlagedex highest level', () => {
-  it('updates when a mon levels up', () => {
+  it('updates when a mon levels up', async () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const mon = dex.createShlagemon(carapouffe)
     expect(dex.highestLevel).toBe(1)
     for (let i = 0; i < 9; i++)
-      dex.gainXp(mon, xpForLevel(mon.lvl))
+      await dex.gainXp(mon, xpForLevel(mon.lvl))
     expect(mon.lvl).toBe(10)
     expect(dex.highestLevel).toBe(10)
   })

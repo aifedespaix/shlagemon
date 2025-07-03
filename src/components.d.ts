@@ -25,6 +25,7 @@ declare module 'vue' {
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     DialogPanel: typeof import('./components/panels/DialogPanel.vue')['default']
     DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']
+    EvolutionModal: typeof import('./components/shlagemon/EvolutionModal.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     ImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
