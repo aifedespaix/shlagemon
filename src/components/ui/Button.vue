@@ -9,17 +9,19 @@ const props = withDefaults(defineProps<{ type?: ButtonType }>(), {
 const variantClass = computed(() => {
   switch (props.type) {
     case 'valid':
-      return 'bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-800'
+      return 'rounded px-2 py-1 text-white bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-800'
     case 'danger':
-      return 'bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-800'
+      return 'rounded px-2 py-1 text-white bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-800'
+    case 'icon':
+      return 'rounded-full p-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
     default:
-      return 'bg-cyan-600 dark:bg-cyan-700 hover:bg-cyan-700 dark:hover:bg-cyan-800/80'
+      return 'rounded px-2 py-1 text-white bg-cyan-600 dark:bg-cyan-700 hover:bg-cyan-700 dark:hover:bg-cyan-800/80'
   }
 })
 </script>
 
 <template>
-  <button class="rounded px-2 py-1 text-white" :class="variantClass">
+  <button class="inline-flex items-center justify-center" :class="variantClass">
     <slot />
   </button>
 </template>

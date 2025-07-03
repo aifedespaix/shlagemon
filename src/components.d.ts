@@ -35,6 +35,7 @@ declare module 'vue' {
     Modal: typeof import('./components/modal/Modal.vue')['default']
     PanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
+    Profile: typeof import('./components/profile/Profile.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
