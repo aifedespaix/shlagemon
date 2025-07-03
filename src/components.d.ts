@@ -39,6 +39,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Schlagedex: typeof import('./components/icons/schlagedex.vue')['default']
     SelectedShlagemon: typeof import('./components/panels/SelectedShlagemon.vue')['default']
+    SelectOption: typeof import('./components/ui/SelectOption.vue')['default']
     Shlagedex: typeof import('./components/shlagemon/Shlagedex.vue')['default']
     Shlagediamond: typeof import('./components/icons/shlagediamond.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/ShlagemonDetail.vue')['default']
