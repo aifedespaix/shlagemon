@@ -62,7 +62,7 @@ export function createDexShlagemon(
     defense: 0,
     smelling: 0,
     sex: Math.random() < 0.5 ? 'male' : 'female',
-    isShiny: shiny || Math.random() < 0.0001,
+    isShiny: shiny || Math.random() < 0.01,
     hpCurrent: 0,
     allowEvolution: true,
   }
