@@ -74,32 +74,32 @@ export const useInventoryStore = defineStore('inventory', () => {
       return true
     }
     if (id === 'defense-potion') {
-      dex.boostDefense(5)
+      dex.boostDefense(10, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
       remove(id)
       return true
     }
     if (id === 'super-defense-potion') {
-      dex.boostDefense(10)
+      dex.boostDefense(25, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
       remove(id)
       return true
     }
     if (id === 'hyper-defense-potion') {
-      dex.boostDefense(20)
+      dex.boostDefense(50, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
       remove(id)
       return true
     }
     if (id === 'attack-potion') {
-      dex.boostAttack(5)
+      dex.boostAttack(10, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
       remove(id)
       return true
     }
     if (id === 'super-attack-potion') {
-      dex.boostAttack(10)
+      dex.boostAttack(25, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
       remove(id)
       return true
     }
     if (id === 'hyper-attack-potion') {
-      dex.boostAttack(20)
+      dex.boostAttack(50, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
       remove(id)
       return true
     }

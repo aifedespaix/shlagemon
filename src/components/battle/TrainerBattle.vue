@@ -263,7 +263,7 @@ onUnmounted(() => {
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" level-position="top" />
+          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" level-position="top" :effects="dex.effects" />
         </div>
         <div class="vs font-bold">
           VS
