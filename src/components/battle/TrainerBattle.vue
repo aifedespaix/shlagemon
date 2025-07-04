@@ -103,6 +103,7 @@ watch(
 function startFight() {
   if (!trainer.value || !dex.activeShlagemon)
     return
+  enemyIndex.value = 0
   if (dex.activeShlagemon.hpCurrent <= 0)
     dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   result.value = 'none'
@@ -117,6 +118,8 @@ function startBattle() {
     return
   stage.value = 'battle'
   const spec = t.shlagemons[enemyIndex.value]
+  if (!spec)
+    return
   const base = allShlagemons.find(b => b.id === spec.baseId)
   if (!base)
     return
