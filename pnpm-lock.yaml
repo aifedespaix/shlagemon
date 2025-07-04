@@ -134,6 +134,9 @@ catalogs:
     '@vueuse/core':
       specifier: ^13.0.0
       version: 13.0.0
+    howler:
+      specifier: ^2.2.4
+      version: 2.2.4
     nprogress:
       specifier: ^0.2.0
       version: 0.2.0
@@ -184,6 +187,9 @@ importers:
       '@vueuse/core':
         specifier: catalog:frontend
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
+      howler:
+        specifier: catalog:frontend
+        version: 2.2.4
       nprogress:
         specifier: catalog:frontend
         version: 0.2.0
@@ -3815,6 +3821,9 @@ packages:
   hosted-git-info@7.0.2:
     resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==}
     engines: {node: ^16.14.0 || >=18.0.0}
+
+  howler@2.2.4:
+    resolution: {integrity: sha512-iARIBPgcQrwtEr+tALF+rapJ8qSc+Set2GJQl7xT1MQzWaVkFebdJhR3alVlSiUf5U7nAANKuj3aWpwerocD5w==}
 
   hpack.js@2.1.6:
     resolution: {integrity: sha512-zJxVehUdMGIKsRaNt7apO2Gqp0BdqW5yaiGHXXmbpvxgBYVZnAql+BJb4RO5ad2MgpbZKn5G6nMnegrH1FcNYQ==}
@@ -10296,6 +10305,8 @@ snapshots:
   hosted-git-info@7.0.2:
     dependencies:
       lru-cache: 10.4.3
+
+  howler@2.2.4: {}
 
   hpack.js@2.1.6:
     dependencies:

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
@@ -7,6 +8,7 @@ import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import { useAchievementsStore } from '~/stores/achievements'
+import { useAudioStore } from '~/stores/audio'
 import { useDialogStore } from '~/stores/dialog'
 import { useGameStateStore } from '~/stores/gameState'
 import { useInventoryStore } from '~/stores/inventory'
@@ -21,6 +23,7 @@ const shlagedex = useShlagedexStore()
 const dialogStore = useDialogStore()
 const achievements = useAchievementsStore()
 const mainPanel = useMainPanelStore()
+const audio = useAudioStore()
 
 const showXpBar = computed(() =>
   ['battle', 'trainerBattle'].includes(mainPanel.current),
@@ -34,6 +37,19 @@ const showMainPanel = computed(() =>
 const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 const isAchievementVisible = computed(() => achievements.hasAny)
+
+watch(
+  () => [mainPanel.current, zone.current.type],
+  ([panel, type]) => {
+    if (['battle', 'trainerBattle'].includes(panel))
+      audio.fadeToMusic('/audio/battle.ogg')
+    else if (type === 'village')
+      audio.fadeToMusic('/audio/ambient.ogg')
+    else
+      audio.fadeToMusic('/audio/ambient.ogg')
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
