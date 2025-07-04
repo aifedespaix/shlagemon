@@ -129,10 +129,10 @@ function checkEnd() {
       dex.activeShlagemon.hpCurrent = playerHp.value
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
-    setTimeout(() => {
+    setTimeout(async () => {
       if (enemyHp.value <= 0 && playerHp.value > 0) {
         if (dex.activeShlagemon && enemy.value) {
-          dex.gainXp(
+          await dex.gainXp(
             dex.activeShlagemon,
             xpRewardForLevel(enemy.value.lvl),
             undefined,
