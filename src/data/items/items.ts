@@ -102,14 +102,14 @@ export const hyperPotion: Item = {
 }
 
 export const thunderStone: Item = {
-  id: 'pierre-foudre',
-  name: 'Pierre Foudre',
+  id: 'pierre-foutre',
+  name: 'Pierre Foutre',
   description: 'Permet certaines évolutions de type électrique.',
   details: 'Fait évoluer Pikachiant en Raïchiotte.',
   price: 10,
   currency: 'shlagidiamond',
   type: 'evolution',
-  image: '/items/pierre-foudre/pierre-foudre.svg',
+  image: '/items/pierre-foutre/pierre-foutre.svg',
 }
 
 export const allItems: Item[] = [
