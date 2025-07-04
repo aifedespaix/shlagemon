@@ -24,6 +24,7 @@ declare module 'vue' {
     CaptureOverlay: typeof import('./components/battle/CaptureOverlay.vue')['default']
     CharacterImage: typeof import('./components/character/CharacterImage.vue')['default']
     CheckBox: typeof import('./components/ui/CheckBox.vue')['default']
+    CurrencyAmount: typeof import('./components/ui/CurrencyAmount.vue')['default']
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     DialogPanel: typeof import('./components/panels/DialogPanel.vue')['default']
     DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']

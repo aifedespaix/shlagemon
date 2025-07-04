@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import ShlagediamondIcon from '~/components/icons/shlagediamond.vue'
-import ShlagidolarIcon from '~/components/icons/shlagidolar.vue'
+import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
 
 const props = defineProps<{ item: Item }>()
 </script>
@@ -18,10 +17,7 @@ const props = defineProps<{ item: Item }>()
       <span class="font-bold">{{ props.item.name }}</span>
       <span class="text-xs">{{ props.item.description }}</span>
     </div>
-    <span class="flex items-center gap-1 font-bold">
-      <component :is="props.item.currency === 'shlagidiamond' ? ShlagediamondIcon : ShlagidolarIcon" class="h-4 w-4" />
-      {{ props.item.price }}
-    </span>
+    <CurrencyAmount :amount="props.item.price" :currency="props.item.currency" />
     <slot />
   </div>
 </template>
