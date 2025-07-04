@@ -39,6 +39,7 @@ declare module 'vue' {
     InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     MainPanel: typeof import('./components/panels/MainPanel.vue')['default']
+    MobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
     MultiExp: typeof import('./components/icons/multi-exp.vue')['default']
     MultiExpModal: typeof import('./components/inventory/MultiExpModal.vue')['default']
@@ -68,6 +69,7 @@ declare module 'vue' {
     VillagePanel: typeof import('./components/village/VillagePanel.vue')['default']
     Xp: typeof import('./components/icons/xp.vue')['default']
     ZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
+    ZoneMapModal: typeof import('./components/zones/ZoneMapModal.vue')['default']
     ZonePanel: typeof import('./components/panels/ZonePanel.vue')['default']
   }
 }
