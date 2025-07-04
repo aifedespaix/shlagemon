@@ -67,6 +67,8 @@ const displayedMons = computed(() => {
   return mons
 })
 
+const clickTimer = ref<number | null>(null)
+
 function open(mon: DexShlagemon | null) {
   if (mon) {
     detailMon.value = mon
@@ -74,7 +76,13 @@ function open(mon: DexShlagemon | null) {
   }
 }
 
+function onClick(mon: DexShlagemon) {
+  clearTimeout(clickTimer.value as any)
+  clickTimer.value = window.setTimeout(() => open(mon), 300)
+}
+
 function onDoubleClick(mon: DexShlagemon) {
+  clearTimeout(clickTimer.value as any)
   changeActive(mon)
 }
 
@@ -115,7 +123,7 @@ function isActive(mon: DexShlagemon) {
         class="relative flex cursor-pointer items-center justify-between border rounded p-2"
         hover="bg-gray-100 dark:bg-gray-800"
         :class="isActive(mon) ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400' : ''"
-        @click.stop="open(mon)"
+        @click.stop="onClick(mon)"
         @dblclick.stop="onDoubleClick(mon)"
       >
         <div class="absolute bottom-0 right-2 text-xs">
