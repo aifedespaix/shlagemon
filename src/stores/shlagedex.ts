@@ -5,6 +5,7 @@ import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
 import { allShlagemons } from '~/data/shlagemons'
+import { shops } from '~/data/shops'
 import { zonesData } from '~/data/zones'
 import {
   applyStats,
@@ -42,26 +43,62 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
+  const highestAccessibleLevel = computed(() =>
+    accessibleZones.value.reduce((m, z) => Math.max(m, z.maxLevel), 0),
+  )
+  const accessibleShopLevel = computed(() =>
+    shops
+      .filter(s => accessibleZones.value.some(z => z.id === s.id))
+      .reduce((m, s) => Math.max(m, s.level), 0),
+  )
 
-  function collectEvolutionIds(base: BaseShlagemon, ids: Set<string>, visited: Set<string>) {
+  function collectEvolutionIds(
+    base: BaseShlagemon,
+    ids: Set<string>,
+    visited: Set<string>,
+    levelLimit: number,
+  ) {
     if (visited.has(base.id))
       return
     visited.add(base.id)
     ids.add(base.id)
-    if (base.evolution)
-      collectEvolutionIds(base.evolution.base, ids, visited)
+    const evo = base.evolution
+    if (!evo)
+      return
+    if (evo.condition.type === 'lvl' && evo.condition.value > levelLimit)
+      return
+    collectEvolutionIds(evo.base, ids, visited, levelLimit)
   }
 
   const completableIds = computed(() => {
     const ids = new Set<string>()
     const visited = new Set<string>()
+    const levelLimit = highestAccessibleLevel.value
+
+    const starters = ['carapouffe', 'salamiches', 'bulgrosboule']
+    starters.forEach((id) => {
+      const base = baseMap[id]
+      if (base)
+        collectEvolutionIds(base, ids, visited, levelLimit)
+    })
+
     if (gameState.starterId) {
       const base = baseMap[gameState.starterId]
       if (base)
-        collectEvolutionIds(base, ids, visited)
+        collectEvolutionIds(base, ids, visited, levelLimit)
     }
-    for (const z of accessibleZones.value)
-      z.shlagemons?.forEach(m => collectEvolutionIds(m, ids, visited))
+
+    for (const z of accessibleZones.value) {
+      z.shlagemons?.forEach((m) => {
+        if (m.id === 'pikachiant' && accessibleShopLevel.value < 50)
+          return
+        collectEvolutionIds(m, ids, visited, levelLimit)
+      })
+    }
+
+    if (accessibleShopLevel.value >= 50 && baseMap.pikachiant)
+      collectEvolutionIds(baseMap.pikachiant, ids, visited, levelLimit)
+
     return ids
   })
 
