@@ -1,6 +1,7 @@
 import type { Item } from '~/type/item'
 import { hyperShlageball, shlageball, superShlageball } from './shlageball'
 
+// @unocss-include
 export const potion: Item = {
   id: 'potion',
   name: 'Potion Dégueulasse',
