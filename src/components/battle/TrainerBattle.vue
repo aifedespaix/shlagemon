@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
@@ -41,6 +42,10 @@ const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerFainted = ref(false)
 const enemyFainted = ref(false)
+const showAttackCursor = ref(false)
+const cursorX = ref(0)
+const cursorY = ref(0)
+const cursorClicked = ref(false)
 const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
 const { start: startInterval, clear: stopInterval } = useSingleInterval(() => tick(), 1000)
 watch(trainer, (t) => {
@@ -102,6 +107,25 @@ function attack() {
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   checkEnd()
+}
+
+function onMouseMove(e: MouseEvent) {
+  cursorX.value = e.clientX
+  cursorY.value = e.clientY
+}
+
+function onMouseEnter() {
+  showAttackCursor.value = true
+}
+
+function onMouseLeave() {
+  showAttackCursor.value = false
+}
+
+function onClickArea(_e: MouseEvent) {
+  cursorClicked.value = true
+  setTimeout(() => (cursorClicked.value = false), 150)
+  attack()
 }
 
 function tick() {
@@ -219,7 +243,14 @@ onUnmounted(() => {
         </Button>
       </div>
     </div>
-    <div v-else-if="stage === 'battle'" class="w-full text-center" @click="attack">
+    <div
+      v-else-if="stage === 'battle'"
+      class="w-full text-center"
+      @click="onClickArea"
+      @mousemove="onMouseMove"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
       <div class="mb-1 h-12 flex items-center justify-end gap-2 overflow-hidden font-bold">
         <div class="h-full flex flex-col">
           <div>{{ trainer.character.name }}</div>
@@ -241,6 +272,7 @@ onUnmounted(() => {
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" level-position="top" />
         </div>
+        <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
       </div>
     </div>
     <div v-else class="flex flex-col items-center gap-2 text-center">

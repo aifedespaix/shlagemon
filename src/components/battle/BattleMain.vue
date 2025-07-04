@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
@@ -64,6 +65,10 @@ const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerFainted = ref(false)
 const enemyFainted = ref(false)
+const showAttackCursor = ref(false)
+const cursorX = ref(0)
+const cursorY = ref(0)
+const cursorClicked = ref(false)
 const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
 const { start: startInterval, clear: stopInterval } = useSingleInterval(() => tick(), 1000)
 
@@ -126,6 +131,25 @@ function attack() {
   flashEnemy.value = true
   setTimeout(() => (flashEnemy.value = false), 100)
   checkEnd()
+}
+
+function onMouseMove(e: MouseEvent) {
+  cursorX.value = e.clientX
+  cursorY.value = e.clientY
+}
+
+function onMouseEnter() {
+  showAttackCursor.value = true
+}
+
+function onMouseLeave() {
+  showAttackCursor.value = false
+}
+
+function onClick(_e: MouseEvent) {
+  cursorClicked.value = true
+  setTimeout(() => (cursorClicked.value = false), 150)
+  attack()
 }
 
 function tick() {
@@ -246,7 +270,15 @@ onUnmounted(() => {
         <div class="vs font-bold">
           VS
         </div>
-        <div v-if="enemy" class="mon relative flex flex-1 flex-col select-none items-center" :class="{ flash: flashEnemy }" @click="attack">
+        <div
+          v-if="enemy"
+          class="mon relative flex flex-1 flex-col select-none items-center"
+          :class="{ flash: flashEnemy }"
+          @click="onClick"
+          @mousemove="onMouseMove"
+          @mouseenter="onMouseEnter"
+          @mouseleave="onMouseLeave"
+        >
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           <BattleShlagemon
             :mon="enemy"
@@ -257,6 +289,7 @@ onUnmounted(() => {
             :owned="enemyCaptured"
           />
         </div>
+        <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
       </div>
       <Button
         class="absolute right-50% top-8 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
