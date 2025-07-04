@@ -1,3 +1,5 @@
+export type ItemCurrency = 'shlagidolar' | 'shlagidiamond'
+
 export interface Item {
   id: string
   name: string
@@ -8,6 +10,10 @@ export interface Item {
    */
   details?: string
   price: number
+  /** Currency used to buy this item. Defaults to shlagidolar. */
+  currency?: ItemCurrency
+  /** Category of the item (consumable, ball, evolution...). */
+  type?: string
   image?: string
 }
 
