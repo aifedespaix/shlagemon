@@ -6,4 +6,5 @@ export interface ActiveEffect {
   iconClass?: string
   expiresAt: number
   amount: number
+  timeoutId?: number
 }

@@ -22,6 +22,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
   const progress = useZoneProgressStore()
+  cleanupEffects()
+  watchEffect(cleanupEffects)
 
   const xpZones = computed(() => zonesData.filter(z => z.maxLevel > 0))
 
@@ -110,33 +112,65 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     )
   }
 
+  function removeEffect(id: number) {
+    const idx = effects.value.findIndex(e => e.id === id)
+    if (idx === -1)
+      return
+    const effect = effects.value[idx]
+    if (typeof effect.timeoutId === 'number')
+      clearTimeout(effect.timeoutId)
+    effects.value.splice(idx, 1)
+    if (!activeShlagemon.value)
+      return
+    if (effect.type === 'attack')
+      activeShlagemon.value.attack -= effect.amount
+    else if (effect.type === 'defense')
+      activeShlagemon.value.defense -= effect.amount
+  }
+
+  function cleanupEffects() {
+    const now = Date.now()
+    effects.value.slice().forEach((e) => {
+      if (e.expiresAt <= now)
+        removeEffect(e.id)
+    })
+  }
+
   function boostDefense(
     percent: number,
     icon?: string,
     iconClass?: string,
     duration = 600000,
   ) {
+    cleanupEffects()
     if (!activeShlagemon.value)
       return
+    const now = Date.now()
+    const existing = effects.value.find(e => e.type === 'defense')
+    if (existing) {
+      if (existing.percent === percent) {
+        existing.expiresAt += duration
+        if (typeof existing.timeoutId === 'number')
+          clearTimeout(existing.timeoutId)
+        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        return
+      }
+      removeEffect(existing.id)
+    }
     const amount = Math.floor(activeShlagemon.value.defense * percent / 100)
     activeShlagemon.value.defense += amount
+    const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
-      id: Date.now() + Math.random(),
+      id,
       type: 'defense',
       percent,
       icon,
       iconClass,
-      expiresAt: Date.now() + duration,
+      expiresAt: now + duration,
       amount,
+      timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
-    setTimeout(() => {
-      const idx = effects.value.findIndex(e => e.id === effect.id)
-      if (idx >= 0)
-        effects.value.splice(idx, 1)
-      if (activeShlagemon.value)
-        activeShlagemon.value.defense -= amount
-    }, duration)
   }
 
   function boostAttack(
@@ -145,27 +179,35 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     iconClass?: string,
     duration = 600000,
   ) {
+    cleanupEffects()
     if (!activeShlagemon.value)
       return
+    const now = Date.now()
+    const existing = effects.value.find(e => e.type === 'attack')
+    if (existing) {
+      if (existing.percent === percent) {
+        existing.expiresAt += duration
+        if (typeof existing.timeoutId === 'number')
+          clearTimeout(existing.timeoutId)
+        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        return
+      }
+      removeEffect(existing.id)
+    }
     const amount = Math.floor(activeShlagemon.value.attack * percent / 100)
     activeShlagemon.value.attack += amount
+    const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
-      id: Date.now() + Math.random(),
+      id,
       type: 'attack',
       percent,
       icon,
       iconClass,
-      expiresAt: Date.now() + duration,
+      expiresAt: now + duration,
       amount,
+      timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
-    setTimeout(() => {
-      const idx = effects.value.findIndex(e => e.id === effect.id)
-      if (idx >= 0)
-        effects.value.splice(idx, 1)
-      if (activeShlagemon.value)
-        activeShlagemon.value.attack -= amount
-    }, duration)
   }
 
   const evolutionStore = useEvolutionStore()
