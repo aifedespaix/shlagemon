@@ -2,14 +2,17 @@
 import type { Item } from '~/type/item'
 import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
+import MultiExpModal from '~/components/inventory/MultiExpModal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import { useBallStore } from '~/stores/ball'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useInventoryStore } from '~/stores/inventory'
+import { useMultiExpStore } from '~/stores/multiExp'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
+const multiExpStore = useMultiExpStore()
 const search = ref('')
 const filteredList = computed(() => {
   const q = search.value.toLowerCase().trim()
@@ -27,6 +30,8 @@ function onUse(item: Item) {
     ballStore.setBall(item.id as any)
   else if (item.type === 'evolution')
     evoItemStore.open(item)
+  else if (item.id === 'multi-exp')
+    multiExpStore.open()
   else
     inventory.useItem(item.id)
 }
@@ -46,4 +51,5 @@ function onUse(item: Item) {
     />
   </section>
   <EvolutionItemModal />
+  <MultiExpModal />
 </template>

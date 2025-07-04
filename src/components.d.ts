@@ -40,6 +40,8 @@ declare module 'vue' {
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     MainPanel: typeof import('./components/panels/MainPanel.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
+    MultiExp: typeof import('./components/icons/multi-exp.vue')['default']
+    MultiExpModal: typeof import('./components/inventory/MultiExpModal.vue')['default']
     PanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
     Profile: typeof import('./components/profile/Profile.vue')['default']

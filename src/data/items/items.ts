@@ -101,6 +101,18 @@ export const hyperPotion: Item = {
   iconClass: 'text-yellow-500 dark:text-yellow-300',
 }
 
+export const multiExp: Item = {
+  id: 'multi-exp',
+  name: 'Multi-EXP',
+  description: 'Partage l\'XP avec un Shlagémon.',
+  details:
+    'Permet de partager 50% de l\'XP gagnée en combat avec le Shlagémon porteur.',
+  price: 20,
+  currency: 'shlagidiamond',
+  icon: 'carbon:chart-multitype',
+  iconClass: 'text-orange-500 dark:text-orange-300',
+}
+
 export const thunderStone: Item = {
   id: 'pierre-foutre',
   name: 'Pierre Foutre',
@@ -125,5 +137,6 @@ export const allItems: Item[] = [
   hyperAttackPotion,
   superPotion,
   hyperPotion,
+  multiExp,
   thunderStone,
 ]
