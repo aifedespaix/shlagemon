@@ -21,6 +21,14 @@ export interface DexShlagemon extends Stats {
   id: string
   base: BaseShlagemon
   baseStats: Stats
+  /**
+   * ISO string representing the first time this Schlagemon was obtained.
+   */
+  captureDate: string
+  /**
+   * Number of times this Schlagemon has been captured or created via evolution.
+   */
+  captureCount: number
   lvl: number
   xp: number
   rarity: number

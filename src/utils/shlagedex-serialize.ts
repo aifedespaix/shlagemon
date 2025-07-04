@@ -48,6 +48,8 @@ export const shlagedexSerializer = {
             smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, mon.rarity ?? 1),
           },
           allowEvolution: mon.allowEvolution ?? true,
+          captureDate: mon.captureDate ?? new Date().toISOString(),
+          captureCount: mon.captureCount ?? 1,
         }
       })
       .filter(Boolean)
@@ -72,6 +74,8 @@ export const shlagedexSerializer = {
             smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, active.rarity ?? 1),
           },
           allowEvolution: active.allowEvolution ?? true,
+          captureDate: active.captureDate ?? new Date().toISOString(),
+          captureCount: active.captureCount ?? 1,
         }
       }
       else {
