@@ -32,6 +32,13 @@ const allowEvolution = computed({
       (props.mon.allowEvolution = val)
   },
 })
+
+const captureInfo = computed(() => {
+  if (!props.mon)
+    return { date: '', count: 0 }
+  const date = new Date(props.mon.captureDate).toLocaleDateString()
+  return { date, count: props.mon.captureCount }
+})
 </script>
 
 <template>
@@ -71,6 +78,12 @@ const allowEvolution = computed({
       </div>
     </div>
     <ShlagemonXpBar :mon="mon" class="mt-4" />
+    <p class="mt-2 text-xs">
+      Première capture : {{ captureInfo.date }}
+    </p>
+    <p class="text-xs">
+      Obtenu {{ captureInfo.count }} fois
+    </p>
   </div>
 </template>
 

@@ -52,6 +52,8 @@ export function createDexShlagemon(
       defense: statWithRarityAndCoefficient(baseStats.defense, adjustedBase.coefficient, rarity),
       smelling: statWithRarityAndCoefficient(baseStats.smelling, adjustedBase.coefficient, rarity),
     },
+    captureDate: new Date().toISOString(),
+    captureCount: 1,
     lvl: 1,
     xp: 0,
     rarity,
