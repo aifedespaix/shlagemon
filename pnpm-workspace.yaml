@@ -51,6 +51,7 @@ catalogs:
     '@unhead/vue': ^2.0.2
     '@unocss/reset': ^66.1.0-beta.7
     '@vueuse/core': ^13.0.0
+    howler: ^2.2.4
     nprogress: ^0.2.0
     pinia: ^3.0.1
     pinia-plugin-persistedstate: ^4.3.0

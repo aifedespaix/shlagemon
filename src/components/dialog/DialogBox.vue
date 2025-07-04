@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import Button from '~/components/ui/Button.vue'
+import { useAudioStore } from '~/stores/audio'
 import ImageByBackground from '../ui/ImageByBackground.vue'
 
 const { dialogTree, speaker, avatarUrl }
   = defineProps<{ dialogTree: DialogNode[], speaker: string, avatarUrl: string }>()
 
 const currentNode = ref<DialogNode | undefined>()
+const audio = useAudioStore()
 
 onMounted(() => {
   currentNode.value = dialogTree[0]
 })
 
 function choose(r: DialogResponse) {
+  audio.playSfx('/audio/sfx/confirm.ogg')
   if (r.nextId)
     currentNode.value = dialogTree.find(d => d.id === r.nextId)
   else if (r.action)

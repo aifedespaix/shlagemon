@@ -1,0 +1,3 @@
+- public/audio/ambient.ogg
+- public/audio/battle.ogg
+- public/audio/sfx/confirm.ogg
