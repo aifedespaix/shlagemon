@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import AudioSettingsModal from '~/components/audio/AudioSettingsModal.vue'
 import Profile from '~/components/profile/Profile.vue'
 import ThemeToggle from '~/components/ThemeToggle.vue'
 import Button from '~/components/ui/Button.vue'
 
 const showProfile = ref(false)
+const showAudio = ref(false)
 </script>
 
 <template>
@@ -12,6 +14,10 @@ const showProfile = ref(false)
     <img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
     <div class="flex items-center gap-2">
       <ThemeToggle />
+      <Button type="icon" aria-label="Audio" @click="showAudio = true">
+        <div class="i-carbon-volume-up" />
+      </Button>
+      <AudioSettingsModal v-model="showAudio" />
       <Button type="icon" aria-label="Profil" @click="showProfile = true">
         <div class="i-carbon-user" />
       </Button>
