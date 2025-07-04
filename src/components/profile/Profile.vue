@@ -27,6 +27,9 @@ function removeSave() {
     <h2 class="mb-4 text-center text-lg font-bold">
       Profil
     </h2>
+    <p class="mb-4 text-center">
+      Voulez-vous supprimer toutes vos progressions et votre sauvegarde ?
+    </p>
     <Button type="danger" class="mx-auto flex items-center gap-1" @click="removeSave">
       <div i-carbon-trash-can />
       Supprimer

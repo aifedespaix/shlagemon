@@ -32,20 +32,20 @@ export const useAchievementsStore = defineStore('achievements', () => {
     shiny: 0,
   })
 
-  function reset() {
-    // counters.captures = 0
-    // counters.wins = 0
-    // counters.winsStronger = 0
-    // counters.itemsUsed = 0
-    // counters.kings = 0
-    // counters.shiny = 0
-    // unlocked.value = {}
-  }
-
   const unlocked = useLocalStorage<Record<string, boolean>>(
     'shlagemon_achievements',
     {},
   )
+
+  function reset() {
+    counters.captures = 0
+    counters.wins = 0
+    counters.winsStronger = 0
+    counters.itemsUsed = 0
+    counters.kings = 0
+    counters.shiny = 0
+    unlocked.value = {}
+  }
 
   function unlock(id: string) {
     if (!unlocked.value[id]) {
