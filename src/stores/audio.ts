@@ -123,7 +123,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 }, {
   persist: {
-    paths: [
+    pick: [
       'musicVolume',
       'sfxVolume',
       'isMusicEnabled',
