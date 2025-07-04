@@ -19,11 +19,14 @@ export const useZoneStore = defineStore('zone', () => {
 
   const kings = ref<Record<string, Trainer>>({})
 
-  function getKing(id: string): Trainer {
+  function getKing(id: string): Trainer | undefined {
+    const z = zones.value.find(z => z.id === id)
+    if (!z)
+      throw new Error('Zone not found')
+    const hasKing = z.hasKing ?? z.type === 'sauvage'
+    if (!hasKing)
+      return undefined
     if (!kings.value[id]) {
-      const z = zones.value.find(z => z.id === id)
-      if (!z)
-        throw new Error('Zone not found')
       const level = z.maxLevel + 1
 
       let character = profMerdant

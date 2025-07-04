@@ -11,9 +11,14 @@ const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 
-const currentKing = computed(() => zone.getKing(zone.current.id))
+const hasKing = computed(() =>
+  zone.current.hasKing ?? zone.current.type === 'sauvage',
+)
+const currentKing = computed(() =>
+  hasKing.value ? zone.getKing(zone.current.id) : undefined,
+)
 const kingLabel = computed(() =>
-  currentKing.value.character.gender === 'female' ? 'reine' : 'roi',
+  currentKing.value?.character.gender === 'female' ? 'reine' : 'roi',
 )
 
 function onAction(id: string) {
@@ -24,7 +29,9 @@ function onAction(id: string) {
 }
 
 function fightKing() {
-  const trainer = zone.getKing(zone.current.id)
+  const trainer = currentKing.value
+  if (!trainer)
+    return
   trainerBattle.setQueue([trainer])
   panel.showTrainerBattle()
 }
@@ -41,14 +48,18 @@ function fightKing() {
       {{ action.label }}
     </Button>
     <Button
-      v-if="!progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
+      v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
       class="text-xs"
       @click="fightKing"
     >
       Défier la {{ kingLabel }} de la zone
     </Button>
-    <div v-else-if="progress.isKingDefeated(zone.current.id)" class="text-xs font-bold">
-      {{ kingLabel.charAt(0).toUpperCase() + kingLabel.slice(1) }} vaincu{{ kingLabel === 'reine' ? 'e' : '' }} !
+    <div
+      v-else-if="hasKing && progress.isKingDefeated(zone.current.id)"
+      class="text-xs font-bold"
+    >
+      {{ kingLabel.charAt(0).toUpperCase() + kingLabel.slice(1) }}
+      vaincu{{ kingLabel === 'reine' ? 'e' : '' }} !
     </div>
   </div>
 </template>

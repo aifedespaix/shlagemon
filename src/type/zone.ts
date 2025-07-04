@@ -18,6 +18,8 @@ export interface Zone {
   maxLevel: number
   shlagemons?: BaseShlagemon[]
   image?: string
+  /** Whether this zone features a king to challenge */
+  hasKing?: boolean
 }
 
 export type ZoneId = FightZoneId | VillageZoneId
