@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AudioSettingsModal from '~/components/audio/AudioSettingsModal.vue'
 import BallSelectionModal from '~/components/ball/BallSelectionModal.vue'
 import BonusIcon from '~/components/icons/bonus.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
@@ -19,7 +18,6 @@ const inventory = useInventoryStore()
 const ballStore = useBallStore()
 
 const showBonus = ref(false)
-const showAudio = ref(false)
 
 const totalInDex = allShlagemons.length
 </script>
@@ -70,11 +68,5 @@ const totalInDex = allShlagemons.length
       </div>
     </Tooltip>
     <BallSelectionModal />
-    <Tooltip text="Audio">
-      <div class="min-w-0 flex cursor-pointer items-center gap-1" @click="showAudio = true">
-        <div class="h-4 w-4" i-carbon-volume-up />
-      </div>
-    </Tooltip>
-    <AudioSettingsModal v-model="showAudio" />
   </div>
 </template>
