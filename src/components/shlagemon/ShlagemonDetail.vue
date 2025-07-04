@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { computed, ref } from 'vue'
+import Modal from '~/components/modal/Modal.vue'
+import Button from '~/components/ui/Button.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
+import Tooltip from '~/components/ui/Tooltip.vue'
+import { useShlagedexStore } from '~/stores/shlagedex'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
+const emit = defineEmits<{
+  (e: 'release'): void
+}>()
 
 const statColors = [
   'bg-red-200 dark:bg-red-700',
@@ -33,6 +41,23 @@ const allowEvolution = computed({
   },
 })
 
+const store = useShlagedexStore()
+const showConfirm = ref(false)
+
+function requestRelease() {
+  showConfirm.value = true
+}
+
+function confirmRelease() {
+  if (props.mon)
+    store.releaseShlagemon(props.mon)
+  emit('release')
+  showConfirm.value = false
+}
+
+function cancelRelease() {
+  showConfirm.value = false
+}
 const captureInfo = computed(() => {
   if (!props.mon)
     return { date: '', count: 0 }
@@ -47,7 +72,9 @@ const captureInfo = computed(() => {
       <div>
         <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>  - lvl {{ mon.lvl }}
       </div>
-      <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
+      <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
+        <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
+      </Tooltip>
     </h2>
     <div class="flex gap-2">
       <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
@@ -78,12 +105,40 @@ const captureInfo = computed(() => {
       </div>
     </div>
     <ShlagemonXpBar :mon="mon" class="mt-4" />
-    <p class="mt-2 text-xs">
-      Première capture : {{ captureInfo.date }}
-    </p>
-    <p class="text-xs">
-      Obtenu {{ captureInfo.count }} fois
-    </p>
+    <div class="w-full flex items-center justify-center gap-2 text-xs">
+      <p class="">
+        Première capture : {{ captureInfo.date }}
+      </p>
+      <p>
+        Obtenu {{ captureInfo.count }} fois
+      </p>
+    </div>
+    <div class="mt-4 flex justify-end">
+      <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
+        <div i-carbon-trash-can />
+        Relâcher
+      </Button>
+    </div>
+    <Modal v-model="showConfirm" :close-on-outside-click="false">
+      <div class="flex flex-col items-center gap-4">
+        <h3 class="text-lg font-bold">
+          Relâcher un Schlagemon ?
+        </h3>
+        <p class="text-center text-sm">
+          Attention, si vous le relâchez, il ira schlagiser tout le territoire.
+        </p>
+        <div class="flex gap-2">
+          <Button type="valid" class="flex items-center gap-1" @click="confirmRelease">
+            <div i-carbon-checkmark />
+            Oui
+          </Button>
+          <Button type="danger" class="flex items-center gap-1" @click="cancelRelease">
+            <div i-carbon-close />
+            Non
+          </Button>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 

@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
 <template>
   <img
     :src="`/shlagemons/${props.id}/${props.id}.png`"
+    draggable="false"
     :alt="props.alt"
     class="object-contain"
     :style="props.shiny ? { filter: 'hue-rotate(180deg)' } : {}"
