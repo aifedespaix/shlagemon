@@ -6,5 +6,5 @@ export const install: UserModule = ({ isClient }) => {
     return
   const audio = useAudioStore()
   if (audio.isMusicEnabled && !audio.currentMusic)
-    audio.playMusic('/audio/ambient.ogg')
+    audio.playRandomMusic('villages')
 }
