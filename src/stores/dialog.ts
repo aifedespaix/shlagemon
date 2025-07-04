@@ -28,7 +28,7 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'richReward',
       component: markRaw(AnotherShlagemonDialog),
-      condition: () => game.shlagidolar >= 100,
+      condition: () => game.shlagidolar >= 10,
     },
   ]
 

@@ -51,13 +51,14 @@ export const useZoneStore = defineStore('zone', () => {
           break
       }
 
+      const kingDexSize = z.maxLevel < 10 ? 3 : 6
       const trainer: Trainer = {
         id: `king-${z.id}`,
         character,
         dialogBefore: 'Prépare-toi à perdre !',
         dialogAfter: 'Tu as gagné... pour cette fois.',
         reward: 5,
-        shlagemons: Array.from({ length: 6 }, () => {
+        shlagemons: Array.from({ length: kingDexSize }, () => {
           const list = z.shlagemons?.length ? z.shlagemons! : allShlagemons
           const base = list[Math.floor(Math.random() * list.length)]
           return {

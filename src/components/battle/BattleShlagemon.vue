@@ -45,13 +45,14 @@ function onAnimationEnd() {
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
-      <img
-        v-if="props.showBall"
-        src="/items/shlageball/shlageball.png"
-        alt="ball"
-        class="h-4 w-4"
-        :class="{ 'opacity-50': !props.owned }"
-      >
+      <Tooltip text="Vous avez déjà capturé ce Shlagémon">
+        <img
+          v-if="props.showBall && props.owned"
+          src="/items/shlageball/shlageball.png"
+          alt="ball"
+          class="h-4 w-4"
+        >
+      </Tooltip>
       <span class="font-bold">{{ props.mon.base.name }}</span>
       <!-- <ShlagemonType v-for="t in props.mon.base.types" :key="t.id" :value="t" size="xs" /> -->
     </div>
