@@ -25,7 +25,11 @@ export const useBallStore = defineStore('ball', () => {
     close()
   }
 
-  return { current, currentBall, isVisible, open, close, setBall }
+  function reset() {
+    current.value = 'shlageball'
+  }
+
+  return { current, currentBall, isVisible, open, close, setBall, reset }
 }, {
   persist: true,
 })
