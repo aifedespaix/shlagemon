@@ -5,6 +5,7 @@ import { onUnmounted, ref } from 'vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
+import { formatDuration } from '~/utils/formatDuration'
 
 interface Props {
   mon: DexShlagemon
@@ -40,6 +41,10 @@ function onAnimationEnd() {
   if (props.fainted)
     emit('faintEnd')
 }
+
+function remainingTime(effect: ActiveEffect) {
+  return formatDuration(effect.expiresAt - now.value)
+}
 </script>
 
 <template>
@@ -53,7 +58,7 @@ function onAnimationEnd() {
         <div class="relative h-5 w-5">
           <div class="h-5 w-5" :class="[`i-${e.icon}`, e.iconClass]" />
           <span class="absolute rounded-full bg-white px-0.5 text-[10px] font-bold -right-1 -top-1 dark:bg-gray-800">
-            {{ Math.ceil((e.expiresAt - now.value) / 1000) }}
+            {{ remainingTime(e) }}
           </span>
         </div>
       </Tooltip>
