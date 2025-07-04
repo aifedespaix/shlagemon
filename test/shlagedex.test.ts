@@ -78,6 +78,15 @@ describe('shlagedex highest level', () => {
 })
 
 describe('completable ids', () => {
+  it('always includes starter bases', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const ids = (dex as any).completableIds as Set<string>
+    expect(ids.has('carapouffe')).toBe(true)
+    expect(ids.has('salamiches')).toBe(true)
+    expect(ids.has('bulgrosboule')).toBe(true)
+  })
+
   it('includes evolutions recursively', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
@@ -88,5 +97,21 @@ describe('completable ids', () => {
     expect(ids.has('salamiches')).toBe(true)
     expect(ids.has('raptorincel')).toBe(true)
     expect(ids.has('draco-con')).toBe(true)
+  })
+
+  it('adds evolutions only when level reached', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const progress = useZoneProgressStore()
+
+    dex.highestLevel.value = 10
+    let ids = (dex as any).completableIds as Set<string>
+    expect(ids.has('carabifle')).toBe(false)
+
+    dex.highestLevel.value = 20
+    progress.defeatKing('grotte-du-slip')
+    ids = (dex as any).completableIds as Set<string>
+    expect(ids.has('carabifle')).toBe(true)
+    expect(ids.has('tord-turc')).toBe(false)
   })
 })
