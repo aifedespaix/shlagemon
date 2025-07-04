@@ -3,7 +3,28 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [0.3.3] - 2025-07-05
+
+### Added
+
+- Player creation form with persisted audio preferences.
+- Audio settings button moved to the header with random music tracks.
+- Evolution stone item and improved potion timers.
+- `SearchInput` component for Schlagedex filtering with new sorting options.
+- King challenge button during battles and tooltip when out of Shlageballs.
+- Ability to release a Shlagémon from the Schlagedex.
+
+### Changed
+
+- Zones color-coded by level and sword cursor on battle hover.
+- Capture disabled when the enemy is fainted.
+- Pinia now initializes before other modules.
+
+### Fixed
+
+- Double-click handling in the Schlagedex and various UI fixes.
+- Crashes when starting trainer or king battles.
+- Adjustments to the player info panel.
 
 ## [0.3.2] - 2025-07-04
 

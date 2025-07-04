@@ -3,7 +3,28 @@
 Toutes les modifications importantes de ce projet seront documentées dans ce fichier.
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
-## [Non publié]
+## [0.3.3] - 2025-07-05
+
+### Ajouté
+
+- Formulaire de création de joueur avec persistance des préférences audio.
+- Bouton des paramètres sonores déplacé dans l'en-tête et pistes musicales aléatoires.
+- Pierre d'évolution et minuteries de potions améliorées.
+- Composant `SearchInput` pour filtrer le Schlagedex avec nouveaux tris.
+- Bouton de défi du roi en combat et info-bulle lorsque l'on n'a plus de Shlagéballs.
+- Possibilité de relâcher un Shlagémon depuis le Schlagedex.
+
+### Modifié
+
+- Zones colorées selon le niveau et curseur épée au survol en combat.
+- Capture désactivée quand l'ennemi est K.O.
+- Initialisation de Pinia avant les autres modules.
+
+### Corrigé
+
+- Double clic fonctionnel dans le Schlagedex et divers correctifs d'interface.
+- Correction de crashs lors des combats de dresseurs ou de rois.
+- Ajustements du panneau d'information du joueur.
 
 ## [0.3.2] - 2025-07-04
 
