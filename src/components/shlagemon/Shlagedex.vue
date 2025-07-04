@@ -3,17 +3,16 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import Modal from '~/components/modal/Modal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
+import { useDexFilterStore } from '~/stores/dexFilter'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
 const dex = useShlagedexStore()
 const panel = useMainPanelStore()
+const filter = useDexFilterStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
-const search = ref('')
-const sortBy = ref<'level' | 'rarity' | 'name' | 'type' | 'attack' | 'defense' | 'count' | 'date'>('level')
-const sortAsc = ref(false)
 const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
@@ -26,17 +25,13 @@ const sortOptions = [
   { label: 'Première capture', value: 'date' },
 ]
 
-watch(sortBy, (val) => {
-  sortAsc.value = val === 'name' || val === 'type' || val === 'date'
-}, { immediate: true })
-
 const displayedMons = computed(() => {
   let mons = dex.shlagemons.slice()
-  if (search.value.trim()) {
-    const q = search.value.toLowerCase()
+  if (filter.search.trim()) {
+    const q = filter.search.toLowerCase()
     mons = mons.filter(m => m.base.name.toLowerCase().includes(q))
   }
-  switch (sortBy.value) {
+  switch (filter.sortBy) {
     case 'level':
       mons.sort((a, b) => a.lvl - b.lvl)
       break
@@ -62,7 +57,7 @@ const displayedMons = computed(() => {
       mons.sort((a, b) => (a.base.types[0]?.name || '').localeCompare(b.base.types[0]?.name || ''))
       break
   }
-  if (!sortAsc.value)
+  if (!filter.sortAsc)
     mons.reverse()
   return mons
 })
@@ -102,19 +97,19 @@ function isActive(mon: DexShlagemon) {
     <div class="mb-2 flex flex-wrap gap-2">
       <div class="min-w-36 flex flex-1 items-center">
         <SelectOption
-          v-model="sortBy"
+          v-model="filter.sortBy"
           class="min-w-24 flex-1"
           :options="sortOptions"
         />
         <button
           class="ml-1 text-lg icon-btn"
-          :aria-label="sortAsc ? 'Tri ascendant' : 'Tri descendant'"
-          @click="sortAsc = !sortAsc"
+          :aria-label="filter.sortAsc ? 'Tri ascendant' : 'Tri descendant'"
+          @click="filter.sortAsc = !filter.sortAsc"
         >
-          <div :class="sortAsc ? 'i-carbon-sort-ascending' : 'i-carbon-sort-descending'" />
+          <div :class="filter.sortAsc ? 'i-carbon-sort-ascending' : 'i-carbon-sort-descending'" />
         </button>
       </div>
-      <SearchInput v-model="search" />
+      <SearchInput v-model="filter.search" />
     </div>
     <div class="flex flex-col gap-2">
       <div

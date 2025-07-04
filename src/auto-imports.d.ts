@@ -168,6 +168,7 @@ declare global {
   const useDeviceOrientation: typeof import('@vueuse/core')['useDeviceOrientation']
   const useDevicePixelRatio: typeof import('@vueuse/core')['useDevicePixelRatio']
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
+  const useDexFilterStore: typeof import('./stores/dexFilter')['useDexFilterStore']
   const useDialogStore: typeof import('./stores/dialog')['useDialogStore']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
@@ -344,6 +345,9 @@ declare global {
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')
   // @ts-ignore
+  export type { DexSort } from './stores/dexFilter'
+  import('./stores/dexFilter')
+  // @ts-ignore
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
   // @ts-ignore
@@ -515,6 +519,7 @@ declare module 'vue' {
     readonly useDeviceOrientation: UnwrapRef<typeof import('@vueuse/core')['useDeviceOrientation']>
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
+    readonly useDexFilterStore: UnwrapRef<typeof import('./stores/dexFilter')['useDexFilterStore']>
     readonly useDialogStore: UnwrapRef<typeof import('./stores/dialog')['useDialogStore']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
