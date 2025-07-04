@@ -94,6 +94,10 @@ function onCaptureEnd(success: boolean) {
   if (success && enemy.value) {
     dex.captureEnemy(enemy.value)
     notifyAchievement({ type: 'capture', shiny: enemy.value.isShiny })
+    if (dex.activeShlagemon) {
+      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      playerHp.value = dex.activeShlagemon.hpCurrent
+    }
     enemy.value = null
     setTimeout(startBattle, 1000)
   }
