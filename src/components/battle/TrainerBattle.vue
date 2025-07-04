@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify'
 import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
@@ -95,8 +94,6 @@ function startBattle() {
   created.lvl = spec.level
   applyStats(created)
   enemy.value = created
-  if (created.isShiny)
-    toast('Vous avez rencontré un Shiny !')
   enemyHp.value = enemy.value.hp
   battleActive.value = true
   startInterval()
