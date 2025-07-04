@@ -54,6 +54,11 @@ const enemyCaptured = computed(() =>
 const battleActive = ref(false)
 const showCapture = ref(false)
 const captureBall = ref(balls[0])
+const captureButtonTooltip = computed(() =>
+  (inventory.items[ballStore.current] || 0) <= 0
+    ? 'Pas de Schlagéball, capture impossible'
+    : 'Capturer le Schlagémon',
+)
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerFainted = ref(false)
@@ -306,7 +311,7 @@ onUnmounted(() => {
         :disabled="(inventory.items[ballStore.current] || 0) <= 0"
         @click="openCapture"
       >
-        <Tooltip text="Capturer le Shlagémon">
+        <Tooltip :text="captureButtonTooltip">
           <ImageByBackground
             src="/items/shlageball/shlageball.png"
             alt="capture"
