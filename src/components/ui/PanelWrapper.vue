@@ -13,7 +13,7 @@ function toggle() {
       <span class="font-bold">{{ props.title }}</span>
       <div class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col" :class="isInline ? ' flex items-center' : 'overflow-auto'">
+    <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col" :class="isInline ? ' flex items-center justify-center' : 'overflow-auto'">
       <slot />
     </div>
   </div>

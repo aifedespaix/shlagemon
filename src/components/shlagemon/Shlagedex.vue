@@ -70,7 +70,7 @@ function isActive(mon: DexShlagemon) {
 </script>
 
 <template>
-  <section v-if="dex.shlagemons.length" class="p-2">
+  <section v-if="dex.shlagemons.length">
     <div class="mb-2 flex flex-wrap gap-2">
       <div class="min-w-36 flex flex-1 items-center">
         <SelectOption
