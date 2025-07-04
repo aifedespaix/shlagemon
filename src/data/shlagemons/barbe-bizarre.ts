@@ -13,3 +13,5 @@ Il parle en citations absurdes qu’il invente sur le moment (“si l’eau mont
   coefficient: 25,
   evolution: { base: floripute, condition: { type: 'lvl', value: 36 } },
 }
+
+export default barbeBizarre

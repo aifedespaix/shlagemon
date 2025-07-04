@@ -12,3 +12,5 @@ On raconte qu’elle peut invoquer des cercles de danse autour d’un feu sacré
   types: [shlagemonTypes.plante],
   coefficient: 50,
 }
+
+export default floripute
