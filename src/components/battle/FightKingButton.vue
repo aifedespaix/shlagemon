@@ -13,7 +13,7 @@ const progress = useZoneProgressStore()
 
 const currentKing = computed(() => zone.getKing(zone.current.id))
 const kingLabel = computed(() =>
-  currentKing.value.character.gender === 'female' ? 'reine' : 'roi',
+  currentKing.value!.character.gender === 'female' ? 'la reine' : 'le roi',
 )
 
 const visible = computed(() =>
@@ -23,6 +23,8 @@ const visible = computed(() =>
 
 function fightKing() {
   const trainer = zone.getKing(zone.current.id)
+  if (!trainer)
+    throw new Error('King not found')
   trainerBattle.setQueue([trainer])
   panel.showTrainerBattle()
 }
@@ -31,9 +33,12 @@ function fightKing() {
 <template>
   <Button
     v-if="visible"
-    class="absolute right-0 top-0 m-1 text-xs"
+    class="absolute right-0 top-6 z-150 m-1 flex gap-2 text-xs"
+    type="danger"
     @click="fightKing"
   >
-    Défier le {{ kingLabel }}
+    <div>Défier {{ kingLabel }}</div>
+
+    <div class="i-mdi:sword" />
   </Button>
 </template>

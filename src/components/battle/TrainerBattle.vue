@@ -248,12 +248,16 @@ onUnmounted(() => {
       </template>
       <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div>{{ trainer.dialogBefore }}</div>
-      <Button @click="startFight">
-        Démarrer le combat
-      </Button>
-      <Button type="danger" @click="cancelFight">
-        Abandonner
-      </Button>
+      <div class="flex gap-2">
+        <Button type="primary" @click="startFight">
+          <div class="i-mdi:sword" />
+          Démarrer le combat
+        </Button>
+        <Button type="danger" @click="cancelFight">
+          <div class="i-mdi:close" />
+          Abandonner
+        </Button>
+      </div>
     </div>
     <div v-else-if="stage === 'battle'" class="w-full text-center" @click="attack">
       <div class="mb-1 h-12 flex items-center justify-end gap-2 overflow-hidden font-bold">

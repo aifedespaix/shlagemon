@@ -3,7 +3,7 @@ import type { ButtonType } from '~/type/button'
 import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{ type?: ButtonType }>(), {
-  type: 'primary',
+  type: 'default',
 })
 
 const variantClass = computed(() => {
@@ -14,6 +14,8 @@ const variantClass = computed(() => {
       return 'rounded px-2 py-1 text-white bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-800'
     case 'icon':
       return 'rounded-full p-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
+    case 'primary':
+      return 'rounded px-2 py-1 text-white bg-blue-600 dark:bg-blue-700'
     default:
       return 'rounded px-2 py-1 text-white bg-cyan-600 dark:bg-cyan-700 hover:bg-cyan-700 dark:hover:bg-cyan-800/80'
   }
