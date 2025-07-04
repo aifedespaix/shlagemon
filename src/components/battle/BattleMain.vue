@@ -2,6 +2,7 @@
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
+import FightKingButton from '~/components/battle/FightKingButton.vue'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
@@ -265,6 +266,7 @@ onUnmounted(() => {
 
 <template>
   <div class="relative flex flex-col text-center">
+    <FightKingButton />
     <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
       <div class="absolute left-0 flex gap-2">
         <Tooltip :text="captureTooltip">
