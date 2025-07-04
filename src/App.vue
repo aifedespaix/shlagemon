@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useAudioStore } from '~/stores/audio'
 // https://github.com/vueuse/head
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
@@ -21,6 +22,13 @@ useHead({
       href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
     },
   ],
+})
+
+const audio = useAudioStore()
+
+onMounted(() => {
+  if (audio.isMusicEnabled)
+    audio.playMusic('/audio/ambient.ogg')
 })
 </script>
 
