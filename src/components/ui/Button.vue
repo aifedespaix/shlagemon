@@ -23,7 +23,7 @@ const variantClass = computed(() => {
 </script>
 
 <template>
-  <button class="inline-flex items-center justify-center" :class="variantClass">
+  <button class="inline-flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50" :class="variantClass">
     <slot />
   </button>
 </template>
