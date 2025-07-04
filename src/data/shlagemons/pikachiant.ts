@@ -1,4 +1,5 @@
 import type { BaseShlagemon } from '~/type'
+import { thunderStone } from '../items/items'
 import { shlagemonTypes } from '../shlagemons-type'
 import raichiotte from './raichiotte'
 
@@ -13,7 +14,7 @@ Il vit généralement dans des squats connectés où il recharge ses batteries a
     base: raichiotte,
     condition: {
       type: 'item',
-      value: '',
+      value: thunderStone,
     },
   },
 }

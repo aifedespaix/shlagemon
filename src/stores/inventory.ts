@@ -40,9 +40,18 @@ export const useInventoryStore = defineStore('inventory', () => {
 
   function buy(id: string) {
     const item = allItems.find(i => i.id === id)
-    if (!item || game.shlagidolar < item.price)
+    if (!item)
       return false
-    game.addShlagidolar(-item.price)
+    if (item.currency === 'shlagidiamond') {
+      if (game.shlagidiamond < item.price)
+        return false
+      game.addShlagidiamond(-item.price)
+    }
+    else {
+      if (game.shlagidolar < item.price)
+        return false
+      game.addShlagidolar(-item.price)
+    }
     add(id)
     return true
   }

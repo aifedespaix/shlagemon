@@ -7,6 +7,7 @@ export const shlageball: Ball = {
   details:
     'Permet de capturer le Shlagémon actuellement en combat. Moins il a de points de vie, plus la chance de capture augmente.',
   price: 10,
+  currency: 'shlagidolar',
   image: '/items/shlageball/shlageball.png',
   catchBonus: 1,
   animation: '/items/shlageball/shlageball.png',
@@ -19,6 +20,7 @@ export const superShlageball: Ball = {
   details:
     'Capture des Shlagémons plus récalcitrants avec un léger bonus de chance.',
   price: 25,
+  currency: 'shlagidolar',
   image: '/items/shlageball/shlageball.png',
   catchBonus: 1.5,
   animation: '/items/shlageball/shlageball.png',
@@ -31,6 +33,7 @@ export const hyperShlageball: Ball = {
   details:
     'Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.',
   price: 50,
+  currency: 'shlagidolar',
   image: '/items/shlageball/shlageball.png',
   catchBonus: 2,
   animation: '/items/shlageball/shlageball.png',

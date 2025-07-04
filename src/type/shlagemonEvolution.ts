@@ -1,3 +1,4 @@
+import type { Item } from './item'
 import type { BaseShlagemon } from './shlagemon'
 
 export type ShlagemonEvolutionConditionType = 'lvl' | 'item'
@@ -8,7 +9,7 @@ export interface ShlagemonEvolutionConditionLevel {
 }
 export interface ShlagemonEvolutionConditionItem {
   type: 'item'
-  value: string
+  value: Item
 }
 
 export type ShlagemonEvolutionCondition = ShlagemonEvolutionConditionLevel | ShlagemonEvolutionConditionItem

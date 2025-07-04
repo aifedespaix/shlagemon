@@ -1,3 +1,4 @@
+import type { Item } from '~/type/item'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
@@ -119,18 +120,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   const evolutionStore = useEvolutionStore()
 
-  async function checkEvolution(mon: DexShlagemon) {
-    const evo = mon.base.evolution
-    if (!evo)
-      return
-    if (evo.condition.type !== 'lvl' || mon.lvl < evo.condition.value)
-      return
-    if (!mon.allowEvolution)
-      return
-    const accepted = await evolutionStore.requestEvolution(mon, evo.base)
-    if (!accepted)
-      return
-    const existing = shlagemons.value.find(m => m.base.id === evo.base.id && m.id !== mon.id)
+  function applyEvolution(mon: DexShlagemon, to: BaseShlagemon) {
+    const existing = shlagemons.value.find(m => m.base.id === to.id && m.id !== mon.id)
     if (existing) {
       existing.captureCount += 1
       if (existing.rarity < 100) {
@@ -155,7 +146,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       recomputeHighestLevel()
     }
     else {
-      mon.base = evo.base
+      mon.base = to
       mon.baseStats = {
         hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
         attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
@@ -168,6 +159,33 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
     }
+  }
+
+  async function checkEvolution(mon: DexShlagemon) {
+    const evo = mon.base.evolution
+    if (!evo)
+      return
+    if (evo.condition.type !== 'lvl' || mon.lvl < evo.condition.value)
+      return
+    if (!mon.allowEvolution)
+      return
+    const accepted = await evolutionStore.requestEvolution(mon, evo.base)
+    if (!accepted)
+      return
+    applyEvolution(mon, evo.base)
+  }
+
+  async function evolveWithItem(mon: DexShlagemon, item: Item) {
+    const evo = mon.base.evolution
+    if (!evo || evo.condition.type !== 'item' || evo.condition.value.id !== item.id)
+      return false
+    if (!mon.allowEvolution)
+      return false
+    const accepted = await evolutionStore.requestEvolution(mon, evo.base)
+    if (!accepted)
+      return false
+    applyEvolution(mon, evo.base)
+    return true
   }
 
   async function gainXp(
@@ -281,18 +299,39 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return captured
   }
 
-  function releaseShlagemon(mon: DexShlagemon) {
-    const index = shlagemons.value.findIndex(m => m.id === mon.id)
-    if (index === -1)
-      return
-    shlagemons.value.splice(index, 1)
-    if (activeShlagemon.value?.id === mon.id)
-      activeShlagemon.value = shlagemons.value[0] || null
-    recomputeHighestLevel()
-    toast(`${mon.base.name} a été relâché !`)
-  }
+function releaseShlagemon(mon: DexShlagemon) {
+  const index = shlagemons.value.findIndex(m => m.id === mon.id)
+  if (index === -1)
+    return
+  shlagemons.value.splice(index, 1)
+  if (activeShlagemon.value?.id === mon.id)
+    activeShlagemon.value = shlagemons.value[0] || null
+  recomputeHighestLevel()
+  toast(`${mon.base.name} a été relâché !`)
+}
 
-  return { shlagemons, activeShlagemon, highestLevel, averageLevel, completionPercent, bonusPercent, bonusMultiplier, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, releaseShlagemon, gainXp, healActive, boostDefense }
+return {
+  shlagemons,
+  activeShlagemon,
+  highestLevel,
+  averageLevel,
+  completionPercent,
+  bonusPercent,
+  bonusMultiplier,
+  addShlagemon,
+  setActiveShlagemon,
+  setShlagemons,
+  reset,
+  createShlagemon,
+  captureShlagemon,
+  captureEnemy,
+  releaseShlagemon,
+  gainXp,
+  healActive,
+  boostDefense,
+  evolveWithItem,
+}
+
 }, {
   persist: {
     debug: true,

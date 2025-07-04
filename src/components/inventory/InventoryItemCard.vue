@@ -5,7 +5,7 @@ import Modal from '~/components/modal/Modal.vue'
 import Button from '~/components/ui/Button.vue'
 import { ballHues } from '~/utils/ball'
 
-const props = defineProps<{ item: Item, qty: number }>()
+const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
 const emit = defineEmits<{
   (e: 'use'): void
   (e: 'sell'): void
@@ -35,6 +35,7 @@ const ballFilter = computed(() =>
       <span class="font-bold">x{{ props.qty }}</span>
       <Button
         class="flex items-center gap-1 text-xs"
+        :disabled="props.disabled"
         @click="emit('use')"
       >
         <div i-carbon-play inline-block />

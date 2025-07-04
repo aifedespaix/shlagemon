@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
+import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import { useBallStore } from '~/stores/ball'
+import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useInventoryStore } from '~/stores/inventory'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
+const evoItemStore = useEvolutionItemStore()
 const search = ref('')
 const filteredList = computed(() => {
   const q = search.value.toLowerCase().trim()
@@ -15,9 +18,15 @@ const filteredList = computed(() => {
   return inventory.list.filter(entry => entry.item.name.toLowerCase().includes(q))
 })
 
+function isDisabled(item: Item) {
+  return item.type === 'evolution' && !evoItemStore.canUse(item)
+}
+
 function onUse(item: Item) {
   if ('catchBonus' in item)
     ballStore.setBall(item.id as any)
+  else if (item.type === 'evolution')
+    evoItemStore.open(item)
   else
     inventory.useItem(item.id)
 }
@@ -31,8 +40,10 @@ function onUse(item: Item) {
       :key="entry.item.id"
       :item="entry.item"
       :qty="entry.qty"
+      :disabled="isDisabled(entry.item)"
       @use="onUse(entry.item)"
       @sell="inventory.sell(entry.item.id)"
     />
   </section>
+  <EvolutionItemModal />
 </template>

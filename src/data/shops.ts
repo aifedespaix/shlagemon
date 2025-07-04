@@ -4,6 +4,7 @@ import {
   hyperPotion,
   potion,
   superPotion,
+  thunderStone,
 } from './items/items'
 import { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
 
@@ -16,7 +17,7 @@ export const shops: Shop[] = [
   {
     id: 'village-boule',
     level: 25,
-    items: [potion, superPotion, superShlageball, shlageball],
+    items: [potion, superPotion, superShlageball, shlageball, thunderStone],
   },
   {
     id: 'village-paume',
