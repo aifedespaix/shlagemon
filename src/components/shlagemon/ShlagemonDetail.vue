@@ -57,6 +57,12 @@ function confirmRelease() {
 function cancelRelease() {
   showConfirm.value = false
 }
+const captureInfo = computed(() => {
+  if (!props.mon)
+    return { date: '', count: 0 }
+  const date = new Date(props.mon.captureDate).toLocaleDateString()
+  return { date, count: props.mon.captureCount }
+})
 </script>
 
 <template>
@@ -122,6 +128,12 @@ function cancelRelease() {
         </div>
       </div>
     </Modal>
+    <p class="mt-2 text-xs">
+      Première capture : {{ captureInfo.date }}
+    </p>
+    <p class="text-xs">
+      Obtenu {{ captureInfo.count }} fois
+    </p>
   </div>
 </template>
 

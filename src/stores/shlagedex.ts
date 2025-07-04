@@ -132,6 +132,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       return
     const existing = shlagemons.value.find(m => m.base.id === evo.base.id && m.id !== mon.id)
     if (existing) {
+      existing.captureCount += 1
       if (existing.rarity < 100) {
         existing.rarity += 1
         toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
@@ -163,6 +164,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       applyStats(mon)
       mon.hpCurrent = mon.hp
+      mon.captureDate = new Date().toISOString()
+      mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
     }
   }
@@ -192,6 +195,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   function createShlagemon(base: BaseShlagemon, shiny = false) {
     const mon = createDexShlagemon(base, shiny)
+    mon.captureDate = new Date().toISOString()
+    mon.captureCount = 1
     addShlagemon(mon)
     updateHighestLevel(mon)
     toast(`Tu as obtenu ${base.name} !`)
@@ -201,6 +206,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function captureShlagemon(base: BaseShlagemon, shiny = false) {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
     if (existing) {
+      existing.captureCount += 1
       if (existing.rarity < 100) {
         existing.rarity += 1
         toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
@@ -266,6 +272,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       ...enemy,
       id: crypto.randomUUID(),
       hpCurrent: enemy.hp,
+      captureDate: new Date().toISOString(),
+      captureCount: 1,
     }
     addShlagemon(captured)
     updateHighestLevel(captured)
