@@ -263,14 +263,14 @@ onUnmounted(() => {
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" level-position="top" :effects="dex.effects" />
+          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" :effects="dex.effects" />
         </div>
         <div class="vs font-bold">
           VS
         </div>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" level-position="top" />
+          <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
         </div>
         <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
       </div>
