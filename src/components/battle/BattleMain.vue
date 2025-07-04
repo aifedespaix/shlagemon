@@ -57,11 +57,16 @@ const enemyCaptured = computed(() =>
 const battleActive = ref(false)
 const showCapture = ref(false)
 const captureBall = ref(balls[0])
-const captureButtonTooltip = computed(() =>
-  (inventory.items[ballStore.current] || 0) <= 0
-    ? 'Pas de Schlagéball, capture impossible'
-    : 'Capturer le Schlagémon',
+const captureButtonDisabled = computed(() =>
+  (inventory.items[ballStore.current] || 0) <= 0 || enemyHp.value <= 0,
 )
+const captureButtonTooltip = computed(() => {
+  if ((inventory.items[ballStore.current] || 0) <= 0)
+    return 'Pas de Schlagéball, capture impossible'
+  if (enemyHp.value <= 0)
+    return 'Impossible de capturer un Schlagémon K.O.'
+  return 'Capturer le Schlagémon'
+})
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerFainted = ref(false)
@@ -75,7 +80,7 @@ const { start: startInterval, clear: stopInterval } = useSingleInterval(() => ti
 
 function openCapture() {
   const id = ballStore.current
-  if (!enemy.value || (inventory.items[id] || 0) <= 0)
+  if (!enemy.value || (inventory.items[id] || 0) <= 0 || enemyHp.value <= 0)
     return
   inventory.remove(id)
   captureBall.value = balls.find(b => b.id === id) || balls[0]
@@ -296,8 +301,8 @@ onUnmounted(() => {
       </div>
       <Button
         class="absolute right-50% top-8 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
-        :class="{ ' cursor-not-allowed saturate-0': (inventory.items[ballStore.current] || 0) <= 0 }"
-        :disabled="(inventory.items[ballStore.current] || 0) <= 0"
+        :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
+        :disabled="captureButtonDisabled"
         @click="openCapture"
       >
         <Tooltip :text="captureButtonTooltip">
