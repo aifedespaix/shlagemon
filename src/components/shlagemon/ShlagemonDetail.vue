@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import CheckBox from '~/components/ui/CheckBox.vue'
+import Tooltip from '~/components/ui/Tooltip.vue'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 
@@ -40,7 +41,9 @@ const allowEvolution = computed({
       <div>
         <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>  - lvl {{ mon.lvl }}
       </div>
-      <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
+      <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
+        <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
+      </Tooltip>
     </h2>
     <div class="flex gap-2">
       <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />

@@ -43,6 +43,7 @@ function hide() {
     @mouseleave="hide"
     @focusin="show"
     @focusout="hide"
+    @click="show"
   >
     <slot />
     <span
