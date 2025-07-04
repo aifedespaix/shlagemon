@@ -10,6 +10,7 @@ import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
@@ -23,6 +24,7 @@ const battle = useBattleStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
+const multiExpStore = useMultiExpStore()
 const equilibrerank = 2
 
 const trainer = computed(() => trainerStore.current)
@@ -156,12 +158,18 @@ function checkEnd() {
     setTimeout(async () => {
       if (enemyHp.value <= 0 && playerHp.value > 0) {
         if (dex.activeShlagemon && enemy.value) {
+          const xp = xpRewardForLevel(enemy.value.lvl)
           await dex.gainXp(
             dex.activeShlagemon,
-            xpRewardForLevel(enemy.value.lvl),
+            xp,
             undefined,
             trainerStore.levelUpHealPercent,
           )
+          const holder = multiExpStore.holder
+          if (holder) {
+            const share = Math.round(xp * 0.5)
+            await dex.gainXp(holder, share, undefined, trainerStore.levelUpHealPercent)
+          }
         }
         enemyIndex.value += 1
         if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {

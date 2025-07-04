@@ -13,6 +13,7 @@ import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
+import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
@@ -26,6 +27,7 @@ const progress = useZoneProgressStore()
 const battle = useBattleStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
+const multiExpStore = useMultiExpStore()
 const equilibrerank = 2
 
 const wins = computed(() => progress.getWins(zone.current.id))
@@ -195,11 +197,17 @@ function checkEnd() {
         game.addShlagidolar(zone.rewardMultiplier)
         notifyAchievement({ type: 'battle-win', stronger })
         if (dex.activeShlagemon && enemy.value) {
+          const xp = xpRewardForLevel(enemy.value.lvl)
           await dex.gainXp(
             dex.activeShlagemon,
-            xpRewardForLevel(enemy.value.lvl),
+            xp,
             zone.current.maxLevel,
           )
+          const holder = multiExpStore.holder
+          if (holder) {
+            const share = Math.round(xp * 0.5)
+            await dex.gainXp(holder, share, zone.current.maxLevel)
+          }
         }
       }
       playerFainted.value = false
