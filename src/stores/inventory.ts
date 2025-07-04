@@ -78,6 +78,31 @@ export const useInventoryStore = defineStore('inventory', () => {
       remove(id)
       return true
     }
+    if (id === 'super-defense-potion') {
+      dex.boostDefense(10)
+      remove(id)
+      return true
+    }
+    if (id === 'hyper-defense-potion') {
+      dex.boostDefense(20)
+      remove(id)
+      return true
+    }
+    if (id === 'attack-potion') {
+      dex.boostAttack(5)
+      remove(id)
+      return true
+    }
+    if (id === 'super-attack-potion') {
+      dex.boostAttack(10)
+      remove(id)
+      return true
+    }
+    if (id === 'hyper-attack-potion') {
+      dex.boostAttack(20)
+      remove(id)
+      return true
+    }
     if (id === 'super-potion') {
       dex.healActive(100)
       remove(id)

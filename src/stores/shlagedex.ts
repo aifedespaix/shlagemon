@@ -118,6 +118,16 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }, duration)
   }
 
+  function boostAttack(amount: number, duration = 10000) {
+    if (!activeShlagemon.value)
+      return
+    activeShlagemon.value.attack += amount
+    setTimeout(() => {
+      if (activeShlagemon.value)
+        activeShlagemon.value.attack -= amount
+    }, duration)
+  }
+
   const evolutionStore = useEvolutionStore()
 
   function applyEvolution(mon: DexShlagemon, to: BaseShlagemon) {
@@ -299,39 +309,39 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return captured
   }
 
-function releaseShlagemon(mon: DexShlagemon) {
-  const index = shlagemons.value.findIndex(m => m.id === mon.id)
-  if (index === -1)
-    return
-  shlagemons.value.splice(index, 1)
-  if (activeShlagemon.value?.id === mon.id)
-    activeShlagemon.value = shlagemons.value[0] || null
-  recomputeHighestLevel()
-  toast(`${mon.base.name} a été relâché !`)
-}
+  function releaseShlagemon(mon: DexShlagemon) {
+    const index = shlagemons.value.findIndex(m => m.id === mon.id)
+    if (index === -1)
+      return
+    shlagemons.value.splice(index, 1)
+    if (activeShlagemon.value?.id === mon.id)
+      activeShlagemon.value = shlagemons.value[0] || null
+    recomputeHighestLevel()
+    toast(`${mon.base.name} a été relâché !`)
+  }
 
-return {
-  shlagemons,
-  activeShlagemon,
-  highestLevel,
-  averageLevel,
-  completionPercent,
-  bonusPercent,
-  bonusMultiplier,
-  addShlagemon,
-  setActiveShlagemon,
-  setShlagemons,
-  reset,
-  createShlagemon,
-  captureShlagemon,
-  captureEnemy,
-  releaseShlagemon,
-  gainXp,
-  healActive,
-  boostDefense,
-  evolveWithItem,
-}
-
+  return {
+    shlagemons,
+    activeShlagemon,
+    highestLevel,
+    averageLevel,
+    completionPercent,
+    bonusPercent,
+    bonusMultiplier,
+    addShlagemon,
+    setActiveShlagemon,
+    setShlagemons,
+    reset,
+    createShlagemon,
+    captureShlagemon,
+    captureEnemy,
+    releaseShlagemon,
+    gainXp,
+    healActive,
+    boostDefense,
+    boostAttack,
+    evolveWithItem,
+  }
 }, {
   persist: {
     debug: true,

@@ -14,6 +14,10 @@ export interface Item {
   currency?: ItemCurrency
   /** Category of the item (consumable, ball, evolution...). */
   type?: string
+  /** Iconify icon name */
+  icon?: string
+  /** UnoCSS classes applied to the icon */
+  iconClass?: string
   image?: string
 }
 
