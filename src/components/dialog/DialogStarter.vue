@@ -62,6 +62,7 @@ const dialogTree = [
         label: s.id === 'bulgrosboule' ? 'Je l\'aime pas trop mais ok' : `Merci ${profMerdant.name}`,
         type: 'valid',
         action: () => {
+          gameState.setStarterId(s.id)
           dex.createShlagemon(s)
           gameState.setHasPokemon(true)
           emit('done', 'starter')

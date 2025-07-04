@@ -4,6 +4,7 @@ import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
+import { allShlagemons } from '~/data/shlagemons'
 import { zonesData } from '~/data/zones'
 import {
   applyStats,
@@ -14,6 +15,7 @@ import {
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useEvolutionStore } from './evolution'
+import { useGameStateStore } from './gameState'
 import { useZoneProgressStore } from './zoneProgress'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
@@ -22,6 +24,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
   const progress = useZoneProgressStore()
+  const gameState = useGameStateStore()
+  const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
 
@@ -51,6 +55,11 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const completableIds = computed(() => {
     const ids = new Set<string>()
     const visited = new Set<string>()
+    if (gameState.starterId) {
+      const base = baseMap[gameState.starterId]
+      if (base)
+        collectEvolutionIds(base, ids, visited)
+    }
     for (const z of accessibleZones.value)
       z.shlagemons?.forEach(m => collectEvolutionIds(m, ids, visited))
     return ids
