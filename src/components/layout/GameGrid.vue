@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
@@ -7,6 +7,7 @@ import ZonePanel from '~/components/panels/ZonePanel.vue'
 import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
+import { trainerTracks, zoneBattleTracks, zoneTracks } from '~/data/music'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useDialogStore } from '~/stores/dialog'
@@ -14,6 +15,7 @@ import { useGameStateStore } from '~/stores/gameState'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
 
 const gameState = useGameStateStore()
@@ -24,6 +26,7 @@ const dialogStore = useDialogStore()
 const achievements = useAchievementsStore()
 const mainPanel = useMainPanelStore()
 const audio = useAudioStore()
+const trainerBattle = useTrainerBattleStore()
 
 const showXpBar = computed(() =>
   ['battle', 'trainerBattle'].includes(mainPanel.current),
@@ -39,16 +42,14 @@ const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 const isAchievementVisible = computed(() => achievements.hasAny)
 
 watch(
-  () => [mainPanel.current, zone.current.type],
-  ([panel, type]) => {
+  () => [mainPanel.current, zone.current.id, trainerBattle.current?.id],
+  ([panel, zoneId, trainerId]) => {
     if (panel === 'battle')
-      audio.fadeToRandomMusic('battle')
+      audio.fadeToMusic(zoneBattleTracks[zoneId])
     else if (panel === 'trainerBattle')
-      audio.fadeToRandomMusic('trainers')
-    else if (type === 'village')
-      audio.fadeToRandomMusic('villages')
+      audio.fadeToMusic(trainerTracks[trainerId || `king-${zoneId}`])
     else
-      audio.fadeToRandomMusic('villages')
+      audio.fadeToMusic(zoneTracks[zoneId])
   },
   { immediate: true },
 )
