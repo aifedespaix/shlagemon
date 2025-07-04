@@ -3,15 +3,8 @@ import { ref } from 'vue'
 import Profile from '~/components/profile/Profile.vue'
 import ThemeToggle from '~/components/ThemeToggle.vue'
 import Button from '~/components/ui/Button.vue'
-import { useSaveStore } from '~/stores/save'
-
-const save = useSaveStore()
 
 const showProfile = ref(false)
-
-function reset() {
-  save.reset()
-}
 </script>
 
 <template>
@@ -22,9 +15,6 @@ function reset() {
       <Button type="icon" aria-label="Profil" @click="showProfile = true">
         <div class="i-carbon-user" />
       </Button>
-      <button class="p-1" aria-label="Reset Save" @click="reset">
-        <div class="i-carbon-trash-can text-red" />
-      </button>
       <Profile v-model="showProfile" />
     </div>
   </header>
