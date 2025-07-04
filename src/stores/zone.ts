@@ -10,6 +10,7 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 import { sachatte } from '~/data/characters/sachatte'
 import { allShlagemons } from '~/data/shlagemons'
 import { zonesData } from '~/data/zones'
+import { useShlagedexStore } from './shlagedex'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
@@ -86,8 +87,12 @@ export const useZoneStore = defineStore('zone', () => {
   })
 
   function setZone(id: string) {
-    if (zones.value.some(z => z.id === id))
+    if (zones.value.some(z => z.id === id)) {
       currentId.value = id
+      const dex = useShlagedexStore()
+      if (dex.activeShlagemon)
+        dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+    }
   }
 
   function reset() {
