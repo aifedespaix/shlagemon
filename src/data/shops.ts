@@ -5,6 +5,7 @@ import {
   hyperAttackPotion,
   hyperDefensePotion,
   hyperPotion,
+  multiExp,
   potion,
   superAttackPotion,
   superDefensePotion,
@@ -27,7 +28,7 @@ export const shops: Shop[] = [
   {
     id: 'village-paume',
     level: 50,
-    items: [hyperPotion, hyperDefensePotion, hyperAttackPotion, hyperShlageball],
+    items: [hyperPotion, hyperDefensePotion, hyperAttackPotion, hyperShlageball, multiExp],
   },
 ]
 

@@ -5,6 +5,7 @@ import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
 import { useGameStore } from './game'
+import { useMultiExpStore } from './multiExp'
 import { useShlagedexStore } from './shlagedex'
 
 export const useInventoryStore = defineStore('inventory', () => {
@@ -68,6 +69,11 @@ export const useInventoryStore = defineStore('inventory', () => {
     if (!items.value[id])
       return false
     notifyAchievement({ type: 'item-used' })
+    if (id === 'multi-exp') {
+      const me = useMultiExpStore()
+      me.open()
+      return true
+    }
     if (id === 'potion') {
       dex.healActive(50)
       remove(id)

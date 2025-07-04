@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import Modal from '~/components/modal/Modal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMultiExpStore } from '~/stores/multiExp'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
@@ -14,6 +16,7 @@ const filter = useDexFilterStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
+const multiExpStore = useMultiExpStore()
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
@@ -121,6 +124,7 @@ function isActive(mon: DexShlagemon) {
         @click.stop="onClick(mon)"
         @dblclick.stop="onDoubleClick(mon)"
       >
+        <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="absolute left-1 top-1 h-4 w-4" />
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
         </div>
