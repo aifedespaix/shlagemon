@@ -150,7 +150,7 @@ function checkEnd() {
     stopInterval()
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
-    setTimeout(() => {
+    setTimeout(async () => {
       if (dex.activeShlagemon) {
         dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
         playerHp.value = dex.activeShlagemon.hpCurrent
@@ -163,7 +163,7 @@ function checkEnd() {
         game.addShlagidolar(zone.rewardMultiplier)
         notifyAchievement({ type: 'battle-win', stronger })
         if (dex.activeShlagemon && enemy.value) {
-          dex.gainXp(
+          await dex.gainXp(
             dex.activeShlagemon,
             xpRewardForLevel(enemy.value.lvl),
             zone.current.maxLevel,

@@ -12,7 +12,7 @@ const panel = useMainPanelStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const search = ref('')
-const sortBy = ref<'level' | 'rarity' | 'name' | 'type'>('level')
+const sortBy = ref<'level' | 'rarity' | 'name' | 'type' | 'attack' | 'defense' | 'count' | 'date'>('level')
 const sortAsc = ref(false)
 const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
 const sortOptions = [
@@ -20,10 +20,14 @@ const sortOptions = [
   { label: 'Rareté', value: 'rarity' },
   { label: 'Nom', value: 'name' },
   { label: 'Type', value: 'type' },
+  { label: 'Attaque', value: 'attack' },
+  { label: 'Défense', value: 'defense' },
+  { label: 'Nb obtentions', value: 'count' },
+  { label: 'Première capture', value: 'date' },
 ]
 
 watch(sortBy, (val) => {
-  sortAsc.value = val === 'name' || val === 'type'
+  sortAsc.value = val === 'name' || val === 'type' || val === 'date'
 }, { immediate: true })
 
 const displayedMons = computed(() => {
@@ -38,6 +42,18 @@ const displayedMons = computed(() => {
       break
     case 'rarity':
       mons.sort((a, b) => a.rarity - b.rarity)
+      break
+    case 'attack':
+      mons.sort((a, b) => a.attack - b.attack)
+      break
+    case 'defense':
+      mons.sort((a, b) => a.defense - b.defense)
+      break
+    case 'count':
+      mons.sort((a, b) => a.captureCount - b.captureCount)
+      break
+    case 'date':
+      mons.sort((a, b) => new Date(a.captureDate).getTime() - new Date(b.captureDate).getTime())
       break
     case 'name':
       mons.sort((a, b) => a.base.name.localeCompare(b.base.name))
@@ -132,7 +148,7 @@ function isActive(mon: DexShlagemon) {
       </div>
     </div>
     <Modal v-model="showDetail" footer-close @close="showDetail = false">
-      <ShlagemonDetail :mon="detailMon" />
+      <ShlagemonDetail :mon="detailMon" @release="showDetail = false" />
     </Modal>
   </section>
 </template>
