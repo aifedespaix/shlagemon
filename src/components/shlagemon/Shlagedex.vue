@@ -124,7 +124,7 @@ function isActive(mon: DexShlagemon) {
             :shiny="mon.isShiny"
             class="h-12 w-12 object-contain -m-y-2"
           />
-          <div class="flex flex-col">
+          <div class="flex flex-col overflow-hidden">
             <div class="name">
               {{ mon.base.name }}
             </div>

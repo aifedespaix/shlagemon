@@ -102,6 +102,14 @@ const captureInfo = computed(() => {
       </div>
     </div>
     <ShlagemonXpBar :mon="mon" class="mt-4" />
+    <div class="w-full flex items-center justify-center gap-2 text-xs">
+      <p class="">
+        Première capture : {{ captureInfo.date }}
+      </p>
+      <p>
+        Obtenu {{ captureInfo.count }} fois
+      </p>
+    </div>
     <div class="mt-4 flex justify-end">
       <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
         <div i-carbon-trash-can />
@@ -128,12 +136,6 @@ const captureInfo = computed(() => {
         </div>
       </div>
     </Modal>
-    <p class="mt-2 text-xs">
-      Première capture : {{ captureInfo.date }}
-    </p>
-    <p class="text-xs">
-      Obtenu {{ captureInfo.count }} fois
-    </p>
   </div>
 </template>
 
