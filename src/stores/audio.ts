@@ -9,6 +9,31 @@ export const useAudioStore = defineStore('audio', () => {
   const isSfxEnabled = ref(true)
   const currentMusic = ref<Howl | null>(null)
 
+  const tracks = {
+    battle: [
+      '/audio/musics/battle/battle-a.ogg',
+      '/audio/musics/battle/battle-b.ogg',
+      '/audio/musics/battle/battle-c.ogg',
+      '/audio/musics/battle/battle-d.ogg',
+    ],
+    trainers: [
+      '/audio/musics/trainers/trainer-a.ogg',
+      '/audio/musics/trainers/trainer-b.ogg',
+      '/audio/musics/trainers/trainer-c.ogg',
+      '/audio/musics/trainers/trainer-d.ogg',
+    ],
+    villages: [
+      '/audio/musics/villages/village-a.ogg',
+      '/audio/musics/villages/village-b.ogg',
+      '/audio/musics/villages/village-c.ogg',
+    ],
+  } as const
+
+  function randomTrack(category: keyof typeof tracks) {
+    const list = tracks[category]
+    return list[Math.floor(Math.random() * list.length)]
+  }
+
   function createMusic(src: string) {
     return new Howl({
       src: [src],
@@ -44,6 +69,14 @@ export const useAudioStore = defineStore('audio', () => {
     else {
       playMusic(track)
     }
+  }
+
+  function playRandomMusic(category: keyof typeof tracks) {
+    playMusic(randomTrack(category))
+  }
+
+  function fadeToRandomMusic(category: keyof typeof tracks) {
+    fadeToMusic(randomTrack(category))
   }
 
   function stopMusic() {
@@ -83,6 +116,8 @@ export const useAudioStore = defineStore('audio', () => {
     currentMusic,
     playMusic,
     fadeToMusic,
+    playRandomMusic,
+    fadeToRandomMusic,
     stopMusic,
     playSfx,
   }

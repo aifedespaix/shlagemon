@@ -41,12 +41,14 @@ const isAchievementVisible = computed(() => achievements.hasAny)
 watch(
   () => [mainPanel.current, zone.current.type],
   ([panel, type]) => {
-    if (['battle', 'trainerBattle'].includes(panel))
-      audio.fadeToMusic('/audio/battle.ogg')
+    if (panel === 'battle')
+      audio.fadeToRandomMusic('battle')
+    else if (panel === 'trainerBattle')
+      audio.fadeToRandomMusic('trainers')
     else if (type === 'village')
-      audio.fadeToMusic('/audio/ambient.ogg')
+      audio.fadeToRandomMusic('villages')
     else
-      audio.fadeToMusic('/audio/ambient.ogg')
+      audio.fadeToRandomMusic('villages')
   },
   { immediate: true },
 )
