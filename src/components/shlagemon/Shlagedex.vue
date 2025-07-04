@@ -74,6 +74,10 @@ function open(mon: DexShlagemon | null) {
   }
 }
 
+function onDoubleClick(mon: DexShlagemon) {
+  changeActive(mon)
+}
+
 function changeActive(mon: DexShlagemon) {
   if (isTrainerBattle.value)
     return
@@ -112,6 +116,7 @@ function isActive(mon: DexShlagemon) {
         hover="bg-gray-100 dark:bg-gray-800"
         :class="isActive(mon) ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400' : ''"
         @click.stop="open(mon)"
+        @dblclick.stop="onDoubleClick(mon)"
       >
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
