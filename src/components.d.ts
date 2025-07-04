@@ -69,6 +69,7 @@ declare module 'vue' {
     VillagePanel: typeof import('./components/village/VillagePanel.vue')['default']
     Xp: typeof import('./components/icons/xp.vue')['default']
     ZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
+    ZoneMapModal: typeof import('./components/zones/ZoneMapModal.vue')['default']
     ZonePanel: typeof import('./components/panels/ZonePanel.vue')['default']
   }
 }

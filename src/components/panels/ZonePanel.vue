@@ -3,6 +3,7 @@ import type { Zone } from '~/type'
 import { computed } from 'vue'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMapModalStore } from '~/stores/mapModal'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
@@ -11,6 +12,7 @@ const zone = useZoneStore()
 const dex = useShlagedexStore()
 const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
+const mapModal = useMapModalStore()
 const dialog = useDialogStore()
 
 const zoneButtonsDisabled = computed(
@@ -29,6 +31,13 @@ function canAccess(z: Zone) {
     return dex.highestLevel >= z.minLevel
   const prev = xpZones.value[idx - 1]
   return dex.highestLevel >= z.minLevel && progress.isKingDefeated(prev.id)
+}
+
+function selectZone(id: string) {
+  if (zoneButtonsDisabled.value)
+    return
+  zone.setZone(id)
+  mapModal.close()
 }
 
 function classes(z: Zone) {
@@ -65,7 +74,7 @@ function classes(z: Zone) {
         class="rounded px-2 py-1 text-xs"
         :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
         :disabled="zoneButtonsDisabled"
-        @click="!zoneButtonsDisabled && zone.setZone(z.id)"
+        @click="selectZone(z.id)"
       >
         {{ z.name }}
       </button>

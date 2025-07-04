@@ -8,6 +8,7 @@ import ZonePanel from '~/components/panels/ZonePanel.vue'
 import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
+import ZoneMapModal from '~/components/zones/ZoneMapModal.vue'
 import { trainerTracks, zoneBattleTracks, zoneTracks } from '~/data/music'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
@@ -45,7 +46,7 @@ const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 const isAchievementVisible = computed(() => achievements.hasAny)
 
-const displayZonePanel = computed(() => isShlagedexVisible.value && (!isMobile.value || mobileTab.current === 'zones'))
+const displayZonePanel = computed(() => isShlagedexVisible.value && !isMobile.value)
 const displayPlayerInfo = computed(() => !isMobile.value || mobileTab.current === 'game')
 const displayMainPanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
 const displayInventory = computed(() => isInventoryVisible.value && (!isMobile.value || mobileTab.current === 'game'))
@@ -84,7 +85,7 @@ watch(
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div v-if="displayMainPanel" class="zone" md="col-span-6 row-span-6 col-start-4 row-start-2">
+      <div v-if="displayMainPanel" class="zone h-[50vh]" md="col-span-6 row-span-6 col-start-4 row-start-2">
         <!-- middle A zone -->
         <PanelWrapper>
           <MainPanel class="flex-1" />
@@ -115,6 +116,7 @@ watch(
         </PanelWrapper>
       </div>
       <EvolutionModal />
+      <ZoneMapModal />
     </div>
   </div>
 </template>
