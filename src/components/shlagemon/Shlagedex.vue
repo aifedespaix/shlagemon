@@ -74,6 +74,10 @@ function open(mon: DexShlagemon | null) {
   }
 }
 
+function onDoubleClick(mon: DexShlagemon) {
+  changeActive(mon)
+}
+
 function changeActive(mon: DexShlagemon) {
   if (isTrainerBattle.value)
     return
@@ -113,6 +117,7 @@ function isActive(mon: DexShlagemon) {
         :class="{ 'bg-primary/20': isActive(mon) }"
         :style="isActive(mon) ? { backgroundImage: `url(/shlagemons/${mon.base.id}/${mon.base.id}.png)`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' } : {}"
         @click.stop="open(mon)"
+        @dblclick.stop="onDoubleClick(mon)"
       >
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
