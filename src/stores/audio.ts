@@ -44,18 +44,23 @@ export const useAudioStore = defineStore('audio', () => {
 
   function playMusic(track: string) {
     stopMusic()
-    if (!isMusicEnabled.value)
-      return
     currentMusic.value = createMusic(track)
-    currentMusic.value.play()
+    if (isMusicEnabled.value)
+      currentMusic.value.play()
   }
 
   function fadeToMusic(track: string) {
-    if (currentMusic.value) {
-      if (currentMusic.value._src === track)
-        return
-      const old = currentMusic.value
-      const next = createMusic(track)
+    if (!currentMusic.value) {
+      playMusic(track)
+      return
+    }
+    if (currentMusic.value._src === track)
+      return
+
+    const old = currentMusic.value
+    const next = createMusic(track)
+
+    if (isMusicEnabled.value) {
       next.volume(0)
       next.play()
       next.fade(0, musicVolume.value, 1000)
@@ -64,11 +69,13 @@ export const useAudioStore = defineStore('audio', () => {
         old.stop()
         old.unload()
       }, 1000)
-      currentMusic.value = next
     }
     else {
-      playMusic(track)
+      old.stop()
+      old.unload()
     }
+
+    currentMusic.value = next
   }
 
   function playRandomMusic(category: keyof typeof tracks) {
