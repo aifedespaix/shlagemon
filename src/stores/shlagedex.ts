@@ -273,7 +273,18 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return captured
   }
 
-  return { shlagemons, activeShlagemon, highestLevel, averageLevel, completionPercent, bonusPercent, bonusMultiplier, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, gainXp, healActive, boostDefense }
+  function releaseShlagemon(mon: DexShlagemon) {
+    const index = shlagemons.value.findIndex(m => m.id === mon.id)
+    if (index === -1)
+      return
+    shlagemons.value.splice(index, 1)
+    if (activeShlagemon.value?.id === mon.id)
+      activeShlagemon.value = shlagemons.value[0] || null
+    recomputeHighestLevel()
+    toast(`${mon.base.name} a été relâché !`)
+  }
+
+  return { shlagemons, activeShlagemon, highestLevel, averageLevel, completionPercent, bonusPercent, bonusMultiplier, addShlagemon, setActiveShlagemon, setShlagemons, reset, createShlagemon, captureShlagemon, captureEnemy, releaseShlagemon, gainXp, healActive, boostDefense }
 }, {
   persist: {
     debug: true,
