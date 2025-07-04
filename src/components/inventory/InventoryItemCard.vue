@@ -21,8 +21,13 @@ const ballFilter = computed(() =>
 <template>
   <div class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900">
     <div class="flex items-center gap-2">
+      <div
+        v-if="props.item.icon"
+        class="h-8 w-8"
+        :class="[props.item.iconClass, `i-${props.item.icon}`]"
+      />
       <img
-        v-if="props.item.image"
+        v-else-if="props.item.image"
         :src="props.item.image"
         :alt="props.item.name"
         class="h-8 w-8 object-contain"
@@ -55,8 +60,13 @@ const ballFilter = computed(() =>
     </button>
     <Modal v-model="showInfo" footer-close>
       <div class="flex flex-col items-center gap-2">
+        <div
+          v-if="props.item.icon"
+          class="h-16 w-16"
+          :class="[props.item.iconClass, `i-${props.item.icon}`]"
+        />
         <img
-          v-if="props.item.image"
+          v-else-if="props.item.image"
           :src="props.item.image"
           :alt="props.item.name"
           class="h-16 w-16 object-contain"
