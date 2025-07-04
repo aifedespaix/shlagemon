@@ -3,6 +3,7 @@ import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
+import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
@@ -63,47 +64,8 @@ const flashPlayer = ref(false)
 const flashEnemy = ref(false)
 const playerFainted = ref(false)
 const enemyFainted = ref(false)
-const playerEffect = ref('')
-const enemyEffect = ref('')
-const playerVariant = ref<'normal' | 'high' | 'low'>('normal')
-const enemyVariant = ref<'normal' | 'high' | 'low'>('normal')
-let battleInterval: number | undefined
-
-function showEffect(target: 'player' | 'enemy', effect: 'super' | 'not' | 'normal', crit: 'critical' | 'weak' | 'normal') {
-  if (effect === 'normal' && crit === 'normal')
-    return
-  const messages: string[] = []
-  if (crit === 'critical')
-    messages.push('Coup critique !')
-  else if (crit === 'weak')
-    messages.push('Coup mou...')
-  if (effect === 'super')
-    messages.push('C\u2019est super efficace !')
-  else if (effect === 'not')
-    messages.push('Pas tr\u00E8s efficace...')
-  const text = messages.join(' ')
-  const variant = effect === 'super' || crit === 'critical'
-    ? 'high'
-    : effect === 'not' || crit === 'weak'
-      ? 'low'
-      : 'normal'
-  if (target === 'enemy') {
-    enemyEffect.value = text
-    enemyVariant.value = variant
-    setTimeout(() => {
-      enemyEffect.value = ''
-      enemyVariant.value = 'normal'
-    }, 500)
-  }
-  else {
-    playerEffect.value = text
-    playerVariant.value = variant
-    setTimeout(() => {
-      playerEffect.value = ''
-      playerVariant.value = 'normal'
-    }, 500)
-  }
-}
+const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
+const { start: startInterval, clear: stopInterval } = useSingleInterval(() => tick(), 1000)
 
 function openCapture() {
   const id = ballStore.current
@@ -112,9 +74,7 @@ function openCapture() {
   inventory.remove(id)
   captureBall.value = balls.find(b => b.id === id) || balls[0]
   battleActive.value = false
-  if (battleInterval)
-    clearInterval(battleInterval)
-  battleInterval = undefined
+  stopInterval()
   showCapture.value = true
 }
 
@@ -128,7 +88,7 @@ function onCaptureEnd(success: boolean) {
   }
   else {
     battleActive.value = true
-    battleInterval = window.setInterval(tick, 1000)
+    startInterval()
   }
 }
 
@@ -154,7 +114,7 @@ function startBattle() {
   playerHp.value = active.hpCurrent
   enemyHp.value = enemy.value.hp
   battleActive.value = true
-  battleInterval = window.setInterval(tick, 1000)
+  startInterval()
 }
 
 function attack() {
@@ -187,9 +147,7 @@ function tick() {
 function checkEnd() {
   if (enemyHp.value <= 0 || playerHp.value <= 0) {
     battleActive.value = false
-    if (battleInterval)
-      clearInterval(battleInterval)
-    battleInterval = undefined
+    stopInterval()
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
     setTimeout(() => {
@@ -230,13 +188,11 @@ watch(
       if (enemy.value)
         enemy.value.hpCurrent = enemy.value.hp
       enemyHp.value = enemy.value?.hp ?? 0
-      if (battleInterval)
-        clearInterval(battleInterval)
-      battleInterval = undefined
+      stopInterval()
       battleActive.value = false
       playerHp.value = mon.hpCurrent
     }
-    if (!battleActive.value && battleInterval === undefined)
+    if (!battleActive.value)
       startBattle()
   },
   { immediate: true },
@@ -255,17 +211,14 @@ watch(
   () => {
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
-    if (battleInterval)
-      clearInterval(battleInterval)
-    battleInterval = undefined
+    stopInterval()
     battleActive.value = false
     startBattle()
   },
 )
 
 onUnmounted(() => {
-  if (battleInterval)
-    clearInterval(battleInterval)
+  stopInterval()
 })
 </script>
 
