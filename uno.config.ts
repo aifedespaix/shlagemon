@@ -41,7 +41,7 @@ export default defineConfig({
     pipeline: {
       include: [
         // default patterns
-        /\.(vue|svelte|ts|[jt]sx|vine\.ts|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        /\.(vue|svelte|[jt]sx|vine\.ts|mdx?|astro|elm|php|phtml|html)($|\?)/,
         // allow scanning of all JS/TS files
         'src/**/*.{js,ts}',
       ],
