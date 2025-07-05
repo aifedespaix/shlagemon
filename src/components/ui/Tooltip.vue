@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
-import { ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 
 const props = defineProps<{ text: string }>()
 
@@ -33,6 +33,8 @@ function hide() {
     cleanup = undefined
   }
 }
+
+onUnmounted(hide)
 </script>
 
 <template>
