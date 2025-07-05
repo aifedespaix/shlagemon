@@ -16,7 +16,6 @@ import {
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useEvolutionStore } from './evolution'
-import { useGameStateStore } from './gameState'
 import { useZoneProgressStore } from './zoneProgress'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
@@ -25,7 +24,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
   const progress = useZoneProgressStore()
-  const gameState = useGameStateStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
@@ -43,78 +41,42 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
-  const highestAccessibleLevel = computed(() =>
-    accessibleZones.value.reduce((m, z) => Math.max(m, z.maxLevel), 0),
-  )
   const accessibleShopLevel = computed(() =>
     shops
       .filter(s => accessibleZones.value.some(z => z.id === s.id))
       .reduce((m, s) => Math.max(m, s.level), 0),
   )
 
-  function collectEvolutionIds(
-    base: BaseShlagemon,
-    ids: Set<string>,
-    visited: Set<string>,
-    levelLimit: number,
-  ) {
-    if (visited.has(base.id))
-      return
-    visited.add(base.id)
-    ids.add(base.id)
-    const evo = base.evolution
-    if (!evo)
-      return
-    if (evo.condition.type === 'lvl' && evo.condition.value > levelLimit)
-      return
-    collectEvolutionIds(evo.base, ids, visited, levelLimit)
-  }
-
-  const completableIds = computed(() => {
+  const accessibleBaseIds = computed(() => {
     const ids = new Set<string>()
-    const visited = new Set<string>()
-    const levelLimit = highestAccessibleLevel.value
-
-    const starters = ['carapouffe', 'salamiches', 'bulgrosboule']
-    starters.forEach((id) => {
-      const base = baseMap[id]
-      if (base)
-        collectEvolutionIds(base, ids, visited, levelLimit)
-    })
-
-    if (gameState.starterId) {
-      const base = baseMap[gameState.starterId]
-      if (base)
-        collectEvolutionIds(base, ids, visited, levelLimit)
-    }
-
-    for (const z of accessibleZones.value) {
-      z.shlagemons?.forEach((m) => {
-        if (m.id === 'pikachiant' && accessibleShopLevel.value < 50)
-          return
-        collectEvolutionIds(m, ids, visited, levelLimit)
-      })
-    }
-
+    for (const z of accessibleZones.value)
+      z.shlagemons?.forEach(m => ids.add(m.id))
     if (accessibleShopLevel.value >= 50 && baseMap.pikachiant)
-      collectEvolutionIds(baseMap.pikachiant, ids, visited, levelLimit)
-
+      ids.add('pikachiant')
     return ids
   })
 
-  const completableCount = computed(() => completableIds.value.size)
+  const capturedBaseIds = computed(() => new Set(shlagemons.value.map(m => m.base.id)))
+
+  const potentialCompletionPercent = computed(() => {
+    const total = accessibleBaseIds.value.size
+    if (!total)
+      return 0
+    let captured = 0
+    for (const id of accessibleBaseIds.value) {
+      if (capturedBaseIds.value.has(id))
+        captured += 1
+    }
+    return (captured / total) * 100
+  })
+
   const averageLevel = computed(() =>
     shlagemons.value.length
       ? shlagemons.value.reduce((s, m) => s + m.lvl, 0) / shlagemons.value.length
       : 0,
   )
-  const completionPercent = computed(() =>
-    completableCount.value
-      ? (shlagemons.value.length / completableCount.value) * 100
-      : 0,
-  )
   const bonusPercent = computed(
-    () => averageLevel.value * 2 * (completionPercent.value / 100),
+    () => averageLevel.value * 2 * (potentialCompletionPercent.value / 100),
   )
   const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
@@ -452,8 +414,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     shlagemons,
     activeShlagemon,
     highestLevel,
+    accessibleBaseIds,
+    capturedBaseIds,
     averageLevel,
-    completionPercent,
+    potentialCompletionPercent,
     bonusPercent,
     bonusMultiplier,
     addShlagemon,

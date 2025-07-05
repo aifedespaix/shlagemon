@@ -24,7 +24,7 @@ const dex = useShlagedexStore()
     <div class="mt-2 flex flex-col gap-1">
       <div class="flex items-center gap-2">
         <SchlagedexIcon class="h-5 w-5" />
-        <span>Complétion : {{ Math.round(dex.completionPercent) }}%</span>
+        <span>Complétion : {{ Math.round(dex.potentialCompletionPercent) }}%</span>
       </div>
       <div class="flex items-center gap-2">
         <XpIcon class="h-5 w-5" />
