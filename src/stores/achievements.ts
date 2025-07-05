@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { computed, reactive, watch } from 'vue'
 import { toast } from 'vue3-toastify'
+import { zonesData } from '~/data/zones'
 import { useGameStore } from './game'
 import { useShlagedexStore } from './shlagedex'
+import { useZoneProgressStore } from './zoneProgress'
 
 export interface Achievement {
   id: string
@@ -20,6 +22,7 @@ export type AchievementEvent =
 export const useAchievementsStore = defineStore('achievements', () => {
   const game = useGameStore()
   const dex = useShlagedexStore()
+  const progress = useZoneProgressStore()
 
   const defMap: Record<string, Achievement> = {}
 
@@ -145,6 +148,30 @@ export const useAchievementsStore = defineStore('achievements', () => {
     defMap[def.id] = def
   })
 
+  const zoneWinThresholds = [10, 100, 1000]
+  zonesData.forEach((z) => {
+    if (z.completionAchievement) {
+      const def = {
+        id: `zone-${z.id}-complete`,
+        title: z.completionAchievement,
+        description: `Capturer tous les Shlagémon de ${z.name}.`,
+        icon: 'mdi:map-marker-check',
+      }
+      defs.push(def)
+      defMap[def.id] = def
+    }
+    zoneWinThresholds.forEach((n) => {
+      const def = {
+        id: `zone-${z.id}-win-${n}`,
+        title: `${n.toLocaleString()} victoires - ${z.name}`,
+        description: `Vaincre ${n.toLocaleString()} Shlagémon dans ${z.name}.`,
+        icon: 'carbon:sword',
+      }
+      defs.push(def)
+      defMap[def.id] = def
+    })
+  })
+
   // extra achievements
   const teamDef = {
     id: 'team-6',
@@ -245,6 +272,26 @@ export const useAchievementsStore = defineStore('achievements', () => {
   watch(() => counters.itemsUsed, v => checkThresholds(v, 'item', itemThresholds))
   watch(() => counters.kings, v => checkThresholds(v, 'king', kingThresholds))
   watch(() => counters.shiny, v => checkThresholds(v, 'shiny', shinyThresholds))
+
+  function checkZoneCompletion() {
+    zonesData.forEach((z) => {
+      if (!z.shlagemons?.length || !z.completionAchievement)
+        return
+      const all = z.shlagemons.every(base =>
+        dex.shlagemons.some(m => m.base.id === base.id),
+      )
+      if (all)
+        unlock(`zone-${z.id}-complete`)
+    })
+  }
+
+  watch(() => dex.shlagemons.length, () => checkZoneCompletion(), { immediate: true })
+  watch(progress.wins, (val) => {
+    zonesData.forEach((z) => {
+      const count = val[z.id] || 0
+      checkThresholds(count, `zone-${z.id}-win`, zoneWinThresholds)
+    })
+  }, { deep: true, immediate: true })
 
   const level100Count = computed(() =>
     dex.shlagemons.filter(m => m.lvl >= 100).length,
