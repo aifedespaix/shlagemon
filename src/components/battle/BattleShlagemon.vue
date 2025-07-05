@@ -4,6 +4,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { onUnmounted, ref } from 'vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
+import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 
 interface Props {
@@ -16,6 +17,8 @@ interface Props {
   showBall?: boolean
   owned?: boolean
   effects?: ActiveEffect[]
+  disease?: boolean
+  diseaseRemaining?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -26,6 +29,8 @@ const props = withDefaults(defineProps<Props>(), {
   showBall: false,
   owned: false,
   effects: () => [],
+  disease: false,
+  diseaseRemaining: 0,
 })
 
 const emit = defineEmits<{ (e: 'faintEnd'): void }>()
@@ -43,7 +48,7 @@ function onAnimationEnd() {
 </script>
 
 <template>
-  <div class="relative w-full flex flex-col items-center">
+  <div class="relative w-full flex flex-col items-center" :class="{ 'saturate-0': props.disease }">
     <div class="absolute left-0 top-0 flex gap-1">
       <EffectBadge
         v-for="e in props.effects"
@@ -51,6 +56,7 @@ function onAnimationEnd() {
         :effect="e"
         :now="now"
       />
+      <DiseaseBadge v-if="props.disease" :remaining="props.diseaseRemaining" />
     </div>
     <ShlagemonImage
       :id="props.mon.base.id"
