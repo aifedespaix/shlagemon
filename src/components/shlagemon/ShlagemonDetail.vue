@@ -163,6 +163,7 @@ const captureInfo = computed(() => {
 .shiny-text {
   background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffff, #00ff00, #ffff00, #ff9900, #ff0000);
   background-size: 400% 400%;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shiny-rainbow 5s linear infinite;
