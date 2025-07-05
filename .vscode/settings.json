@@ -65,5 +65,7 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+  // Prevent false warnings for UnoCSS directives like `@apply`
+  "css.lint.unknownAtRules": "ignore"
 }
