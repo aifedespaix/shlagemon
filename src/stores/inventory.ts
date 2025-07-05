@@ -39,21 +39,22 @@ export const useInventoryStore = defineStore('inventory', () => {
       delete items.value[id]
   }
 
-  function buy(id: string) {
+  function buy(id: string, qty = 1) {
     const item = allItems.find(i => i.id === id)
     if (!item)
       return false
+    const cost = item.price * qty
     if (item.currency === 'shlagidiamond') {
-      if (game.shlagidiamond < item.price)
+      if (game.shlagidiamond < cost)
         return false
-      game.addShlagidiamond(-item.price)
+      game.addShlagidiamond(-cost)
     }
     else {
-      if (game.shlagidolar < item.price)
+      if (game.shlagidolar < cost)
         return false
-      game.addShlagidolar(-item.price)
+      game.addShlagidolar(-cost)
     }
-    add(id)
+    add(id, qty)
     return true
   }
 

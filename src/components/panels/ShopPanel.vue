@@ -13,10 +13,11 @@ const game = useGameStore()
 const zone = useZoneStore()
 const shopItems = computed(() => getShop(zone.current.id)?.items || [])
 
-function canBuy(item: Item) {
+function canBuy(item: Item, qty = 1) {
+  const cost = item.price * qty
   if (item.currency === 'shlagidiamond')
-    return game.shlagidiamond >= item.price
-  return game.shlagidolar >= item.price
+    return game.shlagidiamond >= cost
+  return game.shlagidolar >= cost
 }
 </script>
 
@@ -29,6 +30,20 @@ function canBuy(item: Item) {
       <ItemCard v-for="item in shopItems" :key="item.id" :item="item">
         <Button class="ml-2" :disabled="!canBuy(item)" @click="inventory.buy(item.id)">
           Acheter
+        </Button>
+        <Button
+          v-if="canBuy(item, 10)"
+          class="ml-2"
+          @click="inventory.buy(item.id, 10)"
+        >
+          Acheter x10
+        </Button>
+        <Button
+          v-if="canBuy(item, 100)"
+          class="ml-2"
+          @click="inventory.buy(item.id, 100)"
+        >
+          Acheter x100
         </Button>
       </ItemCard>
     </div>
