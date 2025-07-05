@@ -33,6 +33,7 @@ const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
 const events = useEventStore()
 const equilibrerank = 2
+let nextBattleTimer: number | undefined
 
 const wins = computed(() => progress.getWins(zone.current.id))
 const hasAllZoneMons = computed(() => {
@@ -105,7 +106,8 @@ function onCaptureEnd(success: boolean) {
       playerHp.value = dex.activeShlagemon.hpCurrent
     }
     enemy.value = null
-    setTimeout(startBattle, 1000)
+    clearTimeout(nextBattleTimer)
+    nextBattleTimer = window.setTimeout(startBattle, 1000)
   }
   else {
     battleActive.value = true
@@ -114,6 +116,7 @@ function onCaptureEnd(success: boolean) {
 }
 
 function startBattle() {
+  clearTimeout(nextBattleTimer)
   const active = dex.activeShlagemon
   if (!active)
     return
@@ -192,7 +195,8 @@ function checkEnd() {
     stopInterval()
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
-    setTimeout(async () => {
+    clearTimeout(nextBattleTimer)
+    nextBattleTimer = window.setTimeout(async () => {
       events.emit('battle:end')
       if (dex.activeShlagemon) {
         dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
@@ -268,6 +272,7 @@ watch(
 
 onUnmounted(() => {
   stopInterval()
+  clearTimeout(nextBattleTimer)
 })
 </script>
 
