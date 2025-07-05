@@ -1,3 +1,4 @@
+export * from './audio'
 export * from './ball'
 export * from './button'
 export * from './dialog'
