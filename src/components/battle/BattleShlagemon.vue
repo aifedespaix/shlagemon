@@ -4,8 +4,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { onUnmounted, ref } from 'vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
-import Tooltip from '~/components/ui/Tooltip.vue'
-import { formatDuration } from '~/utils/formatDuration'
+import EffectBadge from './EffectBadge.vue'
 
 interface Props {
   mon: DexShlagemon
@@ -41,27 +40,17 @@ function onAnimationEnd() {
   if (props.fainted)
     emit('faintEnd')
 }
-
-function remainingTime(effect: ActiveEffect) {
-  return formatDuration(effect.expiresAt - now.value)
-}
 </script>
 
 <template>
   <div class="relative w-full flex flex-col items-center">
     <div class="absolute left-0 top-0 flex gap-1">
-      <Tooltip
+      <EffectBadge
         v-for="e in props.effects"
         :key="e.id"
-        :text="e.type === 'attack' ? `Attaque +${e.percent}%` : `Défense +${e.percent}%`"
-      >
-        <div class="relative h-5 w-5">
-          <div class="h-5 w-5" :class="[`i-${e.icon}`, e.iconClass]" />
-          <span class="absolute rounded-full bg-white px-0.5 text-[10px] font-bold -right-1 -top-1 dark:bg-gray-800">
-            {{ remainingTime(e) }}
-          </span>
-        </div>
-      </Tooltip>
+        :effect="e"
+        :now="now"
+      />
     </div>
     <ShlagemonImage
       :id="props.mon.base.id"
