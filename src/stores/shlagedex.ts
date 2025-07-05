@@ -136,7 +136,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (idx === -1)
       return
     const effect = effects.value[idx]
-    if (typeof effect.timeoutId === 'number')
+    if (effect.timeoutId !== undefined)
       clearTimeout(effect.timeoutId)
     effects.value.splice(idx, 1)
     if (!activeShlagemon.value)
@@ -169,7 +169,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (typeof existing.timeoutId === 'number')
+        if (existing.timeoutId !== undefined)
           clearTimeout(existing.timeoutId)
         existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
         return
@@ -206,7 +206,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (typeof existing.timeoutId === 'number')
+        if (existing.timeoutId !== undefined)
           clearTimeout(existing.timeoutId)
         existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
         return
