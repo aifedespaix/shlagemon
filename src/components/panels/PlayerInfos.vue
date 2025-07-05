@@ -9,13 +9,17 @@ import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useBallStore } from '~/stores/ball'
+import { useDiseaseStore } from '~/stores/disease'
 import { useInventoryStore } from '~/stores/inventory'
+import { usePlayerStore } from '~/stores/player'
 import { ballHues } from '~/utils/ball'
 
 const game = useGameStore()
 const dex = useShlagedexStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
+const player = usePlayerStore()
+const disease = useDiseaseStore()
 
 const showBonus = ref(false)
 
@@ -27,6 +31,15 @@ const totalInDex = allShlagemons.length
     class="w-full inline-flex items-center justify-around gap-3 rounded bg-white text-xs dark:bg-gray-900"
     sm="text-sm"
   >
+    <span v-if="player.pseudo" class="min-w-0 flex items-center gap-1 font-bold">
+      {{ player.pseudo }}
+      <Tooltip
+        v-if="disease.active"
+        :text="`Malade : ${disease.remaining} combats restants`"
+      >
+        <div class="i-mdi:emoticon-sick text-red-500" />
+      </Tooltip>
+    </span>
     <CurrencyAmount :amount="game.shlagidolar" currency="shlagidolar" />
     <CurrencyAmount :amount="game.shlagidiamond" currency="shlagidiamond" />
     <Tooltip text="SchlagéDex">

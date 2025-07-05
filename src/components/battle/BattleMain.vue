@@ -11,6 +11,7 @@ import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
+import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMultiExpStore } from '~/stores/multiExp'
@@ -28,6 +29,7 @@ const battle = useBattleStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
+const events = useEventStore()
 const equilibrerank = 2
 
 const wins = computed(() => progress.getWins(zone.current.id))
@@ -189,6 +191,7 @@ function checkEnd() {
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
     setTimeout(async () => {
+      events.emit('battle:end')
       if (dex.activeShlagemon) {
         dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
         playerHp.value = dex.activeShlagemon.hpCurrent
