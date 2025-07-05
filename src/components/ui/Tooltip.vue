@@ -11,13 +11,17 @@ let cleanup: (() => void) | undefined
 
 function show() {
   visible.value = true
-  if (wrapper.value && tooltip.value) {
-    cleanup = autoUpdate(wrapper.value, tooltip.value, () => {
-      computePosition(wrapper.value!, tooltip.value!, {
+  const wrapperEl = wrapper.value
+  const tooltipEl = tooltip.value
+  if (wrapperEl && tooltipEl) {
+    cleanup = autoUpdate(wrapperEl, tooltipEl, () => {
+      if (!wrapperEl || !tooltipEl)
+        return
+      computePosition(wrapperEl, tooltipEl, {
         placement: 'top',
         middleware: [offset(6), flip(), shift({ padding: 4 })],
       }).then(({ x, y }) => {
-        Object.assign(tooltip.value!.style, {
+        Object.assign(tooltipEl.style, {
           left: `${x}px`,
           top: `${y}px`,
         })
