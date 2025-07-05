@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMapModalStore } from '~/stores/mapModal'
+import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
@@ -14,6 +15,7 @@ const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const mapModal = useMapModalStore()
 const dialog = useDialogStore()
+const mobile = useMobileTabStore()
 
 const zoneButtonsDisabled = computed(
   () => panel.current === 'trainerBattle' || dialog.isDialogVisible,
@@ -38,6 +40,7 @@ function selectZone(id: string) {
     return
   zone.setZone(id)
   mapModal.close()
+  mobile.set('game')
 }
 
 function classes(z: Zone) {

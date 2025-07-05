@@ -27,51 +27,52 @@ interface ZoneDescription {
   type: ZoneType
   actions?: { id: string, label: string }[]
   shlagemons: BaseShlagemon[]
+  completionAchievement?: string
 }
 
 // Liste ordonnée de descriptions de zones, une par palier de 5 niveaux
 const zoneDescriptions: ZoneDescription[] = [
-  { id: 'plaine-kekette', name: 'Plaine Kékette', type: 'sauvage', shlagemons: [
+  { id: 'plaine-kekette', name: 'Plaine Kékette', type: 'sauvage', completionAchievement: 'Fendeur de la Plaine Kékette', shlagemons: [
     sacdepates,
     rouxPasCool,
     canarchichon,
     sperectum,
   ] },
-  { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage', shlagemons: [
+  { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage', completionAchievement: 'Bûcheron du Bois de Bouffon', shlagemons: [
     dartagnan,
     ptitocard,
     goubite,
     metamorve,
   ] },
-  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'sauvage', shlagemons: [
+  { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'sauvage', completionAchievement: 'Explorateur de la Grotte du Slip', shlagemons: [
     nosferachid,
     alakalbar,
     abraquemar,
     emboli,
   ] },
-  { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage', shlagemons: [
+  { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', type: 'sauvage', completionAchievement: 'Sauveur du Ravin de la Fesse Molle', shlagemons: [
     qulbudrogue,
     pikachiant,
     goubite,
     nanmeouesh,
   ] },
-  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'sauvage', actions: [], shlagemons: [
+  { id: 'grotte-nanard', name: 'Grotte du Vieux Nanard', type: 'sauvage', actions: [], completionAchievement: 'Dénicheur du Vieux Nanard', shlagemons: [
     carapouffe,
     sacdepates,
     ptitocard,
     ricardnin,
   ] },
-  { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage', shlagemons: [
+  { id: 'marais-moudugenou', name: 'Marais Moudugenou', type: 'sauvage', completionAchievement: 'Épurateur du Marais Moudugenou', shlagemons: [
     salamiches,
     nosferachid,
     rouxPasCool,
   ] },
-  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'sauvage', actions: [], shlagemons: [
+  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', type: 'sauvage', actions: [], completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak', shlagemons: [
     bulgrosboule,
     alakalbar,
     canarchichon,
   ] },
-  { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage', shlagemons: [
+  { id: 'route-du-nawak', name: 'Route du Nawak', type: 'sauvage', completionAchievement: 'Voyageur de la Route du Nawak', shlagemons: [
     mewteub,
     pikachiant,
     salamiches,
@@ -103,6 +104,7 @@ const zonesSpeciales: Zone[] = [
     actions: [],
     minLevel: 80,
     maxLevel: 90,
+    completionAchievement: 'Champion de la Zone Giga-Zob',
   },
   {
     id: 'route-so-dom',
@@ -111,6 +113,7 @@ const zonesSpeciales: Zone[] = [
     actions: [],
     minLevel: 91,
     maxLevel: 100,
+    completionAchievement: 'Héros de la Route So d\'Ôme',
   },
   {
     id: 'chambre-du-noobi',

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useMobileTabStore } from './mobileTab'
 
-export const useMapModalStore = defineStore('mapModal', () => {
+export const useInventoryModalStore = defineStore('inventoryModal', () => {
   const isVisible = ref(false)
   const mobile = useMobileTabStore()
 

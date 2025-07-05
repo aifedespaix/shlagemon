@@ -1,25 +1,48 @@
 <script setup lang="ts">
 import Button from '~/components/ui/Button.vue'
+import { useInventoryModalStore } from '~/stores/inventoryModal'
 import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
 
 const mobile = useMobileTabStore()
 const mapModal = useMapModalStore()
+const inventoryModal = useInventoryModalStore()
+
+function toggleMap() {
+  if (mapModal.isVisible)
+    mapModal.close()
+  else
+    mapModal.open()
+}
+
+function toggleInventory() {
+  if (inventoryModal.isVisible)
+    inventoryModal.close()
+  else
+    inventoryModal.open()
+}
 </script>
 
 <template>
-  <nav class="h-12 flex items-center justify-around bg-gray-100 md:hidden dark:bg-gray-800">
-    <Button type="icon" :class="mobile.current === 'achievements' ? 'text-teal-600 dark:text-teal-400' : ''" @click="mobile.set('achievements')">
-      <div class="i-carbon-trophy" />
-    </Button>
-    <Button type="icon" :class="mobile.current === 'dex' ? 'text-teal-600 dark:text-teal-400' : ''" @click="mobile.set('dex')">
-      <div class="i-carbon-list" />
-    </Button>
-    <Button type="icon" :class="mapModal.isVisible ? 'text-teal-600 dark:text-teal-400' : ''" @click="mapModal.open()">
-      <div class="i-carbon-map" />
-    </Button>
-    <Button type="icon" :class="mobile.current === 'game' ? 'text-teal-600 dark:text-teal-400' : ''" @click="mobile.set('game')">
+  <nav class="h-12 flex items-center justify-between bg-gray-100 px-2 md:hidden dark:bg-gray-800">
+    <div class="flex gap-2">
+      <Button type="icon" :class="mobile.current === 'dex' ? 'text-teal-600 dark:text-teal-400' : ''" @click="mobile.set('dex')">
+        <div class="i-carbon-list" />
+      </Button>
+      <Button type="icon" :class="mobile.current === 'achievements' ? 'text-teal-600 dark:text-teal-400' : ''" @click="mobile.set('achievements')">
+        <div class="i-carbon-trophy" />
+      </Button>
+    </div>
+    <Button type="icon" class="h-14 w-14 text-2xl -my-4" :class="mobile.current === 'game' ? 'text-teal-600 dark:text-teal-400' : ''" @click="mobile.set('game')">
       <div class="i-carbon-game-console" />
     </Button>
+    <div class="flex gap-2">
+      <Button type="icon" :class="mapModal.isVisible ? 'text-teal-600 dark:text-teal-400' : ''" @click="toggleMap">
+        <div class="i-carbon-map" />
+      </Button>
+      <Button type="icon" :class="inventoryModal.isVisible ? 'text-teal-600 dark:text-teal-400' : ''" @click="toggleInventory">
+        <div class="i-carbon-inventory-management" />
+      </Button>
+    </div>
   </nav>
 </template>
