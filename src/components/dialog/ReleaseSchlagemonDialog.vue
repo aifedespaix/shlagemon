@@ -57,5 +57,6 @@ const dialogTree = computed<DialogNode[]>(() => {
     :speaker="profMerdant.name"
     :avatar-url="`/characters/${profMerdant.id}/${profMerdant.id}.png`"
     :dialog-tree="dialogTree"
+    orientation="col"
   />
 </template>
