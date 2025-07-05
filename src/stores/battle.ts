@@ -2,6 +2,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computeDamage } from '~/utils/combat'
 import { useAudioStore } from './audio'
+import { useDiseaseStore } from './disease'
 import { useShlagedexStore } from './shlagedex'
 
 export interface AttackResult {
@@ -13,6 +14,7 @@ export interface AttackResult {
 export const useBattleStore = defineStore('battle', () => {
   const dex = useShlagedexStore()
   const audio = useAudioStore()
+  const disease = useDiseaseStore()
   function attack(
     attacker: DexShlagemon,
     defender: DexShlagemon,
@@ -29,7 +31,9 @@ export const useBattleStore = defineStore('battle', () => {
     const baseAttack = Math.round(attacker.attack * atkBonus * musicBonus * shinyBonus)
     const result = computeDamage(baseAttack, atkType, defType)
     const roundedDamage = Math.max(1, Math.round(result.damage / defBonus))
-    const finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
+    let finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
+    if (isPlayerAttacker && disease.active)
+      finalDamage = 1
     defender.hpCurrent = Math.max(0, defender.hpCurrent - finalDamage)
     return { ...result, damage: finalDamage }
   }

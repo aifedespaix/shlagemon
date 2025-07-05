@@ -15,6 +15,7 @@ import {
   xpForLevel,
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
+import { useDiseaseStore } from './disease'
 import { useEvolutionStore } from './evolution'
 import { useZoneProgressStore } from './zoneProgress'
 
@@ -24,6 +25,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
   const progress = useZoneProgressStore()
+  const disease = useDiseaseStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
@@ -97,6 +99,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function setActiveShlagemon(mon: DexShlagemon) {
+    if (disease.active)
+      return
     activeShlagemon.value = mon
   }
 
