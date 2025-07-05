@@ -2,8 +2,10 @@ import { defineStore } from 'pinia'
 import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
+import ReleaseSchlagemonDialog from '~/components/dialog/ReleaseSchlagemonDialog.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
+import { useShlagedexStore } from '~/stores/shlagedex'
 
 interface DialogItem {
   id: string
@@ -17,6 +19,7 @@ export interface DialogDone {
 export const useDialogStore = defineStore('dialog', () => {
   const gameState = useGameStateStore()
   const game = useGameStore()
+  const dex = useShlagedexStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -29,6 +32,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'richReward',
       component: markRaw(AnotherShlagemonDialog),
       condition: () => game.shlagidolar >= 10,
+    },
+    {
+      id: 'release',
+      component: markRaw(ReleaseSchlagemonDialog),
+      condition: () => dex.shlagemons.length >= 10,
     },
   ]
 
