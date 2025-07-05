@@ -82,6 +82,12 @@ const captureInfo = computed(() => {
         <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
         - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
         <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="h-4 w-4" />
+        <template v-if="multiExpStore.holderId === mon.id">
+          <MultiExpIcon class="h-4 w-4" />
+          <Button type="icon" class="ml-1" @click="multiExpStore.removeHolder()">
+            <div i-carbon-trash-can />
+          </Button>
+        </template>
       </div>
       <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
         <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
