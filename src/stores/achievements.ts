@@ -250,16 +250,16 @@ export const useAchievementsStore = defineStore('achievements', () => {
     dex.shlagemons.filter(m => m.lvl >= 100).length,
   )
   watch(
-    () => dex.completionPercent,
+    () => dex.potentialCompletionPercent,
     v => checkThresholds(v, 'dex', dexCompletionThresholds),
     { immediate: true },
   )
   watch(level100Count, v => checkThresholds(v, 'lvl100', lvl100Thresholds))
   watch(
-    [() => dex.completionPercent, level100Count, () => dex.shlagemons.length],
+    [() => dex.potentialCompletionPercent, level100Count, () => dex.shlagemons.length],
     () => {
       if (
-        dex.completionPercent === 100
+        dex.potentialCompletionPercent === 100
         && dex.shlagemons.every(m => m.lvl >= 100)
       ) {
         unlock('dex-full-100')
