@@ -8,6 +8,7 @@ import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
+import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -26,6 +27,7 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const multiExpStore = useMultiExpStore()
+const disease = useDiseaseStore()
 const events = useEventStore()
 const equilibrerank = 2
 
@@ -274,7 +276,14 @@ onUnmounted(() => {
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <BattleShlagemon :mon="dex.activeShlagemon" :hp="playerHp" :fainted="playerFainted" :effects="dex.effects" />
+          <BattleShlagemon
+            :mon="dex.activeShlagemon"
+            :hp="playerHp"
+            :fainted="playerFainted"
+            :effects="dex.effects"
+            :disease="disease.active"
+            :disease-remaining="disease.remaining"
+          />
         </div>
         <div class="vs font-bold">
           VS

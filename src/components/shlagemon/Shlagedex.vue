@@ -6,6 +6,7 @@ import Modal from '~/components/modal/Modal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
+import { useDiseaseStore } from '~/stores/disease'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useMultiExpStore } from '~/stores/multiExp'
@@ -14,10 +15,11 @@ import ShlagemonType from './ShlagemonType.vue'
 
 const dex = useShlagedexStore()
 const panel = useMainPanelStore()
+const disease = useDiseaseStore()
 const filter = useDexFilterStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
-const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
+const isLocked = computed(() => panel.current === 'trainerBattle' || disease.active)
 const multiExpStore = useMultiExpStore()
 const mobile = useMobileTabStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
@@ -93,7 +95,7 @@ function onDoubleClick(mon: DexShlagemon) {
 }
 
 function changeActive(mon: DexShlagemon) {
-  if (isTrainerBattle.value)
+  if (isLocked.value)
     return
   dex.setActiveShlagemon(mon)
   if (isMobile.value)
@@ -162,7 +164,7 @@ function isActive(mon: DexShlagemon) {
         <CheckBox
           class="ml-2"
           :model-value="isActive(mon)"
-          :disabled="isTrainerBattle"
+          :disabled="isLocked"
           @update:model-value="() => changeActive(mon)"
           @click.stop
         />
