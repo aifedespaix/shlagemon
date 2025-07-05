@@ -105,10 +105,9 @@ const captureInfo = computed(() => {
     <p class="tiny-scrollbar mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
-    <label class="mb-4 flex items-center gap-2 text-sm">
-      <CheckBox v-model="allowEvolution" />
+    <CheckBox v-model="allowEvolution" class="mb-4 flex items-center gap-2 text-sm">
       Autoriser ce Schlagemon à évoluer ?
-    </label>
+    </CheckBox>
     <div class="grid grid-cols-2 gap-2 text-sm">
       <div
         v-for="(stat, i) in stats"

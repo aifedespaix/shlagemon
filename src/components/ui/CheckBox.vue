@@ -12,15 +12,17 @@ function onChange(event: Event) {
 
 <template>
   <label
-    class="text-white"
+    v-bind="$attrs"
+    class="inline-flex items-center gap-2 text-white"
     :class="props.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'"
   >
     <input
       type="checkbox"
       :checked="props.modelValue"
       :disabled="props.disabled"
-      class="dark:border-white-400/20 h-4 w-4 transition-all duration-500 ease-in-out dark:scale-100 dark:checked:scale-100 dark:hover:scale-110"
+      class="dark:border-white-400/20 h-4 w-4 accent-blue-600 transition-all duration-500 ease-in-out dark:accent-blue-400"
       @change="onChange"
     >
+    <slot />
   </label>
 </template>

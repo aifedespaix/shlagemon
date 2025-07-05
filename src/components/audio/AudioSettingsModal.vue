@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
+import InputTipRange from '~/components/ui/InputTipRange.vue'
 import { useAudioStore } from '~/stores/audio'
 
 const props = defineProps<{ modelValue: boolean }>()
@@ -19,30 +20,20 @@ const audio = useAudioStore()
       <h3 class="text-center text-lg font-bold">
         Paramètres audio
       </h3>
-      <div class="flex items-center justify-between">
+      <CheckBox v-model="audio.isMusicEnabled" class="flex items-center justify-between">
         <span>Musique</span>
-        <CheckBox v-model="audio.isMusicEnabled" />
-      </div>
-      <input
-        v-model.number="audio.musicVolume"
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
+      </CheckBox>
+      <InputTipRange
+        v-model="audio.musicVolume"
         :disabled="!audio.isMusicEnabled"
-      >
-      <div class="flex items-center justify-between">
+      />
+      <CheckBox v-model="audio.isSfxEnabled" class="flex items-center justify-between">
         <span>Effets</span>
-        <CheckBox v-model="audio.isSfxEnabled" />
-      </div>
-      <input
-        v-model.number="audio.sfxVolume"
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
+      </CheckBox>
+      <InputTipRange
+        v-model="audio.sfxVolume"
         :disabled="!audio.isSfxEnabled"
-      >
+      />
     </div>
   </Modal>
 </template>

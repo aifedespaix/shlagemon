@@ -39,6 +39,7 @@ declare module 'vue' {
     HalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     ImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
+    InputTipRange: typeof import('./components/ui/InputTipRange.vue')['default']
     InventoryItemCard: typeof import('./components/inventory/InventoryItemCard.vue')['default']
     InventoryModal: typeof import('./components/inventory/InventoryModal.vue')['default']
     InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
