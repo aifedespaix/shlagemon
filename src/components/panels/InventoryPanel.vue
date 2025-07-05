@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
+import { toast } from 'vue3-toastify'
 import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
 import MultiExpModal from '~/components/inventory/MultiExpModal.vue'
@@ -22,18 +23,25 @@ const filteredList = computed(() => {
 })
 
 function isDisabled(item: Item) {
+  if ('catchBonus' in item)
+    return ballStore.current === item.id
   return item.type === 'evolution' && !evoItemStore.canUse(item)
 }
 
 function onUse(item: Item) {
-  if ('catchBonus' in item)
+  if ('catchBonus' in item) {
     ballStore.setBall(item.id as any)
-  else if (item.type === 'evolution')
+    toast(`Vous avez équipé la ${item.name}`)
+  }
+  else if (item.type === 'evolution') {
     evoItemStore.open(item)
-  else if (item.id === 'multi-exp')
+  }
+  else if (item.id === 'multi-exp') {
     multiExpStore.open()
-  else
+  }
+  else {
     inventory.useItem(item.id)
+  }
 }
 </script>
 
