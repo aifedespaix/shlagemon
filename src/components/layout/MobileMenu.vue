@@ -18,10 +18,13 @@ const dexDisabled = menuDisabled
 const achievementsDisabled = computed(() => menuDisabled.value || !achievements.hasAny)
 const inventoryDisabled = computed(() => menuDisabled.value || inventory.list.length === 0)
 
-watch(dialog.isDialogVisible, (val) => {
-  if (val)
-    mobile.set('game')
-})
+watch(
+  () => dialog.isDialogVisible,
+  (val) => {
+    if (val)
+      mobile.set('game')
+  },
+)
 
 function toggleInventory() {
   if (inventoryModal.isVisible)
