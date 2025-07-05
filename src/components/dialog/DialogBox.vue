@@ -4,8 +4,25 @@ import Button from '~/components/ui/Button.vue'
 import { useAudioStore } from '~/stores/audio'
 import ImageByBackground from '../ui/ImageByBackground.vue'
 
-const { dialogTree, speaker, avatarUrl }
-  = defineProps<{ dialogTree: DialogNode[], speaker: string, avatarUrl: string }>()
+const { dialogTree, speaker, avatarUrl, orientation }
+  = withDefaults(defineProps<{
+    dialogTree: DialogNode[]
+    speaker: string
+    avatarUrl: string
+    orientation?: 'row' | 'col'
+  }>(), {
+    orientation: 'row',
+  })
+
+const responsesClass = computed(() =>
+  orientation === 'col'
+    ? 'mt-auto flex flex-col gap-2 overflow-auto tiny-scrollbar max-h-40'
+    : 'mt-auto flex justify-center gap-2')
+
+const buttonClass = computed(() =>
+  orientation === 'col'
+    ? 'flex w-full flex-col items-center justify-center text-xs'
+    : 'flex flex-1 flex-col items-center justify-center text-xs')
 
 const currentNode = ref<DialogNode | undefined>()
 const audio = useAudioStore()
@@ -44,12 +61,12 @@ function choose(r: DialogResponse) {
         class="flex-1"
       />
 
-      <div class="mt-auto flex justify-center gap-2">
+      <div :class="responsesClass">
         <Button
           v-for="r in currentNode?.responses"
           :key="r.label"
           :type="r.type"
-          class="flex flex-1 flex-col items-center justify-center text-xs"
+          :class="buttonClass"
           md="text-sm"
           @click="choose(r)"
         >
