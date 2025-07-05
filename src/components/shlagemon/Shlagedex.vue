@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { useMediaQuery } from '@vueuse/core'
 import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import Modal from '~/components/modal/Modal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMobileTabStore } from '~/stores/mobileTab'
 import { useMultiExpStore } from '~/stores/multiExp'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonType from './ShlagemonType.vue'
@@ -17,6 +19,8 @@ const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
 const multiExpStore = useMultiExpStore()
+const mobile = useMobileTabStore()
+const isMobile = useMediaQuery('(max-width: 767px)')
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
@@ -88,6 +92,8 @@ function changeActive(mon: DexShlagemon) {
   if (isTrainerBattle.value)
     return
   dex.setActiveShlagemon(mon)
+  if (isMobile.value)
+    mobile.set('game')
 }
 
 function isActive(mon: DexShlagemon) {

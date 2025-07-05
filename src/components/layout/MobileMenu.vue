@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import Button from '~/components/ui/Button.vue'
 import { useInventoryModalStore } from '~/stores/inventoryModal'
-import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
 
 const mobile = useMobileTabStore()
-const mapModal = useMapModalStore()
 const inventoryModal = useInventoryModalStore()
-
-function toggleMap() {
-  if (mapModal.isVisible)
-    mapModal.close()
-  else
-    mapModal.open()
-}
 
 function toggleInventory() {
   if (inventoryModal.isVisible)
@@ -37,9 +28,6 @@ function toggleInventory() {
       <div class="i-carbon-game-console" />
     </Button>
     <div class="flex gap-2">
-      <Button type="icon" :class="mapModal.isVisible ? 'text-teal-600 dark:text-teal-400' : ''" @click="toggleMap">
-        <div class="i-carbon-map" />
-      </Button>
       <Button type="icon" :class="inventoryModal.isVisible ? 'text-teal-600 dark:text-teal-400' : ''" @click="toggleInventory">
         <div class="i-carbon-inventory-management" />
       </Button>
