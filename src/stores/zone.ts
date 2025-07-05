@@ -15,7 +15,10 @@ import { useShlagedexStore } from './shlagedex'
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
   const currentId = ref<string>(zones.value[0].id)
-  const current = computed(() => zones.value.find(z => z.id === currentId.value)!)
+  const current = computed(() => {
+    const zone = zones.value.find(z => z.id === currentId.value)
+    return zone ?? zones.value[0]
+  })
   const xpZones = computed(() => zones.value.filter(z => z.maxLevel > 0))
 
   const kings = ref<Record<string, Trainer>>({})
