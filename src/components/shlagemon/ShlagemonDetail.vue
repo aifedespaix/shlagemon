@@ -160,10 +160,6 @@ const captureInfo = computed(() => {
 </template>
 
 <style>
-.shiny-title {
-  /* rien de spécial ici */
-}
-
 .shiny-text {
   background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffff, #00ff00, #ffff00, #ff9900, #ff0000);
   background-size: 400% 400%;
