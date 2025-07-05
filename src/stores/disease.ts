@@ -6,8 +6,8 @@ import { useEventStore } from './event'
 export const useDiseaseStore = defineStore('disease', () => {
   const active = ref(false)
   const remaining = ref(0)
-  const probability = 1
-  // const probability = 0.00001
+  // const probability = 1
+  const probability = 0.00001
   const events = useEventStore()
 
   function start() {

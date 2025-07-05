@@ -24,7 +24,7 @@ const ballFilter = computed(() =>
       <div
         v-if="props.item.icon"
         class="h-8 w-8"
-        :class="[props.item.iconClass, `i-${props.item.icon}`]"
+        :class="[props.item.iconClass, props.item.icon]"
       />
       <img
         v-else-if="props.item.image"
@@ -63,7 +63,7 @@ const ballFilter = computed(() =>
         <div
           v-if="props.item.icon"
           class="h-16 w-16"
-          :class="[props.item.iconClass, `i-${props.item.icon}`]"
+          :class="[props.item.iconClass, props.item.icon]"
         />
         <img
           v-else-if="props.item.image"

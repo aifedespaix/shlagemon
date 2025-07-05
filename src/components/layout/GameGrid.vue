@@ -74,17 +74,16 @@ watch(
 <template>
   <div class="w-full select-none overflow-auto" md="overflow-hidden">
     <div
-      class="game flex flex-col gap-1 p-1"
-      md="grid grid-cols-12 grid-rows-12 w-full h-full gap-2"
+      class="game h-full flex flex-col gap-1 p-1"
+      md="grid grid-cols-12 grid-rows-12 w-full  gap-2"
     >
       <div v-if="displayPlayerInfo" class="zone overflow-visible!" md="col-span-6 row-span-1 col-start-4 row-start-1">
-        <!-- top zone -->
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div v-if="displayMainPanel" class="zone" md="col-span-6 row-span-6 col-start-4 row-start-2">
-        <!-- middle A zone -->
+
+      <div v-if="displayMainPanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
         <PanelWrapper>
           <MainPanel class="flex-1" />
           <ShlagemonXpBar
@@ -93,22 +92,17 @@ watch(
           />
         </PanelWrapper>
       </div>
-      <div v-if="displayZonePanel" class="zone" md="col-span-6 row-span-5  col-start-4 row-start-8">
-        <!-- middle C zone -->
-        <PanelWrapper title="Zones">
+
+      <div v-if="displayZonePanel" class="zone flex-1" md="col-span-6 row-span-5 col-start-4 row-start-8">
+        <PanelWrapper v-if="displayMainPanel" title="Zones">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
           <ZonePanel />
         </PanelWrapper>
       </div>
-      <!-- <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">
-        <PanelWrapper>
-          <ActiveShlagemon />
-        </PanelWrapper>
-      </div> -->
+
       <div v-if="displayInventory || displayAchievements" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2">
-        <!-- left zone -->
         <PanelWrapper v-if="displayInventory" title="Inventaire">
           <template #icon>
             <div class="i-carbon-inventory-management" />
@@ -122,8 +116,8 @@ watch(
           <AchievementsPanel />
         </PanelWrapper>
       </div>
+
       <div v-if="displayDex" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
-        <!-- right zone -->
         <PanelWrapper title="Shlagédex">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />

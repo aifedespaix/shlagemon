@@ -72,6 +72,13 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return (captured / total) * 100
   })
 
+  const completionPercent = computed(() => {
+    const total = allShlagemons.length
+    const captured = shlagemons.value.length
+
+    return (captured / total) * 100
+  })
+
   const averageLevel = computed(() =>
     shlagemons.value.length
       ? shlagemons.value.reduce((s, m) => s + m.lvl, 0) / shlagemons.value.length
@@ -440,6 +447,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   return {
+    completionPercent,
     shlagemons,
     activeShlagemon,
     highestLevel,

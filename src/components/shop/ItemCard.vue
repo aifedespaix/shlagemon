@@ -10,7 +10,7 @@ const props = defineProps<{ item: Item }>()
     <div
       v-if="props.item.icon"
       class="h-8 w-8"
-      :class="[props.item.iconClass, `i-${props.item.icon}`]"
+      :class="[props.item.iconClass, props.item.icon]"
     />
     <img v-else-if="props.item.image" :src="props.item.image" :alt="props.item.name" class="h-8 w-8 object-contain">
     <div class="flex flex-1 flex-col text-left">
