@@ -47,7 +47,9 @@ const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 const isAchievementVisible = computed(() => achievements.hasAny)
 
-const displayZonePanel = computed(() => isShlagedexVisible.value && !isMobile.value)
+const displayZonePanel = computed(() =>
+  isShlagedexVisible.value && (!isMobile.value || mobileTab.current === 'game'),
+)
 const displayPlayerInfo = computed(() => !isMobile.value || mobileTab.current === 'game')
 const displayMainPanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
 const displayInventory = computed(() => isInventoryVisible.value && !isMobile.value)
@@ -74,19 +76,13 @@ watch(
       class="game flex flex-col gap-1 p-1"
       md="grid grid-cols-12 grid-rows-12 w-full h-full gap-2"
     >
-      <div v-if="displayZonePanel" class="zone zone-big" md="col-span-6 row-span-5  col-start-4 row-start-8">
-        <!-- middle C zone -->
-        <PanelWrapper title="Zones">
-          <ZonePanel />
-        </PanelWrapper>
-      </div>
       <div v-if="displayPlayerInfo" class="zone overflow-visible!" md="col-span-6 row-span-1 col-start-4 row-start-1">
         <!-- top zone -->
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div v-if="displayMainPanel" class="zone h-[50vh]" md="col-span-6 row-span-6 col-start-4 row-start-2">
+      <div v-if="displayMainPanel" class="zone h-[66vh]" md="col-span-6 row-span-6 col-start-4 row-start-2">
         <!-- middle A zone -->
         <PanelWrapper>
           <MainPanel class="flex-1" />
@@ -94,6 +90,12 @@ watch(
             v-if="showXpBar && shlagedex.activeShlagemon"
             :mon="shlagedex.activeShlagemon"
           />
+        </PanelWrapper>
+      </div>
+      <div v-if="displayZonePanel" class="zone h-[33vh]" md="col-span-6 row-span-5  col-start-4 row-start-8">
+        <!-- middle C zone -->
+        <PanelWrapper title="Zones">
+          <ZonePanel />
         </PanelWrapper>
       </div>
       <!-- <div v-if="shlagedex.activeShlagemon" class="zone" md="col-span-6 row-span-1 col-start-4 row-start-7">

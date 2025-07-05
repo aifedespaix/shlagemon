@@ -358,6 +358,9 @@ declare global {
   // @ts-ignore
   export type { MainPanel } from './stores/mainPanel'
   import('./stores/mainPanel')
+  // @ts-ignore
+  export type { MobileTab } from './stores/mobileTab'
+  import('./stores/mobileTab')
 }
 
 // for vue template auto import
@@ -563,6 +566,7 @@ declare module 'vue' {
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
+    readonly useInventoryModalStore: UnwrapRef<typeof import('./stores/inventoryModal')['useInventoryModalStore']>
     readonly useInventoryStore: UnwrapRef<typeof import('./stores/inventory')['useInventoryStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
@@ -571,10 +575,12 @@ declare module 'vue' {
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
+    readonly useMapModalStore: UnwrapRef<typeof import('./stores/mapModal')['useMapModalStore']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
+    readonly useMobileTabStore: UnwrapRef<typeof import('./stores/mobileTab')['useMobileTabStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
     readonly useMouse: UnwrapRef<typeof import('@vueuse/core')['useMouse']>
