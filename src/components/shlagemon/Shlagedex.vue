@@ -24,6 +24,7 @@ const isMobile = useMediaQuery('(max-width: 767px)')
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
+  { label: 'Shiny', value: 'shiny' },
   { label: 'Nom', value: 'name' },
   { label: 'Type', value: 'type' },
   { label: 'Attaque', value: 'attack' },
@@ -44,6 +45,9 @@ const displayedMons = computed(() => {
       break
     case 'rarity':
       mons.sort((a, b) => a.rarity - b.rarity)
+      break
+    case 'shiny':
+      mons.sort((a, b) => Number(a.isShiny) - Number(b.isShiny))
       break
     case 'attack':
       mons.sort((a, b) => a.attack - b.attack)
