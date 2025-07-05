@@ -2,6 +2,7 @@
 import { useMediaQuery } from '@vueuse/core'
 import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
+import InventoryModal from '~/components/inventory/InventoryModal.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
@@ -49,7 +50,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
 const displayZonePanel = computed(() => isShlagedexVisible.value && !isMobile.value)
 const displayPlayerInfo = computed(() => !isMobile.value || mobileTab.current === 'game')
 const displayMainPanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
-const displayInventory = computed(() => isInventoryVisible.value && (!isMobile.value || mobileTab.current === 'game'))
+const displayInventory = computed(() => isInventoryVisible.value && !isMobile.value)
 const displayAchievements = computed(() => isAchievementVisible.value && (!isMobile.value || mobileTab.current === 'achievements'))
 const displayDex = computed(() => isShlagedexVisible.value && (!isMobile.value || mobileTab.current === 'dex'))
 
@@ -117,6 +118,7 @@ watch(
       </div>
       <EvolutionModal />
       <ZoneMapModal />
+      <InventoryModal />
     </div>
   </div>
 </template>
