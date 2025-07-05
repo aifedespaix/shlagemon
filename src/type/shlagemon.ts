@@ -39,4 +39,8 @@ export interface DexShlagemon extends Stats {
    * When true, this Shlagémon will evolve automatically without asking.
    */
   allowEvolution: boolean
+  /**
+   * ID of the item currently held by the Shlagémon, if any.
+   */
+  heldItemId?: string | null
 }
