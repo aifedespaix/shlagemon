@@ -3,6 +3,22 @@
 Toutes les modifications importantes de ce projet seront documentées dans ce fichier.
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.4] - 2025-07-06
+
+### Ajouté
+
+- Système de maladies pour les Shlagémons avec badges en combat.
+- Gestion des objets tenus par les Shlagémons.
+
+### Modifié
+
+- Boutons du menu mobile améliorés et désactivés lors de l'ouverture d'une fenêtre de dialogue.
+
+### Corrigé
+
+- Les minuteries de combat sont correctement réinitialisées.
+- Petits correctifs d'interface et de configuration.
+
 ## [0.3.3] - 2025-07-05
 
 ### Ajouté
