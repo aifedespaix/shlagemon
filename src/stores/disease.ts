@@ -13,13 +13,13 @@ export const useDiseaseStore = defineStore('disease', () => {
   function start() {
     active.value = true
     remaining.value = Math.round(Math.random() * 10)
-    toast(`Votre Schlagémon est malade ! Il reviendra à la normal après avoir gagné ${remaining.value} combats.`)
+    toast(`Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné ${remaining.value} combats.`)
   }
 
   function clear() {
     active.value = false
     remaining.value = 0
-    toast(`Votre Schlagémon n'est plus malade !`)
+    toast(`Votre Shlagémon n'est plus malade !`)
   }
 
   function onBattleEnd() {

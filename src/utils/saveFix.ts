@@ -2,7 +2,7 @@ import type { DexShlagemon } from '~/type'
 
 /**
  * Supprime les doublons dans le Schlagedex en choisissant le meilleur
- * Schlagémon de chaque base.
+ * Shlagémon de chaque base.
  */
 export function deduplicateDex(mons: DexShlagemon[], activeId?: string): DexShlagemon[] {
   const groups = new Map<string, DexShlagemon[]>()

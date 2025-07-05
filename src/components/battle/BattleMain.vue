@@ -68,8 +68,8 @@ const captureButtonTooltip = computed(() => {
   if ((inventory.items[ballStore.current] || 0) <= 0)
     return 'Pas de Schlagéball, capture impossible'
   if (enemyHp.value <= 0)
-    return 'Impossible de capturer un Schlagémon K.O.'
-  return 'Capturer le Schlagémon'
+    return 'Impossible de capturer un Shlagémon K.O.'
+  return 'Capturer le Shlagémon'
 })
 const flashPlayer = ref(false)
 const flashEnemy = ref(false)
