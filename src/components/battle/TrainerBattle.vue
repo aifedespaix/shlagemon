@@ -30,6 +30,7 @@ const multiExpStore = useMultiExpStore()
 const disease = useDiseaseStore()
 const events = useEventStore()
 const equilibrerank = 2
+let nextBattleTimer: number | undefined
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -85,6 +86,7 @@ function startFight() {
 }
 
 function startBattle() {
+  clearTimeout(nextBattleTimer)
   const t = trainer.value
   if (!t || !dex.activeShlagemon)
     return
@@ -159,7 +161,8 @@ function checkEnd() {
       dex.activeShlagemon.hpCurrent = playerHp.value
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
-    setTimeout(async () => {
+    clearTimeout(nextBattleTimer)
+    nextBattleTimer = window.setTimeout(async () => {
       events.emit('battle:end')
       if (enemyHp.value <= 0 && playerHp.value > 0) {
         if (dex.activeShlagemon && enemy.value) {
@@ -229,6 +232,7 @@ function cancelFight() {
 
 onUnmounted(() => {
   stopInterval()
+  clearTimeout(nextBattleTimer)
 })
 </script>
 
