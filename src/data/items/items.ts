@@ -124,6 +124,17 @@ export const thunderStone: Item = {
   image: '/items/pierre-foutre/pierre-foutre.svg',
 }
 
+export const pistache: Item = {
+  id: 'pistache',
+  name: 'Pistache',
+  description: 'Permet certaines évolutions de Shlagémon bien pourris.',
+  details: 'On sait pas trop ce que ça fait lol.',
+  price: 50,
+  currency: 'shlagidiamond',
+  type: 'evolution',
+  image: '/items/pierre-foutre/pierre-foutre.svg',
+}
+
 export const allItems: Item[] = [
   shlageball,
   superShlageball,

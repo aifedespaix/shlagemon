@@ -82,7 +82,7 @@ watch(
           <PlayerInfos />
         </PanelWrapper>
       </div>
-      <div v-if="displayMainPanel" class="zone h-[66vh]" md="col-span-6 row-span-6 col-start-4 row-start-2">
+      <div v-if="displayMainPanel" class="zone" md="col-span-6 row-span-6 col-start-4 row-start-2">
         <!-- middle A zone -->
         <PanelWrapper>
           <MainPanel class="flex-1" />
@@ -92,7 +92,7 @@ watch(
           />
         </PanelWrapper>
       </div>
-      <div v-if="displayZonePanel" class="zone h-[33vh]" md="col-span-6 row-span-5  col-start-4 row-start-8">
+      <div v-if="displayZonePanel" class="zone" md="col-span-6 row-span-5  col-start-4 row-start-8">
         <!-- middle C zone -->
         <PanelWrapper title="Zones">
           <ZonePanel />
