@@ -6,6 +6,7 @@ import Modal from '~/components/modal/Modal.vue'
 import Button from '~/components/ui/Button.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
+import { useDiseaseStore } from '~/stores/disease'
 import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
@@ -45,7 +46,12 @@ const allowEvolution = computed({
 
 const store = useShlagedexStore()
 const multiExpStore = useMultiExpStore()
+const disease = useDiseaseStore()
 const showConfirm = ref(false)
+
+const isActiveAndSick = computed(() =>
+  disease.active && props.mon?.id === store.activeShlagemon?.id,
+)
 
 function requestRelease() {
   showConfirm.value = true
@@ -73,8 +79,15 @@ const captureInfo = computed(() => {
   <div v-if="mon" class="max-w-sm w-full rounded bg-white dark:bg-gray-900">
     <h2 class="mb-2 flex items-center justify-between text-lg font-bold">
       <div class="flex items-center gap-1">
-        <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>  - lvl {{ mon.lvl }}
+        <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
+        - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
         <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="h-4 w-4" />
+        <template v-if="multiExpStore.holderId === mon.id">
+          <MultiExpIcon class="h-4 w-4" />
+          <Button type="icon" class="ml-1" @click="multiExpStore.removeHolder()">
+            <div i-carbon-trash-can />
+          </Button>
+        </template>
       </div>
       <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
         <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
