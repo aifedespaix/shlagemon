@@ -41,7 +41,7 @@ function choose(r: DialogResponse) {
 </script>
 
 <template>
-  <div class="grid grid-cols-4 h-full gap-2 rounded" bg="white dark:gray-900">
+  <div class="grid grid-cols-3 h-full gap-2 rounded" bg="white dark:gray-900">
     <div class="flex flex-col items-center justify-center">
       <ImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
       <div class="mt-2 text-center font-bold">
@@ -49,7 +49,7 @@ function choose(r: DialogResponse) {
       </div>
     </div>
 
-    <div class="col-span-3 h-full flex flex-col gap-2">
+    <div class="col-span-2 h-full flex flex-col gap-2">
       <div>
         {{ currentNode?.text }}
       </div>

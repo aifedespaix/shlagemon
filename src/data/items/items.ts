@@ -1,7 +1,7 @@
-// @unocss-include
 import type { Item } from '~/type/item'
 import { hyperShlageball, shlageball, superShlageball } from './shlageball'
 
+// @unocss-include
 export const potion: Item = {
   id: 'potion',
   name: 'Potion Dégueulasse',
@@ -9,7 +9,7 @@ export const potion: Item = {
   details: 'Redonne 50 points de vie à votre Shlagémon actif pendant le combat.',
   price: 5,
   currency: 'shlagidolar',
-  icon: 'game-icons:health-potion',
+  icon: 'i-game-icons:health-potion',
   iconClass: 'text-red-600 dark:text-red-400',
 }
 
@@ -20,7 +20,7 @@ export const defensePotion: Item = {
   details: 'Renforce brièvement la défense de votre Shlagémon actif.',
   price: 7,
   currency: 'shlagidolar',
-  icon: 'game-icons:magic-potion',
+  icon: 'i-game-icons:magic-potion',
   iconClass: 'text-blue-500 dark:text-blue-400',
 }
 
@@ -31,7 +31,7 @@ export const superDefensePotion: Item = {
   details: 'Renforce considérablement la défense de votre Shlagémon actif.',
   price: 15,
   currency: 'shlagidolar',
-  icon: 'game-icons:round-potion',
+  icon: 'i-game-icons:round-potion',
   iconClass: 'text-blue-600 dark:text-blue-500',
 }
 
@@ -42,7 +42,7 @@ export const hyperDefensePotion: Item = {
   details: 'Booste énormément la défense de votre Shlagémon actif.',
   price: 25,
   currency: 'shlagidolar',
-  icon: 'game-icons:standing-potion',
+  icon: 'i-game-icons:standing-potion',
   iconClass: 'text-blue-700 dark:text-blue-600',
 }
 
@@ -53,7 +53,7 @@ export const attackPotion: Item = {
   details: 'Renforce brièvement l\'attaque de votre Shlagémon actif.',
   price: 7,
   currency: 'shlagidolar',
-  icon: 'game-icons:magic-potion',
+  icon: 'i-game-icons:magic-potion',
   iconClass: 'text-orange-500 dark:text-orange-400',
 }
 
@@ -64,7 +64,7 @@ export const superAttackPotion: Item = {
   details: 'Renforce considérablement l\'attaque de votre Shlagémon actif.',
   price: 15,
   currency: 'shlagidolar',
-  icon: 'game-icons:round-potion',
+  icon: 'i-game-icons:round-potion',
   iconClass: 'text-orange-600 dark:text-orange-500',
 }
 
@@ -75,7 +75,7 @@ export const hyperAttackPotion: Item = {
   details: 'Booste énormément l\'attaque de votre Shlagémon actif.',
   price: 25,
   currency: 'shlagidolar',
-  icon: 'game-icons:standing-potion',
+  icon: 'i-game-icons:standing-potion',
   iconClass: 'text-orange-700 dark:text-orange-600',
 }
 
@@ -86,7 +86,7 @@ export const superPotion: Item = {
   details: 'Redonne 100 points de vie à votre Shlagémon actif pendant le combat.',
   price: 15,
   currency: 'shlagidolar',
-  icon: 'game-icons:health-potion',
+  icon: 'i-game-icons:health-potion',
   iconClass: 'text-violet-600 dark:text-violet-400',
 }
 
@@ -97,7 +97,7 @@ export const hyperPotion: Item = {
   details: 'Redonne 200 points de vie à votre Shlagémon actif pendant le combat.',
   price: 30,
   currency: 'shlagidolar',
-  icon: 'game-icons:health-potion',
+  icon: 'i-game-icons:health-potion',
   iconClass: 'text-yellow-500 dark:text-yellow-300',
 }
 

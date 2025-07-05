@@ -8,7 +8,7 @@ function toggle() {
 </script>
 
 <template>
-  <div class="panel-wrapper" v-bind="$attrs" :class="isInline ? '' : 'overflow-hidden'" md="h-full">
+  <div class="panel-wrapper" v-bind="$attrs" :class="isInline ? '' : 'overflow-hidden'" md="">
     <div v-if="props.title" class="mb-1 flex cursor-pointer items-center justify-between" @click="toggle">
       <div class="flex items-center gap-1">
         <slot name="icon" />
@@ -24,6 +24,6 @@ function toggle() {
 
 <style scoped>
 .panel-wrapper {
-  @apply flex-1 flex flex-col;
+  @apply flex-1 flex flex-col h-full;
 }
 </style>

@@ -36,7 +36,7 @@ const bg = computed(() => `${colorClasses('bg')}/20`)
   <Tooltip :text="tooltipText">
     <div class="flex items-center gap-1 rounded px-1 text-xs font-mono" :class="[bg, border]">
       <div class="h-4 w-4" :class="[`i-${props.effect.icon}`, props.effect.iconClass]" />
-      <span class="w-16 text-center">{{ remaining }}</span>
+      <span class="">{{ remaining }}</span>
     </div>
   </Tooltip>
 </template>

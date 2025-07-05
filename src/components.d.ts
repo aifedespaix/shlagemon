@@ -29,6 +29,7 @@ declare module 'vue' {
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     DialogPanel: typeof import('./components/panels/DialogPanel.vue')['default']
     DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']
+    Disease: typeof import('./components/icons/disease.vue')['default']
     DiseaseBadge: typeof import('./components/battle/DiseaseBadge.vue')['default']
     EffectBadge: typeof import('./components/battle/EffectBadge.vue')['default']
     EvolutionItemModal: typeof import('./components/inventory/EvolutionItemModal.vue')['default']

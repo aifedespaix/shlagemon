@@ -32,8 +32,8 @@ export const useBattleStore = defineStore('battle', () => {
     const result = computeDamage(baseAttack, atkType, defType)
     const roundedDamage = Math.max(1, Math.round(result.damage / defBonus))
     let finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
-    if (isPlayerAttacker && disease.active)
-      finalDamage = 1
+    if (disease.active && attacker.id === dex.activeShlagemon?.id)
+      finalDamage = 10
     defender.hpCurrent = Math.max(0, defender.hpCurrent - finalDamage)
     return { ...result, damage: finalDamage }
   }
