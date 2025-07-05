@@ -323,15 +323,23 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   function captureShlagemon(base: BaseShlagemon, shiny = false) {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
+    const incoming = createDexShlagemon(base, shiny)
     if (existing) {
       existing.captureCount += 1
-      if (existing.rarity < 100) {
-        existing.rarity += 1
-        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+      let rarityGain = 1
+      let levelLoss = 1
+      if (incoming.rarity > existing.rarity) {
+        rarityGain = incoming.rarity - existing.rarity
+        levelLoss = rarityGain
+        existing.rarity = incoming.rarity
       }
-      if (shiny)
+      else if (existing.rarity < 100) {
+        existing.rarity += 1
+      }
+      existing.rarity = Math.min(existing.rarity, 100)
+      if (incoming.isShiny)
         existing.isShiny = true
-      existing.lvl = 1
+      existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
       existing.baseStats = {
         hp: statWithRarityAndCoefficient(
@@ -358,22 +366,36 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       applyStats(existing)
       existing.hpCurrent = existing.hp
       updateHighestLevel(existing)
+      toast(
+        `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
+      )
       return existing
     }
-    const created = createShlagemon(base, shiny)
-    updateHighestLevel(created)
-    return created
+    incoming.captureDate = new Date().toISOString()
+    incoming.captureCount = 1
+    addShlagemon(incoming)
+    updateHighestLevel(incoming)
+    toast(`Tu as obtenu ${incoming.base.name} !`)
+    return incoming
   }
 
   function captureEnemy(enemy: DexShlagemon) {
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
     if (existing) {
-      if (existing.rarity < 100) {
-        existing.rarity += 1
-        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+      existing.captureCount += 1
+      let rarityGain = 1
+      let levelLoss = 1
+      if (enemy.rarity > existing.rarity) {
+        rarityGain = enemy.rarity - existing.rarity
+        levelLoss = rarityGain
+        existing.rarity = enemy.rarity
       }
+      else if (existing.rarity < 100) {
+        existing.rarity += 1
+      }
+      existing.rarity = Math.min(existing.rarity, 100)
       existing.isShiny ||= enemy.isShiny
-      existing.lvl = 1
+      existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
       existing.baseStats = {
         hp: statWithRarityAndCoefficient(baseStats.hp, existing.base.coefficient, existing.rarity),
@@ -384,6 +406,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       applyStats(existing)
       existing.hpCurrent = existing.hp
       updateHighestLevel(existing)
+      toast(
+        `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
+      )
       return existing
     }
     const captured: DexShlagemon = {

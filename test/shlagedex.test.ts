@@ -10,16 +10,22 @@ vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
 const toastMock = vi.mocked(toast)
 
 describe('shlagedex capture', () => {
-  it('notifies when rarity increases', () => {
+  it('notifies when capturing a rarer duplicate', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const mon = dex.createShlagemon(carapouffe)
     mon.rarity = 1
+    mon.lvl = 10
     toastMock.mockClear()
-    dex.captureShlagemon(carapouffe)
-    expect(mon.rarity).toBe(2)
+    const enemy = createDexShlagemon(carapouffe)
+    enemy.rarity = 5
+    enemy.lvl = 3
+    applyStats(enemy)
+    dex.captureEnemy(enemy)
+    expect(mon.rarity).toBe(5)
+    expect(mon.lvl).toBe(6)
     expect(toastMock).toHaveBeenCalledWith(
-      `${mon.base.name} atteint la rareté ${mon.rarity} !`,
+      `${mon.base.name} gagne 4 points de rareté et perd 4 niveaux !`,
     )
   })
 
@@ -45,20 +51,22 @@ describe('shlagedex capture', () => {
     expect(captured.rarity).toBe(42)
   })
 
-  it('increases rarity and resets level when capturing duplicate enemy', () => {
+  it('handles weaker duplicate enemy', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const existing = dex.createShlagemon(carapouffe)
-    existing.rarity = 1
+    existing.rarity = 3
+    existing.lvl = 5
     applyStats(existing)
     const enemy = createDexShlagemon(carapouffe)
     enemy.isShiny = true
+    enemy.rarity = 1
     enemy.lvl = 10
     applyStats(enemy)
     const captured = dex.captureEnemy(enemy)
     expect(captured.id).toBe(existing.id)
-    expect(existing.rarity).toBe(2)
-    expect(existing.lvl).toBe(1)
+    expect(existing.rarity).toBe(4)
+    expect(existing.lvl).toBe(4)
     expect(existing.isShiny).toBe(true)
   })
 })
