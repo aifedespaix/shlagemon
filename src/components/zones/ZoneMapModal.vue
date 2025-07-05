@@ -10,6 +10,9 @@ const mapModal = useMapModalStore()
 <template>
   <Modal v-model="mapModal.isVisible" footer-close>
     <PanelWrapper title="Zones">
+      <template #icon>
+        <div class="i-carbon-map" />
+      </template>
       <ZonePanel />
     </PanelWrapper>
   </Modal>

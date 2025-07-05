@@ -1,1 +1,7 @@
-export type ButtonType = 'primary' | 'valid' | 'danger' | 'icon' | 'default'
+export type ButtonType =
+  | 'primary'
+  | 'valid'
+  | 'danger'
+  | 'icon'
+  | 'menu'
+  | 'default'

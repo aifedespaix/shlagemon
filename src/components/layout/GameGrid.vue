@@ -2,6 +2,7 @@
 import { useMediaQuery } from '@vueuse/core'
 import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
+import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryModal from '~/components/inventory/InventoryModal.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanel from '~/components/panels/MainPanel.vue'
@@ -95,6 +96,9 @@ watch(
       <div v-if="displayZonePanel" class="zone h-[33vh]" md="col-span-6 row-span-5  col-start-4 row-start-8">
         <!-- middle C zone -->
         <PanelWrapper title="Zones">
+          <template #icon>
+            <div class="i-carbon-map" />
+          </template>
           <ZonePanel />
         </PanelWrapper>
       </div>
@@ -106,15 +110,24 @@ watch(
       <div v-if="displayInventory || displayAchievements" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2">
         <!-- left zone -->
         <PanelWrapper v-if="displayInventory" title="Inventaire">
+          <template #icon>
+            <div class="i-carbon-inventory-management" />
+          </template>
           <InventoryPanel />
         </PanelWrapper>
         <PanelWrapper v-if="displayAchievements" title="Succès">
+          <template #icon>
+            <div class="i-carbon-trophy" />
+          </template>
           <AchievementsPanel />
         </PanelWrapper>
       </div>
       <div v-if="displayDex" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
         <!-- right zone -->
         <PanelWrapper title="Shlagédex">
+          <template #icon>
+            <SchlagedexIcon class="h-4 w-4" />
+          </template>
           <Shlagedex />
         </PanelWrapper>
       </div>
