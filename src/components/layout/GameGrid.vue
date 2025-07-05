@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import type { MainPanel } from '~/stores/mainPanel'
+import type { ZoneId } from '~/type/zone'
 import { useMediaQuery } from '@vueuse/core'
 import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryModal from '~/components/inventory/InventoryModal.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
-import MainPanel from '~/components/panels/MainPanel.vue'
+import MainPanelView from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
@@ -58,8 +60,8 @@ const displayAchievements = computed(() => isAchievementVisible.value && (!isMob
 const displayDex = computed(() => isShlagedexVisible.value && (!isMobile.value || mobileTab.current === 'dex'))
 
 watch(
-  () => [mainPanel.current, zone.current.id, trainerBattle.current?.id],
-  ([panel, zoneId, trainerId]) => {
+  () => [mainPanel.current, zone.current.id, trainerBattle.current?.id] as const,
+  ([panel, zoneId, trainerId]: [MainPanel, ZoneId, string | undefined]) => {
     if (panel === 'battle')
       audio.fadeToMusic(zoneBattleTracks[zoneId])
     else if (panel === 'trainerBattle')
@@ -85,7 +87,7 @@ watch(
 
       <div v-if="displayMainPanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
         <PanelWrapper>
-          <MainPanel class="flex-1" />
+          <MainPanelView class="flex-1" />
           <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
             :mon="shlagedex.activeShlagemon"
