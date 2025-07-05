@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
+import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import ReleaseSchlagemonDialog from '~/components/dialog/ReleaseSchlagemonDialog.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
@@ -32,6 +33,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'richReward',
       component: markRaw(AnotherShlagemonDialog),
       condition: () => game.shlagidolar >= 10,
+    },
+    {
+      id: 'halfDex',
+      component: markRaw(HalfDexDialog),
+      condition: () => dex.completionPercent >= 50,
     },
     {
       id: 'release',

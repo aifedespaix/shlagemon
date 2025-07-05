@@ -33,6 +33,7 @@ declare module 'vue' {
     EvolutionModal: typeof import('./components/shlagemon/EvolutionModal.vue')['default']
     FightKingButton: typeof import('./components/battle/FightKingButton.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
+    HalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']
     ImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
     InventoryItemCard: typeof import('./components/inventory/InventoryItemCard.vue')['default']
