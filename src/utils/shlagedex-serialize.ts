@@ -16,12 +16,14 @@ export const shlagedexSerializer = {
         ...mon,
         baseId: mon.base?.id ?? mon.baseId,
         base: undefined, // on supprime la boucle
+        heldItemId: mon.heldItemId ?? null,
       })),
       activeShlagemon: data.activeShlagemon
         ? {
             ...data.activeShlagemon,
             baseId: data.activeShlagemon.base?.id ?? data.activeShlagemon.baseId,
             base: undefined,
+            heldItemId: data.activeShlagemon.heldItemId ?? null,
           }
         : null,
     })
@@ -50,6 +52,7 @@ export const shlagedexSerializer = {
           allowEvolution: mon.allowEvolution ?? true,
           captureDate: mon.captureDate ?? new Date().toISOString(),
           captureCount: mon.captureCount ?? 1,
+          heldItemId: mon.heldItemId ?? null,
         }
       })
       .filter(Boolean)
@@ -72,6 +75,7 @@ export const shlagedexSerializer = {
           allowEvolution: active.allowEvolution ?? true,
           captureDate: active.captureDate ?? new Date().toISOString(),
           captureCount: active.captureCount ?? 1,
+          heldItemId: active.heldItemId ?? null,
         }
       }
       else {

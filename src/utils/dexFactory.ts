@@ -65,6 +65,7 @@ export function createDexShlagemon(
     isShiny: shiny || Math.random() < 0.01,
     hpCurrent: 0,
     allowEvolution: true,
+    heldItemId: null,
   }
   applyStats(mon)
   return mon
