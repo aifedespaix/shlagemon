@@ -4,7 +4,7 @@ import type { DexShlagemon } from '~/type'
  * Supprime les doublons dans le Schlagedex en choisissant le meilleur
  * Schlagémon de chaque base.
  */
-export function deduplicateDex(mons: DexShlagemon[]): DexShlagemon[] {
+export function deduplicateDex(mons: DexShlagemon[], activeId?: string): DexShlagemon[] {
   const groups = new Map<string, DexShlagemon[]>()
   for (const mon of mons) {
     const baseId = mon.base.id
@@ -22,7 +22,12 @@ export function deduplicateDex(mons: DexShlagemon[]): DexShlagemon[] {
       if (isBetter(mon, best))
         best = mon
     }
-    result.push(best)
+
+    const keep = arr.find(m => m.id === activeId) ?? best
+    if (keep !== best)
+      Object.assign(keep, { ...best, id: keep.id })
+
+    result.push(keep)
   }
   return result
 }

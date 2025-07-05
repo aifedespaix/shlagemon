@@ -54,16 +54,12 @@ export const shlagedexSerializer = {
       })
       .filter(Boolean)
 
-    shlagemons = deduplicateDex(shlagemons)
-
+    // build active before deduplication so that deduplication can keep its id
     let active = parsed.activeShlagemon
     if (active) {
       const base = active.base ?? baseMap[active.baseId]
       if (base) {
-        const found
-          = shlagemons.find((m: any) => m.id === active.id)
-            || shlagemons.find((m: any) => m.base.id === base.id)
-        active = found || {
+        active = {
           ...active,
           base,
           baseId: active.baseId ?? base.id,
@@ -81,6 +77,15 @@ export const shlagedexSerializer = {
       else {
         active = null
       }
+    }
+
+    shlagemons = deduplicateDex(shlagemons, active?.id)
+
+    if (active) {
+      const found = shlagemons.find((m: any) => m.id === active!.id)
+        || shlagemons.find((m: any) => m.base.id === active!.base.id)
+      if (found)
+        active = found
     }
 
     return {
