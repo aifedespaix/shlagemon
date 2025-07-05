@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.4] - 2025-07-06
+
+### Added
+
+- Disease system introducing ailments for Shlagémon with in-battle badges.
+- Held item support for Shlagémon.
+
+### Changed
+
+- Mobile menu buttons redesigned and disabled while dialogs are open.
+
+### Fixed
+
+- Battle timers now clear correctly.
+- Minor UI and configuration fixes.
+
 ## [0.3.3] - 2025-07-05
 
 ### Added
