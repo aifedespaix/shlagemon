@@ -20,6 +20,8 @@ export interface Zone {
   image?: string
   /** Whether this zone features a king to challenge */
   hasKing?: boolean
+  /** Achievement title when all Shlagemon are captured */
+  completionAchievement?: string
 }
 
 export type ZoneId = FightZoneId | VillageZoneId
