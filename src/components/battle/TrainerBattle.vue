@@ -8,6 +8,7 @@ import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
+import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMultiExpStore } from '~/stores/multiExp'
@@ -25,6 +26,7 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const multiExpStore = useMultiExpStore()
+const events = useEventStore()
 const equilibrerank = 2
 
 const trainer = computed(() => trainerStore.current)
@@ -156,6 +158,7 @@ function checkEnd() {
     playerFainted.value = playerHp.value <= 0
     enemyFainted.value = enemyHp.value <= 0
     setTimeout(async () => {
+      events.emit('battle:end')
       if (enemyHp.value <= 0 && playerHp.value > 0) {
         if (dex.activeShlagemon && enemy.value) {
           const xp = xpRewardForLevel(enemy.value.lvl)

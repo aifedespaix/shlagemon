@@ -170,6 +170,7 @@ declare global {
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDexFilterStore: typeof import('./stores/dexFilter')['useDexFilterStore']
   const useDialogStore: typeof import('./stores/dialog')['useDialogStore']
+  const useDiseaseStore: typeof import('./stores/disease')['useDiseaseStore']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
@@ -182,6 +183,7 @@ declare global {
   const useEventBus: typeof import('@vueuse/core')['useEventBus']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useEventSource: typeof import('@vueuse/core')['useEventSource']
+  const useEventStore: typeof import('./stores/event')['useEventStore']
   const useEvolutionItemStore: typeof import('./stores/evolutionItem')['useEvolutionItemStore']
   const useEvolutionStore: typeof import('./stores/evolution')['useEvolutionStore']
   const useEyeDropper: typeof import('@vueuse/core')['useEyeDropper']
@@ -356,6 +358,9 @@ declare global {
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
   // @ts-ignore
+  export type { EventCallback } from './stores/event'
+  import('./stores/event')
+  // @ts-ignore
   export type { MainPanel } from './stores/mainPanel'
   import('./stores/mainPanel')
   // @ts-ignore
@@ -529,6 +534,7 @@ declare module 'vue' {
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDexFilterStore: UnwrapRef<typeof import('./stores/dexFilter')['useDexFilterStore']>
     readonly useDialogStore: UnwrapRef<typeof import('./stores/dialog')['useDialogStore']>
+    readonly useDiseaseStore: UnwrapRef<typeof import('./stores/disease')['useDiseaseStore']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
@@ -541,6 +547,7 @@ declare module 'vue' {
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
+    readonly useEventStore: UnwrapRef<typeof import('./stores/event')['useEventStore']>
     readonly useEvolutionItemStore: UnwrapRef<typeof import('./stores/evolutionItem')['useEvolutionItemStore']>
     readonly useEvolutionStore: UnwrapRef<typeof import('./stores/evolution')['useEvolutionStore']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
