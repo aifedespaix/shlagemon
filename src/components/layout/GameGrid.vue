@@ -87,25 +87,37 @@ watch(
   <div class="w-full select-none overflow-auto" md="overflow-hidden">
     <div
       class="game h-full flex flex-col gap-1 p-1"
-      md="grid grid-cols-12 grid-rows-12 w-full  gap-2"
+      md="grid grid-cols-4 grid-rows-1 w-full  gap-2"
+      xl="grid-cols-5"
     >
-      <div v-if="displayPlayerInfo" class="zone overflow-visible!" md="col-span-6 row-span-1 col-start-4 row-start-1">
-        <PanelWrapper is-inline>
-          <PlayerInfos />
+      <div class="panel-group">
+        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden">
+          <template #icon>
+            <div class="i-carbon-inventory-management" />
+          </template>
+          <InventoryPanel />
+        </PanelWrapper>
+        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
+          <template #icon>
+            <div class="i-carbon-trophy" />
+          </template>
+          <AchievementsPanel />
         </PanelWrapper>
       </div>
 
-      <div v-if="displayMainPanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
+      <div class="panel-group flex-1" md="col-span-2" xl="col-span-3">
+        <PanelWrapper is-inline>
+          <PlayerInfos />
+        </PanelWrapper>
+
         <PanelWrapper>
-          <MainPanelView class="flex-1" />
+          <MainPanelView class="flex-1" md="p-4" />
           <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
             :mon="shlagedex.activeShlagemon"
           />
         </PanelWrapper>
-      </div>
 
-      <div v-if="displayZonePanel" class="zone flex-1" md="col-span-6 row-span-5 col-start-4 row-start-8">
         <PanelWrapper v-if="displayMainPanel" title="Zones">
           <template #icon>
             <div class="i-carbon-map" />
@@ -114,29 +126,28 @@ watch(
         </PanelWrapper>
       </div>
 
-      <div v-if="displayInventory || displayAchievements" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2">
-        <PanelWrapper v-if="displayInventory" title="Inventaire" is-inline>
-          <template #icon>
-            <div class="i-carbon-inventory-management" />
-          </template>
-          <InventoryPanel />
-        </PanelWrapper>
-        <PanelWrapper v-if="displayAchievements" title="Succès" is-inline>
-          <template #icon>
-            <div class="i-carbon-trophy" />
-          </template>
-          <AchievementsPanel />
-        </PanelWrapper>
-      </div>
-
-      <div v-if="displayDex" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
-        <PanelWrapper title="Shlagédex" is-inline>
+      <div class="panel-group">
+        <PanelWrapper v-if="displayDex" title="Shlagédex" class="overflow-hidden">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
           <Shlagedex />
         </PanelWrapper>
       </div>
+
+      <!-- <div v-if="displayPlayerInfo" class="zone overflow-visible!" md="col-span-6 row-span-1 col-start-4 row-start-1">
+      </div>
+
+      <div v-if="displayMainPanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
+      </div>
+
+      <div v-if="displayZonePanel" class="zone flex-1" md="col-span-6 row-span-5 col-start-4 row-start-8">
+      </div> -->
+
+      <!-- <div v-if="displayInventory || displayAchievements" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2" />
+
+      <div v-if="displayDex" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
+      </div> -->
       <EvolutionModal />
       <ZoneMapModal />
       <InventoryModal />
@@ -145,7 +156,7 @@ watch(
 </template>
 
 <style scoped>
-.zone {
-  @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700;
+.panel-group {
+  @apply gap-2 flex flex-col;
 }
 </style>
