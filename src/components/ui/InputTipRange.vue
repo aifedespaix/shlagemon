@@ -25,7 +25,7 @@ const percent = computed(() => ((props.modelValue - props.min) / (props.max - pr
       @input="onInput"
     >
     <div
-      class="absolute rounded bg-gray-700 px-1 text-xs text-white -top-5 -translate-x-1/2 dark:bg-gray-200 dark:text-gray-800"
+      class="absolute rounded bg-gray-700 px-1 text-xs text-white -top-4 -translate-x-1/2 dark:bg-gray-200 dark:text-gray-800"
       :style="{ left: `calc(${percent}% )` }"
     >
       {{ props.modelValue.toFixed(2) }}
