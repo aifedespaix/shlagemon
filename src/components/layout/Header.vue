@@ -35,7 +35,7 @@ function onDoubleClick() {
         @click.stop="onClick"
         @dblclick.stop="onDoubleClick"
       >
-        <div class="i-carbon-volume-up" />
+        <div :class="audio.isMusicEnabled ? 'i-carbon-volume-up' : 'i-carbon-volume-mute'" />
       </Button>
       <AudioSettingsModal v-model="showAudio" />
       <Button type="icon" aria-label="Profil" @click="showProfile = true">
