@@ -46,7 +46,7 @@ function onSecondButton() {
 </script>
 
 <template>
-  <nav class="h-12 flex items-center justify-between gap-1px bg-gray-100 px-2 md:hidden dark:bg-gray-800">
+  <nav class="h-12 flex items-center justify-between gap-1px bg-gray-100 md:hidden dark:bg-gray-800">
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
       :class="mobile.current === 'achievements' ? 'active' : ''"
