@@ -9,6 +9,7 @@ import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
+import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
 import { useDiseaseStore } from '~/stores/disease'
@@ -32,6 +33,7 @@ const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
 const events = useEventStore()
+const audio = useAudioStore()
 const equilibrerank = 2
 let nextBattleTimer: number | undefined
 
@@ -94,11 +96,13 @@ function openCapture() {
   battleActive.value = false
   stopInterval()
   showCapture.value = true
+  audio.playSfx('/audio/sfx/capture-start.ogg')
 }
 
 function onCaptureEnd(success: boolean) {
   showCapture.value = false
   if (success && enemy.value) {
+    audio.playSfx('/audio/sfx/capture-success.ogg')
     dex.captureEnemy(enemy.value)
     notifyAchievement({ type: 'capture', shiny: enemy.value.isShiny })
     if (dex.activeShlagemon) {
@@ -110,6 +114,7 @@ function onCaptureEnd(success: boolean) {
     nextBattleTimer = window.setTimeout(startBattle, 1000)
   }
   else {
+    audio.playSfx('/audio/sfx/capture-fail.ogg')
     battleActive.value = true
     startInterval()
   }
@@ -133,8 +138,10 @@ function startBattle() {
   created.lvl = lvl
   applyStats(created)
   enemy.value = created
-  if (created.isShiny)
+  if (created.isShiny) {
     toast('Vous avez rencontré un Shiny !')
+    audio.playSfx('/audio/sfx/shiny.ogg')
+  }
   if (active.hpCurrent <= 0)
     active.hpCurrent = active.hp
   playerHp.value = active.hpCurrent
