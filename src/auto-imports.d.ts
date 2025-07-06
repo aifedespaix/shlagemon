@@ -276,6 +276,7 @@ declare global {
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
   const useShlagedexStore: typeof import('./stores/shlagedex')['useShlagedexStore']
+  const useShortcutsStore: typeof import('./stores/shortcuts')['useShortcutsStore']
   const useSingleInterval: typeof import('./composables/battleEngine')['useSingleInterval']
   const useSlots: typeof import('vue')['useSlots']
   const useSorted: typeof import('@vueuse/core')['useSorted']
@@ -365,11 +366,17 @@ declare global {
   export type { EventCallback } from './stores/event'
   import('./stores/event')
   // @ts-ignore
+  export type { InventorySort } from './stores/inventoryFilter'
+  import('./stores/inventoryFilter')
+  // @ts-ignore
   export type { MainPanel } from './stores/mainPanel'
   import('./stores/mainPanel')
   // @ts-ignore
   export type { MobileTab } from './stores/mobileTab'
   import('./stores/mobileTab')
+  // @ts-ignore
+  export type { UseItemAction, ShortcutAction, ShortcutEntry } from './stores/shortcuts'
+  import('./stores/shortcuts')
 }
 
 // for vue template auto import
@@ -578,6 +585,7 @@ declare module 'vue' {
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
+    readonly useInventoryFilterStore: UnwrapRef<typeof import('./stores/inventoryFilter')['useInventoryFilterStore']>
     readonly useInventoryModalStore: UnwrapRef<typeof import('./stores/inventoryModal')['useInventoryModalStore']>
     readonly useInventoryStore: UnwrapRef<typeof import('./stores/inventory')['useInventoryStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
@@ -592,6 +600,7 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
+    readonly useMiniGameStore: UnwrapRef<typeof import('./stores/miniGame')['useMiniGameStore']>
     readonly useMobileTabStore: UnwrapRef<typeof import('./stores/mobileTab')['useMobileTabStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
@@ -641,6 +650,7 @@ declare module 'vue' {
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useShlagedexStore: UnwrapRef<typeof import('./stores/shlagedex')['useShlagedexStore']>
+    readonly useShortcutsStore: UnwrapRef<typeof import('./stores/shortcuts')['useShortcutsStore']>
     readonly useSingleInterval: UnwrapRef<typeof import('./composables/battleEngine')['useSingleInterval']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
@@ -685,6 +695,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
