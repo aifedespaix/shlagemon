@@ -10,7 +10,7 @@ const inventory = useInventoryStore()
 const dialogTree: DialogNode[] = [
   {
     id: 'step1',
-    text: `F\xE9licitations, tu poss\xE8des enfin un Shlag\xE9mon de niveau 5 !`,
+    text: `Félicitations, tu poss\xE8des enfin un Shlagémon de niveau 5 !`,
     responses: [
       { label: 'Continuer', nextId: 'step2', type: 'primary' },
     ],
@@ -41,7 +41,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step5',
-    text: 'Pour t\'aider, voici 10 Schlag\xE9balls suppl\xE9mentaires.',
+    text: 'Pour t\'aider, voici 10 Schlagéballs. Attention, elles sentent fort !',
     responses: [
       { label: 'Retour', nextId: 'step4', type: 'danger' },
       {
