@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BattleMain from '~/components/battle/BattleMain.vue'
 import TrainerBattle from '~/components/battle/TrainerBattle.vue'
+import WhackAShlag from '~/components/minigame/WhackAShlag.vue'
 import DialogPanel from '~/components/panels/DialogPanel.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
 import VillagePanel from '~/components/village/VillagePanel.vue'
@@ -18,6 +19,8 @@ const currentComponent = computed(() => {
       return BattleMain
     case 'trainerBattle':
       return TrainerBattle
+    case 'miniGame':
+      return WhackAShlag
     case 'village':
       return VillagePanel
     default:

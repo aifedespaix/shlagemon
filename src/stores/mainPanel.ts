@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 
-export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop'
+export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame'
 
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
@@ -36,9 +36,13 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'trainerBattle'
   }
 
+  function showMiniGame() {
+    current.value = 'miniGame'
+  }
+
   function showVillage() {
     current.value = 'village'
   }
 
-  return { current, showShop, showBattle, showTrainerBattle, showVillage }
+  return { current, showShop, showBattle, showTrainerBattle, showMiniGame, showVillage }
 })

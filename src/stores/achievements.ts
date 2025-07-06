@@ -18,6 +18,7 @@ export type AchievementEvent =
   | { type: 'battle-win', stronger: boolean }
   | { type: 'item-used' }
   | { type: 'king-defeated' }
+  | { type: 'minigame-win' }
 
 export const useAchievementsStore = defineStore('achievements', () => {
   const game = useGameStore()
@@ -33,6 +34,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     itemsUsed: 0,
     kings: 0,
     shiny: 0,
+    minigameWins: 0,
   })
 
   const unlocked = useLocalStorage<Record<string, boolean>>(
@@ -47,6 +49,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     counters.itemsUsed = 0
     counters.kings = 0
     counters.shiny = 0
+    counters.minigameWins = 0
     unlocked.value = {}
   }
 
@@ -131,6 +134,18 @@ export const useAchievementsStore = defineStore('achievements', () => {
       title: 'Dépensier',
       description: `Utiliser ${n.toLocaleString()} objet${n > 1 ? 's' : ''} pendant vos combats ou explorations.`,
       icon: 'carbon:shopping-bag',
+    }
+    defs.push(def)
+    defMap[def.id] = def
+  })
+
+  const minigameThresholds = [1, 5, 10]
+  minigameThresholds.forEach((n) => {
+    const def = {
+      id: `minigame-${n}`,
+      title: n === 1 ? 'Première partie gagnée' : `${n} victoires mini-jeu`,
+      description: `Remporter ${n} partie${n > 1 ? 's' : ''} du mini-jeu Whack-a-Shlag.`,
+      icon: 'carbon:game-console',
     }
     defs.push(def)
     defMap[def.id] = def
@@ -254,6 +269,9 @@ export const useAchievementsStore = defineStore('achievements', () => {
       case 'king-defeated':
         counters.kings += 1
         break
+      case 'minigame-win':
+        counters.minigameWins += 1
+        break
     }
   }
 
@@ -272,6 +290,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
   watch(() => counters.itemsUsed, v => checkThresholds(v, 'item', itemThresholds))
   watch(() => counters.kings, v => checkThresholds(v, 'king', kingThresholds))
   watch(() => counters.shiny, v => checkThresholds(v, 'shiny', shinyThresholds))
+  watch(() => counters.minigameWins, v => checkThresholds(v, 'minigame', minigameThresholds))
 
   function checkZoneCompletion() {
     zonesData.forEach((z) => {

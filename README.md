@@ -11,6 +11,7 @@ Plongez dans un univers délirant peuplé de Shlagémons totalement barrés. Cap
 ## Concept
 
 Chaque Shlagémon dispose de statistiques qui lui sont propres et appartient à une poignée de types complètement improbables. Une interface minimaliste vous permet de choisir votre compagnon, de consulter le _Schlagedex_ et de lancer des combats acharnés.
+Un mini-jeu d'adresse « Whack-a-Shlag » permet aussi de récolter quelques Shlagidolars.
 
 ## Fonctionnalités clés
 
@@ -21,6 +22,7 @@ Chaque Shlagémon dispose de statistiques qui lui sont propres et appartient à 
 - Composants découpés en unités réutilisables (boutons, cartes, panneaux...).
 - Routing basé sur les fichiers et génération statique grâce à `vite-ssg`.
 - Prêt pour le _PWA_ et l'internationalisation.
+- Mini-jeu « Whack-a-Shlag » accessible depuis le village Veaux du Gland.
 
 ## Installation
 
@@ -52,6 +54,8 @@ Les fichiers prêts à être servis se trouvent dans le dossier `dist`.
 
 - Tests unitaires : `pnpm test:unit`
 - Tests end‑to‑end : `pnpm test:e2e`
+
+Depuis le jeu, rendez-vous au village **Veaux du Gland sur Marne** et cliquez sur « Mini-jeu » pour lancer une partie de Whack-a-Shlag.
 
 ## Structure du projet
 
