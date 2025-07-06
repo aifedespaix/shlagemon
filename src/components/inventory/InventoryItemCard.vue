@@ -16,6 +16,12 @@ const details = computed(() => props.item.details || props.item.description)
 const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
 )
+
+const actionLabel = computed(() => {
+  if ('catchBonus' in props.item)
+    return props.disabled ? 'Équipé' : 'Équiper'
+  return 'Utiliser'
+})
 </script>
 
 <template>
@@ -44,7 +50,7 @@ const ballFilter = computed(() =>
         @click="emit('use')"
       >
         <div i-carbon-play inline-block />
-        Utiliser
+        {{ actionLabel }}
       </Button>
       <!--
       <Button type="danger" class="text-xs" @click="emit('sell')">
