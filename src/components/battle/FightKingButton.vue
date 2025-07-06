@@ -13,18 +13,19 @@ const progress = useZoneProgressStore()
 
 const currentKing = computed(() => zone.getKing(zone.current.id))
 const kingLabel = computed(() =>
-  currentKing.value!.character.gender === 'female' ? 'la reine' : 'le roi',
+  currentKing.value?.character.gender === 'female' ? 'la reine' : 'le roi',
 )
 
 const visible = computed(() =>
-  !progress.isKingDefeated(zone.current.id)
+  !!currentKing.value
+  && !progress.isKingDefeated(zone.current.id)
   && progress.canFightKing(zone.current.id),
 )
 
 function fightKing() {
-  const trainer = zone.getKing(zone.current.id)
+  const trainer = currentKing.value
   if (!trainer)
-    throw new Error('King not found')
+    return
   trainerBattle.setQueue([trainer])
   panel.showTrainerBattle()
 }
