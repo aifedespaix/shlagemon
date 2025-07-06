@@ -14,7 +14,7 @@ function imageUrl(id: string) {
 const dialogTree = computed<DialogNode[]>(() => {
   const start: DialogNode = {
     id: 'start',
-    text: `Salut, j'ai une bonne nouvelle pour toi, je vais te d\xE9barrasser d'un de tes schlag\xE9mones pour que cela schlage beaucoup moins dans ton schlagidex.`,
+    text: `Salut, j'ai une bonne nouvelle pour toi, je vais te d\xE9barrasser d'un de tes Shlagémons pour que cela shlage beaucoup moins dans ton shlagidex.`,
     responses: [
       { label: 'Continuer', nextId: 'choice', type: 'primary' },
     ],
@@ -22,7 +22,7 @@ const dialogTree = computed<DialogNode[]>(() => {
 
   const choice: DialogNode = {
     id: 'choice',
-    text: 'Choisis le schlag\xE9mon dont tu veux te d\xE9barrasser :',
+    text: 'Choisis le Shlagémon dont tu veux te d\xE9barrasser :',
     responses: dex.shlagemons.map(mon => ({
       label: mon.base.name,
       imageUrl: imageUrl(mon.base.id),

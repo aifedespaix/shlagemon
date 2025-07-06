@@ -25,7 +25,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step3',
-    text: 'Pour célébrer, je t\'offre 10 Schlagediamonds. Ils brillent presque autant que toi.',
+    text: 'Pour célébrer, je t\'offre 10 Shlagédiamants. Ils brillent presque autant que toi.',
     responses: [
       { label: 'Retour', nextId: 'step2', type: 'danger' },
       { label: 'Continuer', nextId: 'step4', type: 'primary' },
