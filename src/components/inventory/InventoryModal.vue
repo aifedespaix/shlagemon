@@ -8,7 +8,7 @@ const inventoryModal = useInventoryModalStore()
 </script>
 
 <template>
-  <Modal v-model="inventoryModal.isVisible" footer-close>
+  <Modal v-model="inventoryModal.isVisible" footer-close dialog-autofocus>
     <PanelWrapper title="Inventaire" is-inline>
       <template #icon>
         <div class="i-carbon-inventory-management" />
