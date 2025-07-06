@@ -59,8 +59,7 @@ const displayZonePanel = computed(() =>
   && isShlagedexVisible.value
   && (!isMobile.value || mobileTab.current === 'game'),
 )
-const displayPlayerInfo = computed(() => !isMobile.value || mobileTab.current === 'game')
-const displayMainPanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
+const displayGamePanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
 const displayInventory = computed(() => isInventoryVisible.value && !isMobile.value)
 const displayAchievements = computed(() => isAchievementVisible.value && (!isMobile.value || mobileTab.current === 'achievements'))
 const displayDex = computed(() => {
@@ -84,7 +83,7 @@ watch(
 </script>
 
 <template>
-  <div class="w-full select-none overflow-auto" md="overflow-hidden">
+  <div class="w-full select-none overflow-hidden">
     <div
       class="game h-full flex flex-col gap-1 p-1"
       md="grid grid-cols-4 grid-rows-1 w-full  gap-2"
@@ -110,7 +109,7 @@ watch(
           <PlayerInfos />
         </PanelWrapper>
 
-        <PanelWrapper>
+        <PanelWrapper v-if="displayGamePanel">
           <MainPanelView class="flex-1" md="p-4" />
           <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
@@ -118,7 +117,7 @@ watch(
           />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayMainPanel" title="Zones">
+        <PanelWrapper v-if="displayZonePanel" title="Zones">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -126,7 +125,7 @@ watch(
         </PanelWrapper>
       </div>
 
-      <div class="panel-group">
+      <div class="panel-group flex-1">
         <PanelWrapper v-if="displayDex" title="Shlagédex" class="overflow-hidden">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
@@ -138,7 +137,7 @@ watch(
       <!-- <div v-if="displayPlayerInfo" class="zone overflow-visible!" md="col-span-6 row-span-1 col-start-4 row-start-1">
       </div>
 
-      <div v-if="displayMainPanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
+      <div v-if="displayGamePanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
       </div>
 
       <div v-if="displayZonePanel" class="zone flex-1" md="col-span-6 row-span-5 col-start-4 row-start-8">
