@@ -49,6 +49,13 @@ const multiExpStore = useMultiExpStore()
 const disease = useDiseaseStore()
 const showConfirm = ref(false)
 
+const isActive = computed(() => props.mon?.id === store.activeShlagemon?.id)
+
+function setActive() {
+  if (props.mon)
+    store.setActiveShlagemon(props.mon)
+}
+
 const isActiveAndSick = computed(() =>
   disease.active && props.mon?.id === store.activeShlagemon?.id,
 )
@@ -129,7 +136,16 @@ const captureInfo = computed(() => {
         Obtenu {{ captureInfo.count }} fois
       </p>
     </div>
-    <div class="mt-4 flex justify-end">
+    <div class="mt-4 flex justify-end gap-2">
+      <Button
+        type="primary"
+        class="flex items-center gap-1"
+        :disabled="isActive"
+        @click="setActive"
+      >
+        <div i-carbon-star-filled />
+        Principal
+      </Button>
       <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
         <div i-carbon-trash-can />
         Relâcher
