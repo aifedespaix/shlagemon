@@ -2,13 +2,7 @@ import type { Trainer } from '~/type/trainer'
 import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { caillou } from '~/data/characters/caillou'
-import { marcon } from '~/data/characters/marcon'
-import { marineLahaine } from '~/data/characters/marine-lahaine'
-import { norman } from '~/data/characters/norman'
-import { profMerdant } from '~/data/characters/prof-merdant'
-import { sachatte } from '~/data/characters/sachatte'
-import { allShlagemons } from '~/data/shlagemons'
+import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
 import { useShlagedexStore } from './shlagedex'
 
@@ -30,49 +24,8 @@ export const useZoneStore = defineStore('zone', () => {
     const hasKing = z.hasKing ?? z.type === 'sauvage'
     if (!hasKing)
       return undefined
-    if (!kings.value[id]) {
-      const level = z.maxLevel + 1
-
-      let character = profMerdant
-      switch (id) {
-        case 'plaine-kekette':
-          character = caillou
-          break
-        case 'bois-de-bouffon':
-          character = sachatte
-          break
-        case 'grotte-du-slip':
-          character = norman
-          break
-        case 'ravin-fesse-molle':
-          character = marineLahaine
-          break
-        case 'grotte-nanard':
-          character = marcon
-          break
-        case 'marais-moudugenou':
-          character = sachatte
-          break
-      }
-
-      const kingDexSize = z.maxLevel < 10 ? 3 : 6
-      const trainer: Trainer = {
-        id: `king-${z.id}`,
-        character,
-        dialogBefore: 'Prépare-toi à perdre !',
-        dialogAfter: 'Tu as gagné... pour cette fois.',
-        reward: 5,
-        shlagemons: Array.from({ length: kingDexSize }, () => {
-          const list = z.shlagemons?.length ? z.shlagemons! : allShlagemons
-          const base = list[Math.floor(Math.random() * list.length)]
-          return {
-            baseId: base.id,
-            level,
-          }
-        }),
-      }
-      kings.value[id] = trainer
-    }
+    if (!kings.value[id])
+      kings.value[id] = kingsData.find(k => k.id === `king-${id}`)!
     return kings.value[id]
   }
 
