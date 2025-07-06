@@ -8,6 +8,7 @@ import { useBattleEffects } from '~/composables/battleEngine'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
+import { useBattleStatsStore } from '~/stores/battleStats'
 import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
@@ -27,6 +28,7 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const multiExpStore = useMultiExpStore()
+const battleStats = useBattleStatsStore()
 const disease = useDiseaseStore()
 const events = useEventStore()
 const equilibrerank = 2
@@ -201,6 +203,7 @@ function checkEnd() {
       }
 
       if (playerHp.value <= 0) {
+        battleStats.addLoss()
         result.value = 'lose'
         stage.value = 'after'
         playerFainted.value = false
