@@ -108,7 +108,7 @@ function isActive(mon: DexShlagemon) {
 </script>
 
 <template>
-  <section v-if="dex.shlagemons.length">
+  <section v-if="dex.shlagemons.length" class="h-full flex flex-col">
     <div class="mb-2 flex flex-wrap gap-2">
       <div class="min-w-36 flex flex-1 items-center">
         <SelectOption
@@ -126,7 +126,7 @@ function isActive(mon: DexShlagemon) {
       </div>
       <SearchInput v-model="filter.search" />
     </div>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 overflow-auto">
       <div
         v-for="mon in displayedMons"
         :key="mon.id"
