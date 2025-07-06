@@ -2,10 +2,11 @@ import type { BaseShlagemon } from '~/type'
 import type { FightZoneId, Zone, ZoneType } from '~/type/zone'
 import { abraquemar } from './shlagemons/abraquemar'
 import { alakalbar } from './shlagemons/alakalbar'
+import aspigros from './shlagemons/aspigros'
 import { bulgrosboule } from './shlagemons/bulgrosboule'
 import { canarchichon } from './shlagemons/canarchichon'
 import { carapouffe } from './shlagemons/carapouffe'
-import { dartagnan } from './shlagemons/dartagnan'
+import chenipaon from './shlagemons/chenipaon'
 import { emboli } from './shlagemons/emboli'
 import { goubite } from './shlagemons/goubite'
 import { metamorve } from './shlagemons/metamorve'
@@ -39,14 +40,13 @@ const zoneDescriptions: ZoneDescription[] = [
     sperectum,
   ] },
   { id: 'bois-de-bouffon', name: 'Bois de Bouffon', type: 'sauvage', completionAchievement: 'Bûcheron du Bois de Bouffon', shlagemons: [
-    dartagnan,
+    aspigros,
+    chenipaon,
     ptitocard,
-    goubite,
     metamorve,
   ] },
   { id: 'grotte-du-slip', name: 'Grotte du Slip', type: 'sauvage', completionAchievement: 'Explorateur de la Grotte du Slip', shlagemons: [
     nosferachid,
-    alakalbar,
     abraquemar,
     emboli,
   ] },

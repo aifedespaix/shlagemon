@@ -1,0 +1,28 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../shlagemons-type'
+import coconnul from './coconnul'
+
+export const aspigros: BaseShlagemon = {
+  id: 'aspigros',
+  name: 'Aspigros',
+  evolution: {
+    base: coconnul,
+    condition: {
+      type: 'lvl',
+      value: 7,
+    },
+  },
+  description: `Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle affectueusement ses "paniers-repas". Son dard a disparu sous une couche de gras douteux, remplacé par une fourchette plantée là "par commodité".
+
+Il est constamment en train de mâchouiller quelque chose : une feuille, un emballage, un caillou, ou parfois un de ses propres segments. Lorsqu’il attaque, il roule vers l’ennemi en gémissant de plaisir, espérant qu’un snack se trouve en chemin.
+
+Son attaque signature, *Miam-Massacre*, inflige des dégâts proportionnels au nombre de snacks qu’il a ingérés dans les 5 dernières minutes. Il peut aussi utiliser *Éructo-Défensif*, une attaque sonore à base de rots sucrés qui repoussent les ennemis faibles d’estomac.
+
+Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il adore les pique-niques, les buffets de mariage et les sacs plastiques qui font du bruit. En revanche, il fuit à la simple mention du mot "diète", "protéines" ou "cure détox".
+
+On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de satiété, et à sa devise gravée sur son ventre : "Si ça rentre, c’est que c’est bon."`,
+  types: [shlagemonTypes.insecte],
+  coefficient: 1,
+}
+
+export default aspigros
