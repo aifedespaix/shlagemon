@@ -5,9 +5,11 @@ const props = withDefaults(defineProps<{
   modelValue: boolean
   closeOnOutsideClick?: boolean
   footerClose?: boolean
+  dialogAutofocus?: boolean
 }>(), {
   closeOnOutsideClick: true,
   footerClose: false,
+  dialogAutofocus: false,
 })
 const emit = defineEmits(['update:modelValue', 'close'])
 const dialogRef = ref<HTMLDialogElement | null>(null)
@@ -47,6 +49,8 @@ function close() {
   <dialog
     ref="dialogRef"
     class="modal"
+    :autofocus="props.dialogAutofocus || undefined"
+    tabindex="-1"
     @click="onDialogClick"
     @close="emit('update:modelValue', false); emit('close')"
   >
