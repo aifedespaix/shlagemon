@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import AudioSettingsModal from '~/components/audio/AudioSettingsModal.vue'
-import Profile from '~/components/profile/Profile.vue'
+import SettingsModal from '~/components/settings/SettingsModal.vue'
 import ThemeToggle from '~/components/ThemeToggle.vue'
 import Button from '~/components/ui/Button.vue'
 import { useAudioStore } from '~/stores/audio'
 
-const showProfile = ref(false)
+const showSettings = ref(false)
 const showAudio = ref(false)
 const clickTimer = ref<number | null>(null)
 const audio = useAudioStore()
@@ -38,10 +38,10 @@ function onDoubleClick() {
         <div :class="audio.isMusicEnabled ? 'i-carbon-volume-up' : 'i-carbon-volume-mute'" />
       </Button>
       <AudioSettingsModal v-model="showAudio" />
-      <Button type="icon" aria-label="Profil" @click="showProfile = true">
-        <div class="i-carbon-user" />
+      <Button type="icon" aria-label="Paramètres" @click="showSettings = true">
+        <div class="i-carbon-settings" />
       </Button>
-      <Profile v-model="showProfile" />
+      <SettingsModal v-model="showSettings" />
     </div>
   </header>
 </template>
