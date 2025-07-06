@@ -1,23 +1,20 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import ItemCard from '~/components/shop/ItemCard.vue'
+import ShopItemDetail from '~/components/shop/ShopItemDetail.vue'
 import Button from '~/components/ui/Button.vue'
 import { getShop } from '~/data/shops'
-import { useGameStore } from '~/stores/game'
-import { useInventoryStore } from '~/stores/inventory'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useZoneStore } from '~/stores/zone'
 
-const inventory = useInventoryStore()
-const game = useGameStore()
+const panel = useMainPanelStore()
 const zone = useZoneStore()
 const shopItems = computed(() => getShop(zone.current.id)?.items || [])
+const selectedItem = ref<Item | null>(null)
 
-function canBuy(item: Item, qty = 1) {
-  const cost = item.price * qty
-  if (item.currency === 'shlagidiamond')
-    return game.shlagidiamond >= cost
-  return game.shlagidolar >= cost
+function closeShop() {
+  panel.showVillage()
 }
 </script>
 
@@ -26,26 +23,24 @@ function canBuy(item: Item, qty = 1) {
     <h2 class="mb-2 text-center font-bold">
       Boutique
     </h2>
-    <div class="flex flex-col gap-2 overflow-auto">
-      <ItemCard v-for="item in shopItems" :key="item.id" :item="item">
-        <Button class="ml-2" :disabled="!canBuy(item)" @click="inventory.buy(item.id)">
-          Acheter
-        </Button>
-        <Button
-          v-if="canBuy(item, 10)"
-          class="ml-2"
-          @click="inventory.buy(item.id, 10)"
-        >
-          Acheter x10
-        </Button>
-        <Button
-          v-if="canBuy(item, 100)"
-          class="ml-2"
-          @click="inventory.buy(item.id, 100)"
-        >
-          Acheter x100
+    <div v-if="!selectedItem" class="flex flex-col gap-2 overflow-auto">
+      <ItemCard
+        v-for="item in shopItems"
+        :key="item.id"
+        :item="item"
+        class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+        @click="selectedItem = item"
+      >
+        <Button class="ml-auto text-xs" @click.stop="selectedItem = item">
+          Détails
         </Button>
       </ItemCard>
     </div>
+    <div v-else class="flex-1 overflow-auto">
+      <ShopItemDetail :item="selectedItem" @close="selectedItem = null" />
+    </div>
+    <Button type="danger" class="mt-2 self-end" @click="closeShop">
+      Fermer la boutique
+    </Button>
   </div>
 </template>
