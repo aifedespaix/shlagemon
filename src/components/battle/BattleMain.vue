@@ -214,12 +214,14 @@ function checkEnd() {
     enemyFainted.value = enemyHp.value <= 0
     clearTimeout(nextBattleTimer)
     nextBattleTimer = window.setTimeout(async () => {
+      const playerWon = enemyHp.value <= 0 && playerHp.value > 0
+      const playerLost = playerHp.value <= 0 && enemyHp.value > 0
       events.emit('battle:end')
       if (dex.activeShlagemon) {
         dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
         playerHp.value = dex.activeShlagemon.hpCurrent
       }
-      if (enemyHp.value <= 0 && playerHp.value > 0) {
+      if (playerWon) {
         const stronger = enemy.value && dex.activeShlagemon
           ? enemy.value.lvl > dex.activeShlagemon.lvl
           : false
@@ -240,7 +242,7 @@ function checkEnd() {
           }
         }
       }
-      else if (playerHp.value <= 0 && enemyHp.value > 0) {
+      else if (playerLost) {
         battleStats.addLoss()
         notifyAchievement({ type: 'battle-loss' })
       }
