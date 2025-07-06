@@ -225,6 +225,7 @@ function finish() {
       notifyAchievement({ type: 'king-defeated' })
     }
     trainerStore.next()
+    zone.setZone(zone.current.id)
     panel.showBattle()
   }
   else if (result.value === 'lose') {
