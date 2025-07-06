@@ -15,6 +15,20 @@ export const useBattleStore = defineStore('battle', () => {
   const dex = useShlagedexStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
+
+  let loopId: number | undefined
+
+  function startLoop(handler: () => void, delay = 1000) {
+    stopLoop()
+    loopId = window.setInterval(handler, delay)
+  }
+
+  function stopLoop() {
+    if (typeof loopId === 'number') {
+      clearInterval(loopId)
+      loopId = undefined
+    }
+  }
   function attack(
     attacker: DexShlagemon,
     defender: DexShlagemon,
@@ -50,5 +64,5 @@ export const useBattleStore = defineStore('battle', () => {
     return { player: playerResult, enemy: enemyResult }
   }
 
-  return { attack, clickAttack, duel }
+  return { attack, clickAttack, duel, startLoop, stopLoop }
 })

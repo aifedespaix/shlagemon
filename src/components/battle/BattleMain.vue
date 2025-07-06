@@ -6,7 +6,7 @@ import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
 import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
-import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
+import { useBattleEffects } from '~/composables/battleEngine'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
@@ -88,7 +88,12 @@ const cursorX = ref(0)
 const cursorY = ref(0)
 const cursorClicked = ref(false)
 const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
-const { start: startInterval, clear: stopInterval } = useSingleInterval(() => tick(), 1000)
+function startInterval() {
+  battle.startLoop(() => tick(), 1000)
+}
+function stopInterval() {
+  battle.stopLoop()
+}
 
 function openCapture() {
   const id = ballStore.current
