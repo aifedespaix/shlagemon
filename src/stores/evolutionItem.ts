@@ -1,7 +1,7 @@
 import type { Item } from '~/type/item'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useInventoryStore } from './inventory'
 import { useShlagedexStore } from './shlagedex'
 
@@ -10,7 +10,11 @@ export const useEvolutionItemStore = defineStore('evolutionItem', () => {
   const dex = useShlagedexStore()
   const inventory = useInventoryStore()
 
-  const isVisible = computed(() => current.value !== null)
+  const isVisible = ref(false)
+  watch(isVisible, (v) => {
+    if (!v)
+      current.value = null
+  })
   const availableMons = computed(() => {
     if (!current.value)
       return []
@@ -29,9 +33,11 @@ export const useEvolutionItemStore = defineStore('evolutionItem', () => {
 
   function open(item: Item) {
     current.value = item
+    isVisible.value = true
   }
 
   function close() {
+    isVisible.value = false
     current.value = null
   }
 
