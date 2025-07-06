@@ -15,9 +15,9 @@ export interface ShortcutEntry {
 }
 
 const defaultShortcuts: ShortcutEntry[] = [
-  { key: '1', action: { type: 'use-item', itemId: 'potion' } },
-  { key: '2', action: { type: 'use-item', itemId: 'super-potion' } },
-  { key: '3', action: { type: 'use-item', itemId: 'hyper-potion' } },
+  { key: 'a', action: { type: 'use-item', itemId: 'potion' } },
+  { key: 'z', action: { type: 'use-item', itemId: 'super-potion' } },
+  { key: 'e', action: { type: 'use-item', itemId: 'hyper-potion' } },
 ]
 
 export const useShortcutsStore = defineStore('shortcuts', () => {
