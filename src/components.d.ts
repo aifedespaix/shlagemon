@@ -70,6 +70,7 @@ declare module 'vue' {
     ShlagemonXpBar: typeof import('./components/shlagemon/ShlagemonXpBar.vue')['default']
     Shlagidolar: typeof import('./components/icons/shlagidolar.vue')['default']
     ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
+    SortControls: typeof import('./components/ui/SortControls.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
     Tooltip: typeof import('./components/ui/Tooltip.vue')['default']
     TrainerBattle: typeof import('./components/battle/TrainerBattle.vue')['default']
