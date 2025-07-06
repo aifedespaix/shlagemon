@@ -68,6 +68,13 @@ const displayDex = computed(() => {
   return isShlagedexVisible.value && (isDexUnderGame.value ? inGameTab : inDexTab)
 })
 
+const group2Classes = computed(() => {
+  const classes = ['panel-group']
+  if (!isMobile.value || displayGamePanel.value || displayZonePanel.value)
+    classes.push('flex-1')
+  return classes.join(' ')
+})
+
 watch(
   () => [mainPanel.current, zone.current.id, trainerBattle.current?.id] as const,
   ([panel, zoneId, trainerId]: [MainPanel, ZoneId, string | undefined]) => {
@@ -104,7 +111,7 @@ watch(
         </PanelWrapper>
       </div>
 
-      <div class="panel-group flex-1" md="col-span-2 col-start-2" xl="col-span-3">
+      <div :class="group2Classes" md="col-span-2 col-start-2" xl="col-span-3">
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
