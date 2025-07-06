@@ -10,7 +10,8 @@ export const useEvolutionItemStore = defineStore('evolutionItem', () => {
   const dex = useShlagedexStore()
   const inventory = useInventoryStore()
 
-  const isVisible = computed(() => current.value !== null)
+  // modal visibility is controlled by this ref
+  const isVisible = ref(false)
   const availableMons = computed(() => {
     if (!current.value)
       return []
@@ -29,9 +30,11 @@ export const useEvolutionItemStore = defineStore('evolutionItem', () => {
 
   function open(item: Item) {
     current.value = item
+    isVisible.value = true
   }
 
   function close() {
+    isVisible.value = false
     current.value = null
   }
 
