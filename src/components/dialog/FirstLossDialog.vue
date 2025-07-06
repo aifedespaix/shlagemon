@@ -2,8 +2,10 @@
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { useInventoryStore } from '~/stores/inventory'
 
 const emit = defineEmits(['done'])
+const inventory = useInventoryStore()
 
 const dialogTree: DialogNode[] = [
   {
@@ -31,10 +33,20 @@ const dialogTree: DialogNode[] = [
     id: 'step4',
     text: 'Le but est de vaincre la puanteur de tous ces Shlagémon !',
     responses: [
+      { label: 'Ok', nextId: 'step5', type: 'primary' },
+    ],
+  },
+  {
+    id: 'step5',
+    text: 'Tiens, prends ces 10 Potions Dégueulasses, ça peut servir.',
+    responses: [
       {
-        label: 'Compris, Professeur !',
+        label: 'Merci !',
         type: 'valid',
-        action: () => emit('done', 'firstLoss'),
+        action: () => {
+          inventory.add('potion', 10)
+          emit('done', 'firstLoss')
+        },
       },
     ],
   },

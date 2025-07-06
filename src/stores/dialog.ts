@@ -63,8 +63,13 @@ export const useDialogStore = defineStore('dialog', () => {
   ]
 
   const isDialogVisible = computed(() => {
+    const firstLoss = dialogs.find(d => d.id === 'firstLoss')
+    const showFirstLoss = firstLoss?.condition()
+      && !done.value[firstLoss.id]
+
     if (panel.current === 'trainerBattle')
-      return false
+      return Boolean(showFirstLoss)
+
     return dialogs.some(d => d.condition() && !done.value[d.id])
   })
 
