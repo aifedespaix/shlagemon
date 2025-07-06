@@ -26,6 +26,8 @@ function onAction(id: string) {
     panel.showShop()
   else if (id === 'explore')
     panel.showTrainerBattle()
+  else if (id === 'minigame')
+    panel.showMiniGame()
 }
 
 function fightKing() {

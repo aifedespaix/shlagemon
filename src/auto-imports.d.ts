@@ -224,6 +224,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
+  const useMiniGameStore: typeof import('./stores/miniGame')['useMiniGameStore']
   const useMobileTabStore: typeof import('./stores/mobileTab')['useMobileTabStore']
   const useModel: typeof import('vue')['useModel']
   const useMounted: typeof import('@vueuse/core')['useMounted']
@@ -589,6 +590,7 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
+    readonly useMiniGameStore: UnwrapRef<typeof import('./stores/miniGame')['useMiniGameStore']>
     readonly useMobileTabStore: UnwrapRef<typeof import('./stores/mobileTab')['useMobileTabStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
