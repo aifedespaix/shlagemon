@@ -27,6 +27,10 @@ const actionLabel = computed(() => {
     return props.disabled ? 'Équipé' : 'Équiper'
   return 'Utiliser'
 })
+
+function toggle() {
+  opened.value = !opened.value
+}
 </script>
 
 <template>
