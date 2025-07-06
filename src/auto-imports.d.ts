@@ -224,6 +224,7 @@ declare global {
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
   const useMemory: typeof import('@vueuse/core')['useMemory']
+  const useMiniGameStore: typeof import('./stores/miniGame')['useMiniGameStore']
   const useMobileTabStore: typeof import('./stores/mobileTab')['useMobileTabStore']
   const useModel: typeof import('vue')['useModel']
   const useMounted: typeof import('@vueuse/core')['useMounted']
@@ -319,6 +320,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const useZoneMonsModalStore: typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']
   const useZoneProgressStore: typeof import('./stores/zoneProgress')['useZoneProgressStore']
   const useZoneStore: typeof import('./stores/zone')['useZoneStore']
   const watch: typeof import('vue')['watch']
@@ -589,6 +591,7 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
+    readonly useMiniGameStore: UnwrapRef<typeof import('./stores/miniGame')['useMiniGameStore']>
     readonly useMobileTabStore: UnwrapRef<typeof import('./stores/mobileTab')['useMobileTabStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
@@ -682,6 +685,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>

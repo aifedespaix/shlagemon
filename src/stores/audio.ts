@@ -99,7 +99,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function playSfx(effect: string) {
-    if (!isSfxEnabled.value)
+    if (import.meta.env.VITEST || !isSfxEnabled.value)
       return
     const sfx = new Howl({ src: [effect], volume: sfxVolume.value })
     sfx.play()

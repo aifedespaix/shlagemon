@@ -5,10 +5,12 @@ import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
+import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
 import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
+import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
 import { useDiseaseStore } from '~/stores/disease'
@@ -18,6 +20,7 @@ import { useInventoryStore } from '~/stores/inventory'
 import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
+import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { ballHues } from '~/utils/ball'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
@@ -31,7 +34,9 @@ const disease = useDiseaseStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
+const zoneMonsModal = useZoneMonsModalStore()
 const events = useEventStore()
+const audio = useAudioStore()
 const equilibrerank = 2
 let nextBattleTimer: number | undefined
 
@@ -94,11 +99,13 @@ function openCapture() {
   battleActive.value = false
   stopInterval()
   showCapture.value = true
+  audio.playSfx('/audio/sfx/capture-start.ogg')
 }
 
 function onCaptureEnd(success: boolean) {
   showCapture.value = false
   if (success && enemy.value) {
+    audio.playSfx('/audio/sfx/capture-success.ogg')
     dex.captureEnemy(enemy.value)
     notifyAchievement({ type: 'capture', shiny: enemy.value.isShiny })
     if (dex.activeShlagemon) {
@@ -110,6 +117,7 @@ function onCaptureEnd(success: boolean) {
     nextBattleTimer = window.setTimeout(startBattle, 1000)
   }
   else {
+    audio.playSfx('/audio/sfx/capture-fail.ogg')
     battleActive.value = true
     startInterval()
   }
@@ -133,8 +141,10 @@ function startBattle() {
   created.lvl = lvl
   applyStats(created)
   enemy.value = created
-  if (created.isShiny)
+  if (created.isShiny) {
     toast('Vous avez rencontré un Shiny !')
+    audio.playSfx('/audio/sfx/shiny.ogg')
+  }
   if (active.hpCurrent <= 0)
     active.hpCurrent = active.hp
   playerHp.value = active.hpCurrent
@@ -282,7 +292,9 @@ onUnmounted(() => {
     <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
       <div class="absolute left-0 flex gap-2">
         <Tooltip :text="captureTooltip">
-          <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+          <Button type="icon" aria-label="Schlagemons de la zone" @click="zoneMonsModal.open()">
+            <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+          </Button>
         </Tooltip>
         <Tooltip :text="winTooltip">
           <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
@@ -351,6 +363,7 @@ onUnmounted(() => {
         @finish="onCaptureEnd"
       />
     </div>
+    <ZoneMonsModal />
   </div>
 </template>
 

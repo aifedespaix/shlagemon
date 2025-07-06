@@ -124,7 +124,17 @@ const zonesSpeciales: Zone[] = [
     maxLevel: 0,
     actions: [],
   },
-  { id: 'village-veaux-du-gland', name: 'Veaux du Gland sur Marne', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 10, maxLevel: 0 },
+  {
+    id: 'village-veaux-du-gland',
+    name: 'Veaux du Gland sur Marne',
+    type: 'village',
+    actions: [
+      { id: 'shop', label: 'Entrer dans le Magasin' },
+      { id: 'minigame', label: 'Mini-jeu' },
+    ],
+    minLevel: 10,
+    maxLevel: 0,
+  },
   { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 25, maxLevel: 0 },
   { id: 'village-paume', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 50, maxLevel: 0 },
 ]
