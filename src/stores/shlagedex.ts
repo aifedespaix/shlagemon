@@ -29,6 +29,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
+  // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
+  setInterval(cleanupEffects, 1000)
 
   const xpZones = computed(() => zonesData.filter(z => z.maxLevel > 0))
 
