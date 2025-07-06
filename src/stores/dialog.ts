@@ -2,12 +2,14 @@ import { defineStore } from 'pinia'
 import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
+import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import ReleaseShlagemonDialog from '~/components/dialog/ReleaseShlagemonDialog.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useBattleStatsStore } from './battleStats'
 import { useMainPanelStore } from './mainPanel'
 
 interface DialogItem {
@@ -24,6 +26,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const game = useGameStore()
   const dex = useShlagedexStore()
   const panel = useMainPanelStore()
+  const stats = useBattleStatsStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -51,6 +54,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'release',
       component: markRaw(ReleaseShlagemonDialog),
       condition: () => dex.shlagemons.length >= 10,
+    },
+    {
+      id: 'firstLoss',
+      component: markRaw(FirstLossDialog),
+      condition: () => stats.losses > 0,
     },
   ]
 

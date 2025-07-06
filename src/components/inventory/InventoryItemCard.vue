@@ -13,6 +13,9 @@ const emit = defineEmits<{
 
 const showInfo = ref(false)
 const opened = ref(false)
+function toggle() {
+  opened.value = !opened.value
+}
 const details = computed(() => props.item.details || props.item.description)
 const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
