@@ -4,9 +4,24 @@ import AudioSettingsModal from '~/components/audio/AudioSettingsModal.vue'
 import Profile from '~/components/profile/Profile.vue'
 import ThemeToggle from '~/components/ThemeToggle.vue'
 import Button from '~/components/ui/Button.vue'
+import { useAudioStore } from '~/stores/audio'
 
 const showProfile = ref(false)
 const showAudio = ref(false)
+const clickTimer = ref<number | null>(null)
+const audio = useAudioStore()
+
+function onClick() {
+  clearTimeout(clickTimer.value as any)
+  clickTimer.value = window.setTimeout(() => {
+    showAudio.value = true
+  }, 300)
+}
+
+function onDoubleClick() {
+  clearTimeout(clickTimer.value as any)
+  audio.isMusicEnabled = !audio.isMusicEnabled
+}
 </script>
 
 <template>
@@ -14,7 +29,12 @@ const showAudio = ref(false)
     <img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
     <div class="flex items-center gap-2">
       <ThemeToggle />
-      <Button type="icon" aria-label="Audio" @click="showAudio = true">
+      <Button
+        type="icon"
+        aria-label="Audio"
+        @click.stop="onClick"
+        @dblclick.stop="onDoubleClick"
+      >
         <div class="i-carbon-volume-up" />
       </Button>
       <AudioSettingsModal v-model="showAudio" />
