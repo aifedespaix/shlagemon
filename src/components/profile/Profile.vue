@@ -66,15 +66,22 @@ function removeSave() {
       </Button>
     </div>
     <div v-else-if="tab === 'interface'" class="flex flex-col gap-2">
-      <label class="flex flex-col gap-1">
-        <span>Panel mobile sous le jeu</span>
+      <h3 class="text-xl">
+        Mobile
+      </h3>
+      <div>Configuration impactant la version "mobile" du jeu.</div>
+      <label class="flex flex-col gap-1" for="mobile-main-panel">
+        <div>Panel secondaire</div>
         <SelectOption
+          id="mobile-main-panel"
           v-model="ui.mobileMainPanel"
+          name="mobile-main-panel"
           :options="[
             { label: 'Zones', value: 'zone' },
             { label: 'Schlagédex', value: 'dex' },
           ]"
         />
+        <div class="text-sm">Permet de définir le panel qui sera présent sous le panel principal sur l'écran de jeu.</div>
       </label>
     </div>
     <div v-else class="flex flex-col gap-2">
