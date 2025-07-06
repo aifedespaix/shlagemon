@@ -1,6 +1,6 @@
 import type { ShlagemonType } from '../type'
 
-type TypeName = 'normal' | 'feu' | 'eau' | 'plante' | 'roche' | 'electrique' | 'vol' | 'combat' | 'spectre' | 'darksasuke' | 'psy' | 'poison' | 'metal' | 'sol' | 'fee' | 'dragon' | 'glace'
+type TypeName = 'normal' | 'feu' | 'eau' | 'plante' | 'roche' | 'electrique' | 'vol' | 'combat' | 'spectre' | 'darksasuke' | 'psy' | 'poison' | 'metal' | 'sol' | 'fee' | 'dragon' | 'glace' | 'insecte'
 
 export const normal: ShlagemonType = {
   id: 'normal',
@@ -189,6 +189,17 @@ export const glace: ShlagemonType = {
   passiveEffects: [],
 }
 
+export const insecte: ShlagemonType = {
+  id: 'insecte',
+  name: 'Mouchtik',
+  description: 'Type grouillant, souvent poilu, toujours dérangeant. Il gratte la nuit et te juge en silence.',
+  color: '#a8b820',
+  resistance: [],
+  weakness: [],
+  tags: ['grattant', 'antenne', 'multisegmenté'],
+  passiveEffects: [],
+}
+
 normal.weakness.push(combat)
 feu.weakness.push(eau, sol)
 feu.resistance.push(plante, metal, fee)
@@ -222,6 +233,8 @@ dragon.resistance.push(feu, eau, electrique, plante)
 dragon.resistance.push(feu, eau, electrique, plante)
 glace.weakness.push(feu, roche, combat, metal)
 glace.resistance.push(glace)
+insecte.weakness.push(feu, poison, vol, roche)
+insecte.resistance.push(combat, plante, sol)
 
 // liste exportée
 export const shlagemonTypes: { [typeName in TypeName]: ShlagemonType } = {
@@ -242,4 +255,5 @@ export const shlagemonTypes: { [typeName in TypeName]: ShlagemonType } = {
   fee,
   dragon,
   glace,
+  insecte,
 }
