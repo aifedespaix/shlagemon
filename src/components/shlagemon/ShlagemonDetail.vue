@@ -137,18 +137,18 @@ const captureInfo = computed(() => {
       </p>
     </div>
     <div class="mt-4 flex justify-end gap-2">
+      <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
+        <div i-carbon-trash-can />
+        Relâcher
+      </Button>
       <Button
         type="primary"
-        class="flex items-center gap-1"
+        class="flex flex-1 items-center gap-1"
         :disabled="isActive"
         @click="setActive"
       >
         <div i-carbon-star-filled />
         Principal
-      </Button>
-      <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
-        <div i-carbon-trash-can />
-        Relâcher
       </Button>
     </div>
     <Modal v-model="showConfirm" :close-on-outside-click="false">
