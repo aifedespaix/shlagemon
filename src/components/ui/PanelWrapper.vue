@@ -38,7 +38,7 @@ const contentClasses = computed(() => {
       </div>
       <div v-if="!isMobile" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col" :class="contentClasses">
+    <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col overflow-hidden" :class="contentClasses">
       <slot />
     </div>
   </div>

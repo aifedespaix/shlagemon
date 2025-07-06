@@ -103,6 +103,7 @@ watch(
           </template>
           <InventoryPanel />
         </PanelWrapper>
+
         <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-trophy" />
@@ -116,7 +117,7 @@ watch(
           <PlayerInfos />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayGamePanel">
+        <PanelWrapper v-if="displayGamePanel" class="overflow-hidden">
           <MainPanelView class="flex-1" md="p-4" />
           <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
@@ -132,8 +133,8 @@ watch(
         </PanelWrapper>
       </div>
 
-      <div class="panel-group flex-1 overflow-hidden">
-        <PanelWrapper v-if="displayDex" title="Shlagédex" class="overflow-hidden">
+      <div v-if="displayDex" class="panel-group flex-1 overflow-hidden">
+        <PanelWrapper title="Shlagédex" class="overflow-hidden">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
