@@ -49,7 +49,7 @@ function onAnimationEnd() {
 
 <template>
   <div class="relative w-full flex flex-col items-center" :class="{ 'saturate-10 contrast-200': props.disease }">
-    <div class="absolute left-0 top-0 z-150 flex gap-1">
+    <div class="absolute left-0 top-2 z-150 flex gap-1">
       <EffectBadge
         v-for="e in props.effects"
         :key="e.id"

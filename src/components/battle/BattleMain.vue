@@ -347,7 +347,7 @@ onUnmounted(() => {
         <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
       </div>
       <Button
-        class="absolute right-50% top-8 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
+        class="absolute right-50% top-10 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
         :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
         :disabled="captureButtonDisabled"
         @click="openCapture"
