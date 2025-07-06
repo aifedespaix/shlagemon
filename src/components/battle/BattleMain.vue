@@ -50,12 +50,12 @@ const hasAllZoneMons = computed(() => {
 
 const captureTooltip = computed(() =>
   hasAllZoneMons.value
-    ? 'Vous avez capturé tous les Schlagemon de la zone'
-    : 'Vous n\'avez pas capturé tous les Schlagemon de la zone',
+    ? 'Vous avez capturé tous les Shlagémon de la zone'
+    : 'Vous n\'avez pas capturé tous les Shlagémon de la zone',
 )
 
 const winTooltip = computed(() =>
-  `Vous avez vaincu ${wins.value.toLocaleString()} Schlagemon dans cette zone`,
+  `Vous avez vaincu ${wins.value.toLocaleString()} Shlagémon dans cette zone`,
 )
 
 const playerHp = ref(0)
@@ -297,7 +297,7 @@ onUnmounted(() => {
     <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
       <div class="absolute left-0 flex gap-2">
         <Tooltip :text="captureTooltip">
-          <Button type="icon" aria-label="Schlagemons de la zone" @click="zoneMonsModal.open()">
+          <Button type="icon" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
             <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
           </Button>
         </Tooltip>

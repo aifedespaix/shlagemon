@@ -55,7 +55,7 @@ declare module 'vue' {
     Profile: typeof import('./components/profile/Profile.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
-    ReleaseSchlagemonDialog: typeof import('./components/dialog/ReleaseSchlagemonDialog.vue')['default']
+    ReleaseShlagemonDialog: typeof import('./components/dialog/ReleaseShlagemonDialog.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Schlagedex: typeof import('./components/icons/schlagedex.vue')['default']

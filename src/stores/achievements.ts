@@ -67,8 +67,8 @@ export const useAchievementsStore = defineStore('achievements', () => {
   moneyThresholds.forEach((n) => {
     const def = {
       id: `money-${n}`,
-      title: `${n.toLocaleString()} Shlagidolars`,
-      description: `Accumuler au moins ${n.toLocaleString()} Shlagidolars pour montrer votre richesse.`,
+      title: `${n.toLocaleString()} Shlagédollars`,
+      description: `Accumuler au moins ${n.toLocaleString()} Shlagédollars pour montrer votre richesse.`,
       icon: 'carbon:money',
     }
     defs.push(def)
