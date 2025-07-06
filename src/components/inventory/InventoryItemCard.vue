@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>()
 
 const showInfo = ref(false)
+const opened = ref(false)
 const details = computed(() => props.item.details || props.item.description)
 const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
@@ -22,26 +23,33 @@ const actionLabel = computed(() => {
     return props.disabled ? 'Équipé' : 'Équiper'
   return 'Utiliser'
 })
+
+function toggle() {
+  opened.value = !opened.value
+}
 </script>
 
 <template>
   <div class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900">
-    <div class="flex items-center gap-2">
-      <div
-        v-if="props.item.icon"
-        class="h-8 w-8"
-        :class="[props.item.iconClass, props.item.icon]"
-      />
-      <img
-        v-else-if="props.item.image"
-        :src="props.item.image"
-        :alt="props.item.name"
-        class="h-8 w-8 object-contain"
-        :style="ballFilter"
-      >
-      <span class="font-bold">{{ props.item.name }}</span>
+    <div class="flex cursor-pointer items-center justify-between" @click="toggle">
+      <div class="flex items-center gap-2">
+        <div
+          v-if="props.item.icon"
+          class="h-8 w-8"
+          :class="[props.item.iconClass, props.item.icon]"
+        />
+        <img
+          v-else-if="props.item.image"
+          :src="props.item.image"
+          :alt="props.item.name"
+          class="h-8 w-8 object-contain"
+          :style="ballFilter"
+        >
+        <span class="font-bold">{{ props.item.name }}</span>
+      </div>
+      <div class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
-    <span class="text-xs">{{ props.item.description }}</span>
+    <span v-show="opened" class="text-xs">{{ props.item.description }}</span>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
       <Button
