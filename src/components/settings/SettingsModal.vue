@@ -31,7 +31,7 @@ function removeSave() {
     @close="close"
   >
     <h2 class="mb-2 text-center text-lg font-bold">
-      Profil
+      Paramètres
     </h2>
     <nav class="mb-4 flex justify-center gap-2">
       <button
