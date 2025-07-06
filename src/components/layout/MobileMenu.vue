@@ -3,8 +3,10 @@ import { computed, watch } from 'vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useDialogStore } from '~/stores/dialog'
+import { useInterfaceStore } from '~/stores/interface'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryModalStore } from '~/stores/inventoryModal'
+import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
 
 const mobile = useMobileTabStore()
@@ -12,6 +14,8 @@ const inventoryModal = useInventoryModalStore()
 const dialog = useDialogStore()
 const inventory = useInventoryStore()
 const achievements = useAchievementsStore()
+const mapModal = useMapModalStore()
+const ui = useInterfaceStore()
 
 const menuDisabled = computed(() => dialog.isDialogVisible)
 const dexDisabled = menuDisabled
@@ -32,6 +36,13 @@ function toggleInventory() {
   else
     inventoryModal.open()
 }
+
+function onSecondButton() {
+  if (ui.mobileMainPanel === 'dex')
+    mapModal.open()
+  else
+    mobile.set('dex')
+}
 </script>
 
 <template>
@@ -46,11 +57,12 @@ function toggleInventory() {
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="mobile.current === 'dex' ? 'active' : ''"
+      :class="ui.mobileMainPanel === 'zone' && mobile.current === 'dex' ? 'active' : ''"
       :disabled="dexDisabled"
-      @click="mobile.set('dex')"
+      @click="onSecondButton"
     >
-      <SchlagedexIcon class="h-5 w-5" />
+      <SchlagedexIcon v-if="ui.mobileMainPanel === 'zone'" class="h-5 w-5" />
+      <div v-else class="i-carbon-map" />
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"

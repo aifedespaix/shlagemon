@@ -18,6 +18,7 @@ import { useAchievementsStore } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useDialogStore } from '~/stores/dialog'
 import { useGameStateStore } from '~/stores/gameState'
+import { useInterfaceStore } from '~/stores/interface'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
@@ -35,6 +36,7 @@ const mainPanel = useMainPanelStore()
 const audio = useAudioStore()
 const trainerBattle = useTrainerBattleStore()
 const mobileTab = useMobileTabStore()
+const ui = useInterfaceStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
 
 const showXpBar = computed(() =>
@@ -50,14 +52,22 @@ const isInventoryVisible = computed(() => inventory.list.length > 0)
 const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
 const isAchievementVisible = computed(() => achievements.hasAny)
 
+const isDexUnderGame = computed(() => ui.mobileMainPanel === 'dex')
+
 const displayZonePanel = computed(() =>
-  isShlagedexVisible.value && (!isMobile.value || mobileTab.current === 'game'),
+  !isDexUnderGame.value
+  && isShlagedexVisible.value
+  && (!isMobile.value || mobileTab.current === 'game'),
 )
 const displayPlayerInfo = computed(() => !isMobile.value || mobileTab.current === 'game')
 const displayMainPanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
 const displayInventory = computed(() => isInventoryVisible.value && !isMobile.value)
 const displayAchievements = computed(() => isAchievementVisible.value && (!isMobile.value || mobileTab.current === 'achievements'))
-const displayDex = computed(() => isShlagedexVisible.value && (!isMobile.value || mobileTab.current === 'dex'))
+const displayDex = computed(() => {
+  const inGameTab = !isMobile.value || mobileTab.current === 'game'
+  const inDexTab = !isMobile.value || mobileTab.current === 'dex'
+  return isShlagedexVisible.value && (isDexUnderGame.value ? inGameTab : inDexTab)
+})
 
 watch(
   () => [mainPanel.current, zone.current.id, trainerBattle.current?.id] as const,
