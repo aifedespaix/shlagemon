@@ -4,6 +4,7 @@ import Button from '~/components/ui/Button.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
 import { useInterfaceStore } from '~/stores/interface'
 import { useSaveStore } from '~/stores/save'
+import ShortcutsTab from './ShortcutsTab.vue'
 
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits(['update:modelValue'])
@@ -11,7 +12,7 @@ const emit = defineEmits(['update:modelValue'])
 const save = useSaveStore()
 const ui = useInterfaceStore()
 
-const tab = ref<'save' | 'interface'>('save')
+const tab = ref<'save' | 'interface' | 'shortcuts'>('save')
 
 function close() {
   emit('update:modelValue', false)
@@ -47,6 +48,13 @@ function removeSave() {
       >
         Interface
       </button>
+      <button
+        class="rounded px-2 py-1"
+        :class="tab === 'shortcuts' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
+        @click="tab = 'shortcuts'"
+      >
+        Raccourcis
+      </button>
     </nav>
     <div v-if="tab === 'save'" class="flex flex-col gap-4">
       <p class="text-center">
@@ -57,7 +65,7 @@ function removeSave() {
         Supprimer
       </Button>
     </div>
-    <div v-else class="flex flex-col gap-2">
+    <div v-else-if="tab === 'interface'" class="flex flex-col gap-2">
       <label class="flex flex-col gap-1">
         <span>Panel mobile sous le jeu</span>
         <SelectOption
@@ -68,6 +76,9 @@ function removeSave() {
           ]"
         />
       </label>
+    </div>
+    <div v-else class="flex flex-col gap-2">
+      <ShortcutsTab />
     </div>
   </Modal>
 </template>

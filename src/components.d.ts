@@ -73,6 +73,7 @@ declare module 'vue' {
     Shlagidolar: typeof import('./components/icons/shlagidolar.vue')['default']
     ShopItemDetail: typeof import('./components/shop/ShopItemDetail.vue')['default']
     ShopPanel: typeof import('./components/panels/ShopPanel.vue')['default']
+    ShortcutsTab: typeof import('./components/profile/ShortcutsTab.vue')['default']
     SortControls: typeof import('./components/ui/SortControls.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
     Tooltip: typeof import('./components/ui/Tooltip.vue')['default']
