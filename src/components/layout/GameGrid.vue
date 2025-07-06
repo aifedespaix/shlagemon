@@ -89,7 +89,7 @@ watch(
       md="grid grid-cols-4 grid-rows-1 w-full  gap-2"
       xl="grid-cols-5"
     >
-      <div class="panel-group">
+      <div class="panel-group overflow-hidden">
         <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-inventory-management" />
@@ -104,7 +104,7 @@ watch(
         </PanelWrapper>
       </div>
 
-      <div class="panel-group flex-1" md="col-span-2" xl="col-span-3">
+      <div class="panel-group flex-1" md="col-span-2 col-start-2" xl="col-span-3">
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
@@ -125,7 +125,7 @@ watch(
         </PanelWrapper>
       </div>
 
-      <div class="panel-group flex-1">
+      <div class="panel-group flex-1 overflow-hidden">
         <PanelWrapper v-if="displayDex" title="Shlagédex" class="overflow-hidden">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
@@ -134,19 +134,6 @@ watch(
         </PanelWrapper>
       </div>
 
-      <!-- <div v-if="displayPlayerInfo" class="zone overflow-visible!" md="col-span-6 row-span-1 col-start-4 row-start-1">
-      </div>
-
-      <div v-if="displayGamePanel" class="zone flex-1" md="col-span-6 row-span-6 col-start-4 row-start-2">
-      </div>
-
-      <div v-if="displayZonePanel" class="zone flex-1" md="col-span-6 row-span-5 col-start-4 row-start-8">
-      </div> -->
-
-      <!-- <div v-if="displayInventory || displayAchievements" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2" />
-
-      <div v-if="displayDex" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
-      </div> -->
       <EvolutionModal />
       <ZoneMapModal />
       <InventoryModal />
