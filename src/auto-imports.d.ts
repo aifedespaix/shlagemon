@@ -210,6 +210,7 @@ declare global {
   const useIntersectionObserver: typeof import('@vueuse/core')['useIntersectionObserver']
   const useInterval: typeof import('@vueuse/core')['useInterval']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
+  const useInventoryFilterStore: typeof import('./stores/inventoryFilter')['useInventoryFilterStore']
   const useInventoryModalStore: typeof import('./stores/inventoryModal')['useInventoryModalStore']
   const useInventoryStore: typeof import('./stores/inventory')['useInventoryStore']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
@@ -591,7 +592,6 @@ declare module 'vue' {
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>
     readonly useMemory: UnwrapRef<typeof import('@vueuse/core')['useMemory']>
-    readonly useMiniGameStore: UnwrapRef<typeof import('./stores/miniGame')['useMiniGameStore']>
     readonly useMobileTabStore: UnwrapRef<typeof import('./stores/mobileTab')['useMobileTabStore']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useMounted: UnwrapRef<typeof import('@vueuse/core')['useMounted']>
@@ -685,7 +685,6 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
-    readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
