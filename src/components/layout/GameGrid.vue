@@ -75,9 +75,9 @@ const group2Classes = computed(() => {
   return classes.join(' ')
 })
 
-watch(
-  () => [mainPanel.current, zone.current.id, trainerBattle.current?.id] as const,
-  ([panel, zoneId, trainerId]: [MainPanel, ZoneId, string | undefined]) => {
+watch<[MainPanel, ZoneId, string | undefined], true>(
+  () => [mainPanel.current, zone.current.id, trainerBattle.current?.id],
+  ([panel, zoneId, trainerId]) => {
     if (panel === 'battle')
       audio.fadeToMusic(zoneBattleTracks[zoneId])
     else if (panel === 'trainerBattle')
