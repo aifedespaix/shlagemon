@@ -1,7 +1,6 @@
 import type { ZoneId } from '~/type/zone'
 
 export const zoneTracks: Record<ZoneId, string> = {
-  'chambre-du-noobi': '/audio/musics/villages/village-a.ogg',
   'plaine-kekette': '/audio/musics/villages/village-b.ogg',
   'bois-de-bouffon': '/audio/musics/villages/village-c.ogg',
   'grotte-du-slip': '/audio/musics/villages/village-a.ogg',

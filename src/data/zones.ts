@@ -116,15 +116,6 @@ const zonesSpeciales: Zone[] = [
     completionAchievement: 'Héros de la Route So d\'Ôme',
   },
   {
-    id: 'chambre-du-noobi',
-    name: 'La Chambre du Noobi',
-    type: 'village',
-    image: '/zones/room.png',
-    minLevel: 0,
-    maxLevel: 0,
-    actions: [],
-  },
-  {
     id: 'village-veaux-du-gland',
     name: 'Veaux du Gland sur Marne',
     type: 'village',
