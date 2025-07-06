@@ -13,7 +13,6 @@ const emit = defineEmits<{
 
 const showInfo = ref(false)
 const opened = ref(false)
-
 function toggle() {
   opened.value = !opened.value
 }
