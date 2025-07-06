@@ -16,6 +16,7 @@ export interface Achievement {
 export type AchievementEvent =
   | { type: 'capture', shiny?: boolean }
   | { type: 'battle-win', stronger: boolean }
+  | { type: 'battle-loss' }
   | { type: 'item-used' }
   | { type: 'king-defeated' }
   | { type: 'minigame-win' }
@@ -31,6 +32,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     captures: 0,
     wins: 0,
     winsStronger: 0,
+    losses: 0,
     itemsUsed: 0,
     kings: 0,
     shiny: 0,
@@ -46,6 +48,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     counters.captures = 0
     counters.wins = 0
     counters.winsStronger = 0
+    counters.losses = 0
     counters.itemsUsed = 0
     counters.kings = 0
     counters.shiny = 0
@@ -114,6 +117,31 @@ export const useAchievementsStore = defineStore('achievements', () => {
     }
     defs.push(defStrong)
     defMap[defStrong.id] = defStrong
+  })
+  const lossThresholds = [1, 10, 100, 1000]
+  lossThresholds.forEach((n) => {
+    const def = {
+      id: `loss-${n}`,
+      title:
+        n === 1
+          ? 'Première tôle'
+          : n === 10
+            ? 'Serial loser'
+            : n === 100
+              ? 'Maître de la lose'
+              : 'Légende du défaitisme',
+      description:
+        n === 1
+          ? 'Se prendre sa première branlée, ça forge le caractère.'
+          : n === 10
+            ? 'Enchaîner 10 défaites d\'affilée. On croit en toi... peut-être.'
+            : n === 100
+              ? 'Accumuler 100 défaites mémorables. La classe, non ?'
+              : 'Survivre à 1000 humiliations. Respect éternel.',
+      icon: 'mdi:skull-crossbones',
+    }
+    defs.push(def)
+    defMap[def.id] = def
   })
   const shinyThresholds = [1, 10, 100, 1000]
   shinyThresholds.forEach((n) => {
@@ -263,6 +291,9 @@ export const useAchievementsStore = defineStore('achievements', () => {
         if (e.stronger)
           counters.winsStronger += 1
         break
+      case 'battle-loss':
+        counters.losses += 1
+        break
       case 'item-used':
         counters.itemsUsed += 1
         break
@@ -287,6 +318,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
   watch(() => dex.averageLevel, v => checkThresholds(v, 'avg', levelThresholds), { immediate: true })
   watch(() => counters.wins, v => checkThresholds(v, 'win', winThresholds))
   watch(() => counters.winsStronger, v => checkThresholds(v, 'stronger', winThresholds))
+  watch(() => counters.losses, v => checkThresholds(v, 'loss', lossThresholds))
   watch(() => counters.itemsUsed, v => checkThresholds(v, 'item', itemThresholds))
   watch(() => counters.kings, v => checkThresholds(v, 'king', kingThresholds))
   watch(() => counters.shiny, v => checkThresholds(v, 'shiny', shinyThresholds))
