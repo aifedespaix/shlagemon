@@ -279,11 +279,13 @@ watch(
   },
 )
 
+let lastZoneId = zone.current.id
 watch(
-  () => zone.current.id,
+  () => zone.selectedAt,
   () => {
-    if (dex.activeShlagemon)
+    if (dex.activeShlagemon && lastZoneId !== zone.current.id)
       dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+    lastZoneId = zone.current.id
     stopInterval()
     battleActive.value = false
     startBattle()

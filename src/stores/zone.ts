@@ -9,6 +9,7 @@ import { useShlagedexStore } from './shlagedex'
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
   const currentId = ref<string>(zones.value[0].id)
+  const selectedAt = ref<number>(Date.now())
   const current = computed(() => {
     const zone = zones.value.find(z => z.id === currentId.value)
     return zone ?? zones.value[0]
@@ -44,9 +45,11 @@ export const useZoneStore = defineStore('zone', () => {
 
   function setZone(id: string) {
     if (zones.value.some(z => z.id === id)) {
+      const same = currentId.value === id
       currentId.value = id
+      selectedAt.value = Date.now()
       const dex = useShlagedexStore()
-      if (dex.activeShlagemon)
+      if (dex.activeShlagemon && !same)
         dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
     }
   }
@@ -58,6 +61,7 @@ export const useZoneStore = defineStore('zone', () => {
   return {
     zones,
     current,
+    selectedAt,
     rewardMultiplier,
     setZone,
     getKing,
