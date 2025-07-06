@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
+import { useBattleStore } from './battle'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 
@@ -8,6 +9,7 @@ export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniG
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
   const dex = useShlagedexStore()
+  const battle = useBattleStore()
   const current = ref<MainPanel>('village')
 
   // Update the panel when the zone changes
@@ -21,6 +23,11 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     },
     { immediate: true },
   )
+
+  watch(current, (value) => {
+    if (value !== 'battle' && value !== 'trainerBattle')
+      battle.stopLoop()
+  })
 
   function showShop() {
     current.value = 'shop'

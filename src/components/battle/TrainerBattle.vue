@@ -4,7 +4,7 @@ import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
 import Button from '~/components/ui/Button.vue'
-import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
+import { useBattleEffects } from '~/composables/battleEngine'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
@@ -54,7 +54,12 @@ const cursorX = ref(0)
 const cursorY = ref(0)
 const cursorClicked = ref(false)
 const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
-const { start: startInterval, clear: stopInterval } = useSingleInterval(() => tick(), 1000)
+function startInterval() {
+  battle.startLoop(() => tick(), 1000)
+}
+function stopInterval() {
+  battle.stopLoop()
+}
 watch(trainer, (t) => {
   if (t) {
     stage.value = 'before'

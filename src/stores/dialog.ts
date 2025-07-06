@@ -7,6 +7,7 @@ import ReleaseSchlagemonDialog from '~/components/dialog/ReleaseSchlagemonDialog
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useMainPanelStore } from './mainPanel'
 
 interface DialogItem {
   id: string
@@ -21,6 +22,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const gameState = useGameStateStore()
   const game = useGameStore()
   const dex = useShlagedexStore()
+  const panel = useMainPanelStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -46,7 +48,11 @@ export const useDialogStore = defineStore('dialog', () => {
     },
   ]
 
-  const isDialogVisible = computed(() => dialogs.some(d => d.condition() && !done.value[d.id]))
+  const isDialogVisible = computed(() => {
+    if (panel.current === 'trainerBattle')
+      return false
+    return dialogs.some(d => d.condition() && !done.value[d.id])
+  })
 
   function isDone(id: string) {
     return done.value[id] === true
