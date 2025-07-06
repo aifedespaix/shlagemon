@@ -14,3 +14,5 @@ On le croise rarement en public, sauf dans des commentaires de vidéos floues ou
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   coefficient: 40,
 }
+
+export default rouxPignolage
