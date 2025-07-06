@@ -5,21 +5,42 @@ import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
 import MultiExpModal from '~/components/inventory/MultiExpModal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
+import SortControls from '~/components/ui/SortControls.vue'
 import { useBallStore } from '~/stores/ball'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useInventoryStore } from '~/stores/inventory'
+import { useInventoryFilterStore } from '~/stores/inventoryFilter'
 import { useMultiExpStore } from '~/stores/multiExp'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
 const multiExpStore = useMultiExpStore()
-const search = ref('')
+const filter = useInventoryFilterStore()
+const sortOptions = [
+  { label: 'Type', value: 'type' },
+  { label: 'Nom', value: 'name' },
+  { label: 'Prix', value: 'price' },
+]
 const filteredList = computed(() => {
-  const q = search.value.toLowerCase().trim()
-  if (!q)
-    return inventory.list
-  return inventory.list.filter(entry => entry.item.name.toLowerCase().includes(q))
+  let list = inventory.list.slice()
+  const q = filter.search.toLowerCase().trim()
+  if (q)
+    list = list.filter(entry => entry.item.name.toLowerCase().includes(q))
+  switch (filter.sortBy) {
+    case 'type':
+      list.sort((a, b) => (a.item.type || '').localeCompare(b.item.type || ''))
+      break
+    case 'name':
+      list.sort((a, b) => a.item.name.localeCompare(b.item.name))
+      break
+    case 'price':
+      list.sort((a, b) => a.item.price - b.item.price)
+      break
+  }
+  if (!filter.sortAsc)
+    list.reverse()
+  return list
 })
 
 function isDisabled(item: Item) {
@@ -47,7 +68,14 @@ function onUse(item: Item) {
 
 <template>
   <section v-if="inventory.list.length" class="h-full flex flex-col gap-2">
-    <SearchInput v-model="search" class="w-full" />
+    <div class="flex flex-wrap gap-2">
+      <SortControls
+        v-model:sort-by="filter.sortBy"
+        v-model:sort-asc="filter.sortAsc"
+        :options="sortOptions"
+      />
+      <SearchInput v-model="filter.search" class="flex-1" />
+    </div>
     <div class="flex flex-col gap-2 overflow-auto">
       <InventoryItemCard
         v-for="entry in filteredList"

@@ -4,7 +4,7 @@ import { useMediaQuery } from '@vueuse/core'
 import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import Modal from '~/components/modal/Modal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
-import SelectOption from '~/components/ui/SelectOption.vue'
+import SortControls from '~/components/ui/SortControls.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useDiseaseStore } from '~/stores/disease'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -110,20 +110,11 @@ function isActive(mon: DexShlagemon) {
 <template>
   <section v-if="dex.shlagemons.length" class="h-full flex flex-col">
     <div class="mb-2 flex flex-wrap gap-2">
-      <div class="min-w-36 flex flex-1 items-center">
-        <SelectOption
-          v-model="filter.sortBy"
-          class="min-w-24 flex-1"
-          :options="sortOptions"
-        />
-        <button
-          class="ml-1 text-lg icon-btn"
-          :aria-label="filter.sortAsc ? 'Tri ascendant' : 'Tri descendant'"
-          @click="filter.sortAsc = !filter.sortAsc"
-        >
-          <div :class="filter.sortAsc ? 'i-carbon-sort-ascending' : 'i-carbon-sort-descending'" />
-        </button>
-      </div>
+      <SortControls
+        v-model:sort-by="filter.sortBy"
+        v-model:sort-asc="filter.sortAsc"
+        :options="sortOptions"
+      />
       <SearchInput v-model="filter.search" />
     </div>
     <div class="flex flex-col gap-2 overflow-auto">
