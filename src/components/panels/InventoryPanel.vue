@@ -46,9 +46,9 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <section v-if="inventory.list.length" class="h-full flex flex-col gap-2">
+  <section v-if="inventory.list.length" class="flex flex-col gap-2">
     <SearchInput v-model="search" class="w-full" />
-    <div class="flex flex-col gap-2 overflow-auto">
+    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto" style="max-height: 60vh">
       <InventoryItemCard
         v-for="entry in filteredList"
         :key="entry.item.id"

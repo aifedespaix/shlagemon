@@ -89,7 +89,7 @@ function close() {
   backdrop-filter: blur(2px);
 }
 .modal-content {
-  @apply bg-white dark:bg-gray-900 rounded p-4 w-full max-w-sm shadow-lg;
+  @apply bg-white dark:bg-gray-900 rounded p-4 w-full max-w-md shadow-lg;
 }
 @keyframes fade-in {
   from {
