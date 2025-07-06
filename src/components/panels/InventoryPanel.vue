@@ -46,17 +46,19 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <section v-if="inventory.list.length" class="flex flex-col gap-2">
+  <section v-if="inventory.list.length" class="h-full flex flex-col gap-2">
     <SearchInput v-model="search" class="w-full" />
-    <InventoryItemCard
-      v-for="entry in filteredList"
-      :key="entry.item.id"
-      :item="entry.item"
-      :qty="entry.qty"
-      :disabled="isDisabled(entry.item)"
-      @use="onUse(entry.item)"
-      @sell="inventory.sell(entry.item.id)"
-    />
+    <div class="flex flex-col gap-2 overflow-auto">
+      <InventoryItemCard
+        v-for="entry in filteredList"
+        :key="entry.item.id"
+        :item="entry.item"
+        :qty="entry.qty"
+        :disabled="isDisabled(entry.item)"
+        @use="onUse(entry.item)"
+        @sell="inventory.sell(entry.item.id)"
+      />
+    </div>
   </section>
   <EvolutionItemModal />
   <MultiExpModal />

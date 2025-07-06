@@ -105,13 +105,13 @@ watch(
       </div>
 
       <div v-if="displayInventory || displayAchievements" class="zone" md="col-span-3 row-span-12 col-start-1 row-start-1 flex flex-col gap-2">
-        <PanelWrapper v-if="displayInventory" title="Inventaire">
+        <PanelWrapper v-if="displayInventory" title="Inventaire" is-inline>
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
           <InventoryPanel />
         </PanelWrapper>
-        <PanelWrapper v-if="displayAchievements" title="Succès">
+        <PanelWrapper v-if="displayAchievements" title="Succès" is-inline>
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -120,7 +120,7 @@ watch(
       </div>
 
       <div v-if="displayDex" class="zone tiny-scrollbar" md="col-span-3 row-span-12 col-start-10 row-start-1  overflow-auto">
-        <PanelWrapper title="Shlagédex">
+        <PanelWrapper title="Shlagédex" is-inline>
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
