@@ -13,6 +13,7 @@ import { notifyAchievement } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
+import { useBattleStatsStore } from '~/stores/battleStats'
 import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
@@ -34,6 +35,7 @@ const disease = useDiseaseStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
+const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 const events = useEventStore()
 const audio = useAudioStore()
@@ -237,6 +239,9 @@ function checkEnd() {
             await dex.gainXp(holder, share, zone.current.maxLevel)
           }
         }
+      }
+      else if (playerHp.value <= 0 && enemyHp.value > 0) {
+        battleStats.addLoss()
       }
       playerFainted.value = false
       enemyFainted.value = false

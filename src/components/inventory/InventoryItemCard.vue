@@ -13,6 +13,9 @@ const emit = defineEmits<{
 
 const showInfo = ref(false)
 const opened = ref(false)
+function toggle() {
+  opened.value = !opened.value
+}
 const details = computed(() => props.item.details || props.item.description)
 const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
@@ -31,7 +34,7 @@ function toggle() {
 
 <template>
   <div class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900">
-    <div class="flex cursor-pointer items-center justify-between" @click="toggle">
+    <div class="flex cursor-pointer items-center justify-between gap-2" @click="toggle">
       <div class="flex items-center gap-2">
         <div
           v-if="props.item.icon"

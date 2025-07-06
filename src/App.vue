@@ -35,11 +35,11 @@ useHead({
     },
     {
       property: 'og:url',
-      content: 'https://shlagemon.web.app',
+      content: 'https://shlagemon.aife.io',
     },
     {
       property: 'og:image',
-      content: 'https://shlagemon.web.app/items/shlageball/shlageball.png',
+      content: 'https://shlagemon.aife.io/items/shlageball/shlageball.png',
     },
     {
       property: 'og:site_name',
@@ -59,7 +59,7 @@ useHead({
     },
     {
       name: 'twitter:image',
-      content: 'https://shlagemon.web.app/items/shlageball/shlageball.png',
+      content: 'https://shlagemon.aife.io/items/shlageball/shlageball.png',
     },
     {
       name: 'twitter:site',
@@ -78,11 +78,11 @@ useHead({
     },
     {
       rel: 'canonical',
-      href: 'https://shlagemon.web.app',
+      href: 'https://shlagemon.aife.io',
     },
     {
       rel: 'image_src',
-      href: 'https://shlagemon.web.app/items/shlageball/shlageball.png',
+      href: 'https://shlagemon.aife.io/items/shlageball/shlageball.png',
     },
   ],
 })
