@@ -43,6 +43,14 @@ function selectZone(id: string) {
   mobile.set('game')
 }
 
+function icon(z: Zone) {
+  if (z.type === 'village')
+    return 'i-game-icons:village'
+  if (z.type === 'grotte')
+    return 'i-game-icons:cave-entrance'
+  return 'i-game-icons:forest'
+}
+
 function classes(z: Zone) {
   const classes: string[] = []
   if (z.id === zone.current.id) {
@@ -74,12 +82,13 @@ function classes(z: Zone) {
       <button
         v-for="z in accessibleZones"
         :key="z.id"
-        class="rounded px-2 py-1 text-xs"
+        class="flex items-center gap-1 rounded px-2 py-1 text-xs"
         :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
         :disabled="zoneButtonsDisabled"
         @click="selectZone(z.id)"
       >
-        {{ z.name }}
+        <div class="h-4 w-4" :class="icon(z)" />
+        <span>{{ z.name }}</span>
       </button>
     </div>
   </div>

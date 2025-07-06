@@ -44,6 +44,7 @@ declare module 'vue' {
     InventoryModal: typeof import('./components/inventory/InventoryModal.vue')['default']
     InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
+    Level5Dialog: typeof import('./components/dialog/Level5Dialog.vue')['default']
     MainPanel: typeof import('./components/panels/MainPanel.vue')['default']
     MobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
