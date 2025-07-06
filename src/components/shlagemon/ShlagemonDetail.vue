@@ -106,7 +106,7 @@ const captureInfo = computed(() => {
       {{ mon.base.description }}
     </p>
     <CheckBox v-model="allowEvolution" class="mb-4 flex items-center gap-2 text-sm">
-      Autoriser ce Schlagemon à évoluer ?
+      Autoriser ce Shlagémon à évoluer ?
     </CheckBox>
     <div class="grid grid-cols-2 gap-2 text-sm">
       <div
@@ -138,7 +138,7 @@ const captureInfo = computed(() => {
     <Modal v-model="showConfirm" :close-on-outside-click="false">
       <div class="flex flex-col items-center gap-4">
         <h3 class="text-lg font-bold">
-          Relâcher un Schlagemon ?
+          Relâcher un Shlagémon ?
         </h3>
         <p class="text-center text-sm">
           Attention, si vous le relâchez, il ira schlagiser tout le territoire.
