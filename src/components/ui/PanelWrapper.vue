@@ -11,6 +11,37 @@ function toggle() {
     opened.value = !opened.value
 }
 
+function beforeEnter(el: Element) {
+  const element = el as HTMLElement
+  element.style.height = '0'
+}
+
+function enter(el: Element) {
+  const element = el as HTMLElement
+  element.style.height = `${element.scrollHeight}px`
+}
+
+function afterEnter(el: Element) {
+  const element = el as HTMLElement
+  element.style.height = 'auto'
+}
+
+function beforeLeave(el: Element) {
+  const element = el as HTMLElement
+  element.style.height = `${element.scrollHeight}px`
+}
+
+function leave(el: Element) {
+  const element = el as HTMLElement
+  void element.offsetHeight
+  element.style.height = '0'
+}
+
+function afterLeave(el: Element) {
+  const element = el as HTMLElement
+  element.style.height = 'auto'
+}
+
 const wrapperClasses = computed(() => {
   const unocss: string[] = []
   if (!props.isInline && opened.value)
@@ -38,9 +69,19 @@ const contentClasses = computed(() => {
       </div>
       <div v-if="!isMobile" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col overflow-hidden" :class="contentClasses">
-      <slot />
-    </div>
+    <Transition
+      name="collapse"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
+      <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col overflow-hidden" :class="contentClasses">
+        <slot />
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -48,5 +89,10 @@ const contentClasses = computed(() => {
 .panel-wrapper {
   @apply flex flex-col;
   @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700;
+}
+
+.collapse-enter-active,
+.collapse-leave-active {
+  transition: height 0.2s ease;
 }
 </style>
