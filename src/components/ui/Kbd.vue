@@ -39,10 +39,28 @@ const sizeClass = computed(() => {
 
 <template>
   <kbd
-    :class="`
-      inline-flex items-center justify-center border rounded select-none bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-500 ${sizeClass} ${props.waiting ? 'animate-pulse opacity-70' : ''}
-    `"
+    class="kbd-base"
+    :class="[
+      sizeClass,
+      props.waiting ? 'animate-pulse opacity-70' : '',
+    ]"
   >
     {{ label }}
   </kbd>
 </template>
+
+<style scoped>
+.kbd-base {
+  @apply inline-flex items-center justify-center select-none border rounded bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-500;
+  box-shadow:
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    inset 0 2px 0 rgba(255, 255, 255, 0.8),
+    0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.dark .kbd-base {
+  box-shadow:
+    inset 0 -2px 0 rgba(0, 0, 0, 0.5),
+    inset 0 2px 0 rgba(255, 255, 255, 0.1),
+    0 1px 1px rgba(0, 0, 0, 0.3);
+}
+</style>
