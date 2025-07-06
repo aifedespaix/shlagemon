@@ -276,6 +276,7 @@ declare global {
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
   const useShlagedexStore: typeof import('./stores/shlagedex')['useShlagedexStore']
+  const useShortcutsStore: typeof import('./stores/shortcuts')['useShortcutsStore']
   const useSingleInterval: typeof import('./composables/battleEngine')['useSingleInterval']
   const useSlots: typeof import('vue')['useSlots']
   const useSorted: typeof import('@vueuse/core')['useSorted']

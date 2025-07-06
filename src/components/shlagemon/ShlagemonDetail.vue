@@ -13,6 +13,7 @@ import { useShlagedexStore } from '~/stores/shlagedex'
 const props = defineProps<{ mon: DexShlagemon | null }>()
 const emit = defineEmits<{
   (e: 'release'): void
+  (e: 'active'): void
 }>()
 
 const statColors = [
@@ -52,8 +53,10 @@ const showConfirm = ref(false)
 const isActive = computed(() => props.mon?.id === store.activeShlagemon?.id)
 
 function setActive() {
-  if (props.mon)
+  if (props.mon) {
     store.setActiveShlagemon(props.mon)
+    emit('active')
+  }
 }
 
 const isActiveAndSick = computed(() =>
