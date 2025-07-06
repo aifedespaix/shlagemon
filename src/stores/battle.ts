@@ -44,7 +44,10 @@ export const useBattleStore = defineStore('battle', () => {
     const defBonus = isPlayerDefender ? 1 + dex.bonusPercent / 100 : 1
     const baseAttack = Math.round(attacker.attack * atkBonus * musicBonus * shinyBonus)
     const result = computeDamage(baseAttack, atkType, defType)
-    const roundedDamage = Math.max(1, Math.round(result.damage / defBonus))
+    // Application des bonus/malus d'attaque et de défense (potions et bonus global)
+    const defenseFactor = 100 / (100 + defender.defense)
+    const rawDamage = result.damage * defenseFactor / defBonus
+    const roundedDamage = Math.max(1, Math.round(rawDamage))
     let finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
     if (disease.active && attacker.id === dex.activeShlagemon?.id)
       finalDamage = 10
