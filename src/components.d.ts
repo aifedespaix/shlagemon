@@ -35,6 +35,7 @@ declare module 'vue' {
     EvolutionItemModal: typeof import('./components/inventory/EvolutionItemModal.vue')['default']
     EvolutionModal: typeof import('./components/shlagemon/EvolutionModal.vue')['default']
     FightKingButton: typeof import('./components/battle/FightKingButton.vue')['default']
+    FirstLossDialog: typeof import('./components/dialog/FirstLossDialog.vue')['default']
     GameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     HalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     Header: typeof import('./components/layout/Header.vue')['default']

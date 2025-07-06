@@ -141,6 +141,7 @@ declare global {
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBattleEffects: typeof import('./composables/battleEngine')['useBattleEffects']
+  const useBattleStatsStore: typeof import('./stores/battleStats')['useBattleStatsStore']
   const useBattleStore: typeof import('./stores/battle')['useBattleStore']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
@@ -516,6 +517,7 @@ declare module 'vue' {
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBattleEffects: UnwrapRef<typeof import('./composables/battleEngine')['useBattleEffects']>
+    readonly useBattleStatsStore: UnwrapRef<typeof import('./stores/battleStats')['useBattleStatsStore']>
     readonly useBattleStore: UnwrapRef<typeof import('./stores/battle')['useBattleStore']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
