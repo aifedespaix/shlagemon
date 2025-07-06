@@ -23,7 +23,7 @@ const contentClasses = computed(() => {
   if (props.isInline)
     unocss.push('flex', 'items-center', 'justify-center')
   else
-    unocss.push('overflow-auto')
+    unocss.push('')
 
   return unocss.join(' ')
 })
@@ -38,7 +38,7 @@ const contentClasses = computed(() => {
       </div>
       <div v-if="!isMobile" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="opened" class="tiny-scrollbar flex flex-col" :class="contentClasses">
+    <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col" :class="contentClasses">
       <slot />
     </div>
   </div>
