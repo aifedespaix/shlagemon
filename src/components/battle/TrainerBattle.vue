@@ -204,6 +204,7 @@ function checkEnd() {
 
       if (playerHp.value <= 0) {
         battleStats.addLoss()
+        notifyAchievement({ type: 'battle-loss' })
         result.value = 'lose'
         stage.value = 'after'
         playerFainted.value = false

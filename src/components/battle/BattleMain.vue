@@ -242,6 +242,7 @@ function checkEnd() {
       }
       else if (playerHp.value <= 0 && enemyHp.value > 0) {
         battleStats.addLoss()
+        notifyAchievement({ type: 'battle-loss' })
       }
       playerFainted.value = false
       enemyFainted.value = false
