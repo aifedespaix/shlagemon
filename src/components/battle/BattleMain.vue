@@ -5,6 +5,7 @@ import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
+import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
 import { useBattleEffects, useSingleInterval } from '~/composables/battleEngine'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
@@ -19,6 +20,7 @@ import { useInventoryStore } from '~/stores/inventory'
 import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
+import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { ballHues } from '~/utils/ball'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
@@ -32,6 +34,7 @@ const disease = useDiseaseStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
+const zoneMonsModal = useZoneMonsModalStore()
 const events = useEventStore()
 const audio = useAudioStore()
 const equilibrerank = 2
@@ -289,7 +292,9 @@ onUnmounted(() => {
     <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
       <div class="absolute left-0 flex gap-2">
         <Tooltip :text="captureTooltip">
-          <img src="/items/shlageball/shlageball.png" alt="king" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+          <Button type="icon" aria-label="Schlagemons de la zone" @click="zoneMonsModal.open()">
+            <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+          </Button>
         </Tooltip>
         <Tooltip :text="winTooltip">
           <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
@@ -358,6 +363,7 @@ onUnmounted(() => {
         @finish="onCaptureEnd"
       />
     </div>
+    <ZoneMonsModal />
   </div>
 </template>
 
