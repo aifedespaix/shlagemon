@@ -25,6 +25,7 @@ import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { ballHues } from '~/utils/ball'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
+import { pickRandomByCoefficient } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
 const game = useGameStore()
@@ -138,7 +139,7 @@ function startBattle() {
   const available = zone.current.shlagemons?.length
     ? zone.current.shlagemons
     : allShlagemons
-  const base = available[Math.floor(Math.random() * available.length)]
+  const base = pickRandomByCoefficient(available)
   const rank = zone.getZoneRank(zone.current.id) * equilibrerank
   const created = createDexShlagemon(base, false, rank)
   const min = Number(zone.current.minLevel ?? 1)
