@@ -1,10 +1,7 @@
 <script setup lang="ts">
+import ArenaPanelInner from '~/components/arena/ArenaPanel.vue'
 </script>
 
 <template>
-  <div class="h-full flex-center">
-    <p class="font-bold">
-      Arène (en construction)
-    </p>
-  </div>
+  <ArenaPanelInner class="h-full" />
 </template>
