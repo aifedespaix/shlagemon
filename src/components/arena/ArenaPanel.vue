@@ -163,9 +163,9 @@ onUnmounted(() => clearTimeout(nextTimer))
       </h3>
       <Shlagedex />
     </Modal>
-    <Modal v-model="showDuel" close-on-outside-click="false">
+    <Modal v-model="showDuel" :close-on-outside-click="false">
       <ArenaDuel
-        v-if="duelResult === null"
+        v-if="showDuel && duelResult === null"
         :player="arena.team[arena.currentIndex]"
         :enemy="arena.enemyTeam[arena.currentIndex]"
         @end="onDuelEnd"
@@ -189,7 +189,7 @@ onUnmounted(() => clearTimeout(nextTimer))
         </Button>
       </div>
     </Modal>
-    <Modal v-model="showDefeat" close-on-outside-click="false">
+    <Modal v-model="showDefeat" :close-on-outside-click="false">
       <ArenaDefeatDialog @retry="retryBattle" @quit="quitArena" />
     </Modal>
   </div>
