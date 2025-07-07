@@ -26,7 +26,7 @@ const filteredList = computed(() => {
       </Button>
       <SearchInput v-model="search" class="w-full" />
     </div>
-    <div class="flex flex-col gap-2 overflow-auto">
+    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
       <AchievementItem
         v-for="a in filteredList"
         :key="a.id"
