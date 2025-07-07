@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { toast } from 'vue3-toastify'
+import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import Modal from '~/components/modal/Modal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
@@ -8,16 +9,19 @@ import Button from '~/components/ui/Button.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useArenaStore } from '~/stores/arena'
 import { useBattleStore } from '~/stores/battle'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const battle = useBattleStore()
 const arena = useArenaStore()
+const panel = useMainPanelStore()
 
 const enemyTeam = ref(allShlagemons.slice(0, 6))
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
+const showDefeat = ref(false)
 
 const playerSelection = computed(() =>
   arena.selections.map(id => dex.shlagemons.find(m => m.id === id) || null),
@@ -40,6 +44,18 @@ watch(() => dex.activeShlagemon, (mon) => {
   showDex.value = false
 })
 
+function retryBattle() {
+  arena.reset()
+  arena.setLineup(enemyTeam.value)
+  showDefeat.value = false
+}
+
+function quitArena() {
+  showDefeat.value = false
+  arena.reset()
+  panel.showVillage()
+}
+
 function startBattle() {
   const team = arena.selections
     .map(id => dex.shlagemons.find(m => m.id === (id || ''))!)
@@ -61,9 +77,7 @@ function startBattle() {
       battle.duel(player, enemy)
     if (player.hpCurrent <= 0) {
       arena.finish(false)
-      // eslint-disable-next-line no-alert
-      if (window.confirm('Défaite... Recommencer ?'))
-        startBattle()
+      showDefeat.value = true
       return
     }
   }
@@ -115,6 +129,9 @@ function startBattle() {
         Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
       </h3>
       <Shlagedex />
+    </Modal>
+    <Modal v-model="showDefeat" close-on-outside-click="false">
+      <ArenaDefeatDialog @retry="retryBattle" @quit="quitArena" />
     </Modal>
   </div>
 </template>

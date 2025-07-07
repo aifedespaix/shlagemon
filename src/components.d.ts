@@ -12,6 +12,7 @@ declare module 'vue' {
     AchievementsPanel: typeof import('./components/achievements/AchievementsPanel.vue')['default']
     ActiveShlagemon: typeof import('./components/panels/ActiveShlagemon.vue')['default']
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
+    ArenaDefeatDialog: typeof import('./components/dialog/ArenaDefeatDialog.vue')['default']
     ArenaPanel: typeof import('./components/arena/ArenaPanel.vue')['default']
     ArenaVictoryDialog: typeof import('./components/dialog/ArenaVictoryDialog.vue')['default']
     ArenaWelcomeDialog: typeof import('./components/dialog/ArenaWelcomeDialog.vue')['default']
