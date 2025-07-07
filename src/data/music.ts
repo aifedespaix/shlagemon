@@ -21,22 +21,25 @@ export const zoneTracks: Record<ZoneId, string> = {
   'village-paume': '/audio/musics/villages/village-a.ogg',
 }
 
-export const zoneBattleTracks: Record<ZoneId, string> = {
-  'plaine-kekette': '/audio/musics/battle/battle-a.ogg',
-  'bois-de-bouffon': '/audio/musics/battle/battle-b.ogg',
-  'grotte-du-slip': '/audio/musics/battle/battle-c.ogg',
-  'ravin-fesse-molle': '/audio/musics/battle/battle-d.ogg',
-  'grotte-nanard': '/audio/musics/battle/battle-a.ogg',
-  'marais-moudugenou': '/audio/musics/battle/battle-b.ogg',
-  'forteresse-petmoalfiak': '/audio/musics/battle/battle-c.ogg',
-  'route-du-nawak': '/audio/musics/battle/battle-d.ogg',
-  'mont-dracatombe': '/audio/musics/battle/battle-a.ogg',
-  'catacombes-merdifientes': '/audio/musics/battle/battle-b.ogg',
-  'route-aguicheuse': '/audio/musics/battle/battle-c.ogg',
-  'grotte-des-chieurs': '/audio/musics/battle/battle-d.ogg',
-  'trou-du-bide': '/audio/musics/battle/battle-a.ogg',
-  'zone-giga-zob': '/audio/musics/battle/battle-b.ogg',
-  'route-so-dom': '/audio/musics/battle/battle-c.ogg',
+const wildBattleTracks = new Set([
+  'plaine-kekette',
+  'bois-de-bouffon',
+  'chemin-du-slip',
+  'ravin-fesse-molle',
+  'precipice-nanard',
+  'marais-moudugenou',
+  'forteresse-petmoalfiak',
+  'route-du-nawak',
+  'mont-dracatombe',
+  'catacombes-merdifientes',
+  'route-aguicheuse',
+  'vallee-des-chieurs',
+])
+
+export function getZoneBattleTrack(id?: string): string | undefined {
+  if (!id || !wildBattleTracks.has(id))
+    return undefined
+  return `/audio/musics/battle/${id}.ogg`
 }
 
 export const trainerTracks: Record<string, string> = {
