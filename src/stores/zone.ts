@@ -5,12 +5,14 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
+import { useArenaStore } from './arena'
 import { useShlagedexStore } from './shlagedex'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
   const currentId = ref<string>(zones.value[0].id)
   const selectedAt = ref<number>(Date.now())
+  const arena = useArenaStore()
   const now = useNow({ interval: 100 })
   const current = computed(() => {
     const zone = zones.value.find(z => z.id === currentId.value)
@@ -52,6 +54,8 @@ export const useZoneStore = defineStore('zone', () => {
   })
 
   function setZone(id: string) {
+    if (arena.inBattle)
+      return
     if (zones.value.some(z => z.id === id)) {
       const same = currentId.value === id
       currentId.value = id

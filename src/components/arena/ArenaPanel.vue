@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { BaseShlagemon } from '~/type/shlagemon'
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { toast } from 'vue3-toastify'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
+import ArenaEnemyStats from '~/components/arena/ArenaEnemyStats.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import Modal from '~/components/modal/Modal.vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
@@ -22,6 +24,8 @@ const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
 const showDefeat = ref(false)
 const showDuel = ref(false)
+const showEnemy = ref(false)
+const enemyDetail = ref<BaseShlagemon | null>(null)
 const duelResult = ref<'win' | 'lose' | null>(null)
 let nextTimer: number | undefined
 
@@ -43,6 +47,11 @@ function openDex(i: number) {
   showDex.value = true
 }
 
+function openEnemy(mon: BaseShlagemon) {
+  enemyDetail.value = mon
+  showEnemy.value = true
+}
+
 watch(() => dex.activeShlagemon, (mon) => {
   if (!showDex.value || activeSlot.value === null || !mon)
     return
@@ -54,6 +63,7 @@ function retryBattle() {
   arena.reset()
   arena.setLineup(enemyTeam.value)
   showDefeat.value = false
+  showEnemy.value = false
 }
 
 function quitArena() {
@@ -121,13 +131,14 @@ onUnmounted(() => clearTimeout(nextTimer))
 
 <template>
   <div class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
-    <div
+    <button
       v-for="enemy in enemyTeam"
       :key="enemy.id"
       class="border-red-600 rounded-full bg-red-500/40"
+      @click="openEnemy(enemy)"
     >
       <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
-    </div>
+    </button>
     <div v-for="enemy in enemyTeam" :key="enemy.id" class="flex-center flex-col gap-1 color-red-600">
       <div class="i-game-icons:crossed-sabres text-2xl" />
       <div class="text-sm">
@@ -173,12 +184,16 @@ onUnmounted(() => clearTimeout(nextTimer))
         <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
           Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
         </h3>
-        <ShlagemonQuickSelect />
+        <ShlagemonQuickSelect :selected="arena.selections.filter(Boolean) as string[]" />
       </Modal>
 
-      <Modal v-model="showDuel" :close-on-outside-click="false">
+      <Modal v-model="showEnemy" footer-close>
+        <ArenaEnemyStats v-if="enemyDetail" :mon="enemyDetail" />
+      </Modal>
+
+      <div v-if="showDuel" class="mt-2 flex flex-col items-center gap-2">
         <ArenaDuel
-          v-if="showDuel && duelResult === null"
+          v-if="duelResult === null"
           :player="arena.team[arena.currentIndex]"
           :enemy="arena.enemyTeam[arena.currentIndex]"
           @end="onDuelEnd"
@@ -201,7 +216,8 @@ onUnmounted(() => clearTimeout(nextTimer))
             OK
           </Button>
         </div>
-      </Modal>
+      </div>
+
       <Modal v-model="showDefeat" :close-on-outside-click="false">
         <ArenaDefeatDialog @retry="retryBattle" @quit="quitArena" />
       </Modal>

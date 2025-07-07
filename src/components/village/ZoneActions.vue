@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
+import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
@@ -10,6 +11,7 @@ const zone = useZoneStore()
 const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
+const arena = useArenaStore()
 
 const hasKing = computed(() =>
   zone.current.hasKing ?? zone.current.type === 'sauvage',
@@ -22,6 +24,8 @@ const kingLabel = computed(() =>
 )
 
 function onAction(id: string) {
+  if (arena.inBattle)
+    return
   if (id === 'shop')
     panel.showShop()
   else if (id === 'explore')
@@ -33,6 +37,8 @@ function onAction(id: string) {
 }
 
 function fightKing() {
+  if (arena.inBattle)
+    return
   const trainer = currentKing.value
   if (!trainer)
     return
@@ -47,6 +53,7 @@ function fightKing() {
       v-for="action in zone.current.actions"
       :key="action.id"
       class="text-xs"
+      :disabled="arena.inBattle"
       @click="onAction(action.id)"
     >
       {{ action.label }}
@@ -54,6 +61,7 @@ function fightKing() {
     <Button
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
       class="text-xs"
+      :disabled="arena.inBattle"
       @click="fightKing"
     >
       Défier la {{ kingLabel }} de la zone
