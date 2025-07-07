@@ -125,7 +125,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones">
+        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-map" />
           </template>

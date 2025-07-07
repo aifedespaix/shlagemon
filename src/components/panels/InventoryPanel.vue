@@ -76,7 +76,7 @@ function onUse(item: Item) {
       />
       <SearchInput v-model="filter.search" class="flex-1" />
     </div>
-    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto" style="max-height: 60vh">
+    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
       <InventoryItemCard
         v-for="entry in filteredList"
         :key="entry.item.id"

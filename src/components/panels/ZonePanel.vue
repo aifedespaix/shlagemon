@@ -77,7 +77,7 @@ function classes(z: Zone) {
 </script>
 
 <template>
-  <div class="grid grid-cols-6 gap-2" md="gap-3">
+  <div class="zone-grid grid gap-2 overflow-auto" md="gap-3">
     <button
       v-for="z in accessibleZones"
       :key="z.id"
@@ -95,3 +95,9 @@ function classes(z: Zone) {
     </button>
   </div>
 </template>
+
+<style scoped>
+.zone-grid {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+</style>
