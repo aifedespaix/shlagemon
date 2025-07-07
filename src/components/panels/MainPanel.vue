@@ -2,6 +2,7 @@
 import BattleMain from '~/components/battle/BattleMain.vue'
 import TrainerBattle from '~/components/battle/TrainerBattle.vue'
 import WhackAShlag from '~/components/minigame/WhackAShlag.vue'
+import ArenaPanel from '~/components/panels/ArenaPanel.vue'
 import DialogPanel from '~/components/panels/DialogPanel.vue'
 import ShopPanel from '~/components/panels/ShopPanel.vue'
 import VillagePanel from '~/components/village/VillagePanel.vue'
@@ -21,6 +22,8 @@ const currentComponent = computed(() => {
       return TrainerBattle
     case 'miniGame':
       return WhackAShlag
+    case 'arena':
+      return ArenaPanel
     case 'village':
       return VillagePanel
     default:
