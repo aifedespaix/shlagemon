@@ -98,6 +98,9 @@ function classes(z: Zone) {
       <div class="flex-center">
         <span>{{ z.name }}</span>
       </div>
+      <div class="flex items-center justify-center gap-2">
+        <!-- mettre ici les infos de la zone -->
+      </div>
     </button>
   </div>
 </template>
