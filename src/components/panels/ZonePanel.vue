@@ -107,7 +107,7 @@ function kingDefeated(z: Zone) {
         class="mb-1 h-1"
       />
     </div>
-    <div class="zone-grid tiny-scrollbar grid h-full flex-1 gap-2 overflow-auto" md="gap-3">
+    <div class="tiny-scrollbar zone-grid grid h-full flex-1 gap-2 overflow-auto" md="gap-3">
       <button
         v-for="z in accessibleZones"
         :key="z.id"

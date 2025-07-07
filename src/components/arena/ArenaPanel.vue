@@ -4,8 +4,8 @@ import { toast } from 'vue3-toastify'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import Modal from '~/components/modal/Modal.vue'
-import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
+import ShlagemonQuickSelect from '~/components/shlagemon/ShlagemonQuickSelect.vue'
 import Button from '~/components/ui/Button.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useArenaStore } from '~/stores/arena'
@@ -120,35 +120,41 @@ onUnmounted(() => clearTimeout(nextTimer))
 </script>
 
 <template>
-  <div class="h-full flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
+  <div class="h-full flex flex-col items-center gap-4">
+    <div class="flex gap-2 border border-red-600 rounded bg-red-500/20 p-2" md="gap-4 p-3">
       <div
-        v-for="(enemy, i) in enemyTeam"
+        v-for="enemy in enemyTeam"
         :key="enemy.id"
-        class="flex items-center gap-2 border rounded p-2"
+        class="h-12 w-12 flex-center border-2 border-red-600 rounded-full bg-red-500/40"
+        md="h-16 w-16"
       >
-        <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-8 w-8 object-contain" />
-        <button
-          class="flex flex-1 items-center justify-center gap-2 border rounded bg-gray-50 p-2 dark:bg-gray-800"
-          hover="bg-gray-100 dark:bg-gray-700"
-          @click="openDex(i)"
-        >
-          <template v-if="playerSelection[i]">
-            <ShlagemonImage
-              :id="playerSelection[i]!.base.id"
-              :alt="playerSelection[i]!.base.name"
-              :shiny="playerSelection[i]!.isShiny"
-              class="h-8 w-8 object-contain"
-            />
-            <span class="text-sm">{{ playerSelection[i]!.base.name }}</span>
-          </template>
-          <span v-else class="text-xs">Choisir un Shlagémon</span>
-        </button>
+        <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-10 w-10 object-contain" md="h-14 w-14" />
       </div>
+    </div>
+    <div class="flex gap-2 text-red-600" md="gap-4">
+      <div v-for="enemy in enemyTeam" :key="enemy.id" class="i-carbon-chevron-down h-6 w-6" md="h-8 w-8" />
+    </div>
+    <div class="flex gap-2 border border-blue-600 rounded bg-blue-500/20 p-2" md="gap-4 p-3">
+      <button
+        v-for="(enemy, i) in enemyTeam"
+        :key="i"
+        class="h-12 w-12 flex-center border-2 border-blue-600 rounded-full bg-blue-500/30"
+        md="h-16 w-16"
+        @click="openDex(i)"
+      >
+        <template v-if="playerSelection[i]">
+          <ShlagemonImage
+            :id="playerSelection[i]!.base.id"
+            :alt="playerSelection[i]!.base.name"
+            :shiny="playerSelection[i]!.isShiny"
+            class="h-10 w-10 object-contain" md="h-14 w-14"
+          />
+        </template>
+      </button>
     </div>
     <Button
       type="primary"
-      class="mx-auto mt-2"
+      class="mx-auto"
       :disabled="playerSelection.some(m => !m)"
       @click="startBattle"
     >
@@ -161,7 +167,7 @@ onUnmounted(() => clearTimeout(nextTimer))
       <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
         Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
       </h3>
-      <Shlagedex />
+      <ShlagemonQuickSelect />
     </Modal>
     <Modal v-model="showDuel" :close-on-outside-click="false">
       <ArenaDuel
