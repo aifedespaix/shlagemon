@@ -12,3 +12,8 @@ intro:
   aka: Also known as
   whats-your-name: What's your name?
 not-found: Not found
+arena:
+  title: Arena
+  fight: Fight
+  auto_battle: Battle happens automatically with no clicks.
+  retry_confirm: Defeat... Retry?
