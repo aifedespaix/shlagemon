@@ -12,6 +12,7 @@ export const useArenaStore = defineStore('arena', () => {
   const currentIndex = ref(0)
   const result = ref<ArenaResult>('none')
   const badgeEarned = ref(false)
+  const inBattle = ref(false)
 
   function setLineup(enemies: BaseShlagemon[]) {
     lineup.value = enemies
@@ -19,6 +20,11 @@ export const useArenaStore = defineStore('arena', () => {
   }
 
   function selectPlayer(index: number, id: string | null) {
+    if (id) {
+      const other = selections.value.findIndex((s, i) => s === id && i !== index)
+      if (other !== -1)
+        selections.value[other] = null
+    }
     selections.value[index] = id
   }
 
@@ -28,12 +34,14 @@ export const useArenaStore = defineStore('arena', () => {
     currentIndex.value = 0
     result.value = 'none'
     badgeEarned.value = false
+    inBattle.value = true
   }
 
   function finish(win: boolean) {
     result.value = win ? 'win' : 'lose'
     if (win)
       badgeEarned.value = true
+    inBattle.value = false
   }
 
   function reset() {
@@ -44,6 +52,7 @@ export const useArenaStore = defineStore('arena', () => {
     currentIndex.value = 0
     result.value = 'none'
     badgeEarned.value = false
+    inBattle.value = false
   }
 
   return {
@@ -54,6 +63,7 @@ export const useArenaStore = defineStore('arena', () => {
     currentIndex,
     result,
     badgeEarned,
+    inBattle,
     setLineup,
     selectPlayer,
     start,

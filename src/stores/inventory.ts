@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
+import { useArenaStore } from './arena'
 import { useGameStore } from './game'
 import { useMultiExpStore } from './multiExp'
 import { useShlagedexStore } from './shlagedex'
@@ -12,6 +13,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Record<string, number>>({})
   const game = useGameStore()
   const dex = useShlagedexStore()
+  const arena = useArenaStore()
 
   interface ListedItem {
     item: Item
@@ -67,7 +69,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   }
 
   function useItem(id: string) {
-    if (!items.value[id])
+    if (arena.inBattle || !items.value[id])
       return false
     notifyAchievement({ type: 'item-used' })
     if (id === 'multi-exp') {

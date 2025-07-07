@@ -2,6 +2,7 @@
 import { computed, watch } from 'vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import { useAchievementsStore } from '~/stores/achievements'
+import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useInterfaceStore } from '~/stores/interface'
 import { useInventoryStore } from '~/stores/inventory'
@@ -13,6 +14,7 @@ const mobile = useMobileTabStore()
 const inventoryModal = useInventoryModalStore()
 const dialog = useDialogStore()
 const inventory = useInventoryStore()
+const arena = useArenaStore()
 const achievements = useAchievementsStore()
 const mapModal = useMapModalStore()
 const ui = useInterfaceStore()
@@ -20,7 +22,7 @@ const ui = useInterfaceStore()
 const menuDisabled = computed(() => dialog.isDialogVisible)
 const dexDisabled = menuDisabled
 const achievementsDisabled = computed(() => menuDisabled.value || !achievements.hasAny)
-const inventoryDisabled = computed(() => menuDisabled.value || inventory.list.length === 0)
+const inventoryDisabled = computed(() => menuDisabled.value || inventory.list.length === 0 || arena.inBattle)
 
 watch(
   () => dialog.isDialogVisible,
