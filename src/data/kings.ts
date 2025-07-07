@@ -28,7 +28,7 @@ export const kings: Trainer[] = [
   createKing('plaine-kekette', caillou, 'Je protege cette plaine, prepare-toi!', 'Hum, tu m\'as battu, chanceux.'),
   createKing('bois-de-bouffon', sachatte, 'Ces bois seront ta tombe.', 'Je reviendrai plus fort.'),
   createKing('grotte-du-slip', norman, 'Entres dans ma grotte si tu l\'oses.', 'Ta victoire ne sera que temporaire.'),
-  createKing('ravin-fesse-molle', marineLahaine, 'Le ravin te verra chuter!', 'Incroyable... tu as gagne.'),
+  createKing('ravin-fesse-molle', marineLahaine, 'Le ravin te verra chuter!', 'Incroyable... tu as gagné.'),
   createKing('grotte-nanard', marcon, 'Le vieux Nanard t\'attend.', 'Le vieux Nanard te regarde avec degout.'),
   createKing('marais-moudugenou', sachatte, 'Tu vas couler dans le marais!', 'Tu t\'extirpes du marais victorieux.'),
   createKing('forteresse-petmoalfiak', profMerdant, 'Ma forteresse est imprenable!', 'Tu as brise ma forteresse...'),
