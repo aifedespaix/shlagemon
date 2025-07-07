@@ -117,7 +117,7 @@ function isActive(mon: DexShlagemon) {
       />
       <SearchInput v-model="filter.search" />
     </div>
-    <div class="flex flex-col gap-2 overflow-auto">
+    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
       <div
         v-for="mon in displayedMons"
         :key="mon.id"
