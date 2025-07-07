@@ -77,19 +77,21 @@ function classes(z: Zone) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2" md="gap-3">
-    <div class="flex flex-wrap justify-center gap-1" md="gap-2">
-      <button
-        v-for="z in accessibleZones"
-        :key="z.id"
-        class="flex items-center gap-1 rounded px-2 py-1 text-xs"
-        :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
-        :disabled="zoneButtonsDisabled"
-        @click="selectZone(z.id)"
-      >
-        <div class="h-4 w-4" :class="icon(z)" />
+  <div class="grid grid-cols-6 gap-2" md="gap-3">
+    <button
+      v-for="z in accessibleZones"
+      :key="z.id"
+      class="grid grid-rows-2 gap-1 rounded px-2 py-1 text-xs"
+      :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
+      :disabled="zoneButtonsDisabled"
+      @click="selectZone(z.id)"
+    >
+      <div class="flex-center">
+        <div class="h-6 w-6" :class="icon(z)" />
+      </div>
+      <div class="flex-center">
         <span>{{ z.name }}</span>
-      </button>
-    </div>
+      </div>
+    </button>
   </div>
 </template>
