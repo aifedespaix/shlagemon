@@ -55,7 +55,7 @@ const isAchievementVisible = computed(() => achievements.hasAny)
 const isDexUnderGame = computed(() => ui.mobileMainPanel === 'dex')
 
 const displayZonePanel = computed(() =>
-  !isDexUnderGame.value
+  (!isDexUnderGame.value || !isMobile.value)
   && isShlagedexVisible.value
   && (!isMobile.value || mobileTab.current === 'game'),
 )
