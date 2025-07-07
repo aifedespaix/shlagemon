@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
 import { computed } from 'vue'
+import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMapModalStore } from '~/stores/mapModal'
@@ -21,6 +22,12 @@ const zoneButtonsDisabled = computed(
   () => panel.current === 'trainerBattle' || dialog.isDialogVisible,
 )
 
+function buttonDisabled(z: Zone) {
+  if (zoneButtonsDisabled.value)
+    return true
+  return z.type === 'sauvage' && zone.wildCooldownRemaining > 0
+}
+
 const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
 
 const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
@@ -36,7 +43,8 @@ function canAccess(z: Zone) {
 }
 
 function selectZone(id: string) {
-  if (zoneButtonsDisabled.value)
+  const z = zone.zones.find(zz => zz.id === id)
+  if (!z || buttonDisabled(z))
     return
   zone.setZone(id)
   mapModal.close()
@@ -89,40 +97,49 @@ function kingDefeated(z: Zone) {
 </script>
 
 <template>
-  <div class="zone-grid grid gap-2 overflow-auto" md="gap-3">
-    <button
-      v-for="z in accessibleZones"
-      :key="z.id"
-      class="relative grid grid-rows-2 gap-1 rounded px-2 py-1 text-xs"
-      :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
-      :disabled="zoneButtonsDisabled"
-      @click="selectZone(z.id)"
-    >
-      <Badge
-        v-if="z.id === zone.current.id"
-        inner
-        size="square"
-        icon="i-carbon:user-filled"
-      />
-      <div class="flex-center">
-        <div class="h-6 w-6" :class="icon(z)" />
-      </div>
-      <div class="flex-center">
-        <span>{{ z.name }}</span>
-      </div>
-      <div class="flex items-center justify-center gap-2">
-        <img
-          v-if="allCaptured(z)"
-          src="/items/shlageball/shlageball.png"
-          alt="capturé"
-          class="h-4 w-4"
-        >
-        <div
-          v-if="kingDefeated(z)"
-          class="i-game-icons:crown h-4 w-4"
+  <div>
+    <ProgressBar
+      v-if="zone.wildCooldownRemaining > 0"
+      :value="1000 - zone.wildCooldownRemaining"
+      :max="1000"
+      color="bg-blue-600 dark:bg-blue-700"
+      class="mb-1 h-1 w-full"
+    />
+    <div class="zone-grid grid gap-2 overflow-auto" md="gap-3">
+      <button
+        v-for="z in accessibleZones"
+        :key="z.id"
+        class="relative grid grid-rows-2 gap-1 rounded px-2 py-1 text-xs"
+        :class="`${classes(z)} ${buttonDisabled(z) ? 'opacity-50 cursor-not-allowed' : ''}`"
+        :disabled="buttonDisabled(z)"
+        @click="selectZone(z.id)"
+      >
+        <Badge
+          v-if="z.id === zone.current.id"
+          inner
+          size="square"
+          icon="i-carbon:user-filled"
         />
-      </div>
-    </button>
+        <div class="flex-center">
+          <div class="h-6 w-6" :class="icon(z)" />
+        </div>
+        <div class="flex-center">
+          <span>{{ z.name }}</span>
+        </div>
+        <div class="flex items-center justify-center gap-2">
+          <img
+            v-if="allCaptured(z)"
+            src="/items/shlageball/shlageball.png"
+            alt="capturé"
+            class="h-4 w-4"
+          >
+          <div
+            v-if="kingDefeated(z)"
+            class="i-game-icons:crown h-4 w-4"
+          />
+        </div>
+      </button>
+    </div>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 import type { Trainer } from '~/type/trainer'
 import type { Zone } from '~/type/zone'
+import { useNow } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { kings as kingsData } from '~/data/kings'
@@ -10,11 +11,18 @@ export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
   const currentId = ref<string>(zones.value[0].id)
   const selectedAt = ref<number>(Date.now())
+  const now = useNow({ interval: 100 })
   const current = computed(() => {
     const zone = zones.value.find(z => z.id === currentId.value)
     return zone ?? zones.value[0]
   })
   const xpZones = computed(() => zones.value.filter(z => z.maxLevel > 0))
+
+  const wildCooldownRemaining = computed(() => {
+    if (current.value.type !== 'sauvage')
+      return 0
+    return Math.max(0, 1000 - (now.value.getTime() - selectedAt.value))
+  })
 
   const kings = ref<Record<string, Trainer>>({})
 
@@ -62,6 +70,7 @@ export const useZoneStore = defineStore('zone', () => {
     zones,
     current,
     selectedAt,
+    wildCooldownRemaining,
     rewardMultiplier,
     setZone,
     getKing,
