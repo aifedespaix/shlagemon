@@ -77,12 +77,12 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     salamiches,
   ] },
   { id: 'mont-dracatombe', name: 'Mont Cul', actions: [], shlagemons: [ptitocard] },
-  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', shlagemons: [], actions: [] },
-  { id: 'route-aguicheuse', name: 'Route Aguicheuse', shlagemons: [] },
-  { id: 'vallee-des-chieurs', name: 'Vallée des Chieurs', shlagemons: [], actions: [] },
-  { id: 'trou-du-bide', name: 'Trou du Bide', shlagemons: [] },
-  { id: 'zone-giga-zob', name: 'Aire du Giga Zob', shlagemons: [] },
-  { id: 'route-so-dom', name: `Route So'Dom`, shlagemons: [] },
+  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', shlagemons: [sacdepates], actions: [] },
+  { id: 'route-aguicheuse', name: 'Route Aguicheuse', shlagemons: [aspigros] },
+  { id: 'vallee-des-chieurs', name: 'Vallée des Chieurs', shlagemons: [carapouffe], actions: [] },
+  { id: 'trou-du-bide', name: 'Trou du Bide', shlagemons: [chenipaon] },
+  { id: 'zone-giga-zob', name: 'Aire du Giga Zob', shlagemons: [goubite] },
+  { id: 'route-so-dom', name: `Route So'Dom`, shlagemons: [canarchichon] },
 ]
 
 const lvlsByZone = 5

@@ -93,6 +93,6 @@ const contentClasses = computed(() => {
 
 .collapse-enter-active,
 .collapse-leave-active {
-  transition: height 0.2s ease;
+  /* transition: height 0.2s ease;*/
 }
 </style>

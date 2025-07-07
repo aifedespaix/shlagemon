@@ -109,7 +109,7 @@ export const multiExp: Item = {
     'Permet de partager 50% de l\'XP gagnée en combat avec le Shlagémon porteur.',
   price: 20,
   currency: 'shlagidiamond',
-  icon: 'carbon:chart-multitype',
+  icon: 'i-game-icons:three-friends',
   iconClass: 'text-orange-500 dark:text-orange-300',
 }
 
