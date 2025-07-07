@@ -28,6 +28,8 @@ function onAction(id: string) {
     panel.showTrainerBattle()
   else if (id === 'minigame')
     panel.showMiniGame()
+  else if (id === 'arena')
+    panel.showArena()
 }
 
 function fightKing() {
