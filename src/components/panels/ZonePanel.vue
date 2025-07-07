@@ -74,6 +74,18 @@ function classes(z: Zone) {
 
   return classes.join(' ')
 }
+
+function allCaptured(z: Zone) {
+  const list = z.shlagemons
+  if (!list?.length)
+    return false
+  return list.every(base => dex.shlagemons.some(mon => mon.base.id === base.id))
+}
+
+function kingDefeated(z: Zone) {
+  const hasKing = z.hasKing ?? z.type === 'sauvage'
+  return hasKing && progress.isKingDefeated(z.id)
+}
 </script>
 
 <template>
@@ -99,7 +111,16 @@ function classes(z: Zone) {
         <span>{{ z.name }}</span>
       </div>
       <div class="flex items-center justify-center gap-2">
-        <!-- mettre ici les infos de la zone -->
+        <img
+          v-if="allCaptured(z)"
+          src="/items/shlageball/shlageball.png"
+          alt="capturé"
+          class="h-4 w-4"
+        >
+        <div
+          v-if="kingDefeated(z)"
+          class="i-game-icons:crown h-4 w-4"
+        />
       </div>
     </button>
   </div>
