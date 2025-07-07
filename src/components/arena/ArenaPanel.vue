@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { toast } from 'vue3-toastify'
+import ArenaDuel from '~/components/arena/ArenaDuel.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import Modal from '~/components/modal/Modal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
@@ -8,13 +9,11 @@ import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import Button from '~/components/ui/Button.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useArenaStore } from '~/stores/arena'
-import { useBattleStore } from '~/stores/battle'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
-const battle = useBattleStore()
 const arena = useArenaStore()
 const panel = useMainPanelStore()
 
@@ -22,6 +21,13 @@ const enemyTeam = ref(allShlagemons.slice(0, 6))
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
 const showDefeat = ref(false)
+const showDuel = ref(false)
+const duelResult = ref<'win' | 'lose' | null>(null)
+let nextTimer: number | undefined
+
+const hasNextDuel = computed(() =>
+  arena.currentIndex < arena.team.length - 1,
+)
 
 const playerSelection = computed(() =>
   arena.selections.map(id => dex.shlagemons.find(m => m.id === id) || null),
@@ -69,21 +75,48 @@ function startBattle() {
     return m
   })
   arena.start(team, enemies)
-  for (let i = 0; i < team.length; i++) {
-    arena.currentIndex = i
-    const player = team[i]
-    const enemy = enemies[i]
-    while (player.hpCurrent > 0 && enemy.hpCurrent > 0)
-      battle.duel(player, enemy)
-    if (player.hpCurrent <= 0) {
-      arena.finish(false)
-      showDefeat.value = true
-      return
-    }
+  arena.currentIndex = 0
+  duelResult.value = null
+  showDuel.value = true
+}
+
+function onDuelEnd(win: boolean) {
+  duelResult.value = win ? 'win' : 'lose'
+  if (!win) {
+    arena.finish(false)
+    nextTimer = window.setTimeout(closeAfterDefeat, 500)
+    return
   }
-  arena.finish(true)
+
+  if (arena.currentIndex >= arena.team.length - 1) {
+    arena.finish(true)
+    nextTimer = window.setTimeout(closeVictory, 500)
+  }
+  else {
+    nextTimer = window.setTimeout(proceedNext, 800)
+  }
+}
+
+function proceedNext() {
+  clearTimeout(nextTimer)
+  duelResult.value = null
+  arena.currentIndex += 1
+  showDuel.value = true
+}
+
+function closeVictory() {
+  clearTimeout(nextTimer)
+  showDuel.value = false
   toast.success('Victoire !')
 }
+
+function closeAfterDefeat() {
+  clearTimeout(nextTimer)
+  showDuel.value = false
+  showDefeat.value = true
+}
+
+onUnmounted(() => clearTimeout(nextTimer))
 </script>
 
 <template>
@@ -129,6 +162,32 @@ function startBattle() {
         Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
       </h3>
       <Shlagedex />
+    </Modal>
+    <Modal v-model="showDuel" close-on-outside-click="false">
+      <ArenaDuel
+        v-if="duelResult === null"
+        :player="arena.team[arena.currentIndex]"
+        :enemy="arena.enemyTeam[arena.currentIndex]"
+        @end="onDuelEnd"
+      />
+      <div v-else class="flex flex-col items-center gap-2">
+        <div
+          :class="duelResult === 'win'
+            ? 'text-green-600 font-bold dark:text-green-400'
+            : 'text-red-600 font-bold dark:text-red-400'"
+        >
+          {{ duelResult === 'win' ? 'Victoire !' : 'Défaite...' }}
+        </div>
+        <Button v-if="duelResult === 'win' && hasNextDuel" type="primary" @click="proceedNext">
+          Suivant
+        </Button>
+        <Button v-else-if="duelResult === 'win'" type="primary" @click="closeVictory">
+          Fermer
+        </Button>
+        <Button v-else type="danger" @click="closeAfterDefeat">
+          OK
+        </Button>
+      </div>
     </Modal>
     <Modal v-model="showDefeat" close-on-outside-click="false">
       <ArenaDefeatDialog @retry="retryBattle" @quit="quitArena" />
