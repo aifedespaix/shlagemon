@@ -97,15 +97,17 @@ function kingDefeated(z: Zone) {
 </script>
 
 <template>
-  <div>
-    <ProgressBar
-      v-if="zone.wildCooldownRemaining > 0"
-      :value="1000 - zone.wildCooldownRemaining"
-      :max="1000"
-      color="bg-blue-600 dark:bg-blue-700"
-      class="mb-1 h-1 w-full"
-    />
-    <div class="zone-grid grid gap-2 overflow-auto" md="gap-3">
+  <div class="relative flex flex-1 flex-col overflow-hidden">
+    <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-200">
+      <ProgressBar
+
+        :value="1000 - zone.wildCooldownRemaining"
+        :max="1000"
+        color="bg-blue-600 dark:bg-blue-700"
+        class="mb-1 h-1"
+      />
+    </div>
+    <div class="zone-grid tiny-scrollbar grid h-full flex-1 gap-2 overflow-auto" md="gap-3">
       <button
         v-for="z in accessibleZones"
         :key="z.id"
