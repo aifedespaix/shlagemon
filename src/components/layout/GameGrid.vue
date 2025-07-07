@@ -13,7 +13,7 @@ import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import ZoneMapModal from '~/components/zones/ZoneMapModal.vue'
-import { trainerTracks, zoneBattleTracks, zoneTracks } from '~/data/music'
+import { getZoneBattleTrack, trainerTracks, zoneTracks } from '~/data/music'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useDialogStore } from '~/stores/dialog'
@@ -78,12 +78,19 @@ const group2Classes = computed(() => {
 watch<[MainPanel, ZoneId, string | undefined], true>(
   () => [mainPanel.current, zone.current.id, trainerBattle.current?.id],
   ([panel, zoneId, trainerId]) => {
-    if (panel === 'battle')
-      audio.fadeToMusic(zoneBattleTracks[zoneId])
-    else if (panel === 'trainerBattle')
+    if (panel === 'battle') {
+      const track = getZoneBattleTrack(zoneId)
+      if (track)
+        audio.fadeToMusic(track)
+      else
+        audio.stopMusic()
+    }
+    else if (panel === 'trainerBattle') {
       audio.fadeToMusic(trainerTracks[trainerId || `king-${zoneId}`])
-    else
+    }
+    else {
       audio.fadeToMusic(zoneTracks[zoneId])
+    }
   },
   { immediate: true },
 )
