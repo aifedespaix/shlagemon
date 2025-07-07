@@ -119,7 +119,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
       </div>
 
-      <div :class="group2Classes" md="col-span-2 col-start-2" xl="col-span-3">
+      <div :class="group2Classes" class="overflow-hidden" md="col-span-2 col-start-2" xl="col-span-3">
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
