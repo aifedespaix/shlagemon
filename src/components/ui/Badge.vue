@@ -7,10 +7,12 @@ const props = withDefaults(defineProps<{
   variant?: BadgeVariant
   size?: BadgeSize
   icon?: string
+  inner?: boolean
 }>(), {
   color: 'primary',
   variant: 'solid',
   size: 'sm',
+  inner: false,
 })
 
 const colorClasses = computed(() => {
@@ -64,18 +66,27 @@ const sizeClasses = computed(() => {
       return 'text-lg px-4 py-2'
     case 'md':
       return 'text-sm px-2 py-0.5'
+    case 'square':
+      return 'text-sm p-1'
     default:
       return 'text-xs px-2 py-0.5'
   }
+})
+
+const positionClasses = computed(() => {
+  const classes = ['absolute', 'right-0', 'top-0', 'flex']
+  if (!props.inner)
+    classes.push('translate-x-1/2', '-translate-y-1/2')
+  return classes.join(' ')
 })
 </script>
 
 <template>
   <span
-    class="absolute right-0 top-0 flex translate-x-1/2 items-center gap-1 rounded-full -translate-y-1/2"
-    :class="[colorClasses, sizeClasses]"
+    class="flex items-center gap-1 rounded-full"
+    :class="[colorClasses, sizeClasses, positionClasses]"
   >
-    <span v-if="props.icon" class="h-4 w-4" :class="`i-${props.icon}`" />
+    <span v-if="props.icon" class="h-4 w-4" :class="props.icon" />
     <slot />
   </span>
 </template>

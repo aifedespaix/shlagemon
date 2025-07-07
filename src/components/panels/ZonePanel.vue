@@ -88,7 +88,9 @@ function classes(z: Zone) {
     >
       <Badge
         v-if="z.id === zone.current.id"
-        icon="carbon:user-filled"
+        inner
+        size="square"
+        icon="i-carbon:user-filled"
       />
       <div class="flex-center">
         <div class="h-6 w-6" :class="icon(z)" />
