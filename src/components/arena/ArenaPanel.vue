@@ -124,7 +124,7 @@ onUnmounted(() => clearTimeout(nextTimer))
     <div
       v-for="enemy in enemyTeam"
       :key="enemy.id"
-      class="border-red-600 rounded-full bg-red-500/40 p-2"
+      class="border-red-600 rounded-full bg-red-500/40"
     >
       <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
     </div>
