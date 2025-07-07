@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
+import Info from '~/components/ui/Info.vue'
 import InputTipRange from '~/components/ui/InputTipRange.vue'
 import { useAudioStore } from '~/stores/audio'
 
@@ -23,6 +24,9 @@ const audio = useAudioStore()
       <CheckBox v-model="audio.isMusicEnabled" class="flex items-center justify-between">
         <span>Musique</span>
       </CheckBox>
+      <Info v-if="!audio.isMusicEnabled" color="alert">
+        Désactiver la musique réduit les dégâts de vos Shlagémons de 10&nbsp;%.
+      </Info>
       <InputTipRange
         v-model="audio.musicVolume"
         :disabled="!audio.isMusicEnabled"
