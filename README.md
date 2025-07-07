@@ -31,6 +31,7 @@ Un mini-jeu d'adresse « Whack-a-Shlag » permet aussi de récolter quelques Shl
    ```bash
    pnpm install
    ```
+   Vous pouvez aussi lancer le script `./scripts/setup.sh` pour préparer l'environnement.
 
 ## Utilisation
 
@@ -51,6 +52,8 @@ pnpm build
 Les fichiers prêts à être servis se trouvent dans le dossier `dist`.
 
 ### Tests
+
+> Avant d'exécuter `pnpm lint` ou `pnpm test:*`, assurez-vous d'avoir installé les dépendances avec `pnpm install`.
 
 - Tests unitaires : `pnpm test:unit`
 - Tests end‑to‑end : `pnpm test:e2e`
