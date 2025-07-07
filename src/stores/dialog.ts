@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
+import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
+import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
@@ -9,6 +11,7 @@ import ReleaseShlagemonDialog from '~/components/dialog/ReleaseShlagemonDialog.v
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useArenaStore } from './arena'
 import { useBattleStatsStore } from './battleStats'
 import { useMainPanelStore } from './mainPanel'
 
@@ -27,6 +30,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const dex = useShlagedexStore()
   const panel = useMainPanelStore()
   const stats = useBattleStatsStore()
+  const arena = useArenaStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -54,6 +58,16 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'release',
       component: markRaw(ReleaseShlagemonDialog),
       condition: () => dex.shlagemons.length >= 10,
+    },
+    {
+      id: 'arenaWelcome',
+      component: markRaw(ArenaWelcomeDialog),
+      condition: () => panel.current === 'arena',
+    },
+    {
+      id: 'arenaVictory',
+      component: markRaw(ArenaVictoryDialog),
+      condition: () => arena.badgeEarned,
     },
     {
       id: 'firstLoss',
