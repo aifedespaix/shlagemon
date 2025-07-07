@@ -110,12 +110,25 @@ function openCapture() {
   audio.playSfx('/audio/sfx/capture-start.ogg')
 }
 
-function onCaptureEnd(success: boolean) {
+async function onCaptureEnd(success: boolean) {
   showCapture.value = false
   if (success && enemy.value) {
     audio.playSfx('/audio/sfx/capture-success.ogg')
     dex.captureEnemy(enemy.value)
     notifyAchievement({ type: 'capture', shiny: enemy.value.isShiny })
+    if (dex.activeShlagemon) {
+      const xp = xpRewardForLevel(enemy.value.lvl)
+      await dex.gainXp(
+        dex.activeShlagemon,
+        xp,
+        zone.current.maxLevel,
+      )
+      const holder = multiExpStore.holder
+      if (holder) {
+        const share = Math.round(xp * 0.5)
+        await dex.gainXp(holder, share, zone.current.maxLevel)
+      }
+    }
     if (dex.activeShlagemon) {
       dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
       playerHp.value = dex.activeShlagemon.hpCurrent
