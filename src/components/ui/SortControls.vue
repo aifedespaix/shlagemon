@@ -28,7 +28,7 @@ function toggleAsc() {
       @update:model-value="updateSortBy"
     />
     <button
-      class="ml-1 text-lg icon-btn"
+      class="icon-btn ml-1 text-lg"
       :aria-label="props.sortAsc ? 'Tri ascendant' : 'Tri descendant'"
       @click="toggleAsc"
     >

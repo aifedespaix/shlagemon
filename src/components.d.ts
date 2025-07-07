@@ -14,6 +14,7 @@ declare module 'vue' {
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     AttackCursor: typeof import('./components/battle/AttackCursor.vue')['default']
     AudioSettingsModal: typeof import('./components/audio/AudioSettingsModal.vue')['default']
+    Badge: typeof import('./components/ui/Badge.vue')['default']
     BallSelectionModal: typeof import('./components/ball/BallSelectionModal.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     BattleShlagemon: typeof import('./components/battle/BattleShlagemon.vue')['default']
