@@ -109,6 +109,7 @@ const villageZones: Zone[] = [
     actions: [
       { id: 'shop', label: 'Entrer dans le Magasin' },
       { id: 'minigame', label: 'Mini-jeu' },
+      { id: 'arena', label: 'Arène' },
     ],
     minLevel: 10,
     maxLevel: 0,
