@@ -71,25 +71,15 @@ const details = computed(() => props.item.details || props.item.description)
       {{ details }}
     </p>
     <div class="mt-2 flex flex-wrap items-center gap-2">
-      <Button :disabled="qty <= 1" @click="adjustQty(-100)">
-        -100
-      </Button>
-      <Button :disabled="qty <= 1" @click="adjustQty(-10)">
-        -10
-      </Button>
-      <Button :disabled="qty <= 1" @click="adjustQty(-1)">
-        -1
-      </Button>
-      <Button :disabled="qty >= maxQty" @click="adjustQty(1)">
-        +1
-      </Button>
-      <Button :disabled="qty >= maxQty" @click="adjustQty(10)">
-        +10
-      </Button>
-      <Button :disabled="qty >= maxQty" @click="adjustQty(100)">
-        +100
-      </Button>
-      <Button :disabled="!canBuy(1)" @click="setMax">
+      <div v-for="i in 3" :key="i" class="flex flex-col gap-1">
+        <Button :disabled="qty >= maxQty" class="text-sm" type="primary" @click="adjustQty(1 * 10 ** i)">
+          + {{ (1 * 10 ** i).toLocaleString() }}
+        </Button>
+        <Button :disabled="qty <= 1" type="danger" class="text-xs" @click="adjustQty(-1 * 10 ** i)">
+          - {{ (1 * 10 ** i).toLocaleString() }}
+        </Button>
+      </div>
+      <Button :disabled="qty >= maxQty" @click="setMax">
         MAX
       </Button>
       <div class="w-20">
