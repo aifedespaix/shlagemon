@@ -15,6 +15,7 @@ import {
   xpForLevel,
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
+import { useAudioStore } from './audio'
 import { useDiseaseStore } from './disease'
 import { useEvolutionStore } from './evolution'
 import { useZoneProgressStore } from './zoneProgress'
@@ -25,6 +26,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
   const progress = useZoneProgressStore()
+  const audio = useAudioStore()
   const disease = useDiseaseStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
@@ -313,6 +315,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
       mon.lvl += 1
+      audio.playSfx('/audio/sfx/lvl-up.ogg')
       const prevHp = mon.hpCurrent
       applyStats(mon)
       const healAmount = Math.round((mon.hp * healPercent) / 100)
