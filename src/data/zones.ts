@@ -9,7 +9,6 @@ import chenipaon from './shlagemons/chenipaon'
 import { emboli } from './shlagemons/emboli'
 import { goubite } from './shlagemons/goubite'
 import { metamorve } from './shlagemons/metamorve'
-import { mewteub } from './shlagemons/mewteub'
 import { nanmeouesh } from './shlagemons/nameouesh'
 import { nosferachid } from './shlagemons/nosferachid'
 import piafsansbec from './shlagemons/piafsansbec'
@@ -69,7 +68,6 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     canarchichon,
   ] }, // 35
   { id: 'route-du-nawak', name: 'Route du Nawak', completionAchievement: 'Voyageur de la Route du Nawak', shlagemons: [
-    mewteub,
     pikachiant,
     salamiches,
   ] },

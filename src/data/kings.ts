@@ -16,9 +16,10 @@ function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: n
   const level = zone.maxLevel + 1
 
   const shlagemons: { baseId: string, level: number }[] = []
-  const orderedShlagemons = zone.shlagemons!.sort((a, b) => b.coefficient - a.coefficient)
+  const orderedShlagemons = zone.shlagemons!.sort((a, b) => a.coefficient - b.coefficient)
   if (qteShlagemons > 1) {
-    shlagemons.push(...orderedShlagemons.slice(0, qteShlagemons - 1).map(b => ({ baseId: b.id, level })))
+    let i = qteShlagemons
+    shlagemons.push(...orderedShlagemons.slice(0, qteShlagemons - 1).map(b => ({ baseId: b.id, level: level - i-- })))
   }
   shlagemons.push(...orderedShlagemons.slice(-1).map(b => ({ baseId: b.id, level })))
 

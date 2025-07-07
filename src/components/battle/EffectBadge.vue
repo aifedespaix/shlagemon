@@ -14,28 +14,22 @@ const tooltipText = computed(() =>
     : `Votre défense est boostée pour encore ${remaining.value}`,
 )
 
-function colorClasses(prefix: string) {
-  if (!props.effect.iconClass)
-    return ''
-  return props.effect.iconClass
-    .split(' ')
-    .filter(c => c.includes('text-'))
-    .map((c) => {
-      const dark = c.startsWith('dark:')
-      const cls = c.replace(/^(dark:)?text-/, '')
-      return `${dark ? 'dark:' : ''}${prefix}-${cls}`
-    })
-    .join(' ')
-}
-
-const border = computed(() => `${colorClasses('border')} border`)
-const bg = computed(() => `${colorClasses('bg')}/20`)
+const colorClasses = computed(() => {
+  switch (props.effect.type) {
+    case 'attack':
+      return 'text-red-500 dark:text-red-400 bg-red-500/15 outline-red-500 dark:border-red-700'
+    case 'defense':
+      return 'text-blue-500 dark:text-blue-400 bg-blue-500/15 outline-blue-500 dark:border-blue-700'
+    default:
+      return ''
+  }
+})
 </script>
 
 <template>
   <Tooltip :text="tooltipText">
-    <div class="flex items-center gap-1 rounded px-1 text-xs font-mono" :class="[bg, border]">
-      <div class="h-4 w-4" :class="[`i-${props.effect.icon}`, props.effect.iconClass]" />
+    <div class="flex items-center gap-1 rounded px-1 text-xs font-mono" :class="colorClasses">
+      <div class="h-4 w-4" :class="[`${props.effect.icon}`, props.effect.iconClass]" />
       <span class="">{{ remaining }}</span>
     </div>
   </Tooltip>
