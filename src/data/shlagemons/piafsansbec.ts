@@ -1,0 +1,20 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../shlagemons-type'
+
+export const piafsansbec: BaseShlagemon = {
+  id: 'piafsansbec',
+  name: 'Piafsansbec',
+  description: `Piafsansbec est un Shlagémon maudit, né avec un potentiel de piaf... mais sans l’accessoire principal : son bec. L’histoire raconte qu’il aurait tenté de l’échanger contre un bonbon dans une brocante, ou qu’il l’a simplement perdu en essayant d’ouvrir une canette de soda trop gazeuse.
+
+Depuis, il vit dans une forme de déni nasal : ses trous de nez compensent tant bien que mal, mais chaque tentative de chant se solde par un *FLUUUUIIII* humide et une grande solitude. Il communique avec des coups d’aile frénétiques, des yeux tristes, et des dessins au sol avec ses pattes crasseuses.
+
+Il ne peut ni manger proprement, ni picorer, ni faire peur aux autres oiseaux — il s’est même fait piquer sa graine par un Papi Suçon une fois. Son attaque signature, *Claquement de Gorge*, consiste à faire vibrer violemment sa trachée pour créer une onde sonore perturbante. Il possède aussi *Regard Gênant*, qui inflige un malus de moral à l’ennemi.
+
+Sa capacité passive, *Silence Pesant*, fait baisser l’initiative des adversaires en les mettant mal à l’aise.
+
+Piafsansbec est souvent vu au bord des routes, essayant de siffler le vent ou de grignoter des miettes qu’il finit par pousser du front, la dignité en option. Mais dans son regard brille une chose rare… non, en fait, non. Rien ne brille. C’est juste humide.`,
+  types: [shlagemonTypes.vol],
+  coefficient: 8,
+}
+
+export default piafsansbec
