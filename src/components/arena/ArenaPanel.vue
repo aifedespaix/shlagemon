@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import { toast } from 'vue3-toastify'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import Button from '~/components/ui/Button.vue'
@@ -7,11 +8,16 @@ import CheckBox from '~/components/ui/CheckBox.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { useArenaStore } from '~/stores/arena'
+import { useBattleStore } from '~/stores/battle'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const filter = useDexFilterStore()
+const battle = useBattleStore()
+const arena = useArenaStore()
 
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
@@ -86,9 +92,34 @@ onMounted(() => {
 })
 
 function startBattle() {
-  // To be implemented: launch arena battle
-  // eslint-disable-next-line no-alert
-  alert('Combat !')
+  const team = selectedIds.value
+    .map(id => dex.shlagemons.find(m => m.id === id)!)
+    .map((mon) => {
+      mon.hpCurrent = mon.hp
+      return mon
+    })
+  const enemies = enemyTeam.value.map((b) => {
+    const m = createDexShlagemon(b)
+    applyStats(m)
+    return m
+  })
+  arena.start(team, enemies)
+  for (let i = 0; i < team.length; i++) {
+    arena.currentIndex = i
+    const player = team[i]
+    const enemy = enemies[i]
+    while (player.hpCurrent > 0 && enemy.hpCurrent > 0)
+      battle.duel(player, enemy)
+    if (player.hpCurrent <= 0) {
+      arena.finish(false)
+      // eslint-disable-next-line no-alert
+      if (window.confirm('Défaite... Recommencer ?'))
+        startBattle()
+      return
+    }
+  }
+  arena.finish(true)
+  toast.success('Victoire !')
 }
 </script>
 
