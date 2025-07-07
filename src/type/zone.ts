@@ -24,8 +24,8 @@ export interface Zone {
   completionAchievement?: string
 }
 
-export type ZoneId = FightZoneId | VillageZoneId
+export type ZoneId = SavageZoneId | VillageZoneId
 
 export type VillageZoneId = 'village-paume' | 'village-caca-boudin' | 'village-veaux-du-gland' | 'village-boule'
 
-export type FightZoneId = 'plaine-kekette' | 'bois-de-bouffon' | 'grotte-du-slip' | 'ravin-fesse-molle' | 'grotte-nanard' | 'marais-moudugenou' | 'forteresse-petmoalfiak' | 'route-du-nawak' | 'mont-dracatombe' | 'catacombes-merdifientes' | 'route-aguicheuse' | 'grotte-des-chieurs' | 'trou-du-bide' | 'zone-giga-zob' | 'route-so-dom'
+export type SavageZoneId = 'plaine-kekette' | 'bois-de-bouffon' | 'chemin-du-slip' | 'ravin-fesse-molle' | 'precipice-nanard' | 'marais-moudugenou' | 'forteresse-petmoalfiak' | 'route-du-nawak' | 'mont-dracatombe' | 'catacombes-merdifientes' | 'route-aguicheuse' | 'vallee-des-chieurs' | 'trou-du-bide' | 'zone-giga-zob' | 'route-so-dom'
