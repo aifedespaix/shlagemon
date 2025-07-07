@@ -121,6 +121,7 @@ declare global {
   const useAchievementsStore: typeof import('./stores/achievements')['useAchievementsStore']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
+  const useArenaStore: typeof import('./stores/arena')['useArenaStore']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
   const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter']
@@ -353,6 +354,9 @@ declare global {
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
   // @ts-ignore
+  export type { ArenaResult } from './stores/arena'
+  import('./stores/arena')
+  // @ts-ignore
   export type { BallId } from './stores/ball'
   import('./stores/ball')
   // @ts-ignore
@@ -498,6 +502,7 @@ declare module 'vue' {
     readonly useAchievementsStore: UnwrapRef<typeof import('./stores/achievements')['useAchievementsStore']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useArenaStore: UnwrapRef<typeof import('./stores/arena')['useArenaStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>
     readonly useArrayFilter: UnwrapRef<typeof import('@vueuse/core')['useArrayFilter']>
