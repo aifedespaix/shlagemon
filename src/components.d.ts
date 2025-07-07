@@ -14,6 +14,7 @@ declare module 'vue' {
     AnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     ArenaDefeatDialog: typeof import('./components/dialog/ArenaDefeatDialog.vue')['default']
     ArenaDuel: typeof import('./components/arena/ArenaDuel.vue')['default']
+    ArenaEnemyStats: typeof import('./components/arena/ArenaEnemyStats.vue')['default']
     ArenaPanel: typeof import('./components/arena/ArenaPanel.vue')['default']
     ArenaVictoryDialog: typeof import('./components/dialog/ArenaVictoryDialog.vue')['default']
     ArenaWelcomeDialog: typeof import('./components/dialog/ArenaWelcomeDialog.vue')['default']
