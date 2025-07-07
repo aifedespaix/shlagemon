@@ -3,7 +3,6 @@ import type { SavageZoneId, Zone } from '~/type/zone'
 import { abraquemar } from './shlagemons/abraquemar'
 import { alakalbar } from './shlagemons/alakalbar'
 import aspigros from './shlagemons/aspigros'
-import { bulgrosboule } from './shlagemons/bulgrosboule'
 import { canarchichon } from './shlagemons/canarchichon'
 import { carapouffe } from './shlagemons/carapouffe'
 import chenipaon from './shlagemons/chenipaon'
@@ -13,9 +12,11 @@ import { metamorve } from './shlagemons/metamorve'
 import { mewteub } from './shlagemons/mewteub'
 import { nanmeouesh } from './shlagemons/nameouesh'
 import { nosferachid } from './shlagemons/nosferachid'
+import piafsansbec from './shlagemons/piafsansbec'
 import { pikachiant } from './shlagemons/pikachiant'
 import { ptitocard } from './shlagemons/ptitocard'
 import { qulbudrogue } from './shlagemons/qulbudrogue'
+import ratonton from './shlagemons/ratonton'
 import { ricardnin } from './shlagemons/ricardnin'
 import { rouxPasCool } from './shlagemons/rouxPasCool'
 import { sacdepates } from './shlagemons/sacdepates'
@@ -37,40 +38,36 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     rouxPasCool,
     canarchichon,
     sperectum,
-  ] },
+  ] }, // 5
   { id: 'bois-de-bouffon', name: 'Bois des Bouffons', completionAchievement: 'Bûcheron du Bois de Bouffon', shlagemons: [
     aspigros,
     chenipaon,
     ptitocard,
     metamorve,
-  ] },
+  ] }, // 10
   { id: 'chemin-du-slip', name: 'Chemin du Slip', completionAchievement: 'Explorateur de la Grotte du Slip', shlagemons: [
     nosferachid,
     abraquemar,
     emboli,
-  ] },
+  ] }, // 15
   { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', completionAchievement: 'Sauveur du Ravin de la Fesse Molle', shlagemons: [
     qulbudrogue,
     pikachiant,
     goubite,
     nanmeouesh,
-  ] },
+  ] }, // 20
   { id: 'precipice-nanard', name: 'Précipice du Vieux Nanard', actions: [], completionAchievement: 'Dénicheur du Vieux Nanard', shlagemons: [
-    carapouffe,
-    sacdepates,
-    ptitocard,
+    ratonton,
     ricardnin,
-  ] },
+  ] }, // 25
   { id: 'marais-moudugenou', name: 'Marais Moudugenou', completionAchievement: 'Épurateur du Marais Moudugenou', shlagemons: [
-    salamiches,
     nosferachid,
-    rouxPasCool,
-  ] },
+    piafsansbec,
+  ] }, // 30
   { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', actions: [], completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak', shlagemons: [
-    bulgrosboule,
     alakalbar,
     canarchichon,
-  ] },
+  ] }, // 35
   { id: 'route-du-nawak', name: 'Route du Nawak', completionAchievement: 'Voyageur de la Route du Nawak', shlagemons: [
     mewteub,
     pikachiant,

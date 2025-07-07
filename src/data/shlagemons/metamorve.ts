@@ -6,7 +6,7 @@ export const metamorve: BaseShlagemon = {
   name: 'Metamorve',
   description: `Une masse de boue nauséabonde qui se traîne lentement. Là où il passe, plus rien ne pousse à cause de sa toxicité. Il est fait d'une boue toxique. Il pollue tout ce qu’il touche, même le sol devient stérile. Il pue tellement que des gens s’évanouissent rien qu’en le croisant. Son corps est un concentré de toxines.`,
   types: [shlagemonTypes.normal],
-  coefficient: 3,
+  coefficient: 22,
 }
 
 export default metamorve

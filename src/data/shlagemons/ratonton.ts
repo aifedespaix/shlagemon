@@ -13,8 +13,8 @@ Ratonton parle fort, dit toujours "t’as vu c’est technique hein" après un �
 
 Il adore les coins d’ombre, les parasols Lidl, et les anecdotes gênantes. Si on lui parle de retraite ou de régime, il se met à ronfler de colère. Pourtant, malgré tout, il est fidèle. Et il sent le Ricard à 8h du matin.`,
   types: [shlagemonTypes.normal],
-  coefficient: 1,
-  evolution: { base: ratartine, condition: { type: 'lvl', value: 20 } },
+  coefficient: 25,
+  evolution: { base: ratartine, condition: { type: 'lvl', value: 45 } },
 }
 
 export default ratonton

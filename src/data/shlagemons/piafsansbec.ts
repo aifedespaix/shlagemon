@@ -1,5 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../shlagemons-type'
+import { rapasdepisse } from './rapasdepisse'
 
 export const piafsansbec: BaseShlagemon = {
   id: 'piafsansbec',
@@ -14,7 +15,8 @@ Sa capacité passive, *Silence Pesant*, fait baisser l’initiative des adversai
 
 Piafsansbec est souvent vu au bord des routes, essayant de siffler le vent ou de grignoter des miettes qu’il finit par pousser du front, la dignité en option. Mais dans son regard brille une chose rare… non, en fait, non. Rien ne brille. C’est juste humide.`,
   types: [shlagemonTypes.vol],
-  coefficient: 8,
+  coefficient: 30,
+  evolution: { base: rapasdepisse, condition: { type: 'lvl', value: 50 } },
 }
 
 export default piafsansbec
