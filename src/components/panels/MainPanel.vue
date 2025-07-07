@@ -27,7 +27,7 @@ const currentComponent = computed(() => {
     case 'village':
       return VillagePanel
     default:
-      return null
+      return VillagePanel
   }
 })
 </script>
