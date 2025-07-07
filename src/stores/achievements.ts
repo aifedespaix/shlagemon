@@ -156,10 +156,17 @@ export const useAchievementsStore = defineStore('achievements', () => {
   })
 
   const itemThresholds = [1, 10, 100, 1000, 10000]
+  const itemTitles: Record<number, string> = {
+    1: 'Premier craquage',
+    10: 'Acheteur en série',
+    100: 'Shopaholic confirmé',
+    1000: 'Banqueroute imminente',
+    10000: 'Flambeur intersidéral',
+  }
   itemThresholds.forEach((n) => {
     const def = {
       id: `item-${n}`,
-      title: 'Dépensier',
+      title: itemTitles[n],
       description: `Utiliser ${n.toLocaleString()} objet${n > 1 ? 's' : ''} pendant vos combats ou explorations.`,
       icon: 'carbon:shopping-bag',
     }
