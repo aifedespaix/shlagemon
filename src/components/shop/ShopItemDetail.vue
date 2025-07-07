@@ -96,9 +96,12 @@ const details = computed(() => props.item.details || props.item.description)
         <NumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
       </div>
     </div>
-    <div class="mt-2 flex">
+    <div class="mt-2 flex gap-2">
       <Button type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
-        Acheter  <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
+        Acheter <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
+      </Button>
+      <Button class="text-xs" @click="emit('close')">
+        Retour
       </Button>
     </div>
   </div>
