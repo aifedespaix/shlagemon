@@ -81,11 +81,15 @@ function classes(z: Zone) {
     <button
       v-for="z in accessibleZones"
       :key="z.id"
-      class="grid grid-rows-2 gap-1 rounded px-2 py-1 text-xs"
+      class="relative grid grid-rows-2 gap-1 rounded px-2 py-1 text-xs"
       :class="`${classes(z)} ${zoneButtonsDisabled ? 'opacity-50 cursor-not-allowed' : ''}`"
       :disabled="zoneButtonsDisabled"
       @click="selectZone(z.id)"
     >
+      <Badge
+        v-if="z.id === zone.current.id"
+        icon="carbon:user-filled"
+      />
       <div class="flex-center">
         <div class="h-6 w-6" :class="icon(z)" />
       </div>
