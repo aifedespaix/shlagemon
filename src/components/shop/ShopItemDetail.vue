@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import Button from '~/components/ui/Button.vue'
 import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
 import NumberInput from '~/components/ui/NumberInput.vue'
@@ -14,8 +14,26 @@ const game = useGameStore()
 const inventory = useInventoryStore()
 const qty = ref(1)
 
-function setQty(v: number) {
-  qty.value = v
+const maxQty = computed(() => {
+  const money = props.item.currency === 'shlagidiamond'
+    ? game.shlagidiamond
+    : game.shlagidolar
+  return Math.max(1, Math.floor(money / props.item.price))
+})
+
+watch(qty, (v) => {
+  if (v < 1)
+    qty.value = 1
+  else if (v > maxQty.value)
+    qty.value = maxQty.value
+})
+
+function adjustQty(v: number) {
+  qty.value += v
+}
+
+function setMax() {
+  qty.value = maxQty.value
 }
 
 function canBuy(amount: number) {
@@ -53,17 +71,29 @@ const details = computed(() => props.item.details || props.item.description)
       {{ details }}
     </p>
     <div class="mt-2 flex flex-wrap items-center gap-2">
-      <Button :disabled="!canBuy(1)" @click="setQty(1)">
-        x1
+      <Button :disabled="qty <= 1" @click="adjustQty(-100)">
+        -100
       </Button>
-      <Button :disabled="!canBuy(10)" @click="setQty(10)">
-        x10
+      <Button :disabled="qty <= 1" @click="adjustQty(-10)">
+        -10
       </Button>
-      <Button :disabled="!canBuy(100)" @click="setQty(100)">
-        x100
+      <Button :disabled="qty <= 1" @click="adjustQty(-1)">
+        -1
+      </Button>
+      <Button :disabled="qty >= maxQty" @click="adjustQty(1)">
+        +1
+      </Button>
+      <Button :disabled="qty >= maxQty" @click="adjustQty(10)">
+        +10
+      </Button>
+      <Button :disabled="qty >= maxQty" @click="adjustQty(100)">
+        +100
+      </Button>
+      <Button :disabled="!canBuy(1)" @click="setMax">
+        MAX
       </Button>
       <div class="w-20">
-        <NumberInput v-model="qty" class="h-fu" :min="1" />
+        <NumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
       </div>
     </div>
     <div class="mt-2 flex">
