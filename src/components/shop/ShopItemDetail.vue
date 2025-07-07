@@ -46,6 +46,9 @@ const details = computed(() => props.item.details || props.item.description)
         {{ props.item.name }}
       </h3>
     </div>
+    <div class="flex items-center gap-1">
+      Prix Unitaire <CurrencyAmount :amount="props.item.price" :currency="props.item.currency ?? 'shlagidolar'" />
+    </div>
     <p class="text-sm">
       {{ details }}
     </p>
@@ -59,14 +62,13 @@ const details = computed(() => props.item.details || props.item.description)
       <Button :disabled="!canBuy(100)" @click="setQty(100)">
         x100
       </Button>
-      <NumberInput v-model="qty" class="w-16" :min="1" />
+      <div class="w-20">
+        <NumberInput v-model="qty" class="h-fu" :min="1" />
+      </div>
     </div>
-    <div class="mt-2 flex justify-center">
-      <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
-    </div>
-    <div class="mt-auto flex justify-end">
-      <Button type="primary" :disabled="!canBuy(qty)" @click="buy">
-        Acheter
+    <div class="mt-2 flex">
+      <Button type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
+        Acheter  <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
       </Button>
     </div>
   </div>

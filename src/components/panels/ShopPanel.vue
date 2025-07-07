@@ -19,7 +19,7 @@ function closeShop() {
 </script>
 
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-full flex flex-col -m-4">
     <h2 class="mb-2 text-center font-bold">
       Boutique
     </h2>
@@ -39,8 +39,9 @@ function closeShop() {
     <div v-else class="flex-1 overflow-auto">
       <ShopItemDetail :item="selectedItem" @close="selectedItem = null" />
     </div>
-    <Button type="danger" class="mt-2 self-end" @click="closeShop">
-      Fermer la boutique
+    <Button type="danger" class="mt-2 flex self-center gap-2" @click="closeShop">
+      <div class="i-carbon:exit" />
+      Quitter la boutique
     </Button>
   </div>
 </template>
