@@ -46,32 +46,34 @@ function close() {
 </script>
 
 <template>
-  <dialog
-    ref="dialogRef"
-    class="modal"
-    :autofocus="props.dialogAutofocus || undefined"
-    tabindex="-1"
-    @click="onDialogClick"
-    @close="emit('update:modelValue', false); emit('close')"
-  >
-    <div class="modal-content relative flex flex-col">
-      <button
-        v-if="!props.footerClose"
-        type="button"
-        class="absolute right-2 top-2 h-6 w-6 flex items-center justify-center rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
-        @click.stop="close()"
-      >
-        &times;
-      </button>
-      <slot />
-      <div v-if="props.footerClose" class="mt-4 flex justify-end">
-        <Button type="danger" class="flex items-center gap-1" @click.stop="close()">
-          <div i-carbon-close />
-          Fermer
-        </Button>
+  <teleport to="body">
+    <dialog
+      ref="dialogRef"
+      class="modal"
+      :autofocus="props.dialogAutofocus || undefined"
+      tabindex="-1"
+      @click="onDialogClick"
+      @close="emit('update:modelValue', false); emit('close')"
+    >
+      <div class="modal-content relative flex flex-col">
+        <button
+          v-if="!props.footerClose"
+          type="button"
+          class="absolute right-2 top-2 h-6 w-6 flex items-center justify-center rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+          @click.stop="close()"
+        >
+          &times;
+        </button>
+        <slot />
+        <div v-if="props.footerClose" class="mt-4 flex justify-end">
+          <Button type="danger" class="flex items-center gap-1" @click.stop="close()">
+            <div i-carbon-close />
+            Fermer
+          </Button>
+        </div>
       </div>
-    </div>
-  </dialog>
+    </dialog>
+  </teleport>
 </template>
 
 <style scoped>
@@ -79,6 +81,7 @@ function close() {
   border: none;
   padding: 0;
   background: transparent;
+  z-index: 1000;
   animation: fade-in 0.2s ease forwards;
 }
 .modal.closing {
