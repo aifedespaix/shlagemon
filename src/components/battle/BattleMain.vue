@@ -3,6 +3,7 @@ import { toast } from 'vue3-toastify'
 import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
+import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
 import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
@@ -14,11 +15,13 @@ import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'
 import { useBattleStore } from '~/stores/battle'
 import { useBattleStatsStore } from '~/stores/battleStats'
+import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
 import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMultiExpStore } from '~/stores/multiExp'
+import { usePlayerStore } from '~/stores/player'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
@@ -36,6 +39,8 @@ const disease = useDiseaseStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
+const player = usePlayerStore()
+const captureLimitModal = useCaptureLimitModalStore()
 const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 const events = useEventStore()
@@ -80,6 +85,8 @@ const captureButtonTooltip = computed(() => {
     return 'Pas de Schlagéball, capture impossible'
   if (enemyHp.value <= 0)
     return 'Impossible de capturer un Shlagémon K.O.'
+  if (enemy.value && enemy.value.lvl > player.captureLevelCap)
+    return 'Un badge est nécessaire pour capturer ce niveau'
   return 'Capturer le Shlagémon'
 })
 const flashPlayer = ref(false)
@@ -102,6 +109,10 @@ function openCapture() {
   const id = ballStore.current
   if (!enemy.value || (inventory.items[id] || 0) <= 0 || enemyHp.value <= 0)
     return
+  if (enemy.value.lvl > player.captureLevelCap) {
+    captureLimitModal.open(enemy.value.lvl)
+    return
+  }
   inventory.remove(id)
   captureBall.value = balls.find(b => b.id === id) || balls[0]
   battleActive.value = false
@@ -393,6 +404,7 @@ onUnmounted(() => {
       />
     </div>
     <ZoneMonsModal />
+    <CaptureLimitModal />
   </div>
 </template>
 

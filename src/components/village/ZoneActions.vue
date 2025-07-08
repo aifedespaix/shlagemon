@@ -78,9 +78,6 @@ function fightKing() {
     >
       Arène
     </Button>
-    <div v-else-if="hasArena && arenaCompleted" class="text-xs font-bold">
-      Arène vaincue !
-    </div>
     <Button
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
       class="text-xs"
