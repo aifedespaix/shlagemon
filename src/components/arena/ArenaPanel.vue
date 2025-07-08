@@ -9,7 +9,6 @@ import Modal from '~/components/modal/Modal.vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ShlagemonQuickSelect from '~/components/shlagemon/ShlagemonQuickSelect.vue'
 import Button from '~/components/ui/Button.vue'
-import { allShlagemons } from '~/data/shlagemons'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -19,7 +18,7 @@ const dex = useShlagedexStore()
 const arena = useArenaStore()
 const panel = useMainPanelStore()
 
-const enemyTeam = ref(allShlagemons.slice(0, 6))
+const enemyTeam = ref<BaseShlagemon[]>([])
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
 const showDefeat = ref(false)
@@ -38,7 +37,7 @@ const playerSelection = computed(() =>
 )
 
 onMounted(() => {
-  enemyTeam.value = allShlagemons.slice().sort(() => Math.random() - 0.5).slice(0, 6)
+  enemyTeam.value = arena.lineup
   arena.setLineup(enemyTeam.value)
 })
 
@@ -61,6 +60,7 @@ watch(() => dex.activeShlagemon, (mon) => {
 
 function retryBattle() {
   arena.reset()
+  enemyTeam.value = arena.lineup
   arena.setLineup(enemyTeam.value)
   showDefeat.value = false
   showEnemy.value = false
@@ -131,7 +131,7 @@ onUnmounted(() => clearTimeout(nextTimer))
 
 <template>
   <div class="tiny-scrollbar overflow-auto">
-    <div class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
+    <div v-show="!showDuel" class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
         :key="enemy.id"
@@ -192,36 +192,35 @@ onUnmounted(() => clearTimeout(nextTimer))
           <ArenaEnemyStats v-if="enemyDetail" :mon="enemyDetail" />
         </Modal>
 
-        <div v-if="showDuel" class="mt-2 flex flex-col items-center gap-2">
-          <ArenaDuel
-            v-if="duelResult === null"
-            :player="arena.team[arena.currentIndex]"
-            :enemy="arena.enemyTeam[arena.currentIndex]"
-            @end="onDuelEnd"
-          />
-          <div v-else class="flex flex-col items-center gap-2">
-            <div
-              :class="duelResult === 'win'
-                ? 'text-green-600 font-bold dark:text-green-400'
-                : 'text-red-600 font-bold dark:text-red-400'"
-            >
-              {{ duelResult === 'win' ? 'Victoire !' : 'Défaite...' }}
-            </div>
-            <Button v-if="duelResult === 'win' && hasNextDuel" type="primary" @click="proceedNext">
-              Suivant
-            </Button>
-            <Button v-else-if="duelResult === 'win'" type="primary" @click="closeVictory">
-              Fermer
-            </Button>
-            <Button v-else type="danger" @click="closeAfterDefeat">
-              OK
-            </Button>
-          </div>
-        </div>
-
         <Modal v-model="showDefeat" :close-on-outside-click="false">
           <ArenaDefeatDialog @retry="retryBattle" @quit="quitArena" />
         </Modal>
+      </div>
+    </div>
+    <div v-if="showDuel" class="mt-2 flex flex-col items-center gap-2">
+      <ArenaDuel
+        v-if="duelResult === null"
+        :player="arena.team[arena.currentIndex]"
+        :enemy="arena.enemyTeam[arena.currentIndex]"
+        @end="onDuelEnd"
+      />
+      <div v-else class="flex flex-col items-center gap-2">
+        <div
+          :class="duelResult === 'win'
+            ? 'text-green-600 font-bold dark:text-green-400'
+            : 'text-red-600 font-bold dark:text-red-400'"
+        >
+          {{ duelResult === 'win' ? 'Victoire !' : 'Défaite...' }}
+        </div>
+        <Button v-if="duelResult === 'win' && hasNextDuel" type="primary" @click="proceedNext">
+          Suivant
+        </Button>
+        <Button v-else-if="duelResult === 'win'" type="primary" @click="closeVictory">
+          Fermer
+        </Button>
+        <Button v-else type="danger" @click="closeAfterDefeat">
+          OK
+        </Button>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
+import type { Arena, BaseShlagemon, DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -8,6 +8,7 @@ export const useArenaStore = defineStore('arena', () => {
   const team = ref<DexShlagemon[]>([])
   const enemyTeam = ref<DexShlagemon[]>([])
   const lineup = ref<BaseShlagemon[]>([])
+  const arenaData = ref<Arena | null>(null)
   const selections = ref<(string | null)[]>([])
   const currentIndex = ref(0)
   const result = ref<ArenaResult>('none')
@@ -17,6 +18,11 @@ export const useArenaStore = defineStore('arena', () => {
   function setLineup(enemies: BaseShlagemon[]) {
     lineup.value = enemies
     selections.value = Array.from({ length: enemies.length }).fill(null)
+  }
+
+  function setArena(arena: Arena) {
+    arenaData.value = arena
+    setLineup(arena.lineup)
   }
 
   function selectPlayer(index: number, id: string | null) {
@@ -48,6 +54,7 @@ export const useArenaStore = defineStore('arena', () => {
     team.value = []
     enemyTeam.value = []
     lineup.value = []
+    arenaData.value = null
     selections.value = []
     currentIndex.value = 0
     result.value = 'none'
@@ -59,11 +66,13 @@ export const useArenaStore = defineStore('arena', () => {
     team,
     enemyTeam,
     lineup,
+    arenaData,
     selections,
     currentIndex,
     result,
     badgeEarned,
     inBattle,
+    setArena,
     setLineup,
     selectPlayer,
     start,
