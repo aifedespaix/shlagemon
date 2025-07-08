@@ -95,11 +95,16 @@ export const useDialogStore = defineStore('dialog', () => {
     done.value[id] = true
   }
 
+  function resetArenaDialogs() {
+    done.value.arenaWelcome = false
+    done.value.arenaVictory = false
+  }
+
   function reset() {
     done.value = {}
   }
 
-  return { done, isDone, markDone, reset, dialogs, isDialogVisible }
+  return { done, isDone, markDone, reset, resetArenaDialogs, dialogs, isDialogVisible }
 }, {
   persist: true,
 })
