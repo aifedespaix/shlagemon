@@ -5,6 +5,7 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
   const wins = ref<Record<string, number>>({})
   const fightsBeforeKing = 10
   const kingsDefeated = ref<Record<string, boolean>>({})
+  const arenasCompleted = ref<Record<string, boolean>>({})
 
   function addWin(id: string) {
     wins.value[id] = (wins.value[id] || 0) + 1
@@ -26,20 +27,32 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
     return !!kingsDefeated.value[id]
   }
 
+  function completeArena(id: string) {
+    arenasCompleted.value[id] = true
+  }
+
+  function isArenaCompleted(id: string) {
+    return !!arenasCompleted.value[id]
+  }
+
   function reset() {
     wins.value = {}
     kingsDefeated.value = {}
+    arenasCompleted.value = {}
   }
 
   return {
     wins,
     kingsDefeated,
     fightsBeforeKing,
+    arenasCompleted,
     addWin,
     getWins,
     canFightKing,
     defeatKing,
     isKingDefeated,
+    completeArena,
+    isArenaCompleted,
     reset,
   }
 }, {

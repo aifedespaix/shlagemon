@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
-import { getArena } from '~/data/arenas'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -17,6 +16,8 @@ const arena = useArenaStore()
 const hasKing = computed(() =>
   zone.current.hasKing ?? zone.current.type === 'sauvage',
 )
+const hasArena = computed(() => !!zone.current.arena)
+const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentKing = computed(() =>
   hasKing.value ? zone.getKing(zone.current.id) : undefined,
 )
@@ -36,12 +37,15 @@ function onAction(id: string) {
   else if (id === 'minigame') {
     panel.showMiniGame()
   }
-  else if (id === 'arena') {
-    const data = getArena(zone.current.id)
-    if (data)
-      arena.setArena(data)
-    panel.showArena()
-  }
+}
+
+function openArena() {
+  if (arena.inBattle)
+    return
+  const data = zone.current.arena?.arena
+  if (data)
+    arena.setArena(data)
+  panel.showArena()
 }
 
 function fightKing() {
@@ -66,6 +70,17 @@ function fightKing() {
     >
       {{ action.label }}
     </Button>
+    <Button
+      v-if="hasArena && !arenaCompleted"
+      class="text-xs"
+      :disabled="arena.inBattle"
+      @click="openArena"
+    >
+      Arène
+    </Button>
+    <div v-else-if="hasArena && arenaCompleted" class="text-xs font-bold">
+      Arène vaincue !
+    </div>
     <Button
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
       class="text-xs"

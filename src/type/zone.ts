@@ -1,3 +1,4 @@
+import type { Arena } from './arena'
 import type { BaseShlagemon } from './shlagemon'
 
 export type ZoneType = 'village' | 'grotte' | 'sauvage'
@@ -22,6 +23,11 @@ export interface Zone {
   hasKing?: boolean
   /** Achievement title when all Shlagemon are captured */
   completionAchievement?: string
+  /** Optional arena available in this zone */
+  arena?: {
+    arena: Arena
+    completed: boolean
+  }
 }
 
 export type ZoneId = SavageZoneId | VillageZoneId

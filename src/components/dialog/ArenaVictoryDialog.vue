@@ -4,16 +4,24 @@ import DialogBox from '~/components/dialog/DialogBox.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { usePlayerStore } from '~/stores/player'
+import { useZoneStore } from '~/stores/zone'
+import { useZoneProgressStore } from '~/stores/zoneProgress'
 
 const emit = defineEmits(['done'])
 
 const arena = useArenaStore()
 const player = usePlayerStore()
 const panel = useMainPanelStore()
+const progress = useZoneProgressStore()
+const zone = useZoneStore()
 
 function collectBadge() {
   if (arena.arenaData)
     player.earnBadge(arena.arenaData.badge.id)
+  if (arena.arenaData)
+    progress.completeArena(arena.arenaData.id)
+  if (arena.arenaData)
+    zone.completeArena(arena.arenaData.id)
   arena.reset()
   panel.showVillage()
   emit('done', 'arenaVictory')
