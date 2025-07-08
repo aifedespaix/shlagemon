@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
-import { norman } from '~/data/characters/norman'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { usePlayerStore } from '~/stores/player'
@@ -13,7 +12,8 @@ const player = usePlayerStore()
 const panel = useMainPanelStore()
 
 function collectBadge() {
-  player.earnBadge('norman')
+  if (arena.arenaData)
+    player.earnBadge(arena.arenaData.badge.id)
   arena.reset()
   panel.showVillage()
   emit('done', 'arenaVictory')
@@ -36,8 +36,8 @@ const dialogTree: DialogNode[] = [
 
 <template>
   <DialogBox
-    :speaker="norman.name"
-    :avatar-url="`/characters/${norman.id}/${norman.id}.png`"
+    :speaker="arena.arenaData?.character.name"
+    :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
   />
 </template>

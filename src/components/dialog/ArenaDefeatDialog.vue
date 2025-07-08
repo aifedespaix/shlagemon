@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
-import { norman } from '~/data/characters/norman'
+import { useArenaStore } from '~/stores/arena'
 
 const emit = defineEmits<{ (e: 'retry'): void, (e: 'quit'): void }>()
+const arena = useArenaStore()
 
 const dialogTree: DialogNode[] = [
   {
@@ -19,8 +20,8 @@ const dialogTree: DialogNode[] = [
 
 <template>
   <DialogBox
-    :speaker="norman.name"
-    :avatar-url="`/characters/${norman.id}/${norman.id}.png`"
+    :speaker="arena.arenaData?.character.name"
+    :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
   />
 </template>

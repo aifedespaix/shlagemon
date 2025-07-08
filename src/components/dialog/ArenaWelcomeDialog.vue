@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import DialogBox from '~/components/dialog/DialogBox.vue'
-import { norman } from '~/data/characters/norman'
+import { useArenaStore } from '~/stores/arena'
 
 const emit = defineEmits(['done'])
+const arena = useArenaStore()
 
 const dialogTree: DialogNode[] = [
   {
     id: 'start',
-    text: `Bienvenue dans l'ar\u00E8ne ! Choisis six Shlag\u00E9mons et pr\u00E9pare-toi \u00E0 empester la victoire.`,
+    text: `Bienvenue dans l'ar\u00E8ne, cette ar\u00E8ne te permet de capturer des schlagemon de niveau ${arena.arenaData?.badge.levelCap ?? ''} et sup\u00E9rieur \u00E0 ${arena.arenaData?.badge.levelCap ?? ''}. Les combats se d\u00E9roulent en un contre un sans potion ni attaque manuelle. Choisis des schlag\u00E9mons entra\u00EEn\u00E9s et puissants contre les types oppos\u00E9s.`,
     responses: [
       {
         label: 'C\u0027est parti !',
@@ -22,8 +23,8 @@ const dialogTree: DialogNode[] = [
 
 <template>
   <DialogBox
-    :speaker="norman.name"
-    :avatar-url="`/characters/${norman.id}/${norman.id}.png`"
+    :speaker="arena.arenaData?.character.name"
+    :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
   />
 </template>

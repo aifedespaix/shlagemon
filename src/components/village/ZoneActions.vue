@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
+import { getArena } from '~/data/arenas'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -26,14 +27,21 @@ const kingLabel = computed(() =>
 function onAction(id: string) {
   if (arena.inBattle)
     return
-  if (id === 'shop')
+  if (id === 'shop') {
     panel.showShop()
-  else if (id === 'explore')
+  }
+  else if (id === 'explore') {
     panel.showTrainerBattle()
-  else if (id === 'minigame')
+  }
+  else if (id === 'minigame') {
     panel.showMiniGame()
-  else if (id === 'arena')
+  }
+  else if (id === 'arena') {
+    const data = getArena(zone.current.id)
+    if (data)
+      arena.setArena(data)
     panel.showArena()
+  }
 }
 
 function fightKing() {

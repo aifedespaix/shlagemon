@@ -1,3 +1,4 @@
+export * from './arena'
 export * from './audio'
 export * from './badge'
 export * from './ball'
