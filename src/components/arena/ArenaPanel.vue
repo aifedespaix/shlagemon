@@ -1,27 +1,23 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import { toast } from 'vue3-toastify'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
 import ArenaEnemyStats from '~/components/arena/ArenaEnemyStats.vue'
-import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import Modal from '~/components/modal/Modal.vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ShlagemonQuickSelect from '~/components/shlagemon/ShlagemonQuickSelect.vue'
 import Button from '~/components/ui/Button.vue'
 import { useArenaStore } from '~/stores/arena'
-import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const arena = useArenaStore()
-const panel = useMainPanelStore()
 
-const enemyTeam = ref<BaseShlagemon[]>([])
+const enemyTeam = computed(() => arena.lineup)
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
-const showDefeat = ref(false)
 const showDuel = ref(false)
 const showEnemy = ref(false)
 const enemyDetail = ref<BaseShlagemon | null>(null)
@@ -35,11 +31,6 @@ const hasNextDuel = computed(() =>
 const playerSelection = computed(() =>
   arena.selections.map(id => dex.shlagemons.find(m => m.id === id) || null),
 )
-
-onMounted(() => {
-  enemyTeam.value = arena.lineup
-  arena.setLineup(enemyTeam.value)
-})
 
 function openDex(i: number) {
   activeSlot.value = i
@@ -57,20 +48,6 @@ watch(() => dex.activeShlagemon, (mon) => {
   arena.selectPlayer(activeSlot.value, mon.id)
   showDex.value = false
 })
-
-function retryBattle() {
-  arena.reset()
-  enemyTeam.value = arena.lineup
-  arena.setLineup(enemyTeam.value)
-  showDefeat.value = false
-  showEnemy.value = false
-}
-
-function quitArena() {
-  showDefeat.value = false
-  arena.reset()
-  panel.showVillage()
-}
 
 function startBattle() {
   const team = arena.selections
@@ -125,7 +102,6 @@ function closeVictory() {
 function closeAfterDefeat() {
   clearTimeout(nextTimer)
   showDuel.value = false
-  showDefeat.value = true
 }
 
 onUnmounted(() => clearTimeout(nextTimer))
@@ -192,10 +168,6 @@ onUnmounted(() => clearTimeout(nextTimer))
 
         <Modal v-model="showEnemy" footer-close>
           <ArenaEnemyStats v-if="enemyDetail" :mon="enemyDetail" />
-        </Modal>
-
-        <Modal v-model="showDefeat" :close-on-outside-click="false">
-          <ArenaDefeatDialog @retry="retryBattle" @quit="quitArena" />
         </Modal>
       </div>
     </div>
