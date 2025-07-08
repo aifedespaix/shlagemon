@@ -45,6 +45,12 @@ export const useZoneStore = defineStore('zone', () => {
     return idx >= 0 ? idx + 1 : 1
   }
 
+  function completeArena(id: string) {
+    const z = zones.value.find(z => z.id === id)
+    if (z?.arena)
+      z.arena.completed = true
+  }
+
   const rewardMultiplier = computed(() => {
     const zone = current.value
     if (!zone.maxLevel)
@@ -79,6 +85,7 @@ export const useZoneStore = defineStore('zone', () => {
     setZone,
     getKing,
     getZoneRank,
+    completeArena,
     reset,
   }
 }, {

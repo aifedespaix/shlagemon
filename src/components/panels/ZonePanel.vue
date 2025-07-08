@@ -96,6 +96,10 @@ function kingDefeated(z: Zone) {
   const hasKing = z.hasKing ?? z.type === 'sauvage'
   return hasKing && progress.isKingDefeated(z.id)
 }
+
+function arenaDefeated(z: Zone) {
+  return !!z.arena && progress.isArenaCompleted(z.id)
+}
 </script>
 
 <template>
@@ -140,6 +144,10 @@ function kingDefeated(z: Zone) {
           <div
             v-if="kingDefeated(z)"
             class="i-game-icons:crown h-4 w-4"
+          />
+          <div
+            v-if="arenaDefeated(z)"
+            class="i-mdi:sword-cross h-4 w-4"
           />
         </div>
       </button>

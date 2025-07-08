@@ -1,5 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import type { SavageZoneId, Zone } from '~/type/zone'
+import { arenas } from './arenas'
 import { abraquemar } from './shlagemons/abraquemar'
 import { alakalbar } from './shlagemons/alakalbar'
 import aspigros from './shlagemons/aspigros'
@@ -104,8 +105,11 @@ const villageZones: Zone[] = [
     actions: [
       { id: 'shop', label: 'Entrer dans le Magasin' },
       { id: 'minigame', label: 'Mini-jeu' },
-      { id: 'arena', label: 'Arène' },
     ],
+    arena: {
+      arena: arenas.find(a => a.id === 'village-veaux-du-gland')!,
+      completed: false,
+    },
     minLevel: 10,
     maxLevel: 0,
   },
