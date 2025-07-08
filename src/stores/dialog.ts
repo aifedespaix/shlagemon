@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
+import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
@@ -70,6 +71,11 @@ export const useDialogStore = defineStore('dialog', () => {
       condition: () => arena.badgeEarned,
     },
     {
+      id: 'arenaDefeat',
+      component: markRaw(ArenaDefeatDialog),
+      condition: () => arena.result === 'lose',
+    },
+    {
       id: 'firstLoss',
       component: markRaw(FirstLossDialog),
       condition: () => stats.losses > 0,
@@ -98,6 +104,7 @@ export const useDialogStore = defineStore('dialog', () => {
   function resetArenaDialogs() {
     done.value.arenaWelcome = false
     done.value.arenaVictory = false
+    done.value.arenaDefeat = false
   }
 
   function reset() {
