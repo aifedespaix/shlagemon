@@ -28,6 +28,7 @@ declare module 'vue' {
     Bonus: typeof import('./components/icons/bonus.vue')['default']
     BonusDetails: typeof import('./components/panels/BonusDetails.vue')['default']
     Button: typeof import('./components/ui/Button.vue')['default']
+    CaptureLimitModal: typeof import('./components/battle/CaptureLimitModal.vue')['default']
     CaptureMenu: typeof import('./components/battle/CaptureMenu.vue')['default']
     CaptureOverlay: typeof import('./components/battle/CaptureOverlay.vue')['default']
     CharacterImage: typeof import('./components/character/CharacterImage.vue')['default']

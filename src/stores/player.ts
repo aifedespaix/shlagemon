@@ -1,12 +1,14 @@
 import type { Character } from '~/type/character'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import { getArena } from '~/data/arenas'
 
 export const usePlayerStore = defineStore('player', () => {
   const pseudo = ref('')
   const realName = ref('')
   const gender = ref<Character['gender']>('unknown')
   const arenaBadges = ref<Record<string, boolean>>({})
+  const captureLevelCap = ref(20)
 
   const badgeCount = computed(() =>
     Object.values(arenaBadges.value).filter(v => v).length,
@@ -35,10 +37,14 @@ export const usePlayerStore = defineStore('player', () => {
     realName.value = ''
     gender.value = 'unknown'
     arenaBadges.value = {}
+    captureLevelCap.value = 20
   }
 
   function earnBadge(id: string) {
     arenaBadges.value[id] = true
+    const arena = getArena(id)
+    if (arena)
+      captureLevelCap.value = Math.max(captureLevelCap.value, arena.badge.levelCap)
   }
 
   function hasBadge(id: string) {
@@ -52,6 +58,7 @@ export const usePlayerStore = defineStore('player', () => {
     character,
     arenaBadges,
     levelCap,
+    captureLevelCap,
     setPlayer,
     earnBadge,
     hasBadge,
