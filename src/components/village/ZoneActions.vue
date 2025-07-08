@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import Button from '~/components/ui/Button.vue'
 import { useArenaStore } from '~/stores/arena'
+import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
@@ -12,6 +13,7 @@ const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
+const dialog = useDialogStore()
 
 const hasKing = computed(() =>
   zone.current.hasKing ?? zone.current.type === 'sauvage',
@@ -45,6 +47,7 @@ function openArena() {
   const data = zone.current.arena?.arena
   if (data)
     arena.setArena(data)
+  dialog.resetArenaDialogs()
   panel.showArena()
 }
 
