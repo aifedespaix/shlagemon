@@ -81,6 +81,8 @@ function startBattle() {
     })
   const enemies = enemyTeam.value.map((b) => {
     const m = createDexShlagemon(b)
+    const lvl = arena.arenaData?.level ?? 1
+    m.lvl = lvl
     applyStats(m)
     return m
   })
