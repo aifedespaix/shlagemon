@@ -124,7 +124,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           <PlayerInfos />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayGamePanel" class="overflow-hidden">
+        <PanelWrapper v-if="displayGamePanel" class="overflow-hidden" :child-overflow-hidden="zone.current.type === 'village'">
           <MainPanelView class="flex-1" md="p-4" />
           <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
