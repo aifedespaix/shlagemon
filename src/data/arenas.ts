@@ -1,32 +1,60 @@
 import type { Arena } from '~/type'
 import { profMerdant } from './characters/prof-merdant'
-import aspigros from './shlagemons/aspigros'
-import { canarchichon } from './shlagemons/canarchichon'
-import chenipaon from './shlagemons/chenipaon'
-import { rouxPasCool } from './shlagemons/rouxPasCool'
-import { sacdepates } from './shlagemons/sacdepates'
-import { sperectum } from './shlagemons/sperectum'
+
+import ptitocard from './shlagemons/05-10/ptitocard'
+import nosferachid from './shlagemons/10-15/nosferachid'
+import goubite from './shlagemons/15-20/goubite'
+import piafsansbec from './shlagemons/25-30/piafsansbec'
+import canarchicon from './shlagemons/30-35/canarchicon'
+import alakalbar from './shlagemons/alakalbar'
+import chrysachier from './shlagemons/chrysachier'
+import coconnul from './shlagemons/coconnul'
+import raptorincel from './shlagemons/raptorincel'
+import ratartine from './shlagemons/ratartine'
+import rouxScoop from './shlagemons/roux-scoop'
+
+export const arena20: Arena = {
+  id: 'arena20',
+  character: profMerdant,
+  level: 21,
+  badge: {
+    id: 'badge-merdant',
+    name: 'Badge Merdant',
+    levelCap: 40,
+    image: '',
+  },
+  lineup: [
+    goubite,
+    nosferachid,
+    rouxScoop,
+    coconnul,
+    chrysachier,
+    alakalbar,
+  ],
+}
+
+export const arena40: Arena = {
+  id: 'arena20',
+  character: profMerdant,
+  level: 21,
+  badge: {
+    id: 'badge-merdant',
+    name: 'Badge Merdant',
+    levelCap: 40,
+    image: '',
+  },
+  lineup: [
+    nosferachid,
+    piafsansbec,
+    canarchicon,
+    ptitocard,
+    raptorincel,
+    ratartine,
+  ],
+}
 
 export const arenas: Arena[] = [
-  {
-    id: 'village-veaux-du-gland',
-    character: profMerdant,
-    level: 21,
-    badge: {
-      id: 'badge-merdant',
-      name: 'Badge Merdant',
-      levelCap: 40,
-      image: '',
-    },
-    lineup: [
-      sacdepates,
-      rouxPasCool,
-      canarchichon,
-      sperectum,
-      aspigros,
-      chenipaon,
-    ],
-  },
+  arena20,
 ]
 
 export function getArena(id: string): Arena | undefined {

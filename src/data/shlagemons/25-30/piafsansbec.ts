@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
-import { rapasdepisse } from './rapasdepisse'
+import { shlagemonTypes } from '../../shlagemons-type'
+import { rapasdepisse } from '../rapasdepisse'
 
 export const piafsansbec: BaseShlagemon = {
   id: 'piafsansbec',

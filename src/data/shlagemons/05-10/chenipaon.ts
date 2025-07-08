@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
-import chrysachier from './chrysachier'
+import { shlagemonTypes } from '../../shlagemons-type'
+import chrysachier from '../chrysachier'
 
 export const chenipaon: BaseShlagemon = {
   id: 'chenipaon',

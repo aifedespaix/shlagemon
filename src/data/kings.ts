@@ -12,8 +12,11 @@ import { zonesData } from './zones'
 
 function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: number, dialogBefore: string, dialogAfter: string): Trainer {
   const zone = zonesData.find(z => z.id === zoneId)!
-
-  const level = zone.maxLevel + 1
+  if (!zone) {
+    console.warn(`Zone ${zoneId} not found`)
+    return
+  }
+  const level = zone.maxLevel || 1 + 1
 
   const shlagemons: { baseId: string, level: number }[] = []
   const orderedShlagemons = zone.shlagemons!.sort((a, b) => a.coefficient - b.coefficient)
@@ -28,7 +31,7 @@ function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: n
     character,
     dialogBefore,
     dialogAfter,
-    reward: zone.maxLevel,
+    reward: zone.maxLevel || 1,
     shlagemons,
   }
 }

@@ -16,7 +16,7 @@ export interface Zone {
   /** Minimum level for enemies and XP gain */
   minLevel: number
   /** Maximum level for enemies and XP gain */
-  maxLevel: number
+  maxLevel?: number
   shlagemons?: BaseShlagemon[]
   image?: string
   /** Whether this zone features a king to challenge */

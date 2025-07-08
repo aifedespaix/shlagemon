@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
-import coconnul from './coconnul'
+import { shlagemonTypes } from '../../shlagemons-type'
+import coconnul from '../coconnul'
 
 export const aspigros: BaseShlagemon = {
   id: 'aspigros',

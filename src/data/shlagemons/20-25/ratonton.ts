@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
-import { ratartine } from './ratartine'
+import { shlagemonTypes } from '../../shlagemons-type'
+import ratartine from '../ratartine'
 
 export const ratonton: BaseShlagemon = {
   id: 'ratonton',

@@ -65,7 +65,6 @@ declare module 'vue' {
     MultiExpModal: typeof import('./components/inventory/MultiExpModal.vue')['default']
     NumberInput: typeof import('./components/ui/NumberInput.vue')['default']
     PanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
-    PanelWrapperV2: typeof import('./components/ui/PanelWrapperV2.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']

@@ -1,3 +1,3 @@
-# mettre de l'xp quand on attrape un shlagémon
-
 # repenser la dafficulté de capture
+
+# mini jeu viteesse cercle qui se réduit et cliquer bon moimen

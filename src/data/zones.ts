@@ -1,87 +1,74 @@
 import type { BaseShlagemon } from '~/type'
 import type { SavageZoneId, Zone } from '~/type/zone'
-import { arenas } from './arenas'
-import { abraquemar } from './shlagemons/abraquemar'
-import { alakalbar } from './shlagemons/alakalbar'
-import aspigros from './shlagemons/aspigros'
-import { canarchichon } from './shlagemons/canarchichon'
-import { carapouffe } from './shlagemons/carapouffe'
-import chenipaon from './shlagemons/chenipaon'
-import { emboli } from './shlagemons/emboli'
-import { goubite } from './shlagemons/goubite'
-import { metamorve } from './shlagemons/metamorve'
-import { nanmeouesh } from './shlagemons/nameouesh'
-import { nosferachid } from './shlagemons/nosferachid'
-import piafsansbec from './shlagemons/piafsansbec'
-import { pikachiant } from './shlagemons/pikachiant'
-import { ptitocard } from './shlagemons/ptitocard'
-import { qulbudrogue } from './shlagemons/qulbudrogue'
-import ratonton from './shlagemons/ratonton'
-import { ricardnin } from './shlagemons/ricardnin'
-import { rouxPasCool } from './shlagemons/rouxPasCool'
-import { sacdepates } from './shlagemons/sacdepates'
-import { salamiches } from './shlagemons/salamiches'
-import { sperectum } from './shlagemons/sperectum'
+import { villageZones } from './zones/villages'
 
 interface SavageZoneDescription {
   id: SavageZoneId
   name: string
+  lvl: number
   actions?: { id: string, label: string }[]
-  shlagemons: BaseShlagemon[]
+  shlagemons?: Record<string, { default: BaseShlagemon }>
   completionAchievement?: string
 }
 
 // Liste ordonnée de descriptions de zones, une par palier de 5 niveaux
+const lvlsByZone = 5
+let zoneIndex = 1
 const savagesZonesDescription: SavageZoneDescription[] = [
-  { id: 'plaine-kekette', name: 'Plaine Kékette', completionAchievement: 'Fendeur de la Plaine Kékette', shlagemons: [
-    sacdepates,
-    rouxPasCool,
-    canarchichon,
-    sperectum,
-  ] }, // 5
-  { id: 'bois-de-bouffon', name: 'Bois des Bouffons', completionAchievement: 'Bûcheron du Bois de Bouffon', shlagemons: [
-    aspigros,
-    chenipaon,
-    ptitocard,
-    metamorve,
-  ] }, // 10
-  { id: 'chemin-du-slip', name: 'Chemin du Slip', completionAchievement: 'Explorateur de la Grotte du Slip', shlagemons: [
-    nosferachid,
-    abraquemar,
-    emboli,
-  ] }, // 15
-  { id: 'ravin-fesse-molle', name: 'Ravin de la Fesse Molle', completionAchievement: 'Sauveur du Ravin de la Fesse Molle', shlagemons: [
-    qulbudrogue,
-    pikachiant,
-    goubite,
-    nanmeouesh,
-  ] }, // 20
-  { id: 'precipice-nanard', name: 'Précipice du Vieux Nanard', actions: [], completionAchievement: 'Dénicheur du Vieux Nanard', shlagemons: [
-    ratonton,
-    ricardnin,
-  ] }, // 25
-  { id: 'marais-moudugenou', name: 'Marais Moudugenou', completionAchievement: 'Épurateur du Marais Moudugenou', shlagemons: [
-    nosferachid,
-    piafsansbec,
-  ] }, // 30
-  { id: 'forteresse-petmoalfiak', name: 'Forteresse Pètmoalfiak', actions: [], completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak', shlagemons: [
-    alakalbar,
-    canarchichon,
-  ] }, // 35
-  { id: 'route-du-nawak', name: 'Route du Nawak', completionAchievement: 'Voyageur de la Route du Nawak', shlagemons: [
-    pikachiant,
-    salamiches,
-  ] },
-  { id: 'mont-dracatombe', name: 'Mont Cul', actions: [], shlagemons: [ptitocard] },
-  { id: 'catacombes-merdifientes', name: 'Catacombes Merdifientes', shlagemons: [sacdepates], actions: [] },
-  { id: 'route-aguicheuse', name: 'Route Aguicheuse', shlagemons: [aspigros] },
-  { id: 'vallee-des-chieurs', name: 'Vallée des Chieurs', shlagemons: [carapouffe], actions: [] },
-  { id: 'trou-du-bide', name: 'Trou du Bide', shlagemons: [chenipaon] },
-  { id: 'zone-giga-zob', name: 'Aire du Giga Zob', shlagemons: [goubite] },
-  { id: 'route-so-dom', name: `Route So'Dom`, shlagemons: [canarchichon] },
+  {
+    id: 'plaine-kekette',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Plaine Kékette',
+    completionAchievement: 'Fendeur de la Plaine Kékette',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/01-05/*.ts`, { eager: true }),
+  },
+  {
+    id: 'bois-de-bouffon',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Bois des Bouffons',
+    completionAchievement: 'Bûcheron du Bois de Bouffon',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/05-10/*.ts`, { eager: true }),
+  },
+  {
+    id: 'chemin-du-slip',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Chemin du Slip',
+    completionAchievement: 'Explorateur de la Grotte du Slip',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/10-15/*.ts`, { eager: true }),
+  },
+  {
+    id: 'ravin-fesse-molle',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Ravin de la Fesse Molle',
+    completionAchievement: 'Sauveur du Ravin de la Fesse Molle',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/15-20/*.ts`, { eager: true }),
+  },
+  {
+    id: 'precipice-nanard',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Précipice du Vieux Nanard',
+    actions: [],
+    completionAchievement: 'Dénicheur du Vieux Nanard',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/20-25/*.ts`, { eager: true }),
+  },
+  {
+    id: 'marais-moudugenou',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Marais Moudugenou',
+    completionAchievement: 'Épurateur du Marais Moudugenou',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/25-30/*.ts`, { eager: true }),
+  }, // 30
+  // { id: 'forteresse-petmoalfiak', lvl: zoneIndex++ * lvlsByZone, name: 'Forteresse Pètmoalfiak', actions: [], completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/30-35/*.ts`, { eager: true }) }}, // 35
+  // { id: 'route-du-nawak', lvl: zoneIndex++ * lvlsByZone, name: 'Route du Nawak', completionAchievement: 'Voyageur de la Route du Nawak', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/35-40/*.ts`, { eager: true }) }},
+  // { id: 'mont-dracatombe', lvl: zoneIndex++ * lvlsByZone, name: 'Mont Cul', actions: [], shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/40-45/*.ts`, { eager: true }) } },
+  // { id: 'catacombes-merdifientes', lvl: zoneIndex++ * lvlsByZone, name: 'Catacombes Merdifientes', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/45-50/*.ts`, { eager: true }) } actions: [] },
+  // { id: 'route-aguicheuse', lvl: zoneIndex++ * lvlsByZone, name: 'Route Aguicheuse', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/50-55/*.ts`, { eager: true }) } },
+  // { id: 'vallee-des-chieurs', lvl: zoneIndex++ * lvlsByZone, name: 'Vallée des Chieurs', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/55-60/*.ts`, { eager: true }) } actions: [] },
+  // { id: 'trou-du-bide', lvl: zoneIndex++ * lvlsByZone, name: 'Trou du Bide', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/65-70/*.ts`, { eager: true }) } },
+  // { id: 'zone-giga-zob', lvl: zoneIndex++ * lvlsByZone, name: 'Aire du Giga Zob', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/70-75/*.ts`, { eager: true }) } },
+  // { id: 'route-so-dom', lvl: zoneIndex++ * lvlsByZone, name: `Route So'Dom`, shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/75-80/*.ts`, { eager: true }) } },
 ]
 
-const lvlsByZone = 5
 const lvlMax = 100
 if (savagesZonesDescription.length < lvlMax / lvlsByZone) {
   console.warn(`There is ${savagesZonesDescription.length} zones in the list, it should be ${100 / 5}}`)
@@ -91,31 +78,12 @@ const savageZones: Zone[] = savagesZonesDescription.map((desc, index) => ({
   name: desc.name,
   type: 'sauvage',
   actions: desc.actions ?? [],
-  shlagemons: desc.shlagemons,
-  minLevel: index * lvlsByZone || 1,
-  maxLevel: index * lvlsByZone + lvlsByZone,
+  shlagemons: Object.entries(desc.shlagemons ?? {})
+    .filter(([path]) => !path.endsWith('index.ts'))
+    .map(([, m]) => m.default),
+  minLevel: desc.lvl - 5 || 1,
+  maxLevel: desc.lvl || 1,
 }))
-
-// Zones spéciales
-const villageZones: Zone[] = [
-  {
-    id: 'village-veaux-du-gland',
-    name: 'Veaux du Gland sur Marne',
-    type: 'village',
-    actions: [
-      { id: 'shop', label: 'Entrer dans le Magasin' },
-      { id: 'minigame', label: 'Mini-jeu' },
-    ],
-    arena: {
-      arena: arenas.find(a => a.id === 'village-veaux-du-gland')!,
-      completed: false,
-    },
-    minLevel: 10,
-    maxLevel: 0,
-  },
-  { id: 'village-boule', name: 'Village Sux-Mais-Bouls', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 25, maxLevel: 0 },
-  { id: 'village-paume', name: 'Village Caca-Boudin', type: 'village', actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }], minLevel: 50, maxLevel: 0 },
-]
 
 const grotteZones: Zone[] = [
 

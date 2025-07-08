@@ -1,7 +1,7 @@
 import type { BaseShlagemon } from '~/type'
-import { thunderStone } from '../items/items'
-import { shlagemonTypes } from '../shlagemons-type'
-import raichiotte from './raichiotte'
+import { thunderStone } from '~/data/items/items'
+import { shlagemonTypes } from '../../shlagemons-type'
+import raichiotte from '../raichiotte'
 
 export const pikachiant: BaseShlagemon = {
   id: 'pikachiant',

@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
-import rouxScoop from './roux-scoop'
+import { shlagemonTypes } from '../../shlagemons-type'
+import rouxScoop from '../roux-scoop'
 
 export const rouxPasCool: BaseShlagemon = {
   id: 'roux-pas-cool',

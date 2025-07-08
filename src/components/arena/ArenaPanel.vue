@@ -105,7 +105,7 @@ function onDuelEnd(win: boolean) {
     nextTimer = window.setTimeout(closeVictory, 500)
   }
   else {
-    nextTimer = window.setTimeout(proceedNext, 800)
+    nextTimer = window.setTimeout(proceedNext, 250)
   }
 }
 
