@@ -9,6 +9,8 @@ import VillagePanel from '~/components/village/VillagePanel.vue'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
 
+defineOptions({ inheritAttrs: false })
+
 const dialogStore = useDialogStore()
 const panelStore = useMainPanelStore()
 
@@ -33,6 +35,6 @@ const currentComponent = computed(() => {
 </script>
 
 <template>
-  <DialogPanel v-if="dialogStore.isDialogVisible" />
-  <component :is="currentComponent" v-else />
+  <DialogPanel v-if="dialogStore.isDialogVisible" v-bind="$attrs" />
+  <component :is="currentComponent" v-else v-bind="$attrs" />
 </template>
