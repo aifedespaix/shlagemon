@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-const props = defineProps<{ title?: string, isInline?: boolean }>()
+const props = defineProps<{ title?: string, isInline?: boolean, childOverflowHidden?: boolean }>()
 const opened = ref(true)
 const isMobile = useMediaQuery('(max-width: 767px)')
+
 function toggle() {
   if (isMobile.value)
     return
@@ -53,6 +54,8 @@ const contentClasses = computed(() => {
   const unocss: string[] = []
   if (props.isInline)
     unocss.push('flex', 'items-center', 'justify-center')
+  if (props.childOverflowHidden)
+    unocss.push('overflow-hidden')
   else
     unocss.push('')
 
@@ -78,7 +81,7 @@ const contentClasses = computed(() => {
       @leave="leave"
       @after-leave="afterLeave"
     >
-      <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col overflow-hidden" :class="contentClasses">
+      <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col" :class="contentClasses">
         <slot />
       </div>
     </Transition>

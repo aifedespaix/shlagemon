@@ -104,14 +104,14 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       xl="grid-cols-5"
     >
       <div class="panel-group overflow-hidden">
-        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden">
+        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" child-overflow-hidden>
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
           <InventoryPanel />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
+        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" child-overflow-hidden>
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -132,7 +132,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden">
+        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" child-overflow-hidden>
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -141,7 +141,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       </div>
 
       <div v-if="displayDex" class="panel-group flex-1 overflow-hidden">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden">
+        <PanelWrapper title="Shlagédex" class="overflow-hidden" child-overflow-hidden>
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
