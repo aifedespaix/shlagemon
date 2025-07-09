@@ -3,7 +3,6 @@ import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
 import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
-import MultiExpModal from '~/components/inventory/MultiExpModal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useBallStore } from '~/stores/ball'
@@ -93,5 +92,4 @@ function onUse(item: Item) {
     </div>
   </section>
   <EvolutionItemModal />
-  <MultiExpModal />
 </template>
