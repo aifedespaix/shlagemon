@@ -2,7 +2,7 @@
 import type { Ball, DexShlagemon } from '~/type'
 import { onMounted, ref } from 'vue'
 import { ballHues } from '~/utils/ball'
-import { simpleCapture } from '~/utils/capture'
+import { tryCapture } from '~/utils/capture'
 
 const props = defineProps<{ target: DexShlagemon, ball: Ball }>()
 const emit = defineEmits<{ (e: 'finish', success: boolean): void }>()
@@ -11,7 +11,7 @@ const shake = ref(0)
 
 function attempt(step: number) {
   shake.value = step
-  const success = simpleCapture(props.target)
+  const success = tryCapture(props.target, props.ball)
   if (success) {
     setTimeout(() => emit('finish', true), 500)
   }
