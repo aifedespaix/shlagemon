@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
+import { toast } from 'vue3-toastify'
 import DialogBox from '~/components/dialog/DialogBox.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -16,12 +17,12 @@ const progress = useZoneProgressStore()
 const zone = useZoneStore()
 
 function collectBadge() {
-  if (arena.arenaData)
-    player.earnBadge(arena.arenaData.badge.id)
-  if (arena.arenaData)
-    progress.completeArena(arena.arenaData.id)
-  if (arena.arenaData)
-    zone.completeArena(arena.arenaData.id)
+  if (!arena.arenaData)
+    return
+  player.earnBadge(arena.arenaData.id)
+  progress.completeArena(zone.current.id)
+  zone.completeArena(zone.current.id)
+  toast.success(`Badge ${arena.arenaData.badge.name} obtenu !`)
   arena.reset()
   panel.showVillage()
   emit('done', 'arenaVictory')
