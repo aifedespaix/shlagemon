@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { useInventoryStore } from './inventory'
+import { useEquipmentStore } from './equipment'
 import { useShlagedexStore } from './shlagedex'
 
 export const useMultiExpStore = defineStore('multiExp', () => {
-  const holderId = ref<string | null>(null)
   const isVisible = ref(false)
   const dex = useShlagedexStore()
-  const inventory = useInventoryStore()
+  const equipment = useEquipmentStore()
 
+  const holderId = computed(() => equipment.getHolder('multi-exp'))
   const holder = computed(() =>
     holderId.value ? dex.shlagemons.find(m => m.id === holderId.value) || null : null,
   )
@@ -22,28 +22,12 @@ export const useMultiExpStore = defineStore('multiExp', () => {
   }
 
   function setHolder(monId: string) {
-    const previous = holder.value
-    if (previous) {
-      previous.heldItemId = null
-    }
-    const mon = dex.shlagemons.find(m => m.id === monId)
-    if (mon) {
-      if (mon.heldItemId)
-        mon.heldItemId = null
-      mon.heldItemId = 'multi-exp'
-      inventory.remove('multi-exp')
-    }
-    holderId.value = monId
+    equipment.equip(monId, 'multi-exp')
     close()
   }
 
   function removeHolder() {
-    const mon = holder.value
-    if (!mon)
-      return
-    mon.heldItemId = null
-    inventory.add('multi-exp')
-    holderId.value = null
+    equipment.unequipItem('multi-exp')
   }
 
   return { holderId, holder, isVisible, open, close, setHolder, removeHolder }
