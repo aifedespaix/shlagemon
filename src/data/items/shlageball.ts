@@ -22,7 +22,7 @@ export const superShlageball: Ball = {
   price: 25,
   currency: 'shlagidolar',
   image: '/items/shlageball/shlageball.png',
-  catchBonus: 1.5,
+  catchBonus: 2,
   animation: '/items/shlageball/shlageball.png',
 }
 
@@ -35,7 +35,7 @@ export const hyperShlageball: Ball = {
   price: 50,
   currency: 'shlagidolar',
   image: '/items/shlageball/shlageball.png',
-  catchBonus: 2,
+  catchBonus: 3,
   animation: '/items/shlageball/shlageball.png',
 }
 

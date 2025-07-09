@@ -1,10 +1,10 @@
 import type { Ball, DexShlagemon } from '~/type'
 
 export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
-  const hpRatio = enemy.hpCurrent / enemy.hp
-  const baseChance = (1 - hpRatio) * 100
-  const rarityMod = 1 / (enemy.rarity / 100)
-  const chance = baseChance * ball.catchBonus * rarityMod
+  const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
+  const coefMod = 1 / Math.sqrt(enemy.base.coefficient)
+  const levelMod = 1 / (1 + enemy.lvl / 20)
+  const chance = hpChance * coefMod * levelMod * ball.catchBonus
   return Math.random() * 100 < chance
 }
 
