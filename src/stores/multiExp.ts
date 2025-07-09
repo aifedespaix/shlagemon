@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useEquipmentStore } from './equipment'
+import { useMobileTabStore } from './mobileTab'
 import { useShlagedexStore } from './shlagedex'
 
 export const useMultiExpStore = defineStore('multiExp', () => {
@@ -12,8 +13,10 @@ export const useMultiExpStore = defineStore('multiExp', () => {
   const holder = computed(() =>
     holderId.value ? dex.shlagemons.find(m => m.id === holderId.value) || null : null,
   )
+  const mobile = useMobileTabStore()
 
   function open() {
+    mobile.set('game')
     isVisible.value = true
   }
 
