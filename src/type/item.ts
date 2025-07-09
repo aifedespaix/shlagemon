@@ -19,6 +19,10 @@ export interface Item {
   /** UnoCSS classes applied to the icon */
   iconClass?: string
   image?: string
+  /** When true, only one instance can be owned */
+  unique?: boolean
+  /** Whether this item can be equipped by a Shlagémon */
+  wearable?: boolean
 }
 
 export interface InventoryEntry {
