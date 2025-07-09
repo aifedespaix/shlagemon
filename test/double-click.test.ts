@@ -25,7 +25,8 @@ describe('shlagedex double click', () => {
       },
     })
     const item = wrapper.find('div.relative')
-    await item.trigger('dblclick')
+    await item.trigger('click')
+    await item.trigger('click')
     expect(dex.activeShlagemon?.id).toBe(mon.id)
   })
 })
