@@ -28,6 +28,8 @@ export const useMultiExpStore = defineStore('multiExp', () => {
     }
     const mon = dex.shlagemons.find(m => m.id === monId)
     if (mon) {
+      if (mon.heldItemId)
+        mon.heldItemId = null
       mon.heldItemId = 'multi-exp'
       inventory.remove('multi-exp')
     }

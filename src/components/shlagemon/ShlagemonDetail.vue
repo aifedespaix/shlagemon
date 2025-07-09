@@ -91,13 +91,6 @@ const captureInfo = computed(() => {
       <div class="flex items-center gap-1">
         <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
         - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
-        <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="h-4 w-4" />
-        <template v-if="multiExpStore.holderId === mon.id">
-          <MultiExpIcon class="h-4 w-4" />
-          <Button type="icon" class="ml-1" @click="multiExpStore.removeHolder()">
-            <div i-carbon-trash-can />
-          </Button>
-        </template>
       </div>
       <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
         <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
@@ -106,12 +99,20 @@ const captureInfo = computed(() => {
     <div class="flex gap-2">
       <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
     </div>
-    <ShlagemonImage
-      :id="mon.base.id"
-      :alt="mon.base.name"
-      :shiny="mon.isShiny"
-      class="mx-auto mb-2 max-h-40 object-contain"
-    />
+    <div class="relative mx-auto mb-2 max-w-max">
+      <ShlagemonImage
+        :id="mon.base.id"
+        :alt="mon.base.name"
+        :shiny="mon.isShiny"
+        class="max-h-40 object-contain"
+      />
+      <div v-if="multiExpStore.holderId === mon.id" class="absolute right-0 top-0 flex items-center gap-1">
+        <MultiExpIcon class="h-5 w-5" />
+        <Button type="icon" class="h-5 w-5" @click="multiExpStore.removeHolder()">
+          <div i-carbon-trash-can />
+        </Button>
+      </div>
+    </div>
     <p class="tiny-scrollbar mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
