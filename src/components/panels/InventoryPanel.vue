@@ -10,12 +10,14 @@ import { useBallStore } from '~/stores/ball'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
+import { useInventoryModalStore } from '~/stores/inventoryModal'
 import { useMultiExpStore } from '~/stores/multiExp'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
 const multiExpStore = useMultiExpStore()
+const inventoryModal = useInventoryModalStore()
 const filter = useInventoryFilterStore()
 const sortOptions = [
   { label: 'Type', value: 'type' },
@@ -58,6 +60,8 @@ function onUse(item: Item) {
     evoItemStore.open(item)
   }
   else if (item.id === 'multi-exp') {
+    if (inventoryModal.isVisible)
+      inventoryModal.close()
     multiExpStore.open()
   }
   else {

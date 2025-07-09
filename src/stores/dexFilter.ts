@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref } from 'vue'
+import { getSortDirection } from '~/utils/sort'
 
 export type DexSort =
   | 'level'
@@ -15,19 +16,12 @@ export type DexSort =
 export const useDexFilterStore = defineStore('dexFilter', () => {
   const search = ref('')
   const sortBy = ref<DexSort>('level')
-  const sortAsc = ref(false)
-
-  watch(sortBy, (val) => {
-    if (val === 'name' || val === 'type' || val === 'date')
-      sortAsc.value = true
-    else
-      sortAsc.value = false
-  })
+  const sortAsc = computed(() =>
+    getSortDirection(sortBy.value, ['name', 'type', 'date']))
 
   function reset() {
     search.value = ''
     sortBy.value = 'level'
-    sortAsc.value = false
   }
 
   return { search, sortBy, sortAsc, reset }
