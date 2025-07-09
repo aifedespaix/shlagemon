@@ -9,11 +9,15 @@ import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ShlagemonQuickSelect from '~/components/shlagemon/ShlagemonQuickSelect.vue'
 import Button from '~/components/ui/Button.vue'
 import { useArenaStore } from '~/stores/arena'
+import { useDialogStore } from '~/stores/dialog'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const arena = useArenaStore()
+const dialog = useDialogStore()
+const panel = useMainPanelStore()
 
 const enemyTeam = computed(() => arena.lineup)
 const showDex = ref(false)
@@ -104,6 +108,23 @@ function closeAfterDefeat() {
   showDuel.value = false
 }
 
+function retry() {
+  const data = arena.arenaData
+  if (!data)
+    return
+  dialog.resetArenaDialogs()
+  arena.reset()
+  arena.setArena(data)
+  duelResult.value = null
+  showDuel.value = false
+}
+
+function quit() {
+  arena.reset()
+  dialog.resetArenaDialogs()
+  panel.showVillage()
+}
+
 onUnmounted(() => clearTimeout(nextTimer))
 </script>
 
@@ -192,9 +213,14 @@ onUnmounted(() => clearTimeout(nextTimer))
         <Button v-else-if="duelResult === 'win'" type="primary" @click="closeVictory">
           Fermer
         </Button>
-        <Button v-else type="danger" @click="closeAfterDefeat">
-          OK
-        </Button>
+        <template v-else>
+          <Button type="primary" @click="retry">
+            Réessayer
+          </Button>
+          <Button type="danger" @click="quit">
+            Quitter
+          </Button>
+        </template>
       </div>
     </div>
   </div>

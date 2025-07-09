@@ -73,7 +73,7 @@ const lvlMax = 100
 if (savagesZonesDescription.length < lvlMax / lvlsByZone) {
   console.warn(`There is ${savagesZonesDescription.length} zones in the list, it should be ${100 / 5}}`)
 }
-const savageZones: Zone[] = savagesZonesDescription.map((desc, index) => ({
+const savageZones: Zone[] = savagesZonesDescription.map((desc, _index) => ({
   id: desc.id,
   name: desc.name,
   type: 'sauvage',
