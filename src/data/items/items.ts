@@ -111,6 +111,8 @@ export const multiExp: Item = {
   currency: 'shlagidiamond',
   icon: 'i-game-icons:three-friends',
   iconClass: 'text-orange-500 dark:text-orange-300',
+  unique: true,
+  wearable: true,
 }
 
 export const thunderStone: Item = {
