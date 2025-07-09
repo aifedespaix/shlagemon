@@ -6,6 +6,7 @@ import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryModal from '~/components/inventory/InventoryModal.vue'
+import MultiExpModal from '~/components/inventory/MultiExpModal.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanelView from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
@@ -152,6 +153,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       <EvolutionModal />
       <ZoneMapModal />
       <InventoryModal />
+      <MultiExpModal />
     </div>
   </div>
 </template>
