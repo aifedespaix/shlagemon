@@ -1,18 +1,24 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import { getSortDirection } from '~/utils/sort'
+import { ref, watch } from 'vue'
 
 export type InventorySort = 'name' | 'type' | 'price'
 
 export const useInventoryFilterStore = defineStore('inventoryFilter', () => {
   const search = ref('')
   const sortBy = ref<InventorySort>('name')
-  const sortAsc = computed(() =>
-    getSortDirection(sortBy.value, ['name', 'type']))
+  const sortAsc = ref(true)
+
+  watch(sortBy, (val) => {
+    if (val === 'price')
+      sortAsc.value = false
+    else
+      sortAsc.value = true
+  })
 
   function reset() {
     search.value = ''
     sortBy.value = 'name'
+    sortAsc.value = true
   }
 
   return { search, sortBy, sortAsc, reset }
