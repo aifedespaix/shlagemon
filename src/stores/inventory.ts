@@ -72,63 +72,75 @@ export const useInventoryStore = defineStore('inventory', () => {
   function useItem(id: string) {
     if (arena.inBattle || !items.value[id])
       return false
+
     notifyAchievement({ type: 'item-used' })
-    if (id === 'potion') {
-      dex.healActive(50)
-      remove(id)
-      return true
-    }
-    if (id === 'defense-potion') {
-      dex.boostDefense(10, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
-      remove(id)
-      return true
-    }
-    if (id === 'super-defense-potion') {
-      dex.boostDefense(25, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
-      remove(id)
-      return true
-    }
-    if (id === 'hyper-defense-potion') {
-      dex.boostDefense(50, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
-      remove(id)
-      return true
-    }
-    if (id === 'attack-potion') {
-      dex.boostAttack(10, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
-      remove(id)
-      return true
-    }
-    if (id === 'super-attack-potion') {
-      dex.boostAttack(25, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
-      remove(id)
-      return true
-    }
-    if (id === 'hyper-attack-potion') {
-      dex.boostAttack(50, allItems.find(i => i.id === id)?.icon, allItems.find(i => i.id === id)?.iconClass)
-      remove(id)
-      return true
-    }
-    if (id === 'super-potion') {
-      dex.healActive(100)
-      remove(id)
-      return true
-    }
-    if (id === 'hyper-potion') {
-      dex.healActive(200)
-      remove(id)
-      return true
-    }
-    if (id === 'shlageball'
-      || id === 'super-shlageball'
-      || id === 'hyper-shlageball') {
-      // simple capture of random shlagemon
+
+    const item = allItems.find(i => i.id === id)
+    if (!item)
+      return false
+    const { icon, iconClass } = item
+
+    const capture = () => {
       const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
       const mon = dex.captureShlagemon(base)
       notifyAchievement({ type: 'capture', shiny: mon.isShiny })
       remove(id)
       return true
     }
-    return false
+
+    const handlers: Record<string, () => boolean> = {
+      'potion': () => {
+        dex.healActive(50)
+        remove(id)
+        return true
+      },
+      'defense-potion': () => {
+        dex.boostDefense(10, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'super-defense-potion': () => {
+        dex.boostDefense(25, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'hyper-defense-potion': () => {
+        dex.boostDefense(50, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'attack-potion': () => {
+        dex.boostAttack(10, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'super-attack-potion': () => {
+        dex.boostAttack(25, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'hyper-attack-potion': () => {
+        dex.boostAttack(50, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'super-potion': () => {
+        dex.healActive(100)
+        remove(id)
+        return true
+      },
+      'hyper-potion': () => {
+        dex.healActive(200)
+        remove(id)
+        return true
+      },
+      'shlageball': capture,
+      'super-shlageball': capture,
+      'hyper-shlageball': capture,
+    }
+
+    const handler = handlers[id]
+    return handler ? handler() : false
   }
 
   function reset() {
