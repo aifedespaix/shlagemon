@@ -163,7 +163,15 @@ function startBattle() {
   const available = zone.current.shlagemons?.length
     ? zone.current.shlagemons
     : allShlagemons
-  const base = pickRandomByCoefficient(available)
+  let pool = available
+  const last = progress.lastEncounters[zone.current.id]
+  if (last?.length >= 3 && last.every(id => id === last[0])) {
+    const filtered = available.filter(b => b.id !== last[0])
+    if (filtered.length)
+      pool = filtered
+  }
+  const base = pickRandomByCoefficient(pool)
+  progress.registerEncounter(zone.current.id, base.id)
   const rank = zone.getZoneRank(zone.current.id) * equilibrerank
   const created = createDexShlagemon(base, false, rank)
   const min = Number(zone.current.minLevel ?? 1)

@@ -6,6 +6,7 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
   const fightsBeforeKing = 10
   const kingsDefeated = ref<Record<string, boolean>>({})
   const arenasCompleted = ref<Record<string, boolean>>({})
+  const lastEncounters = ref<Record<string, string[]>>({})
 
   function addWin(id: string) {
     wins.value[id] = (wins.value[id] || 0) + 1
@@ -31,6 +32,22 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
     arenasCompleted.value[id] = true
   }
 
+  function registerEncounter(zoneId: string, monId: string) {
+    const list = lastEncounters.value[zoneId] || []
+    list.push(monId)
+    while (list.length > 3)
+      list.shift()
+    lastEncounters.value[zoneId] = list
+  }
+
+  function streakExceeded(zoneId: string, monId: string) {
+    const list = lastEncounters.value[zoneId]
+    return list?.length >= 3
+      && list[list.length - 1] === monId
+      && list[list.length - 2] === monId
+      && list[list.length - 3] === monId
+  }
+
   function isArenaCompleted(id: string) {
     return !!arenasCompleted.value[id]
   }
@@ -46,6 +63,7 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
     kingsDefeated,
     fightsBeforeKing,
     arenasCompleted,
+    lastEncounters,
     addWin,
     getWins,
     canFightKing,
@@ -53,6 +71,8 @@ export const useZoneProgressStore = defineStore('zoneProgress', () => {
     isKingDefeated,
     completeArena,
     isArenaCompleted,
+    registerEncounter,
+    streakExceeded,
     reset,
   }
 }, {
