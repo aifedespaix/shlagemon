@@ -1,19 +1,8 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { useMobileTabStore } from './mobileTab'
+import { createModalStore } from './helpers'
 
 export const useZoneMonsModalStore = defineStore('zoneMonsModal', () => {
-  const isVisible = ref(false)
-  const mobile = useMobileTabStore()
-
-  function open() {
-    mobile.set('game')
-    isVisible.value = true
-  }
-
-  function close() {
-    isVisible.value = false
-  }
+  const { isVisible, open, close } = createModalStore('game')
 
   return { isVisible, open, close }
 })
