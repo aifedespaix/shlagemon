@@ -6,7 +6,6 @@ import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
 import { useArenaStore } from './arena'
 import { useGameStore } from './game'
-import { useMultiExpStore } from './multiExp'
 import { useShlagedexStore } from './shlagedex'
 
 export const useInventoryStore = defineStore('inventory', () => {
@@ -45,6 +44,8 @@ export const useInventoryStore = defineStore('inventory', () => {
     const item = allItems.find(i => i.id === id)
     if (!item)
       return false
+    if (item.unique && (items.value[id] || dex.shlagemons.some(m => m.heldItemId === id)))
+      return false
     const cost = item.price * qty
     if (item.currency === 'shlagidiamond') {
       if (game.shlagidiamond < cost)
@@ -72,11 +73,6 @@ export const useInventoryStore = defineStore('inventory', () => {
     if (arena.inBattle || !items.value[id])
       return false
     notifyAchievement({ type: 'item-used' })
-    if (id === 'multi-exp') {
-      const me = useMultiExpStore()
-      me.open()
-      return true
-    }
     if (id === 'potion') {
       dex.healActive(50)
       remove(id)
