@@ -125,7 +125,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
 
         <PanelWrapper v-if="displayGamePanel" class="overflow-hidden" :child-overflow-hidden="zone.current.type === 'village'">
-          <MainPanelView class="flex-1" md="p-4" />
+          <MainPanelView class="flex-1" :class="zone.current.type === 'village' ? 'overflow-auto' : ''" md="p-4" />
           <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
             :mon="shlagedex.activeShlagemon"
