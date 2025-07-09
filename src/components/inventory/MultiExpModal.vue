@@ -24,6 +24,7 @@ function select(monId: string) {
           v-for="mon in dex.shlagemons"
           :key="mon.id"
           class="flex items-center justify-between border rounded p-2"
+          :class="store.holderId === mon.id ? 'bg-orange-100 dark:bg-orange-900' : ''"
         >
           <div class="flex items-center gap-2">
             <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="h-6 w-6" />

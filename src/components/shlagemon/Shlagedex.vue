@@ -127,7 +127,7 @@ function isActive(mon: DexShlagemon) {
         @click.stop="onClick(mon)"
         @dblclick.stop="onDoubleClick(mon)"
       >
-        <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="absolute left-1 top-1 h-4 w-4" />
+        <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="absolute right-1 top-1 h-4 w-4" />
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
         </div>
