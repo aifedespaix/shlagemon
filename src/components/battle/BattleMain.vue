@@ -190,6 +190,7 @@ function finishBattle() {
     }
     playerFainted.value = false
     enemyFainted.value = false
+    enemy.value = null
     startBattle()
   }, 500)
 }
