@@ -4,6 +4,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { onUnmounted, ref } from 'vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
+import { useTypeChartModalStore } from '~/stores/typeChartModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 
@@ -34,6 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{ (e: 'faintEnd'): void }>()
+const typeChart = useTypeChartModalStore()
 
 const now = ref(Date.now())
 const timer = window.setInterval(() => {
@@ -44,6 +46,12 @@ onUnmounted(() => window.clearInterval(timer))
 function onAnimationEnd() {
   if (props.fainted)
     emit('faintEnd')
+}
+
+function showTypeChart() {
+  const type = props.mon.base.types[0]
+  if (type)
+    typeChart.open(type.id)
 }
 </script>
 
@@ -59,6 +67,7 @@ function onAnimationEnd() {
         :key="e.id"
         :effect="e"
         :now="now"
+        @click="showTypeChart"
       />
       <DiseaseBadge v-if="props.disease" :remaining="props.diseaseRemaining" />
     </div>

@@ -5,6 +5,7 @@ import Tooltip from '~/components/ui/Tooltip.vue'
 import { formatDuration } from '~/utils/formatDuration'
 
 const props = defineProps<{ effect: ActiveEffect, now: number }>()
+const emit = defineEmits<{ (e: 'click'): void }>()
 
 const remaining = computed(() => formatDuration(props.effect.expiresAt - props.now))
 
@@ -28,9 +29,13 @@ const colorClasses = computed(() => {
 
 <template>
   <Tooltip :text="tooltipText">
-    <div class="flex items-center gap-1 rounded px-1 text-xs font-mono" :class="colorClasses">
+    <div
+      class="flex items-center gap-1 rounded px-1 text-xs font-mono"
+      :class="colorClasses"
+      @click="emit('click')"
+    >
       <div class="h-4 w-4" :class="[`${props.effect.icon}`, props.effect.iconClass]" />
-      <span class="">{{ remaining }}</span>
+      <span>{{ remaining }}</span>
     </div>
   </Tooltip>
 </template>

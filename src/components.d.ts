@@ -100,6 +100,8 @@ declare module 'vue' {
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
     Tooltip: typeof import('./components/ui/Tooltip.vue')['default']
     TrainerBattle: typeof import('./components/battle/TrainerBattle.vue')['default']
+    TypeChart: typeof import('./components/shlagemon/TypeChart.vue')['default']
+    TypeChartModal: typeof import('./components/shlagemon/TypeChartModal.vue')['default']
     VillagePanel: typeof import('./components/village/VillagePanel.vue')['default']
     Vomit: typeof import('./components/icons/badge/vomit.vue')['default']
     WearableItemModal: typeof import('./components/inventory/WearableItemModal.vue')['default']
