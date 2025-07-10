@@ -131,7 +131,7 @@ function changeActive(mon: DexShlagemon) {
       <div
         v-for="mon in displayedMons"
         :key="mon.id"
-        class="relative flex cursor-pointer items-center justify-between border rounded p-2"
+        class="relative flex cursor-pointer items-center justify-between border rounded p-x-1 p-y-2"
         hover="bg-gray-100 dark:bg-gray-800"
         :class="isActive(mon) ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400' : ''"
         @click.stop="handleClick(mon)"
@@ -141,12 +141,13 @@ function changeActive(mon: DexShlagemon) {
           lvl {{ mon.lvl }}
         </div>
         <div class="flex items-center gap-2">
-          <ShlagemonImage
-            :id="mon.base.id"
-            :alt="mon.base.name"
-            :shiny="mon.isShiny"
-            class="h-12 w-12 object-contain -m-y-2"
-          />
+          <div class="h-12 w-12">
+            <ShlagemonImage
+              :id="mon.base.id"
+              :alt="mon.base.name"
+              :shiny="mon.isShiny"
+            />
+          </div>
           <div class="flex flex-col overflow-hidden">
             <div class="name">
               {{ mon.base.name }}
