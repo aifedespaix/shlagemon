@@ -11,6 +11,7 @@ import MainPanelView from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
 import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
+import TypeChartModal from '~/components/shlagemon/TypeChartModal.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import ZoneMapModal from '~/components/zones/ZoneMapModal.vue'
 import { getZoneBattleTrack, trainerTracks, zoneTracks } from '~/data/music'
@@ -143,6 +144,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       <EvolutionModal />
       <ZoneMapModal />
       <InventoryModal />
+      <TypeChartModal />
     </div>
   </div>
 </template>
