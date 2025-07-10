@@ -9,12 +9,12 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <img
+  <ImageByBackground
     :src="`/shlagemons/${props.id}/${props.id}.png`"
     draggable="false"
     :alt="props.alt"
-    class="object-contain"
+    class="h-full w-full"
     :style="props.shiny ? { filter: 'hue-rotate(180deg)' } : {}"
     v-bind="$attrs"
-  >
+  />
 </template>

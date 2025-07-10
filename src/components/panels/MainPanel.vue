@@ -36,5 +36,6 @@ const currentComponent = computed(() => {
 
 <template>
   <DialogPanel v-if="dialogStore.isDialogVisible" v-bind="$attrs" />
+
   <component :is="currentComponent" v-else v-bind="$attrs" />
 </template>

@@ -6,7 +6,6 @@ import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryModal from '~/components/inventory/InventoryModal.vue'
-import MultiExpModal from '~/components/inventory/MultiExpModal.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanelView from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
@@ -39,10 +38,6 @@ const trainerBattle = useTrainerBattleStore()
 const mobileTab = useMobileTabStore()
 const ui = useInterfaceStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
-
-const showXpBar = computed(() =>
-  ['battle', 'trainerBattle'].includes(mainPanel.current),
-)
 
 const showMainPanel = computed(() =>
   dialogStore.isDialogVisible
@@ -101,18 +96,17 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
   <div class="w-full select-none overflow-hidden">
     <div
       class="game h-full flex flex-col gap-1 p-1"
-      md="grid grid-cols-4 grid-rows-1 w-full  gap-2"
-      xl="grid-cols-5"
+      md="flex-row justify-between"
     >
-      <div class="panel-group overflow-hidden">
-        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" child-overflow-hidden>
+      <div class="panel-group overflow-hidden" md="max-w-80 basis-1/4">
+        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
           <InventoryPanel />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" child-overflow-hidden>
+        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -120,20 +114,16 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
       </div>
 
-      <div :class="group2Classes" class="overflow-hidden" md="col-span-2 col-start-2" xl="col-span-3">
+      <div :class="group2Classes" class="overflow-hidden" md="basis-1/2">
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayGamePanel" class="overflow-hidden" :child-overflow-hidden="zone.current.type === 'village'">
+        <PanelWrapper v-if="displayGamePanel" class="overflow-hidden">
           <MainPanelView class="flex-1" />
-          <!-- <ShlagemonXpBar
-            v-if="showXpBar && shlagedex.activeShlagemon"
-            :mon="shlagedex.activeShlagemon"
-          /> -->
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" child-overflow-hidden>
+        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -141,8 +131,8 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
       </div>
 
-      <div v-if="displayDex" class="panel-group flex-1 overflow-hidden">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden" child-overflow-hidden>
+      <div v-if="displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
+        <PanelWrapper title="Shlagédex" class="overflow-hidden">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
@@ -159,6 +149,6 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
 
 <style scoped>
 .panel-group {
-  @apply gap-2 flex flex-col;
+  @apply gap-1 flex flex-col;
 }
 </style>

@@ -18,5 +18,5 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div class="bg-center bg-no-repeat" :class="classes" md="min-h-auto" :style="imgByBackground(props.src)" />
+  <div class="bg-center bg-no-repeat" :class="classes" md="" :style="imgByBackground(props.src)" />
 </template>

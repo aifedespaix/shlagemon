@@ -14,6 +14,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   const arena = useArenaStore()
   const current = ref<MainPanel>('village')
 
+  const isBattle = computed(() => current.value === 'battle' || current.value === 'trainerBattle')
+
   // Update the panel when the zone changes
   watch(
     () => zone.current.type,
@@ -77,5 +79,6 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     showMiniGame,
     showArena,
     showVillage,
+    isBattle,
   }
 })
