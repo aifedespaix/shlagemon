@@ -28,24 +28,26 @@ interface Props {
 <template>
   <div class="flex flex-col items-center gap-2">
     <slot name="header" />
-    <div
-      class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4"
-      @click="e => emit('click', e)"
-      @mousemove="e => emit('mousemove', e)"
-      @mouseenter="emit('mouseenter')"
-      @mouseleave="emit('mouseleave')"
-    >
+    <div class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4">
       <slot name="player" />
       <div class="vs font-bold">
         VS
       </div>
-      <slot name="enemy" />
-      <AttackCursor
-        v-if="props.showAttackCursor"
-        :x="props.cursorX"
-        :y="props.cursorY"
-        :clicked="props.cursorClicked"
-      />
+      <div
+        class="relative flex-1"
+        @click="e => emit('click', e)"
+        @mousemove="e => emit('mousemove', e)"
+        @mouseenter="emit('mouseenter')"
+        @mouseleave="emit('mouseleave')"
+      >
+        <slot name="enemy" />
+        <AttackCursor
+          v-if="props.showAttackCursor"
+          :x="props.cursorX"
+          :y="props.cursorY"
+          :clicked="props.cursorClicked"
+        />
+      </div>
     </div>
     <slot />
     <ShlagemonXpBar
