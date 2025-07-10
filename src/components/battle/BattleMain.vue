@@ -156,6 +156,8 @@ function startBattle(mon?: typeof enemy.value) {
 function finishBattle() {
   clearTimeout(nextBattleTimer)
   nextBattleTimer = window.setTimeout(async () => {
+    const defeatedEnemy = enemy.value
+    enemy.value = null
     const playerWon = enemyHp.value <= 0 && playerHp.value > 0
     const playerLost = playerHp.value <= 0 && enemyHp.value > 0
     events.emit('battle:end')
@@ -164,14 +166,14 @@ function finishBattle() {
       playerHp.value = dex.activeShlagemon.hpCurrent
     }
     if (playerWon) {
-      const stronger = enemy.value && dex.activeShlagemon
-        ? enemy.value.lvl > dex.activeShlagemon.lvl
+      const stronger = defeatedEnemy && dex.activeShlagemon
+        ? defeatedEnemy.lvl > dex.activeShlagemon.lvl
         : false
       progress.addWin(zone.current.id)
       game.addShlagidolar(zone.rewardMultiplier)
       notifyAchievement({ type: 'battle-win', stronger })
-      if (dex.activeShlagemon && enemy.value) {
-        const xp = xpRewardForLevel(enemy.value.lvl)
+      if (dex.activeShlagemon && defeatedEnemy) {
+        const xp = xpRewardForLevel(defeatedEnemy.lvl)
         await dex.gainXp(
           dex.activeShlagemon,
           xp,
@@ -190,7 +192,6 @@ function finishBattle() {
     }
     playerFainted.value = false
     enemyFainted.value = false
-    enemy.value = null
     startBattle()
   }, 500)
 }
