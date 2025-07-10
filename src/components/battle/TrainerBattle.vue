@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { watch } from 'vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
@@ -18,7 +19,6 @@ import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { watch } from 'vue'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()

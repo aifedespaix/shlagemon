@@ -22,7 +22,7 @@ function owned(id: string) {
       <template #icon>
         <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
       </template>
-      <div class="flex flex-wrap justify-center gap-2">
+      <div class="flex flex-wrap justify-center gap-2 p-2">
         <div
           v-for="mon in mons"
           :key="mon.id"
@@ -31,7 +31,7 @@ function owned(id: string) {
           <ShlagemonImage
             :id="mon.id"
             :alt="mon.name"
-            class="h-16 w-16 object-contain"
+            class="min-h-16 min-w-16 object-contain"
             :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
           />
           <span>{{ mon.name }}</span>
