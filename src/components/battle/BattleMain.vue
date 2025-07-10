@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
 import AttackCursor from '~/components/battle/AttackCursor.vue'
+import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
@@ -311,14 +312,7 @@ onUnmounted(() => {
         <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
       </Tooltip>
     </div>
-    <div v-if="zone.current.maxLevel" class="flex flex-col items-center justify-center p-x-20 font-bold">
-      <div class="overflow-ellipsis w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="zone.current.name">
-        {{ zone.current.name }}
-      </div>
-      <div class="whitespace-nowrap text-xs">
-        {{ zone.current.minLevel }} - {{ zone.current.maxLevel }}
-      </div>
-    </div>
+    <BattleHeader :zone-name="zone.current.name" />
     <div v-if="dex.activeShlagemon && enemy" class="max-w-160 w-full flex flex-1 self-center gap-2">
       <BattleShlagemon
         :mon="dex.activeShlagemon"

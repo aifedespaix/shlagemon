@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AttackCursor from '~/components/battle/AttackCursor.vue'
+import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
@@ -246,15 +247,7 @@ onUnmounted(() => {
       @mouseenter="onMouseEnter"
       @mouseleave="onMouseLeave"
     >
-      <div class="mb-1 h-12 flex items-center justify-end gap-2 overflow-hidden font-bold">
-        <div class="h-full flex flex-col">
-          <div>{{ trainer.character.name }}</div>
-          <div class="flex gap-2">
-            <ImageByBackground v-for="i in trainer.shlagemons.length" :key="i" src="/items/shlageball/shlageball.png" class="h-4 w-4" :class="i <= enemyIndex ? 'saturate-0' : ''" />
-          </div>
-        </div>
-        <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-full" />
-      </div>
+      <BattleHeader :trainer="trainer" />
       <div class="flex flex-1 items-center justify-center gap-4">
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
