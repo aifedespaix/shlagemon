@@ -2,10 +2,10 @@
 import Modal from '~/components/modal/Modal.vue'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import Button from '~/components/ui/Button.vue'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useWearableItemStore } from '~/stores/wearableItem'
 
-const store = useMultiExpStore()
+const store = useWearableItemStore()
 const dex = useShlagedexStore()
 
 function select(monId: string) {
@@ -17,7 +17,7 @@ function select(monId: string) {
   <Modal v-model="store.isVisible" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
-        Choisir le porteur du Multi-EXP
+        Choisir le porteur de {{ store.current?.name }}
       </h3>
       <div v-if="dex.shlagemons.length" class="flex flex-col gap-2">
         <div

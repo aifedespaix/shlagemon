@@ -14,9 +14,9 @@ import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
+import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
@@ -27,7 +27,7 @@ const trainerStore = useTrainerBattleStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
-const multiExpStore = useMultiExpStore()
+const wearableItemStore = useWearableItemStore()
 const battleStats = useBattleStatsStore()
 const disease = useDiseaseStore()
 const events = useEventStore()
@@ -128,7 +128,7 @@ function finishBattle() {
           undefined,
           trainerStore.levelUpHealPercent,
         )
-        const holder = multiExpStore.holder
+        const holder = wearableItemStore.getHolder('multi-exp')
         if (holder) {
           const share = Math.round(xp * 0.5)
           await dex.gainXp(holder, share, undefined, trainerStore.levelUpHealPercent)

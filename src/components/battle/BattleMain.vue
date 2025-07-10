@@ -17,8 +17,8 @@ import { useBattleStatsStore } from '~/stores/battleStats'
 import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
@@ -30,7 +30,7 @@ const game = useGameStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const disease = useDiseaseStore()
-const multiExpStore = useMultiExpStore()
+const wearableItemStore = useWearableItemStore()
 const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 const events = useEventStore()
@@ -128,7 +128,7 @@ async function onCaptureEnd(success: boolean) {
         xp,
         zone.current.maxLevel,
       )
-      const holder = multiExpStore.holder
+      const holder = wearableItemStore.getHolder('multi-exp')
       if (holder) {
         const share = Math.round(xp * 0.5)
         await dex.gainXp(holder, share, zone.current.maxLevel)
@@ -179,7 +179,7 @@ function finishBattle() {
           xp,
           zone.current.maxLevel,
         )
-        const holder = multiExpStore.holder
+        const holder = wearableItemStore.getHolder('multi-exp')
         if (holder) {
           const share = Math.round(xp * 0.5)
           await dex.gainXp(holder, share, zone.current.maxLevel)
