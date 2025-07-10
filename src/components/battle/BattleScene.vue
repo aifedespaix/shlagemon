@@ -49,17 +49,3 @@ const emit = defineEmits<{
     <slot />
   </div>
 </template>
-
-<style scoped>
-:deep(.flash) {
-  animation: flash 0.1s ease-in;
-}
-@keyframes flash {
-  from {
-    filter: brightness(2);
-  }
-  to {
-    filter: brightness(1);
-  }
-}
-</style>

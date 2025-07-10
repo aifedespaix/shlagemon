@@ -342,9 +342,3 @@ onUnmounted(() => {
     <CaptureLimitModal />
   </div>
 </template>
-
-<style scoped>
-.mon {
-  @apply relative flex flex-1 h-full flex-col items-center justify-end;
-}
-</style>

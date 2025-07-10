@@ -7,6 +7,7 @@ import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
+import './styles/battle.css'
 import 'uno.css'
 import 'vue3-toastify/dist/index.css'
 
