@@ -169,7 +169,7 @@ function cancelFight() {
                 :key="i"
                 src="/items/shlageball/shlageball.png"
                 class="h-4 w-4"
-                :class="{ 'saturate-0': i <= defeated }"
+                :class="{ 'saturate-0': i <= enemyIndex }"
               />
             </div>
           </div>
