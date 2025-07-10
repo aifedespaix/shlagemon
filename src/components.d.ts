@@ -35,6 +35,7 @@ declare module 'vue' {
     CharacterImage: typeof import('./components/character/CharacterImage.vue')['default']
     CheckBox: typeof import('./components/ui/CheckBox.vue')['default']
     CurrencyAmount: typeof import('./components/ui/CurrencyAmount.vue')['default']
+    DeveloperSettingsModal: typeof import('./components/developer/DeveloperSettingsModal.vue')['default']
     DialogBox: typeof import('./components/dialog/DialogBox.vue')['default']
     DialogPanel: typeof import('./components/panels/DialogPanel.vue')['default']
     DialogStarter: typeof import('./components/dialog/DialogStarter.vue')['default']
