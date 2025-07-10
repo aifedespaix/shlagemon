@@ -356,9 +356,6 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { BattleCoreOptions } from './composables/useBattleCore'
-  import('./composables/useBattleCore')
-  // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
   // @ts-ignore
@@ -531,7 +528,6 @@ declare module 'vue' {
     readonly useBallStore: UnwrapRef<typeof import('./stores/ball')['useBallStore']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
-    readonly useBattleCore: UnwrapRef<typeof import('./composables/useBattleCore')['useBattleCore']>
     readonly useBattleEffects: UnwrapRef<typeof import('./composables/battleEngine')['useBattleEffects']>
     readonly useBattleStatsStore: UnwrapRef<typeof import('./stores/battleStats')['useBattleStatsStore']>
     readonly useBattleStore: UnwrapRef<typeof import('./stores/battle')['useBattleStore']>
@@ -558,7 +554,6 @@ declare module 'vue' {
     readonly useDebounce: UnwrapRef<typeof import('@vueuse/core')['useDebounce']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useDebouncedRefHistory: UnwrapRef<typeof import('@vueuse/core')['useDebouncedRefHistory']>
-    readonly useDeveloperStore: UnwrapRef<typeof import('./stores/developer')['useDeveloperStore']>
     readonly useDeviceMotion: UnwrapRef<typeof import('@vueuse/core')['useDeviceMotion']>
     readonly useDeviceOrientation: UnwrapRef<typeof import('@vueuse/core')['useDeviceOrientation']>
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
