@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import { onMounted, onUnmounted, ref } from 'vue'
+import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import { useBattleEffects } from '~/composables/battleEngine'
@@ -66,33 +67,18 @@ onUnmounted(stop)
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
-    <div class="w-full flex items-center justify-center gap-4">
+  <BattleScene>
+    <template #player>
       <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
         <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
         <BattleShlagemon :mon="player" :hp="playerHp" :fainted="playerFainted" flipped />
       </div>
-      <div class="vs font-bold">
-        VS
-      </div>
+    </template>
+    <template #enemy>
       <div class="mon relative flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
         <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
         <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
       </div>
-    </div>
-  </div>
+    </template>
+  </BattleScene>
 </template>
-
-<style scoped>
-.flash {
-  animation: flash 0.1s ease-in;
-}
-@keyframes flash {
-  from {
-    filter: brightness(2);
-  }
-  to {
-    filter: brightness(1);
-  }
-}
-</style>

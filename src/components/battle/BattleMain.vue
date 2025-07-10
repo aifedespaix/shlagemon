@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
-import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
+import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
@@ -279,49 +279,60 @@ onUnmounted(() => {
         <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
       </Tooltip>
     </div>
-    <BattleHeader :zone-name="zone.current.name" />
-    <div v-if="dex.activeShlagemon && enemy" class="max-w-160 w-full flex flex-1 self-center gap-2">
-      <BattleShlagemon
-        :mon="dex.activeShlagemon"
-        :hp="playerHp"
-        :fainted="playerFainted"
-        flipped
-        :effects="dex.effects"
-        :disease="disease.active"
-        :disease-remaining="disease.remaining"
-        :class="{ flash: flashPlayer }"
-      >
-        <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-      </BattleShlagemon>
-      <div class="self-center font-bold">
-        VS
-      </div>
-      <BattleShlagemon
-        v-if="enemy"
-        class="mon"
-        :class="{ flash: flashEnemy }"
-        :mon="enemy"
-        :hp="enemyHp"
-        :fainted="enemyFainted"
-        color="bg-red-500"
-        show-ball
-        :owned="enemyCaptured"
-        @click="onClick"
-        @mousemove="onMouseMove"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-      >
-        <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
-        <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-      </BattleShlagemon>
-      <BattleCapture
-        v-if="enemy"
-        :enemy="enemy"
-        :enemy-hp="enemyHp"
-        :stop-battle="stopBattle"
-        @finish="onCaptureEnd"
-      />
-    </div>
+    <BattleScene
+      v-if="dex.activeShlagemon && enemy"
+      class="max-w-160 w-full flex-1 self-center"
+      :show-attack-cursor="showAttackCursor"
+      :cursor-x="cursorX"
+      :cursor-y="cursorY"
+      :cursor-clicked="cursorClicked"
+      @click="onClick"
+      @mousemove="onMouseMove"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
+      <template #header>
+        <BattleHeader :zone-name="zone.current.name" />
+      </template>
+      <template #player>
+        <BattleShlagemon
+          :mon="dex.activeShlagemon"
+          :hp="playerHp"
+          :fainted="playerFainted"
+          flipped
+          :effects="dex.effects"
+          :disease="disease.active"
+          :disease-remaining="disease.remaining"
+          :class="{ flash: flashPlayer }"
+        >
+          <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
+        </BattleShlagemon>
+      </template>
+      <template #enemy>
+        <BattleShlagemon
+          v-if="enemy"
+          class="mon"
+          :class="{ flash: flashEnemy }"
+          :mon="enemy"
+          :hp="enemyHp"
+          :fainted="enemyFainted"
+          color="bg-red-500"
+          show-ball
+          :owned="enemyCaptured"
+        >
+          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
+        </BattleShlagemon>
+      </template>
+      <template #capture>
+        <BattleCapture
+          v-if="enemy"
+          :enemy="enemy"
+          :enemy-hp="enemyHp"
+          :stop-battle="stopBattle"
+          @finish="onCaptureEnd"
+        />
+      </template>
+    </BattleScene>
     <ShlagemonXpBar
       v-if="dex.activeShlagemon"
       class="max-w-160 w-full self-center"
@@ -333,20 +344,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.flash {
-  animation: flash 0.1s ease-in;
-}
-
 .mon {
   @apply relative flex flex-1 h-full flex-col items-center justify-end;
-}
-
-@keyframes flash {
-  from {
-    filter: brightness(2);
-  }
-  to {
-    filter: brightness(1);
-  }
 }
 </style>
