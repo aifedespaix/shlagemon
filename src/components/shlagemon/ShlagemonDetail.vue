@@ -7,8 +7,8 @@ import Button from '~/components/ui/Button.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
 import { useDiseaseStore } from '~/stores/disease'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useWearableItemStore } from '~/stores/wearableItem'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 const emit = defineEmits<{
@@ -46,7 +46,7 @@ const allowEvolution = computed({
 })
 
 const store = useShlagedexStore()
-const multiExpStore = useMultiExpStore()
+const wearableItemStore = useWearableItemStore()
 const disease = useDiseaseStore()
 const showConfirm = ref(false)
 
@@ -106,9 +106,16 @@ const captureInfo = computed(() => {
         :shiny="mon.isShiny"
         class="max-h-40 object-contain"
       />
-      <div v-if="multiExpStore.holderId === mon.id" class="absolute right-0 top-0 flex items-center gap-1">
+      <div
+        v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
+        class="absolute right-0 top-0 flex items-center gap-1"
+      >
         <MultiExpIcon class="h-5 w-5" />
-        <Button type="icon" class="h-5 w-5" @click="multiExpStore.removeHolder()">
+        <Button
+          type="icon"
+          class="h-5 w-5"
+          @click="wearableItemStore.removeHolder('multi-exp')"
+        >
           <div i-carbon-trash-can />
         </Button>
       </div>
