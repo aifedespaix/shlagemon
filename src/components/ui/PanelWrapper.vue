@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-const props = defineProps<{ title?: string, isInline?: boolean, childOverflowHidden?: boolean }>()
+const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean }>()
 const opened = ref(true)
 const isMobile = useMediaQuery('(max-width: 767px)')
 
@@ -54,18 +54,28 @@ const contentClasses = computed(() => {
   const unocss: string[] = []
   if (props.isInline)
     unocss.push('flex', 'items-center', 'justify-center')
-  if (props.childOverflowHidden)
+  if (props.isScrollable) {
+    unocss.push('overflow-auto tiny-scrollbar')
+  }
+  else if (!props.isInline) {
     unocss.push('overflow-hidden')
-  else
-    unocss.push('')
+  }
 
   return unocss.join(' ')
+})
+
+const titleClasses = computed(() => {
+  const classes = []
+  if (!isMobile.value)
+    classes.push('cursor-pointer')
+
+  return classes.join(' ')
 })
 </script>
 
 <template>
   <div class="panel-wrapper" v-bind="$attrs" :class="wrapperClasses">
-    <div v-if="props.title" class="mb-1 flex items-center justify-between" :class="isMobile ? '' : 'cursor-pointer'" @click="toggle">
+    <div v-if="props.title" class="mb-1 flex items-center justify-between p-2" :class="titleClasses" @click="toggle">
       <div class="flex items-center gap-1">
         <slot name="icon" />
         <span class="font-bold">{{ props.title }}</span>
@@ -81,7 +91,7 @@ const contentClasses = computed(() => {
       @leave="leave"
       @after-leave="afterLeave"
     >
-      <div v-show="opened" class="tiny-scrollbar flex flex-1 flex-col" :class="contentClasses">
+      <div v-show="opened" class="flex flex-1 flex-col" :class="contentClasses">
         <slot />
       </div>
     </Transition>
@@ -91,7 +101,7 @@ const contentClasses = computed(() => {
 <style scoped>
 .panel-wrapper {
   @apply flex flex-col;
-  @apply p-2 rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700;
+  @apply rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800;
 }
 
 .collapse-enter-active,

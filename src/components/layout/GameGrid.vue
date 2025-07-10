@@ -126,11 +126,11 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
 
         <PanelWrapper v-if="displayGamePanel" class="overflow-hidden" :child-overflow-hidden="zone.current.type === 'village'">
-          <MainPanelView class="flex-1" :class="zone.current.type === 'village' ? 'overflow-auto' : ''" md="p-4" />
-          <ShlagemonXpBar
+          <MainPanelView class="flex-1" />
+          <!-- <ShlagemonXpBar
             v-if="showXpBar && shlagedex.activeShlagemon"
             :mon="shlagedex.activeShlagemon"
-          />
+          /> -->
         </PanelWrapper>
 
         <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" child-overflow-hidden>
@@ -146,14 +146,13 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
-          <Shlagedex />
+          <Shlagedex v-if="shlagedex.shlagemons.length" />
         </PanelWrapper>
       </div>
 
       <EvolutionModal />
       <ZoneMapModal />
       <InventoryModal />
-      <MultiExpModal />
     </div>
   </div>
 </template>

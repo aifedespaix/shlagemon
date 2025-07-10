@@ -72,6 +72,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Schlagedex: typeof import('./components/icons/schlagedex.vue')['default']
+    ScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
     SearchInput: typeof import('./components/ui/SearchInput.vue')['default']
     SelectedShlagemon: typeof import('./components/panels/SelectedShlagemon.vue')['default']
     SelectOption: typeof import('./components/ui/SelectOption.vue')['default']

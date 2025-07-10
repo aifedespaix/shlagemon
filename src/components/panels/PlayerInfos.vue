@@ -28,7 +28,7 @@ const totalInDex = allShlagemons.length
 
 <template>
   <div
-    class="w-full inline-flex items-center justify-around gap-3 rounded bg-white text-xs dark:bg-gray-900"
+    class="w-full inline-flex items-center justify-around gap-3 rounded bg-white p-1 text-xs dark:bg-gray-900"
     sm="text-sm"
   >
     <span v-if="player.pseudo" class="min-w-0 flex items-center gap-1 font-bold">

@@ -18,20 +18,21 @@ const filteredList = computed(() => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
-      <Button class="w-full flex items-center justify-between text-sm" @click="showLocked = !showLocked">
-        <span>{{ showLocked ? 'Masquer' : 'Afficher' }} les succès verrouillés</span>
+  <ScrollablePanel>
+    <template #header>
+      <Button class="flex flex-1 items-center justify-between gap-2 text-sm" @click="showLocked = !showLocked">
+        <span class="whitespace-nowrap" md="whitespace-normal">{{ showLocked ? 'Masquer' : 'Afficher' }} les succès verrouillés</span>
         <CheckBox :model-value="showLocked" @update:model-value="showLocked = $event" @click.stop />
       </Button>
-      <SearchInput v-model="search" class="w-full" />
-    </div>
-    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
+      <SearchInput v-model="search" class="flex-1" />
+    </template>
+
+    <template #content>
       <AchievementItem
         v-for="a in filteredList"
         :key="a.id"
         :achievement="a"
       />
-    </div>
-  </div>
+    </template>
+  </ScrollablePanel>
 </template>

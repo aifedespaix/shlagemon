@@ -70,16 +70,17 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <section v-if="inventory.list.length" class="h-full flex flex-col gap-2">
-    <div class="flex flex-wrap gap-2">
+  <ScrollablePanel v-if="inventory.list.length">
+    <template #header>
       <SortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
       <SearchInput v-model="filter.search" class="flex-1" />
-    </div>
-    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
+    </template>
+
+    <template #content>
       <InventoryItemCard
         v-for="entry in filteredList"
         :key="entry.item.id"
@@ -89,7 +90,8 @@ function onUse(item: Item) {
         @use="onUse(entry.item)"
         @sell="inventory.sell(entry.item.id)"
       />
-    </div>
-  </section>
+    </template>
+  </ScrollablePanel>
   <EvolutionItemModal />
+  <MultiExpModal />
 </template>

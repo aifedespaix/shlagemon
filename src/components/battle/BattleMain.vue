@@ -329,27 +329,31 @@ watch(
 )
 
 onUnmounted(() => {
-  stopInterval()
+    stopInterval()
   clearTimeout(nextBattleTimer)
 })
 </script>
 
 <template>
-  <div class="relative flex flex-col text-center">
+  <div class="relative flex flex-col gap-1 p-1">
     <FightKingButton />
-    <div v-if="zone.current.maxLevel" class="relative mb-1 flex items-center justify-center gap-1 font-bold">
-      <div class="absolute left-0 flex gap-2">
-        <Tooltip :text="captureTooltip">
-          <Button type="icon" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
-            <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
-          </Button>
-        </Tooltip>
-        <Tooltip :text="winTooltip">
-          <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
-        </Tooltip>
+    <div class="absolute left-0 top-0 flex items-center gap-2">
+      <Tooltip :text="captureTooltip">
+        <Button type="icon" class="rounded-tl-0" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
+          <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+        </Button>
+      </Tooltip>
+      <Tooltip :text="winTooltip">
+        <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
+      </Tooltip>
+    </div>
+    <div v-if="zone.current.maxLevel" class="flex flex-col items-center justify-center p-x-20 font-bold">
+      <div class="overflow-ellipsis w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="zone.current.name">
+        {{ zone.current.name }}
       </div>
-
-      {{ zone.current.name }} (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
+      <div class="whitespace-nowrap text-xs">
+        (lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }})
+      </div>
     </div>
     <div v-if="dex.activeShlagemon && enemy" class="flex flex-1 flex-col items-center gap-2">
       <div class="w-full flex flex-1 items-center justify-center gap-4">
@@ -390,7 +394,7 @@ onUnmounted(() => {
         <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
       </div>
       <Button
-        class="absolute right-50% top-10 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
+        class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
         :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
         :disabled="captureButtonDisabled"
         @click="openCapture"
@@ -410,7 +414,9 @@ onUnmounted(() => {
         :ball="captureBall"
         @finish="onCaptureEnd"
       />
-    </div>
+    </div>          <ShlagemonXpBar
+      :mon="dex.activeShlagemon"
+    />
     <ZoneMonsModal />
     <CaptureLimitModal />
   </div>

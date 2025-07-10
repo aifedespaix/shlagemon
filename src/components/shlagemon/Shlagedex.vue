@@ -51,18 +51,16 @@ function onItemClick(mon: DexShlagemon) {
 </script>
 
 <template>
-  <section v-if="dex.shlagemons.length" class="h-full flex flex-col">
-    <ShlagemonList
-      :mons="dex.shlagemons"
-      show-checkbox
-      :on-item-click="onItemClick"
+  <ShlagemonList
+    :mons="dex.shlagemons"
+    show-checkbox
+    :on-item-click="onItemClick"
+  />
+  <Modal v-model="showDetail" footer-close @close="showDetail = false">
+    <ShlagemonDetail
+      :mon="detailMon"
+      @release="showDetail = false"
+      @active="showDetail = false"
     />
-    <Modal v-model="showDetail" footer-close @close="showDetail = false">
-      <ShlagemonDetail
-        :mon="detailMon"
-        @release="showDetail = false"
-        @active="showDetail = false"
-      />
-    </Modal>
-  </section>
+  </Modal>
 </template>

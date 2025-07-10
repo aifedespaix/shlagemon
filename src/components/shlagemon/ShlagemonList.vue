@@ -117,16 +117,17 @@ function changeActive(mon: DexShlagemon) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
-    <div class="mb-2 flex flex-wrap gap-2">
+  <ScrollablePanel>
+    <template #header>
       <SortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
       <SearchInput v-model="filter.search" />
-    </div>
-    <div class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
+    </template>
+
+    <template #content>
       <div
         v-for="mon in displayedMons"
         :key="mon.id"
@@ -169,6 +170,6 @@ function changeActive(mon: DexShlagemon) {
           @click.stop
         />
       </div>
-    </div>
-  </div>
+    </template>
+  </ScrollablePanel>
 </template>
