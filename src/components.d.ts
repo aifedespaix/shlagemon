@@ -22,6 +22,7 @@ declare module 'vue' {
     AudioSettingsModal: typeof import('./components/audio/AudioSettingsModal.vue')['default']
     Badge: typeof import('./components/ui/Badge.vue')['default']
     BallSelectionModal: typeof import('./components/ball/BallSelectionModal.vue')['default']
+    Battle: typeof import('./components/layout/Battle.vue')['default']
     BattleCapture: typeof import('./components/battle/BattleCapture.vue')['default']
     BattleHeader: typeof import('./components/battle/BattleHeader.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
