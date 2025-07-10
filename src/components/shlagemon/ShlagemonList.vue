@@ -8,10 +8,10 @@ import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useDiseaseStore } from '~/stores/disease'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import ShlagemonImage from './ShlagemonImage.vue'
 import ShlagemonType from './ShlagemonType.vue'
 
@@ -31,11 +31,11 @@ const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const multiExpStore = useMultiExpStore()
 const disease = useDiseaseStore()
-const trainerBattle = useTrainerBattleStore()
+const panel = useMainPanelStore()
 const mobile = useMobileTabStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
 
-const isLocked = computed(() => trainerBattle.isActive || disease.active)
+const isLocked = computed(() => panel.current === 'trainerBattle' || disease.active)
 
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
