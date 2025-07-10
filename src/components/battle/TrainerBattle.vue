@@ -5,10 +5,9 @@ import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
 import ShlagemonXpBar from '~/components/shlagemon/ShlagemonXpBar.vue'
 import Button from '~/components/ui/Button.vue'
-import { useBattleEffects } from '~/composables/battleEngine'
+import { useBattleCore } from '~/composables/useBattleCore'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
-import { useBattleStore } from '~/stores/battle'
 import { useBattleStatsStore } from '~/stores/battleStats'
 import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
@@ -24,7 +23,6 @@ import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFac
 const dex = useShlagedexStore()
 const game = useGameStore()
 const trainerStore = useTrainerBattleStore()
-const battle = useBattleStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
@@ -44,25 +42,42 @@ const kingLabel = computed(() =>
 const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
 const enemyIndex = ref(0)
-const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
-const playerHp = ref(0)
-const enemyHp = ref(0)
-const battleActive = ref(false)
-const flashPlayer = ref(false)
-const flashEnemy = ref(false)
-const playerFainted = ref(false)
-const enemyFainted = ref(false)
-const showAttackCursor = ref(false)
-const cursorX = ref(0)
-const cursorY = ref(0)
-const cursorClicked = ref(false)
-const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
-function startInterval() {
-  battle.startLoop(() => tick(), 1000)
-}
-function stopInterval() {
-  battle.stopLoop()
-}
+
+const {
+  enemy,
+  playerHp,
+  enemyHp,
+  flashPlayer,
+  flashEnemy,
+  playerFainted,
+  enemyFainted,
+  showAttackCursor,
+  cursorX,
+  cursorY,
+  cursorClicked,
+  playerEffect,
+  enemyEffect,
+  playerVariant,
+  enemyVariant,
+  startBattle: coreStartBattle,
+  attack: coreAttack,
+  stopBattle,
+} = useBattleCore(() => {
+  const t = trainer.value
+  if (!t || !dex.activeShlagemon)
+    return null
+  const spec = t.shlagemons[enemyIndex.value]
+  if (!spec)
+    return null
+  const base = allShlagemons.find(b => b.id === spec.baseId)
+  if (!base)
+    return null
+  const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
+  const created = createDexShlagemon(base, false, rank * equilibrerank)
+  created.lvl = spec.level
+  applyStats(created)
+  return created
+})
 watch(trainer, (t) => {
   if (t) {
     stage.value = 'before'
@@ -93,36 +108,64 @@ function startFight() {
   startBattle()
 }
 
-function startBattle() {
+function startBattle(mon?: typeof enemy.value) {
   clearTimeout(nextBattleTimer)
-  const t = trainer.value
-  if (!t || !dex.activeShlagemon)
-    return
-  stage.value = 'battle'
-  const spec = t.shlagemons[enemyIndex.value]
-  if (!spec)
-    return
-  const base = allShlagemons.find(b => b.id === spec.baseId)
-  if (!base)
-    return
-  const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
-  const created = createDexShlagemon(base, false, rank * equilibrerank)
-  created.lvl = spec.level
-  applyStats(created)
-  enemy.value = created
-  enemyHp.value = enemy.value.hp
-  battleActive.value = true
-  startInterval()
+  coreStartBattle(mon ?? undefined)
 }
+function finishBattle() {
+  clearTimeout(nextBattleTimer)
+  nextBattleTimer = window.setTimeout(async () => {
+    events.emit('battle:end')
+    if (enemyHp.value <= 0 && playerHp.value > 0) {
+      if (dex.activeShlagemon && enemy.value) {
+        const xp = xpRewardForLevel(enemy.value.lvl)
+        await dex.gainXp(
+          dex.activeShlagemon,
+          xp,
+          undefined,
+          trainerStore.levelUpHealPercent,
+        )
+        const holder = multiExpStore.holder
+        if (holder) {
+          const share = Math.round(xp * 0.5)
+          await dex.gainXp(holder, share, undefined, trainerStore.levelUpHealPercent)
+        }
+      }
+      enemyIndex.value += 1
+      if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
+        playerFainted.value = false
+        enemyFainted.value = false
+        startBattle()
+        return
+      }
+      if (trainer.value)
+        game.addShlagidiamond(trainer.value.reward)
+      result.value = 'win'
+      stage.value = 'after'
+      playerFainted.value = false
+      enemyFainted.value = false
+      return
+    }
+
+    if (playerHp.value <= 0) {
+      battleStats.addLoss()
+      notifyAchievement({ type: 'battle-loss' })
+      result.value = 'lose'
+      stage.value = 'after'
+      playerFainted.value = false
+      enemyFainted.value = false
+      return
+    }
+
+    stage.value = 'after'
+    playerFainted.value = false
+    enemyFainted.value = false
+  }, 500)
+}
+
 function attack() {
-  if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
-    return
-  const { effect, crit } = battle.clickAttack(dex.activeShlagemon, enemy.value)
-  showEffect('enemy', effect, crit)
-  enemyHp.value = enemy.value.hpCurrent
-  flashEnemy.value = true
-  setTimeout(() => (flashEnemy.value = false), 100)
-  checkEnd()
+  if (coreAttack())
+    finishBattle()
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -142,82 +185,6 @@ function onClickArea(_e: MouseEvent) {
   cursorClicked.value = true
   setTimeout(() => (cursorClicked.value = false), 150)
   attack()
-}
-
-function tick() {
-  if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
-    return
-  const { player: resPlayer, enemy: resEnemy } = battle.duel(dex.activeShlagemon, enemy.value)
-  showEffect('enemy', resPlayer.effect, resPlayer.crit)
-  enemyHp.value = enemy.value.hpCurrent
-  flashEnemy.value = true
-  setTimeout(() => (flashEnemy.value = false), 100)
-  if (resEnemy) {
-    showEffect('player', resEnemy.effect, resEnemy.crit)
-    playerHp.value = dex.activeShlagemon.hpCurrent
-    flashPlayer.value = true
-    setTimeout(() => (flashPlayer.value = false), 100)
-  }
-  checkEnd()
-}
-
-function checkEnd() {
-  if (enemyHp.value <= 0 || playerHp.value <= 0) {
-    battleActive.value = false
-    stopInterval()
-    if (dex.activeShlagemon)
-      dex.activeShlagemon.hpCurrent = playerHp.value
-    playerFainted.value = playerHp.value <= 0
-    enemyFainted.value = enemyHp.value <= 0
-    clearTimeout(nextBattleTimer)
-    nextBattleTimer = window.setTimeout(async () => {
-      events.emit('battle:end')
-      if (enemyHp.value <= 0 && playerHp.value > 0) {
-        if (dex.activeShlagemon && enemy.value) {
-          const xp = xpRewardForLevel(enemy.value.lvl)
-          await dex.gainXp(
-            dex.activeShlagemon,
-            xp,
-            undefined,
-            trainerStore.levelUpHealPercent,
-          )
-          const holder = multiExpStore.holder
-          if (holder) {
-            const share = Math.round(xp * 0.5)
-            await dex.gainXp(holder, share, undefined, trainerStore.levelUpHealPercent)
-          }
-        }
-        enemyIndex.value += 1
-        if (enemyIndex.value < (trainer.value?.shlagemons.length || 0)) {
-          playerFainted.value = false
-          enemyFainted.value = false
-          startBattle()
-          return
-        }
-        if (trainer.value)
-          game.addShlagidiamond(trainer.value.reward)
-        result.value = 'win'
-        stage.value = 'after'
-        playerFainted.value = false
-        enemyFainted.value = false
-        return
-      }
-
-      if (playerHp.value <= 0) {
-        battleStats.addLoss()
-        notifyAchievement({ type: 'battle-loss' })
-        result.value = 'lose'
-        stage.value = 'after'
-        playerFainted.value = false
-        enemyFainted.value = false
-        return
-      }
-
-      stage.value = 'after'
-      playerFainted.value = false
-      enemyFainted.value = false
-    }, 500)
-  }
 }
 
 function finish() {
@@ -242,7 +209,7 @@ function cancelFight() {
 }
 
 onUnmounted(() => {
-  stopInterval()
+  stopBattle()
   clearTimeout(nextBattleTimer)
 })
 </script>

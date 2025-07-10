@@ -7,13 +7,12 @@ import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
 import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
 import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
-import { useBattleEffects } from '~/composables/battleEngine'
+import { useBattleCore } from '~/composables/useBattleCore'
 import { balls } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'
-import { useBattleStore } from '~/stores/battle'
 import { useBattleStatsStore } from '~/stores/battleStats'
 import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
 import { useDiseaseStore } from '~/stores/disease'
@@ -34,7 +33,6 @@ const dex = useShlagedexStore()
 const game = useGameStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
-const battle = useBattleStore()
 const disease = useDiseaseStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
@@ -47,6 +45,56 @@ const events = useEventStore()
 const audio = useAudioStore()
 const equilibrerank = 2
 let nextBattleTimer: number | undefined
+
+const {
+  enemy,
+  playerHp,
+  enemyHp,
+  battleActive,
+  flashPlayer,
+  flashEnemy,
+  playerFainted,
+  enemyFainted,
+  showAttackCursor,
+  cursorX,
+  cursorY,
+  cursorClicked,
+  playerEffect,
+  enemyEffect,
+  playerVariant,
+  enemyVariant,
+  startBattle: coreStartBattle,
+  attack: coreAttack,
+} = useBattleCore(() => {
+  const active = dex.activeShlagemon
+  if (!active)
+    return null
+  const available = zone.current.shlagemons?.length
+    ? zone.current.shlagemons
+    : allShlagemons
+  let pool = available
+  const last = progress.lastEncounters[zone.current.id]
+  if (last?.length >= 3 && last.every(id => id === last[0])) {
+    const filtered = available.filter(b => b.id !== last[0])
+    if (filtered.length)
+      pool = filtered
+  }
+  const base = pickRandomByCoefficient(pool)
+  progress.registerEncounter(zone.current.id, base.id)
+  const rank = zone.getZoneRank(zone.current.id) * equilibrerank
+  const created = createDexShlagemon(base, false, rank)
+  const min = Number(zone.current.minLevel ?? 1)
+  const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
+  const max = Math.max(zoneMax - 1, min)
+  const lvl = Math.floor(Math.random() * (max - min + 1)) + min
+  created.lvl = lvl
+  applyStats(created)
+  if (created.isShiny) {
+    toast('Vous avez rencontré un Shiny !')
+    audio.playSfx('/audio/sfx/shiny.ogg')
+  }
+  return created
+})
 
 const wins = computed(() => progress.getWins(zone.current.id))
 const hasAllZoneMons = computed(() => {
@@ -66,15 +114,11 @@ const winTooltip = computed(() =>
   `Vous avez vaincu ${wins.value.toLocaleString()} Shlagémon dans cette zone`,
 )
 
-const playerHp = ref(0)
-const enemyHp = ref(0)
-const enemy = ref<ReturnType<typeof createDexShlagemon> | null>(null)
 const enemyCaptured = computed(() =>
   enemy.value
     ? dex.shlagemons.some(m => m.base.id === enemy.value!.base.id)
     : false,
 )
-const battleActive = ref(false)
 const showCapture = ref(false)
 const captureBall = ref(balls[0])
 const captureButtonDisabled = computed(() =>
@@ -89,21 +133,6 @@ const captureButtonTooltip = computed(() => {
     return 'Un badge est nécessaire pour capturer ce niveau'
   return 'Capturer le Shlagémon'
 })
-const flashPlayer = ref(false)
-const flashEnemy = ref(false)
-const playerFainted = ref(false)
-const enemyFainted = ref(false)
-const showAttackCursor = ref(false)
-const cursorX = ref(0)
-const cursorY = ref(0)
-const cursorClicked = ref(false)
-const { playerEffect, enemyEffect, playerVariant, enemyVariant, showEffect } = useBattleEffects()
-function startInterval() {
-  battle.startLoop(() => tick(), 1000)
-}
-function stopInterval() {
-  battle.stopLoop()
-}
 
 function openCapture() {
   const id = ballStore.current
@@ -115,8 +144,7 @@ function openCapture() {
   }
   inventory.remove(id)
   captureBall.value = balls.find(b => b.id === id) || balls[0]
-  battleActive.value = false
-  stopInterval()
+  stopBattle()
   showCapture.value = true
   audio.playSfx('/audio/sfx/capture-start.ogg')
 }
@@ -150,58 +178,59 @@ async function onCaptureEnd(success: boolean) {
   }
   else {
     audio.playSfx('/audio/sfx/capture-fail.ogg')
-    battleActive.value = true
-    startInterval()
+    coreStartBattle(enemy.value!)
   }
 }
 
-function startBattle() {
+function startBattle(mon?: typeof enemy.value) {
   clearTimeout(nextBattleTimer)
-  const active = dex.activeShlagemon
-  if (!active)
-    return
-  const available = zone.current.shlagemons?.length
-    ? zone.current.shlagemons
-    : allShlagemons
-  let pool = available
-  const last = progress.lastEncounters[zone.current.id]
-  if (last?.length >= 3 && last.every(id => id === last[0])) {
-    const filtered = available.filter(b => b.id !== last[0])
-    if (filtered.length)
-      pool = filtered
-  }
-  const base = pickRandomByCoefficient(pool)
-  progress.registerEncounter(zone.current.id, base.id)
-  const rank = zone.getZoneRank(zone.current.id) * equilibrerank
-  const created = createDexShlagemon(base, false, rank)
-  const min = Number(zone.current.minLevel ?? 1)
-  const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
-  const max = Math.max(zoneMax - 1, min)
-  const lvl = Math.floor(Math.random() * (max - min + 1)) + min
-  created.lvl = lvl
-  applyStats(created)
-  enemy.value = created
-  if (created.isShiny) {
-    toast('Vous avez rencontré un Shiny !')
-    audio.playSfx('/audio/sfx/shiny.ogg')
-  }
-  if (active.hpCurrent <= 0)
-    active.hpCurrent = active.hp
-  playerHp.value = active.hpCurrent
-  enemyHp.value = enemy.value.hp
-  battleActive.value = true
-  startInterval()
+  coreStartBattle(mon ?? undefined)
+}
+
+function finishBattle() {
+  clearTimeout(nextBattleTimer)
+  nextBattleTimer = window.setTimeout(async () => {
+    const playerWon = enemyHp.value <= 0 && playerHp.value > 0
+    const playerLost = playerHp.value <= 0 && enemyHp.value > 0
+    events.emit('battle:end')
+    if (dex.activeShlagemon) {
+      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      playerHp.value = dex.activeShlagemon.hpCurrent
+    }
+    if (playerWon) {
+      const stronger = enemy.value && dex.activeShlagemon
+        ? enemy.value.lvl > dex.activeShlagemon.lvl
+        : false
+      progress.addWin(zone.current.id)
+      game.addShlagidolar(zone.rewardMultiplier)
+      notifyAchievement({ type: 'battle-win', stronger })
+      if (dex.activeShlagemon && enemy.value) {
+        const xp = xpRewardForLevel(enemy.value.lvl)
+        await dex.gainXp(
+          dex.activeShlagemon,
+          xp,
+          zone.current.maxLevel,
+        )
+        const holder = multiExpStore.holder
+        if (holder) {
+          const share = Math.round(xp * 0.5)
+          await dex.gainXp(holder, share, zone.current.maxLevel)
+        }
+      }
+    }
+    else if (playerLost) {
+      battleStats.addLoss()
+      notifyAchievement({ type: 'battle-loss' })
+    }
+    playerFainted.value = false
+    enemyFainted.value = false
+    startBattle()
+  }, 500)
 }
 
 function attack() {
-  if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
-    return
-  const { effect, crit } = battle.clickAttack(dex.activeShlagemon, enemy.value)
-  showEffect('enemy', effect, crit)
-  enemyHp.value = enemy.value.hpCurrent
-  flashEnemy.value = true
-  setTimeout(() => (flashEnemy.value = false), 100)
-  checkEnd()
+  if (coreAttack())
+    finishBattle()
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -223,69 +252,6 @@ function onClick(_e: MouseEvent) {
   attack()
 }
 
-function tick() {
-  if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
-    return
-  const { player: resPlayer, enemy: resEnemy } = battle.duel(dex.activeShlagemon, enemy.value)
-  showEffect('enemy', resPlayer.effect, resPlayer.crit)
-  enemyHp.value = enemy.value.hpCurrent
-  flashEnemy.value = true
-  setTimeout(() => (flashEnemy.value = false), 100)
-  if (resEnemy) {
-    showEffect('player', resEnemy.effect, resEnemy.crit)
-    playerHp.value = dex.activeShlagemon.hpCurrent
-    flashPlayer.value = true
-    setTimeout(() => (flashPlayer.value = false), 100)
-  }
-  checkEnd()
-}
-function checkEnd() {
-  if (enemyHp.value <= 0 || playerHp.value <= 0) {
-    battleActive.value = false
-    stopInterval()
-    playerFainted.value = playerHp.value <= 0
-    enemyFainted.value = enemyHp.value <= 0
-    clearTimeout(nextBattleTimer)
-    nextBattleTimer = window.setTimeout(async () => {
-      const playerWon = enemyHp.value <= 0 && playerHp.value > 0
-      const playerLost = playerHp.value <= 0 && enemyHp.value > 0
-      events.emit('battle:end')
-      if (dex.activeShlagemon) {
-        dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
-        playerHp.value = dex.activeShlagemon.hpCurrent
-      }
-      if (playerWon) {
-        const stronger = enemy.value && dex.activeShlagemon
-          ? enemy.value.lvl > dex.activeShlagemon.lvl
-          : false
-        progress.addWin(zone.current.id)
-        game.addShlagidolar(zone.rewardMultiplier)
-        notifyAchievement({ type: 'battle-win', stronger })
-        if (dex.activeShlagemon && enemy.value) {
-          const xp = xpRewardForLevel(enemy.value.lvl)
-          await dex.gainXp(
-            dex.activeShlagemon,
-            xp,
-            zone.current.maxLevel,
-          )
-          const holder = multiExpStore.holder
-          if (holder) {
-            const share = Math.round(xp * 0.5)
-            await dex.gainXp(holder, share, zone.current.maxLevel)
-          }
-        }
-      }
-      else if (playerLost) {
-        battleStats.addLoss()
-        notifyAchievement({ type: 'battle-loss' })
-      }
-      playerFainted.value = false
-      enemyFainted.value = false
-      startBattle()
-    }, 500)
-  }
-}
-
 watch(
   () => dex.activeShlagemon,
   (mon, prev) => {
@@ -297,8 +263,7 @@ watch(
       if (enemy.value)
         enemy.value.hpCurrent = enemy.value.hp
       enemyHp.value = enemy.value?.hp ?? 0
-      stopInterval()
-      battleActive.value = false
+      stopBattle()
       playerHp.value = mon.hpCurrent
     }
     if (!battleActive.value)
@@ -322,14 +287,13 @@ watch(
     if (dex.activeShlagemon && lastZoneId !== zone.current.id)
       dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
     lastZoneId = zone.current.id
-    stopInterval()
-    battleActive.value = false
+    stopBattle()
     startBattle()
   },
 )
 
 onUnmounted(() => {
-  stopInterval()
+  stopBattle()
   clearTimeout(nextBattleTimer)
 })
 </script>
