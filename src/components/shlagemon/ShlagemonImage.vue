@@ -11,7 +11,6 @@ const props = withDefaults(defineProps<{
 <template>
   <ImageByBackground
     :src="`/shlagemons/${props.id}/${props.id}.webp`"
-    draggable="false"
     :alt="props.alt"
     class="h-full w-full"
     :style="props.shiny ? { filter: 'hue-rotate(180deg)' } : {}"

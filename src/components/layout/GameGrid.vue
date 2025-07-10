@@ -99,14 +99,14 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       md="flex-row justify-between"
     >
       <div class="panel-group overflow-hidden" md="max-w-80 basis-1/4">
-        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden">
+        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="dialogStore.isDialogVisible">
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
           <InventoryPanel />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
+        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" :is-locked="dialogStore.isDialogVisible">
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -115,7 +115,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       </div>
 
       <div :class="group2Classes" class="overflow-hidden" md="basis-1/2">
-        <PanelWrapper is-inline>
+        <PanelWrapper is-inline :is-locked="dialogStore.isDialogVisible">
           <PlayerInfos />
         </PanelWrapper>
 
@@ -123,7 +123,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           <MainPanelView class="flex-1" />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable>
+        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable :is-locked="dialogStore.isDialogVisible">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -132,7 +132,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       </div>
 
       <div v-if="displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable>
+        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="dialogStore.isDialogVisible">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>

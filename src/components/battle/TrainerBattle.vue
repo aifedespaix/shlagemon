@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleRound from '~/components/battle/BattleRound.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
