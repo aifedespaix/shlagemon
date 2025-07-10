@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
+import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
@@ -241,16 +241,22 @@ onUnmounted(() => {
         </Button>
       </div>
     </div>
-    <div
+    <BattleScene
       v-else-if="stage === 'battle'"
       class="w-full text-center"
+      :show-attack-cursor="showAttackCursor"
+      :cursor-x="cursorX"
+      :cursor-y="cursorY"
+      :cursor-clicked="cursorClicked"
       @click="onClickArea"
       @mousemove="onMouseMove"
       @mouseenter="onMouseEnter"
       @mouseleave="onMouseLeave"
     >
-      <BattleHeader :trainer="trainer" />
-      <div class="flex flex-1 items-center justify-center gap-4">
+      <template #header>
+        <BattleHeader :trainer="trainer" />
+      </template>
+      <template #player>
         <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
           <BattleShlagemon
@@ -262,16 +268,14 @@ onUnmounted(() => {
             :disease-remaining="disease.remaining"
           />
         </div>
-        <div class="vs font-bold">
-          VS
-        </div>
+      </template>
+      <template #enemy>
         <div v-if="enemy" class="mon relative flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
         </div>
-        <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
-      </div>
-    </div>
+      </template>
+    </BattleScene>
     <div v-else class="flex flex-col items-center gap-2 text-center">
       <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div v-if="result === 'win'">
@@ -294,17 +298,3 @@ onUnmounted(() => {
     />
   </div>
 </template>
-
-<style scoped>
-.flash {
-  animation: flash 0.1s ease-in;
-}
-@keyframes flash {
-  from {
-    filter: brightness(2);
-  }
-  to {
-    filter: brightness(1);
-  }
-}
-</style>
