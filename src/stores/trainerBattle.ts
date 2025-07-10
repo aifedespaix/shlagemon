@@ -18,6 +18,7 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   }
 
   const current = computed(() => queue.value[currentIndex.value] ?? null)
+  const isActive = computed(() => Boolean(current.value))
 
   function next() {
     currentIndex.value += 1
@@ -31,5 +32,14 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   // init with default trainers
   setQueue(trainersData)
 
-  return { queue, current, next, add, setQueue, reset, levelUpHealPercent }
+  return {
+    queue,
+    current,
+    isActive,
+    next,
+    add,
+    setQueue,
+    reset,
+    levelUpHealPercent,
+  }
 })
