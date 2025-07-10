@@ -18,6 +18,7 @@ import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
+import { watch } from 'vue'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
@@ -47,6 +48,7 @@ const {
   enemy,
   playerHp,
   enemyHp,
+  battleActive,
   playerFainted,
   enemyFainted,
   showAttackCursor,
@@ -187,6 +189,14 @@ function onClickArea(_e: MouseEvent) {
   attack()
 }
 
+watch(
+  battleActive,
+  (active, prev) => {
+    if (!active && prev && (playerFainted.value || enemyFainted.value))
+      finishBattle()
+  },
+)
+
 function finish() {
   if (result.value === 'win') {
     if (trainer.value?.id.startsWith('king-')) {
@@ -251,7 +261,7 @@ onUnmounted(() => {
       @mouseleave="onMouseLeave"
     >
       <template #header>
-        <BattleHeader :trainer="trainer" />
+        <BattleHeader :trainer="trainer" :defeated="enemyIndex" />
       </template>
       <template #player>
         <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />

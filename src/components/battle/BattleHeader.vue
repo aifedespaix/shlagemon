@@ -2,9 +2,11 @@
 import type { Trainer } from '~/type'
 import CharacterImage from '~/components/character/CharacterImage.vue'
 import ImageByBackground from '~/components/ui/ImageByBackground.vue'
+import { computed } from 'vue'
 import { useZoneStore } from '~/stores/zone'
 
-const props = defineProps<{ zoneName?: string, trainer?: Trainer }>()
+const props = defineProps<{ zoneName?: string, trainer?: Trainer, defeated?: number }>()
+const defeated = computed(() => props.defeated ?? 0)
 const zone = useZoneStore()
 </script>
 
@@ -26,7 +28,13 @@ const zone = useZoneStore()
         <div class="h-full flex flex-col items-end">
           <div>{{ props.trainer.character.name }}</div>
           <div class="flex gap-2">
-            <ImageByBackground v-for="i in props.trainer.shlagemons.length" :key="i" src="/items/shlageball/shlageball.png" class="h-4 w-4" />
+            <ImageByBackground
+              v-for="i in props.trainer.shlagemons.length"
+              :key="i"
+              src="/items/shlageball/shlageball.png"
+              class="h-4 w-4"
+              :class="{ 'saturate-0': i <= defeated }"
+            />
           </div>
         </div>
         <CharacterImage :id="props.trainer.character.id" :alt="props.trainer.character.name" class="h-full" />
