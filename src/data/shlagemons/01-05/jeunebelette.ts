@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
-import vieuxBlaireau from '../vieuxblaireau'
+import vieuxBlaireau from '../evolutions/vieuxblaireau'
 
 export const jeunebelette: BaseShlagemon = {
   id: 'jeunebelette',

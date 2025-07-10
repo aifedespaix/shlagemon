@@ -1,5 +1,5 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
+import { shlagemonTypes } from '../../shlagemons-type'
 import { barbeBizarre } from './barbe-bizarre'
 
 export const bulgrosboule: BaseShlagemon = {

@@ -6,12 +6,12 @@ import nosferachid from './shlagemons/10-15/nosferachid'
 import goubite from './shlagemons/15-20/goubite'
 import piafsansbec from './shlagemons/25-30/piafsansbec'
 import canarchicon from './shlagemons/30-35/canarchicon'
-import alakalbar from './shlagemons/alakalbar'
-import chrysachier from './shlagemons/chrysachier'
-import coconnul from './shlagemons/coconnul'
-import raptorincel from './shlagemons/raptorincel'
-import ratartine from './shlagemons/ratartine'
-import rouxScoop from './shlagemons/roux-scoop'
+import alakalbar from './shlagemons/evolutions/alakalbar'
+import chrysachier from './shlagemons/evolutions/chrysachier'
+import coconnul from './shlagemons/evolutions/coconnul'
+import raptorincel from './shlagemons/evolutions/raptorincel'
+import ratartine from './shlagemons/evolutions/ratartine'
+import rouxScoop from './shlagemons/evolutions/roux-scoop'
 
 export const arena20: Arena = {
   id: 'arena20',

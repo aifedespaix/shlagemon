@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
-import barbok from '../barbok'
+import barbok from '../evolutions/barbok'
 
 export const amoche: BaseShlagemon = {
   id: 'amoche',

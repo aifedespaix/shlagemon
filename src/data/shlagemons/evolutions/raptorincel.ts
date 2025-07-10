@@ -1,5 +1,5 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../shlagemons-type'
+import { shlagemonTypes } from '../../shlagemons-type'
 import dracoCon from './draco-con'
 
 export const raptorincel: BaseShlagemon = {

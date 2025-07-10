@@ -1,7 +1,7 @@
 import type { Character } from '~/type/character'
 import type { Trainer } from '~/types'
-import { carapouffe } from './shlagemons/carapouffe'
-import { salamiches } from './shlagemons/salamiches'
+import { carapouffe } from './shlagemons/evolutions/carapouffe'
+import { salamiches } from './shlagemons/evolutions/salamiches'
 
 const bobCharacter: Character = {
   id: 'prof-merdant',
