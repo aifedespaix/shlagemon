@@ -1,32 +1,27 @@
 <script setup lang="ts">
 import { toast } from 'vue3-toastify'
 import AttackCursor from '~/components/battle/AttackCursor.vue'
+import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
-import CaptureOverlay from '~/components/battle/CaptureOverlay.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
 import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
 import { useBattleCore } from '~/composables/useBattleCore'
-import { balls } from '~/data/items/shlageball'
+
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
-import { useBallStore } from '~/stores/ball'
 import { useBattleStatsStore } from '~/stores/battleStats'
-import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
 import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
-import { useInventoryStore } from '~/stores/inventory'
 import { useMultiExpStore } from '~/stores/multiExp'
-import { usePlayerStore } from '~/stores/player'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { ballHues } from '~/utils/ball'
 import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
@@ -35,11 +30,7 @@ const game = useGameStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const disease = useDiseaseStore()
-const inventory = useInventoryStore()
-const ballStore = useBallStore()
 const multiExpStore = useMultiExpStore()
-const player = usePlayerStore()
-const captureLimitModal = useCaptureLimitModalStore()
 const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 const events = useEventStore()
@@ -120,38 +111,8 @@ const enemyCaptured = computed(() =>
     ? dex.shlagemons.some(m => m.base.id === enemy.value!.base.id)
     : false,
 )
-const showCapture = ref(false)
-const captureBall = ref(balls[0])
-const captureButtonDisabled = computed(() =>
-  (inventory.items[ballStore.current] || 0) <= 0 || enemyHp.value <= 0,
-)
-const captureButtonTooltip = computed(() => {
-  if ((inventory.items[ballStore.current] || 0) <= 0)
-    return 'Pas de Schlagéball, capture impossible'
-  if (enemyHp.value <= 0)
-    return 'Impossible de capturer un Shlagémon K.O.'
-  if (enemy.value && enemy.value.lvl > player.captureLevelCap)
-    return 'Un badge est nécessaire pour capturer ce niveau'
-  return 'Capturer le Shlagémon'
-})
-
-function openCapture() {
-  const id = ballStore.current
-  if (!enemy.value || (inventory.items[id] || 0) <= 0 || enemyHp.value <= 0)
-    return
-  if (enemy.value.lvl > player.captureLevelCap) {
-    captureLimitModal.open(enemy.value.lvl)
-    return
-  }
-  inventory.remove(id)
-  captureBall.value = balls.find(b => b.id === id) || balls[0]
-  stopBattle()
-  showCapture.value = true
-  audio.playSfx('/audio/sfx/capture-start.ogg')
-}
 
 async function onCaptureEnd(success: boolean) {
-  showCapture.value = false
   if (success && enemy.value) {
     audio.playSfx('/audio/sfx/capture-success.ogg')
     dex.captureEnemy(enemy.value)
@@ -347,25 +308,11 @@ onUnmounted(() => {
         <AttackCursor v-if="showAttackCursor" :x="cursorX" :y="cursorY" :clicked="cursorClicked" />
         <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
       </BattleShlagemon>
-      <Button
-        class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
-        :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
-        :disabled="captureButtonDisabled"
-        @click="openCapture"
-      >
-        <Tooltip :text="captureButtonTooltip">
-          <ImageByBackground
-            src="/items/shlageball/shlageball.png"
-            alt="capture"
-            class="h-8 w-8 cursor-pointer"
-            :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
-          />
-        </Tooltip>
-      </Button>
-      <CaptureOverlay
-        v-if="showCapture && enemy"
-        :target="enemy"
-        :ball="captureBall"
+      <BattleCapture
+        v-if="enemy"
+        :enemy="enemy"
+        :enemy-hp="enemyHp"
+        :stop-battle="stopBattle"
         @finish="onCaptureEnd"
       />
     </div>

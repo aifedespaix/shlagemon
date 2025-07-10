@@ -4,16 +4,16 @@ import { computed } from 'vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
-import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 
 const zone = useZoneStore()
 const dex = useShlagedexStore()
-const panel = useMainPanelStore()
+const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
 const progress = useZoneProgressStore()
 const mapModal = useMapModalStore()
@@ -21,7 +21,7 @@ const dialog = useDialogStore()
 const mobile = useMobileTabStore()
 
 const zoneButtonsDisabled = computed(
-  () => panel.current === 'trainerBattle' || dialog.isDialogVisible || arena.inBattle,
+  () => trainerBattle.isActive || dialog.isDialogVisible || arena.inBattle,
 )
 
 function buttonDisabled(z: Zone) {
