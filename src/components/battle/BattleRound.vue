@@ -1,0 +1,170 @@
+<script setup lang="ts">
+import type { DexShlagemon } from '~/type/shlagemon'
+import { onMounted, watch } from 'vue'
+import BattleCapture from '~/components/battle/BattleCapture.vue'
+import BattleScene from '~/components/battle/BattleScene.vue'
+import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
+import BattleToast from '~/components/battle/BattleToast.vue'
+import { useBattleCore } from '~/composables/useBattleCore'
+import { useDiseaseStore } from '~/stores/disease'
+import { useShlagedexStore } from '~/stores/shlagedex'
+
+const props = withDefaults(defineProps<{
+  player: DexShlagemon
+  enemy: DexShlagemon
+  clickAttack?: boolean
+  captureEnabled?: boolean
+}>(), {
+  clickAttack: true,
+  captureEnabled: true,
+})
+
+const emit = defineEmits<{ (e: 'end', result: 'capture' | 'win' | 'lose' | 'draw'): void }>()
+
+const dex = useShlagedexStore()
+const disease = useDiseaseStore()
+
+const {
+  enemy: currentEnemy,
+  playerHp,
+  enemyHp,
+  battleActive,
+  flashPlayer,
+  flashEnemy,
+  playerFainted,
+  enemyFainted,
+  showAttackCursor,
+  cursorX,
+  cursorY,
+  cursorClicked,
+  playerEffect,
+  enemyEffect,
+  playerVariant,
+  enemyVariant,
+  startBattle: coreStartBattle,
+  stopBattle,
+  attack: coreAttack,
+} = useBattleCore({
+  createEnemy: () => props.enemy,
+})
+
+function startBattle() {
+  coreStartBattle(props.enemy)
+}
+
+function emitResult(result: 'capture' | 'win' | 'lose' | 'draw') {
+  emit('end', result)
+}
+
+function handleEnd() {
+  const win = enemyHp.value <= 0 && playerHp.value > 0
+  const lose = playerHp.value <= 0 && enemyHp.value > 0
+  if (win)
+    emitResult('win')
+  else if (lose)
+    emitResult('lose')
+  else
+    emitResult('draw')
+}
+
+function onCaptureEnd(success: boolean) {
+  if (success)
+    emitResult('capture')
+  else
+    startBattle()
+}
+
+watch(
+  () => battleActive.value,
+  (active, prev) => {
+    if (!active && prev && (playerFainted.value || enemyFainted.value))
+      handleEnd()
+  },
+)
+
+watch(
+  () => [props.enemy, props.player],
+  () => {
+    startBattle()
+  },
+  { immediate: true },
+)
+
+function attack() {
+  if (coreAttack())
+    handleEnd()
+}
+
+function onMouseMove(e: MouseEvent) {
+  cursorX.value = e.clientX
+  cursorY.value = e.clientY
+}
+
+function onMouseEnter() {
+  showAttackCursor.value = true
+}
+
+function onMouseLeave() {
+  showAttackCursor.value = false
+}
+
+function onClick(_e: MouseEvent) {
+  cursorClicked.value = true
+  setTimeout(() => (cursorClicked.value = false), 150)
+  if (props.clickAttack)
+    attack()
+}
+
+onMounted(() => {
+  currentEnemy.value = props.enemy
+  startBattle()
+})
+</script>
+
+<template>
+  <BattleScene
+    class="w-full flex-1"
+    :show-attack-cursor="showAttackCursor"
+    :cursor-x="cursorX"
+    :cursor-y="cursorY"
+    :cursor-clicked="cursorClicked"
+    @click="onClick"
+    @mousemove="onMouseMove"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+  >
+    <template #player>
+      <BattleShlagemon
+        :mon="props.player"
+        :hp="playerHp"
+        :fainted="playerFainted"
+        flipped
+        :effects="dex.effects"
+        :disease="disease.active"
+        :disease-remaining="disease.remaining"
+        :class="{ flash: flashPlayer }"
+      >
+        <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
+      </BattleShlagemon>
+    </template>
+    <template #enemy>
+      <BattleShlagemon
+        :mon="props.enemy"
+        :hp="enemyHp"
+        color="bg-red-500"
+        :fainted="enemyFainted"
+        :class="{ flash: flashEnemy }"
+      >
+        <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
+      </BattleShlagemon>
+    </template>
+    <slot />
+  </BattleScene>
+  <BattleCapture
+    v-if="props.captureEnabled"
+    :enemy="props.enemy"
+    :enemy-hp="enemyHp"
+    :stop-battle="stopBattle"
+    @finish="onCaptureEnd"
+  />
+</template>
