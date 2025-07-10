@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify'
-import BattleCapture from '~/components/battle/BattleCapture.vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
-import BattleScene from '~/components/battle/BattleScene.vue'
-import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
-import BattleToast from '~/components/battle/BattleToast.vue'
+import BattleRound from '~/components/battle/BattleRound.vue'
 import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
 import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
-import { useBattleCore } from '~/composables/useBattleCore'
-
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useBattleStatsStore } from '~/stores/battleStats'
-import { useDiseaseStore } from '~/stores/disease'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -26,71 +20,71 @@ import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFac
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
-const game = useGameStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
-const disease = useDiseaseStore()
 const wearableItemStore = useWearableItemStore()
+const events = useEventStore()
+const game = useGameStore()
+const audio = useAudioStore()
 const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
-const events = useEventStore()
-const audio = useAudioStore()
-const equilibrerank = 2
+
+const enemy = ref(null as DexShlagemon | null)
 let nextBattleTimer: number | undefined
+const equilibrerank = 2
 
-const {
-  enemy,
-  playerHp,
-  enemyHp,
-  battleActive,
-  flashPlayer,
-  flashEnemy,
-  playerFainted,
-  enemyFainted,
-  showAttackCursor,
-  cursorX,
-  cursorY,
-  cursorClicked,
-  playerEffect,
-  enemyEffect,
-  playerVariant,
-  enemyVariant,
-  stopBattle,
-  startBattle: coreStartBattle,
-  attack: coreAttack,
-} = useBattleCore({
-  createEnemy: () => {
-    const active = dex.activeShlagemon
-    if (!active)
-      return null
+function createEnemy(): DexShlagemon | null {
+  const active = dex.activeShlagemon
+  if (!active)
+    return null
+  const available = zone.current.shlagemons?.length ? zone.current.shlagemons : allShlagemons
+  let pool = available
+  const last = progress.lastEncounters[zone.current.id]
+  if (last?.length >= 3 && last.every(id => id === last[0])) {
+    const filtered = available.filter(b => b.id !== last[0])
+    if (filtered.length)
+      pool = filtered
+  }
+  const base = pickRandomByCoefficient(pool)
+  progress.registerEncounter(zone.current.id, base.id)
+  const rank = zone.getZoneRank(zone.current.id) * equilibrerank
+  const created = createDexShlagemon(base, false, rank)
+  const min = Number(zone.current.minLevel ?? 1)
+  const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
+  const max = Math.max(zoneMax - 1, min)
+  const lvl = Math.floor(Math.random() * (max - min + 1)) + min
+  created.lvl = lvl
+  applyStats(created)
+  if (created.isShiny) {
+    audio.playSfx('/audio/sfx/shiny.ogg')
+  }
+  return created
+}
 
-    const available = zone.current.shlagemons?.length
-      ? zone.current.shlagemons
-      : allShlagemons
-    let pool = available
-    const last = progress.lastEncounters[zone.current.id]
-    if (last?.length >= 3 && last.every(id => id === last[0])) {
-      const filtered = available.filter(b => b.id !== last[0])
-      if (filtered.length)
-        pool = filtered
-    }
-    const base = pickRandomByCoefficient(pool)
-    progress.registerEncounter(zone.current.id, base.id)
-    const rank = zone.getZoneRank(zone.current.id) * equilibrerank
-    const created = createDexShlagemon(base, false, rank)
-    const min = Number(zone.current.minLevel ?? 1)
-    const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
-    const max = Math.max(zoneMax - 1, min)
-    const lvl = Math.floor(Math.random() * (max - min + 1)) + min
-    created.lvl = lvl
-    applyStats(created)
-    if (created.isShiny) {
-      toast('Vous avez rencontré un Shiny !')
-      audio.playSfx('/audio/sfx/shiny.ogg')
-    }
-    return created
+function startBattle() {
+  enemy.value = createEnemy()
+}
+
+onMounted(startBattle)
+
+watch(
+  () => dex.activeShlagemon,
+  (mon, prev) => {
+    if (mon && prev && prev.id !== mon.id)
+      mon.hpCurrent = mon.hp
+    if (mon && !enemy.value)
+      startBattle()
   },
-})
+)
+
+watch(
+  () => zone.selectedAt,
+  () => {
+    if (dex.activeShlagemon)
+      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+    startBattle()
+  },
+)
 
 const wins = computed(() => progress.getWins(zone.current.id))
 const hasAllZoneMons = computed(() => {
@@ -110,168 +104,51 @@ const winTooltip = computed(() =>
   `Vous avez vaincu ${wins.value.toLocaleString()} Shlagémon dans cette zone`,
 )
 
-const enemyCaptured = computed(() =>
-  enemy.value
-    ? dex.shlagemons.some(m => m.base.id === enemy.value!.base.id)
-    : false,
-)
+function resetTimers() {
+  clearTimeout(nextBattleTimer)
+}
 
-async function onCaptureEnd(success: boolean) {
-  if (success && enemy.value) {
-    audio.playSfx('/audio/sfx/capture-success.ogg')
-    dex.captureEnemy(enemy.value)
-    notifyAchievement({ type: 'capture', shiny: enemy.value.isShiny })
+async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
+  const defeated = enemy.value
+  enemy.value = null
+  events.emit('battle:end')
+  if (dex.activeShlagemon)
+    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+  if (!defeated) {
+    startBattle()
+    return
+  }
+  if (result === 'capture') {
+    dex.captureEnemy(defeated)
+    notifyAchievement({ type: 'capture', shiny: defeated.isShiny })
     if (dex.activeShlagemon) {
-      const xp = xpRewardForLevel(enemy.value.lvl)
-      await dex.gainXp(
-        dex.activeShlagemon,
-        xp,
-        zone.current.maxLevel,
-      )
+      const xp = xpRewardForLevel(defeated.lvl)
+      await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
       const holder = wearableItemStore.getHolder('multi-exp')
-      if (holder) {
-        const share = Math.round(xp * 0.5)
-        await dex.gainXp(holder, share, zone.current.maxLevel)
-      }
+      if (holder)
+        await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
     }
-    if (dex.activeShlagemon) {
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
-      playerHp.value = dex.activeShlagemon.hpCurrent
-    }
-    enemy.value = null
-    clearTimeout(nextBattleTimer)
-    nextBattleTimer = window.setTimeout(startBattle, 1000)
   }
-  else {
-    audio.playSfx('/audio/sfx/capture-fail.ogg')
-    coreStartBattle(enemy.value!)
-  }
-}
-
-function startBattle(mon?: typeof enemy.value) {
-  clearTimeout(nextBattleTimer)
-  coreStartBattle(mon ?? undefined)
-}
-
-function finishBattle() {
-  clearTimeout(nextBattleTimer)
-  nextBattleTimer = window.setTimeout(async () => {
-    const defeatedEnemy = enemy.value
-    enemy.value = null
-    const playerWon = enemyHp.value <= 0 && playerHp.value > 0
-    const playerLost = playerHp.value <= 0 && enemyHp.value > 0
-    events.emit('battle:end')
+  else if (result === 'win') {
+    const stronger = defeated.lvl > (dex.activeShlagemon?.lvl || 0)
+    progress.addWin(zone.current.id)
+    game.addShlagidolar(zone.rewardMultiplier)
+    notifyAchievement({ type: 'battle-win', stronger })
     if (dex.activeShlagemon) {
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
-      playerHp.value = dex.activeShlagemon.hpCurrent
+      const xp = xpRewardForLevel(defeated.lvl)
+      await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
+      const holder = wearableItemStore.getHolder('multi-exp')
+      if (holder)
+        await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
     }
-    if (playerWon) {
-      const stronger = defeatedEnemy && dex.activeShlagemon
-        ? defeatedEnemy.lvl > dex.activeShlagemon.lvl
-        : false
-      progress.addWin(zone.current.id)
-      game.addShlagidolar(zone.rewardMultiplier)
-      notifyAchievement({ type: 'battle-win', stronger })
-      if (dex.activeShlagemon && defeatedEnemy) {
-        const xp = xpRewardForLevel(defeatedEnemy.lvl)
-        await dex.gainXp(
-          dex.activeShlagemon,
-          xp,
-          zone.current.maxLevel,
-        )
-        const holder = wearableItemStore.getHolder('multi-exp')
-        if (holder) {
-          const share = Math.round(xp * 0.5)
-          await dex.gainXp(holder, share, zone.current.maxLevel)
-        }
-      }
-    }
-    else if (playerLost) {
-      battleStats.addLoss()
-      notifyAchievement({ type: 'battle-loss' })
-    }
-    playerFainted.value = false
-    enemyFainted.value = false
-    startBattle()
-  }, 500)
+  }
+  else if (result === 'lose') {
+    battleStats.addLoss()
+    notifyAchievement({ type: 'battle-loss' })
+  }
+  resetTimers()
+  nextBattleTimer = window.setTimeout(startBattle, 1000)
 }
-
-function attack() {
-  if (coreAttack())
-    finishBattle()
-}
-
-function onMouseMove(e: MouseEvent) {
-  cursorX.value = e.clientX
-  cursorY.value = e.clientY
-}
-
-function onMouseEnter() {
-  showAttackCursor.value = true
-}
-
-function onMouseLeave() {
-  showAttackCursor.value = false
-}
-
-function onClick(_e: MouseEvent) {
-  cursorClicked.value = true
-  setTimeout(() => (cursorClicked.value = false), 150)
-  attack()
-}
-
-watch(
-  () => dex.activeShlagemon,
-  (mon, prev) => {
-    if (!mon)
-      return
-    playerHp.value = mon.hpCurrent
-    if (prev && prev.id !== mon.id) {
-      mon.hpCurrent = mon.hp
-      if (enemy.value)
-        enemy.value.hpCurrent = enemy.value.hp
-      enemyHp.value = enemy.value?.hp ?? 0
-      stopBattle()
-      playerHp.value = mon.hpCurrent
-    }
-    if (!battleActive.value)
-      startBattle()
-  },
-  { immediate: true },
-)
-
-watch(
-  () => dex.activeShlagemon?.hpCurrent,
-  (value) => {
-    if (typeof value === 'number')
-      playerHp.value = value
-  },
-)
-
-let lastZoneId = zone.current.id
-watch(
-  () => zone.selectedAt,
-  () => {
-    if (dex.activeShlagemon && lastZoneId !== zone.current.id)
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
-    lastZoneId = zone.current.id
-    stopBattle()
-    startBattle()
-  },
-)
-
-watch(
-  battleActive,
-  (active, prev) => {
-    if (!active && prev && (playerFainted.value || enemyFainted.value))
-      finishBattle()
-  },
-)
-
-onUnmounted(() => {
-  stopBattle()
-  clearTimeout(nextBattleTimer)
-})
 </script>
 
 <template>
@@ -287,58 +164,16 @@ onUnmounted(() => {
         <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
       </Tooltip>
     </div>
-    <BattleScene
+    <BattleRound
       v-if="dex.activeShlagemon && enemy"
-      class="w-full flex-1 self-center"
-      :show-attack-cursor="showAttackCursor"
-      :cursor-x="cursorX"
-      :cursor-y="cursorY"
-      :cursor-clicked="cursorClicked"
-      @click="onClick"
-      @mousemove="onMouseMove"
-      @mouseenter="onMouseEnter"
-      @mouseleave="onMouseLeave"
+      :player="dex.activeShlagemon"
+      :enemy="enemy"
+      @end="handleEnd"
     >
       <template #header>
         <BattleHeader :zone-name="zone.current.name" />
       </template>
-      <template #player>
-        <BattleShlagemon
-          :mon="dex.activeShlagemon"
-          :hp="playerHp"
-          :fainted="playerFainted"
-          flipped
-          :effects="dex.effects"
-          :disease="disease.active"
-          :disease-remaining="disease.remaining"
-          :class="{ flash: flashPlayer }"
-        >
-          <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-        </BattleShlagemon>
-      </template>
-      <template #enemy>
-        <BattleShlagemon
-          v-if="enemy"
-          class="mon"
-          :class="{ flash: flashEnemy }"
-          :mon="enemy"
-          :hp="enemyHp"
-          :fainted="enemyFainted"
-          color="bg-red-500"
-          show-ball
-          :owned="enemyCaptured"
-        >
-          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-        </BattleShlagemon>
-      </template>
-    </BattleScene>
-    <BattleCapture
-      v-if="enemy"
-      :enemy="enemy"
-      :enemy-hp="enemyHp"
-      :stop-battle="stopBattle"
-      @finish="onCaptureEnd"
-    />
+    </BattleRound>
     <ZoneMonsModal />
     <CaptureLimitModal />
   </div>
