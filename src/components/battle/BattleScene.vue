@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import AttackCursor from '~/components/battle/AttackCursor.vue'
 
-interface Props {
-  showAttackCursor?: boolean
-  cursorX?: number
-  cursorY?: number
-  cursorClicked?: boolean
-}
-
 const props = withDefaults(defineProps<Props>(), {
   showAttackCursor: false,
   cursorX: 0,
@@ -21,13 +14,22 @@ const emit = defineEmits<{
   (e: 'mouseenter'): void
   (e: 'mouseleave'): void
 }>()
+
+const dex = useShlagedexStore()
+
+interface Props {
+  showAttackCursor?: boolean
+  cursorX?: number
+  cursorY?: number
+  cursorClicked?: boolean
+}
 </script>
 
 <template>
   <div class="flex flex-col items-center gap-2">
     <slot name="header" />
     <div
-      class="relative w-full flex flex-1 items-center justify-center gap-4"
+      class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4"
       @click="e => emit('click', e)"
       @mousemove="e => emit('mousemove', e)"
       @mouseenter="emit('mouseenter')"
@@ -44,8 +46,12 @@ const emit = defineEmits<{
         :y="props.cursorY"
         :clicked="props.cursorClicked"
       />
-      <slot name="capture" />
     </div>
     <slot />
+    <ShlagemonXpBar
+      v-if="dex.activeShlagemon"
+      class="max-w-160 w-full self-center"
+      :mon="dex.activeShlagemon"
+    />
   </div>
 </template>

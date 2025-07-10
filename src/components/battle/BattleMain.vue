@@ -289,7 +289,7 @@ onUnmounted(() => {
     </div>
     <BattleScene
       v-if="dex.activeShlagemon && enemy"
-      class="max-w-160 w-full flex-1 self-center"
+      class="w-full flex-1 self-center"
       :show-attack-cursor="showAttackCursor"
       :cursor-x="cursorX"
       :cursor-y="cursorY"
@@ -331,20 +331,13 @@ onUnmounted(() => {
           <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
         </BattleShlagemon>
       </template>
-      <template #capture>
-        <BattleCapture
-          v-if="enemy"
-          :enemy="enemy"
-          :enemy-hp="enemyHp"
-          :stop-battle="stopBattle"
-          @finish="onCaptureEnd"
-        />
-      </template>
     </BattleScene>
-    <ShlagemonXpBar
-      v-if="dex.activeShlagemon"
-      class="max-w-160 w-full self-center"
-      :mon="dex.activeShlagemon"
+    <BattleCapture
+      v-if="enemy"
+      :enemy="enemy"
+      :enemy-hp="enemyHp"
+      :stop-battle="stopBattle"
+      @finish="onCaptureEnd"
     />
     <ZoneMonsModal />
     <CaptureLimitModal />

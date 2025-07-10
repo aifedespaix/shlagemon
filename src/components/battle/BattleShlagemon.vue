@@ -48,7 +48,10 @@ function onAnimationEnd() {
 </script>
 
 <template>
-  <div class="relative flex flex-1 flex-col items-center" :class="{ 'saturate-10 contrast-200': props.disease }">
+  <div
+    class="relative h-full flex flex-1 flex-col items-center"
+    :class="{ 'saturate-10 contrast-200': props.disease }"
+  >
     <div class="absolute left-0 top-2 z-150 flex flex-col gap-1">
       <EffectBadge
         v-for="e in props.effects"

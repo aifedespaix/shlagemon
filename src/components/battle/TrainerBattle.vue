@@ -218,7 +218,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="trainer" class="flex flex-col items-center gap-2">
+  <div class="relative flex flex-col gap-1 overflow-auto p-1">
     <div v-if="stage === 'before'" class="flex flex-col items-center gap-2 text-center">
       <template v-if="isZoneKing">
         <div class="font-bold capitalize">
@@ -243,7 +243,7 @@ onUnmounted(() => {
     </div>
     <BattleScene
       v-else-if="stage === 'battle'"
-      class="w-full text-center"
+      class="w-full flex-1 self-center"
       :show-attack-cursor="showAttackCursor"
       :cursor-x="cursorX"
       :cursor-y="cursorY"
@@ -257,25 +257,26 @@ onUnmounted(() => {
         <BattleHeader :trainer="trainer" />
       </template>
       <template #player>
-        <div v-if="dex.activeShlagemon" class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
-          <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-          <BattleShlagemon
-            :mon="dex.activeShlagemon"
-            :hp="playerHp"
-            :fainted="playerFainted"
-            :effects="dex.effects"
-            :disease="disease.active"
-            :disease-remaining="disease.remaining"
-          />
-        </div>
+        <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
+        <BattleShlagemon
+          v-if="dex.activeShlagemon"
+          :mon="dex.activeShlagemon"
+          :hp="playerHp"
+          flipped
+          :fainted="playerFainted"
+          :effects="dex.effects"
+          :disease="disease.active"
+          :disease-remaining="disease.remaining"
+        />
       </template>
       <template #enemy>
-        <div v-if="enemy" class="mon relative flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
-          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
-        </div>
+        <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
+        <BattleShlagemon
+          v-if="enemy" :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500"
+        />
       </template>
     </BattleScene>
+
     <div v-else class="flex flex-col items-center gap-2 text-center">
       <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div v-if="result === 'win'">
@@ -285,16 +286,11 @@ onUnmounted(() => {
         Défaite...
       </div>
       <div v-if="result === 'win'" class="font-bold">
-        +{{ trainer.reward }} Schlagédiamonds
+        +{{ trainer.reward }} Shlagédiamonds
       </div>
       <Button @click="finish">
         Continuer
       </Button>
     </div>
-    <ShlagemonXpBar
-      v-if="dex.activeShlagemon"
-      class="max-w-160 w-full self-center"
-      :mon="dex.activeShlagemon"
-    />
   </div>
 </template>

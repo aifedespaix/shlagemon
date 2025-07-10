@@ -9,7 +9,7 @@ const zone = useZoneStore()
 </script>
 
 <template>
-  <div class="mb-1 h-12 flex items-center justify-center gap-2 overflow-hidden font-bold">
+  <div class="w-full flex items-center gap-2 overflow-hidden font-bold" :class="props.trainer ? 'justify-end' : 'justify-center'">
     <template v-if="props.zoneName">
       <div class="flex flex-col items-center justify-center p-x-20">
         <div class="overflow-ellipsis w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="props.zoneName">
@@ -20,8 +20,9 @@ const zone = useZoneStore()
         </div>
       </div>
     </template>
+
     <template v-else-if="props.trainer">
-      <div class="ml-auto flex items-center gap-2">
+      <div class="flex items-center gap-2">
         <div class="h-full flex flex-col items-end">
           <div>{{ props.trainer.character.name }}</div>
           <div class="flex gap-2">
