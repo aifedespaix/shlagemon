@@ -55,6 +55,7 @@ const {
   enemyEffect,
   playerVariant,
   enemyVariant,
+  stopBattle,
   startBattle: coreStartBattle,
   attack: coreAttack,
 } = useBattleCore({
