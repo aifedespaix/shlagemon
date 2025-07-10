@@ -6,7 +6,7 @@ export const sperectum: BaseShlagemon = {
   name: 'Sperectum',
   description: `Sperectum est la réincarnation d'un pet émis par un Shlagemon.`,
   types: [shlagemonTypes.spectre],
-  coefficient: 7,
+  coefficient: 5,
 }
 
 export default sperectum

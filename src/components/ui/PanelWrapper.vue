@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean }>()
+const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean }>()
 const opened = ref(true)
 const isMobile = useMediaQuery('(max-width: 767px)')
 
+const hidable = computed(() => !isMobile.value || props.isMobileHidable)
+
 function toggle() {
-  if (isMobile.value)
+  if (!hidable.value)
     return
   if (props.title)
     opened.value = !opened.value
@@ -80,7 +82,7 @@ const titleClasses = computed(() => {
         <slot name="icon" />
         <span class="font-bold">{{ props.title }}</span>
       </div>
-      <div v-if="!isMobile" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
+      <div v-if="hidable" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
     </div>
     <Transition
       name="collapse"

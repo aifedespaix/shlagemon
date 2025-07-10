@@ -123,7 +123,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           <MainPanelView class="flex-1" />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden">
+        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable>
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -132,7 +132,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       </div>
 
       <div v-if="displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden">
+        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable>
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
