@@ -11,6 +11,6 @@ describe('multi-exp item', () => {
   it('opens modal on use', () => {
     cy.get('nav .i-carbon-inventory-management').parents('button').click()
     cy.contains('Multi-EXP').parents().contains('Utiliser').click()
-    cy.contains('dialog', 'Choisir le porteur du Multi-EXP').should('be.visible')
+    cy.contains('dialog', 'Choisir le porteur de Multi-EXP').should('be.visible')
   })
 })

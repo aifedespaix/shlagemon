@@ -3,6 +3,7 @@ import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
 import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
 import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
+import WearableItemModal from '~/components/inventory/WearableItemModal.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useBallStore } from '~/stores/ball'
@@ -10,12 +11,12 @@ import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
 import { useInventoryModalStore } from '~/stores/inventoryModal'
-import { useMultiExpStore } from '~/stores/multiExp'
+import { useWearableItemStore } from '~/stores/wearableItem'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
-const multiExpStore = useMultiExpStore()
+const wearableStore = useWearableItemStore()
 const inventoryModal = useInventoryModalStore()
 const filter = useInventoryFilterStore()
 const sortOptions = [
@@ -58,10 +59,10 @@ function onUse(item: Item) {
   else if (item.type === 'evolution') {
     evoItemStore.open(item)
   }
-  else if (item.id === 'multi-exp') {
+  else if (item.wearable) {
     if (inventoryModal.isVisible)
       inventoryModal.close()
-    multiExpStore.open()
+    wearableStore.open(item)
   }
   else {
     inventory.useItem(item.id)
@@ -93,5 +94,5 @@ function onUse(item: Item) {
     </template>
   </ScrollablePanel>
   <EvolutionItemModal />
-  <MultiExpModal />
+  <WearableItemModal />
 </template>
