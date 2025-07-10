@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { DexShlagemon } from '~/type'
 import { computed, onMounted, ref, watch } from 'vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleRound from '~/components/battle/BattleRound.vue'
@@ -163,6 +164,16 @@ async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
       <Tooltip :text="winTooltip">
         <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
       </Tooltip>
+    </div>
+    <div class="w-full flex items-center justify-center gap-2 overflow-hidden font-bold">
+      <div class="flex flex-col items-center justify-center p-x-20">
+        <div class="overflow-ellipsis w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="zone.current.name">
+          {{ zone.current.name }}
+        </div>
+        <div v-if="zone.current.maxLevel" class="whitespace-nowrap text-xs">
+          {{ zone.current.minLevel }} - {{ zone.current.maxLevel }}
+        </div>
+      </div>
     </div>
     <BattleRound
       v-if="dex.activeShlagemon && enemy"

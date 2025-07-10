@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { DexShlagemon } from '~/type'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleRound from '~/components/battle/BattleRound.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
@@ -157,17 +158,36 @@ function cancelFight() {
         </Button>
       </div>
     </div>
-    <BattleRound
-      v-else-if="stage === 'battle' && dex.activeShlagemon && enemy"
-      :player="dex.activeShlagemon"
-      :enemy="enemy"
-      :capture-enabled="false"
-      @end="onEnd"
-    >
-      <template #header>
-        <BattleHeader :trainer="trainer" :defeated="enemyIndex" />
-      </template>
-    </BattleRound>
+    <template v-else-if="stage === 'battle' && dex.activeShlagemon && enemy">
+      <div class="w-full flex items-center justify-end gap-2 overflow-hidden font-bold">
+        <div class="flex items-center gap-2">
+          <div class="h-full flex flex-col items-end">
+            <div>{{ trainer.character.name }}</div>
+            <div class="flex gap-2">
+              <ImageByBackground
+                v-for="i in trainer.shlagemons.length"
+                :key="i"
+                src="/items/shlageball/shlageball.png"
+                class="h-4 w-4"
+                :class="{ 'saturate-0': i <= defeated }"
+              />
+            </div>
+          </div>
+          <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-full" />
+        </div>
+      </div>
+      <BattleRound
+
+        :player="dex.activeShlagemon"
+        :enemy="enemy"
+        :capture-enabled="false"
+        @end="onEnd"
+      >
+        <template #header>
+          <BattleHeader :trainer="trainer" :defeated="enemyIndex" />
+        </template>
+      </BattleRound>
+    </template>
 
     <div v-else class="flex flex-col items-center gap-2 text-center">
       <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
