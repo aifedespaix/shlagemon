@@ -260,6 +260,14 @@ watch(
   },
 )
 
+watch(
+  battleActive,
+  (active, prev) => {
+    if (!active && prev && (playerFainted.value || enemyFainted.value))
+      finishBattle()
+  },
+)
+
 onUnmounted(() => {
   stopBattle()
   clearTimeout(nextBattleTimer)
