@@ -1,0 +1,27 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import Modal from '~/components/modal/Modal.vue'
+import CheckBox from '~/components/ui/CheckBox.vue'
+import { useDeveloperStore } from '~/stores/developer'
+
+const props = defineProps<{ modelValue: boolean }>()
+const emit = defineEmits(['update:modelValue'])
+
+const show = computed({
+  get: () => props.modelValue,
+  set: v => emit('update:modelValue', v),
+})
+
+const dev = useDeveloperStore()
+</script>
+
+<template>
+  <Modal v-model="show" footer-close>
+    <h3 class="mb-2 text-center text-lg font-bold">
+      Paramètres développeur
+    </h3>
+    <CheckBox v-model="dev.debug" class="flex items-center justify-between">
+      <span>Mode debug</span>
+    </CheckBox>
+  </Modal>
+</template>
