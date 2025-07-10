@@ -4,7 +4,6 @@ import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
-import ShlagemonXpBar from '~/components/shlagemon/ShlagemonXpBar.vue'
 import Button from '~/components/ui/Button.vue'
 import { useBattleCore } from '~/composables/useBattleCore'
 import { allShlagemons } from '~/data/shlagemons'
@@ -48,8 +47,6 @@ const {
   enemy,
   playerHp,
   enemyHp,
-  flashPlayer,
-  flashEnemy,
   playerFainted,
   enemyFainted,
   showAttackCursor,
