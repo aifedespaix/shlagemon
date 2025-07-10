@@ -117,7 +117,7 @@ function arenaDefeated(z: Zone) {
       <button
         v-for="z in accessibleZones"
         :key="z.id"
-        class="relative grid grid-rows-2 gap-1 rounded px-2 py-1 text-xs"
+        class="relative grid grid-rows-2 max-h-[120px] gap-1 rounded px-2 py-1 text-xs"
         :class="`${classes(z)} ${buttonDisabled(z) ? 'opacity-50 cursor-not-allowed' : ''}`"
         :disabled="buttonDisabled(z)"
         @click="selectZone(z.id)"

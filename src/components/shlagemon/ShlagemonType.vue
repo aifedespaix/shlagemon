@@ -40,8 +40,9 @@ function getAdjustedTextColor(amount = 60) {
 
 <template>
   <span
-    class="type rounded px-2 py-1 text-center"
+    class="type overflow-hidden text-ellipsis rounded px-1.5 py-1 text-center leading-none"
     :class="sizeClass"
+    :name="value.name"
     :style="{ backgroundColor: value.color, color: textColor }"
   >
     {{ value.name }}
