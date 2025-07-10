@@ -26,9 +26,14 @@ export function getTypeMultiplier(
 export function computeDamage(
   base: number,
   attackType: ShlagemonType,
-  targetType: ShlagemonType,
+  targetTypes: ShlagemonType | ShlagemonType[],
 ): { damage: number, effect: 'super' | 'not' | 'normal', crit: 'critical' | 'weak' | 'normal' } {
-  const { multiplier: typeMultiplier, effect } = getTypeMultiplier(attackType, targetType)
+  const types = Array.isArray(targetTypes) ? targetTypes : [targetTypes]
+  const typeMultiplier = types
+    .map(t => getTypeMultiplier(attackType, t).multiplier)
+    .reduce((acc, cur) => acc * cur, 1)
+  const effect: 'super' | 'not' | 'normal'
+    = typeMultiplier > 1 ? 'super' : typeMultiplier < 1 ? 'not' : 'normal'
   const variance = 0.8 + Math.random() * 0.4 // entre x0.8 et x1.2
   let multiplier = typeMultiplier * variance
   let crit: 'critical' | 'weak' | 'normal' = 'normal'
