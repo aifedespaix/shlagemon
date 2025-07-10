@@ -99,12 +99,12 @@ const captureInfo = computed(() => {
     <div class="flex gap-2">
       <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
     </div>
-    <div class="relative mx-auto mb-2 max-w-max">
+    <div class="relative mb-2 w-full">
       <ShlagemonImage
         :id="mon.base.id"
         :alt="mon.base.name"
         :shiny="mon.isShiny"
-        class="max-h-40 object-contain"
+        class="h-full max-h-40 w-full object-contain"
       />
       <div
         v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
