@@ -3,6 +3,7 @@ import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
+import ShlagemonXpBar from '~/components/shlagemon/ShlagemonXpBar.vue'
 import Button from '~/components/ui/Button.vue'
 import { useBattleEffects } from '~/composables/battleEngine'
 import { allShlagemons } from '~/data/shlagemons'
@@ -324,6 +325,11 @@ onUnmounted(() => {
         Continuer
       </Button>
     </div>
+    <ShlagemonXpBar
+      v-if="dex.activeShlagemon"
+      class="max-w-160 w-full self-center"
+      :mon="dex.activeShlagemon"
+    />
   </div>
 </template>
 
