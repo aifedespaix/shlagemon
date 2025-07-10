@@ -69,16 +69,26 @@ onUnmounted(stop)
 <template>
   <BattleScene>
     <template #player>
-      <div class="mon relative flex flex-1 flex-col items-center justify-end" :class="{ flash: flashPlayer }">
+      <BattleShlagemon
+        :mon="player"
+        :hp="playerHp"
+        :fainted="playerFainted"
+        flipped
+        :class="{ flash: flashPlayer }"
+      >
         <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-        <BattleShlagemon :mon="player" :hp="playerHp" :fainted="playerFainted" flipped />
-      </div>
+      </BattleShlagemon>
     </template>
     <template #enemy>
-      <div class="mon relative flex flex-1 flex-col items-center" :class="{ flash: flashEnemy }">
+      <BattleShlagemon
+        :mon="enemy"
+        :hp="enemyHp"
+        :fainted="enemyFainted"
+        color="bg-red-500"
+        :class="{ flash: flashEnemy }"
+      >
         <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-        <BattleShlagemon :mon="enemy" :hp="enemyHp" :fainted="enemyFainted" color="bg-red-500" />
-      </div>
+      </BattleShlagemon>
     </template>
   </BattleScene>
 </template>
