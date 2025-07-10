@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
 
 <template>
   <ImageByBackground
-    :src="`/shlagemons/${props.id}/${props.id}.png`"
+    :src="`/shlagemons/${props.id}/${props.id}.webp`"
     draggable="false"
     :alt="props.alt"
     class="h-full w-full"
