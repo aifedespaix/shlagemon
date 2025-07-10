@@ -37,13 +37,13 @@ export const useBattleStore = defineStore('battle', () => {
     reduced = false,
   ): AttackResult {
     const atkType = attacker.base.types[0]
-    const defType = defender.base.types[0]
+    const defTypes = defender.base.types
     const atkBonus = isPlayerAttacker ? 1 + dex.bonusPercent / 100 : 1
     const musicBonus = audio.isMusicEnabled ? 1.1 : 1
     const shinyBonus = attacker.isShiny ? 1.15 : 1
     const defBonus = isPlayerDefender ? 1 + dex.bonusPercent / 100 : 1
     const baseAttack = Math.round(attacker.attack * atkBonus * musicBonus * shinyBonus)
-    const result = computeDamage(baseAttack, atkType, defType)
+    const result = computeDamage(baseAttack, atkType, defTypes)
     // Application des bonus/malus d'attaque et de défense (potions et bonus global)
     const defenseFactor = 100 / (100 + defender.defense)
     const rawDamage = result.damage * defenseFactor / defBonus
