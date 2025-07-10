@@ -63,21 +63,23 @@ const {
   startBattle: coreStartBattle,
   attack: coreAttack,
   stopBattle,
-} = useBattleCore(() => {
-  const t = trainer.value
-  if (!t || !dex.activeShlagemon)
-    return null
-  const spec = t.shlagemons[enemyIndex.value]
-  if (!spec)
-    return null
-  const base = allShlagemons.find(b => b.id === spec.baseId)
-  if (!base)
-    return null
-  const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
-  const created = createDexShlagemon(base, false, rank * equilibrerank)
-  created.lvl = spec.level
-  applyStats(created)
-  return created
+} = useBattleCore({
+  createEnemy: () => {
+    const t = trainer.value
+    if (!t || !dex.activeShlagemon)
+      return null
+    const spec = t.shlagemons[enemyIndex.value]
+    if (!spec)
+      return null
+    const base = allShlagemons.find(b => b.id === spec.baseId)
+    if (!base)
+      return null
+    const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
+    const created = createDexShlagemon(base, false, rank * equilibrerank)
+    created.lvl = spec.level
+    applyStats(created)
+    return created
+  },
 })
 watch(trainer, (t) => {
   if (t) {
