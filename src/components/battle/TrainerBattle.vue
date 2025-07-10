@@ -11,10 +11,10 @@ import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStore } from '~/stores/battle'
 import { useBattleStatsStore } from '~/stores/battleStats'
 import { useDiseaseStore } from '~/stores/disease'
+import { useEquipmentStore } from '~/stores/equipment'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
@@ -28,7 +28,7 @@ const battle = useBattleStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
-const multiExpStore = useMultiExpStore()
+const equipment = useEquipmentStore()
 const battleStats = useBattleStatsStore()
 const disease = useDiseaseStore()
 const events = useEventStore()
@@ -181,7 +181,10 @@ function checkEnd() {
             undefined,
             trainerStore.levelUpHealPercent,
           )
-          const holder = multiExpStore.holder
+          const holderId = equipment.getHolder('multi-exp')
+          const holder = holderId
+            ? dex.shlagemons.find(m => m.id === holderId)
+            : null
           if (holder) {
             const share = Math.round(xp * 0.5)
             await dex.gainXp(holder, share, undefined, trainerStore.levelUpHealPercent)

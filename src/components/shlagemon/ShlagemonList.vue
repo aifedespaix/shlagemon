@@ -8,9 +8,9 @@ import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useDiseaseStore } from '~/stores/disease'
+import { useEquipmentStore } from '~/stores/equipment'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import ShlagemonImage from './ShlagemonImage.vue'
 import ShlagemonType from './ShlagemonType.vue'
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const filter = useDexFilterStore()
 const dex = useShlagedexStore()
-const multiExpStore = useMultiExpStore()
+const equipment = useEquipmentStore()
 const disease = useDiseaseStore()
 const panel = useMainPanelStore()
 const mobile = useMobileTabStore()
@@ -136,7 +136,7 @@ function changeActive(mon: DexShlagemon) {
         :class="isActive(mon) ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400' : ''"
         @click.stop="handleClick(mon)"
       >
-        <MultiExpIcon v-if="multiExpStore.holderId === mon.id" class="absolute right-1 top-1 h-4 w-4" />
+        <MultiExpIcon v-if="equipment.getHolder('multi-exp') === mon.id" class="absolute right-1 top-1 h-4 w-4" />
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
         </div>

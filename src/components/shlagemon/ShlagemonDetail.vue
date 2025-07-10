@@ -7,7 +7,7 @@ import Button from '~/components/ui/Button.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
 import Tooltip from '~/components/ui/Tooltip.vue'
 import { useDiseaseStore } from '~/stores/disease'
-import { useMultiExpStore } from '~/stores/multiExp'
+import { useEquipmentStore } from '~/stores/equipment'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
@@ -46,7 +46,7 @@ const allowEvolution = computed({
 })
 
 const store = useShlagedexStore()
-const multiExpStore = useMultiExpStore()
+const equipment = useEquipmentStore()
 const disease = useDiseaseStore()
 const showConfirm = ref(false)
 
@@ -106,9 +106,9 @@ const captureInfo = computed(() => {
         :shiny="mon.isShiny"
         class="max-h-40 object-contain"
       />
-      <div v-if="multiExpStore.holderId === mon.id" class="absolute right-0 top-0 flex items-center gap-1">
+      <div v-if="equipment.getHolder('multi-exp') === mon.id" class="absolute right-0 top-0 flex items-center gap-1">
         <MultiExpIcon class="h-5 w-5" />
-        <Button type="icon" class="h-5 w-5" @click="multiExpStore.removeHolder()">
+        <Button type="icon" class="h-5 w-5" @click="equipment.unequipItem('multi-exp')">
           <div i-carbon-trash-can />
         </Button>
       </div>

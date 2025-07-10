@@ -17,10 +17,10 @@ import { useBattleStore } from '~/stores/battle'
 import { useBattleStatsStore } from '~/stores/battleStats'
 import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
 import { useDiseaseStore } from '~/stores/disease'
+import { useEquipmentStore } from '~/stores/equipment'
 import { useEventStore } from '~/stores/event'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
-import { useMultiExpStore } from '~/stores/multiExp'
 import { usePlayerStore } from '~/stores/player'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
@@ -38,7 +38,7 @@ const battle = useBattleStore()
 const disease = useDiseaseStore()
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
-const multiExpStore = useMultiExpStore()
+const equipment = useEquipmentStore()
 const player = usePlayerStore()
 const captureLimitModal = useCaptureLimitModalStore()
 const battleStats = useBattleStatsStore()
@@ -134,7 +134,10 @@ async function onCaptureEnd(success: boolean) {
         xp,
         zone.current.maxLevel,
       )
-      const holder = multiExpStore.holder
+      const holderId = equipment.getHolder('multi-exp')
+      const holder = holderId
+        ? dex.shlagemons.find(m => m.id === holderId)
+        : null
       if (holder) {
         const share = Math.round(xp * 0.5)
         await dex.gainXp(holder, share, zone.current.maxLevel)
@@ -268,7 +271,10 @@ function checkEnd() {
             xp,
             zone.current.maxLevel,
           )
-          const holder = multiExpStore.holder
+          const holderId = equipment.getHolder('multi-exp')
+          const holder = holderId
+            ? dex.shlagemons.find(m => m.id === holderId)
+            : null
           if (holder) {
             const share = Math.round(xp * 0.5)
             await dex.gainXp(holder, share, zone.current.maxLevel)

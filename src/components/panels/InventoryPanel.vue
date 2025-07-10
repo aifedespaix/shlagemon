@@ -10,12 +10,12 @@ import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
 import { useInventoryModalStore } from '~/stores/inventoryModal'
-import { useMultiExpStore } from '~/stores/multiExp'
+import { useWearableItemStore } from '~/stores/wearableItem'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
-const multiExpStore = useMultiExpStore()
+const wearableItem = useWearableItemStore()
 const inventoryModal = useInventoryModalStore()
 const filter = useInventoryFilterStore()
 const sortOptions = [
@@ -58,10 +58,10 @@ function onUse(item: Item) {
   else if (item.type === 'evolution') {
     evoItemStore.open(item)
   }
-  else if (item.id === 'multi-exp') {
+  else if (item.wearable) {
     if (inventoryModal.isVisible)
       inventoryModal.close()
-    multiExpStore.open()
+    wearableItem.open(item.id)
   }
   else {
     inventory.useItem(item.id)
