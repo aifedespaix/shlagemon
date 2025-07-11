@@ -81,8 +81,6 @@ function nextBattle() {
 async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
   const defeated = enemy.value
   enemy.value = null
-  if (dex.activeShlagemon)
-    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   if (!defeated) {
     enemy.value = createEnemy()
     return
