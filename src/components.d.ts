@@ -27,7 +27,6 @@ declare module 'vue' {
     BattleHeader: typeof import('./components/battle/BattleHeader.vue')['default']
     BattleMain: typeof import('./components/battle/BattleMain.vue')['default']
     BattleRound: typeof import('./components/battle/BattleRound.vue')['default']
-    BattleScene: typeof import('./components/battle/BattleScene.vue')['default']
     BattleShlagemon: typeof import('./components/battle/BattleShlagemon.vue')['default']
     BattleToast: typeof import('./components/battle/BattleToast.vue')['default']
     Bonus: typeof import('./components/icons/bonus.vue')['default']
