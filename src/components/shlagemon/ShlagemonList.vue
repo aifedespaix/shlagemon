@@ -144,7 +144,7 @@ function changeActive(mon: DexShlagemon) {
             ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400'
             : '',
           isHighlighted(mon) && !isActive(mon)
-            ? 'bg-gray-200/30 dark:bg-gray-700/30 ring-2 ring-gray-400 dark:ring-gray-600'
+            ? 'bg-blue-500/10 dark:bg-blue-500/20 ring-2 ring-blue-500 dark:ring-blue-400'
             : '',
         ]"
         @click.stop="handleClick(mon)"
