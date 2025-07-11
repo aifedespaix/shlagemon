@@ -1,8 +1,11 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
 import { toast } from 'vue3-toastify'
 import { carapouffe, sacdepates } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
+import { useZoneStore } from '../src/stores/zone'
+import { useZoneProgressStore } from '../src/stores/zoneProgress'
 import { applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
@@ -96,5 +99,46 @@ describe('potential completion percent', () => {
     const dex = useShlagedexStore()
     dex.captureShlagemon(sacdepates)
     expect(Math.round(dex.potentialCompletionPercent)).toBe(25)
+  })
+})
+
+describe('rarity 100 coefficient update', () => {
+  it('updates stats when rarity hits 100', async () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const progress = useZoneProgressStore()
+    const zone = useZoneStore()
+
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 99
+    applyStats(mon)
+    for (let i = 0; i < 4; i++)
+      await dex.gainXp(mon, xpForLevel(mon.lvl))
+    progress.defeatKing('plaine-kekette')
+    await nextTick()
+    dex.captureShlagemon(carapouffe)
+    await nextTick()
+    const rank = zone.getZoneRank('bois-de-bouffon')
+    expect(mon.rarity).toBe(100)
+    expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
+  })
+
+  it('recalculates stats when a new zone unlocks', async () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const progress = useZoneProgressStore()
+    const zone = useZoneStore()
+
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 100
+    applyStats(mon)
+    await nextTick()
+    expect(mon.base.coefficient).toBe(carapouffe.coefficient * zone.getZoneRank('plaine-kekette'))
+    for (let i = 0; i < 4; i++)
+      await dex.gainXp(mon, xpForLevel(mon.lvl))
+    progress.defeatKing('plaine-kekette')
+    await nextTick()
+    const rank = zone.getZoneRank('bois-de-bouffon')
+    expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
   })
 })

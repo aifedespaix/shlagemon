@@ -26,6 +26,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
   const progress = useZoneProgressStore()
+  const zoneStore = useZoneStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
@@ -47,6 +48,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
+  const accessibleXpZones = computed(() =>
+    accessibleZones.value.filter(z => z.maxLevel > 0),
+  )
   const accessibleShopLevel = computed(() =>
     shops
       .filter(s => accessibleZones.value.some(z => z.id === s.id))
@@ -93,6 +97,28 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   )
   const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
+  function updateCoefficient(mon: DexShlagemon) {
+    if (mon.rarity !== 100)
+      return
+    const last = accessibleXpZones.value[accessibleXpZones.value.length - 1]
+    if (!last)
+      return
+    const rank = zoneStore.getZoneRank(last.id)
+    const baseCoef = baseMap[mon.base.id].coefficient
+    const newCoef = baseCoef * rank
+    if (mon.base.coefficient !== newCoef) {
+      mon.base.coefficient = newCoef
+      mon.baseStats = {
+        hp: statWithRarityAndCoefficient(baseStats.hp, newCoef, mon.rarity),
+        attack: statWithRarityAndCoefficient(baseStats.attack, newCoef, mon.rarity),
+        defense: statWithRarityAndCoefficient(baseStats.defense, newCoef, mon.rarity),
+        smelling: statWithRarityAndCoefficient(baseStats.smelling, newCoef, mon.rarity),
+      }
+      applyStats(mon)
+      mon.hpCurrent = mon.hp
+    }
+  }
+
   function updateHighestLevel(mon: DexShlagemon) {
     if (mon.lvl > highestLevel.value)
       highestLevel.value = mon.lvl
@@ -101,6 +127,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function recomputeHighestLevel() {
     highestLevel.value = shlagemons.value.reduce((max, m) => Math.max(max, m.lvl), 0)
   }
+
+  watch(accessibleXpZones, () => {
+    shlagemons.value.forEach(updateCoefficient)
+  })
 
   function addShlagemon(mon: DexShlagemon) {
     shlagemons.value.push(mon)
@@ -259,6 +289,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       if (activeShlagemon.value?.id === mon.id)
         activeShlagemon.value = existing
       recomputeHighestLevel()
+      updateCoefficient(existing)
     }
     else {
       mon.base = to
@@ -273,6 +304,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
+      updateCoefficient(mon)
     }
   }
 
@@ -322,6 +354,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
       await checkEvolution(mon)
+      updateCoefficient(mon)
     }
     if (mon.lvl >= maxLevel)
       mon.xp = 0
@@ -333,6 +366,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     mon.captureCount = 1
     addShlagemon(mon)
     updateHighestLevel(mon)
+    updateCoefficient(mon)
     toast(`Tu as obtenu ${base.name} !`)
     return mon
   }
@@ -382,6 +416,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       applyStats(existing)
       existing.hpCurrent = existing.hp
       updateHighestLevel(existing)
+      updateCoefficient(existing)
       toast(
         `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
       )
@@ -391,6 +426,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     incoming.captureCount = 1
     addShlagemon(incoming)
     updateHighestLevel(incoming)
+    updateCoefficient(incoming)
     toast(`Tu as obtenu ${incoming.base.name} !`)
     return incoming
   }
@@ -422,6 +458,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       applyStats(existing)
       existing.hpCurrent = existing.hp
       updateHighestLevel(existing)
+      updateCoefficient(existing)
       toast(
         `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
       )
@@ -436,6 +473,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
     addShlagemon(captured)
     updateHighestLevel(captured)
+    updateCoefficient(captured)
     toast(`Tu as obtenu ${captured.base.name} !`)
     return captured
   }
