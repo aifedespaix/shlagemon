@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.5] - 2025-07-07
+
+### Changed
+
+- Capture formula adjusted: coefficient scaling now uses a cube root and level impact is softer.
+
 ## [0.3.4] - 2025-07-06
 
 ### Added
