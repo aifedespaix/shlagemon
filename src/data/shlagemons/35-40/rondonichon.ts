@@ -1,5 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
+import grochichon from '../evolutions/grochichon'
 
 export const rondonichon: BaseShlagemon = {
   id: 'rondonichon',
@@ -14,6 +15,13 @@ Ne pas le caresser. Jamais.`,
 
   types: [shlagemonTypes.normal],
   coefficient: 37,
+  evolution: {
+    base: grochichon,
+    condition: {
+      type: 'lvl',
+      value: 55,
+    },
+  },
 }
 
 export default rondonichon

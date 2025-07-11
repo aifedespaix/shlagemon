@@ -15,7 +15,7 @@ On ne sait pas vraiment s’il combat, ou s’il est juste là pour poser une am
 On ignore s’il a une évolution. Certains parlent d’un “Tontonchichon” tapi dans une cave…`,
 
   types: [shlagemonTypes.normal, shlagemonTypes.poison],
-  coefficient: 58,
+  coefficient: 55,
 }
 
 export default grochichon
