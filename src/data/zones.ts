@@ -57,8 +57,15 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     name: 'Marais Moudugenou',
     completionAchievement: 'Épurateur du Marais Moudugenou',
     shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/25-30/*.ts`, { eager: true }),
-  }, // 30
-  // { id: 'forteresse-petmoalfiak', lvl: zoneIndex++ * lvlsByZone, name: 'Forteresse Pètmoalfiak', actions: [], completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/30-35/*.ts`, { eager: true }) }}, // 35
+  },
+  {
+    id: 'forteresse-petmoalfiak',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Forteresse Pètmoalfiak',
+    actions: [],
+    completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/30-35/*.ts`, { eager: true }),
+  },
   // { id: 'route-du-nawak', lvl: zoneIndex++ * lvlsByZone, name: 'Route du Nawak', completionAchievement: 'Voyageur de la Route du Nawak', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/35-40/*.ts`, { eager: true }) }},
   // { id: 'mont-dracatombe', lvl: zoneIndex++ * lvlsByZone, name: 'Mont Cul', actions: [], shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/40-45/*.ts`, { eager: true }) } },
   // { id: 'catacombes-merdifientes', lvl: zoneIndex++ * lvlsByZone, name: 'Catacombes Merdifientes', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/45-50/*.ts`, { eager: true }) } actions: [] },
