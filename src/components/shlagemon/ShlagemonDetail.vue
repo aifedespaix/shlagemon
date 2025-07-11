@@ -86,8 +86,8 @@ const captureInfo = computed(() => {
 </script>
 
 <template>
-  <div v-if="mon" class="max-w-sm w-full rounded bg-white dark:bg-gray-900">
-    <h2 class="mb-2 flex items-center justify-between text-lg font-bold">
+  <div v-if="mon" class="max-w-xl w-full flex flex-col gap-1 rounded bg-white dark:bg-gray-900">
+    <h2 class="flex items-center justify-between text-lg font-bold">
       <div class="flex items-center gap-1">
         <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
         - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
@@ -96,15 +96,15 @@ const captureInfo = computed(() => {
         <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
       </Tooltip>
     </h2>
-    <div class="flex gap-2">
-      <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
-    </div>
-    <div class="relative mb-2 w-full">
+    <div class="relative h-40 w-full">
+      <div class="absolute flex gap-2">
+        <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
+      </div>
       <ShlagemonImage
         :id="mon.base.id"
         :alt="mon.base.name"
         :shiny="mon.isShiny"
-        class="h-full max-h-40 w-full object-contain"
+        class="w-full object-contain"
       />
       <div
         v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
@@ -120,10 +120,10 @@ const captureInfo = computed(() => {
         </Button>
       </div>
     </div>
-    <p class="tiny-scrollbar mb-4 max-h-25 overflow-auto text-sm italic -m-r-4">
+    <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
-    <CheckBox v-model="allowEvolution" class="mb-4 flex items-center gap-2 text-sm">
+    <CheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
       Autoriser ce Shlagémon à évoluer ?
     </CheckBox>
     <div class="grid grid-cols-2 gap-2 text-sm">
