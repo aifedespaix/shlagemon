@@ -1,7 +1,9 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { carapouffe } from '../src/data/shlagemons'
+import { useCaptureLimitModalStore } from '../src/stores/captureLimitModal'
 import { useInventoryStore } from '../src/stores/inventory'
+import { usePlayerStore } from '../src/stores/player'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 
 describe('inventory actions', () => {
@@ -27,5 +29,22 @@ describe('inventory actions', () => {
     const result = inventory.useItem('shlageball')
     expect(result).toBe(true)
     expect(dex.shlagemons.length).toBe(count + 1)
+  })
+
+  it('respects capture level cap when using balls', () => {
+    setActivePinia(createPinia())
+    const inventory = useInventoryStore()
+    const dex = useShlagedexStore()
+    const player = usePlayerStore()
+    const modal = useCaptureLimitModalStore()
+
+    player.captureLevelCap = 0
+    inventory.add('shlageball')
+    const result = inventory.useItem('shlageball')
+
+    expect(result).toBe(false)
+    expect(dex.shlagemons.length).toBe(0)
+    expect(modal.isVisible).toBe(true)
+    expect(modal.requiredLevel).toBeGreaterThan(player.captureLevelCap)
   })
 })

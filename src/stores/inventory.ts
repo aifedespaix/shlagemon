@@ -5,7 +5,9 @@ import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
 import { useArenaStore } from './arena'
+import { useCaptureLimitModalStore } from './captureLimitModal'
 import { useGameStore } from './game'
+import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
 
 export const useInventoryStore = defineStore('inventory', () => {
@@ -13,6 +15,8 @@ export const useInventoryStore = defineStore('inventory', () => {
   const game = useGameStore()
   const dex = useShlagedexStore()
   const arena = useArenaStore()
+  const player = usePlayerStore()
+  const captureLimitModal = useCaptureLimitModalStore()
 
   interface ListedItem {
     item: Item
@@ -81,6 +85,11 @@ export const useInventoryStore = defineStore('inventory', () => {
     const { icon, iconClass } = item
 
     const capture = () => {
+      const level = 1
+      if (level > player.captureLevelCap) {
+        captureLimitModal.open(level)
+        return false
+      }
       const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
       const mon = dex.captureShlagemon(base)
       notifyAchievement({ type: 'capture', shiny: mon.isShiny })
