@@ -3,10 +3,10 @@ import { useDeveloperStore } from '~/stores/developer'
 
 export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
   const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
-  const coefMod = 1 / Math.sqrt(enemy.base.coefficient)
-  const levelMod = 1 / (1 + enemy.lvl / 20)
+  const coefMod = 1 / Math.cbrt(enemy.base.coefficient)
+  const levelMod = 1 / (1 + enemy.lvl / 40)
   // Slightly increase the global capture rate to make encounters less frustrating
-  const difficultyMod = 1.5
+  const difficultyMod = 1.3
   const chance = Math.min(100, hpChance * coefMod * levelMod * ball.catchBonus * difficultyMod)
   const dev = useDeveloperStore()
   if (dev.debug) {

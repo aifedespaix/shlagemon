@@ -23,6 +23,7 @@ Un mini-jeu d'adresse « Whack-a-Shlag » permet aussi de récolter quelques Shl
 - Routing basé sur les fichiers et génération statique grâce à `vite-ssg`.
 - Prêt pour le _PWA_ et l'internationalisation.
 - Mini-jeu « Whack-a-Shlag » accessible depuis le village Veaux du Gland.
+- Chances de capture basées sur la vie restante, le coefficient (racine cubique) et le niveau de l'ennemi.
 
 ## Installation
 

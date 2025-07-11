@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { balls } from '../src/data/items/shlageball'
 import { carapouffe } from '../src/data/shlagemons'
-import { tryCapture } from '../src/utils/capture'
+import { captureChanceFromHp, tryCapture } from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 
 describe('capture mechanics', () => {
@@ -23,5 +23,19 @@ describe('capture mechanics', () => {
     mon.rarity = 100
     vi.spyOn(Math, 'random').mockReturnValue(0.99)
     expect(tryCapture(mon, balls[0])).toBe(false)
+  })
+
+  it('hyper ball versus strong foe gives around 10% chance', () => {
+    const mon = createDexShlagemon(carapouffe)
+    mon.base.coefficient = 1000
+    mon.lvl = 100
+    mon.hp = 100
+    mon.hpCurrent = 10
+    const hpChance = captureChanceFromHp(mon.hpCurrent / mon.hp)
+    const coefMod = 1 / Math.cbrt(mon.base.coefficient)
+    const levelMod = 1 / (1 + mon.lvl / 40)
+    const difficultyMod = 1.3
+    const chance = Math.min(100, hpChance * coefMod * levelMod * balls[2].catchBonus * difficultyMod)
+    expect(chance).toBeCloseTo(10, 1)
   })
 })
