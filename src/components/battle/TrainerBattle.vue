@@ -89,13 +89,15 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
       if (holder)
         await dex.gainXp(holder, Math.round(xp * 0.5), undefined, trainerStore.levelUpHealPercent)
     }
-    const finished = nextBattle()
-    if (finished) {
-      if (trainer.value)
-        progress.defeatKing(zone.current.id)
-      result.value = 'win'
-      stage.value = 'after'
-    }
+    window.setTimeout(() => {
+      const finished = nextBattle()
+      if (finished) {
+        if (trainer.value)
+          progress.defeatKing(zone.current.id)
+        result.value = 'win'
+        stage.value = 'after'
+      }
+    }, 500)
   }
   else if (type === 'lose') {
     battleStats.addLoss()

@@ -168,16 +168,19 @@ onMounted(() => {
       </BattleShlagemon>
     </template>
     <template #enemy>
-      <BattleShlagemon
-        :mon="props.enemy"
-        :hp="enemyHp"
-        color="bg-red-500"
-        :fainted="enemyFainted"
-        :class="{ flash: flashEnemy }"
-        @faint-end="onEnemyFaintEnd"
-      >
-        <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-      </BattleShlagemon>
+      <Transition name="fade" mode="out-in">
+        <BattleShlagemon
+          :key="props.enemy?.id"
+          :mon="props.enemy"
+          :hp="enemyHp"
+          color="bg-red-500"
+          :fainted="enemyFainted"
+          :class="{ flash: flashEnemy }"
+          @faint-end="onEnemyFaintEnd"
+        >
+          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
+        </BattleShlagemon>
+      </Transition>
     </template>
     <slot />
   </BattleScene>
@@ -189,3 +192,14 @@ onMounted(() => {
     @finished="onCaptureEnd"
   />
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
