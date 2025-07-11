@@ -87,7 +87,7 @@ function onDuelEnd(win: boolean) {
   duelResult.value = win ? 'win' : 'lose'
   if (!win) {
     arena.finish(false)
-    nextTimer = window.setTimeout(closeAfterDefeat, 500)
+    // keep the duel open so the player can choose what to do
     return
   }
 
@@ -111,11 +111,6 @@ function closeVictory() {
   clearTimeout(nextTimer)
   showDuel.value = false
   toast.success('Victoire !')
-}
-
-function closeAfterDefeat() {
-  clearTimeout(nextTimer)
-  showDuel.value = false
 }
 
 function retry() {
