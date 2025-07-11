@@ -81,6 +81,7 @@ export const useZoneStore = defineStore('zone', () => {
   return {
     zones,
     current,
+    currentId,
     currentZoneId,
     selectedAt,
     wildCooldownRemaining,
