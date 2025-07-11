@@ -66,6 +66,7 @@ const {
 })
 
 function startBattle() {
+  dex.setActiveShlagemon(displayedPlayer.value)
   coreStartBattle(displayedEnemy.value)
 }
 
