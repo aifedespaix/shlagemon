@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import { onMounted, watch } from 'vue'
-import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
+import CaptureHandler from '~/components/battle/CaptureHandler.vue'
 import { useBattleCore } from '~/composables/useBattleCore'
+import { notifyAchievement } from '~/stores/achievements'
 import { useDiseaseStore } from '~/stores/disease'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useWearableItemStore } from '~/stores/wearableItem'
+import { useZoneStore } from '~/stores/zone'
+import { xpRewardForLevel } from '~/utils/dexFactory'
 
 const props = withDefaults(defineProps<{
   player: DexShlagemon
@@ -19,10 +23,15 @@ const props = withDefaults(defineProps<{
   captureEnabled: true,
 })
 
-const emit = defineEmits<{ (e: 'end', result: 'capture' | 'win' | 'lose' | 'draw'): void }>()
+const emit = defineEmits<{
+  (e: 'end', result: 'win' | 'lose' | 'draw'): void
+  (e: 'capture'): void
+}>()
 
 const dex = useShlagedexStore()
 const disease = useDiseaseStore()
+const zone = useZoneStore()
+const wearableItemStore = useWearableItemStore()
 
 const {
   enemy: currentEnemy,
@@ -52,7 +61,7 @@ function startBattle() {
   coreStartBattle(props.enemy)
 }
 
-function emitResult(result: 'capture' | 'win' | 'lose' | 'draw') {
+function emitResult(result: 'win' | 'lose' | 'draw') {
   emit('end', result)
 }
 
@@ -67,11 +76,22 @@ function handleEnd() {
     emitResult('draw')
 }
 
-function onCaptureEnd(success: boolean) {
-  if (success)
-    emitResult('capture')
-  else
+async function onCaptureEnd(success: boolean) {
+  if (success && props.enemy) {
+    dex.captureEnemy(props.enemy)
+    notifyAchievement({ type: 'capture', shiny: props.enemy.isShiny })
+    if (dex.activeShlagemon) {
+      const xp = xpRewardForLevel(props.enemy.lvl)
+      await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
+      const holder = wearableItemStore.getHolder('multi-exp')
+      if (holder)
+        await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
+    }
+    emit('capture')
+  }
+  else {
     startBattle()
+  }
 }
 
 watch(
@@ -160,7 +180,7 @@ onMounted(() => {
     </template>
     <slot />
   </BattleScene>
-  <BattleCapture
+  <CaptureHandler
     v-if="props.captureEnabled"
     :enemy="props.enemy"
     :enemy-hp="enemyHp"

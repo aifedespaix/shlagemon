@@ -109,7 +109,7 @@ function resetTimers() {
   clearTimeout(nextBattleTimer)
 }
 
-async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
+async function handleEnd(result: 'win' | 'lose' | 'draw') {
   const defeated = enemy.value
   enemy.value = null
   events.emit('battle:end')
@@ -119,18 +119,7 @@ async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
     startBattle()
     return
   }
-  if (result === 'capture') {
-    dex.captureEnemy(defeated)
-    notifyAchievement({ type: 'capture', shiny: defeated.isShiny })
-    if (dex.activeShlagemon) {
-      const xp = xpRewardForLevel(defeated.lvl)
-      await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
-      const holder = wearableItemStore.getHolder('multi-exp')
-      if (holder)
-        await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
-    }
-  }
-  else if (result === 'win') {
+  if (result === 'win') {
     const stronger = defeated.lvl > (dex.activeShlagemon?.lvl || 0)
     progress.addWin(zone.current.id)
     game.addShlagidolar(zone.rewardMultiplier)
@@ -147,6 +136,15 @@ async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
     battleStats.addLoss()
     notifyAchievement({ type: 'battle-loss' })
   }
+  resetTimers()
+  nextBattleTimer = window.setTimeout(startBattle, 1000)
+}
+
+function onCapture() {
+  enemy.value = null
+  events.emit('battle:end')
+  if (dex.activeShlagemon)
+    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   resetTimers()
   nextBattleTimer = window.setTimeout(startBattle, 1000)
 }
@@ -180,6 +178,7 @@ async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
       :player="dex.activeShlagemon"
       :enemy="enemy"
       @end="handleEnd"
+      @capture="onCapture"
     >
       <template #header>
         <BattleHeader :zone-name="zone.current.name" />
