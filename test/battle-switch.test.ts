@@ -3,6 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import BattleMain from '../src/components/battle/BattleMain.vue'
+import { EQUILIBRE_RANK } from '../src/constants/battle'
 import { carapouffe, salamiches } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 
@@ -11,6 +12,7 @@ describe('battleMain switch', () => {
     vi.useFakeTimers()
     const pinia = createPinia()
     setActivePinia(pinia)
+    expect(EQUILIBRE_RANK).toBe(2)
     const dex = useShlagedexStore()
     const mon1 = dex.createShlagemon(carapouffe)
     const mon2 = dex.createShlagemon(salamiches)

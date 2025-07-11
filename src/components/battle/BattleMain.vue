@@ -6,6 +6,7 @@ import BattleRound from '~/components/battle/BattleRound.vue'
 import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
 import FightKingButton from '~/components/battle/FightKingButton.vue'
 import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
+import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
@@ -31,7 +32,6 @@ const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 
 const enemy = ref(null as DexShlagemon | null)
-const equilibrerank = 2
 
 function createEnemy(): DexShlagemon | null {
   const active = dex.activeShlagemon
@@ -47,7 +47,7 @@ function createEnemy(): DexShlagemon | null {
   }
   const base = pickRandomByCoefficient(pool)
   progress.registerEncounter(zone.current.id, base.id)
-  const rank = zone.getZoneRank(zone.current.id) * equilibrerank
+  const rank = zone.getZoneRank(zone.current.id) * EQUILIBRE_RANK
   const created = createDexShlagemon(base, false, rank)
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))

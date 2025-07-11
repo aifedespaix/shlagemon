@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import TrainerBattle from '../src/components/battle/TrainerBattle.vue'
+import { EQUILIBRE_RANK } from '../src/constants/battle'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useTrainerBattleStore } from '../src/stores/trainerBattle'
@@ -14,6 +15,7 @@ describe('trainer battle healing', () => {
   it('keeps player hp between fights', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
+    expect(EQUILIBRE_RANK).toBe(2)
 
     const dex = useShlagedexStore()
     const trainerStore = useTrainerBattleStore()
