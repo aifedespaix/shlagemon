@@ -31,7 +31,6 @@ const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 
 const enemy = ref(null as DexShlagemon | null)
-let nextBattleTimer: number | undefined
 const equilibrerank = 2
 
 function createEnemy(): DexShlagemon | null {
@@ -105,10 +104,6 @@ const winTooltip = computed(() =>
   `Vous avez vaincu ${wins.value.toLocaleString()} Shlagémon dans cette zone`,
 )
 
-function resetTimers() {
-  clearTimeout(nextBattleTimer)
-}
-
 async function handleEnd(result: 'win' | 'lose' | 'draw') {
   const defeated = enemy.value
   enemy.value = null
@@ -136,14 +131,12 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
     battleStats.addLoss()
     notifyAchievement({ type: 'battle-loss' })
   }
-  resetTimers()
-  nextBattleTimer = window.setTimeout(startBattle, 1000)
+  startBattle()
 }
 
 function onCapture() {
   enemy.value = null
-  resetTimers()
-  nextBattleTimer = window.setTimeout(startBattle, 1000)
+  startBattle()
 }
 </script>
 
