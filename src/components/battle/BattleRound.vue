@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { onMounted, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
@@ -33,6 +33,11 @@ const disease = useDiseaseStore()
 const zone = useZoneStore()
 const wearableItemStore = useWearableItemStore()
 
+const displayedPlayer = ref(props.player)
+const nextPlayer = ref<DexShlagemon | null>(null)
+const displayedEnemy = ref(props.enemy)
+const nextEnemy = ref<DexShlagemon | null>(null)
+
 const {
   enemy: currentEnemy,
   playerHp,
@@ -57,7 +62,7 @@ const {
 })
 
 function startBattle() {
-  coreStartBattle(props.enemy)
+  coreStartBattle(displayedEnemy.value)
 }
 
 function emitResult(result: 'win' | 'lose' | 'draw') {
@@ -93,9 +98,39 @@ async function onCaptureEnd(success: boolean) {
 }
 
 watch(
-  () => [props.enemy, props.player],
-  () => {
-    startBattle()
+  () => props.enemy,
+  (val, old) => {
+    if (!old) {
+      displayedEnemy.value = val
+      startBattle()
+      return
+    }
+    if (enemyFainted.value) {
+      nextEnemy.value = val
+    }
+    else {
+      displayedEnemy.value = val
+      startBattle()
+    }
+  },
+  { immediate: true },
+)
+
+watch(
+  () => props.player,
+  (val, old) => {
+    if (!old) {
+      displayedPlayer.value = val
+      startBattle()
+      return
+    }
+    if (playerFainted.value) {
+      nextPlayer.value = val
+    }
+    else {
+      displayedPlayer.value = val
+      startBattle()
+    }
   },
   { immediate: true },
 )
@@ -107,11 +142,21 @@ function attack() {
 function onEnemyFaintEnd() {
   if (enemyFainted.value)
     handleEnd()
+  if (nextEnemy.value) {
+    displayedEnemy.value = nextEnemy.value
+    nextEnemy.value = null
+    startBattle()
+  }
 }
 
 function onPlayerFaintEnd() {
   if (playerFainted.value)
     handleEnd()
+  if (nextPlayer.value) {
+    displayedPlayer.value = nextPlayer.value
+    nextPlayer.value = null
+    startBattle()
+  }
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -154,7 +199,7 @@ onMounted(() => {
   >
     <template #player>
       <BattleShlagemon
-        :mon="props.player"
+        :mon="displayedPlayer"
         :hp="playerHp"
         :fainted="playerFainted"
         flipped
@@ -170,8 +215,8 @@ onMounted(() => {
     <template #enemy>
       <Transition name="fade" mode="out-in">
         <BattleShlagemon
-          :key="props.enemy?.id"
-          :mon="props.enemy"
+          :key="displayedEnemy?.id"
+          :mon="displayedEnemy"
           :hp="enemyHp"
           color="bg-red-500"
           :fainted="enemyFainted"
