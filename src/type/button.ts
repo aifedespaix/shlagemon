@@ -5,4 +5,5 @@ export type ButtonType =
   | 'icon'
   | 'menu'
   | 'default'
-  | 'outline'
+
+export type ButtonVariant = 'solid' | 'outline'
