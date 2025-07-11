@@ -18,6 +18,7 @@ import { getZoneBattleTrack, trainerTracks, zoneTracks } from '~/data/music'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAudioStore } from '~/stores/audio'
 import { useDialogStore } from '~/stores/dialog'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useGameStateStore } from '~/stores/gameState'
 import { useInterfaceStore } from '~/stores/interface'
 import { useInventoryStore } from '~/stores/inventory'
@@ -39,6 +40,7 @@ const trainerBattle = useTrainerBattleStore()
 const mobileTab = useMobileTabStore()
 const ui = useInterfaceStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
+const lockStore = useFeatureLockStore()
 
 const showMainPanel = computed(() =>
   dialogStore.isDialogVisible
@@ -100,14 +102,14 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       md="flex-row justify-between"
     >
       <div class="panel-group overflow-hidden" md="max-w-80 basis-1/4">
-        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="dialogStore.isDialogVisible">
+        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
           <InventoryPanel />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" :is-locked="dialogStore.isDialogVisible">
+        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -116,7 +118,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       </div>
 
       <div :class="group2Classes" class="overflow-hidden" md="basis-1/2">
-        <PanelWrapper is-inline :is-locked="dialogStore.isDialogVisible">
+        <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
 
@@ -124,7 +126,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           <MainPanelView class="flex-1" />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable :is-locked="dialogStore.isDialogVisible">
+        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.areZonesLocked">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -133,7 +135,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       </div>
 
       <div v-if="displayDex" class="panel-group max-h-40vh overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="dialogStore.isDialogVisible">
+        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>

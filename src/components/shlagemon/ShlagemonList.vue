@@ -7,9 +7,7 @@ import CheckBox from '~/components/ui/CheckBox.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
-import { useDiseaseStore } from '~/stores/disease'
 import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
@@ -33,17 +31,10 @@ const props = withDefaults(defineProps<Props>(), {
 const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const wearableItemStore = useWearableItemStore()
-const disease = useDiseaseStore()
-const panel = useMainPanelStore()
 const mobile = useMobileTabStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
 const featureLock = useFeatureLockStore()
-
-const isLocked = computed(() =>
-  panel.current === 'trainerBattle'
-  || disease.active
-  || featureLock.isShlagedexLocked,
-)
+const isLocked = featureLock.isShlagedexLocked
 
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
