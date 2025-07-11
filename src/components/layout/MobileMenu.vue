@@ -7,6 +7,7 @@ import { useDialogStore } from '~/stores/dialog'
 import { useInterfaceStore } from '~/stores/interface'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryModalStore } from '~/stores/inventoryModal'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
 
@@ -18,8 +19,9 @@ const arena = useArenaStore()
 const achievements = useAchievementsStore()
 const mapModal = useMapModalStore()
 const ui = useInterfaceStore()
+const panel = useMainPanelStore()
 
-const menuDisabled = computed(() => dialog.isDialogVisible)
+const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 'arena')
 const dexDisabled = menuDisabled
 const achievementsDisabled = computed(() => menuDisabled.value || !achievements.hasAny)
 const inventoryDisabled = computed(() => menuDisabled.value || inventory.list.length === 0 || arena.inBattle)
