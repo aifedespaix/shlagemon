@@ -5,7 +5,9 @@ export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
   const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
   const coefMod = 1 / Math.sqrt(enemy.base.coefficient)
   const levelMod = 1 / (1 + enemy.lvl / 20)
-  const chance = hpChance * coefMod * levelMod * ball.catchBonus
+  // Slightly increase the global capture rate to make encounters less frustrating
+  const difficultyMod = 1.5
+  const chance = Math.min(100, hpChance * coefMod * levelMod * ball.catchBonus * difficultyMod)
   const dev = useDeveloperStore()
   if (dev.debug) {
     console.warn(
