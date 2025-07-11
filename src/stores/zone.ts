@@ -10,7 +10,9 @@ import { useShlagedexStore } from './shlagedex'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
+  // Persist the current zone id so the user stays in the same zone after reload
   const currentId = ref<string>(zones.value[0].id)
+  const currentZoneId = computed(() => currentId.value)
   const selectedAt = ref<number>(Date.now())
   const arena = useArenaStore()
   const now = useNow({ interval: 100 })
@@ -79,6 +81,7 @@ export const useZoneStore = defineStore('zone', () => {
   return {
     zones,
     current,
+    currentZoneId,
     selectedAt,
     wildCooldownRemaining,
     rewardMultiplier,

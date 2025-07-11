@@ -7,6 +7,7 @@ import { useDialogStore } from './dialog'
 import { useGameStore } from './game'
 import { useGameStateStore } from './gameState'
 import { useInventoryStore } from './inventory'
+import { useMainPanelStore } from './mainPanel'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 import { useZoneProgressStore } from './zoneProgress'
@@ -23,6 +24,7 @@ export const useSaveStore = defineStore('save', () => {
   const achievements = useAchievementsStore()
   const ball = useBallStore()
   const dexFilter = useDexFilterStore()
+  const mainPanel = useMainPanelStore()
 
   function reset() {
     dex.reset()
@@ -36,6 +38,7 @@ export const useSaveStore = defineStore('save', () => {
     battleStats.reset()
     ball.reset()
     dexFilter.reset()
+    mainPanel.reset()
   }
 
   return { reset }
