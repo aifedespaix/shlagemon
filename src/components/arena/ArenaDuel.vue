@@ -19,5 +19,7 @@ function onEnd(result: 'win' | 'lose' | 'draw') {
     :show-xp-bar="false"
     :show-effects="false"
     @end="onEnd"
-  />
+  >
+    <slot name="header" />
+  </BattleRound>
 </template>
