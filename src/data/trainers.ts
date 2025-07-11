@@ -1,6 +1,6 @@
 import type { Character } from '~/type/character'
 import type { Trainer } from '~/types'
-import { carapouffe } from './shlagemons/evolutions/carapouffe'
+import { carapouffe } from './shlagemons/carapouffe'
 import { salamiches } from './shlagemons/salamiches'
 
 const bobCharacter: Character = {
