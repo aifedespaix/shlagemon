@@ -171,7 +171,7 @@ async function handleEnd(result: 'capture' | 'win' | 'lose' | 'draw') {
           {{ zone.current.name }}
         </div>
         <div v-if="zone.current.maxLevel" class="whitespace-nowrap text-xs">
-          {{ zone.current.minLevel }} - {{ zone.current.maxLevel }}
+          lvl {{ zone.current.minLevel }} à {{ zone.current.maxLevel }}
         </div>
       </div>
     </div>

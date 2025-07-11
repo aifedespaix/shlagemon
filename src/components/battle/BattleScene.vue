@@ -34,7 +34,7 @@ interface Props {
         VS
       </div>
       <div
-        class="relative flex-1"
+        class="relative h-full w-full flex-1"
         @click="e => emit('click', e)"
         @mousemove="e => emit('mousemove', e)"
         @mouseenter="emit('mouseenter')"
