@@ -24,6 +24,7 @@ Un mini-jeu d'adresse « Whack-a-Shlag » permet aussi de récolter quelques Shl
 - Prêt pour le _PWA_ et l'internationalisation.
 - Mini-jeu « Whack-a-Shlag » accessible depuis le village Veaux du Gland.
 - Chances de capture basées sur la vie restante, le coefficient (racine cubique) et le niveau de l'ennemi.
+- Un ennemi de coefficient 1 à pleine vie peut désormais être capturé presque systématiquement avec une Shlagéball.
 
 ## Installation
 

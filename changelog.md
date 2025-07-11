@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.6] - 2025-07-08
+
+### Changed
+
+- Capture chance at plein HP grandement augmentée pour les ennemis de coefficient 1.
+- Bonus de capture à très faible HP légèrement réduit pour équilibrer les combats de haut niveau.
+
 ## [0.3.5] - 2025-07-07
 
 ### Changed
