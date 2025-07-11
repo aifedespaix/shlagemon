@@ -20,8 +20,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   watch(
     () => zone.current.type,
     (type) => {
-      if (current.value === 'battle' || current.value === 'village')
-        current.value = type === 'village' ? 'village' : 'battle'
+      current.value = type === 'village' ? 'village' : 'battle'
     },
     { immediate: true },
   )
