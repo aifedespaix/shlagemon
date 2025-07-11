@@ -139,7 +139,7 @@ onUnmounted(() => clearTimeout(nextTimer))
 </script>
 
 <template>
-  <div class="tiny-scrollbar overflow-auto">
+  <div class="tiny-scrollbar eee h-full flex flex-col overflow-auto">
     <div v-show="!showDuel" class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
@@ -213,7 +213,7 @@ onUnmounted(() => clearTimeout(nextTimer))
         </Modal>
       </div>
     </div>
-    <div v-if="showDuel" class="mt-2 flex flex-col items-center gap-2">
+    <div v-if="showDuel" class="flex flex-1 flex-col items-center gap-2">
       <ArenaDuel
         v-if="duelResult === null"
         :player="arena.team[arena.currentIndex]"

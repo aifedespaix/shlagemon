@@ -20,6 +20,8 @@ function onEnd(result: 'win' | 'lose' | 'draw') {
     :show-effects="false"
     @end="onEnd"
   >
-    <slot name="header" />
+    <template #header>
+      <slot name="header" />
+    </template>
   </BattleRound>
 </template>
