@@ -90,7 +90,7 @@ const details = computed(() => props.item.details || props.item.description)
       <Button type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
         Acheter <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
       </Button>
-      <Button class="text-xs" @click="emit('close')">
+      <Button class="text-xs" variant="outline" type="danger" @click="emit('close')">
         Retour
       </Button>
     </div>
