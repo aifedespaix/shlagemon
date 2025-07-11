@@ -34,7 +34,7 @@ export const arena20: Arena = {
 }
 
 export const arena40: Arena = {
-  id: 'arena20',
+  id: 'arena40',
   character: profMerdant,
   level: 21,
   badge: {
@@ -55,6 +55,7 @@ export const arena40: Arena = {
 
 export const arenas: Arena[] = [
   arena20,
+  arena40,
 ]
 
 export function getArena(id: string): Arena | undefined {
