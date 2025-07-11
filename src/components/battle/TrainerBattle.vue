@@ -4,6 +4,7 @@ import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleRound from '~/components/battle/BattleRound.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
 import Button from '~/components/ui/Button.vue'
+import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStatsStore } from '~/stores/battleStats'
@@ -31,7 +32,6 @@ const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
 const enemyIndex = ref(0)
 const enemy = ref(null as DexShlagemon | null)
-const equilibrerank = 2
 
 function createEnemy(): DexShlagemon | null {
   const t = trainer.value
@@ -44,7 +44,7 @@ function createEnemy(): DexShlagemon | null {
   if (!base)
     return null
   const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
-  const mon = createDexShlagemon(base, false, rank * equilibrerank)
+  const mon = createDexShlagemon(base, false, rank * EQUILIBRE_RANK)
   mon.lvl = spec.level
   applyStats(mon)
   return mon
