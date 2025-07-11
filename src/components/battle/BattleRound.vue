@@ -37,7 +37,6 @@ const {
   enemy: currentEnemy,
   playerHp,
   enemyHp,
-  battleActive,
   flashPlayer,
   flashEnemy,
   playerFainted,
@@ -94,14 +93,6 @@ async function onCaptureEnd(success: boolean) {
 }
 
 watch(
-  () => battleActive.value,
-  (active, prev) => {
-    if (!active && prev && (playerFainted.value || enemyFainted.value))
-      handleEnd()
-  },
-)
-
-watch(
   () => [props.enemy, props.player],
   () => {
     startBattle()
@@ -110,7 +101,16 @@ watch(
 )
 
 function attack() {
-  if (coreAttack())
+  coreAttack()
+}
+
+function onEnemyFaintEnd() {
+  if (enemyFainted.value)
+    handleEnd()
+}
+
+function onPlayerFaintEnd() {
+  if (playerFainted.value)
     handleEnd()
 }
 
@@ -162,6 +162,7 @@ onMounted(() => {
         :disease="disease.active"
         :disease-remaining="disease.remaining"
         :class="{ flash: flashPlayer }"
+        @faint-end="onPlayerFaintEnd"
       >
         <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
       </BattleShlagemon>
@@ -173,6 +174,7 @@ onMounted(() => {
         color="bg-red-500"
         :fainted="enemyFainted"
         :class="{ flash: flashEnemy }"
+        @faint-end="onEnemyFaintEnd"
       >
         <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
       </BattleShlagemon>
