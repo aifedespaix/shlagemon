@@ -87,5 +87,11 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
 }, {
   persist: {
     pick: ['current'],
+    afterHydrate(ctx) {
+      const store = ctx.store as ReturnType<typeof useMainPanelStore>
+      const arenaStore = useArenaStore()
+      if (store.current === 'arena' && !arenaStore.inBattle)
+        store.reset()
+    },
   },
 })
