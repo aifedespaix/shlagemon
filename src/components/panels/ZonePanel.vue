@@ -21,7 +21,11 @@ const dialog = useDialogStore()
 const mobile = useMobileTabStore()
 
 const zoneButtonsDisabled = computed(
-  () => panel.current === 'trainerBattle' || dialog.isDialogVisible || arena.inBattle,
+  () =>
+    panel.current === 'trainerBattle'
+    || panel.current === 'arena'
+    || dialog.isDialogVisible
+    || arena.inBattle,
 )
 
 function buttonDisabled(z: Zone) {
