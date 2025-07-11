@@ -189,6 +189,14 @@ onUnmounted(() => clearTimeout(nextTimer))
           >
             Combattre
           </Button>
+          <Button
+            type="danger"
+            variant="outline"
+            class="mx-auto"
+            @click="quit"
+          >
+            Abandonner
+          </Button>
         </div>
         <Modal v-model="showDex" footer-close>
           <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
@@ -235,7 +243,7 @@ onUnmounted(() => clearTimeout(nextTimer))
             Réessayer
           </Button>
           <Button type="danger" @click="quit">
-            Quitter
+            Quitter l'arène
           </Button>
         </template>
       </div>
