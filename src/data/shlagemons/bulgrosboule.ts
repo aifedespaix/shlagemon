@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../../shlagemons-type'
-import { barbeBizarre } from './barbe-bizarre'
+import { shlagemonTypes } from '../shlagemons-type'
+import { barbeBizarre } from './evolutions/barbe-bizarre'
 
 export const bulgrosboule: BaseShlagemon = {
   id: 'bulgrosboule',

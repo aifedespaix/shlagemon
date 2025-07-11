@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../../shlagemons-type'
-import { carabifle } from './carabifle'
+import { shlagemonTypes } from '../shlagemons-type'
+import { carabifle } from './evolutions/carabifle'
 
 export const carapouffe: BaseShlagemon = {
   id: 'carapouffe',
