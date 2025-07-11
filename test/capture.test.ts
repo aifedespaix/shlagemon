@@ -38,4 +38,17 @@ describe('capture mechanics', () => {
     const chance = Math.min(100, hpChance * coefMod * levelMod * balls[2].catchBonus * difficultyMod)
     expect(chance).toBeCloseTo(10, 1)
   })
+
+  it('regular ball against lvl1 coefficient1 foe at full HP is almost guaranteed', () => {
+    const mon = createDexShlagemon(carapouffe)
+    mon.base.coefficient = 1
+    mon.lvl = 1
+    mon.hpCurrent = mon.hp
+    const hpChance = captureChanceFromHp(mon.hpCurrent / mon.hp)
+    const coefMod = 1 / Math.cbrt(mon.base.coefficient)
+    const levelMod = 1 / (1 + mon.lvl / 40)
+    const difficultyMod = 1.3
+    const chance = Math.min(100, hpChance * coefMod * levelMod * balls[0].catchBonus * difficultyMod)
+    expect(chance).toBeGreaterThanOrEqual(95)
+  })
 })
