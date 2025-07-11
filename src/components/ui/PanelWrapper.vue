@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean }>()
+const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean }>()
 const opened = ref(true)
 const isMobile = useMediaQuery('(max-width: 767px)')
 
@@ -97,12 +97,13 @@ const titleClasses = computed(() => {
         <slot />
       </div>
     </Transition>
+    <div v-if="props.isLocked" class="pointer-events-none absolute inset-0 z-50 bg-black/20 dark:bg-black/40" />
   </div>
 </template>
 
 <style scoped>
 .panel-wrapper {
-  @apply flex flex-col;
+  @apply relative flex flex-col;
   @apply rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800;
 }
 
