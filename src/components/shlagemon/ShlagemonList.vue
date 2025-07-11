@@ -19,12 +19,14 @@ interface Props {
   mons: DexShlagemon[]
   showCheckbox?: boolean
   disabledIds?: string[]
+  highlightIds?: string[]
   onItemClick?: (mon: DexShlagemon) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
   showCheckbox: false,
   disabledIds: () => [],
+  highlightIds: () => [],
 })
 
 const filter = useDexFilterStore()
@@ -107,6 +109,10 @@ function isActive(mon: DexShlagemon) {
   return dex.activeShlagemon?.id === mon.id
 }
 
+function isHighlighted(mon: DexShlagemon) {
+  return props.highlightIds.includes(mon.id)
+}
+
 function changeActive(mon: DexShlagemon) {
   if (isLocked.value)
     return
@@ -133,7 +139,14 @@ function changeActive(mon: DexShlagemon) {
         :key="mon.id"
         class="relative flex cursor-pointer items-center justify-between border rounded p-1"
         hover="bg-gray-100 dark:bg-gray-800"
-        :class="isActive(mon) ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400' : ''"
+        :class="[
+          isActive(mon)
+            ? 'bg-blue-500/20 dark:bg-blue-500/20 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400'
+            : '',
+          isHighlighted(mon) && !isActive(mon)
+            ? 'bg-gray-200/30 dark:bg-gray-700/30 ring-2 ring-gray-400 dark:ring-gray-600'
+            : '',
+        ]"
         @click.stop="handleClick(mon)"
       >
         <MultiExpIcon

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BaseShlagemon } from '~/type/shlagemon'
+import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { computed, onUnmounted, ref, toRaw, watch } from 'vue'
 import { toast } from 'vue3-toastify'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
@@ -44,6 +44,13 @@ function openDex(i: number) {
 function openEnemy(mon: BaseShlagemon) {
   enemyDetail.value = mon
   showEnemy.value = true
+}
+
+function onMonSelected(mon: DexShlagemon) {
+  if (activeSlot.value === null)
+    return
+  arena.selectPlayer(activeSlot.value, mon.id)
+  showDex.value = false
 }
 
 watch(() => dex.activeShlagemon, (mon) => {
@@ -186,7 +193,10 @@ onUnmounted(() => clearTimeout(nextTimer))
           <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
             Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
           </h3>
-          <ShlagemonQuickSelect :selected="arena.selections.filter(Boolean) as string[]" />
+          <ShlagemonQuickSelect
+            :selected="arena.selections.filter(Boolean) as string[]"
+            @select="onMonSelected"
+          />
         </Modal>
 
         <Modal v-model="showEnemy" footer-close>

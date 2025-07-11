@@ -21,7 +21,7 @@ function choose(mon: DexShlagemon) {
   <ShlagemonList
     :mons="dex.shlagemons"
     :show-checkbox="false"
-    :disabled-ids="props.selected"
+    :highlight-ids="props.selected"
     :on-item-click="choose"
   />
 </template>
