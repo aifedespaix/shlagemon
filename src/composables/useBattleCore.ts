@@ -54,6 +54,8 @@ export function useBattleCore(options: BattleCoreOptions) {
       active.hpCurrent = active.hp
     playerHp.value = active.hpCurrent
     enemyHp.value = enemy.value.hpCurrent
+    playerFainted.value = false
+    enemyFainted.value = false
     battleActive.value = true
     startInterval()
   }
