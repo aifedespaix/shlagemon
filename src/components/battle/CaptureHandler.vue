@@ -7,6 +7,7 @@ import { useBallStore } from '~/stores/ball'
 import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
 import { useInventoryStore } from '~/stores/inventory'
 import { usePlayerStore } from '~/stores/player'
+import { useShlagedexStore } from '~/stores/shlagedex'
 import { ballHues } from '~/utils/ball'
 import { tryCapture } from '~/utils/capture'
 
@@ -18,6 +19,9 @@ const ballStore = useBallStore()
 const player = usePlayerStore()
 const captureLimitModal = useCaptureLimitModalStore()
 const audio = useAudioStore()
+const dex = useShlagedexStore()
+
+const capturedEnemy = ref<DexShlagemon | null>(null)
 
 const showCapture = ref(false)
 const captureBall = ref(balls[0])
@@ -58,6 +62,7 @@ function openCapture() {
     captureLimitModal.open(props.enemy.lvl)
     return
   }
+  capturedEnemy.value = props.enemy
   inventory.remove(id)
   captureBall.value = balls.find(b => b.id === id) || balls[0]
   props.stopBattle()
@@ -69,6 +74,9 @@ function openCapture() {
 
 function finish(success: boolean) {
   showCapture.value = false
+  if (success && capturedEnemy.value)
+    dex.captureEnemy(capturedEnemy.value)
+  capturedEnemy.value = null
   emit('finish', success)
 }
 </script>
