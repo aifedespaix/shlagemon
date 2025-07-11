@@ -232,13 +232,10 @@ onUnmounted(() => clearTimeout(nextTimer))
         >
           {{ duelResult === 'win' ? 'Victoire !' : 'Défaite...' }}
         </div>
-        <Button v-if="duelResult === 'win' && hasNextDuel" type="primary" @click="proceedNext">
-          Suivant
-        </Button>
-        <Button v-else-if="duelResult === 'win'" type="primary" @click="closeVictory">
+        <Button v-if="duelResult === 'win' && !hasNextDuel" type="primary" @click="closeVictory">
           Fermer
         </Button>
-        <template v-else>
+        <template v-else-if="duelResult === 'lose'">
           <Button type="primary" @click="retry">
             Réessayer
           </Button>
