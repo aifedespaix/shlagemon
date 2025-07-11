@@ -78,7 +78,6 @@ function handleEnd() {
 
 async function onCaptureEnd(success: boolean) {
   if (success && props.enemy) {
-    dex.captureEnemy(props.enemy)
     notifyAchievement({ type: 'capture', shiny: props.enemy.isShiny })
     if (dex.activeShlagemon) {
       const xp = xpRewardForLevel(props.enemy.lvl)
