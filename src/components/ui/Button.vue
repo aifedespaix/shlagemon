@@ -18,6 +18,8 @@ const variantClass = computed(() => {
       return 'flex-1 p-2 rounded bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
     case 'primary':
       return 'rounded px-2 py-1 text-white bg-blue-600 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-800'
+    case 'outline':
+      return 'rounded px-2 py-1 border border-cyan-600 text-cyan-600 hover:bg-cyan-50 dark:border-cyan-700 dark:text-cyan-400 dark:hover:bg-cyan-800/20'
     default:
       return 'rounded px-2 py-1 text-white bg-cyan-600 dark:bg-cyan-700 hover:bg-cyan-700 dark:hover:bg-cyan-800/80'
   }

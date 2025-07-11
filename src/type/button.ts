@@ -5,3 +5,4 @@ export type ButtonType =
   | 'icon'
   | 'menu'
   | 'default'
+  | 'outline'

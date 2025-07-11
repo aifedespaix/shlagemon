@@ -39,7 +39,7 @@ function closeShop() {
     <div v-else class="tiny-scrollbar flex-1 overflow-auto">
       <ShopItemDetail :item="selectedItem" @close="selectedItem = null" />
     </div>
-    <Button type="danger" class="mt-2 flex self-center gap-2 text-xs" @click="closeShop">
+    <Button type="outline" class="mt-2 flex self-center gap-2 text-xs" @click="closeShop">
       <div class="i-carbon:exit" />
       Quitter la boutique
     </Button>
