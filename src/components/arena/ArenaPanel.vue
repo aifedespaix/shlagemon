@@ -57,8 +57,10 @@ function startBattle() {
   const team = arena.selections
     .map(id => dex.shlagemons.find(m => m.id === (id || ''))!)
     .map((mon) => {
-      mon.hpCurrent = mon.hp
-      return mon
+      const clone = structuredClone(mon)
+      applyStats(clone)
+      clone.hpCurrent = clone.hp
+      return clone
     })
   const enemies = enemyTeam.value.map((b) => {
     const m = createDexShlagemon(b)
