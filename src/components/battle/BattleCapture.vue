@@ -92,7 +92,7 @@ defineExpose({ open })
       md="top-16 h-16 w-16"
       @click="open"
     >
-      <Tooltip :text="captureButtonTooltip">
+      <Tooltip :text="captureButtonTooltip" is-button>
         <ImageByBackground
           src="/items/shlageball/shlageball.png"
           alt="capture"

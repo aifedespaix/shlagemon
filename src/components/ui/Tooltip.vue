@@ -2,7 +2,7 @@
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { onUnmounted, ref } from 'vue'
 
-const props = defineProps<{ text: string }>()
+const props = defineProps<{ text: string, isButton?: boolean }>()
 
 const wrapper = ref<HTMLElement | null>(null)
 const tooltip = ref<HTMLElement | null>(null)
@@ -44,7 +44,8 @@ onUnmounted(hide)
 <template>
   <span
     ref="wrapper"
-    class="relative inline-flex cursor-default items-center"
+    class="relative inline-flex items-center"
+    :class="isButton ? 'cursor-pointer' : 'cursor-default'"
     @mouseenter="show"
     @mouseleave="hide"
     @focusin="show"
