@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
-import { shlagemonTypes } from '../../shlagemons-type'
-import raptorincel from './raptorincel'
+import { shlagemonTypes } from '../shlagemons-type'
+import raptorincel from './evolutions/raptorincel'
 
 export const salamiches: BaseShlagemon = {
   id: 'salamiches',

@@ -16,7 +16,7 @@ On raconte qu'il pourrait évoluer s'il trouvait enfin une vraie motivation. Mai
     base: vieuxBlaireau,
     condition: {
       type: 'lvl',
-      value: 12,
+      value: 5,
     },
   },
 }

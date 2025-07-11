@@ -1,0 +1,17 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+
+export const meladolphe: BaseShlagemon = {
+  id: 'meladolphe',
+  name: 'Méladolphe',
+  description: `Méladolphe est l’évolution contestée de Mélofoutre, fruit d’une mutation auditive après trop de soirées karaoké entre beaufs autoritaires. Il a troqué sa douceur poisseuse contre un costume trop repassé, une raie bien tracée, et une passion suspecte pour les discours gênants.
+
+Il chante faux mais fort, avec des paroles douteuses qui font fuir les autres Shlagémons. Son attaque signature, *Chant Fascinazif*, oblige ses ennemis à se ranger en file indienne et à marcher au pas jusqu'à l'épuisement. Il peut aussi déclencher *Micro de Propagande*, un cri strident qui inflige des dégâts psychologiques même à travers les murs.
+
+Son aura autoritaire et son parfum de naphtaline lui valent d’être banni de plusieurs régions. Malgré tout, certains dresseurs le trouvent “charismatique”, mais ils ont souvent de drôles d’idées derrière la tête.`,
+
+  types: [shlagemonTypes.fee],
+  coefficient: 72,
+}
+
+export default meladolphe

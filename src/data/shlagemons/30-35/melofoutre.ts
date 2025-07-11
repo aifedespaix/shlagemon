@@ -1,5 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
+import meladolphe from '../evolutions/meladolphe'
 
 export const melofoutre: BaseShlagemon = {
   id: 'melofoutre',
@@ -12,6 +13,13 @@ Mélofoutre ne cherche pas le combat, mais s’y retrouve souvent par accident�
 
   types: [shlagemonTypes.fee, shlagemonTypes.normal],
   coefficient: 31,
+  evolution: {
+    base: meladolphe,
+    condition: {
+      type: 'lvl',
+      value: 70,
+    },
+  },
 }
 
 export default melofoutre
