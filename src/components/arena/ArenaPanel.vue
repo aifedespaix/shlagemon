@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
-import { computed, onUnmounted, ref, watch } from 'vue'
+import { computed, onUnmounted, ref, toRaw, watch } from 'vue'
 import { toast } from 'vue3-toastify'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
 import ArenaEnemyStats from '~/components/arena/ArenaEnemyStats.vue'
@@ -57,7 +57,7 @@ function startBattle() {
   const team = arena.selections
     .map(id => dex.shlagemons.find(m => m.id === (id || ''))!)
     .map((mon) => {
-      const clone = structuredClone(mon)
+      const clone = structuredClone(toRaw(mon))
       applyStats(clone)
       clone.hpCurrent = clone.hp
       return clone
