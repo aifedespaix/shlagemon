@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useArenaStore } from './arena'
 import { useBattleStore } from './battle'
 import { useShlagedexStore } from './shlagedex'
@@ -20,10 +20,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   watch(
     () => zone.current.type,
     (type) => {
-      if (type === 'village')
-        current.value = 'village'
-      else
-        current.value = 'battle'
+      if (current.value === 'battle' || current.value === 'village')
+        current.value = type === 'village' ? 'village' : 'battle'
     },
     { immediate: true },
   )
@@ -71,6 +69,10 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'village'
   }
 
+  function reset() {
+    current.value = zone.current.type === 'village' ? 'village' : 'battle'
+  }
+
   return {
     current,
     showShop,
@@ -79,6 +81,11 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     showMiniGame,
     showArena,
     showVillage,
+    reset,
     isBattle,
   }
+}, {
+  persist: {
+    pick: ['current'],
+  },
 })
