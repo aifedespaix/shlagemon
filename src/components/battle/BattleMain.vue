@@ -142,9 +142,6 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
 
 function onCapture() {
   enemy.value = null
-  events.emit('battle:end')
-  if (dex.activeShlagemon)
-    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   resetTimers()
   nextBattleTimer = window.setTimeout(startBattle, 1000)
 }
