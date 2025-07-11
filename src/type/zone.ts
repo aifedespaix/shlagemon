@@ -8,27 +8,36 @@ export interface ZoneAction {
   label: string
 }
 
-export interface Zone {
+interface BaseZone {
   id: ZoneId
   name: string
   type: ZoneType
   actions: ZoneAction[]
-  /** Minimum level for enemies and XP gain */
   minLevel: number
-  /** Maximum level for enemies and XP gain */
-  maxLevel?: number
   shlagemons?: BaseShlagemon[]
   image?: string
-  /** Whether this zone features a king to challenge */
   hasKing?: boolean
-  /** Achievement title when all Shlagemon are captured */
   completionAchievement?: string
-  /** Optional arena available in this zone */
   arena?: {
     arena: Arena
     completed: boolean
   }
 }
+
+// Variante spécifique pour les zones sauvages
+export interface SavageZone extends BaseZone {
+  type: 'sauvage'
+  maxLevel: number // requis
+}
+
+// Variante générique pour toutes les autres zones
+interface NonSavageZone extends BaseZone {
+  type: Exclude<ZoneType, 'sauvage'>
+  maxLevel?: undefined // interdit explicitement (ou facultatif si tu préfères)
+}
+
+// Union finale
+export type Zone = SavageZone | NonSavageZone
 
 export type ZoneId = SavageZoneId | VillageZoneId
 
