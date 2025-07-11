@@ -22,6 +22,12 @@ export const useFeatureLockStore = defineStore('featureLock', () => {
     zonesLocked.value = true
   }
 
+  function lockAll() {
+    inventoryLocked.value = true
+    shlagedexLocked.value = true
+    zonesLocked.value = true
+  }
+
   function unlockAll() {
     inventoryLocked.value = false
     shlagedexLocked.value = false
@@ -35,6 +41,7 @@ export const useFeatureLockStore = defineStore('featureLock', () => {
     lockInventory,
     lockShlagedex,
     lockZones,
+    lockAll,
     unlockAll,
   }
 })

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
+import { onMounted, onUnmounted } from 'vue'
 import BattleHeader from '~/components/battle/BattleHeader.vue'
 import BattleRound from '~/components/battle/BattleRound.vue'
 import CharacterImage from '~/components/character/CharacterImage.vue'
@@ -8,6 +9,7 @@ import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStatsStore } from '~/stores/battleStats'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -23,6 +25,7 @@ const wearableItemStore = useWearableItemStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const panel = useMainPanelStore()
+const featureLock = useFeatureLockStore()
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -132,6 +135,9 @@ function finish() {
 function cancelFight() {
   panel.showBattle()
 }
+
+onMounted(featureLock.lockAll)
+onUnmounted(featureLock.unlockAll)
 </script>
 
 <template>

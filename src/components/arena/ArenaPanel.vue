@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
-import { computed, onUnmounted, ref, toRaw, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, toRaw, watch } from 'vue'
 import { toast } from 'vue3-toastify'
 import ArenaBattleHeader from '~/components/arena/ArenaBattleHeader.vue'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
@@ -11,6 +11,7 @@ import ShlagemonQuickSelect from '~/components/shlagemon/ShlagemonQuickSelect.vu
 import Button from '~/components/ui/Button.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
@@ -19,6 +20,7 @@ const dex = useShlagedexStore()
 const arena = useArenaStore()
 const dialog = useDialogStore()
 const panel = useMainPanelStore()
+const featureLock = useFeatureLockStore()
 
 const enemyTeam = computed(() => arena.lineup)
 const showDex = ref(false)
@@ -130,7 +132,11 @@ function quit() {
   panel.showVillage()
 }
 
-onUnmounted(() => clearTimeout(nextTimer))
+onMounted(featureLock.lockAll)
+onUnmounted(() => {
+  clearTimeout(nextTimer)
+  featureLock.unlockAll()
+})
 </script>
 
 <template>
