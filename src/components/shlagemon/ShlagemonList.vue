@@ -8,6 +8,7 @@ import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useDiseaseStore } from '~/stores/disease'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -36,8 +37,13 @@ const disease = useDiseaseStore()
 const panel = useMainPanelStore()
 const mobile = useMobileTabStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
+const featureLock = useFeatureLockStore()
 
-const isLocked = computed(() => panel.current === 'trainerBattle' || disease.active)
+const isLocked = computed(() =>
+  panel.current === 'trainerBattle'
+  || disease.active
+  || featureLock.isShlagedexLocked,
+)
 
 const sortOptions = [
   { label: 'Niveau', value: 'level' },

@@ -3,6 +3,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { useMediaQuery } from '@vueuse/core'
 import Modal from '~/components/modal/Modal.vue'
 import { useDiseaseStore } from '~/stores/disease'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -12,9 +13,14 @@ import ShlagemonList from './ShlagemonList.vue'
 const dex = useShlagedexStore()
 const panel = useMainPanelStore()
 const disease = useDiseaseStore()
+const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
-const isLocked = computed(() => panel.current === 'trainerBattle' || disease.active)
+const isLocked = computed(() =>
+  panel.current === 'trainerBattle'
+  || disease.active
+  || featureLock.isShlagedexLocked,
+)
 const mobile = useMobileTabStore()
 const isMobile = useMediaQuery('(max-width: 767px)')
 

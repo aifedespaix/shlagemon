@@ -4,6 +4,7 @@ import { computed } from 'vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
@@ -19,13 +20,15 @@ const progress = useZoneProgressStore()
 const mapModal = useMapModalStore()
 const dialog = useDialogStore()
 const mobile = useMobileTabStore()
+const featureLock = useFeatureLockStore()
 
 const zoneButtonsDisabled = computed(
   () =>
     panel.current === 'trainerBattle'
     || panel.current === 'arena'
     || dialog.isDialogVisible
-    || arena.inBattle,
+    || arena.inBattle
+    || featureLock.areZonesLocked,
 )
 
 function buttonDisabled(z: Zone) {

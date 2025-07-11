@@ -8,6 +8,7 @@ import SearchInput from '~/components/ui/SearchInput.vue'
 import SortControls from '~/components/ui/SortControls.vue'
 import { useBallStore } from '~/stores/ball'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
+import { useFeatureLockStore } from '~/stores/featureLock'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
 import { useInventoryModalStore } from '~/stores/inventoryModal'
@@ -19,6 +20,7 @@ const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
 const inventoryModal = useInventoryModalStore()
 const filter = useInventoryFilterStore()
+const featureLock = useFeatureLockStore()
 const sortOptions = [
   { label: 'Type', value: 'type' },
   { label: 'Nom', value: 'name' },
@@ -46,12 +48,16 @@ const filteredList = computed(() => {
 })
 
 function isDisabled(item: Item) {
+  if (featureLock.isInventoryLocked)
+    return true
   if ('catchBonus' in item)
     return ballStore.current === item.id
   return item.type === 'evolution' && !evoItemStore.canUse(item)
 }
 
 function onUse(item: Item) {
+  if (featureLock.isInventoryLocked)
+    return
   if ('catchBonus' in item) {
     ballStore.setBall(item.id as any)
     toast(`Vous avez équipé la ${item.name}`)
