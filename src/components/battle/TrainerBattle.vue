@@ -79,11 +79,17 @@ function nextBattle() {
 }
 
 async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
-  if (!enemy.value)
+  const defeated = enemy.value
+  enemy.value = null
+  if (dex.activeShlagemon)
+    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+  if (!defeated) {
+    enemy.value = createEnemy()
     return
+  }
   if (type === 'win') {
     if (dex.activeShlagemon) {
-      const xp = xpRewardForLevel(enemy.value.lvl)
+      const xp = xpRewardForLevel(defeated.lvl)
       await dex.gainXp(dex.activeShlagemon, xp, undefined, trainerStore.levelUpHealPercent)
       const holder = wearableItemStore.getHolder('multi-exp')
       if (holder)
@@ -95,6 +101,7 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
         progress.defeatKing(zone.current.id)
       result.value = 'win'
       stage.value = 'after'
+      return
     }
   }
   else if (type === 'lose') {
@@ -102,14 +109,9 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
     notifyAchievement({ type: 'battle-loss' })
     result.value = 'lose'
     stage.value = 'after'
+    return
   }
-  else if (type === 'capture') {
-    // capturing not allowed in trainer battles, ignore
-    enemy.value = createEnemy()
-  }
-  else {
-    enemy.value = createEnemy()
-  }
+  enemy.value = createEnemy()
 }
 
 function finish() {
