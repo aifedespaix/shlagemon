@@ -6,6 +6,7 @@ const props = withDefaults(defineProps<Props>(), {
   cursorX: 0,
   cursorY: 0,
   cursorClicked: false,
+  showXpBar: true,
 })
 
 const emit = defineEmits<{
@@ -22,6 +23,7 @@ interface Props {
   cursorX?: number
   cursorY?: number
   cursorClicked?: boolean
+  showXpBar?: boolean
 }
 </script>
 
@@ -51,7 +53,7 @@ interface Props {
     </div>
     <slot />
     <ShlagemonXpBar
-      v-if="dex.activeShlagemon"
+      v-if="props.showXpBar && dex.activeShlagemon"
       class="max-w-160 w-full self-center"
       :mon="dex.activeShlagemon"
     />

@@ -18,9 +18,13 @@ const props = withDefaults(defineProps<{
   enemy: DexShlagemon
   clickAttack?: boolean
   captureEnabled?: boolean
+  showXpBar?: boolean
+  showEffects?: boolean
 }>(), {
   clickAttack: true,
   captureEnabled: true,
+  showXpBar: true,
+  showEffects: true,
 })
 
 const emit = defineEmits<{
@@ -192,6 +196,7 @@ onMounted(() => {
     :cursor-x="cursorX"
     :cursor-y="cursorY"
     :cursor-clicked="cursorClicked"
+    :show-xp-bar="props.showXpBar"
     @click="onClick"
     @mousemove="onMouseMove"
     @mouseenter="onMouseEnter"
@@ -203,7 +208,7 @@ onMounted(() => {
         :hp="playerHp"
         :fainted="playerFainted"
         flipped
-        :effects="dex.effects"
+        :effects="props.showEffects ? dex.effects : []"
         :disease="disease.active"
         :disease-remaining="disease.remaining"
         :class="{ flash: flashPlayer }"
