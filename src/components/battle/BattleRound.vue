@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import { onMounted, watch } from 'vue'
+import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
-import CaptureHandler from '~/components/battle/CaptureHandler.vue'
 import { useBattleCore } from '~/composables/useBattleCore'
 import { notifyAchievement } from '~/stores/achievements'
 import { useDiseaseStore } from '~/stores/disease'
@@ -179,11 +179,11 @@ onMounted(() => {
     </template>
     <slot />
   </BattleScene>
-  <CaptureHandler
+  <BattleCapture
     v-if="props.captureEnabled"
     :enemy="props.enemy"
     :enemy-hp="enemyHp"
     :stop-battle="stopBattle"
-    @finish="onCaptureEnd"
+    @finished="onCaptureEnd"
   />
 </template>

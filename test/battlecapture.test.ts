@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
-import CaptureHandler from '../src/components/battle/CaptureHandler.vue'
+import BattleCapture from '../src/components/battle/BattleCapture.vue'
 import { carapouffe } from '../src/data/shlagemons/evolutions/carapouffe'
 import { useBallStore } from '../src/stores/ball'
 import { useInventoryStore } from '../src/stores/inventory'
@@ -10,7 +10,7 @@ import { useShlagedexStore } from '../src/stores/shlagedex'
 import * as captureUtils from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 
-describe('captureHandler', () => {
+describe('battleCapture', () => {
   it('updates store on successful capture', async () => {
     vi.useFakeTimers()
     const pinia = createPinia()
@@ -28,7 +28,7 @@ describe('captureHandler', () => {
     const captureSpy = vi.spyOn(dex, 'captureEnemy')
     vi.spyOn(captureUtils, 'tryCapture').mockReturnValue(true)
 
-    const wrapper = mount(CaptureHandler, {
+    const wrapper = mount(BattleCapture, {
       props: { enemy, enemyHp: enemy.hp, stopBattle: vi.fn() },
       global: { plugins: [pinia], stubs: ['Tooltip', 'ImageByBackground', 'ShlagemonImage'] },
     })
