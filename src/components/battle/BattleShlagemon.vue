@@ -102,7 +102,7 @@ function showTypeChart() {
 
 <style scoped>
 .faint {
-  animation: faint 0.5s forwards;
+  animation: faint 0.6s ease forwards;
 }
 
 @keyframes faint {
