@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { onMounted, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
@@ -33,11 +33,15 @@ const disease = useDiseaseStore()
 const zone = useZoneStore()
 const wearableItemStore = useWearableItemStore()
 
+const displayedPlayer = ref(props.player)
+const nextPlayer = ref<DexShlagemon | null>(null)
+const displayedEnemy = ref(props.enemy)
+const nextEnemy = ref<DexShlagemon | null>(null)
+
 const {
   enemy: currentEnemy,
   playerHp,
   enemyHp,
-  battleActive,
   flashPlayer,
   flashEnemy,
   playerFainted,
@@ -58,7 +62,7 @@ const {
 })
 
 function startBattle() {
-  coreStartBattle(props.enemy)
+  coreStartBattle(displayedEnemy.value)
 }
 
 function emitResult(result: 'win' | 'lose' | 'draw') {
@@ -94,24 +98,65 @@ async function onCaptureEnd(success: boolean) {
 }
 
 watch(
-  () => battleActive.value,
-  (active, prev) => {
-    if (!active && prev && (playerFainted.value || enemyFainted.value))
-      handleEnd()
+  () => props.enemy,
+  (val, old) => {
+    if (!old) {
+      displayedEnemy.value = val
+      startBattle()
+      return
+    }
+    if (enemyFainted.value) {
+      nextEnemy.value = val
+    }
+    else {
+      displayedEnemy.value = val
+      startBattle()
+    }
   },
+  { immediate: true },
 )
 
 watch(
-  () => [props.enemy, props.player],
-  () => {
-    startBattle()
+  () => props.player,
+  (val, old) => {
+    if (!old) {
+      displayedPlayer.value = val
+      startBattle()
+      return
+    }
+    if (playerFainted.value) {
+      nextPlayer.value = val
+    }
+    else {
+      displayedPlayer.value = val
+      startBattle()
+    }
   },
   { immediate: true },
 )
 
 function attack() {
-  if (coreAttack())
+  coreAttack()
+}
+
+function onEnemyFaintEnd() {
+  if (enemyFainted.value)
     handleEnd()
+  if (nextEnemy.value) {
+    displayedEnemy.value = nextEnemy.value
+    nextEnemy.value = null
+    startBattle()
+  }
+}
+
+function onPlayerFaintEnd() {
+  if (playerFainted.value)
+    handleEnd()
+  if (nextPlayer.value) {
+    displayedPlayer.value = nextPlayer.value
+    nextPlayer.value = null
+    startBattle()
+  }
 }
 
 function onMouseMove(e: MouseEvent) {
@@ -154,7 +199,7 @@ onMounted(() => {
   >
     <template #player>
       <BattleShlagemon
-        :mon="props.player"
+        :mon="displayedPlayer"
         :hp="playerHp"
         :fainted="playerFainted"
         flipped
@@ -162,20 +207,25 @@ onMounted(() => {
         :disease="disease.active"
         :disease-remaining="disease.remaining"
         :class="{ flash: flashPlayer }"
+        @faint-end="onPlayerFaintEnd"
       >
         <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
       </BattleShlagemon>
     </template>
     <template #enemy>
-      <BattleShlagemon
-        :mon="props.enemy"
-        :hp="enemyHp"
-        color="bg-red-500"
-        :fainted="enemyFainted"
-        :class="{ flash: flashEnemy }"
-      >
-        <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-      </BattleShlagemon>
+      <Transition name="fade" mode="out-in">
+        <BattleShlagemon
+          :key="displayedEnemy?.id"
+          :mon="displayedEnemy"
+          :hp="enemyHp"
+          color="bg-red-500"
+          :fainted="enemyFainted"
+          :class="{ flash: flashEnemy }"
+          @faint-end="onEnemyFaintEnd"
+        >
+          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
+        </BattleShlagemon>
+      </Transition>
     </template>
     <slot />
   </BattleScene>
@@ -187,3 +237,14 @@ onMounted(() => {
     @finished="onCaptureEnd"
   />
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
