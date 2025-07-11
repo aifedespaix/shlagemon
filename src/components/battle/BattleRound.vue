@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import { onMounted, ref, watch } from 'vue'
+import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleCapture from '~/components/battle/BattleCapture.vue'
-import BattleScene from '~/components/battle/BattleScene.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
 import BattleToast from '~/components/battle/BattleToast.vue'
+import ShlagemonXpBar from '~/components/shlagemon/ShlagemonXpBar.vue'
 import { useBattleCore } from '~/composables/useBattleCore'
 import { notifyAchievement } from '~/stores/achievements'
 import { useDiseaseStore } from '~/stores/disease'
@@ -170,11 +171,13 @@ function onMouseMove(e: MouseEvent) {
 }
 
 function onMouseEnter() {
-  showAttackCursor.value = true
+  if (props.clickAttack)
+    showAttackCursor.value = true
 }
 
 function onMouseLeave() {
-  showAttackCursor.value = false
+  if (props.clickAttack)
+    showAttackCursor.value = false
 }
 
 function onClick(_e: MouseEvent) {
@@ -191,19 +194,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <BattleScene
-    class="w-full flex-1"
-    :show-attack-cursor="showAttackCursor"
-    :cursor-x="cursorX"
-    :cursor-y="cursorY"
-    :cursor-clicked="cursorClicked"
-    :show-xp-bar="props.showXpBar"
-    @click="onClick"
-    @mousemove="onMouseMove"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
-  >
-    <template #player>
+  <div class="w-full flex flex-1 flex-col items-center gap-2">
+    <slot name="header" />
+    <div class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4">
       <BattleShlagemon
         :mon="displayedPlayer"
         :hp="playerHp"
@@ -217,24 +210,44 @@ onMounted(() => {
       >
         <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
       </BattleShlagemon>
-    </template>
-    <template #enemy>
-      <Transition name="fade" mode="out-in">
-        <BattleShlagemon
-          :key="displayedEnemy?.id"
-          :mon="displayedEnemy"
-          :hp="enemyHp"
-          color="bg-red-500"
-          :fainted="enemyFainted"
-          :class="{ flash: flashEnemy }"
-          @faint-end="onEnemyFaintEnd"
-        >
-          <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-        </BattleShlagemon>
-      </Transition>
-    </template>
+      <div class="vs font-bold">
+        VS
+      </div>
+      <div
+        class="relative h-full w-full flex-1"
+        @click="onClick"
+        @mousemove="onMouseMove"
+        @mouseenter="onMouseEnter"
+        @mouseleave="onMouseLeave"
+      >
+        <Transition name="fade" mode="out-in">
+          <BattleShlagemon
+            :key="displayedEnemy?.id"
+            :mon="displayedEnemy"
+            :hp="enemyHp"
+            color="bg-red-500"
+            :fainted="enemyFainted"
+            :class="{ flash: flashEnemy }"
+            @faint-end="onEnemyFaintEnd"
+          >
+            <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
+          </BattleShlagemon>
+        </Transition>
+        <AttackCursor
+          v-if="props.clickAttack && showAttackCursor"
+          :x="cursorX"
+          :y="cursorY"
+          :clicked="cursorClicked"
+        />
+      </div>
+    </div>
     <slot />
-  </BattleScene>
+    <ShlagemonXpBar
+      v-if="props.showXpBar && dex.activeShlagemon"
+      class="max-w-160 w-full self-center"
+      :mon="dex.activeShlagemon"
+    />
+  </div>
   <BattleCapture
     v-if="props.captureEnabled"
     :enemy="props.enemy"
