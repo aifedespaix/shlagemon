@@ -86,7 +86,7 @@ const captureInfo = computed(() => {
 </script>
 
 <template>
-  <div v-if="mon" class="max-w-xl w-full flex flex-col gap-1 rounded bg-white dark:bg-gray-900">
+  <div v-if="mon" class="max-w-xl w-full flex flex-col gap-2 rounded bg-white dark:bg-gray-900">
     <h2 class="flex items-center justify-between text-lg font-bold">
       <div class="flex items-center gap-1">
         <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
@@ -123,9 +123,6 @@ const captureInfo = computed(() => {
     <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic -m-r-4">
       {{ mon.base.description }}
     </p>
-    <CheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
-      Autoriser ce Shlagémon à évoluer ?
-    </CheckBox>
     <div class="grid grid-cols-2 gap-2 text-sm">
       <div
         v-for="(stat, i) in stats"
@@ -138,7 +135,7 @@ const captureInfo = computed(() => {
         <span class="text-base">{{ stat.value.toLocaleString() }}</span>
       </div>
     </div>
-    <ShlagemonXpBar :mon="mon" class="mt-4" />
+    <ShlagemonXpBar :mon="mon" />
     <div class="w-full flex items-center justify-center gap-2 text-xs">
       <p class="">
         Première capture : {{ captureInfo.date }}
@@ -147,7 +144,10 @@ const captureInfo = computed(() => {
         Obtenu {{ captureInfo.count }} fois
       </p>
     </div>
-    <div class="mt-4 flex justify-end gap-2">
+    <CheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
+      Autoriser ce Shlagémon à évoluer ?
+    </CheckBox>
+    <div class="flex justify-end gap-2">
       <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
         <div i-carbon-trash-can />
         Relâcher

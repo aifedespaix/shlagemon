@@ -132,7 +132,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
       </div>
 
-      <div v-if="displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
+      <div v-if="displayDex" class="panel-group max-h-40vh overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
         <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="dialogStore.isDialogVisible">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
