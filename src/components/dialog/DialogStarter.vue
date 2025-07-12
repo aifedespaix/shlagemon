@@ -26,7 +26,7 @@ function imageUrl(id: string) {
 const dialogTree = [
   {
     id: 'start',
-    text: `Salut, je suis ${profMerdant.name}, mes amis disent que je sent bon.`,
+    text: `Salut, je suis ${profMerdant.name}, mes amis disent que je sens bon.`,
     responses: [
       { label: 'Tu n\'as pas l\'air très intelligent.', nextId: '2', type: 'primary' },
     ],
