@@ -61,7 +61,9 @@ function createEnemy(): DexShlagemon | null {
   return created
 }
 
-function startBattle() {
+async function startBattle() {
+  enemy.value = null
+  await nextTick()
   enemy.value = createEnemy()
 }
 
@@ -107,6 +109,7 @@ const winTooltip = computed(() =>
 async function handleEnd(result: 'win' | 'lose' | 'draw') {
   const defeated = enemy.value
   events.emit('battle:end')
+
   if (dex.activeShlagemon)
     dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   if (!defeated) {
