@@ -11,6 +11,7 @@ import { useInventoryModalStore } from '~/stores/inventoryModal'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
+import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const mobile = useMobileTabStore()
 const inventoryModal = useInventoryModalStore()
@@ -22,6 +23,9 @@ const mapModal = useMapModalStore()
 const ui = useInterfaceStore()
 const panel = useMainPanelStore()
 const lockStore = useFeatureLockStore()
+const visit = useZoneVisitStore()
+
+const highlightMap = computed(() => visit.hasNewZone && !mapModal.isVisible)
 
 const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 'arena')
 const dexDisabled = menuDisabled
@@ -63,7 +67,7 @@ function onSecondButton() {
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="ui.mobileMainPanel === 'zone' && mobile.current === 'dex' ? 'active' : ''"
+      :class="[ui.mobileMainPanel === 'zone' && mobile.current === 'dex' ? 'active' : '', highlightMap ? 'animate-pulse' : '']"
       :disabled="dexDisabled"
       @click="onSecondButton"
     >
