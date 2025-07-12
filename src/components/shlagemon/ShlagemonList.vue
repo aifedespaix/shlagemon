@@ -172,6 +172,7 @@ function changeActive(mon: DexShlagemon) {
                 :key="t.id"
                 :value="t"
                 size="xs"
+                open-on-click
               />
             </div>
           </div>

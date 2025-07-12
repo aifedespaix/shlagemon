@@ -4,9 +4,15 @@ import type { ShlagemonType } from '~/type'
 interface Props {
   value: ShlagemonType
   size?: 'xs' | 'sm' | 'base' | 'lg'
+  openOnClick?: boolean
 }
 
-const { value, size } = withDefaults(defineProps<Props>(), { size: 'xs' })
+const { value, size, openOnClick } = withDefaults(defineProps<Props>(), {
+  size: 'xs',
+  openOnClick: false,
+})
+
+const typeChart = useTypeChartModalStore()
 
 const sizeClass = computed(() => {
   switch (size) {
@@ -22,6 +28,11 @@ const sizeClass = computed(() => {
 })
 
 const textColor = computed(() => getAdjustedTextColor())
+
+function handleClick() {
+  if (openOnClick)
+    typeChart.open(value.id)
+}
 
 function getAdjustedTextColor(amount = 60) {
   const hex = value.color.replace('#', '')
@@ -41,9 +52,10 @@ function getAdjustedTextColor(amount = 60) {
 <template>
   <span
     class="type overflow-hidden text-ellipsis rounded px-1.5 py-1 text-center leading-none"
-    :class="sizeClass"
+    :class="[sizeClass, openOnClick ? 'cursor-pointer hover:opacity-80' : '']"
     :name="value.name"
     :style="{ backgroundColor: value.color, color: textColor }"
+    @click="handleClick"
   >
     {{ value.name }}
   </span>

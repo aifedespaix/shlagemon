@@ -99,7 +99,12 @@ const captureInfo = computed(() => {
       </h2>
       <div class="relative h-40 w-full">
         <div class="absolute flex gap-2">
-          <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
+          <ShlagemonType
+            v-for="type in mon.base.types"
+            :key="type.id"
+            :value="type"
+            open-on-click
+          />
         </div>
         <ShlagemonImage
           :id="mon.base.id"
