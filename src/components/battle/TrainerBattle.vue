@@ -10,6 +10,7 @@ import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
 import { useBattleStatsStore } from '~/stores/battleStats'
 import { useFeatureLockStore } from '~/stores/featureLock'
+import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
@@ -26,6 +27,7 @@ const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const panel = useMainPanelStore()
 const featureLock = useFeatureLockStore()
+const game = useGameStore()
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -117,6 +119,8 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
 
 function finish() {
   if (result.value === 'win') {
+    if (trainer.value?.reward)
+      game.addShlagidiamond(trainer.value.reward)
     if (trainer.value?.id.startsWith('king-')) {
       progress.defeatKing(zone.current.id)
       notifyAchievement({ type: 'king-defeated' })
