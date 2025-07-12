@@ -317,6 +317,7 @@ declare global {
   const useTrainerBattleStore: typeof import('./stores/trainerBattle')['useTrainerBattleStore']
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useTypeChartModalStore: typeof import('./stores/typeChartModal')['useTypeChartModalStore']
+  const useUIStore: typeof import('./stores/ui')['useUIStore']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
   const useUserStore: typeof import('./stores/user')['useUserStore']
@@ -588,6 +589,7 @@ declare module 'vue' {
     readonly useEvolutionStore: UnwrapRef<typeof import('./stores/evolution')['useEvolutionStore']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
+    readonly useFeatureLockStore: UnwrapRef<typeof import('./stores/featureLock')['useFeatureLockStore']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
@@ -707,6 +709,7 @@ declare module 'vue' {
     readonly useTrainerBattleStore: UnwrapRef<typeof import('./stores/trainerBattle')['useTrainerBattleStore']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useTypeChartModalStore: UnwrapRef<typeof import('./stores/typeChartModal')['useTypeChartModalStore']>
+    readonly useUIStore: UnwrapRef<typeof import('./stores/ui')['useUIStore']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
