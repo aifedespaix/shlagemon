@@ -216,7 +216,7 @@ onMounted(() => {
           :disease="disease.active"
           :disease-remaining="disease.remaining"
           :class="{ flash: flashPlayer }"
-          @faint-end="onPlayerFaintEnd"
+          @fainted="onPlayerFaintEnd"
         >
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
         </BattleShlagemon>
@@ -231,7 +231,7 @@ onMounted(() => {
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
       >
-        <Transition name="fade" mode="out-in" @after-leave="onEnemyFaintEnd">
+        <Transition name="fade" mode="out-in">
           <BattleShlagemon
             :key="displayedEnemy?.id"
             :mon="displayedEnemy"
@@ -241,6 +241,7 @@ onMounted(() => {
             :show-ball="showOwnedBall"
             :owned="enemyOwned"
             :class="{ flash: flashEnemy }"
+            @fainted="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           </BattleShlagemon>
