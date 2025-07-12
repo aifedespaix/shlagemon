@@ -1,64 +1,44 @@
-import type { ZoneId } from '~/type/zone'
+import type { ZoneId, ZoneType } from '~/type/zone'
 
-export const zoneTracks: Record<ZoneId, string> = {
-  'plaine-kekette': '/audio/musics/villages/village-b.ogg',
-  'bois-de-bouffon': '/audio/musics/villages/village-c.ogg',
-  'chemin-du-slip': '/audio/musics/villages/village-a.ogg',
-  'ravin-fesse-molle': '/audio/musics/villages/village-b.ogg',
-  'precipice-nanard': '/audio/musics/villages/village-c.ogg',
-  'marais-moudugenou': '/audio/musics/villages/village-a.ogg',
-  'forteresse-petmoalfiak': '/audio/musics/villages/village-b.ogg',
-  'route-du-nawak': '/audio/musics/villages/village-c.ogg',
-  'mont-dracatombe': '/audio/musics/villages/village-a.ogg',
-  'catacombes-merdifientes': '/audio/musics/villages/village-b.ogg',
-  'route-aguicheuse': '/audio/musics/villages/village-c.ogg',
-  'vallee-des-chieurs': '/audio/musics/villages/village-a.ogg',
-  'trou-du-bide': '/audio/musics/villages/village-b.ogg',
-  'zone-giga-zob': '/audio/musics/villages/village-c.ogg',
-  'route-so-dom': '/audio/musics/villages/village-a.ogg',
-  'village-veaux-du-gland': '/audio/musics/villages/village-b.ogg',
-  'village-boule': '/audio/musics/villages/village-c.ogg',
-  'village-paume': '/audio/musics/villages/village-a.ogg',
-  'village-caca-boudin': '/audio/musics/villages/village-b.ogg',
+type TrackMap = Record<string, string>
 
+function createTrackMap(glob: Record<string, string>): TrackMap {
+  return Object.fromEntries(
+    Object.entries(glob).map(([path, url]) => {
+      const id = path.split('/').pop()!.replace('.ogg', '')
+      return [id, url]
+    }),
+  )
 }
 
-const wildBattleTracks = new Set([
-  'plaine-kekette',
-  'bois-de-bouffon',
-  'chemin-du-slip',
-  'ravin-fesse-molle',
-  'precipice-nanard',
-  'marais-moudugenou',
-  'forteresse-petmoalfiak',
-  'route-du-nawak',
-  'mont-dracatombe',
-  'catacombes-merdifientes',
-  'route-aguicheuse',
-  'vallee-des-chieurs',
-])
+const villageFiles = import.meta.glob('../../public/audio/musics/villages/*.ogg', { eager: true, as: 'url' }) as Record<string, string>
+const battleFiles = import.meta.glob('../../public/audio/musics/battle/*.ogg', { eager: true, as: 'url' }) as Record<string, string>
+const characterFiles = import.meta.glob('../../public/audio/musics/character/*.ogg', { eager: true, as: 'url' }) as Record<string, string>
+
+const villageTracks = createTrackMap(villageFiles)
+const battleTracks = createTrackMap(battleFiles)
+const characterTracks = createTrackMap(characterFiles)
 
 export function getZoneBattleTrack(id?: string): string | undefined {
-  if (!id || !wildBattleTracks.has(id))
+  if (!id)
     return undefined
-  return `/audio/musics/battle/${id}.ogg`
+  if (battleTracks[id])
+    return battleTracks[id]
+  return undefined
 }
 
-export const trainerTracks: Record<string, string> = {
-  'bob': '/audio/musics/trainers/trainer-a.ogg',
-  'king-plaine-kekette': '/audio/musics/trainers/trainer-b.ogg',
-  'king-bois-de-bouffon': '/audio/musics/trainers/trainer-c.ogg',
-  'king-grotte-du-slip': '/audio/musics/trainers/trainer-d.ogg',
-  'king-ravin-fesse-molle': '/audio/musics/trainers/trainer-a.ogg',
-  'king-grotte-nanard': '/audio/musics/trainers/trainer-b.ogg',
-  'king-marais-moudugenou': '/audio/musics/trainers/trainer-c.ogg',
-  'king-forteresse-petmoalfiak': '/audio/musics/trainers/trainer-d.ogg',
-  'king-route-du-nawak': '/audio/musics/trainers/trainer-a.ogg',
-  'king-mont-dracatombe': '/audio/musics/trainers/trainer-b.ogg',
-  'king-catacombes-merdifientes': '/audio/musics/trainers/trainer-c.ogg',
-  'king-route-aguicheuse': '/audio/musics/trainers/trainer-d.ogg',
-  'king-grotte-des-chieurs': '/audio/musics/trainers/trainer-a.ogg',
-  'king-trou-du-bide': '/audio/musics/trainers/trainer-b.ogg',
-  'king-zone-giga-zob': '/audio/musics/trainers/trainer-c.ogg',
-  'king-route-so-dom': '/audio/musics/trainers/trainer-d.ogg',
+export function getCharacterTrack(id?: string): string | undefined {
+  if (!id)
+    return undefined
+  return characterTracks[id]
+}
+
+export function getVillageTrack(id?: string): string | undefined {
+  if (!id)
+    return undefined
+  return villageTracks[id]
+}
+
+export function getZoneTrack(id: ZoneId, type: ZoneType): string | undefined {
+  return type === 'village' ? getVillageTrack(id) : getZoneBattleTrack(id)
 }

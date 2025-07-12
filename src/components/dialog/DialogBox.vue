@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import type { DialogNode, DialogResponse } from '~/type/dialog'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import Button from '~/components/ui/Button.vue'
+import { getCharacterTrack, getZoneTrack } from '~/data/music'
 import { useAudioStore } from '~/stores/audio'
+import { useZoneStore } from '~/stores/zone'
 import ImageByBackground from '../ui/ImageByBackground.vue'
 
-const { dialogTree, speaker, avatarUrl, orientation }
+const { dialogTree, speaker, avatarUrl, orientation, characterId }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
     speaker: string
     avatarUrl: string
+    characterId: string
     orientation?: 'row' | 'col'
   }>(), {
     orientation: 'row',
@@ -21,9 +25,21 @@ const buttonClass = computed(() =>
 
 const currentNode = ref<DialogNode | undefined>()
 const audio = useAudioStore()
+const zone = useZoneStore()
 
 onMounted(() => {
   currentNode.value = dialogTree[0]
+  const track = getCharacterTrack(characterId)
+  if (track)
+    audio.fadeToMusic(track)
+  else
+    console.warn(`Missing music for character ${characterId}`)
+})
+
+onUnmounted(() => {
+  const track = getZoneTrack(zone.current.id, zone.current.type)
+  if (track)
+    audio.fadeToMusic(track)
 })
 
 function choose(r: DialogResponse) {

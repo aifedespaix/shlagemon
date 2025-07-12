@@ -3,7 +3,7 @@ import type { ZoneId } from '~/type/zone'
 import { useMediaQuery } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { computed, watch } from 'vue'
-import { getZoneBattleTrack, trainerTracks, zoneTracks } from '~/data/music'
+import { getCharacterTrack, getZoneBattleTrack, getZoneTrack } from '~/data/music'
 import { useAchievementsStore } from './achievements'
 import { useAudioStore } from './audio'
 import { useDialogStore } from './dialog'
@@ -64,21 +64,39 @@ export const useUIStore = defineStore('ui', () => {
     return classes.join(' ')
   })
 
-  watch<[MainPanel, ZoneId, string | undefined], true>(
-    () => [mainPanel.current, zone.current.id, trainerBattle.current?.id],
-    ([panel, zoneId, trainerId]) => {
+  watch<[MainPanel, ZoneId, string | undefined, string], true>(
+    () => [
+      mainPanel.current,
+      zone.current.id,
+      trainerBattle.current?.character.id,
+      zone.current.type,
+    ],
+    ([panel, zoneId, trainerCharId, zoneType]) => {
+      if (panel === 'shop') {
+        audio.fadeToMusic('/audio/musics/shop.ogg')
+        return
+      }
+
       if (panel === 'battle') {
         const track = getZoneBattleTrack(zoneId)
         if (track)
           audio.fadeToMusic(track)
         else
-          audio.stopMusic()
+          console.warn(`Missing music for battle zone ${zoneId}`)
       }
       else if (panel === 'trainerBattle') {
-        audio.fadeToMusic(trainerTracks[trainerId || `king-${zoneId}`])
+        const track = getCharacterTrack(trainerCharId)
+        if (track)
+          audio.fadeToMusic(track)
+        else if (trainerCharId)
+          console.warn(`Missing music for character ${trainerCharId}`)
       }
       else {
-        audio.fadeToMusic(zoneTracks[zoneId])
+        const track = getZoneTrack(zoneId, zoneType)
+        if (track)
+          audio.fadeToMusic(track)
+        else
+          console.warn(`Missing music for zone ${zoneId}`)
       }
     },
     { immediate: true },
