@@ -49,13 +49,13 @@ function close() {
   <teleport to="body">
     <dialog
       ref="dialogRef"
-      class="modal"
+      class="modal flex flex-col overflow-hidden"
       :autofocus="props.dialogAutofocus || undefined"
       tabindex="-1"
       @click="onDialogClick"
       @close="emit('update:modelValue', false); emit('close')"
     >
-      <div class="modal-content relative flex flex-col">
+      <div class="modal-content relative flex flex-col overflow-hidden">
         <button
           v-if="!props.footerClose"
           type="button"
@@ -64,7 +64,7 @@ function close() {
         >
           &times;
         </button>
-        <div class="flex flex-1 flex-col">
+        <div class="flex flex-1 flex-col overflow-hidden">
           <slot />
         </div>
         <div v-if="props.footerClose" class="mt-4 flex justify-end">
