@@ -3,6 +3,7 @@ import type { Ball, DexShlagemon } from '~/type'
 import { computed, ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import { balls as ballData } from '~/data/items/shlageball'
+import { useAudioStore } from '~/stores/audio'
 import { useInventoryStore } from '~/stores/inventory'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { tryCapture } from '~/utils/capture'
@@ -12,6 +13,7 @@ const emit = defineEmits<{ (e: 'capture', success: boolean): void }>()
 
 const inventory = useInventoryStore()
 const dex = useShlagedexStore()
+const audio = useAudioStore()
 const animBall = ref<string | null>(null)
 
 const availableBalls = computed(() =>
@@ -30,10 +32,12 @@ function useBall(ball: Ball) {
   if (success) {
     dex.captureEnemy(props.enemy)
     emit('capture', true)
+    audio.playSfx('/audio/sfx/capture-success.ogg')
     toast(`Vous avez capturé ${props.enemy.base.name} !`)
   }
   else {
     emit('capture', false)
+    audio.playSfx('/audio/sfx/capture-fail.ogg')
     toast('Raté !')
   }
 }

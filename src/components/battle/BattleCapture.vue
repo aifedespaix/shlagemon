@@ -74,6 +74,7 @@ function open() {
 
 function finish(success: boolean) {
   showCapture.value = false
+  audio.playSfx(success ? '/audio/sfx/capture-success.ogg' : '/audio/sfx/capture-fail.ogg')
   if (success && capturedEnemy.value)
     dex.captureEnemy(capturedEnemy.value)
   capturedEnemy.value = null
