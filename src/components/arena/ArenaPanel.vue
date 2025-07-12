@@ -14,6 +14,7 @@ import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { cloneDexShlagemon } from '~/utils/clone'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
@@ -67,7 +68,7 @@ function startBattle() {
   const team = arena.selections
     .map(id => dex.shlagemons.find(m => m.id === (id || ''))!)
     .map((mon) => {
-      const clone = structuredClone(toRaw(mon))
+      const clone = cloneDexShlagemon(toRaw(mon))
       applyStats(clone)
       clone.hpCurrent = clone.hp
       return clone
