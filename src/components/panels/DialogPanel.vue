@@ -25,7 +25,7 @@ onUnmounted(featureLock.unlockAll)
 
 <template>
   <div class="flex flex-col justify-center">
-    <div class="w-full overflow-hidden p-1 flex-1" md="aspect-ratio-video">
+    <div class="w-full flex-1 overflow-hidden p-1" md="aspect-ratio-video">
       <component
         :is="active?.component"
         v-if="active"
