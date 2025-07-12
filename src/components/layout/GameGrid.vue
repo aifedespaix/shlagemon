@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import type { MainPanel } from '~/stores/mainPanel'
-import type { ZoneId } from '~/type/zone'
-import { useMediaQuery } from '@vueuse/core'
-import { computed, watch } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryModal from '~/components/inventory/InventoryModal.vue'
@@ -14,85 +10,16 @@ import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import TypeChartModal from '~/components/shlagemon/TypeChartModal.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import ZoneMapModal from '~/components/zones/ZoneMapModal.vue'
-import { getZoneBattleTrack, trainerTracks, zoneTracks } from '~/data/music'
-import { useAchievementsStore } from '~/stores/achievements'
-import { useAudioStore } from '~/stores/audio'
-import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
-import { useGameStateStore } from '~/stores/gameState'
 import { useInterfaceStore } from '~/stores/interface'
-import { useInventoryStore } from '~/stores/inventory'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import { useTrainerBattleStore } from '~/stores/trainerBattle'
-import { useZoneStore } from '~/stores/zone'
+import { useUIStore } from '~/stores/ui'
 
-const gameState = useGameStateStore()
-const zone = useZoneStore()
-const inventory = useInventoryStore()
-const shlagedex = useShlagedexStore()
-const dialogStore = useDialogStore()
-const achievements = useAchievementsStore()
-const mainPanel = useMainPanelStore()
-const audio = useAudioStore()
-const trainerBattle = useTrainerBattleStore()
-const mobileTab = useMobileTabStore()
 const ui = useInterfaceStore()
-const isMobile = useMediaQuery('(max-width: 767px)')
 const lockStore = useFeatureLockStore()
-
-const showMainPanel = computed(() =>
-  dialogStore.isDialogVisible
-  || gameState.hasPokemon
-  || zone.current.type === 'village',
-)
-const isInventoryVisible = computed(() => inventory.list.length > 0)
-const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
-const isAchievementVisible = computed(() => achievements.hasAny)
-
-const isDexUnderGame = computed(() => ui.mobileMainPanel === 'dex')
-
-const displayZonePanel = computed(() =>
-  (!isDexUnderGame.value || !isMobile.value)
-  && isShlagedexVisible.value
-  && (!isMobile.value || mobileTab.current === 'game'),
-)
-const displayGamePanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
-const displayInventory = computed(() => isInventoryVisible.value && !isMobile.value)
-const displayAchievements = computed(() => isAchievementVisible.value && (!isMobile.value || mobileTab.current === 'achievements'))
-const displayDex = computed(() => {
-  const inGameTab = !isMobile.value || mobileTab.current === 'game'
-  const inDexTab = !isMobile.value || mobileTab.current === 'dex'
-  return isShlagedexVisible.value && (isDexUnderGame.value ? inGameTab : inDexTab)
-})
-
-const group2Classes = computed(() => {
-  const classes = ['panel-group']
-  if (!isMobile.value || displayGamePanel.value || displayZonePanel.value)
-    classes.push('flex-1')
-  return classes.join(' ')
-})
-
-watch<[MainPanel, ZoneId, string | undefined], true>(
-  () => [mainPanel.current, zone.current.id, trainerBattle.current?.id],
-  ([panel, zoneId, trainerId]) => {
-    if (panel === 'battle') {
-      const track = getZoneBattleTrack(zoneId)
-      if (track)
-        audio.fadeToMusic(track)
-      else
-        audio.stopMusic()
-    }
-    else if (panel === 'trainerBattle') {
-      audio.fadeToMusic(trainerTracks[trainerId || `king-${zoneId}`])
-    }
-    else {
-      audio.fadeToMusic(zoneTracks[zoneId])
-    }
-  },
-  { immediate: true },
-)
+const shlagedex = useShlagedexStore()
+const uiStore = useUIStore()
+const { isMobile, displayDex, displayZonePanel, displayGamePanel, displayInventory, displayAchievements, group2Classes } = uiStore
 </script>
 
 <template>
