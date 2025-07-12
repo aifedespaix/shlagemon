@@ -62,6 +62,7 @@ function createEnemy(): DexShlagemon | null {
 }
 
 async function startBattle() {
+  /* todo pas normal, il faudrait investigué, probleme progation / verifiation / transition */
   enemy.value = null
   await nextTick()
   enemy.value = createEnemy()
