@@ -72,7 +72,7 @@ watch(
   (mon, prev) => {
     if (mon && prev && prev.id !== mon.id)
       mon.hpCurrent = mon.hp
-    if (mon && !enemy.value)
+    if (mon && prev?.id !== mon?.id)
       startBattle()
   },
 )
