@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { useUIStore } from '~/stores/ui'
 
 const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean }>()
 const opened = ref(true)
-const isMobile = useUIStore().isMobile
+const { isMobile } = storeToRefs(useUIStore())
 
 const hidable = computed(() => !isMobile.value || props.isMobileHidable)
 

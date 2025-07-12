@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryModal from '~/components/inventory/InventoryModal.vue'
@@ -19,7 +20,15 @@ const ui = useInterfaceStore()
 const lockStore = useFeatureLockStore()
 const shlagedex = useShlagedexStore()
 const uiStore = useUIStore()
-const { isMobile, displayDex, displayZonePanel, displayGamePanel, displayInventory, displayAchievements, group2Classes } = uiStore
+const {
+  isMobile,
+  displayDex,
+  displayZonePanel,
+  displayGamePanel,
+  displayInventory,
+  displayAchievements,
+  group2Classes,
+} = storeToRefs(uiStore)
 </script>
 
 <template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
@@ -32,7 +33,7 @@ const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const wearableItemStore = useWearableItemStore()
 const mobile = useMobileTabStore()
-const isMobile = useUIStore().isMobile
+const { isMobile } = storeToRefs(useUIStore())
 const featureLock = useFeatureLockStore()
 const isLocked = featureLock.isShlagedexLocked
 
