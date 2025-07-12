@@ -60,8 +60,8 @@ export const useZoneStore = defineStore('zone', () => {
     const zone = current.value
     if (!zone.maxLevel)
       return 1
-    const rank = zone.maxLevel / 10 - 1
-    return (rank >= 0 ? 2 ** rank : 1) * 2
+    const rank = zone.maxLevel / 5
+    return (rank >= 0 ? 2 ** rank : 1)
   })
 
   function setZone(id: string) {
