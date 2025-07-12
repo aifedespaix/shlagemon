@@ -87,6 +87,9 @@ function close() {
   animation: fade-in 0.2s ease forwards;
   @apply w-full h-full max-w-xl max-h-xl;
 }
+.modal:not([open]) {
+  display: none;
+}
 .modal.closing {
   animation: fade-out 0.2s ease forwards;
 }
