@@ -66,6 +66,7 @@ declare module 'vue' {
     MobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     Modal: typeof import('./components/modal/Modal.vue')['default']
     MultiExp: typeof import('./components/icons/multi-exp.vue')['default']
+    NavigationButton: typeof import('./components/ui/NavigationButton.vue')['default']
     NumberInput: typeof import('./components/ui/NumberInput.vue')['default']
     PanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
