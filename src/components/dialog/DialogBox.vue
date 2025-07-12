@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import Button from '~/components/ui/Button.vue'
@@ -7,12 +8,11 @@ import { useAudioStore } from '~/stores/audio'
 import { useZoneStore } from '~/stores/zone'
 import ImageByBackground from '../ui/ImageByBackground.vue'
 
-const { dialogTree, speaker, avatarUrl, orientation, characterId }
+const { dialogTree, character, avatarUrl, orientation }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
-    speaker: string
+    character: Character
     avatarUrl: string
-    characterId: string
     orientation?: 'row' | 'col'
   }>(), {
     orientation: 'row',
@@ -29,11 +29,11 @@ const zone = useZoneStore()
 
 onMounted(() => {
   currentNode.value = dialogTree[0]
-  const track = getCharacterTrack(characterId)
+  const track = getCharacterTrack(character.id)
   if (track)
     audio.fadeToMusic(track)
   else
-    console.warn(`Missing music for character ${characterId}`)
+    console.warn(`Missing music for character ${character.id}`)
 })
 
 onUnmounted(() => {
@@ -43,7 +43,10 @@ onUnmounted(() => {
 })
 
 function choose(r: DialogResponse) {
-  audio.playSfx('/audio/sfx/confirm.ogg')
+  const effect = r.type === 'danger' && r.nextId
+    ? '/audio/sfx/dialog-back.ogg'
+    : '/audio/sfx/confirm.ogg'
+  audio.playSfx(effect)
   if (r.nextId)
     currentNode.value = dialogTree.find(d => d.id === r.nextId)
   else if (r.action)
@@ -57,7 +60,7 @@ function choose(r: DialogResponse) {
       <div class="flex flex-col items-center justify-center">
         <ImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
         <div class="p-1 text-center font-bold">
-          {{ speaker }}
+          {{ character.name }}
         </div>
       </div>
 

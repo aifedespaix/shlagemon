@@ -59,9 +59,8 @@ const dialogTree: DialogNode[] = [
 
 <template>
   <DialogBox
-    :speaker="profSchlag.name"
+    :character="profSchlag"
     avatar-url="/characters/prof-merdant/prof-merdant.png"
-    :character-id="profSchlag.id"
     :dialog-tree="dialogTree"
   />
 </template>

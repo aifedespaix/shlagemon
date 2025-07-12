@@ -34,9 +34,8 @@ const dialogTree = [
 
 <template>
   <DialogBox
-    :speaker="profMerdant.name"
+    :character="profMerdant"
     :avatar-url="`/characters/${profMerdant.id}/${profMerdant.id}.png`"
-    :character-id="profMerdant.id"
     :dialog-tree="dialogTree"
   />
 </template>
