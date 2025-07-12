@@ -231,7 +231,7 @@ onMounted(() => {
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
       >
-        <Transition name="fade" mode="out-in">
+        <Transition name="fade" mode="out-in" @after-leave="onEnemyFaintEnd">
           <BattleShlagemon
             :key="displayedEnemy?.id"
             :mon="displayedEnemy"
@@ -241,7 +241,6 @@ onMounted(() => {
             :show-ball="showOwnedBall"
             :owned="enemyOwned"
             :class="{ flash: flashEnemy }"
-            @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           </BattleShlagemon>
