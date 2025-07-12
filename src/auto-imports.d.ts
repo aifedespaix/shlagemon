@@ -336,6 +336,7 @@ declare global {
   const useZoneMonsModalStore: typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']
   const useZoneProgressStore: typeof import('./stores/zoneProgress')['useZoneProgressStore']
   const useZoneStore: typeof import('./stores/zone')['useZoneStore']
+  const useZoneVisitStore: typeof import('./stores/zoneVisit')['useZoneVisitStore']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -725,6 +726,7 @@ declare module 'vue' {
     readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>
+    readonly useZoneVisitStore: UnwrapRef<typeof import('./stores/zoneVisit')['useZoneVisitStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

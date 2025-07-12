@@ -7,6 +7,7 @@ import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
 import { useArenaStore } from './arena'
 import { useShlagedexStore } from './shlagedex'
+import { useZoneVisitStore } from './zoneVisit'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
@@ -20,6 +21,8 @@ export const useZoneStore = defineStore('zone', () => {
     const zone = zones.value.find(z => z.id === currentId.value)
     return zone ?? zones.value[0]
   })
+  const visit = useZoneVisitStore()
+  visit.markVisited(currentId.value)
   const xpZones = computed(() => zones.value.filter(z => z.maxLevel > 0))
 
   const wildCooldownRemaining = computed(() => {
@@ -71,6 +74,8 @@ export const useZoneStore = defineStore('zone', () => {
       const dex = useShlagedexStore()
       if (dex.activeShlagemon && !same)
         dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      const visit = useZoneVisitStore()
+      visit.markVisited(id)
     }
   }
 
