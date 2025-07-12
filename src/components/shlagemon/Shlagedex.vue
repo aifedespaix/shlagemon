@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useMediaQuery } from '@vueuse/core'
 import Modal from '~/components/modal/Modal.vue'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useUIStore } from '~/stores/ui'
 import ShlagemonDetail from './ShlagemonDetail.vue'
 import ShlagemonList from './ShlagemonList.vue'
 
@@ -13,7 +13,7 @@ const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const mobile = useMobileTabStore()
-const isMobile = useMediaQuery('(max-width: 767px)')
+const isMobile = useUIStore().isMobile
 
 const clickTimer = ref<number | null>(null)
 

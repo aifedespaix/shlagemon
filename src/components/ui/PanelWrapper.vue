@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { useMediaQuery } from '@vueuse/core'
+import { useUIStore } from '~/stores/ui'
 
 const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean }>()
 const opened = ref(true)
-const isMobile = useMediaQuery('(max-width: 767px)')
+const isMobile = useUIStore().isMobile
 
 const hidable = computed(() => !isMobile.value || props.isMobileHidable)
 
 function toggle() {
-  console.log('toggle')
   if (!hidable.value)
     return
   if (props.title)

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useMediaQuery } from '@vueuse/core'
 import { computed } from 'vue'
 import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
@@ -10,6 +9,7 @@ import { useDexFilterStore } from '~/stores/dexFilter'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
+import { useUIStore } from '~/stores/ui'
 import { useWearableItemStore } from '~/stores/wearableItem'
 import ShlagemonImage from './ShlagemonImage.vue'
 import ShlagemonType from './ShlagemonType.vue'
@@ -32,7 +32,7 @@ const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const wearableItemStore = useWearableItemStore()
 const mobile = useMobileTabStore()
-const isMobile = useMediaQuery('(max-width: 767px)')
+const isMobile = useUIStore().isMobile
 const featureLock = useFeatureLockStore()
 const isLocked = featureLock.isShlagedexLocked
 
