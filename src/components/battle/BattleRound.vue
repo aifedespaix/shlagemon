@@ -205,7 +205,7 @@ onMounted(() => {
   <div class="w-full flex flex-1 flex-col items-center gap-2">
     <slot name="header" />
     <div class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4">
-      <Transition name="fade" mode="out-in" @faint-end="onPlayerFaintEnd">
+      <Transition name="fade" mode="out-in">
         <BattleShlagemon
           :key="displayedPlayer?.id"
           :mon="displayedPlayer"
@@ -216,6 +216,7 @@ onMounted(() => {
           :disease="disease.active"
           :disease-remaining="disease.remaining"
           :class="{ flash: flashPlayer }"
+          @faint-end="onPlayerFaintEnd"
         >
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
         </BattleShlagemon>
