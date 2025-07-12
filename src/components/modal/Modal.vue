@@ -85,7 +85,7 @@ function close() {
   background: transparent;
   z-index: 1000;
   animation: fade-in 0.2s ease forwards;
-  @apply w-full h-full max-w-xl max-h-xl;
+  @apply w-full max-w-xl min-h-xl;
 }
 .modal:not([open]) {
   display: none;

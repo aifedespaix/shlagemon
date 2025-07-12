@@ -86,102 +86,104 @@ const captureInfo = computed(() => {
 </script>
 
 <template>
-  <div v-if="mon" class="max-w-xl w-full flex flex-col gap-2 rounded bg-white dark:bg-gray-900">
-    <h2 class="flex items-center justify-between text-lg font-bold">
-      <div class="flex items-center gap-1">
-        <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
-        - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
-      </div>
-      <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
-        <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0 -m-r-4 -m-t-4" />
-      </Tooltip>
-    </h2>
-    <div class="relative h-40 w-full">
-      <div class="absolute flex gap-2">
-        <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
-      </div>
-      <ShlagemonImage
-        :id="mon.base.id"
-        :alt="mon.base.name"
-        :shiny="mon.isShiny"
-        class="w-full object-contain"
-      />
-      <div
-        v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
-        class="absolute right-0 top-0 flex items-center gap-1"
-      >
-        <MultiExpIcon class="h-5 w-5" />
-        <Button
-          type="icon"
-          class="h-5 w-5"
-          @click="wearableItemStore.removeHolder('multi-exp')"
+  <div class="tiny-scrollbar h-full w-full overflow-y-auto">
+    <div v-if="mon" class="max-w-xl w-full flex flex-col gap-2 rounded bg-white dark:bg-gray-900">
+      <h2 class="flex items-center justify-between text-lg font-bold">
+        <div class="flex items-center gap-1">
+          <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
+          - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
+        </div>
+        <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
+          <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0" />
+        </Tooltip>
+      </h2>
+      <div class="relative h-40 w-full">
+        <div class="absolute flex gap-2">
+          <ShlagemonType v-for="type in mon.base.types" :key="type.id" :value="type" />
+        </div>
+        <ShlagemonImage
+          :id="mon.base.id"
+          :alt="mon.base.name"
+          :shiny="mon.isShiny"
+          class="w-full object-contain"
+        />
+        <div
+          v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
+          class="absolute right-0 top-0 flex items-center gap-1"
         >
-          <div i-carbon-trash-can />
-        </Button>
-      </div>
-    </div>
-    <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic -m-r-4">
-      {{ mon.base.description }}
-    </p>
-    <div class="grid grid-cols-2 gap-2 text-sm">
-      <div
-        v-for="(stat, i) in stats"
-        :key="stat.label"
-        class="flex flex-col items-center rounded p-2 text-gray-900 transition-colors dark:text-white"
-        :class="statColors[i % statColors.length]"
-        hover="opacity-80"
-      >
-        <span class="font-semibold">{{ stat.label }}</span>
-        <span class="text-base">{{ stat.value.toLocaleString() }}</span>
-      </div>
-    </div>
-    <ShlagemonXpBar :mon="mon" />
-    <div class="w-full flex items-center justify-center gap-2 text-xs">
-      <p class="">
-        Première capture : {{ captureInfo.date }}
-      </p>
-      <p>
-        Obtenu {{ captureInfo.count }} fois
-      </p>
-    </div>
-    <CheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
-      Autoriser ce Shlagémon à évoluer ?
-    </CheckBox>
-    <div class="flex justify-end gap-2">
-      <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
-        <div i-carbon-trash-can />
-        Relâcher
-      </Button>
-      <Button
-        type="primary"
-        class="flex flex-1 items-center gap-1"
-        :disabled="isActive"
-        @click="setActive"
-      >
-        <div i-carbon-star-filled />
-        Principal
-      </Button>
-    </div>
-    <Modal v-model="showConfirm" :close-on-outside-click="false">
-      <div class="flex flex-col items-center gap-4">
-        <h3 class="text-lg font-bold">
-          Relâcher un Shlagémon ?
-        </h3>
-        <p class="text-center text-sm">
-          Attention, si vous le relâchez, il ira schlagiser tout le territoire.
-        </p>
-        <div class="flex gap-2">
-          <Button type="valid" class="flex items-center gap-1" @click="confirmRelease">
-            <div i-carbon-checkmark />
-            Oui
-          </Button>
-          <Button type="danger" class="flex items-center gap-1" @click="cancelRelease">
-            <div i-carbon-close />
-            Non
+          <MultiExpIcon class="h-5 w-5" />
+          <Button
+            type="icon"
+            class="h-5 w-5"
+            @click="wearableItemStore.removeHolder('multi-exp')"
+          >
+            <div i-carbon-trash-can />
           </Button>
         </div>
       </div>
-    </Modal>
+      <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic">
+        {{ mon.base.description }}
+      </p>
+      <div class="grid grid-cols-2 gap-2 text-sm">
+        <div
+          v-for="(stat, i) in stats"
+          :key="stat.label"
+          class="flex flex-col items-center rounded p-2 text-gray-900 transition-colors dark:text-white"
+          :class="statColors[i % statColors.length]"
+          hover="opacity-80"
+        >
+          <span class="font-semibold">{{ stat.label }}</span>
+          <span class="text-base">{{ stat.value.toLocaleString() }}</span>
+        </div>
+      </div>
+      <ShlagemonXpBar :mon="mon" />
+      <div class="w-full flex items-center justify-center gap-2 text-xs">
+        <p class="">
+          Première capture : {{ captureInfo.date }}
+        </p>
+        <p>
+          Obtenu {{ captureInfo.count }} fois
+        </p>
+      </div>
+      <CheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
+        Autoriser ce Shlagémon à évoluer ?
+      </CheckBox>
+      <div class="flex justify-end gap-2">
+        <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
+          <div i-carbon-trash-can />
+          Relâcher
+        </Button>
+        <Button
+          type="primary"
+          class="flex flex-1 items-center gap-1"
+          :disabled="isActive"
+          @click="setActive"
+        >
+          <div i-carbon-star-filled />
+          Principal
+        </Button>
+      </div>
+      <Modal v-model="showConfirm" :close-on-outside-click="false">
+        <div class="flex flex-col items-center gap-4">
+          <h3 class="text-lg font-bold">
+            Relâcher un Shlagémon ?
+          </h3>
+          <p class="text-center text-sm">
+            Attention, si vous le relâchez, il ira schlagiser tout le territoire.
+          </p>
+          <div class="flex gap-2">
+            <Button type="valid" class="flex items-center gap-1" @click="confirmRelease">
+              <div i-carbon-checkmark />
+              Oui
+            </Button>
+            <Button type="danger" class="flex items-center gap-1" @click="cancelRelease">
+              <div i-carbon-close />
+              Non
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    </div>
   </div>
 </template>
 
