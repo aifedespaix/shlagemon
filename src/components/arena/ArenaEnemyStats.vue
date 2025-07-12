@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
 import { computed } from 'vue'
+import { useArenaStore } from '~/stores/arena'
 import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const props = defineProps<{ mon: BaseShlagemon }>()
 
+const arena = useArenaStore()
+
 const dexMon = computed(() => {
-  const m = createDexShlagemon(props.mon)
+  const lvl = arena.arenaData?.level ?? 1
+  const coefficientMultiplier = lvl / props.mon.coefficient
+  const m = createDexShlagemon(props.mon, false, coefficientMultiplier)
+  m.lvl = lvl
   applyStats(m)
   return m
 })
