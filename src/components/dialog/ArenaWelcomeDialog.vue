@@ -25,6 +25,7 @@ const dialogTree: DialogNode[] = [
   <DialogBox
     :speaker="arena.arenaData!.character.name"
     :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
+    :character-id="arena.arenaData?.character.id"
     :dialog-tree="dialogTree"
   />
 </template>
