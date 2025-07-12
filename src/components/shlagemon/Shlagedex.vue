@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { storeToRefs } from 'pinia'
 import Modal from '~/components/modal/Modal.vue'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMobileTabStore } from '~/stores/mobileTab'
@@ -13,7 +14,7 @@ const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 const mobile = useMobileTabStore()
-const isMobile = useUIStore().isMobile
+const { isMobile } = storeToRefs(useUIStore())
 
 const clickTimer = ref<number | null>(null)
 
