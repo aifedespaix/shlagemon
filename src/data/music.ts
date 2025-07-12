@@ -3,22 +3,24 @@ import type { ZoneId } from '~/type/zone'
 export const zoneTracks: Record<ZoneId, string> = {
   'plaine-kekette': '/audio/musics/villages/village-b.ogg',
   'bois-de-bouffon': '/audio/musics/villages/village-c.ogg',
-  'grotte-du-slip': '/audio/musics/villages/village-a.ogg',
+  'chemin-du-slip': '/audio/musics/villages/village-a.ogg',
   'ravin-fesse-molle': '/audio/musics/villages/village-b.ogg',
-  'grotte-nanard': '/audio/musics/villages/village-c.ogg',
+  'precipice-nanard': '/audio/musics/villages/village-c.ogg',
   'marais-moudugenou': '/audio/musics/villages/village-a.ogg',
   'forteresse-petmoalfiak': '/audio/musics/villages/village-b.ogg',
   'route-du-nawak': '/audio/musics/villages/village-c.ogg',
   'mont-dracatombe': '/audio/musics/villages/village-a.ogg',
   'catacombes-merdifientes': '/audio/musics/villages/village-b.ogg',
   'route-aguicheuse': '/audio/musics/villages/village-c.ogg',
-  'grotte-des-chieurs': '/audio/musics/villages/village-a.ogg',
+  'vallee-des-chieurs': '/audio/musics/villages/village-a.ogg',
   'trou-du-bide': '/audio/musics/villages/village-b.ogg',
   'zone-giga-zob': '/audio/musics/villages/village-c.ogg',
   'route-so-dom': '/audio/musics/villages/village-a.ogg',
   'village-veaux-du-gland': '/audio/musics/villages/village-b.ogg',
   'village-boule': '/audio/musics/villages/village-c.ogg',
   'village-paume': '/audio/musics/villages/village-a.ogg',
+  'village-caca-boudin': '/audio/musics/villages/village-b.ogg',
+
 }
 
 const wildBattleTracks = new Set([

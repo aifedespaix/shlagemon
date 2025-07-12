@@ -589,7 +589,6 @@ declare module 'vue' {
     readonly useEvolutionStore: UnwrapRef<typeof import('./stores/evolution')['useEvolutionStore']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
-    readonly useFeatureLockStore: UnwrapRef<typeof import('./stores/featureLock')['useFeatureLockStore']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
@@ -709,7 +708,6 @@ declare module 'vue' {
     readonly useTrainerBattleStore: UnwrapRef<typeof import('./stores/trainerBattle')['useTrainerBattleStore']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useTypeChartModalStore: UnwrapRef<typeof import('./stores/typeChartModal')['useTypeChartModalStore']>
-    readonly useUIStore: UnwrapRef<typeof import('./stores/ui')['useUIStore']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
@@ -728,7 +726,6 @@ declare module 'vue' {
     readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>
-    readonly useZoneVisitStore: UnwrapRef<typeof import('./stores/zoneVisit')['useZoneVisitStore']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
