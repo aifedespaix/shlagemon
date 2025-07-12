@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import Button from '~/components/ui/Button.vue'
+import NavigationButton from '~/components/ui/NavigationButton.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -26,6 +26,19 @@ const currentKing = computed(() =>
 const kingLabel = computed(() =>
   currentKing.value?.character.gender === 'female' ? 'reine' : 'roi',
 )
+
+function actionIcon(id: string) {
+  switch (id) {
+    case 'shop':
+      return 'i-carbon:shopping-bag'
+    case 'explore':
+      return 'i-mdi:compass'
+    case 'minigame':
+      return 'i-carbon:game-console'
+    default:
+      return ''
+  }
+}
 
 function onAction(id: string) {
   if (arena.inBattle)
@@ -63,38 +76,41 @@ function fightKing() {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-1" md="gap-2">
-    <Button
+  <div class="actions-grid grid w-full gap-2 p-1" md="gap-3 p-2">
+    <NavigationButton
       v-for="action in zone.current.actions"
       :key="action.id"
-      class="text-xs"
+      :icon="actionIcon(action.id)"
+      :label="action.label"
       :disabled="arena.inBattle"
       @click="onAction(action.id)"
-    >
-      {{ action.label }}
-    </Button>
-    <Button
+    />
+    <NavigationButton
       v-if="hasArena && !arenaCompleted"
-      class="text-xs"
+      icon="i-mdi:sword-cross"
+      label="Arène"
       :disabled="arena.inBattle"
       @click="openArena"
-    >
-      Arène
-    </Button>
-    <Button
+    />
+    <NavigationButton
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
-      class="text-xs"
+      icon="i-game-icons:crown"
+      :label="`Défier la ${kingLabel} de la zone`"
       :disabled="arena.inBattle"
       @click="fightKing"
-    >
-      Défier la {{ kingLabel }} de la zone
-    </Button>
+    />
     <div
       v-else-if="hasKing && progress.isKingDefeated(zone.current.id)"
-      class="text-xs font-bold"
+      class="flex-center text-xs font-bold"
     >
       {{ kingLabel.charAt(0).toUpperCase() + kingLabel.slice(1) }}
       vaincu{{ kingLabel === 'reine' ? 'e' : '' }} !
     </div>
   </div>
 </template>
+
+<style scoped>
+.actions-grid {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+</style>
