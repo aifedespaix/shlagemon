@@ -83,7 +83,7 @@ function showTypeChart() {
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
-      <Tooltip text="Vous avez déjà capturé ce Shlagémon">
+      <Tooltip text="Vous possédez déjà ce Shlagémon">
         <img
           v-if="props.showBall && props.owned"
           src="/items/shlageball/shlageball.png"

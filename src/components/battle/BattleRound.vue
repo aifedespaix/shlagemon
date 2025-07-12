@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
@@ -42,6 +42,12 @@ const displayedPlayer = ref(props.player)
 const nextPlayer = ref<DexShlagemon | null>(null)
 const displayedEnemy = ref(props.enemy)
 const nextEnemy = ref<DexShlagemon | null>(null)
+
+const showOwnedBall = computed(() => zone.current.type === 'sauvage')
+const enemyOwned = computed(() => {
+  const id = displayedEnemy.value?.base.id
+  return id ? dex.capturedBaseIds.has(id) : false
+})
 
 const {
   enemy: currentEnemy,
@@ -227,6 +233,8 @@ onMounted(() => {
             :hp="enemyHp"
             color="bg-red-500"
             :fainted="enemyFainted"
+            :show-ball="showOwnedBall"
+            :owned="enemyOwned"
             :class="{ flash: flashEnemy }"
             @faint-end="onEnemyFaintEnd"
           >
