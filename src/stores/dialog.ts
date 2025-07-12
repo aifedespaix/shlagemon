@@ -3,11 +3,11 @@ import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
+import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import DialogStarter from '~/components/dialog/DialogStarter.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
-import ReleaseShlagemonDialog from '~/components/dialog/ReleaseShlagemonDialog.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -55,8 +55,8 @@ export const useDialogStore = defineStore('dialog', () => {
       condition: () => dex.completionPercent >= 50,
     },
     {
-      id: 'release',
-      component: markRaw(ReleaseShlagemonDialog),
+      id: 'attackPotion',
+      component: markRaw(AttackPotionDialog),
       condition: () => dex.shlagemons.length >= 10,
     },
     {
