@@ -64,7 +64,9 @@ function close() {
         >
           &times;
         </button>
-        <slot />
+        <div class="flex flex-1 flex-col">
+          <slot />
+        </div>
         <div v-if="props.footerClose" class="mt-4 flex justify-end">
           <Button type="danger" class="flex items-center gap-1" @click.stop="close()">
             <div i-carbon-close />
@@ -83,6 +85,7 @@ function close() {
   background: transparent;
   z-index: 1000;
   animation: fade-in 0.2s ease forwards;
+  @apply w-full h-full max-w-xl max-h-xl;
 }
 .modal.closing {
   animation: fade-out 0.2s ease forwards;
@@ -92,7 +95,7 @@ function close() {
   backdrop-filter: blur(2px);
 }
 .modal-content {
-  @apply bg-white dark:bg-gray-900 rounded p-4 w-full max-w-md shadow-lg;
+  @apply bg-white dark:bg-gray-900 rounded p-4 w-full h-full shadow-lg;
 }
 @keyframes fade-in {
   from {

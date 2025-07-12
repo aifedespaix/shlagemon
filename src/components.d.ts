@@ -73,6 +73,7 @@ declare module 'vue' {
     PlayerInfos: typeof import('./components/panels/PlayerInfos.vue')['default']
     ProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
+    ReleaseShlagemonDialog: typeof import('./components/dialog/ReleaseShlagemonDialog.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Schlagedex: typeof import('./components/icons/schlagedex.vue')['default']

@@ -120,7 +120,7 @@ function arenaDefeated(z: Zone) {
         class="mb-1 h-1"
       />
     </div>
-    <div class="tiny-scrollbar zone-grid grid h-full flex-1 gap-2 overflow-auto" md="gap-3">
+    <div class="tiny-scrollbar zone-grid grid h-full flex-1 gap-2 overflow-auto p-1" md="gap-3">
       <button
         v-for="z in accessibleZones"
         :key="z.id"
@@ -165,5 +165,6 @@ function arenaDefeated(z: Zone) {
 <style scoped>
 .zone-grid {
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
 }
 </style>
