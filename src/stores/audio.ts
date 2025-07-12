@@ -39,11 +39,15 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function createMusic(src: string) {
-    return new Howl({
+    const music = new Howl({
       src: [src],
       volume: musicVolume.value,
       loop: true,
+      onplayerror: () => {
+        music.once('unlock', () => music.play())
+      },
     })
+    return music
   }
 
   function playMusic(track: string) {
@@ -101,7 +105,13 @@ export const useAudioStore = defineStore('audio', () => {
   function playSfx(effect: string) {
     if (import.meta.env.VITEST || !isSfxEnabled.value)
       return
-    const sfx = new Howl({ src: [effect], volume: sfxVolume.value })
+    const sfx = new Howl({
+      src: [effect],
+      volume: sfxVolume.value,
+      onplayerror: () => {
+        sfx.once('unlock', () => sfx.play())
+      },
+    })
     sfx.play()
   }
 
