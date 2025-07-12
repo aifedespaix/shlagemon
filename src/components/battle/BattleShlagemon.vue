@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<Props>(), {
   diseaseRemaining: 0,
 })
 
-const emit = defineEmits<{ (e: 'faintEnd'): void }>()
+const emit = defineEmits<{ (e: 'fainted'): void }>()
 const typeChart = useTypeChartModalStore()
 
 const now = ref(Date.now())
@@ -43,9 +43,8 @@ const timer = window.setInterval(() => {
 }, 1000)
 onUnmounted(() => window.clearInterval(timer))
 
-function onAnimationEnd() {
-  if (props.fainted)
-    emit('faintEnd')
+function onAfterLeave() {
+  emit('fainted')
 }
 
 function showTypeChart() {
@@ -71,14 +70,16 @@ function showTypeChart() {
       />
       <DiseaseBadge v-if="props.disease" :remaining="props.diseaseRemaining" />
     </div>
-    <ShlagemonImage
-      :id="props.mon.base.id"
-      :alt="props.mon.base.name"
-      :shiny="props.mon.isShiny"
-      class="min-h-25 flex-1"
-      :class="[props.flipped ? '-scale-x-100' : '', { faint: props.fainted }]"
-      @animationend="onAnimationEnd"
-    />
+    <Transition name="faint" @after-leave="onAfterLeave">
+      <ShlagemonImage
+        v-if="!props.fainted"
+        :id="props.mon.base.id"
+        :alt="props.mon.base.name"
+        :shiny="props.mon.isShiny"
+        class="min-h-25 flex-1"
+        :class="props.flipped ? '-scale-x-100' : ''"
+      />
+    </Transition>
     <div class="absolute left-0 text-sm font-bold" :class="props.levelPosition === 'top' ? 'top-0' : 'bottom-0'">
       lvl {{ props.mon.lvl }}
     </div>
@@ -101,14 +102,15 @@ function showTypeChart() {
 </template>
 
 <style scoped>
-.faint {
-  animation: faint 0.6s ease forwards;
+.faint-enter-active,
+.faint-leave-active {
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
 }
-
-@keyframes faint {
-  to {
-    transform: scale(0);
-    opacity: 0;
-  }
+.faint-enter-from,
+.faint-leave-to {
+  transform: scale(0);
+  opacity: 0;
 }
 </style>
