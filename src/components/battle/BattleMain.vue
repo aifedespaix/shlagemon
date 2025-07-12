@@ -106,11 +106,11 @@ const winTooltip = computed(() =>
 
 async function handleEnd(result: 'win' | 'lose' | 'draw') {
   const defeated = enemy.value
-  enemy.value = null
   events.emit('battle:end')
   if (dex.activeShlagemon)
     dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   if (!defeated) {
+    enemy.value = null
     startBattle()
     return
   }
@@ -131,6 +131,7 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
     battleStats.addLoss()
     notifyAchievement({ type: 'battle-loss' })
   }
+  enemy.value = null
   startBattle()
 }
 
