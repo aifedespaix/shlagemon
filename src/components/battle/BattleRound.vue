@@ -151,9 +151,10 @@ function attack() {
   coreAttack()
 }
 
-function onEnemyFaintEnd() {
+async function onEnemyFaintEnd() {
   if (enemyFainted.value)
     handleEnd()
+  await nextTick()
   if (nextEnemy.value) {
     displayedEnemy.value = nextEnemy.value
     nextEnemy.value = null
@@ -161,9 +162,10 @@ function onEnemyFaintEnd() {
   }
 }
 
-function onPlayerFaintEnd() {
+async function onPlayerFaintEnd() {
   if (playerFainted.value)
     handleEnd()
+  await nextTick()
   if (nextPlayer.value) {
     displayedPlayer.value = nextPlayer.value
     nextPlayer.value = null
@@ -228,7 +230,7 @@ onMounted(() => {
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
       >
-        <Transition name="fade" mode="out-in" @faint-end="onEnemyFaintEnd">
+        <Transition name="fade" mode="out-in">
           <BattleShlagemon
             :key="displayedEnemy?.id"
             :mon="displayedEnemy"
@@ -238,6 +240,7 @@ onMounted(() => {
             :show-ball="showOwnedBall"
             :owned="enemyOwned"
             :class="{ flash: flashEnemy }"
+            @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           </BattleShlagemon>
