@@ -101,7 +101,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
       class="game h-full flex flex-col gap-1 p-1"
       md="flex-row justify-between"
     >
-      <div class="panel-group overflow-hidden" md="max-w-80 basis-1/4">
+      <div v-if="displayInventory || displayAchievements || (!isMobile && displayDex)" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
         <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
           <template #icon>
             <div class="i-carbon-inventory-management" />
@@ -109,7 +109,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
           <InventoryPanel />
         </PanelWrapper>
 
-        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden">
+        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" :is-locked="lockStore.areAchievementsLocked">
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -117,7 +117,7 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
       </div>
 
-      <div :class="group2Classes" class="overflow-hidden" md="basis-1/2">
+      <div v-if="displayGamePanel || displayZonePanel" :class="group2Classes" class="overflow-hidden" md="basis-1/2">
         <PanelWrapper is-inline>
           <PlayerInfos />
         </PanelWrapper>
@@ -134,8 +134,8 @@ watch<[MainPanel, ZoneId, string | undefined], true>(
         </PanelWrapper>
       </div>
 
-      <div v-if="displayDex" class="panel-group max-h-40vh overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
+      <div v-if="displayDex" :class="isMobile && ui.mobileMainPanel === 'zone' ? '' : 'max-h-40vh'" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
+        <PanelWrapper v-if="displayDex" title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>

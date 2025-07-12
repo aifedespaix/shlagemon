@@ -8,6 +8,7 @@ const isMobile = useMediaQuery('(max-width: 767px)')
 const hidable = computed(() => !isMobile.value || props.isMobileHidable)
 
 function toggle() {
+  console.log('toggle')
   if (!hidable.value)
     return
   if (props.title)
@@ -73,6 +74,14 @@ const titleClasses = computed(() => {
 
   return classes.join(' ')
 })
+
+function clickPrevented(e: MouseEvent) {
+  if (props.isLocked) {
+    e.preventDefault()
+    e.stopPropagation()
+    return false
+  }
+}
 </script>
 
 <template>
@@ -97,7 +106,7 @@ const titleClasses = computed(() => {
         <slot />
       </div>
     </Transition>
-    <div v-if="props.isLocked" class="pointer-events-none absolute inset-0 z-50 bg-black/20 dark:bg-black/40" />
+    <div v-if="props.isLocked" class="absolute inset-0 z-50 bg-black/20 dark:bg-black/40" @click="clickPrevented" />
   </div>
 </template>
 

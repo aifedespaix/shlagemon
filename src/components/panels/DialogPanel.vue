@@ -24,9 +24,13 @@ onUnmounted(featureLock.unlockAll)
 </script>
 
 <template>
-  <component
-    :is="active?.component"
-    v-if="active"
-    @done="markDone($event)"
-  />
+  <div class="flex flex-col justify-center">
+    <div class="w-full overflow-hidden p-1 flex-1" md="aspect-ratio-video">
+      <component
+        :is="active?.component"
+        v-if="active"
+        @done="markDone($event)"
+      />
+    </div>
+  </div>
 </template>
