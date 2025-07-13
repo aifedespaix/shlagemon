@@ -119,13 +119,8 @@ watch(
       startBattle()
       return
     }
-    if (enemyFainted.value) {
-      nextEnemy.value = val
-    }
-    else {
-      displayedEnemy.value = val
-      startBattle()
-    }
+    displayedEnemy.value = val
+    startBattle()
   },
   { immediate: true },
 )
@@ -153,13 +148,11 @@ function attack() {
   coreAttack()
 }
 
-async function onEnemyFaintEnd() {
+function onEnemyFaintEnd() {
   if (enemyFainted.value)
     handleEnd()
-  await nextTick()
   if (nextEnemy.value) {
     displayedEnemy.value = nextEnemy.value
-    nextEnemy.value = null
     startBattle()
   }
 }
@@ -228,7 +221,6 @@ function onClick(_e: MouseEvent) {
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
       >
-        {{ displayedEnemy?.id }}
         <Transition name="fade" mode="out-in">
           <BattleShlagemon
             :key="displayedEnemy?.id"
