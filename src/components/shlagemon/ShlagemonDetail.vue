@@ -50,6 +50,17 @@ const wearableItemStore = useWearableItemStore()
 const disease = useDiseaseStore()
 const showConfirm = ref(false)
 
+const evolutionInfo = computed(() => {
+  if (!props.mon?.base.evolution)
+    return null
+  const { condition } = props.mon.base.evolution
+  if (condition.type === 'lvl')
+    return `Peut évoluer au niveau ${condition.value}`
+  if (condition.type === 'item')
+    return `Peut évoluer grâce à l'objet ${condition.value.name}`
+  return null
+})
+
 const isActive = computed(() => props.mon?.id === store.activeShlagemon?.id)
 
 function setActive() {
@@ -124,6 +135,11 @@ const captureInfo = computed(() => {
           >
             <div i-carbon-trash-can />
           </Button>
+        </div>
+      </div>
+      <div v-if="evolutionInfo" class="flex-center">
+        <div class="rounded-full bg-blue-200 px-2 py-0.5 text-xs text-blue-800 dark:bg-blue-700 dark:text-blue-200">
+          {{ evolutionInfo }}
         </div>
       </div>
       <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic">
