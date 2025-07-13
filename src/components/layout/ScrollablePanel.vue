@@ -1,5 +1,5 @@
 <template>
-  <section class="h-full flex flex-col gap-2 overflow-hidden">
+  <section class="h-full w-full flex flex-col gap-2 overflow-hidden">
     <div class="flex flex-wrap gap-2 px-1">
       <slot name="header" />
     </div>

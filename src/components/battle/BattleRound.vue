@@ -43,7 +43,7 @@ const nextPlayer = ref<DexShlagemon | null>(null)
 const displayedEnemy = ref(props.enemy)
 const nextEnemy = ref<DexShlagemon | null>(null)
 
-watch(props.enemy, () => {
+watch(() => props.enemy, () => {
   console.log(props.enemy.id)
 })
 
@@ -220,7 +220,7 @@ onMounted(() => {
           :disease="disease.active"
           :disease-remaining="disease.remaining"
           :class="{ flash: flashPlayer }"
-          @faint-end*="onPlayerFaintEnd"
+          @faint-end="onPlayerFaintEnd"
         >
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
         </BattleShlagemon>
@@ -235,7 +235,7 @@ onMounted(() => {
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
       >
-        {{ displayedEnemy.id }}
+        {{ displayedEnemy?.id }}
         <Transition name="fade" mode="out-in">
           <BattleShlagemon
             :key="displayedEnemy?.id"

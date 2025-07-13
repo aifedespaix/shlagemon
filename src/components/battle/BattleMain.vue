@@ -69,7 +69,6 @@ function healShlagemon() {
 async function startBattle() {
   healShlagemon()
   enemy.value = createEnemy()
-  console.log(enemy.value?.id)
 }
 
 onMounted(startBattle)
