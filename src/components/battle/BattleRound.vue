@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import AttackCursor from '~/components/battle/AttackCursor.vue'
 import BattleCapture from '~/components/battle/BattleCapture.vue'
 import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
@@ -50,7 +50,6 @@ const enemyOwned = computed(() => {
 })
 
 const {
-  enemy: currentEnemy,
   playerHp,
   enemyHp,
   flashPlayer,
@@ -197,11 +196,6 @@ function onClick(_e: MouseEvent) {
   if (props.clickAttack)
     attack()
 }
-
-onMounted(() => {
-  currentEnemy.value = props.enemy
-  startBattle()
-})
 </script>
 
 <template>
