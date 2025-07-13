@@ -39,6 +39,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   function showBattle() {
     if (arena.inBattle)
       return
+    if (dex.activeShlagemon)
+      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
     current.value = 'battle'
   }
 
