@@ -43,10 +43,6 @@ const nextPlayer = ref<DexShlagemon | null>(null)
 const displayedEnemy = ref(props.enemy)
 const nextEnemy = ref<DexShlagemon | null>(null)
 
-watch(() => props.enemy, () => {
-  console.log(props.enemy.id)
-})
-
 const showOwnedBall = computed(() => zone.current.type === 'sauvage')
 const enemyOwned = computed(() => {
   const id = displayedEnemy.value?.base.id
@@ -114,9 +110,12 @@ async function onCaptureEnd(success: boolean) {
 }
 
 watch(
-  () => props.enemy,
-  (val, old) => {
-    if (!old) {
+  () => props.enemy.id,
+  (id, oldId) => {
+    if (id === oldId)
+      return
+    const val = props.enemy
+    if (!oldId) {
       displayedEnemy.value = val
       startBattle()
       return
