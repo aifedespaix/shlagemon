@@ -1,6 +1,6 @@
 import type { Character } from '~/type/character'
 import type { SavageZoneId } from '~/type/zone'
-import type { Trainer } from '~/types'
+import type { BaseShlagemon, Trainer } from '~/types'
 import { caillou } from './characters/caillou'
 import { marcon } from './characters/marcon'
 import { marineLahaine } from './characters/marine-lahaine'
@@ -16,15 +16,26 @@ function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: n
     console.warn(`Zone ${zoneId} not found`)
     return
   }
-  const level = (zone.maxLevel ?? 1) + 1
+  const levelMax = (zone.maxLevel ?? 1) + 1
 
-  const shlagemons: { baseId: string, level: number }[] = []
-  const orderedShlagemons = zone.shlagemons!.sort((a, b) => a.coefficient - b.coefficient)
-  if (qteShlagemons > 1) {
-    let i = qteShlagemons
-    shlagemons.push(...orderedShlagemons.slice(0, qteShlagemons - 1).map(b => ({ baseId: b.id, level: level - i-- })))
-  }
-  shlagemons.push(...orderedShlagemons.slice(-1).map(b => ({ baseId: b.id, level })))
+  // Gather base shlagemons and their first evolution stage
+  const available = zone.shlagemons!
+    .flatMap(b => b.evolution?.base ? [b, b.evolution.base] : [b])
+    // Remove potential duplicates by id
+    .reduce<Record<string, BaseShlagemon>>((acc, mon) => {
+      acc[mon.id] = mon
+      return acc
+    }, {})
+  const uniqueMons = Object.values(available)
+
+  // Sort by coefficient descending to pick the strongest ones
+  const sorted = uniqueMons.sort((a, b) => b.coefficient - a.coefficient)
+  const selected = sorted.slice(0, qteShlagemons).reverse()
+
+  const shlagemons: { baseId: string, level: number }[] = selected.map((b, idx) => ({
+    baseId: b.id,
+    level: levelMax - (selected.length - 1 - idx),
+  }))
 
   return {
     id: `king-${zoneId}`,
