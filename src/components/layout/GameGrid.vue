@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+// eslint-disable-next-line unused-imports/no-unused-imports
+import { KeepAlive } from 'vue'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
@@ -132,7 +134,9 @@ const bottomLocked = computed(() => {
             <SchlagedexIcon v-else-if="activeTab === 'dex'" class="h-4 w-4" />
             <div v-else-if="activeTab === 'inventory'" class="i-carbon-inventory-management" />
           </template>
-          <component :is="bottomComponent" />
+          <KeepAlive>
+            <component :is="bottomComponent" :key="activeTab" />
+          </KeepAlive>
         </PanelWrapper>
       </div>
 
