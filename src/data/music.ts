@@ -6,6 +6,8 @@ function createTrackMap(glob: Record<string, string>): TrackMap {
   return Object.fromEntries(
     Object.entries(glob).map(([path, url]) => {
       const id = path.split('/').pop()!.replace('.ogg', '')
+      // url = url.replace('/public', '') // Vite auto shorcut
+      // console.log(id, url)
       return [id, url]
     }),
   )
