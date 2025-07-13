@@ -38,12 +38,14 @@ watch(
 )
 
 function toggleInventory() {
-  mobile.set('inventory')
+  mobile.toggle('inventory')
 }
 
 function onSecondButton() {
-  mobile.set('zones')
-  visit.markAllAccessibleVisited()
+  const opening = mobile.current !== 'zones'
+  mobile.toggle('zones')
+  if (opening)
+    visit.markAllAccessibleVisited()
 }
 </script>
 
@@ -53,7 +55,7 @@ function onSecondButton() {
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
       :class="mobile.current === 'achievements' ? 'active' : ''"
       :disabled="achievementsDisabled"
-      @click="mobile.set('achievements')"
+      @click="mobile.toggle('achievements')"
     >
       <div class="i-carbon-trophy" />
     </button>
@@ -69,7 +71,7 @@ function onSecondButton() {
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
       :class="mobile.current === 'dex' ? 'active' : ''"
       :disabled="dexDisabled"
-      @click="mobile.set('dex')"
+      @click="mobile.toggle('dex')"
     >
       <SchlagedexIcon class="h-5 w-5" />
     </button>

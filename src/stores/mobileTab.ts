@@ -13,5 +13,8 @@ export const useMobileTabStore = defineStore('mobileTab', () => {
   function set(tab: MobileTab) {
     current.value = tab
   }
-  return { current, set }
+  function toggle(tab: MobileTab) {
+    current.value = current.value === tab ? 'game' : tab
+  }
+  return { current, set, toggle }
 })
