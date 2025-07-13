@@ -103,7 +103,7 @@ export const spectre: ShlagemonType = {
 
 export const darksasuke: ShlagemonType = {
   id: 'darksasuke',
-  name: 'Dark Sasuke',
+  name: 'DarkSasuke',
   description: 'Type victime, gothique et émo qui cours avec les bras en arrière.',
   color: '#4D4D4D',
   resistance: [],
@@ -158,7 +158,7 @@ export const sol: ShlagemonType = {
 
 export const fee: ShlagemonType = {
   id: 'fee',
-  name: 'Fée Lation',
+  name: 'FéeLation',
   description: 'Type sucré en apparence, mais colle aux doigts.',
   color: '#EE99AC',
   resistance: [],

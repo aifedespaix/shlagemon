@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
-import nosferachid from '../evolutions/nosferachid'
+import nosferasta from '../evolutions/nosferachid'
 
 export const nosferailleur: BaseShlagemon = {
   id: 'nosferailleur',
@@ -16,7 +16,7 @@ Il niche dans les toitures en fibrociment et collectionne les boulons comme des 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],
   coefficient: 14,
   evolution: {
-    base: nosferachid,
+    base: nosferasta,
     condition: {
       type: 'lvl',
       value: 32,

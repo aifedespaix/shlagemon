@@ -8,7 +8,7 @@ import canarchicon from './shlagemons/30-35/canarchicon'
 import alakalbar from './shlagemons/evolutions/alakalbar'
 import chrysachier from './shlagemons/evolutions/chrysachier'
 import coconnul from './shlagemons/evolutions/coconnul'
-import nosferachid from './shlagemons/evolutions/nosferachid'
+import nosferasta from './shlagemons/evolutions/nosferachid'
 import raptorincel from './shlagemons/evolutions/raptorincel'
 import ratartine from './shlagemons/evolutions/ratartine'
 import rouxScoop from './shlagemons/evolutions/roux-scoop'
@@ -25,7 +25,7 @@ export const arena20: Arena = {
   },
   lineup: [
     goubite,
-    nosferachid,
+    nosferasta,
     rouxScoop,
     coconnul,
     chrysachier,
@@ -44,7 +44,7 @@ export const arena40: Arena = {
     image: '',
   },
   lineup: [
-    nosferachid,
+    nosferasta,
     piafsansbec,
     canarchicon,
     ptitocard,
