@@ -61,11 +61,15 @@ function createEnemy(): DexShlagemon | null {
   return created
 }
 
+function healShlagemon() {
+  if (dex.activeShlagemon)
+    dex.activeShlagemon.hpCurrent = dex.activeShlagemon?.hp
+}
+
 async function startBattle() {
-  /* todo pas normal, il faudrait investigué, probleme progation / verifiation / transition */
-  enemy.value = null
-  await nextTick()
+  healShlagemon()
   enemy.value = createEnemy()
+  console.log(enemy.value?.id)
 }
 
 onMounted(startBattle)
