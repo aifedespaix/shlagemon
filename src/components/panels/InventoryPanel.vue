@@ -11,14 +11,12 @@ import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
-import { useInventoryModalStore } from '~/stores/inventoryModal'
 import { useWearableItemStore } from '~/stores/wearableItem'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
-const inventoryModal = useInventoryModalStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const sortOptions = [
@@ -66,8 +64,6 @@ function onUse(item: Item) {
     evoItemStore.open(item)
   }
   else if (item.wearable) {
-    if (inventoryModal.isVisible)
-      inventoryModal.close()
     wearableStore.open(item)
   }
   else {

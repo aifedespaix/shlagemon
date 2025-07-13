@@ -6,7 +6,6 @@ import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
@@ -17,7 +16,6 @@ const dex = useShlagedexStore()
 const panel = useMainPanelStore()
 const arena = useArenaStore()
 const progress = useZoneProgressStore()
-const mapModal = useMapModalStore()
 const dialog = useDialogStore()
 const mobile = useMobileTabStore()
 const featureLock = useFeatureLockStore()
@@ -56,7 +54,6 @@ function selectZone(id: string) {
   if (!z || buttonDisabled(z))
     return
   zone.setZone(id)
-  mapModal.close()
   mobile.set('game')
 }
 

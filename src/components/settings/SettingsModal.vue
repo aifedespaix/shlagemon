@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Modal from '~/components/modal/Modal.vue'
 import Button from '~/components/ui/Button.vue'
-import SelectOption from '~/components/ui/SelectOption.vue'
-import { useInterfaceStore } from '~/stores/interface'
 import { useSaveStore } from '~/stores/save'
 import ShortcutsTab from './ShortcutsTab.vue'
 
@@ -10,9 +8,8 @@ const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits(['update:modelValue'])
 
 const save = useSaveStore()
-const ui = useInterfaceStore()
 
-const tab = ref<'save' | 'interface' | 'shortcuts'>('save')
+const tab = ref<'save' | 'shortcuts'>('save')
 
 function close() {
   emit('update:modelValue', false)
@@ -43,13 +40,6 @@ function removeSave() {
       </button>
       <button
         class="rounded px-2 py-1"
-        :class="tab === 'interface' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-        @click="tab = 'interface'"
-      >
-        Interface
-      </button>
-      <button
-        class="rounded px-2 py-1"
         :class="tab === 'shortcuts' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
         @click="tab = 'shortcuts'"
       >
@@ -64,25 +54,6 @@ function removeSave() {
         <div i-carbon-trash-can />
         Supprimer
       </Button>
-    </div>
-    <div v-else-if="tab === 'interface'" class="flex flex-col gap-2">
-      <h3 class="text-xl">
-        Mobile
-      </h3>
-      <div>Configuration impactant la version "mobile" du jeu.</div>
-      <label class="flex flex-col gap-1" for="mobile-main-panel">
-        <div>Panel secondaire</div>
-        <SelectOption
-          id="mobile-main-panel"
-          v-model="ui.mobileMainPanel"
-          name="mobile-main-panel"
-          :options="[
-            { label: 'Zones', value: 'zone' },
-            { label: 'Schlagédex', value: 'dex' },
-          ]"
-        />
-        <div class="text-sm">Permet de définir le panel qui sera présent sous le panel principal sur l'écran de jeu.</div>
-      </label>
     </div>
     <div v-else class="flex flex-col gap-2">
       <ShortcutsTab />

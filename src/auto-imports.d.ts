@@ -214,12 +214,10 @@ declare global {
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
-  const useInterfaceStore: typeof import('./stores/interface')['useInterfaceStore']
   const useIntersectionObserver: typeof import('@vueuse/core')['useIntersectionObserver']
   const useInterval: typeof import('@vueuse/core')['useInterval']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useInventoryFilterStore: typeof import('./stores/inventoryFilter')['useInventoryFilterStore']
-  const useInventoryModalStore: typeof import('./stores/inventoryModal')['useInventoryModalStore']
   const useInventoryStore: typeof import('./stores/inventory')['useInventoryStore']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
@@ -229,7 +227,6 @@ declare global {
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useMainPanelStore: typeof import('./stores/mainPanel')['useMainPanelStore']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
-  const useMapModalStore: typeof import('./stores/mapModal')['useMapModalStore']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
@@ -608,12 +605,10 @@ declare module 'vue' {
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
-    readonly useInterfaceStore: UnwrapRef<typeof import('./stores/interface')['useInterfaceStore']>
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useInventoryFilterStore: UnwrapRef<typeof import('./stores/inventoryFilter')['useInventoryFilterStore']>
-    readonly useInventoryModalStore: UnwrapRef<typeof import('./stores/inventoryModal')['useInventoryModalStore']>
     readonly useInventoryStore: UnwrapRef<typeof import('./stores/inventory')['useInventoryStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
@@ -623,7 +618,6 @@ declare module 'vue' {
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
-    readonly useMapModalStore: UnwrapRef<typeof import('./stores/mapModal')['useMapModalStore']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>

@@ -8,17 +8,13 @@ import { useAchievementsStore } from './achievements'
 import { useAudioStore } from './audio'
 import { useDialogStore } from './dialog'
 import { useGameStateStore } from './gameState'
-import { useInterfaceStore } from './interface'
 import { useInventoryStore } from './inventory'
 import { useMainPanelStore } from './mainPanel'
-import { useMobileTabStore } from './mobileTab'
 import { useShlagedexStore } from './shlagedex'
 import { useTrainerBattleStore } from './trainerBattle'
 import { useZoneStore } from './zone'
 
 export const useUIStore = defineStore('ui', () => {
-  const interfaceStore = useInterfaceStore()
-  const mobileTab = useMobileTabStore()
   const mainPanel = useMainPanelStore()
   const zone = useZoneStore()
   const trainerBattle = useTrainerBattleStore()
@@ -39,23 +35,14 @@ export const useUIStore = defineStore('ui', () => {
   const isInventoryVisible = computed(() => inventory.list.length > 0)
   const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
   const isAchievementVisible = computed(() => achievements.hasAny)
-  const isDexUnderGame = computed(() => interfaceStore.mobileMainPanel === 'dex')
 
-  const displayZonePanel = computed(() =>
-    (!isDexUnderGame.value || !isMobile.value)
-    && isShlagedexVisible.value
-    && (!isMobile.value || mobileTab.current === 'game'),
-  )
+  const displayZonePanel = computed(() => !isMobile.value && isShlagedexVisible.value)
 
-  const displayGamePanel = computed(() => showMainPanel.value && (!isMobile.value || mobileTab.current === 'game'))
+  const displayGamePanel = computed(() => showMainPanel.value)
 
   const displayInventory = computed(() => isInventoryVisible.value && !isMobile.value)
-  const displayAchievements = computed(() => isAchievementVisible.value && (!isMobile.value || mobileTab.current === 'achievements'))
-  const displayDex = computed(() => {
-    const inGameTab = !isMobile.value || mobileTab.current === 'game'
-    const inDexTab = !isMobile.value || mobileTab.current === 'dex'
-    return isShlagedexVisible.value && (isDexUnderGame.value ? inGameTab : inDexTab)
-  })
+  const displayAchievements = computed(() => isAchievementVisible.value && !isMobile.value)
+  const displayDex = computed(() => isShlagedexVisible.value && !isMobile.value)
 
   const group2Classes = computed(() => {
     const classes = ['panel-group']

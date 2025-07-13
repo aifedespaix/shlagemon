@@ -5,30 +5,27 @@ import { useAchievementsStore } from '~/stores/achievements'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
-import { useInterfaceStore } from '~/stores/interface'
 import { useInventoryStore } from '~/stores/inventory'
-import { useInventoryModalStore } from '~/stores/inventoryModal'
 import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMapModalStore } from '~/stores/mapModal'
 import { useMobileTabStore } from '~/stores/mobileTab'
+import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const mobile = useMobileTabStore()
-const inventoryModal = useInventoryModalStore()
 const dialog = useDialogStore()
 const inventory = useInventoryStore()
 const arena = useArenaStore()
 const achievements = useAchievementsStore()
-const mapModal = useMapModalStore()
-const ui = useInterfaceStore()
+const shlagedex = useShlagedexStore()
 const panel = useMainPanelStore()
 const lockStore = useFeatureLockStore()
 const visit = useZoneVisitStore()
 
-const highlightMap = computed(() => visit.hasNewZone && !mapModal.isVisible)
+const highlightMap = computed(() => visit.hasNewZone)
 
 const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 'arena')
-const dexDisabled = menuDisabled
+const zoneDisabled = menuDisabled
+const dexDisabled = computed(() => menuDisabled.value || shlagedex.shlagemons.length === 0)
 const achievementsDisabled = computed(() => menuDisabled.value || !achievements.hasAny)
 const inventoryDisabled = computed(() => menuDisabled.value || inventory.list.length === 0 || arena.inBattle || lockStore.isInventoryLocked)
 
@@ -41,17 +38,12 @@ watch(
 )
 
 function toggleInventory() {
-  if (inventoryModal.isVisible)
-    inventoryModal.close()
-  else
-    inventoryModal.open()
+  mobile.set('inventory')
 }
 
 function onSecondButton() {
-  if (ui.mobileMainPanel === 'dex')
-    mapModal.open()
-  else
-    mobile.set('dex')
+  mobile.set('zones')
+  visit.markAllAccessibleVisited()
 }
 </script>
 
@@ -67,16 +59,23 @@ function onSecondButton() {
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="[ui.mobileMainPanel === 'zone' && mobile.current === 'dex' ? 'active' : '', highlightMap ? 'animate-pulse' : '']"
-      :disabled="dexDisabled"
+      :class="[mobile.current === 'zones' ? 'active' : '', highlightMap ? 'animate-pulse' : '']"
+      :disabled="zoneDisabled"
       @click="onSecondButton"
     >
-      <SchlagedexIcon v-if="ui.mobileMainPanel === 'zone'" class="h-5 w-5" />
-      <div v-else class="i-carbon-map" />
+      <div class="i-carbon-map" />
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="inventoryModal.isVisible ? 'active' : ''"
+      :class="mobile.current === 'dex' ? 'active' : ''"
+      :disabled="dexDisabled"
+      @click="mobile.set('dex')"
+    >
+      <SchlagedexIcon class="h-5 w-5" />
+    </button>
+    <button
+      class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
+      :class="mobile.current === 'inventory' ? 'active' : ''"
       :disabled="inventoryDisabled"
       @click="toggleInventory"
     >
