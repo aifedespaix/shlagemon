@@ -6,7 +6,6 @@ import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
@@ -17,7 +16,6 @@ const panel = useMainPanelStore()
 const arena = useArenaStore()
 const progress = useZoneProgressStore()
 const dialog = useDialogStore()
-const mobile = useMobileTabStore()
 const featureLock = useFeatureLockStore()
 
 const zoneButtonsDisabled = computed(
@@ -54,7 +52,6 @@ function selectZone(id: string) {
   if (!z || buttonDisabled(z))
     return
   zone.setZone(id)
-  mobile.set('game')
 }
 
 function icon(z: Zone) {
