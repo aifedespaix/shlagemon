@@ -57,7 +57,6 @@ declare module 'vue' {
     Info: typeof import('./components/ui/Info.vue')['default']
     InputTipRange: typeof import('./components/ui/InputTipRange.vue')['default']
     InventoryItemCard: typeof import('./components/inventory/InventoryItemCard.vue')['default']
-    InventoryModal: typeof import('./components/inventory/InventoryModal.vue')['default']
     InventoryPanel: typeof import('./components/panels/InventoryPanel.vue')['default']
     ItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     Kbd: typeof import('./components/ui/Kbd.vue')['default']
@@ -108,7 +107,6 @@ declare module 'vue' {
     WhackAShlag: typeof import('./components/minigame/WhackAShlag.vue')['default']
     Xp: typeof import('./components/icons/xp.vue')['default']
     ZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
-    ZoneMapModal: typeof import('./components/zones/ZoneMapModal.vue')['default']
     ZoneMonsModal: typeof import('./components/zones/ZoneMonsModal.vue')['default']
     ZonePanel: typeof import('./components/panels/ZonePanel.vue')['default']
   }

@@ -2,7 +2,6 @@
 import { storeToRefs } from 'pinia'
 import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
-import InventoryModal from '~/components/inventory/InventoryModal.vue'
 import InventoryPanel from '~/components/panels/InventoryPanel.vue'
 import MainPanelView from '~/components/panels/MainPanel.vue'
 import ZonePanel from '~/components/panels/ZonePanel.vue'
@@ -10,16 +9,15 @@ import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
 import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
 import TypeChartModal from '~/components/shlagemon/TypeChartModal.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
-import ZoneMapModal from '~/components/zones/ZoneMapModal.vue'
 import { useFeatureLockStore } from '~/stores/featureLock'
-import { useInterfaceStore } from '~/stores/interface'
+import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useUIStore } from '~/stores/ui'
 
-const ui = useInterfaceStore()
 const lockStore = useFeatureLockStore()
 const shlagedex = useShlagedexStore()
 const uiStore = useUIStore()
+const mobileTab = useMobileTabStore()
 const {
   isMobile,
   displayDex,
@@ -29,6 +27,53 @@ const {
   displayAchievements,
   group2Classes,
 } = storeToRefs(uiStore)
+
+const { current: activeTab } = storeToRefs(mobileTab)
+
+const bottomComponent = computed(() => {
+  switch (activeTab.value) {
+    case 'achievements':
+      return AchievementsPanel
+    case 'zones':
+      return ZonePanel
+    case 'dex':
+      return shlagedex.shlagemons.length ? Shlagedex : null
+    case 'inventory':
+      return InventoryPanel
+    default:
+      return null
+  }
+})
+
+const bottomTitle = computed(() => {
+  switch (activeTab.value) {
+    case 'achievements':
+      return 'Succès'
+    case 'zones':
+      return 'Zones'
+    case 'dex':
+      return 'Shlagédex'
+    case 'inventory':
+      return 'Inventaire'
+    default:
+      return ''
+  }
+})
+
+const bottomLocked = computed(() => {
+  switch (activeTab.value) {
+    case 'achievements':
+      return lockStore.areAchievementsLocked
+    case 'zones':
+      return lockStore.areZonesLocked
+    case 'dex':
+      return lockStore.isShlagedexLocked
+    case 'inventory':
+      return lockStore.isInventoryLocked
+    default:
+      return false
+  }
+})
 </script>
 
 <template>
@@ -37,7 +82,7 @@ const {
       class="game h-full flex flex-col gap-1 p-1"
       md="flex-row justify-between"
     >
-      <div v-if="displayInventory || displayAchievements || (!isMobile && displayDex)" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
+      <div v-if="!isMobile && (displayInventory || displayAchievements || displayDex)" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
         <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
           <template #icon>
             <div class="i-carbon-inventory-management" />
@@ -70,8 +115,8 @@ const {
         </PanelWrapper>
       </div>
 
-      <div v-if="displayDex" :class="isMobile && ui.mobileMainPanel === 'zone' ? '' : 'max-h-40vh'" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
-        <PanelWrapper v-if="displayDex" title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
+      <div v-if="!isMobile && displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
+        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
           <template #icon>
             <SchlagedexIcon class="h-4 w-4" />
           </template>
@@ -79,9 +124,19 @@ const {
         </PanelWrapper>
       </div>
 
+      <div v-if="isMobile && bottomComponent" class="panel-group max-h-40vh flex-1 overflow-hidden">
+        <PanelWrapper :title="bottomTitle" class="overflow-hidden" :is-locked="bottomLocked">
+          <template #icon>
+            <div v-if="activeTab === 'achievements'" class="i-carbon-trophy" />
+            <div v-else-if="activeTab === 'zones'" class="i-carbon-map" />
+            <SchlagedexIcon v-else-if="activeTab === 'dex'" class="h-4 w-4" />
+            <div v-else-if="activeTab === 'inventory'" class="i-carbon-inventory-management" />
+          </template>
+          <component :is="bottomComponent" />
+        </PanelWrapper>
+      </div>
+
       <EvolutionModal />
-      <ZoneMapModal />
-      <InventoryModal />
       <TypeChartModal />
     </div>
   </div>
