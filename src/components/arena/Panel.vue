@@ -4,6 +4,7 @@ import { useArenaStore } from '~/stores/arena'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { cloneDexShlagemon } from '~/utils/clone'
+import { delay } from '~/utils/delay'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
@@ -18,15 +19,16 @@ const showEnemy = ref(false)
 const enemyDetail = ref<BaseShlagemon | null>(null)
 let nextTimer: number | undefined
 
-function autoSelect() {
+async function autoSelect() {
   const team = dex.shlagemons
     .slice()
     .sort((a, b) => b.attack - a.attack)
     .slice(0, arena.selections.length)
 
-  team.forEach((mon, i) => {
+  for (const [i, mon] of team.entries()) {
     arena.selectPlayer(i, mon.id)
-  })
+    await delay(100)
+  }
 }
 
 const playerSelection = computed(() =>
@@ -109,7 +111,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tiny-scrollbar eee h-full flex flex-col overflow-auto">
+  <div class="tiny-scrollbar eee relative h-full flex flex-col overflow-auto">
+    <UiButton
+      type="icon"
+      class="absolute left-0 top-0 z-10 rounded-none rounded-bl rounded-br rounded-tr"
+      @click="autoSelect"
+    >
+      <div i-carbon-magic-wand />
+    </UiButton>
     <div v-show="!showDuel" class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
@@ -151,14 +160,6 @@ onUnmounted(() => {
           <UiInfo color="alert" class="text-center text-xs">
             Le combat est automatique et se déroule sans clics.
           </UiInfo>
-          <UiButton
-            type="valid"
-            variant="outline"
-            class="mx-auto"
-            @click="autoSelect"
-          >
-            Sélection auto
-          </UiButton>
           <UiButton
             type="primary"
             class="mx-auto"
