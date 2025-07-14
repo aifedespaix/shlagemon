@@ -11,8 +11,8 @@ import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
-import { useWearableItemStore } from '~/stores/wearableItem'
 import { useItemUsageStore } from '~/stores/itemUsage'
+import { useWearableItemStore } from '~/stores/wearableItem'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
