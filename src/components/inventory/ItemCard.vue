@@ -3,20 +3,17 @@ import type { Item } from '~/type/item'
 import { useItemUsageStore } from '~/stores/itemUsage'
 import { ballHues } from '~/utils/ball'
 
-const props = withDefaults(defineProps<{ item: Item, qty: number, disabled?: boolean, opened?: boolean }>(), {
-  opened: false,
-})
+const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
 const emit = defineEmits<{
   (e: 'use'): void
   (e: 'sell'): void
-  (e: 'toggle'): void
 }>()
 
 const showInfo = ref(false)
 const usage = useItemUsageStore()
 const isUnused = computed(() => !usage.used[props.item.id])
 function onCardClick() {
-  emit('toggle')
+  showInfo.value = true
   usage.markUsed(props.item.id)
 }
 const details = computed(() => props.item.details || props.item.description)
@@ -55,9 +52,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
         >
         <span class="font-bold">{{ props.item.name }}</span>
       </div>
-      <div class="i-carbon-chevron-down absolute right-1 top-1 text-xs transition-transform" :class="props.opened ? '' : 'rotate-90'" />
     </div>
-    <span v-show="props.opened" class="text-xs">{{ props.item.description }}</span>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
       <UiButton
