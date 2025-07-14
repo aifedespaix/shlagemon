@@ -1,18 +1,30 @@
 <script setup lang="ts">
-import Button from '~/components/ui/Button.vue'
-import CheckBox from '~/components/ui/CheckBox.vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
+import SelectOption from '~/components/ui/SelectOption.vue'
 import { useAchievementsStore } from '~/stores/achievements'
+import { useAchievementsFilterStore } from '~/stores/achievementsFilter'
 import AchievementItem from './AchievementItem.vue'
 
 const store = useAchievementsStore()
-const showLocked = ref(false)
-const search = ref('')
-const list = computed(() => showLocked.value ? store.list : store.unlockedList)
+const filter = useAchievementsFilterStore()
+
+const statusOptions = [
+  { label: 'Tous', value: 'all' },
+  { label: 'Débloqués', value: 'unlocked' },
+  { label: 'À débloquer', value: 'locked' },
+]
+
+const list = computed(() => {
+  if (filter.status === 'all')
+    return store.list
+  if (filter.status === 'unlocked')
+    return store.unlockedList
+  return store.list.filter(a => !a.achieved)
+})
 const filteredList = computed(() => {
-  if (!search.value.trim())
+  if (!filter.search.trim())
     return list.value
-  const q = search.value.toLowerCase()
+  const q = filter.search.toLowerCase()
   return list.value.filter(a => a.title.toLowerCase().includes(q))
 })
 </script>
@@ -20,11 +32,12 @@ const filteredList = computed(() => {
 <template>
   <ScrollablePanel>
     <template #header>
-      <Button class="flex flex-1 items-center justify-between gap-2 text-sm" @click="showLocked = !showLocked">
-        <span class="whitespace-nowrap" md="whitespace-normal">{{ showLocked ? 'Masquer' : 'Afficher' }} les succès verrouillés</span>
-        <CheckBox :model-value="showLocked" @update:model-value="showLocked = $event" @click.stop />
-      </Button>
-      <SearchInput v-model="search" class="flex-1" />
+      <SelectOption
+        v-model="filter.status"
+        :options="statusOptions"
+        class="min-w-28"
+      />
+      <SearchInput v-model="filter.search" class="flex-1" />
     </template>
 
     <template #content>

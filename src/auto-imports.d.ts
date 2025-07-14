@@ -119,6 +119,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const useAchievementsFilterStore: typeof import('./stores/achievementsFilter')['useAchievementsFilterStore']
   const useAchievementsStore: typeof import('./stores/achievements')['useAchievementsStore']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
@@ -219,6 +220,7 @@ declare global {
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useInventoryFilterStore: typeof import('./stores/inventoryFilter')['useInventoryFilterStore']
   const useInventoryStore: typeof import('./stores/inventory')['useInventoryStore']
+  const useItemUsageStore: typeof import('./stores/itemUsage')['useItemUsageStore']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
@@ -363,6 +365,9 @@ declare global {
   // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
+  // @ts-ignore
+  export type { AchievementFilterStatus } from './stores/achievementsFilter'
+  import('./stores/achievementsFilter')
   // @ts-ignore
   export type { ArenaResult } from './stores/arena'
   import('./stores/arena')
@@ -510,6 +515,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly useAchievementsFilterStore: UnwrapRef<typeof import('./stores/achievementsFilter')['useAchievementsFilterStore']>
     readonly useAchievementsStore: UnwrapRef<typeof import('./stores/achievements')['useAchievementsStore']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
@@ -610,6 +616,7 @@ declare module 'vue' {
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useInventoryFilterStore: UnwrapRef<typeof import('./stores/inventoryFilter')['useInventoryFilterStore']>
     readonly useInventoryStore: UnwrapRef<typeof import('./stores/inventory')['useInventoryStore']>
+    readonly useItemUsageStore: UnwrapRef<typeof import('./stores/itemUsage')['useItemUsageStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
