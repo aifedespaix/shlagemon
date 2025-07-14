@@ -12,6 +12,7 @@ import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 import { useZoneProgressStore } from './zoneProgress'
+import { useItemUsageStore } from './itemUsage'
 
 export const useSaveStore = defineStore('save', () => {
   const dex = useShlagedexStore()
@@ -27,6 +28,7 @@ export const useSaveStore = defineStore('save', () => {
   const dexFilter = useDexFilterStore()
   const mainPanel = useMainPanelStore()
   const player = usePlayerStore()
+  const itemUsage = useItemUsageStore()
 
   function reset() {
     dex.reset()
@@ -42,6 +44,7 @@ export const useSaveStore = defineStore('save', () => {
     dexFilter.reset()
     mainPanel.reset()
     player.reset()
+    itemUsage.reset()
   }
 
   return { reset }

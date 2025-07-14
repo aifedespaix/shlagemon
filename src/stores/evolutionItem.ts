@@ -4,11 +4,13 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useInventoryStore } from './inventory'
 import { useShlagedexStore } from './shlagedex'
+import { useItemUsageStore } from './itemUsage'
 
 export const useEvolutionItemStore = defineStore('evolutionItem', () => {
   const current = ref<Item | null>(null)
   const dex = useShlagedexStore()
   const inventory = useInventoryStore()
+  const usage = useItemUsageStore()
 
   // modal visibility is controlled by this ref
   const isVisible = ref(false)
@@ -44,6 +46,7 @@ export const useEvolutionItemStore = defineStore('evolutionItem', () => {
     const success = await dex.evolveWithItem(mon, current.value)
     if (success) {
       inventory.remove(current.value.id)
+      usage.markUsed(current.value.id)
       close()
     }
     return success
