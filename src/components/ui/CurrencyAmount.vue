@@ -8,7 +8,7 @@ const currencyName = computed(() => {
   const base = props.currency === 'shlagidiamond' ? 'Shlagédiamant' : 'Shlagédollar'
   return props.amount > 1 ? `${base}s` : base
 })
-const icon = computed(() => props.currency === 'shlagidiamond' ? 'Shlagediamond' : 'Shlagidolar')
+const icon = computed(() => props.currency === 'shlagidiamond' ? 'ShlagediamondIcon' : 'ShlagidolarIcon')
 </script>
 
 <template>
