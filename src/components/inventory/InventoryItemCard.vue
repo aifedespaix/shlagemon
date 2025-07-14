@@ -16,8 +16,9 @@ const showInfo = ref(false)
 const opened = ref(false)
 const usage = useItemUsageStore()
 const isUnused = computed(() => !usage.used[props.item.id])
-function toggle() {
+function onCardClick() {
   opened.value = !opened.value
+  usage.markUsed(props.item.id)
 }
 const details = computed(() => props.item.details || props.item.description)
 const ballFilter = computed(() =>
@@ -35,10 +36,11 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 
 <template>
   <div
-    class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900"
+    class="relative flex flex-col cursor-pointer gap-1 border rounded bg-white p-2 dark:bg-gray-900"
     :class="isUnused ? highlightClasses : ''"
+    @click="onCardClick"
   >
-    <div class="flex cursor-pointer items-center justify-between gap-2" @click="toggle">
+    <div class="flex items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <div
           v-if="props.item.icon"
@@ -62,7 +64,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
       <Button
         class="flex items-center gap-1 text-xs"
         :disabled="props.disabled"
-        @click="emit('use')"
+        @click.stop="emit('use')"
       >
         <div i-carbon-play inline-block />
         {{ actionLabel }}
@@ -75,7 +77,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     </div>
     <button
       class="absolute bottom-1 left-1 h-4 w-4 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-      @click.stop="showInfo = true"
+      @click="showInfo = true"
     >
       <div i-carbon-help class="text-xs" />
     </button>
