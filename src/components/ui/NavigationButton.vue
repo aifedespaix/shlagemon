@@ -7,7 +7,7 @@ const emit = defineEmits(['click'])
 
 <template>
   <button
-    class="grid grid-rows-2 max-h-[120px] gap-1 rounded px-2 py-1 text-xs bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 flex-shrink-0"
+    class="grid grid-rows-2 max-h-[120px] flex-shrink-0 gap-1 rounded bg-gray-200 px-2 py-1 text-xs dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
     :class="props.disabled ? 'opacity-50 cursor-not-allowed' : ''"
     :disabled="props.disabled"
     @click="emit('click')"

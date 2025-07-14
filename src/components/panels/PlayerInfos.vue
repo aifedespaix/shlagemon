@@ -36,13 +36,13 @@ const totalInDex = allShlagemons.length
     <CurrencyAmount :amount="game.shlagidiamond" currency="shlagidiamond" />
     <UiTooltip text="SchlagéDex">
       <div class="min-w-0 flex items-center gap-1">
-        <SchlagedexIcon class="h-4 w-4" />
+        <IconsSchlagedexIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
       </div>
     </UiTooltip>
     <UiTooltip text="Niveau moyen">
       <div class="min-w-0 flex items-center gap-1">
-        <XpIcon class="h-4 w-4" />
+        <IconsXpIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.averageLevel.toFixed(1) }}</span>
       </div>
     </UiTooltip>
@@ -51,7 +51,7 @@ const totalInDex = allShlagemons.length
         class="min-w-0 flex cursor-pointer items-center gap-1"
         @click="showBonus = true"
       >
-        <BonusIcon class="h-4 w-4" />
+        <IconsBonusIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
       </div>
     </UiTooltip>

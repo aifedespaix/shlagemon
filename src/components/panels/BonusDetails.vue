@@ -19,15 +19,15 @@ const dex = useShlagedexStore()
     </p>
     <div class="mt-2 flex flex-col gap-1">
       <div class="flex items-center gap-2">
-        <SchlagedexIcon class="h-5 w-5" />
+        <IconsSchlagedexIcon class="h-5 w-5" />
         <span>Complétion : {{ Math.round(dex.potentialCompletionPercent) }}%</span>
       </div>
       <div class="flex items-center gap-2">
-        <XpIcon class="h-5 w-5" />
+        <IconsXpIcon class="h-5 w-5" />
         <span>Niveau moyen : {{ dex.averageLevel.toFixed(1) }}</span>
       </div>
       <div class="flex items-center gap-2">
-        <BonusIcon class="h-5 w-5" />
+        <IconsBonusIcon class="h-5 w-5" />
         <span>Bonus actuel : +{{ Math.round(dex.bonusPercent) }}%</span>
       </div>
     </div>
