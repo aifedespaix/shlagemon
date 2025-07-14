@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import ArenaPanel from '../src/components/arena/ArenaPanel.vue'
+import ArenaPanel from '../src/components/arena/Panel.vue'
 import { arena20 } from '../src/data/arenas'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useArenaStore } from '../src/stores/arena'

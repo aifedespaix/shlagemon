@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import ZonePanel from '../src/components/panels/ZonePanel.vue'
+import ZonePanel from '../src/components/panel/Zone.vue'
 import ZoneActions from '../src/components/village/ZoneActions.vue'
 import { carapouffe } from '../src/data/shlagemons'
 import { useMainPanelStore } from '../src/stores/mainPanel'
