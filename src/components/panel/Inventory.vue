@@ -16,7 +16,6 @@ const wearableStore = useWearableItemStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
-const openedId = ref<string | null>(null)
 const sortOptions = [
   { label: 'Type', value: 'type' },
   { label: 'Nom', value: 'name' },
@@ -42,10 +41,6 @@ const filteredList = computed(() => {
     list.reverse()
   return list
 })
-
-function toggleItem(id: string) {
-  openedId.value = openedId.value === id ? null : id
-}
 
 function isDisabled(item: Item) {
   if (featureLock.isInventoryLocked)
@@ -94,8 +89,6 @@ function onUse(item: Item) {
         :item="entry.item"
         :qty="entry.qty"
         :disabled="isDisabled(entry.item)"
-        :opened="openedId === entry.item.id"
-        @toggle="toggleItem(entry.item.id)"
         @use="onUse(entry.item)"
         @sell="inventory.sell(entry.item.id)"
       />
