@@ -121,7 +121,7 @@ const captureInfo = computed(() => {
           v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
           class="absolute right-0 top-0 flex items-center gap-1"
         >
-          <MultiExpIcon class="h-5 w-5" />
+          <IconsMultiExpIcon class="h-5 w-5" />
           <UiButton
             type="icon"
             class="h-5 w-5"

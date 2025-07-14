@@ -75,7 +75,7 @@ const highlightClasses = 'animate-jello animate-count-infinite color-blue-500 da
       :disabled="dexDisabled"
       @click="mobile.toggle('dex')"
     >
-      <SchlagedexIcon class="h-5 w-5" />
+      <IconsSchlagedexIcon class="h-5 w-5" />
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
