@@ -28,7 +28,7 @@ function choose(id: string) {
         La Super et l'Hyper Schlagéball améliorent vos chances de capture
         (x1.5 et x2).
       </p>
-      <Button
+      <UiButton
         v-for="ball in options"
         :key="ball.id"
         class="flex items-center gap-2"
@@ -42,7 +42,7 @@ function choose(id: string) {
           :style="{ filter: `hue-rotate(${ballHues[ball.id]})` }"
         >
         {{ ball.name }} (x{{ ball.qty }})
-      </Button>
+      </UiButton>
     </div>
   </Modal>
 </template>

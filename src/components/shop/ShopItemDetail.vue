@@ -72,27 +72,27 @@ const details = computed(() => props.item.details || props.item.description)
     </p>
     <div class="mt-2 flex flex-wrap items-center gap-2">
       <div v-for="i in 3" :key="i" class="flex flex-col gap-1">
-        <Button :disabled="qty >= maxQty" class="text-sm" type="primary" @click="adjustQty(1 * 10 ** i)">
+        <UiButton :disabled="qty >= maxQty" class="text-sm" type="primary" @click="adjustQty(1 * 10 ** i)">
           + {{ (1 * 10 ** i).toLocaleString() }}
-        </Button>
-        <Button :disabled="qty <= 1" type="danger" class="text-xs" @click="adjustQty(-1 * 10 ** i)">
+        </UiButton>
+        <UiButton :disabled="qty <= 1" type="danger" class="text-xs" @click="adjustQty(-1 * 10 ** i)">
           - {{ (1 * 10 ** i).toLocaleString() }}
-        </Button>
+        </UiButton>
       </div>
-      <Button :disabled="qty >= maxQty" @click="setMax">
+      <UiButton :disabled="qty >= maxQty" @click="setMax">
         MAX
-      </Button>
+      </UiButton>
       <div class="w-20">
         <NumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
       </div>
     </div>
     <div class="mt-2 flex gap-2">
-      <Button type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
+      <UiButton type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
         Acheter <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
-      </Button>
-      <Button class="text-xs" variant="outline" type="danger" @click="emit('close')">
+      </UiButton>
+      <UiButton class="text-xs" variant="outline" type="danger" @click="emit('close')">
         Retour
-      </Button>
+      </UiButton>
     </div>
   </div>
 </template>

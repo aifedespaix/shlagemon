@@ -158,14 +158,14 @@ onUnmounted(featureLock.unlockAll)
       <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
       <div>{{ trainer.dialogBefore }}</div>
       <div class="flex gap-2">
-        <Button type="primary" @click="startFight">
+        <UiButton type="primary" @click="startFight">
           <div class="i-mdi:sword" />
           Démarrer le combat
-        </Button>
-        <Button type="danger" @click="cancelFight">
+        </UiButton>
+        <UiButton type="danger" @click="cancelFight">
           <div class="i-mdi:close" />
           Abandonner
-        </Button>
+        </UiButton>
       </div>
     </div>
     <template v-else-if="stage === 'battle' && dex.activeShlagemon && enemy">
@@ -193,9 +193,9 @@ onUnmounted(featureLock.unlockAll)
       <div v-if="result === 'win'" class="font-bold">
         +{{ trainer.reward }} Shlagédiamonds
       </div>
-      <Button @click="finish">
+      <UiButton @click="finish">
         Continuer
-      </Button>
+      </UiButton>
     </div>
   </div>
 </template>

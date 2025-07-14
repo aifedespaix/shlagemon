@@ -2,7 +2,6 @@
 import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import Button from '~/components/ui/Button.vue'
 import { getCharacterTrack, getZoneTrack } from '~/data/music'
 import { useAudioStore } from '~/stores/audio'
 import { useZoneStore } from '~/stores/zone'
@@ -58,7 +57,7 @@ function choose(r: DialogResponse) {
   <div class="h-full flex flex-col gap-2">
     <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded" bg="light-100 dark:gray-800">
       <div class="flex flex-col items-center justify-center">
-        <ImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
+        <UiImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
         <div class="p-1 text-center font-bold">
           {{ character.name }}
         </div>
@@ -70,7 +69,7 @@ function choose(r: DialogResponse) {
             {{ currentNode?.text }}
           </div>
 
-          <ImageByBackground
+          <UiImageByBackground
             v-if="currentNode?.imageUrl"
             :src="currentNode.imageUrl"
             alt="illustration"
@@ -80,7 +79,7 @@ function choose(r: DialogResponse) {
       </div>
     </div>
     <div class="flex justify-center gap-1">
-      <Button
+      <UiButton
         v-for="r in currentNode?.responses"
         :key="r.label"
         :type="r.type"
@@ -91,7 +90,7 @@ function choose(r: DialogResponse) {
       >
         <img v-if="r.imageUrl" :src="r.imageUrl" class="mr-1 h-6 w-6" alt="">
         {{ r.label }}
-      </Button>
+      </UiButton>
     </div>
   </div>
 </template>

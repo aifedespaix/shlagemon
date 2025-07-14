@@ -2,7 +2,6 @@
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { onUnmounted, ref } from 'vue'
-import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { useTypeChartModalStore } from '~/stores/typeChartModal'
 import DiseaseBadge from './DiseaseBadge.vue'
@@ -83,14 +82,14 @@ function showTypeChart() {
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
-      <Tooltip text="Vous possédez déjà ce Shlagémon">
+      <UiTooltip text="Vous possédez déjà ce Shlagémon">
         <img
           v-if="props.showBall && props.owned"
           src="/items/shlageball/shlageball.png"
           alt="ball"
           class="h-4 w-4"
         >
-      </Tooltip>
+      </UiTooltip>
       <span class="font-bold">{{ props.mon.base.name }}</span>
     </div>
     <ProgressBar :value="props.hp" :max="props.mon.hp" :color="props.color" class="mt-1 w-24" />

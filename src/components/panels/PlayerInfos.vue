@@ -6,7 +6,6 @@ import XpIcon from '~/components/icons/xp.vue'
 import Modal from '~/components/modal/Modal.vue'
 import BonusDetails from '~/components/panels/BonusDetails.vue'
 import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
-import Tooltip from '~/components/ui/Tooltip.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useBallStore } from '~/stores/ball'
 import { useDiseaseStore } from '~/stores/disease'
@@ -33,28 +32,28 @@ const totalInDex = allShlagemons.length
   >
     <span v-if="player.pseudo" class="min-w-0 flex items-center gap-1 font-bold">
       {{ player.pseudo }}
-      <Tooltip
+      <UiTooltip
         v-if="disease.active"
         :text="`Malade : ${disease.remaining} combats restants`"
       >
         <div class="i-mdi:emoticon-sick text-red-500" />
-      </Tooltip>
+      </UiTooltip>
     </span>
     <CurrencyAmount :amount="game.shlagidolar" currency="shlagidolar" />
     <CurrencyAmount :amount="game.shlagidiamond" currency="shlagidiamond" />
-    <Tooltip text="SchlagéDex">
+    <UiTooltip text="SchlagéDex">
       <div class="min-w-0 flex items-center gap-1">
         <SchlagedexIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
       </div>
-    </Tooltip>
-    <Tooltip text="Niveau moyen">
+    </UiTooltip>
+    <UiTooltip text="Niveau moyen">
       <div class="min-w-0 flex items-center gap-1">
         <XpIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.averageLevel.toFixed(1) }}</span>
       </div>
-    </Tooltip>
-    <Tooltip text="Bonus">
+    </UiTooltip>
+    <UiTooltip text="Bonus">
       <div
         class="min-w-0 flex cursor-pointer items-center gap-1"
         @click="showBonus = true"
@@ -62,11 +61,11 @@ const totalInDex = allShlagemons.length
         <BonusIcon class="h-4 w-4" />
         <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
       </div>
-    </Tooltip>
+    </UiTooltip>
     <Modal v-model="showBonus" footer-close>
       <BonusDetails />
     </Modal>
-    <Tooltip text="SchlagéBalls">
+    <UiTooltip text="SchlagéBalls">
       <div
         class="min-w-0 flex cursor-pointer items-center gap-1"
         @click="ballStore.open()"
@@ -79,7 +78,7 @@ const totalInDex = allShlagemons.length
         >
         <span class="shrink-0 font-bold">{{ inventory.items[ballStore.current]?.toLocaleString() || 0 }}</span>
       </div>
-    </Tooltip>
+    </UiTooltip>
     <BallSelectionModal />
   </div>
 </template>

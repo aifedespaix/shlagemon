@@ -102,7 +102,7 @@ const bottomLocked = computed(() => {
 
       <div v-if="displayGamePanel || displayZonePanel" :class="group2Classes" class="overflow-hidden" md="basis-1/2">
         <PanelWrapper is-inline>
-          <PlayerInfos />
+          <PanelsPlayerInfos />
         </PanelWrapper>
 
         <PanelWrapper v-if="displayGamePanel" class="overflow-hidden">

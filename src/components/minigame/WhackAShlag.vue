@@ -59,7 +59,7 @@ onUnmounted(() => {
         md="h-24 w-24"
         @click="hit(i)"
       >
-        <ImageByBackground
+        <UiImageByBackground
           v-if="s"
           :src="`/shlagemons/${s}/${s}.png`"
           alt="slug"
@@ -70,8 +70,8 @@ onUnmounted(() => {
     <div class="text-sm">
       Niveau : {{ mini.level }}
     </div>
-    <Button class="text-xs" @click="quit">
+    <UiButton class="text-xs" @click="quit">
       Quitter
-    </Button>
+    </UiButton>
   </div>
 </template>

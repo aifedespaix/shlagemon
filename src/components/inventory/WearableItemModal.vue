@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import Modal from '~/components/modal/Modal.vue'
-import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
-import Button from '~/components/ui/Button.vue'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
 
@@ -30,10 +28,10 @@ function select(monId: string) {
             <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="h-6 w-6" />
             <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
           </div>
-          <Button class="text-xs" @click="select(mon.id)">
+          <UiButton class="text-xs" @click="select(mon.id)">
             <span v-if="store.holderId === mon.id">Équipé</span>
             <span v-else>Choisir</span>
-          </Button>
+          </UiButton>
         </div>
       </div>
       <p v-else class="text-center text-sm">

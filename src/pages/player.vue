@@ -25,11 +25,11 @@ head:
   <form class="m-auto max-w-96 flex flex-col gap-4 p-4" @submit.prevent="submit">
     <label class="flex flex-col gap-1">
       <span>Pseudo</span>
-      <SearchInput v-model="pseudo" placeholder="Votre pseudo" />
+      <UiSearchInput v-model="pseudo" placeholder="Votre pseudo" />
     </label>
     <label class="flex flex-col gap-1">
       <span>Nom</span>
-      <SearchInput v-model="realName" placeholder="Votre nom" />
+      <UiSearchInput v-model="realName" placeholder="Votre nom" />
     </label>
     <label class="flex flex-col gap-1">
       <span>Genre</span>
@@ -42,8 +42,8 @@ head:
         ]"
       />
     </label>
-    <Button type="primary" class="mt-2">
+    <UiButton type="primary" class="mt-2">
       Valider
-    </Button>
+    </UiButton>
   </form>
 </template>

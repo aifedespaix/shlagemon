@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
-import EvolutionItemModal from '~/components/inventory/EvolutionItemModal.vue'
-import InventoryItemCard from '~/components/inventory/InventoryItemCard.vue'
-import WearableItemModal from '~/components/inventory/WearableItemModal.vue'
-import SearchInput from '~/components/ui/SearchInput.vue'
-import SortControls from '~/components/ui/SortControls.vue'
 import { useBallStore } from '~/stores/ball'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useFeatureLockStore } from '~/stores/featureLock'
@@ -77,14 +72,14 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <ScrollablePanel v-if="inventory.list.length">
+  <LayoutScrollablePanel v-if="inventory.list.length">
     <template #header>
-      <SortControls
+      <UiSortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
-      <SearchInput v-model="filter.search" class="flex-1" />
+      <UiSearchInput v-model="filter.search" class="flex-1" />
     </template>
 
     <template #content>
@@ -98,7 +93,7 @@ function onUse(item: Item) {
         @sell="inventory.sell(entry.item.id)"
       />
     </template>
-  </ScrollablePanel>
-  <EvolutionItemModal />
-  <WearableItemModal />
+  </LayoutScrollablePanel>
+  <InventoryEvolutionItemModal />
+  <InventoryWearableItemModal />
 </template>

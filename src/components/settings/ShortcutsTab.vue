@@ -45,12 +45,12 @@ function reset() {
       />
     </div>
     <div class="mt-2 flex gap-2">
-      <Button class="flex-1" @click="addShortcut">
+      <UiButton class="flex-1" @click="addShortcut">
         Ajouter un raccourci
-      </Button>
-      <Button type="danger" class="flex-1" @click="reset">
+      </UiButton>
+      <UiButton type="danger" class="flex-1" @click="reset">
         Réinitialiser
-      </Button>
+      </UiButton>
     </div>
   </div>
 </template>

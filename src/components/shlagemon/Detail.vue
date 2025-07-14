@@ -3,9 +3,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { computed, ref } from 'vue'
 import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import Modal from '~/components/modal/Modal.vue'
-import Button from '~/components/ui/Button.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
-import Tooltip from '~/components/ui/Tooltip.vue'
 import { useDiseaseStore } from '~/stores/disease'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
@@ -104,9 +102,9 @@ const captureInfo = computed(() => {
           <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
           - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
         </div>
-        <Tooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
+        <UiTooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
           <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0" />
-        </Tooltip>
+        </UiTooltip>
       </h2>
       <div class="relative h-40 w-full">
         <div class="absolute flex gap-2">
@@ -128,13 +126,13 @@ const captureInfo = computed(() => {
           class="absolute right-0 top-0 flex items-center gap-1"
         >
           <MultiExpIcon class="h-5 w-5" />
-          <Button
+          <UiButton
             type="icon"
             class="h-5 w-5"
             @click="wearableItemStore.removeHolder('multi-exp')"
           >
             <div i-carbon-trash-can />
-          </Button>
+          </UiButton>
         </div>
       </div>
       <div v-if="evolutionInfo" class="flex-center">
@@ -170,11 +168,11 @@ const captureInfo = computed(() => {
         Autoriser ce Shlagémon à évoluer ?
       </CheckBox>
       <div class="flex justify-end gap-2">
-        <Button type="danger" class="flex items-center gap-1" @click="requestRelease">
+        <UiButton type="danger" class="flex items-center gap-1" @click="requestRelease">
           <div i-carbon-trash-can />
           Relâcher
-        </Button>
-        <Button
+        </UiButton>
+        <UiButton
           type="primary"
           class="flex flex-1 items-center gap-1"
           :disabled="isActive"
@@ -182,7 +180,7 @@ const captureInfo = computed(() => {
         >
           <div i-carbon-star-filled />
           Principal
-        </Button>
+        </UiButton>
       </div>
       <Modal v-model="showConfirm" :close-on-outside-click="false">
         <div class="flex flex-col items-center gap-4">
@@ -193,14 +191,14 @@ const captureInfo = computed(() => {
             Attention, si vous le relâchez, il ira schlagiser tout le territoire.
           </p>
           <div class="flex gap-2">
-            <Button type="valid" class="flex items-center gap-1" @click="confirmRelease">
+            <UiButton type="valid" class="flex items-center gap-1" @click="confirmRelease">
               <div i-carbon-checkmark />
               Oui
-            </Button>
-            <Button type="danger" class="flex items-center gap-1" @click="cancelRelease">
+            </UiButton>
+            <UiButton type="danger" class="flex items-center gap-1" @click="cancelRelease">
               <div i-carbon-close />
               Non
-            </Button>
+            </UiButton>
           </div>
         </div>
       </Modal>

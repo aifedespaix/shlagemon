@@ -61,19 +61,14 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     <span v-show="opened" class="text-xs">{{ props.item.description }}</span>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
-      <Button
+      <UiButton
         class="flex items-center gap-1 text-xs"
         :disabled="props.disabled"
         @click.stop="emit('use')"
       >
         <div i-carbon-play inline-block />
         {{ actionLabel }}
-      </Button>
-      <!--
-      <Button type="danger" class="text-xs" @click="emit('sell')">
-        Vendre
-      </Button>
-      -->
+      </UiButton>
     </div>
     <button
       class="absolute bottom-1 left-1 h-4 w-4 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"

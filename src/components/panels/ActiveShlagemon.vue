@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ShlagemonType from '~/components/shlagemon/ShlagemonType.vue'
 import { useShlagedexStore } from '~/stores/shlagedex'
 
 const dex = useShlagedexStore()

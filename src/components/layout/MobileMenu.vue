@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, watch } from 'vue'
 import SchlagedexIcon from '~/components/icons/schlagedex.vue'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useArenaStore } from '~/stores/arena'

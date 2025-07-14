@@ -28,7 +28,7 @@ const zone = useZoneStore()
         <div class="h-full flex flex-col items-end">
           <div>{{ props.trainer.character.name }}</div>
           <div class="flex gap-2">
-            <ImageByBackground
+            <UiImageByBackground
               v-for="i in props.trainer.shlagemons.length"
               :key="i"
               src="/items/shlageball/shlageball.png"

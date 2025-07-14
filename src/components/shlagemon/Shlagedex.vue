@@ -3,8 +3,6 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import Modal from '~/components/modal/Modal.vue'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import ShlagemonDetail from './ShlagemonDetail.vue'
-import ShlagemonList from './ShlagemonList.vue'
 
 const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()

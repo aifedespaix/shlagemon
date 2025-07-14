@@ -152,14 +152,14 @@ function onCapture() {
   <div class="relative flex flex-col gap-1 overflow-auto p-1">
     <FightKingButton />
     <div class="absolute left-0 top-0 flex items-center gap-2">
-      <Tooltip :text="captureTooltip">
-        <Button type="icon" class="rounded-tl-0" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
+      <UiTooltip :text="captureTooltip">
+        <UiButton type="icon" class="rounded-tl-0" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
           <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
-        </Button>
-      </Tooltip>
-      <Tooltip :text="winTooltip">
+        </UiButton>
+      </UiTooltip>
+      <UiTooltip :text="winTooltip">
         <span :class="{ 'font-bold': wins >= progress.fightsBeforeKing }">{{ wins.toLocaleString() }}</span>
-      </Tooltip>
+      </UiTooltip>
     </div>
     <BattleRound
       v-if="dex.activeShlagemon && enemy"

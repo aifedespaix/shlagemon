@@ -31,22 +31,22 @@ function onDoubleClick() {
     <img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
     <div class="flex items-center gap-2">
       <ThemeToggle />
-      <Button
+      <UiButton
         type="icon"
         aria-label="Audio"
         @click.stop="onClick"
         @dblclick.stop="onDoubleClick"
       >
         <div :class="audio.isMusicEnabled ? 'i-carbon-volume-up' : 'i-carbon-volume-mute'" />
-      </Button>
+      </UiButton>
       <AudioSettingsModal v-model="showAudio" />
-      <Button type="icon" aria-label="Paramètres" @click="showSettings = true">
+      <UiButton type="icon" aria-label="Paramètres" @click="showSettings = true">
         <div class="i-carbon-settings" />
-      </Button>
+      </UiButton>
       <SettingsModal v-model="showSettings" />
-      <Button type="icon" aria-label="Développeur" @click="showDeveloper = true">
+      <UiButton type="icon" aria-label="Développeur" @click="showDeveloper = true">
         <div class="i-carbon-debug" />
-      </Button>
+      </UiButton>
       <DeveloperSettingsModal v-model="showDeveloper" />
     </div>
   </header>

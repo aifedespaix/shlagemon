@@ -3,14 +3,10 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { computed } from 'vue'
 import MultiExpIcon from '~/components/icons/multi-exp.vue'
 import CheckBox from '~/components/ui/CheckBox.vue'
-import SearchInput from '~/components/ui/SearchInput.vue'
-import SortControls from '~/components/ui/SortControls.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
-import ShlagemonImage from './ShlagemonImage.vue'
-import ShlagemonType from './ShlagemonType.vue'
 
 interface Props {
   mons: DexShlagemon[]
@@ -114,14 +110,14 @@ function changeActive(mon: DexShlagemon) {
 </script>
 
 <template>
-  <ScrollablePanel>
+  <LayoutScrollablePanel>
     <template #header>
-      <SortControls
+      <UiSortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
-      <SearchInput v-model="filter.search" />
+      <UiSearchInput v-model="filter.search" />
     </template>
 
     <template #content>
@@ -180,5 +176,5 @@ function changeActive(mon: DexShlagemon) {
         />
       </div>
     </template>
-  </ScrollablePanel>
+  </LayoutScrollablePanel>
 </template>

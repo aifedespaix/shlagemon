@@ -134,7 +134,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
         :disabled="buttonDisabled(z)"
         @click="selectZone(z.id)"
       >
-        <Badge
+        <UiBadge
           v-if="z.id === zone.current.id"
           inner
           size="square"

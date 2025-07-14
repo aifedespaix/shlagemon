@@ -68,10 +68,10 @@ function close() {
           <slot />
         </div>
         <div v-if="props.footerClose" class="mt-4 flex justify-end">
-          <Button type="danger" class="flex items-center gap-1" @click.stop="close()">
+          <UiButton type="danger" class="flex items-center gap-1" @click.stop="close()">
             <div i-carbon-close />
             Fermer
-          </Button>
+          </UiButton>
         </div>
       </div>
     </dialog>

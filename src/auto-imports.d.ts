@@ -369,6 +369,9 @@ declare global {
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
   // @ts-ignore
+  export type { AchievementFilterStatus } from './stores/achievementsFilter'
+  import('./stores/achievementsFilter')
+  // @ts-ignore
   export type { ArenaResult } from './stores/arena'
   import('./stores/arena')
   // @ts-ignore
@@ -515,6 +518,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly useAchievementsFilterStore: UnwrapRef<typeof import('./stores/achievementsFilter')['useAchievementsFilterStore']>
     readonly useAchievementsStore: UnwrapRef<typeof import('./stores/achievements')['useAchievementsStore']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
@@ -610,13 +614,12 @@ declare module 'vue' {
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
-    readonly useInterfaceStore: UnwrapRef<typeof import('./stores/interface')['useInterfaceStore']>
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
     readonly useInventoryFilterStore: UnwrapRef<typeof import('./stores/inventoryFilter')['useInventoryFilterStore']>
-    readonly useInventoryModalStore: UnwrapRef<typeof import('./stores/inventoryModal')['useInventoryModalStore']>
     readonly useInventoryStore: UnwrapRef<typeof import('./stores/inventory')['useInventoryStore']>
+    readonly useItemUsageStore: UnwrapRef<typeof import('./stores/itemUsage')['useItemUsageStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
@@ -625,7 +628,6 @@ declare module 'vue' {
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
-    readonly useMapModalStore: UnwrapRef<typeof import('./stores/mapModal')['useMapModalStore']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
     readonly useMemoize: UnwrapRef<typeof import('@vueuse/core')['useMemoize']>

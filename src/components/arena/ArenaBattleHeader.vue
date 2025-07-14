@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import { useArenaStore } from '~/stores/arena'
 
 const arena = useArenaStore()

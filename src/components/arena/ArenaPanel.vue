@@ -6,9 +6,6 @@ import ArenaBattleHeader from '~/components/arena/ArenaBattleHeader.vue'
 import ArenaDuel from '~/components/arena/ArenaDuel.vue'
 import ArenaEnemyStats from '~/components/arena/ArenaEnemyStats.vue'
 import Modal from '~/components/modal/Modal.vue'
-import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
-import ShlagemonQuickSelect from '~/components/shlagemon/ShlagemonQuickSelect.vue'
-import Button from '~/components/ui/Button.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
@@ -184,22 +181,22 @@ onUnmounted(() => {
           <Info color="alert" class="text-center text-xs">
             Le combat est automatique et se déroule sans clics.
           </Info>
-          <Button
+          <UiButton
             type="primary"
             class="mx-auto"
             :disabled="playerSelection.some(m => !m)"
             @click="startBattle"
           >
             Combattre
-          </Button>
-          <Button
+          </UiButton>
+          <UiButton
             type="danger"
             variant="outline"
             class="mx-auto"
             @click="quit"
           >
             Abandonner
-          </Button>
+          </UiButton>
         </div>
         <Modal v-model="showDex" footer-close>
           <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
@@ -235,16 +232,16 @@ onUnmounted(() => {
         >
           {{ duelResult === 'win' ? 'Victoire !' : 'Défaite...' }}
         </div>
-        <Button v-if="duelResult === 'win' && !hasNextDuel" type="primary" @click="closeVictory">
+        <UiButton v-if="duelResult === 'win' && !hasNextDuel" type="primary" @click="closeVictory">
           Fermer
-        </Button>
+        </UiButton>
         <template v-else-if="duelResult === 'lose'">
-          <Button type="primary" @click="retry">
+          <UiButton type="primary" @click="retry">
             Réessayer
-          </Button>
-          <Button type="danger" @click="quit">
+          </UiButton>
+          <UiButton type="danger" @click="quit">
             Quitter l'arène
-          </Button>
+          </UiButton>
         </template>
       </div>
     </div>

@@ -2,7 +2,6 @@
 import { computed } from 'vue'
 import ShlagediamondIcon from '~/components/icons/shlagediamond.vue'
 import ShlagidolarIcon from '~/components/icons/shlagidolar.vue'
-import Tooltip from '~/components/ui/Tooltip.vue'
 
 const props = defineProps<{
   amount: number
@@ -17,10 +16,10 @@ const icon = computed(() => props.currency === 'shlagidiamond' ? ShlagediamondIc
 </script>
 
 <template>
-  <Tooltip :text="currencyName">
+  <UiTooltip :text="currencyName">
     <span class="inline-flex items-center gap-1">
       <component :is="icon" class="h-4 w-4" />
       <span class="font-bold">{{ amount.toLocaleString() }}</span>
     </span>
-  </Tooltip>
+  </UiTooltip>
 </template>

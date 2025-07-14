@@ -50,10 +50,10 @@ function removeSave() {
       <p class="text-center">
         Voulez-vous supprimer toutes vos progressions et votre sauvegarde ?
       </p>
-      <Button type="danger" class="mx-auto flex items-center gap-1" @click="removeSave">
+      <UiButton type="danger" class="mx-auto flex items-center gap-1" @click="removeSave">
         <div i-carbon-trash-can />
         Supprimer
-      </Button>
+      </UiButton>
     </div>
     <div v-else class="flex flex-col gap-2">
       <ShortcutsTab />

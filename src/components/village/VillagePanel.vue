@@ -7,7 +7,7 @@ const zone = useZoneStore()
 
 <template>
   <div class="flex flex-col items-center gap-2">
-    <ImageByBackground
+    <UiImageByBackground
       v-if="zone.current.image"
       :src="zone.current.image"
       :alt="zone.current.name"

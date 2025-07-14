@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import Modal from '~/components/modal/Modal.vue'
-import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
-import Button from '~/components/ui/Button.vue'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 
 const store = useEvolutionItemStore()
@@ -23,9 +21,9 @@ const store = useEvolutionItemStore()
             <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="h-6 w-6" />
             <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
           </div>
-          <Button class="text-xs" @click="store.useOn(mon)">
+          <UiButton class="text-xs" @click="store.useOn(mon)">
             Évoluer
-          </Button>
+          </UiButton>
         </div>
       </div>
       <p v-else class="text-center text-sm">

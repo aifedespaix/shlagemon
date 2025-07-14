@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import SearchInput from '~/components/ui/SearchInput.vue'
-import SelectOption from '~/components/ui/SelectOption.vue'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAchievementsFilterStore } from '~/stores/achievementsFilter'
 import AchievementItem from './AchievementItem.vue'
@@ -30,14 +28,14 @@ const filteredList = computed(() => {
 </script>
 
 <template>
-  <ScrollablePanel>
+  <LayoutScrollablePanel>
     <template #header>
-      <SelectOption
+      <UiSelectOption
         v-model="filter.status"
         :options="statusOptions"
         class="min-w-28"
       />
-      <SearchInput v-model="filter.search" class="flex-1" />
+      <UiSearchInput v-model="filter.search" class="flex-1" />
     </template>
 
     <template #content>
@@ -47,5 +45,5 @@ const filteredList = computed(() => {
         :achievement="a"
       />
     </template>
-  </ScrollablePanel>
+  </LayoutScrollablePanel>
 </template>

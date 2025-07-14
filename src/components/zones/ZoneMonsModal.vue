@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Modal from '~/components/modal/Modal.vue'
-import ShlagemonImage from '~/components/shlagemon/ShlagemonImage.vue'
 import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'

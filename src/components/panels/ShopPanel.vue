@@ -3,7 +3,6 @@ import type { Item } from '~/type/item'
 import { computed, ref } from 'vue'
 import ItemCard from '~/components/shop/ItemCard.vue'
 import ShopItemDetail from '~/components/shop/ShopItemDetail.vue'
-import Button from '~/components/ui/Button.vue'
 import { getShop } from '~/data/shops'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useZoneStore } from '~/stores/zone'
@@ -31,17 +30,17 @@ function closeShop() {
         class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
         @click="selectedItem = item"
       >
-        <Button class="ml-auto text-xs" @click.stop="selectedItem = item">
+        <UiButton class="ml-auto text-xs" @click.stop="selectedItem = item">
           Détails
-        </Button>
+        </UiButton>
       </ItemCard>
     </div>
     <div v-else class="tiny-scrollbar flex-1 overflow-auto">
       <ShopItemDetail :item="selectedItem" @close="selectedItem = null" />
     </div>
-    <Button type="danger" variant="outline" class="flex self-end gap-2 text-xs" @click="closeShop">
+    <UiButton type="danger" variant="outline" class="flex self-end gap-2 text-xs" @click="closeShop">
       <div class="i-carbon:exit" />
       Quitter la boutique
-    </Button>
+    </UiButton>
   </div>
 </template>

@@ -28,7 +28,7 @@ const colorClasses = computed(() => {
 </script>
 
 <template>
-  <Tooltip :text="tooltipText">
+  <UiTooltip :text="tooltipText">
     <div
       class="flex items-center gap-1 rounded px-1 text-xs font-mono"
       :class="colorClasses"
@@ -37,5 +37,5 @@ const colorClasses = computed(() => {
       <div class="h-4 w-4" :class="[`${props.effect.icon}`, props.effect.iconClass]" />
       <span>{{ remaining }}</span>
     </div>
-  </Tooltip>
+  </UiTooltip>
 </template>

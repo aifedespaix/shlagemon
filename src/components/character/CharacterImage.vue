@@ -7,6 +7,6 @@ const props = defineProps<{
 
 <template>
   <div class="aspect-square w-12">
-    <ImageByBackground :src="`/characters/${props.id}/${props.id}.png`" :alt="props.alt" class="object-contain" v-bind="$attrs" />
+    <UiImageByBackground :src="`/characters/${props.id}/${props.id}.png`" :alt="props.alt" class="object-contain" v-bind="$attrs" />
   </div>
 </template>

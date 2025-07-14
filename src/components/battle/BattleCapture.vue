@@ -86,23 +86,23 @@ defineExpose({ open })
 
 <template>
   <div>
-    <Button
+    <UiButton
       class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
       :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
       :disabled="captureButtonDisabled"
       md="top-16 h-16 w-16"
       @click="open"
     >
-      <Tooltip :text="captureButtonTooltip" is-button>
-        <ImageByBackground
+      <UiTooltip :text="captureButtonTooltip" is-button>
+        <UiImageByBackground
           src="/items/shlageball/shlageball.png"
           alt="capture"
           class="h-8 w-8"
           :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
           md="h-10 w-10"
         />
-      </Tooltip>
-    </Button>
+      </UiTooltip>
+    </UiButton>
     <div
       v-if="showCapture && enemy"
       class="absolute inset-0 z-20 flex items-center justify-center bg-black/50 dark:bg-black/70"

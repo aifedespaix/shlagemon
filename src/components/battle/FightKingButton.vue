@@ -32,7 +32,7 @@ function fightKing() {
 </script>
 
 <template>
-  <Button
+  <UiButton
     v-if="visible"
     class="absolute right-0 top-6 z-150 m-1 flex gap-2 text-xs"
     type="danger"
@@ -41,5 +41,5 @@ function fightKing() {
     <div>Défier {{ kingLabel }}</div>
 
     <div class="i-mdi:sword" />
-  </Button>
+  </UiButton>
 </template>

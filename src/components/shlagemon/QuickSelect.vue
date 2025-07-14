@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import ShlagemonList from './ShlagemonList.vue'
 
 interface Props {
   selected?: string[]

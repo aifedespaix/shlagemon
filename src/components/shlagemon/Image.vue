@@ -9,11 +9,11 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <ImageByBackground
+  <UiImageByBackground
     :src="`/shlagemons/${props.id}/${props.id}.webp`"
     :alt="props.alt"
     class="h-full w-full"
     :style="props.shiny ? { filter: 'hue-rotate(180deg)' } : {}"
     v-bind="$attrs"
   />
-</template>
+</template>d
