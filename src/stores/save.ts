@@ -13,7 +13,7 @@ import { useMainPanelStore } from './mainPanel'
 import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
-import { useZoneProgressStore } from './zoneProgress
+import { useZoneProgressStore } from './zoneProgress'
 import { useZoneVisitStore } from './zoneVisit'
 
 export const useSaveStore = defineStore('save', () => {
