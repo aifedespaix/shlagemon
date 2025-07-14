@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import Button from '~/components/ui/Button.vue'
 import { ballHues } from '~/utils/ball'
+import { useItemUsageStore } from '~/stores/itemUsage'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
 const emit = defineEmits<{
@@ -13,6 +14,8 @@ const emit = defineEmits<{
 
 const showInfo = ref(false)
 const opened = ref(false)
+const usage = useItemUsageStore()
+const isUnused = computed(() => !usage.used[props.item.id])
 function toggle() {
   opened.value = !opened.value
 }
@@ -29,7 +32,8 @@ const actionLabel = computed(() => {
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900">
+  <div class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900"
+    :class="isUnused ? 'animate-pulse ring-2 ring-blue-500 dark:ring-blue-400' : ''">
     <div class="flex cursor-pointer items-center justify-between gap-2" @click="toggle">
       <div class="flex items-center gap-2">
         <div

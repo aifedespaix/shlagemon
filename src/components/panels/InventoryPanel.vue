@@ -12,6 +12,7 @@ import { useFeatureLockStore } from '~/stores/featureLock'
 import { useInventoryStore } from '~/stores/inventory'
 import { useInventoryFilterStore } from '~/stores/inventoryFilter'
 import { useWearableItemStore } from '~/stores/wearableItem'
+import { useItemUsageStore } from '~/stores/itemUsage'
 
 const inventory = useInventoryStore()
 const ballStore = useBallStore()
@@ -19,6 +20,7 @@ const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
+const usage = useItemUsageStore()
 const sortOptions = [
   { label: 'Type', value: 'type' },
   { label: 'Nom', value: 'name' },
@@ -58,6 +60,7 @@ function onUse(item: Item) {
     return
   if ('catchBonus' in item) {
     ballStore.setBall(item.id as any)
+    usage.markUsed(item.id)
     toast(`Vous avez équipé la ${item.name}`)
   }
   else if (item.type === 'evolution') {
@@ -67,7 +70,8 @@ function onUse(item: Item) {
     wearableStore.open(item)
   }
   else {
-    inventory.useItem(item.id)
+    if (inventory.useItem(item.id))
+      usage.markUsed(item.id)
   }
 }
 </script>

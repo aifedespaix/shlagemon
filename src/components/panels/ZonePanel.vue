@@ -9,6 +9,7 @@ import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
+import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const zone = useZoneStore()
 const dex = useShlagedexStore()
@@ -17,6 +18,7 @@ const arena = useArenaStore()
 const progress = useZoneProgressStore()
 const dialog = useDialogStore()
 const featureLock = useFeatureLockStore()
+const visit = useZoneVisitStore()
 
 const zoneButtonsDisabled = computed(
   () =>
@@ -101,6 +103,10 @@ function kingDefeated(z: Zone) {
 function arenaDefeated(z: Zone) {
   return !!z.arena && progress.isArenaCompleted(z.id)
 }
+
+function isNew(z: Zone) {
+  return !visit.visited[z.id]
+}
 </script>
 
 <template>
@@ -119,7 +125,11 @@ function arenaDefeated(z: Zone) {
         v-for="z in accessibleZones"
         :key="z.id"
         class="relative grid grid-rows-2 max-h-[120px] gap-1 rounded px-2 py-1 text-xs"
-        :class="`${classes(z)} ${buttonDisabled(z) ? 'opacity-50 cursor-not-allowed' : ''}`"
+        :class="[
+          classes(z),
+          buttonDisabled(z) ? 'opacity-50 cursor-not-allowed' : '',
+          isNew(z) ? 'animate-pulse ring-2 ring-blue-500 dark:ring-blue-400' : '',
+        ]"
         :disabled="buttonDisabled(z)"
         @click="selectZone(z.id)"
       >

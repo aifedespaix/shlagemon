@@ -4,6 +4,7 @@ import { computed, ref } from 'vue'
 import { useEquipmentStore } from './equipment'
 import { useMobileTabStore } from './mobileTab'
 import { useShlagedexStore } from './shlagedex'
+import { useItemUsageStore } from './itemUsage'
 
 export const useWearableItemStore = defineStore('wearableItem', () => {
   const current = ref<Item | null>(null)
@@ -12,6 +13,7 @@ export const useWearableItemStore = defineStore('wearableItem', () => {
   const dex = useShlagedexStore()
   const equipment = useEquipmentStore()
   const mobile = useMobileTabStore()
+  const usage = useItemUsageStore()
 
   const holderId = computed(() =>
     current.value ? equipment.getHolder(current.value.id) : null,
@@ -48,6 +50,7 @@ export const useWearableItemStore = defineStore('wearableItem', () => {
       return
     selectedId.value = monId
     equipment.equip(monId, current.value.id)
+    usage.markUsed(current.value.id)
     close()
   }
 

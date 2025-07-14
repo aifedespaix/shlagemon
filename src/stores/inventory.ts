@@ -9,6 +9,7 @@ import { useCaptureLimitModalStore } from './captureLimitModal'
 import { useGameStore } from './game'
 import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
+import { useItemUsageStore } from './itemUsage'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Record<string, number>>({})
@@ -17,6 +18,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const arena = useArenaStore()
   const player = usePlayerStore()
   const captureLimitModal = useCaptureLimitModalStore()
+  const itemUsage = useItemUsageStore()
 
   interface ListedItem {
     item: Item
@@ -149,7 +151,10 @@ export const useInventoryStore = defineStore('inventory', () => {
     }
 
     const handler = handlers[id]
-    return handler ? handler() : false
+    const result = handler ? handler() : false
+    if (result)
+      itemUsage.markUsed(id)
+    return result
   }
 
   function reset() {

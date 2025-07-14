@@ -6,6 +6,7 @@ import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useInventoryStore } from '~/stores/inventory'
+import { useItemUsageStore } from '~/stores/itemUsage'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -14,6 +15,7 @@ import { useZoneVisitStore } from '~/stores/zoneVisit'
 const mobile = useMobileTabStore()
 const dialog = useDialogStore()
 const inventory = useInventoryStore()
+const usage = useItemUsageStore()
 const arena = useArenaStore()
 const achievements = useAchievementsStore()
 const shlagedex = useShlagedexStore()
@@ -22,6 +24,7 @@ const lockStore = useFeatureLockStore()
 const visit = useZoneVisitStore()
 
 const highlightMap = computed(() => visit.hasNewZone)
+const highlightInventory = computed(() => usage.hasUnusedItem)
 
 const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 'arena')
 const zoneDisabled = menuDisabled
@@ -44,8 +47,6 @@ function toggleInventory() {
 function onSecondButton() {
   const opening = mobile.current !== 'zones'
   mobile.toggle('zones')
-  if (opening)
-    visit.markAllAccessibleVisited()
 }
 </script>
 
@@ -77,7 +78,7 @@ function onSecondButton() {
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="mobile.current === 'inventory' ? 'active' : ''"
+      :class="[mobile.current === 'inventory' ? 'active' : '', highlightInventory ? 'animate-pulse' : '']"
       :disabled="inventoryDisabled"
       @click="toggleInventory"
     >
