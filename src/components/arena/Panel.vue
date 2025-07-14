@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
-import { toast } from 'vue3-toastify'
 import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const arena = useArenaStore()
-const dialog = useDialogStore()
-const panel = useMainPanelStore()
 const featureLock = useFeatureLockStore()
 
 const enemyTeam = computed(() => arena.lineup)
@@ -21,12 +16,7 @@ const activeSlot = ref<number | null>(null)
 const showDuel = ref(false)
 const showEnemy = ref(false)
 const enemyDetail = ref<BaseShlagemon | null>(null)
-const duelResult = ref<'win' | 'lose' | null>(null)
 let nextTimer: number | undefined
-
-const hasNextDuel = computed(() =>
-  arena.currentIndex < arena.team.length - 1,
-)
 
 const playerSelection = computed(() =>
   arena.selections.map(id => dex.shlagemons.find(m => m.id === id) || null),
@@ -75,21 +65,19 @@ function startBattle() {
   })
   arena.start(team, enemies)
   arena.currentIndex = 0
-  duelResult.value = null
   showDuel.value = true
 }
 
 function onDuelEnd(win: boolean) {
-  duelResult.value = win ? 'win' : 'lose'
   if (!win) {
     arena.finish(false)
-    // keep the duel open so the player can choose what to do
+    showDuel.value = false
     return
   }
 
   if (arena.currentIndex >= arena.team.length - 1) {
     arena.finish(true)
-    nextTimer = window.setTimeout(closeVictory, 500)
+    showDuel.value = false
   }
   else {
     nextTimer = window.setTimeout(proceedNext, 250)
@@ -98,32 +86,8 @@ function onDuelEnd(win: boolean) {
 
 function proceedNext() {
   clearTimeout(nextTimer)
-  duelResult.value = null
   arena.currentIndex += 1
   showDuel.value = true
-}
-
-function closeVictory() {
-  clearTimeout(nextTimer)
-  showDuel.value = false
-  toast.success('Victoire !')
-}
-
-function retry() {
-  const data = arena.arenaData
-  if (!data)
-    return
-  dialog.resetArenaDialogs()
-  arena.reset()
-  arena.setArena(data)
-  duelResult.value = null
-  showDuel.value = false
-}
-
-function quit() {
-  arena.reset()
-  dialog.resetArenaDialogs()
-  panel.showVillage()
 }
 
 onMounted(featureLock.lockAll)
@@ -210,7 +174,6 @@ onUnmounted(() => {
     </div>
     <div v-if="showDuel" class="flex flex-1 flex-col items-center gap-2">
       <ArenaDuel
-        v-if="duelResult === null"
         :player="arena.team[arena.currentIndex]"
         :enemy="arena.enemyTeam[arena.currentIndex]"
         @end="onDuelEnd"
@@ -219,26 +182,6 @@ onUnmounted(() => {
           <ArenaBattleHeader />
         </template>
       </ArenaDuel>
-      <div v-else class="flex flex-col items-center gap-2">
-        <div
-          :class="duelResult === 'win'
-            ? 'text-green-600 font-bold dark:text-green-400'
-            : 'text-red-600 font-bold dark:text-red-400'"
-        >
-          {{ duelResult === 'win' ? 'Victoire !' : 'Défaite...' }}
-        </div>
-        <UiButton v-if="duelResult === 'win' && !hasNextDuel" type="primary" @click="closeVictory">
-          Fermer
-        </UiButton>
-        <template v-else-if="duelResult === 'lose'">
-          <UiButton type="primary" @click="retry">
-            Réessayer
-          </UiButton>
-          <UiButton type="danger" @click="quit">
-            Quitter l'arène
-          </UiButton>
-        </template>
-      </div>
     </div>
   </div>
 </template>
