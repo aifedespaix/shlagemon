@@ -35,11 +35,16 @@ export const useZoneVisitStore = defineStore('zoneVisit', () => {
     accessibleZones.value.forEach(z => markVisited(z.id))
   }
 
+  function reset() {
+    visited.value = {}
+  }
+
   return {
     visited,
     hasNewZone,
     markVisited,
     markAllAccessibleVisited,
+    reset,
   }
 }, {
   persist: true,
