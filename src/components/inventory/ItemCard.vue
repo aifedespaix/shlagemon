@@ -2,22 +2,23 @@
 import type { Item } from '~/type/item'
 import { computed, ref } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
-import Button from '~/components/ui/Button.vue'
 import { useItemUsageStore } from '~/stores/itemUsage'
 import { ballHues } from '~/utils/ball'
 
-const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
+const props = withDefaults(defineProps<{ item: Item, qty: number, disabled?: boolean, opened?: boolean }>(), {
+  opened: false,
+})
 const emit = defineEmits<{
   (e: 'use'): void
   (e: 'sell'): void
+  (e: 'toggle'): void
 }>()
 
 const showInfo = ref(false)
-const opened = ref(false)
 const usage = useItemUsageStore()
 const isUnused = computed(() => !usage.used[props.item.id])
 function onCardClick() {
-  opened.value = !opened.value
+  emit('toggle')
   usage.markUsed(props.item.id)
 }
 const details = computed(() => props.item.details || props.item.description)
@@ -56,9 +57,9 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
         >
         <span class="font-bold">{{ props.item.name }}</span>
       </div>
-      <div class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
+      <div class="i-carbon-chevron-down transition-transform" :class="props.opened ? '' : 'rotate-90'" />
     </div>
-    <span v-show="opened" class="text-xs">{{ props.item.description }}</span>
+    <span v-show="props.opened" class="text-xs">{{ props.item.description }}</span>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
       <UiButton
