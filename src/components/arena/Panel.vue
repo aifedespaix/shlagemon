@@ -18,6 +18,17 @@ const showEnemy = ref(false)
 const enemyDetail = ref<BaseShlagemon | null>(null)
 let nextTimer: number | undefined
 
+function autoSelect() {
+  const team = dex.shlagemons
+    .slice()
+    .sort((a, b) => b.attack - a.attack)
+    .slice(0, arena.selections.length)
+
+  team.forEach((mon, i) => {
+    arena.selectPlayer(i, mon.id)
+  })
+}
+
 const playerSelection = computed(() =>
   arena.selections.map(id => dex.shlagemons.find(m => m.id === id) || null),
 )
@@ -140,6 +151,14 @@ onUnmounted(() => {
           <UiInfo color="alert" class="text-center text-xs">
             Le combat est automatique et se déroule sans clics.
           </UiInfo>
+          <UiButton
+            type="valid"
+            variant="outline"
+            class="mx-auto"
+            @click="autoSelect"
+          >
+            Sélection auto
+          </UiButton>
           <UiButton
             type="primary"
             class="mx-auto"
