@@ -55,7 +55,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
         >
         <span class="font-bold">{{ props.item.name }}</span>
       </div>
-      <div class="i-carbon-chevron-down transition-transform" :class="props.opened ? '' : 'rotate-90'" />
+      <div class="i-carbon-chevron-down absolute right-1 top-1 text-xs transition-transform" :class="props.opened ? '' : 'rotate-90'" />
     </div>
     <span v-show="props.opened" class="text-xs">{{ props.item.description }}</span>
     <div class="mt-1 flex items-center justify-end gap-1">
@@ -71,10 +71,11 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     </div>
     <button
       class="absolute bottom-1 left-1 h-4 w-4 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-      @click="showInfo = true"
+      @click.stop="showInfo = true"
     >
       <div i-carbon-help class="text-xs" />
     </button>
+
     <Modal v-model="showInfo" footer-close>
       <div class="flex flex-col items-center gap-2">
         <div

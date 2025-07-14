@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
+import PanelAchievements from '~/components/panel/Achievements.vue'
+import PanelInventory from '~/components/panel/Inventory.vue'
+import PanelShlagedex from '~/components/panel/Shlagedex.vue'
+import PanelZone from '~/components/panel/Zone.vue'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMobileTabStore } from '~/stores/mobileTab'
+
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useUIStore } from '~/stores/ui'
 
@@ -10,6 +15,7 @@ const lockStore = useFeatureLockStore()
 const shlagedex = useShlagedexStore()
 const uiStore = useUIStore()
 const mobileTab = useMobileTabStore()
+
 const {
   isMobile,
   displayDex,
@@ -25,13 +31,13 @@ const { current: activeTab } = storeToRefs(mobileTab)
 const bottomComponent = computed(() => {
   switch (activeTab.value) {
     case 'achievements':
-      return 'AchievementsPanel'
+      return PanelAchievements
     case 'zones':
-      return 'ZonePanel'
+      return PanelZone
     case 'dex':
-      return shlagedex.shlagemons.length ? 'Shlagedex' : null
+      return shlagedex.shlagemons.length ? PanelShlagedex : null
     case 'inventory':
-      return 'InventoryPanel'
+      return PanelInventory
     default:
       return null
   }

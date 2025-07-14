@@ -141,6 +141,7 @@ declare module 'vue' {
     ShlagemonTypeChartModal: typeof import('./components/shlagemon/TypeChartModal.vue')['default']
     ShlagemonXpBar: typeof import('./components/shlagemon/XpBar.vue')['default']
     ShopItemCard: typeof import('./components/shop/ItemCard.vue')['default']
+    ShopItemDetail: typeof import('./components/shop/ItemDetail.vue')['default']
     ShopShopItemDetail: typeof import('./components/shop/ShopItemDetail.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
     UiBadge: typeof import('./components/ui/Badge.vue')['default']
