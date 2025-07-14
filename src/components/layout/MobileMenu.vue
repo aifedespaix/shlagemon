@@ -45,7 +45,6 @@ function toggleInventory() {
 }
 
 function onSecondButton() {
-  const opening = mobile.current !== 'zones'
   mobile.toggle('zones')
 }
 

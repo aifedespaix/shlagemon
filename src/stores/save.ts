@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useAchievementsStore } from './achievements'
+import { useAchievementsFilterStore } from './achievementsFilter'
 import { useBallStore } from './ball'
 import { useBattleStatsStore } from './battleStats'
 import { useDexFilterStore } from './dexFilter'
@@ -7,12 +8,12 @@ import { useDialogStore } from './dialog'
 import { useGameStore } from './game'
 import { useGameStateStore } from './gameState'
 import { useInventoryStore } from './inventory'
+import { useItemUsageStore } from './itemUsage'
 import { useMainPanelStore } from './mainPanel'
 import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 import { useZoneProgressStore } from './zoneProgress'
-import { useItemUsageStore } from './itemUsage'
 
 export const useSaveStore = defineStore('save', () => {
   const dex = useShlagedexStore()
@@ -24,6 +25,7 @@ export const useSaveStore = defineStore('save', () => {
   const zone = useZoneStore()
   const zoneProgress = useZoneProgressStore()
   const achievements = useAchievementsStore()
+  const achievementsFilter = useAchievementsFilterStore()
   const ball = useBallStore()
   const dexFilter = useDexFilterStore()
   const mainPanel = useMainPanelStore()
@@ -39,6 +41,7 @@ export const useSaveStore = defineStore('save', () => {
     zone.reset()
     zoneProgress.reset()
     achievements.reset()
+    achievementsFilter.reset()
     battleStats.reset()
     ball.reset()
     dexFilter.reset()
