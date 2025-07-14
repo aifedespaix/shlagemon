@@ -111,7 +111,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tiny-scrollbar eee relative h-full flex flex-col overflow-auto">
+  <div class="tiny-scrollbar relative h-full flex flex-col items-center overflow-auto">
     <UiButton
       type="icon"
       class="absolute left-0 top-0 z-10 rounded-none rounded-bl rounded-br rounded-tr"
@@ -119,7 +119,7 @@ onUnmounted(() => {
     >
       <div i-carbon-magic-wand />
     </UiButton>
-    <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 w-full gap-2">
+    <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
         :key="enemy.id"
@@ -160,22 +160,23 @@ onUnmounted(() => {
           <UiInfo color="alert" class="text-center text-xs">
             Le combat est automatique et se déroule sans clics.
           </UiInfo>
-          <UiButton
-            type="primary"
-            class="mx-auto"
-            :disabled="playerSelection.some(m => !m)"
-            @click="startBattle"
-          >
-            Combattre
-          </UiButton>
-          <UiButton
-            type="danger"
-            variant="outline"
-            class="mx-auto"
-            @click="quit"
-          >
-            Abandonner
-          </UiButton>
+          <div class="flex gap-2">
+            <UiButton
+              type="danger"
+              variant="outline"
+              @click="quit"
+            >
+              Abandonner
+            </UiButton>
+            <UiButton
+              type="primary"
+              class="flex-1"
+              :disabled="playerSelection.some(m => !m)"
+              @click="startBattle"
+            >
+              Combattre
+            </UiButton>
+          </div>
         </div>
         <Modal v-model="showDex" footer-close>
           <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
