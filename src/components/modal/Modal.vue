@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Button from '~/components/ui/Button.vue'
-
 const props = withDefaults(defineProps<{
   modelValue: boolean
   closeOnOutsideClick?: boolean

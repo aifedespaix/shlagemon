@@ -1,5 +1,4 @@
 import type { MobileTab } from './mobileTab'
-import { ref } from 'vue'
 import { useMobileTabStore } from './mobileTab'
 
 /**

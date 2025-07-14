@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import pikachiant from '~/data/shlagemons/15-20/pikachiant'
 import { useShlagedexStore } from '~/stores/shlagedex'

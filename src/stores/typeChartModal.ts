@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import { createModalStore } from './helpers'
 
 export const useTypeChartModalStore = defineStore('typeChartModal', () => {

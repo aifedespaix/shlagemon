@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import Button from '~/components/ui/Button.vue'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'

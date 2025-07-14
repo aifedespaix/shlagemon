@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
-import { computed, ref } from 'vue'
 import { balls } from '~/data/items/shlageball'
 import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'

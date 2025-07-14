@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import { useInventoryStore } from './inventory'
 
 export interface UseItemAction {

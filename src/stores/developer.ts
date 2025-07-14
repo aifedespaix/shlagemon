@@ -1,6 +1,5 @@
 import type { DeveloperSettings } from '~/type'
 import { defineStore } from 'pinia'
-import { reactive, toRefs } from 'vue'
 
 export const useDeveloperStore = defineStore('developer', () => {
   const settings = reactive<DeveloperSettings>({

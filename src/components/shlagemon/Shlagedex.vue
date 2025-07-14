@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import Modal from '~/components/modal/Modal.vue'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'
 

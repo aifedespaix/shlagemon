@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import Modal from '~/components/modal/Modal.vue'
-import CheckBox from '~/components/ui/CheckBox.vue'
-import Info from '~/components/ui/Info.vue'
-import InputTipRange from '~/components/ui/InputTipRange.vue'
 import { useAudioStore } from '~/stores/audio'
 
 const props = defineProps<{ modelValue: boolean }>()

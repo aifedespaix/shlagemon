@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { useArenaStore } from '~/stores/arena'
 
 const emit = defineEmits(['done'])

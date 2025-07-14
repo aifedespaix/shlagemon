@@ -1,16 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-// eslint-disable-next-line unused-imports/no-unused-imports
-import { KeepAlive } from 'vue'
-import AchievementsPanel from '~/components/achievements/AchievementsPanel.vue'
-import SchlagedexIcon from '~/components/icons/schlagedex.vue'
-import InventoryPanel from '~/components/panels/InventoryPanel.vue'
-import MainPanelView from '~/components/panels/MainPanel.vue'
-import ZonePanel from '~/components/panels/ZonePanel.vue'
-import EvolutionModal from '~/components/shlagemon/EvolutionModal.vue'
-import Shlagedex from '~/components/shlagemon/Shlagedex.vue'
-import TypeChartModal from '~/components/shlagemon/TypeChartModal.vue'
-import PanelWrapper from '~/components/ui/PanelWrapper.vue'
+
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -35,13 +25,13 @@ const { current: activeTab } = storeToRefs(mobileTab)
 const bottomComponent = computed(() => {
   switch (activeTab.value) {
     case 'achievements':
-      return AchievementsPanel
+      return 'AchievementsPanel'
     case 'zones':
-      return ZonePanel
+      return 'ZonePanel'
     case 'dex':
-      return shlagedex.shlagemons.length ? Shlagedex : null
+      return shlagedex.shlagemons.length ? 'Shlagedex' : null
     case 'inventory':
-      return InventoryPanel
+      return 'InventoryPanel'
     default:
       return null
   }

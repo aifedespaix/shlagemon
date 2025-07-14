@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 const { message, variant } = defineProps<{ message: string, variant?: 'high' | 'low' | 'normal' }>()
 const variantClasses = computed(() => {
   switch (variant) {

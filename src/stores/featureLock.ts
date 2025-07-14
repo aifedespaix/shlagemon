@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 
 export const useFeatureLockStore = defineStore('featureLock', () => {
   const inventoryLocked = ref(false)

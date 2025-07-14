@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 
 const store = useEvolutionItemStore()

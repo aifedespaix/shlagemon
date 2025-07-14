@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { balls } from '~/data/items/shlageball'
 
 export type BallId = 'shlageball' | 'super-shlageball' | 'hyper-shlageball'

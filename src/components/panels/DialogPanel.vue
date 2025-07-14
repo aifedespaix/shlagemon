@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted } from 'vue'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
 

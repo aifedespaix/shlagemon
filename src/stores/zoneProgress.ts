@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
 export const useZoneProgressStore = defineStore('zoneProgress', () => {
   const wins = ref<Record<string, number>>({})

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
-import { computed } from 'vue'
 import { useArenaStore } from '~/stores/arena'
 import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 

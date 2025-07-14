@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
-import { computed } from 'vue'
-import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'

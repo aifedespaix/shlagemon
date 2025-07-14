@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { toast } from 'vue3-toastify'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { usePlayerStore } from '~/stores/player'

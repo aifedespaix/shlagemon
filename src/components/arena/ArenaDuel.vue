@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import BattleRound from '~/components/battle/BattleRound.vue'
 
 const props = defineProps<{ player: DexShlagemon, enemy: DexShlagemon }>()
 const emit = defineEmits<{ (e: 'end', win: boolean): void }>()

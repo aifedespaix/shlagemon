@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import { useEventStore } from './event'
 

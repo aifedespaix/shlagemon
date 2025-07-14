@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import { computed, ref } from 'vue'
-import ItemCard from '~/components/shop/ItemCard.vue'
-import ShopItemDetail from '~/components/shop/ShopItemDetail.vue'
 import { getShop } from '~/data/shops'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useZoneStore } from '~/stores/zone'

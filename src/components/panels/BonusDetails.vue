@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import BonusIcon from '~/components/icons/bonus.vue'
-import SchlagedexIcon from '~/components/icons/schlagedex.vue'
-import XpIcon from '~/components/icons/xp.vue'
-
 const dex = useShlagedexStore()
 </script>
 

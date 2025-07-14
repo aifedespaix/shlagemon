@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-import Button from '~/components/ui/Button.vue'
-import ImageByBackground from '~/components/ui/ImageByBackground.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'

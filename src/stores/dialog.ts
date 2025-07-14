@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'

@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
-import { onMounted, onUnmounted } from 'vue'
-import BattleHeader from '~/components/battle/BattleHeader.vue'
-import BattleRound from '~/components/battle/BattleRound.vue'
-import CharacterImage from '~/components/character/CharacterImage.vue'
-import Button from '~/components/ui/Button.vue'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
 

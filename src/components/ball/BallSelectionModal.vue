@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
-import Button from '~/components/ui/Button.vue'
 import { balls } from '~/data/items/shlageball'
 import { useBallStore } from '~/stores/ball'
 import { useInventoryStore } from '~/stores/inventory'

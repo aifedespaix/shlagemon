@@ -1,5 +1,3 @@
-import { onUnmounted, ref } from 'vue'
-
 export function useSingleInterval(handler: () => void, delay = 1000) {
   const id = ref<number | undefined>()
   function start() {

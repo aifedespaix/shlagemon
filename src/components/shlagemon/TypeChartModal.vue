@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
-import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import { useTypeChartModalStore } from '~/stores/typeChartModal'
 import TypeChart from './TypeChart.vue'
 

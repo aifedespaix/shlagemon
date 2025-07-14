@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import Modal from '~/components/modal/Modal.vue'
-import CheckBox from '~/components/ui/CheckBox.vue'
 import { useDeveloperStore } from '~/stores/developer'
 
 const props = defineProps<{ modelValue: boolean }>()

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type'
 import type { DialogNode } from '~/type/dialog'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import bulgrosboule from '~/data/shlagemons/bulgrosboule'
 import carapouffe from '~/data/shlagemons/carapouffe'

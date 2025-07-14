@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
 import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
 
 const modal = useCaptureLimitModalStore()

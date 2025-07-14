@@ -1,6 +1,5 @@
 import type { Character } from '~/type/character'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { getArena } from '~/data/arenas'
 
 export const usePlayerStore = defineStore('player', () => {
