@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <ArenaArenaPanel class="h-full p-2" />
+  <ArenaPanel class="h-full p-2" />
 </template>

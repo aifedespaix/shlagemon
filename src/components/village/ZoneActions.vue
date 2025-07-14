@@ -75,7 +75,7 @@ function fightKing() {
 
 <template>
   <div class="actions-grid grid w-full gap-2 p-1" md="gap-3 p-2">
-    <NavigationButton
+    <UiNavigationButton
       v-for="action in zone.current.actions"
       :key="action.id"
       :icon="actionIcon(action.id)"
@@ -83,14 +83,14 @@ function fightKing() {
       :disabled="arena.inBattle"
       @click="onAction(action.id)"
     />
-    <NavigationButton
+    <UiNavigationButton
       v-if="hasArena && !arenaCompleted"
       icon="i-mdi:sword-cross"
       label="Arène"
       :disabled="arena.inBattle"
       @click="openArena"
     />
-    <NavigationButton
+    <UiNavigationButton
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
       icon="i-game-icons:crown"
       :label="`Défier la ${kingLabel} de la zone`"

@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
-import nosferasta from '../evolutions/nosferachid'
+import nosferasta from '../evolutions/nosferasta'
 
 export const nosferailleur: BaseShlagemon = {
   id: 'nosferailleur',

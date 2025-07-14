@@ -20,7 +20,7 @@ function closeShop() {
       Boutique
     </h2>
     <div v-if="!selectedItem" class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
-      <ItemCard
+      <ShopItemCard
         v-for="item in shopItems"
         :key="item.id"
         :item="item"
@@ -30,7 +30,7 @@ function closeShop() {
         <UiButton class="ml-auto text-xs" @click.stop="selectedItem = item">
           Détails
         </UiButton>
-      </ItemCard>
+      </ShopItemCard>
     </div>
     <div v-else class="tiny-scrollbar flex-1 overflow-auto">
       <ShopItemDetail :item="selectedItem" @close="selectedItem = null" />
