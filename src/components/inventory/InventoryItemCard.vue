@@ -3,8 +3,8 @@ import type { Item } from '~/type/item'
 import { computed, ref } from 'vue'
 import Modal from '~/components/modal/Modal.vue'
 import Button from '~/components/ui/Button.vue'
-import { ballHues } from '~/utils/ball'
 import { useItemUsageStore } from '~/stores/itemUsage'
+import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
 const emit = defineEmits<{
@@ -29,11 +29,15 @@ const actionLabel = computed(() => {
     return props.disabled ? 'Équipé' : 'Équiper'
   return 'Utiliser'
 })
+
+const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900"
-    :class="isUnused ? 'animate-pulse ring-2 ring-blue-500 dark:ring-blue-400' : ''">
+  <div
+    class="relative flex flex-col gap-1 border rounded bg-white p-2 dark:bg-gray-900"
+    :class="isUnused ? highlightClasses : ''"
+  >
     <div class="flex cursor-pointer items-center justify-between gap-2" @click="toggle">
       <div class="flex items-center gap-2">
         <div

@@ -107,6 +107,7 @@ function arenaDefeated(z: Zone) {
 function isNew(z: Zone) {
   return !visit.visited[z.id]
 }
+const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 </script>
 
 <template>
@@ -128,7 +129,7 @@ function isNew(z: Zone) {
         :class="[
           classes(z),
           buttonDisabled(z) ? 'opacity-50 cursor-not-allowed' : '',
-          isNew(z) ? 'animate-pulse ring-2 ring-blue-500 dark:ring-blue-400' : '',
+          isNew(z) ? highlightClasses : '',
         ]"
         :disabled="buttonDisabled(z)"
         @click="selectZone(z.id)"

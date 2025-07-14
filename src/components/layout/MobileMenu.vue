@@ -48,6 +48,8 @@ function onSecondButton() {
   const opening = mobile.current !== 'zones'
   mobile.toggle('zones')
 }
+
+const highlightClasses = 'animate-jello animate-count-infinite color-blue-500 dark:color-blue-400'
 </script>
 
 <template>
@@ -62,11 +64,13 @@ function onSecondButton() {
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="[mobile.current === 'zones' ? 'active' : '', highlightMap ? 'animate-pulse' : '']"
+      :class="[mobile.current === 'zones' ? 'active' : '']"
       :disabled="zoneDisabled"
       @click="onSecondButton"
     >
-      <div class="i-carbon-map" />
+      <div :class="highlightMap ? highlightClasses : ''">
+        <div class="i-carbon-map" />
+      </div>
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
@@ -78,11 +82,13 @@ function onSecondButton() {
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="[mobile.current === 'inventory' ? 'active' : '', highlightInventory ? 'animate-pulse' : '']"
+      :class="[mobile.current === 'inventory' ? 'active' : '']"
       :disabled="inventoryDisabled"
       @click="toggleInventory"
     >
-      <div class="i-carbon-inventory-management" />
+      <div :class="highlightInventory ? highlightClasses : ''">
+        <div class="i-carbon-inventory-management" />
+      </div>
     </button>
     <button
       class="button button-circle disabled:cursor-not-allowed disabled:opacity-50"
