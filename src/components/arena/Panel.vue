@@ -111,7 +111,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tiny-scrollbar relative h-full flex flex-col items-center overflow-auto"> 
+  <div class="tiny-scrollbar relative h-full flex flex-col items-center overflow-auto">
     <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
@@ -169,6 +169,15 @@ onUnmounted(() => {
             >
               Combattre
             </UiButton>
+            <UiTooltip text="Selection automatique de l'équipe" is-button>
+              <UiButton
+                type="icon"
+                class="bottom-0 left-0 z-10 rounded-full"
+                @click="autoSelect"
+              >
+                <div i-carbon-magic-wand />
+              </UiButton>
+            </UiTooltip>
           </div>
         </div>
         <Modal v-model="showDex" footer-close>
