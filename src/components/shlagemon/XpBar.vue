@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import ProgressBar from '~/components/ui/ProgressBar.vue'
 import { xpForLevel } from '~/utils/dexFactory'
 
 const props = defineProps<{ mon: DexShlagemon }>()

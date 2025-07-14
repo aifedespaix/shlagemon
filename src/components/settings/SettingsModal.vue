@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
-import Button from '~/components/ui/Button.vue'
 import { useSaveStore } from '~/stores/save'
 import ShortcutsTab from './ShortcutsTab.vue'
 

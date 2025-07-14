@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'

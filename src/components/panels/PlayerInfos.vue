@@ -1,11 +1,4 @@
 <script setup lang="ts">
-import BallSelectionModal from '~/components/ball/BallSelectionModal.vue'
-import BonusIcon from '~/components/icons/bonus.vue'
-import SchlagedexIcon from '~/components/icons/schlagedex.vue'
-import XpIcon from '~/components/icons/xp.vue'
-import Modal from '~/components/modal/Modal.vue'
-import BonusDetails from '~/components/panels/BonusDetails.vue'
-import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useBallStore } from '~/stores/ball'
 import { useDiseaseStore } from '~/stores/disease'

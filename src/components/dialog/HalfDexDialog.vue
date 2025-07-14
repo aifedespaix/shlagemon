@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { profSchlag } from '~/data/characters/prof-schlag'
 import { useGameStore } from '~/stores/game'
 

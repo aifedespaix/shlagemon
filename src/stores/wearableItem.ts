@@ -1,10 +1,9 @@
 import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { useEquipmentStore } from './equipment'
+import { useItemUsageStore } from './itemUsage'
 import { useMobileTabStore } from './mobileTab'
 import { useShlagedexStore } from './shlagedex'
-import { useItemUsageStore } from './itemUsage'
 
 export const useWearableItemStore = defineStore('wearableItem', () => {
   const current = ref<Item | null>(null)

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { InfoColor } from '~/type/info'
-import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{ color?: InfoColor }>(), { color: 'info' })
 

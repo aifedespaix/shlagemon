@@ -1,6 +1,5 @@
 import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { zonesData } from '~/data/zones'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneProgressStore } from './zoneProgress'

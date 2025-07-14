@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import { computed, ref } from 'vue'
-import Modal from '~/components/modal/Modal.vue'
 import { useItemUsageStore } from '~/stores/itemUsage'
 import { ballHues } from '~/utils/ball'
 

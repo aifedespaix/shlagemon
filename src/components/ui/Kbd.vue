@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
 const props = withDefaults(defineProps<{ keyName: string, size?: Size, waiting?: boolean }>(), {

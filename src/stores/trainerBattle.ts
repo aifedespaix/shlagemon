@@ -1,6 +1,5 @@
 import type { Trainer } from '~/types'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { trainers as trainersData } from '~/data/trainers'
 
 export const useTrainerBattleStore = defineStore('trainerBattle', () => {

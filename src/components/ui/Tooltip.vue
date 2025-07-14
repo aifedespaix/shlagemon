@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
-import { onUnmounted, ref } from 'vue'
 
 const props = defineProps<{ text: string, isButton?: boolean }>()
 

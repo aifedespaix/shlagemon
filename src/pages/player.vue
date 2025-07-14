@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import Button from '~/components/ui/Button.vue'
-import SearchInput from '~/components/ui/SearchInput.vue'
-import SelectOption from '~/components/ui/SelectOption.vue'
 import { usePlayerStore } from '~/stores/player'
 
 const store = usePlayerStore()

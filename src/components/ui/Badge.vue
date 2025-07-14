@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { BadgeColor, BadgeSize, BadgeVariant } from '~/type/badge'
-import { computed } from 'vue'
 
 const props = withDefaults(defineProps<{
   color?: BadgeColor

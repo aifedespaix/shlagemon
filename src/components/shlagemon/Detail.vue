@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { computed, ref } from 'vue'
-import MultiExpIcon from '~/components/icons/multi-exp.vue'
-import Modal from '~/components/modal/Modal.vue'
-import CheckBox from '~/components/ui/CheckBox.vue'
 import { useDiseaseStore } from '~/stores/disease'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'

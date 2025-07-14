@@ -1,11 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
-import { computed, onMounted, ref, watch } from 'vue'
-import BattleHeader from '~/components/battle/BattleHeader.vue'
-import BattleRound from '~/components/battle/BattleRound.vue'
-import CaptureLimitModal from '~/components/battle/CaptureLimitModal.vue'
-import FightKingButton from '~/components/battle/FightKingButton.vue'
-import ZoneMonsModal from '~/components/zones/ZoneMonsModal.vue'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'

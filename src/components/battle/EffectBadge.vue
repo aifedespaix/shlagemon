@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { ActiveEffect } from '~/type/effect'
-import { computed } from 'vue'
-import Tooltip from '~/components/ui/Tooltip.vue'
 import { formatDuration } from '~/utils/formatDuration'
 
 const props = defineProps<{ effect: ActiveEffect, now: number }>()

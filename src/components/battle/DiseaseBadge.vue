@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Tooltip from '~/components/ui/Tooltip.vue'
-
 const props = defineProps<{ remaining: number }>()
 </script>
 

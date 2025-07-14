@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { computed } from 'vue'
-import MultiExpIcon from '~/components/icons/multi-exp.vue'
-import CheckBox from '~/components/ui/CheckBox.vue'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'

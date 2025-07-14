@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import { computed, ref, watch } from 'vue'
-import Button from '~/components/ui/Button.vue'
-import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
-import NumberInput from '~/components/ui/NumberInput.vue'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 

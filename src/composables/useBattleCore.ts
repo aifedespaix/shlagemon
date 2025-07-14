@@ -1,5 +1,4 @@
 import type { DexShlagemon } from '~/type/shlagemon'
-import { onUnmounted, ref, watch } from 'vue'
 import { useBattleStore } from '~/stores/battle'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useBattleEffects } from './battleEngine'

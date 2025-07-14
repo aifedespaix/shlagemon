@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { computed, ref, watch } from 'vue'
-import AttackCursor from '~/components/battle/AttackCursor.vue'
-import BattleCapture from '~/components/battle/BattleCapture.vue'
-import BattleShlagemon from '~/components/battle/BattleShlagemon.vue'
-import BattleToast from '~/components/battle/BattleToast.vue'
 import { useBattleCore } from '~/composables/useBattleCore'
 import { notifyAchievement } from '~/stores/achievements'
 import { useDiseaseStore } from '~/stores/disease'

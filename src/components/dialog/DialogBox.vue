@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { getCharacterTrack, getZoneTrack } from '~/data/music'
 import { useAudioStore } from '~/stores/audio'
 import { useZoneStore } from '~/stores/zone'
-import ImageByBackground from '../ui/ImageByBackground.vue'
 
 const { dialogTree, character, avatarUrl, orientation }
   = withDefaults(defineProps<{

@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
-import { computed, onMounted, onUnmounted, ref, toRaw, watch } from 'vue'
 import { toast } from 'vue3-toastify'
-import ArenaBattleHeader from '~/components/arena/ArenaBattleHeader.vue'
-import ArenaDuel from '~/components/arena/ArenaDuel.vue'
-import ArenaEnemyStats from '~/components/arena/ArenaEnemyStats.vue'
-import Modal from '~/components/modal/Modal.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'

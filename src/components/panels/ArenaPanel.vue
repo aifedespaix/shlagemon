@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ArenaPanelInner from '~/components/arena/ArenaPanel.vue'
 </script>
 
 <template>

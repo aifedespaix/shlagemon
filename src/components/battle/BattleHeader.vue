@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { Trainer } from '~/type'
-import { computed } from 'vue'
-import CharacterImage from '~/components/character/CharacterImage.vue'
-import ImageByBackground from '~/components/ui/ImageByBackground.vue'
 import { useZoneStore } from '~/stores/zone'
 
 const props = defineProps<{ zoneName?: string, trainer?: Trainer, defeated?: number }>()

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Ball, DexShlagemon } from '~/type'
-import { computed, ref } from 'vue'
 import { toast } from 'vue3-toastify'
 import { balls as ballData } from '~/data/items/shlageball'
 import { useAudioStore } from '~/stores/audio'

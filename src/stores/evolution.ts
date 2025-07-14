@@ -1,6 +1,5 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { useAudioStore } from './audio'
 
 interface EvolutionRequest {

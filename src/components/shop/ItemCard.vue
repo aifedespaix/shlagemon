@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import CurrencyAmount from '~/components/ui/CurrencyAmount.vue'
 
 const props = defineProps<{ item: Item }>()
 </script>

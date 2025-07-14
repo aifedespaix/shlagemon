@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import Button from '~/components/ui/Button.vue'
-import KeyCapture from '~/components/ui/KeyCapture.vue'
-import SelectOption from '~/components/ui/SelectOption.vue'
 import { allItems } from '~/data/items/items'
 import { useShortcutsStore } from '~/stores/shortcuts'
 

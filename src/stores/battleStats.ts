@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
 export const useBattleStatsStore = defineStore('battleStats', () => {
   const losses = ref(0)

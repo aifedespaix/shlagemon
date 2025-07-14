@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useKeyboardCaptureStore } from '~/stores/keyboardCapture'
 import Kbd from './Kbd.vue'
 

@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { computed, reactive, watch } from 'vue'
 import { toast } from 'vue3-toastify'
 import { zonesData } from '~/data/zones'
 import { useGameStore } from './game'

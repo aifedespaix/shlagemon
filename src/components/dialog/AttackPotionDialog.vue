@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import DialogBox from '~/components/dialog/DialogBox.vue'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import { useInventoryStore } from '~/stores/inventory'
 

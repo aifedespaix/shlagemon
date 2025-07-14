@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
-import Button from '~/components/ui/Button.vue'
 import { useEvolutionStore } from '~/stores/evolution'
 
 const store = useEvolutionStore()

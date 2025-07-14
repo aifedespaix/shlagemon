@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import AudioSettingsModal from '~/components/audio/AudioSettingsModal.vue'
-import DeveloperSettingsModal from '~/components/developer/DeveloperSettingsModal.vue'
-import SettingsModal from '~/components/settings/SettingsModal.vue'
-import ThemeToggle from '~/components/ThemeToggle.vue'
-import Button from '~/components/ui/Button.vue'
 import { useAudioStore } from '~/stores/audio'
 
 const showSettings = ref(false)

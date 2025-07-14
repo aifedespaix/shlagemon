@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import NavigationButton from '~/components/ui/NavigationButton.vue'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'

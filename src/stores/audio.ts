@@ -1,7 +1,6 @@
 import type { AudioSettings } from '~/type'
 import { Howl } from 'howler'
 import { defineStore } from 'pinia'
-import { reactive, ref, toRefs, watch } from 'vue'
 
 export const useAudioStore = defineStore('audio', () => {
   const settings = reactive<AudioSettings>({

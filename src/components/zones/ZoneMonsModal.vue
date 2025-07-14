@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Modal from '~/components/modal/Modal.vue'
-import PanelWrapper from '~/components/ui/PanelWrapper.vue'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'

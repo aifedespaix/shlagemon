@@ -1,6 +1,5 @@
 import type { Arena, BaseShlagemon, DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
 
 export type ArenaResult = 'none' | 'win' | 'lose'
 
