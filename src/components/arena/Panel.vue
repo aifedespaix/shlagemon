@@ -112,13 +112,16 @@ onUnmounted(() => {
 
 <template>
   <div class="tiny-scrollbar eee relative h-full flex flex-col overflow-auto">
-    <UiButton
-      type="icon"
-      class="absolute left-0 top-0 z-10 rounded-none rounded-bl rounded-br rounded-tr"
-      @click="autoSelect"
-    >
-      <div i-carbon-magic-wand />
-    </UiButton>
+    <UiTooltip text="E" is-button>
+      <UiButton
+        type="icon"
+        class="absolute bottom-0 left-0 z-10 rounded-none rounded-bl rounded-br rounded-tr"
+        @mouseenter="autoSelect"
+        @click="autoSelect"
+      >
+        <div i-carbon-magic-wand />
+      </UiButton>
+    </UiTooltip>
     <div v-show="!showDuel" class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
