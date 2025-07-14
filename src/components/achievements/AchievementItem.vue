@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import type { Achievement } from '~/stores/achievements'
+import { withDefaults } from 'vue'
 
-const props = defineProps<{ achievement: Achievement & { achieved: boolean } }>()
-const opened = ref(false)
+const props = withDefaults(defineProps<{
+  achievement: Achievement & { achieved: boolean }
+  opened?: boolean
+}>(), {
+  opened: false,
+})
+
+const emit = defineEmits<{
+  (e: 'toggle'): void
+}>()
+
 function toggle() {
-  opened.value = !opened.value
+  emit('toggle')
 }
 </script>
 
@@ -20,9 +30,9 @@ function toggle() {
         <div :class="props.achievement.icon" class="inline-block text-lg" />
         <span class="font-bold">{{ props.achievement.title }}</span>
       </div>
-      <div class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
+      <div class="i-carbon-chevron-down transition-transform" :class="props.opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="opened" class="mt-1 text-xs">
+    <div v-show="props.opened" class="mt-1 text-xs">
       <p>{{ props.achievement.description }}</p>
     </div>
   </div>

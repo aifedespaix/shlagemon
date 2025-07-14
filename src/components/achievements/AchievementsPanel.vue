@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import SearchInput from '~/components/ui/SearchInput.vue'
 import SelectOption from '~/components/ui/SelectOption.vue'
 import { useAchievementsStore } from '~/stores/achievements'
@@ -7,6 +8,11 @@ import AchievementItem from './AchievementItem.vue'
 
 const store = useAchievementsStore()
 const filter = useAchievementsFilterStore()
+const opened = ref<string | null>(null)
+
+function toggle(id: string) {
+  opened.value = opened.value === id ? null : id
+}
 
 const statusOptions = [
   { label: 'Tous', value: 'all' },
@@ -45,6 +51,8 @@ const filteredList = computed(() => {
         v-for="a in filteredList"
         :key="a.id"
         :achievement="a"
+        :opened="opened === a.id"
+        @toggle="toggle(a.id)"
       />
     </template>
   </ScrollablePanel>

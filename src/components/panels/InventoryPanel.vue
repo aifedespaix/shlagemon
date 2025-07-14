@@ -21,6 +21,7 @@ const wearableStore = useWearableItemStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
+const opened = ref<string | null>(null)
 const sortOptions = [
   { label: 'Type', value: 'type' },
   { label: 'Nom', value: 'name' },
@@ -53,6 +54,10 @@ function isDisabled(item: Item) {
   if ('catchBonus' in item)
     return ballStore.current === item.id
   return item.type === 'evolution' && !evoItemStore.canUse(item)
+}
+
+function toggle(id: string) {
+  opened.value = opened.value === id ? null : id
 }
 
 function onUse(item: Item) {
@@ -94,8 +99,10 @@ function onUse(item: Item) {
         :item="entry.item"
         :qty="entry.qty"
         :disabled="isDisabled(entry.item)"
+        :opened="opened === entry.item.id"
         @use="onUse(entry.item)"
         @sell="inventory.sell(entry.item.id)"
+        @toggle="toggle(entry.item.id)"
       />
     </template>
   </ScrollablePanel>
