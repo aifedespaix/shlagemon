@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAchievementsFilterStore } from '~/stores/achievementsFilter'
-import AchievementItem from './AchievementItem.vue'
 
 const openedId = ref<string | null>(null)
 

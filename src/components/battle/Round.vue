@@ -230,7 +230,7 @@ function onClick(_e: MouseEvent) {
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
           </BattleShlagemon>
         </Transition>
-        <AttackCursor
+        <BattleAttackCursor
           v-if="props.clickAttack && showAttackCursor"
           :x="cursorX"
           :y="cursorY"

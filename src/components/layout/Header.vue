@@ -37,7 +37,7 @@ function onDoubleClick() {
       <UiButton type="icon" aria-label="Paramètres" @click="showSettings = true">
         <div class="i-carbon-settings" />
       </UiButton>
-      <SettingsModal v-model="showSettings" />
+      <SettingsSettingsModal v-model="showSettings" />
       <UiButton type="icon" aria-label="Développeur" @click="showDeveloper = true">
         <div class="i-carbon-debug" />
       </UiButton>

@@ -8,7 +8,7 @@ const modal = useCaptureLimitModalStore()
   <Modal v-model="modal.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
       <p class="text-center text-sm">
-        Pour pouvoir attraper ce Schlagémon de niveau {{ modal.requiredLevel }}, il vous faut un badge.
+        Pour pouvoir attraper ce Shlagémon de niveau {{ modal.requiredLevel }}, il vous faut un badge.
         Rendez-vous dans le village pour défier la reine et remporter ce droit.
       </p>
     </div>

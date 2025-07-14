@@ -32,17 +32,17 @@ const totalInDex = allShlagemons.length
         <div class="i-mdi:emoticon-sick text-red-500" />
       </UiTooltip>
     </span>
-    <CurrencyAmount :amount="game.shlagidolar" currency="shlagidolar" />
-    <CurrencyAmount :amount="game.shlagidiamond" currency="shlagidiamond" />
-    <UiTooltip text="SchlagéDex">
+    <UiCurrencyAmount :amount="game.shlagidolar" currency="shlagidolar" />
+    <UiCurrencyAmount :amount="game.shlagidiamond" currency="shlagidiamond" />
+    <UiTooltip text="ShlagéDex">
       <div class="min-w-0 flex items-center gap-1">
-        <IconsSchlagedexIcon class="h-4 w-4" />
+        <IconShlagedex class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
       </div>
     </UiTooltip>
     <UiTooltip text="Niveau moyen">
       <div class="min-w-0 flex items-center gap-1">
-        <IconsXpIcon class="h-4 w-4" />
+        <IconXp class="h-4 w-4" />
         <span class="shrink-0 font-bold">{{ dex.averageLevel.toFixed(1) }}</span>
       </div>
     </UiTooltip>
@@ -51,14 +51,14 @@ const totalInDex = allShlagemons.length
         class="min-w-0 flex cursor-pointer items-center gap-1"
         @click="showBonus = true"
       >
-        <IconsBonusIcon class="h-4 w-4" />
+        <IconBonus class="h-4 w-4" />
         <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
       </div>
     </UiTooltip>
     <Modal v-model="showBonus" footer-close>
-      <BonusDetails />
+      <PanelBonusDetails />
     </Modal>
-    <UiTooltip text="SchlagéBalls">
+    <UiTooltip text="ShlagéBalls">
       <div
         class="min-w-0 flex cursor-pointer items-center gap-1"
         @click="ballStore.open()"

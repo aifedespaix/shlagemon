@@ -75,63 +75,63 @@ const bottomLocked = computed(() => {
       md="flex-row justify-between"
     >
       <div v-if="!isMobile && (displayInventory || displayAchievements || displayDex)" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
-        <PanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
+        <UiPanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
-          <InventoryPanel />
-        </PanelWrapper>
+          <PanelInventory />
+        </UiPanelWrapper>
 
-        <PanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" :is-locked="lockStore.areAchievementsLocked">
+        <UiPanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" :is-locked="lockStore.areAchievementsLocked">
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
-          <AchievementsPanel />
-        </PanelWrapper>
+          <PanelAchievements />
+        </UiPanelWrapper>
       </div>
 
       <div v-if="displayGamePanel || displayZonePanel" :class="group2Classes" class="overflow-hidden" md="basis-1/2">
-        <PanelWrapper is-inline>
-          <PanelsPlayerInfos />
-        </PanelWrapper>
+        <UiPanelWrapper is-inline>
+          <PanelPlayerInfos />
+        </UiPanelWrapper>
 
-        <PanelWrapper v-if="displayGamePanel" class="overflow-hidden">
-          <MainPanelView class="flex-1" />
-        </PanelWrapper>
+        <UiPanelWrapper v-if="displayGamePanel" class="overflow-hidden">
+          <PanelMain class="flex-1" />
+        </UiPanelWrapper>
 
-        <PanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.areZonesLocked">
+        <UiPanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.areZonesLocked">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
-          <ZonePanel />
-        </PanelWrapper>
+          <PanelZone />
+        </UiPanelWrapper>
       </div>
 
       <div v-if="!isMobile && displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
-        <PanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
+        <UiPanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
           <template #icon>
-            <SchlagedexIcon class="h-4 w-4" />
+            <IconShlagedex class="h-4 w-4" />
           </template>
-          <Shlagedex v-if="shlagedex.shlagemons.length" />
-        </PanelWrapper>
+          <PanelShlagedex v-if="shlagedex.shlagemons.length" />
+        </UiPanelWrapper>
       </div>
 
       <div v-if="isMobile && bottomComponent" class="panel-group max-h-40vh flex-1 overflow-hidden">
-        <PanelWrapper :title="bottomTitle" class="overflow-hidden" :is-locked="bottomLocked">
+        <UiPanelWrapper :title="bottomTitle" class="overflow-hidden" :is-locked="bottomLocked">
           <template #icon>
             <div v-if="activeTab === 'achievements'" class="i-carbon-trophy" />
             <div v-else-if="activeTab === 'zones'" class="i-carbon-map" />
-            <SchlagedexIcon v-else-if="activeTab === 'dex'" class="h-4 w-4" />
+            <IconShlagedex v-else-if="activeTab === 'dex'" class="h-4 w-4" />
             <div v-else-if="activeTab === 'inventory'" class="i-carbon-inventory-management" />
           </template>
           <KeepAlive>
             <component :is="bottomComponent" :key="activeTab" />
           </KeepAlive>
-        </PanelWrapper>
+        </UiPanelWrapper>
       </div>
 
-      <EvolutionModal />
-      <TypeChartModal />
+      <ShlagemonEvolutionModal />
+      <ShlagemonTypeChartModal />
     </div>
   </div>
 </template>

@@ -16,7 +16,7 @@ const props = defineProps<{ item: Item }>()
       <span class="font-bold">{{ props.item.name }}</span>
       <span class="text-xs">{{ props.item.description }}</span>
     </div>
-    <CurrencyAmount :amount="props.item.price" :currency="props.item.currency ?? 'shlagidolar'" />
+    <UiCurrencyAmount :amount="props.item.price" :currency="props.item.currency ?? 'shlagidolar'" />
     <slot />
   </div>
 </template>

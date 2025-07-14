@@ -15,7 +15,7 @@ function owned(id: string) {
 
 <template>
   <Modal v-model="modal.isVisible" footer-close>
-    <PanelWrapper :title="`Shlagémons de ${zone.current.name}`" is-inline>
+    <UiPanelWrapper :title="`Shlagémons de ${zone.current.name}`" is-inline>
       <template #icon>
         <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
       </template>
@@ -34,6 +34,6 @@ function owned(id: string) {
           <span>{{ mon.name }}</span>
         </div>
       </div>
-    </PanelWrapper>
+    </UiPanelWrapper>
   </Modal>
 </template>

@@ -90,7 +90,7 @@ function showTypeChart() {
       </UiTooltip>
       <span class="font-bold">{{ props.mon.base.name }}</span>
     </div>
-    <ProgressBar :value="props.hp" :max="props.mon.hp" :color="props.color" class="mt-1 w-24" />
+    <UiProgressBar :value="props.hp" :max="props.mon.hp" :color="props.color" class="mt-1 w-24" />
     <div class="w-full text-right text-sm">
       {{ props.hp }} / {{ props.mon.hp }}
     </div>

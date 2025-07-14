@@ -32,7 +32,7 @@ const captureButtonDisabled = computed(() =>
 
 const captureButtonTooltip = computed(() => {
   if ((inventory.items[ballStore.current] || 0) <= 0)
-    return 'Pas de Schlagéball, capture impossible'
+    return 'Pas de Shlagéball, capture impossible'
   if (props.enemyHp <= 0)
     return 'Impossible de capturer un Shlagémon K.O.'
   if (props.enemy && props.enemy.lvl > player.captureLevelCap)

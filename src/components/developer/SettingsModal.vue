@@ -17,8 +17,8 @@ const dev = useDeveloperStore()
     <h3 class="mb-2 text-center text-lg font-bold">
       Paramètres développeur
     </h3>
-    <CheckBox v-model="dev.debug" class="flex items-center justify-between">
+    <UiCheckBox v-model="dev.debug" class="flex items-center justify-between">
       <span>Mode debug</span>
-    </CheckBox>
+    </UiCheckBox>
   </Modal>
 </template>

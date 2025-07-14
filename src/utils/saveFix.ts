@@ -1,7 +1,7 @@
 import type { DexShlagemon } from '~/type'
 
 /**
- * Supprime les doublons dans le Schlagedex en choisissant le meilleur
+ * Supprime les doublons dans le Shlagedex en choisissant le meilleur
  * Shlagémon de chaque base.
  */
 export function deduplicateDex(mons: DexShlagemon[], activeId?: string): DexShlagemon[] {

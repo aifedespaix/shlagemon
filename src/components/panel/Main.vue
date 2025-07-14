@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import BattleMain from '../battle/Main.vue'
+import BattleTrainer from '../battle/Trainer.vue'
+import ArenaPanel from './Arena.vue'
+import ShopPanel from './Shop.vue'
+import VillagePanel from './Village.vue'
+//  from './Shop.vue'
 
 defineOptions({ inheritAttrs: false })
 
@@ -10,24 +16,24 @@ const panelStore = useMainPanelStore()
 const currentComponent = computed(() => {
   switch (panelStore.current) {
     case 'shop':
-      return 'ShopPanel'
+      return ShopPanel
     case 'battle':
-      return 'BattleMain'
+      return BattleMain
     case 'trainerBattle':
-      return 'TrainerBattle'
-    case 'miniGame':
-      return 'WhackAShlag'
+      return BattleTrainer
+    // case 'miniGame':
+      // return 'WhackAShlag'
     case 'arena':
-      return 'ArenaPanel'
+      return ArenaPanel
     case 'village':
-      return 'VillagePanel'
+      return VillagePanel
     default:
-      return 'VillagePanel'
+      return VillagePanel
   }
 })
 </script>
 
 <template>
-  <DialogPanel v-if="dialogStore.isDialogVisible" v-bind="$attrs" />
+  <PanelDialog v-if="dialogStore.isDialogVisible" v-bind="$attrs" />
   <component :is="currentComponent" v-else v-bind="$attrs" />
 </template>

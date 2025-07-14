@@ -16,20 +16,20 @@ const audio = useAudioStore()
       <h3 class="text-center text-lg font-bold">
         Paramètres audio
       </h3>
-      <CheckBox v-model="audio.isMusicEnabled" class="flex items-center justify-between">
+      <UiCheckBox v-model="audio.isMusicEnabled" class="flex items-center justify-between">
         <span>Musique</span>
-      </CheckBox>
-      <Info v-if="!audio.isMusicEnabled" color="alert">
+      </UiCheckBox>
+      <UiInfo v-if="!audio.isMusicEnabled" color="alert">
         Désactiver la musique réduit les dégâts de vos Shlagémons de 10&nbsp;%.
-      </Info>
-      <InputTipRange
+      </UiInfo>
+      <UiInputTipRange
         v-model="audio.musicVolume"
         :disabled="!audio.isMusicEnabled"
       />
-      <CheckBox v-model="audio.isSfxEnabled" class="flex items-center justify-between">
+      <UiCheckBox v-model="audio.isSfxEnabled" class="flex items-center justify-between">
         <span>Effets</span>
-      </CheckBox>
-      <InputTipRange
+      </UiCheckBox>
+      <UiInputTipRange
         v-model="audio.sfxVolume"
         :disabled="!audio.isSfxEnabled"
       />

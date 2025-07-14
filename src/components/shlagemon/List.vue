@@ -133,7 +133,7 @@ function changeActive(mon: DexShlagemon) {
         ]"
         @click.stop="handleClick(mon)"
       >
-        <MultiExpIcon
+        <IconMultiExp
           v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
           class="absolute right-1 top-1 h-4 w-4"
         />
@@ -163,7 +163,7 @@ function changeActive(mon: DexShlagemon) {
             </div>
           </div>
         </div>
-        <CheckBox
+        <UiCheckBox
           v-if="props.showCheckbox"
           class="ml-2"
           :model-value="isActive(mon)"

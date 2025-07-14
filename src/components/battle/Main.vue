@@ -144,7 +144,7 @@ function onCapture() {
 
 <template>
   <div class="relative flex flex-col gap-1 overflow-auto p-1">
-    <FightKingButton />
+    <BattleFightKingButton />
     <div class="absolute left-0 top-0 flex items-center gap-2">
       <UiTooltip :text="captureTooltip">
         <UiButton type="icon" class="rounded-tl-0" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
@@ -167,6 +167,6 @@ function onCapture() {
       </template>
     </BattleRound>
     <ZoneMonsModal />
-    <CaptureLimitModal />
+    <BattleCaptureLimitModal />
   </div>
 </template>

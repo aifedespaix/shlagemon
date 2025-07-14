@@ -7,11 +7,11 @@ const modal = useTypeChartModalStore()
 
 <template>
   <Modal v-model="modal.isVisible" footer-close>
-    <PanelWrapper title="Table des types">
+    <UiPanelWrapper title="Table des types">
       <template #icon>
         <div class="i-carbon-data-table" />
       </template>
       <TypeChart :highlight="modal.highlight" />
-    </PanelWrapper>
+    </UiPanelWrapper>
   </Modal>
 </template>

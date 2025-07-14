@@ -111,7 +111,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 <template>
   <div class="relative flex flex-1 flex-col overflow-hidden">
     <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-200">
-      <ProgressBar
+      <UiProgressBar
 
         :value="1000 - zone.wildCooldownRemaining"
         :max="1000"

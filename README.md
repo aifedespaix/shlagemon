@@ -2,7 +2,7 @@
 
 ![Logo](public/logo.png)
 
-Plongez dans un univers délirant peuplé de Shlagémons totalement barrés. Capturez-les, faites-les combattre et remplissez votre Schlagedex pour devenir le dresseur ultime et rafler les précieux _Shlagidolar_. Le projet utilise les dernières versions de **Vue&nbsp;3** et suit les meilleures pratiques de la doc officielle pour une expérience fluide, que ce soit sur mobile ou sur grand écran.
+Plongez dans un univers délirant peuplé de Shlagémons totalement barrés. Capturez-les, faites-les combattre et remplissez votre Shlagedex pour devenir le dresseur ultime et rafler les précieux _Shlagidolar_. Le projet utilise les dernières versions de **Vue&nbsp;3** et suit les meilleures pratiques de la doc officielle pour une expérience fluide, que ce soit sur mobile ou sur grand écran.
 
 ![Carapouffe](public/shlagemons/carapouffe/carapouffe.png)
 ![Sachatte](public/characters/sachatte/sachatte.png)
@@ -10,7 +10,7 @@ Plongez dans un univers délirant peuplé de Shlagémons totalement barrés. Cap
 
 ## Concept
 
-Chaque Shlagémon dispose de statistiques qui lui sont propres et appartient à une poignée de types complètement improbables. Une interface minimaliste vous permet de choisir votre compagnon, de consulter le _Schlagedex_ et de lancer des combats acharnés.
+Chaque Shlagémon dispose de statistiques qui lui sont propres et appartient à une poignée de types complètement improbables. Une interface minimaliste vous permet de choisir votre compagnon, de consulter le _Shlagedex_ et de lancer des combats acharnés.
 Un mini-jeu d'adresse « Whack-a-Shlag » permet aussi de récolter quelques Shlagidolars.
 
 ## Fonctionnalités clés

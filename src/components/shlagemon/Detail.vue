@@ -121,7 +121,7 @@ const captureInfo = computed(() => {
           v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
           class="absolute right-0 top-0 flex items-center gap-1"
         >
-          <IconsMultiExpIcon class="h-5 w-5" />
+          <IconMultiExp class="h-5 w-5" />
           <UiButton
             type="icon"
             class="h-5 w-5"
@@ -160,9 +160,9 @@ const captureInfo = computed(() => {
           Obtenu {{ captureInfo.count }} fois
         </p>
       </div>
-      <CheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
+      <UiCheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
         Autoriser ce Shlagémon à évoluer ?
-      </CheckBox>
+      </UiCheckBox>
       <div class="flex justify-end gap-2">
         <UiButton type="danger" class="flex items-center gap-1" @click="requestRelease">
           <div i-carbon-trash-can />

@@ -61,7 +61,7 @@ const details = computed(() => props.item.details || props.item.description)
       </h3>
     </div>
     <div class="flex items-center gap-1">
-      Prix Unitaire <CurrencyAmount :amount="props.item.price" :currency="props.item.currency ?? 'shlagidolar'" />
+      Prix Unitaire <UiCurrencyAmount :amount="props.item.price" :currency="props.item.currency ?? 'shlagidolar'" />
     </div>
     <p class="text-sm">
       {{ details }}
@@ -84,7 +84,7 @@ const details = computed(() => props.item.details || props.item.description)
     </div>
     <div class="mt-2 flex gap-2">
       <UiButton type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
-        Acheter <CurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
+        Acheter <UiCurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
       </UiButton>
       <UiButton class="text-xs" variant="outline" type="danger" @click="emit('close')">
         Retour

@@ -26,9 +26,9 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 - Formulaire de création de joueur avec persistance des préférences audio.
 - Bouton des paramètres sonores déplacé dans l'en-tête et pistes musicales aléatoires.
 - Pierre d'évolution et minuteries de potions améliorées.
-- Composant `SearchInput` pour filtrer le Schlagedex avec nouveaux tris.
+- Composant `SearchInput` pour filtrer le Shlagedex avec nouveaux tris.
 - Bouton de défi du roi en combat et info-bulle lorsque l'on n'a plus de Shlagéballs.
-- Possibilité de relâcher un Shlagémon depuis le Schlagedex.
+- Possibilité de relâcher un Shlagémon depuis le Shlagedex.
 
 ### Modifié
 
@@ -38,7 +38,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 ### Corrigé
 
-- Double clic fonctionnel dans le Schlagedex et divers correctifs d'interface.
+- Double clic fonctionnel dans le Shlagedex et divers correctifs d'interface.
 - Correction de crashs lors des combats de dresseurs ou de rois.
 - Ajustements du panneau d'information du joueur.
 
@@ -50,13 +50,13 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 - Indicateur de progression du combat et bulles d'aide pour la capture et la victoire.
 - Refonte de l'onglet des succès avec sauvegarde des déblocages.
 - Les statistiques des Shlagémons s'ajustent désormais selon le rang de la zone.
-- Bonus d'attaque calculé à partir du Schlagedex accessible.
+- Bonus d'attaque calculé à partir du Shlagedex accessible.
 - Icône de capture affichée en combat sauvage pour les Shlagémons déjà obtenus.
 - Nouvelles évolutions : Floripute et Barbebizarre.
 
 ### Modifié
 
-- Utilisation du bonus Schlagedex pendant les combats.
+- Utilisation du bonus Shlagedex pendant les combats.
 - Style des succès modernisé.
 - Les actions de zone sont déplacées dans le panneau du village.
 
@@ -64,7 +64,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
 - Les PV sont conservés entre deux combats sauvages.
 - Correction du débordement du panneau d'informations du joueur et autres bogues mineurs.
-- Suppression des doublons lors du chargement du Schlagedex.
+- Suppression des doublons lors du chargement du Shlagedex.
 - Désérialisation sécurisée quand des données sont manquantes.
 - Fusion des doublons après une évolution.
 - La modale d'évolution ne s'affiche que lorsque l'évolution est possible.
@@ -118,5 +118,5 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 ### Ajouté
 
 - Migration vers Vue 3 avec style UnoCSS et thème clair/sombre.
-- Schlagedex avec statistiques des Shlagémon et grille adaptative.
+- Shlagedex avec statistiques des Shlagémon et grille adaptative.
 - Persistance de l'état du jeu dans le stockage local.

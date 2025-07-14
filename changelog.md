@@ -39,9 +39,9 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 - Player creation form with persisted audio preferences.
 - Audio settings button moved to the header with random music tracks.
 - Evolution stone item and improved potion timers.
-- `SearchInput` component for Schlagedex filtering with new sorting options.
+- `SearchInput` component for Shlagedex filtering with new sorting options.
 - King challenge button during battles and tooltip when out of Shlageballs.
-- Ability to release a Shlagémon from the Schlagedex.
+- Ability to release a Shlagémon from the Shlagedex.
 
 ### Changed
 
@@ -51,7 +51,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 
 ### Fixed
 
-- Double-click handling in the Schlagedex and various UI fixes.
+- Double-click handling in the Shlagedex and various UI fixes.
 - Crashes when starting trainer or king battles.
 - Adjustments to the player info panel.
 
@@ -63,13 +63,13 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 - Battle progress indicator and capture/win tooltips.
 - Achievements panel redesign with persistent unlocks.
 - Shlagémon stats now scale with the zone's rank.
-- Attack bonuses computed from accessible Schlagedex entries.
+- Attack bonuses computed from accessible Shlagedex entries.
 - Capture icon for already owned wild Shlagémon.
 - New evolutions: Floripute and Barbebizarre.
 
 ### Changed
 
-- Combat bonuses now use Schlagedex bonus percent.
+- Combat bonuses now use Shlagedex bonus percent.
 - Modernized achievements style.
 - Zone action buttons moved to the village panel.
 
@@ -77,7 +77,7 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 
 - HP persists between wild battles.
 - Player info panel overflow and other minor bugs.
-- Duplicate Schlagedex entries merged when loading saves.
+- Duplicate Shlagedex entries merged when loading saves.
 - Deserialization guarded when data is missing.
 - Merge duplicates after evolution.
 - Evolution modal appears only when evolution is allowed.
@@ -126,5 +126,5 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 ### Added
 
 - Migration to Vue 3 with UnoCSS styling and dark/light theme toggle.
-- Schlagedex with Shlagémon stats and responsive grid.
+- Shlagedex with Shlagémon stats and responsive grid.
 - Local storage persistence for game state.

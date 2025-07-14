@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useZoneStore } from '~/stores/zone'
-import ZoneActions from './ZoneActions.vue'
+import ZoneActions from '../village/ZoneActions.vue'
 
 const zone = useZoneStore()
 </script>

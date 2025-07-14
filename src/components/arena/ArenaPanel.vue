@@ -169,13 +169,13 @@ onUnmounted(() => {
       </button>
 
       <div class="col-span-6 flex flex-col gap-2">
-        <Info v-if="playerSelection.some(m => !m)" color="danger" class="text-center text-xs">
+        <UiInfo v-if="playerSelection.some(m => !m)" color="danger" class="text-center text-xs">
           Vous devez selectionner 6 Shlagémons pour combattre dans l'arène
-        </Info>
+        </UiInfo>
         <div class="col-span-6 flex flex-col gap-2">
-          <Info color="alert" class="text-center text-xs">
+          <UiInfo color="alert" class="text-center text-xs">
             Le combat est automatique et se déroule sans clics.
-          </Info>
+          </UiInfo>
           <UiButton
             type="primary"
             class="mx-auto"

@@ -1,7 +1,7 @@
 import type { Character } from '~/type/character'
 
-export const profSchlag: Character = {
+export const profShlag: Character = {
   id: 'prof-schlag',
-  name: 'Professeur Schlag',
+  name: 'Professeur Shlag',
   gender: 'male',
 }

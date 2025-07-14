@@ -12,6 +12,6 @@ const maxXp = computed(() => xpForLevel(props.mon.lvl))
     <div class="mb-1 text-center text-xs">
       Expérience : {{ props.mon.xp.toLocaleString() }} / {{ maxXp.toLocaleString() }}
     </div>
-    <ProgressBar :value="props.mon.xp" :max="maxXp" xp class="w-full" />
+    <UiProgressBar :value="props.mon.xp" :max="maxXp" xp class="w-full" />
   </div>
 </template>

@@ -32,7 +32,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step4',
-    text: 'Je compte sur toi pour remplir le Schlagedex au plus vite.',
+    text: 'Je compte sur toi pour remplir le Shlagedex au plus vite.',
     responses: [
       { label: 'Retour', nextId: 'step3', type: 'danger' },
       { label: 'Continuer', nextId: 'step5', type: 'primary' },
@@ -40,7 +40,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step5',
-    text: 'Pour t\'aider, voici 10 Schlagéballs. Attention, elles sentent fort !',
+    text: 'Pour t\'aider, voici 10 Shlagéballs. Attention, elles sentent fort !',
     responses: [
       { label: 'Retour', nextId: 'step4', type: 'danger' },
       {

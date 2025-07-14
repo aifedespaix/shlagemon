@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import { profSchlag } from '~/data/characters/prof-schlag'
+import { profShlag } from '~/data/characters/prof-shlag'
 import { useGameStore } from '~/stores/game'
 
 const emit = defineEmits(['done'])
@@ -9,7 +9,7 @@ const game = useGameStore()
 const dialogTree: DialogNode[] = [
   {
     id: 'step1',
-    text: `Oh ! Salut dresseur ! Je suis ${profSchlag.name}. Tu as rempli 50% du Schlagedex !`,
+    text: `Oh ! Salut dresseur ! Je suis ${profShlag.name}. Tu as rempli 50% du Shlagedex !`,
     responses: [
       { label: 'Continuer', nextId: 'step2', type: 'primary' },
     ],
@@ -40,7 +40,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step5',
-    text: 'Allez, file. Le Schlagedex n\'attend que toi pour être complété.',
+    text: 'Allez, file. Le Shlagedex n\'attend que toi pour être complété.',
     responses: [
       { label: 'Retour', nextId: 'step4', type: 'danger' },
       {
@@ -58,7 +58,7 @@ const dialogTree: DialogNode[] = [
 
 <template>
   <DialogBox
-    :character="profSchlag"
+    :character="profShlag"
     avatar-url="/characters/prof-merdant/prof-merdant.png"
     :dialog-tree="dialogTree"
   />
