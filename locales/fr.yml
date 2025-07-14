@@ -12,3 +12,8 @@ intro:
   aka: Aussi connu sous le nom de
   whats-your-name: Comment t'appelles-tu ?
 not-found: Page non trouvée
+arena:
+  title: Arène
+  fight: Combattre
+  auto_battle: Le combat est automatique et se déroule sans clics.
+  retry_confirm: Défaite... Recommencer ?
