@@ -24,7 +24,10 @@ export const useZoneVisitStore = defineStore('zoneVisit', () => {
 
   const accessibleZones = computed(() => zones.filter(z => canAccess(z)))
 
-  const hasNewZone = computed(() => accessibleZones.value.some(z => !visited.value[z.id]))
+  const hasNewZone = computed(
+    () => accessibleZones.value.length > 1
+      && accessibleZones.value.some(z => !visited.value[z.id]),
+  )
 
   function markVisited(id: string) {
     visited.value[id] = true
