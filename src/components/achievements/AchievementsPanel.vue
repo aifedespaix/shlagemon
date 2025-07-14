@@ -3,6 +3,8 @@ import { useAchievementsStore } from '~/stores/achievements'
 import { useAchievementsFilterStore } from '~/stores/achievementsFilter'
 import AchievementItem from './AchievementItem.vue'
 
+const openedId = ref<string | null>(null)
+
 const store = useAchievementsStore()
 const filter = useAchievementsFilterStore()
 
@@ -25,6 +27,10 @@ const filteredList = computed(() => {
   const q = filter.search.toLowerCase()
   return list.value.filter(a => a.title.toLowerCase().includes(q))
 })
+
+function toggleItem(id: string) {
+  openedId.value = openedId.value === id ? null : id
+}
 </script>
 
 <template>
@@ -43,6 +49,8 @@ const filteredList = computed(() => {
         v-for="a in filteredList"
         :key="a.id"
         :achievement="a"
+        :opened="openedId === a.id"
+        @toggle="toggleItem(a.id)"
       />
     </template>
   </LayoutScrollablePanel>
