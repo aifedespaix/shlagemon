@@ -119,11 +119,11 @@ onUnmounted(() => {
     >
       <div i-carbon-magic-wand />
     </UiButton>
-    <div v-show="!showDuel" class="grid grid-cols-6 grid-rows-4 h-full w-full gap-2">
+    <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 w-full gap-2">
       <button
         v-for="enemy in enemyTeam"
         :key="enemy.id"
-        class="border-red-600 rounded-full bg-red-500/40"
+        class="aspect-square border-red-600 rounded-full bg-red-500/40"
         @click="openEnemy(enemy)"
       >
         <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
@@ -139,7 +139,7 @@ onUnmounted(() => {
       <button
         v-for="(enemy, i) in enemyTeam"
         :key="i"
-        class="border-blue-600 rounded-full bg-blue-500/30"
+        class="aspect-square border-blue-600 rounded-full bg-blue-500/30"
         @click="openDex(i)"
       >
         <template v-if="playerSelection[i]">
