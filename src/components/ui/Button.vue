@@ -6,7 +6,6 @@ const props = withDefaults(defineProps<{ type?: ButtonType, variant?: ButtonVari
   variant: 'solid',
   disabled: false,
 })
-const emit = defineEmits(['click'])
 
 const variantClass = computed(() => {
   if (props.type === 'icon')
@@ -42,7 +41,6 @@ const variantClass = computed(() => {
     class="inline-flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
     :class="variantClass"
     :disabled="props.disabled"
-    @click="emit('click', $event)"
   >
     <slot />
   </button>
