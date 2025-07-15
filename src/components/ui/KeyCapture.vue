@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useKeyboardCaptureStore } from '~/stores/keyboardCapture'
 
-const props = defineProps<{ modelValue: string }>()
+const props = withDefaults(defineProps<{ modelValue: string, size?: 'sm' | 'md' | 'lg' | 'xl' }>(), {
+  size: 'md',
+})
 const emit = defineEmits<{ (e: 'update:modelValue', v: string): void }>()
 
 const captureStore = useKeyboardCaptureStore()
@@ -32,6 +34,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 <template>
   <UiKbd
     :key-name="waiting ? '?' : props.modelValue || '?'"
+    :size="props.size"
     :waiting="waiting"
     clickable
     @click="startCapture"

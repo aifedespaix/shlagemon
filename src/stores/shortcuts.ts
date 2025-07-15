@@ -41,6 +41,15 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
     shortcuts.value = [...defaultShortcuts]
   }
 
+  function setItemShortcut(itemId: string, key: string) {
+    const idx = shortcuts.value.findIndex(s => s.action.type === 'use-item' && s.action.itemId === itemId)
+    const entry: ShortcutEntry = { key, action: { type: 'use-item', itemId } }
+    if (idx >= 0)
+      shortcuts.value[idx] = entry
+    else
+      shortcuts.value.push(entry)
+  }
+
   function handleKeydown(e: KeyboardEvent) {
     const entry = shortcuts.value.find(s => s.key === e.key)
     if (!entry)
@@ -52,7 +61,7 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
     }
   }
 
-  return { shortcuts, add, update, remove, reset, handleKeydown }
+  return { shortcuts, add, update, remove, reset, setItemShortcut, handleKeydown }
 }, {
   persist: true,
 })

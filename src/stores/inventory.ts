@@ -3,21 +3,17 @@ import { defineStore } from 'pinia'
 import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
-import { useArenaStore } from './arena'
 import { useCaptureLimitModalStore } from './captureLimitModal'
 import { useFeatureLockStore } from './featureLock'
 import { useGameStore } from './game'
 import { useItemUsageStore } from './itemUsage'
 import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
-import { useTrainerBattleStore } from './trainerBattle'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Record<string, number>>({})
   const game = useGameStore()
   const dex = useShlagedexStore()
-  const arena = useArenaStore()
-  const trainerBattle = useTrainerBattleStore()
   const featureLock = useFeatureLockStore()
   const player = usePlayerStore()
   const captureLimitModal = useCaptureLimitModalStore()
