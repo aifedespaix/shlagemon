@@ -38,7 +38,6 @@ function toggleItem(id: string) {
       <UiSelectOption
         v-model="filter.status"
         :options="statusOptions"
-        class="min-w-28"
       />
       <UiSearchInput v-model="filter.search" class="flex-1" />
     </template>
