@@ -51,13 +51,15 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    const entry = shortcuts.value.find(s => s.key === e.key)
-    if (!entry)
+    const entries = shortcuts.value.filter(s => s.key === e.key)
+    if (!entries.length)
       return
-    if (entry.action.type === 'use-item') {
-      if (lock.isInventoryLocked)
-        return
-      useInventoryStore().useItem(entry.action.itemId)
+    for (const entry of entries) {
+      if (entry.action.type === 'use-item') {
+        if (lock.isInventoryLocked)
+          continue
+        useInventoryStore().useItem(entry.action.itemId)
+      }
     }
   }
 
