@@ -42,7 +42,7 @@ const variantClass = computed(() => {
     class="inline-flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
     :class="variantClass"
     :disabled="props.disabled"
-    @click="emit('click')"
+    @click="emit('click', $event)"
   >
     <slot />
   </button>
