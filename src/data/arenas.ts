@@ -5,7 +5,6 @@ import { zonesData } from './zones'
 
 function topShlagemons(zone: Zone, count = 2): BaseShlagemon[] {
   const unique = (zone.shlagemons ?? [])
-    .flatMap(b => (b.evolution?.base ? [b, b.evolution.base] : [b]))
     .reduce<Record<string, BaseShlagemon>>((acc, mon) => {
       acc[mon.id] = mon
       return acc
@@ -25,7 +24,11 @@ function generateArenaLineup(zoneId: string): BaseShlagemon[] {
       previous.push(z)
   }
   previous.reverse()
-  return previous.flatMap((z, i) => topShlagemons(z, i < 2 ? 1 : 2))
+  const lineup = previous.flatMap((z, i) => topShlagemons(z, i < 2 ? 1 : 2))
+  const last = lineup[lineup.length - 1]
+  if (last?.evolution?.base)
+    lineup[lineup.length - 1] = last.evolution.base
+  return lineup
 }
 
 interface ArenaConfig {
