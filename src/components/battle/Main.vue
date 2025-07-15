@@ -66,7 +66,7 @@ watch(
   () => dex.activeShlagemon,
   (mon, prev) => {
     if (mon && prev && prev.id !== mon.id)
-      mon.hpCurrent = mon.hp
+      mon.hpCurrent = dex.maxHp(mon)
     if (mon && prev?.id !== mon?.id)
       startBattle()
   },
