@@ -12,7 +12,7 @@ import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
+import { createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const trainerStore = useTrainerBattleStore()
@@ -44,10 +44,7 @@ function createEnemy(): DexShlagemon | null {
   if (!base)
     return null
   const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
-  const mon = createDexShlagemon(base, false, rank * EQUILIBRE_RANK)
-  mon.lvl = spec.level
-  applyStats(mon)
-  return mon
+  return createDexShlagemon(base, false, rank * EQUILIBRE_RANK, spec.level)
 }
 
 function startFight() {

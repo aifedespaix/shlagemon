@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
 import { useArenaStore } from '~/stores/arena'
-import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
+import { createDexShlagemon } from '~/utils/dexFactory'
 
 const props = defineProps<{ mon: BaseShlagemon }>()
 
@@ -10,10 +10,7 @@ const arena = useArenaStore()
 const dexMon = computed(() => {
   const lvl = arena.arenaData?.level ?? 1
   const coefficientMultiplier = lvl / props.mon.coefficient
-  const m = createDexShlagemon(props.mon, false, coefficientMultiplier)
-  m.lvl = lvl
-  applyStats(m)
-  return m
+  return createDexShlagemon(props.mon, false, coefficientMultiplier, lvl)
 })
 
 const stats = computed(() => [
