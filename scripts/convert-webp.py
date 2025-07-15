@@ -14,7 +14,7 @@ for png_path in target_path.rglob("*.png"):
     webp_path = png_path.with_suffix('.webp')
 
     if webp_path.exists() and not args.force:
-        print(f"Déjà converti : {webp_path.relative_to(target_path)}")
+        # print(f"Déjà converti : {webp_path.relative_to(target_path)}")
         continue
 
     try:
