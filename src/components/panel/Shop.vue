@@ -14,9 +14,28 @@ const shopItems = computed(() => getShop(zone.current.id)?.items || [])
 const selectedItem = ref<Item | null>(null)
 const selectedQty = ref(1)
 
+const maxQty = computed(() => {
+  if (!selectedItem.value)
+    return 1
+  const money = selectedItem.value.currency === 'shlagidiamond'
+    ? game.shlagidiamond
+    : game.shlagidolar
+  return Math.max(1, Math.floor(money / selectedItem.value.price))
+})
+
+watch(selectedItem, () => {
+  selectedQty.value = 1
+})
+
+watch(selectedQty, (v) => {
+  if (v < 1)
+    selectedQty.value = 1
+  else if (v > maxQty.value)
+    selectedQty.value = maxQty.value
+})
+
 function selectItem(item: Item) {
   selectedItem.value = item
-  selectedQty.value = 1
 }
 
 const canBuy = computed(() => {
