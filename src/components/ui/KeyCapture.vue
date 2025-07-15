@@ -33,6 +33,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
   <UiKbd
     :key-name="waiting ? '?' : props.modelValue || '?'"
     :waiting="waiting"
+    clickable
     @click="startCapture"
   />
 </template>
