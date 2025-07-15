@@ -12,7 +12,7 @@ import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { applyStats, createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
+import { createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
@@ -39,13 +39,11 @@ function createEnemy(): DexShlagemon | null {
   const base = pickRandomByCoefficient(pool)
   progress.registerEncounter(zone.current.id, base.id)
   const rank = zone.getZoneRank(zone.current.id) * EQUILIBRE_RANK
-  const created = createDexShlagemon(base, false, rank)
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
   const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
-  created.lvl = lvl
-  applyStats(created)
+  const created = createDexShlagemon(base, false, rank, lvl)
   if (created.isShiny) {
     audio.playSfx('/audio/sfx/shiny.ogg')
   }

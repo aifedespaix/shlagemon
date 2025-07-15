@@ -37,6 +37,7 @@ export function createDexShlagemon(
   base: BaseShlagemon,
   shiny = false,
   coefficientMultiplier = 1,
+  level = 1,
 ): DexShlagemon {
   const rarity = generateRarity()
   const adjustedBase: BaseShlagemon = {
@@ -54,7 +55,7 @@ export function createDexShlagemon(
     },
     captureDate: new Date().toISOString(),
     captureCount: 1,
-    lvl: 1,
+    lvl: level,
     xp: 0,
     rarity,
     hp: 0,

@@ -20,9 +20,8 @@ describe('shlagedex capture', () => {
     mon.rarity = 1
     mon.lvl = 10
     toastMock.mockClear()
-    const enemy = createDexShlagemon(carapouffe)
+    const enemy = createDexShlagemon(carapouffe, false, 1, 3)
     enemy.rarity = 5
-    enemy.lvl = 3
     applyStats(enemy)
     dex.captureEnemy(enemy)
     expect(mon.rarity).toBe(5)
@@ -45,8 +44,7 @@ describe('shlagedex capture', () => {
   it('captures new enemy with same level and rarity', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
-    const enemy = createDexShlagemon(carapouffe)
-    enemy.lvl = 17
+    const enemy = createDexShlagemon(carapouffe, false, 1, 17)
     enemy.rarity = 42
     applyStats(enemy)
     const captured = dex.captureEnemy(enemy)
@@ -61,10 +59,9 @@ describe('shlagedex capture', () => {
     existing.rarity = 3
     existing.lvl = 5
     applyStats(existing)
-    const enemy = createDexShlagemon(carapouffe)
+    const enemy = createDexShlagemon(carapouffe, false, 1, 10)
     enemy.isShiny = true
     enemy.rarity = 1
-    enemy.lvl = 10
     applyStats(enemy)
     const captured = dex.captureEnemy(enemy)
     expect(captured.id).toBe(existing.id)
