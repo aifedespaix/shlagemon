@@ -12,6 +12,7 @@ const dex = useShlagedexStore()
 const arena = useArenaStore()
 const featureLock = useFeatureLockStore()
 const panel = useMainPanelStore()
+const savedActive = ref<DexShlagemon | null>(null)
 
 const enemyTeam = computed(() => arena.lineup)
 const showDex = ref(false)
@@ -107,10 +108,15 @@ function proceedNext() {
   showDuel.value = true
 }
 
-onMounted(featureLock.lockAll)
+onMounted(() => {
+  savedActive.value = dex.activeShlagemon
+  featureLock.lockAll()
+})
 onUnmounted(() => {
   clearTimeout(nextTimer)
   featureLock.unlockAll()
+  if (savedActive.value)
+    dex.setActiveShlagemon(savedActive.value)
 })
 </script>
 
