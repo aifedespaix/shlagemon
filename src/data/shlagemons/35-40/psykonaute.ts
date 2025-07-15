@@ -1,0 +1,24 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+import accrocrack from '../evolutions/accrocrack'
+
+export const psykonaute: BaseShlagemon = {
+  id: 'psykonaute',
+  name: 'Psykonaute',
+  description: `Psykonaute est l’évolution déviante de PsychoQuack, après qu’il ait découvert les vertus du shit bon marché et des herbes douteuses trouvées sous un banc de Lavanville. Depuis, il passe ses journées avachi sur un vieux canapé, l’œil vide et le bec entrouvert, fixant un écran qui ne capte plus aucune chaîne.
+
+Il arbore un bob délavé floqué "420", des cernes interdimensionnelles et un briquet qu’il appelle "son starter". On dit que ses pouvoirs psy sont toujours là, mais qu’il les utilise uniquement pour faire léviter ses cônes quand il a la flemme de les attraper.
+
+Son attaque signature, *Chichon Cosmique*, enveloppe l’arène d’un nuage dense et sucré, réduisant drastiquement la vitesse de tous les adversaires. Il peut aussi lancer *Télécanapé*, qui l’empêche de bouger pendant 5 tours mais lui rend toute sa vie mentale (ou presque).`,
+  types: [shlagemonTypes.eau],
+  coefficient: 37,
+  evolution: {
+    base: accrocrack,
+    condition: {
+      type: 'lvl',
+      value: 85,
+    },
+  },
+}
+
+export default psykonaute

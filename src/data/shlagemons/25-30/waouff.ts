@@ -1,0 +1,24 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+import perchiste from '../evolutions/perchiste'
+
+export const waouff: BaseShlagemon = {
+  id: 'waouff',
+  name: 'Waouff',
+  description: `Waouff est le fruit d’une expérience génétique ratée entre un chat castré et un chien errant accro au pain mouillé. Ce Shlagémon aboie sur tout ce qui bouge — ou pas — et court après sa propre ombre dès qu’elle change d’orientation.
+
+Il a un regard vide mais sincère, une langue toujours pendante, et porte autour du cou un vieux collier GPS cassé qu’il lèche compulsivement. Il tente souvent de mordre des roues de vélo, même en combat, ce qui le rend imprévisible mais rarement utile.
+
+Son attaque signature, *Croquette Mental*, inflige des dégâts aléatoires en fonction de la météo, de la phase lunaire et de la marque de la balle qu'on utilise. Il peut aussi utiliser *Aboyeur Passif-Agressif*, qui inflige la confusion à tout le monde... y compris à lui-même.`,
+  types: [shlagemonTypes.normal],
+  coefficient: 29,
+  evolution: {
+    base: perchiste,
+    condition: {
+      type: 'lvl',
+      value: 38,
+    },
+  },
+}
+
+export default waouff
