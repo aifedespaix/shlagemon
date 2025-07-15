@@ -31,4 +31,15 @@ describe('evolution', () => {
     expect(mon.base.id).toBe(abraquemar.id)
     expect(mon.lvl).toBe(3)
   })
+
+  it('disables future evolutions when user rejects', async () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const evo = useEvolutionStore()
+    const mon = dex.createShlagemon(abraquemar)
+    const promise = evo.requestEvolution(mon, alakalbar)
+    evo.reject()
+    await promise
+    expect(mon.allowEvolution).toBe(false)
+  })
 })

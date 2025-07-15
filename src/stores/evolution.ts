@@ -29,6 +29,7 @@ export const useEvolutionStore = defineStore('evolution', () => {
 
   function reject() {
     if (pending.value) {
+      pending.value.mon.allowEvolution = false
       pending.value.resolve(false)
       pending.value = null
     }
