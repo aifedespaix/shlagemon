@@ -63,7 +63,7 @@ export const arena40: Arena = createArena({
   id: 'arena40',
   zoneId: 'village-paume',
   character: profMerdant,
-  level: 21,
+  level: 41,
   badge: {
     id: 'badge-merdant',
     name: 'Badge Merdant',
