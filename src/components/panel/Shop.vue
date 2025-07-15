@@ -93,10 +93,10 @@ function closeShop() {
         v-if="selectedItem"
         :disabled="!canBuy"
         type="primary"
-        class="flex items-center gap-1"
+        class="flex flex-1 items-center gap-1"
         @click="buy"
       >
-        Acheter
+        Acheter x{{ selectedQty }} pour
         <UiCurrencyAmount :amount="(selectedItem?.price || 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
       </UiButton>
       <UiButton type="danger" variant="outline" class="flex gap-2 text-xs" @click="closeShop">
