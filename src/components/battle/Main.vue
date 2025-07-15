@@ -28,9 +28,6 @@ const zoneMonsModal = useZoneMonsModalStore()
 const enemy = ref(null as DexShlagemon | null)
 
 function createEnemy(): DexShlagemon | null {
-  const active = dex.activeShlagemon
-  if (!active)
-    return null
   const available = zone.current.shlagemons?.length ? zone.current.shlagemons : allShlagemons
   let pool = available
   const last = progress.lastEncounters[zone.current.id]
@@ -111,7 +108,6 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
   if (dex.activeShlagemon)
     dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
   if (!defeated) {
-    enemy.value = null
     startBattle()
     return
   }

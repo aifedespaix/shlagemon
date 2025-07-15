@@ -80,7 +80,7 @@ function generateRarity(): number {
 export function statWithRarityAndCoefficient(base: number, coefficient: number, rarity: number): number {
   const coefficientBoost = 1 + 2.5 * (coefficient - 1) / 999 // 1.0 → 3.5
   const rarityBoost = 1 + 0.25 * (rarity - 1) / 99 // 1.0 → 1.25
-  const randomFactor = 0.95 + Math.random() * 0.1 // ±5%
-  const finalValue = base * coefficientBoost * rarityBoost * randomFactor
+  // const randomFactor = 0.95 + Math.random() * 0.1 // ±5%
+  const finalValue = base * coefficientBoost * rarityBoost
   return Math.floor(finalValue / 5) * 5 // arrondi au multiple de 5 inférieur
 }
