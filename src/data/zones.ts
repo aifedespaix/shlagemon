@@ -1,6 +1,5 @@
 import type { BaseShlagemon } from '~/type'
 import type { SavageZoneId, Zone } from '~/type/zone'
-import { arena20, arena40 } from './arenas'
 import { villageZones } from './zones/villages'
 
 interface SavageZoneDescription {
@@ -103,31 +102,3 @@ export const zonesData: Zone[] = [
   ...savageZones,
   ...grotteZones,
 ].sort((a, b) => a.minLevel - b.minLevel)
-
-function topShlagemons(zone: Zone, count = 2): BaseShlagemon[] {
-  const unique = (zone.shlagemons ?? [])
-    .flatMap(b => b.evolution?.base ? [b, b.evolution.base] : [b])
-    .reduce<Record<string, BaseShlagemon>>((acc, mon) => {
-      acc[mon.id] = mon
-      return acc
-    }, {})
-
-  return Object.values(unique)
-    .sort((a, b) => b.coefficient - a.coefficient)
-    .slice(0, count)
-}
-
-function generateArenaLineup(zoneId: string): BaseShlagemon[] {
-  const index = zonesData.findIndex(z => z.id === zoneId)
-  const previous: Zone[] = []
-  for (let i = index - 1; i >= 0 && previous.length < 4; i--) {
-    const z = zonesData[i]
-    if (z.type === 'sauvage')
-      previous.push(z)
-  }
-  previous.reverse()
-  return previous.flatMap(z => topShlagemons(z, 2))
-}
-
-arena20.lineup = generateArenaLineup('village-boule')
-arena40.lineup = generateArenaLineup('village-paume')

@@ -1,20 +1,54 @@
-import type { Arena } from '~/type'
+import type { Arena, BaseShlagemon } from '~/type'
+import type { Zone } from '~/type/zone'
 import { profMerdant } from './characters/prof-merdant'
+import { zonesData } from './zones'
 
-import ptitocard from './shlagemons/05-10/ptitocard'
-import goubite from './shlagemons/15-20/goubite'
-import piafsansbec from './shlagemons/25-30/piafsansbec'
-import canarchicon from './shlagemons/30-35/canarchicon'
-import alakalbar from './shlagemons/evolutions/alakalbar'
-import chrysachier from './shlagemons/evolutions/chrysachier'
-import coconnul from './shlagemons/evolutions/coconnul'
-import nosferasta from './shlagemons/evolutions/nosferasta'
-import raptorincel from './shlagemons/evolutions/raptorincel'
-import ratartine from './shlagemons/evolutions/ratartine'
-import rouxScoop from './shlagemons/evolutions/roux-scoop'
+function topShlagemons(zone: Zone, count = 2): BaseShlagemon[] {
+  const unique = (zone.shlagemons ?? [])
+    .flatMap(b => (b.evolution?.base ? [b, b.evolution.base] : [b]))
+    .reduce<Record<string, BaseShlagemon>>((acc, mon) => {
+      acc[mon.id] = mon
+      return acc
+    }, {})
 
-export const arena20: Arena = {
+  return Object.values(unique)
+    .sort((a, b) => b.coefficient - a.coefficient)
+    .slice(0, count)
+}
+
+function generateArenaLineup(zoneId: string): BaseShlagemon[] {
+  const index = zonesData.findIndex(z => z.id === zoneId)
+  const previous: Zone[] = []
+  for (let i = index - 1; i >= 0 && previous.length < 4; i--) {
+    const z = zonesData[i]
+    if (z.type === 'sauvage')
+      previous.push(z)
+  }
+  previous.reverse()
+  return previous.flatMap(z => topShlagemons(z, 2))
+}
+
+interface ArenaConfig {
+  id: string
+  character: typeof profMerdant
+  level: number
+  badge: Arena['badge']
+  zoneId: string
+}
+
+function createArena(config: ArenaConfig): Arena {
+  return {
+    id: config.id,
+    character: config.character,
+    level: config.level,
+    badge: config.badge,
+    lineup: generateArenaLineup(config.zoneId),
+  }
+}
+
+export const arena20: Arena = createArena({
   id: 'arena20',
+  zoneId: 'village-boule',
   character: profMerdant,
   level: 21,
   badge: {
@@ -23,18 +57,11 @@ export const arena20: Arena = {
     levelCap: 40,
     image: '',
   },
-  lineup: [
-    goubite,
-    nosferasta,
-    rouxScoop,
-    coconnul,
-    chrysachier,
-    alakalbar,
-  ],
-}
+})
 
-export const arena40: Arena = {
+export const arena40: Arena = createArena({
   id: 'arena40',
+  zoneId: 'village-paume',
   character: profMerdant,
   level: 21,
   badge: {
@@ -43,15 +70,15 @@ export const arena40: Arena = {
     levelCap: 40,
     image: '',
   },
-  lineup: [
-    nosferasta,
-    piafsansbec,
-    canarchicon,
-    ptitocard,
-    raptorincel,
-    ratartine,
-  ],
-}
+})
+
+const zone20 = zonesData.find(z => z.id === 'village-boule')
+if (zone20)
+  zone20.arena = { arena: arena20, completed: false }
+
+const zone40 = zonesData.find(z => z.id === 'village-paume')
+if (zone40)
+  zone40.arena = { arena: arena40, completed: false }
 
 export const arenas: Arena[] = [
   arena20,

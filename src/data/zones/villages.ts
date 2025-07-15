@@ -1,5 +1,4 @@
 import type { Zone } from '~/type'
-import { arena20, arena40 } from '../arenas'
 
 const village10: Zone = {
   id: 'village-veaux-du-gland',
@@ -17,10 +16,6 @@ const village20: Zone = {
   name: 'Village Sux-Mais-Bouls',
   type: 'village',
   actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }],
-  arena: {
-    arena: arena20,
-    completed: false,
-  },
   minLevel: 20,
 }
 
@@ -29,10 +24,6 @@ const village40: Zone = {
   name: 'Village Paumé du cul',
   type: 'village',
   actions: [{ id: 'shop', label: 'Entrer dans le Magasin' }],
-  arena: {
-    arena: arena40,
-    completed: false,
-  },
   minLevel: 40,
 }
 
