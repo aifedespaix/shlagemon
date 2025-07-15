@@ -137,13 +137,15 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return Math.floor(base * (1 + xpBonusPercent.value / 100))
   }
 
-  function updateCoefficient(mon: DexShlagemon) {
+  function updateCoefficient(mon: DexShlagemon, zoneId?: string) {
     if (mon.rarity !== 100)
       return
-    const last = accessibleXpZones.value[accessibleXpZones.value.length - 1]
-    if (!last)
+    const target = zoneId
+      ? { id: zoneId }
+      : accessibleXpZones.value[accessibleXpZones.value.length - 1]
+    if (!target)
       return
-    const rank = zoneStore.getZoneRank(last.id)
+    const rank = zoneStore.getZoneRank(target.id)
     const baseCoef = baseMap[mon.base.id].coefficient
     const newCoef = baseCoef * rank
     if (mon.base.coefficient !== newCoef) {
@@ -385,7 +387,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       if (activeShlagemon.value?.id === mon.id)
         activeShlagemon.value = existing
       recomputeHighestLevel()
-      updateCoefficient(existing)
+      updateCoefficient(existing, zoneStore.current.id)
     }
     else {
       mon.base = to
@@ -400,7 +402,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
-      updateCoefficient(mon)
+      updateCoefficient(mon, zoneStore.current.id)
     }
   }
 
@@ -449,8 +451,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       const healAmount = Math.round((mon.hp * healPercent) / 100)
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
+      const before = mon.base.id
       await checkEvolution(mon)
-      updateCoefficient(mon)
+      if (mon.base.id === before)
+        updateCoefficient(mon)
     }
     if (mon.lvl >= maxLevel)
       mon.xp = 0
