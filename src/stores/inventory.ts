@@ -79,7 +79,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   }
 
   function useItem(id: string) {
-    if (arena.inBattle || trainerBattle.isActive || featureLock.isInventoryLocked || !items.value[id])
+    if (featureLock.isInventoryLocked || !items.value[id])
       return false
 
     notifyAchievement({ type: 'item-used' })
