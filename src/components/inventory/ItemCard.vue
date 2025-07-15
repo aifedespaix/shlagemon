@@ -33,13 +33,18 @@ const actionLabel = computed(() => {
 
 const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 
-const { shortcuts } = storeToRefs(useShortcutsStore())
+const shortcutStore = useShortcutsStore()
+const { shortcuts } = storeToRefs(shortcutStore)
 const { isMobile } = storeToRefs(useUIStore())
 
 const shortcutKey = computed(() => {
   const entry = shortcuts.value.find(s => s.action.type === 'use-item' && s.action.itemId === props.item.id)
   return entry?.key || '?'
 })
+
+function assignShortcut(key: string) {
+  shortcutStore.setItemShortcut(props.item.id, key)
+}
 
 watch(showInfo, (val) => {
   if (val) {
@@ -71,7 +76,13 @@ watch(showInfo, (val) => {
         >
         <span class="font-bold">{{ props.item.name }}</span>
       </div>
-      <UiKbd v-if="!isMobile" size="sm" :key-name="shortcutKey" />
+      <UiKeyCapture
+        v-if="!isMobile"
+        size="sm"
+        :model-value="shortcutKey"
+        @update:model-value="assignShortcut"
+        @click.stop
+      />
     </div>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>

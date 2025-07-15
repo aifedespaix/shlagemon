@@ -93,12 +93,11 @@ function evolutionDistance(mon: DexShlagemon): number {
   const evo = mon.base.evolution
   if (!evo || evo.condition.type !== 'lvl')
     return Number.POSITIVE_INFINITY
+  if (!mon.allowEvolution)
+    return Number.POSITIVE_INFINITY
   const diff = Math.abs(evo.condition.value - mon.lvl)
-  if (mon.lvl >= evo.condition.value) {
-    if (!mon.allowEvolution)
-      return Number.POSITIVE_INFINITY
+  if (mon.lvl >= evo.condition.value)
     return diff - 1000
-  }
   return diff
 }
 

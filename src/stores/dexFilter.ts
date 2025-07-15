@@ -18,7 +18,7 @@ export const useDexFilterStore = defineStore('dexFilter', () => {
   const sortAsc = ref(false)
 
   watch(sortBy, (val) => {
-    if (val === 'name' || val === 'type' || val === 'date')
+    if (val === 'name' || val === 'type' || val === 'date' || val === 'evolution')
       sortAsc.value = true
     else
       sortAsc.value = false

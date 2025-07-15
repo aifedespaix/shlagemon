@@ -1,6 +1,11 @@
 import { defineStore } from 'pinia'
+import { allItems } from '~/data/items/items'
+import { useBallStore } from './ball'
+import { useEvolutionItemStore } from './evolutionItem'
 import { useFeatureLockStore } from './featureLock'
 import { useInventoryStore } from './inventory'
+import { useItemUsageStore } from './itemUsage'
+import { useWearableItemStore } from './wearableItem'
 
 export interface UseItemAction {
   type: 'use-item'
@@ -41,18 +46,51 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
     shortcuts.value = [...defaultShortcuts]
   }
 
+  function setItemShortcut(itemId: string, key: string) {
+    const idx = shortcuts.value.findIndex(s => s.action.type === 'use-item' && s.action.itemId === itemId)
+    const entry: ShortcutEntry = { key, action: { type: 'use-item', itemId } }
+    if (idx >= 0)
+      shortcuts.value[idx] = entry
+    else
+      shortcuts.value.push(entry)
+  }
+
   function handleKeydown(e: KeyboardEvent) {
-    const entry = shortcuts.value.find(s => s.key === e.key)
-    if (!entry)
+    const entries = shortcuts.value.filter(s => s.key === e.key)
+    if (!entries.length)
       return
-    if (entry.action.type === 'use-item') {
-      if (lock.isInventoryLocked)
-        return
-      useInventoryStore().useItem(entry.action.itemId)
+
+    if (lock.isInventoryLocked)
+      return
+
+    const inventory = useInventoryStore()
+    const usage = useItemUsageStore()
+
+    for (const entry of entries) {
+      if (entry.action.type === 'use-item') {
+        const item = allItems.find(i => i.id === entry.action.itemId)
+        if (!item)
+          continue
+
+        if ('catchBonus' in item) {
+          useBallStore().setBall(item.id as any)
+          usage.markUsed(item.id)
+        }
+        else if (item.type === 'evolution') {
+          useEvolutionItemStore().open(item)
+        }
+        else if (item.wearable) {
+          useWearableItemStore().open(item)
+        }
+        else {
+          if (inventory.useItem(item.id))
+            usage.markUsed(item.id)
+        }
+      }
     }
   }
 
-  return { shortcuts, add, update, remove, reset, handleKeydown }
+  return { shortcuts, add, update, remove, reset, setItemShortcut, handleKeydown }
 }, {
   persist: true,
 })

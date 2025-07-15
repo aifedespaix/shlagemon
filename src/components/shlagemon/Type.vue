@@ -55,7 +55,7 @@ function getAdjustedTextColor(amount = 60) {
     :class="[sizeClass, openOnClick ? 'cursor-pointer hover:opacity-80' : '']"
     :name="value.name"
     :style="{ backgroundColor: value.color, color: textColor }"
-    @click="handleClick"
+    @click.stop="handleClick"
   >
     {{ value.name }}
   </span>
