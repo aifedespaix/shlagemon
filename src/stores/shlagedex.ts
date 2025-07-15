@@ -230,6 +230,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     })
   }
 
+  function clearEffects() {
+    effects.value.slice().forEach(e => removeEffect(e.id))
+  }
+
   function boostDefense(
     percent: number,
     icon?: string,
@@ -614,6 +618,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     effectiveDefense,
     maxHp,
     xpGainForLevel,
+    clearEffects,
     effects,
     evolveWithItem,
   }

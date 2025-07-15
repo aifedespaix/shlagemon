@@ -68,6 +68,7 @@ function quit() {
 }
 
 function startBattle() {
+  dex.clearEffects()
   const team = arena.selections
     .map(id => dex.shlagemons.find(m => m.id === (id || ''))!)
     .map((mon) => {
