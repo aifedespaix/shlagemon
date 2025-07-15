@@ -56,32 +56,36 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    const entry = shortcuts.value.find(s => s.key === e.key)
-    if (!entry)
+    const entries = shortcuts.value.filter(s => s.key === e.key)
+    if (!entries.length)
       return
-    if (entry.action.type === 'use-item') {
-      if (lock.isInventoryLocked)
-        return
 
-      const item = allItems.find(i => i.id === entry.action.itemId)
-      if (!item)
-        return
+    if (lock.isInventoryLocked)
+      return
 
-      const inventory = useInventoryStore()
-      const usage = useItemUsageStore()
-      if ('catchBonus' in item) {
-        useBallStore().setBall(item.id as any)
-        usage.markUsed(item.id)
-      }
-      else if (item.type === 'evolution') {
-        useEvolutionItemStore().open(item)
-      }
-      else if (item.wearable) {
-        useWearableItemStore().open(item)
-      }
-      else {
-        if (inventory.useItem(item.id))
+    const inventory = useInventoryStore()
+    const usage = useItemUsageStore()
+
+    for (const entry of entries) {
+      if (entry.action.type === 'use-item') {
+        const item = allItems.find(i => i.id === entry.action.itemId)
+        if (!item)
+          continue
+
+        if ('catchBonus' in item) {
+          useBallStore().setBall(item.id as any)
           usage.markUsed(item.id)
+        }
+        else if (item.type === 'evolution') {
+          useEvolutionItemStore().open(item)
+        }
+        else if (item.wearable) {
+          useWearableItemStore().open(item)
+        }
+        else {
+          if (inventory.useItem(item.id))
+            usage.markUsed(item.id)
+        }
       }
     }
   }
