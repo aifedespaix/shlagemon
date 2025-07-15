@@ -7,6 +7,7 @@ describe('trainer battle store', () => {
     setActivePinia(createPinia())
     const store = useTrainerBattleStore()
     expect(store.levelUpHealPercent).toBe(15)
+    expect(store.winHealPercent).toBe(15)
   })
 
   it('isActive reflects queue state', () => {

@@ -9,7 +9,6 @@ import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
-import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { createDexShlagemon } from '~/utils/dexFactory'
@@ -17,7 +16,6 @@ import { createDexShlagemon } from '~/utils/dexFactory'
 const dex = useShlagedexStore()
 const trainerStore = useTrainerBattleStore()
 const battleStats = useBattleStatsStore()
-const wearableItemStore = useWearableItemStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const panel = useMainPanelStore()
@@ -84,11 +82,11 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
   }
   if (type === 'win') {
     if (dex.activeShlagemon) {
-      const xp = dex.xpGainForLevel(defeated.lvl)
-      await dex.gainXp(dex.activeShlagemon, xp, undefined, trainerStore.levelUpHealPercent)
-      const holder = wearableItemStore.getHolder('multi-exp')
-      if (holder)
-        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, trainerStore.levelUpHealPercent)
+      const missing = dex.activeShlagemon.hp - dex.activeShlagemon.hpCurrent
+      if (missing > 0) {
+        const heal = Math.round(missing * trainerStore.winHealPercent / 100)
+        dex.healActive(heal)
+      }
     }
     const finished = nextBattle()
     if (finished) {
