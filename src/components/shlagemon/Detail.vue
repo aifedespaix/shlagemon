@@ -131,10 +131,13 @@ const captureInfo = computed(() => {
           </UiButton>
         </div>
       </div>
-      <div v-if="evolutionInfo" class="flex-center">
+      <div v-if="evolutionInfo" class="flex-center flex-col gap-1">
         <div class="rounded-full bg-blue-200 px-2 py-0.5 text-xs text-blue-800 dark:bg-blue-700 dark:text-blue-200">
           {{ evolutionInfo }}
         </div>
+        <UiCheckBox v-model="allowEvolution" class="flex items-center gap-2 text-xs">
+          Autoriser ce Shlagémon à évoluer ?
+        </UiCheckBox>
       </div>
       <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic">
         {{ mon.base.description }}
@@ -160,9 +163,6 @@ const captureInfo = computed(() => {
           Obtenu {{ captureInfo.count }} fois
         </p>
       </div>
-      <UiCheckBox v-model="allowEvolution" class="flex items-center gap-2 text-sm">
-        Autoriser ce Shlagémon à évoluer ?
-      </UiCheckBox>
       <div class="flex justify-end gap-2">
         <UiButton type="danger" class="flex items-center gap-1" @click="requestRelease">
           <div i-carbon-trash-can />

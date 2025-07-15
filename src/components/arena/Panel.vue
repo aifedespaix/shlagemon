@@ -77,7 +77,7 @@ function startBattle() {
     })
   const enemies = enemyTeam.value.map((b) => {
     const lvl = arena.arenaData?.level ?? 1
-    const coefficientMultiplier = lvl / b.coefficient
+    const coefficientMultiplier = Math.floor(lvl / 2) - 1
     return createDexShlagemon(b, false, coefficientMultiplier, lvl)
   })
   arena.start(team, enemies)
