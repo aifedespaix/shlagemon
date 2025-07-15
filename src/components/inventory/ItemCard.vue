@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { useItemUsageStore } from '~/stores/itemUsage'
+import { useShortcutsStore } from '~/stores/shortcuts'
+import { useUIStore } from '~/stores/ui'
+import { storeToRefs } from 'pinia'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
@@ -29,6 +32,14 @@ const actionLabel = computed(() => {
 })
 
 const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
+
+const { shortcuts } = storeToRefs(useShortcutsStore())
+const { isMobile } = storeToRefs(useUIStore())
+
+const shortcutKey = computed(() => {
+  const entry = shortcuts.value.find(s => s.action.type === 'use-item' && s.action.itemId === props.item.id)
+  return entry?.key || '?'
+})
 
 watch(showInfo, (val) => {
   if (val) {
@@ -60,6 +71,7 @@ watch(showInfo, (val) => {
         >
         <span class="font-bold">{{ props.item.name }}</span>
       </div>
+      <UiKbd v-if="!isMobile" size="sm" :key-name="shortcutKey" />
     </div>
     <div class="mt-1 flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
