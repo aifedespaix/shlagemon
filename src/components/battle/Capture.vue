@@ -26,11 +26,17 @@ const showCapture = ref(false)
 const captureBall = ref(balls[0])
 const shake = ref(0)
 
+const captureCooldown = ref(false)
+
 const captureButtonDisabled = computed(() =>
-  (inventory.items[ballStore.current] || 0) <= 0 || props.enemyHp <= 0,
+  captureCooldown.value
+  || (inventory.items[ballStore.current] || 0) <= 0
+  || props.enemyHp <= 0,
 )
 
 const captureButtonTooltip = computed(() => {
+  if (captureCooldown.value)
+    return 'Patientez avant de capturer à nouveau'
   if ((inventory.items[ballStore.current] || 0) <= 0)
     return 'Pas de Shlagéball, capture impossible'
   if (props.enemyHp <= 0)
@@ -78,6 +84,10 @@ function finish(success: boolean) {
     dex.captureEnemy(capturedEnemy.value)
   capturedEnemy.value = null
   emit('finished', success)
+  if (success) {
+    captureCooldown.value = true
+    setTimeout(() => (captureCooldown.value = false), 1000)
+  }
 }
 
 defineExpose({ open })
