@@ -2,6 +2,7 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { useArenaStore } from '~/stores/arena'
 import { useFeatureLockStore } from '~/stores/featureLock'
+import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { delay } from '~/utils/delay'
@@ -10,6 +11,7 @@ import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
 const dex = useShlagedexStore()
 const arena = useArenaStore()
 const featureLock = useFeatureLockStore()
+const panel = useMainPanelStore()
 
 const enemyTeam = computed(() => arena.lineup)
 const showDex = ref(false)
@@ -58,6 +60,11 @@ watch(() => dex.activeShlagemon, (mon) => {
   arena.selectPlayer(activeSlot.value, mon.id)
   showDex.value = false
 })
+
+function quit() {
+  arena.reset()
+  panel.showVillage()
+}
 
 function startBattle() {
   const team = arena.selections

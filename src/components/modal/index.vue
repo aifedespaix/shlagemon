@@ -12,6 +12,12 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits(['update:modelValue', 'close'])
 const dialogRef = ref<HTMLDialogElement | null>(null)
 
+onUnmounted(() => {
+  const dialog = dialogRef.value
+  if (dialog?.open)
+    dialog.close()
+})
+
 function onDialogClick(e: MouseEvent) {
   if (props.closeOnOutsideClick && e.target === dialogRef.value)
     close()
