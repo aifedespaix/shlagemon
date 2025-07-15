@@ -25,7 +25,7 @@ function generateArenaLineup(zoneId: string): BaseShlagemon[] {
       previous.push(z)
   }
   previous.reverse()
-  return previous.flatMap(z => topShlagemons(z, 2))
+  return previous.flatMap((z, i) => topShlagemons(z, i < 2 ? 1 : 2))
 }
 
 interface ArenaConfig {
