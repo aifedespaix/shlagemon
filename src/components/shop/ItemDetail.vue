@@ -71,7 +71,7 @@ const details = computed(() => props.item.details || props.item.description)
           MAX
         </UiButton>
         <div class="w-20">
-          <UiNumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
+          <UiNumberInput v-model="qty" :min="1" :max="maxQty" />
         </div>
       </div>
     </div>
