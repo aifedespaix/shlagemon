@@ -66,11 +66,13 @@ const details = computed(() => props.item.details || props.item.description)
           - {{ (1 * 10 ** i).toLocaleString() }}
         </UiButton>
       </div>
-      <UiButton :disabled="qty >= maxQty" @click="setMax">
-        MAX
-      </UiButton>
-      <div class="w-20">
-        <UiNumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
+      <div class="flex items-center gap-2">
+        <UiButton :disabled="qty >= maxQty" @click="setMax">
+          MAX
+        </UiButton>
+        <div class="w-20">
+          <UiNumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
+        </div>
       </div>
     </div>
   </div>
