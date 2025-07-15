@@ -42,10 +42,12 @@ export const useBattleStore = defineStore('battle', () => {
     const musicBonus = audio.isMusicEnabled ? 1.1 : 1
     const shinyBonus = attacker.isShiny ? 1.15 : 1
     const defBonus = isPlayerDefender ? 1 + dex.bonusPercent / 100 : 1
-    const baseAttack = Math.round(attacker.attack * atkBonus * musicBonus * shinyBonus)
+    const attackStat = isPlayerAttacker ? dex.effectiveAttack(attacker) : attacker.attack
+    const defenseStat = isPlayerDefender ? dex.effectiveDefense(defender) : defender.defense
+    const baseAttack = Math.round(attackStat * atkBonus * musicBonus * shinyBonus)
     const result = computeDamage(baseAttack, atkType, defTypes)
     // Application des bonus/malus d'attaque et de défense (potions et bonus global)
-    const defenseFactor = 100 / (100 + defender.defense)
+    const defenseFactor = 100 / (100 + defenseStat)
     const rawDamage = result.damage * defenseFactor / defBonus
     const roundedDamage = Math.max(1, Math.round(rawDamage))
     let finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)

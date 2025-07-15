@@ -52,7 +52,7 @@ function createEnemy(): DexShlagemon | null {
 
 function healShlagemon() {
   if (dex.activeShlagemon)
-    dex.activeShlagemon.hpCurrent = dex.activeShlagemon?.hp
+    dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
 }
 
 async function startBattle() {
@@ -76,7 +76,7 @@ watch(
   () => zone.selectedAt,
   () => {
     if (dex.activeShlagemon)
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
     startBattle()
   },
 )
@@ -104,7 +104,7 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
   events.emit('battle:end')
 
   if (dex.activeShlagemon)
-    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+    dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
   if (!defeated) {
     startBattle()
     return

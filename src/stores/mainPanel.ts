@@ -39,7 +39,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     if (arena.inBattle)
       return
     if (dex.activeShlagemon)
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
     current.value = 'battle'
   }
 
@@ -47,7 +47,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     if (arena.inBattle)
       return
     if (dex.activeShlagemon)
-      dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+      dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
     current.value = 'trainerBattle'
   }
 

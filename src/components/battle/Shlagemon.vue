@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
+import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTypeChartModalStore } from '~/stores/typeChartModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{ (e: 'faintEnd'): void }>()
 const typeChart = useTypeChartModalStore()
+const dex = useShlagedexStore()
 
 const now = ref(Date.now())
 const timer = window.setInterval(() => {
@@ -63,6 +65,8 @@ function showTypeChart() {
   if (type)
     typeChart.open(type.id)
 }
+
+const maxHp = computed(() => dex.maxHp(props.mon))
 </script>
 
 <template>
@@ -109,13 +113,13 @@ function showTypeChart() {
     </div>
     <UiProgressBar
       :value="props.hp"
-      :max="props.mon.hp"
+      :max="maxHp"
       :color="props.color"
       class="mt-1 w-24"
       :class="{ flash: props.flash }"
     />
     <div class="w-full text-right text-sm">
-      {{ props.hp }} / {{ props.mon.hp }}
+      {{ props.hp }} / {{ maxHp }}
     </div>
   </div>
 </template>

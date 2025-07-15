@@ -72,7 +72,7 @@ export const useZoneStore = defineStore('zone', () => {
       selectedAt.value = Date.now()
       const dex = useShlagedexStore()
       if (dex.activeShlagemon && !same)
-        dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+        dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
       const visit = useZoneVisitStore()
       visit.markVisited(id)
     }
