@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useFeatureLockStore } from './featureLock'
 import { useInventoryStore } from './inventory'
 
 export interface UseItemAction {
@@ -21,6 +22,7 @@ const defaultShortcuts: ShortcutEntry[] = [
 
 export const useShortcutsStore = defineStore('shortcuts', () => {
   const shortcuts = ref<ShortcutEntry[]>([...defaultShortcuts])
+  const lock = useFeatureLockStore()
 
   function add(entry: ShortcutEntry) {
     shortcuts.value.push(entry)
@@ -43,8 +45,11 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
     const entry = shortcuts.value.find(s => s.key === e.key)
     if (!entry)
       return
-    if (entry.action.type === 'use-item')
+    if (entry.action.type === 'use-item') {
+      if (lock.isInventoryLocked)
+        return
       useInventoryStore().useItem(entry.action.itemId)
+    }
   }
 
   return { shortcuts, add, update, remove, reset, handleKeydown }
