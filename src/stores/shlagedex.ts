@@ -13,6 +13,7 @@ import {
   createDexShlagemon,
   statWithRarityAndCoefficient,
   xpForLevel,
+  xpRewardForLevel,
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useAudioStore } from './audio'
