@@ -50,7 +50,7 @@ function startFight() {
     return
   enemyIndex.value = 0
   if (dex.activeShlagemon.hpCurrent <= 0)
-    dex.activeShlagemon.hpCurrent = dex.activeShlagemon.hp
+    dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
   result.value = 'none'
   stage.value = 'battle'
   enemy.value = createEnemy()
@@ -82,7 +82,7 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
   }
   if (type === 'win') {
     if (dex.activeShlagemon) {
-      const missing = dex.activeShlagemon.hp - dex.activeShlagemon.hpCurrent
+      const missing = dex.maxHp(dex.activeShlagemon) - dex.activeShlagemon.hpCurrent
       if (missing > 0) {
         const heal = Math.round(missing * trainerStore.winHealPercent / 100)
         dex.healActive(heal)

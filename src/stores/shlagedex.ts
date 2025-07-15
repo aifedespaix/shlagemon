@@ -17,7 +17,6 @@ import {
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useAudioStore } from './audio'
-import { useDeveloperStore } from './developer'
 import { useDiseaseStore } from './disease'
 import { useEvolutionStore } from './evolution'
 import { useZoneProgressStore } from './zoneProgress'
@@ -31,7 +30,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const zoneStore = useZoneStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
-  const dev = useDeveloperStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
@@ -105,6 +103,33 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return effect?.percent || 0
   })
 
+  const attackBonusPercent = computed(() => {
+    const effect = effects.value.find(e => e.type === 'attack')
+    return effect?.percent || 0
+  })
+
+  const defenseBonusPercent = computed(() => {
+    const effect = effects.value.find(e => e.type === 'defense')
+    return effect?.percent || 0
+  })
+
+  const vitalityBonusPercent = computed(() => {
+    const effect = effects.value.find(e => e.type === 'vitality')
+    return effect?.percent || 0
+  })
+
+  function effectiveAttack(mon: DexShlagemon): number {
+    return Math.round(mon.attack * (1 + attackBonusPercent.value / 100))
+  }
+
+  function effectiveDefense(mon: DexShlagemon): number {
+    return Math.round(mon.defense * (1 + defenseBonusPercent.value / 100))
+  }
+
+  function maxHp(mon: DexShlagemon): number {
+    return Math.round(mon.hp * (1 + vitalityBonusPercent.value / 100))
+  }
+
   function xpGainForLevel(level: number): number {
     const base = xpRewardForLevel(level)
     return Math.floor(base * (1 + xpBonusPercent.value / 100))
@@ -128,7 +153,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         smelling: statWithRarityAndCoefficient(baseStats.smelling, newCoef, mon.rarity),
       }
       applyStats(mon)
-      mon.hpCurrent = mon.hp
+      mon.hpCurrent = maxHp(mon)
     }
   }
 
@@ -172,8 +197,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function healActive(amount: number) {
     if (!activeShlagemon.value)
       return
+    const max = maxHp(activeShlagemon.value)
     activeShlagemon.value.hpCurrent = Math.min(
-      activeShlagemon.value.hp,
+      max,
       activeShlagemon.value.hpCurrent + amount,
     )
   }
@@ -187,18 +213,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       clearTimeout(effect.timeoutId)
     }
     effects.value.splice(idx, 1)
-    if (!activeShlagemon.value)
-      return
-    if (effect.type === 'attack') {
-      activeShlagemon.value.attack -= effect.amount
-    }
-    else if (effect.type === 'defense') {
-      activeShlagemon.value.defense -= effect.amount
-    }
-    else if (effect.type === 'vitality') {
-      activeShlagemon.value.hp -= effect.amount
-      if (activeShlagemon.value.hpCurrent > activeShlagemon.value.hp)
-        activeShlagemon.value.hpCurrent = activeShlagemon.value.hp
+    if (effect.type === 'vitality' && activeShlagemon.value) {
+      const max = maxHp(activeShlagemon.value)
+      if (activeShlagemon.value.hpCurrent > max)
+        activeShlagemon.value.hpCurrent = max
     }
   }
 
@@ -217,8 +235,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     duration = 600000,
   ) {
     cleanupEffects()
-    if (!activeShlagemon.value)
-      return
     const now = Date.now()
     const existing = effects.value.find(e => e.type === 'defense')
     if (existing) {
@@ -231,10 +247,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       removeEffect(existing.id)
     }
-    const amount = Math.floor(activeShlagemon.value.defense * percent / 100)
-    activeShlagemon.value.defense += amount
-    if (dev.debug)
-      console.warn(`Defense boost: +${percent}%`, { amount })
     const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
       id,
@@ -243,7 +255,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      amount,
       timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
@@ -256,8 +267,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     duration = 600000,
   ) {
     cleanupEffects()
-    if (!activeShlagemon.value)
-      return
     const now = Date.now()
     const existing = effects.value.find(e => e.type === 'attack')
     if (existing) {
@@ -270,10 +279,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       removeEffect(existing.id)
     }
-    const amount = Math.floor(activeShlagemon.value.attack * percent / 100)
-    activeShlagemon.value.attack += amount
-    if (dev.debug)
-      console.warn(`Attack boost: +${percent}%`, { amount })
     const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
       id,
@@ -282,7 +287,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      amount,
       timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
@@ -295,8 +299,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     duration = 600000,
   ) {
     cleanupEffects()
-    if (!activeShlagemon.value)
-      return
     const now = Date.now()
     const existing = effects.value.find(e => e.type === 'vitality')
     if (existing) {
@@ -309,9 +311,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       removeEffect(existing.id)
     }
-    const amount = Math.floor(activeShlagemon.value.hp * percent / 100)
-    activeShlagemon.value.hp += amount
-    activeShlagemon.value.hpCurrent += amount
     const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
       id,
@@ -320,7 +319,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      amount,
       timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
@@ -378,7 +376,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
       }
       applyStats(existing)
-      existing.hpCurrent = existing.hp
+      existing.hpCurrent = maxHp(existing)
       const index = shlagemons.value.findIndex(m => m.id === mon.id)
       if (index !== -1)
         shlagemons.value.splice(index, 1)
@@ -396,7 +394,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
       }
       applyStats(mon)
-      mon.hpCurrent = mon.hp
+      mon.hpCurrent = maxHp(mon)
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
@@ -510,7 +508,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         ),
       }
       applyStats(existing)
-      existing.hpCurrent = existing.hp
+      existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
       toast(
@@ -552,7 +550,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
       }
       applyStats(existing)
-      existing.hpCurrent = existing.hp
+      existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
       toast(
@@ -610,6 +608,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     boostAttack,
     boostVitality,
     boostXp,
+    effectiveAttack,
+    effectiveDefense,
+    maxHp,
     xpGainForLevel,
     effects,
     evolveWithItem,

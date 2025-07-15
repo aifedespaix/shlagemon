@@ -50,7 +50,7 @@ export function useBattleCore(options: BattleCoreOptions) {
     if (!enemy.value || !active)
       return
     if (active.hpCurrent <= 0)
-      active.hpCurrent = active.hp
+      active.hpCurrent = dex.maxHp(active)
     playerHp.value = active.hpCurrent
     enemyHp.value = enemy.value.hpCurrent
     playerFainted.value = false

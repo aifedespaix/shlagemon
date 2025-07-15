@@ -5,6 +5,7 @@ export interface ActiveEffect {
   icon?: string
   iconClass?: string
   expiresAt: number
-  amount: number
+  /** @deprecated No longer used, kept for save compatibility */
+  amount?: number
   timeoutId?: ReturnType<typeof setTimeout>
 }
