@@ -9,7 +9,7 @@ export const aspigros: BaseShlagemon = {
     base: coconnul,
     condition: {
       type: 'lvl',
-      value: 7,
+      value: 14,
     },
   },
   description: `Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle affectueusement ses "paniers-repas". Son dard a disparu sous une couche de gras douteux, remplacé par une fourchette plantée là "par commodité".
@@ -22,7 +22,7 @@ Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il adore les
 
 On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de satiété, et à sa devise gravée sur son ventre : "Si ça rentre, c’est que c’est bon."`,
   types: [shlagemonTypes.insecte],
-  coefficient: 1,
+  coefficient: 2,
 }
 
 export default aspigros

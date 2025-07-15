@@ -9,7 +9,7 @@ export const chenipaon: BaseShlagemon = {
     base: chrysachier,
     condition: {
       type: 'lvl',
-      value: 7,
+      value: 14,
     },
   },
   description: `Chenipaon est une larve flamboyante, fruit improbable d’une chenille miteuse et d’un paon beaucoup trop narcissique. Il se déplace lentement, en traînant derrière lui une traîne de plumes multicolores qu’il a lui-même collées à la salive sur son dos mou. Ces plumes ne servent à rien, sauf à faire des "claquettes dramatiques" quand il se retourne brusquement.
@@ -20,7 +20,7 @@ Son cri officiel est enregistré dans les bases de données comme *"KRRRR-païï
 
 Il possède l’attaque spéciale *Roule Par Terre Coloré*, qui inflige des dégâts aléatoires et laisse des plumes toxiques sur le champ de bataille. Il peut également utiliser *Faux Charisme*, qui augmente brièvement son taux de critique en fonction du nombre de regards consternés qu’il reçoit.`,
   types: [shlagemonTypes.insecte],
-  coefficient: 1,
+  coefficient: 2,
 }
 
 export default chenipaon

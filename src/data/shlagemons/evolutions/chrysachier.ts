@@ -9,7 +9,7 @@ export const chrysachier: BaseShlagemon = {
     base: papysucon,
     condition: {
       type: 'lvl',
-      value: 20,
+      value: 25,
     },
   },
   description: `Chrysachier est coincée entre la majesté d’un paon et le désespoir d’une larve mal digérée. Censé être un papillon royal ou un oiseau sacré, il a raté son cocon à cause d’un excès de chips au vinaigre et d’un cycle de sommeil perturbé par ses propres flatulences.
@@ -20,7 +20,7 @@ Son cri ressemble à *"BLU-PFRT-GAAAAAAAAAAAAH"*, mélange d’effort intestinal
 
 Chrysachier ne vole pas : il s’élève un peu, puis redescend avec le bruit d’un sac de linge sale. Il est cependant très respecté dans certains cercles underground pour sa capacité à ruiner l’ambiance instantanément.`,
   types: [shlagemonTypes.insecte],
-  coefficient: 15,
+  coefficient: 10,
 }
 
 export default chrysachier

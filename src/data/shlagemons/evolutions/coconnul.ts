@@ -9,7 +9,7 @@ export const coconnul: BaseShlagemon = {
     base: dartagnan,
     condition: {
       type: 'lvl',
-      value: 20,
+      value: 25,
     },
   },
   description: `Coconnul est une tentative d'évolution qui a mal tourné. Coincé dans une coquille trop petite pour son ego mais trop grande pour ses ambitions, il passe ses journées à soupirer et à dire "j’suis désolé" même quand personne ne lui parle.
@@ -24,7 +24,7 @@ Sa capacité passive, *Auto-Sabotage*, lui fait perdre 1 point de vie à chaque 
 
 Il traîne dans les buissons, évite les regards et se planque dès qu’il entend le mot "match". Une icône de la lose, une légende de l’échec.`,
   types: [shlagemonTypes.insecte],
-  coefficient: 15,
+  coefficient: 10,
 }
 
 export default coconnul

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useKeyboardCaptureStore } from '~/stores/keyboardCapture'
-import Kbd from './Kbd.vue'
 
 const props = defineProps<{ modelValue: string }>()
 const emit = defineEmits<{ (e: 'update:modelValue', v: string): void }>()
@@ -31,7 +30,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
-  <Kbd
+  <UiKbd
     :key-name="waiting ? '?' : props.modelValue || '?'"
     :waiting="waiting"
     @click="startCapture"

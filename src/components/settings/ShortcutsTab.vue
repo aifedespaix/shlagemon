@@ -29,12 +29,12 @@ function reset() {
 <template>
   <div class="flex flex-col gap-2">
     <div v-for="(sc, idx) in store.shortcuts" :key="idx" class="flex items-center gap-2">
-      <KeyCapture
+      <UiKeyCapture
         class="w-12"
         :model-value="sc.key"
         @update:model-value="val => updateKey(idx, val)"
       />
-      <SelectOption
+      <UiSelectOption
         class="flex-1"
         :model-value="sc.action.type === 'use-item' ? sc.action.itemId : ''"
         :options="itemOptions"
