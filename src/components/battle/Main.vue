@@ -12,7 +12,7 @@ import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
+import { createDexShlagemon } from '~/utils/dexFactory'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
@@ -115,7 +115,7 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
     game.addShlagidolar(zone.rewardMultiplier)
     notifyAchievement({ type: 'battle-win', stronger })
     if (dex.activeShlagemon) {
-      const xp = xpRewardForLevel(defeated.lvl)
+      const xp = dex.xpGainForLevel(defeated.lvl)
       await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
       const holder = wearableItemStore.getHolder('multi-exp')
       if (holder)

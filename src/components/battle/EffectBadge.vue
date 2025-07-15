@@ -7,11 +7,18 @@ const emit = defineEmits<{ (e: 'click'): void }>()
 
 const remaining = computed(() => formatDuration(props.effect.expiresAt - props.now))
 
-const tooltipText = computed(() =>
-  props.effect.type === 'attack'
-    ? `Votre attaque est boostée pour encore ${remaining.value}`
-    : `Votre défense est boostée pour encore ${remaining.value}`,
-)
+const tooltipText = computed(() => {
+  switch (props.effect.type) {
+    case 'attack':
+      return `Votre attaque est boostée pour encore ${remaining.value}`
+    case 'defense':
+      return `Votre défense est boostée pour encore ${remaining.value}`
+    case 'xp':
+      return `Vos gains d'XP sont augmentés pour encore ${remaining.value}`
+    default:
+      return ''
+  }
+})
 
 const colorClasses = computed(() => {
   switch (props.effect.type) {
@@ -19,6 +26,8 @@ const colorClasses = computed(() => {
       return 'text-red-500 dark:text-red-400 bg-red-500/15 outline-red-500 dark:border-red-700'
     case 'defense':
       return 'text-blue-500 dark:text-blue-400 bg-blue-500/15 outline-blue-500 dark:border-blue-700'
+    case 'xp':
+      return 'text-green-500 dark:text-green-400 bg-green-500/15 outline-green-500 dark:border-green-700'
     default:
       return ''
   }

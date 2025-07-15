@@ -12,7 +12,7 @@ import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { createDexShlagemon, xpRewardForLevel } from '~/utils/dexFactory'
+import { createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const trainerStore = useTrainerBattleStore()
@@ -84,7 +84,7 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
   }
   if (type === 'win') {
     if (dex.activeShlagemon) {
-      const xp = xpRewardForLevel(defeated.lvl)
+      const xp = dex.xpGainForLevel(defeated.lvl)
       await dex.gainXp(dex.activeShlagemon, xp, undefined, trainerStore.levelUpHealPercent)
       const holder = wearableItemStore.getHolder('multi-exp')
       if (holder)

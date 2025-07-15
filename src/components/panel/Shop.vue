@@ -1,13 +1,38 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { getShop } from '~/data/shops'
+import { useGameStore } from '~/stores/game'
+import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useZoneStore } from '~/stores/zone'
 
 const panel = useMainPanelStore()
 const zone = useZoneStore()
+const game = useGameStore()
+const inventory = useInventoryStore()
 const shopItems = computed(() => getShop(zone.current.id)?.items || [])
 const selectedItem = ref<Item | null>(null)
+const selectedQty = ref(1)
+
+function selectItem(item: Item) {
+  selectedItem.value = item
+  selectedQty.value = 1
+}
+
+const canBuy = computed(() => {
+  if (!selectedItem.value)
+    return false
+  const cost = selectedItem.value.price * selectedQty.value
+  if (selectedItem.value.currency === 'shlagidiamond')
+    return game.shlagidiamond >= cost
+  return game.shlagidolar >= cost
+})
+
+function buy() {
+  if (!selectedItem.value)
+    return
+  inventory.buy(selectedItem.value.id, selectedQty.value)
+}
 
 function closeShop() {
   panel.showVillage()
@@ -25,19 +50,40 @@ function closeShop() {
         :key="item.id"
         :item="item"
         class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-        @click="selectedItem = item"
+        @click="selectItem(item)"
       >
-        <UiButton class="ml-auto text-xs" @click.stop="selectedItem = item">
+        <UiButton class="ml-auto text-xs" @click.stop="selectItem(item)">
           Détails
         </UiButton>
       </ShopItemCard>
     </div>
     <div v-else class="tiny-scrollbar flex-1 overflow-auto">
-      <ShopItemDetail :item="selectedItem" @close="selectedItem = null" />
+      <ShopItemDetail v-model:qty="selectedQty" :item="selectedItem" />
     </div>
-    <UiButton type="danger" variant="outline" class="flex self-end gap-2 text-xs" @click="closeShop">
-      <div class="i-carbon:exit" />
-      Quitter la boutique
-    </UiButton>
+    <div class="mt-2 flex flex-wrap gap-2 bg-white p-2 dark:bg-gray-900" md="flex-nowrap justify-end">
+      <UiButton
+        v-if="selectedItem"
+        class="text-xs"
+        variant="outline"
+        type="danger"
+        @click="selectedItem = null"
+      >
+        Retour dans le rayon
+      </UiButton>
+      <UiButton
+        v-if="selectedItem"
+        :disabled="!canBuy"
+        type="primary"
+        class="flex items-center gap-1"
+        @click="buy"
+      >
+        Acheter
+        <UiCurrencyAmount :amount="(selectedItem?.price || 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
+      </UiButton>
+      <UiButton type="danger" variant="outline" class="flex gap-2 text-xs" @click="closeShop">
+        <div class="i-carbon:exit" />
+        Quitter la boutique
+      </UiButton>
+    </div>
   </div>
 </template>

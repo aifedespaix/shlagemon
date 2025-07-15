@@ -1,9 +1,10 @@
 <script setup lang="ts">
 type Size = 'sm' | 'md' | 'lg' | 'xl'
 
-const props = withDefaults(defineProps<{ keyName: string, size?: Size, waiting?: boolean }>(), {
+const props = withDefaults(defineProps<{ keyName: string, size?: Size, waiting?: boolean, clickable?: boolean }>(), {
   size: 'md',
   waiting: false,
+  clickable: false,
 })
 
 const KEY_LABELS: Record<string, string> = {
@@ -33,6 +34,8 @@ const sizeClass = computed(() => {
       return 'text-sm px-2 py-0.5'
   }
 })
+
+const clickableClass = computed(() => props.clickable ? 'kbd-clickable' : '')
 </script>
 
 <template>
@@ -41,6 +44,7 @@ const sizeClass = computed(() => {
     :class="[
       sizeClass,
       props.waiting ? 'animate-pulse opacity-70' : '',
+      clickableClass,
     ]"
   >
     {{ label }}
@@ -60,5 +64,12 @@ const sizeClass = computed(() => {
     inset 0 -2px 0 rgba(0, 0, 0, 0.5),
     inset 0 2px 0 rgba(255, 255, 255, 0.1),
     0 1px 1px rgba(0, 0, 0, 0.3);
+}
+.kbd-clickable {
+  cursor: pointer;
+  transition: transform 0.05s;
+}
+.kbd-clickable:active {
+  transform: translateY(2px);
 }
 </style>
