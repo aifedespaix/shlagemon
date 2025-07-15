@@ -35,6 +35,7 @@ const sortOptions = [
   { label: 'Défense', value: 'defense' },
   { label: 'Nb obtentions', value: 'count' },
   { label: 'Première capture', value: 'date' },
+  { label: 'Proche d\'évoluer', value: 'evolution' },
 ] as const
 
 const displayedMons = computed(() => {
@@ -79,11 +80,27 @@ const displayedMons = computed(() => {
           ),
       )
       break
+    case 'evolution':
+      mons.sort((a, b) => evolutionDistance(a) - evolutionDistance(b))
+      break
   }
   if (!filter.sortAsc)
     mons.reverse()
   return mons
 })
+
+function evolutionDistance(mon: DexShlagemon): number {
+  const evo = mon.base.evolution
+  if (!evo || evo.condition.type !== 'lvl')
+    return Number.POSITIVE_INFINITY
+  const diff = Math.abs(evo.condition.value - mon.lvl)
+  if (mon.lvl >= evo.condition.value) {
+    if (!mon.allowEvolution)
+      return Number.POSITIVE_INFINITY
+    return diff - 1000
+  }
+  return diff
+}
 
 function handleClick(mon: DexShlagemon) {
   if (props.disabledIds.includes(mon.id))

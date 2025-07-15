@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import Shlagedex from '../src/components/shlagemon/Shlagedex.vue'
+import Shlagedex from '../src/components/panel/Shlagedex.vue'
 import { carapouffe, sacdepates } from '../src/data/shlagemons'
 import { useDexFilterStore } from '../src/stores/dexFilter'
 import { useShlagedexStore } from '../src/stores/shlagedex'

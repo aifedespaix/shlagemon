@@ -10,6 +10,7 @@ export type DexSort =
   | 'defense'
   | 'count'
   | 'date'
+  | 'evolution'
 
 export const useDexFilterStore = defineStore('dexFilter', () => {
   const search = ref('')
