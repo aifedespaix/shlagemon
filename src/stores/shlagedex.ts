@@ -127,7 +127,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function maxHp(mon: DexShlagemon): number {
-    return Math.round(mon.hp * (1 + vitalityBonusPercent.value / 100))
+    const isActive = activeShlagemon.value?.id === mon.id
+    const bonus = isActive ? vitalityBonusPercent.value : 0
+    return Math.round(mon.hp * (1 + bonus / 100))
   }
 
   function xpGainForLevel(level: number): number {
