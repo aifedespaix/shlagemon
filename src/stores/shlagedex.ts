@@ -183,15 +183,23 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (idx === -1)
       return
     const effect = effects.value[idx]
-    if (effect.timeoutId !== undefined)
+    if (effect.timeoutId !== undefined) {
       clearTimeout(effect.timeoutId)
+    }
     effects.value.splice(idx, 1)
     if (!activeShlagemon.value)
       return
-    if (effect.type === 'attack')
+    if (effect.type === 'attack') {
       activeShlagemon.value.attack -= effect.amount
-    else if (effect.type === 'defense')
+    }
+    else if (effect.type === 'defense') {
       activeShlagemon.value.defense -= effect.amount
+    }
+    else if (effect.type === 'vitality') {
+      activeShlagemon.value.hp -= effect.amount
+      if (activeShlagemon.value.hpCurrent > activeShlagemon.value.hp)
+        activeShlagemon.value.hpCurrent = activeShlagemon.value.hp
+    }
   }
 
   function cleanupEffects() {
@@ -270,6 +278,44 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const effect: ActiveEffect = {
       id,
       type: 'attack',
+      percent,
+      icon,
+      iconClass,
+      expiresAt: now + duration,
+      amount,
+      timeoutId: setTimeout(() => removeEffect(id), duration),
+    }
+    effects.value.push(effect)
+  }
+
+  function boostVitality(
+    percent: number,
+    icon?: string,
+    iconClass?: string,
+    duration = 600000,
+  ) {
+    cleanupEffects()
+    if (!activeShlagemon.value)
+      return
+    const now = Date.now()
+    const existing = effects.value.find(e => e.type === 'vitality')
+    if (existing) {
+      if (existing.percent === percent) {
+        existing.expiresAt += duration
+        if (existing.timeoutId !== undefined)
+          clearTimeout(existing.timeoutId)
+        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        return
+      }
+      removeEffect(existing.id)
+    }
+    const amount = Math.floor(activeShlagemon.value.hp * percent / 100)
+    activeShlagemon.value.hp += amount
+    activeShlagemon.value.hpCurrent += amount
+    const id = Date.now() + Math.random()
+    const effect: ActiveEffect = {
+      id,
+      type: 'vitality',
       percent,
       icon,
       iconClass,
@@ -562,6 +608,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     healActive,
     boostDefense,
     boostAttack,
+    boostVitality,
     boostXp,
     xpGainForLevel,
     effects,

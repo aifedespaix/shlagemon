@@ -134,6 +134,21 @@ export const useInventoryStore = defineStore('inventory', () => {
         remove(id)
         return true
       },
+      'vitality-potion': () => {
+        dex.boostVitality(10, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'super-vitality-potion': () => {
+        dex.boostVitality(25, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'hyper-vitality-potion': () => {
+        dex.boostVitality(50, icon, iconClass)
+        remove(id)
+        return true
+      },
       'xp-potion': () => {
         dex.boostXp(10, icon, iconClass)
         remove(id)

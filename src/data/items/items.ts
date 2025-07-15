@@ -79,6 +79,39 @@ export const hyperAttackPotion: Item = {
   iconClass: 'text-orange-700 dark:text-orange-600',
 }
 
+export const vitalityPotion: Item = {
+  id: 'vitality-potion',
+  name: 'Potion de Vitalité',
+  description: 'Augmente temporairement les PV.',
+  details: 'Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.',
+  price: 7,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:magic-potion',
+  iconClass: 'text-violet-500 dark:text-violet-400',
+}
+
+export const superVitalityPotion: Item = {
+  id: 'super-vitality-potion',
+  name: 'Super Potion de Vitalité',
+  description: 'Augmente beaucoup les PV.',
+  details: 'Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.',
+  price: 15,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:round-potion',
+  iconClass: 'text-violet-600 dark:text-violet-500',
+}
+
+export const hyperVitalityPotion: Item = {
+  id: 'hyper-vitality-potion',
+  name: 'Hyper Potion de Vitalité',
+  description: 'Maximise temporairement les PV.',
+  details: 'Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.',
+  price: 25,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:standing-potion',
+  iconClass: 'text-violet-700 dark:text-violet-600',
+}
+
 export const xpPotion: Item = {
   id: 'xp-potion',
   name: 'Potion d\'Expérience',
@@ -181,6 +214,9 @@ export const allItems: Item[] = [
   attackPotion,
   superAttackPotion,
   hyperAttackPotion,
+  vitalityPotion,
+  superVitalityPotion,
+  hyperVitalityPotion,
   superPotion,
   hyperPotion,
   xpPotion,
