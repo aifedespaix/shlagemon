@@ -16,6 +16,7 @@ import {
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useAudioStore } from './audio'
+import { useDeveloperStore } from './developer'
 import { useDiseaseStore } from './disease'
 import { useEvolutionStore } from './evolution'
 import { useZoneProgressStore } from './zoneProgress'
@@ -29,6 +30,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const zoneStore = useZoneStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
+  const dev = useDeveloperStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
@@ -212,6 +214,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
     const amount = Math.floor(activeShlagemon.value.defense * percent / 100)
     activeShlagemon.value.defense += amount
+    if (dev.debug)
+      console.warn(`Defense boost: +${percent}%`, { amount })
     const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
       id,
@@ -249,6 +253,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
     const amount = Math.floor(activeShlagemon.value.attack * percent / 100)
     activeShlagemon.value.attack += amount
+    if (dev.debug)
+      console.warn(`Attack boost: +${percent}%`, { amount })
     const id = Date.now() + Math.random()
     const effect: ActiveEffect = {
       id,
