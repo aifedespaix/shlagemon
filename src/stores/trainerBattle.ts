@@ -6,6 +6,7 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   const queue = ref<Trainer[]>([])
   const currentIndex = ref(0)
   const levelUpHealPercent = ref(15)
+  const winHealPercent = ref(15)
 
   function setQueue(list: Trainer[]) {
     queue.value = list
@@ -40,5 +41,6 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
     setQueue,
     reset,
     levelUpHealPercent,
+    winHealPercent,
   }
 })

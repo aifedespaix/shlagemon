@@ -9,10 +9,10 @@ import { useTrainerBattleStore } from '../src/stores/trainerBattle'
 import { useZoneStore } from '../src/stores/zone'
 import { useZoneProgressStore } from '../src/stores/zoneProgress'
 
-// Ensure player shlagemon is not healed between trainer battles
+// Ensure player shlagemon heals a portion of lost hp between trainer battles
 
 describe('trainer battle healing', () => {
-  it('keeps player hp between fights', async () => {
+  it('heals player and grants no xp between fights', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     expect(EQUILIBRE_RANK).toBe(2)
@@ -48,9 +48,12 @@ describe('trainer battle healing', () => {
     })
 
     wrapper.vm.startFight()
-    player.hpCurrent -= 1
+    player.hpCurrent -= 10
     const hpBefore = player.hpCurrent
+    const xpBefore = player.xp
     await wrapper.vm.onEnd('win')
-    expect(player.hpCurrent).toBe(hpBefore)
+    const expected = hpBefore + Math.round((player.hp - hpBefore) * 0.15)
+    expect(player.hpCurrent).toBe(expected)
+    expect(player.xp).toBe(xpBefore)
   })
 })
