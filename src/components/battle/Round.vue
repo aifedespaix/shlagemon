@@ -6,7 +6,6 @@ import { useDiseaseStore } from '~/stores/disease'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
 import { useZoneStore } from '~/stores/zone'
-import { xpRewardForLevel } from '~/utils/dexFactory'
 
 const props = withDefaults(defineProps<{
   player: DexShlagemon
@@ -91,7 +90,7 @@ async function onCaptureEnd(success: boolean) {
   if (success && props.enemy) {
     notifyAchievement({ type: 'capture', shiny: props.enemy.isShiny })
     if (dex.activeShlagemon) {
-      const xp = xpRewardForLevel(props.enemy.lvl)
+      const xp = dex.xpGainForLevel(props.enemy.lvl)
       await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
       const holder = wearableItemStore.getHolder('multi-exp')
       if (holder)

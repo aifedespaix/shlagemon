@@ -99,6 +99,16 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   )
   const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
+  const xpBonusPercent = computed(() => {
+    const effect = effects.value.find(e => e.type === 'xp')
+    return effect?.percent || 0
+  })
+
+  function xpGainForLevel(level: number): number {
+    const base = xpRewardForLevel(level)
+    return Math.floor(base * (1 + xpBonusPercent.value / 100))
+  }
+
   function updateCoefficient(mon: DexShlagemon) {
     if (mon.rarity !== 100)
       return
@@ -264,6 +274,39 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       iconClass,
       expiresAt: now + duration,
       amount,
+      timeoutId: setTimeout(() => removeEffect(id), duration),
+    }
+    effects.value.push(effect)
+  }
+
+  function boostXp(
+    percent: number,
+    icon?: string,
+    iconClass?: string,
+    duration = 600000,
+  ) {
+    cleanupEffects()
+    const now = Date.now()
+    const existing = effects.value.find(e => e.type === 'xp')
+    if (existing) {
+      if (existing.percent === percent) {
+        existing.expiresAt += duration
+        if (existing.timeoutId !== undefined)
+          clearTimeout(existing.timeoutId)
+        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        return
+      }
+      removeEffect(existing.id)
+    }
+    const id = Date.now() + Math.random()
+    const effect: ActiveEffect = {
+      id,
+      type: 'xp',
+      percent,
+      icon,
+      iconClass,
+      expiresAt: now + duration,
+      amount: 0,
       timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
@@ -518,6 +561,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     healActive,
     boostDefense,
     boostAttack,
+    boostXp,
+    xpGainForLevel,
     effects,
     evolveWithItem,
   }

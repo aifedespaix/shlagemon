@@ -79,6 +79,39 @@ export const hyperAttackPotion: Item = {
   iconClass: 'text-orange-700 dark:text-orange-600',
 }
 
+export const xpPotion: Item = {
+  id: 'xp-potion',
+  name: 'Potion d\'Expérience',
+  description: 'Augmente temporairement les gains d\'XP.',
+  details: 'Améliore l\'XP gagnée de 10% pendant quelques minutes.',
+  price: 7,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:magic-potion',
+  iconClass: 'text-green-600 dark:text-green-400',
+}
+
+export const superXpPotion: Item = {
+  id: 'super-xp-potion',
+  name: 'Super Potion d\'Expérience',
+  description: 'Augmente beaucoup les gains d\'XP.',
+  details: 'Améliore l\'XP gagnée de 25% pendant quelques minutes.',
+  price: 15,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:round-potion',
+  iconClass: 'text-green-700 dark:text-green-500',
+}
+
+export const hyperXpPotion: Item = {
+  id: 'hyper-xp-potion',
+  name: 'Hyper Potion d\'Expérience',
+  description: 'Maximise temporairement les gains d\'XP.',
+  details: 'Améliore l\'XP gagnée de 50% pendant quelques minutes.',
+  price: 25,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:standing-potion',
+  iconClass: 'text-green-800 dark:text-green-600',
+}
+
 export const superPotion: Item = {
   id: 'super-potion',
   name: 'Super Potion',
@@ -150,6 +183,9 @@ export const allItems: Item[] = [
   hyperAttackPotion,
   superPotion,
   hyperPotion,
+  xpPotion,
+  superXpPotion,
+  hyperXpPotion,
   multiExp,
   thunderStone,
 ]
