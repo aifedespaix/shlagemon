@@ -1,3 +1,4 @@
+import type { Component } from 'vue'
 import { defineStore } from 'pinia'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
@@ -17,7 +18,7 @@ import { useMainPanelStore } from './mainPanel'
 
 interface DialogItem {
   id: string
-  component: any
+  component: Component
   condition: () => boolean
 }
 export interface DialogDone {
