@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { useGameStore } from '~/stores/game'
-import { useInventoryStore } from '~/stores/inventory'
 
-const props = defineProps<{ item: Item }>()
-const emit = defineEmits<{ (e: 'close'): void }>()
+const props = withDefaults(defineProps<{ item: Item, qty?: number }>(), { qty: 1 })
+const emit = defineEmits<{ (e: 'update:qty', value: number): void }>()
 
 const game = useGameStore()
-const inventory = useInventoryStore()
-const qty = ref(1)
+const qty = ref(props.qty)
 
 const maxQty = computed(() => {
   const money = props.item.currency === 'shlagidiamond'
@@ -17,11 +15,16 @@ const maxQty = computed(() => {
   return Math.max(1, Math.floor(money / props.item.price))
 })
 
+watch(() => props.qty, (v) => {
+  qty.value = v
+})
+
 watch(qty, (v) => {
   if (v < 1)
     qty.value = 1
   else if (v > maxQty.value)
     qty.value = maxQty.value
+  emit('update:qty', qty.value)
 })
 
 function adjustQty(v: number) {
@@ -30,18 +33,6 @@ function adjustQty(v: number) {
 
 function setMax() {
   qty.value = maxQty.value
-}
-
-function canBuy(amount: number) {
-  const cost = props.item.price * amount
-  if (props.item.currency === 'shlagidiamond')
-    return game.shlagidiamond >= cost
-  return game.shlagidolar >= cost
-}
-
-function buy() {
-  if (inventory.buy(props.item.id, qty.value))
-    emit('close')
 }
 
 const details = computed(() => props.item.details || props.item.description)
@@ -81,14 +72,6 @@ const details = computed(() => props.item.details || props.item.description)
       <div class="w-20">
         <UiNumberInput v-model="qty" class="h-fu" :min="1" :max="maxQty" />
       </div>
-    </div>
-    <div class="mt-2 flex gap-2">
-      <UiButton type="primary" :disabled="!canBuy(qty)" class="flex flex-1 items-center gap-2" @click="buy">
-        Acheter <UiCurrencyAmount :amount="props.item.price * qty" :currency="props.item.currency ?? 'shlagidolar'" />
-      </UiButton>
-      <UiButton class="text-xs" variant="outline" type="danger" @click="emit('close')">
-        Retour
-      </UiButton>
     </div>
   </div>
 </template>
