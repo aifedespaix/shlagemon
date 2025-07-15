@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
+import { toast } from 'vue3-toastify'
 import { getShop } from '~/data/shops'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
@@ -50,7 +51,9 @@ const canBuy = computed(() => {
 function buy() {
   if (!selectedItem.value)
     return
-  inventory.buy(selectedItem.value.id, selectedQty.value)
+  const success = inventory.buy(selectedItem.value.id, selectedQty.value)
+  if (success)
+    toast.success(`Vous avez acheté ${selectedQty.value} fois cet objet`)
 }
 
 function closeShop() {
