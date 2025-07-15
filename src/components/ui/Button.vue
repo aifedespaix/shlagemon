@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { ButtonType, ButtonVariant } from '~/type/button'
 
-const props = withDefaults(defineProps<{ type?: ButtonType, variant?: ButtonVariant }>(), {
+const props = withDefaults(defineProps<{ type?: ButtonType, variant?: ButtonVariant, disabled?: boolean }>(), {
   type: 'default',
   variant: 'solid',
+  disabled: false,
 })
+const emit = defineEmits(['click'])
 
 const variantClass = computed(() => {
   if (props.type === 'icon')
@@ -36,7 +38,12 @@ const variantClass = computed(() => {
 </script>
 
 <template>
-  <button class="inline-flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50" :class="variantClass">
+  <button
+    class="inline-flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
+    :class="variantClass"
+    :disabled="props.disabled"
+    @click="emit('click')"
+  >
     <slot />
   </button>
 </template>
