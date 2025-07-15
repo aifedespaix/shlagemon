@@ -1,6 +1,6 @@
 export interface ActiveEffect {
   id: number
-  type: 'attack' | 'defense' | 'xp'
+  type: 'attack' | 'defense' | 'xp' | 'vitality'
   percent: number
   icon?: string
   iconClass?: string
