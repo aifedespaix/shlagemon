@@ -101,13 +101,31 @@ const highlightClasses = 'animate-jello animate-count-infinite color-blue-500 da
 <style scoped>
 .active {
   @apply bg-gray-200 dark:bg-gray-700 text-teal-600 dark:text-teal-400;
+  animation: menu-active 0.2s ease;
 }
 
 .button {
-  @apply flex justify-center items-center flex-1 hover:bg-gray-200 dark:hover:bg-gray-700 h-full;
+  @apply flex justify-center items-center flex-1 hover:bg-gray-200 dark:hover:bg-gray-700 h-full transition-transform;
+}
+
+.button:hover,
+.button:active {
+  transform: scale(1.1);
 }
 
 .button-circle {
   @apply rounded-l-full aspect-square bg-gray-400 dark:bg-gray-600;
+}
+
+@keyframes menu-active {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

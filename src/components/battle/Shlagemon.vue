@@ -11,6 +11,7 @@ interface Props {
   color?: string
   flipped?: boolean
   fainted?: boolean
+  flash?: boolean
   levelPosition?: 'top' | 'bottom'
   showBall?: boolean
   owned?: boolean
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   color: undefined,
   flipped: false,
   fainted: false,
+  flash: false,
   levelPosition: 'bottom',
   showBall: false,
   owned: false,
@@ -40,6 +42,17 @@ const timer = window.setInterval(() => {
 }, 1000)
 onUnmounted(() => window.clearInterval(timer))
 
+const lvlUp = ref(false)
+watch(
+  () => props.mon.lvl,
+  (val, old) => {
+    if (val > old) {
+      lvlUp.value = true
+      setTimeout(() => (lvlUp.value = false), 600)
+    }
+  },
+)
+
 function onAnimationEnd() {
   if (props.fainted)
     emit('faintEnd')
@@ -55,7 +68,7 @@ function showTypeChart() {
 <template>
   <div
     class="relative h-full flex flex-1 flex-col items-center"
-    :class="{ 'saturate-10 contrast-200': props.disease }"
+    :class="[{ 'saturate-10 contrast-200': props.disease }, { flash: props.flash }]"
   >
     <slot />
     <div class="absolute left-0 top-2 z-150 flex flex-col gap-1">
@@ -76,7 +89,11 @@ function showTypeChart() {
       :class="[props.flipped ? '-scale-x-100' : '', { faint: props.fainted }]"
       @animationend="onAnimationEnd"
     />
-    <div class="absolute left-0 text-sm font-bold" :class="props.levelPosition === 'top' ? 'top-0' : 'bottom-0'">
+    <div class="dust" :class="{ active: props.fainted }" />
+    <div
+      class="absolute left-0 text-sm font-bold"
+      :class="[props.levelPosition === 'top' ? 'top-0' : 'bottom-0', { 'lvl-up': lvlUp }]"
+    >
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
@@ -90,7 +107,13 @@ function showTypeChart() {
       </UiTooltip>
       <span class="font-bold">{{ props.mon.base.name }}</span>
     </div>
-    <UiProgressBar :value="props.hp" :max="props.mon.hp" :color="props.color" class="mt-1 w-24" />
+    <UiProgressBar
+      :value="props.hp"
+      :max="props.mon.hp"
+      :color="props.color"
+      class="mt-1 w-24"
+      :class="{ flash: props.flash }"
+    />
     <div class="w-full text-right text-sm">
       {{ props.hp }} / {{ props.mon.hp }}
     </div>
@@ -102,10 +125,47 @@ function showTypeChart() {
   animation: faint 0.6s ease forwards;
 }
 
+.dust {
+  @apply absolute left-1/2 bottom-0 h-2 w-8 pointer-events-none opacity-0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4), transparent);
+  transform: translateX(-50%) scale(0.5);
+}
+
+.dust.active {
+  animation: dust 0.6s forwards;
+}
+
+.lvl-up {
+  animation: lvl-up 0.6s ease;
+}
+
 @keyframes faint {
   to {
     transform: scale(0);
     opacity: 0;
+  }
+}
+
+@keyframes dust {
+  0% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(0.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.5);
+  }
+}
+
+@keyframes lvl-up {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 </style>

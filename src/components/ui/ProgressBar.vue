@@ -1,18 +1,30 @@
 <script setup lang="ts">
-const { value, max, color, xp } = withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   value: number
   max: number
   color?: string
   xp?: boolean
 }>(), { xp: false })
-const percent = computed(() => max === 0 ? 0 : (value / max) * 100)
+
+const percent = computed(() => props.max === 0 ? 0 : (props.value / props.max) * 100)
+const gainAnim = ref(false)
+
+watch(
+  () => props.value,
+  (val, old) => {
+    if (props.xp && val > old) {
+      gainAnim.value = true
+      setTimeout(() => (gainAnim.value = false), 400)
+    }
+  },
+)
 </script>
 
 <template>
   <div class="h-2 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700">
     <div
       class="h-full transition-all duration-300"
-      :class="xp ? 'xp-bar' : (color ?? 'bg-blue-800')"
+      :class="[props.xp ? 'xp-bar' : (props.color ?? 'bg-blue-800'), gainAnim ? 'xp-gain' : '']"
       :style="{ width: `${percent}%` }"
     />
   </div>
@@ -35,6 +47,25 @@ const percent = computed(() => max === 0 ? 0 : (value / max) * 100)
   }
   to {
     background-position: -200% 0%;
+  }
+}
+
+.xp-gain {
+  animation: xp-gain 0.4s ease;
+}
+
+@keyframes xp-gain {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 6px 2px rgba(250, 204, 21, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
   }
 }
 </style>

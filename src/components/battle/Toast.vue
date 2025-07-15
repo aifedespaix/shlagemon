@@ -26,16 +26,24 @@ const rotation = (Math.random() * 5 + 15) * (Math.random() > 0.5 ? 1 : -1)
 
 <style scoped>
 .battle-toast {
-  animation: toast-pop 0.3s ease;
+  animation: toast-pop 1s ease forwards;
 }
 @keyframes toast-pop {
-  from {
+  0% {
     opacity: 0;
-    transform: translate(-50%, -10px);
+    transform: translate(-50%, 10px);
   }
-  to {
+  20% {
     opacity: 1;
     transform: translate(-50%, 0);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
   }
 }
 </style>

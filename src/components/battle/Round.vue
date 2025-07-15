@@ -65,6 +65,8 @@ const {
   createEnemy: () => props.enemy,
 })
 
+const showConfetti = ref(false)
+
 function startBattle() {
   dex.setActiveShlagemon(displayedPlayer.value)
   coreStartBattle(displayedEnemy.value)
@@ -96,6 +98,8 @@ async function onCaptureEnd(success: boolean) {
         await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
     }
     emit('capture')
+    showConfetti.value = true
+    setTimeout(() => (showConfetti.value = false), 800)
   }
   else {
     startBattle()
@@ -189,17 +193,22 @@ function onClick(_e: MouseEvent) {
   <div class="w-full flex flex-1 flex-col items-center gap-2">
     <slot name="header" />
     <div class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4">
-      <Transition name="fade" mode="out-in">
+      <div v-if="showConfetti" class="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div class="confetti">
+          🎉
+        </div>
+      </div>
+      <Transition name="fade-scale" mode="out-in">
         <BattleShlagemon
           :key="displayedPlayer?.id"
           :mon="displayedPlayer"
           :hp="playerHp"
           :fainted="playerFainted"
+          :flash="flashPlayer"
           flipped
           :effects="props.showEffects ? dex.effects : []"
           :disease="disease.active"
           :disease-remaining="disease.remaining"
-          :class="{ flash: flashPlayer }"
           @faint-end="onPlayerFaintEnd"
         >
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
@@ -215,16 +224,16 @@ function onClick(_e: MouseEvent) {
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
       >
-        <Transition name="fade" mode="out-in">
+        <Transition name="fade-scale" mode="out-in">
           <BattleShlagemon
             :key="displayedEnemy?.id"
             :mon="displayedEnemy"
             :hp="enemyHp"
             color="bg-red-500"
             :fainted="enemyFainted"
+            :flash="flashEnemy"
             :show-ball="showOwnedBall"
             :owned="enemyOwned"
-            :class="{ flash: flashEnemy }"
             @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
@@ -255,12 +264,35 @@ function onClick(_e: MouseEvent) {
 </template>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
-.fade-enter-from,
-.fade-leave-to {
+.fade-scale-enter-from,
+.fade-scale-leave-to {
   opacity: 0;
+  transform: scale(0.9);
+}
+
+.confetti {
+  animation: confetti-pop 0.8s ease forwards;
+  font-size: 3rem;
+}
+
+@keyframes confetti-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 </style>
