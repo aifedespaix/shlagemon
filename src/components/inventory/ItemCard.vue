@@ -12,6 +12,7 @@ const emit = defineEmits<{
 const showInfo = ref(false)
 const usage = useItemUsageStore()
 const isUnused = computed(() => !usage.used[props.item.id])
+const zoom = ref(false)
 function onCardClick() {
   showInfo.value = true
   usage.markUsed(props.item.id)
@@ -28,12 +29,19 @@ const actionLabel = computed(() => {
 })
 
 const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
+
+watch(showInfo, (val) => {
+  if (val) {
+    zoom.value = true
+    setTimeout(() => (zoom.value = false), 300)
+  }
+})
 </script>
 
 <template>
   <div
     class="relative flex flex-col cursor-pointer gap-1 border rounded bg-white p-2 dark:bg-gray-900"
-    :class="isUnused ? highlightClasses : ''"
+    :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '']"
     @click="onCardClick"
   >
     <div class="flex items-center justify-between gap-2">
@@ -95,3 +103,21 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     </Modal>
   </div>
 </template>
+
+<style scoped>
+.open-zoom {
+  animation: open-zoom 0.2s ease;
+}
+
+@keyframes open-zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style>

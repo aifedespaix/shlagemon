@@ -1,3 +1,0 @@
-- audio/ambient.ogg
-- audio/battle.ogg
-- audio/sfx/confirm.ogg
