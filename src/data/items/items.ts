@@ -195,6 +195,20 @@ export const vitalityRing: Item = {
   wearable: true,
 }
 
+export const xpRing: Item = {
+  id: 'xp-ring',
+  name: 'Anneau d\'expérience',
+  description: 'Augmente l\'XP du porteur.',
+  details:
+    'Porté par un Shlagémon, il augmente l\'expérience gagnée en combat de 15%. Effet cumulable avec les potions d\'expérience.',
+  price: 20,
+  currency: 'shlagidiamond',
+  icon: 'i-game-icons:big-diamond-ring',
+  iconClass: 'text-green-600 dark:text-green-400',
+  unique: true,
+  wearable: true,
+}
+
 export const thunderStone: Item = {
   id: 'pierre-foutre',
   name: 'Pierre Foutre',
@@ -251,6 +265,7 @@ export const allItems: Item[] = [
   hyperXpPotion,
   multiExp,
   vitalityRing,
+  xpRing,
   thunderStone,
   steroids,
   ultraSteroid,

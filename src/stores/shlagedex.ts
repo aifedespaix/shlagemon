@@ -446,6 +446,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   ) {
     if (mon.lvl >= maxLevel)
       return
+    if (mon.heldItemId === 'xp-ring')
+      amount = Math.round(amount * 1.15)
     mon.xp += amount
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
