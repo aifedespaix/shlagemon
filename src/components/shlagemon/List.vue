@@ -3,7 +3,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import { useWearableItemStore } from '~/stores/wearableItem'
+import { allItems } from '~/data/items/items'
 
 interface Props {
   mons: DexShlagemon[]
@@ -21,9 +21,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const filter = useDexFilterStore()
 const dex = useShlagedexStore()
-const wearableItemStore = useWearableItemStore()
 const featureLock = useFeatureLockStore()
 const isLocked = featureLock.isShlagedexLocked
+const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 
 const sortOptions = [
   { label: 'Niveau', value: 'level' },
@@ -154,10 +154,19 @@ function changeActive(mon: DexShlagemon) {
         ]"
         @click.stop="handleClick(mon)"
       >
-        <IconMultiExp
-          v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
-          class="absolute right-1 top-1 h-4 w-4"
-        />
+        <div v-if="mon.heldItemId" class="absolute right-1 top-1 h-4 w-4">
+          <div
+            v-if="items[mon.heldItemId]?.icon"
+            class="h-4 w-4"
+            :class="[items[mon.heldItemId].icon, items[mon.heldItemId].iconClass]"
+          />
+          <img
+            v-else-if="items[mon.heldItemId]?.image"
+            :src="items[mon.heldItemId].image"
+            :alt="items[mon.heldItemId].name"
+            class="h-4 w-4 object-contain"
+          >
+        </div>
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
         </div>

@@ -1,0 +1,32 @@
+<script setup lang="ts">
+import { useWearableEquipModalStore } from '~/stores/wearableEquipModal'
+
+const store = useWearableEquipModalStore()
+</script>
+
+<template>
+  <Modal v-model="store.isVisible" footer-close>
+    <div class="flex flex-col items-center gap-2">
+      <h3 class="text-center text-lg font-bold">
+        Choisir un objet à équiper
+      </h3>
+      <div v-if="store.options.length" class="flex flex-col gap-2 w-full">
+        <UiButton
+          v-for="o in store.options"
+          :key="o.item.id"
+          class="flex items-center justify-between gap-2"
+          :disabled="o.qty <= 0"
+          @click="store.equip(o.item.id)"
+        >
+          <div class="flex items-center gap-2">
+            <div v-if="o.item.icon" class="h-6 w-6" :class="[o.item.icon, o.item.iconClass]" />
+            <img v-else-if="o.item.image" :src="o.item.image" :alt="o.item.name" class="h-6 w-6 object-contain" />
+            <span>{{ o.item.name }}</span>
+          </div>
+          <span class="text-xs font-bold">x{{ o.qty }}</span>
+        </UiButton>
+      </div>
+      <p v-else class="text-center text-sm">Aucun objet disponible.</p>
+    </div>
+  </Modal>
+</template>

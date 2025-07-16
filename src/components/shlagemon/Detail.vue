@@ -3,6 +3,8 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { useDiseaseStore } from '~/stores/disease'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useWearableItemStore } from '~/stores/wearableItem'
+import { useWearableEquipModalStore } from '~/stores/wearableEquipModal'
+import { allItems } from '~/data/items/items'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 const emit = defineEmits<{
@@ -41,8 +43,15 @@ const allowEvolution = computed({
 
 const store = useShlagedexStore()
 const wearableItemStore = useWearableItemStore()
+const equipModal = useWearableEquipModalStore()
 const disease = useDiseaseStore()
 const showConfirm = ref(false)
+
+const heldItem = computed(() => {
+  if (!props.mon?.heldItemId)
+    return null
+  return allItems.find(i => i.id === props.mon!.heldItemId) || null
+})
 
 const evolutionInfo = computed(() => {
   if (!props.mon?.base.evolution)
@@ -82,6 +91,11 @@ function confirmRelease() {
 function cancelRelease() {
   showConfirm.value = false
 }
+
+function openEquip() {
+  if (props.mon)
+    equipModal.open(props.mon)
+}
 const captureInfo = computed(() => {
   if (!props.mon)
     return { date: '', count: 0 }
@@ -117,17 +131,35 @@ const captureInfo = computed(() => {
           :shiny="mon.isShiny"
           class="w-full object-contain"
         />
-        <div
-          v-if="wearableItemStore.getHolderId('multi-exp') === mon.id"
-          class="absolute right-0 top-0 flex items-center gap-1"
-        >
-          <IconMultiExp class="h-5 w-5" />
+        <div class="absolute right-0 top-0 flex items-center gap-1">
+          <template v-if="heldItem">
+            <div
+              v-if="heldItem.icon"
+              class="h-5 w-5"
+              :class="[heldItem.icon, heldItem.iconClass]"
+            />
+            <img
+              v-else-if="heldItem.image"
+              :src="heldItem.image"
+              :alt="heldItem.name"
+              class="h-5 w-5 object-contain"
+            >
+            <UiButton
+              type="icon"
+              class="h-5 w-5"
+              @click="wearableItemStore.removeHolder(heldItem.id)"
+            >
+              <div i-carbon-trash-can />
+            </UiButton>
+          </template>
           <UiButton
+            v-else
             type="icon"
             class="h-5 w-5"
-            @click="wearableItemStore.removeHolder('multi-exp')"
+            title="Équiper un objet"
+            @click="openEquip"
           >
-            <div i-carbon-trash-can />
+            <div i-carbon-add />
           </UiButton>
         </div>
       </div>
