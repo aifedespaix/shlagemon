@@ -1,4 +1,5 @@
 import type { UserModule } from '~/types'
+import { usePwaUpdateStore } from '~/stores/pwaUpdate'
 
 // https://github.com/antfu/vite-plugin-pwa#automatic-reload-when-new-content-available
 export const install: UserModule = ({ isClient, router }) => {
@@ -8,7 +9,14 @@ export const install: UserModule = ({ isClient, router }) => {
   router.isReady()
     .then(async () => {
       const { registerSW } = await import('virtual:pwa-register')
-      registerSW({ immediate: true })
+      const store = usePwaUpdateStore()
+      const updateSW = registerSW({
+        immediate: true,
+        onNeedRefresh() {
+          store.showUpdate()
+        },
+      })
+      store.registerUpdate(updateSW)
     })
     .catch(() => {})
 }
