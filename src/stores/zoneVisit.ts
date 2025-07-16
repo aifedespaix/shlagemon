@@ -17,9 +17,9 @@ export const useZoneVisitStore = defineStore('zoneVisit', () => {
       return z.minLevel <= dex.highestLevel
     const idx = xpZones.value.findIndex(x => x.id === z.id)
     if (idx === 0)
-      return dex.highestLevel >= z.minLevel
+      return true
     const prev = xpZones.value[idx - 1]
-    return dex.highestLevel >= z.minLevel && progress.isKingDefeated(prev.id)
+    return progress.isKingDefeated(prev.id)
   }
 
   const accessibleZones = computed(() => zones.filter(z => canAccess(z)))

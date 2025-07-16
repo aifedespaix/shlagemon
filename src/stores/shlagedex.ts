@@ -43,9 +43,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       return z.minLevel <= highestLevel.value
     const idx = xpZones.value.findIndex(x => x.id === z.id)
     if (idx === 0)
-      return highestLevel.value >= z.minLevel
+      return true
     const prev = xpZones.value[idx - 1]
-    return highestLevel.value >= z.minLevel && progress.isKingDefeated(prev.id)
+    return progress.isKingDefeated(prev.id)
   }
 
   const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
