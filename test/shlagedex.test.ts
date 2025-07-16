@@ -31,6 +31,24 @@ describe('shlagedex capture', () => {
     )
   })
 
+  it('uses singular when only one point and one level are gained', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 1
+    mon.lvl = 5
+    toastMock.mockClear()
+    const enemy = createDexShlagemon(carapouffe, false, 1, 4)
+    enemy.rarity = 2
+    applyStats(enemy)
+    dex.captureEnemy(enemy)
+    expect(mon.rarity).toBe(2)
+    expect(mon.lvl).toBe(4)
+    expect(toastMock).toHaveBeenCalledWith(
+      `${mon.base.name} gagne 1 point de rareté et perd 1 niveau !`,
+    )
+  })
+
   it('turns existing mon shiny if duplicate is shiny', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()

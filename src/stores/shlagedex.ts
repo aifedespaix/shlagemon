@@ -35,6 +35,12 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
   setInterval(cleanupEffects, 1000)
 
+  function rarityToastMessage(name: string, rarityGain: number, levelLoss: number) {
+    const point = rarityGain > 1 ? 'points' : 'point'
+    const level = levelLoss > 1 ? 'niveaux' : 'niveau'
+    return `${name} gagne ${rarityGain} ${point} de rareté et perd ${levelLoss} ${level} !`
+  }
+
   const xpZones = computed(() => zonesData.filter(z => z.maxLevel > 0))
 
   function canAccess(z: Zone) {
@@ -533,9 +539,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
-      toast(
-        `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
-      )
+      toast(rarityToastMessage(existing.base.name, rarityGain, levelLoss))
       return existing
     }
     const incoming = createDexShlagemon(base, shiny)
@@ -585,9 +589,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
-      toast(
-        `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
-      )
+      toast(rarityToastMessage(existing.base.name, rarityGain, levelLoss))
       return existing
     }
     const captured: DexShlagemon = {
