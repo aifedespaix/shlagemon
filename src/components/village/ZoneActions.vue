@@ -76,6 +76,13 @@ function fightKing() {
 <template>
   <div class="actions-grid grid w-full gap-2 p-1" md="gap-3 p-2">
     <UiNavigationButton
+      v-if="zone.current.village?.shop"
+      icon="i-carbon:shopping-bag"
+      label="Magasin"
+      :disabled="arena.inBattle"
+      @click="panel.showShop()"
+    />
+    <UiNavigationButton
       v-for="action in zone.current.actions"
       :key="action.id"
       :icon="actionIcon(action.id)"

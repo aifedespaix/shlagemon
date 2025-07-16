@@ -5,7 +5,6 @@ import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
 import { allShlagemons } from '~/data/shlagemons'
-import { shops } from '~/data/shops'
 import { zonesData } from '~/data/zones'
 import {
   applyStats,
@@ -53,9 +52,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     accessibleZones.value.filter(z => z.maxLevel > 0),
   )
   const accessibleShopLevel = computed(() =>
-    shops
-      .filter(s => accessibleZones.value.some(z => z.id === s.id))
-      .reduce((m, s) => Math.max(m, s.level), 0),
+    accessibleZones.value
+      .filter(z => z.village?.shop)
+      .reduce((m, z) => Math.max(m, z.village!.shop!.level), 0),
   )
 
   const accessibleBaseIds = computed(() => {
