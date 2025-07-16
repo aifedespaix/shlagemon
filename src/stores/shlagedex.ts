@@ -483,8 +483,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const evo = mon.base.evolution
     if (!evo || evo.condition.type !== 'item' || evo.condition.value.id !== item.id)
       return false
-    if (!mon.allowEvolution)
-      return false
     const accepted = await evolutionStore.requestEvolution(mon, evo.base)
     if (!accepted)
       return false
