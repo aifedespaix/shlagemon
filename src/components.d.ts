@@ -115,6 +115,7 @@ declare module 'vue' {
     UiSelectOption: typeof import('./components/ui/SelectOption.vue')['default']
     UiSortControls: typeof import('./components/ui/SortControls.vue')['default']
     UiTooltip: typeof import('./components/ui/Tooltip.vue')['default']
+    UpdateSnackbar: typeof import('./components/UpdateSnackbar.vue')['default']
     VillageZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
     ZoneMonsModal: typeof import('./components/zone/MonsModal.vue')['default']
   }

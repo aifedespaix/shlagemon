@@ -3,5 +3,6 @@
     <LayoutHeader />
     <LayoutGameGrid class="flex-1" />
     <LayoutMobileMenu />
+    <UpdateSnackbar />
   </div>
 </template>
