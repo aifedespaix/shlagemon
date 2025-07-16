@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
-import { getShop } from '~/data/shops'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -11,7 +10,7 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const game = useGameStore()
 const inventory = useInventoryStore()
-const shopItems = computed(() => getShop(zone.current.id)?.items || [])
+const shopItems = computed(() => zone.current.village?.shop?.items || [])
 const selectedItem = ref<Item | null>(null)
 const selectedQty = ref(1)
 

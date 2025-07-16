@@ -1,4 +1,5 @@
 import type { Arena } from './arena'
+import type { Item } from './item'
 import type { BaseShlagemon } from './shlagemon'
 
 export type ZoneType = 'village' | 'grotte' | 'sauvage'
@@ -21,6 +22,12 @@ interface BaseZone {
   arena?: {
     arena: Arena
     completed: boolean
+  }
+  village?: {
+    shop?: {
+      level: number
+      items: Item[]
+    }
   }
 }
 
