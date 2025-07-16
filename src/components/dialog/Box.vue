@@ -61,7 +61,7 @@ function choose(r: DialogResponse) {
         </div>
       </div>
 
-      <div class="bg- col-span-2 h-full flex flex-col gap-2 p-2">
+      <div class="col-span-2 h-full flex flex-col gap-2 bg-gray-100 p-2 dark:bg-gray-800">
         <div class="flex flex-1 flex-col justify-center">
           <div>
             {{ currentNode?.text }}
