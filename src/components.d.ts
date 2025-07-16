@@ -36,6 +36,7 @@ declare module 'vue' {
     DialogArenaWelcomeDialog: typeof import('./components/dialog/ArenaWelcomeDialog.vue')['default']
     DialogAttackPotionDialog: typeof import('./components/dialog/AttackPotionDialog.vue')['default']
     DialogBox: typeof import('./components/dialog/Box.vue')['default']
+    DialogCapturePotionDialog: typeof import('./components/dialog/CapturePotionDialog.vue')['default']
     DialogFirstLossDialog: typeof import('./components/dialog/FirstLossDialog.vue')['default']
     DialogHalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     DialogKingUnlockDialog: typeof import('./components/dialog/KingUnlockDialog.vue')['default']

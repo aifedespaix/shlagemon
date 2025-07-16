@@ -17,6 +17,8 @@ const tooltipText = computed(() => {
       return `Vos gains d'XP sont augmentés pour encore ${remaining.value}`
     case 'vitality':
       return `Votre vitalité est augmentée pour encore ${remaining.value}`
+    case 'capture':
+      return `Vos chances de capture sont accrues pour encore ${remaining.value}`
     default:
       return ''
   }
@@ -32,6 +34,8 @@ const colorClasses = computed(() => {
       return 'text-green-500 dark:text-green-400 bg-green-500/15 outline-green-500 dark:border-green-700'
     case 'vitality':
       return 'text-violet-500 dark:text-violet-400 bg-violet-500/15 outline-violet-500 dark:border-violet-700'
+    case 'capture':
+      return 'text-teal-500 dark:text-teal-400 bg-teal-500/15 outline-teal-500 dark:border-teal-700'
     default:
       return ''
   }

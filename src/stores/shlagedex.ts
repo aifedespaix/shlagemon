@@ -125,6 +125,11 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return effect?.percent || 0
   })
 
+  const captureBonusPercent = computed(() => {
+    const effect = effects.value.find(e => e.type === 'capture')
+    return effect?.percent || 0
+  })
+
   function effectiveAttack(mon: DexShlagemon): number {
     return Math.round(mon.attack * (1 + attackBonusPercent.value / 100))
   }
@@ -374,6 +379,38 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     effects.value.push(effect)
   }
 
+  function boostCapture(
+    percent: number,
+    icon?: string,
+    iconClass?: string,
+    duration = 600000,
+  ) {
+    cleanupEffects()
+    const now = Date.now()
+    const existing = effects.value.find(e => e.type === 'capture')
+    if (existing) {
+      if (existing.percent === percent) {
+        existing.expiresAt += duration
+        if (existing.timeoutId !== undefined)
+          clearTimeout(existing.timeoutId)
+        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        return
+      }
+      removeEffect(existing.id)
+    }
+    const id = Date.now() + Math.random()
+    const effect: ActiveEffect = {
+      id,
+      type: 'capture',
+      percent,
+      icon,
+      iconClass,
+      expiresAt: now + duration,
+      timeoutId: setTimeout(() => removeEffect(id), duration),
+    }
+    effects.value.push(effect)
+  }
+
   const evolutionStore = useEvolutionStore()
 
   function applyEvolution(mon: DexShlagemon, to: BaseShlagemon) {
@@ -401,6 +438,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         equipment.unequip(mon.id)
         equipment.equip(existing.id, itemId)
       }
+      if (mon.isShiny)
+        existing.isShiny = true
       const index = shlagemons.value.findIndex(m => m.id === mon.id)
       if (index !== -1)
         shlagemons.value.splice(index, 1)
@@ -651,10 +690,12 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     boostAttack,
     boostVitality,
     boostXp,
+    boostCapture,
     effectiveAttack,
     effectiveDefense,
     maxHp,
     xpGainForLevel,
+    captureBonusPercent,
     clearEffects,
     effects,
     evolveWithItem,
