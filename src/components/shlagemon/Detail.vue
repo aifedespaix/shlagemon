@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { allItems } from '~/data/items/items'
 import { useDiseaseStore } from '~/stores/disease'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import { useWearableItemStore } from '~/stores/wearableItem'
 import { useWearableEquipModalStore } from '~/stores/wearableEquipModal'
-import { allItems } from '~/data/items/items'
+import { useWearableItemStore } from '~/stores/wearableItem'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 const emit = defineEmits<{
@@ -146,7 +146,7 @@ const captureInfo = computed(() => {
             >
             <UiButton
               type="icon"
-              class="h-5 w-5"
+              class="h-7 w-7"
               @click="wearableItemStore.removeHolder(heldItem.id)"
             >
               <div i-carbon-trash-can />
@@ -155,7 +155,7 @@ const captureInfo = computed(() => {
           <UiButton
             v-else
             type="icon"
-            class="h-5 w-5"
+            class="h-7 w-7"
             title="Équiper un objet"
             @click="openEquip"
           >
