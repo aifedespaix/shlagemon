@@ -39,6 +39,7 @@ declare module 'vue' {
     DialogFirstLossDialog: typeof import('./components/dialog/FirstLossDialog.vue')['default']
     DialogHalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     DialogLevel5Dialog: typeof import('./components/dialog/Level5Dialog.vue')['default']
+    DialogNewZoneDialog: typeof import('./components/dialog/NewZoneDialog.vue')['default']
     DialogStarter: typeof import('./components/dialog/Starter.vue')['default']
     IconBadgeFatAss: typeof import('./components/icon/badge/FatAss.vue')['default']
     IconBadgeShit: typeof import('./components/icon/badge/Shit.vue')['default']

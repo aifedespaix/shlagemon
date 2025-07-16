@@ -1,5 +1,6 @@
 import type { Component } from 'vue'
 import { defineStore } from 'pinia'
+import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
@@ -8,6 +9,7 @@ import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
+import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
@@ -15,6 +17,7 @@ import { useShlagedexStore } from '~/stores/shlagedex'
 import { useArenaStore } from './arena'
 import { useBattleStatsStore } from './battleStats'
 import { useMainPanelStore } from './mainPanel'
+import { useZoneVisitStore } from './zoneVisit'
 
 interface DialogItem {
   id: string
@@ -32,6 +35,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const panel = useMainPanelStore()
   const stats = useBattleStatsStore()
   const arena = useArenaStore()
+  const visit = useZoneVisitStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -59,6 +63,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'attackPotion',
       component: markRaw(AttackPotionDialog),
       condition: () => dex.shlagemons.length >= 10,
+    },
+    {
+      id: 'newZone',
+      component: markRaw(NewZoneDialog),
+      condition: () => visit.hasNewZone,
     },
     {
       id: 'arenaWelcome',
