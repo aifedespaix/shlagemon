@@ -123,6 +123,11 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return effect?.percent || 0
   })
 
+  const captureBonusPercent = computed(() => {
+    const effect = effects.value.find(e => e.type === 'capture')
+    return effect?.percent || 0
+  })
+
   function effectiveAttack(mon: DexShlagemon): number {
     return Math.round(mon.attack * (1 + attackBonusPercent.value / 100))
   }
@@ -367,6 +372,38 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       iconClass,
       expiresAt: now + duration,
       amount: 0,
+      timeoutId: setTimeout(() => removeEffect(id), duration),
+    }
+    effects.value.push(effect)
+  }
+
+  function boostCapture(
+    percent: number,
+    icon?: string,
+    iconClass?: string,
+    duration = 600000,
+  ) {
+    cleanupEffects()
+    const now = Date.now()
+    const existing = effects.value.find(e => e.type === 'capture')
+    if (existing) {
+      if (existing.percent === percent) {
+        existing.expiresAt += duration
+        if (existing.timeoutId !== undefined)
+          clearTimeout(existing.timeoutId)
+        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        return
+      }
+      removeEffect(existing.id)
+    }
+    const id = Date.now() + Math.random()
+    const effect: ActiveEffect = {
+      id,
+      type: 'capture',
+      percent,
+      icon,
+      iconClass,
+      expiresAt: now + duration,
       timeoutId: setTimeout(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
@@ -644,10 +681,12 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     boostAttack,
     boostVitality,
     boostXp,
+    boostCapture,
     effectiveAttack,
     effectiveDefense,
     maxHp,
     xpGainForLevel,
+    captureBonusPercent,
     clearEffects,
     effects,
     evolveWithItem,

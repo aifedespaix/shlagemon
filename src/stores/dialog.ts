@@ -6,6 +6,7 @@ import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
+import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
@@ -80,6 +81,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'xpRing',
       component: markRaw(XpRingDialog),
       condition: () => dex.shlagemons.length >= 30,
+    },
+    {
+      id: 'capturePotion',
+      component: markRaw(CapturePotionDialog),
+      condition: () => dex.highestLevel >= 50,
     },
     {
       id: 'kingUnlock',

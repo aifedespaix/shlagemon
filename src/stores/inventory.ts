@@ -151,6 +151,21 @@ export const useInventoryStore = defineStore('inventory', () => {
         remove(id)
         return true
       },
+      'capture-potion': () => {
+        dex.boostCapture(10, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'super-capture-potion': () => {
+        dex.boostCapture(25, icon, iconClass)
+        remove(id)
+        return true
+      },
+      'hyper-capture-potion': () => {
+        dex.boostCapture(50, icon, iconClass)
+        remove(id)
+        return true
+      },
       'xp-potion': () => {
         dex.boostXp(10, icon, iconClass)
         remove(id)
