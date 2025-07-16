@@ -237,4 +237,6 @@ export const allItems: Item[] = [
   hyperXpPotion,
   multiExp,
   thunderStone,
+  steroids,
+  ultraSteroid,
 ]
