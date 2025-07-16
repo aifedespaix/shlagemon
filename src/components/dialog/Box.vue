@@ -5,12 +5,13 @@ import { getCharacterTrack, getZoneTrack } from '~/data/music'
 import { useAudioStore } from '~/stores/audio'
 import { useZoneStore } from '~/stores/zone'
 
-const { dialogTree, character, avatarUrl, orientation }
+const { dialogTree, character, avatarUrl, orientation, exitTrack }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
     character: Character
     avatarUrl: string
     orientation?: 'row' | 'col'
+    exitTrack?: string
   }>(), {
     orientation: 'row',
   })
@@ -34,7 +35,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  const track = getZoneTrack(zone.current.id, zone.current.type)
+  const track = exitTrack || getZoneTrack(zone.current.id, zone.current.type)
   if (track)
     audio.fadeToMusic(track)
 })
