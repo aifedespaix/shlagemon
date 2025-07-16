@@ -51,6 +51,8 @@ export const useAudioStore = defineStore('audio', () => {
 
   function playMusic(track: string) {
     stopMusic()
+    // Vite auto import path public
+    track = track.replace('/public', '')
     currentMusic.value = createMusic(track)
     if (isMusicEnabled.value)
       currentMusic.value.play()

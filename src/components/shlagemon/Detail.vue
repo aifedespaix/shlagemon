@@ -184,7 +184,7 @@ const captureInfo = computed(() => {
             Relâcher un Shlagémon ?
           </h3>
           <p class="text-center text-sm">
-            Attention, si vous le relâchez, il ira schlagiser tout le territoire.
+            Attention, si vous le relâchez, il ira shlagiser tout le territoire.
           </p>
           <div class="flex gap-2">
             <UiButton type="valid" class="flex items-center gap-1" @click="confirmRelease">

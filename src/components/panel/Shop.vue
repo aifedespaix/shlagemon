@@ -92,15 +92,6 @@ function closeShop() {
     <div class="mt-2 flex flex-wrap gap-2 bg-white p-2 dark:bg-gray-900" md="flex-nowrap justify-end">
       <UiButton
         v-if="selectedItem"
-        class="w-full text-xs"
-        variant="outline"
-        type="danger"
-        @click="selectedItem = null"
-      >
-        Retour dans le rayon
-      </UiButton>
-      <UiButton
-        v-if="selectedItem"
         :disabled="!canBuy"
         type="primary"
         class="flex flex-1 items-center gap-1"
@@ -109,10 +100,23 @@ function closeShop() {
         Acheter x{{ selectedQty }} pour
         <UiCurrencyAmount :amount="(selectedItem?.price || 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
       </UiButton>
-      <UiButton type="danger" variant="outline" class="w-full flex gap-2 text-xs" @click="closeShop">
-        <div class="i-carbon:exit" />
-        Quitter la boutique
-      </UiButton>
+      <div class="flex gap-1" md="flex-col">
+        <UiButton
+          v-if="selectedItem"
+          class="w-full flex gap-2 text-xs"
+          variant="outline"
+          type="danger"
+          @click="selectedItem = null"
+        >
+          <div class="i-carbon:return" />
+          Retour dans le rayon
+        </UiButton>
+
+        <UiButton type="danger" variant="outline" class="w-full flex gap-2 text-xs" @click="closeShop">
+          <div class="i-carbon:exit" />
+          Quitter la boutique
+        </UiButton>
+      </div>
     </div>
   </div>
 </template>

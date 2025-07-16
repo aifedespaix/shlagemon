@@ -73,6 +73,8 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'kingUnlock',
       component: markRaw(KingUnlockDialog),
       condition: () => progress.canFightKing(zone.current.id) && !progress.isKingDefeated(zone.current.id),
+    },
+    {
       id: 'newZone',
       component: markRaw(NewZoneDialog),
       condition: () => visit.hasNewZone,
