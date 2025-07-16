@@ -50,7 +50,7 @@ function openShortcutModal() {
 
 function useFromModal() {
   showInfo.value = false
-  setTimeout(() => emit('use'), 200)
+  emit('use')
 }
 
 watch(showInfo, (val) => {
