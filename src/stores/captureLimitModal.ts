@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 import { createModalStore } from './helpers'
 
 export const useCaptureLimitModalStore = defineStore('captureLimitModal', () => {
-  const { isVisible, open: openModal, close } = createModalStore('game')
+  // Do not change mobile tab when showing this modal
+  const { isVisible, open: openModal, close } = createModalStore()
   const requiredLevel = ref(0)
 
   function open(level: number) {
