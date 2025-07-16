@@ -109,7 +109,6 @@ const captureInfo = computed(() => {
     <div
       v-if="mon"
       class="max-w-xl w-full flex flex-col gap-2 rounded bg-white dark:bg-gray-900"
-      :class="mon.rarity === 100 ? 'border-2 border-yellow-500 dark:border-yellow-400' : ''"
     >
       <h2 class="flex items-center justify-between text-lg font-bold">
         <div class="flex items-center gap-1">
