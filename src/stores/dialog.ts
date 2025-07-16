@@ -7,6 +7,7 @@ import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
+import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import { useGameStore } from '~/stores/game'
@@ -15,6 +16,8 @@ import { useShlagedexStore } from '~/stores/shlagedex'
 import { useArenaStore } from './arena'
 import { useBattleStatsStore } from './battleStats'
 import { useMainPanelStore } from './mainPanel'
+import { useZoneStore } from './zone'
+import { useZoneProgressStore } from './zoneProgress'
 
 interface DialogItem {
   id: string
@@ -32,6 +35,8 @@ export const useDialogStore = defineStore('dialog', () => {
   const panel = useMainPanelStore()
   const stats = useBattleStatsStore()
   const arena = useArenaStore()
+  const progress = useZoneProgressStore()
+  const zone = useZoneStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -59,6 +64,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'attackPotion',
       component: markRaw(AttackPotionDialog),
       condition: () => dex.shlagemons.length >= 10,
+    },
+    {
+      id: 'kingUnlock',
+      component: markRaw(KingUnlockDialog),
+      condition: () => progress.canFightKing(zone.current.id) && !progress.isKingDefeated(zone.current.id),
     },
     {
       id: 'arenaWelcome',

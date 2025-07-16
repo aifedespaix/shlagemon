@@ -38,6 +38,7 @@ declare module 'vue' {
     DialogBox: typeof import('./components/dialog/Box.vue')['default']
     DialogFirstLossDialog: typeof import('./components/dialog/FirstLossDialog.vue')['default']
     DialogHalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
+    DialogKingUnlockDialog: typeof import('./components/dialog/KingUnlockDialog.vue')['default']
     DialogLevel5Dialog: typeof import('./components/dialog/Level5Dialog.vue')['default']
     DialogStarter: typeof import('./components/dialog/Starter.vue')['default']
     IconBadgeFatAss: typeof import('./components/icon/badge/FatAss.vue')['default']
