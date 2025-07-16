@@ -75,6 +75,19 @@ export const arena40: Arena = createArena({
   },
 })
 
+export const arena60: Arena = createArena({
+  id: 'arena60',
+  zoneId: 'village-paume',
+  character: profMerdant,
+  level: 61,
+  badge: {
+    id: 'badge-fiak',
+    name: 'Badge Fiak',
+    levelCap: 80,
+    image: '',
+  },
+})
+
 const zone20 = zonesData.find(z => z.id === 'village-boule')
 if (zone20)
   zone20.arena = { arena: arena20, completed: false }
