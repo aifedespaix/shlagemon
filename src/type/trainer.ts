@@ -10,6 +10,7 @@ export interface Trainer {
   character: Character
   dialogBefore: string
   dialogAfter: string
+  dialogDefeat?: string
   reward: number
   shlagemons: TrainerShlagemon[]
 }
