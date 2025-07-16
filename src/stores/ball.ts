@@ -30,5 +30,8 @@ export const useBallStore = defineStore('ball', () => {
 
   return { current, currentBall, isVisible, open, close, setBall, reset }
 }, {
-  persist: true,
+  // only keep the current ball across reloads
+  persist: {
+    pick: ['current'],
+  },
 })
