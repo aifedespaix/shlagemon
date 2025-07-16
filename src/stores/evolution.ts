@@ -22,6 +22,7 @@ export const useEvolutionStore = defineStore('evolution', () => {
 
   function accept() {
     if (pending.value) {
+      audio.playSfx('/audio/sfx/evolued.ogg')
       pending.value.resolve(true)
       pending.value = null
     }
