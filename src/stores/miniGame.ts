@@ -49,5 +49,8 @@ export const useMiniGameStore = defineStore('miniGame', () => {
 
   return { level, score, wins, isRunning, timeLeft, start, hit, finish, scoreToWin }
 }, {
-  persist: true,
+  // persist only long term progress
+  persist: {
+    pick: ['level', 'wins'],
+  },
 })
