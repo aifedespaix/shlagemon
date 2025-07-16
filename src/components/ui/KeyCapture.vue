@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useKeyboardCaptureStore } from '~/stores/keyboardCapture'
 
-const props = withDefaults(defineProps<{ modelValue: string, size?: 'sm' | 'md' | 'lg' | 'xl' }>(), {
+const props = withDefaults(defineProps<{ modelValue: string, size?: 'sm' | 'md' | 'lg' | 'xl', autoStart?: boolean }>(), {
   size: 'md',
+  autoStart: false,
 })
 const emit = defineEmits<{ (e: 'update:modelValue', v: string): void }>()
 
@@ -32,7 +33,18 @@ function onKeydown(e: KeyboardEvent) {
 }
 
 onMounted(() => window.addEventListener('keydown', onKeydown))
-onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
+  stopCapture()
+})
+onMounted(() => {
+  if (props.autoStart)
+    startCapture()
+})
+watch(() => props.autoStart, (v) => {
+  if (v && !waiting.value)
+    startCapture()
+})
 </script>
 
 <template>

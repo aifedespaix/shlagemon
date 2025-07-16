@@ -21,6 +21,10 @@ function addShortcut() {
   store.add({ key: '', action: { type: 'use-item', itemId: firstItem.id } })
 }
 
+function removeShortcut(index: number) {
+  store.remove(index)
+}
+
 function reset() {
   store.reset()
 }
@@ -40,6 +44,9 @@ function reset() {
         :options="itemOptions"
         @update:model-value="val => updateItem(idx, val as string)"
       />
+      <UiButton type="icon" class="h-7 w-7" @click="removeShortcut(idx)">
+        <div i-carbon-close />
+      </UiButton>
     </div>
     <div class="mt-2 flex gap-2">
       <UiButton class="flex-1" @click="addShortcut">

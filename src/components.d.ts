@@ -58,6 +58,7 @@ declare module 'vue' {
     InventoryEvolutionItemModal: typeof import('./components/inventory/EvolutionItemModal.vue')['default']
     InventoryItemCard: typeof import('./components/inventory/ItemCard.vue')['default']
     InventoryWearableItemModal: typeof import('./components/inventory/WearableItemModal.vue')['default']
+    InventoryItemShortcutModal: typeof import('./components/inventory/ItemShortcutModal.vue')['default']
     LayoutGameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     LayoutHeader: typeof import('./components/layout/Header.vue')['default']
     LayoutMobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']

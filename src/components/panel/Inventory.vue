@@ -96,4 +96,5 @@ function onUse(item: Item) {
   </LayoutScrollablePanel>
   <InventoryEvolutionItemModal />
   <InventoryWearableItemModal />
+  <InventoryItemShortcutModal />
 </template>

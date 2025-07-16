@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia'
 import { useItemUsageStore } from '~/stores/itemUsage'
 import { useShortcutsStore } from '~/stores/shortcuts'
 import { useUIStore } from '~/stores/ui'
+import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
@@ -36,6 +37,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 const shortcutStore = useShortcutsStore()
 const { shortcuts } = storeToRefs(shortcutStore)
 const { isMobile } = storeToRefs(useUIStore())
+const shortcutModal = useItemShortcutModalStore()
 
 const shortcutKey = computed(() => {
   const entry = shortcuts.value.find(s => s.action.type === 'use-item' && s.action.itemId === props.item.id)
@@ -44,6 +46,10 @@ const shortcutKey = computed(() => {
 
 function assignShortcut(key: string) {
   shortcutStore.setItemShortcut(props.item.id, key)
+}
+
+function openShortcutModal() {
+  shortcutModal.open(props.item)
 }
 
 watch(showInfo, (val) => {
@@ -117,6 +123,10 @@ watch(showInfo, (val) => {
         <p class="text-center text-sm">
           {{ details }}
         </p>
+        <UiButton class="mt-2 flex items-center gap-1 text-sm" @click="openShortcutModal">
+          <div i-carbon-keyboard />
+          Ajouter un raccourci
+        </UiButton>
       </div>
     </Modal>
   </div>
