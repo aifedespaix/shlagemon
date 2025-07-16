@@ -1,4 +1,5 @@
 import type { Zone } from '~/type'
+import { arena20, arena40, arena60 } from '../arenas'
 import {
   attackPotion,
   capturePotion,
@@ -41,6 +42,10 @@ const village20: Zone = {
   type: 'village',
   actions: [],
   minLevel: 20,
+  arena: {
+    get arena() { return arena20 },
+    completed: false,
+  } as unknown as Zone['arena'],
   village: {
     shop: {
       items: [
@@ -60,6 +65,10 @@ const village40: Zone = {
   type: 'village',
   actions: [],
   minLevel: 40,
+  arena: {
+    get arena() { return arena40 },
+    completed: false,
+  } as unknown as Zone['arena'],
   village: {
     shop: {
       items: [
@@ -98,6 +107,10 @@ const village60: Zone = {
   type: 'village',
   actions: [],
   minLevel: 60,
+  arena: {
+    get arena() { return arena60 },
+    completed: false,
+  } as unknown as Zone['arena'],
   village: {
     shop: {
       items: [

@@ -45,8 +45,10 @@ function createArena(config: ArenaConfig): Arena {
     character: config.character,
     level: config.level,
     badge: config.badge,
-    lineup: generateArenaLineup(config.zoneId),
-  }
+    get lineup() {
+      return generateArenaLineup(config.zoneId)
+    },
+  } as unknown as Arena
 }
 
 export const arena20: Arena = createArena({
@@ -88,17 +90,10 @@ export const arena60: Arena = createArena({
   },
 })
 
-const zone20 = zonesData.find(z => z.id === 'village-boule')
-if (zone20)
-  zone20.arena = { arena: arena20, completed: false }
-
-const zone40 = zonesData.find(z => z.id === 'village-paume')
-if (zone40)
-  zone40.arena = { arena: arena40, completed: false }
-
 export const arenas: Arena[] = [
   arena20,
   arena40,
+  arena60,
 ]
 
 export function getArena(id: string): Arena | undefined {
