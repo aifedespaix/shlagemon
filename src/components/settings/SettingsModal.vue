@@ -44,17 +44,21 @@ function removeSave() {
         Raccourcis
       </button>
     </nav>
-    <div v-if="tab === 'save'" class="flex flex-col gap-4">
-      <p class="text-center">
-        Voulez-vous supprimer toutes vos progressions et votre sauvegarde ?
-      </p>
-      <UiButton type="danger" class="mx-auto flex items-center gap-1" @click="removeSave">
-        <div i-carbon-trash-can />
-        Supprimer
-      </UiButton>
-    </div>
-    <div v-else class="flex flex-col gap-2">
-      <ShortcutsTab />
-    </div>
+    <LayoutScrollablePanel class="max-h-60vh">
+      <template #content>
+        <div v-if="tab === 'save'" class="flex flex-col gap-4">
+          <p class="text-center">
+            Voulez-vous supprimer toutes vos progressions et votre sauvegarde ?
+          </p>
+          <UiButton type="danger" class="mx-auto flex items-center gap-1" @click="removeSave">
+            <div i-carbon-trash-can />
+            Supprimer
+          </UiButton>
+        </div>
+        <div v-else class="flex flex-col gap-2">
+          <ShortcutsTab />
+        </div>
+      </template>
+    </LayoutScrollablePanel>
   </Modal>
 </template>
