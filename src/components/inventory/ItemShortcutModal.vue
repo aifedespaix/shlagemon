@@ -5,8 +5,6 @@ import { useShortcutsStore } from '~/stores/shortcuts'
 const modal = useItemShortcutModalStore()
 const shortcuts = useShortcutsStore()
 
-const details = computed(() => modal.current?.details || modal.current?.description)
-
 function assign(key: string) {
   if (!modal.current)
     return
@@ -17,28 +15,30 @@ function assign(key: string) {
 
 <template>
   <Modal v-model="modal.isVisible" :close-on-outside-click="false">
-    <div class="flex flex-col items-center gap-2">
-      <div
-        v-if="modal.current?.icon"
-        class="h-10 w-10"
-        :class="[modal.current.iconClass, modal.current.icon]"
-      />
-      <img
-        v-else-if="modal.current?.image"
-        :src="modal.current.image"
-        :alt="modal.current?.name"
-        class="h-10 w-10 object-contain"
-      >
-      <h3 class="text-lg font-bold text-center">
-        {{ modal.current?.name }}
+    <div class="flex flex-col items-center gap-4">
+      <h3 class="text-center text-lg font-bold">
+        Assigner un raccourci clavier pour cet objet
       </h3>
-      <p class="text-center text-sm">
-        {{ details }}
-      </p>
-      <p class="text-center text-sm">
-        Appuyez sur une touche pour assigner un raccourci à cet objet.
-      </p>
-      <UiKeyCapture auto-start size="lg" model-value="" @update:model-value="assign" />
+      <div class="flex flex-col items-center gap-2">
+        <div
+          v-if="modal.current?.icon"
+          class="h-10 w-10"
+          :class="[modal.current.iconClass, modal.current.icon]"
+        />
+        <img
+          v-else-if="modal.current?.image"
+          :src="modal.current.image"
+          :alt="modal.current?.name"
+          class="h-10 w-10 object-contain"
+        >
+        <span class="text-center font-semibold">{{ modal.current?.name }}</span>
+      </div>
+      <div class="w-full flex flex-col items-center gap-2 border rounded p-2">
+        <p class="text-center text-sm">
+          Appuyez sur une touche pour assigner le raccourci clavier
+        </p>
+        <UiKeyCapture auto-start size="lg" model-value="" @update:model-value="assign" />
+      </div>
     </div>
   </Modal>
 </template>
