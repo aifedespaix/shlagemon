@@ -45,6 +45,7 @@ watch(() => props.autoStart, (v) => {
   if (v && !waiting.value)
     startCapture()
 })
+defineExpose({ startCapture, stopCapture })
 </script>
 
 <template>
