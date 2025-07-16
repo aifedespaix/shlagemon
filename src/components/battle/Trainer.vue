@@ -176,8 +176,8 @@ onUnmounted(featureLock.unlockAll)
       </BattleRound>
     </template>
 
-    <div v-else class="flex flex-col items-center gap-2 text-center">
-      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
+    <div v-else class="h-full flex flex-col items-center gap-2 text-center">
+      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="min-h-24 flex-1" />
       <div v-if="result === 'win'">
         {{ trainer.dialogAfter }}
       </div>
