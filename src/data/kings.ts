@@ -48,7 +48,7 @@ function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: n
 }
 
 export const kings: Trainer[] = [
-  createKing('plaine-kekette', caillou, 2, 'Je protege cette plaine, prepare-toi!', 'Hum, tu m\'as battu, chanceux.'),
+  createKing('plaine-kekette', caillou, 2, 'Je protege cette plaine, prepare-toi !', 'Hum, tu m\'as battu, chanceux.'),
   createKing('bois-de-bouffon', sachatte, 3, 'Ces bois seront ta tombe.', 'Je reviendrai plus fort.'),
   createKing('chemin-du-slip', norman, 4, 'Entres dans ma grotte si tu l\'oses.', 'Ta victoire ne sera que temporaire.'),
   createKing('ravin-fesse-molle', marineLahaine, 4, 'Le ravin te verra chuter!', 'Incroyable... tu as gagné.'),
