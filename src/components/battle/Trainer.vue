@@ -182,7 +182,7 @@ onUnmounted(featureLock.unlockAll)
         {{ trainer.dialogAfter }}
       </div>
       <div v-else class="text-red-600 font-bold dark:text-red-400">
-        Défaite...
+        {{ trainer.dialogDefeat || 'Défaite...' }}
       </div>
       <div v-if="result === 'win'" class="font-bold">
         +{{ trainer.reward }} Shlagédiamonds
