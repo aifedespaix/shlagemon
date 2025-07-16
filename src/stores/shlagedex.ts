@@ -431,6 +431,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       applyStats(existing)
       existing.hpCurrent = maxHp(existing)
+      if (mon.isShiny)
+        existing.isShiny = true
       const index = shlagemons.value.findIndex(m => m.id === mon.id)
       if (index !== -1)
         shlagemons.value.splice(index, 1)
