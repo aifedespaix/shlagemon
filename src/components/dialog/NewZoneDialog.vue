@@ -2,11 +2,13 @@
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import { useInventoryStore } from '~/stores/inventory'
+import { useMobileTabStore } from '~/stores/mobileTab'
 import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
 const visit = useZoneVisitStore()
+const mobile = useMobileTabStore()
 
 const dialogTree: DialogNode[] = [
   {
@@ -43,6 +45,7 @@ const dialogTree: DialogNode[] = [
         action: () => {
           inventory.add('xp-potion', 1)
           visit.markAllAccessibleVisited()
+          mobile.set('zones')
           emit('done', 'newZone')
         },
       },
