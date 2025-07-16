@@ -17,13 +17,13 @@ export function xpRewardForLevel(level: number): number {
 }
 
 export function applyStats(mon: DexShlagemon) {
-  if (!mon.baseStats) {
-    mon.baseStats = {
-      hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
-      attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
-      defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
-      smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
-    }
+  // Always recompute base stats from the original values to avoid accumulating
+  // rounding errors or chaining previous modifications.
+  mon.baseStats = {
+    hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
+    attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
+    defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
+    smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
   }
   const levelBoost = 1 + (mon.lvl - 1) * 0.02
   mon.hp = Math.floor((mon.baseStats.hp + (mon.lvl - 1) * 5) * levelBoost)

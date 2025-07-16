@@ -8,9 +8,7 @@ import { allShlagemons } from '~/data/shlagemons'
 import { zonesData } from '~/data/zones'
 import {
   applyStats,
-  baseStats,
   createDexShlagemon,
-  statWithRarityAndCoefficient,
   xpForLevel,
   xpRewardForLevel,
 } from '~/utils/dexFactory'
@@ -165,12 +163,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const baseCoef = baseMap[mon.base.id].coefficient
     const newCoef = baseCoef * rank
     mon.base.coefficient = newCoef
-    mon.baseStats = {
-      hp: statWithRarityAndCoefficient(baseStats.hp, newCoef, mon.rarity),
-      attack: statWithRarityAndCoefficient(baseStats.attack, newCoef, mon.rarity),
-      defense: statWithRarityAndCoefficient(baseStats.defense, newCoef, mon.rarity),
-      smelling: statWithRarityAndCoefficient(baseStats.smelling, newCoef, mon.rarity),
-    }
     applyStats(mon)
     if (heal)
       mon.hpCurrent = maxHp(mon)
@@ -426,12 +418,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       existing.lvl = 1
       existing.xp = 0
-      existing.baseStats = {
-        hp: statWithRarityAndCoefficient(baseStats.hp, existing.base.coefficient, existing.rarity),
-        attack: statWithRarityAndCoefficient(baseStats.attack, existing.base.coefficient, existing.rarity),
-        defense: statWithRarityAndCoefficient(baseStats.defense, existing.base.coefficient, existing.rarity),
-        smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
-      }
       applyStats(existing)
       existing.hpCurrent = maxHp(existing)
       if (mon.heldItemId) {
@@ -451,12 +437,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
     else {
       mon.base = to
-      mon.baseStats = {
-        hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
-        attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
-        defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
-        smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
-      }
       applyStats(mon)
       mon.hpCurrent = maxHp(mon)
       mon.captureDate = new Date().toISOString()
@@ -561,28 +541,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         existing.isShiny = true
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
-      existing.baseStats = {
-        hp: statWithRarityAndCoefficient(
-          baseStats.hp,
-          existing.base.coefficient,
-          existing.rarity,
-        ),
-        attack: statWithRarityAndCoefficient(
-          baseStats.attack,
-          existing.base.coefficient,
-          existing.rarity,
-        ),
-        defense: statWithRarityAndCoefficient(
-          baseStats.defense,
-          existing.base.coefficient,
-          existing.rarity,
-        ),
-        smelling: statWithRarityAndCoefficient(
-          baseStats.smelling,
-          existing.base.coefficient,
-          existing.rarity,
-        ),
-      }
       applyStats(existing)
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
@@ -627,12 +585,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.isShiny ||= enemy.isShiny
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
-      existing.baseStats = {
-        hp: statWithRarityAndCoefficient(baseStats.hp, existing.base.coefficient, existing.rarity),
-        attack: statWithRarityAndCoefficient(baseStats.attack, existing.base.coefficient, existing.rarity),
-        defense: statWithRarityAndCoefficient(baseStats.defense, existing.base.coefficient, existing.rarity),
-        smelling: statWithRarityAndCoefficient(baseStats.smelling, existing.base.coefficient, existing.rarity),
-      }
       applyStats(existing)
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
