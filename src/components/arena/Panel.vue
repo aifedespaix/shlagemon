@@ -206,7 +206,7 @@ onUnmounted(() => {
         </Modal>
       </div>
     </div>
-    <div v-if="showDuel" class="flex flex-1 flex-col items-center gap-2">
+    <div v-if="showDuel" class="w-full flex flex-1 flex-col items-center gap-2">
       <ArenaDuel
         :player="arena.team[arena.currentIndex]"
         :enemy="arena.enemyTeam[arena.currentIndex]"
