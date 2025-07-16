@@ -1,9 +1,10 @@
 import type { MainPanel } from './mainPanel'
-import type { ZoneId } from '~/type/zone'
+import type { ZoneId, ZoneType } from '~/type/zone'
 import { useMediaQuery } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { getCharacterTrack, getZoneBattleTrack, getZoneTrack } from '~/data/music'
+import { getArenaTrack, getCharacterTrack, getZoneBattleTrack, getZoneTrack } from '~/data/music'
 import { useAchievementsStore } from './achievements'
+import { useArenaStore } from './arena'
 import { useAudioStore } from './audio'
 import { useDialogStore } from './dialog'
 import { useGameStateStore } from './gameState'
@@ -17,6 +18,7 @@ export const useUIStore = defineStore('ui', () => {
   const mainPanel = useMainPanelStore()
   const zone = useZoneStore()
   const trainerBattle = useTrainerBattleStore()
+  const arena = useArenaStore()
   const audio = useAudioStore()
   const dialogStore = useDialogStore()
   const gameState = useGameStateStore()
@@ -50,14 +52,15 @@ export const useUIStore = defineStore('ui', () => {
     return classes.join(' ')
   })
 
-  watch<[MainPanel, ZoneId, string | undefined, string], true>(
+  watch<[MainPanel, ZoneId, string | undefined, ZoneType, boolean], true>(
     () => [
       mainPanel.current,
       zone.current.id,
       trainerBattle.current?.character.id,
       zone.current.type,
+      arena.inBattle,
     ],
-    ([panel, zoneId, trainerCharId, zoneType]) => {
+    ([panel, zoneId, trainerCharId, zoneType, inArenaBattle]) => {
       if (panel === 'shop') {
         audio.fadeToMusic('/audio/musics/shop.ogg')
         return
@@ -76,6 +79,15 @@ export const useUIStore = defineStore('ui', () => {
           audio.fadeToMusic(track)
         else if (trainerCharId)
           console.warn(`Missing music for character ${trainerCharId}`)
+      }
+      else if (panel === 'arena') {
+        const track = inArenaBattle
+          ? getArenaTrack(arena.arenaData?.id)
+          : getArenaTrack('preparation')
+        if (track)
+          audio.fadeToMusic(track)
+        else if (arena.arenaData?.id)
+          console.warn(`Missing music for arena ${arena.arenaData.id}`)
       }
       else {
         const track = getZoneTrack(zoneId, zoneType)

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
+import { getArenaTrack } from '~/data/music'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 
 const emit = defineEmits(['done'])
 const arena = useArenaStore()
 const panel = useMainPanelStore()
+const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
 
 function quit() {
   arena.reset()
@@ -38,5 +40,6 @@ const dialogTree: DialogNode[] = [
     :character="arena.arenaData!.character"
     :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
+    :exit-track="preparationMusic"
   />
 </template>
