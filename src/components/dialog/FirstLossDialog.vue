@@ -23,7 +23,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step3',
-    text: 'Pour gagner, tu peux tabasser le Shlagémon adverse pour aider le tient. Pour ce faire, rien de plus simple, fracasse le avec ton doigt ou ta souris.',
+    text: 'Pour gagner, tu peux tabasser le Shlagémon adverse pour aider le tien. Pour ce faire, rien de plus simple, fracasse le avec ton doigt ou ta souris.',
     responses: [
       { label: 'Je vais essayer', nextId: 'step4', type: 'primary' },
     ],
