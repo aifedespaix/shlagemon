@@ -92,6 +92,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
       const arenaStore = useArenaStore()
       if (store.current === 'arena' && !arenaStore.inBattle)
         store.reset()
+      if (store.current === 'trainerBattle')
+        store.reset()
     },
   },
 })
