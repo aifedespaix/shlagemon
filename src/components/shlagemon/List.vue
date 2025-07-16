@@ -91,14 +91,19 @@ const displayedMons = computed(() => {
 
 function evolutionDistance(mon: DexShlagemon): number {
   const evo = mon.base.evolution
-  if (!evo || evo.condition.type !== 'lvl')
+  if (!evo)
     return Number.POSITIVE_INFINITY
   if (!mon.allowEvolution)
     return Number.POSITIVE_INFINITY
-  const diff = Math.abs(evo.condition.value - mon.lvl)
-  if (mon.lvl >= evo.condition.value)
-    return diff - 1000
-  return diff
+  if (evo.condition.type === 'item')
+    return -2000
+  if (evo.condition.type === 'lvl') {
+    const diff = Math.abs(evo.condition.value - mon.lvl)
+    if (mon.lvl >= evo.condition.value)
+      return diff - 1000
+    return diff
+  }
+  return Number.POSITIVE_INFINITY
 }
 
 function handleClick(mon: DexShlagemon) {
