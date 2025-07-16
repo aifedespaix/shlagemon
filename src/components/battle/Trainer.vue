@@ -140,7 +140,7 @@ onUnmounted(featureLock.unlockAll)
 
 <template>
   <div class="relative flex flex-col gap-1 overflow-auto p-1">
-    <div v-if="stage === 'before'" class="flex flex-col items-center gap-2 text-center">
+    <div v-if="stage === 'before'" class="h-full flex flex-col items-center gap-2 text-center">
       <template v-if="isZoneKing">
         <div class="font-bold capitalize">
           {{ kingLabel }} de la zone
@@ -149,7 +149,7 @@ onUnmounted(featureLock.unlockAll)
           {{ trainer.character.name }}
         </div>
       </template>
-      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="h-24" />
+      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="min-h-24 flex-1" />
       <div>{{ trainer.dialogBefore }}</div>
       <div class="flex gap-2">
         <UiButton type="primary" @click="startFight">

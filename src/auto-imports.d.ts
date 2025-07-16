@@ -721,7 +721,6 @@ declare module 'vue' {
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
-    readonly useWearableEquipModalStore: UnwrapRef<typeof import('./stores/wearableEquipModal')['useWearableEquipModalStore']>
     readonly useWearableItemStore: UnwrapRef<typeof import('./stores/wearableItem')['useWearableItemStore']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
