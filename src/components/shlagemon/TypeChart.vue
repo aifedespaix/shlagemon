@@ -15,19 +15,33 @@ function getMultiplier(att: typeof types[number], def: typeof types[number]) {
 </script>
 
 <template>
-  <div class="overflow-auto">
-    <table class="w-full border-collapse text-center text-xs">
+  <div class="tiny-scrollbar max-h-[70vh] max-w-full overflow-auto">
+    <table class="min-w-max w-full border-collapse text-center text-xs">
       <thead>
         <tr>
-          <th class="p-1" />
-          <th v-for="t in types" :key="t.id" class="p-1">
+          <!-- Coin supérieur gauche -->
+          <th
+            class="sticky left-0 top-0 z-30 bg-white p-1 dark:bg-gray-900"
+            style="box-shadow: 2px 2px 0 0 rgba(0,0,0,0.05);"
+          />
+          <!-- Entêtes de colonne (types défenseurs) -->
+          <th
+            v-for="t in types"
+            :key="t.id"
+            class="sticky top-0 z-20 bg-white p-1 dark:bg-gray-900"
+            style="box-shadow: 0 2px 0 0 rgba(0,0,0,0.03);"
+          >
             <ShlagemonType :value="t" />
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="atk in types" :key="atk.id">
-          <th class="p-1 text-right">
+          <!-- Première colonne (types attaquants) -->
+          <th
+            class="sticky left-0 z-10 bg-white p-1 text-right dark:bg-gray-900"
+            style="box-shadow: 2px 0 0 0 rgba(0,0,0,0.03);"
+          >
             <ShlagemonType :value="atk" />
           </th>
           <td
