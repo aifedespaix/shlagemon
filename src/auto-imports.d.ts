@@ -223,6 +223,7 @@ declare global {
   const useInventoryModalStore: typeof import('./stores/inventoryModal')['useInventoryModalStore']
   const useInventoryStore: typeof import('./stores/inventory')['useInventoryStore']
   const useItemUsageStore: typeof import('./stores/itemUsage')['useItemUsageStore']
+  const useItemShortcutModalStore: typeof import('./stores/itemShortcutModal')['useItemShortcutModalStore']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
@@ -620,6 +621,7 @@ declare module 'vue' {
     readonly useInventoryFilterStore: UnwrapRef<typeof import('./stores/inventoryFilter')['useInventoryFilterStore']>
     readonly useInventoryStore: UnwrapRef<typeof import('./stores/inventory')['useInventoryStore']>
     readonly useItemUsageStore: UnwrapRef<typeof import('./stores/itemUsage')['useItemUsageStore']>
+    readonly useItemShortcutModalStore: UnwrapRef<typeof import('./stores/itemShortcutModal')['useItemShortcutModalStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
