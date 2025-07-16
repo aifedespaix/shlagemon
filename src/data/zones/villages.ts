@@ -2,7 +2,6 @@ import type { Zone } from '~/type'
 import {
   attackPotion,
   defensePotion,
-  multiExp,
   potion,
   steroids,
   superAttackPotion,
@@ -59,8 +58,11 @@ const village40: Zone = {
   village: {
     shop: {
       items: [
-        multiExp,
         thunderStone,
+        superXpPotion,
+        superDefensePotion,
+        superAttackPotion,
+        superVitalityPotion,
       ],
     },
   },
