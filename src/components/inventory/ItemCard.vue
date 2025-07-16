@@ -44,10 +44,6 @@ const shortcutKey = computed(() => {
   return entry?.key || '?'
 })
 
-function assignShortcut(key: string) {
-  shortcutStore.setItemShortcut(props.item.id, key)
-}
-
 function openShortcutModal() {
   shortcutModal.open(props.item)
 }
@@ -82,14 +78,14 @@ watch(showInfo, (val) => {
         >
         <span class="font-bold">{{ props.item.name }}</span>
       </div>
-      <UiKeyCapture
+      <UiKbd
         v-if="!isMobile"
+        clickable
         size="sm"
-        :model-value="shortcutKey"
+        :key-name="shortcutKey"
         class="self-baseline"
-        title="Définir un raccourcis clavier pour cet objet."
-        @update:model-value="assignShortcut"
-        @click.stop
+        title="Définir un raccourci clavier pour cet objet."
+        @click.stop="openShortcutModal"
       />
     </div>
     <div class="flex items-center justify-end gap-1">
@@ -123,10 +119,6 @@ watch(showInfo, (val) => {
         <p class="text-center text-sm">
           {{ details }}
         </p>
-        <UiButton class="mt-2 flex items-center gap-1 text-sm" @click="openShortcutModal">
-          <div i-carbon-keyboard />
-          Ajouter un raccourci
-        </UiButton>
       </div>
     </Modal>
   </div>
