@@ -93,13 +93,13 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 - Système de capture cohérent
 - Superposition de capture et mise en avant des "shiny".
 - Probabilité d'un Shiny : 0.01%
-- Affichage de l'efficacité en combat via une bulle de d'info.
+- Affichage de l'efficacité en combat via une bulle d'info.
 - Ajout d'une dizaine de Shlagémons
 
 ### Corrigé
 
 - Empêcher le débordement du panneau d'information du joueur avec des points de suspension.
-- Pleins de bug corrigés, flemme de détailler
+- Plein de bugs corrigés, flemme de détailler
 
 ## [0.2.0] - 2025-06-30
 
