@@ -56,12 +56,12 @@ watch(showInfo, (val) => {
 
 <template>
   <div
-    class="relative flex flex-col cursor-pointer gap-1 border rounded bg-white p-2 dark:bg-gray-900"
+    class="relative flex flex-col cursor-pointer gap-1 border rounded bg-white p-1 dark:bg-gray-900"
     :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '']"
     @click="onCardClick"
   >
-    <div class="flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
+    <div class="flex items-center justify-between gap-1">
+      <div class="flex items-center gap-1">
         <div
           v-if="props.item.icon"
           class="h-8 w-8"
@@ -80,11 +80,13 @@ watch(showInfo, (val) => {
         v-if="!isMobile"
         size="sm"
         :model-value="shortcutKey"
+        class="self-baseline"
+        title="Définir un raccourcis clavier pour cet objet."
         @update:model-value="assignShortcut"
         @click.stop
       />
     </div>
-    <div class="mt-1 flex items-center justify-end gap-1">
+    <div class="flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
       <UiButton
         class="flex items-center gap-1 text-xs"
@@ -95,13 +97,6 @@ watch(showInfo, (val) => {
         {{ actionLabel }}
       </UiButton>
     </div>
-    <button
-      class="absolute bottom-1 left-1 h-4 w-4 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
-      @click.stop="showInfo = true"
-    >
-      <div i-carbon-help class="text-xs" />
-    </button>
-
     <Modal v-model="showInfo" footer-close>
       <div class="flex flex-col items-center gap-2">
         <div
