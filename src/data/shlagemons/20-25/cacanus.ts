@@ -1,0 +1,28 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+import ricardnin from '../evolutions/ricardnin'
+
+export const cacanus: BaseShlagemon = {
+  id: 'cacanus',
+  name: 'Cacanus',
+  description: `Cacanus est un petit chien flamboyant dont l’obsession tourne autour d’un seul et unique point cardinal : l’anus.
+
+Né dans une ruelle à côté d’un centre de compostage, il a grandi en développant une passion étrange pour les odeurs fortes, les frottements suspects, et tout ce qui sort par derrière. Sa truffe est si fine qu’il peut deviner ce qu’un ennemi a mangé il y a trois jours, rien qu’en flairant une chaise vide.
+
+Il attaque rarement de face : son style de combat est centré sur la diversion fécale. Son attaque *Jet de Glandes Anales* inflige des dégâts sur la durée et baisse drastiquement la dignité de l’adversaire. Il peut aussi creuser un petit terrier appelé *Tunnel du Cul*, dans lequel il se cache pour préparer des coups bas (littéralement).
+
+On dit que lorsqu’il est content, il ne remue pas la queue : il te l’offre comme un cadeau, bien sale, bien chaud. Il est l’incarnation canine de l’humour douteux et des plaisirs honteux.
+
+Son flair est légendaire, mais son hygiène mentale, beaucoup moins.`,
+  types: [shlagemonTypes.feu, shlagemonTypes.poison],
+  coefficient: 37,
+  evolution: {
+    base: ricardnin,
+    condition: {
+      type: 'lvl',
+      value: 54,
+    },
+  },
+}
+
+export default cacanus
