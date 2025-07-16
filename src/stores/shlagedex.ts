@@ -17,6 +17,7 @@ import {
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
 import { useAudioStore } from './audio'
 import { useDiseaseStore } from './disease'
+import { useEquipmentStore } from './equipment'
 import { useEvolutionStore } from './evolution'
 import { useZoneProgressStore } from './zoneProgress'
 
@@ -29,6 +30,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const zoneStore = useZoneStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
+  const equipment = useEquipmentStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   cleanupEffects()
   watchEffect(cleanupEffects)
@@ -431,6 +433,11 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       }
       applyStats(existing)
       existing.hpCurrent = maxHp(existing)
+      if (mon.heldItemId) {
+        const itemId = mon.heldItemId
+        equipment.unequip(mon.id)
+        equipment.equip(existing.id, itemId)
+      }
       if (mon.isShiny)
         existing.isShiny = true
       const index = shlagemons.value.findIndex(m => m.id === mon.id)
