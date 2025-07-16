@@ -658,6 +658,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const index = shlagemons.value.findIndex(m => m.id === mon.id)
     if (index === -1)
       return
+    equipment.unequip(mon.id)
     shlagemons.value.splice(index, 1)
     if (activeShlagemon.value?.id === mon.id)
       activeShlagemon.value = shlagemons.value[0] || null
