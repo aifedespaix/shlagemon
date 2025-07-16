@@ -10,6 +10,10 @@ const captureStore = useKeyboardCaptureStore()
 const waiting = ref(false)
 
 function startCapture() {
+  if (waiting.value) {
+    stopCapture()
+    return
+  }
   waiting.value = true
   captureStore.start()
 }
