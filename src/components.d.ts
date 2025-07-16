@@ -43,6 +43,7 @@ declare module 'vue' {
     DialogNewZoneDialog: typeof import('./components/dialog/NewZoneDialog.vue')['default']
     DialogStarter: typeof import('./components/dialog/Starter.vue')['default']
     DialogVitalityRingDialog: typeof import('./components/dialog/VitalityRingDialog.vue')['default']
+    DialogXpRingDialog: typeof import('./components/dialog/XpRingDialog.vue')['default']
     IconBadgeFatAss: typeof import('./components/icon/badge/FatAss.vue')['default']
     IconBadgeShit: typeof import('./components/icon/badge/Shit.vue')['default']
     IconBadgeStench: typeof import('./components/icon/badge/Stench.vue')['default']

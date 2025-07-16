@@ -13,6 +13,7 @@ import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import VitalityRingDialog from '~/components/dialog/VitalityRingDialog.vue'
+import XpRingDialog from '~/components/dialog/XpRingDialog.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
@@ -74,6 +75,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'vitalityRing',
       component: markRaw(VitalityRingDialog),
       condition: () => dex.shlagemons.length >= 15,
+    },
+    {
+      id: 'xpRing',
+      component: markRaw(XpRingDialog),
+      condition: () => dex.shlagemons.length >= 20,
     },
     {
       id: 'kingUnlock',
