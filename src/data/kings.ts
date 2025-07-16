@@ -2,6 +2,7 @@ import type { Character } from '~/type/character'
 import type { SavageZoneId } from '~/type/zone'
 import type { BaseShlagemon, Trainer } from '~/types'
 import { caillou } from './characters/caillou'
+import { donaldTrompe } from './characters/donald-trompe'
 import { marcon } from './characters/marcon'
 import { marineLahaine } from './characters/marine-lahaine'
 import { norman } from './characters/norman'
@@ -49,13 +50,12 @@ function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: n
 }
 
 export const kings: Trainer[] = [
-  createKing('plaine-kekette', caillou, 2, 'Je protege cette plaine, prepare-toi !', 'Hum, tu m\'as battu, chanceux.', 'Hahaha ! J\'t\'ai explosé, retourne jouer dans le bac à sable !'),
-  createKing('bois-de-bouffon', sachatte, 3, 'Ces bois seront ta tombe.', 'Je reviendrai plus fort.', 'Tes griffes sont émoussées, je t\'ai humilié, miaou!'),
+  createKing('bois-de-bouffon', sachatte, 3, 'Ces bois seront ta tombe. Et je vais t\'y griffer !', 'Je reviendrai plus forte, avec les ongles encore plus aiguisés.', 'Tes griffes sont émoussées, je t\'ai humilié, sale chien de tes morts !'),
   createKing('chemin-du-slip', norman, 4, 'Entres dans ma grotte si tu l\'oses.', 'Ta victoire ne sera que temporaire.', 'Tu pues la lose, file te laver !'),
-  createKing('ravin-fesse-molle', marineLahaine, 4, 'Le ravin te verra chuter!', 'Incroyable... tu as gagné.', 'Jette-toi dans le ravin et qu\'on en parle plus, naze.'),
-  createKing('precipice-nanard', marcon, 5, 'Le vieux Nanard t\'attend.', 'Le vieux Nanard te regarde avec degout.', 'Le vieux Nanard t\'a roulé dessus, pauvre cloche.'),
-  createKing('marais-moudugenou', siphanus, 5, 'Tu vas couler dans le marais!', 'Tu t\'extirpes du marais victorieux.', 'Je t\'éclabousse de ma boue, retourne barboter ailleurs.'),
-  createKing('forteresse-petmoalfiak', profMerdant, 5, 'Ma forteresse est imprenable!', 'Tu as brise ma forteresse...', 'Boum ! Ma forteresse t\'écrase, petit cancre.'),
+  createKing('ravin-fesse-molle', marineLahaine, 4, 'Yo, j\'suis raciste.', 'Incroyable... tu as gagné. Je vais donc arrêter d\'être raciste. Merci de m\'avoir ouvert les yeux !', 'Dégage ! Retourne dans ton pays !'),
+  createKing('precipice-nanard', marcon, 5, 'Je suis prêt à te mettre une sacrée rouste espèce de cassos, je déteste les pauvres sale bâtard !', 'Tu m\'as explosé le fiak, je te foutre une grosse loi dans ta gueule ça va te calmer.', 'T\'es une merde, t\'as toujours été une merde, tu resteras une merde toute ta vie.'),
+  createKing('marais-moudugenou', siphanus, 5, 'J\'ai des infos sur la sortie de la prochaine Switch !', 'Tu t\'extirpes du marais victorieux, tu ne sauras donc jamais quand la prochaine Swith va sortir...', 'Je t\'éclabousse de ma boue, retourne barboter ailleurs.'),
+  createKing('forteresse-petmoalfiak', donaldTrompe, 5, 'Ma forteresse est imprenable, j\'y ai construit un mur titanesque !', 'Tu as brisé ma forteresse... je vais te niquer ton père.', 'Boum ! Ma forteresse t\'écrase, petit looser de mort ! J\'te baise !'),
   createKing('route-du-nawak', caillou, 6, 'Perds-toi sur cette route!', 'Tu t\'en sors, pour l\'instant.', 'Complètement paumé ? Je t\'ai laissé sur le bord, tocard.'),
   createKing('mont-dracatombe', norman, 6, 'Le sommet est pour les braves!', 'Le mont te cede la victoire.', 'T\'es moins drôle que mes vannes foireuses, dégage.'),
   createKing('catacombes-merdifientes', marineLahaine, 6, 'Les catacombes sont ton futur tombeau.', 'Je sombre dans l\'ombre des catacombes.', 'Remonte donc à la surface, larve.'),
