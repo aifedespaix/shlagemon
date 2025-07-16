@@ -16,8 +16,11 @@ const classes = computed(() => {
   else if (props.rarity < 90) {
     unocss.push('bg-emerald-300 dark:bg-emerald-800')
   }
+  else if (props.rarity < 100) {
+    unocss.push('bg-yellow-300 dark:bg-yellow-800')
+  }
   else {
-    unocss.push('gold-300 dark:gold-800')
+    unocss.push('bg-yellow-300 dark:bg-yellow-800 rarity-max')
   }
   return unocss.join(' ')
 })
@@ -28,3 +31,23 @@ const classes = computed(() => {
     {{ rarity }}
   </div>
 </template>
+
+<style scoped>
+.rarity-max {
+  position: relative;
+  animation: rarity-aura 2s ease-in-out infinite;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.8);
+}
+
+@keyframes rarity-aura {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.8);
+  }
+}
+</style>
