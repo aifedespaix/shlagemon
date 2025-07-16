@@ -27,7 +27,7 @@ const ballFilter = computed(() =>
 )
 
 const actionLabel = computed(() => {
-  if ('catchBonus' in props.item)
+  if ('catchBonus' in props.item || props.item.wearable)
     return props.disabled ? 'Équipé' : 'Équiper'
   return 'Utiliser'
 })
@@ -46,6 +46,11 @@ const shortcutKey = computed(() => {
 
 function openShortcutModal() {
   shortcutModal.open(props.item)
+}
+
+function useFromModal() {
+  showInfo.value = false
+  setTimeout(() => emit('use'), 200)
 }
 
 watch(showInfo, (val) => {
@@ -122,7 +127,7 @@ watch(showInfo, (val) => {
         <UiButton
           class="flex items-center gap-1 text-xs"
           :disabled="props.disabled"
-          @click.stop="emit('use'); showInfo.value = false"
+          @click.stop="useFromModal"
         >
           <div i-carbon-play inline-block />
           {{ actionLabel }}
