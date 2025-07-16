@@ -11,11 +11,18 @@ import { sachatte } from './characters/sachatte'
 import { siphanus } from './characters/siphanus'
 import { zonesData } from './zones'
 
-function createKing(zoneId: SavageZoneId, character: Character, qteShlagemons: number, dialogBefore: string, dialogAfter: string, dialogDefeat: string): Trainer {
-  const zone = zonesData.find(z => z.id === zoneId)!
+function createKing(
+  zoneId: SavageZoneId,
+  character: Character,
+  qteShlagemons: number,
+  dialogBefore: string,
+  dialogAfter: string,
+  dialogDefeat: string,
+): Trainer | undefined {
+  const zone = zonesData.find(z => z.id === zoneId)
   if (!zone) {
     console.warn(`Zone ${zoneId} not found`)
-    return
+    return undefined
   }
   const levelMax = (zone.maxLevel ?? 1) + 1
 
@@ -64,4 +71,4 @@ export const kings: Trainer[] = [
   createKing('trou-du-bide', caillou, 7, 'Mon trou ne te fera pas de cadeau.', 'Je m\'incline... pour cette fois.', 'Même mon trou a plus de talent que toi.'),
   createKing('zone-giga-zob', profMerdant, 7, 'Bienvenue en enfer!', 'Impossible... comment as-tu fait ?', 'Hop, direction les rattrapages, minus !'),
   createKing('route-so-dom', marcon, 8, 'Derniere ligne droite, minus!', 'Tu es vraiment le meilleur.', 'J\'avance, toi tu recules, larbin.'),
-]
+].filter(Boolean) as Trainer[]
