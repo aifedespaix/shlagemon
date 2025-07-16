@@ -134,6 +134,39 @@ export const hyperXpPotion: Item = {
   iconClass: 'text-green-800 dark:text-green-600',
 }
 
+export const capturePotion: Item = {
+  id: 'capture-potion',
+  name: 'Potion de Capture',
+  description: 'Augmente légèrement les chances de capture.',
+  details: 'Améliore la probabilité de capture de 10% pendant quelques minutes.',
+  price: 40,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:magic-potion',
+  iconClass: 'text-teal-600 dark:text-teal-400',
+}
+
+export const superCapturePotion: Item = {
+  id: 'super-capture-potion',
+  name: 'Super Potion de Capture',
+  description: 'Augmente beaucoup les chances de capture.',
+  details: 'Améliore la probabilité de capture de 25% pendant quelques minutes.',
+  price: 400,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:round-potion',
+  iconClass: 'text-teal-700 dark:text-teal-500',
+}
+
+export const hyperCapturePotion: Item = {
+  id: 'hyper-capture-potion',
+  name: 'Hyper Potion de Capture',
+  description: 'Maximise les chances de capture.',
+  details: 'Améliore la probabilité de capture de 50% pendant quelques minutes.',
+  price: 4000,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:standing-potion',
+  iconClass: 'text-teal-800 dark:text-teal-600',
+}
+
 export const potion: Item = {
   id: 'potion',
   name: 'Potion Dégueulasse',
@@ -258,6 +291,9 @@ export const allItems: Item[] = [
   vitalityPotion,
   superVitalityPotion,
   hyperVitalityPotion,
+  capturePotion,
+  superCapturePotion,
+  hyperCapturePotion,
   superPotion,
   hyperPotion,
   xpPotion,
