@@ -17,14 +17,30 @@ async function getFiles(dir) {
   return files
 }
 
+function extractSpawnInfo(file) {
+  const match = file.match(/shlagemons[\\/](\d{2})-(\d{2})[\\/]/)
+  if (match) {
+    const start = Number(match[1])
+    const end = Number(match[2])
+    return { range: `${start}-${end}`, sort: start }
+  }
+  // Default to level 1 for starters or special cases
+  return { range: '1', sort: 1 }
+}
+
 async function parseFile(file) {
   const content = await fs.promises.readFile(file, 'utf8')
   const nameMatch = content.match(/\bname:\s*['"]([^'"]+)['"]/)
   const idMatch = content.match(/\bid:\s*['"]([^'"]+)['"]/)
+  const coeffMatch = content.match(/coefficient:\s*(\d+)/)
   const name = nameMatch ? nameMatch[1] : (idMatch ? idMatch[1] : null)
   const evoMatch = content.match(/evolution:\s*\{[\s\S]*?condition:\s*\{[\s\S]*?type:\s*['"]lvl['"][\s\S]*?value:\s*(\d+)/)
-  if (name && evoMatch)
-    return [name, Number(evoMatch[1])]
+  if (name) {
+    const spawn = extractSpawnInfo(file)
+    const evoLevel = evoMatch ? Number(evoMatch[1]) : ''
+    const coefficient = coeffMatch ? Number(coeffMatch[1]) : ''
+    return { name, spawn, evoLevel, coefficient }
+  }
   return null
 }
 
@@ -33,12 +49,16 @@ async function main() {
   const files = await getFiles(baseDir)
   const rows = []
   for (const file of files) {
+    // Ignore forms that live in the evolutions directory
+    if (file.includes(`${path.sep}evolutions${path.sep}`))
+      continue
     const row = await parseFile(file)
     if (row)
       rows.push(row)
   }
-  rows.sort((a, b) => a[1] - b[1])
-  const csv = `${rows.map(r => `${r[0]},${r[1]}`).join('\n')}\n`
+  rows.sort((a, b) => a.spawn.sort - b.spawn.sort)
+  const header = 'Name,Level,Coefficient,EvolutionLevel'
+  const csv = `${header}\n${rows.map(r => `${r.name},${r.spawn.range},${r.coefficient},${r.evoLevel}`).join('\n')}\n`
   await fs.promises.writeFile(path.join(__dirname, '../evolutions.csv'), csv)
 }
 
