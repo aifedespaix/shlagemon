@@ -7,6 +7,7 @@ import { useBattleStatsStore } from '~/stores/battleStats'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useGameStore } from '~/stores/game'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMobileTabStore } from '~/stores/mobileTab'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
@@ -21,6 +22,7 @@ const progress = useZoneProgressStore()
 const panel = useMainPanelStore()
 const featureLock = useFeatureLockStore()
 const game = useGameStore()
+const mobile = useMobileTabStore()
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -118,6 +120,8 @@ function finish() {
     trainerStore.next()
     zone.setZone(zone.current.id)
     panel.showBattle()
+    if (trainer.value?.id.startsWith('king-'))
+      mobile.set('zones')
   }
   else if (result.value === 'lose') {
     stage.value = 'before'

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { allItems } from '~/data/items/items'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useShlagedexStore } from '~/stores/shlagedex'
-import { allItems } from '~/data/items/items'
 
 interface Props {
   mons: DexShlagemon[]

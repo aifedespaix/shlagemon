@@ -1,11 +1,11 @@
+import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { DexShlagemon } from '~/type/shlagemon'
 import { allItems } from '~/data/items/items'
 import { useEquipmentStore } from './equipment'
+import { createModalStore } from './helpers'
 import { useInventoryStore } from './inventory'
 import { useItemUsageStore } from './itemUsage'
-import { createModalStore } from './helpers'
 
 export const useWearableEquipModalStore = defineStore('wearableEquipModal', () => {
   const { isVisible, open: openModal, close } = createModalStore('game')
