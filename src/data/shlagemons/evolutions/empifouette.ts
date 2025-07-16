@@ -1,0 +1,18 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+
+export const empifouette: BaseShlagemon = {
+  id: 'empifouette',
+  name: 'Empifouette',
+  description: `Empifouette est un Shlagémon tristement célèbre pour son parfum… inoubliable. Mais ce n’est pas tout : il est aussi doté d’un fouet végétal particulièrement sournois. Sa présence ne passe jamais inaperçue : même les plus téméraires préfèrent garder leurs distances tant son odeur est capable de terrasser un troupeau de Tauros à plusieurs kilomètres.
+
+Sa technique signature, *Fouet Puant*, consiste à agiter frénétiquement son appendice végétal pour répandre autour de lui un nuage pestilentiel, tout en infligeant des coups bien placés à ceux qui oseraient s’approcher. Les rares Shlagémons à s’être laissés tromper par son attitude nonchalante parlent d’un véritable cauchemar olfactif et tactique.
+
+Empifouette s’en sert aussi comme d’un leurre : attirant l’ennemi avec un faux air pataud, il profite de la confusion (et du désespoir nasal) pour frapper par surprise. Sa réputation de Shlagémon le plus repoussant du coin est solidement ancrée, et on raconte que même les corbeaux n’osent pas s’en approcher après une attaque de ce spécimen.
+
+Si vous croisez un Empifouette, courez… ou retenez votre souffle, et espérez qu’il n’a pas décidé de sortir le grand jeu.`,
+  types: [shlagemonTypes.poison, shlagemonTypes.plante],
+  coefficient: 67,
+}
+
+export default empifouette
