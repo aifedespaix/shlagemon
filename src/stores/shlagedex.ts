@@ -35,6 +35,12 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
   setInterval(cleanupEffects, 1000)
 
+  function rarityToastMessage(name: string, rarityGain: number, levelLoss: number) {
+    const point = rarityGain > 1 ? 'points' : 'point'
+    const level = levelLoss > 1 ? 'niveaux' : 'niveau'
+    return `${name} gagne ${rarityGain} ${point} de rareté et perd ${levelLoss} ${level} !`
+  }
+
   const xpZones = computed(() => zonesData.filter(z => z.maxLevel > 0))
 
   function canAccess(z: Zone) {
@@ -374,6 +380,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.captureCount += 1
       if (existing.rarity < 100) {
         existing.rarity += 1
+        if (existing.rarity === 100)
+          audio.playSfx('/audio/sfx/rarity-100.ogg')
         toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
       }
       existing.lvl = 1
@@ -497,7 +505,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       else if (existing.rarity < 100) {
         existing.rarity += 1
       }
+      const before = existing.rarity
       existing.rarity = Math.min(existing.rarity, 100)
+      if (before < 100 && existing.rarity === 100)
+        audio.playSfx('/audio/sfx/rarity-100.ogg')
       if (incoming.isShiny)
         existing.isShiny = true
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
@@ -528,9 +539,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
-      toast(
-        `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
-      )
+      toast(rarityToastMessage(existing.base.name, rarityGain, levelLoss))
       return existing
     }
     const incoming = createDexShlagemon(base, shiny)
@@ -539,6 +548,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     addShlagemon(incoming)
     updateHighestLevel(incoming)
     updateCoefficient(incoming)
+    if (incoming.rarity === 100)
+      audio.playSfx('/audio/sfx/rarity-100.ogg')
     toast(`Tu as obtenu ${incoming.base.name} !`)
     return incoming
   }
@@ -561,7 +572,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       else if (existing.rarity < 100) {
         existing.rarity += 1
       }
+      const before = existing.rarity
       existing.rarity = Math.min(existing.rarity, 100)
+      if (before < 100 && existing.rarity === 100)
+        audio.playSfx('/audio/sfx/rarity-100.ogg')
       existing.isShiny ||= enemy.isShiny
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
@@ -575,9 +589,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
-      toast(
-        `${existing.base.name} gagne ${rarityGain} points de rareté et perd ${levelLoss} niveaux !`,
-      )
+      toast(rarityToastMessage(existing.base.name, rarityGain, levelLoss))
       return existing
     }
     const captured: DexShlagemon = {
@@ -590,6 +602,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     addShlagemon(captured)
     updateHighestLevel(captured)
     updateCoefficient(captured)
+    if (captured.rarity === 100)
+      audio.playSfx('/audio/sfx/rarity-100.ogg')
     toast(`Tu as obtenu ${captured.base.name} !`)
     return captured
   }

@@ -8,7 +8,7 @@ const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
-const clickTimer = ref<number | null>(null)
+const clickTimer = ref<ReturnType<typeof setTimeout> | null>(null)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {

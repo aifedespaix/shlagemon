@@ -151,7 +151,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
         <div class="flex-center">
           <div
             class="h-6 w-6"
-            :class="[icon(z), perfectZone(z) ? 'text-yellow-500 dark:text-yellow-300' : '']"
+            :class="icon(z)"
           />
         </div>
         <div class="flex-center">
@@ -163,6 +163,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
             src="/items/shlageball/shlageball.png"
             alt="capturé"
             class="h-4 w-4"
+            :style="perfectZone(z) ? { filter: 'hue-rotate(60deg) brightness(1.1)' } : {}"
           >
           <div
             v-if="kingDefeated(z)"
