@@ -4,10 +4,12 @@ const props = withDefaults(defineProps<{
   closeOnOutsideClick?: boolean
   footerClose?: boolean
   dialogAutofocus?: boolean
+  goldenBorder?: boolean
 }>(), {
   closeOnOutsideClick: true,
   footerClose: false,
   dialogAutofocus: false,
+  goldenBorder: false,
 })
 const emit = defineEmits(['update:modelValue', 'close'])
 const dialogRef = ref<HTMLDialogElement | null>(null)
@@ -59,7 +61,10 @@ function close() {
       @click="onDialogClick"
       @close="emit('update:modelValue', false); emit('close')"
     >
-      <div class="modal-content relative flex flex-col overflow-hidden">
+      <div
+        class="modal-content relative flex flex-col overflow-hidden"
+        :class="props.goldenBorder ? 'border-2 border-yellow-500 dark:border-yellow-400' : ''"
+      >
         <button
           v-if="!props.footerClose"
           type="button"

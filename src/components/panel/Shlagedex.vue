@@ -44,7 +44,12 @@ function onItemClick(mon: DexShlagemon) {
     show-checkbox
     :on-item-click="onItemClick"
   />
-  <Modal v-model="showDetail" footer-close @close="showDetail = false">
+  <Modal
+    v-model="showDetail"
+    footer-close
+    @close="showDetail = false"
+    :golden-border="detailMon?.rarity === 100"
+  >
     <ShlagemonDetail
       :mon="detailMon"
       @release="showDetail = false"
