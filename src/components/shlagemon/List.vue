@@ -155,6 +155,9 @@ function changeActive(mon: DexShlagemon) {
           isHighlighted(mon) && !isActive(mon)
             ? 'bg-blue-500/10 dark:bg-blue-500/20 ring-2 ring-blue-500 dark:ring-blue-400'
             : '',
+          mon.rarity === 100
+            ? 'border-yellow-500 dark:border-yellow-400'
+            : '',
         ]"
         @click.stop="handleClick(mon)"
       >
