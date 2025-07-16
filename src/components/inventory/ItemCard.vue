@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
+import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
 import { useItemUsageStore } from '~/stores/itemUsage'
 import { useShortcutsStore } from '~/stores/shortcuts'
 import { useUIStore } from '~/stores/ui'
-import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
