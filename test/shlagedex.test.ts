@@ -174,3 +174,37 @@ describe('rarity 100 coefficient update', () => {
     expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
   })
 })
+
+describe('duplicate capture at max rarity with both methods', () => {
+  it('keeps level and rarity unchanged and warns in French', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 100
+    mon.lvl = 12
+
+    toastMock.mockClear()
+    const sameBaseEnemy = createDexShlagemon(carapouffe, false, 1, 20)
+    sameBaseEnemy.rarity = 100
+    applyStats(sameBaseEnemy)
+
+    // capture via base
+    const result1 = dex.captureShlagemon(carapouffe)
+    expect(result1.id).toBe(mon.id)
+    expect(mon.rarity).toBe(100)
+    expect(mon.lvl).toBe(12)
+    expect(toastMock).toHaveBeenCalledWith(
+      'Vous avez déjà ce Shlagémon au maximum de sa rareté',
+    )
+
+    toastMock.mockClear()
+    // capture via enemy instance
+    const result2 = dex.captureEnemy(sameBaseEnemy)
+    expect(result2.id).toBe(mon.id)
+    expect(mon.rarity).toBe(100)
+    expect(mon.lvl).toBe(12)
+    expect(toastMock).toHaveBeenCalledWith(
+      'Vous avez déjà ce Shlagémon au maximum de sa rareté',
+    )
+  })
+})
