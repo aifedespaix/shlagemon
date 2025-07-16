@@ -3,7 +3,10 @@ import {
   attackPotion,
   capturePotion,
   defensePotion,
+  hyperAttackPotion,
   hyperCapturePotion,
+  hyperDefensePotion,
+  hyperPotion,
   potion,
   steroids,
   superAttackPotion,
@@ -13,18 +16,16 @@ import {
   superVitalityPotion,
   superXpPotion,
   thunderStone,
+  ultraSteroid,
   vitalityPotion,
   xpPotion,
 } from '../items/items'
-import { shlageball, superShlageball } from '../items/shlageball'
+import { hyperShlageball, shlageball, superShlageball } from '../items/shlageball'
 
 const village10: Zone = {
   id: 'village-veaux-du-gland',
   name: 'Veaux du Gland sur Marne',
   type: 'village',
-  actions: [
-    // { id: 'minigame', label: 'Mini-jeu' },
-  ],
   minLevel: 10,
   village: {
     shop: {
@@ -43,7 +44,6 @@ const village20: Zone = {
     shop: {
       items: [
         xpPotion,
-        capturePotion,
         superDefensePotion,
         superAttackPotion,
         superVitalityPotion,
@@ -64,7 +64,6 @@ const village40: Zone = {
       items: [
         thunderStone,
         superXpPotion,
-        superCapturePotion,
         superDefensePotion,
         superAttackPotion,
         superVitalityPotion,
@@ -82,10 +81,45 @@ const village50: Zone = {
   village: {
     shop: {
       items: [
+        capturePotion,
         superXpPotion,
         superPotion,
         hyperCapturePotion,
         steroids,
+      ],
+    },
+  },
+}
+
+const village60: Zone = {
+  id: 'village-cassos-land',
+  name: 'Village des Cassos',
+  type: 'village',
+  actions: [],
+  minLevel: 60,
+  village: {
+    shop: {
+      items: [
+        hyperPotion,
+        hyperAttackPotion,
+        hyperDefensePotion,
+        superCapturePotion,
+      ],
+    },
+  },
+}
+const village80: Zone = {
+  id: 'village-clitoland',
+  name: 'Clito Land',
+  type: 'village',
+  actions: [],
+  minLevel: 80,
+  village: {
+    shop: {
+      items: [
+        hyperShlageball,
+        hyperPotion,
+        ultraSteroid,
       ],
     },
   },
@@ -96,4 +130,6 @@ export const villageZones: Zone[] = [
   village20,
   village40,
   village50,
+  village60,
+  village80,
 ]
