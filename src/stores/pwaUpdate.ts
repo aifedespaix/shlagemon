@@ -2,9 +2,9 @@ import { defineStore } from 'pinia'
 
 export const usePwaUpdateStore = defineStore('pwaUpdate', () => {
   const needRefresh = ref(false)
-  let updateFn: (() => Promise<void>) | null = null
+  let updateFn: ((reloadPage?: boolean) => Promise<void>) | null = null
 
-  function registerUpdate(swUpdate: () => Promise<void>) {
+  function registerUpdate(swUpdate: (reloadPage?: boolean) => Promise<void>) {
     updateFn = swUpdate
   }
 
@@ -14,8 +14,7 @@ export const usePwaUpdateStore = defineStore('pwaUpdate', () => {
 
   async function reload() {
     if (updateFn)
-      await updateFn()
-    window.location.reload()
+      await updateFn(true)
   }
 
   return { needRefresh, registerUpdate, showUpdate, reload }
