@@ -59,6 +59,16 @@ Les fichiers prêts à être servis se trouvent dans le dossier `dist`.
 
 Depuis le jeu, rendez-vous au village **Veaux du Gland sur Marne** et cliquez sur « Mini-jeu » pour lancer une partie de Whack-a-Shlag.
 
+## Scripts
+
+Pour générer un fichier `evolutions.csv` listant les niveaux d'évolution de chaque Shlagémon, exécutez :
+
+```bash
+pnpm evolutions:csv
+```
+
+Le fichier sera créé à la racine du projet.
+
 ## Structure du projet
 
 ```
