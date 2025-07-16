@@ -32,6 +32,15 @@ export const useAudioStore = defineStore('audio', () => {
     ],
   } as const
 
+  const buySfx = [
+    '/audio/sfx/buy/buy-a.ogg',
+    '/audio/sfx/buy/buy-b.ogg',
+    '/audio/sfx/buy/buy-c.ogg',
+    '/audio/sfx/buy/buy-d.ogg',
+    '/audio/sfx/buy/buy-e.ogg',
+  ] as const
+  let lastBuyIndex = -1
+
   function randomTrack(category: keyof typeof tracks) {
     const list = tracks[category]
     return list[Math.floor(Math.random() * list.length)]
@@ -116,6 +125,14 @@ export const useAudioStore = defineStore('audio', () => {
     sfx.play()
   }
 
+  function playBuySfx() {
+    let index = Math.floor(Math.random() * buySfx.length)
+    if (index === lastBuyIndex)
+      index = (index + 1) % buySfx.length
+    lastBuyIndex = index
+    playSfx(buySfx[index])
+  }
+
   watch(musicVolume, (v) => {
     if (currentMusic.value)
       currentMusic.value.volume(v)
@@ -142,6 +159,7 @@ export const useAudioStore = defineStore('audio', () => {
     fadeToRandomMusic,
     stopMusic,
     playSfx,
+    playBuySfx,
   }
 }, {
   persist: {
