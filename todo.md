@@ -2,7 +2,7 @@
 
 ## Mini jeu
 
-- viteesse cercle qui se réduit et cliquer bon moimen
+- vitesse du cercle qui se réduit et cliquer au bon moment
 
 ## Capture
 
@@ -16,7 +16,7 @@
 
 ## Fixes
 
-- fix shlagemon detail iamge
+- fix shlagemon detail image
 
 ## Audio
 

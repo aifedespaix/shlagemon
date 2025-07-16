@@ -93,6 +93,16 @@ function allCaptured(z: Zone) {
   return list.every(base => dex.shlagemons.some(mon => mon.base.id === base.id))
 }
 
+function perfectZone(z: Zone) {
+  const list = z.shlagemons
+  if (!list?.length)
+    return false
+  return list.every((base) => {
+    const mon = dex.shlagemons.find(m => m.base.id === base.id)
+    return mon?.rarity === 100
+  })
+}
+
 function kingDefeated(z: Zone) {
   const hasKing = z.hasKing ?? z.type === 'sauvage'
   return hasKing && progress.isKingDefeated(z.id)
@@ -139,7 +149,10 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
           icon="i-carbon:user-filled"
         />
         <div class="flex-center">
-          <div class="h-6 w-6" :class="icon(z)" />
+          <div
+            class="h-6 w-6"
+            :class="[icon(z), perfectZone(z) ? 'text-yellow-500 dark:text-yellow-300' : '']"
+          />
         </div>
         <div class="flex-center">
           <span>{{ z.name }}</span>

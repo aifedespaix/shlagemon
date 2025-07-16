@@ -480,8 +480,12 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   function captureShlagemon(base: BaseShlagemon, shiny = false) {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
-    const incoming = createDexShlagemon(base, shiny)
     if (existing) {
+      if (existing.rarity >= 100) {
+        toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
+        return existing
+      }
+      const incoming = createDexShlagemon(base, shiny)
       existing.captureCount += 1
       let rarityGain = 1
       let levelLoss = 1
@@ -529,6 +533,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       )
       return existing
     }
+    const incoming = createDexShlagemon(base, shiny)
     incoming.captureDate = new Date().toISOString()
     incoming.captureCount = 1
     addShlagemon(incoming)
@@ -541,6 +546,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function captureEnemy(enemy: DexShlagemon) {
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
     if (existing) {
+      if (existing.rarity >= 100) {
+        toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
+        return existing
+      }
       existing.captureCount += 1
       let rarityGain = 1
       let levelLoss = 1
