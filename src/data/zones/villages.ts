@@ -27,6 +27,7 @@ const village10: Zone = {
   name: 'Veaux du Gland sur Marne',
   type: 'village',
   minLevel: 10,
+  actions: [],
   village: {
     shop: {
       items: [potion, defensePotion, attackPotion, vitalityPotion, shlageball],
