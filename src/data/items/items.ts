@@ -181,6 +181,20 @@ export const multiExp: Item = {
   wearable: true,
 }
 
+export const vitalityRing: Item = {
+  id: 'vitality-ring',
+  name: 'Bague Vitalesque',
+  description: 'Augmente les PV max du porteur.',
+  details:
+    'Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.',
+  price: 20,
+  currency: 'shlagidiamond',
+  icon: 'i-game-icons:ring',
+  iconClass: 'text-red-500 dark:text-red-400',
+  unique: true,
+  wearable: true,
+}
+
 export const thunderStone: Item = {
   id: 'pierre-foutre',
   name: 'Pierre Foutre',
@@ -236,6 +250,7 @@ export const allItems: Item[] = [
   superXpPotion,
   hyperXpPotion,
   multiExp,
+  vitalityRing,
   thunderStone,
   steroids,
   ultraSteroid,

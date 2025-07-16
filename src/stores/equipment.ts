@@ -14,16 +14,29 @@ export const useEquipmentStore = defineStore('equipment', () => {
     if (mon.heldItemId) {
       holders.value[mon.heldItemId] = null
       inventory.add(mon.heldItemId)
+      if (mon.heldItemId === 'vitality-ring') {
+        const max = dex.maxHp(mon)
+        if (mon.hpCurrent > max)
+          mon.hpCurrent = max
+      }
     }
     const current = holders.value[itemId]
     if (current) {
       const other = dex.shlagemons.find(m => m.id === current)
-      if (other)
+      if (other) {
         other.heldItemId = null
+        if (itemId === 'vitality-ring') {
+          const max = dex.maxHp(other)
+          if (other.hpCurrent > max)
+            other.hpCurrent = max
+        }
+      }
     }
     mon.heldItemId = itemId
     holders.value[itemId] = monId
     inventory.remove(itemId)
+    if (itemId === 'vitality-ring')
+      mon.hpCurrent = dex.maxHp(mon)
   }
 
   function unequip(monId: string) {
@@ -34,6 +47,11 @@ export const useEquipmentStore = defineStore('equipment', () => {
     mon.heldItemId = null
     holders.value[itemId] = null
     inventory.add(itemId)
+    if (itemId === 'vitality-ring') {
+      const max = dex.maxHp(mon)
+      if (mon.hpCurrent > max)
+        mon.hpCurrent = max
+    }
   }
 
   function unequipItem(itemId: string) {
@@ -41,8 +59,14 @@ export const useEquipmentStore = defineStore('equipment', () => {
     if (!holderId)
       return
     const mon = dex.shlagemons.find(m => m.id === holderId)
-    if (mon)
+    if (mon) {
       mon.heldItemId = null
+      if (itemId === 'vitality-ring') {
+        const max = dex.maxHp(mon)
+        if (mon.hpCurrent > max)
+          mon.hpCurrent = max
+      }
+    }
     holders.value[itemId] = null
     inventory.add(itemId)
   }
