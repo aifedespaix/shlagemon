@@ -67,6 +67,4 @@ export const useWearableItemStore = defineStore('wearableItem', () => {
     getHolderId,
     getHolder,
   }
-}, {
-  persist: true,
 })
