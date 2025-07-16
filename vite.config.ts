@@ -110,6 +110,7 @@ export default defineConfig({
         name: 'Shlagémon',
         short_name: 'Shlagémon',
         theme_color: '#0d9488',
+        background_color: '#0d9488',
         icons: [
           {
             src: '/pwa-192x192.png',
