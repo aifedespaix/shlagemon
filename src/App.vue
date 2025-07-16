@@ -7,7 +7,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Attrapes tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
+      content: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
     },
     {
       name: 'keywords',
@@ -27,7 +27,7 @@ useHead({
     },
     {
       property: 'og:description',
-      content: 'Attrapes tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
+      content: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
     },
     {
       property: 'og:type',
@@ -55,7 +55,7 @@ useHead({
     },
     {
       name: 'twitter:description',
-      content: 'Attrapes tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
+      content: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
     },
     {
       name: 'twitter:image',

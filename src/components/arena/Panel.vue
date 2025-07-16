@@ -158,7 +158,7 @@ onUnmounted(() => {
 
       <div class="col-span-6 flex flex-col gap-2">
         <UiInfo v-if="playerSelection.some(m => !m)" color="danger" class="text-center text-xs">
-          Vous devez selectionner 6 Shlagémons pour combattre dans l'arène
+          Vous devez sélectionner 6 Shlagémons pour combattre dans l'arène
         </UiInfo>
         <div class="col-span-6 flex flex-col gap-2">
           <UiInfo color="alert" class="text-center text-xs">
@@ -180,7 +180,7 @@ onUnmounted(() => {
             >
               Combattre
             </UiButton>
-            <UiTooltip text="Selection automatique de l'équipe" is-button>
+            <UiTooltip text="Sélection automatique de l'équipe" is-button>
               <UiButton
                 type="icon"
                 class="bottom-0 left-0 z-10 rounded-full"
