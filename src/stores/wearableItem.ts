@@ -2,7 +2,6 @@ import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import { useEquipmentStore } from './equipment'
 import { useItemUsageStore } from './itemUsage'
-import { useMobileTabStore } from './mobileTab'
 import { useShlagedexStore } from './shlagedex'
 
 export const useWearableItemStore = defineStore('wearableItem', () => {
@@ -11,7 +10,6 @@ export const useWearableItemStore = defineStore('wearableItem', () => {
   const selectedId = ref<string | null>(null)
   const dex = useShlagedexStore()
   const equipment = useEquipmentStore()
-  const mobile = useMobileTabStore()
   const usage = useItemUsageStore()
 
   const holderId = computed(() =>
@@ -34,7 +32,6 @@ export const useWearableItemStore = defineStore('wearableItem', () => {
       return
     current.value = item
     selectedId.value = holderId.value
-    mobile.set('game')
     isVisible.value = true
   }
 
