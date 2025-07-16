@@ -119,6 +119,14 @@ watch(showInfo, (val) => {
         <p class="text-center text-sm">
           {{ details }}
         </p>
+        <UiButton
+          class="flex items-center gap-1 text-xs"
+          :disabled="props.disabled"
+          @click.stop="emit('use'); showInfo.value = false"
+        >
+          <div i-carbon-play inline-block />
+          {{ actionLabel }}
+        </UiButton>
       </div>
     </Modal>
   </div>
