@@ -17,7 +17,7 @@ const store = useEvolutionItemStore()
           class="flex items-center justify-between border rounded p-2"
         >
           <div class="flex items-center gap-2">
-            <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="h-6 w-6" />
+            <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="aspect-1" />
             <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
           </div>
           <UiButton class="text-xs" @click="store.useOn(mon)">
