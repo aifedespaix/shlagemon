@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
+import { useAudioStore } from '~/stores/audio'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
@@ -10,6 +11,7 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const game = useGameStore()
 const inventory = useInventoryStore()
+const audio = useAudioStore()
 const shopItems = computed(() => zone.current.village?.shop?.items || [])
 const selectedItem = ref<Item | null>(null)
 const selectedQty = ref(1)
@@ -52,6 +54,7 @@ function buy() {
     return
   const success = inventory.buy(selectedItem.value.id, selectedQty.value)
   if (success) {
+    audio.playBuySfx()
     const cost = selectedItem.value.price * selectedQty.value
     const currency = selectedItem.value.currency === 'shlagidiamond'
       ? 'Shlagédiamant'
