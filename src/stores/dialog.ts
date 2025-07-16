@@ -79,7 +79,7 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'xpRing',
       component: markRaw(XpRingDialog),
-      condition: () => dex.shlagemons.length >= 20,
+      condition: () => dex.shlagemons.length >= 30,
     },
     {
       id: 'kingUnlock',

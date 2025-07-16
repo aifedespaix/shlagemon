@@ -31,7 +31,7 @@ function fightKing() {
 
 <template>
   <UiButton
-    v-if="visible || true"
+    v-if="visible"
     class="absolute right-0 top-6 z-150 m-1 flex gap-2 text-xs"
     type="danger"
     @click="fightKing"
