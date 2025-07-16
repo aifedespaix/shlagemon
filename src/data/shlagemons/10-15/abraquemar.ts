@@ -1,12 +1,12 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
-import { alakalbar } from '../evolutions/alakalbar'
+import kadavrebras from '../evolutions/kadavrebras'
 
 export const abraquemar: BaseShlagemon = {
   id: 'abraquemar',
   name: 'Abraquemar',
   evolution: {
-    base: alakalbar,
+    base: kadavrebras,
     condition: {
       type: 'lvl',
       value: 46,

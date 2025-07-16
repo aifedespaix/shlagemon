@@ -1,0 +1,26 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+import alakalbar from './alakalbar'
+
+export const kadavrebras: BaseShlagemon = {
+  id: 'kadavrebras',
+  name: 'Kadavrebras',
+  description: `Kadavrebras est un Shlagémon psychopathe issu de l’évolution maudite de Kadavrak. Ancien médium raté devenu croque-mort malgré lui, il s’est découvert une passion morbide : enlacer les cadavres. Dès qu’un corps sans vie croise son regard vitreux, il entre dans une transe macabre, le soulève avec une tendresse dérangeante et le trimballe partout comme une peluche fétiche.
+
+On ne sait pas exactement *pourquoi* il fait ça. Est-ce un rituel ? Un besoin affectif ? Une passion pour les postures rigides ? En tout cas, il ne les lâche plus. Certains dresseurs racontent qu’il a porté le même cadavre pendant **trois évolutions consécutives**.
+
+Son attaque *Embrasse Froide* paralyse d’effroi toute cible vivante, tandis que *Marche Funeste* inflige des dégâts psychiques au rythme de ses pas lugubres. Plus il avance, plus l’air se refroidit… et plus le silence devient pesant.
+
+On dit que Kadavrebras ne dort jamais. Il se contente de bercer ses cadavres en murmurant des berceuses oubliées, avec une voix tremblante et désaccordée. Ne croisez jamais son regard : il pourrait penser que vous êtes prêt… à être porté.`,
+  types: [shlagemonTypes.psy],
+  coefficient: 52,
+  evolution: {
+    base: alakalbar,
+    condition: {
+      type: 'lvl',
+      value: 95,
+    },
+  },
+}
+
+export default kadavrebras

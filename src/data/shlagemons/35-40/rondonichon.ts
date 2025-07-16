@@ -14,7 +14,7 @@ Il adore s’incruster dans les sacs des dresseurs pour “y faire sa sieste”,
 Ne pas le caresser. Jamais.`,
 
   types: [shlagemonTypes.normal],
-  coefficient: 37,
+  coefficient: 38,
   evolution: {
     base: grochichon,
     condition: {
