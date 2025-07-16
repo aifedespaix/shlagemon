@@ -52,8 +52,15 @@ function buy() {
   if (!selectedItem.value)
     return
   const success = inventory.buy(selectedItem.value.id, selectedQty.value)
-  if (success)
-    toast.success(`Vous avez acheté ${selectedQty.value} fois cet objet`)
+  if (success) {
+    const cost = selectedItem.value.price * selectedQty.value
+    const currency = selectedItem.value.currency === 'shlagidiamond'
+      ? 'Shlagédiamant'
+      : 'Shlagédollar'
+    const currencyName = cost > 1 ? `${currency}s` : currency
+    toast.success(`Vous avez acheté ${selectedQty.value} \u00D7 ${selectedItem.value.name} pour ${cost.toLocaleString()} ${currencyName}`)
+    selectedItem.value = null
+  }
 }
 
 function closeShop() {
