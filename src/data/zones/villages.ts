@@ -2,21 +2,19 @@ import type { Zone } from '~/type'
 import {
   attackPotion,
   defensePotion,
-  hyperAttackPotion,
-  hyperDefensePotion,
-  hyperPotion,
-  hyperVitalityPotion,
   multiExp,
   potion,
+  steroids,
   superAttackPotion,
   superDefensePotion,
   superPotion,
   superVitalityPotion,
+  superXpPotion,
   thunderStone,
   vitalityPotion,
   xpPotion,
 } from '../items/items'
-import { hyperShlageball, shlageball, superShlageball } from '../items/shlageball'
+import { shlageball, superShlageball } from '../items/shlageball'
 
 const village10: Zone = {
   id: 'village-veaux-du-gland',
@@ -28,7 +26,6 @@ const village10: Zone = {
   minLevel: 10,
   village: {
     shop: {
-      level: 10,
       items: [potion, defensePotion, attackPotion, vitalityPotion, shlageball],
     },
   },
@@ -42,17 +39,12 @@ const village20: Zone = {
   minLevel: 20,
   village: {
     shop: {
-      level: 25,
       items: [
-        potion,
         xpPotion,
-        superPotion,
         superDefensePotion,
         superAttackPotion,
         superVitalityPotion,
         superShlageball,
-        shlageball,
-        thunderStone,
       ],
     },
   },
@@ -66,14 +58,26 @@ const village40: Zone = {
   minLevel: 40,
   village: {
     shop: {
-      level: 50,
       items: [
-        hyperPotion,
-        hyperDefensePotion,
-        hyperAttackPotion,
-        hyperVitalityPotion,
-        hyperShlageball,
         multiExp,
+        thunderStone,
+      ],
+    },
+  },
+}
+
+const village50: Zone = {
+  id: 'village-caca-boudin',
+  name: 'Village du Caca Boudin',
+  type: 'village',
+  actions: [],
+  minLevel: 50,
+  village: {
+    shop: {
+      items: [
+        superXpPotion,
+        superPotion,
+        steroids,
       ],
     },
   },
@@ -83,4 +87,5 @@ export const villageZones: Zone[] = [
   village10,
   village20,
   village40,
+  village50,
 ]

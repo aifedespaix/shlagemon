@@ -2,23 +2,12 @@ import type { Item } from '~/type/item'
 import { hyperShlageball, shlageball, superShlageball } from './shlageball'
 
 // @unocss-include
-export const potion: Item = {
-  id: 'potion',
-  name: 'Potion Dégueulasse',
-  description: 'Soigne 50 HP de votre Shlagémon.',
-  details: 'Redonne 50 points de vie à votre Shlagémon actif pendant le combat.',
-  price: 5,
-  currency: 'shlagidolar',
-  icon: 'i-game-icons:health-potion',
-  iconClass: 'text-red-600 dark:text-red-400',
-}
-
 export const defensePotion: Item = {
   id: 'defense-potion',
   name: 'Potion de Défense',
   description: 'Augmente temporairement la défense.',
   details: 'Renforce brièvement la défense de votre Shlagémon actif.',
-  price: 7,
+  price: 50,
   currency: 'shlagidolar',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-blue-500 dark:text-blue-400',
@@ -29,7 +18,7 @@ export const superDefensePotion: Item = {
   name: 'Super Potion de Défense',
   description: 'Augmente beaucoup la défense.',
   details: 'Renforce considérablement la défense de votre Shlagémon actif.',
-  price: 15,
+  price: 500,
   currency: 'shlagidolar',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-blue-600 dark:text-blue-500',
@@ -40,7 +29,7 @@ export const hyperDefensePotion: Item = {
   name: 'Hyper Potion de Défense',
   description: 'Maximise temporairement la défense.',
   details: 'Booste énormément la défense de votre Shlagémon actif.',
-  price: 25,
+  price: 5000,
   currency: 'shlagidolar',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-blue-700 dark:text-blue-600',
@@ -51,7 +40,7 @@ export const attackPotion: Item = {
   name: 'Potion d\'Attaque',
   description: 'Augmente temporairement l\'attaque.',
   details: 'Renforce brièvement l\'attaque de votre Shlagémon actif.',
-  price: 7,
+  price: 60,
   currency: 'shlagidolar',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-orange-500 dark:text-orange-400',
@@ -62,7 +51,7 @@ export const superAttackPotion: Item = {
   name: 'Super Potion d\'Attaque',
   description: 'Augmente beaucoup l\'attaque.',
   details: 'Renforce considérablement l\'attaque de votre Shlagémon actif.',
-  price: 15,
+  price: 600,
   currency: 'shlagidolar',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-orange-600 dark:text-orange-500',
@@ -73,7 +62,7 @@ export const hyperAttackPotion: Item = {
   name: 'Hyper Potion d\'Attaque',
   description: 'Maximise temporairement l\'attaque.',
   details: 'Booste énormément l\'attaque de votre Shlagémon actif.',
-  price: 25,
+  price: 6000,
   currency: 'shlagidolar',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-orange-700 dark:text-orange-600',
@@ -84,7 +73,7 @@ export const vitalityPotion: Item = {
   name: 'Potion de Vitalité',
   description: 'Augmente temporairement les PV.',
   details: 'Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.',
-  price: 7,
+  price: 70,
   currency: 'shlagidolar',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-violet-500 dark:text-violet-400',
@@ -95,7 +84,7 @@ export const superVitalityPotion: Item = {
   name: 'Super Potion de Vitalité',
   description: 'Augmente beaucoup les PV.',
   details: 'Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.',
-  price: 15,
+  price: 700,
   currency: 'shlagidolar',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-violet-600 dark:text-violet-500',
@@ -106,7 +95,7 @@ export const hyperVitalityPotion: Item = {
   name: 'Hyper Potion de Vitalité',
   description: 'Maximise temporairement les PV.',
   details: 'Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.',
-  price: 25,
+  price: 7000,
   currency: 'shlagidolar',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-violet-700 dark:text-violet-600',
@@ -117,7 +106,7 @@ export const xpPotion: Item = {
   name: 'Potion d\'Expérience',
   description: 'Augmente temporairement les gains d\'XP.',
   details: 'Améliore l\'XP gagnée de 10% pendant quelques minutes.',
-  price: 7,
+  price: 40,
   currency: 'shlagidolar',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-green-600 dark:text-green-400',
@@ -128,7 +117,7 @@ export const superXpPotion: Item = {
   name: 'Super Potion d\'Expérience',
   description: 'Augmente beaucoup les gains d\'XP.',
   details: 'Améliore l\'XP gagnée de 25% pendant quelques minutes.',
-  price: 15,
+  price: 400,
   currency: 'shlagidolar',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-green-700 dark:text-green-500',
@@ -139,10 +128,21 @@ export const hyperXpPotion: Item = {
   name: 'Hyper Potion d\'Expérience',
   description: 'Maximise temporairement les gains d\'XP.',
   details: 'Améliore l\'XP gagnée de 50% pendant quelques minutes.',
-  price: 25,
+  price: 4000,
   currency: 'shlagidolar',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-green-800 dark:text-green-600',
+}
+
+export const potion: Item = {
+  id: 'potion',
+  name: 'Potion Dégueulasse',
+  description: 'Soigne 50 HP de votre Shlagémon.',
+  details: 'Redonne 50 points de vie à votre Shlagémon actif pendant le combat.',
+  price: 10,
+  currency: 'shlagidolar',
+  icon: 'i-game-icons:health-potion',
+  iconClass: 'text-red-600 dark:text-red-400',
 }
 
 export const superPotion: Item = {
@@ -150,7 +150,7 @@ export const superPotion: Item = {
   name: 'Super Potion',
   description: 'Soigne 100 HP de votre Shlagémon.',
   details: 'Redonne 100 points de vie à votre Shlagémon actif pendant le combat.',
-  price: 15,
+  price: 100,
   currency: 'shlagidolar',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-violet-600 dark:text-violet-400',
@@ -161,7 +161,7 @@ export const hyperPotion: Item = {
   name: 'Hyper Potion',
   description: 'Soigne 200 HP de votre Shlagémon.',
   details: 'Redonne 200 points de vie à votre Shlagémon actif pendant le combat.',
-  price: 30,
+  price: 1000,
   currency: 'shlagidolar',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-yellow-500 dark:text-yellow-300',
@@ -192,15 +192,28 @@ export const thunderStone: Item = {
   image: '/items/pierre-foutre/pierre-foutre.svg',
 }
 
-export const pistache: Item = {
-  id: 'pistache',
-  name: 'Pistache',
-  description: 'Permet certaines évolutions de Shlagémon bien pourris.',
-  details: 'On sait pas trop ce que ça fait lol.',
+export const steroids: Item = {
+  id: 'steroides',
+  name: 'Stéroïdes',
+  description: 'Permet certaines évolutions de type "gros beauf bodybuildé toxique".',
+  details: `Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.`,
   price: 50,
   currency: 'shlagidiamond',
   type: 'evolution',
-  image: '/items/pierre-foutre/pierre-foutre.svg',
+  icon: 'i-iconoir:potion',
+  iconClass: 'text-orange-500 dark:text-orange-300',
+}
+
+export const ultraSteroid: Item = {
+  id: 'ultra-steroide',
+  name: 'Ultra-Stéroïde',
+  description: `Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.`,
+  details: `Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.`,
+  price: 100,
+  currency: 'shlagidiamond',
+  type: 'evolution',
+  icon: 'i-iconoir:potion',
+  iconClass: 'text-purple-500 dark:text-purple-300',
 }
 
 export const allItems: Item[] = [

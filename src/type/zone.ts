@@ -25,7 +25,6 @@ interface BaseZone {
   }
   village?: {
     shop?: {
-      level: number
       items: Item[]
     }
   }
