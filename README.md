@@ -61,7 +61,7 @@ Depuis le jeu, rendez-vous au village **Veaux du Gland sur Marne** et cliquez su
 
 ### Générer le fichier d'évolutions
 
-Ce script parcourt les données de chaque Shlagémon afin d'extraire le niveau auquel ils évoluent. Il produit un fichier `evolutions.csv` contenant ces informations triées par niveau.
+Ce script parcourt les données de chaque Shlagémon pour générer un tableau ordonné par niveau. Le fichier `evolutions.csv` liste pour chacun la tranche de niveau où on le rencontre, son coefficient ainsi que le niveau d'évolution le cas échéant.
 
 ```bash
 pnpm evolutions:csv
