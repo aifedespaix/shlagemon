@@ -49,6 +49,11 @@ export const useZoneStore = defineStore('zone', () => {
     return idx >= 0 ? idx + 1 : 1
   }
 
+  function getZoneForLevel(level: number): Zone | undefined {
+    const candidates = xpZones.value.filter(z => level >= z.minLevel)
+    return candidates[candidates.length - 1]
+  }
+
   function completeArena(id: string) {
     const z = zones.value.find(z => z.id === id)
     if (z?.arena)
@@ -93,6 +98,7 @@ export const useZoneStore = defineStore('zone', () => {
     setZone,
     getKing,
     getZoneRank,
+    getZoneForLevel,
     completeArena,
     reset,
   }
