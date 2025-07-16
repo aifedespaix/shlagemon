@@ -11,9 +11,21 @@ function createTrackMap(glob: Record<string, string>): TrackMap {
   )
 }
 
-const villageFiles = import.meta.glob('../../public/audio/musics/villages/*.ogg', { eager: true, as: 'url' }) as Record<string, string>
-const battleFiles = import.meta.glob('../../public/audio/musics/battle/*.ogg', { eager: true, as: 'url' }) as Record<string, string>
-const characterFiles = import.meta.glob('../../public/audio/musics/character/*.ogg', { eager: true, as: 'url' }) as Record<string, string>
+const villageFiles = import.meta.glob('../../public/audio/musics/villages/*.ogg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>
+const battleFiles = import.meta.glob('../../public/audio/musics/battle/*.ogg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>
+const characterFiles = import.meta.glob('../../public/audio/musics/character/*.ogg', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>
 
 const villageTracks = createTrackMap(villageFiles)
 const battleTracks = createTrackMap(battleFiles)
