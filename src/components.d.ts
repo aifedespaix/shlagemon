@@ -89,6 +89,7 @@ declare module 'vue' {
     ShlagemonType: typeof import('./components/shlagemon/Type.vue')['default']
     ShlagemonTypeChart: typeof import('./components/shlagemon/TypeChart.vue')['default']
     ShlagemonTypeChartModal: typeof import('./components/shlagemon/TypeChartModal.vue')['default']
+    ShlagemonWearableEquipModal: typeof import('./components/shlagemon/WearableEquipModal.vue')['default']
     ShlagemonXpBar: typeof import('./components/shlagemon/XpBar.vue')['default']
     ShopItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     ShopItemDetail: typeof import('./components/shop/ItemDetail.vue')['default']

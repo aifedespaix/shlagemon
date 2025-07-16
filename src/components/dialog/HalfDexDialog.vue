@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import { profShlag } from '~/data/characters/prof-shlag'
-import { useGameStore } from '~/stores/game'
+import { profMerdant } from '~/data/characters/prof-merdant'
+import { useInventoryStore } from '~/stores/inventory'
 
 const emit = defineEmits(['done'])
-const game = useGameStore()
+const inventory = useInventoryStore()
 
 const dialogTree: DialogNode[] = [
   {
     id: 'step1',
-    text: `Oh ! Salut dresseur ! Je suis ${profShlag.name}. Tu as rempli 50% du Shlagedex !`,
+    text: 'Félicitations ! Tu as déjà complété la moitié du Shlagedex.',
     responses: [
       { label: 'Continuer', nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: 'Je dois avouer que je ne m\'attendais pas à sentir ta persévérance aussi longtemps.',
+    text: `Je suis ${profMerdant.name}. Pour t\'aider, je vais te remettre un objet très spécial : le Multi-UXP.`,
     responses: [
       { label: 'Retour', nextId: 'step1', type: 'danger' },
       { label: 'Continuer', nextId: 'step3', type: 'primary' },
@@ -24,7 +24,7 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step3',
-    text: 'Pour célébrer, je t\'offre 10 Shlagédiamants. Ils brillent presque autant que toi.',
+    text: 'Fais-le tenir par un Shlagémon et il recevra la moitié de l\'expérience gagnée en combat.',
     responses: [
       { label: 'Retour', nextId: 'step2', type: 'danger' },
       { label: 'Continuer', nextId: 'step4', type: 'primary' },
@@ -32,22 +32,14 @@ const dialogTree: DialogNode[] = [
   },
   {
     id: 'step4',
-    text: 'Ne les dépense pas tous au même endroit... sauf si c\'est pour m\'acheter des parfums.',
+    text: 'Un seul Shlagémon peut le porter, alors choisis bien son porteur !',
     responses: [
       { label: 'Retour', nextId: 'step3', type: 'danger' },
-      { label: 'Continuer', nextId: 'step5', type: 'primary' },
-    ],
-  },
-  {
-    id: 'step5',
-    text: 'Allez, file. Le Shlagedex n\'attend que toi pour être complété.',
-    responses: [
-      { label: 'Retour', nextId: 'step4', type: 'danger' },
       {
-        label: 'Merci, Professeur !',
+        label: 'Merci !',
         type: 'valid',
         action: () => {
-          game.addShlagidiamond(10)
+          inventory.add('multi-exp', 1)
           emit('done', 'halfDex')
         },
       },
@@ -58,7 +50,7 @@ const dialogTree: DialogNode[] = [
 
 <template>
   <DialogBox
-    :character="profShlag"
+    :character="profMerdant"
     avatar-url="/characters/prof-merdant/prof-merdant.png"
     :dialog-tree="dialogTree"
   />
