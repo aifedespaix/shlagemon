@@ -31,7 +31,7 @@ catalogs:
     '@antfu/eslint-config': ^4.11.0
     '@iconify-json/carbon': ^1.2.8
     '@iconify-json/game-icons': ^1.2.3
-    '@iconify-json/iconoir': ^1.2.3
+    '@iconify-json/iconoir': ^1.2.7
     '@iconify-json/mdi': ^1.2.3
     '@vue-macros/volar': ^3.0.0-beta.7
     '@vue/test-utils': ^2.4.6
