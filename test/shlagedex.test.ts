@@ -69,6 +69,41 @@ describe('shlagedex capture', () => {
     expect(existing.lvl).toBe(4)
     expect(existing.isShiny).toBe(true)
   })
+
+  it('warns when capturing duplicate at max rarity via captureShlagemon', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 100
+    mon.lvl = 5
+    toastMock.mockClear()
+    const result = dex.captureShlagemon(carapouffe)
+    expect(result.id).toBe(mon.id)
+    expect(mon.rarity).toBe(100)
+    expect(mon.lvl).toBe(5)
+    expect(toastMock).toHaveBeenCalledWith(
+      'Vous avez déjà ce Shlagémon au maximum de sa rareté',
+    )
+  })
+
+  it('warns when capturing duplicate at max rarity via captureEnemy', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const existing = dex.createShlagemon(carapouffe)
+    existing.rarity = 100
+    existing.lvl = 8
+    const enemy = createDexShlagemon(carapouffe, false, 1, 20)
+    enemy.rarity = 100
+    applyStats(enemy)
+    toastMock.mockClear()
+    const result = dex.captureEnemy(enemy)
+    expect(result.id).toBe(existing.id)
+    expect(existing.rarity).toBe(100)
+    expect(existing.lvl).toBe(8)
+    expect(toastMock).toHaveBeenCalledWith(
+      'Vous avez déjà ce Shlagémon au maximum de sa rareté',
+    )
+  })
 })
 
 describe('shlagedex highest level', () => {
