@@ -151,28 +151,29 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return Math.floor(base * (1 + xpBonusPercent.value / 100))
   }
 
-  function updateCoefficient(mon: DexShlagemon, zoneId?: string) {
+  function updateCoefficient(
+    mon: DexShlagemon,
+    zoneId?: string,
+    heal = true,
+  ) {
     if (mon.rarity !== 100)
       return
-    const target = zoneId
-      ? { id: zoneId }
-      : zoneStore.getZoneForLevel(mon.lvl)
+    const target = zoneId ? { id: zoneId } : zoneStore.getZoneForLevel(mon.lvl)
     if (!target)
       return
     const rank = zoneStore.getZoneRank(target.id)
     const baseCoef = baseMap[mon.base.id].coefficient
     const newCoef = baseCoef * rank
-    if (mon.base.coefficient !== newCoef) {
-      mon.base.coefficient = newCoef
-      mon.baseStats = {
-        hp: statWithRarityAndCoefficient(baseStats.hp, newCoef, mon.rarity),
-        attack: statWithRarityAndCoefficient(baseStats.attack, newCoef, mon.rarity),
-        defense: statWithRarityAndCoefficient(baseStats.defense, newCoef, mon.rarity),
-        smelling: statWithRarityAndCoefficient(baseStats.smelling, newCoef, mon.rarity),
-      }
-      applyStats(mon)
-      mon.hpCurrent = maxHp(mon)
+    mon.base.coefficient = newCoef
+    mon.baseStats = {
+      hp: statWithRarityAndCoefficient(baseStats.hp, newCoef, mon.rarity),
+      attack: statWithRarityAndCoefficient(baseStats.attack, newCoef, mon.rarity),
+      defense: statWithRarityAndCoefficient(baseStats.defense, newCoef, mon.rarity),
+      smelling: statWithRarityAndCoefficient(baseStats.smelling, newCoef, mon.rarity),
     }
+    applyStats(mon)
+    if (heal)
+      mon.hpCurrent = maxHp(mon)
   }
 
   function updateHighestLevel(mon: DexShlagemon) {
@@ -506,14 +507,17 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.lvl += 1
       audio.playSfx('/audio/sfx/lvl-up.ogg')
       const prevHp = mon.hpCurrent
-      applyStats(mon)
+      if (mon.rarity === 100)
+        updateCoefficient(mon, undefined, false)
+      else
+        applyStats(mon)
       const healAmount = Math.round((mon.hp * healPercent) / 100)
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
       const before = mon.base.id
       await checkEvolution(mon)
-      if (mon.base.id === before)
-        updateCoefficient(mon)
+      if (mon.base.id === before && mon.rarity === 100)
+        updateCoefficient(mon, undefined, false)
     }
     if (mon.lvl >= maxLevel)
       mon.xp = 0
