@@ -103,7 +103,7 @@ function arenaDefeated(z: Zone) {
 }
 
 function isNew(z: Zone) {
-  return !visit.visited[z.id]
+  return z.id !== zone.current.id && !visit.visited[z.id]
 }
 const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 </script>
