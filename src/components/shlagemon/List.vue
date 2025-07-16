@@ -29,6 +29,7 @@ const sortOptions = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
   { label: 'Shiny', value: 'shiny' },
+  { label: 'Objet équipé', value: 'item' },
   { label: 'Nom', value: 'name' },
   { label: 'Type', value: 'type' },
   { label: 'Attaque', value: 'attack' },
@@ -53,6 +54,9 @@ const displayedMons = computed(() => {
       break
     case 'shiny':
       mons.sort((a, b) => Number(a.isShiny) - Number(b.isShiny))
+      break
+    case 'item':
+      mons.sort((a, b) => Number(Boolean(a.heldItemId)) - Number(Boolean(b.heldItemId)))
       break
     case 'attack':
       mons.sort((a, b) => a.attack - b.attack)

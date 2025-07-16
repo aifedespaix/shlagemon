@@ -6,6 +6,7 @@ export type DexSort =
   | 'name'
   | 'type'
   | 'shiny'
+  | 'item'
   | 'attack'
   | 'defense'
   | 'count'
