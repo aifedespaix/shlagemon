@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
+import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
-import { getArenaTrack } from '~/data/music'
+import { getArenaTrack, getZoneTrack } from '~/data/music'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { usePlayerStore } from '~/stores/player'
@@ -16,6 +17,7 @@ const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const zone = useZoneStore()
 const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
+const exitTrack = ref(preparationMusic)
 
 function collectBadge() {
   if (!arena.arenaData)
@@ -26,6 +28,7 @@ function collectBadge() {
   toast.success(`Badge ${arena.arenaData.badge.name} obtenu !`)
   arena.reset()
   panel.showVillage()
+  exitTrack.value = getZoneTrack(zone.current.id, zone.current.type) ?? preparationMusic
   emit('done', 'arenaVictory')
 }
 
@@ -49,6 +52,6 @@ const dialogTree: DialogNode[] = [
     :character="arena.arenaData!.character"
     :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
-    :exit-track="preparationMusic"
+    :exit-track="exitTrack"
   />
 </template>

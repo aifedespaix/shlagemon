@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import { getArenaTrack } from '~/data/music'
+import { ref } from 'vue'
+import { getArenaTrack, getZoneTrack } from '~/data/music'
 import { useArenaStore } from '~/stores/arena'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useZoneStore } from '~/stores/zone'
 
 const emit = defineEmits(['done'])
 const arena = useArenaStore()
 const panel = useMainPanelStore()
+const zone = useZoneStore()
 const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
+const exitTrack = ref(preparationMusic)
 
 function quit() {
   arena.reset()
   panel.showVillage()
+  exitTrack.value = getZoneTrack(zone.current.id, zone.current.type) ?? preparationMusic
   emit('done', 'arenaWelcome')
 }
 
@@ -40,6 +45,6 @@ const dialogTree: DialogNode[] = [
     :character="arena.arenaData!.character"
     :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
-    :exit-track="preparationMusic"
+    :exit-track="exitTrack"
   />
 </template>
