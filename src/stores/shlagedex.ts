@@ -156,7 +156,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       return
     const target = zoneId
       ? { id: zoneId }
-      : accessibleXpZones.value[accessibleXpZones.value.length - 1]
+      : zoneStore.getZoneForLevel(mon.lvl)
     if (!target)
       return
     const rank = zoneStore.getZoneRank(target.id)

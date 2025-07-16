@@ -191,6 +191,33 @@ describe('rarity 100 coefficient update', () => {
     const rank = zone.getZoneRank('bois-de-bouffon')
     expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
   })
+
+  it('keeps coefficient from level bracket when higher zone unlocks', async () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const progress = useZoneProgressStore()
+    const zone = useZoneStore()
+
+    const enemy = createDexShlagemon(carapouffe, false, 1, 27)
+    enemy.rarity = 100
+    applyStats(enemy)
+    const mon = dex.captureEnemy(enemy)
+    await nextTick()
+    const rank = zone.getZoneRank('marais-moudugenou')
+    expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
+
+    ;[
+      'plaine-kekette',
+      'bois-de-bouffon',
+      'chemin-du-slip',
+      'ravin-fesse-molle',
+      'precipice-nanard',
+      'marais-moudugenou',
+    ].forEach(id => progress.defeatKing(id))
+    await nextTick()
+
+    expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
+  })
 })
 
 describe('duplicate capture at max rarity with both methods', () => {
