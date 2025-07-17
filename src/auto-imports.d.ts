@@ -338,6 +338,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const useZoneAccess: typeof import('./stores/zoneAccess')['useZoneAccess']
   const useZoneMonsModalStore: typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']
   const useZoneProgressStore: typeof import('./stores/zoneProgress')['useZoneProgressStore']
   const useZoneStore: typeof import('./stores/zone')['useZoneStore']
@@ -734,6 +735,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly useZoneAccess: UnwrapRef<typeof import('./stores/zoneAccess')['useZoneAccess']>
     readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>

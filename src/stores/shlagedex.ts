@@ -1,11 +1,9 @@
 import type { ActiveEffect } from '~/type/effect'
 import type { Item } from '~/type/item'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
-import type { Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
 import { allShlagemons } from '~/data/shlagemons'
-import { zonesData } from '~/data/zones'
 import {
   applyCurrentStats,
   applyStats,
@@ -18,14 +16,13 @@ import { useAudioStore } from './audio'
 import { useDiseaseStore } from './disease'
 import { useEquipmentStore } from './equipment'
 import { useEvolutionStore } from './evolution'
-import { useZoneProgressStore } from './zoneProgress'
+import { useZoneAccess } from './zoneAccess'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
   const activeShlagemon = ref<DexShlagemon | null>(null)
   const highestLevel = ref(0)
   const effects = ref<ActiveEffect[]>([])
-  const progress = useZoneProgressStore()
   const zoneStore = useZoneStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
@@ -42,22 +39,11 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return `${name} gagne ${rarityGain} ${point} de rareté et perd ${levelLoss} ${level} !`
   }
 
-  const xpZones = computed(() => zonesData.filter(z => z.maxLevel > 0))
+  const {
+    accessibleZones,
+    accessibleXpZones,
+  } = useZoneAccess(highestLevel)
 
-  function canAccess(z: Zone) {
-    if (z.type === 'village')
-      return z.minLevel <= highestLevel.value
-    const idx = xpZones.value.findIndex(x => x.id === z.id)
-    if (idx === 0)
-      return true
-    const prev = xpZones.value[idx - 1]
-    return progress.isKingDefeated(prev.id)
-  }
-
-  const accessibleZones = computed(() => zonesData.filter(z => canAccess(z)))
-  const accessibleXpZones = computed(() =>
-    accessibleZones.value.filter(z => z.maxLevel > 0),
-  )
   const accessibleShopLevel = computed(() =>
     accessibleZones.value
       .filter(z => z.village?.shop)
