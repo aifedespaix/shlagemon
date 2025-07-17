@@ -32,7 +32,7 @@ describe('zone rank scaling', () => {
     vi.runOnlyPendingTimers()
 
     const enemy = (wrapper.vm as any).enemy
-    expect(enemy.base.coefficient).toBe(carapouffe.coefficient * rank * EQUILIBRE_RANK)
+    expect(enemy.coefficient).toBe(carapouffe.coefficient * rank * EQUILIBRE_RANK)
 
     wrapper.unmount()
     pickSpy.mockRestore()
@@ -56,6 +56,6 @@ describe('zone rank scaling', () => {
     dex.captureShlagemon(carapouffe)
     await Promise.resolve()
     expect(mon.rarity).toBe(100)
-    expect(mon.base.coefficient).toBe(carapouffe.coefficient * rank)
+    expect(mon.coefficient).toBe(carapouffe.coefficient * rank)
   })
 })

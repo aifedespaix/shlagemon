@@ -20,6 +20,12 @@ export interface BaseShlagemon {
 export interface DexShlagemon extends Stats {
   id: string
   base: BaseShlagemon
+  /**
+   * Current coefficient used to compute battle stats.
+   * The original coefficient from the base definition
+   * remains unchanged in `base.coefficient`.
+   */
+  coefficient: number
   baseStats: Stats
   /**
    * ISO string representing the first time this Shlagémon was obtained.
