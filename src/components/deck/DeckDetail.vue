@@ -2,6 +2,9 @@
 import type { BaseShlagemon } from '~/type/shlagemon'
 
 const props = defineProps<{ mon: BaseShlagemon | null }>()
+const emit = defineEmits<{
+  (e: 'openMon', mon: BaseShlagemon): void
+}>()
 </script>
 
 <template>
@@ -25,15 +28,17 @@ const props = defineProps<{ mon: BaseShlagemon | null }>()
     </p>
     <div v-if="props.mon.evolution" class="flex flex-col items-center text-sm font-medium">
       <span>Évolution :</span>
-      <span>
-        {{ props.mon.evolution.base.name }}
-        <template v-if="props.mon.evolution.condition.type === 'lvl'">
+      <div class="mt-1 flex items-center gap-1">
+        <UiButton variant="outline" @click="emit('openMon', props.mon.evolution.base)">
+          {{ props.mon.evolution.base.name }}
+        </UiButton>
+        <span v-if="props.mon.evolution.condition.type === 'lvl'">
           - lvl {{ props.mon.evolution.condition.value }}
-        </template>
-        <template v-else>
+        </span>
+        <span v-else>
           - {{ props.mon.evolution.condition.value.name }}
-        </template>
-      </span>
+        </span>
+      </div>
     </div>
   </div>
 </template>

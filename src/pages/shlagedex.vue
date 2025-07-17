@@ -24,7 +24,7 @@ head:
   <div class="mx-auto max-w-160 w-full p-4">
     <DeckList :mons="allShlagemons" :on-item-click="open" />
     <Modal v-model="showDetail" footer-close @close="showDetail = false">
-      <DeckDetail :mon="selected" />
+      <DeckDetail :mon="selected" @open-mon="open" />
     </Modal>
   </div>
 </template>
