@@ -1,22 +1,26 @@
 import { defineStore } from 'pinia'
 
-export type EventCallback<T = any> = (payload?: T) => void
+export interface EventMap {
+  'battle:end': void
+}
+
+export type EventCallback<T = any> = (payload: T) => void
 
 export const useEventStore = defineStore('event', () => {
-  const listeners = new Map<string, Set<EventCallback>>()
+  const listeners = new Map<keyof EventMap, Set<(payload: any) => void>>()
 
-  function on<T = any>(event: string, cb: EventCallback<T>) {
+  function on<K extends keyof EventMap>(event: K, cb: (payload: EventMap[K]) => void) {
     if (!listeners.has(event))
       listeners.set(event, new Set())
-    listeners.get(event)!.add(cb as EventCallback)
+    listeners.get(event)!.add(cb as (payload: any) => void)
   }
 
-  function off<T = any>(event: string, cb: EventCallback<T>) {
-    listeners.get(event)?.delete(cb as EventCallback)
+  function off<K extends keyof EventMap>(event: K, cb: (payload: EventMap[K]) => void) {
+    listeners.get(event)?.delete(cb as (payload: any) => void)
   }
 
-  function emit<T = any>(event: string, payload?: T) {
-    listeners.get(event)?.forEach(cb => cb(payload))
+  function emit<K extends keyof EventMap>(event: K, payload?: EventMap[K]) {
+    listeners.get(event)?.forEach(cb => cb(payload as EventMap[K]))
   }
 
   return { on, off, emit }
