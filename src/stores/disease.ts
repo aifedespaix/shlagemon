@@ -20,6 +20,11 @@ export const useDiseaseStore = defineStore('disease', () => {
     toast(`Votre Shlagémon n'est plus malade !`)
   }
 
+  function reset() {
+    active.value = false
+    remaining.value = 0
+  }
+
   function onBattleEnd() {
     if (active.value) {
       remaining.value -= 1
@@ -33,7 +38,7 @@ export const useDiseaseStore = defineStore('disease', () => {
 
   events.on('battle:end', onBattleEnd)
 
-  return { active, remaining, start }
+  return { active, remaining, start, reset }
 }, {
   persist: true,
 })
