@@ -1,6 +1,15 @@
+import type { ActiveEffect } from '~/type/effect'
+import type { DexShlagemon } from '~/type/shlagemon'
 import { allShlagemons } from '~/data/shlagemons'
 import { baseStats, statWithRarityAndCoefficient } from './dexFactory'
 import { deduplicateDex } from './saveFix'
+
+export interface SerializedDex {
+  shlagemons: DexShlagemon[]
+  activeShlagemon: DexShlagemon | null
+  highestLevel: number
+  effects: ActiveEffect[]
+}
 
 function getBaseMap() {
   return Object.fromEntries(
@@ -8,20 +17,33 @@ function getBaseMap() {
   )
 }
 
+interface StoredDexMon extends Omit<DexShlagemon, 'base' | 'heldItemId'> {
+  baseId: string
+  heldItemId: string | null
+  base?: undefined
+}
+
+interface StoredDex extends Omit<SerializedDex, 'shlagemons' | 'activeShlagemon'> {
+  shlagemons: StoredDexMon[]
+  activeShlagemon: StoredDexMon | null
+}
+
 export const shlagedexSerializer = {
-  serialize(data: any): string {
+  serialize(data: SerializedDex): string {
     return JSON.stringify({
       ...data,
-      shlagemons: data.shlagemons.map((mon: any) => ({
+      shlagemons: data.shlagemons.map(mon => ({
         ...mon,
-        baseId: mon.base?.id ?? mon.baseId,
+        baseId: (mon as StoredDexMon).baseId ?? mon.base.id,
         base: undefined, // on supprime la boucle
         heldItemId: mon.heldItemId ?? null,
       })),
       activeShlagemon: data.activeShlagemon
         ? {
             ...data.activeShlagemon,
-            baseId: data.activeShlagemon.base?.id ?? data.activeShlagemon.baseId,
+            baseId:
+              (data.activeShlagemon as StoredDexMon).baseId
+              ?? data.activeShlagemon.base.id,
             base: undefined,
             heldItemId: data.activeShlagemon.heldItemId ?? null,
           }
@@ -29,13 +51,13 @@ export const shlagedexSerializer = {
     })
   },
 
-  deserialize(raw: string): any {
-    const parsed = JSON.parse(raw)
+  deserialize(raw: string): SerializedDex {
+    const parsed = JSON.parse(raw) as StoredDex
 
     const baseMap = getBaseMap()
 
     let shlagemons = (parsed.shlagemons || [])
-      .map((mon: any) => {
+      .map((mon: StoredDexMon) => {
         const base = mon.base ?? baseMap[mon.baseId]
         if (!base)
           return null
@@ -56,10 +78,10 @@ export const shlagedexSerializer = {
           heldItemId: mon.heldItemId ?? null,
         }
       })
-      .filter(Boolean)
+      .filter((m): m is DexShlagemon => Boolean(m))
 
     // build active before deduplication so that deduplication can keep its id
-    let active = parsed.activeShlagemon
+    let active: StoredDexMon | null = parsed.activeShlagemon
     if (active) {
       const base = active.base ?? baseMap[active.baseId]
       if (base) {
@@ -88,8 +110,8 @@ export const shlagedexSerializer = {
     shlagemons = deduplicateDex(shlagemons, active?.id)
 
     if (active) {
-      const found = shlagemons.find((m: any) => m.id === active!.id)
-        || shlagemons.find((m: any) => m.base.id === active!.base.id)
+      const found = shlagemons.find(m => m.id === active!.id)
+        || shlagemons.find(m => m.base.id === active!.base.id)
       if (found)
         active = found
     }
