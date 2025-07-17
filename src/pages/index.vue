@@ -21,5 +21,10 @@ head:
         Voir le Shlagédex
       </UiButton>
     </RouterLink>
+    <RouterLink to="/schlagedeck" class="mt-2 block">
+      <UiButton type="primary">
+        Voir le Schlage Deck
+      </UiButton>
+    </RouterLink>
   </div>
 </template>
