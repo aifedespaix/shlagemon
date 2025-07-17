@@ -7,7 +7,7 @@ export const marginal: BaseShlagemon = {
   name: 'Marginal',
   description: `Marginal passe son temps à jongler sur une corde raide tout en jouant du diabolo. Il fait la manche dans les ports en espérant qu'on lui lance autre chose que des tomates.`,
   types: [shlagemonTypes.eau],
-  coefficient: 99,
+  coefficient: 1,
   evolution: {
     base: leviaraison,
     condition: { type: 'lvl', value: 100 },
