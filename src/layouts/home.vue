@@ -4,11 +4,11 @@ import HomeHeader from '~/components/layout/HomeHeader.vue'
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="h-screen flex flex-col">
     <HomeHeader />
-    <main class="mx-auto max-w-160 w-full flex-1 p-4">
+    <main class="mx-auto max-w-160 w-full flex-1 overflow-auto p-4">
       <RouterView />
+      <HomeFooter />
     </main>
-    <HomeFooter />
   </div>
 </template>
