@@ -5,6 +5,7 @@ import { useBallStore } from './ball'
 import { useBattleStatsStore } from './battleStats'
 import { useDexFilterStore } from './dexFilter'
 import { useDialogStore } from './dialog'
+import { useDiseaseStore } from './disease'
 import { useEquipmentStore } from './equipment'
 import { useGameStore } from './game'
 import { useGameStateStore } from './gameState'
@@ -24,6 +25,7 @@ export const useSaveStore = defineStore('save', () => {
   const battleStats = useBattleStatsStore()
   const inventory = useInventoryStore()
   const dialog = useDialogStore()
+  const disease = useDiseaseStore()
   const zone = useZoneStore()
   const zoneProgress = useZoneProgressStore()
   const zoneVisit = useZoneVisitStore()
@@ -41,6 +43,7 @@ export const useSaveStore = defineStore('save', () => {
     gameState.reset()
     game.reset()
     dialog.reset()
+    disease.reset()
     inventory.reset()
     zone.reset()
     zoneVisit.reset()
