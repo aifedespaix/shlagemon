@@ -9,6 +9,7 @@ export const defensePotion: Item = {
   details: 'Renforce brièvement la défense de votre Shlagémon actif.',
   price: 50,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-blue-500 dark:text-blue-400',
 }
@@ -20,6 +21,7 @@ export const superDefensePotion: Item = {
   details: 'Renforce considérablement la défense de votre Shlagémon actif.',
   price: 500,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-blue-600 dark:text-blue-500',
 }
@@ -31,6 +33,7 @@ export const hyperDefensePotion: Item = {
   details: 'Booste énormément la défense de votre Shlagémon actif.',
   price: 5000,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-blue-700 dark:text-blue-600',
 }
@@ -42,6 +45,7 @@ export const attackPotion: Item = {
   details: 'Renforce brièvement l\'attaque de votre Shlagémon actif.',
   price: 60,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-orange-500 dark:text-orange-400',
 }
@@ -53,6 +57,7 @@ export const superAttackPotion: Item = {
   details: 'Renforce considérablement l\'attaque de votre Shlagémon actif.',
   price: 600,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-orange-600 dark:text-orange-500',
 }
@@ -64,6 +69,7 @@ export const hyperAttackPotion: Item = {
   details: 'Booste énormément l\'attaque de votre Shlagémon actif.',
   price: 6000,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-orange-700 dark:text-orange-600',
 }
@@ -75,6 +81,7 @@ export const vitalityPotion: Item = {
   details: 'Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.',
   price: 70,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-violet-500 dark:text-violet-400',
 }
@@ -86,6 +93,7 @@ export const superVitalityPotion: Item = {
   details: 'Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.',
   price: 700,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-violet-600 dark:text-violet-500',
 }
@@ -97,6 +105,7 @@ export const hyperVitalityPotion: Item = {
   details: 'Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.',
   price: 7000,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-violet-700 dark:text-violet-600',
 }
@@ -108,6 +117,7 @@ export const xpPotion: Item = {
   details: 'Améliore l\'XP gagnée de 10% pendant quelques minutes.',
   price: 40,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-green-600 dark:text-green-400',
 }
@@ -119,6 +129,7 @@ export const superXpPotion: Item = {
   details: 'Améliore l\'XP gagnée de 25% pendant quelques minutes.',
   price: 400,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-green-700 dark:text-green-500',
 }
@@ -130,6 +141,7 @@ export const hyperXpPotion: Item = {
   details: 'Améliore l\'XP gagnée de 50% pendant quelques minutes.',
   price: 4000,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-green-800 dark:text-green-600',
 }
@@ -141,6 +153,7 @@ export const capturePotion: Item = {
   details: 'Améliore la probabilité de capture de 10% pendant quelques minutes.',
   price: 40,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-teal-600 dark:text-teal-400',
 }
@@ -152,6 +165,7 @@ export const superCapturePotion: Item = {
   details: 'Améliore la probabilité de capture de 25% pendant quelques minutes.',
   price: 400,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-teal-700 dark:text-teal-500',
 }
@@ -163,6 +177,7 @@ export const hyperCapturePotion: Item = {
   details: 'Améliore la probabilité de capture de 50% pendant quelques minutes.',
   price: 4000,
   currency: 'shlagidolar',
+  category: 'passif',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-teal-800 dark:text-teal-600',
 }
@@ -174,6 +189,7 @@ export const potion: Item = {
   details: 'Redonne 50 points de vie à votre Shlagémon actif pendant le combat.',
   price: 10,
   currency: 'shlagidolar',
+  category: 'actif',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-red-600 dark:text-red-400',
 }
@@ -185,6 +201,7 @@ export const superPotion: Item = {
   details: 'Redonne 100 points de vie à votre Shlagémon actif pendant le combat.',
   price: 100,
   currency: 'shlagidolar',
+  category: 'actif',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-violet-600 dark:text-violet-400',
 }
@@ -196,6 +213,7 @@ export const hyperPotion: Item = {
   details: 'Redonne 200 points de vie à votre Shlagémon actif pendant le combat.',
   price: 1000,
   currency: 'shlagidolar',
+  category: 'actif',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-yellow-500 dark:text-yellow-300',
 }
@@ -208,6 +226,7 @@ export const multiExp: Item = {
     'Permet de partager 50% de l\'XP gagnée en combat avec le Shlagémon porteur.',
   price: 20,
   currency: 'shlagidiamond',
+  category: 'utilitaire',
   icon: 'i-game-icons:three-friends',
   iconClass: 'text-orange-500 dark:text-orange-300',
   unique: true,
@@ -222,6 +241,7 @@ export const vitalityRing: Item = {
     'Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.',
   price: 20,
   currency: 'shlagidiamond',
+  category: 'utilitaire',
   icon: 'i-game-icons:ring',
   iconClass: 'text-red-500 dark:text-red-400',
   unique: true,
@@ -236,6 +256,7 @@ export const xpRing: Item = {
     'Porté par un Shlagémon, il augmente l\'expérience gagnée en combat de 15%. Effet cumulable avec les potions d\'expérience.',
   price: 20,
   currency: 'shlagidiamond',
+  category: 'utilitaire',
   icon: 'i-game-icons:big-diamond-ring',
   iconClass: 'text-green-600 dark:text-green-400',
   unique: true,
@@ -249,6 +270,7 @@ export const thunderStone: Item = {
   details: 'Fait évoluer Pikachiant en Raïchiotte.',
   price: 10,
   currency: 'shlagidiamond',
+  category: 'actif',
   type: 'evolution',
   image: '/items/pierre-foutre/pierre-foutre.svg',
 }
@@ -260,6 +282,7 @@ export const steroids: Item = {
   details: `Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.`,
   price: 50,
   currency: 'shlagidiamond',
+  category: 'actif',
   type: 'evolution',
   icon: 'i-iconoir:potion',
   iconClass: 'text-orange-500 dark:text-orange-300',
@@ -272,6 +295,7 @@ export const ultraSteroid: Item = {
   details: `Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.`,
   price: 100,
   currency: 'shlagidiamond',
+  category: 'actif',
   type: 'evolution',
   icon: 'i-iconoir:potion',
   iconClass: 'text-purple-500 dark:text-purple-300',
