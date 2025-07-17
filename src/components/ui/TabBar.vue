@@ -13,13 +13,13 @@ function select(val: string | number) {
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-1">
+  <div class="flex flex-wrap justify-center gap-1">
     <button
       v-for="opt in props.options"
       :key="opt.value"
-      class="flex flex-1 items-center gap-1 border rounded-t px-2 py-1 text-sm"
+      class="flex items-center gap-1 rounded-t px-1 py-1 text-sm"
       :class="props.modelValue === opt.value
-        ? ['font-bold border-b-transparent', props.activeColors?.[opt.value] ?? props.colors?.[opt.value] ?? 'bg-gray-200 dark:bg-gray-700']
+        ? ['font-bold', props.activeColors?.[opt.value] ?? props.colors?.[opt.value] ?? 'bg-gray-200 dark:bg-gray-700']
         : [props.colors?.[opt.value] ?? 'bg-white dark:bg-gray-900', props.hoverColors?.[opt.value] ?? 'hover:bg-gray-100 dark:hover:bg-gray-800']"
       @click="select(opt.value)"
     >

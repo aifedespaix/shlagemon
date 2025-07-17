@@ -109,7 +109,7 @@ function onUse(item: Item) {
         :colors="tabColors"
         :hover-colors="tabHoverColors"
         :active-colors="tabActiveColors"
-        class="w-full"
+        class="w-full -mb-2"
       />
     </template>
 

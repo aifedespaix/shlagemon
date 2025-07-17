@@ -63,7 +63,7 @@ watch(showInfo, (val) => {
 
 <template>
   <div
-    class="relative flex flex-col cursor-pointer gap-1 border rounded bg-white p-1 dark:bg-gray-900"
+    class="relative m-x-1 flex flex-col cursor-pointer gap-1 border rounded bg-white p-1 dark:bg-gray-900"
     :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '']"
     @click="onCardClick"
   >

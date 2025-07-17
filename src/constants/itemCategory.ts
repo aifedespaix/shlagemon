@@ -1,15 +1,15 @@
 import type { ItemCategory } from '~/type/item'
 
 export const itemCategoryTabColors: Record<ItemCategory, string> = {
-  actif: 'bg-red-100 dark:bg-red-900/40',
-  passif: 'bg-green-100 dark:bg-green-900/40',
-  utilitaire: 'bg-yellow-100 dark:bg-yellow-900/40',
+  actif: 'text-red-700 border-white/50',
+  passif: 'text-green-700 border-white/50',
+  utilitaire: 'text-orange-700 border-white/50',
 }
 
 export const itemCategoryTabBaseColors: Record<ItemCategory, string> = {
-  actif: 'bg-red-50 dark:bg-red-900/20',
-  passif: 'bg-green-50 dark:bg-green-900/20',
-  utilitaire: 'bg-yellow-50 dark:bg-yellow-900/20',
+  actif: '',
+  passif: '',
+  utilitaire: '',
 }
 
 export const itemCategoryTabHoverColors: Record<ItemCategory, string> = {

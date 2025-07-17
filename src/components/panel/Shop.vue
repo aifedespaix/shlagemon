@@ -99,16 +99,16 @@ function closeShop() {
     <h2 class="text-center font-bold">
       Boutique
     </h2>
+    <UiTabBar
+      v-if="availableCategories.length > 1"
+      v-model="filter.category"
+      :options="availableCategories"
+      :colors="tabColors"
+      :hover-colors="tabHoverColors"
+      :active-colors="tabActiveColors"
+      class="-mb-1"
+    />
     <div v-if="!selectedItem" class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
-      <UiTabBar
-        v-if="availableCategories.length > 1"
-        v-model="filter.category"
-        :options="availableCategories"
-        :colors="tabColors"
-        :hover-colors="tabHoverColors"
-        :active-colors="tabActiveColors"
-        class="mb-1"
-      />
       <ShopItemCard
         v-for="item in filteredShopItems"
         :key="item.id"
