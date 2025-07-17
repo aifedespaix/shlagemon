@@ -43,6 +43,7 @@ export const shlagedexSerializer = {
           ...mon,
           base,
           baseId: mon.baseId ?? base.id,
+          coefficient: mon.coefficient ?? base.coefficient,
           baseStats: mon.baseStats ?? {
             hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, mon.rarity ?? 1),
             attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, mon.rarity ?? 1),
@@ -66,6 +67,7 @@ export const shlagedexSerializer = {
           ...active,
           base,
           baseId: active.baseId ?? base.id,
+          coefficient: active.coefficient ?? base.coefficient,
           baseStats: active.baseStats ?? {
             hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, active.rarity ?? 1),
             attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, active.rarity ?? 1),

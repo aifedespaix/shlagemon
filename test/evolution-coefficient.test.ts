@@ -21,6 +21,6 @@ describe('evolution coefficient bonus', () => {
     mon.rarity = 100
     await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
     expect(mon.base.id).toBe(alakalbar.id)
-    expect(mon.base.coefficient).toBe(alakalbar.coefficient * rank)
+    expect(mon.coefficient).toBe(alakalbar.coefficient * rank)
   })
 })

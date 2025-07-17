@@ -28,7 +28,7 @@ describe('arena enemies', () => {
     wrapper.vm.startBattle()
 
     const enemy = arena.enemyTeam[0]
-    expect(enemy.base.coefficient).toBe(arena20.level)
+    expect(enemy.coefficient).toBe(arena20.level)
     wrapper.unmount()
   })
 })

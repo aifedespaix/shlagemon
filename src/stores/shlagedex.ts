@@ -163,7 +163,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const rank = zoneStore.getZoneRank(target.id)
     const baseCoef = baseMap[mon.base.id].coefficient
     const newCoef = baseCoef * rank
-    mon.base.coefficient = newCoef
+    mon.coefficient = newCoef
     applyCurrentStats(mon)
     if (heal)
       mon.hpCurrent = maxHp(mon)

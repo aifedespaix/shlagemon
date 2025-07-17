@@ -32,7 +32,7 @@ export function applyStats(mon: DexShlagemon) {
 
 export function applyCurrentStats(mon: DexShlagemon) {
   const levelBoost = 1 + (mon.lvl - 1) * 0.02
-  const coefficientBoost = 1 + 2.5 * (mon.base.coefficient - 1) / 999
+  const coefficientBoost = 1 + 2.5 * (mon.coefficient - 1) / 999
 
   const hpBase = Math.floor(mon.baseStats.hp * coefficientBoost / 5) * 5
   mon.hp = Math.floor((hpBase + (mon.lvl - 1) * 5) * levelBoost)
@@ -49,13 +49,10 @@ export function createDexShlagemon(
   level = 1,
 ): DexShlagemon {
   const rarity = generateRarity()
-  const adjustedBase: BaseShlagemon = {
-    ...base,
-    coefficient: base.coefficient * coefficientMultiplier,
-  }
   const mon: DexShlagemon = {
     id: crypto.randomUUID(),
-    base: adjustedBase,
+    base,
+    coefficient: base.coefficient * coefficientMultiplier,
     baseStats: {
       hp: statWithRarityAndCoefficient(baseStats.hp, 1, rarity),
       attack: statWithRarityAndCoefficient(baseStats.attack, 1, rarity),

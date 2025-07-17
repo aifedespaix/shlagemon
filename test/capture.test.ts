@@ -27,11 +27,11 @@ describe('capture mechanics', () => {
 
   it('hyper ball versus strong foe gives around 10% chance', () => {
     const mon = createDexShlagemon(carapouffe, false, 1, 100)
-    mon.base.coefficient = 1000
+    mon.coefficient = 1000
     mon.hp = 100
     mon.hpCurrent = 10
     const hpChance = captureChanceFromHp(mon.hpCurrent / mon.hp)
-    const coefMod = 1 / Math.cbrt(mon.base.coefficient)
+    const coefMod = 1 / Math.cbrt(mon.coefficient)
     const levelMod = 1 / (1 + mon.lvl / 40)
     const difficultyMod = 1.3
     const chance = Math.min(100, hpChance * coefMod * levelMod * balls[2].catchBonus * difficultyMod)
@@ -40,10 +40,10 @@ describe('capture mechanics', () => {
 
   it('regular ball against lvl1 coefficient1 foe at full HP is almost guaranteed', () => {
     const mon = createDexShlagemon(carapouffe, false, 1, 1)
-    mon.base.coefficient = 1
+    mon.coefficient = 1
     mon.hpCurrent = mon.hp
     const hpChance = captureChanceFromHp(mon.hpCurrent / mon.hp)
-    const coefMod = 1 / Math.cbrt(mon.base.coefficient)
+    const coefMod = 1 / Math.cbrt(mon.coefficient)
     const levelMod = 1 / (1 + mon.lvl / 40)
     const difficultyMod = 1.3
     const chance = Math.min(100, hpChance * coefMod * levelMod * balls[0].catchBonus * difficultyMod)
