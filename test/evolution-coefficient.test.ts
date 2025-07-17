@@ -18,9 +18,9 @@ describe('evolution coefficient bonus', () => {
     vi.spyOn(zone, 'getZoneRank').mockReturnValue(rank)
     zone.setZone('plaine-kekette')
     const mon = dex.createShlagemon(abraquemar)
-    mon.rarity = 100
+    mon.rarity = 50
     await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
     expect(mon.base.id).toBe(alakalbar.id)
-    expect(mon.coefficient).toBe(alakalbar.coefficient * rank)
+    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
   })
 })

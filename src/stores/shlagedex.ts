@@ -154,8 +154,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     mon: DexShlagemon,
     zoneId?: string,
     heal = true,
+    force = false,
   ) {
-    if (mon.rarity !== 100)
+    if (!force && mon.rarity !== 100)
       return
     const target = zoneId ? { id: zoneId } : zoneStore.getZoneForLevel(mon.lvl)
     if (!target)
@@ -435,7 +436,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       if (activeShlagemon.value?.id === mon.id)
         activeShlagemon.value = existing
       recomputeHighestLevel()
-      updateCoefficient(existing, zoneStore.current.id)
+      updateCoefficient(existing, zoneStore.current.id, true, true)
     }
     else {
       mon.base = to
@@ -445,7 +446,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
-      updateCoefficient(mon, zoneStore.current.id)
+      updateCoefficient(mon, zoneStore.current.id, true, true)
     }
   }
 
