@@ -108,7 +108,7 @@ function closeShop() {
       :active-colors="tabActiveColors"
       class="-mb-1"
     />
-    <div v-if="!selectedItem" class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
+    <div v-if="!selectedItem" class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">
       <ShopItemCard
         v-for="item in filteredShopItems"
         :key="item.id"
@@ -124,7 +124,7 @@ function closeShop() {
     <div v-else class="tiny-scrollbar flex-1 overflow-auto">
       <ShopItemDetail v-model:qty="selectedQty" :item="selectedItem" />
     </div>
-    <div class="mt-2 flex flex-wrap gap-2 bg-white p-2 dark:bg-gray-900" md="flex-nowrap justify-end">
+    <div class="flex flex-wrap gap-2 bg-white dark:bg-gray-900" md="flex-nowrap justify-end">
       <UiButton
         v-if="selectedItem"
         :disabled="!canBuy"
@@ -135,7 +135,7 @@ function closeShop() {
         Acheter x{{ selectedQty }} pour
         <UiCurrencyAmount :amount="(selectedItem?.price || 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
       </UiButton>
-      <div class="flex gap-1" md="flex-col">
+      <div class="w-full flex gap-1" md="flex-col w-auto">
         <UiButton
           v-if="selectedItem"
           class="w-full flex gap-2 text-xs"
