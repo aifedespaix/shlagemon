@@ -5,6 +5,7 @@ import { useBallStore } from './ball'
 import { useBattleStatsStore } from './battleStats'
 import { useDexFilterStore } from './dexFilter'
 import { useDialogStore } from './dialog'
+import { useEquipmentStore } from './equipment'
 import { useGameStore } from './game'
 import { useGameStateStore } from './gameState'
 import { useInventoryStore } from './inventory'
@@ -33,6 +34,7 @@ export const useSaveStore = defineStore('save', () => {
   const mainPanel = useMainPanelStore()
   const player = usePlayerStore()
   const itemUsage = useItemUsageStore()
+  const equipment = useEquipmentStore()
 
   function reset() {
     dex.reset()
@@ -51,6 +53,7 @@ export const useSaveStore = defineStore('save', () => {
     mainPanel.reset()
     player.reset()
     itemUsage.reset()
+    equipment.reset()
   }
 
   return { reset }
