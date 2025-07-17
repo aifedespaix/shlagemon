@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.7] - 2025-07-17
+
+### Changed
+
+- Arena battles now tick every 250 ms for faster pacing.
+
 ## [0.3.6] - 2025-07-08
 
 ### Changed

@@ -6,6 +6,7 @@ import { useBattleEffects } from './battleEngine'
 
 export interface BattleCoreOptions {
   createEnemy: () => DexShlagemon | null
+  tickDelay?: number
 }
 
 export function useBattleCore(options: BattleCoreOptions) {
@@ -34,7 +35,7 @@ export function useBattleCore(options: BattleCoreOptions) {
   const cursorClicked = ref(false)
 
   function startInterval() {
-    battle.startLoop(() => tick(), 1000)
+    battle.startLoop(() => tick(), options.tickDelay ?? 1000)
   }
 
   function stopInterval() {

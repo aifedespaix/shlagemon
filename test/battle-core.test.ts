@@ -9,7 +9,9 @@ function setup() {
   const dex = useShlagedexStore()
   const player = dex.createShlagemon(carapouffe)
   dex.setActiveShlagemon(player)
-  const composable = useBattleCore(() => dex.createShlagemon(carapouffe))
+  const composable = useBattleCore({
+    createEnemy: () => dex.createShlagemon(carapouffe),
+  })
   composable.startBattle()
   return { ...composable, enemy: composable.enemy!, player }
 }

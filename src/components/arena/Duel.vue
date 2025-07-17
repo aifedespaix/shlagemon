@@ -13,6 +13,7 @@ function onEnd(result: 'win' | 'lose' | 'draw') {
   <BattleRound
     :player="props.player"
     :enemy="props.enemy"
+    :tick-delay="250"
     :click-attack="false"
     :capture-enabled="false"
     :show-xp-bar="false"

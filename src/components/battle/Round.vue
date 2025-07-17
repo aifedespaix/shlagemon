@@ -14,11 +14,13 @@ const props = withDefaults(defineProps<{
   captureEnabled?: boolean
   showXpBar?: boolean
   showEffects?: boolean
+  tickDelay?: number
 }>(), {
   clickAttack: true,
   captureEnabled: true,
   showXpBar: true,
   showEffects: true,
+  tickDelay: 1000,
 })
 
 const emit = defineEmits<{
@@ -62,6 +64,7 @@ const {
   attack: coreAttack,
 } = useBattleCore({
   createEnemy: () => props.enemy,
+  tickDelay: props.tickDelay,
 })
 
 const showConfetti = ref(false)

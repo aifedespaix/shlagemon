@@ -3,6 +3,12 @@
 Toutes les modifications importantes de ce projet seront documentées dans ce fichier.
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.5] - 2025-07-17
+
+### Modifié
+
+- Les combats d'arène s'enchaînent désormais toutes les 250 ms pour plus de rythme.
+
 ## [0.3.4] - 2025-07-06
 
 ### Ajouté
