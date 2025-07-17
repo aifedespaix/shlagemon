@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
+import type { DexShlagemon } from '~/type/shlagemon'
 import { useArenaStore } from '~/stores/arena'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { delay } from '~/utils/delay'
-import { applyCurrentStats, applyStats, createDexShlagemon } from '~/utils/dexFactory'
+import { applyCurrentStats, applyStats } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const arena = useArenaStore()
@@ -15,11 +15,12 @@ const panel = useMainPanelStore()
 const savedActive = ref<DexShlagemon | null>(null)
 
 const enemyTeam = computed(() => arena.lineup)
+const enemyDexTeam = computed(() => arena.lineupDex)
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
 const showDuel = ref(false)
 const showEnemy = ref(false)
-const enemyDetail = ref<BaseShlagemon | null>(null)
+const enemyDetail = ref<DexShlagemon | null>(null)
 let nextTimer: number | undefined
 
 async function autoSelect() {
@@ -43,8 +44,8 @@ function openDex(i: number) {
   showDex.value = true
 }
 
-function openEnemy(mon: BaseShlagemon) {
-  enemyDetail.value = mon
+function openEnemy(index: number) {
+  enemyDetail.value = enemyDexTeam.value[index]
   showEnemy.value = true
 }
 
@@ -78,10 +79,10 @@ function startBattle() {
       clone.hpCurrent = clone.hp
       return clone
     })
-  const enemies = enemyTeam.value.map((b) => {
-    const lvl = arena.arenaData?.level ?? 1
-    const coefficientMultiplier = Math.floor(lvl / 2) - 1
-    return createDexShlagemon(b, false, coefficientMultiplier, lvl)
+  const enemies = enemyDexTeam.value.map((m) => {
+    const clone = cloneDexShlagemon(toRaw(m))
+    clone.hpCurrent = clone.hp
+    return clone
   })
   arena.start(team, enemies)
   arena.currentIndex = 0
@@ -126,10 +127,10 @@ onUnmounted(() => {
   <div class="tiny-scrollbar relative h-full flex flex-col items-center overflow-auto">
     <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-2">
       <button
-        v-for="enemy in enemyTeam"
+        v-for="(enemy, i) in enemyTeam"
         :key="enemy.id"
         class="aspect-square border-red-600 rounded-full bg-red-500/40"
-        @click="openEnemy(enemy)"
+        @click="openEnemy(i)"
       >
         <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
       </button>

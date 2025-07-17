@@ -1,5 +1,6 @@
 import type { Arena, BaseShlagemon, DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
+import { createDexShlagemon } from '~/utils/dexFactory'
 
 export type ArenaResult = 'none' | 'win' | 'lose'
 
@@ -7,6 +8,7 @@ export const useArenaStore = defineStore('arena', () => {
   const team = ref<DexShlagemon[]>([])
   const enemyTeam = ref<DexShlagemon[]>([])
   const lineup = ref<BaseShlagemon[]>([])
+  const lineupDex = ref<DexShlagemon[]>([])
   const arenaData = ref<Arena | null>(null)
   const selections = ref<(string | null)[]>([])
   const currentIndex = ref(0)
@@ -14,15 +16,19 @@ export const useArenaStore = defineStore('arena', () => {
   const badgeEarned = ref(false)
   const inBattle = ref(false)
 
-  function setLineup(enemies: BaseShlagemon[]) {
+  function setLineup(enemies: BaseShlagemon[], level: number) {
     lineup.value = enemies
+    const coefficientMultiplier = Math.floor(level / 2) - 1
+    lineupDex.value = enemies.map(m =>
+      createDexShlagemon(m, false, coefficientMultiplier, level),
+    )
     selections.value = Array.from({ length: enemies.length }).fill(null)
   }
 
   function setArena(arena: Arena) {
     arenaData.value = arena
     const data = typeof arena.lineup === 'function' ? arena.lineup() : arena.lineup
-    setLineup(data)
+    setLineup(data, arena.level)
   }
 
   function selectPlayer(index: number, id: string | null) {
@@ -54,6 +60,7 @@ export const useArenaStore = defineStore('arena', () => {
     team.value = []
     enemyTeam.value = []
     lineup.value = []
+    lineupDex.value = []
     arenaData.value = null
     selections.value = []
     currentIndex.value = 0
@@ -66,6 +73,7 @@ export const useArenaStore = defineStore('arena', () => {
     team,
     enemyTeam,
     lineup,
+    lineupDex,
     arenaData,
     selections,
     currentIndex,
