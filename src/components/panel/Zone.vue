@@ -112,6 +112,10 @@ function arenaDefeated(z: Zone) {
   return !!z.arena && progress.isArenaCompleted(z.id)
 }
 
+function arenaPending(z: Zone) {
+  return !!z.arena && !progress.isArenaCompleted(z.id)
+}
+
 function isNew(z: Zone) {
   return z.id !== zone.current.id && !visit.visited[z.id]
 }
@@ -172,6 +176,10 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
           <div
             v-if="arenaDefeated(z)"
             class="i-mdi:sword-cross h-4 w-4"
+          />
+          <div
+            v-else-if="arenaPending(z)"
+            class="i-mdi:sword-cross h-4 w-4 opacity-50 grayscale"
           />
         </div>
       </button>
