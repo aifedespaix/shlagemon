@@ -48,7 +48,7 @@ function createArena(config: ArenaConfig): Arena {
     get lineup() {
       return generateArenaLineup(config.zoneId)
     },
-  } as unknown as Arena
+  }
 }
 
 export const arena20: Arena = createArena({

@@ -45,7 +45,7 @@ const village20: Zone = {
   arena: {
     get arena() { return arena20 },
     completed: false,
-  } as unknown as Zone['arena'],
+  },
   village: {
     shop: {
       items: [
@@ -68,7 +68,7 @@ const village40: Zone = {
   arena: {
     get arena() { return arena40 },
     completed: false,
-  } as unknown as Zone['arena'],
+  },
   village: {
     shop: {
       items: [
@@ -110,7 +110,7 @@ const village60: Zone = {
   arena: {
     get arena() { return arena60 },
     completed: false,
-  } as unknown as Zone['arena'],
+  },
   village: {
     shop: {
       items: [

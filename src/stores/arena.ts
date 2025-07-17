@@ -21,7 +21,8 @@ export const useArenaStore = defineStore('arena', () => {
 
   function setArena(arena: Arena) {
     arenaData.value = arena
-    setLineup(arena.lineup)
+    const data = typeof arena.lineup === 'function' ? arena.lineup() : arena.lineup
+    setLineup(data)
   }
 
   function selectPlayer(index: number, id: string | null) {

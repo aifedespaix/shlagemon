@@ -8,10 +8,12 @@ export interface ArenaBadge {
   image?: string
 }
 
+export type LineupFactory = () => BaseShlagemon[]
+
 export interface Arena {
   id: string
   badge: ArenaBadge
   character: Character
-  lineup: BaseShlagemon[]
+  readonly lineup: BaseShlagemon[] | LineupFactory
   level: number
 }
