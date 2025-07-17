@@ -156,6 +156,11 @@ onUnmounted(() => {
             class="h-full w-full object-contain"
           />
         </template>
+        <template v-else>
+          <div class="h-full w-full flex-center">
+            <div class="i-carbon:touch-1 text-3xl color-blue-600 dark:color-blue-300" />
+          </div>
+        </template>
       </button>
 
       <div class="col-span-6 flex flex-col gap-2">
