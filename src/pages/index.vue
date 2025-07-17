@@ -2,8 +2,6 @@
 </script>
 
 <route lang="yaml">
-meta:
-  layout: home
 head:
   title: Shlagémon
   meta:
@@ -16,10 +14,5 @@ head:
     <h1 class="mb-4 text-2xl font-bold">
       Bienvenue dans Shlagémon
     </h1>
-    <RouterLink to="/schlagedex">
-      <UiButton type="primary">
-        Voir le Shlagédex
-      </UiButton>
-    </RouterLink>
   </div>
 </template>

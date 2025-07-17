@@ -62,6 +62,8 @@ declare module 'vue' {
     InventoryWearableItemModal: typeof import('./components/inventory/WearableItemModal.vue')['default']
     LayoutGameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     LayoutHeader: typeof import('./components/layout/Header.vue')['default']
+    LayoutHomeFooter: typeof import('./components/layout/HomeFooter.vue')['default']
+    LayoutHomeHeader: typeof import('./components/layout/HomeHeader.vue')['default']
     LayoutMobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     LayoutScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
     MinigameWhackAShlag: typeof import('./components/minigame/WhackAShlag.vue')['default']
