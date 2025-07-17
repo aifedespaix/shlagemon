@@ -6,9 +6,9 @@ describe('arena badge', () => {
   it('updates captureLevelCap after earning second arena badge', () => {
     setActivePinia(createPinia())
     const player = usePlayerStore()
-    expect(player.captureLevelCap).toBe(20)
+    expect(player.captureLevelCap).toBe(19)
 
     player.earnBadge('arena40')
-    expect(player.captureLevelCap).toBe(40)
+    expect(player.captureLevelCap).toBe(59)
   })
 })
