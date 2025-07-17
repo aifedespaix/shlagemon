@@ -1,6 +1,6 @@
 import type { AudioSettings } from '~/type'
 import { Howl } from 'howler'
-import { defineStore } from 'pinia'
+import { defineStore, skipHydrate } from 'pinia'
 
 export const useAudioStore = defineStore('audio', () => {
   const settings = reactive<AudioSettings>({
@@ -152,7 +152,7 @@ export const useAudioStore = defineStore('audio', () => {
     sfxVolume,
     isMusicEnabled,
     isSfxEnabled,
-    currentMusic,
+    currentMusic: import.meta.env.SSR ? skipHydrate(currentMusic) : currentMusic,
     playMusic,
     fadeToMusic,
     playRandomMusic,
