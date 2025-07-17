@@ -52,6 +52,7 @@ export const useUIStore = defineStore('ui', () => {
     return classes.join(' ')
   })
 
+  // Explicit tuple typing keeps arguments in sync when adding new sources
   watch<[MainPanel, ZoneId, string | undefined, ZoneType, boolean], true>(
     () => [
       mainPanel.current,
