@@ -59,7 +59,7 @@ export const arena20: Arena = createArena({
   badge: {
     id: 'badge-merdant',
     name: 'Badge Merdant',
-    levelCap: 40,
+    levelCap: 39,
     image: '',
   },
 })
@@ -72,7 +72,7 @@ export const arena40: Arena = createArena({
   badge: {
     id: 'badge-suce',
     name: 'Badge Suce',
-    levelCap: 60,
+    levelCap: 59,
     image: '',
   },
 })
@@ -85,7 +85,7 @@ export const arena60: Arena = createArena({
   badge: {
     id: 'badge-fiak',
     name: 'Badge Fiak',
-    levelCap: 80,
+    levelCap: 79,
     image: '',
   },
 })
