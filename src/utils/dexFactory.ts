@@ -19,17 +19,26 @@ export function xpRewardForLevel(level: number): number {
 export function applyStats(mon: DexShlagemon) {
   // Always recompute base stats from the original values to avoid accumulating
   // rounding errors or chaining previous modifications.
+  // These base stats only depend on the rarity of the monster. The coefficient
+  // bonus is applied separately when computing the current stats so that base
+  // stats remain stable when the coefficient is modified by zone rank changes.
   mon.baseStats = {
-    hp: statWithRarityAndCoefficient(baseStats.hp, mon.base.coefficient, mon.rarity),
-    attack: statWithRarityAndCoefficient(baseStats.attack, mon.base.coefficient, mon.rarity),
-    defense: statWithRarityAndCoefficient(baseStats.defense, mon.base.coefficient, mon.rarity),
-    smelling: statWithRarityAndCoefficient(baseStats.smelling, mon.base.coefficient, mon.rarity),
+    hp: statWithRarityAndCoefficient(baseStats.hp, 1, mon.rarity),
+    attack: statWithRarityAndCoefficient(baseStats.attack, 1, mon.rarity),
+    defense: statWithRarityAndCoefficient(baseStats.defense, 1, mon.rarity),
+    smelling: statWithRarityAndCoefficient(baseStats.smelling, 1, mon.rarity),
   }
+}
+
+export function applyCurrentStats(mon: DexShlagemon) {
   const levelBoost = 1 + (mon.lvl - 1) * 0.02
-  mon.hp = Math.floor((mon.baseStats.hp + (mon.lvl - 1) * 5) * levelBoost)
-  mon.attack = Math.floor(mon.baseStats.attack + (mon.lvl - 1) * 2)
-  mon.defense = Math.floor(mon.baseStats.defense + (mon.lvl - 1) * 2)
-  mon.smelling = Math.floor(mon.baseStats.smelling + (mon.lvl - 1) * 0.5)
+  const coefficientBoost = 1 + 2.5 * (mon.base.coefficient - 1) / 999
+
+  const hpBase = Math.floor(mon.baseStats.hp * coefficientBoost / 5) * 5
+  mon.hp = Math.floor((hpBase + (mon.lvl - 1) * 5) * levelBoost)
+  mon.attack = Math.floor(mon.baseStats.attack * coefficientBoost + (mon.lvl - 1) * 2)
+  mon.defense = Math.floor(mon.baseStats.defense * coefficientBoost + (mon.lvl - 1) * 2)
+  mon.smelling = Math.floor(mon.baseStats.smelling * coefficientBoost + (mon.lvl - 1) * 0.5)
   mon.hpCurrent = mon.hp
 }
 
@@ -48,10 +57,10 @@ export function createDexShlagemon(
     id: crypto.randomUUID(),
     base: adjustedBase,
     baseStats: {
-      hp: statWithRarityAndCoefficient(baseStats.hp, adjustedBase.coefficient, rarity),
-      attack: statWithRarityAndCoefficient(baseStats.attack, adjustedBase.coefficient, rarity),
-      defense: statWithRarityAndCoefficient(baseStats.defense, adjustedBase.coefficient, rarity),
-      smelling: statWithRarityAndCoefficient(baseStats.smelling, adjustedBase.coefficient, rarity),
+      hp: statWithRarityAndCoefficient(baseStats.hp, 1, rarity),
+      attack: statWithRarityAndCoefficient(baseStats.attack, 1, rarity),
+      defense: statWithRarityAndCoefficient(baseStats.defense, 1, rarity),
+      smelling: statWithRarityAndCoefficient(baseStats.smelling, 1, rarity),
     },
     captureDate: new Date().toISOString(),
     captureCount: 1,
@@ -69,6 +78,7 @@ export function createDexShlagemon(
     heldItemId: null,
   }
   applyStats(mon)
+  applyCurrentStats(mon)
   return mon
 }
 

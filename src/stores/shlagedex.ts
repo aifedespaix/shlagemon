@@ -7,6 +7,7 @@ import { toast } from 'vue3-toastify'
 import { allShlagemons } from '~/data/shlagemons'
 import { zonesData } from '~/data/zones'
 import {
+  applyCurrentStats,
   applyStats,
   createDexShlagemon,
   xpForLevel,
@@ -163,7 +164,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const baseCoef = baseMap[mon.base.id].coefficient
     const newCoef = baseCoef * rank
     mon.base.coefficient = newCoef
-    applyStats(mon)
+    applyCurrentStats(mon)
     if (heal)
       mon.hpCurrent = maxHp(mon)
   }
@@ -419,6 +420,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.lvl = 1
       existing.xp = 0
       applyStats(existing)
+      applyCurrentStats(existing)
       existing.hpCurrent = maxHp(existing)
       if (mon.heldItemId) {
         const itemId = mon.heldItemId
@@ -438,6 +440,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     else {
       mon.base = to
       applyStats(mon)
+      applyCurrentStats(mon)
       mon.hpCurrent = maxHp(mon)
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
@@ -489,8 +492,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       const prevHp = mon.hpCurrent
       if (mon.rarity === 100)
         updateCoefficient(mon, undefined, false)
-      else
-        applyStats(mon)
+      applyCurrentStats(mon)
       const healAmount = Math.round((mon.hp * healPercent) / 100)
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
@@ -542,6 +544,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
       applyStats(existing)
+      applyCurrentStats(existing)
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)
@@ -586,6 +589,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
       applyStats(existing)
+      applyCurrentStats(existing)
       existing.hpCurrent = maxHp(existing)
       updateHighestLevel(existing)
       updateCoefficient(existing)

@@ -6,7 +6,7 @@ import { useMainPanelStore } from '~/stores/mainPanel'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { delay } from '~/utils/delay'
-import { applyStats, createDexShlagemon } from '~/utils/dexFactory'
+import { applyCurrentStats, applyStats, createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()
 const arena = useArenaStore()
@@ -74,6 +74,7 @@ function startBattle() {
     .map((mon) => {
       const clone = cloneDexShlagemon(toRaw(mon))
       applyStats(clone)
+      applyCurrentStats(clone)
       clone.hpCurrent = clone.hp
       return clone
     })
