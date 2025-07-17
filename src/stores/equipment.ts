@@ -75,7 +75,21 @@ export const useEquipmentStore = defineStore('equipment', () => {
     return holders.value[itemId] || null
   }
 
-  return { holders, equip, unequip, unequipItem, getHolder }
+  function reset() {
+    holders.value = {}
+    for (const mon of dex.shlagemons) {
+      if (mon.heldItemId) {
+        if (mon.heldItemId === 'vitality-ring') {
+          const max = dex.maxHp(mon)
+          if (mon.hpCurrent > max)
+            mon.hpCurrent = max
+        }
+        mon.heldItemId = null
+      }
+    }
+  }
+
+  return { holders, equip, unequip, unequipItem, getHolder, reset }
 }, {
   persist: true,
 })
