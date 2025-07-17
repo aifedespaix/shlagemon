@@ -1,6 +1,10 @@
 import type { BaseShlagemon } from '~/type'
 
-export function pickRandomByCoefficient(list: BaseShlagemon[]): BaseShlagemon {
+/**
+ * Pick a random Shlagemon based on its coefficient while preserving the
+ * original item type.
+ */
+export function pickRandomByCoefficient<T extends BaseShlagemon>(list: T[]): T {
   const total = list.reduce((sum, mon) => sum + 1 / mon.coefficient, 0)
   const r = Math.random() * total
   let acc = 0
@@ -9,5 +13,6 @@ export function pickRandomByCoefficient(list: BaseShlagemon[]): BaseShlagemon {
     if (r < acc)
       return mon
   }
+  // Fallback should never happen but keeps typing consistent
   return list[list.length - 1]
 }
