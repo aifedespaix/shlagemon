@@ -29,6 +29,8 @@ declare module 'vue' {
     BattleToast: typeof import('./components/battle/Toast.vue')['default']
     BattleTrainer: typeof import('./components/battle/Trainer.vue')['default']
     CharacterImage: typeof import('./components/character/Image.vue')['default']
+    DeckDeckDetail: typeof import('./components/deck/DeckDetail.vue')['default']
+    DeckDeckList: typeof import('./components/deck/DeckList.vue')['default']
     DeveloperSettingsModal: typeof import('./components/developer/SettingsModal.vue')['default']
     DialogAnotherShlagemonDialog: typeof import('./components/dialog/AnotherShlagemonDialog.vue')['default']
     DialogArenaDefeatDialog: typeof import('./components/dialog/ArenaDefeatDialog.vue')['default']
