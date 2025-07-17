@@ -17,7 +17,7 @@
     "sizecheck": "npx vite-bundle-visualizer",
     "deploy": "firebase deploy",
     "bd": "pnpm run build && pnpm run deploy",
-    "evolutions:csv": "node scripts/generate-evolutions-csv.cjs",
+    "csv": "node scripts/generate-evolutions-csv.cjs",
     "mons": "py scripts/convert-webp.py",
     "sfx": "py scripts/clean-meta.py"
   },

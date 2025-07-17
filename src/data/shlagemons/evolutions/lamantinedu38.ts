@@ -1,0 +1,16 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+
+export const lamantinedu38: BaseShlagemon = {
+  id: 'lamantinedu38',
+  name: 'Lamantinedu38',
+  description: `Lamantinedu38 est la star déchue des patinoires discount. Son blouson en simili-fourrure est troué de partout, et il glisse lamentablement sur la banquise avec la grâce d’un caddie désaxé. Ses dents sont jaunes fluo, probablement à cause d’un régime exclusif de sirop à la grenadine bas de gamme.
+
+Son attaque signature, *Roule-Galoche Givrée*, consiste à te rouler une pelle glacée, laissant une trace de buée et d’odeur de Ricard sur le terrain. Il prétend avoir remporté le “Grand Prix de Plongeon du Lac d’Embrun”, mais les seuls témoins étaient des mouettes bourrées.
+
+On dit que même les autres shlagémons du 38 évitent de s’asseoir à côté de lui, de peur de repartir avec des morpions polaires.`,
+  types: [shlagemonTypes.eau, shlagemonTypes.glace],
+  coefficient: 99,
+}
+
+export default lamantinedu38
