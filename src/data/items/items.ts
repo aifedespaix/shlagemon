@@ -301,7 +301,7 @@ export const ultraSteroid: Item = {
   iconClass: 'text-purple-500 dark:text-purple-300',
 }
 
-export const allItems: Item[] = [
+export const allItems = [
   shlageball,
   superShlageball,
   hyperShlageball,
@@ -329,4 +329,6 @@ export const allItems: Item[] = [
   thunderStone,
   steroids,
   ultraSteroid,
-]
+] as const satisfies Item[]
+
+export type ItemId = typeof allItems[number]['id']

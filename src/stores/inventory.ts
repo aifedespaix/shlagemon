@@ -1,3 +1,4 @@
+import type { ItemId } from '~/data/items/items'
 import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import { allItems } from '~/data/items/items'
@@ -11,7 +12,7 @@ import { usePlayerStore } from './player'
 import { useShlagedexStore } from './shlagedex'
 
 export const useInventoryStore = defineStore('inventory', () => {
-  const items = ref<Record<string, number>>({})
+  const items = ref<Partial<Record<ItemId, number>>>({})
   const game = useGameStore()
   const dex = useShlagedexStore()
   const featureLock = useFeatureLockStore()
@@ -26,18 +27,18 @@ export const useInventoryStore = defineStore('inventory', () => {
 
   const list = computed(() =>
     Object.entries(items.value).reduce<ListedItem[]>((acc, [id, qty]) => {
-      const item = allItems.find(i => i.id === id)
+      const item = allItems.find(i => i.id === id as ItemId)
       if (item)
         acc.push({ item, qty })
       return acc
     }, []),
   )
 
-  function add(id: string, qty = 1) {
+  function add(id: ItemId, qty = 1) {
     items.value[id] = (items.value[id] || 0) + qty
   }
 
-  function remove(id: string, qty = 1) {
+  function remove(id: ItemId, qty = 1) {
     if (!items.value[id])
       return
     items.value[id] -= qty
@@ -45,7 +46,7 @@ export const useInventoryStore = defineStore('inventory', () => {
       delete items.value[id]
   }
 
-  function buy(id: string, qty = 1) {
+  function buy(id: ItemId, qty = 1) {
     const item = allItems.find(i => i.id === id)
     if (!item)
       return false
@@ -66,7 +67,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     return true
   }
 
-  function sell(id: string) {
+  function sell(id: ItemId) {
     const item = allItems.find(i => i.id === id)
     if (!item || !items.value[id])
       return
@@ -74,7 +75,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     game.addShlagidolar(Math.floor(item.price / 2))
   }
 
-  function useItem(id: string) {
+  function useItem(id: ItemId) {
     if (featureLock.isInventoryLocked || !items.value[id])
       return false
 
@@ -98,7 +99,7 @@ export const useInventoryStore = defineStore('inventory', () => {
       return true
     }
 
-    const handlers: Record<string, () => boolean> = {
+    const handlers: Record<ItemId, () => boolean> = {
       'potion': () => {
         dex.healActive(50)
         remove(id)

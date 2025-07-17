@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BallId } from '~/data/items/shlageball'
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
 import {
@@ -75,7 +76,7 @@ function onUse(item: Item) {
   if (featureLock.isInventoryLocked)
     return
   if ('catchBonus' in item) {
-    ballStore.setBall(item.id as any)
+    ballStore.setBall(item.id as BallId)
     usage.markUsed(item.id)
     toast(`Vous avez équipé la ${item.name}`)
   }
