@@ -14,8 +14,6 @@ export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Record<string, number>>({})
   const game = useGameStore()
   const dex = useShlagedexStore()
-  const _arena = useArenaStore()
-  const _trainerBattle = useTrainerBattleStore()
   const featureLock = useFeatureLockStore()
   const player = usePlayerStore()
   const captureLimitModal = useCaptureLimitModalStore()
