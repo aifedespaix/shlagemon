@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
-import { itemCategoryPanelColors, itemCategoryTabColors } from '~/constants/itemCategory'
+import {
+  itemCategoryTabBaseColors,
+  itemCategoryTabColors,
+  itemCategoryTabHoverColors,
+} from '~/constants/itemCategory'
 import { useAudioStore } from '~/stores/audio'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
@@ -25,13 +29,9 @@ const availableCategories = computed(() =>
   categoryOptions.filter(opt => shopItems.value.some(i => i.category === opt.value)),
 )
 
-const panelBgClass = computed(() =>
-  filter.category !== 'all'
-    ? itemCategoryPanelColors[filter.category]
-    : '',
-)
-
-const tabColors = itemCategoryTabColors
+const tabColors = itemCategoryTabBaseColors
+const tabHoverColors = itemCategoryTabHoverColors
+const tabActiveColors = itemCategoryTabColors
 const filteredShopItems = computed(() =>
   shopItems.value.filter(item =>
     filter.category === 'all' ? true : item.category === filter.category,
@@ -95,7 +95,7 @@ function closeShop() {
 </script>
 
 <template>
-  <div class="flex flex-1 flex-col gap-1 overflow-hidden p-1" :class="panelBgClass" v-bind="$attrs">
+  <div class="flex flex-1 flex-col gap-1 overflow-hidden p-1" v-bind="$attrs">
     <h2 class="text-center font-bold">
       Boutique
     </h2>
@@ -105,6 +105,8 @@ function closeShop() {
         v-model="filter.category"
         :options="availableCategories"
         :colors="tabColors"
+        :hover-colors="tabHoverColors"
+        :active-colors="tabActiveColors"
         class="mb-1"
       />
       <ShopItemCard

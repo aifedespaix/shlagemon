@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
-import { itemCategoryPanelColors, itemCategoryTabColors } from '~/constants/itemCategory'
+import {
+  itemCategoryTabBaseColors,
+  itemCategoryTabColors,
+  itemCategoryTabHoverColors,
+} from '~/constants/itemCategory'
 import { useBallStore } from '~/stores/ball'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useFeatureLockStore } from '~/stores/featureLock'
@@ -33,13 +37,9 @@ const availableCategories = computed(() =>
   ),
 )
 
-const panelBgClass = computed(() =>
-  filter.category !== 'all'
-    ? itemCategoryPanelColors[filter.category]
-    : '',
-)
-
-const tabColors = itemCategoryTabColors
+const tabColors = itemCategoryTabBaseColors
+const tabHoverColors = itemCategoryTabHoverColors
+const tabActiveColors = itemCategoryTabColors
 const filteredList = computed(() => {
   let list = inventory.list.slice()
   if (filter.category !== 'all')
@@ -93,7 +93,7 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <LayoutScrollablePanel v-if="inventory.list.length" :class="panelBgClass">
+  <LayoutScrollablePanel v-if="inventory.list.length">
     <template #header>
       <UiSortControls
         v-model:sort-by="filter.sortBy"
@@ -106,6 +106,8 @@ function onUse(item: Item) {
         v-model="filter.category"
         :options="availableCategories"
         :colors="tabColors"
+        :hover-colors="tabHoverColors"
+        :active-colors="tabActiveColors"
         class="w-full"
       />
     </template>
