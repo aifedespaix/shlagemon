@@ -9,6 +9,13 @@ export interface ZoneAction {
   label: string
 }
 
+export type ArenaFactory = () => Arena
+
+export interface ZoneArena {
+  readonly arena: Arena | ArenaFactory
+  completed: boolean
+}
+
 interface BaseZone {
   id: ZoneId
   name: string
@@ -19,10 +26,7 @@ interface BaseZone {
   image?: string
   hasKing?: boolean
   completionAchievement?: string
-  arena?: {
-    arena: Arena
-    completed: boolean
-  }
+  arena?: ZoneArena
   village?: {
     shop?: {
       items: Item[]
