@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ItemId } from '~/data/items/items'
 import { allItems } from '~/data/items/items'
 import { useShortcutsStore } from '~/stores/shortcuts'
 
@@ -11,7 +12,7 @@ function updateKey(index: number, key: string) {
   store.update(index, entry)
 }
 
-function updateItem(index: number, itemId: string) {
+function updateItem(index: number, itemId: ItemId) {
   const entry = { key: store.shortcuts[index].key, action: { type: 'use-item', itemId } }
   store.update(index, entry)
 }
@@ -42,7 +43,7 @@ function reset() {
         class="flex-1"
         :model-value="sc.action.type === 'use-item' ? sc.action.itemId : ''"
         :options="itemOptions"
-        @update:model-value="val => updateItem(idx, val as string)"
+        @update:model-value="val => updateItem(idx, val as ItemId)"
       />
       <UiButton type="icon" class="h-7 w-7" @click="removeShortcut(idx)">
         <div i-carbon-close />

@@ -42,4 +42,10 @@ export const hyperShlageball: Ball = {
   animation: '/items/shlageball/shlageball.png',
 }
 
-export const balls: Ball[] = [shlageball, superShlageball, hyperShlageball]
+export const balls = [
+  shlageball,
+  superShlageball,
+  hyperShlageball,
+] as const satisfies Ball[]
+
+export type BallId = typeof balls[number]['id']

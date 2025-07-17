@@ -379,8 +379,8 @@ declare global {
   export type { ArenaResult } from './stores/arena'
   import('./stores/arena')
   // @ts-ignore
-  export type { BallId } from './stores/ball'
-  import('./stores/ball')
+  export type { BallId } from './data/items/shlageball'
+  import('./data/items/shlageball')
   // @ts-ignore
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BallId } from '~/data/items/shlageball'
 import { balls } from '~/data/items/shlageball'
 import { useBallStore } from '~/stores/ball'
 import { useInventoryStore } from '~/stores/inventory'
@@ -11,8 +12,8 @@ const options = computed(() =>
   balls.map(b => ({ ...b, qty: inventory.items[b.id] || 0 })),
 )
 
-function choose(id: string) {
-  ballStore.setBall(id as any)
+function choose(id: BallId) {
+  ballStore.setBall(id)
 }
 </script>
 

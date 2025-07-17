@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { ItemId } from '~/data/items/items'
 import UiKeyCapture from '~/components/ui/KeyCapture.vue'
 import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
 import { useShortcutsStore } from '~/stores/shortcuts'
@@ -15,7 +16,7 @@ watch(() => modal.isVisible, (visible) => {
 function assign(key: string) {
   if (!modal.current)
     return
-  shortcuts.setItemShortcut(modal.current.id, key)
+  shortcuts.setItemShortcut(modal.current.id as ItemId, key)
   modal.close()
 }
 </script>

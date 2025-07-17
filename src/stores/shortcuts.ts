@@ -1,3 +1,5 @@
+import type { ItemId } from '~/data/items/items'
+import type { BallId } from '~/data/items/shlageball'
 import { defineStore } from 'pinia'
 import { allItems } from '~/data/items/items'
 import { useBallStore } from './ball'
@@ -9,7 +11,7 @@ import { useWearableItemStore } from './wearableItem'
 
 export interface UseItemAction {
   type: 'use-item'
-  itemId: string
+  itemId: ItemId
 }
 
 export type ShortcutAction = UseItemAction
@@ -46,7 +48,7 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
     shortcuts.value = [...defaultShortcuts]
   }
 
-  function setItemShortcut(itemId: string, key: string) {
+  function setItemShortcut(itemId: ItemId, key: string) {
     const idx = shortcuts.value.findIndex(s => s.action.type === 'use-item' && s.action.itemId === itemId)
     const entry: ShortcutEntry = { key, action: { type: 'use-item', itemId } }
     if (idx >= 0)
@@ -73,7 +75,7 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
           continue
 
         if ('catchBonus' in item) {
-          useBallStore().setBall(item.id as any)
+          useBallStore().setBall(item.id as BallId)
           usage.markUsed(item.id)
         }
         else if (item.type === 'evolution') {
