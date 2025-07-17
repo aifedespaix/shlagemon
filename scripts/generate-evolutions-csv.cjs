@@ -49,16 +49,13 @@ async function main() {
   const files = await getFiles(baseDir)
   const rows = []
   for (const file of files) {
-    // Ignore forms that live in the evolutions directory
-    if (file.includes(`${path.sep}evolutions${path.sep}`))
-      continue
     const row = await parseFile(file)
     if (row)
       rows.push(row)
   }
-  rows.sort((a, b) => a.spawn.sort - b.spawn.sort)
-  const header = 'Name,Level,Coefficient,EvolutionLevel'
-  const csv = `${header}\n${rows.map(r => `${r.name},${r.spawn.range},${r.coefficient},${r.evoLevel}`).join('\n')}\n`
+  rows.sort((a, b) => a.coefficient - b.coefficient)
+  const header = 'Index,Name,Level,Coefficient,EvolutionLevel'
+  const csv = `${header}\n${rows.map((r, i) => `${i + 1},${r.name},${r.spawn.range},${r.coefficient},${r.evoLevel}`).join('\n')}\n`
   await fs.promises.writeFile(path.join(__dirname, '../evolutions.csv'), csv)
 }
 
