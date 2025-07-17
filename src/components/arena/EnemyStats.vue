@@ -26,10 +26,12 @@ const stats = computed(() => [
     <h3 class="text-center text-lg font-bold">
       {{ props.mon.name }}
     </h3>
+    <div class="h-24 w-24">
+      <ShlagemonImage :id="props.mon.id" :alt="props.mon.name" class="object-contain" />
+    </div>
     <div class="flex gap-1">
       <ShlagemonType v-for="t in props.mon.types" :key="t.id" :value="t" />
     </div>
-    <ShlagemonImage :id="props.mon.id" :alt="props.mon.name" class="h-24 w-24 object-contain" />
     <div class="grid grid-cols-2 gap-2 text-sm">
       <div v-for="s in stats" :key="s.label" class="flex flex-col items-center">
         <span class="font-semibold">{{ s.label }}</span>
