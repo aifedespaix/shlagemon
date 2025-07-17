@@ -38,6 +38,26 @@ const availableCategories = computed(() =>
   ),
 )
 
+const highlightCategories = computed(() => {
+  const map = {
+    actif: false,
+    passif: false,
+    utilitaire: false,
+  } as Record<typeof categoryOptions[number]['value'], boolean>
+  for (const entry of inventory.list) {
+    if (!usage.used[entry.item.id])
+      map[entry.item.category] = true
+  }
+  return map
+})
+
+const categoryTabs = computed(() =>
+  availableCategories.value.map(opt => ({
+    ...opt,
+    highlight: highlightCategories.value[opt.value] && filter.category !== opt.value,
+  })),
+)
+
 const tabColors = itemCategoryTabBaseColors
 const tabHoverColors = itemCategoryTabHoverColors
 const tabActiveColors = itemCategoryTabColors
@@ -105,10 +125,11 @@ function onUse(item: Item) {
       <UiTabBar
         v-if="availableCategories.length > 1"
         v-model="filter.category"
-        :options="availableCategories"
+        :options="categoryTabs"
         :colors="tabColors"
         :hover-colors="tabHoverColors"
         :active-colors="tabActiveColors"
+        highlight-classes="animate-pulse-alt animate-count-infinite"
         class="w-full -mb-2"
       />
     </template>
