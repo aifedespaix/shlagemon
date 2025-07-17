@@ -1,11 +1,14 @@
+<script setup lang="ts">
+import HomeFooter from '~/components/layout/HomeFooter.vue'
+import HomeHeader from '~/components/layout/HomeHeader.vue'
+</script>
+
 <template>
-  <main
-    px-4 py-10
-    text="center gray-700 dark:gray-200"
-  >
-    <RouterView />
-    <div mx-auto mt-5 text-center text-sm opacity-50>
-      [Home Layout]
-    </div>
-  </main>
+  <div class="min-h-screen flex flex-col">
+    <HomeHeader />
+    <main class="mx-auto max-w-160 w-full flex-1 p-4">
+      <RouterView />
+    </main>
+    <HomeFooter />
+  </div>
 </template>
