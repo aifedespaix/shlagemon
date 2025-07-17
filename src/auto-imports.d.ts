@@ -687,7 +687,6 @@ declare module 'vue' {
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useShlagedexStore: UnwrapRef<typeof import('./stores/shlagedex')['useShlagedexStore']>
-    readonly useShopFilterStore: UnwrapRef<typeof import('./stores/shopFilter')['useShopFilterStore']>
     readonly useShortcutsStore: UnwrapRef<typeof import('./stores/shortcuts')['useShortcutsStore']>
     readonly useSingleInterval: UnwrapRef<typeof import('./composables/battleEngine')['useSingleInterval']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
