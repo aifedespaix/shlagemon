@@ -73,13 +73,13 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     completionAchievement: 'Voyageur de la Route du Nawak',
     shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/35-40/*.ts`, { eager: true }),
   },
-  // {
-  //   id: 'mont-dracatombe',
-  //   lvl: zoneIndex++ * lvlsByZone,
-  //   name: 'Mont Cul',
-  //   actions: [],
-  //   shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/40-45/*.ts`, { eager: true }),
-  // },
+  {
+    id: 'mont-dracatombe',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Mont Cul',
+    actions: [],
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/40-45/*.ts`, { eager: true }),
+  },
   // {
   //   id: 'catacombes-merdifientes',
   //   lvl: zoneIndex++ * lvlsByZone,

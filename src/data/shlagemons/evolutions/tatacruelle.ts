@@ -1,0 +1,18 @@
+import type { BaseShlagemon } from '~/type'
+import { shlagemonTypes } from '../../shlagemons-type'
+
+export const tatacruelle: BaseShlagemon = {
+  id: 'tatacruelle',
+  name: 'Tatacruelle',
+  description: `Tatacruelle est la terreur des fonds de placard, la légende vivante que tous les jeunes Shlagémons redoutent. Son corps aquatique, usé et gonflé, ressemble à une vieille nappe plastique couverte de taches de gras indélébiles. Sur sa tête, ses vingt “bigoudis” se sont transformés en rouleaux de PQ rose, prêts à t’étouffer d’un regard mauvais.
+
+Son visage, tout plissé et tiré vers le bas, inspire l'effroi et le respect, avec des lèvres pincées et des yeux injectés de venin. Deux énormes tentacules couverts de bagues en toc et d’élastiques usagés s’agitent à chaque bruit suspect, prêts à claquer sur quiconque ose marcher sur SON carrelage.  
+
+Tatacruelle adore faire la morale en jetant du vinaigre partout, piquer les biscuits des autres et verrouiller les confitures dans une armoire à code secret. Son attaque signature, *Remontrance Aqueuse*, t’envoie une vague d’eau froide et d’insultes cinglantes, te laissant grelottant de honte et de remords.
+
+On raconte qu’elle hante les cuisines après 22h, prête à punir ceux qui osent ouvrir le frigo. Son rêve ? Être immortalisée en portrait sur chaque pot de cornichons du coin. Même les plus téméraires n’osent pas traîner près d’elle quand la nuit tombe.`,
+  types: [shlagemonTypes.eau, shlagemonTypes.poison],
+  coefficient: 58,
+}
+
+export default tatacruelle

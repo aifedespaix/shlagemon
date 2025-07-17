@@ -47,8 +47,8 @@ function onItemClick(mon: DexShlagemon) {
   <Modal
     v-model="showDetail"
     footer-close
-    @close="showDetail = false"
     :golden-border="detailMon?.rarity === 100"
+    @close="showDetail = false"
   >
     <ShlagemonDetail
       :mon="detailMon"
