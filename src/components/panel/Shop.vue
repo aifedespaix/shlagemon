@@ -5,6 +5,7 @@ import { useAudioStore } from '~/stores/audio'
 import { useGameStore } from '~/stores/game'
 import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useShopFilterStore } from '~/stores/shopFilter'
 import { useZoneStore } from '~/stores/zone'
 
 const panel = useMainPanelStore()
@@ -13,6 +14,20 @@ const game = useGameStore()
 const inventory = useInventoryStore()
 const audio = useAudioStore()
 const shopItems = computed(() => zone.current.village?.shop?.items || [])
+const filter = useShopFilterStore()
+const categoryOptions = [
+  { label: 'Actif', value: 'actif', icon: 'i-carbon-flash' },
+  { label: 'Passif', value: 'passif', icon: 'i-carbon-timer' },
+  { label: 'Utilitaire', value: 'utilitaire', icon: 'i-carbon-tool-box' },
+] as const
+const availableCategories = computed(() =>
+  categoryOptions.filter(opt => shopItems.value.some(i => i.category === opt.value)),
+)
+const filteredShopItems = computed(() =>
+  shopItems.value.filter(item =>
+    filter.category === 'all' ? true : item.category === filter.category,
+  ),
+)
 const selectedItem = ref<Item | null>(null)
 const selectedQty = ref(1)
 
@@ -76,8 +91,14 @@ function closeShop() {
       Boutique
     </h2>
     <div v-if="!selectedItem" class="tiny-scrollbar flex flex-col gap-2 overflow-auto">
+      <UiTabBar
+        v-if="availableCategories.length > 1"
+        v-model="filter.category"
+        :options="availableCategories"
+        class="mb-1"
+      />
       <ShopItemCard
-        v-for="item in shopItems"
+        v-for="item in filteredShopItems"
         :key="item.id"
         :item="item"
         class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
