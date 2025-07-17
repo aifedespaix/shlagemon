@@ -18,7 +18,7 @@ On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser, mais 
       type: 'lvl',
       value: 48,
     },
-  }
+  },
 }
 
 export default chetibranle

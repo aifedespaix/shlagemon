@@ -176,7 +176,7 @@ describe('rarity 100 coefficient update', () => {
     await nextTick()
     const rank = zone.getZoneRank('bois-de-bouffon')
     expect(mon.rarity).toBe(100)
-    expect(mon.coefficient).toBe(carapouffe.coefficient * rank)
+    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
   })
 
   it('recalculates stats when a new zone unlocks', async () => {
@@ -190,13 +190,13 @@ describe('rarity 100 coefficient update', () => {
     applyStats(mon)
     applyCurrentStats(mon)
     await nextTick()
-    expect(mon.coefficient).toBe(carapouffe.coefficient * zone.getZoneRank('plaine-kekette'))
+    expect(mon.coefficient).toBe((mon.lvl + 1) * zone.getZoneRank('plaine-kekette'))
     for (let i = 0; i < 4; i++)
       await dex.gainXp(mon, xpForLevel(mon.lvl))
     progress.defeatKing('plaine-kekette')
     await nextTick()
     const rank = zone.getZoneRank('bois-de-bouffon')
-    expect(mon.coefficient).toBe(carapouffe.coefficient * rank)
+    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
   })
 
   it('keeps coefficient from level bracket when higher zone unlocks', async () => {
@@ -212,7 +212,7 @@ describe('rarity 100 coefficient update', () => {
     const mon = dex.captureEnemy(enemy)
     await nextTick()
     const rank = zone.getZoneRank('marais-moudugenou')
-    expect(mon.coefficient).toBe(carapouffe.coefficient * rank)
+    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
 
     ;[
       'plaine-kekette',
@@ -224,7 +224,7 @@ describe('rarity 100 coefficient update', () => {
     ].forEach(id => progress.defeatKing(id))
     await nextTick()
 
-    expect(mon.coefficient).toBe(carapouffe.coefficient * rank)
+    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
   })
 })
 
