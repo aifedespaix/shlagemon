@@ -6,7 +6,7 @@ import { carapouffe, sacdepates } from '../src/data/shlagemons'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useZoneStore } from '../src/stores/zone'
 import { useZoneProgressStore } from '../src/stores/zoneProgress'
-import { applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
+import { applyCurrentStats, applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
 
@@ -23,6 +23,7 @@ describe('shlagedex capture', () => {
     const enemy = createDexShlagemon(carapouffe, false, 1, 3)
     enemy.rarity = 5
     applyStats(enemy)
+    applyCurrentStats(enemy)
     dex.captureEnemy(enemy)
     expect(mon.rarity).toBe(5)
     expect(mon.lvl).toBe(6)
@@ -41,6 +42,7 @@ describe('shlagedex capture', () => {
     const enemy = createDexShlagemon(carapouffe, false, 1, 4)
     enemy.rarity = 2
     applyStats(enemy)
+    applyCurrentStats(enemy)
     dex.captureEnemy(enemy)
     expect(mon.rarity).toBe(2)
     expect(mon.lvl).toBe(4)
@@ -65,6 +67,7 @@ describe('shlagedex capture', () => {
     const enemy = createDexShlagemon(carapouffe, false, 1, 17)
     enemy.rarity = 42
     applyStats(enemy)
+    applyCurrentStats(enemy)
     const captured = dex.captureEnemy(enemy)
     expect(captured.lvl).toBe(17)
     expect(captured.rarity).toBe(42)
@@ -77,10 +80,12 @@ describe('shlagedex capture', () => {
     existing.rarity = 3
     existing.lvl = 5
     applyStats(existing)
+    applyCurrentStats(existing)
     const enemy = createDexShlagemon(carapouffe, false, 1, 10)
     enemy.isShiny = true
     enemy.rarity = 1
     applyStats(enemy)
+    applyCurrentStats(enemy)
     const captured = dex.captureEnemy(enemy)
     expect(captured.id).toBe(existing.id)
     expect(existing.rarity).toBe(4)
@@ -162,6 +167,7 @@ describe('rarity 100 coefficient update', () => {
     const mon = dex.createShlagemon(carapouffe)
     mon.rarity = 99
     applyStats(mon)
+    applyCurrentStats(mon)
     for (let i = 0; i < 4; i++)
       await dex.gainXp(mon, xpForLevel(mon.lvl))
     progress.defeatKing('plaine-kekette')
@@ -182,6 +188,7 @@ describe('rarity 100 coefficient update', () => {
     const mon = dex.createShlagemon(carapouffe)
     mon.rarity = 100
     applyStats(mon)
+    applyCurrentStats(mon)
     await nextTick()
     expect(mon.base.coefficient).toBe(carapouffe.coefficient * zone.getZoneRank('plaine-kekette'))
     for (let i = 0; i < 4; i++)
@@ -201,6 +208,7 @@ describe('rarity 100 coefficient update', () => {
     const enemy = createDexShlagemon(carapouffe, false, 1, 27)
     enemy.rarity = 100
     applyStats(enemy)
+    applyCurrentStats(enemy)
     const mon = dex.captureEnemy(enemy)
     await nextTick()
     const rank = zone.getZoneRank('marais-moudugenou')
@@ -232,6 +240,7 @@ describe('duplicate capture at max rarity with both methods', () => {
     const sameBaseEnemy = createDexShlagemon(carapouffe, false, 1, 20)
     sameBaseEnemy.rarity = 100
     applyStats(sameBaseEnemy)
+    applyCurrentStats(sameBaseEnemy)
 
     // capture via base
     const result1 = dex.captureShlagemon(carapouffe)
@@ -251,5 +260,22 @@ describe('duplicate capture at max rarity with both methods', () => {
     expect(toastMock).toHaveBeenCalledWith(
       'Vous avez déjà ce Shlagémon au maximum de sa rareté',
     )
+  })
+})
+
+describe('rarity 100 base stats persistence', () => {
+  it('keeps baseStats identical when leveling', async () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 100
+    applyStats(mon)
+    applyCurrentStats(mon)
+    const before = { ...mon.baseStats }
+    const hp = mon.hp
+    for (let i = 0; i < 3; i++)
+      await dex.gainXp(mon, xpForLevel(mon.lvl))
+    expect(mon.baseStats).toEqual(before)
+    expect(mon.hp).toBeGreaterThan(hp)
   })
 })
