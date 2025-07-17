@@ -57,6 +57,7 @@ function createKing(
 }
 
 export const kings: Trainer[] = [
+  createKing('plaine-kekette', caillou, 2, 'Ici, c\'est ma street, et tu as trop de cheveux pour pouvoir continuer ton chemin.', 'Tu m\'as bien déglingué, bravo ! Je vais aller me fair eun shampoing et je reviendrai bien plus fort !', 'Je vais te faire bouffer tes cheveux espèce de sous merde !'),
   createKing('bois-de-bouffon', sachatte, 3, 'Ces bois seront ta tombe. Et je vais t\'y griffer !', 'Je reviendrai plus forte, avec les ongles encore plus aiguisés.', 'Tes griffes sont émoussées, je t\'ai humilié, sale chien de tes morts !'),
   createKing('chemin-du-slip', norman, 4, 'Entres dans ma grotte si tu l\'oses.', 'Ta victoire ne sera que temporaire.', 'Tu pues la lose, file te laver !'),
   createKing('ravin-fesse-molle', marineLahaine, 4, 'Yo, j\'suis raciste.', 'Incroyable... tu as gagné. Je vais donc arrêter d\'être raciste. Merci de m\'avoir ouvert les yeux !', 'Dégage ! Retourne dans ton pays !'),
