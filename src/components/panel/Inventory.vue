@@ -21,8 +21,20 @@ const sortOptions = [
   { label: 'Nom', value: 'name' },
   { label: 'Prix', value: 'price' },
 ]
+const categoryOptions = [
+  { label: 'Actif', value: 'actif', icon: 'i-carbon-flash' },
+  { label: 'Passif', value: 'passif', icon: 'i-carbon-timer' },
+  { label: 'Utilitaire', value: 'utilitaire', icon: 'i-carbon-tool-box' },
+] as const
+const availableCategories = computed(() =>
+  categoryOptions.filter(opt =>
+    inventory.list.some(entry => entry.item.category === opt.value),
+  ),
+)
 const filteredList = computed(() => {
   let list = inventory.list.slice()
+  if (filter.category !== 'all')
+    list = list.filter(e => e.item.category === filter.category)
   const q = filter.search.toLowerCase().trim()
   if (q)
     list = list.filter(entry => entry.item.name.toLowerCase().includes(q))
@@ -80,6 +92,12 @@ function onUse(item: Item) {
         :options="sortOptions"
       />
       <UiSearchInput v-model="filter.search" class="flex-1" />
+      <UiTabBar
+        v-if="availableCategories.length > 1"
+        v-model="filter.category"
+        :options="availableCategories"
+        class="w-full"
+      />
     </template>
 
     <template #content>

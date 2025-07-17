@@ -1,5 +1,7 @@
 export type ItemCurrency = 'shlagidolar' | 'shlagidiamond'
 
+export type ItemCategory = 'actif' | 'passif' | 'utilitaire'
+
 export interface Item {
   id: string
   name: string
@@ -12,6 +14,8 @@ export interface Item {
   price: number
   /** Currency used to buy this item. Defaults to shlagidolar. */
   currency?: ItemCurrency
+  /** Sub-category used to filter items in the UI */
+  category?: ItemCategory
   /** Category of the item (consumable, ball, evolution...). */
   type?: string
   /** Iconify icon name */
