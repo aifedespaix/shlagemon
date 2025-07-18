@@ -1,10 +1,11 @@
+import type { TypeName } from '~/data/shlagemons-type'
 import { defineStore } from 'pinia'
 import { bulgrosboule } from '~/data/shlagemons/bulgrosboule'
 import { carapouffe } from '~/data/shlagemons/carapouffe'
 import { salamiches } from '~/data/shlagemons/salamiches'
 import { useShlagedexStore } from './shlagedex'
 
-export type EggType = 'feu' | 'eau' | 'herbe'
+export type EggType = TypeName
 
 export interface Egg {
   id: number
@@ -34,7 +35,7 @@ export const useEggStore = defineStore('egg', () => {
       case 'eau':
         dex.createShlagemon(carapouffe)
         break
-      case 'herbe':
+      case 'plante':
         dex.createShlagemon(bulgrosboule)
         break
     }

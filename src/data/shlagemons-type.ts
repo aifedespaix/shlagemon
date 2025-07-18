@@ -1,6 +1,6 @@
 import type { ShlagemonType } from '../type'
 
-type TypeName = 'normal' | 'feu' | 'eau' | 'plante' | 'roche' | 'electrique' | 'vol' | 'combat' | 'spectre' | 'darksasuke' | 'psy' | 'poison' | 'metal' | 'sol' | 'fee' | 'dragon' | 'glace' | 'insecte'
+export type TypeName = 'normal' | 'feu' | 'eau' | 'plante' | 'roche' | 'electrique' | 'vol' | 'combat' | 'spectre' | 'darksasuke' | 'psy' | 'poison' | 'metal' | 'sol' | 'fee' | 'dragon' | 'glace' | 'insecte'
 
 export const normal: ShlagemonType = {
   id: 'normal',

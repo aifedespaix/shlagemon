@@ -1,6 +1,6 @@
+import type { Component } from 'vue'
 import type { Character } from './character'
 import type { DialogNode } from './dialog'
-import type { Component } from 'vue'
 
 export interface MiniGameDefinition {
   id: MiniGameId

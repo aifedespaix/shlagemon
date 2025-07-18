@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { defineAsyncComponent, computed, watchEffect, shallowRef } from 'vue'
+import { computed, defineAsyncComponent, shallowRef, watchEffect } from 'vue'
 import { getMiniGame } from '~/data/minigames'
-import { useMiniGameStore } from '~/stores/miniGame'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMiniGameStore } from '~/stores/miniGame'
 
 const mini = useMiniGameStore()
 const panel = useMainPanelStore()
@@ -43,8 +43,8 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
       orientation="col"
     />
     <component
-      v-else-if="mini.phase === 'game'"
       :is="GameComp"
+      v-else-if="mini.phase === 'game'"
       @win="win"
       @lose="lose"
     />
