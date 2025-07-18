@@ -23,6 +23,7 @@ Un mini-jeu de réflexion « Tic Tac Toe » permet aussi de récolter quelques S
 - Routing basé sur les fichiers et génération statique grâce à `vite-ssg`.
 - Prêt pour le _PWA_ et l'internationalisation.
 - Mini-jeu « Tic Tac Toe » accessible depuis le village Sux-Mais-Bouls.
+- IA du Tic Tac Toe renforcée avec un algorithme minimax pour éviter toute défaite.
 - Chances de capture basées sur la vie restante, le coefficient (racine cubique) et le niveau de l'ennemi.
 - Un ennemi de coefficient 1 à pleine vie peut désormais être capturé presque systématiquement avec une Shlagéball.
 - Les œufs existent déjà dans le jeu mais ne sont pas encore obtenables.
