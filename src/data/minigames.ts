@@ -7,14 +7,14 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
   character: sachatte,
   component: () => import('~/components/minigame/TicTacToe.vue'),
   reward: 100,
-  createIntro(start) {
+  createIntro(start, exit) {
     return [
       {
         id: 'start',
         text: 'Envie d\'une partie de morpion ?',
         responses: [
           { label: 'Oui', type: 'primary', action: start },
-          { label: 'Non', type: 'danger' },
+          { label: 'Non', type: 'danger', action: exit },
         ],
       },
     ]

@@ -28,7 +28,7 @@ function lose() {
   mini.finish(false)
 }
 
-const intro = computed(() => gameDef.value?.createIntro(start))
+const intro = computed(() => gameDef.value?.createIntro(start, exit))
 const success = computed(() => gameDef.value?.createSuccess(exit))
 const failure = computed(() => gameDef.value?.createFailure(exit))
 </script>
