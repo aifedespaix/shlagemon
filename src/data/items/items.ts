@@ -301,6 +301,39 @@ export const ultraSteroid: Item = {
   iconClass: 'text-purple-500 dark:text-purple-300',
 }
 
+export const fireEgg: Item = {
+  id: 'oeuf-feu',
+  name: 'Œuf Feu',
+  description: 'Un œuf chaud bouillant.',
+  price: 30,
+  currency: 'shlagidolar',
+  category: 'utilitaire',
+  icon: 'i-game-icons:egg-eye',
+  iconClass: 'text-orange-500 dark:text-orange-400',
+}
+
+export const waterEgg: Item = {
+  id: 'oeuf-eau',
+  name: 'Œuf Eau',
+  description: 'Un œuf qui ruisselle.',
+  price: 30,
+  currency: 'shlagidolar',
+  category: 'utilitaire',
+  icon: 'i-game-icons:egg-eye',
+  iconClass: 'text-blue-500 dark:text-blue-400',
+}
+
+export const grassEgg: Item = {
+  id: 'oeuf-herbe',
+  name: 'Œuf Herbe',
+  description: 'Un œuf qui sent la pelouse.',
+  price: 30,
+  currency: 'shlagidolar',
+  category: 'utilitaire',
+  icon: 'i-game-icons:egg-eye',
+  iconClass: 'text-green-500 dark:text-green-400',
+}
+
 export const allItems = [
   shlageball,
   superShlageball,
@@ -329,6 +362,9 @@ export const allItems = [
   thunderStone,
   steroids,
   ultraSteroid,
+  fireEgg,
+  waterEgg,
+  grassEgg,
 ] as const satisfies Item[]
 
 export type ItemId = typeof allItems[number]['id']

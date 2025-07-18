@@ -5,7 +5,7 @@ import { useBattleStore } from './battle'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 
-export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena'
+export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler'
 
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
@@ -59,6 +59,12 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'miniGame'
   }
 
+  function showPoulailler() {
+    if (arena.inBattle)
+      return
+    current.value = 'poulailler'
+  }
+
   function showArena() {
     if (arena.inBattle)
       return
@@ -81,6 +87,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     showBattle,
     showTrainerBattle,
     showMiniGame,
+    showPoulailler,
     showArena,
     showVillage,
     reset,
@@ -94,7 +101,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
       const arenaStore = useArenaStore()
       if (store.current === 'arena' && !arenaStore.inBattle)
         store.reset()
-      if (store.current === 'trainerBattle')
+      if (store.current === 'trainerBattle' || store.current === 'poulailler')
         store.reset()
     },
   },

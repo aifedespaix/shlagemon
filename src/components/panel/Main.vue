@@ -4,6 +4,7 @@ import { useMainPanelStore } from '~/stores/mainPanel'
 import BattleMain from '../battle/Main.vue'
 import BattleTrainer from '../battle/Trainer.vue'
 import ArenaPanel from './Arena.vue'
+import PoulaillerPanel from './Poulailler.vue'
 import ShopPanel from './Shop.vue'
 import VillagePanel from './Village.vue'
 //  from './Shop.vue'
@@ -25,6 +26,8 @@ const currentComponent = computed(() => {
       // return 'WhackAShlag'
     case 'arena':
       return ArenaPanel
+    case 'poulailler':
+      return PoulaillerPanel
     case 'village':
       return VillagePanel
     default:
