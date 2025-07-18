@@ -178,7 +178,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     const def = {
       id: `minigame-${n}`,
       title: n === 1 ? 'Première partie gagnée' : `${n} victoires mini-jeu`,
-      description: `Remporter ${n} partie${n > 1 ? 's' : ''} du mini-jeu Whack-a-Shlag.`,
+      description: `Remporter ${n} partie${n > 1 ? 's' : ''} d\u2019un mini-jeu.`,
       icon: 'carbon:game-console',
     }
     defs.push(def)

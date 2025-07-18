@@ -1,6 +1,7 @@
 import type { Arena } from './arena'
 import type { Item } from './item'
 import type { BaseShlagemon } from './shlagemon'
+import type { MiniGameId } from './minigame'
 
 export type ZoneType = 'village' | 'grotte' | 'sauvage'
 
@@ -27,6 +28,7 @@ interface BaseZone {
   hasKing?: boolean
   completionAchievement?: string
   arena?: ZoneArena
+  miniGame?: MiniGameId
   village?: {
     shop?: {
       items: Item[]

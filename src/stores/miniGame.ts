@@ -1,56 +1,40 @@
 import { defineStore } from 'pinia'
 import { notifyAchievement } from './achievements'
 import { useGameStore } from './game'
-
-function scoreToWin(level: number) {
-  return level * 10
-}
+import { getMiniGame } from '~/data/minigames'
+import type { MiniGameId } from '~/type/minigame'
 
 export const useMiniGameStore = defineStore('miniGame', () => {
-  const level = ref(1)
-  const score = ref(0)
+  const currentId = ref<MiniGameId | null>(null)
+  const phase = ref<'intro' | 'game' | 'success' | 'failure'>('intro')
   const wins = ref(0)
-  const isRunning = ref(false)
-  const timeLeft = ref(30)
-  let timer: number | undefined
 
-  function start() {
-    score.value = 0
-    timeLeft.value = 30
-    isRunning.value = true
-    clearInterval(timer)
-    timer = window.setInterval(() => {
-      timeLeft.value -= 1
-      if (timeLeft.value <= 0)
-        finish()
-    }, 1000)
+  function select(id: MiniGameId) {
+    currentId.value = id
+    phase.value = 'intro'
   }
 
-  function hit() {
-    if (isRunning.value)
-      score.value += 1
+  function play() {
+    phase.value = 'game'
   }
 
-  function finish() {
-    clearInterval(timer)
-    isRunning.value = false
-    const goal = scoreToWin(level.value)
-    if (score.value >= goal) {
+  function finish(win: boolean) {
+    const def = currentId.value ? getMiniGame(currentId.value) : undefined
+    if (win && def) {
       const game = useGameStore()
-      game.addShlagidolar(level.value * 100)
-      level.value += 1
+      game.addShlagidolar(def.reward)
       wins.value += 1
       notifyAchievement({ type: 'minigame-win' })
     }
-    else {
-      level.value = 1
-    }
+    phase.value = win ? 'success' : 'failure'
   }
 
-  return { level, score, wins, isRunning, timeLeft, start, hit, finish, scoreToWin }
+  function quit() {
+    currentId.value = null
+    phase.value = 'intro'
+  }
+
+  return { currentId, phase, wins, select, play, finish, quit }
 }, {
-  // persist only long term progress
-  persist: {
-    pick: ['level', 'wins'],
-  },
+  persist: { pick: ['wins'] },
 })

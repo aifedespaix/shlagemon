@@ -40,7 +40,9 @@ const village20: Zone = {
   id: 'village-boule',
   name: 'Village Sux-Mais-Bouls',
   type: 'village',
-  actions: [],
+  actions: [
+    { id: 'minigame', label: 'Mini-jeu' },
+  ],
   minLevel: 20,
   arena: {
     get arena() { return arena20 },
@@ -57,6 +59,7 @@ const village20: Zone = {
       ],
     },
   },
+  miniGame: 'tictactoe',
 }
 
 const village40: Zone = {
