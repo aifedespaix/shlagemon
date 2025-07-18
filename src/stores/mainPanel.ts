@@ -2,6 +2,7 @@ import type { ZoneId, ZoneType } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { useArenaStore } from './arena'
 import { useBattleStore } from './battle'
+import { useMiniGameStore } from './miniGame'
 import { useShlagedexStore } from './shlagedex'
 import { useZoneStore } from './zone'
 
@@ -99,9 +100,12 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     afterHydrate(ctx) {
       const store = ctx.store as ReturnType<typeof useMainPanelStore>
       const arenaStore = useArenaStore()
+      const miniGameStore = useMiniGameStore()
       if (store.current === 'arena' && !arenaStore.inBattle)
         store.reset()
       if (store.current === 'trainerBattle' || store.current === 'poulailler')
+        store.reset()
+      if (store.current === 'miniGame' && !miniGameStore.currentId)
         store.reset()
     },
   },

@@ -1,4 +1,6 @@
 import type { MiniGameDefinition } from '~/type/minigame'
+import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMiniGameStore } from '~/stores/miniGame'
 import { sachatte } from './characters/sachatte'
 
 export const ticTacToeMiniGame: MiniGameDefinition = {
@@ -8,13 +10,22 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
   component: () => import('~/components/minigame/TicTacToe.vue'),
   reward: 100,
   createIntro(start) {
+    const miniGame = useMiniGameStore()
+    const panel = useMainPanelStore()
     return [
       {
         id: 'start',
         text: 'Envie d\'une partie de morpion ?',
         responses: [
           { label: 'Oui', type: 'primary', action: start },
-          { label: 'Non', type: 'danger' },
+          {
+            label: 'Non',
+            type: 'danger',
+            action: () => {
+              miniGame.quit()
+              panel.showVillage()
+            },
+          },
         ],
       },
     ]

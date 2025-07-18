@@ -67,6 +67,11 @@ export const useUIStore = defineStore('ui', () => {
         return
       }
 
+      if (panel === 'miniGame') {
+        audio.fadeToMusic('/audio/musics/games/mini-game.ogg')
+        return
+      }
+
       if (panel === 'battle') {
         const track = getZoneBattleTrack(zoneId)
         if (track)
