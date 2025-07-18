@@ -31,6 +31,9 @@ interface BaseZone {
     shop?: {
       items: Item[]
     }
+    poulailler?: {
+      icon: string
+    }
   }
 }
 

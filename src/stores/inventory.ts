@@ -5,6 +5,7 @@ import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
 import { useCaptureLimitModalStore } from './captureLimitModal'
+import { useEggStore } from './egg'
 import { useFeatureLockStore } from './featureLock'
 import { useGameStore } from './game'
 import { useItemUsageStore } from './itemUsage'
@@ -193,6 +194,24 @@ export const useInventoryStore = defineStore('inventory', () => {
       'shlageball': capture,
       'super-shlageball': capture,
       'hyper-shlageball': capture,
+      'oeuf-feu': () => {
+        const eggs = useEggStore()
+        eggs.addEgg('feu')
+        remove(id)
+        return true
+      },
+      'oeuf-eau': () => {
+        const eggs = useEggStore()
+        eggs.addEgg('eau')
+        remove(id)
+        return true
+      },
+      'oeuf-herbe': () => {
+        const eggs = useEggStore()
+        eggs.addEgg('herbe')
+        remove(id)
+        return true
+      },
     }
 
     const handler = handlers[id]

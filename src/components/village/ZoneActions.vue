@@ -17,6 +17,7 @@ const hasKing = computed(() =>
   zone.current.hasKing ?? zone.current.type === 'sauvage',
 )
 const hasArena = computed(() => !!zone.current.arena)
+const hasPoulailler = computed(() => !!zone.current.village?.poulailler)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentKing = computed(() =>
   hasKing.value ? zone.getKing(zone.current.id) : undefined,
@@ -71,6 +72,12 @@ function fightKing() {
   trainerBattle.setQueue([trainer])
   panel.showTrainerBattle()
 }
+
+function openPoulailler() {
+  if (arena.inBattle)
+    return
+  panel.showPoulailler()
+}
 </script>
 
 <template>
@@ -96,6 +103,13 @@ function fightKing() {
       label="Arène"
       :disabled="arena.inBattle"
       @click="openArena"
+    />
+    <UiNavigationButton
+      v-if="hasPoulailler"
+      icon="i-game-icons:bird-house"
+      label="Poulailler"
+      :disabled="arena.inBattle"
+      @click="openPoulailler"
     />
     <UiNavigationButton
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"

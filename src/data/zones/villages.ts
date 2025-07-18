@@ -98,6 +98,9 @@ const village50: Zone = {
         steroids,
       ],
     },
+    poulailler: {
+      icon: 'i-game-icons:bird-house',
+    },
   },
 }
 

@@ -78,6 +78,7 @@ declare module 'vue' {
     PanelInventory: typeof import('./components/panel/Inventory.vue')['default']
     PanelMain: typeof import('./components/panel/Main.vue')['default']
     PanelPlayerInfos: typeof import('./components/panel/PlayerInfos.vue')['default']
+    PanelPoulailler: typeof import('./components/panel/Poulailler.vue')['default']
     PanelSelectedShlagemon: typeof import('./components/panel/SelectedShlagemon.vue')['default']
     PanelShlagedex: typeof import('./components/panel/Shlagedex.vue')['default']
     PanelShop: typeof import('./components/panel/Shop.vue')['default']
