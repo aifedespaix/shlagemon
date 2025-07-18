@@ -7,7 +7,7 @@ export const usePlayerStore = defineStore('player', () => {
   const realName = ref('')
   const gender = ref<Character['gender']>('unknown')
   const arenaBadges = ref<Record<string, boolean>>({})
-  const captureLevelCap = ref(20)
+  const captureLevelCap = ref(19)
 
   const badgeCount = computed(() =>
     Object.values(arenaBadges.value).filter(v => v).length,
@@ -36,7 +36,7 @@ export const usePlayerStore = defineStore('player', () => {
     realName.value = ''
     gender.value = 'unknown'
     arenaBadges.value = {}
-    captureLevelCap.value = 20
+    captureLevelCap.value = 19
   }
 
   function earnBadge(id: string) {

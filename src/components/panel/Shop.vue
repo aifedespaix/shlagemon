@@ -106,6 +106,7 @@ function closeShop() {
       :colors="tabColors"
       :hover-colors="tabHoverColors"
       :active-colors="tabActiveColors"
+      :disabled="!!selectedItem"
       class="-mb-1"
     />
     <div v-if="!selectedItem" class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">

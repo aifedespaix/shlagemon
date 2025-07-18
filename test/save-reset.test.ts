@@ -42,6 +42,6 @@ describe('useSaveStore.reset', () => {
 
     save.reset()
 
-    expect(player.captureLevelCap).toBe(20)
+    expect(player.captureLevelCap).toBe(19)
   })
 })
