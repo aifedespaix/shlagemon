@@ -1,5 +1,6 @@
 import type { Stats } from '~/type'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
+import marginal from '~/data/shlagemons/50-55/marginal'
 
 export const baseStats: Stats = {
   hp: 250,
@@ -29,7 +30,7 @@ export function applyStats(mon: DexShlagemon) {
     smelling: statWithRarityAndCoefficient(baseStats.smelling, 1, mon.rarity),
   }
 
-  if (mon.base.id === 'marginal')
+  if (mon.base.id === marginal.id)
     mon.baseStats.attack = 0
 }
 
@@ -44,7 +45,7 @@ export function applyCurrentStats(mon: DexShlagemon) {
   mon.smelling = Math.floor(mon.baseStats.smelling * coefficientBoost + (mon.lvl - 1) * 0.5)
   mon.hpCurrent = mon.hp
 
-  if (mon.base.id === 'marginal')
+  if (mon.base.id === marginal.id)
     mon.attack = 0
 }
 
