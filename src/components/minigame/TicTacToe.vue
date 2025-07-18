@@ -88,18 +88,17 @@ onMounted(reset)
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
-    <div class="grid grid-cols-5 gap-1" md="gap-2">
+  <div class="flex flex-1 flex-col items-center gap-2">
+    <div class="grid grid-cols-5 h-full max-h-full w-full flex-1 gap-1" md="gap-2">
       <button
         v-for="(_, i) in board"
         :key="i"
-        class="h-12 w-12 flex items-center justify-center rounded text-3xl transition-transform"
+        class="aspect-square flex items-center justify-center rounded text-xl transition-transform"
         :class="[
           isCenter(i) ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent cursor-default pointer-events-none',
           winningCells.includes(i) ? 'win-cell' : '',
           drawEffect && isCenter(i) ? 'draw-cell' : '',
         ]"
-        md="h-20 w-20"
         @click="isCenter(i) && play(i)"
       >
         <span v-if="board[i] === 'player'">⭕</span>

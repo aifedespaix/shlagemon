@@ -34,7 +34,7 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
 </script>
 
 <template>
-  <div v-if="gameDef">
+  <div v-if="gameDef" class="tiny-scrollbar flex flex-col overflow-auto">
     <DialogBox
       v-if="mini.phase === 'intro'"
       :character="gameDef.character"
