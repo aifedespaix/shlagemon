@@ -12,7 +12,7 @@ Son attaque signature, *Raté Critique*, inflige 0 dégâts mais provoque un inc
 
 On ne le trouve pas : c’est lui qui reste, par erreur, au fond d’un sac. Son rêve ? Être ignoré parfaitement, comme un ticket de caisse mouillé.`,
   types: [shlagemonTypes.psy],
-  coefficient: 100,
+  coefficient: 115,
 }
 
 export default wem

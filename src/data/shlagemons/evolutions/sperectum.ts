@@ -1,6 +1,6 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
-import ectroudbal from '../evolutions/ectroudbal'
+import ectroudbal from './ectroudbal'
 
 export const sperectum: BaseShlagemon = {
   id: 'sperectum',

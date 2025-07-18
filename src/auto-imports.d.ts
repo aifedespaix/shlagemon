@@ -379,9 +379,6 @@ declare global {
   export type { ArenaResult } from './stores/arena'
   import('./stores/arena')
   // @ts-ignore
-  export type { BallId } from './data/items/shlageball'
-  import('./data/items/shlageball')
-  // @ts-ignore
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')
   // @ts-ignore
@@ -391,7 +388,7 @@ declare global {
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
   // @ts-ignore
-  export type { EventCallback } from './stores/event'
+  export type { EventMap, EventCallback } from './stores/event'
   import('./stores/event')
   // @ts-ignore
   export type { InventorySort } from './stores/inventoryFilter'
@@ -687,6 +684,7 @@ declare module 'vue' {
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useShlagedexStore: UnwrapRef<typeof import('./stores/shlagedex')['useShlagedexStore']>
+    readonly useShopFilterStore: UnwrapRef<typeof import('./stores/shopFilter')['useShopFilterStore']>
     readonly useShortcutsStore: UnwrapRef<typeof import('./stores/shortcuts')['useShortcutsStore']>
     readonly useSingleInterval: UnwrapRef<typeof import('./composables/battleEngine')['useSingleInterval']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
@@ -736,6 +734,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly useZoneAccess: UnwrapRef<typeof import('./stores/zoneAccess')['useZoneAccess']>
     readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>
