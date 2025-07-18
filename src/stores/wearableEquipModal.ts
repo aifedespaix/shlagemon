@@ -8,7 +8,9 @@ import { useInventoryStore } from './inventory'
 import { useItemUsageStore } from './itemUsage'
 
 export const useWearableEquipModalStore = defineStore('wearableEquipModal', () => {
-  const { isVisible, open: openModal, close } = createModalStore('game')
+  // Keep the current mobile tab when opening this modal so the secondary panel
+  // and any open dialogs remain visible on mobile
+  const { isVisible, open: openModal, close } = createModalStore()
   const currentMon = ref<DexShlagemon | null>(null)
   const inventory = useInventoryStore()
   const equipment = useEquipmentStore()
