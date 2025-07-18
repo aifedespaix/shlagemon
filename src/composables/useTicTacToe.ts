@@ -1,15 +1,30 @@
 import { ref } from 'vue'
 
-const combos = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-]
+export const SIZE = 5
+export const CENTER_CELLS = [6, 7, 8, 11, 12, 13, 16, 17, 18]
+
+function generateCombos() {
+  const res: number[][] = []
+  for (let r = 0; r < SIZE; r++) {
+    for (let c = 0; c <= SIZE - 3; c++)
+      res.push([r * SIZE + c, r * SIZE + c + 1, r * SIZE + c + 2])
+  }
+
+  for (let c = 0; c < SIZE; c++) {
+    for (let r = 0; r <= SIZE - 3; r++)
+      res.push([r * SIZE + c, (r + 1) * SIZE + c, (r + 2) * SIZE + c])
+  }
+
+  for (let r = 0; r <= SIZE - 3; r++) {
+    for (let c = 0; c <= SIZE - 3; c++)
+      res.push([r * SIZE + c, (r + 1) * SIZE + c + 1, (r + 2) * SIZE + c + 2])
+    for (let c = 2; c < SIZE; c++)
+      res.push([r * SIZE + c, (r + 1) * SIZE + c - 1, (r + 2) * SIZE + c - 2])
+  }
+  return res
+}
+
+export const combos = generateCombos()
 
 type Cell = null | 'player' | 'ai'
 
@@ -25,7 +40,9 @@ export function findBestMove(state: Cell[]): number {
       return -1
     if (b.every(Boolean))
       return 0
-    const empty = b.map((v, i) => (v ? -1 : i)).filter(i => i >= 0)
+    const empty = b
+      .map((v, i) => (v ? -1 : i))
+      .filter(i => i >= 0 && (current !== 'ai' || CENTER_CELLS.includes(i)))
     if (current === 'ai') {
       let best = -Infinity
       for (const idx of empty) {
@@ -50,7 +67,9 @@ export function findBestMove(state: Cell[]): number {
 
   let bestScore = -Infinity
   let bestIdx = -1
-  const empty = state.map((v, i) => (v ? -1 : i)).filter(i => i >= 0)
+  const empty = state
+    .map((v, i) => (v ? -1 : i))
+    .filter(i => i >= 0 && CENTER_CELLS.includes(i))
   for (const idx of empty) {
     const copy = [...state]
     copy[idx] = 'ai'
@@ -64,12 +83,12 @@ export function findBestMove(state: Cell[]): number {
 }
 
 export function useTicTacToe() {
-  const board = ref<Cell[]>(Array.from({ length: 9 }).fill(null))
+  const board = ref<Cell[]>(Array.from({ length: SIZE * SIZE }).fill(null))
   const turn = ref<'player' | 'ai'>('player')
   const finished = ref(false)
 
   function reset() {
-    board.value = Array.from({ length: 9 }).fill(null)
+    board.value = Array.from({ length: SIZE * SIZE }).fill(null)
     turn.value = 'player'
     finished.value = false
   }
@@ -80,8 +99,13 @@ export function useTicTacToe() {
   }
 
   function aiMove() {
-    if (!board.value.some(v => !v))
-      return end(false)
+    const possible = CENTER_CELLS.filter(i => !board.value[i])
+    if (!possible.length) {
+      if (board.value.every(Boolean))
+        return end(false)
+      turn.value = 'player'
+      return
+    }
     const idx = findBestMove(board.value)
     board.value[idx] = 'ai'
     if (check(board.value, 'ai'))

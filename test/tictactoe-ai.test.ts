@@ -1,16 +1,28 @@
 import { describe, expect, it } from 'vitest'
-import { findBestMove } from '../src/composables/useTicTacToe'
+import { CENTER_CELLS, findBestMove, SIZE } from '../src/composables/useTicTacToe'
 
-const combos = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-]
+function generateCombos() {
+  const res: number[][] = []
+  for (let r = 0; r < SIZE; r++) {
+    for (let c = 0; c <= SIZE - 3; c++)
+      res.push([r * SIZE + c, r * SIZE + c + 1, r * SIZE + c + 2])
+  }
+
+  for (let c = 0; c < SIZE; c++) {
+    for (let r = 0; r <= SIZE - 3; r++)
+      res.push([r * SIZE + c, (r + 1) * SIZE + c, (r + 2) * SIZE + c])
+  }
+
+  for (let r = 0; r <= SIZE - 3; r++) {
+    for (let c = 0; c <= SIZE - 3; c++)
+      res.push([r * SIZE + c, (r + 1) * SIZE + c + 1, (r + 2) * SIZE + c + 2])
+    for (let c = 2; c < SIZE; c++)
+      res.push([r * SIZE + c, (r + 1) * SIZE + c - 1, (r + 2) * SIZE + c - 2])
+  }
+  return res
+}
+
+const combos = generateCombos()
 
 function check(b: (null | 'player' | 'ai')[], p: 'player' | 'ai') {
   return combos.some(c => c.every(i => b[i] === p))
@@ -35,6 +47,9 @@ function search(board: (null | 'player' | 'ai')[], playerTurn: boolean): 'ai' | 
     return 'draw'
   }
   else {
+    const possible = CENTER_CELLS.filter(i => !board[i])
+    if (!possible.length)
+      return search(board, true)
     const idx = findBestMove(board)
     board[idx] = 'ai'
     const res = search(board, true)
@@ -45,8 +60,8 @@ function search(board: (null | 'player' | 'ai')[], playerTurn: boolean): 'ai' | 
 
 describe('tic tac toe ai', () => {
   it('never loses after any first move', () => {
-    for (let i = 0; i < 9; i++) {
-      const board = Array.from({ length: 9 }).fill(null) as (null | 'player' | 'ai')[]
+    for (const i of CENTER_CELLS) {
+      const board = Array.from({ length: SIZE * SIZE }).fill(null) as (null | 'player' | 'ai')[]
       board[i] = 'player'
       const result = search(board, false)
       expect(result).not.toBe('player')
