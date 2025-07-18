@@ -43,6 +43,8 @@ export function findBestMove(state: Cell[]): number {
     const empty = b
       .map((v, i) => (v ? -1 : i))
       .filter(i => i >= 0 && CENTER_CELLS.includes(i))
+    if (!empty.length)
+      return 0
     if (current === 'ai') {
       let best = -Infinity
       for (const idx of empty) {
@@ -70,6 +72,8 @@ export function findBestMove(state: Cell[]): number {
   const empty = state
     .map((v, i) => (v ? -1 : i))
     .filter(i => i >= 0 && CENTER_CELLS.includes(i))
+  if (!empty.length)
+    return bestIdx
   for (const idx of empty) {
     const copy = [...state]
     copy[idx] = 'ai'
@@ -86,6 +90,10 @@ export function useTicTacToe() {
   const board = ref<Cell[]>(Array.from({ length: SIZE * SIZE }).fill(null))
   const turn = ref<'player' | 'ai'>('player')
   const finished = ref(false)
+
+  function centerFull() {
+    return CENTER_CELLS.every(i => board.value[i])
+  }
 
   function reset() {
     board.value = Array.from({ length: SIZE * SIZE }).fill(null)
@@ -106,7 +114,7 @@ export function useTicTacToe() {
     board.value[idx] = 'ai'
     if (check(board.value, 'ai'))
       return end(false)
-    if (board.value.every(Boolean))
+    if (centerFull())
       return end(false)
     turn.value = 'player'
   }
@@ -123,7 +131,7 @@ export function useTicTacToe() {
     board.value[i] = 'player'
     if (check(board.value, 'player'))
       return end(true)
-    if (board.value.every(Boolean))
+    if (centerFull())
       return end(false)
     turn.value = 'ai'
     aiMove()
