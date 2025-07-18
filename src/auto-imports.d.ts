@@ -6,10 +6,13 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const CENTER_CELLS: typeof import('./composables/useTicTacToe')['CENTER_CELLS']
   const EffectScope: typeof import('vue')['EffectScope']
+  const SIZE: typeof import('./composables/useTicTacToe')['SIZE']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const check: typeof import('./composables/useTicTacToe')['check']
+  const combos: typeof import('./composables/useTicTacToe')['combos']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -416,10 +419,13 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly CENTER_CELLS: UnwrapRef<typeof import('./composables/useTicTacToe')['CENTER_CELLS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly SIZE: UnwrapRef<typeof import('./composables/useTicTacToe')['SIZE']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly check: UnwrapRef<typeof import('./composables/useTicTacToe')['check']>
+    readonly combos: UnwrapRef<typeof import('./composables/useTicTacToe')['combos']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
