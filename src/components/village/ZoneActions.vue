@@ -90,6 +90,8 @@ function openPoulailler() {
       v-if="zone.current.village?.shop"
       icon="i-carbon:shopping-bag"
       label="Magasin"
+      class="bg-green-600 text-white dark:bg-green-700"
+      hover="bg-green-700 dark:bg-green-800"
       :disabled="arena.inBattle"
       @click="panel.showShop()"
     />
@@ -98,6 +100,8 @@ function openPoulailler() {
       :key="action.id"
       :icon="actionIcon(action.id)"
       :label="action.label"
+      :class="action.id === 'minigame' ? 'bg-violet-600 text-white dark:bg-violet-700' : ''"
+      :hover="action.id === 'minigame' ? 'bg-violet-700 dark:bg-violet-800' : undefined"
       :disabled="arena.inBattle"
       @click="onAction(action.id)"
     />
@@ -105,6 +109,8 @@ function openPoulailler() {
       v-if="hasArena && !arenaCompleted"
       icon="i-mdi:sword-cross"
       label="Arène"
+      class="bg-red-600 text-white dark:bg-red-700"
+      hover="bg-red-700 dark:bg-red-800"
       :disabled="arena.inBattle"
       @click="openArena"
     />
