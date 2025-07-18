@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { getMiniGame } from '~/data/minigames'
 import { notifyAchievement } from './achievements'
 import { useGameStore } from './game'
+import { useInventoryStore } from './inventory'
 
 export const useMiniGameStore = defineStore('miniGame', () => {
   const currentId = ref<MiniGameId | null>(null)
@@ -22,7 +23,11 @@ export const useMiniGameStore = defineStore('miniGame', () => {
     const def = currentId.value ? getMiniGame(currentId.value) : undefined
     if (win && def) {
       const game = useGameStore()
-      game.addShlagidolar(def.reward)
+      const inventory = useInventoryStore()
+      if (def.reward.type === 'money')
+        game.addShlagidolar(def.reward.amount)
+      else if (def.reward.type === 'item')
+        inventory.add(def.reward.itemId)
       wins.value += 1
       notifyAchievement({ type: 'minigame-win' })
     }
