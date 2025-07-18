@@ -1,5 +1,25 @@
 import type { Item } from '~/type/item'
 import { hyperShlageball, shlageball, superShlageball } from './shlageball'
+import {
+  advancedAttackRing,
+  attackAmulet,
+  attackRing,
+} from './wearables/attackRing'
+import {
+  advancedDefenseRing,
+  defenseAmulet,
+  defenseRing,
+} from './wearables/defenseRing'
+import {
+  advancedVitalityRing,
+  vitalityAmulet,
+  vitalityRing,
+} from './wearables/vitalityRing'
+import {
+  advancedXpRing,
+  xpAmulet,
+  xpRing,
+} from './wearables/xpRing'
 
 // @unocss-include
 export const defensePotion: Item = {
@@ -233,36 +253,6 @@ export const multiExp: Item = {
   wearable: true,
 }
 
-export const vitalityRing: Item = {
-  id: 'vitality-ring',
-  name: 'Bague Vitalesque',
-  description: 'Augmente les PV max du porteur.',
-  details:
-    'Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.',
-  price: 20,
-  currency: 'shlagidiamond',
-  category: 'utilitaire',
-  icon: 'i-game-icons:ring',
-  iconClass: 'text-red-500 dark:text-red-400',
-  unique: true,
-  wearable: true,
-}
-
-export const xpRing: Item = {
-  id: 'xp-ring',
-  name: 'Anneau d\'expérience',
-  description: 'Augmente l\'XP du porteur.',
-  details:
-    'Porté par un Shlagémon, il augmente l\'expérience gagnée en combat de 15%. Effet cumulable avec les potions d\'expérience.',
-  price: 20,
-  currency: 'shlagidiamond',
-  category: 'utilitaire',
-  icon: 'i-game-icons:big-diamond-ring',
-  iconClass: 'text-green-600 dark:text-green-400',
-  unique: true,
-  wearable: true,
-}
-
 export const thunderStone: Item = {
   id: 'pierre-foutre',
   name: 'Pierre Foutre',
@@ -358,7 +348,17 @@ export const allItems = [
   hyperXpPotion,
   multiExp,
   vitalityRing,
+  advancedVitalityRing,
+  vitalityAmulet,
   xpRing,
+  advancedXpRing,
+  xpAmulet,
+  attackRing,
+  advancedAttackRing,
+  attackAmulet,
+  defenseRing,
+  advancedDefenseRing,
+  defenseAmulet,
   thunderStone,
   steroids,
   ultraSteroid,
