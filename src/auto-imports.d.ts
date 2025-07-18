@@ -389,9 +389,6 @@ declare global {
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
   // @ts-ignore
-  export type { EggType, Egg } from './stores/egg'
-  import('./stores/egg')
-  // @ts-ignore
   export type { EventMap, EventCallback } from './stores/event'
   import('./stores/event')
   // @ts-ignore
@@ -586,7 +583,6 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
-    readonly useEggStore: UnwrapRef<typeof import('./stores/egg')['useEggStore']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
