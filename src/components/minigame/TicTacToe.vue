@@ -14,6 +14,10 @@ const wrapper = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(wrapper)
 const size = computed(() => Math.min(width.value, height.value))
 
+function isCenterCell(i: number) {
+  return CENTER_CELLS.includes(i)
+}
+
 function centerFull() {
   return board.value.every(Boolean)
 }
@@ -99,8 +103,11 @@ onMounted(reset)
       <button
         v-for="(_, i) in board"
         :key="i"
-        class="aspect-square flex items-center justify-center rounded bg-gray-200 text-xl transition-transform dark:bg-gray-700"
+        class="aspect-square flex items-center justify-center rounded text-xl transition-transform"
         :class="[
+          isCenterCell(i)
+            ? 'bg-gray-200 dark:bg-gray-700 cursor-pointer'
+            : 'bg-transparent cursor-default',
           winningCells.includes(i)
             ? winner === 'player'
               ? 'win-player'
@@ -108,6 +115,7 @@ onMounted(reset)
             : '',
           drawEffect ? 'draw-cell' : '',
         ]"
+        :hover="isCenterCell(i) ? 'bg-gray-300 dark:bg-gray-600' : undefined"
         @click="play(i)"
       >
         <span v-if="board[i] === 'player'" class="text-blue-600">⭕</span>
