@@ -95,20 +95,68 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return effect?.percent || 0
   })
 
+  const xpWearableBonus = (id: string | undefined) => {
+    if (!id)
+      return 0
+    if (id === 'xp-ring')
+      return 15
+    if (id === 'advanced-xp-ring')
+      return 25
+    if (id === 'xp-amulet')
+      return 33
+    return 0
+  }
+
   const attackBonusPercent = computed(() => {
     const effect = effects.value.find(e => e.type === 'attack')
     return effect?.percent || 0
   })
+
+  const attackWearableBonus = (id: string | undefined) => {
+    if (!id)
+      return 0
+    if (id === 'attack-ring')
+      return 15
+    if (id === 'advanced-attack-ring')
+      return 25
+    if (id === 'attack-amulet')
+      return 33
+    return 0
+  }
 
   const defenseBonusPercent = computed(() => {
     const effect = effects.value.find(e => e.type === 'defense')
     return effect?.percent || 0
   })
 
+  const defenseWearableBonus = (id: string | undefined) => {
+    if (!id)
+      return 0
+    if (id === 'defense-ring')
+      return 15
+    if (id === 'advanced-defense-ring')
+      return 25
+    if (id === 'defense-amulet')
+      return 33
+    return 0
+  }
+
   const vitalityBonusPercent = computed(() => {
     const effect = effects.value.find(e => e.type === 'vitality')
     return effect?.percent || 0
   })
+
+  const vitalityWearableBonus = (id: string | undefined) => {
+    if (!id)
+      return 0
+    if (id === 'vitality-ring')
+      return 15
+    if (id === 'advanced-vitality-ring')
+      return 25
+    if (id === 'vitality-amulet')
+      return 33
+    return 0
+  }
 
   const captureBonusPercent = computed(() => {
     const effect = effects.value.find(e => e.type === 'capture')
@@ -116,18 +164,19 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   })
 
   function effectiveAttack(mon: DexShlagemon): number {
-    return Math.round(mon.attack * (1 + attackBonusPercent.value / 100))
+    const bonus = attackBonusPercent.value + attackWearableBonus(mon.heldItemId)
+    return Math.round(mon.attack * (1 + bonus / 100))
   }
 
   function effectiveDefense(mon: DexShlagemon): number {
-    return Math.round(mon.defense * (1 + defenseBonusPercent.value / 100))
+    const bonus = defenseBonusPercent.value + defenseWearableBonus(mon.heldItemId)
+    return Math.round(mon.defense * (1 + bonus / 100))
   }
 
   function maxHp(mon: DexShlagemon): number {
     const isActive = activeShlagemon.value?.id === mon.id
     let bonus = isActive ? vitalityBonusPercent.value : 0
-    if (mon.heldItemId === 'vitality-ring')
-      bonus += 15
+    bonus += vitalityWearableBonus(mon.heldItemId)
     return Math.round(mon.hp * (1 + bonus / 100))
   }
 
@@ -469,8 +518,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   ) {
     if (mon.lvl >= maxLevel)
       return
-    if (mon.heldItemId === 'xp-ring')
-      amount = Math.round(amount * 1.15)
+    const bonus = xpWearableBonus(mon.heldItemId)
+    if (bonus)
+      amount = Math.round(amount * (1 + bonus / 100))
     mon.xp += amount
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
