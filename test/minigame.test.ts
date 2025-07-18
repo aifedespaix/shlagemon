@@ -2,6 +2,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { getMiniGame } from '../src/data/minigames'
 import { useGameStore } from '../src/stores/game'
+import { useInventoryStore } from '../src/stores/inventory'
 import { useMiniGameStore } from '../src/stores/miniGame'
 
 describe('mini game store', () => {
@@ -21,5 +22,14 @@ describe('mini game store', () => {
     mini.select('tictactoe')
     mini.finish(false)
     expect(mini.wins).toBe(0)
+  })
+
+  it('grants water egg on battleship victory', () => {
+    setActivePinia(createPinia())
+    const mini = useMiniGameStore()
+    const inventory = useInventoryStore()
+    mini.select('battleship')
+    mini.finish(true)
+    expect(inventory.items['oeuf-eau']).toBe(1)
   })
 })
