@@ -106,6 +106,15 @@ function openPoulailler() {
       @click="onAction(action.id)"
     />
     <UiNavigationButton
+      v-if="zone.current.miniGame && !zone.current.actions.some(a => a.id === 'minigame')"
+      icon="i-carbon:game-console"
+      label="Mini-jeu"
+      class="bg-violet-600 text-white dark:bg-violet-700"
+      hover="bg-violet-700 dark:bg-violet-800"
+      :disabled="arena.inBattle"
+      @click="onAction('minigame')"
+    />
+    <UiNavigationButton
       v-if="hasArena && !arenaCompleted"
       icon="i-mdi:sword-cross"
       label="Arène"

@@ -68,6 +68,7 @@ declare module 'vue' {
     LayoutHomeHeader: typeof import('./components/layout/HomeHeader.vue')['default']
     LayoutMobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     LayoutScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
+    MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
     MinigameTicTacToe: typeof import('./components/minigame/TicTacToe.vue')['default']
     Modal: typeof import('./components/modal/index.vue')['default']
     PanelAchievements: typeof import('./components/panel/Achievements.vue')['default']

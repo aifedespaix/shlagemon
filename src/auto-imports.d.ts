@@ -6,6 +6,7 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const BOARD_SIZE: typeof import('./composables/useBattleship')['BOARD_SIZE']
   const CENTER_CELLS: typeof import('./composables/useTicTacToe')['CENTER_CELLS']
   const EffectScope: typeof import('vue')['EffectScope']
   const SIZE: typeof import('./composables/useTicTacToe')['SIZE']
@@ -21,6 +22,7 @@ declare global {
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']
   const controlledRef: typeof import('@vueuse/core')['controlledRef']
   const createApp: typeof import('vue')['createApp']
+  const createBattleshipAI: typeof import('./composables/useBattleship')['createBattleshipAI']
   const createEventHook: typeof import('@vueuse/core')['createEventHook']
   const createGlobalState: typeof import('@vueuse/core')['createGlobalState']
   const createInjectionState: typeof import('@vueuse/core')['createInjectionState']
@@ -152,6 +154,7 @@ declare global {
   const useBattleEffects: typeof import('./composables/battleEngine')['useBattleEffects']
   const useBattleStatsStore: typeof import('./stores/battleStats')['useBattleStatsStore']
   const useBattleStore: typeof import('./stores/battle')['useBattleStore']
+  const useBattleship: typeof import('./composables/useBattleship')['useBattleship']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
@@ -377,6 +380,9 @@ declare global {
   export type { BattleCoreOptions } from './composables/useBattleCore'
   import('./composables/useBattleCore')
   // @ts-ignore
+  export type { Cell } from './composables/useBattleship'
+  import('./composables/useBattleship')
+  // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
   // @ts-ignore
@@ -419,6 +425,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly BOARD_SIZE: UnwrapRef<typeof import('./composables/useBattleship')['BOARD_SIZE']>
     readonly CENTER_CELLS: UnwrapRef<typeof import('./composables/useTicTacToe')['CENTER_CELLS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly SIZE: UnwrapRef<typeof import('./composables/useTicTacToe')['SIZE']>
@@ -434,6 +441,7 @@ declare module 'vue' {
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createBattleshipAI: UnwrapRef<typeof import('./composables/useBattleship')['createBattleshipAI']>
     readonly createEventHook: UnwrapRef<typeof import('@vueuse/core')['createEventHook']>
     readonly createGlobalState: UnwrapRef<typeof import('@vueuse/core')['createGlobalState']>
     readonly createInjectionState: UnwrapRef<typeof import('@vueuse/core')['createInjectionState']>
@@ -562,6 +570,7 @@ declare module 'vue' {
     readonly useBattleEffects: UnwrapRef<typeof import('./composables/battleEngine')['useBattleEffects']>
     readonly useBattleStatsStore: UnwrapRef<typeof import('./stores/battleStats')['useBattleStatsStore']>
     readonly useBattleStore: UnwrapRef<typeof import('./stores/battle')['useBattleStore']>
+    readonly useBattleship: UnwrapRef<typeof import('./composables/useBattleship')['useBattleship']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>

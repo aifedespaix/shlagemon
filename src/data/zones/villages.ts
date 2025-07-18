@@ -83,6 +83,7 @@ const village40: Zone = {
       ],
     },
   },
+  miniGame: 'battleship',
 }
 
 const village50: Zone = {

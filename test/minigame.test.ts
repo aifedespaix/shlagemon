@@ -26,4 +26,13 @@ describe('mini game store', () => {
     expect(inventory.items['oeuf-herbe']).toBeUndefined()
     expect(mini.wins).toBe(0)
   })
+
+  it('grants water egg on battleship victory', () => {
+    setActivePinia(createPinia())
+    const mini = useMiniGameStore()
+    const inventory = useInventoryStore()
+    mini.select('battleship')
+    mini.finish(true)
+    expect(inventory.items['oeuf-eau']).toBe(1)
+  })
 })
