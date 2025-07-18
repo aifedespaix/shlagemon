@@ -8,7 +8,7 @@ export interface MiniGameDefinition {
   character: Character
   component: () => Promise<{ default: Component }>
   reward: number
-  createIntro: (start: () => void) => DialogNode[]
+  createIntro: (start: () => void, exit: () => void) => DialogNode[]
   createSuccess: (done: () => void) => DialogNode[]
   createFailure: (done: () => void) => DialogNode[]
 }

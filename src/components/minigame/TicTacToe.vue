@@ -7,13 +7,10 @@ const turn = ref<'player' | 'ai'>('player')
 const finished = ref(false)
 const winningCells = ref<number[]>([])
 const drawEffect = ref(false)
+const winner = ref<'player' | 'ai' | null>(null)
 
 function centerFull() {
   return CENTER_CELLS.every(i => board.value[i])
-}
-
-function isCenter(i: number) {
-  return CENTER_CELLS.includes(i)
 }
 
 function reset() {
@@ -22,6 +19,7 @@ function reset() {
   finished.value = false
   winningCells.value = []
   drawEffect.value = false
+  winner.value = null
 }
 
 function check(player: 'player' | 'ai') {
@@ -46,7 +44,6 @@ function play(i: number) {
     finished.value
     || turn.value !== 'player'
     || board.value[i]
-    || !isCenter(i)
   ) {
     return
   }
@@ -67,6 +64,7 @@ function end(win: boolean, draw = false) {
     return
   }
   const player = win ? 'player' : 'ai'
+  winner.value = player
   const combo = combos.find(c => c.every(i => board.value[i] === player))
   if (combo) {
     winningCells.value = []
@@ -89,31 +87,32 @@ onMounted(reset)
 
 <template>
   <div class="flex flex-1 flex-col items-center gap-2">
-    <div class="grid grid-cols-5 h-full max-h-full w-full flex-1 gap-1" md="gap-2">
+    <div class="grid grid-cols-5 grid-rows-5 aspect-square h-full max-h-full max-w-full w-full flex-1 gap-1" md="gap-2">
       <button
         v-for="(_, i) in board"
         :key="i"
-        class="aspect-square flex items-center justify-center rounded text-xl transition-transform"
+        class="aspect-square flex items-center justify-center rounded bg-gray-200 text-xl transition-transform dark:bg-gray-700"
         :class="[
-          isCenter(i) ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent cursor-default pointer-events-none',
-          winningCells.includes(i) ? 'win-cell' : '',
-          drawEffect && isCenter(i) ? 'draw-cell' : '',
+          winningCells.includes(i) ? (winner === 'player' ? 'win-cell-player' : 'win-cell-ai') : '',
+          drawEffect ? 'draw-cell' : '',
         ]"
-        @click="isCenter(i) && play(i)"
+        @click="play(i)"
       >
-        <span v-if="board[i] === 'player'">⭕</span>
-        <span v-else-if="board[i] === 'ai'">❌</span>
+        <span v-if="board[i] === 'player'" class="text-blue-600">⭕</span>
+        <span v-else-if="board[i] === 'ai'" class="text-red-600">❌</span>
       </button>
     </div>
-    <UiButton class="text-xs" @click="reset">
-      Recommencer
-    </UiButton>
   </div>
 </template>
 
 <style scoped>
-.win-cell {
-  @apply bg-green-300 dark:bg-green-700;
+.win-cell-player {
+  @apply bg-blue-300 dark:bg-blue-700;
+  animation: cell-win 0.3s ease forwards;
+}
+
+.win-cell-ai {
+  @apply bg-red-300 dark:bg-red-700;
   animation: cell-win 0.3s ease forwards;
 }
 
