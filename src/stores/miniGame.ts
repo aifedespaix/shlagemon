@@ -24,10 +24,10 @@ export const useMiniGameStore = defineStore('miniGame', () => {
     if (win && def) {
       const game = useGameStore()
       const inventory = useInventoryStore()
-      if (typeof def.reward === 'number')
-        game.addShlagidolar(def.reward)
-      else
-        inventory.add(def.reward)
+      if (def.reward.type === 'money')
+        game.addShlagidolar(def.reward.amount)
+      else if (def.reward.type === 'item')
+        inventory.add(def.reward.itemId)
       wins.value += 1
       notifyAchievement({ type: 'minigame-win' })
     }

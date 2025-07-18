@@ -8,7 +8,7 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
   label: 'Tic Tac Toe',
   character: sachatte,
   component: () => import('~/components/minigame/TicTacToe.vue'),
-  reward: 100,
+  reward: { type: 'item', itemId: 'oeuf-herbe' },
   createIntro(start) {
     const miniGame = useMiniGameStore()
     const panel = useMainPanelStore()
@@ -34,7 +34,7 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: 'Bien joué ! Tu gagnes 100 Shlagidolars.',
+        text: 'Bien joué ! Tu gagnes un Œuf Herbe.',
         responses: [
           { label: 'Super !', type: 'valid', action: done },
         ],

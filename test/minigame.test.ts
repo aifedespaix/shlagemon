@@ -1,6 +1,5 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import { getMiniGame } from '../src/data/minigames'
 import { useGameStore } from '../src/stores/game'
 import { useInventoryStore } from '../src/stores/inventory'
 import { useMiniGameStore } from '../src/stores/miniGame'
@@ -10,17 +9,21 @@ describe('mini game store', () => {
     setActivePinia(createPinia())
     const mini = useMiniGameStore()
     const game = useGameStore()
+    const inventory = useInventoryStore()
     mini.select('tictactoe')
     mini.finish(true)
-    expect(game.shlagidolar).toBe(getMiniGame('tictactoe')!.reward)
+    expect(inventory.items['oeuf-herbe']).toBe(1)
+    expect(game.shlagidolar).toBe(0)
     expect(mini.wins).toBe(1)
   })
 
   it('no reward on defeat', () => {
     setActivePinia(createPinia())
     const mini = useMiniGameStore()
+    const inventory = useInventoryStore()
     mini.select('tictactoe')
     mini.finish(false)
+    expect(inventory.items['oeuf-herbe']).toBeUndefined()
     expect(mini.wins).toBe(0)
   })
 

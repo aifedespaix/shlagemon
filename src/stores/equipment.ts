@@ -7,6 +7,11 @@ export const useEquipmentStore = defineStore('equipment', () => {
   const dex = useShlagedexStore()
   const inventory = useInventoryStore()
 
+  const vitalityIds = ['vitality-ring', 'advanced-vitality-ring', 'vitality-amulet']
+  function isVitalityItem(id: string) {
+    return vitalityIds.includes(id)
+  }
+
   function equip(monId: string, itemId: string) {
     const mon = dex.shlagemons.find(m => m.id === monId)
     if (!mon)
@@ -14,7 +19,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
     if (mon.heldItemId) {
       holders.value[mon.heldItemId] = null
       inventory.add(mon.heldItemId)
-      if (mon.heldItemId === 'vitality-ring') {
+      if (isVitalityItem(mon.heldItemId)) {
         const max = dex.maxHp(mon)
         if (mon.hpCurrent > max)
           mon.hpCurrent = max
@@ -25,7 +30,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
       const other = dex.shlagemons.find(m => m.id === current)
       if (other) {
         other.heldItemId = null
-        if (itemId === 'vitality-ring') {
+        if (isVitalityItem(itemId)) {
           const max = dex.maxHp(other)
           if (other.hpCurrent > max)
             other.hpCurrent = max
@@ -35,7 +40,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
     mon.heldItemId = itemId
     holders.value[itemId] = monId
     inventory.remove(itemId)
-    if (itemId === 'vitality-ring')
+    if (isVitalityItem(itemId))
       mon.hpCurrent = dex.maxHp(mon)
   }
 
@@ -47,7 +52,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
     mon.heldItemId = null
     holders.value[itemId] = null
     inventory.add(itemId)
-    if (itemId === 'vitality-ring') {
+    if (isVitalityItem(itemId)) {
       const max = dex.maxHp(mon)
       if (mon.hpCurrent > max)
         mon.hpCurrent = max
@@ -61,7 +66,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
     const mon = dex.shlagemons.find(m => m.id === holderId)
     if (mon) {
       mon.heldItemId = null
-      if (itemId === 'vitality-ring') {
+      if (isVitalityItem(itemId)) {
         const max = dex.maxHp(mon)
         if (mon.hpCurrent > max)
           mon.hpCurrent = max
@@ -79,7 +84,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
     holders.value = {}
     for (const mon of dex.shlagemons) {
       if (mon.heldItemId) {
-        if (mon.heldItemId === 'vitality-ring') {
+        if (isVitalityItem(mon.heldItemId)) {
           const max = dex.maxHp(mon)
           if (mon.hpCurrent > max)
             mon.hpCurrent = max
