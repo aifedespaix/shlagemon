@@ -1,12 +1,16 @@
 # Shlagémon
 
-![Logo](public/logo.png)
+<p align="center">
+  <img src="public/logo.png" alt="Logo" width="180" />
+</p>
 
 Plongez dans un univers délirant peuplé de Shlagémons totalement barrés. Capturez-les, faites-les combattre et remplissez votre Shlagedex pour devenir le dresseur ultime et rafler les précieux _Shlagidolar_. Le projet utilise les dernières versions de **Vue&nbsp;3** et suit les meilleures pratiques de la doc officielle pour une expérience fluide, que ce soit sur mobile ou sur grand écran.
 
-![Carapouffe](public/shlagemons/carapouffe/carapouffe.png)
-![Sachatte](public/characters/sachatte/sachatte.png)
-![Prof Merdant](public/characters/prof-merdant/prof-merdant.png)
+<p align="center">
+  <img src="public/shlagemons/carapouffe/carapouffe.png" alt="Carapouffe" width="160" />
+  <img src="public/characters/sachatte/sachatte.png" alt="Sachatte" width="160" />
+  <img src="public/characters/prof-merdant/prof-merdant.png" alt="Prof Merdant" width="160" />
+</p>
 
 ## Concept
 
