@@ -7,6 +7,7 @@
 ## Capture
 
 - Son succès
+- Implémenter plus tard l'obtention des œufs
 
 ## Fight
 
