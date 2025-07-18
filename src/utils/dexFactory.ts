@@ -28,6 +28,9 @@ export function applyStats(mon: DexShlagemon) {
     defense: statWithRarityAndCoefficient(baseStats.defense, 1, mon.rarity),
     smelling: statWithRarityAndCoefficient(baseStats.smelling, 1, mon.rarity),
   }
+
+  if (mon.base.id === 'marginal')
+    mon.baseStats.attack = 0
 }
 
 export function applyCurrentStats(mon: DexShlagemon) {
@@ -40,6 +43,9 @@ export function applyCurrentStats(mon: DexShlagemon) {
   mon.defense = Math.floor(mon.baseStats.defense * coefficientBoost + (mon.lvl - 1) * 2)
   mon.smelling = Math.floor(mon.baseStats.smelling * coefficientBoost + (mon.lvl - 1) * 0.5)
   mon.hpCurrent = mon.hp
+
+  if (mon.base.id === 'marginal')
+    mon.attack = 0
 }
 
 export function createDexShlagemon(
