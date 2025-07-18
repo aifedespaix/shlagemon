@@ -42,7 +42,7 @@ export function findBestMove(state: Cell[]): number {
       return 0
     const empty = b
       .map((v, i) => (v ? -1 : i))
-      .filter(i => i >= 0 && (current !== 'ai' || CENTER_CELLS.includes(i)))
+      .filter(i => i >= 0 && CENTER_CELLS.includes(i))
     if (current === 'ai') {
       let best = -Infinity
       for (const idx of empty) {
@@ -100,12 +100,8 @@ export function useTicTacToe() {
 
   function aiMove() {
     const possible = CENTER_CELLS.filter(i => !board.value[i])
-    if (!possible.length) {
-      if (board.value.every(Boolean))
-        return end(false)
-      turn.value = 'player'
-      return
-    }
+    if (!possible.length)
+      return end(false)
     const idx = findBestMove(board.value)
     board.value[idx] = 'ai'
     if (check(board.value, 'ai'))
@@ -116,8 +112,14 @@ export function useTicTacToe() {
   }
 
   function play(i: number) {
-    if (finished.value || turn.value !== 'player' || board.value[i])
+    if (
+      finished.value
+      || turn.value !== 'player'
+      || board.value[i]
+      || !CENTER_CELLS.includes(i)
+    ) {
       return
+    }
     board.value[i] = 'player'
     if (check(board.value, 'player'))
       return end(true)

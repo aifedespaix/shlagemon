@@ -22,12 +22,8 @@ function check(player: 'player' | 'ai') {
 
 function aiMove() {
   const possible = CENTER_CELLS.filter(i => !board.value[i])
-  if (!possible.length) {
-    if (board.value.every(Boolean))
-      return end(false)
-    turn.value = 'player'
-    return
-  }
+  if (!possible.length)
+    return end(false)
   const idx = findBestMove(board.value)
   board.value[idx] = 'ai'
   if (check('ai'))
@@ -38,8 +34,14 @@ function aiMove() {
 }
 
 function play(i: number) {
-  if (finished.value || turn.value !== 'player' || board.value[i])
+  if (
+    finished.value
+    || turn.value !== 'player'
+    || board.value[i]
+    || !isCenter(i)
+  ) {
     return
+  }
   board.value[i] = 'player'
   if (check('player'))
     return end(true)
@@ -68,9 +70,9 @@ onMounted(reset)
         v-for="(_, i) in board"
         :key="i"
         class="h-12 w-12 flex items-center justify-center rounded text-3xl"
-        :class="isCenter(i) ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent cursor-default'"
+        :class="isCenter(i) ? 'bg-gray-200 dark:bg-gray-700' : 'bg-transparent cursor-default pointer-events-none'"
         md="h-20 w-20"
-        @click="play(i)"
+        @click="isCenter(i) && play(i)"
       >
         <span v-if="board[i] === 'player'">⭕</span>
         <span v-else-if="board[i] === 'ai'">❌</span>

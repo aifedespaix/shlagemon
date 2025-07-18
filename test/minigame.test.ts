@@ -1,8 +1,8 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
+import { getMiniGame } from '../src/data/minigames'
 import { useGameStore } from '../src/stores/game'
 import { useMiniGameStore } from '../src/stores/miniGame'
-import { getMiniGame } from '../src/data/minigames'
 
 describe('mini game store', () => {
   it('rewards player on victory', () => {
