@@ -7,6 +7,7 @@ import ArenaPanel from './Arena.vue'
 import PoulaillerPanel from './Poulailler.vue'
 import ShopPanel from './Shop.vue'
 import VillagePanel from './Village.vue'
+import MiniGamePanel from './MiniGame.vue'
 //  from './Shop.vue'
 
 defineOptions({ inheritAttrs: false })
@@ -22,8 +23,8 @@ const currentComponent = computed(() => {
       return BattleMain
     case 'trainerBattle':
       return BattleTrainer
-    // case 'miniGame':
-      // return 'WhackAShlag'
+    case 'miniGame':
+      return MiniGamePanel
     case 'arena':
       return ArenaPanel
     case 'poulailler':
