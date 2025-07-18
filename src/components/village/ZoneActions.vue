@@ -2,12 +2,14 @@
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useMainPanelStore } from '~/stores/mainPanel'
+import { useMiniGameStore } from '~/stores/miniGame'
 import { useTrainerBattleStore } from '~/stores/trainerBattle'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
 
 const zone = useZoneStore()
 const panel = useMainPanelStore()
+const mini = useMiniGameStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
@@ -49,6 +51,8 @@ function onAction(id: string) {
     panel.showTrainerBattle()
   }
   else if (id === 'minigame') {
+    if (zone.current.miniGame)
+      mini.select(zone.current.miniGame)
     panel.showMiniGame()
   }
 }
