@@ -11,7 +11,7 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: "Envie d'une partie de morpion ?",
+        text: 'Envie d\'une partie de morpion ?',
         responses: [
           { label: 'Oui', type: 'primary', action: start },
           { label: 'Non', type: 'danger' },

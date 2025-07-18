@@ -4,11 +4,10 @@ import { useMainPanelStore } from '~/stores/mainPanel'
 import BattleMain from '../battle/Main.vue'
 import BattleTrainer from '../battle/Trainer.vue'
 import ArenaPanel from './Arena.vue'
+import MiniGamePanel from './MiniGame.vue'
 import PoulaillerPanel from './Poulailler.vue'
 import ShopPanel from './Shop.vue'
 import VillagePanel from './Village.vue'
-import MiniGamePanel from './MiniGame.vue'
-//  from './Shop.vue'
 
 defineOptions({ inheritAttrs: false })
 
