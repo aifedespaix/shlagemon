@@ -6,6 +6,7 @@ import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from './achievements'
 import { useCaptureLimitModalStore } from './captureLimitModal'
+import { useEggBoxStore } from './eggBox'
 import { useFeatureLockStore } from './featureLock'
 import { useGameStore } from './game'
 import { useItemUsageStore } from './itemUsage'
@@ -20,6 +21,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const player = usePlayerStore()
   const captureLimitModal = useCaptureLimitModalStore()
   const itemUsage = useItemUsageStore()
+  const eggBox = useEggBoxStore()
 
   interface ListedItem {
     item: Item

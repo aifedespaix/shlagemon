@@ -407,9 +407,6 @@ declare global {
   export type { EggType, Egg } from './stores/egg'
   import('./stores/egg')
   // @ts-ignore
-  export type { EggItemId } from './stores/eggBox'
-  import('./stores/eggBox')
-  // @ts-ignore
   export type { EventMap, EventCallback } from './stores/event'
   import('./stores/event')
   // @ts-ignore
@@ -465,7 +462,6 @@ declare module 'vue' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
-    readonly eggIds: UnwrapRef<typeof import('./stores/eggBox')['eggIds']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly findBestMove: UnwrapRef<typeof import('./composables/useTicTacToe')['findBestMove']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
@@ -613,7 +609,6 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
-    readonly useEggBoxStore: UnwrapRef<typeof import('./stores/eggBox')['useEggBoxStore']>
     readonly useEggHatchModalStore: UnwrapRef<typeof import('./stores/eggHatchModal')['useEggHatchModalStore']>
     readonly useEggStore: UnwrapRef<typeof import('./stores/egg')['useEggStore']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
