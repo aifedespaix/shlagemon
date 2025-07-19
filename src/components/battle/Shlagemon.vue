@@ -39,18 +39,19 @@ const typeChart = useTypeChartModalStore()
 const dex = useShlagedexStore()
 
 const now = ref(Date.now())
-const timer = window.setInterval(() => {
+const { pause: stopTimer } = useIntervalFn(() => {
   now.value = Date.now()
 }, 1000)
-onUnmounted(() => window.clearInterval(timer))
+onUnmounted(stopTimer)
 
 const lvlUp = ref(false)
+const { start: hideLvlUp } = useTimeoutFn(() => (lvlUp.value = false), 600, { immediate: false })
 watch(
   () => props.mon.lvl,
   (val, old) => {
     if (val > old) {
       lvlUp.value = true
-      setTimeout(() => (lvlUp.value = false), 600)
+      hideLvlUp()
     }
   },
 )

@@ -1,0 +1,27 @@
+button:
+  about: About
+  back: Back
+  go: GO
+  home: Home
+  toggle_dark: Toggle dark mode
+  toggle_langs: Change languages
+intro:
+  desc: Opinionated Vite Starter Template
+  dynamic-route: Demo of dynamic route
+  hi: Hi, {name}!
+  aka: Also known as
+  whats-your-name: What's your name?
+not-found: Not found
+carreflex:
+  description: >-
+    Carreflex is a blocky giant that often sleeps in the middle of the road. Its
+    cubic shape can block even trucks.
+dentlait:
+  description: >-
+    Dentlait has a single tooth that could fall out at any time. It guards it
+    jealously and bites everything to prove it's still there.
+magmaretfred:
+  description: >-
+    Magmar&Fred imagines battling alongside a missing partner, spewing flames
+    while telling questionable jokes. He heats things up but usually ends up
+    alone on stage.

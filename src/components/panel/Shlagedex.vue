@@ -8,7 +8,7 @@ const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
-const clickTimer = ref<ReturnType<typeof setTimeout> | null>(null)
+const clickTimer = ref<UseTimeoutFnReturn | null>(null)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {
@@ -25,12 +25,12 @@ function changeActive(mon: DexShlagemon) {
 
 function onItemClick(mon: DexShlagemon) {
   if (clickTimer.value) {
-    clearTimeout(clickTimer.value)
+    clickTimer.value.stop()
     clickTimer.value = null
     changeActive(mon)
   }
   else {
-    clickTimer.value = window.setTimeout(() => {
+    clickTimer.value = useTimeoutFn(() => {
       open(mon)
       clickTimer.value = null
     }, 300)

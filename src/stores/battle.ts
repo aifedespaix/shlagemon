@@ -16,18 +16,16 @@ export const useBattleStore = defineStore('battle', () => {
   const audio = useAudioStore()
   const disease = useDiseaseStore()
 
-  let loopId: number | undefined
+  let loop: UseIntervalFnReturn | undefined
 
   function startLoop(handler: () => void, delay = 1000) {
     stopLoop()
-    loopId = window.setInterval(handler, delay)
+    loop = useIntervalFn(handler, delay)
   }
 
   function stopLoop() {
-    if (typeof loopId === 'number') {
-      clearInterval(loopId)
-      loopId = undefined
-    }
+    loop?.pause()
+    loop = undefined
   }
   function attack(
     attacker: DexShlagemon,

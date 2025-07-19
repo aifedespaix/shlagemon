@@ -1,3 +1,5 @@
+import type { UseTimeoutFnReturn } from '@vueuse/core'
+
 export interface ActiveEffect {
   id: number
   type: 'attack' | 'defense' | 'xp' | 'vitality' | 'capture'
@@ -7,5 +9,5 @@ export interface ActiveEffect {
   expiresAt: number
   /** @deprecated No longer used, kept for save compatibility */
   amount?: number
-  timeoutId?: ReturnType<typeof setTimeout>
+  timeout?: UseTimeoutFnReturn
 }

@@ -1,17 +1,10 @@
 export function useSingleInterval(handler: () => void, delay = 1000) {
-  const id = ref<number | undefined>()
-  function start() {
-    clear()
-    id.value = window.setInterval(handler, delay)
+  const { pause, resume } = useIntervalFn(handler, delay, { immediate: false })
+  onUnmounted(pause)
+  return {
+    start: resume,
+    clear: pause,
   }
-  function clear() {
-    if (typeof id.value === 'number') {
-      window.clearInterval(id.value)
-      id.value = undefined
-    }
-  }
-  onUnmounted(clear)
-  return { start, clear }
 }
 
 export function useBattleEffects() {
@@ -46,7 +39,7 @@ export function useBattleEffects() {
     if (target === 'enemy') {
       enemyEffect.value = text
       enemyVariant.value = variant
-      setTimeout(() => {
+      useTimeoutFn(() => {
         enemyEffect.value = ''
         enemyVariant.value = 'normal'
       }, 500)
@@ -54,7 +47,7 @@ export function useBattleEffects() {
     else {
       playerEffect.value = text
       playerVariant.value = variant
-      setTimeout(() => {
+      useTimeoutFn(() => {
         playerEffect.value = ''
         playerVariant.value = 'normal'
       }, 500)

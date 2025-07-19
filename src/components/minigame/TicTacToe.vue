@@ -62,14 +62,14 @@ function play(i: number) {
   if (centerFull())
     return end(false, true)
   turn.value = 'ai'
-  setTimeout(aiMove, 300)
+  useTimeoutFn(aiMove, 300)
 }
 
 function end(win: boolean, draw = false) {
   finished.value = true
   if (draw) {
     drawEffect.value = true
-    setTimeout(() => emit('lose'), 600)
+    useTimeoutFn(() => emit('lose'), 600)
     return
   }
   const player = win ? 'player' : 'ai'
@@ -78,11 +78,11 @@ function end(win: boolean, draw = false) {
   if (combo) {
     winningCells.value = []
     combo.forEach((cell, idx) => {
-      setTimeout(() => {
+      useTimeoutFn(() => {
         winningCells.value.push(cell)
       }, idx * 300)
     })
-    setTimeout(() => emit(win ? 'win' : 'lose'), combo.length * 300 + 400)
+    useTimeoutFn(() => emit(win ? 'win' : 'lose'), combo.length * 300 + 400)
   }
   else {
     emit(win ? 'win' : 'lose')

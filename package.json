@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@10.7.0",
   "scripts": {
-    "build": "vite-ssg build",
+    "build": "node scripts/merge-i18n.cjs && vite-ssg build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint .",
     "preview": "vite preview",

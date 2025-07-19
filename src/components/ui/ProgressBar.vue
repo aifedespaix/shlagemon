@@ -8,13 +8,14 @@ const props = withDefaults(defineProps<{
 
 const percent = computed(() => props.max === 0 ? 0 : (props.value / props.max) * 100)
 const gainAnim = ref(false)
+const { start: stopGainAnim } = useTimeoutFn(() => (gainAnim.value = false), 400, { immediate: false })
 
 watch(
   () => props.value,
   (val, old) => {
     if (props.xp && val > old) {
       gainAnim.value = true
-      setTimeout(() => (gainAnim.value = false), 400)
+      stopGainAnim()
     }
   },
 )

@@ -16,7 +16,7 @@ const now = ref(Date.now())
 function tick() {
   now.value = Date.now()
 }
-setInterval(tick, 1000)
+useIntervalFn(tick, 1000)
 
 const inventoryEggs = computed(() => {
   return eggIds
