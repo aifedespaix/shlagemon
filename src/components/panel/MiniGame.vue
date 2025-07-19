@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent, shallowRef, watchEffect } from 'vue'
+import { computed, shallowRef, watchEffect } from 'vue'
 import { getMiniGame } from '~/data/minigames'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
@@ -11,7 +11,9 @@ const GameComp = shallowRef()
 
 watchEffect(async () => {
   if (gameDef.value)
-    GameComp.value = defineAsyncComponent(gameDef.value.component)
+    GameComp.value = (await gameDef.value.component()).default
+  else
+    GameComp.value = undefined
 })
 
 function start() {
