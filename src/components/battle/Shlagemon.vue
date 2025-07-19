@@ -120,7 +120,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
       :class="{ flash: props.flash }"
     />
     <div class="w-full text-right text-sm">
-      {{ props.hp }} / {{ maxHp }}
+      {{ props.hp.toLocaleString() }} / {{ maxHp.toLocaleString() }}
     </div>
   </div>
 </template>
