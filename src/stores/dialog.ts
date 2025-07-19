@@ -7,6 +7,7 @@ import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
+import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
@@ -20,6 +21,8 @@ import { useGameStateStore } from '~/stores/gameState'
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useArenaStore } from './arena'
 import { useBattleStatsStore } from './battleStats'
+import { useEggBoxStore } from './eggBox'
+import { useInventoryStore } from './inventory'
 import { useMainPanelStore } from './mainPanel'
 import { useZoneStore } from './zone'
 import { useZoneProgressStore } from './zoneProgress'
@@ -44,6 +47,8 @@ export const useDialogStore = defineStore('dialog', () => {
   const progress = useZoneProgressStore()
   const zone = useZoneStore()
   const visit = useZoneVisitStore()
+  const inventory = useInventoryStore()
+  const box = useEggBoxStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -81,6 +86,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'xpRing',
       component: markRaw(XpRingDialog),
       condition: () => dex.shlagemons.length >= 30,
+    },
+    {
+      id: 'eggBox',
+      component: markRaw(EggBoxDialog),
+      condition: () => !box.unlocked && ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe'].some(id => inventory.items[id]),
     },
     {
       id: 'capturePotion',

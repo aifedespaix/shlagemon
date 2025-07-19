@@ -1,3 +1,4 @@
+import type { EggItemId } from './eggBox'
 import type { ItemId } from '~/data/items/items'
 import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
@@ -35,10 +36,18 @@ export const useInventoryStore = defineStore('inventory', () => {
   )
 
   function add(id: ItemId, qty = 1) {
+    if (eggBox.unlocked && id.startsWith('oeuf-')) {
+      eggBox.addEgg(id as EggItemId, qty)
+      return
+    }
     items.value[id] = (items.value[id] || 0) + qty
   }
 
   function remove(id: ItemId, qty = 1) {
+    if (eggBox.unlocked && id.startsWith('oeuf-')) {
+      eggBox.removeEgg(id as EggItemId, qty)
+      return
+    }
     if (!items.value[id])
       return
     items.value[id] -= qty
@@ -185,9 +194,9 @@ export const useInventoryStore = defineStore('inventory', () => {
         remove(id)
         return true
       },
-      'hyper-potion': () => {
-        dex.healActive(200)
-        remove(id)
+
+      'egg-box': () => {
+        eggBox.open()
         return true
       },
       'shlageball': capture,
