@@ -4,20 +4,20 @@ import { useAudioStore } from '~/stores/audio'
 const showSettings = ref(false)
 const showAudio = ref(false)
 const showDeveloper = ref(false)
-const clickTimer = ref<ReturnType<typeof setTimeout> | null>(null)
+const clickTimer = ref<UseTimeoutFnReturn | null>(null)
 const audio = useAudioStore()
 
 function onClick() {
   if (clickTimer.value)
-    clearTimeout(clickTimer.value)
-  clickTimer.value = window.setTimeout(() => {
+    clickTimer.value.stop()
+  clickTimer.value = useTimeoutFn(() => {
     showAudio.value = true
   }, 300)
 }
 
 function onDoubleClick() {
   if (clickTimer.value)
-    clearTimeout(clickTimer.value)
+    clickTimer.value.stop()
   audio.isMusicEnabled = !audio.isMusicEnabled
 }
 </script>

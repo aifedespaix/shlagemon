@@ -61,7 +61,7 @@ function useFromModal() {
 watch(showInfo, (val) => {
   if (val) {
     zoom.value = true
-    setTimeout(() => (zoom.value = false), 300)
+    useTimeoutFn(() => (zoom.value = false), 300)
   }
 })
 </script>

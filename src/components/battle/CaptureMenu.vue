@@ -27,7 +27,7 @@ function useBall(ball: Ball) {
   animBall.value = ball.animation
   const success = tryCapture(props.enemy, ball)
   inventory.remove(ball.id)
-  setTimeout(() => (animBall.value = null), 500)
+  useTimeoutFn(() => (animBall.value = null), 500)
   if (success) {
     dex.captureEnemy(props.enemy)
     emit('capture', true)

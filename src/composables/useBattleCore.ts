@@ -27,6 +27,8 @@ export function useBattleCore(options: BattleCoreOptions) {
   const battleActive = ref(false)
   const flashPlayer = ref(false)
   const flashEnemy = ref(false)
+  const { start: hideFlashEnemy } = useTimeoutFn(() => (flashEnemy.value = false), 100, { immediate: false })
+  const { start: hideFlashPlayer } = useTimeoutFn(() => (flashPlayer.value = false), 100, { immediate: false })
   const playerFainted = ref(false)
   const enemyFainted = ref(false)
   const showAttackCursor = ref(false)
@@ -69,7 +71,7 @@ export function useBattleCore(options: BattleCoreOptions) {
     showEffect('enemy', effect, crit)
     enemyHp.value = enemy.value.hpCurrent
     flashEnemy.value = true
-    setTimeout(() => (flashEnemy.value = false), 100)
+    hideFlashEnemy()
     return checkEnd()
   }
 
@@ -83,12 +85,12 @@ export function useBattleCore(options: BattleCoreOptions) {
     showEffect('enemy', resPlayer.effect, resPlayer.crit)
     enemyHp.value = enemy.value.hpCurrent
     flashEnemy.value = true
-    setTimeout(() => (flashEnemy.value = false), 100)
+    hideFlashEnemy()
     if (resEnemy) {
       showEffect('player', resEnemy.effect, resEnemy.crit)
       playerHp.value = dex.activeShlagemon.hpCurrent
       flashPlayer.value = true
-      setTimeout(() => (flashPlayer.value = false), 100)
+      hideFlashPlayer()
     }
     return checkEnd()
   }
