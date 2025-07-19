@@ -6,6 +6,7 @@ import { useAudioStore } from '~/stores/audio'
 const showSettings = ref(false)
 const showAudio = ref(false)
 const showDeveloper = ref(false)
+const showDevButton = import.meta.env.VITE_DEV_TOOLS === 'true'
 const clickTimer = ref<UseTimeoutFnReturn | null>(null)
 const audio = useAudioStore()
 const { t, locale } = useI18n()
@@ -52,10 +53,15 @@ function onDoubleClick() {
         <div class="i-carbon-settings" />
       </UiButton>
       <SettingsSettingsModal v-model="showSettings" />
-      <UiButton type="icon" :aria-label="t('header.developer')" @click="showDeveloper = true">
+      <UiButton
+        v-if="showDevButton"
+        type="icon"
+        :aria-label="t('header.developer')"
+        @click="showDeveloper = true"
+      >
         <div class="i-carbon-debug" />
       </UiButton>
-      <DeveloperSettingsModal v-model="showDeveloper" />
+      <DeveloperSettingsModal v-if="showDevButton" v-model="showDeveloper" />
     </div>
   </header>
 </template>
