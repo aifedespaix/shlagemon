@@ -1,10 +1,12 @@
 import type { BaseShlagemon } from '~/type'
 import { shlagemonTypes } from '../../shlagemons-type'
 
+export const MAGMARETFRED_DESCRIPTION = 'magmaretfred.description'
+
 export const magmaretfred: BaseShlagemon = {
   id: 'magmaretfred',
   name: 'Magmar&Fred',
-  description: `Toujours en duo imaginaire avec son compère absent, Magmar&Fred crache des flammes en récitant des blagues douteuses. Il chauffe l'ambiance mais finit souvent seul sur scène.`,
+  description: MAGMARETFRED_DESCRIPTION,
   types: [shlagemonTypes.feu],
   coefficient: 96,
 }
