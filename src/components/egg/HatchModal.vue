@@ -11,12 +11,15 @@ const modal = useEggHatchModalStore()
       <h3 class="text-center text-lg font-bold">
         Vous avez obtenu {{ modal.mon?.base.name }} !
       </h3>
-      <ShlagemonImage
-        v-if="modal.mon"
-        :id="modal.mon.base.id"
-        :alt="modal.mon.base.name"
+      <div
         class="h-24 w-24"
-      />
+      >
+        <ShlagemonImage
+          v-if="modal.mon"
+          :id="modal.mon.base.id"
+          :alt="modal.mon.base.name"
+        />
+      </div>
     </div>
   </Modal>
 </template>
