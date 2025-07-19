@@ -29,6 +29,11 @@ export interface Item {
   wearable?: boolean
 }
 
+export interface WearableItem extends Item {
+  effectType: 'attack' | 'defense' | 'vitality' | 'xp'
+  percent: number
+}
+
 export interface InventoryEntry {
   itemId: string
   qty: number

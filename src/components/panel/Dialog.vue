@@ -28,6 +28,7 @@ onUnmounted(featureLock.unlockAll)
       <component
         :is="active?.component"
         v-if="active"
+        v-bind="active?.props"
         @done="markDone($event)"
       />
     </div>
