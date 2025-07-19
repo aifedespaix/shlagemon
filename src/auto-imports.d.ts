@@ -190,6 +190,7 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
+  const useEggHatchModalStore: typeof import('./stores/eggHatchModal')['useEggHatchModalStore']
   const useEggStore: typeof import('./stores/egg')['useEggStore']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
   const useElementByPoint: typeof import('@vueuse/core')['useElementByPoint']
