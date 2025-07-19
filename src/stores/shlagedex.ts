@@ -224,7 +224,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (idx === -1)
       return
     const effect = effects.value[idx]
-    effect.timeout?.stop()
+    if (typeof effect.timeout?.stop === 'function')
+      effect.timeout.stop()
     effects.value.splice(idx, 1)
     if (effect.type === 'vitality' && activeShlagemon.value) {
       const max = maxHp(activeShlagemon.value)
@@ -660,5 +661,17 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   persist: {
     debug: true,
     serializer: shlagedexSerializer,
+    afterHydrate(ctx) {
+      const store = ctx.store as ReturnType<typeof useShlagedexStore>
+      const now = Date.now()
+      store.effects.slice().forEach((effect) => {
+        if (effect.expiresAt <= now) {
+          store.removeEffect(effect.id)
+          return
+        }
+        if (typeof effect.timeout?.stop !== 'function')
+          effect.timeout = useTimeoutFn(() => store.removeEffect(effect.id), effect.expiresAt - now)
+      })
+    },
   },
 })
