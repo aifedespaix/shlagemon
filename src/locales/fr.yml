@@ -1,0 +1,28 @@
+button:
+  about: À propos
+  back: Retour
+  go: Essayer
+  home: Accueil
+  toggle_dark: Basculer en mode sombre
+  toggle_langs: Changer de langue
+intro:
+  desc: Exemple d'application Vite
+  dynamic-route: Démo de route dynamique
+  hi: Salut, {name}!
+  aka: Aussi connu sous le nom de
+  whats-your-name: Comment t'appelles-tu ?
+not-found: Page non trouvée
+carreflex:
+  description: >-
+    Carréflex est un colosse tout en angles qui dort généralement en plein
+    milieu de la route. Sa forme cubique lui permet de bloquer même les camions.
+dentlait:
+  description: >-
+    Dentlait n'a qu'une seule dent qui menace de tomber à tout moment. Il la
+    protège jalousement et mord tout ce qui passe pour prouver qu'elle tient
+    encore en place.
+magmaretfred:
+  description: >-
+    Toujours en duo imaginaire avec son compère absent, Magmar&Fred crache des
+    flammes en récitant des blagues douteuses. Il chauffe l'ambiance mais finit
+    souvent seul sur scène.
