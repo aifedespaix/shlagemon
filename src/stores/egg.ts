@@ -37,11 +37,11 @@ export const useEggStore = defineStore('egg', () => {
     incubator.value = null
     switch (egg.type) {
       case 'feu':
-        return dex.createShlagemon(salamiches)
+        return dex.captureShlagemon(salamiches)
       case 'eau':
-        return dex.createShlagemon(carapouffe)
+        return dex.captureShlagemon(carapouffe)
       case 'plante':
-        return dex.createShlagemon(bulgrosboule)
+        return dex.captureShlagemon(bulgrosboule)
     }
     return null
   }
