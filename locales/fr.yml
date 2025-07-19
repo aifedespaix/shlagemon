@@ -5,6 +5,15 @@ components:
       level: lvl {n}
     DeckList:
       search: Rechercher
+  layout:
+    Header:
+      title: Shlagémon - Ça sent très fort
+      language: Langue
+      locale: Locale
+      audio: Audio
+      settings: Paramètres
+      developer: Développeur
+      logoAlt: Logo Shlagémon
 data:
   shlagemons:
     01-05:

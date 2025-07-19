@@ -5,6 +5,15 @@ components:
       level: lvl {n}
     DeckList:
       search: Search
+  layout:
+    Header:
+      title: Shlagemon - It smells very strong
+      language: Language
+      locale: Locale
+      audio: Audio
+      settings: Settings
+      developer: Developer
+      logoAlt: Shlagemon logo
 data:
   shlagemons:
     01-05:
