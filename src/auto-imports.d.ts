@@ -381,6 +381,9 @@ declare global {
   export type { BattleCoreOptions } from './composables/useBattleCore'
   import('./composables/useBattleCore')
   // @ts-ignore
+  export type { Cell } from './composables/useBattleship'
+  import('./composables/useBattleship')
+  // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
   // @ts-ignore
@@ -398,6 +401,9 @@ declare global {
   // @ts-ignore
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
+  // @ts-ignore
+  export type { EggType, Egg } from './stores/egg'
+  import('./stores/egg')
   // @ts-ignore
   export type { EventMap, EventCallback } from './stores/event'
   import('./stores/event')
@@ -420,9 +426,14 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly BOARD_SIZE: UnwrapRef<typeof import('./composables/useBattleship')['BOARD_SIZE']>
+    readonly CENTER_CELLS: UnwrapRef<typeof import('./composables/useTicTacToe')['CENTER_CELLS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly SIZE: UnwrapRef<typeof import('./composables/useTicTacToe')['SIZE']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly check: UnwrapRef<typeof import('./composables/useTicTacToe')['check']>
+    readonly combos: UnwrapRef<typeof import('./composables/useTicTacToe')['combos']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -431,6 +442,7 @@ declare module 'vue' {
     readonly controlledComputed: UnwrapRef<typeof import('@vueuse/core')['controlledComputed']>
     readonly controlledRef: UnwrapRef<typeof import('@vueuse/core')['controlledRef']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createBattleshipAI: UnwrapRef<typeof import('./composables/useBattleship')['createBattleshipAI']>
     readonly createEventHook: UnwrapRef<typeof import('@vueuse/core')['createEventHook']>
     readonly createGlobalState: UnwrapRef<typeof import('@vueuse/core')['createGlobalState']>
     readonly createInjectionState: UnwrapRef<typeof import('@vueuse/core')['createInjectionState']>
@@ -449,6 +461,7 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly findBestMove: UnwrapRef<typeof import('./composables/useTicTacToe')['findBestMove']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
@@ -558,6 +571,7 @@ declare module 'vue' {
     readonly useBattleEffects: UnwrapRef<typeof import('./composables/battleEngine')['useBattleEffects']>
     readonly useBattleStatsStore: UnwrapRef<typeof import('./stores/battleStats')['useBattleStatsStore']>
     readonly useBattleStore: UnwrapRef<typeof import('./stores/battle')['useBattleStore']>
+    readonly useBattleship: UnwrapRef<typeof import('./composables/useBattleship')['useBattleship']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
@@ -593,6 +607,8 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
+    readonly useEggHatchModalStore: UnwrapRef<typeof import('./stores/eggHatchModal')['useEggHatchModalStore']>
+    readonly useEggStore: UnwrapRef<typeof import('./stores/egg')['useEggStore']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -716,6 +732,7 @@ declare module 'vue' {
     readonly useThrottle: UnwrapRef<typeof import('@vueuse/core')['useThrottle']>
     readonly useThrottleFn: UnwrapRef<typeof import('@vueuse/core')['useThrottleFn']>
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>
+    readonly useTicTacToe: UnwrapRef<typeof import('./composables/useTicTacToe')['useTicTacToe']>
     readonly useTimeAgo: UnwrapRef<typeof import('@vueuse/core')['useTimeAgo']>
     readonly useTimeout: UnwrapRef<typeof import('@vueuse/core')['useTimeout']>
     readonly useTimeoutFn: UnwrapRef<typeof import('@vueuse/core')['useTimeoutFn']>
