@@ -12,6 +12,11 @@ intro:
   aka: Also known as
   whats-your-name: What's your name?
 not-found: Not found
+deckDetail:
+  evolution: 'Evolution:'
+  level: lvl {n}
+deckList:
+  search: Search
 carreflex:
   description: >-
     Carreflex is a blocky giant that often sleeps in the middle of the road. Its
@@ -25,3 +30,17 @@ magmaretfred:
     Magmar&Fred imagines battling alongside a missing partner, spewing flames
     while telling questionable jokes. He heats things up but usually ends up
     alone on stage.
+shlagemons:
+  salamiches:
+    name: Salamiches
+    description: >
+      Salamiches burns with the weak flame of an empty lighter. Always
+      shirtless, he records himself spitting sparks on trash cans. His special
+      ability, *Ego Fire*, boosts his power whenever people boo him. Loyal
+      unless offered a free kebab or a sale at the auto shop.
+indexPage:
+  title: Shlagemon
+  description: A parody of Pokémon with crazy creatures
+  welcome: Welcome to Shlagemon
+shlagedexPage:
+  title: Shlage Deck

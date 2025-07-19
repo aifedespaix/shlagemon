@@ -7,6 +7,7 @@ const props = defineProps<{
 }>()
 
 const search = ref('')
+const { t } = useI18n()
 
 const displayed = computed(() => {
   const q = search.value.trim().toLowerCase()
@@ -19,7 +20,7 @@ const displayed = computed(() => {
 <template>
   <LayoutScrollablePanel>
     <template #header>
-      <UiSearchInput v-model="search" placeholder="Rechercher" />
+      <UiSearchInput v-model="search" :placeholder="t('deckList.search')" />
     </template>
     <template #content>
       <div

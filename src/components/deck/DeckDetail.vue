@@ -5,6 +5,7 @@ const props = defineProps<{ mon: BaseShlagemon | null }>()
 const emit = defineEmits<{
   (e: 'openMon', mon: BaseShlagemon): void
 }>()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -24,16 +25,16 @@ const emit = defineEmits<{
       />
     </div>
     <p class="tiny-scrollbar max-h-40 overflow-auto text-sm italic">
-      {{ props.mon.description }}
+      {{ t(`shlagemons.${props.mon.id}.description`) }}
     </p>
     <div v-if="props.mon.evolution" class="flex flex-col items-center text-sm font-medium">
-      <span>Évolution :</span>
+      <span>{{ t('deckDetail.evolution') }}</span>
       <div class="mt-1 flex items-center gap-1">
         <UiButton variant="outline" @click="emit('openMon', props.mon.evolution.base)">
           {{ props.mon.evolution.base.name }}
         </UiButton>
         <span v-if="props.mon.evolution.condition.type === 'lvl'">
-          - lvl {{ props.mon.evolution.condition.value }}
+          - {{ t('deckDetail.level', { n: props.mon.evolution.condition.value }) }}
         </span>
         <span v-else>
           - {{ props.mon.evolution.condition.value.name }}
