@@ -101,7 +101,7 @@ async function onCaptureEnd(success: boolean) {
     }
     emit('capture')
     showConfetti.value = true
-    setTimeout(() => (showConfetti.value = false), 800)
+    useTimeoutFn(() => (showConfetti.value = false), 800)
   }
   else {
     startBattle()
@@ -185,7 +185,7 @@ function onMouseLeave() {
 
 function onClick(_e: MouseEvent) {
   cursorClicked.value = true
-  setTimeout(() => (cursorClicked.value = false), 150)
+  useTimeoutFn(() => (cursorClicked.value = false), 150)
   if (props.clickAttack)
     attack()
 }

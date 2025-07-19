@@ -110,7 +110,7 @@ export function useBattleship(onEnd: (win: boolean) => void) {
     if (aiShips <= 0)
       return end(true)
     turn.value = 'ai'
-    setTimeout(aiMove, 300)
+    useTimeoutFn(aiMove, 300)
   }
 
   function aiMove() {

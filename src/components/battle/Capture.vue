@@ -52,11 +52,11 @@ function attempt(step: number) {
     return
   const success = tryCapture(props.enemy, captureBall.value)
   if (success)
-    setTimeout(() => finish(true), 500)
+    useTimeoutFn(() => finish(true), 500)
   else if (step >= 3)
-    setTimeout(() => finish(false), 500)
+    useTimeoutFn(() => finish(false), 500)
   else
-    setTimeout(() => attempt(step + 1), 700)
+    useTimeoutFn(() => attempt(step + 1), 700)
 }
 
 function open() {
@@ -74,7 +74,7 @@ function open() {
   showCapture.value = true
   shake.value = 0
   audio.playSfx('/audio/sfx/capture-start.ogg')
-  setTimeout(() => attempt(1), 500)
+  useTimeoutFn(() => attempt(1), 500)
 }
 
 function finish(success: boolean) {
@@ -86,7 +86,7 @@ function finish(success: boolean) {
   emit('finished', success)
   if (success) {
     captureCooldown.value = true
-    setTimeout(() => (captureCooldown.value = false), 1000)
+    useTimeoutFn(() => (captureCooldown.value = false), 1000)
   }
 }
 

@@ -32,7 +32,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   cleanupEffects()
   watchEffect(cleanupEffects)
   // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
-  setInterval(cleanupEffects, 1000)
+  useIntervalFn(cleanupEffects, 1000)
 
   function rarityToastMessage(name: string, rarityGain: number, levelLoss: number) {
     const point = rarityGain > 1 ? 'points' : 'point'
@@ -224,9 +224,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (idx === -1)
       return
     const effect = effects.value[idx]
-    if (effect.timeoutId !== undefined) {
-      clearTimeout(effect.timeoutId)
-    }
+    effect.timeout?.stop()
     effects.value.splice(idx, 1)
     if (effect.type === 'vitality' && activeShlagemon.value) {
       const max = maxHp(activeShlagemon.value)
@@ -259,9 +257,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (existing.timeoutId !== undefined)
-          clearTimeout(existing.timeoutId)
-        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        existing.timeout?.stop()
+        existing.timeout = useTimeoutFn(() => removeEffect(existing.id), existing.expiresAt - now)
         return
       }
       removeEffect(existing.id)
@@ -274,7 +271,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      timeoutId: setTimeout(() => removeEffect(id), duration),
+      timeout: useTimeoutFn(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
   }
@@ -291,9 +288,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (existing.timeoutId !== undefined)
-          clearTimeout(existing.timeoutId)
-        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        existing.timeout?.stop()
+        existing.timeout = useTimeoutFn(() => removeEffect(existing.id), existing.expiresAt - now)
         return
       }
       removeEffect(existing.id)
@@ -306,7 +302,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      timeoutId: setTimeout(() => removeEffect(id), duration),
+      timeout: useTimeoutFn(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
   }
@@ -323,9 +319,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (existing.timeoutId !== undefined)
-          clearTimeout(existing.timeoutId)
-        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        existing.timeout?.stop()
+        existing.timeout = useTimeoutFn(() => removeEffect(existing.id), existing.expiresAt - now)
         return
       }
       removeEffect(existing.id)
@@ -338,7 +333,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      timeoutId: setTimeout(() => removeEffect(id), duration),
+      timeout: useTimeoutFn(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
   }
@@ -355,9 +350,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (existing.timeoutId !== undefined)
-          clearTimeout(existing.timeoutId)
-        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        existing.timeout?.stop()
+        existing.timeout = useTimeoutFn(() => removeEffect(existing.id), existing.expiresAt - now)
         return
       }
       removeEffect(existing.id)
@@ -371,7 +365,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       iconClass,
       expiresAt: now + duration,
       amount: 0,
-      timeoutId: setTimeout(() => removeEffect(id), duration),
+      timeout: useTimeoutFn(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
   }
@@ -388,9 +382,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       if (existing.percent === percent) {
         existing.expiresAt += duration
-        if (existing.timeoutId !== undefined)
-          clearTimeout(existing.timeoutId)
-        existing.timeoutId = setTimeout(() => removeEffect(existing.id), existing.expiresAt - now)
+        existing.timeout?.stop()
+        existing.timeout = useTimeoutFn(() => removeEffect(existing.id), existing.expiresAt - now)
         return
       }
       removeEffect(existing.id)
@@ -403,7 +396,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       icon,
       iconClass,
       expiresAt: now + duration,
-      timeoutId: setTimeout(() => removeEffect(id), duration),
+      timeout: useTimeoutFn(() => removeEffect(id), duration),
     }
     effects.value.push(effect)
   }

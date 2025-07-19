@@ -83,7 +83,7 @@ export const useAudioStore = defineStore('audio', () => {
       next.play()
       next.fade(0, musicVolume.value, 1000)
       old.fade(old.volume(), 0, 1000)
-      setTimeout(() => {
+      useTimeoutFn(() => {
         old.stop()
         old.unload()
       }, 1000)

@@ -21,7 +21,7 @@ const activeSlot = ref<number | null>(null)
 const showDuel = ref(false)
 const showEnemy = ref(false)
 const enemyDetail = ref<DexShlagemon | null>(null)
-let nextTimer: number | undefined
+let nextTimer: UseTimeoutFnReturn | undefined
 
 async function autoSelect() {
   const team = dex.shlagemons
@@ -101,12 +101,12 @@ function onDuelEnd(win: boolean) {
     showDuel.value = false
   }
   else {
-    nextTimer = window.setTimeout(proceedNext, 250)
+    nextTimer = useTimeoutFn(proceedNext, 250)
   }
 }
 
 function proceedNext() {
-  clearTimeout(nextTimer)
+  nextTimer?.stop()
   arena.currentIndex += 1
   showDuel.value = true
 }
@@ -116,7 +116,7 @@ onMounted(() => {
   featureLock.lockAll()
 })
 onUnmounted(() => {
-  clearTimeout(nextTimer)
+  nextTimer?.stop()
   featureLock.unlockAll()
   if (savedActive.value)
     dex.setActiveShlagemon(savedActive.value)
