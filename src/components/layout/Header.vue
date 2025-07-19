@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import FullscreenToggle from '~/components/ui/FullscreenToggle.vue'
 import { useAudioStore } from '~/stores/audio'
 
 const showSettings = ref(false)
@@ -6,6 +8,8 @@ const showAudio = ref(false)
 const showDeveloper = ref(false)
 const clickTimer = ref<UseTimeoutFnReturn | null>(null)
 const audio = useAudioStore()
+const { locale } = useI18n()
+const currentLocale = Intl.DateTimeFormat().resolvedOptions().locale
 
 function onClick() {
   if (clickTimer.value)
@@ -24,8 +28,16 @@ function onDoubleClick() {
 
 <template>
   <header class="h-12 flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800">
-    <img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
     <div class="flex items-center gap-2">
+      <img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4">
+      <div class="flex flex-col text-xs leading-tight">
+        <span class="font-bold sm:text-sm">Shlagémon - Ça sent très fort</span>
+        <span>Langue: {{ locale }}</span>
+        <span>Locale: {{ currentLocale }}</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <FullscreenToggle />
       <ThemeToggle />
       <UiButton
         type="icon"
