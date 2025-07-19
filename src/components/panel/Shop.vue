@@ -29,6 +29,13 @@ const availableCategories = computed(() =>
   categoryOptions.filter(opt => shopItems.value.some(i => i.category === opt.value)),
 )
 
+watch(availableCategories, (cats) => {
+  if (!cats.length)
+    filter.category = 'all'
+  else if (!cats.some(c => c.value === filter.category))
+    filter.category = cats[0].value
+}, { immediate: true })
+
 const tabColors = itemCategoryTabBaseColors
 const tabHoverColors = itemCategoryTabHoverColors
 const tabActiveColors = itemCategoryTabColors
@@ -100,7 +107,7 @@ function closeShop() {
       Boutique
     </h2>
     <UiTabBar
-      v-if="availableCategories.length > 1"
+      v-if="availableCategories.length > 0"
       v-model="filter.category"
       :options="availableCategories"
       :colors="tabColors"
