@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import WearableItemIcon from '~/components/inventory/WearableItemIcon.vue'
 import ShlagemonStats from '~/components/shlagemon/Stats.vue'
 import { allItems } from '~/data/items/items'
 import { useDiseaseStore } from '~/stores/disease'
@@ -128,17 +129,10 @@ const captureInfo = computed(() => {
         />
         <div class="absolute right-0 top-0 flex items-center gap-1">
           <template v-if="heldItem">
-            <div
-              v-if="heldItem.icon"
+            <WearableItemIcon
+              :item="heldItem"
               class="h-5 w-5"
-              :class="[heldItem.icon, heldItem.iconClass]"
             />
-            <img
-              v-else-if="heldItem.image"
-              :src="heldItem.image"
-              :alt="heldItem.name"
-              class="h-5 w-5 object-contain"
-            >
             <UiButton
               type="icon"
               class="h-7 w-7"
