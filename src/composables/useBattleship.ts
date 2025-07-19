@@ -1,3 +1,4 @@
+import { useTimeoutFn } from '@vueuse/core'
 import { ref } from 'vue'
 
 export interface Cell {
