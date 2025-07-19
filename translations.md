@@ -34,7 +34,7 @@ Chaque fichier YAML aura une clé racine correspondant au nom exact du fichier a
 **Exemple :** `PlayerCard.i18n.yml`
 
 ```yaml
-playerCard:
+fr:
   title: Joueur
   points: '{n} point | {n} points'
 ```
@@ -42,17 +42,16 @@ playerCard:
 **Exemple pour store :** `playerStore.i18n.yml`
 
 ```yaml
-playerStore:
+fr:
   welcomeMessage: 'Bienvenue, {playerName}!'
 ```
 
 **Exemple pour data :** `level1.i18n.yml`
 
 ```yaml
-levels:
-  level1:
-    name: Niveau 1
-    description: Introduction au jeu.
+fr:
+  name: test
+  description: Test a.
 ```
 
 ---
@@ -107,28 +106,6 @@ Usage :
 ### ⚙️ **4. Script de Merge Automatisé (CommonJS pour Node avec PNPM) :**
 
 Utilisez un fichier `.cjs` pour gérer l'import avec Node via PNPM.
-
-`merge-i18n.cjs` :
-
-```js
-const fs = require('node:fs')
-const glob = require('glob')
-const yaml = require('js-yaml')
-
-const languages = ['fr', 'en']
-
-languages.forEach((lang) => {
-  const mergedTranslations = {}
-
-  glob.sync(`./src/{components,stores,data}/**/*.i18n.yml`).forEach((file) => {
-    const content = yaml.load(fs.readFileSync(file, 'utf8'))
-    Object.assign(mergedTranslations, content)
-  })
-
-  fs.writeFileSync(`./locales/${lang}.yml`, yaml.dump(mergedTranslations))
-})
-```
-
 Exécutez le script manuellement avec PNPM :
 
 ```sh
