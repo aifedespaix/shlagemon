@@ -39,6 +39,33 @@ fr:
   points: '{n} point | {n} points'
 ```
 
+Pour faciliter l'automatisation, les fichiers `*.i18n.yml` suivent un principe de nommage basé sur leur emplacement dans `src`. Lors de la génération des fichiers finaux, tout le chemin relatif à partir de `src` est utilisé en conservant la casse pour construire la clé principale. Par exemple :
+
+```
+src/data/shlagemons/sulfusouris.ts
+src/data/shlagemons/sulfusouris.i18n.yml
+```
+
+avec un contenu typique :
+
+```yaml
+fr:
+  description: Texte en français
+en:
+  description: English text
+```
+
+génère des entrées dans `locales/fr.yml` ou `locales/en.yml` sous la forme :
+
+```yaml
+data:
+  shlagemons:
+    sulfusouris:
+    # clefs définies dans sulfusouris.i18n.yml
+```
+
+Cela signifie que pour traduire la clé `description` de `sulfusouris.i18n.yml`, on utilisera `data.shlagemons.sulfusouris.description`.
+
 **Exemple pour store :** `playerStore.i18n.yml`
 
 ```yaml
