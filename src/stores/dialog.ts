@@ -1,20 +1,30 @@
 import type { Component } from 'vue'
 import { defineStore } from 'pinia'
 import { markRaw } from 'vue'
+import AdvancedAttackRingDialog from '~/components/dialog/AdvancedAttackRingDialog.vue'
+import AdvancedDefenseRingDialog from '~/components/dialog/AdvancedDefenseRingDialog.vue'
+import AdvancedVitalityRingDialog from '~/components/dialog/AdvancedVitalityRingDialog.vue'
+import AdvancedXpRingDialog from '~/components/dialog/AdvancedXpRingDialog.vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
+import AttackAmuletDialog from '~/components/dialog/AttackAmuletDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
+import AttackRingDialog from '~/components/dialog/AttackRingDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
+import DefenseAmuletDialog from '~/components/dialog/DefenseAmuletDialog.vue'
+import DefenseRingDialog from '~/components/dialog/DefenseRingDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
+import VitalityAmuletDialog from '~/components/dialog/VitalityAmuletDialog.vue'
 import VitalityRingDialog from '~/components/dialog/VitalityRingDialog.vue'
+import XpAmuletDialog from '~/components/dialog/XpAmuletDialog.vue'
 import XpRingDialog from '~/components/dialog/XpRingDialog.vue'
 import { useGameStore } from '~/stores/game'
 import { useGameStateStore } from '~/stores/gameState'
@@ -75,17 +85,67 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'attackPotion',
       component: markRaw(AttackPotionDialog),
-      condition: () => dex.shlagemons.length >= 10,
+      condition: () => dex.highestLevel >= 10,
     },
     {
       id: 'vitalityRing',
       component: markRaw(VitalityRingDialog),
-      condition: () => dex.shlagemons.length >= 15,
+      condition: () => dex.shlagemons.length >= 10,
+    },
+    {
+      id: 'defenseRing',
+      component: markRaw(DefenseRingDialog),
+      condition: () => dex.shlagemons.length >= 20,
+    },
+    {
+      id: 'attackRing',
+      component: markRaw(AttackRingDialog),
+      condition: () => dex.shlagemons.length >= 30,
     },
     {
       id: 'xpRing',
       component: markRaw(XpRingDialog),
-      condition: () => dex.shlagemons.length >= 30,
+      condition: () => dex.shlagemons.length >= 40,
+    },
+    {
+      id: 'advancedVitalityRing',
+      component: markRaw(AdvancedVitalityRingDialog),
+      condition: () => dex.shlagemons.length >= 50,
+    },
+    {
+      id: 'advancedDefenseRing',
+      component: markRaw(AdvancedDefenseRingDialog),
+      condition: () => dex.shlagemons.length >= 60,
+    },
+    {
+      id: 'advancedAttackRing',
+      component: markRaw(AdvancedAttackRingDialog),
+      condition: () => dex.shlagemons.length >= 70,
+    },
+    {
+      id: 'advancedXpRing',
+      component: markRaw(AdvancedXpRingDialog),
+      condition: () => dex.shlagemons.length >= 80,
+    },
+    {
+      id: 'vitalityAmulet',
+      component: markRaw(VitalityAmuletDialog),
+      condition: () => dex.shlagemons.length >= 90,
+    },
+    {
+      id: 'defenseAmulet',
+      component: markRaw(DefenseAmuletDialog),
+      condition: () => dex.shlagemons.length >= 100,
+    },
+    {
+      id: 'attackAmulet',
+      component: markRaw(AttackAmuletDialog),
+      condition: () => dex.shlagemons.length >= 110,
+    },
+    {
+      id: 'xpAmulet',
+      component: markRaw(XpAmuletDialog),
+      condition: () => dex.shlagemons.length >= 120,
     },
     {
       id: 'eggBox',
