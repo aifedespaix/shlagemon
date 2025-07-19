@@ -1,5 +1,10 @@
-hypotrompe:
-  en:
-    description: Petit hippocampe distrait, Hypotrompe se trompe constamment de direction. Sa trompe démesurée lui sert à aspirer tout ce qui passe, y compris des objets qui n'auraient jamais dû finir dans un estomac.
-  fr:
-    description: Petit hippocampe distrait, Hypotrompe se trompe constamment de direction. Sa trompe démesurée lui sert à aspirer tout ce qui passe, y compris des objets qui n'auraient jamais dû finir dans un estomac.
+en:
+  description: >-
+    Petit hippocampe distrait, Hypotrompe se trompe constamment de direction. Sa
+    trompe démesurée lui sert à aspirer tout ce qui passe, y compris des objets
+    qui n'auraient jamais dû finir dans un estomac.
+fr:
+  description: >-
+    Petit hippocampe distrait, Hypotrompe se trompe constamment de direction. Sa
+    trompe démesurée lui sert à aspirer tout ce qui passe, y compris des objets
+    qui n'auraient jamais dû finir dans un estomac.

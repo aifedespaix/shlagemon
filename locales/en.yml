@@ -1,1006 +1,1073 @@
-button:
-  about: About
-  back: Back
-  go: GO
-  home: Home
-  toggle_dark: Toggle dark mode
-  toggle_langs: Change languages
-intro:
-  desc: Opinionated Vite Starter Template
-  dynamic-route: Demo of dynamic route
-  hi: Hi, {name}!
-  aka: Also known as
-  whats-your-name: What's your name?
-not-found: Not found
-deckDetail:
-  evolution: 'Evolution:'
-  level: lvl {n}
-deckList:
-  search: Search
-carreflex:
-  description: >-
-    Carreflex is a blocky giant that often sleeps in the middle of the road. Its
-    cubic shape can block even trucks.
-dentlait:
-  description: >-
-    Dentlait has a single tooth that could fall out at any time. It guards it
-    jealously and bites everything to prove it's still there.
-magmaretfred:
-  description: >-
-    Magmar&Fred imagines battling alongside a missing partner, spewing flames
-    while telling questionable jokes. He heats things up but usually ends up
-    alone on stage.
-shlagemons:
-  salamiches:
-    name: Salamiches
-    description: >
-      Salamiches burns with the weak flame of an empty lighter. Always
-      shirtless, he records himself spitting sparks on trash cans. His special
-      ability, *Ego Fire*, boosts his power whenever people boo him. Loyal
-      unless offered a free kebab or a sale at the auto shop.
-indexPage:
-  title: Shlagemon
-  description: A parody of Pokémon with crazy creatures
-  welcome: Welcome to Shlagemon
-shlagedexPage:
-  title: Shlage Deck
-fantomanus:
-  description: >-
-    Fantomanus is literally a... ass spirit. His body floats in the air,
-    surrounded by a very dubious purple fog, with traces and halos everywhere.
-    Where the other Shlagemons have a mouth, it is a real bullet hole — in the
-    proper sense. It communicates by making strange sounds and spectral farts,
-    while allowing a odor indescribable.
-
-    He likes to appear in public toilets, gym lockers or dubious sofas, just for
-    the pleasure of making fun. His specialty: attack *Gaz Spectro-Anal*, a
-    supernatural breath through his central orifice, which haunts the soul and
-    nostrils forever.
-
-    It is said that he dreams of achieving the perfection of the astral prout,
-    but he struggles to aim straight, even in the Hereafter.
-jeunebelette:
-  description: >-
-    Jeunebelette spends her days jogging in the open fields, half buried,
-    earphones planted in the ears without music. Its yellow coat is rough and
-    sticky, like a poorly washed synthetic jacket. He digs, but without real
-    purpose, just to spend time.
-
-    He rarely attacks unless he feels that "it speaks badly". Its special
-    capacity *Banal Cape* inflicts medium damage but has a chance to cause the
-    state **Deep Flemme**. In general, Jeunebelette hangs around the other
-    Shalagemons to "see what's going on", without really participating. He's
-    here.
-
-    They say he could evolve if he finally found a real motivation. But it's not
-    for now.
-roux-pas-cool:
-  description: >-
-    Roux not Cool was once cool. Roux not Cool spent too much time scratching
-    minor chords at the edge of an extinct volcano. From now on, Cool's not cool
-    wanders with a guitar too big for his wings, freckles crying, and a check
-    shirt that smells wet grass and regrets. His plumage took on a sad rust
-    colour, and his red wick hides a remorseful look, as if he constantly
-    realized that he could have evolved into a legendary raptor, but preferred
-    to release an independent EP. It's always a little cold around him, even in
-    the summer. Its signature capacity, Refrain Getting into trouble, inflicts a
-    deep discomfort on all the arena, reducing the accuracy of enemy attacks as
-    long as they turn their eyes away. He's very good at driving wild Pokémons
-    away... and dating.
-sacdepates:
-  description: >-
-    Pasta bag is a living ball of entangled spaghetti, whose long strands form a
-    moving labyrinth. With two piercing eyes in the middle of his pasta, he
-    intimidates anyone who crosses his infernal gaze. His red feet, smooth and
-    glossy, allow him to ride at all speed on his opponents, whom he crushes
-    without mercy in an acute and diabolical laughter. He spends his days
-    painting himself thoroughly with a fine comb, hoping one day to unravel the
-    infinite knot that he has become. It is said that the more tangled his
-    spaghetti, the more formidable he becomes. Talent: Fatal Node — When
-    Sacdepates undergoes a physical attack, he can wrap around the enemy to trap
-    and immobilize.
-aspigros:
-  description: >-
-    Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle
-    affectueusement ses "paniers-repas". Son dard a disparu sous une couche de
-    gras douteux, remplacé par une fourchette plantée là "par commodité".
-
-    Il est constamment en train de mâchouiller quelque chose : une feuille, un
-    emballage, un caillou, ou parfois un de ses propres segments. Lorsqu’il
-    attaque, il roule vers l’ennemi en gémissant de plaisir, espérant qu’un
-    snack se trouve en chemin.
-
-    Son attaque signature, *Miam-Massacre*, inflige des dégâts proportionnels au
-    nombre de snacks qu’il a ingérés dans les 5 dernières minutes. Il peut aussi
-    utiliser *Éructo-Défensif*, une attaque sonore à base de rots sucrés qui
-    repoussent les ennemis faibles d’estomac.
-
-    Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il adore
-    les pique-niques, les buffets de mariage et les sacs plastiques qui font du
-    bruit. En revanche, il fuit à la simple mention du mot "diète", "protéines"
-    ou "cure détox".
-
-    On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de satiété,
-    et à sa devise gravée sur son ventre : "Si ça rentre, c’est que c’est bon."
-chenipaon:
-  description: >-
-    Chenipaon est une larve flamboyante, fruit improbable d’une chenille miteuse
-    et d’un paon beaucoup trop narcissique. Il se déplace lentement, en traînant
-    derrière lui une traîne de plumes multicolores qu’il a lui-même collées à la
-    salive sur son dos mou. Ces plumes ne servent à rien, sauf à faire des
-    "claquettes dramatiques" quand il se retourne brusquement.
-
-    Sa parade nuptiale est un désastre chorégraphique où il tourne sur lui-même
-    en hurlant "GRAAAAAAAH-PAOON", ce qui a pour effet de faire fuir 90% des
-    êtres vivants à proximité, y compris les pierres. Les rares adversaires qui
-    restent sont hypnotisés par la laideur fascinante de sa danse, ce qui donne
-    à Chenipaon un court avantage stratégique.
-
-    Son cri officiel est enregistré dans les bases de données comme
-    *"KRRRR-païïïïïïïïïïïïïïïïïn"*, mais chaque spécimen semble inventer le sien
-    sur le moment, généralement accompagné d’un effet sonore de flûte
-    désaccordée et d’un éternuement humide.
-
-    Il possède l’attaque spéciale *Roule Par Terre Coloré*, qui inflige des
-    dégâts aléatoires et laisse des plumes toxiques sur le champ de bataille. Il
-    peut également utiliser *Faux Charisme*, qui augmente brièvement son taux de
-    critique en fonction du nombre de regards consternés qu’il reçoit.
-metamorve:
-  description: >-
-    Une masse de boue nauséabonde qui se traîne lentement. Là où il passe, plus
-    rien ne pousse à cause de sa toxicité. Il est fait d'une boue toxique. Il
-    pollue tout ce qu’il touche, même le sol devient stérile. Il pue tellement
-    que des gens s’évanouissent rien qu’en le croisant. Son corps est un
-    concentré de toxines.
-ptitocard:
-  description: >-
-    Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif
-    qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide
-    et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les
-    agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale
-    ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en
-    permanence, mais pas de la bouche : c’est tout son corps qui transpire la
-    détresse. On pense qu’il est triste de naissance, mais certains spécialistes
-    évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme
-    Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde
-    Ptitocard pendant plus de 10 secondes peut tomber dans un coma
-    d’indifférence profonde. Ptitocard rêve de devenir un grand champion... mais
-    ne fait rien pour. On le trouve souvent flottant à la surface des flaques,
-    en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.
-abraquemar:
-  description: >-
-    Abraquemar est adepte de la sieste transcendantale et de la fuite
-    passive-agressive. À la moindre interaction sociale, il disparaît dans un
-    nuage de poussière en marmonnant "j’te sens pas, j’me tire". Son taux de
-    fuite est de 100%, sauf s’il entend une discussion sur les chakras ou les
-    promos sur les tapis ethniques. On le trouve souvent assis en tailleur, les
-    yeux mi-ouverts, entre deux posters de l’Univers collés avec du chewing-gum.
-    Il porte toujours une capuche trop grande et une écharpe mal nouée, et
-    prétend être "entre deux plans d’alignement stellaire". Sa capacité
-    spéciale, *Téléportation du Malaise*, permet d’échanger de place avec une
-    poubelle proche. Il possède aussi l’attaque *Sérénité Forcée*, qui fait
-    baisser l’attaque ennemie par culpabilité énergétique. Abraquemar évolue
-    uniquement quand il arrête de dire “j’ai pas envie de fight, moi je suis
-    plus dans la vibe.”
-amoche:
-  description: >-
-    Amoche est une tentative ratée de serpent. Son corps est irrégulier,
-    cabossé, et son museau semble avoir été dessiné au marqueur par un enfant
-    triste. Sa peau terne évoque le plastique fondu, et il laisse derrière lui
-    une traînée légèrement gluante dont l’origine reste floue. Amoche n’a pas
-    conscience de sa propre mocheté, mais les autres Shlagémons la ressentent
-    physiquement, ce qui lui confère une présence toxique passive. Son attaque
-    *Regard Déformant* a une chance d’infliger l’état Malaise. Il ne rampe pas,
-    il traîne. Il n’effraie pas, il gêne.
-emboli:
-  description: >-
-    Emboli est survenue après un long séjour dans une cave mal ventilée. Son
-    pelage sent le tabac froid et la lassitude, et il émet en permanence de
-    petites volutes grisâtres, sans raison apparente. Il ne se bat presque
-    jamais. Il souffle. Lourdement. S’il attaque, c’est généralement par
-    accident, ou parce qu’on lui a demandé trop fort. Son attaque signature,
-    Soupir Toxique, inflige des dégâts progressifs à l’adversaire et peut
-    provoquer l’état Démotivation. En combat, il préfère s’asseoir et regarder
-    les autres se battre. Il est surtout là "pour l’ambiance".
-nosferailleur:
-  description: >-
-    Nosferailleur rôde entre les carcasses de machines à laver et les palettes
-    calcinées, planant au-dessus des déchetteries comme un vautour sous
-    méthamphétamines. C’est un hybride improbable entre une chauve-souris
-    épileptique et un vieux grille-pain soviétique.
-
-    Sa peau est constellée de morceaux de ferraille rouillée qu’il a “empruntés”
-    sur des scooters abandonnés, et ses ailes grincent à chaque battement,
-    produisant un son si strident qu’il peut arracher les plombages. Il carbure
-    à la fumée de cuivre brûlé et dévore les câbles électriques comme des
-    spaghettis.
-
-    Son attaque *Vent de Décharge* envoie une bourrasque tiède chargée de
-    particules métalliques, provoquant paralysie, migraines, et des flashbacks
-    de centre de tri. On le soupçonne aussi d’avoir siphonné plusieurs
-    transformateurs EDF.
-
-    Il niche dans les toitures en fibrociment et collectionne les boulons comme
-    des trésors. Certains dresseurs affirment qu’il peut apparaître dans un
-    vieux frigo si on le laisse trop longtemps branché dans un squat.
-goubite:
-  description: >-
-    Goubite est difficile à regarder... et encore plus difficile à oublier. Doté
-    d’un corps long et rosâtre, légèrement bombé sur le haut, il est souvent
-    victime de malentendus anatomiques dans les écoles de dresseurs. Pourtant,
-    lui, il s’assume. Fier, droit, et toujours un peu moite. Sa tête est cerclée
-    d’une barbe flasque, dégoulinante de sueur tiède, qu’il secoue parfois pour
-    marquer son territoire. Il sourit en permanence, d’un air satisfait qui met
-    tout le monde mal à l’aise, même les aveugles. Ses pieds sont fripés, velus,
-    et sentent la crevette oubliée dans une chaussette humide. Il se déplace
-    lentement en produisant un petit bruit mou et répétitif, comparable à un
-    bisou dont on ne veut pas. Sa capacité signature, *Giclée Visqueuse*,
-    inflige des dégâts modérés mais impose un malus mental permanent à ceux qui
-    en sont témoins. Certains affirment qu’il peut aussi lancer *Barbe Emotive*,
-    une attaque qui colle et qui sent la salle de muscu humide. À ne pas
-    confondre avec un objet sexuel. Sauf si vraiment on est pressé de consulter.
-nanmeouesh:
-  description: >-
-    Nanmeouesh passe ses journées à zoner devant la pharmacie en donnant des
-    diagnostics à voix haute, sans qu’on lui demande. Il prétend avoir un
-    diplôme "d’université de la street" et soigne surtout avec du sirop de
-    tonton. Il communique uniquement en "wesh", "t'as capté" et "t’inquiète t’as
-    rien". Malgré son allure nonchalante et ses lunettes trop stylées pour le
-    reste de son corps, il ressent les bobos émotionnels mieux que n’importe
-    quel Psy-type. Son attaque signature, Check-up Relou, oblige tous les
-    ennemis à écouter une consultation de 3 minutes avec bilan complet, ce qui
-    peut causer Sommeil ou Confusion.
-pikachiant:
-  description: >-
-    Pikachiant est capable de te saouler avant même de lancer une attaque. Sa
-    queue ressemble à une antenne de TNT tordue, et il émet des bips stridents
-    dès qu’il est contrarié. Il se décharge en permanence (surtout en présence
-    d’appareils électroniques de valeur), et son attaque signature, *Charge
-    Sociale*, provoque une gêne électrique dans tout un rayon de 3 mètres.
-
-    Il vit généralement dans des squats connectés où il recharge ses batteries
-    avec des câbles USB volés dans les trains. Il pense que TikTok est une
-    source d’énergie et parle en onomatopées gênantes. À ne pas confondre avec
-    Pikachu, même si lui aussi finit souvent dans une Poképrison pour tapage
-    nocturne.
-qulbudrogue:
-  description: >-
-    Qulbudrogué est connu pour son attitude détendue et sa démarche nonchalante.
-    Il donne l’impression d’être dans un état de réflexion constante… ou
-    complètement à l’ouest. Il se balade en sifflotant des sons qu’il est
-    probablement le seul à comprendre. On raconte qu’il voit la vie en "slow
-    motion" et qu’il communique avec les autres Pokémon par télépathie — mais
-    uniquement quand il en a envie, c’est-à-dire rarement.
-cacanus:
-  description: >-
-    Cacanus is a flamboyant little dog whose obsession revolves around one and
-    only cardinal point: the anus.
-
-    Born in an alley next to a composting centre, he grew up developing a
-    strange passion for strong smells, suspicious friction, and everything that
-    comes out from behind. His nose is so thin that he can guess what an enemy
-    ate three days ago, just by flirting an empty chair.
-
-    He rarely attacks face to face: his combat style is centered on fecal
-    diversion. His attack *Jet de Glandes Anales* inflicted damage over time and
-    drastically reduced the dignity of the opponent. He can also dig a small
-    burrow called *Ass Tunnel*, in which he hides to prepare low blows
-    (literally).
-
-    It is said that when he is happy, he does not stir his tail: he offers you
-    as a gift, very dirty, very hot. He is the canine incarnation of dubious
-    humour and shameful pleasures.
-
-    His flair is legendary, but his mental hygiene is much less.
-mystouffe:
-  description: >-
-    Mystuff is a Shlagémon covered with a tuft so vast, so dense, so tufted,
-    that we no longer really know where it starts or where it ends. Its
-    hairiness seems endowed with a clean life, shivering at the slightest air
-    current, and sometimes emitting plastic bag sounds.
-
-    He lives tapi in the corners of unsanitary apartments, between vented
-    cushions and piles of wet linen. Rumors say that he is home to smaller
-    creatures in his tuft... or even other Mystuffs.
-
-    He hates water, combs, and remarks about his hygiene. He attacks by
-    frantically shaking his fleece, releasing pea spores and electrostatic hair.
-
-    His *Pollen de Touffe* attack is known to trigger chain sneezing attacks in
-    unprepared trainers. It is said that a particularly tufted Mystoffe would
-    one day have suffocated an industrial vacuum cleaner.
-
-    His tuft protects him from direct blows, but makes him slow and
-    unpredictable. His gaze remains a mystery: no one has ever seen him under
-    the hair.
-plegique:
-  description: >-
-    Plégique is an ancient Paras that went wrong during a fall of compost. Since
-    then, he has been paraplegic — his two back legs no longer respond, frozen
-    in a strange position he calls "the yoga of the ground". But far from
-    falling, he crawls with the dignity of a limestone worm, dragging behind him
-    a trail of spores and crumbs of wet bread.
-
-    His mushrooms, which became too heavy, forced him to move by rolling on the
-    side or by letting himself slide on boxes soaked. He did a kind of
-    exoskeleton in empty cans and pieces of Tupperware, but he often forgets how
-    it fits.
-
-    Plégique communicates with cliquetis of mandibles and absconsic phrases of
-    the genus "the chosen soil". He is convinced that his condition is an
-    evolutionary advantage, for "lower than earth, there is than truth".
-
-    His attack *Spore Rampante* sleeps the enemy by releasing a damp whistle at
-    the ground level, while *Myco-Smoker*, his signature capacity, slowly drains
-    the lives of the enemies... and a little holds her, emotionally.
-
-    He lives in forgotten Wi-Fi areas, glued against oozing walls. It is said
-    that it can survive several days without moving, simply absorbing ambient
-    humidity and negative thoughts. A real survivor... in his own way.
-ratonton:
-  description: >-
-    Ratonton est un vieux tonton en forme de rat mal rasé, expert en mauvaise
-    foi et en tir au fer. Il ne court pas, il trottine en râlant, le bide en
-    avant, sa moustache grise tremblotant au rythme de ses ricanements. Il vit
-    dans des campings à l’année et pense que la pétanque est un art martial
-    ancestral.
-
-    Toujours armé d’une boule cabossée et d’un verre de pastis tiède, il attaque
-    avec *Lancer de Boule Aléatoire*, qui a 50% de chances de rater la cible
-    mais 100% de chances de démolir une glaciaire innocente. Son haleine est
-    classée *toxique* dans certains pays, et sa capacité passive, *Verre Dans Le
-    Nez*, réduit sa précision mais augmente son attaque à chaque toast.
-
-    Ratonton parle fort, dit toujours "t’as vu c’est technique hein" après un
-    échec, et se bat uniquement s’il a perdu à la belote. Il peut également
-    utiliser *Tontonade*, une attaque confuse qui consiste à expliquer des
-    règles inventées de pétanque tout en te bousculant verbalement.
-
-    Il adore les coins d’ombre, les parasols Lidl, et les anecdotes gênantes. Si
-    on lui parle de retraite ou de régime, il se met à ronfler de colère.
-    Pourtant, malgré tout, il est fidèle. Et il sent le Ricard à 8h du matin.
-grosmitoss:
-  description: >-
-    GrosMitoss est un concentré de poils, de mauvaise foi et de fabulations. Son
-    corps sphérique et pelucheux dissimule un cerveau saturé de bobards : il
-    prétend avoir battu un Nidodragqueen avec une feuille de salade, connu
-    Mewteub à l'école primaire, et participé à la création de Shlagémon — rien
-    que ça.
-
-    Il parle sans arrêt, même quand personne ne l’écoute, et chaque phrase
-    commence par "C’est vrai, j’te jure !". Les autres Shlagémons le fuient, non
-    pas pour ses attaques, mais pour sa capacité à déformer la réalité à chaque
-    mot.
-
-    Sa compétence spéciale, *Mythobluff*, embrouille l’adversaire en lui faisant
-    douter de tout — y compris de ses propres attaques. Il peut aussi utiliser
-    *Souffle de Pipeau*, un vent nauséabond qui sent fort la mauvaise excuse et
-    la clope froide.
-piafsansbec:
-  description: >-
-    Piafsansbec est un Shlagémon maudit, né avec un potentiel de piaf... mais
-    sans l’accessoire principal : son bec. L’histoire raconte qu’il aurait tenté
-    de l’échanger contre un bonbon dans une brocante, ou qu’il l’a simplement
-    perdu en essayant d’ouvrir une canette de soda trop gazeuse.
-
-    Depuis, il vit dans une forme de déni nasal : ses trous de nez compensent
-    tant bien que mal, mais chaque tentative de chant se solde par un
-    *FLUUUUIIII* humide et une grande solitude. Il communique avec des coups
-    d’aile frénétiques, des yeux tristes, et des dessins au sol avec ses pattes
-    crasseuses.
-
-    Il ne peut ni manger proprement, ni picorer, ni faire peur aux autres
-    oiseaux — il s’est même fait piquer sa graine par un Papi Suçon une fois.
-    Son attaque signature, *Claquement de Gorge*, consiste à faire vibrer
-    violemment sa trachée pour créer une onde sonore perturbante. Il possède
-    aussi *Regard Gênant*, qui inflige un malus de moral à l’ennemi.
-
-    Sa capacité passive, *Silence Pesant*, fait baisser l’initiative des
-    adversaires en les mettant mal à l’aise.
-
-    Piafsansbec est souvent vu au bord des routes, essayant de siffler le vent
-    ou de grignoter des miettes qu’il finit par pousser du front, la dignité en
-    option. Mais dans son regard brille une chose rare… non, en fait, non. Rien
-    ne brille. C’est juste humide.
-taupicouze:
-  description: >-
-    Taupicouze s’est improvisé infirmier de quartier après un stage de 3
-    semaines non validé dans un centre de désintox. Armé de seringues douteuses
-    et d’un stéthoscope qui sent la cave, il surgit sans prévenir pour "faire
-    une petite piqûre", souvent sans demander le consentement.
-
-    Son problème ? Il ne trouve *jamais* la veine. Il plante, il retire, il
-    re-plante… et il jubile. Car derrière son sourire crispant, se cache une âme
-    légèrement sadique. Il adore les cris d’agonie, qu’il interprète comme des
-    encouragements.
-
-    Son attaque signature, *Tricouze Saignante*, inflige des dégâts progressifs
-    et désoriente l’ennemi avec une sensation de malaise médical. Il peut aussi
-    utiliser *Piqure Surprise*, qui a 30% de chances de faire perdre
-    connaissance à un Shlagémon... ou au dresseur.
-waouff:
-  description: >-
-    Waouff est le fruit d’une expérience génétique ratée entre un chat castré et
-    un chien errant accro au pain mouillé. Ce Shlagémon aboie sur tout ce qui
-    bouge — ou pas — et court après sa propre ombre dès qu’elle change
-    d’orientation.
-
-    Il a un regard vide mais sincère, une langue toujours pendante, et porte
-    autour du cou un vieux collier GPS cassé qu’il lèche compulsivement. Il
-    tente souvent de mordre des roues de vélo, même en combat, ce qui le rend
-    imprévisible mais rarement utile.
-
-    Son attaque signature, *Croquette Mental*, inflige des dégâts aléatoires en
-    fonction de la météo, de la phase lunaire et de la marque de la balle qu'on
-    utilise. Il peut aussi utiliser *Aboyeur Passif-Agressif*, qui inflige la
-    confusion à tout le monde... y compris à lui-même.
-canarchicon:
-  description: >-
-    Canarchicon est un cousin dégénéré du célèbre canard qu'on ne nommera pas
-    pour des raisons juridiques. Toujours armé de son poireau fatigué (qu’il
-    appelle tendrement “Jean-Chibre”), il chancelle d’un pas bancal,
-    probablement à cause de ses soirées passées à picoler du bouillon cube
-    fermenté. Son œil au beurre noir laisse deviner un mode de vie instable,
-    fait de bastons derrière des bennes à frites et de paris perdus contre des
-    Roucool. Il ne vole pas, il flotte à moitié — sans réelle direction — au gré
-    des vents et des vapeurs d’alcool de cuisson. Sa capacité signature, *Coup
-    de Poireau Tournoyant*, inflige peu de dégâts mais une honte durable. Il
-    peut aussi utiliser *Flatulence de Gras*, une attaque à effet de zone
-    olfactif. Canarchichon n’a jamais gagné un seul combat, mais il persiste...
-    parce qu’il a oublié qu’il pouvait abandonner.
-melofoutre:
-  description: >-
-    Mélofoutre est un petit être visqueux à l’apparence faussement candide. Né
-    dans une éprouvette d’amour non-consenti entre une étoile filante et une
-    chaussette oubliée sous un lit d'ado, il brille d’un éclat douteux,
-    oscillant entre le nacré et le gluant.
-
-    Sa voix flûtée fait vibrer l’air comme une vieille VHS de film interdit, et
-    sa capacité signature, *Berceuse Mouillée*, endort l’ennemi sous un flot de
-    soupirs gênants. Il peut aussi lancer *Giclée Cosmique*, une attaque magique
-    à la trajectoire imprévisible, qui laisse des taches indélébiles sur
-    l’estime de soi.
-
-    Mélofoutre ne cherche pas le combat, mais s’y retrouve souvent par accident…
-    ou par pulsion. Toujours collant, jamais touchant, il est l’anti-héros des
-    berceuses.
-nidononbinaire-f:
-  description: >-
-    Nidononbinaire♀ a des cornes molles, un regard fixe, et une passion pour les
-    plantes en plastique. Iel n’est pas vraiment là pour se battre, mais iel
-    viendra quand même, avec ses fiches, son tote bag et une vibe étrange.
-
-    Iel utilise souvent *Postillonnage Toxique*, une attaque à faible portée
-    mais dont les effets durent étonnamment longtemps. Iel s’entend très bien
-    avec les autres Shlagémons, surtout les moins bavards. En zone sauvage, iel
-    se poste près des bancs et observe… longtemps. Peut-être trop longtemps.
-nidononbinaire-m:
-  description: >-
-    Nidononbinaire♂ s’est longtemps cherché. Iel porte des pics mais n’attaque
-    jamais en premier. Iel adore les débats, surtout quand personne n’en veut,
-    et iel commence souvent ses phrases par "techniquement". Iel se déplace avec
-    une démarche hésitante mais bruyante, comme quelqu’un qui n’a pas de
-    destination, mais qui veut quand même qu’on le remarque.
-
-    Sa capacité *Point-Virgule* inflige peu de dégâts mais perturbe l’ordre
-    d’attaque adverse en le rendant confus grammaticalement. Iel est souvent vu
-    en train de refaire son look dans les flaques d’eau, persuadé que
-    "l’esthétique, c’est déjà une stratégie".
-ferosang:
-  description: >-
-    Férosang est une créature hargneuse, incontrôlable, et surtout passionnée
-    par sa propre hémorragie. Il n’aime pas saigner : il *vit* pour ça. Chaque
-    plaie est pour lui un trophée, chaque croûte une médaille. Il se cogne
-    exprès les arcades contre des barres de skate, se jette volontairement en
-    roulant sur du gravier, et fait exprès de rater ses tricks pour s’en coller
-    une.
-
-    Il a déjà tenté de donner son sang, mais les médecins lui ont dit qu’il n’en
-    avait plus assez. "Trop de pertes, mon reuf", lui a lancé l’infirmière en
-    fixant son coton-tige déjà rouge avant la piqûre. Depuis, il y retourne
-    juste pour se faire piquer.
-
-    Férosang est recouvert de pansements douteux, de croûtes arrachées trop tôt
-    et de tatouages faits avec du stylo bic. Ses poings sont constamment en
-    sang, soit parce qu’il frappe, soit parce qu’il frappe *mal*. On le voit
-    souvent rire après s’être pris une droite dans le nez par un lampadaire.
-
-    Son attaque signature, *Jet Hémato*, projette un arc de sang corrosif et
-    contaminé, qui inflige panique et malaise. Il possède aussi *Patate
-    Réflexe*, une attaque incontrôlable qui s’active à la moindre tape sur
-    l’épaule.
-macho:
-  description: >-
-    Macho a absorbé trop de protéines... et de podcasts douteux. Musclé comme un
-    couvercle de poubelle et persuadé d’être irrésistible, il passe son temps à
-    faire des pompes, des clins d’œil et des blagues de vestiaire à toute
-    créature possédant deux chromosomes X.
-
-    Il parle fort, il sent fort, il pense fort — mais rarement bien. Sa
-    technique *Main au Cul* est redoutée non pas pour ses dégâts, mais pour
-    l’inconfort social qu’elle génère. Il dispose également de l’attaque *Blague
-    de Beauf*, qui inflige un malus d’intelligence à toute l’arène pendant trois
-    tours.
-
-    Quand il n’est pas en train de se prendre en selfie devant un miroir cassé,
-    il traîne en groupe avec d'autres Shlagémons virilistes, où ils débattent
-    intensément de "la vraie nature des femelles". Aucun débat n’a encore
-    abouti.
-
-    Il évolue parfois... en pire.
-psykonaute:
-  description: >-
-    Psykonaute est l’évolution déviante de PsychoQuack, après qu’il ait
-    découvert les vertus du shit bon marché et des herbes douteuses trouvées
-    sous un banc de Lavanville. Depuis, il passe ses journées avachi sur un
-    vieux canapé, l’œil vide et le bec entrouvert, fixant un écran qui ne capte
-    plus aucune chaîne.
-
-    Il arbore un bob délavé floqué "420", des cernes interdimensionnelles et un
-    briquet qu’il appelle "son starter". On dit que ses pouvoirs psy sont
-    toujours là, mais qu’il les utilise uniquement pour faire léviter ses cônes
-    quand il a la flemme de les attraper.
-
-    Son attaque signature, *Chichon Cosmique*, enveloppe l’arène d’un nuage
-    dense et sucré, réduisant drastiquement la vitesse de tous les adversaires.
-    Il peut aussi lancer *Télécanapé*, qui l’empêche de bouger pendant 5 tours
-    mais lui rend toute sa vie mentale (ou presque).
-rondonichon:
-  description: >-
-    Rondonichon est une boule de poils disgracieuse et auto-satisfaite, coincée
-    quelque part entre un hamster de cantine et un sex-toy défectueux. Il
-    rebondit sans arrêt sur ses deux gros tétons, qu’il utilise comme ressorts,
-    et laisse derrière lui une traînée de bave et d’inconfort.
-
-    Né d’un croisement douteux avec une peluche retrouvée dans un vide-ordures,
-    il chante des berceuses de PMU et rote sur l’intro. Son attaque
-    *Ballon-Mamelon* fait jaillir un lait tiède dont l’odeur provoque des
-    confusions massives, même chez les Shlagémons rouillés.
-
-    Il adore s’incruster dans les sacs des dresseurs pour “y faire sa sieste”,
-    mais finit toujours par s’y reproduire à l’insu de tous. On dit qu’un seul
-    Rondonichon peut contaminer une Shlagéball pour toujours.
-
-    Ne pas le caresser. Jamais.
-chetibranle:
-  description: >-
-    Chétibranle est un Shlagémon réputé pour sa capacité à s’occuper de lui-même
-    avec une assiduité déconcertante. Amateur de plaisirs discrets, il aime
-    s’isoler dans des coins humides pour se consacrer à l’art d’absorber tout ce
-    qui passe à portée de sa tige. Certains chercheurs affirment qu’il est
-    capable d’aspirer la moindre goutte d’énergie ambiante, ne laissant rien lui
-    échapper, même dans les moments les plus solitaires.
-
-    Sa technique favorite, *Pompage Introspectif*, consiste à canaliser toutes
-    ses forces vers l’intérieur pour un plaisir personnel rarement égalé dans la
-    faune des shlagémons. D’aucuns racontent qu’après ses longues séances
-    d’absorption, il semble toujours un peu vidé, mais paradoxalement plus
-    rayonnant que jamais.
-
-    On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser, mais
-    il laisse toujours derrière lui une étrange atmosphère… moite et
-    contemplative.
-raboloss:
-  description: >-
-    Raboloss erre lentement dans la cour de récré, traînant ses baskets trouées
-    et son jogging trop grand qu'il a récupéré dans un carton discount. Sa
-    fourrure autrefois rose est devenue terne, mouchetée de taches douteuses et
-    de pellicules. Toujours l'air un peu perdu, il garde les yeux rivés au sol,
-    espérant qu'on ne le remarque pas... mais évidemment, il attire tous les
-    regards, surtout ceux des autres shlagémons qui le prennent pour cible.
-
-    Avec son expression de poisson-panique et son vieux sac à dos déchiré, il
-    traîne une réputation de boloss ultime. Personne ne connaît la véritable
-    couleur de son pull (il l’a hérité de 3 générations de schlags), et sa
-    coiffure rappelle les matins pluvieux où l’on préfère rester sous la
-    couette.
-
-    Son attaque signature, *Gros Lancer de Cartable*, consiste à balancer son
-    sac (qui sent la cantine froide et la misère) sur ses adversaires,
-    infligeant confusion et gêne sociale.
-
-    On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir
-    populaire... ou au moins d’avoir un goûter entier pour lui tout seul.
-racaillou:
-  description: >-
-    Racaillou traîne toute la journée affalé contre un muret tagué, les bras
-    ballants, le regard vitreux sous sa casquette trop grande. Son corps,
-    vaguement rocailleux, est constellé de mégots incrustés et de petits sachets
-    douteux. Sa peau grise est couverte de graffitis, et on dirait qu'il a
-    essayé de cacher ses cernes avec des stickers Panini.
-
-    Sa gueule affiche en permanence un sourire narquois, trois dents en or, et
-    un air de te tester pour rien. Il propose aux autres Shlagémons de la “bonne
-    verte” en marmonnant, tout en gardant une main dans sa banane Lacoste
-    déchirée.
-
-    **Attaque signature :** *Émanation douteuse* — Racaillou relâche un nuage de
-    fumée nauséabonde qui fait planer tout le monde dans un rayon de 2 mètres,
-    embrouillant les esprits et ralentissant les adversaires.
-
-    On raconte qu'il ne se déplace jamais sans sa bande de Gravashlag, toujours
-    prêts à lui fournir un briquet ou à jeter un caillou sur un dresseur trop
-    curieux.
-tatacool:
-  description: >-
-    Tatacool traîne dans les flaques d’eau croupie derrière les zones
-    industrielles, en rêvant de sa jeunesse où il barbotait dans la piscine
-    municipale. Son corps gélatineux a viré au gris-bleu délavé, constellé de
-    taches de rouille et d’algues collées. Ses deux "joyaux" emblématiques sont
-    désormais des boules de naphtaline fendues, ternies, dont sortent parfois
-    des bulles douteuses.
-
-    Ses tentacules sont tout mous, comme s’il avait passé trois semaines à
-    tremper dans l’eau de vaisselle. Il a des cernes violets sous ses petits
-    yeux hagards, et son regard alterne entre le vide total et une suspicion
-    inexplicable. Il se tient à moitié vautré, comme s’il venait de glisser sur
-    une moule.
-
-    Son attaque signature, *Jet de Morve Aquatique*, asperge l’adversaire d’un
-    mélange visqueux d’eau sale et de morve verte, qui colle pendant des heures.
-    Certains disent qu’il peut aussi faire “Bulle à Pisse” dans les grandes
-    occasions, mais personne ne veut vérifier.
-
-    On raconte que Tatacool collectionne les bouchons de bière et les vieux
-    tickets de bus échoués dans son eau, persuadé que ça porte chance.
-dosolo:
-  description: >-
-    Dosolo, l’autruche la plus triste de la région, erre dans les terrains
-    vagues, tête basse et plumes en bataille. Il n’a littéralement aucun ami,
-    même les pigeons l’ignorent. Son plumage, censé être doux et aéré, est tout
-    terne, piqué de miettes de pain et de chewing-gums séchés.
-
-    Il se gratte la tête d’un air perdu, l’air de se demander ce qu’il fout là.
-    Son unique crête est aplatie, comme son moral, et il laisse derrière lui des
-    traces de larmes poussiéreuses dans la boue.
-
-    Son attaque signature, *Coup d’Blues*, plonge l’adversaire dans un désespoir
-    existentiel qui lui fait perdre un tour.
-
-    On raconte qu’il tente souvent de parler à son ombre, mais même elle a fini
-    par se barrer.
-magnubellule:
-  description: >-
-    Créature née d’une collision entre un vieux canette aimantée et une
-    libellule qui a trop traîné près des flaques de bière tiède, Magnubellule
-    flotte au-dessus des caniveaux et des parkings d’hypermarchés.
-
-    Son corps métallique est cabossé, orné d’antennes tordues et d’ailes
-    translucides qui vibrent avec le bruit d’une mobylette qui cale.
-
-    Sa couleur : un gris terne tacheté de jaune pisse, comme une canette de 8.6
-    oubliée au soleil.
-
-    Magnubellule plane avec un regard hagard, souvent perché, prêt à déblatérer
-    des chiffres mystérieux.
-
-    Son attaque signature, *Brise-Canette*, projette un jet mousseux et tiède,
-    laissant ses adversaires confus — entre 8 souvenirs égarés et 6 excuses
-    bancales.
-
-    On raconte que chaque fois que Magnubellule passe en rase-motte, il laisse
-    derrière lui une énigme de la loose et une odeur de festival terminé depuis
-    trois semaines.
-otamere:
-  description: >-
-    Otamère est la honte de la banquise. Dégoulinant de flotte, il passe ses
-    journées vautré sur des glaçons fondus, la langue pendante, le regard perdu
-    dans le vide. Son pelage, autrefois blanc, est devenu gris-jaune à force de
-    se rouler dans la crasse et de sniffer les flaques douteuses du port.
-
-    Son attaque signature, *Jet de Morve Polaire*, consiste à éternuer un glaçon
-    baveux sur ses adversaires, ce qui leur colle un rhume pour trois semaines.
-    On raconte qu’Otamère est interdit de piscine municipale depuis un incident
-    impliquant une bouée percée et un lot de frites en mousse moisis.
-
-    Personne n’a jamais vu Otamère sobre. Il aurait soi-disant un tatouage
-    “MAMAN” sous une nageoire, mais personne n’ose vérifier.
-pouleyta:
-  description: >-
-    Pouleyta ressemble à un poney, mais c’est surtout un poulet sur pattes dont
-    les plumes ont pris feu il y a bien trop longtemps. Son crin est constitué
-    de plumes calcinées, mêlées de mégots et de miettes de chips. Il boite
-    légèrement, sent le graillon, et laisse derrière lui une odeur persistante
-    de barbecue foiré.
-
-    Son attaque signature, *Flamme Panée*, consiste à se rouler dans la
-    chapelure avant de charger ses adversaires, laissant des traces de graisse
-    sur le terrain. On raconte que Pouleyta attire les chiens errants et les
-    supporters bourrés lors des fêtes de village.
-
-    Malgré son allure, il rêve secrètement d'être la mascotte d’un fast-food
-    discount.
-cookieyas:
-  description: >-
-    Cookieyas ressemble à un Kokiyas qui aurait fusionné avec un vieux cookie
-    tombé derrière le micro-ondes. Son coquillage est à moitié remplacé par une
-    pâte brisée, toute molle et couverte de miettes douteuses. Il a des éclats
-    de chocolat en guise de dents et des pépites incrustées jusque dans ses yeux
-    globuleux, toujours à moitié fermés par la fatigue.
-
-    Sa couleur varie entre le brun cramé et le beige sec, avec parfois des
-    taches de lait caillé ou de confiture séchée sur la carapace. Son expression
-    est un mélange de flemme totale et de suspicion envers quiconque s'approche
-    trop près de "son coin de cuisine".
-
-    Attitude générale : Cookieyas passe sa vie vautré dans les miettes, grognant
-    quand on tente de le déloger, et se déplace en laissant une traînée collante
-    derrière lui. Son attaque signature, *Jet de Lait Passé*, consiste à cracher
-    un jet de lait périmé sur ses adversaires, infligeant des dégâts collants et
-    une honte olfactive intense.
-
-    On raconte que Cookieyas ne rêve que d’une chose : qu’on le laisse
-    tranquille pour finir sa sieste au chaud derrière la cafetière. Mais gare à
-    celui qui essaie de le grignoter : il mord, et c’est sec !
-marginal:
-  description: >-
-    Marginal passe son temps à jongler sur une corde raide tout en jouant du
-    diabolo. Il fait la manche dans les ports en espérant qu'on lui lance autre
-    chose que des tomates.
-tadsperm:
-  description: >-
-    Tadsperm est un tas visqueux au teint douteux, oscillant entre le gris
-    laiteux et le beige maladif. Son corps dégouline de gouttes épaisses qui
-    s’échappent en permanence, laissant derrière lui des traces suspectes et
-    gluantes. Son sourire est béat, l’œil mi-clos, l’air totalement détaché du
-    monde extérieur.
-
-    Sa principale occupation : s’isoler dans des coins sombres pour savourer les
-    plaisirs les plus solitaires de la vie. Son attaque signature, *Jet
-    Spontané*, consiste à projeter une gerbe collante et opaque qui ralentit et
-    colle l’adversaire sur place.
-
-    On raconte qu’il passe plus de temps à “méditer” qu’à se battre. Certains
-    dresseurs disent avoir glissé dessus dans les vestiaires…
-amonichiasse:
-  description: >-
-    Ce mollusque fossilisé traîne une coquille couverte de taches douteuses. Il
-    dégage une odeur de cave humide et de gastro chronique.
-kraputo:
-  description: >-
-    Ce crabe éraflé se cache sous un casque cassé et offre ses pinces au plus
-    offrant. Il raffole des fonds de verre et des pièces rouillées.
-pauvreetcon:
-  description: >-
-    Pauvreetcon est un amas de polygones bancals issu d’un bug informatique. Il
-    flotte maladroitement en cherchant sa connexion Wi-Fi et affiche de temps en
-    temps un écran bleu en guise de cri.
-ptitrat:
-  description: >-
-    Ancien régne fossile au museau pointu, Ptitrat se prend pour un rongeur
-    volant. Sa peau grisâtre s’effrite un peu plus à chaque battement d’aile.
-minidrapcon:
-  description: >-
-    Petit serpent drapé et un peu demeuré, il se prend souvent les crochets dans
-    ses propres replis.
-krabbyjaccob:
-  description: >-
-    Ce crustacé porte une petite kippa et danse sans arrêt comme dans le vieux
-    film dont il est fan. Entre deux blagues douteuses, il pince tout ce qui
-    traîne pour vérifier si c'est cashèr.
-onixtamere:
-  description: >-
-    Onixtamere est un gigantesque serpent de pierre qui se prend pour le roi des
-    beaux-pères. Il parade au milieu des canyons en vantant ses conquêtes de
-    mamans comme d’autres collectionnent les cailloux. Son corps segmenté
-    résonne à chaque mouvement, histoire d’annoncer son arrivée bien avant qu’il
-    ouvre la bouche.
-soporifiak:
-  description: >-
-    Soporifiak roupille partout où il passe et son postérieur disproportionné
-    lui sert d’oreiller improvisé. Il charme les passants en promettant des
-    siestes miraculeuses avant de s’endormir lui-même en plein milieu de la
-    conversation.
-voltamere:
-  description: >-
-    Voltamère ressemble à une vieille daronne déguisée en boule. Il vole tout ce
-    qui brille pour l'empiler dans son sac à main imaginaire. Gare à la décharge
-    statique quand il te fouille les poches !
-chignon:
-  description: >-
-    Toujours tiré à quatre épingles, Chignon se bat avec des attaques de
-    coiffure redoutables. Il lance ses épingles comme des shurikens et s'arrange
-    pour que tout le monde admire sa queue-de-cheval.
-huithuit:
-  description: >-
-    Formé de deux chiffres huit tout collés, Huithuit adore faire des blagues
-    sur les œufs. Il se dandine maladroitement et déclenche parfois des visions
-    psychédéliques chez ceux qui le regardent trop longtemps.
-kistlee:
-  description: >-
-    Kistlee possède un énorme kyste qui sert autant d'arme que de chaise. Il
-    frappe ses ennemis à coups de pied tout en se plaignant que ça tire un peu.
-languedepute:
-  description: >-
-    Sa langue interminable traîne partout et sert principalement à médire. Il
-    aime critiquer ses adversaires jusqu'à ce qu'ils abandonnent par lassitude.
-lecocu:
-  description: >-
-    Lecocu porte toujours un air triste : sa femme le trompe avec tous les
-    dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec
-    une gentillesse déconcertante.
-rhinofaringite:
-  description: >-
-    Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en
-    permanence, ce qui le rend aussi glissant qu'imprévisible.
-smongol:
-  description: >-
-    Smongol flotte dans une brume toxique et regarde le vide d'un air hébété. Il
-    ne comprend pas grand-chose, mais il adore exploser quand on le secoue trop.
-hypotrompe:
-  description: >-
-    Petit hippocampe distrait, Hypotrompe se trompe constamment de direction. Sa
-    trompe démesurée lui sert à aspirer tout ce qui passe, y compris des objets
-    qui n'auraient jamais dû finir dans un estomac.
-kandurex:
-  description: >-
-    Toujours équipé de préservatifs fluo, Kandurex vante ses prouesses au lit à
-    qui veut l'entendre. Il distribue des conseils douteux sur la reproduction
-    entre deux uppercuts.
-poissocisse:
-  description: >-
-    Poissocisse se nourrit exclusivement de saucisses. Son odeur charcutière
-    attire chiens et dresseurs affamés, ce qui le rend paradoxalement difficile
-    à pêcher.
-strabisme:
-  description: >-
-    Ses yeux partent chacun dans une direction différente, ce qui déstabilise
-    ses adversaires. Il brille d'une lueur aquatique quand on lui parle de
-    vacances au bord de la mer.
-elektektonik:
-  description: >-
-    Toujours en train de danser la tecktonik, il électrise l'air autour de lui.
-    Ses mouvements saccadés déclenchent de petites décharges qui font sauter les
-    plombs partout où il passe.
-insinerateur:
-  description: >-
-    Armé de lames insectes, il a surtout envie de mettre le feu à tout ce qui
-    bouge. Sa passion pour la combustion le rend particulièrement dangereux dans
-    les forêts.
-lipposucsion:
-  description: >-
-    Après une liposuccion ratée, ce Shlagémon a la peau toute fripée et un
-    tempérament glacial. Il embrasse ses ennemis pour les geler sur place avant
-    de se plaindre de ses kilos en trop.
-m-ventriloque:
-  description: >-
-    C'est le sosie raté d'un célèbre humoriste et il passe son temps à discuter
-    avec sa propre main. Ses tours de ventriloquie mettent mal à l'aise plus
-    qu'ils ne font rire.
-lokhlash:
-  description: >-
-    Lokhlash adore participer à des battles de rap improvisées sur son dos. Il
-    navigue de scène en scène, lâchant des punchlines glaciales qui font
-    frissonner l'auditoire.
-scarapute:
-  description: >-
-    Cet insecte adore sucer le sang des voyageurs imprudents. On le voit souvent
-    roder près des campings à la recherche d'un mollet juteux.
-taurus:
-  description: >-
-    Taurus est littéralement un taureau géométrique. Ses angles parfaits le
-    rendent difficile à approcher sans se prendre une arrête dans les côtes.
-artichaud:
-  description: >-
-    Artichaud is a legendary Shlagémon that symbolizes the ultimate paradox:
-    being cold by sweating. Born of a thermal shock between a broken cooler and
-    a forgotten fryer, it wanders in industrial wasteland, covered with frost
-    and sweat drops at the same time. His wings in freezer feathers diffuse a
-    glacial mist, but he always wears a tempered Marcel and a bologna hat.
-
-    It is said that he is able to trigger lukewarm snowstorms, and that he melts
-    as soon as he gets angry — before refiling within the next minute. Witnesses
-    would have seen him warming up next to a fire... which he himself iced. He
-    speaks by blowing hot water, and leaves behind him a trail of wet stains and
-    smells of warm soup.
-
-    Formerly venerated as the Guardian of the Sacred Microwave, he would have
-    been banished from the kingdom of noble Shalagemons for trying to cook
-    frozen ravioli... without removing the metallic operculum.
-
-    Today, Artichaud watches over areas of climate law, where he imposes his
-    moist and refrigerated reign, between two smoking sneezes and frostbite.
-bulgrosboule:
-  description: >-
-    Bulgrosboule is known for its titanic buttocks able to overshadow the
-    sunset. It moves backwards, more out of pride than out of strategy, letting
-    escape perfumed bubbles of an area that trainers prefer not to mention. His
-    cry looks like a foaming bath under pressure, and his signature capacity,
-    *Fessal eruption*, propels his enemies into a warm and sticky mist. Equipped
-    with a bouncing skin like an inflatable brocante pool, he loves to bounce
-    back on the spot, which disorients most opponents. Bulgrosboule is very
-    affectionate, especially with those who massage him. Note however: if he
-    starts to tremble, it is too late. He's gonna bubble.
-carapouffe:
-  description: >-
-    Carapuffe plunged into her own soft shell, moving only slowly, leaving
-    behind a trail of glitter and molten gloss. Her make-up constantly degulfs,
-    forming an impenetrable protective layer — scientists call it "dark armor".
-    Equipped with a half-believing, half-comatious look, she hypnotizes her
-    adversaries by throwing flabby eyeslades, accompanied by a sigh of cosmic
-    fatigue. She spends her days recoiling without moving her head, thanks to a
-    complex system of brushes hidden in her bun. His voice is raucous, his
-    perfume is toxic, and his main attack, "Mossing Crushing", is to collapse
-    violently on his enemy by slamming his false nails.
-electhordu:
-  description: >-
-    Electhordu is a legendary Shalagemon born of a transformer broken during a
-    wild rave in the rain. Struck by lightning 347 times (volunteerly), it came
-    out shaken as never, with the beak of cross, the feathers hedged for life,
-    and a look that never fixes in the same direction.
-
-    His cry, close to an old neon sizzling, disturbs the radio waves for miles
-    around. He flies in zigzag, often backwards, and electrocutes himself to
-    stay awake. Its plumage consists of bare cables and stolen TV antennas. Some
-    say that he always wears a multiprise around his neck to recharge his
-    hatred.
-
-    Electhordu has no sense of direction or social limits. He disembarks without
-    warning in disused industrial areas, where he rubs his plumage against the
-    pylons to make sparks of love. Each wing beat causes surges, elevator
-    failures, and panic alarms.
-
-    According to the shlagémonologists, Electhordu was once the guardian of the
-    Original Runner, a sacred energy that had to balance the world... but he
-    confused the sacred circuit breaker with a fryer and burned everything.
-
-    Today, he wanders, twisted from beak to voltage, speaking alone in
-    electrical wires, and sowing static chaos in his wake. It is both feared,
-    mocked, and connected to 12,000 volts permanently.
-mewteub:
-  description: >-
-    Mewteub is born from a genetic bug between an HDMI socket and an anxiolytic
-    cosmic entity. It is murmured that it would have been cloned from an old
-    peritel cable fallen into a basin of Monster Energy. It floats constantly,
-    but without elegance — rather like a sock in a jacuzzi. Its translucent body
-    suggests a venous network that flashes at the rhythm of a 56k modem. It
-    emits telepathic sounds, all more embarrassing than each other: sighs,
-    questionable "hmm" and sometimes extracts from MSN discussions of 2003. He
-    communicates mainly by vibration of psychic dick, which greatly disturbs
-    other Shalagemons — and unaccompanied children. Its special capacity, *Onde
-    Malaise*, freezes the opponent in an abyssal discomfort for several laps.
-    It's said to be flashbacks of awkward evenings in a provincial club.
-
-    Mewteub is rare. Too rare. And frankly, it might be better that way.
-sulfusouris:
-  description: >-
-    Sulfumouse is a legendary Shalagemon born of a short circuit in an abandoned
-    microwave oven. According to legend, a colony of mice tried to build a nest
-    in a toaster, and only one of them would have survived... charred, but
-    awakened to a fiery power. It has risen in flames, more determined than ever
-    to burn everything that moves — especially electrical cables.
-
-    With its dusty hair coat, wings made of slices of calcined mice bread and
-    its tail that spits sparks, Sulfumouse is the terror of underground parking
-    lots and Linky counters. It emits a sharp gnashing when it flies, like a
-    dying modem cry. Its smell evokes a mixture of melted plastic and grated
-    cheese forgotten in a car in the middle of summer.
-
-    Some shlademonologists claim that he is able to trigger spontaneous fires
-    just by sneezing, and that he is drinking exclusively from warm Red Bull to
-    fuel his internal flames. Others say he would have tried to reach the sky
-    like a phoenix... but stopped halfway up to smoke a cigarette on a
-    streetlight.
-
-    Venerated by a sect of filthy rats, Sulfumouse is considered the God of the
-    Eternal Barbecue. It sometimes appears during extreme heat waves, gliding in
-    sweat above the roofs, and blinding incomprehensible prophecies by flashing
-    like a broken light.
-wem:
-  description: >-
-    Wem is dull, pataud, and deliberately useless. It is said that it was
-    created by mistake during a corrupt download of a clone on a 3D printer
-    powered by a kettle.
-
-    He doesn't fly, he doesn't float, he crawls gently squealing like a wet
-    shoe. Each cell in its body sweats mediocrity: its attacks fail at 60% of
-    the time, its powers are incompatible with all known systems, and even its
-    presence causes the Bluetooth speakers to drink.
-
-    His signature attack, *Rate Critique*, deals 0 damage but causes lasting
-    discomfort in the opponent. Wem has the unique power to cancel the
-    enthusiasm around him, and some trainers transport him only to neutralize
-    the encouragements of the opposing public.
-
-    We can't find him: he's the one who stays, by mistake, at the bottom of a
-    bag. His dream? Be ignored perfectly, like a wet cash ticket.
+components:
+  deck:
+    DeckDetail:
+      evolution: 'Evolution:'
+      level: lvl {n}
+    DeckList:
+      search: Search
+data:
+  shlagemons:
+    01-05:
+      fantomanus:
+        description: >-
+          Fantomanus is literally a... ass spirit. His body floats in the air,
+          surrounded by a very dubious purple fog, with traces and halos
+          everywhere. Where the other Shlagemons have a mouth, it is a real
+          bullet hole — in the proper sense. It communicates by making strange
+          sounds and spectral farts, while allowing a odor indescribable.
+
+          He likes to appear in public toilets, gym lockers or dubious sofas,
+          just for the pleasure of making fun. His specialty: attack *Gaz
+          Spectro-Anal*, a supernatural breath through his central orifice,
+          which haunts the soul and nostrils forever.
+
+          It is said that he dreams of achieving the perfection of the astral
+          prout, but he struggles to aim straight, even in the Hereafter.
+      jeunebelette:
+        description: >-
+          Jeunebelette spends her days jogging in the open fields, half buried,
+          earphones planted in the ears without music. Its yellow coat is rough
+          and sticky, like a poorly washed synthetic jacket. He digs, but
+          without real purpose, just to spend time.
+
+          He rarely attacks unless he feels that "it speaks badly". Its special
+          capacity *Banal Cape* inflicts medium damage but has a chance to cause
+          the state **Deep Flemme**. In general, Jeunebelette hangs around the
+          other Shalagemons to "see what's going on", without really
+          participating. He's here.
+
+          They say he could evolve if he finally found a real motivation. But
+          it's not for now.
+      rouxPasCool:
+        description: >-
+          Roux not Cool was once cool. Roux not Cool spent too much time
+          scratching minor chords at the edge of an extinct volcano. From now
+          on, Cool's not cool wanders with a guitar too big for his wings,
+          freckles crying, and a check shirt that smells wet grass and regrets.
+          His plumage took on a sad rust colour, and his red wick hides a
+          remorseful look, as if he constantly realized that he could have
+          evolved into a legendary raptor, but preferred to release an
+          independent EP. It's always a little cold around him, even in the
+          summer. Its signature capacity, Refrain Getting into trouble, inflicts
+          a deep discomfort on all the arena, reducing the accuracy of enemy
+          attacks as long as they turn their eyes away. He's very good at
+          driving wild Pokémons away... and dating.
+      sacdepates:
+        description: >-
+          Pasta bag is a living ball of entangled spaghetti, whose long strands
+          form a moving labyrinth. With two piercing eyes in the middle of his
+          pasta, he intimidates anyone who crosses his infernal gaze. His red
+          feet, smooth and glossy, allow him to ride at all speed on his
+          opponents, whom he crushes without mercy in an acute and diabolical
+          laughter. He spends his days painting himself thoroughly with a fine
+          comb, hoping one day to unravel the infinite knot that he has become.
+          It is said that the more tangled his spaghetti, the more formidable he
+          becomes. Talent: Fatal Node — When Sacdepates undergoes a physical
+          attack, he can wrap around the enemy to trap and immobilize.
+    05-10:
+      aspigros:
+        description: >-
+          Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle
+          affectueusement ses "paniers-repas". Son dard a disparu sous une
+          couche de gras douteux, remplacé par une fourchette plantée là "par
+          commodité".
+
+          Il est constamment en train de mâchouiller quelque chose : une
+          feuille, un emballage, un caillou, ou parfois un de ses propres
+          segments. Lorsqu’il attaque, il roule vers l’ennemi en gémissant de
+          plaisir, espérant qu’un snack se trouve en chemin.
+
+          Son attaque signature, *Miam-Massacre*, inflige des dégâts
+          proportionnels au nombre de snacks qu’il a ingérés dans les 5
+          dernières minutes. Il peut aussi utiliser *Éructo-Défensif*, une
+          attaque sonore à base de rots sucrés qui repoussent les ennemis
+          faibles d’estomac.
+
+          Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il
+          adore les pique-niques, les buffets de mariage et les sacs plastiques
+          qui font du bruit. En revanche, il fuit à la simple mention du mot
+          "diète", "protéines" ou "cure détox".
+
+          On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de
+          satiété, et à sa devise gravée sur son ventre : "Si ça rentre, c’est
+          que c’est bon."
+      chenipaon:
+        description: >-
+          Chenipaon est une larve flamboyante, fruit improbable d’une chenille
+          miteuse et d’un paon beaucoup trop narcissique. Il se déplace
+          lentement, en traînant derrière lui une traîne de plumes multicolores
+          qu’il a lui-même collées à la salive sur son dos mou. Ces plumes ne
+          servent à rien, sauf à faire des "claquettes dramatiques" quand il se
+          retourne brusquement.
+
+          Sa parade nuptiale est un désastre chorégraphique où il tourne sur
+          lui-même en hurlant "GRAAAAAAAH-PAOON", ce qui a pour effet de faire
+          fuir 90% des êtres vivants à proximité, y compris les pierres. Les
+          rares adversaires qui restent sont hypnotisés par la laideur
+          fascinante de sa danse, ce qui donne à Chenipaon un court avantage
+          stratégique.
+
+          Son cri officiel est enregistré dans les bases de données comme
+          *"KRRRR-païïïïïïïïïïïïïïïïïn"*, mais chaque spécimen semble inventer
+          le sien sur le moment, généralement accompagné d’un effet sonore de
+          flûte désaccordée et d’un éternuement humide.
+
+          Il possède l’attaque spéciale *Roule Par Terre Coloré*, qui inflige
+          des dégâts aléatoires et laisse des plumes toxiques sur le champ de
+          bataille. Il peut également utiliser *Faux Charisme*, qui augmente
+          brièvement son taux de critique en fonction du nombre de regards
+          consternés qu’il reçoit.
+      metamorve:
+        description: >-
+          Une masse de boue nauséabonde qui se traîne lentement. Là où il passe,
+          plus rien ne pousse à cause de sa toxicité. Il est fait d'une boue
+          toxique. Il pollue tout ce qu’il touche, même le sol devient stérile.
+          Il pue tellement que des gens s’évanouissent rien qu’en le croisant.
+          Son corps est un concentré de toxines.
+      ptitocard:
+        description: >-
+          Ptitocard est aussi fragile qu’une biscotte mouillée et aussi
+          expressif qu’un poisson-panique en pleine crise existentielle. Son
+          regard vide, humide et terriblement plaintif fait fondre les cœurs les
+          plus endurcis — ou les agace profondément, au choix. Il coule plus
+          qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une
+          crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est
+          tout son corps qui transpire la détresse. On pense qu’il est triste de
+          naissance, mais certains spécialistes évoquent une simple allergie à
+          la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel
+          chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10
+          secondes peut tomber dans un coma d’indifférence profonde. Ptitocard
+          rêve de devenir un grand champion... mais ne fait rien pour. On le
+          trouve souvent flottant à la surface des flaques, en train de se
+          demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.
+    10-15:
+      abraquemar:
+        description: >-
+          Abraquemar est adepte de la sieste transcendantale et de la fuite
+          passive-agressive. À la moindre interaction sociale, il disparaît dans
+          un nuage de poussière en marmonnant "j’te sens pas, j’me tire". Son
+          taux de fuite est de 100%, sauf s’il entend une discussion sur les
+          chakras ou les promos sur les tapis ethniques. On le trouve souvent
+          assis en tailleur, les yeux mi-ouverts, entre deux posters de
+          l’Univers collés avec du chewing-gum. Il porte toujours une capuche
+          trop grande et une écharpe mal nouée, et prétend être "entre deux
+          plans d’alignement stellaire". Sa capacité spéciale, *Téléportation du
+          Malaise*, permet d’échanger de place avec une poubelle proche. Il
+          possède aussi l’attaque *Sérénité Forcée*, qui fait baisser l’attaque
+          ennemie par culpabilité énergétique. Abraquemar évolue uniquement
+          quand il arrête de dire “j’ai pas envie de fight, moi je suis plus
+          dans la vibe.”
+      amoche:
+        description: >-
+          Amoche est une tentative ratée de serpent. Son corps est irrégulier,
+          cabossé, et son museau semble avoir été dessiné au marqueur par un
+          enfant triste. Sa peau terne évoque le plastique fondu, et il laisse
+          derrière lui une traînée légèrement gluante dont l’origine reste
+          floue. Amoche n’a pas conscience de sa propre mocheté, mais les autres
+          Shlagémons la ressentent physiquement, ce qui lui confère une présence
+          toxique passive. Son attaque *Regard Déformant* a une chance
+          d’infliger l’état Malaise. Il ne rampe pas, il traîne. Il n’effraie
+          pas, il gêne.
+      emboli:
+        description: >-
+          Emboli est survenue après un long séjour dans une cave mal ventilée.
+          Son pelage sent le tabac froid et la lassitude, et il émet en
+          permanence de petites volutes grisâtres, sans raison apparente. Il ne
+          se bat presque jamais. Il souffle. Lourdement. S’il attaque, c’est
+          généralement par accident, ou parce qu’on lui a demandé trop fort. Son
+          attaque signature, Soupir Toxique, inflige des dégâts progressifs à
+          l’adversaire et peut provoquer l’état Démotivation. En combat, il
+          préfère s’asseoir et regarder les autres se battre. Il est surtout là
+          "pour l’ambiance".
+      nosferailleur:
+        description: >-
+          Nosferailleur rôde entre les carcasses de machines à laver et les
+          palettes calcinées, planant au-dessus des déchetteries comme un
+          vautour sous méthamphétamines. C’est un hybride improbable entre une
+          chauve-souris épileptique et un vieux grille-pain soviétique.
+
+          Sa peau est constellée de morceaux de ferraille rouillée qu’il a
+          “empruntés” sur des scooters abandonnés, et ses ailes grincent à
+          chaque battement, produisant un son si strident qu’il peut arracher
+          les plombages. Il carbure à la fumée de cuivre brûlé et dévore les
+          câbles électriques comme des spaghettis.
+
+          Son attaque *Vent de Décharge* envoie une bourrasque tiède chargée de
+          particules métalliques, provoquant paralysie, migraines, et des
+          flashbacks de centre de tri. On le soupçonne aussi d’avoir siphonné
+          plusieurs transformateurs EDF.
+
+          Il niche dans les toitures en fibrociment et collectionne les boulons
+          comme des trésors. Certains dresseurs affirment qu’il peut apparaître
+          dans un vieux frigo si on le laisse trop longtemps branché dans un
+          squat.
+    15-20:
+      goubite:
+        description: >-
+          Goubite est difficile à regarder... et encore plus difficile à
+          oublier. Doté d’un corps long et rosâtre, légèrement bombé sur le
+          haut, il est souvent victime de malentendus anatomiques dans les
+          écoles de dresseurs. Pourtant, lui, il s’assume. Fier, droit, et
+          toujours un peu moite. Sa tête est cerclée d’une barbe flasque,
+          dégoulinante de sueur tiède, qu’il secoue parfois pour marquer son
+          territoire. Il sourit en permanence, d’un air satisfait qui met tout
+          le monde mal à l’aise, même les aveugles. Ses pieds sont fripés,
+          velus, et sentent la crevette oubliée dans une chaussette humide. Il
+          se déplace lentement en produisant un petit bruit mou et répétitif,
+          comparable à un bisou dont on ne veut pas. Sa capacité signature,
+          *Giclée Visqueuse*, inflige des dégâts modérés mais impose un malus
+          mental permanent à ceux qui en sont témoins. Certains affirment qu’il
+          peut aussi lancer *Barbe Emotive*, une attaque qui colle et qui sent
+          la salle de muscu humide. À ne pas confondre avec un objet sexuel.
+          Sauf si vraiment on est pressé de consulter.
+      nameouesh:
+        description: >-
+          Nanmeouesh passe ses journées à zoner devant la pharmacie en donnant
+          des diagnostics à voix haute, sans qu’on lui demande. Il prétend avoir
+          un diplôme "d’université de la street" et soigne surtout avec du sirop
+          de tonton. Il communique uniquement en "wesh", "t'as capté" et
+          "t’inquiète t’as rien". Malgré son allure nonchalante et ses lunettes
+          trop stylées pour le reste de son corps, il ressent les bobos
+          émotionnels mieux que n’importe quel Psy-type. Son attaque signature,
+          Check-up Relou, oblige tous les ennemis à écouter une consultation de
+          3 minutes avec bilan complet, ce qui peut causer Sommeil ou Confusion.
+      pikachiant:
+        description: >-
+          Pikachiant est capable de te saouler avant même de lancer une attaque.
+          Sa queue ressemble à une antenne de TNT tordue, et il émet des bips
+          stridents dès qu’il est contrarié. Il se décharge en permanence
+          (surtout en présence d’appareils électroniques de valeur), et son
+          attaque signature, *Charge Sociale*, provoque une gêne électrique dans
+          tout un rayon de 3 mètres.
+
+          Il vit généralement dans des squats connectés où il recharge ses
+          batteries avec des câbles USB volés dans les trains. Il pense que
+          TikTok est une source d’énergie et parle en onomatopées gênantes. À ne
+          pas confondre avec Pikachu, même si lui aussi finit souvent dans une
+          Poképrison pour tapage nocturne.
+      qulbudrogue:
+        description: >-
+          Qulbudrogué est connu pour son attitude détendue et sa démarche
+          nonchalante. Il donne l’impression d’être dans un état de réflexion
+          constante… ou complètement à l’ouest. Il se balade en sifflotant des
+          sons qu’il est probablement le seul à comprendre. On raconte qu’il
+          voit la vie en "slow motion" et qu’il communique avec les autres
+          Pokémon par télépathie — mais uniquement quand il en a envie,
+          c’est-à-dire rarement.
+    20-25:
+      cacanus:
+        description: >-
+          Cacanus is a flamboyant little dog whose obsession revolves around one
+          and only cardinal point: the anus.
+
+          Born in an alley next to a composting centre, he grew up developing a
+          strange passion for strong smells, suspicious friction, and everything
+          that comes out from behind. His nose is so thin that he can guess what
+          an enemy ate three days ago, just by flirting an empty chair.
+
+          He rarely attacks face to face: his combat style is centered on fecal
+          diversion. His attack *Jet de Glandes Anales* inflicted damage over
+          time and drastically reduced the dignity of the opponent. He can also
+          dig a small burrow called *Ass Tunnel*, in which he hides to prepare
+          low blows (literally).
+
+          It is said that when he is happy, he does not stir his tail: he offers
+          you as a gift, very dirty, very hot. He is the canine incarnation of
+          dubious humour and shameful pleasures.
+
+          His flair is legendary, but his mental hygiene is much less.
+      mystouffe:
+        description: >-
+          Mystuff is a Shlagémon covered with a tuft so vast, so dense, so
+          tufted, that we no longer really know where it starts or where it
+          ends. Its hairiness seems endowed with a clean life, shivering at the
+          slightest air current, and sometimes emitting plastic bag sounds.
+
+          He lives tapi in the corners of unsanitary apartments, between vented
+          cushions and piles of wet linen. Rumors say that he is home to smaller
+          creatures in his tuft... or even other Mystuffs.
+
+          He hates water, combs, and remarks about his hygiene. He attacks by
+          frantically shaking his fleece, releasing pea spores and electrostatic
+          hair.
+
+          His *Pollen de Touffe* attack is known to trigger chain sneezing
+          attacks in unprepared trainers. It is said that a particularly tufted
+          Mystoffe would one day have suffocated an industrial vacuum cleaner.
+
+          His tuft protects him from direct blows, but makes him slow and
+          unpredictable. His gaze remains a mystery: no one has ever seen him
+          under the hair.
+      plegique:
+        description: >-
+          Plégique is an ancient Paras that went wrong during a fall of compost.
+          Since then, he has been paraplegic — his two back legs no longer
+          respond, frozen in a strange position he calls "the yoga of the
+          ground". But far from falling, he crawls with the dignity of a
+          limestone worm, dragging behind him a trail of spores and crumbs of
+          wet bread.
+
+          His mushrooms, which became too heavy, forced him to move by rolling
+          on the side or by letting himself slide on boxes soaked. He did a kind
+          of exoskeleton in empty cans and pieces of Tupperware, but he often
+          forgets how it fits.
+
+          Plégique communicates with cliquetis of mandibles and absconsic
+          phrases of the genus "the chosen soil". He is convinced that his
+          condition is an evolutionary advantage, for "lower than earth, there
+          is than truth".
+
+          His attack *Spore Rampante* sleeps the enemy by releasing a damp
+          whistle at the ground level, while *Myco-Smoker*, his signature
+          capacity, slowly drains the lives of the enemies... and a little holds
+          her, emotionally.
+
+          He lives in forgotten Wi-Fi areas, glued against oozing walls. It is
+          said that it can survive several days without moving, simply absorbing
+          ambient humidity and negative thoughts. A real survivor... in his own
+          way.
+      ratonton:
+        description: >-
+          Ratonton est un vieux tonton en forme de rat mal rasé, expert en
+          mauvaise foi et en tir au fer. Il ne court pas, il trottine en râlant,
+          le bide en avant, sa moustache grise tremblotant au rythme de ses
+          ricanements. Il vit dans des campings à l’année et pense que la
+          pétanque est un art martial ancestral.
+
+          Toujours armé d’une boule cabossée et d’un verre de pastis tiède, il
+          attaque avec *Lancer de Boule Aléatoire*, qui a 50% de chances de
+          rater la cible mais 100% de chances de démolir une glaciaire
+          innocente. Son haleine est classée *toxique* dans certains pays, et sa
+          capacité passive, *Verre Dans Le Nez*, réduit sa précision mais
+          augmente son attaque à chaque toast.
+
+          Ratonton parle fort, dit toujours "t’as vu c’est technique hein" après
+          un échec, et se bat uniquement s’il a perdu à la belote. Il peut
+          également utiliser *Tontonade*, une attaque confuse qui consiste à
+          expliquer des règles inventées de pétanque tout en te bousculant
+          verbalement.
+
+          Il adore les coins d’ombre, les parasols Lidl, et les anecdotes
+          gênantes. Si on lui parle de retraite ou de régime, il se met à
+          ronfler de colère. Pourtant, malgré tout, il est fidèle. Et il sent le
+          Ricard à 8h du matin.
+    25-30:
+      grosmitoss:
+        description: >-
+          GrosMitoss est un concentré de poils, de mauvaise foi et de
+          fabulations. Son corps sphérique et pelucheux dissimule un cerveau
+          saturé de bobards : il prétend avoir battu un Nidodragqueen avec une
+          feuille de salade, connu Mewteub à l'école primaire, et participé à la
+          création de Shlagémon — rien que ça.
+
+          Il parle sans arrêt, même quand personne ne l’écoute, et chaque phrase
+          commence par "C’est vrai, j’te jure !". Les autres Shlagémons le
+          fuient, non pas pour ses attaques, mais pour sa capacité à déformer la
+          réalité à chaque mot.
+
+          Sa compétence spéciale, *Mythobluff*, embrouille l’adversaire en lui
+          faisant douter de tout — y compris de ses propres attaques. Il peut
+          aussi utiliser *Souffle de Pipeau*, un vent nauséabond qui sent fort
+          la mauvaise excuse et la clope froide.
+      piafsansbec:
+        description: >-
+          Piafsansbec est un Shlagémon maudit, né avec un potentiel de piaf...
+          mais sans l’accessoire principal : son bec. L’histoire raconte qu’il
+          aurait tenté de l’échanger contre un bonbon dans une brocante, ou
+          qu’il l’a simplement perdu en essayant d’ouvrir une canette de soda
+          trop gazeuse.
+
+          Depuis, il vit dans une forme de déni nasal : ses trous de nez
+          compensent tant bien que mal, mais chaque tentative de chant se solde
+          par un *FLUUUUIIII* humide et une grande solitude. Il communique avec
+          des coups d’aile frénétiques, des yeux tristes, et des dessins au sol
+          avec ses pattes crasseuses.
+
+          Il ne peut ni manger proprement, ni picorer, ni faire peur aux autres
+          oiseaux — il s’est même fait piquer sa graine par un Papi Suçon une
+          fois. Son attaque signature, *Claquement de Gorge*, consiste à faire
+          vibrer violemment sa trachée pour créer une onde sonore perturbante.
+          Il possède aussi *Regard Gênant*, qui inflige un malus de moral à
+          l’ennemi.
+
+          Sa capacité passive, *Silence Pesant*, fait baisser l’initiative des
+          adversaires en les mettant mal à l’aise.
+
+          Piafsansbec est souvent vu au bord des routes, essayant de siffler le
+          vent ou de grignoter des miettes qu’il finit par pousser du front, la
+          dignité en option. Mais dans son regard brille une chose rare… non, en
+          fait, non. Rien ne brille. C’est juste humide.
+      taupicouze:
+        description: >-
+          Taupicouze s’est improvisé infirmier de quartier après un stage de 3
+          semaines non validé dans un centre de désintox. Armé de seringues
+          douteuses et d’un stéthoscope qui sent la cave, il surgit sans
+          prévenir pour "faire une petite piqûre", souvent sans demander le
+          consentement.
+
+          Son problème ? Il ne trouve *jamais* la veine. Il plante, il retire,
+          il re-plante… et il jubile. Car derrière son sourire crispant, se
+          cache une âme légèrement sadique. Il adore les cris d’agonie, qu’il
+          interprète comme des encouragements.
+
+          Son attaque signature, *Tricouze Saignante*, inflige des dégâts
+          progressifs et désoriente l’ennemi avec une sensation de malaise
+          médical. Il peut aussi utiliser *Piqure Surprise*, qui a 30% de
+          chances de faire perdre connaissance à un Shlagémon... ou au dresseur.
+      waouff:
+        description: >-
+          Waouff est le fruit d’une expérience génétique ratée entre un chat
+          castré et un chien errant accro au pain mouillé. Ce Shlagémon aboie
+          sur tout ce qui bouge — ou pas — et court après sa propre ombre dès
+          qu’elle change d’orientation.
+
+          Il a un regard vide mais sincère, une langue toujours pendante, et
+          porte autour du cou un vieux collier GPS cassé qu’il lèche
+          compulsivement. Il tente souvent de mordre des roues de vélo, même en
+          combat, ce qui le rend imprévisible mais rarement utile.
+
+          Son attaque signature, *Croquette Mental*, inflige des dégâts
+          aléatoires en fonction de la météo, de la phase lunaire et de la
+          marque de la balle qu'on utilise. Il peut aussi utiliser *Aboyeur
+          Passif-Agressif*, qui inflige la confusion à tout le monde... y
+          compris à lui-même.
+    30-35:
+      canarchicon:
+        description: >-
+          Canarchicon est un cousin dégénéré du célèbre canard qu'on ne nommera
+          pas pour des raisons juridiques. Toujours armé de son poireau fatigué
+          (qu’il appelle tendrement “Jean-Chibre”), il chancelle d’un pas
+          bancal, probablement à cause de ses soirées passées à picoler du
+          bouillon cube fermenté. Son œil au beurre noir laisse deviner un mode
+          de vie instable, fait de bastons derrière des bennes à frites et de
+          paris perdus contre des Roucool. Il ne vole pas, il flotte à moitié —
+          sans réelle direction — au gré des vents et des vapeurs d’alcool de
+          cuisson. Sa capacité signature, *Coup de Poireau Tournoyant*, inflige
+          peu de dégâts mais une honte durable. Il peut aussi utiliser
+          *Flatulence de Gras*, une attaque à effet de zone olfactif.
+          Canarchichon n’a jamais gagné un seul combat, mais il persiste...
+          parce qu’il a oublié qu’il pouvait abandonner.
+      melofoutre:
+        description: >-
+          Mélofoutre est un petit être visqueux à l’apparence faussement
+          candide. Né dans une éprouvette d’amour non-consenti entre une étoile
+          filante et une chaussette oubliée sous un lit d'ado, il brille d’un
+          éclat douteux, oscillant entre le nacré et le gluant.
+
+          Sa voix flûtée fait vibrer l’air comme une vieille VHS de film
+          interdit, et sa capacité signature, *Berceuse Mouillée*, endort
+          l’ennemi sous un flot de soupirs gênants. Il peut aussi lancer *Giclée
+          Cosmique*, une attaque magique à la trajectoire imprévisible, qui
+          laisse des taches indélébiles sur l’estime de soi.
+
+          Mélofoutre ne cherche pas le combat, mais s’y retrouve souvent par
+          accident… ou par pulsion. Toujours collant, jamais touchant, il est
+          l’anti-héros des berceuses.
+      nidononbinaire-f:
+        description: >-
+          Nidononbinaire♀ a des cornes molles, un regard fixe, et une passion
+          pour les plantes en plastique. Iel n’est pas vraiment là pour se
+          battre, mais iel viendra quand même, avec ses fiches, son tote bag et
+          une vibe étrange.
+
+          Iel utilise souvent *Postillonnage Toxique*, une attaque à faible
+          portée mais dont les effets durent étonnamment longtemps. Iel s’entend
+          très bien avec les autres Shlagémons, surtout les moins bavards. En
+          zone sauvage, iel se poste près des bancs et observe… longtemps.
+          Peut-être trop longtemps.
+      nidononbinaire-m:
+        description: >-
+          Nidononbinaire♂ s’est longtemps cherché. Iel porte des pics mais
+          n’attaque jamais en premier. Iel adore les débats, surtout quand
+          personne n’en veut, et iel commence souvent ses phrases par
+          "techniquement". Iel se déplace avec une démarche hésitante mais
+          bruyante, comme quelqu’un qui n’a pas de destination, mais qui veut
+          quand même qu’on le remarque.
+
+          Sa capacité *Point-Virgule* inflige peu de dégâts mais perturbe
+          l’ordre d’attaque adverse en le rendant confus grammaticalement. Iel
+          est souvent vu en train de refaire son look dans les flaques d’eau,
+          persuadé que "l’esthétique, c’est déjà une stratégie".
+    35-40:
+      ferosang:
+        description: >-
+          Férosang est une créature hargneuse, incontrôlable, et surtout
+          passionnée par sa propre hémorragie. Il n’aime pas saigner : il *vit*
+          pour ça. Chaque plaie est pour lui un trophée, chaque croûte une
+          médaille. Il se cogne exprès les arcades contre des barres de skate,
+          se jette volontairement en roulant sur du gravier, et fait exprès de
+          rater ses tricks pour s’en coller une.
+
+          Il a déjà tenté de donner son sang, mais les médecins lui ont dit
+          qu’il n’en avait plus assez. "Trop de pertes, mon reuf", lui a lancé
+          l’infirmière en fixant son coton-tige déjà rouge avant la piqûre.
+          Depuis, il y retourne juste pour se faire piquer.
+
+          Férosang est recouvert de pansements douteux, de croûtes arrachées
+          trop tôt et de tatouages faits avec du stylo bic. Ses poings sont
+          constamment en sang, soit parce qu’il frappe, soit parce qu’il frappe
+          *mal*. On le voit souvent rire après s’être pris une droite dans le
+          nez par un lampadaire.
+
+          Son attaque signature, *Jet Hémato*, projette un arc de sang corrosif
+          et contaminé, qui inflige panique et malaise. Il possède aussi *Patate
+          Réflexe*, une attaque incontrôlable qui s’active à la moindre tape sur
+          l’épaule.
+      macho:
+        description: >-
+          Macho a absorbé trop de protéines... et de podcasts douteux. Musclé
+          comme un couvercle de poubelle et persuadé d’être irrésistible, il
+          passe son temps à faire des pompes, des clins d’œil et des blagues de
+          vestiaire à toute créature possédant deux chromosomes X.
+
+          Il parle fort, il sent fort, il pense fort — mais rarement bien. Sa
+          technique *Main au Cul* est redoutée non pas pour ses dégâts, mais
+          pour l’inconfort social qu’elle génère. Il dispose également de
+          l’attaque *Blague de Beauf*, qui inflige un malus d’intelligence à
+          toute l’arène pendant trois tours.
+
+          Quand il n’est pas en train de se prendre en selfie devant un miroir
+          cassé, il traîne en groupe avec d'autres Shlagémons virilistes, où ils
+          débattent intensément de "la vraie nature des femelles". Aucun débat
+          n’a encore abouti.
+
+          Il évolue parfois... en pire.
+      psykonaute:
+        description: >-
+          Psykonaute est l’évolution déviante de PsychoQuack, après qu’il ait
+          découvert les vertus du shit bon marché et des herbes douteuses
+          trouvées sous un banc de Lavanville. Depuis, il passe ses journées
+          avachi sur un vieux canapé, l’œil vide et le bec entrouvert, fixant un
+          écran qui ne capte plus aucune chaîne.
+
+          Il arbore un bob délavé floqué "420", des cernes interdimensionnelles
+          et un briquet qu’il appelle "son starter". On dit que ses pouvoirs psy
+          sont toujours là, mais qu’il les utilise uniquement pour faire léviter
+          ses cônes quand il a la flemme de les attraper.
+
+          Son attaque signature, *Chichon Cosmique*, enveloppe l’arène d’un
+          nuage dense et sucré, réduisant drastiquement la vitesse de tous les
+          adversaires. Il peut aussi lancer *Télécanapé*, qui l’empêche de
+          bouger pendant 5 tours mais lui rend toute sa vie mentale (ou
+          presque).
+      rondonichon:
+        description: >-
+          Rondonichon est une boule de poils disgracieuse et auto-satisfaite,
+          coincée quelque part entre un hamster de cantine et un sex-toy
+          défectueux. Il rebondit sans arrêt sur ses deux gros tétons, qu’il
+          utilise comme ressorts, et laisse derrière lui une traînée de bave et
+          d’inconfort.
+
+          Né d’un croisement douteux avec une peluche retrouvée dans un
+          vide-ordures, il chante des berceuses de PMU et rote sur l’intro. Son
+          attaque *Ballon-Mamelon* fait jaillir un lait tiède dont l’odeur
+          provoque des confusions massives, même chez les Shlagémons rouillés.
+
+          Il adore s’incruster dans les sacs des dresseurs pour “y faire sa
+          sieste”, mais finit toujours par s’y reproduire à l’insu de tous. On
+          dit qu’un seul Rondonichon peut contaminer une Shlagéball pour
+          toujours.
+
+          Ne pas le caresser. Jamais.
+    40-45:
+      chetibranle:
+        description: >-
+          Chétibranle est un Shlagémon réputé pour sa capacité à s’occuper de
+          lui-même avec une assiduité déconcertante. Amateur de plaisirs
+          discrets, il aime s’isoler dans des coins humides pour se consacrer à
+          l’art d’absorber tout ce qui passe à portée de sa tige. Certains
+          chercheurs affirment qu’il est capable d’aspirer la moindre goutte
+          d’énergie ambiante, ne laissant rien lui échapper, même dans les
+          moments les plus solitaires.
+
+          Sa technique favorite, *Pompage Introspectif*, consiste à canaliser
+          toutes ses forces vers l’intérieur pour un plaisir personnel rarement
+          égalé dans la faune des shlagémons. D’aucuns racontent qu’après ses
+          longues séances d’absorption, il semble toujours un peu vidé, mais
+          paradoxalement plus rayonnant que jamais.
+
+          On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser,
+          mais il laisse toujours derrière lui une étrange atmosphère… moite et
+          contemplative.
+      raboloss:
+        description: >-
+          Raboloss erre lentement dans la cour de récré, traînant ses baskets
+          trouées et son jogging trop grand qu'il a récupéré dans un carton
+          discount. Sa fourrure autrefois rose est devenue terne, mouchetée de
+          taches douteuses et de pellicules. Toujours l'air un peu perdu, il
+          garde les yeux rivés au sol, espérant qu'on ne le remarque pas... mais
+          évidemment, il attire tous les regards, surtout ceux des autres
+          shlagémons qui le prennent pour cible.
+
+          Avec son expression de poisson-panique et son vieux sac à dos déchiré,
+          il traîne une réputation de boloss ultime. Personne ne connaît la
+          véritable couleur de son pull (il l’a hérité de 3 générations de
+          schlags), et sa coiffure rappelle les matins pluvieux où l’on préfère
+          rester sous la couette.
+
+          Son attaque signature, *Gros Lancer de Cartable*, consiste à balancer
+          son sac (qui sent la cantine froide et la misère) sur ses adversaires,
+          infligeant confusion et gêne sociale.
+
+          On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir
+          populaire... ou au moins d’avoir un goûter entier pour lui tout seul.
+      racaillou:
+        description: >-
+          Racaillou traîne toute la journée affalé contre un muret tagué, les
+          bras ballants, le regard vitreux sous sa casquette trop grande. Son
+          corps, vaguement rocailleux, est constellé de mégots incrustés et de
+          petits sachets douteux. Sa peau grise est couverte de graffitis, et on
+          dirait qu'il a essayé de cacher ses cernes avec des stickers Panini.
+
+          Sa gueule affiche en permanence un sourire narquois, trois dents en
+          or, et un air de te tester pour rien. Il propose aux autres Shlagémons
+          de la “bonne verte” en marmonnant, tout en gardant une main dans sa
+          banane Lacoste déchirée.
+
+          **Attaque signature :** *Émanation douteuse* — Racaillou relâche un
+          nuage de fumée nauséabonde qui fait planer tout le monde dans un rayon
+          de 2 mètres, embrouillant les esprits et ralentissant les adversaires.
+
+          On raconte qu'il ne se déplace jamais sans sa bande de Gravashlag,
+          toujours prêts à lui fournir un briquet ou à jeter un caillou sur un
+          dresseur trop curieux.
+      tatacool:
+        description: >-
+          Tatacool traîne dans les flaques d’eau croupie derrière les zones
+          industrielles, en rêvant de sa jeunesse où il barbotait dans la
+          piscine municipale. Son corps gélatineux a viré au gris-bleu délavé,
+          constellé de taches de rouille et d’algues collées. Ses deux "joyaux"
+          emblématiques sont désormais des boules de naphtaline fendues,
+          ternies, dont sortent parfois des bulles douteuses.
+
+          Ses tentacules sont tout mous, comme s’il avait passé trois semaines à
+          tremper dans l’eau de vaisselle. Il a des cernes violets sous ses
+          petits yeux hagards, et son regard alterne entre le vide total et une
+          suspicion inexplicable. Il se tient à moitié vautré, comme s’il venait
+          de glisser sur une moule.
+
+          Son attaque signature, *Jet de Morve Aquatique*, asperge l’adversaire
+          d’un mélange visqueux d’eau sale et de morve verte, qui colle pendant
+          des heures. Certains disent qu’il peut aussi faire “Bulle à Pisse”
+          dans les grandes occasions, mais personne ne veut vérifier.
+
+          On raconte que Tatacool collectionne les bouchons de bière et les
+          vieux tickets de bus échoués dans son eau, persuadé que ça porte
+          chance.
+    45-50:
+      dosolo:
+        description: >-
+          Dosolo, l’autruche la plus triste de la région, erre dans les terrains
+          vagues, tête basse et plumes en bataille. Il n’a littéralement aucun
+          ami, même les pigeons l’ignorent. Son plumage, censé être doux et
+          aéré, est tout terne, piqué de miettes de pain et de chewing-gums
+          séchés.
+
+          Il se gratte la tête d’un air perdu, l’air de se demander ce qu’il
+          fout là. Son unique crête est aplatie, comme son moral, et il laisse
+          derrière lui des traces de larmes poussiéreuses dans la boue.
+
+          Son attaque signature, *Coup d’Blues*, plonge l’adversaire dans un
+          désespoir existentiel qui lui fait perdre un tour.
+
+          On raconte qu’il tente souvent de parler à son ombre, mais même elle a
+          fini par se barrer.
+      magnubellule:
+        description: >-
+          Créature née d’une collision entre un vieux canette aimantée et une
+          libellule qui a trop traîné près des flaques de bière tiède,
+          Magnubellule flotte au-dessus des caniveaux et des parkings
+          d’hypermarchés.
+
+          Son corps métallique est cabossé, orné d’antennes tordues et d’ailes
+          translucides qui vibrent avec le bruit d’une mobylette qui cale.
+
+          Sa couleur : un gris terne tacheté de jaune pisse, comme une canette
+          de 8.6 oubliée au soleil.
+
+          Magnubellule plane avec un regard hagard, souvent perché, prêt à
+          déblatérer des chiffres mystérieux.
+
+          Son attaque signature, *Brise-Canette*, projette un jet mousseux et
+          tiède, laissant ses adversaires confus — entre 8 souvenirs égarés et 6
+          excuses bancales.
+
+          On raconte que chaque fois que Magnubellule passe en rase-motte, il
+          laisse derrière lui une énigme de la loose et une odeur de festival
+          terminé depuis trois semaines.
+      otamere:
+        description: >-
+          Otamère est la honte de la banquise. Dégoulinant de flotte, il passe
+          ses journées vautré sur des glaçons fondus, la langue pendante, le
+          regard perdu dans le vide. Son pelage, autrefois blanc, est devenu
+          gris-jaune à force de se rouler dans la crasse et de sniffer les
+          flaques douteuses du port.
+
+          Son attaque signature, *Jet de Morve Polaire*, consiste à éternuer un
+          glaçon baveux sur ses adversaires, ce qui leur colle un rhume pour
+          trois semaines. On raconte qu’Otamère est interdit de piscine
+          municipale depuis un incident impliquant une bouée percée et un lot de
+          frites en mousse moisis.
+
+          Personne n’a jamais vu Otamère sobre. Il aurait soi-disant un tatouage
+          “MAMAN” sous une nageoire, mais personne n’ose vérifier.
+      pouleyta:
+        description: >-
+          Pouleyta ressemble à un poney, mais c’est surtout un poulet sur pattes
+          dont les plumes ont pris feu il y a bien trop longtemps. Son crin est
+          constitué de plumes calcinées, mêlées de mégots et de miettes de
+          chips. Il boite légèrement, sent le graillon, et laisse derrière lui
+          une odeur persistante de barbecue foiré.
+
+          Son attaque signature, *Flamme Panée*, consiste à se rouler dans la
+          chapelure avant de charger ses adversaires, laissant des traces de
+          graisse sur le terrain. On raconte que Pouleyta attire les chiens
+          errants et les supporters bourrés lors des fêtes de village.
+
+          Malgré son allure, il rêve secrètement d'être la mascotte d’un
+          fast-food discount.
+    50-55:
+      cookieyas:
+        description: >-
+          Cookieyas ressemble à un Kokiyas qui aurait fusionné avec un vieux
+          cookie tombé derrière le micro-ondes. Son coquillage est à moitié
+          remplacé par une pâte brisée, toute molle et couverte de miettes
+          douteuses. Il a des éclats de chocolat en guise de dents et des
+          pépites incrustées jusque dans ses yeux globuleux, toujours à moitié
+          fermés par la fatigue.
+
+          Sa couleur varie entre le brun cramé et le beige sec, avec parfois des
+          taches de lait caillé ou de confiture séchée sur la carapace. Son
+          expression est un mélange de flemme totale et de suspicion envers
+          quiconque s'approche trop près de "son coin de cuisine".
+
+          Attitude générale : Cookieyas passe sa vie vautré dans les miettes,
+          grognant quand on tente de le déloger, et se déplace en laissant une
+          traînée collante derrière lui. Son attaque signature, *Jet de Lait
+          Passé*, consiste à cracher un jet de lait périmé sur ses adversaires,
+          infligeant des dégâts collants et une honte olfactive intense.
+
+          On raconte que Cookieyas ne rêve que d’une chose : qu’on le laisse
+          tranquille pour finir sa sieste au chaud derrière la cafetière. Mais
+          gare à celui qui essaie de le grignoter : il mord, et c’est sec !
+      marginal:
+        description: >-
+          Marginal passe son temps à jongler sur une corde raide tout en jouant
+          du diabolo. Il fait la manche dans les ports en espérant qu'on lui
+          lance autre chose que des tomates.
+      tadsperm:
+        description: >-
+          Tadsperm est un tas visqueux au teint douteux, oscillant entre le gris
+          laiteux et le beige maladif. Son corps dégouline de gouttes épaisses
+          qui s’échappent en permanence, laissant derrière lui des traces
+          suspectes et gluantes. Son sourire est béat, l’œil mi-clos, l’air
+          totalement détaché du monde extérieur.
+
+          Sa principale occupation : s’isoler dans des coins sombres pour
+          savourer les plaisirs les plus solitaires de la vie. Son attaque
+          signature, *Jet Spontané*, consiste à projeter une gerbe collante et
+          opaque qui ralentit et colle l’adversaire sur place.
+
+          On raconte qu’il passe plus de temps à “méditer” qu’à se battre.
+          Certains dresseurs disent avoir glissé dessus dans les vestiaires…
+    55-60:
+      amonichiasse:
+        description: >-
+          Ce mollusque fossilisé traîne une coquille couverte de taches
+          douteuses. Il dégage une odeur de cave humide et de gastro chronique.
+      kraputo:
+        description: >-
+          Ce crabe éraflé se cache sous un casque cassé et offre ses pinces au
+          plus offrant. Il raffole des fonds de verre et des pièces rouillées.
+      pauvreetcon:
+        description: >-
+          Pauvreetcon est un amas de polygones bancals issu d’un bug
+          informatique. Il flotte maladroitement en cherchant sa connexion Wi-Fi
+          et affiche de temps en temps un écran bleu en guise de cri.
+      ptitrat:
+        description: >-
+          Ancien régne fossile au museau pointu, Ptitrat se prend pour un
+          rongeur volant. Sa peau grisâtre s’effrite un peu plus à chaque
+          battement d’aile.
+    60-65:
+      carreflex:
+        description: >-
+          Carreflex is a blocky giant that often sleeps in the middle of the
+          road. Its cubic shape can block even trucks.
+    65-70:
+      minidrapcon:
+        description: >-
+          Petit serpent drapé et un peu demeuré, il se prend souvent les
+          crochets dans ses propres replis.
+    70-75:
+      krabbyjaccob:
+        description: >-
+          Ce crustacé porte une petite kippa et danse sans arrêt comme dans le
+          vieux film dont il est fan. Entre deux blagues douteuses, il pince
+          tout ce qui traîne pour vérifier si c'est cashèr.
+      onixtamere:
+        description: >-
+          Onixtamere est un gigantesque serpent de pierre qui se prend pour le
+          roi des beaux-pères. Il parade au milieu des canyons en vantant ses
+          conquêtes de mamans comme d’autres collectionnent les cailloux. Son
+          corps segmenté résonne à chaque mouvement, histoire d’annoncer son
+          arrivée bien avant qu’il ouvre la bouche.
+      soporifiak:
+        description: >-
+          Soporifiak roupille partout où il passe et son postérieur
+          disproportionné lui sert d’oreiller improvisé. Il charme les passants
+          en promettant des siestes miraculeuses avant de s’endormir lui-même en
+          plein milieu de la conversation.
+      voltamere:
+        description: >-
+          Voltamère ressemble à une vieille daronne déguisée en boule. Il vole
+          tout ce qui brille pour l'empiler dans son sac à main imaginaire. Gare
+          à la décharge statique quand il te fouille les poches !
+    75-80:
+      chignon:
+        description: >-
+          Toujours tiré à quatre épingles, Chignon se bat avec des attaques de
+          coiffure redoutables. Il lance ses épingles comme des shurikens et
+          s'arrange pour que tout le monde admire sa queue-de-cheval.
+      dentlait:
+        description: >-
+          Dentlait has a single tooth that could fall out at any time. It guards
+          it jealously and bites everything to prove it's still there.
+      huithuit:
+        description: >-
+          Formé de deux chiffres huit tout collés, Huithuit adore faire des
+          blagues sur les œufs. Il se dandine maladroitement et déclenche
+          parfois des visions psychédéliques chez ceux qui le regardent trop
+          longtemps.
+      kistlee:
+        description: >-
+          Kistlee possède un énorme kyste qui sert autant d'arme que de chaise.
+          Il frappe ses ennemis à coups de pied tout en se plaignant que ça tire
+          un peu.
+    80-85:
+      languedepute:
+        description: >-
+          Sa langue interminable traîne partout et sert principalement à médire.
+          Il aime critiquer ses adversaires jusqu'à ce qu'ils abandonnent par
+          lassitude.
+      lecocu:
+        description: >-
+          Lecocu porte toujours un air triste : sa femme le trompe avec tous les
+          dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres
+          avec une gentillesse déconcertante.
+      rhinofaringite:
+        description: >-
+          Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez
+          coule en permanence, ce qui le rend aussi glissant qu'imprévisible.
+      smongol:
+        description: >-
+          Smongol flotte dans une brume toxique et regarde le vide d'un air
+          hébété. Il ne comprend pas grand-chose, mais il adore exploser quand
+          on le secoue trop.
+    85-90:
+      hypotrompe:
+        description: >-
+          Petit hippocampe distrait, Hypotrompe se trompe constamment de
+          direction. Sa trompe démesurée lui sert à aspirer tout ce qui passe, y
+          compris des objets qui n'auraient jamais dû finir dans un estomac.
+      kandurex:
+        description: >-
+          Toujours équipé de préservatifs fluo, Kandurex vante ses prouesses au
+          lit à qui veut l'entendre. Il distribue des conseils douteux sur la
+          reproduction entre deux uppercuts.
+      poissocisse:
+        description: >-
+          Poissocisse se nourrit exclusivement de saucisses. Son odeur
+          charcutière attire chiens et dresseurs affamés, ce qui le rend
+          paradoxalement difficile à pêcher.
+      strabisme:
+        description: >-
+          Ses yeux partent chacun dans une direction différente, ce qui
+          déstabilise ses adversaires. Il brille d'une lueur aquatique quand on
+          lui parle de vacances au bord de la mer.
+    90-95:
+      elektektonik:
+        description: >-
+          Toujours en train de danser la tecktonik, il électrise l'air autour de
+          lui. Ses mouvements saccadés déclenchent de petites décharges qui font
+          sauter les plombs partout où il passe.
+      insinerateur:
+        description: >-
+          Armé de lames insectes, il a surtout envie de mettre le feu à tout ce
+          qui bouge. Sa passion pour la combustion le rend particulièrement
+          dangereux dans les forêts.
+      lipposucsion:
+        description: >-
+          Après une liposuccion ratée, ce Shlagémon a la peau toute fripée et un
+          tempérament glacial. Il embrasse ses ennemis pour les geler sur place
+          avant de se plaindre de ses kilos en trop.
+      m-ventriloque:
+        description: >-
+          C'est le sosie raté d'un célèbre humoriste et il passe son temps à
+          discuter avec sa propre main. Ses tours de ventriloquie mettent mal à
+          l'aise plus qu'ils ne font rire.
+    95-100:
+      lokhlash:
+        description: >-
+          Lokhlash adore participer à des battles de rap improvisées sur son
+          dos. Il navigue de scène en scène, lâchant des punchlines glaciales
+          qui font frissonner l'auditoire.
+      magmaretfred:
+        description: >-
+          Magmar&Fred imagines battling alongside a missing partner, spewing
+          flames while telling questionable jokes. He heats things up but
+          usually ends up alone on stage.
+      scarapute:
+        description: >-
+          Cet insecte adore sucer le sang des voyageurs imprudents. On le voit
+          souvent roder près des campings à la recherche d'un mollet juteux.
+      taurus:
+        description: >-
+          Taurus est littéralement un taureau géométrique. Ses angles parfaits
+          le rendent difficile à approcher sans se prendre une arrête dans les
+          côtes.
+    artichaud:
+      description: >-
+        Artichaud is a legendary Shlagémon that symbolizes the ultimate paradox:
+        being cold by sweating. Born of a thermal shock between a broken cooler
+        and a forgotten fryer, it wanders in industrial wasteland, covered with
+        frost and sweat drops at the same time. His wings in freezer feathers
+        diffuse a glacial mist, but he always wears a tempered Marcel and a
+        bologna hat.
+
+        It is said that he is able to trigger lukewarm snowstorms, and that he
+        melts as soon as he gets angry — before refiling within the next minute.
+        Witnesses would have seen him warming up next to a fire... which he
+        himself iced. He speaks by blowing hot water, and leaves behind him a
+        trail of wet stains and smells of warm soup.
+
+        Formerly venerated as the Guardian of the Sacred Microwave, he would
+        have been banished from the kingdom of noble Shalagemons for trying to
+        cook frozen ravioli... without removing the metallic operculum.
+
+        Today, Artichaud watches over areas of climate law, where he imposes his
+        moist and refrigerated reign, between two smoking sneezes and frostbite.
+    bulgrosboule:
+      description: >-
+        Bulgrosboule is known for its titanic buttocks able to overshadow the
+        sunset. It moves backwards, more out of pride than out of strategy,
+        letting escape perfumed bubbles of an area that trainers prefer not to
+        mention. His cry looks like a foaming bath under pressure, and his
+        signature capacity, *Fessal eruption*, propels his enemies into a warm
+        and sticky mist. Equipped with a bouncing skin like an inflatable
+        brocante pool, he loves to bounce back on the spot, which disorients
+        most opponents. Bulgrosboule is very affectionate, especially with those
+        who massage him. Note however: if he starts to tremble, it is too late.
+        He's gonna bubble.
+    carapouffe:
+      description: >-
+        Carapuffe plunged into her own soft shell, moving only slowly, leaving
+        behind a trail of glitter and molten gloss. Her make-up constantly
+        degulfs, forming an impenetrable protective layer — scientists call it
+        "dark armor". Equipped with a half-believing, half-comatious look, she
+        hypnotizes her adversaries by throwing flabby eyeslades, accompanied by
+        a sigh of cosmic fatigue. She spends her days recoiling without moving
+        her head, thanks to a complex system of brushes hidden in her bun. His
+        voice is raucous, his perfume is toxic, and his main attack, "Mossing
+        Crushing", is to collapse violently on his enemy by slamming his false
+        nails.
+    electhordu:
+      description: >-
+        Electhordu is a legendary Shalagemon born of a transformer broken during
+        a wild rave in the rain. Struck by lightning 347 times (volunteerly), it
+        came out shaken as never, with the beak of cross, the feathers hedged
+        for life, and a look that never fixes in the same direction.
+
+        His cry, close to an old neon sizzling, disturbs the radio waves for
+        miles around. He flies in zigzag, often backwards, and electrocutes
+        himself to stay awake. Its plumage consists of bare cables and stolen TV
+        antennas. Some say that he always wears a multiprise around his neck to
+        recharge his hatred.
+
+        Electhordu has no sense of direction or social limits. He disembarks
+        without warning in disused industrial areas, where he rubs his plumage
+        against the pylons to make sparks of love. Each wing beat causes surges,
+        elevator failures, and panic alarms.
+
+        According to the shlagémonologists, Electhordu was once the guardian of
+        the Original Runner, a sacred energy that had to balance the world...
+        but he confused the sacred circuit breaker with a fryer and burned
+        everything.
+
+        Today, he wanders, twisted from beak to voltage, speaking alone in
+        electrical wires, and sowing static chaos in his wake. It is both
+        feared, mocked, and connected to 12,000 volts permanently.
+    mewteub:
+      description: >-
+        Mewteub is born from a genetic bug between an HDMI socket and an
+        anxiolytic cosmic entity. It is murmured that it would have been cloned
+        from an old peritel cable fallen into a basin of Monster Energy. It
+        floats constantly, but without elegance — rather like a sock in a
+        jacuzzi. Its translucent body suggests a venous network that flashes at
+        the rhythm of a 56k modem. It emits telepathic sounds, all more
+        embarrassing than each other: sighs, questionable "hmm" and sometimes
+        extracts from MSN discussions of 2003. He communicates mainly by
+        vibration of psychic dick, which greatly disturbs other Shalagemons —
+        and unaccompanied children. Its special capacity, *Onde Malaise*,
+        freezes the opponent in an abyssal discomfort for several laps. It's
+        said to be flashbacks of awkward evenings in a provincial club.
+
+        Mewteub is rare. Too rare. And frankly, it might be better that way.
+    salamiches:
+      salamiches:
+        name: Salamiches
+        description: >
+          Salamiches burns with the weak flame of an empty lighter. Always
+          shirtless, he records himself spitting sparks on trash cans. His
+          special ability, *Ego Fire*, boosts his power whenever people boo him.
+          Loyal unless offered a free kebab or a sale at the auto shop.
+    sulfusouris:
+      description: >-
+        Sulfumouse is a legendary Shalagemon born of a short circuit in an
+        abandoned microwave oven. According to legend, a colony of mice tried to
+        build a nest in a toaster, and only one of them would have survived...
+        charred, but awakened to a fiery power. It has risen in flames, more
+        determined than ever to burn everything that moves — especially
+        electrical cables.
+
+        With its dusty hair coat, wings made of slices of calcined mice bread
+        and its tail that spits sparks, Sulfumouse is the terror of underground
+        parking lots and Linky counters. It emits a sharp gnashing when it
+        flies, like a dying modem cry. Its smell evokes a mixture of melted
+        plastic and grated cheese forgotten in a car in the middle of summer.
+
+        Some shlademonologists claim that he is able to trigger spontaneous
+        fires just by sneezing, and that he is drinking exclusively from warm
+        Red Bull to fuel his internal flames. Others say he would have tried to
+        reach the sky like a phoenix... but stopped halfway up to smoke a
+        cigarette on a streetlight.
+
+        Venerated by a sect of filthy rats, Sulfumouse is considered the God of
+        the Eternal Barbecue. It sometimes appears during extreme heat waves,
+        gliding in sweat above the roofs, and blinding incomprehensible
+        prophecies by flashing like a broken light.
+    wem:
+      description: >-
+        Wem is dull, pataud, and deliberately useless. It is said that it was
+        created by mistake during a corrupt download of a clone on a 3D printer
+        powered by a kettle.
+
+        He doesn't fly, he doesn't float, he crawls gently squealing like a wet
+        shoe. Each cell in its body sweats mediocrity: its attacks fail at 60%
+        of the time, its powers are incompatible with all known systems, and
+        even its presence causes the Bluetooth speakers to drink.
+
+        His signature attack, *Rate Critique*, deals 0 damage but causes lasting
+        discomfort in the opponent. Wem has the unique power to cancel the
+        enthusiasm around him, and some trainers transport him only to
+        neutralize the encouragements of the opposing public.
+
+        We can't find him: he's the one who stays, by mistake, at the bottom of
+        a bag. His dream? Be ignored perfectly, like a wet cash ticket.
+pages:
+  indexPage:
+    title: Shlagemon
+    description: A parody of Pokémon with crazy creatures
+    welcome: Welcome to Shlagemon
+  shlagedexPage:
+    title: Shlage Deck

@@ -1,5 +1,8 @@
-carreflex:
-  en:
-    description: Carreflex is a blocky giant that often sleeps in the middle of the road. Its cubic shape can block even trucks.
-  fr:
-    description: Carréflex est un colosse tout en angles qui dort généralement en plein milieu de la route. Sa forme cubique lui permet de bloquer même les camions.
+en:
+  description: >-
+    Carreflex is a blocky giant that often sleeps in the middle of the road. Its
+    cubic shape can block even trucks.
+fr:
+  description: >-
+    Carréflex est un colosse tout en angles qui dort généralement en plein
+    milieu de la route. Sa forme cubique lui permet de bloquer même les camions.

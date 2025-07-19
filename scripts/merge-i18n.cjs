@@ -32,6 +32,15 @@ function merge(target, source) {
   return target
 }
 
+function ensurePath(obj, segments) {
+  let curr = obj
+  for (const seg of segments) {
+    curr[seg] = curr[seg] || {}
+    curr = curr[seg]
+  }
+  return curr
+}
+
 const translations = {}
 const supportedLangs = ['en', 'fr']
 
@@ -41,13 +50,17 @@ for (const dir of baseDirs) {
   const files = walk(dir)
   for (const file of files) {
     const content = yaml.load(fs.readFileSync(file, 'utf8'))
-    const rootKey = Object.keys(content)[0]
-    const langs = content[rootKey]
-    for (const lang of Object.keys(langs)) {
+    if (!content)
+      continue
+    const relative = path.relative(path.join(__dirname, '../src'), file)
+      .replace(/\.i18n\.yml$/, '')
+    const segments = relative.split(path.sep)
+    for (const lang of Object.keys(content)) {
       if (!supportedLangs.includes(lang))
         continue
       translations[lang] = translations[lang] || {}
-      translations[lang][rootKey] = merge(translations[lang][rootKey] || {}, langs[lang])
+      const target = ensurePath(translations[lang], segments)
+      merge(target, content[lang])
     }
   }
 }

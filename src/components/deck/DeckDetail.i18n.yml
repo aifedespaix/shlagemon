@@ -1,7 +1,6 @@
-deckDetail:
-  fr:
-    evolution: 'Évolution :'
-    level: 'lvl {n}'
-  en:
-    evolution: 'Evolution:'
-    level: 'lvl {n}'
+fr:
+  evolution: 'Évolution :'
+  level: lvl {n}
+en:
+  evolution: 'Evolution:'
+  level: lvl {n}
