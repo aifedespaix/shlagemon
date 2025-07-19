@@ -33,6 +33,7 @@ function merge(target, source) {
 }
 
 const translations = {}
+const supportedLangs = ['en', 'fr']
 
 for (const dir of baseDirs) {
   if (!fs.existsSync(dir))
@@ -43,6 +44,8 @@ for (const dir of baseDirs) {
     const rootKey = Object.keys(content)[0]
     const langs = content[rootKey]
     for (const lang of Object.keys(langs)) {
+      if (!supportedLangs.includes(lang))
+        continue
       translations[lang] = translations[lang] || {}
       translations[lang][rootKey] = merge(translations[lang][rootKey] || {}, langs[lang])
     }
@@ -50,14 +53,16 @@ for (const dir of baseDirs) {
 }
 
 const inputDir = path.join(__dirname, '../locales')
-const outputDir = path.join(__dirname, '../src/locales')
-if (!fs.existsSync(outputDir))
-  fs.mkdirSync(outputDir)
+const outputDir = inputDir
 
 for (const file of fs.readdirSync(inputDir)) {
   if (!file.endsWith('.yml'))
     continue
   const lang = path.basename(file, '.yml')
+  if (!supportedLangs.includes(lang)) {
+    fs.rmSync(path.join(inputDir, file))
+    continue
+  }
   const base = yaml.load(fs.readFileSync(path.join(inputDir, file), 'utf8')) || {}
   const merged = merge(base, translations[lang] || {})
   fs.writeFileSync(path.join(outputDir, file), yaml.dump(merged, { lineWidth: 0 }))
