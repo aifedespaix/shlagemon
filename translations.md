@@ -125,14 +125,14 @@ languages.forEach((lang) => {
     Object.assign(mergedTranslations, content)
   })
 
-  fs.writeFileSync(`./src/locales/${lang}.yml`, yaml.dump(mergedTranslations))
+  fs.writeFileSync(`./locales/${lang}.yml`, yaml.dump(mergedTranslations))
 })
 ```
 
-Exécutez automatiquement à chaque build ou manuellement avec PNPM :
+Exécutez le script manuellement avec PNPM :
 
 ```sh
-pnpm node scripts/merge-i18n.cjs
+pnpm run i18n
 ```
 
 ---
