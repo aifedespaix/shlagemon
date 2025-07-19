@@ -41,6 +41,13 @@ const availableCategories = computed(() =>
   ),
 )
 
+watch(availableCategories, (cats) => {
+  if (!cats.length)
+    filter.category = 'all'
+  else if (!cats.some(c => c.value === filter.category))
+    filter.category = cats[0].value
+}, { immediate: true })
+
 const highlightCategories = computed(() => {
   const map = {
     actif: false,
@@ -130,7 +137,7 @@ function onUse(item: Item) {
       />
       <UiSearchInput v-model="filter.search" class="flex-1" />
       <UiTabBar
-        v-if="availableCategories.length > 1"
+        v-if="availableCategories.length > 0"
         v-model="filter.category"
         :options="categoryTabs"
         :colors="tabColors"
