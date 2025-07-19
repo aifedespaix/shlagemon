@@ -17,6 +17,10 @@ export interface Egg {
 export const useEggStore = defineStore('egg', () => {
   const incubator = ref<Egg | null>(null)
   const dex = useShlagedexStore()
+  const now = ref(Date.now())
+  setInterval(() => {
+    now.value = Date.now()
+  }, 1000)
 
   function startIncubation(type: EggType, duration = 60_000) {
     if (incubator.value)
@@ -27,7 +31,7 @@ export const useEggStore = defineStore('egg', () => {
   }
 
   const isReady = computed(() =>
-    incubator.value ? incubator.value.hatchesAt <= Date.now() : false,
+    incubator.value ? incubator.value.hatchesAt <= now.value : false,
   )
 
   function hatchEgg() {
