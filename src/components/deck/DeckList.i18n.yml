@@ -1,5 +1,4 @@
-deckList:
-  fr:
-    search: Rechercher
-  en:
-    search: Search
+fr:
+  search: Rechercher
+en:
+  search: Search

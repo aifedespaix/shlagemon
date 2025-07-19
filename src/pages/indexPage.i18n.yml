@@ -1,9 +1,8 @@
-indexPage:
-  fr:
-    title: Shlagémon
-    description: Parodie de Pokémon avec des créatures loufoques
-    welcome: Bienvenue dans Shlagémon
-  en:
-    title: Shlagemon
-    description: A parody of Pokémon with crazy creatures
-    welcome: Welcome to Shlagemon
+fr:
+  title: Shlagémon
+  description: Parodie de Pokémon avec des créatures loufoques
+  welcome: Bienvenue dans Shlagémon
+en:
+  title: Shlagemon
+  description: A parody of Pokémon with crazy creatures
+  welcome: Welcome to Shlagemon

@@ -1,5 +1,8 @@
-taurus:
-  en:
-    description: Taurus est littéralement un taureau géométrique. Ses angles parfaits le rendent difficile à approcher sans se prendre une arrête dans les côtes.
-  fr:
-    description: Taurus est littéralement un taureau géométrique. Ses angles parfaits le rendent difficile à approcher sans se prendre une arrête dans les côtes.
+en:
+  description: >-
+    Taurus est littéralement un taureau géométrique. Ses angles parfaits le
+    rendent difficile à approcher sans se prendre une arrête dans les côtes.
+fr:
+  description: >-
+    Taurus est littéralement un taureau géométrique. Ses angles parfaits le
+    rendent difficile à approcher sans se prendre une arrête dans les côtes.
