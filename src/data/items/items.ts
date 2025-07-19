@@ -291,6 +291,16 @@ export const ultraSteroid: Item = {
   iconClass: 'text-purple-500 dark:text-purple-300',
 }
 
+export const eggBox: Item = {
+  id: 'egg-box',
+  name: 'Boîte à œufs',
+  description: 'Permet de stocker tous tes œufs sans encombrer l\'inventaire.',
+  category: 'utilitaire',
+  unique: true,
+  icon: 'i-game-icons:nest-eggs',
+  iconClass: 'text-yellow-600 dark:text-yellow-500',
+}
+
 export const fireEgg: Item = {
   id: 'oeuf-feu',
   name: 'Œuf Feu',
@@ -362,6 +372,7 @@ export const allItems = [
   thunderStone,
   steroids,
   ultraSteroid,
+  eggBox,
   fireEgg,
   waterEgg,
   grassEgg,

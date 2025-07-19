@@ -1,14 +1,15 @@
 <script setup lang="ts">
+import type { EggItemId } from '~/stores/eggBox'
 import { computed, ref } from 'vue'
 import EggHatchModal from '~/components/egg/HatchModal.vue'
 import { allItems } from '~/data/items/items'
 import { useEggStore } from '~/stores/egg'
+import { eggIds, useEggBoxStore } from '~/stores/eggBox'
 import { useEggHatchModalStore } from '~/stores/eggHatchModal'
-import { useInventoryStore } from '~/stores/inventory'
 import { useMainPanelStore } from '~/stores/mainPanel'
 
 const eggs = useEggStore()
-const inventory = useInventoryStore()
+const box = useEggBoxStore()
 const modal = useEggHatchModalStore()
 const panel = useMainPanelStore()
 const now = ref(Date.now())
@@ -18,11 +19,11 @@ function tick() {
 setInterval(tick, 1000)
 
 const inventoryEggs = computed(() => {
-  return ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe']
+  return eggIds
     .map(id => ({
       id,
       item: allItems.find(i => i.id === id)!,
-      qty: inventory.items[id] || 0,
+      qty: box.eggs[id as EggItemId] || 0,
     }))
     .filter(e => e.qty > 0)
 })
@@ -32,7 +33,7 @@ function startIncubation(id: string) {
     return
   const map = { 'oeuf-feu': 'feu', 'oeuf-eau': 'eau', 'oeuf-herbe': 'plante' } as const
   if (eggs.startIncubation(map[id]))
-    inventory.remove(id as any)
+    box.removeEgg(id as EggItemId)
 }
 
 function hatch() {
@@ -120,7 +121,7 @@ function remaining(egg: { hatchesAt: number }) {
             </div>
           </div>
           <div v-else class="text-center text-sm">
-            Aucun œuf dans l'inventaire
+            Aucun œuf dans la boîte
           </div>
         </div>
       </div>

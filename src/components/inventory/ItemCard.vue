@@ -27,8 +27,11 @@ const ballFilter = computed(() =>
 )
 
 const isEgg = computed(() => props.item.id.startsWith('oeuf-'))
+const isEggBox = computed(() => props.item.id === 'egg-box')
 
 const actionLabel = computed(() => {
+  if (isEggBox.value)
+    return 'Ouvrir'
   if ('catchBonus' in props.item || props.item.wearable)
     return props.disabled ? 'Équipé' : 'Équiper'
   return 'Utiliser'

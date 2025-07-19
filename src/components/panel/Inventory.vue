@@ -2,12 +2,14 @@
 import type { BallId } from '~/data/items/shlageball'
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
+import EggBoxModal from '~/components/egg/BoxModal.vue'
 import {
   itemCategoryTabBaseColors,
   itemCategoryTabColors,
   itemCategoryTabHoverColors,
 } from '~/constants/itemCategory'
 import { useBallStore } from '~/stores/ball'
+import { useEggBoxStore } from '~/stores/eggBox'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 import { useFeatureLockStore } from '~/stores/featureLock'
 import { useInventoryStore } from '~/stores/inventory'
@@ -16,6 +18,7 @@ import { useItemUsageStore } from '~/stores/itemUsage'
 import { useWearableItemStore } from '~/stores/wearableItem'
 
 const inventory = useInventoryStore()
+const eggBox = useEggBoxStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
@@ -106,6 +109,10 @@ function onUse(item: Item) {
   else if (item.wearable) {
     wearableStore.open(item)
   }
+  else if (item.id === 'egg-box') {
+    eggBox.open()
+    usage.markUsed(item.id)
+  }
   else {
     if (inventory.useItem(item.id))
       usage.markUsed(item.id)
@@ -149,4 +156,5 @@ function onUse(item: Item) {
   <InventoryEvolutionItemModal />
   <InventoryWearableItemModal />
   <InventoryItemShortcutModal />
+  <EggBoxModal />
 </template>
