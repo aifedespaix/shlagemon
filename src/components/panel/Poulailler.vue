@@ -5,10 +5,12 @@ import { allItems } from '~/data/items/items'
 import { useEggStore } from '~/stores/egg'
 import { useEggHatchModalStore } from '~/stores/eggHatchModal'
 import { useInventoryStore } from '~/stores/inventory'
+import { useMainPanelStore } from '~/stores/mainPanel'
 
 const eggs = useEggStore()
 const inventory = useInventoryStore()
 const modal = useEggHatchModalStore()
+const panel = useMainPanelStore()
 const now = ref(Date.now())
 function tick() {
   now.value = Date.now()
@@ -47,9 +49,20 @@ function remaining(egg: { hatchesAt: number }) {
 <template>
   <LayoutScrollablePanel>
     <template #header>
-      <h3 class="font-bold">
-        Poulailler
-      </h3>
+      <div class="w-full flex items-center justify-between">
+        <h3 class="font-bold">
+          Poulailler
+        </h3>
+        <UiButton
+          type="danger"
+          variant="outline"
+          class="flex gap-1 text-xs"
+          @click="panel.showVillage()"
+        >
+          <div class="i-carbon:exit" />
+          Quitter
+        </UiButton>
+      </div>
     </template>
     <template #content>
       <div class="flex flex-col gap-2">
@@ -60,17 +73,18 @@ function remaining(egg: { hatchesAt: number }) {
           <div class="flex-center flex-col gap-1 border rounded p-2">
             <template v-if="eggs.incubator">
               <div
-                class="i-game-icons:egg-eye h-8 w-8"
-                :class="{
-                  'text-orange-500 dark:text-orange-400': eggs.incubator.type === 'feu',
-                  'text-blue-500 dark:text-blue-400': eggs.incubator.type === 'eau',
-                  'text-green-500 dark:text-green-400': eggs.incubator.type === 'plante',
-                }"
+                class="i-game-icons:egg-eye transition-all duration-300"
+                :class="[
+                  eggs.isReady ? 'h-12 w-12 animate-pulse-alt animate-count-infinite cursor-pointer' : 'h-8 w-8',
+                  {
+                    'text-orange-500 dark:text-orange-400': eggs.incubator.type === 'feu',
+                    'text-blue-500 dark:text-blue-400': eggs.incubator.type === 'eau',
+                    'text-green-500 dark:text-green-400': eggs.incubator.type === 'plante',
+                  },
+                ]"
+                @click="eggs.isReady && hatch()"
               />
               <span v-if="!eggs.isReady" class="text-xs">{{ remaining(eggs.incubator) }}s</span>
-              <UiButton v-else class="text-xs" @click="hatch">
-                Éclore
-              </UiButton>
             </template>
             <span v-else class="text-sm">Aucun œuf</span>
           </div>
