@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { useElementSize } from '@vueuse/core'
 import { BOARD_SIZE, useBattleship } from '~/composables/useBattleship'
 
 const emit = defineEmits(['win', 'lose'])
 const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit(w ? 'win' : 'lose'))
+
+const wrapper = ref<HTMLElement | null>(null)
+const { width, height } = useElementSize(wrapper)
+const size = computed(() => Math.min(width.value, height.value))
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center gap-2" md="flex-row gap-4">
-    <div class="grid gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
+  <div ref="wrapper" class="flex flex-1 flex-col items-center justify-center gap-2" md="flex-row gap-4">
+    <div class="grid gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)`, width: `${size}px`, height: `${size}px` }">
       <div
         v-for="(cell, i) in playerBoard"
         :key="`p-${i}`"
@@ -23,7 +28,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
         ]"
       />
     </div>
-    <div class="grid gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
+    <div class="grid gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)`, width: `${size}px`, height: `${size}px` }">
       <button
         v-for="(cell, i) in aiBoard"
         :key="`a-${i}`"
