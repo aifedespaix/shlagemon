@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import WearableItemIcon from '~/components/inventory/WearableItemIcon.vue'
 import { allItems } from '~/data/items/items'
 import { useDexFilterStore } from '~/stores/dexFilter'
 import { useFeatureLockStore } from '~/stores/featureLock'
@@ -162,17 +163,10 @@ function changeActive(mon: DexShlagemon) {
         @click.stop="handleClick(mon)"
       >
         <div v-if="mon.heldItemId" class="absolute right-1 top-1 h-4 w-4">
-          <div
-            v-if="items[mon.heldItemId]?.icon"
+          <WearableItemIcon
+            :item="items[mon.heldItemId]"
             class="h-4 w-4"
-            :class="[items[mon.heldItemId].icon, items[mon.heldItemId].iconClass]"
           />
-          <img
-            v-else-if="items[mon.heldItemId]?.image"
-            :src="items[mon.heldItemId].image"
-            :alt="items[mon.heldItemId].name"
-            class="h-4 w-4 object-contain"
-          >
         </div>
         <div class="absolute bottom-0 right-2 text-xs">
           lvl {{ mon.lvl }}
