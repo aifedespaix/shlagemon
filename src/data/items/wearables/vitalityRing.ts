@@ -1,6 +1,6 @@
-import type { Item } from '~/type/item'
+import type { WearableItem } from '~/type/item'
 
-export const vitalityRing: Item = {
+export const vitalityRing: WearableItem = {
   id: 'vitality-ring',
   name: 'Bague Vitalesque',
   description: 'Augmente les PV max du porteur.',
@@ -13,9 +13,11 @@ export const vitalityRing: Item = {
   iconClass: 'text-violet-500 dark:text-violet-400',
   unique: true,
   wearable: true,
+  effectType: 'vitality',
+  percent: 15,
 }
 
-export const advancedVitalityRing: Item = {
+export const advancedVitalityRing: WearableItem = {
   id: 'advanced-vitality-ring',
   name: 'Bague Vitalesque avancée',
   description: 'Augmente fortement les PV max du porteur.',
@@ -28,9 +30,11 @@ export const advancedVitalityRing: Item = {
   iconClass: 'text-violet-600 dark:text-violet-500',
   unique: true,
   wearable: true,
+  effectType: 'vitality',
+  percent: 25,
 }
 
-export const vitalityAmulet: Item = {
+export const vitalityAmulet: WearableItem = {
   id: 'vitality-amulet',
   name: 'Amulette Vitalesque',
   description: 'Augmente grandement les PV max du porteur.',
@@ -43,10 +47,12 @@ export const vitalityAmulet: Item = {
   iconClass: 'text-violet-700 dark:text-violet-600',
   unique: true,
   wearable: true,
+  effectType: 'vitality',
+  percent: 33,
 }
 
 export const vitalityWearables = [
   vitalityRing,
   advancedVitalityRing,
   vitalityAmulet,
-] as const satisfies Item[]
+] as const satisfies WearableItem[]

@@ -56,6 +56,7 @@ declare module 'vue' {
     DialogStarter: typeof import('./components/dialog/Starter.vue')['default']
     DialogVitalityAmuletDialog: typeof import('./components/dialog/VitalityAmuletDialog.vue')['default']
     DialogVitalityRingDialog: typeof import('./components/dialog/VitalityRingDialog.vue')['default']
+    DialogWearableItemDialog: typeof import('./components/dialog/WearableItemDialog.vue')['default']
     DialogXpAmuletDialog: typeof import('./components/dialog/XpAmuletDialog.vue')['default']
     DialogXpRingDialog: typeof import('./components/dialog/XpRingDialog.vue')['default']
     EggBoxModal: typeof import('./components/egg/BoxModal.vue')['default']

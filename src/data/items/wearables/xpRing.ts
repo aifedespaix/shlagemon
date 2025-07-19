@@ -1,6 +1,6 @@
-import type { Item } from '~/type/item'
+import type { WearableItem } from '~/type/item'
 
-export const xpRing: Item = {
+export const xpRing: WearableItem = {
   id: 'xp-ring',
   name: 'Anneau d\'expérience',
   description: 'Augmente l\'XP du porteur.',
@@ -13,9 +13,11 @@ export const xpRing: Item = {
   iconClass: 'text-green-600 dark:text-green-400',
   unique: true,
   wearable: true,
+  effectType: 'xp',
+  percent: 15,
 }
 
-export const advancedXpRing: Item = {
+export const advancedXpRing: WearableItem = {
   id: 'advanced-xp-ring',
   name: 'Anneau d\'expérience avancé',
   description: 'Augmente fortement l\'XP du porteur.',
@@ -28,9 +30,11 @@ export const advancedXpRing: Item = {
   iconClass: 'text-green-700 dark:text-green-500',
   unique: true,
   wearable: true,
+  effectType: 'xp',
+  percent: 25,
 }
 
-export const xpAmulet: Item = {
+export const xpAmulet: WearableItem = {
   id: 'xp-amulet',
   name: 'Amulette d\'expérience',
   description: 'Augmente grandement l\'XP du porteur.',
@@ -43,6 +47,8 @@ export const xpAmulet: Item = {
   iconClass: 'text-green-800 dark:text-green-600',
   unique: true,
   wearable: true,
+  effectType: 'xp',
+  percent: 33,
 }
 
-export const xpWearables = [xpRing, advancedXpRing, xpAmulet] as const satisfies Item[]
+export const xpWearables = [xpRing, advancedXpRing, xpAmulet] as const satisfies WearableItem[]

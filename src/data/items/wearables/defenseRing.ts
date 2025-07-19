@@ -1,6 +1,6 @@
-import type { Item } from '~/type/item'
+import type { WearableItem } from '~/type/item'
 
-export const defenseRing: Item = {
+export const defenseRing: WearableItem = {
   id: 'defense-ring',
   name: 'Bague de défense',
   description: 'Augmente la défense du porteur.',
@@ -13,9 +13,11 @@ export const defenseRing: Item = {
   iconClass: 'text-blue-500 dark:text-blue-400',
   unique: true,
   wearable: true,
+  effectType: 'defense',
+  percent: 15,
 }
 
-export const advancedDefenseRing: Item = {
+export const advancedDefenseRing: WearableItem = {
   id: 'advanced-defense-ring',
   name: 'Bague de défense avancée',
   description: 'Augmente fortement la défense du porteur.',
@@ -28,9 +30,11 @@ export const advancedDefenseRing: Item = {
   iconClass: 'text-blue-600 dark:text-blue-500',
   unique: true,
   wearable: true,
+  effectType: 'defense',
+  percent: 25,
 }
 
-export const defenseAmulet: Item = {
+export const defenseAmulet: WearableItem = {
   id: 'defense-amulet',
   name: 'Amulette de défense',
   description: 'Augmente grandement la défense du porteur.',
@@ -43,6 +47,8 @@ export const defenseAmulet: Item = {
   iconClass: 'text-blue-700 dark:text-blue-600',
   unique: true,
   wearable: true,
+  effectType: 'defense',
+  percent: 33,
 }
 
-export const defenseWearables = [defenseRing, advancedDefenseRing, defenseAmulet] as const satisfies Item[]
+export const defenseWearables = [defenseRing, advancedDefenseRing, defenseAmulet] as const satisfies WearableItem[]
