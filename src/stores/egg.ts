@@ -1,5 +1,6 @@
 import type { TypeName } from '~/data/shlagemons-type'
 import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
 import { bulgrosboule } from '~/data/shlagemons/bulgrosboule'
 import { carapouffe } from '~/data/shlagemons/carapouffe'
 import { salamiches } from '~/data/shlagemons/salamiches'
@@ -14,43 +15,42 @@ export interface Egg {
 }
 
 export const useEggStore = defineStore('egg', () => {
-  const eggs = ref<Egg[]>([])
+  const incubator = ref<Egg | null>(null)
   const dex = useShlagedexStore()
 
-  function addEgg(type: EggType, duration = 60_000) {
+  function startIncubation(type: EggType, duration = 60_000) {
+    if (incubator.value)
+      return false
     const id = Date.now() + Math.random()
-    eggs.value.push({ id, type, hatchesAt: Date.now() + duration })
+    incubator.value = { id, type, hatchesAt: Date.now() + duration }
+    return true
   }
 
-  function hatchEgg(id: number) {
-    const idx = eggs.value.findIndex(e => e.id === id)
-    if (idx === -1)
-      return
-    const egg = eggs.value[idx]
-    eggs.value.splice(idx, 1)
+  const isReady = computed(() =>
+    incubator.value ? incubator.value.hatchesAt <= Date.now() : false,
+  )
+
+  function hatchEgg() {
+    const egg = incubator.value
+    if (!egg || egg.hatchesAt > Date.now())
+      return null
+    incubator.value = null
     switch (egg.type) {
       case 'feu':
-        dex.createShlagemon(salamiches)
-        break
+        return dex.createShlagemon(salamiches)
       case 'eau':
-        dex.createShlagemon(carapouffe)
-        break
+        return dex.createShlagemon(carapouffe)
       case 'plante':
-        dex.createShlagemon(bulgrosboule)
-        break
+        return dex.createShlagemon(bulgrosboule)
     }
+    return null
   }
-
-  setInterval(() => {
-    const now = Date.now()
-    eggs.value.filter(e => e.hatchesAt <= now).forEach(e => hatchEgg(e.id))
-  }, 1000)
 
   function reset() {
-    eggs.value = []
+    incubator.value = null
   }
 
-  return { eggs, addEgg, hatchEgg, reset }
+  return { incubator, startIncubation, hatchEgg, isReady, reset }
 }, {
   persist: true,
 })

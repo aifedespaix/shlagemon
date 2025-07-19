@@ -13,12 +13,14 @@ describe('egg workflow', () => {
     const dex = useShlagedexStore()
 
     inventory.add('oeuf-feu')
-    expect(inventory.useItem('oeuf-feu')).toBe(true)
-    expect(eggs.eggs.length).toBe(1)
+    eggs.startIncubation('feu')
+    inventory.remove('oeuf-feu')
+    expect(eggs.incubator).not.toBeNull()
 
     vi.advanceTimersByTime(61_000)
-    vi.runOnlyPendingTimers()
-    expect(eggs.eggs.length).toBe(0)
+    expect(eggs.isReady).toBe(true)
+    const mon = eggs.hatchEgg()
+    expect(mon).not.toBeNull()
     expect(dex.shlagemons.length).toBe(1)
     vi.useRealTimers()
   })

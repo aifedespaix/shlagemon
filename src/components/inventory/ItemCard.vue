@@ -26,6 +26,8 @@ const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
 )
 
+const isEgg = computed(() => props.item.id.startsWith('oeuf-'))
+
 const actionLabel = computed(() => {
   if ('catchBonus' in props.item || props.item.wearable)
     return props.disabled ? 'Équipé' : 'Équiper'
@@ -96,6 +98,7 @@ watch(showInfo, (val) => {
     <div class="flex items-center justify-end gap-1">
       <span class="font-bold">x{{ props.qty }}</span>
       <UiButton
+        v-if="!isEgg"
         class="flex items-center gap-1 text-xs"
         :disabled="props.disabled"
         @click.stop="emit('use')"
@@ -125,6 +128,7 @@ watch(showInfo, (val) => {
           {{ details }}
         </p>
         <UiButton
+          v-if="!isEgg"
           class="flex items-center gap-1 text-xs"
           :disabled="props.disabled"
           @click.stop="useFromModal"
