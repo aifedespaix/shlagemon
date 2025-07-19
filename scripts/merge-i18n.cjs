@@ -6,6 +6,7 @@ const baseDirs = [
   path.join(__dirname, '../src/components'),
   path.join(__dirname, '../src/stores'),
   path.join(__dirname, '../src/data'),
+  path.join(__dirname, '../src/pages'),
 ]
 
 function walk(dir, files = []) {

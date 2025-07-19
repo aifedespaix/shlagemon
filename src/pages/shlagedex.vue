@@ -6,19 +6,16 @@ import { allShlagemons } from '~/data/shlagemons'
 
 const showDetail = ref(false)
 const selected = ref<BaseShlagemon | null>(null)
+const { t } = useI18n()
+useHead({
+  title: () => t('shlagedexPage.title'),
+})
 
 function open(mon: BaseShlagemon) {
   selected.value = mon
   showDetail.value = true
 }
 </script>
-
-<route lang="yaml">
-meta:
-  layout: home
-head:
-  title: Schlage Deck
-</route>
 
 <template>
   <div class="mx-auto max-w-160 w-full p-4">
