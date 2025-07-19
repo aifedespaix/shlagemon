@@ -7,15 +7,15 @@ const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
 
 const dialogTree = buildDialog([
-  'Félicitations ! Tu as capturé au moins 10 Shlagémons.',
-  'Voici un objet unique : vitality-ring.',
-  'Fais-la porter à un Shlagémon pour augmenter ses PV maximum de 15%.',
-  'Cet effet est cumulable avec les potions de vitalité mais ne concerne qu\'un seul porteur.',
-  'Je te la confie, bonne chance pour la suite !',
-  'Utilise-la avec sagesse.',
+  'Formidable ! Tu as capturé au moins 30 Shlagémons.',
+  'Voici un objet unique : attack-ring.',
+  'Equipe-le à un Shlagémon pour augmenter son attaque de 15%.',
+  'L\'effet se cumule avec les potions d\'attaque.',
+  'Seul le porteur en profite.',
+  'Bonne chance pour la suite !',
 ], () => {
-  inventory.add('vitality-ring', 1)
-  emit('done', 'vitalityRing')
+  inventory.add('attack-ring', 1)
+  emit('done', 'attackRing')
 })
 </script>
 
