@@ -23,7 +23,9 @@ export const village60: Zone = {
   id: 'village-cassos-land',
   name: 'Village des Cassos',
   type: 'village',
-  actions: [],
+  actions: [
+    { id: 'minigame', label: 'Mini-jeu' },
+  ],
   minLevel: 60,
   arena: {
     get arena() { return arena60 },
@@ -52,4 +54,5 @@ export const village60: Zone = {
       ],
     },
   },
+  miniGame: 'connectfour',
 }

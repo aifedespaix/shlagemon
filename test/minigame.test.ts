@@ -35,4 +35,13 @@ describe('mini game store', () => {
     mini.finish(true)
     expect(inventory.items['oeuf-eau']).toBe(1)
   })
+
+  it('grants fire egg on connect four victory', () => {
+    setActivePinia(createPinia())
+    const mini = useMiniGameStore()
+    const inventory = useInventoryStore()
+    mini.select('connectfour')
+    mini.finish(true)
+    expect(inventory.items['oeuf-feu']).toBe(1)
+  })
 })
