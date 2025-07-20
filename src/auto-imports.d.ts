@@ -241,6 +241,7 @@ declare global {
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router/auto')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
+  const useLocaleStore: typeof import('./stores/locale')['useLocaleStore']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useMainPanelStore: typeof import('./stores/mainPanel')['useMainPanelStore']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
@@ -661,6 +662,7 @@ declare module 'vue' {
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
+    readonly useLocaleStore: UnwrapRef<typeof import('./stores/locale')['useLocaleStore']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
