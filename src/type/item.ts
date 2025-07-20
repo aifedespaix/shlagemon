@@ -18,6 +18,8 @@ export interface Item {
   category?: ItemCategory
   /** Category of the item (consumable, ball, evolution...). */
   type?: string
+  /** Numeric value describing the item's power. */
+  power?: number
   /** Iconify icon name */
   icon?: string
   /** UnoCSS classes applied to the icon */
