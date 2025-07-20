@@ -139,12 +139,6 @@ components:
     WearableEquipModal:
       title: Choisir un objet à équiper
       noAvailable: Aucun objet disponible.
-  App:
-    title: Shlagémon - Ça sent très fort
-    description: >-
-      Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre
-      entière.
-    author: Shlagémon Team
   LanguageSelector:
     label: Langue
     en: Anglais
@@ -1276,3 +1270,9 @@ pages:
     welcome: Bienvenue dans Shlagémon
   shlagedexPage:
     title: Schlage Deck
+App:
+  title: Shlagémon - Ça sent très fort
+  description: >-
+    Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre
+    entière.
+  author: Shlagémon Team
