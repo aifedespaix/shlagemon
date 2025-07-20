@@ -93,7 +93,12 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     name: 'Route Aguicheuse',
     shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/50-55/*.ts`, { eager: true }),
   },
-  // { id: 'vallee-des-chieurs', lvl: zoneIndex++ * lvlsByZone, name: 'Vallée des Chieurs', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/55-60/*.ts`, { eager: true }) } actions: [] },
+  {
+    id: 'vallee-des-chieurs',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Vallée des Chieurs',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/55-60/*.ts`, { eager: true }),
+  },
   // { id: 'trou-du-bide', lvl: zoneIndex++ * lvlsByZone, name: 'Trou du Bide', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/65-70/*.ts`, { eager: true }) } },
   // { id: 'zone-giga-zob', lvl: zoneIndex++ * lvlsByZone, name: 'Aire du Giga Zob', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/70-75/*.ts`, { eager: true }) } },
   // { id: 'route-so-dom', lvl: zoneIndex++ * lvlsByZone, name: `Route So'Dom`, shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/75-80/*.ts`, { eager: true }) } },
