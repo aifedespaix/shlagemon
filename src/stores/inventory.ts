@@ -111,92 +111,6 @@ export const useInventoryStore = defineStore('inventory', () => {
     }
 
     const handlers: Record<ItemId, () => boolean> = {
-      'potion': () => {
-        dex.healActive(50)
-        remove(id)
-        return true
-      },
-      'defense-potion': () => {
-        dex.boostDefense(10, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'super-defense-potion': () => {
-        dex.boostDefense(25, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'hyper-defense-potion': () => {
-        dex.boostDefense(50, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'attack-potion': () => {
-        dex.boostAttack(10, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'super-attack-potion': () => {
-        dex.boostAttack(25, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'hyper-attack-potion': () => {
-        dex.boostAttack(50, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'vitality-potion': () => {
-        dex.boostVitality(10, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'super-vitality-potion': () => {
-        dex.boostVitality(25, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'hyper-vitality-potion': () => {
-        dex.boostVitality(50, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'capture-potion': () => {
-        dex.boostCapture(10, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'super-capture-potion': () => {
-        dex.boostCapture(25, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'hyper-capture-potion': () => {
-        dex.boostCapture(50, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'xp-potion': () => {
-        dex.boostXp(10, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'super-xp-potion': () => {
-        dex.boostXp(25, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'hyper-xp-potion': () => {
-        dex.boostXp(50, icon, iconClass)
-        remove(id)
-        return true
-      },
-      'super-potion': () => {
-        dex.healActive(100)
-        remove(id)
-        return true
-      },
-
       'egg-box': () => {
         eggBox.open()
         return true
@@ -206,7 +120,43 @@ export const useInventoryStore = defineStore('inventory', () => {
       'hyper-shlageball': capture,
     }
 
+    const typeHandlers: Record<string, (power: number) => boolean> = {
+      heal: (p: number) => {
+        dex.healActive(p)
+        remove(id)
+        return true
+      },
+      defense: (p: number) => {
+        dex.boostDefense(p, icon, iconClass)
+        remove(id)
+        return true
+      },
+      attack: (p: number) => {
+        dex.boostAttack(p, icon, iconClass)
+        remove(id)
+        return true
+      },
+      vitality: (p: number) => {
+        dex.boostVitality(p, icon, iconClass)
+        remove(id)
+        return true
+      },
+      capture: (p: number) => {
+        dex.boostCapture(p, icon, iconClass)
+        remove(id)
+        return true
+      },
+      xp: (p: number) => {
+        dex.boostXp(p, icon, iconClass)
+        remove(id)
+        return true
+      },
+    }
+
     const handler = handlers[id]
+      || (item.type && typeHandlers[item.type]
+        ? () => typeHandlers[item.type](item.power || 0)
+        : undefined)
     const result = handler ? handler() : false
     if (result)
       itemUsage.markUsed(id)

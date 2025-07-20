@@ -42,9 +42,15 @@ const tabColors = itemCategoryTabBaseColors
 const tabHoverColors = itemCategoryTabHoverColors
 const tabActiveColors = itemCategoryTabColors
 const filteredShopItems = computed(() =>
-  shopItems.value.filter(item =>
-    filter.category === 'all' ? true : item.category === filter.category,
-  ),
+  shopItems.value
+    .filter(item => filter.category === 'all' ? true : item.category === filter.category)
+    .slice()
+    .sort((a, b) => {
+      const typeComp = (a.type || '').localeCompare(b.type || '')
+      if (typeComp !== 0)
+        return typeComp
+      return (a.power || 0) - (b.power || 0)
+    }),
 )
 const selectedItem = ref<Item | null>(null)
 const selectedQty = ref(1)

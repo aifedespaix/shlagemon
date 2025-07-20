@@ -82,7 +82,12 @@ const filteredList = computed(() => {
     list = list.filter(entry => entry.item.name.toLowerCase().includes(q))
   switch (filter.sortBy) {
     case 'type':
-      list.sort((a, b) => (a.item.type || '').localeCompare(b.item.type || ''))
+      list.sort((a, b) => {
+        const typeComp = (a.item.type || '').localeCompare(b.item.type || '')
+        if (typeComp !== 0)
+          return typeComp
+        return (a.item.power || 0) - (b.item.power || 0)
+      })
       break
     case 'name':
       list.sort((a, b) => a.item.name.localeCompare(b.item.name))
