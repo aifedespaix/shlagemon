@@ -14,6 +14,61 @@ components:
       settings: Paramètres
       developer: Développeur
       logoAlt: Logo Shlagémon
+  panel:
+    Achievements:
+      all: Tous
+      unlocked: Débloqués
+      locked: À débloquer
+    BonusDetails:
+      intro1: >-
+        Le bonus du Shlagedex correspond à votre **ShlagéDex potentiel**. Il
+        représente le bonus maximal que vous pourriez obtenir en capturant tous
+        les Shlagémon accessibles.
+      intro2: >-
+        Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel
+        ainsi que sur le niveau moyen de votre équipe.
+      formula: Bonus = niveau moyen × 2 × (taux de complétion / 100)
+      completion: 'Complétion :'
+      averageLevel: 'Niveau moyen :'
+      currentBonus: 'Bonus actuel :'
+    Inventory:
+      sort:
+        type: Type
+        name: Nom
+        price: Prix
+      category:
+        active: Actif
+        passive: Passif
+        utility: Utilitaire
+      equip: Vous avez équipé la {item}
+    PlayerInfos:
+      sick: 'Malade : {n} combats restants'
+      dex: ShlagéDex
+      averageLevel: Niveau moyen
+      bonus: Bonus
+      balls: ShlagéBalls
+      ballAlt: ball
+    Poulailler:
+      title: Poulailler
+      exit: Quitter
+      incubator: Incubateur
+      noEgg: Aucun œuf
+      yourEggs: Vos œufs
+      incubate: Incuber
+      noEggBox: Aucun œuf dans la boîte
+    Shop:
+      title: Boutique
+      details: Détails
+      buy: Acheter x{qty} pour
+      back: Retour dans le rayon
+      exit: Quitter la boutique
+      bought: Vous avez acheté {qty} × {item} pour {cost} {currency}
+      category:
+        active: Actif
+        passive: Passif
+        utility: Utilitaire
+    Zone:
+      capturedAlt: capturé
 data:
   shlagemons:
     01-05:

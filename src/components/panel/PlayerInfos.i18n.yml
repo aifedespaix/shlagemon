@@ -1,0 +1,14 @@
+fr:
+  sick: 'Malade : {n} combats restants'
+  dex: ShlagéDex
+  averageLevel: Niveau moyen
+  bonus: Bonus
+  balls: ShlagéBalls
+  ballAlt: ball
+en:
+  sick: 'Sick: {n} battles left'
+  dex: ShlageDex
+  averageLevel: Average level
+  bonus: Bonus
+  balls: ShlageBalls
+  ballAlt: ball
