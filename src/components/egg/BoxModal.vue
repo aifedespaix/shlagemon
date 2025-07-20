@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { allItems } from '~/data/items/items'
 import { eggIds, useEggBoxStore } from '~/stores/eggBox'
 
 const box = useEggBoxStore()
+const { t } = useI18n()
 
 const eggList = computed(() => eggIds.filter(id => box.eggs[id]))
 
@@ -16,7 +18,7 @@ function getItem(id: string) {
   <Modal v-model="box.isModalOpen" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
-        Boîte à œufs
+        {{ t('components.egg.BoxModal.title') }}
       </h3>
       <div v-if="eggList.length" class="flex flex-col gap-1">
         <div
@@ -31,7 +33,7 @@ function getItem(id: string) {
           <span class="text-xs font-bold">x{{ box.eggs[id] }}</span>
         </div>
       </div>
-      <span v-else class="text-center text-sm">Aucun œuf</span>
+      <span v-else class="text-center text-sm">{{ t('components.egg.BoxModal.empty') }}</span>
     </div>
   </Modal>
 </template>

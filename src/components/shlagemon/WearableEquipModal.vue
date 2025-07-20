@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { useWearableEquipModalStore } from '~/stores/wearableEquipModal'
 
 const store = useWearableEquipModalStore()
+const { t } = useI18n()
 </script>
 
 <template>
   <Modal v-model="store.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
       <h3 class="text-center text-lg font-bold">
-        Choisir un objet à équiper
+        {{ t('components.shlagemon.WearableEquipModal.title') }}
       </h3>
       <div v-if="store.options.length" class="w-full flex flex-col gap-2">
         <UiButton
@@ -27,7 +29,7 @@ const store = useWearableEquipModalStore()
         </UiButton>
       </div>
       <p v-else class="text-center text-sm">
-        Aucun objet disponible.
+        {{ t('components.shlagemon.WearableEquipModal.noAvailable') }}
       </p>
     </div>
   </Modal>

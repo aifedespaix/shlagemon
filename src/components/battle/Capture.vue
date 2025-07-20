@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
+import { useI18n } from 'vue-i18n'
 import { balls } from '~/data/items/shlageball'
 import { useAudioStore } from '~/stores/audio'
 import { useBallStore } from '~/stores/ball'
@@ -19,6 +20,7 @@ const player = usePlayerStore()
 const captureLimitModal = useCaptureLimitModalStore()
 const audio = useAudioStore()
 const dex = useShlagedexStore()
+const { t } = useI18n()
 
 const capturedEnemy = ref<DexShlagemon | null>(null)
 
@@ -36,14 +38,14 @@ const captureButtonDisabled = computed(() =>
 
 const captureButtonTooltip = computed(() => {
   if (captureCooldown.value)
-    return 'Patientez avant de capturer à nouveau'
+    return t('components.battle.Capture.cooldown')
   if ((inventory.items[ballStore.current] || 0) <= 0)
-    return 'Pas de Shlagéball, capture impossible'
+    return t('components.battle.Capture.noBall')
   if (props.enemyHp <= 0)
-    return 'Impossible de capturer un Shlagémon K.O.'
+    return t('components.battle.Capture.ko')
   if (props.enemy && props.enemy.lvl > player.captureLevelCap)
-    return 'Un badge est nécessaire pour capturer ce niveau'
-  return 'Capturer le Shlagémon'
+    return t('components.battle.Capture.needBadge')
+  return t('components.battle.Capture.capture')
 })
 
 function attempt(step: number) {

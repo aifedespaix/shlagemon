@@ -1,0 +1,22 @@
+fr:
+  equipItemTitle: Équiper un objet
+  allowEvolution: Autoriser ce Shlagémon à évoluer ?
+  firstCatch: 'Première capture : {date}'
+  obtainedTimes: 'Obtenu {count} fois'
+  release: Relâcher
+  main: Principal
+  confirmTitle: Relâcher un Shlagémon ?
+  confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
+  yes: Oui
+  no: Non
+en:
+  equipItemTitle: Equip an item
+  allowEvolution: Allow this Shlagemon to evolve?
+  firstCatch: 'First capture: {date}'
+  obtainedTimes: 'Obtained {count} times'
+  release: Release
+  main: Main
+  confirmTitle: Release a Shlagemon?
+  confirmText: Be careful, if you release it, it will shlage the whole land.
+  yes: Yes
+  no: No

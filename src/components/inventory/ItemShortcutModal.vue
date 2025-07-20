@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { ItemId } from '~/data/items/items'
+import { useI18n } from 'vue-i18n'
 import UiKeyCapture from '~/components/ui/KeyCapture.vue'
 import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
 import { useShortcutsStore } from '~/stores/shortcuts'
 
 const modal = useItemShortcutModalStore()
 const shortcuts = useShortcutsStore()
+const { t } = useI18n()
 const capture = ref<InstanceType<typeof UiKeyCapture> | null>(null)
 
 watch(() => modal.isVisible, (visible) => {
@@ -25,7 +27,7 @@ function assign(key: string) {
   <Modal v-model="modal.isVisible" :close-on-outside-click="false" @close="capture?.stopCapture()">
     <div class="flex flex-col items-center gap-4">
       <h3 class="text-center text-lg font-bold">
-        Assigner un raccourci clavier pour cet objet
+        {{ t('components.inventory.ItemShortcutModal.title') }}
       </h3>
       <div class="flex flex-col items-center gap-2">
         <div
@@ -43,7 +45,7 @@ function assign(key: string) {
       </div>
       <div class="w-full flex flex-col items-center gap-2 border rounded p-2">
         <p class="text-center text-sm">
-          Appuyez sur une touche pour assigner le raccourci clavier
+          {{ t('components.inventory.ItemShortcutModal.pressKey') }}
         </p>
         <UiKeyCapture
           ref="capture"

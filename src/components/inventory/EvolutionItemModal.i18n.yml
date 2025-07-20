@@ -1,0 +1,8 @@
+fr:
+  title: 'Utiliser {name}'
+  evolve: Évoluer
+  noCompatible: Aucun Shlagémon compatible.
+en:
+  title: 'Use {name}'
+  evolve: Evolve
+  noCompatible: No compatible Shlagemon.

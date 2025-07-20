@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -7,10 +10,10 @@
       © 2025 <span v-if="new Date().getFullYear() !== 2025">- {{ new Date().getFullYear() }}</span> Shlagémon
     </div>
     <div class="italic">
-      Surement quelques droits réservés.
+      {{ t('components.layout.HomeFooter.rights') }}
     </div>
     <div class="">
-      La plupart des images sont générés par des IA qui volent le travail des artistes, désolé c'est parce-que je sais pas dessiner et que j'ai pas le moyen d'acheter des dessins.
+      {{ t('components.layout.HomeFooter.imageDisclaimer') }}
     </div>
   </footer>
 </template>

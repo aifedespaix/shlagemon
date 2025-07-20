@@ -1,0 +1,12 @@
+fr:
+  cooldown: Patientez avant de capturer à nouveau
+  noBall: Pas de Shlagéball, capture impossible
+  ko: Impossible de capturer un Shlagémon K.O.
+  needBadge: Un badge est nécessaire pour capturer ce niveau
+  capture: Capturer le Shlagémon
+en:
+  cooldown: Wait before capturing again
+  noBall: No Shlageball, capture impossible
+  ko: Impossible to capture a fainted Shlagemon
+  needBadge: A badge is required to capture this level
+  capture: Capture the Shlagemon

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
+import { useI18n } from 'vue-i18n'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { notifyAchievement } from '~/stores/achievements'
@@ -26,6 +27,7 @@ const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 
 const enemy = ref(null as DexShlagemon | null)
+const { t } = useI18n()
 
 function createEnemy(): DexShlagemon | null {
   const available = zone.current.shlagemons?.length ? zone.current.shlagemons : allShlagemons
@@ -91,12 +93,12 @@ const hasAllZoneMons = computed(() => {
 
 const captureTooltip = computed(() =>
   hasAllZoneMons.value
-    ? 'Vous avez capturé tous les Shlagémon de la zone'
-    : 'Vous n\'avez pas capturé tous les Shlagémon de la zone',
+    ? t('components.battle.Main.captureTooltip.all')
+    : t('components.battle.Main.captureTooltip.missing'),
 )
 
 const winTooltip = computed(() =>
-  `Vous avez vaincu ${wins.value.toLocaleString()} Shlagémon dans cette zone`,
+  t('components.battle.Main.winTooltip', { n: wins.value.toLocaleString() }),
 )
 
 async function handleEnd(result: 'win' | 'lose' | 'draw') {
@@ -141,7 +143,7 @@ function onCapture() {
     <BattleFightKingButton />
     <div class="absolute left-0 top-0 flex items-center gap-2">
       <UiTooltip :text="captureTooltip">
-        <UiButton type="icon" class="rounded-tl-0" aria-label="Shlagémons de la zone" @click="zoneMonsModal.open()">
+        <UiButton type="icon" class="rounded-tl-0" :aria-label="t('components.battle.Main.zoneMons')" @click="zoneMonsModal.open()">
           <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
         </UiButton>
       </UiTooltip>

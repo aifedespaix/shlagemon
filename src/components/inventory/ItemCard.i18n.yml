@@ -1,0 +1,14 @@
+fr:
+  action:
+    open: Ouvrir
+    equipped: Équipé
+    equip: Équiper
+    use: Utiliser
+  shortcutTooltip: Définir un raccourci clavier pour cet objet.
+en:
+  action:
+    open: Open
+    equipped: Equipped
+    equip: Equip
+    use: Use
+  shortcutTooltip: Set a keyboard shortcut for this item.
