@@ -370,6 +370,17 @@ export const grassEgg: Item = {
   iconClass: 'text-green-500 dark:text-green-400',
 }
 
+export const psyEgg: Item = {
+  id: 'oeuf-psy',
+  name: 'Œuf Psy',
+  description: 'Un œuf qui te fixe intensément.',
+  price: 30,
+  currency: 'shlagidolar',
+  category: 'utilitaire',
+  icon: 'i-game-icons:egg-eye',
+  iconClass: 'text-pink-500 dark:text-pink-400',
+}
+
 export const allItems = [
   shlageball,
   superShlageball,
@@ -412,6 +423,7 @@ export const allItems = [
   fireEgg,
   waterEgg,
   grassEgg,
+  psyEgg,
 ] as const satisfies Item[]
 
 export type ItemId = typeof allItems[number]['id']
