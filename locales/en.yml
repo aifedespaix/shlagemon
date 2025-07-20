@@ -804,10 +804,28 @@ data:
           Carreflex is a blocky giant that often sleeps in the middle of the
           road. Its cubic shape can block even trucks.
     65-70:
+      coksale:
+        description: >-
+          Une coccinelle de cité, toujours perchée sur un mégot. Deux yeux globuleux et des ailes qui puent le tabac froid.
+      kaiminable:
+        description: >-
+          Petit croco tout bouffi, baveux, qui mord ses propres doigts. A déjà une canette vide accrochée à la queue.
+      houlard:
+        description: >-
+          Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des poteaux EDF, lâche des fientes phosphorescentes.
       minidrapcon:
         description: >-
           Petit serpent drapé et un peu demeuré, il se prend souvent les
           crochets dans ses propres replis.
+      glandignon:
+        description: >-
+          Bébé plante molle et poisseuse. Le bulbe sur sa tête suinte. Odeur de chaussette trempée.
+      qwiflash:
+        description: >-
+          Poisson gonflé, mais tout mollasson, flotte à moitié crevé dans les caniveaux. Tire la langue, sans raison.
+      hericouille:
+        description: >-
+          Petit hérisson gris, les flammes ne s’allument plus. Il tousse en permanence, il a des brûlures aux fesses.
     70-75:
       krabbyjaccob:
         description: >-
