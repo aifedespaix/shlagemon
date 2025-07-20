@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { computed, shallowRef, watchEffect } from 'vue'
 import { getMiniGame } from '~/data/minigames'
+import { getZoneTrack } from '~/data/music'
+import { useAudioStore } from '~/stores/audio'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
+import { useZoneStore } from '~/stores/zone'
 
 const mini = useMiniGameStore()
 const panel = useMainPanelStore()
+const zone = useZoneStore()
+const audio = useAudioStore()
+const miniGameMusic = '/audio/musics/games/mini-game.ogg'
+const zoneTrack = computed(() => getZoneTrack(zone.current.id, zone.current.type) ?? miniGameMusic)
 const gameDef = computed(() => mini.currentId ? getMiniGame(mini.currentId) : undefined)
 const GameComp = shallowRef()
 
@@ -18,10 +25,12 @@ watchEffect(async () => {
 
 function start() {
   mini.play()
+  audio.fadeToMusic(miniGameMusic)
 }
 function exit() {
   mini.quit()
   panel.showVillage()
+  audio.fadeToMusic(zoneTrack.value)
 }
 function win() {
   mini.finish(true)
@@ -42,6 +51,7 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
       :character="gameDef.character"
       :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="intro!"
+      :exit-track="miniGameMusic"
       orientation="col"
     />
     <component
@@ -55,6 +65,7 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
       :character="gameDef.character"
       :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="success!"
+      :exit-track="zoneTrack"
       orientation="col"
     />
     <DialogBox
@@ -62,6 +73,7 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
       :character="gameDef.character"
       :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="failure!"
+      :exit-track="zoneTrack"
       orientation="col"
     />
   </div>
