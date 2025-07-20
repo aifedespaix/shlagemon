@@ -6,8 +6,8 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center gap-2" md="flex-row gap-4">
-    <div class="grid gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
+  <div class="flex flex-1 flex-col items-center justify-center gap-2" md="flex-row gap-4">
+    <div class="grid flex-1 gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
       <div
         v-for="(cell, i) in playerBoard"
         :key="`p-${i}`"
@@ -23,7 +23,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
         ]"
       />
     </div>
-    <div class="grid gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
+    <div class="grid flex-1 gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
       <button
         v-for="(cell, i) in aiBoard"
         :key="`a-${i}`"
