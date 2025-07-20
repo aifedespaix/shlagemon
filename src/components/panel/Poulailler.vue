@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { EggItemId } from '~/stores/eggBox'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import EggHatchModal from '~/components/egg/HatchModal.vue'
 import { allItems } from '~/data/items/items'
 import { useEggStore } from '~/stores/egg'
@@ -12,6 +13,7 @@ const eggs = useEggStore()
 const box = useEggBoxStore()
 const modal = useEggHatchModalStore()
 const panel = useMainPanelStore()
+const { t } = useI18n()
 const now = ref(Date.now())
 function tick() {
   now.value = Date.now()
@@ -52,7 +54,7 @@ function remaining(egg: { hatchesAt: number }) {
     <template #header>
       <div class="w-full flex items-center justify-between">
         <h3 class="font-bold">
-          Poulailler
+          {{ t('components.panel.Poulailler.title') }}
         </h3>
         <UiButton
           type="danger"
@@ -61,7 +63,7 @@ function remaining(egg: { hatchesAt: number }) {
           @click="panel.showVillage()"
         >
           <div class="i-carbon:exit" />
-          Quitter
+          {{ t('components.panel.Poulailler.exit') }}
         </UiButton>
       </div>
     </template>
@@ -69,7 +71,7 @@ function remaining(egg: { hatchesAt: number }) {
       <div class="flex flex-col gap-2">
         <div>
           <h4 class="font-semibold">
-            Incubateur
+            {{ t('components.panel.Poulailler.incubator') }}
           </h4>
           <div class="flex-center flex-col gap-1 border rounded p-2">
             <template v-if="eggs.incubator">
@@ -87,12 +89,12 @@ function remaining(egg: { hatchesAt: number }) {
               />
               <span v-if="!eggs.isReady" class="text-xs">{{ remaining(eggs.incubator) }}s</span>
             </template>
-            <span v-else class="text-sm">Aucun œuf</span>
+            <span v-else class="text-sm">{{ t('components.panel.Poulailler.noEgg') }}</span>
           </div>
         </div>
         <div>
           <h4 class="font-semibold">
-            Vos œufs
+            {{ t('components.panel.Poulailler.yourEggs') }}
           </h4>
           <div v-if="inventoryEggs.length" class="flex flex-col gap-1">
             <div
@@ -115,13 +117,13 @@ function remaining(egg: { hatchesAt: number }) {
                   class="text-xs"
                   @click="startIncubation(entry.id)"
                 >
-                  Incuber
+                  {{ t('components.panel.Poulailler.incubate') }}
                 </UiButton>
               </div>
             </div>
           </div>
           <div v-else class="text-center text-sm">
-            Aucun œuf dans la boîte
+            {{ t('components.panel.Poulailler.noEggBox') }}
           </div>
         </div>
       </div>

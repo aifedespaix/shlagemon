@@ -1,0 +1,18 @@
+fr:
+  intro1: >-
+    Le bonus du Shlagedex correspond à votre **ShlagéDex potentiel**. Il représente le bonus maximal que vous pourriez obtenir en capturant tous les Shlagémon accessibles.
+  intro2: >-
+    Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel ainsi que sur le niveau moyen de votre équipe.
+  formula: Bonus = niveau moyen × 2 × (taux de complétion / 100)
+  completion: 'Complétion :'
+  averageLevel: 'Niveau moyen :'
+  currentBonus: 'Bonus actuel :'
+en:
+  intro1: >-
+    The Shlagedex bonus matches your **potential ShlagéDex**. It represents the maximum bonus you could obtain by capturing all available Shlagémon.
+  intro2: >-
+    It is based on the completion rate of this potential Shlagedex as well as your team's average level.
+  formula: Bonus = average level × 2 × (completion rate / 100)
+  completion: 'Completion:'
+  averageLevel: 'Average level:'
+  currentBonus: 'Current bonus:'

@@ -14,6 +14,60 @@ components:
       settings: Settings
       developer: Developer
       logoAlt: Shlagemon logo
+  panel:
+    Achievements:
+      all: All
+      unlocked: Unlocked
+      locked: To unlock
+    BonusDetails:
+      intro1: >-
+        The Shlagedex bonus matches your **potential ShlagéDex**. It represents
+        the maximum bonus you could obtain by capturing all available Shlagémon.
+      intro2: >-
+        It is based on the completion rate of this potential Shlagedex as well
+        as your team's average level.
+      formula: Bonus = average level × 2 × (completion rate / 100)
+      completion: 'Completion:'
+      averageLevel: 'Average level:'
+      currentBonus: 'Current bonus:'
+    Inventory:
+      sort:
+        type: Type
+        name: Name
+        price: Price
+      category:
+        active: Active
+        passive: Passive
+        utility: Utility
+      equip: You equipped the {item}
+    PlayerInfos:
+      sick: 'Sick: {n} battles left'
+      dex: ShlageDex
+      averageLevel: Average level
+      bonus: Bonus
+      balls: ShlageBalls
+      ballAlt: ball
+    Poulailler:
+      title: Henhouse
+      exit: Exit
+      incubator: Incubator
+      noEgg: No egg
+      yourEggs: Your eggs
+      incubate: Incubate
+      noEggBox: No egg in the box
+    Shop:
+      title: Shop
+      details: Details
+      buy: Buy x{qty} for
+      back: Put back
+      exit: Leave the shop
+      bought: You bought {qty} × {item} for {cost} {currency}
+      category:
+        active: Active
+        passive: Passive
+        utility: Utility
+    Zone:
+      capturedAlt: captured
 data:
   shlagemons:
     01-05:

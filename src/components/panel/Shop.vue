@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
 import {
   itemCategoryTabBaseColors,
   itemCategoryTabColors,
@@ -18,12 +19,13 @@ const zone = useZoneStore()
 const game = useGameStore()
 const inventory = useInventoryStore()
 const audio = useAudioStore()
+const { t } = useI18n()
 const shopItems = computed(() => zone.current.village?.shop?.items || [])
 const filter = useShopFilterStore()
 const categoryOptions = [
-  { label: 'Actif', value: 'actif', icon: 'i-carbon-flash' },
-  { label: 'Passif', value: 'passif', icon: 'i-carbon-timer' },
-  { label: 'Utilitaire', value: 'utilitaire', icon: 'i-carbon-tool-box' },
+  { label: t('components.panel.Shop.category.active'), value: 'actif', icon: 'i-carbon-flash' },
+  { label: t('components.panel.Shop.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
+  { label: t('components.panel.Shop.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
 ] as const
 const availableCategories = computed(() =>
   categoryOptions.filter(opt => shopItems.value.some(i => i.category === opt.value)),
@@ -91,7 +93,12 @@ function buy() {
       ? 'Shlagédiamant'
       : 'Shlagédollar'
     const currencyName = cost > 1 ? `${currency}s` : currency
-    toast.success(`Vous avez acheté ${selectedQty.value} \u00D7 ${selectedItem.value.name} pour ${cost.toLocaleString()} ${currencyName}`)
+    toast.success(t('components.panel.Shop.bought', {
+      qty: selectedQty.value,
+      item: selectedItem.value.name,
+      cost: cost.toLocaleString(),
+      currency: currencyName,
+    }))
     selectedItem.value = null
   }
 }
@@ -104,7 +111,7 @@ function closeShop() {
 <template>
   <div class="flex flex-1 flex-col gap-1 overflow-hidden p-1" v-bind="$attrs">
     <h2 class="text-center font-bold">
-      Boutique
+      {{ t('components.panel.Shop.title') }}
     </h2>
     <UiTabBar
       v-if="availableCategories.length > 0"
@@ -125,7 +132,7 @@ function closeShop() {
         @click="selectItem(item)"
       >
         <UiButton class="ml-auto text-xs" @click.stop="selectItem(item)">
-          Détails
+          {{ t('components.panel.Shop.details') }}
         </UiButton>
       </ShopItemCard>
     </div>
@@ -140,7 +147,7 @@ function closeShop() {
         class="flex flex-1 items-center gap-1"
         @click="buy"
       >
-        Acheter x{{ selectedQty }} pour
+        {{ t('components.panel.Shop.buy', { qty: selectedQty }) }}
         <UiCurrencyAmount :amount="(selectedItem?.price || 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
       </UiButton>
       <div class="w-full flex gap-1" md="flex-col w-auto">
@@ -152,12 +159,12 @@ function closeShop() {
           @click="selectedItem = null"
         >
           <div class="i-carbon:return" />
-          Retour dans le rayon
+          {{ t('components.panel.Shop.back') }}
         </UiButton>
 
         <UiButton type="danger" variant="outline" class="w-full flex gap-2 text-xs" @click="closeShop">
           <div class="i-carbon:exit" />
-          Quitter la boutique
+          {{ t('components.panel.Shop.exit') }}
         </UiButton>
       </div>
     </div>

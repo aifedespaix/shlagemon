@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { useAchievementsStore } from '~/stores/achievements'
 import { useAchievementsFilterStore } from '~/stores/achievementsFilter'
 
@@ -7,10 +8,11 @@ const openedId = ref<string | null>(null)
 const store = useAchievementsStore()
 const filter = useAchievementsFilterStore()
 
+const { t } = useI18n()
 const statusOptions = [
-  { label: 'Tous', value: 'all' },
-  { label: 'Débloqués', value: 'unlocked' },
-  { label: 'À débloquer', value: 'locked' },
+  { label: t('components.panel.Achievements.all'), value: 'all' },
+  { label: t('components.panel.Achievements.unlocked'), value: 'unlocked' },
+  { label: t('components.panel.Achievements.locked'), value: 'locked' },
 ]
 
 const list = computed(() => {
