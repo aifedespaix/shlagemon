@@ -23,9 +23,9 @@ export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
 
 export function captureChanceFromHp(ratio: number): number {
   const r = Math.min(1, Math.max(0, ratio))
-  if (r <= 0.1)
-    return 100
-  return 100 - ((r - 0.1) / 0.9) * 20
+  const baseChance = 80
+  const multiplier = 3 ** (1 - r)
+  return baseChance * multiplier
 }
 
 export function simpleCapture(enemy: DexShlagemon): boolean {
