@@ -1263,6 +1263,15 @@ data:
 
         On ne le trouve pas : c’est lui qui reste, par erreur, au fond d’un sac.
         Son rêve ? Être ignoré parfaitement, comme un ticket de caisse mouillé.
+  Minigame:
+    ConnectFour:
+      startText: Une partie de Puissance 4 ?
+      yes: Oui
+      no: Non
+      winText: Bien joué ! Tu gagnes un œuf Feu.
+      super: Super !
+      loseText: Match nul ou perdu ! Recommence quand tu veux.
+      back: Retour
 pages:
   indexPage:
     title: Shlagémon

@@ -1,17 +1,16 @@
-data.minigame.connectFour:
-  fr:
-    startText: Une partie de Puissance 4 ?
-    yes: Oui
-    no: Non
-    winText: Bien joué ! Tu gagnes un œuf Feu.
-    super: Super !
-    loseText: Match nul ou perdu ! Recommence quand tu veux.
-    back: Retour
-  en:
-    startText: Fancy a game of Connect Four?
-    yes: Yes
-    no: No
-    winText: Well played! You win a Fire Egg.
-    super: Awesome!
-    loseText: Draw or lost! Try again whenever you like.
-    back: Back
+fr:
+  startText: Une partie de Puissance 4 ?
+  yes: Oui
+  no: Non
+  winText: Bien joué ! Tu gagnes un œuf Feu.
+  super: Super !
+  loseText: Match nul ou perdu ! Recommence quand tu veux.
+  back: Retour
+en:
+  startText: Fancy a game of Connect Four?
+  yes: Yes
+  no: No
+  winText: Well played! You win a Fire Egg.
+  super: Awesome!
+  loseText: Draw or lost! Try again whenever you like.
+  back: Back

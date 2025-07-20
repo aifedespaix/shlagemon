@@ -1,4 +1,5 @@
 import type { MiniGameDefinition } from '~/type/minigame'
+import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { sachatte } from '../characters/sachatte'
@@ -16,11 +17,11 @@ export const connectFourMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: $t('data.minigame.connectFour.startText'),
+        text: i18n.global.t('data.Minigame.ConnectFour.startText'),
         responses: [
-          { label: $t('data.minigame.connectFour.yes'), type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.ConnectFour.yes'), type: 'primary', action: start },
           {
-            label: $t('data.minigame.connectFour.no'),
+            label: i18n.global.t('data.Minigame.ConnectFour.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -35,9 +36,9 @@ export const connectFourMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: $t('data.minigame.connectFour.winText'),
+        text: i18n.global.t('data.Minigame.ConnectFour.winText'),
         responses: [
-          { label: $t('data.minigame.connectFour.super'), type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.ConnectFour.super'), type: 'valid', action: done },
         ],
       },
     ]
@@ -46,9 +47,9 @@ export const connectFourMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: $t('data.minigame.connectFour.loseText'),
+        text: i18n.global.t('data.Minigame.ConnectFour.loseText'),
         responses: [
-          { label: $t('data.minigame.connectFour.back'), type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.ConnectFour.back'), type: 'danger', action: done },
         ],
       },
     ]

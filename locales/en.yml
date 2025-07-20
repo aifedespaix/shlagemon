@@ -1242,6 +1242,15 @@ data:
 
         We can't find him: he's the one who stays, by mistake, at the bottom of
         a bag. His dream? Be ignored perfectly, like a wet cash ticket.
+  Minigame:
+    ConnectFour:
+      startText: Fancy a game of Connect Four?
+      yes: Yes
+      no: No
+      winText: Well played! You win a Fire Egg.
+      super: Awesome!
+      loseText: Draw or lost! Try again whenever you like.
+      back: Back
 pages:
   indexPage:
     title: Shlagemon
