@@ -141,6 +141,10 @@ components:
     title: Shlagemon - It smells very strong
     description: Catch all the Shlagemons before they rot the whole world.
     author: Shlagemon Team
+  LanguageSelector:
+    label: Language
+    en: English
+    fr: French
 data:
   shlagemons:
     01-05:

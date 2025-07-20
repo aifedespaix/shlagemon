@@ -65,6 +65,7 @@ declare module 'vue' {
     InventoryItemShortcutModal: typeof import('./components/inventory/ItemShortcutModal.vue')['default']
     InventoryWearableItemIcon: typeof import('./components/inventory/WearableItemIcon.vue')['default']
     InventoryWearableItemModal: typeof import('./components/inventory/WearableItemModal.vue')['default']
+    LanguageSelector: typeof import('./components/LanguageSelector.vue')['default']
     LayoutGameGrid: typeof import('./components/layout/GameGrid.vue')['default']
     LayoutHeader: typeof import('./components/layout/Header.vue')['default']
     LayoutHomeFooter: typeof import('./components/layout/HomeFooter.vue')['default']
