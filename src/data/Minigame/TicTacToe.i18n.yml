@@ -1,0 +1,17 @@
+data.minigame.ticTacToe:
+  fr:
+    startText: "Envie d'une partie de morpion ?"
+    yes: Oui
+    no: Non
+    winText: Bien joué ! Tu gagnes un Œuf Herbe.
+    super: Super !
+    loseText: Perdu ! Recommence quand tu veux.
+    back: Retour
+  en:
+    startText: Fancy a game of tic tac toe?
+    yes: Yes
+    no: No
+    winText: Well played! You win a Grass Egg.
+    super: Awesome!
+    loseText: Lost! Try again whenever you like.
+    back: Back
