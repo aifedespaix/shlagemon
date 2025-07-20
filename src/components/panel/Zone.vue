@@ -135,7 +135,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
         class="mb-1 h-1"
       />
     </div>
-    <div class="tiny-scrollbar zone-grid grid h-full flex-1 gap-2 overflow-auto p-1" md="gap-3">
+    <div id="savages" class="tiny-scrollbar zone-grid grid h-2/3 gap-2 overflow-auto p-1" md="gap-3">
       <button
         v-for="z in accessibleZones"
         :key="z.id"
@@ -185,6 +185,9 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
           />
         </div>
       </button>
+    </div>
+    <div id="villages" class="flex-1">
+      <div>btns village</div>
     </div>
   </div>
 </template>

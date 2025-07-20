@@ -11,7 +11,7 @@ export interface Item {
    * When not provided, `description` will be used instead.
    */
   details?: string
-  price: number
+  price?: number
   /** Currency used to buy this item. Defaults to shlagidolar. */
   currency?: ItemCurrency
   /** Sub-category used to filter items in the UI */
