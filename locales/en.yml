@@ -137,10 +137,6 @@ components:
     WearableEquipModal:
       title: Choose an item to equip
       noAvailable: No item available.
-  App:
-    title: Shlagemon - It smells very strong
-    description: Catch all the Shlagemons before they rot the whole world.
-    author: Shlagemon Team
   LanguageSelector:
     label: Language
     en: English
@@ -1253,3 +1249,7 @@ pages:
     welcome: Welcome to Shlagemon
   shlagedexPage:
     title: Shlage Deck
+App:
+  title: Shlagemon - It smells very strong
+  description: Catch all the Shlagemons before they rot the whole world.
+  author: Shlagemon Team

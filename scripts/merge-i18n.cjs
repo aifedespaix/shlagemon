@@ -3,10 +3,7 @@ const path = require('node:path')
 const yaml = require('js-yaml')
 
 const baseDirs = [
-  path.join(__dirname, '../src/components'),
-  path.join(__dirname, '../src/stores'),
-  path.join(__dirname, '../src/data'),
-  path.join(__dirname, '../src/pages'),
+  path.join(__dirname, '../src'),
 ]
 
 function walk(dir, files = []) {
