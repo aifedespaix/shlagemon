@@ -5,6 +5,7 @@ import { COLS, ROWS, useConnectFour } from '~/composables/useConnectFour'
 const emit = defineEmits(['win', 'lose'])
 
 const { board, finished, winningCells, lastMove, reset, play } = useConnectFour()
+const hoverCol = ref<number | null>(null)
 
 const wrapper = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(wrapper)
@@ -25,6 +26,15 @@ function onClick(i: number) {
   play(col)
 }
 
+function setHover(i: number) {
+  if (!finished.value)
+    hoverCol.value = i % COLS
+}
+
+function clearHover() {
+  hoverCol.value = null
+}
+
 onMounted(reset)
 </script>
 
@@ -38,12 +48,16 @@ onMounted(reset)
         v-for="(cell, i) in board"
         :key="i"
         class="relative aspect-square flex items-center justify-center overflow-hidden rounded-full bg-[#1e2f70]"
+        :class="hoverCol === i % COLS && !finished.value ? 'bg-[#273878]' : ''"
         :hover="!finished.value ? 'scale-105' : undefined"
+        @mouseenter="setHover(i)"
+        @mouseleave="clearHover"
         @click="onClick(i)"
       >
         <div
           v-if="cell"
           class="absolute inset-0 m-auto h-4/5 w-4/5 rounded-full"
+          :style="lastMove === i ? { '--drop-from': `-${(Math.floor(i / COLS) + 1) * 100}%` } : undefined"
           :class="[
             cell === 'player' ? 'bg-[#ff4444] dark:bg-[#ff5555]' : 'bg-[#fce83a] border-2 border-yellow-700',
             lastMove === i ? 'animate-drop' : '',
@@ -58,7 +72,7 @@ onMounted(reset)
 <style scoped>
 @keyframes drop {
   from {
-    transform: translateY(-100%);
+    transform: translateY(var(--drop-from, -100%));
   }
   to {
     transform: translateY(0);

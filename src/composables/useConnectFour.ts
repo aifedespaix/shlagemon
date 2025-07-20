@@ -23,6 +23,34 @@ export function randomColumn(board: Cell[]): number {
   return valid[Math.floor(Math.random() * valid.length)]
 }
 
+export function bestColumn(board: Cell[]): number {
+  const valid = getValidColumns(board)
+  const center = Math.floor(COLS / 2)
+
+  // try to win
+  for (const col of valid) {
+    const copy = [...board]
+    const idx = drop(copy, col, 'ai')
+    if (idx !== null && checkWin(copy, 'ai'))
+      return col
+  }
+
+  // try to block player winning move
+  for (const col of valid) {
+    const copy = [...board]
+    const idx = drop(copy, col, 'player')
+    if (idx !== null && checkWin(copy, 'player'))
+      return col
+  }
+
+  // prefer center column when available
+  if (valid.includes(center))
+    return center
+
+  // otherwise prefer columns close to center
+  return valid.sort((a, b) => Math.abs(a - center) - Math.abs(b - center))[0]
+}
+
 function drop(board: Cell[], col: number, player: 'player' | 'ai'): number | null {
   for (let r = ROWS - 1; r >= 0; r--) {
     const idx = r * COLS + col
@@ -98,7 +126,7 @@ export function useConnectFour() {
   function aiMove() {
     if (finished.value)
       return
-    const col = randomColumn(board.value)
+    const col = bestColumn(board.value)
     const idx = drop(board.value, col, 'ai')
     lastMove.value = idx
     const combo = checkWin(board.value, 'ai')
