@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
+import { useI18n } from 'vue-i18n'
 import { useArenaStore } from '~/stores/arena'
 import { useDialogStore } from '~/stores/dialog'
 import { useFeatureLockStore } from '~/stores/featureLock'
@@ -17,6 +18,7 @@ const progress = useZoneProgressStore()
 const dialog = useDialogStore()
 const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
+const { t } = useI18n()
 
 const zoneButtonsDisabled = computed(
   () =>
@@ -165,7 +167,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
           <img
             v-if="allCaptured(z)"
             src="/items/shlageball/shlageball.png"
-            alt="capturé"
+            :alt="t('components.panel.Zone.capturedAlt')"
             class="h-4 w-4"
             :style="perfectZone(z) ? { filter: 'hue-rotate(60deg) brightness(1.1)' } : {}"
           >

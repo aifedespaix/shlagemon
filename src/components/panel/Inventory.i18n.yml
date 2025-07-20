@@ -1,0 +1,20 @@
+fr:
+  sort:
+    type: Type
+    name: Nom
+    price: Prix
+  category:
+    active: Actif
+    passive: Passif
+    utility: Utilitaire
+  equip: 'Vous avez équipé la {item}'
+en:
+  sort:
+    type: Type
+    name: Name
+    price: Price
+  category:
+    active: Active
+    passive: Passive
+    utility: Utility
+  equip: 'You equipped the {item}'

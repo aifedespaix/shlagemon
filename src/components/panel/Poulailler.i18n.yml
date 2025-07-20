@@ -1,0 +1,16 @@
+fr:
+  title: Poulailler
+  exit: Quitter
+  incubator: Incubateur
+  noEgg: Aucun œuf
+  yourEggs: Vos œufs
+  incubate: Incuber
+  noEggBox: Aucun œuf dans la boîte
+en:
+  title: Henhouse
+  exit: Exit
+  incubator: Incubator
+  noEgg: No egg
+  yourEggs: Your eggs
+  incubate: Incubate
+  noEggBox: No egg in the box

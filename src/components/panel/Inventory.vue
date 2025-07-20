@@ -2,6 +2,7 @@
 import type { BallId } from '~/data/items/shlageball'
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
+import { useI18n } from 'vue-i18n'
 import EggBoxModal from '~/components/egg/BoxModal.vue'
 import {
   itemCategoryTabBaseColors,
@@ -25,15 +26,16 @@ const wearableStore = useWearableItemStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
+const { t } = useI18n()
 const sortOptions = [
-  { label: 'Type', value: 'type' },
-  { label: 'Nom', value: 'name' },
-  { label: 'Prix', value: 'price' },
+  { label: t('components.panel.Inventory.sort.type'), value: 'type' },
+  { label: t('components.panel.Inventory.sort.name'), value: 'name' },
+  { label: t('components.panel.Inventory.sort.price'), value: 'price' },
 ]
 const categoryOptions = [
-  { label: 'Actif', value: 'actif', icon: 'i-carbon-flash' },
-  { label: 'Passif', value: 'passif', icon: 'i-carbon-timer' },
-  { label: 'Utilitaire', value: 'utilitaire', icon: 'i-carbon-tool-box' },
+  { label: t('components.panel.Inventory.category.active'), value: 'actif', icon: 'i-carbon-flash' },
+  { label: t('components.panel.Inventory.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
+  { label: t('components.panel.Inventory.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
 ] as const
 const availableCategories = computed(() =>
   categoryOptions.filter(opt =>
@@ -108,7 +110,7 @@ function onUse(item: Item) {
   if ('catchBonus' in item) {
     ballStore.setBall(item.id as BallId)
     usage.markUsed(item.id)
-    toast(`Vous avez équipé la ${item.name}`)
+    toast(t('components.panel.Inventory.equip', { item: item.name }))
   }
   else if (item.type === 'evolution') {
     evoItemStore.open(item)

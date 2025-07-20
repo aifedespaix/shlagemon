@@ -1,0 +1,22 @@
+fr:
+  title: Boutique
+  details: Détails
+  buy: 'Acheter x{qty} pour'
+  back: Retour dans le rayon
+  exit: Quitter la boutique
+  bought: 'Vous avez acheté {qty} × {item} pour {cost} {currency}'
+  category:
+    active: Actif
+    passive: Passif
+    utility: Utilitaire
+en:
+  title: Shop
+  details: Details
+  buy: 'Buy x{qty} for'
+  back: Put back
+  exit: Leave the shop
+  bought: 'You bought {qty} × {item} for {cost} {currency}'
+  category:
+    active: Active
+    passive: Passive
+    utility: Utility
