@@ -2,12 +2,15 @@
 // https://github.com/vueuse/head
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 useHead({
-  title: 'Shlagémon - Ça sent très fort',
+  title: t('App.title'),
   meta: [
     {
       name: 'description',
-      content: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
+      content: t('App.description'),
     },
     {
       name: 'keywords',
@@ -15,7 +18,7 @@ useHead({
     },
     {
       name: 'author',
-      content: 'Shlagémon Team',
+      content: t('App.author'),
     },
     {
       name: 'theme-color',
@@ -23,11 +26,11 @@ useHead({
     },
     {
       property: 'og:title',
-      content: 'Shlagémon - Ça sent très fort',
+      content: t('App.title'),
     },
     {
       property: 'og:description',
-      content: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
+      content: t('App.description'),
     },
     {
       property: 'og:type',
@@ -51,11 +54,11 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: 'Shlagémon - Ça sent très fort',
+      content: t('App.title'),
     },
     {
       name: 'twitter:description',
-      content: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
+      content: t('App.description'),
     },
     {
       name: 'twitter:image',

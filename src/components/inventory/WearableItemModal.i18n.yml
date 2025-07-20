@@ -1,0 +1,6 @@
+fr:
+  title: 'Choisir le porteur de {name}'
+  noAvailable: Aucun Shlagémon disponible.
+en:
+  title: 'Choose the holder of {name}'
+  noAvailable: No Shlagemon available.

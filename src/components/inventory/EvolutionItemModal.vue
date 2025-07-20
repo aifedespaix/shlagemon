@@ -1,14 +1,16 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { useEvolutionItemStore } from '~/stores/evolutionItem'
 
 const store = useEvolutionItemStore()
+const { t } = useI18n()
 </script>
 
 <template>
   <Modal v-model="store.isVisible" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
-        Utiliser {{ store.current?.name }}
+        {{ t('components.inventory.EvolutionItemModal.title', { name: store.current?.name }) }}
       </h3>
       <div v-if="store.availableMons.length" class="flex flex-col gap-2">
         <div
@@ -21,12 +23,12 @@ const store = useEvolutionItemStore()
             <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
           </div>
           <UiButton class="text-xs" @click="store.useOn(mon)">
-            Évoluer
+            {{ t('components.inventory.EvolutionItemModal.evolve') }}
           </UiButton>
         </div>
       </div>
       <p v-else class="text-center text-sm">
-        Aucun Shlagémon compatible.
+        {{ t('components.inventory.EvolutionItemModal.noCompatible') }}
       </p>
     </div>
   </Modal>
