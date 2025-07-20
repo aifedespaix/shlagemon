@@ -11,7 +11,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
       <div
         v-for="(cell, i) in playerBoard"
         :key="`p-${i}`"
-        class="aspect-square flex-center rounded text-xs"
+        class="aspect-square flex-center rounded text-xl"
         :class="[
           cell.hit
             ? cell.ship
@@ -21,18 +21,25 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
               ? 'bg-blue-400 dark:bg-blue-700'
               : 'bg-blue-100 dark:bg-blue-800',
         ]"
-      />
+      >
+        <div v-if="cell.hit && cell.ship" class="i-mdi:sail-boat text-white" />
+        <div v-else-if="cell.hit" class="i-mdi:close-thick text-white" />
+        <div v-else-if="cell.ship" class="i-mdi:sail-boat text-blue-900 dark:text-blue-200" />
+      </div>
     </div>
     <div class="grid flex-1 gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
       <button
         v-for="(cell, i) in aiBoard"
         :key="`a-${i}`"
-        class="aspect-square flex-center rounded bg-blue-100 text-xs dark:bg-blue-800"
+        class="aspect-square flex-center rounded bg-blue-100 text-xl dark:bg-blue-800"
         :class="cell.hit ? (cell.ship ? 'bg-red-500' : 'bg-gray-400') : ''"
         :hover="!cell.hit && !finished && turn === 'player' ? 'bg-blue-200 dark:bg-blue-700' : undefined"
         :disabled="cell.hit || finished || turn !== 'player'"
         @click="attack(i)"
-      />
+      >
+        <div v-if="cell.hit && cell.ship" class="i-mdi:sail-boat text-white" />
+        <div v-else-if="cell.hit" class="i-mdi:close-thick text-white" />
+      </button>
     </div>
   </div>
 </template>
