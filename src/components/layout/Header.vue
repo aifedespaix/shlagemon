@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import LanguageSelector from '~/components/LanguageSelector.vue'
 import FullscreenToggle from '~/components/ui/FullscreenToggle.vue'
 import { useAudioStore } from '~/stores/audio'
 
@@ -9,8 +10,7 @@ const showDeveloper = ref(false)
 const showDevButton = import.meta.env.VITE_DEV_TOOLS === 'true'
 const clickTimer = ref<UseTimeoutFnReturn | null>(null)
 const audio = useAudioStore()
-const { t, locale } = useI18n()
-const currentLocale = Intl.DateTimeFormat().resolvedOptions().locale
+const { t } = useI18n()
 
 function onClick() {
   if (clickTimer.value)
@@ -33,12 +33,11 @@ function onDoubleClick() {
       <img src="/logo.png" :alt="t('components.layout.Header.logoAlt')" class="h-20 -my-4">
       <div class="flex flex-col text-xs leading-tight">
         <span class="font-bold sm:text-sm">{{ t('components.layout.Header.title') }}</span>
-        <span>{{ t('components.layout.Header.language') }}: {{ locale }}</span>
-        <span>{{ t('components.layout.Header.locale') }}: {{ currentLocale }}</span>
       </div>
     </div>
     <div class="flex items-center gap-2">
       <FullscreenToggle />
+      <LanguageSelector />
       <ThemeToggle />
       <UiButton
         type="icon"

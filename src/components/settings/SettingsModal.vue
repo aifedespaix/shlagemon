@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LanguageSelector from '~/components/LanguageSelector.vue'
 import { useSaveStore } from '~/stores/save'
 import ShortcutsTab from './ShortcutsTab.vue'
 
@@ -7,7 +8,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const save = useSaveStore()
 
-const tab = ref<'save' | 'shortcuts'>('save')
+const tab = ref<'save' | 'shortcuts' | 'language'>('save')
 
 function close() {
   emit('update:modelValue', false)
@@ -43,6 +44,13 @@ function removeSave() {
       >
         Raccourcis
       </button>
+      <button
+        class="rounded px-2 py-1"
+        :class="tab === 'language' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
+        @click="tab = 'language'"
+      >
+        Langue
+      </button>
     </nav>
     <LayoutScrollablePanel class="max-h-60vh">
       <template #content>
@@ -55,8 +63,11 @@ function removeSave() {
             Supprimer
           </UiButton>
         </div>
-        <div v-else class="flex flex-col gap-2">
+        <div v-else-if="tab === 'shortcuts'" class="flex flex-col gap-2">
           <ShortcutsTab />
+        </div>
+        <div v-else class="flex justify-center">
+          <LanguageSelector />
         </div>
       </template>
     </LayoutScrollablePanel>

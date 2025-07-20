@@ -145,6 +145,10 @@ components:
       Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre
       entière.
     author: Shlagémon Team
+  LanguageSelector:
+    label: Langue
+    en: Anglais
+    fr: Français
 data:
   shlagemons:
     01-05:
