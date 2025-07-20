@@ -1,43 +1,21 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
-import { useI18n } from 'vue-i18n'
-import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMainPanelStore } from '~/stores/mainPanel'
+import ZoneButtonVillage from '~/components/zone/ZoneButtonVillage.vue'
+import ZoneButtonWild from '~/components/zone/ZoneButtonWild.vue'
+
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
 import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const zone = useZoneStore()
 const dex = useShlagedexStore()
-const panel = useMainPanelStore()
-const arena = useArenaStore()
 const progress = useZoneProgressStore()
-const dialog = useDialogStore()
-const featureLock = useFeatureLockStore()
-const visit = useZoneVisitStore()
-const { t } = useI18n()
-
-const zoneButtonsDisabled = computed(
-  () =>
-    panel.current === 'trainerBattle'
-    || panel.current === 'arena'
-    || dialog.isDialogVisible
-    || arena.inBattle
-    || featureLock.areZonesLocked,
-)
-
-function buttonDisabled(z: Zone) {
-  if (zoneButtonsDisabled.value)
-    return true
-  return z.type === 'sauvage' && zone.wildCooldownRemaining > 0
-}
 
 const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
 
 const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
+const accessibleSavages = computed(() => accessibleZones.value.filter(z => z.type === 'sauvage'))
+const accessibleVillages = computed(() => accessibleZones.value.filter(z => z.type === 'village'))
 
 function canAccess(z: Zone) {
   if (z.type === 'village')
@@ -49,79 +27,10 @@ function canAccess(z: Zone) {
   return progress.isKingDefeated(prev.id)
 }
 
-function selectZone(id: string) {
-  const z = zone.zones.find(zz => zz.id === id)
-  if (!z || buttonDisabled(z))
-    return
-  zone.setZone(id)
+function onVillageWheel(e: WheelEvent) {
+  const el = e.currentTarget as HTMLElement
+  el.scrollLeft += e.deltaY
 }
-
-function icon(z: Zone) {
-  if (z.type === 'village')
-    return 'i-game-icons:village'
-  if (z.type === 'grotte')
-    return 'i-game-icons:cave-entrance'
-  return 'i-game-icons:forest'
-}
-
-function classes(z: Zone) {
-  const classes: string[] = []
-  if (z.id === zone.current.id) {
-    classes.push('bg-primary text-dark dark:bg-light')
-    return classes.join(' ')
-  }
-  if (z.type === 'village') {
-    classes.push('bg-green-300 dark:bg-green-800')
-    return classes.join(' ')
-  }
-
-  const level = dex.activeShlagemon?.lvl || 0
-  if (z.maxLevel < level)
-    classes.push('bg-blue-200 dark:bg-gray-700')
-  else if (level >= z.minLevel && level <= z.maxLevel)
-    classes.push('bg-blue-500 dark:bg-blue-600')
-  else if (z.minLevel > level && z.minLevel - level <= 5)
-    classes.push('bg-orange-400 dark:bg-orange-800')
-  else
-    classes.push('bg-red-400 dark:bg-red-700')
-
-  return classes.join(' ')
-}
-
-function allCaptured(z: Zone) {
-  const list = z.shlagemons
-  if (!list?.length)
-    return false
-  return list.every(base => dex.shlagemons.some(mon => mon.base.id === base.id))
-}
-
-function perfectZone(z: Zone) {
-  const list = z.shlagemons
-  if (!list?.length)
-    return false
-  return list.every((base) => {
-    const mon = dex.shlagemons.find(m => m.base.id === base.id)
-    return mon?.rarity === 100
-  })
-}
-
-function kingDefeated(z: Zone) {
-  const hasKing = z.hasKing ?? z.type === 'sauvage'
-  return hasKing && progress.isKingDefeated(z.id)
-}
-
-function arenaDefeated(z: Zone) {
-  return !!z.arena && progress.isArenaCompleted(z.id)
-}
-
-function arenaPending(z: Zone) {
-  return !!z.arena && !progress.isArenaCompleted(z.id)
-}
-
-function isNew(z: Zone) {
-  return z.id !== zone.current.id && !visit.visited[z.id]
-}
-const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 </script>
 
 <template>
@@ -136,58 +45,18 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
       />
     </div>
     <div id="savages" class="tiny-scrollbar zone-grid grid h-2/3 gap-2 overflow-auto p-1" md="gap-3">
-      <button
-        v-for="z in accessibleZones"
+      <ZoneButtonWild
+        v-for="z in accessibleSavages"
         :key="z.id"
-        class="relative grid grid-rows-2 max-h-[120px] gap-1 rounded px-2 py-1 text-xs"
-        :class="[
-          classes(z),
-          buttonDisabled(z) ? 'opacity-50 cursor-not-allowed' : '',
-          isNew(z) ? highlightClasses : '',
-        ]"
-        :disabled="buttonDisabled(z)"
-        @click="selectZone(z.id)"
-      >
-        <UiBadge
-          v-if="z.id === zone.current.id"
-          inner
-          size="square"
-          icon="i-carbon:user-filled"
-        />
-        <div class="flex-center">
-          <div
-            class="h-6 w-6"
-            :class="icon(z)"
-          />
-        </div>
-        <div class="flex-center">
-          <span>{{ z.name }}</span>
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <img
-            v-if="allCaptured(z)"
-            src="/items/shlageball/shlageball.png"
-            :alt="t('components.panel.Zone.capturedAlt')"
-            class="h-4 w-4"
-            :style="perfectZone(z) ? { filter: 'hue-rotate(60deg) brightness(1.1)' } : {}"
-          >
-          <div
-            v-if="kingDefeated(z)"
-            class="i-game-icons:crown h-4 w-4"
-          />
-          <div
-            v-if="arenaDefeated(z)"
-            class="i-mdi:sword-cross h-4 w-4"
-          />
-          <div
-            v-else-if="arenaPending(z)"
-            class="i-mdi:sword-cross h-4 w-4 opacity-50 grayscale"
-          />
-        </div>
-      </button>
+        :zone="z"
+      />
     </div>
-    <div id="villages" class="flex-1">
-      <div>btns village</div>
+    <div id="villages" class="tiny-scrollbar flex items-start gap-2 overflow-x-auto p-1" md="gap-3" @wheel.prevent="onVillageWheel">
+      <ZoneButtonVillage
+        v-for="z in accessibleVillages"
+        :key="z.id"
+        :zone="z"
+      />
     </div>
   </div>
 </template>
