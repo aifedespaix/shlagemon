@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import LanguageSelector from '~/components/LanguageSelector.vue'
 import FullscreenToggle from '~/components/ui/FullscreenToggle.vue'
 import { useAudioStore } from '~/stores/audio'
 
@@ -36,8 +35,6 @@ function onDoubleClick() {
       </div>
     </div>
     <div class="flex items-center gap-2">
-      <FullscreenToggle />
-      <LanguageSelector />
       <ThemeToggle />
       <UiButton
         type="icon"
@@ -60,6 +57,7 @@ function onDoubleClick() {
       >
         <div class="i-carbon-debug" />
       </UiButton>
+      <FullscreenToggle />
       <DeveloperSettingsModal v-if="showDevButton" v-model="showDeveloper" />
     </div>
   </header>
