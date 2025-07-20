@@ -1,14 +1,11 @@
 import type { Zone } from '~/type'
 import { arena20, arena40, arena60 } from '../arenas'
 import {
-  attackPotion,
   capturePotion,
-  defensePotion,
   hyperAttackPotion,
   hyperCapturePotion,
   hyperDefensePotion,
   hyperPotion,
-  potion,
   steroids,
   superAttackPotion,
   superCapturePotion,
@@ -18,23 +15,10 @@ import {
   superXpPotion,
   thunderStone,
   ultraSteroid,
-  vitalityPotion,
   xpPotion,
 } from '../items/items'
-import { hyperShlageball, shlageball, superShlageball } from '../items/shlageball'
-
-const village10: Zone = {
-  id: 'village-veaux-du-gland',
-  name: 'Veaux du Gland sur Marne',
-  type: 'village',
-  minLevel: 10,
-  actions: [],
-  village: {
-    shop: {
-      items: [potion, defensePotion, attackPotion, vitalityPotion, shlageball],
-    },
-  },
-}
+import { hyperShlageball, superShlageball } from '../items/shlageball'
+import { village10 } from './villages/village10'
 
 const village20: Zone = {
   id: 'village-boule',
