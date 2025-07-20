@@ -8,6 +8,8 @@ export interface BaseShlagemon {
   id: string
   name: string
   description: string
+  /** i18n key for the description */
+  descriptionKey?: string
   /**
    * Primary and optional secondary type of the Shlagémon.
    * The first element represents the main type.

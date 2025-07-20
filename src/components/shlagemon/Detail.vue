@@ -163,7 +163,7 @@ const captureInfo = computed(() => {
         </UiCheckBox>
       </div>
       <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic">
-        {{ mon.base.description }}
+        {{ t(mon.base.descriptionKey || mon.base.description) }}
       </p>
       <ShlagemonStats :stats="stats" />
       <ShlagemonXpBar :mon="mon" />
