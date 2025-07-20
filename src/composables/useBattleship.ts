@@ -4,20 +4,25 @@ import { ref } from 'vue'
 export interface Cell {
   ship: boolean
   hit: boolean
+  shipId?: number
 }
 
 export const BOARD_SIZE = 5
 const SHIPS = [3, 2, 2]
 
 function createBoard(): Cell[] {
-  return Array.from({ length: BOARD_SIZE * BOARD_SIZE }).map(() => ({ ship: false, hit: false }))
+  return Array.from({ length: BOARD_SIZE * BOARD_SIZE }).map(() => ({
+    ship: false,
+    hit: false,
+    shipId: undefined,
+  }))
 }
 
 function index(row: number, col: number) {
   return row * BOARD_SIZE + col
 }
 
-function placeShip(board: Cell[], length: number) {
+function placeShip(board: Cell[], length: number, id: number) {
   while (true) {
     const vertical = Math.random() > 0.5
     const maxRow = vertical ? BOARD_SIZE - length : BOARD_SIZE - 1
@@ -37,13 +42,14 @@ function placeShip(board: Cell[], length: number) {
     for (let i = 0; i < length; i++) {
       const idx = vertical ? index(r + i, c) : index(r, c + i)
       board[idx].ship = true
+      board[idx].shipId = id
     }
     break
   }
 }
 
 function placeShips(board: Cell[]) {
-  SHIPS.forEach(s => placeShip(board, s))
+  SHIPS.forEach((s, i) => placeShip(board, s, i))
 }
 
 function neighbors(idx: number): number[] {
@@ -59,6 +65,12 @@ function neighbors(idx: number): number[] {
   if (c < BOARD_SIZE - 1)
     res.push(index(r, c + 1))
   return res
+}
+
+function shipSunk(board: Cell[], id: number | undefined) {
+  if (id === undefined)
+    return false
+  return board.every(c => c.shipId !== id || c.hit)
 }
 
 export function createBattleshipAI() {
@@ -105,9 +117,21 @@ export function useBattleship(onEnd: (win: boolean) => void) {
   function attack(i: number) {
     if (finished.value || turn.value !== 'player' || aiBoard.value[i].hit)
       return
-    aiBoard.value[i].hit = true
-    if (aiBoard.value[i].ship)
+    const cell = aiBoard.value[i]
+    cell.hit = true
+    if (cell.ship) {
       aiShips--
+      if (shipSunk(aiBoard.value, cell.shipId))
+        // eslint-disable-next-line no-console
+        console.log('touche coule')
+      else
+        // eslint-disable-next-line no-console
+        console.log('touche')
+    }
+    else {
+      // eslint-disable-next-line no-console
+      console.log('rate')
+    }
     if (aiShips <= 0)
       return end(true)
     turn.value = 'ai'
@@ -123,8 +147,19 @@ export function useBattleship(onEnd: (win: boolean) => void) {
     const cell = playerBoard.value[idx]
     cell.hit = true
     ai.record(idx, cell.ship)
-    if (cell.ship)
+    if (cell.ship) {
       playerShips--
+      if (shipSunk(playerBoard.value, cell.shipId))
+        // eslint-disable-next-line no-console
+        console.log('touche coule')
+      else
+        // eslint-disable-next-line no-console
+        console.log('touche')
+    }
+    else {
+      // eslint-disable-next-line no-console
+      console.log('rate')
+    }
     if (playerShips <= 0)
       return end(false)
     turn.value = 'player'
