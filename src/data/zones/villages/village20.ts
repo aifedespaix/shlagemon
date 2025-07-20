@@ -8,13 +8,20 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { shlageball } from '~/data/items/shlageball'
+import { arena20 } from '../../arenas'
 
-export const village10: Zone = {
-  id: 'village-veaux-du-gland',
-  name: 'Veaux du Gland sur Marne',
+export const village20: Zone = {
+  id: 'village-boule',
+  name: 'Village Sux-Mais-Bouls',
   type: 'village',
-  minLevel: 10,
-  actions: [],
+  actions: [
+    { id: 'minigame', label: 'Mini-jeu' },
+  ],
+  minLevel: 20,
+  arena: {
+    get arena() { return arena20 },
+    completed: false,
+  },
   village: {
     shop: {
       items: [
@@ -28,4 +35,5 @@ export const village10: Zone = {
       ],
     },
   },
+  miniGame: 'tictactoe',
 }
