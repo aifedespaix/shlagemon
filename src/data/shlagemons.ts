@@ -4,4 +4,11 @@ export const modules = import.meta.glob<{ default: BaseShlagemon }>('./shlagemon
 
 export const allShlagemons: BaseShlagemon[] = Object.entries(modules)
   .filter(([path]) => !path.endsWith('index.ts'))
-  .map(([, m]) => m.default)
+  .map(([path, m]) => {
+    const base = m.default
+    const rel = path
+      .replace('./shlagemons/', '')
+      .replace(/\.ts$/, '')
+    base.descriptionKey = `data.shlagemons.${rel}.description`
+    return base
+  })
