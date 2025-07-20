@@ -33,7 +33,7 @@ const inventoryEggs = computed(() => {
 function startIncubation(id: string) {
   if (eggs.incubator)
     return
-  const map = { 'oeuf-feu': 'feu', 'oeuf-eau': 'eau', 'oeuf-herbe': 'plante' } as const
+  const map = { 'oeuf-feu': 'feu', 'oeuf-eau': 'eau', 'oeuf-herbe': 'plante', 'oeuf-psy': 'psy' } as const
   if (eggs.startIncubation(map[id]))
     box.removeEgg(id as EggItemId)
 }

@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { bulgrosboule } from '~/data/shlagemons/bulgrosboule'
 import { carapouffe } from '~/data/shlagemons/carapouffe'
+import { mewteub } from '~/data/shlagemons/mewteub'
 import { salamiches } from '~/data/shlagemons/salamiches'
 import { useShlagedexStore } from './shlagedex'
 
@@ -42,6 +43,8 @@ export const useEggStore = defineStore('egg', () => {
         return dex.captureShlagemon(carapouffe)
       case 'plante':
         return dex.captureShlagemon(bulgrosboule)
+      case 'psy':
+        return dex.captureShlagemon(mewteub)
     }
     return null
   }
