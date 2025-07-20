@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 const isDark = useDark()
 const toggle = useToggle(isDark)
+const { t } = useI18n()
 </script>
 
 <template>
   <button
-    aria-label="Changer de thème"
+    :aria-label="t('components.ThemeToggle.toggle')"
     class="relative h-6 w-12 rounded-full bg-gray-200 transition-colors dark:bg-gray-700"
     type="button"
     @click="toggle()"
