@@ -1,0 +1,7 @@
+components.ui.sortControls:
+  fr:
+    ascending: Tri ascendant
+    descending: Tri descendant
+  en:
+    ascending: Ascending sort
+    descending: Descending sort

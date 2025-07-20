@@ -14,6 +14,17 @@ components:
       settings: Paramètres
       developer: Développeur
       logoAlt: Logo Shlagémon
+    HomeFooter:
+      rights: Surement quelques droits réservés.
+      imageDisclaimer: >-
+        La plupart des images sont générés par des IA qui volent le travail des
+        artistes, désolé c'est parce-que je sais pas dessiner et que j'ai pas le
+        moyen d'acheter des dessins.
+    HomeHeader:
+      logoAlt: Logo Shlagémon
+      title: Shlagémon
+      home: Accueil
+      dex: Shlagédex
   panel:
     Achievements:
       all: Tous
@@ -74,6 +85,66 @@ components:
   UpdateSnackbar:
     updateAvailable: Mise à jour de l'application disponible
     reload: Recharger
+  battle:
+    Capture:
+      cooldown: Patientez avant de capturer à nouveau
+      noBall: Pas de Shlagéball, capture impossible
+      ko: Impossible de capturer un Shlagémon K.O.
+      needBadge: Un badge est nécessaire pour capturer ce niveau
+      capture: Capturer le Shlagémon
+    Main:
+      captureTooltip:
+        all: Vous avez capturé tous les Shlagémon de la zone
+        missing: Vous n'avez pas capturé tous les Shlagémon de la zone
+      winTooltip: Vous avez vaincu {n} Shlagémon dans cette zone
+      zoneMons: Shlagémons de la zone
+  egg:
+    BoxModal:
+      title: Boîte à œufs
+      empty: Aucun œuf
+  inventory:
+    EvolutionItemModal:
+      title: Utiliser {name}
+      evolve: Évoluer
+      noCompatible: Aucun Shlagémon compatible.
+    ItemCard:
+      action:
+        open: Ouvrir
+        equipped: Équipé
+        equip: Équiper
+        use: Utiliser
+      shortcutTooltip: Définir un raccourci clavier pour cet objet.
+    ItemShortcutModal:
+      title: Assigner un raccourci clavier pour cet objet
+      pressKey: Appuyez sur une touche pour assigner le raccourci clavier
+    WearableItemModal:
+      title: Choisir le porteur de {name}
+      noAvailable: Aucun Shlagémon disponible.
+  settings:
+    ShortcutsTab:
+      add: Ajouter un raccourci
+      reset: Réinitialiser
+  shlagemon:
+    Detail:
+      equipItemTitle: Équiper un objet
+      allowEvolution: Autoriser ce Shlagémon à évoluer ?
+      firstCatch: 'Première capture : {date}'
+      obtainedTimes: Obtenu {count} fois
+      release: Relâcher
+      main: Principal
+      confirmTitle: Relâcher un Shlagémon ?
+      confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
+      yes: Oui
+      no: Non
+    WearableEquipModal:
+      title: Choisir un objet à équiper
+      noAvailable: Aucun objet disponible.
+  App:
+    title: Shlagémon - Ça sent très fort
+    description: >-
+      Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre
+      entière.
+    author: Shlagémon Team
 data:
   shlagemons:
     01-05:
@@ -881,13 +952,16 @@ data:
           camions.
       coksale:
         description: >-
-          Une coccinelle de cité, toujours perchée sur un mégot. Deux yeux globuleux et des ailes qui puent le tabac froid.
+          Une coccinelle de cité, toujours perchée sur un mégot. Deux yeux
+          globuleux et des ailes qui puent le tabac froid.
       kaiminable:
         description: >-
-          Petit croco tout bouffi, baveux, qui mord ses propres doigts. A déjà une canette vide accrochée à la queue.
+          Petit croco tout bouffi, baveux, qui mord ses propres doigts. A déjà
+          une canette vide accrochée à la queue.
       houlard:
         description: >-
-          Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des poteaux EDF, lâche des fientes phosphorescentes.
+          Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des
+          poteaux EDF, lâche des fientes phosphorescentes.
     65-70:
       minidrapcon:
         description: >-
@@ -895,13 +969,16 @@ data:
           crochets dans ses propres replis.
       glandignon:
         description: >-
-          Bébé plante molle et poisseuse. Le bulbe sur sa tête suinte. Odeur de chaussette trempée.
+          Bébé plante molle et poisseuse. Le bulbe sur sa tête suinte. Odeur de
+          chaussette trempée.
       qwiflash:
         description: >-
-          Poisson gonflé, mais tout mollasson, flotte à moitié crevé dans les caniveaux. Tire la langue, sans raison.
+          Poisson gonflé, mais tout mollasson, flotte à moitié crevé dans les
+          caniveaux. Tire la langue, sans raison.
       hericouille:
         description: >-
-          Petit hérisson gris, les flammes ne s’allument plus. Il tousse en permanence, il a des brûlures aux fesses.
+          Petit hérisson gris, les flammes ne s’allument plus. Il tousse en
+          permanence, il a des brûlures aux fesses.
     70-75:
       krabbyjaccob:
         description: >-

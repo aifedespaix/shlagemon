@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { ItemId } from '~/data/items/items'
+import { useI18n } from 'vue-i18n'
 import { allItems } from '~/data/items/items'
 import { useShortcutsStore } from '~/stores/shortcuts'
 
 const store = useShortcutsStore()
+const { t } = useI18n()
 
 const itemOptions = allItems.map(i => ({ label: i.name, value: i.id }))
 
@@ -51,10 +53,10 @@ function reset() {
     </div>
     <div class="mt-2 flex gap-2">
       <UiButton class="flex-1" @click="addShortcut">
-        Ajouter un raccourci
+        {{ t('components.settings.ShortcutsTab.add') }}
       </UiButton>
       <UiButton type="danger" class="flex-1" @click="reset">
-        Réinitialiser
+        {{ t('components.settings.ShortcutsTab.reset') }}
       </UiButton>
     </div>
   </div>

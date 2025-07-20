@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { useI18n } from 'vue-i18n'
 import WearableItemIcon from '~/components/inventory/WearableItemIcon.vue'
 import ShlagemonStats from '~/components/shlagemon/Stats.vue'
 import { allItems } from '~/data/items/items'
@@ -38,6 +39,7 @@ const store = useShlagedexStore()
 const wearableItemStore = useWearableItemStore()
 const equipModal = useWearableEquipModalStore()
 const disease = useDiseaseStore()
+const { t } = useI18n()
 const showConfirm = ref(false)
 
 const heldItem = computed(() => {
@@ -145,7 +147,7 @@ const captureInfo = computed(() => {
             v-else
             type="icon"
             class="h-7 w-7"
-            title="Équiper un objet"
+            :title="t('components.shlagemon.Detail.equipItemTitle')"
             @click="openEquip"
           >
             <div i-carbon-add />
@@ -157,7 +159,7 @@ const captureInfo = computed(() => {
           {{ evolutionInfo }}
         </div>
         <UiCheckBox v-model="allowEvolution" class="flex items-center gap-2 text-xs">
-          Autoriser ce Shlagémon à évoluer ?
+          {{ t('components.shlagemon.Detail.allowEvolution') }}
         </UiCheckBox>
       </div>
       <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic">
@@ -167,16 +169,16 @@ const captureInfo = computed(() => {
       <ShlagemonXpBar :mon="mon" />
       <div class="w-full flex items-center justify-center gap-2 text-xs">
         <p class="">
-          Première capture : {{ captureInfo.date }}
+          {{ t('components.shlagemon.Detail.firstCatch', { date: captureInfo.date }) }}
         </p>
         <p>
-          Obtenu {{ captureInfo.count }} fois
+          {{ t('components.shlagemon.Detail.obtainedTimes', { count: captureInfo.count }) }}
         </p>
       </div>
       <div class="flex justify-end gap-2">
         <UiButton type="danger" class="flex items-center gap-1" @click="requestRelease">
           <div i-carbon-trash-can />
-          Relâcher
+          {{ t('components.shlagemon.Detail.release') }}
         </UiButton>
         <UiButton
           type="primary"
@@ -185,25 +187,25 @@ const captureInfo = computed(() => {
           @click="setActive"
         >
           <div i-carbon-star-filled />
-          Principal
+          {{ t('components.shlagemon.Detail.main') }}
         </UiButton>
       </div>
       <Modal v-model="showConfirm" :close-on-outside-click="false">
         <div class="flex flex-col items-center gap-4">
           <h3 class="text-lg font-bold">
-            Relâcher un Shlagémon ?
+            {{ t('components.shlagemon.Detail.confirmTitle') }}
           </h3>
           <p class="text-center text-sm">
-            Attention, si vous le relâchez, il ira shlagiser tout le territoire.
+            {{ t('components.shlagemon.Detail.confirmText') }}
           </p>
           <div class="flex gap-2">
             <UiButton type="valid" class="flex items-center gap-1" @click="confirmRelease">
               <div i-carbon-checkmark />
-              Oui
+              {{ t('components.shlagemon.Detail.yes') }}
             </UiButton>
             <UiButton type="danger" class="flex items-center gap-1" @click="cancelRelease">
               <div i-carbon-close />
-              Non
+              {{ t('components.shlagemon.Detail.no') }}
             </UiButton>
           </div>
         </div>

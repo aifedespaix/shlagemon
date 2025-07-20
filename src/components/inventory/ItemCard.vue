@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
 import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
 import { useItemUsageStore } from '~/stores/itemUsage'
 import { useShortcutsStore } from '~/stores/shortcuts'
@@ -12,6 +13,7 @@ const emit = defineEmits<{
   (e: 'use'): void
   (e: 'sell'): void
 }>()
+const { t } = useI18n()
 
 const showInfo = ref(false)
 const usage = useItemUsageStore()
@@ -31,10 +33,10 @@ const isEggBox = computed(() => props.item.id === 'egg-box')
 
 const actionLabel = computed(() => {
   if (isEggBox.value)
-    return 'Ouvrir'
+    return t('components.inventory.ItemCard.action.open')
   if ('catchBonus' in props.item || props.item.wearable)
-    return props.disabled ? 'Équipé' : 'Équiper'
-  return 'Utiliser'
+    return props.disabled ? t('components.inventory.ItemCard.action.equipped') : t('components.inventory.ItemCard.action.equip')
+  return t('components.inventory.ItemCard.action.use')
 })
 
 const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
@@ -94,7 +96,7 @@ watch(showInfo, (val) => {
         size="sm"
         :key-name="shortcutKey"
         class="self-baseline"
-        title="Définir un raccourci clavier pour cet objet."
+        :title="t('components.inventory.ItemCard.shortcutTooltip')"
         @click.stop="openShortcutModal"
       />
     </div>

@@ -1,0 +1,12 @@
+fr:
+  captureTooltip:
+    all: Vous avez capturé tous les Shlagémon de la zone
+    missing: Vous n'avez pas capturé tous les Shlagémon de la zone
+  winTooltip: 'Vous avez vaincu {n} Shlagémon dans cette zone'
+  zoneMons: Shlagémons de la zone
+en:
+  captureTooltip:
+    all: You captured all Shlagemon in the area
+    missing: You haven't captured all Shlagemon in the area
+  winTooltip: 'You defeated {n} Shlagemon in this area'
+  zoneMons: Zone Shlagemons
