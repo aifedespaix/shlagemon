@@ -1273,6 +1273,14 @@ data:
       loseText: Perdu ! Recommence quand tu veux.
       drawText: Match nul ! Recommence quand tu veux.
       back: Retour
+    ShlagCards:
+      startText: Une partie de Duel de Cartes ?
+      yes: Oui
+      no: Non
+      winText: Bien joué ! Tu gagnes un œuf Psy.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      back: Retour
 pages:
   indexPage:
     title: Shlagémon

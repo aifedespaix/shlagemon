@@ -1252,6 +1252,14 @@ data:
       loseText: Lost! Try again whenever you like.
       drawText: Draw! Try again whenever you like.
       back: Back
+    ShlagCards:
+      startText: Fancy a game of Shlag Cards?
+      yes: Yes
+      no: No
+      winText: Well played! You win a Psy Egg.
+      super: Awesome!
+      loseText: Lost! Try again whenever you like.
+      back: Back
 pages:
   indexPage:
     title: Shlagemon
