@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ShlagCard } from '~/type'
+import { useElementSize } from '@vueuse/core'
 import { allShlagemons } from '~/data/shlagemons'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
@@ -26,6 +27,10 @@ const selectedPlayer = ref<ShlagCard | null>(null)
 const selectedOpponent = ref<ShlagCard | null>(null)
 const revealed = ref(false)
 const history = ref<{ player: ShlagCard, opponent: ShlagCard, winner: string }[]>([])
+
+const wrapper = ref<HTMLElement | null>(null)
+const { width, height } = useElementSize(wrapper)
+const cardSize = computed(() => Math.min(width.value / 4, height.value / 6))
 
 function randomCard(): ShlagCard {
   const base = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
@@ -161,7 +166,7 @@ onMounted(reset)
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2 bg-[url('/textures/table.jpg')] bg-cover p-2" md="p-4">
+  <div ref="wrapper" class="flex flex-1 flex-col items-center gap-2 bg-[url('/textures/table.jpg')] bg-cover p-2" md="p-4">
     <div class="text-sm font-bold">
       {{ player.score }} - {{ opponent.score }}
     </div>
@@ -170,25 +175,23 @@ onMounted(reset)
         v-for="c in player.hand"
         :key="c.id"
         :card="c"
+        :size="cardSize"
         selectable
         @select="play(c)"
       />
     </div>
     <div v-if="selectedPlayer && selectedOpponent" class="my-2 flex items-center gap-2">
-      <MinigameShlagCard :card="selectedPlayer" :revealed="revealed" />
+      <MinigameShlagCard :card="selectedPlayer" :revealed="revealed" :size="cardSize" />
       <span class="font-bold">VS</span>
-      <MinigameShlagCard :card="selectedOpponent" :revealed="revealed" />
+      <MinigameShlagCard :card="selectedOpponent" :revealed="revealed" :size="cardSize" />
     </div>
     <div class="w-full flex flex-wrap justify-center gap-1">
-      <MinigameShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" />
+      <MinigameShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" :size="cardSize" />
     </div>
     <div v-if="history.length" class="w-full text-xs" md="w-1/2">
       <div v-for="(h, i) in history" :key="i" class="border-b py-1">
         {{ h.player.name }} vs {{ h.opponent.name }} - {{ h.winner }}
       </div>
     </div>
-    <UiButton class="mt-2" @click="reset">
-      Restart
-    </UiButton>
   </div>
 </template>
