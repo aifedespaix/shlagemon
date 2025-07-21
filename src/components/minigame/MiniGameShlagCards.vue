@@ -86,6 +86,8 @@ function play(card: ShlagCard) {
 }
 
 function aiSelect() {
+  if (!opponent.hand.length)
+    return
   const idx = Math.floor(Math.random() * opponent.hand.length)
   let card = opponent.hand[idx]
   hiddenOpponentCards.add(card.id)
