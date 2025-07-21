@@ -9,50 +9,36 @@ export interface SlidingPuzzle {
   size: number
 }
 
-function shuffle(arr: number[]) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]]
-  }
-}
-
-function inversions(arr: number[]) {
-  let inv = 0
-  const a = arr.filter(n => n >= 0)
-  for (let i = 0; i < a.length; i++) {
-    for (let j = i + 1; j < a.length; j++) {
-      if (a[i] > a[j])
-        inv++
-    }
-  }
-  return inv
-}
-
-function isSolvable(tiles: number[], size: number, emptyIndex: number) {
-  const inv = inversions(tiles)
-  if (size % 2)
-    return inv % 2 === 0
-  const rowFromBottom = size - Math.floor(emptyIndex / size)
-  return (inv + rowFromBottom) % 2 === 0
-}
-
 export function useSlidingPuzzle(size: number) {
   const tiles = ref<number[]>([])
   const emptyIndex = ref(0)
   const image = ref('')
   const solved = ref(false)
   const audio = useAudioStore()
+  const shuffling = ref(false)
+
+  function init() {
+    tiles.value = Array.from({ length: size * size }, (_, i) => i)
+    emptyIndex.value = size * size - 1
+    solved.value = true
+  }
+
+  async function shuffleBoard(moves = 50, delay = 50) {
+    shuffling.value = true
+    solved.value = false
+    const dirs = ['up', 'down', 'left', 'right'] as const
+    for (let i = 0; i < moves; i++) {
+      const dir = dirs[Math.floor(Math.random() * dirs.length)]
+      move(dir)
+      await new Promise(r => setTimeout(r, delay))
+    }
+    shuffling.value = false
+  }
 
   function reset() {
     const mon = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
     image.value = `/shlagemons/${mon.id}/${mon.id}.png`
-    tiles.value = Array.from({ length: size * size }, (_, i) => i)
-    emptyIndex.value = size * size - 1
-    do {
-      shuffle(tiles.value)
-    } while (!isSolvable(tiles.value, size, tiles.value.indexOf(size * size - 1)))
-    emptyIndex.value = tiles.value.indexOf(size * size - 1)
-    solved.value = false
+    init()
   }
 
   function swap(idx: number) {
@@ -95,5 +81,16 @@ export function useSlidingPuzzle(size: number) {
 
   reset()
 
-  return { tiles, board, emptyIndex, image, solved, move, moveTile, reset }
+  return {
+    tiles,
+    board,
+    emptyIndex,
+    image,
+    solved,
+    shuffling,
+    move,
+    moveTile,
+    reset,
+    shuffleBoard,
+  }
 }
