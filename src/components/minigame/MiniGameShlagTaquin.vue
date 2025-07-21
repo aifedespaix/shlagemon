@@ -103,7 +103,7 @@ watch(() => puzzle.solved, (v) => {
         <div class="i-mdi:arrow-down" />
       </div>
 
-      <div class="relative aspect-square w-full flex-1">
+      <div class="relative h-full w-full">
         <img
           v-if="puzzle.solved"
           :src="puzzle.image"
@@ -119,13 +119,12 @@ watch(() => puzzle.solved, (v) => {
           :style="{
             width: `${tilePercent}%`,
             height: `${tilePercent}%`,
-            left: '0%',
-            top: '0%',
-            transform: `translate(${(tile.idx % size) * tilePercent}%, ${(Math.floor(tile.idx / size) * tilePercent)}%)`,
+            left: `${(tile.idx % size) * tilePercent}%`,
+            top: `${Math.floor(tile.idx / size) * tilePercent}%`,
             backgroundImage: `url(${puzzle.image})`,
             backgroundSize: `${size * 100}% ${size * 100}%`,
             backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
-            transition: 'transform 0.3s',
+            transition: 'left 0.3s, top 0.3s',
           }"
           @click="puzzle.moveTile(tile.idx)"
         />
