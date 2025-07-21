@@ -45,7 +45,7 @@ function onVillageWheel(e: WheelEvent) {
     <div
       id="savages"
       class="tiny-scrollbar grid h-full snap-y snap-mandatory gap-1 overflow-y-auto"
-      style="grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr)); grid-auto-rows: 50%;"
+      style="grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr)); grid-auto-rows: calc(50% - 0.25rem);"
     >
       <ZoneButtonWild
         v-for="z in accessibleSavages"
@@ -57,7 +57,7 @@ function onVillageWheel(e: WheelEvent) {
 
     <div
       id="villages"
-      class="tiny-scrollbar flex gap-1 overflow-x-auto overflow-y-hidden p-1"
+      class="tiny-scrollbar flex gap-1 overflow-x-auto overflow-y-hidden"
       @wheel.prevent="onVillageWheel"
     >
       <ZoneButtonVillage
