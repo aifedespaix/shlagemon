@@ -43,7 +43,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const accessibleShopLevel = computed(() =>
     accessibleZones.value
       .filter(z => z.village?.shop)
-      .reduce((m, z) => Math.max(m, z.village!.shop!.level), 0),
+      .reduce((m, z) => Math.max(m, z.minLevel), 0),
   )
 
   const accessibleBaseIds = computed(() => {
