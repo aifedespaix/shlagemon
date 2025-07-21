@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import TrainerBattle from '../src/components/battle/TrainerBattle.vue'
+import TrainerBattle from '../src/components/battle/Trainer.vue'
 import { EQUILIBRE_RANK } from '../src/constants/battle'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useShlagedexStore } from '../src/stores/shlagedex'
