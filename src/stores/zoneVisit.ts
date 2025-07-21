@@ -4,7 +4,7 @@ export const useZoneVisitStore = defineStore('zoneVisit', () => {
   const visited = ref<Record<string, boolean>>({})
   const dex = useShlagedexStore()
 
-  const { accessibleZones } = useZoneAccess(dex.highestLevel)
+  const { accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
 
   const hasNewZone = computed(
     () => accessibleZones.value.length > 1
