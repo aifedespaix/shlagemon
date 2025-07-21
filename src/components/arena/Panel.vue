@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useArenaStore } from '~/stores/arena'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useShlagedexStore } from '~/stores/shlagedex'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { delay } from '~/utils/delay'
 import { applyCurrentStats, applyStats } from '~/utils/dexFactory'

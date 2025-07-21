@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useI18n } from 'vue-i18n'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useWearableItemStore } from '~/stores/wearableItem'
 
 const store = useWearableItemStore()
 const dex = useShlagedexStore()

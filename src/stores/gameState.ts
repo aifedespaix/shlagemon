@@ -1,6 +1,5 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
-import { useShlagedexStore } from './shlagedex'
 
 export const useGameStateStore = defineStore('gameState', () => {
   const dex = useShlagedexStore()

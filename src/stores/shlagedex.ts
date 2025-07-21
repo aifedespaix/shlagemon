@@ -13,11 +13,6 @@ import {
   xpRewardForLevel,
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
-import { useAudioStore } from './audio'
-import { useDiseaseStore } from './disease'
-import { useEquipmentStore } from './equipment'
-import { useEvolutionStore } from './evolution'
-import { useZoneAccess } from './zoneAccess'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])

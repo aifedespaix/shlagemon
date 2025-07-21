@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import { computed, shallowRef, watchEffect } from 'vue'
 import { getMiniGame } from '~/data/minigames'
 import { getZoneTrack } from '~/data/music'
-import { useAudioStore } from '~/stores/audio'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMiniGameStore } from '~/stores/miniGame'
-import { useZoneStore } from '~/stores/zone'
 
 const mini = useMiniGameStore()
 const panel = useMainPanelStore()

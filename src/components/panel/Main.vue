@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useDialogStore } from '~/stores/dialog'
-import { useMainPanelStore } from '~/stores/mainPanel'
 import BattleMain from '../battle/Main.vue'
 import BattleTrainer from '../battle/Trainer.vue'
 import ArenaPanel from './Arena.vue'

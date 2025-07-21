@@ -1,10 +1,5 @@
 import type { ZoneId, ZoneType } from '~/type/zone'
 import { defineStore } from 'pinia'
-import { useArenaStore } from './arena'
-import { useBattleStore } from './battle'
-import { useMiniGameStore } from './miniGame'
-import { useShlagedexStore } from './shlagedex'
-import { useZoneStore } from './zone'
 
 export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler'
 

@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import FullscreenToggle from '~/components/ui/FullscreenToggle.vue'
-import { useAudioStore } from '~/stores/audio'
-
 const showSettings = ref(false)
 const showAudio = ref(false)
 const showDeveloper = ref(false)
@@ -54,7 +50,7 @@ function onDoubleClick() {
       >
         <div class="i-carbon-debug" />
       </UiButton>
-      <FullscreenToggle />
+      <UiFullscreenToggle />
       <DeveloperSettingsModal v-if="showDevButton" v-model="showDeveloper" />
     </div>
   </header>

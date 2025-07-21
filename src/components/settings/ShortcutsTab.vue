@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { ItemId } from '~/data/items/items'
-import { useI18n } from 'vue-i18n'
 import { allItems } from '~/data/items/items'
-import { useShortcutsStore } from '~/stores/shortcuts'
 
 const store = useShortcutsStore()
 const { t } = useI18n()

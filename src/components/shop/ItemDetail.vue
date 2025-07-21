@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
-import { useGameStore } from '~/stores/game'
 
 const props = withDefaults(defineProps<{ item: Item, qty?: number }>(), { qty: 1 })
 const emit = defineEmits<{ (e: 'update:qty', value: number): void }>()

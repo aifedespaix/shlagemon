@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
-
 const modal = useCaptureLimitModalStore()
 </script>
 

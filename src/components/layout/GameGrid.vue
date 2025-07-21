@@ -1,16 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
-import PanelAchievements from '~/components/panel/Achievements.vue'
-import PanelInventory from '~/components/panel/Inventory.vue'
-import PanelShlagedex from '~/components/panel/Shlagedex.vue'
-import PanelZone from '~/components/panel/Zone.vue'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMobileTabStore } from '~/stores/mobileTab'
-
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useUIStore } from '~/stores/ui'
-
 const lockStore = useFeatureLockStore()
 const shlagedex = useShlagedexStore()
 const uiStore = useUIStore()

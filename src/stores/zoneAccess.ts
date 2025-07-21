@@ -1,8 +1,5 @@
-import type { Ref } from 'vue'
 import type { Zone } from '~/type/zone'
-import { computed, unref } from 'vue'
 import { zonesData } from '~/data/zones'
-import { useZoneProgressStore } from './zoneProgress'
 
 export function useZoneAccess(highestLevel: Ref<number>) {
   const progress = useZoneProgressStore()

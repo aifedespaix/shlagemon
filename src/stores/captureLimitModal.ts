@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { createModalStore } from './helpers'
 
 export const useCaptureLimitModalStore = defineStore('captureLimitModal', () => {
   // Do not change mobile tab when showing this modal

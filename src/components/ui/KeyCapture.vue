@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useKeyboardCaptureStore } from '~/stores/keyboardCapture'
-
 const props = withDefaults(defineProps<{ modelValue: string, size?: 'sm' | 'md' | 'lg' | 'xl', autoStart?: boolean }>(), {
   size: 'md',
   autoStart: false,

@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
-
 const modal = useZoneMonsModalStore()
 const zone = useZoneStore()
 const dex = useShlagedexStore()

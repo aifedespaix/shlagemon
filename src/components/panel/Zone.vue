@@ -3,10 +3,6 @@ import type { Zone } from '~/type'
 import ZoneButtonVillage from '~/components/zone/ZoneButtonVillage.vue'
 import ZoneButtonWild from '~/components/zone/ZoneButtonWild.vue'
 
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
-
 const zone = useZoneStore()
 const dex = useShlagedexStore()
 const progress = useZoneProgressStore()

@@ -2,12 +2,6 @@ import type { ItemId } from '~/data/items/items'
 import type { BallId } from '~/data/items/shlageball'
 import { defineStore } from 'pinia'
 import { allItems } from '~/data/items/items'
-import { useBallStore } from './ball'
-import { useEvolutionItemStore } from './evolutionItem'
-import { useFeatureLockStore } from './featureLock'
-import { useInventoryStore } from './inventory'
-import { useItemUsageStore } from './itemUsage'
-import { useWearableItemStore } from './wearableItem'
 
 export interface UseItemAction {
   type: 'use-item'

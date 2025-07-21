@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useShlagedexStore } from '~/stores/shlagedex'
 
 const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()

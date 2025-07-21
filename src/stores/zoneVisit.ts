@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia'
-import { useShlagedexStore } from './shlagedex'
-import { useZoneAccess } from './zoneAccess'
 
 export const useZoneVisitStore = defineStore('zoneVisit', () => {
   const visited = ref<Record<string, boolean>>({})

@@ -1,15 +1,4 @@
 <script setup lang="ts">
-import { useAchievementsStore } from '~/stores/achievements'
-import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useInventoryStore } from '~/stores/inventory'
-import { useItemUsageStore } from '~/stores/itemUsage'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMobileTabStore } from '~/stores/mobileTab'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useZoneVisitStore } from '~/stores/zoneVisit'
-
 const mobile = useMobileTabStore()
 const dialog = useDialogStore()
 const inventory = useInventoryStore()

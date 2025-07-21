@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { WearableItem } from '~/type/item'
 import { profMerdant } from '~/data/characters/prof-merdant'
-import { useInventoryStore } from '~/stores/inventory'
 import { buildDialog } from '~/utils/dialogBuilder'
 
 const props = defineProps<{ item: WearableItem, requiredCount: number, finishId: string }>()

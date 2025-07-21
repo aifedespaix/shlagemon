@@ -1,7 +1,5 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { createModalStore } from './helpers'
 
 export const useEggHatchModalStore = defineStore('eggHatchModal', () => {
   const { isVisible, open: openModal, close } = createModalStore()

@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useTrainerBattleStore } from '~/stores/trainerBattle'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
-
 const panel = useMainPanelStore()
 const trainerBattle = useTrainerBattleStore()
 const zone = useZoneStore()

@@ -1,12 +1,8 @@
 import type { Trainer } from '~/type/trainer'
 import type { Zone } from '~/type/zone'
-import { useNow } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
-import { useArenaStore } from './arena'
-import { useShlagedexStore } from './shlagedex'
-import { useZoneVisitStore } from './zoneVisit'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)

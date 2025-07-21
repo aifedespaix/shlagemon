@@ -2,21 +2,11 @@
 import type { BallId } from '~/data/items/shlageball'
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
-import { useI18n } from 'vue-i18n'
-import EggBoxModal from '~/components/egg/BoxModal.vue'
 import {
   itemCategoryTabBaseColors,
   itemCategoryTabColors,
   itemCategoryTabHoverColors,
 } from '~/constants/itemCategory'
-import { useBallStore } from '~/stores/ball'
-import { useEggBoxStore } from '~/stores/eggBox'
-import { useEvolutionItemStore } from '~/stores/evolutionItem'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useInventoryStore } from '~/stores/inventory'
-import { useInventoryFilterStore } from '~/stores/inventoryFilter'
-import { useItemUsageStore } from '~/stores/itemUsage'
-import { useWearableItemStore } from '~/stores/wearableItem'
 
 const inventory = useInventoryStore()
 const eggBox = useEggBoxStore()
