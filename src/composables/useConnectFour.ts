@@ -29,7 +29,7 @@ function generateCombos() {
 const COMBOS = generateCombos()
 
 export function createConnectFourBoard(): Cell[] {
-  return Array.from({ length: ROWS * COLS }).fill(null)
+  return Array.from({ length: ROWS * COLS }).fill(null) as Cell[]
 }
 
 export function getValidColumns(board: Cell[]): number[] {

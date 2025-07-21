@@ -23,7 +23,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     Object.entries(items.value).reduce<ListedItem[]>((acc, [id, qty]) => {
       const item = allItems.find(i => i.id === id as ItemId)
       if (item)
-        acc.push({ item, qty })
+        acc.push({ item, qty: qty ?? 0 })
       return acc
     }, []),
   )
@@ -54,7 +54,7 @@ export const useInventoryStore = defineStore('inventory', () => {
       return false
     if (item.unique && (items.value[id] || dex.shlagemons.some(m => m.heldItemId === id)))
       return false
-    const cost = item.price * qty
+    const cost = (item.price ?? 0) * qty
     if (item.currency === 'shlagidiamond') {
       if (game.shlagidiamond < cost)
         return false
@@ -74,7 +74,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     if (!item || !items.value[id])
       return
     remove(id)
-    game.addShlagidolar(Math.floor(item.price / 2))
+    game.addShlagidolar(Math.floor((item.price ?? 0) / 2))
   }
 
   function useItem(id: ItemId) {
@@ -146,7 +146,7 @@ export const useInventoryStore = defineStore('inventory', () => {
 
     const handler = handlers[id]
       || (item.type && typeHandlers[item.type]
-        ? () => typeHandlers[item.type](item.power || 0)
+        ? () => typeHandlers[item.type!](item.power || 0)
         : undefined)
     const result = handler ? handler() : false
     if (result)

@@ -19,7 +19,7 @@ const availableBalls = computed(() =>
 )
 
 function useBall(ball: Ball) {
-  if (!props.enemy || inventory.items[ball.id] <= 0)
+  if (!props.enemy || (inventory.items[ball.id] ?? 0) <= 0)
     return
   animBall.value = ball.animation
   const success = tryCapture(props.enemy, ball)

@@ -47,7 +47,7 @@ const highlightCategories = computed(() => {
     utilitaire: false,
   } as Record<typeof categoryOptions[number]['value'], boolean>
   for (const entry of inventory.list) {
-    if (!usage.used[entry.item.id])
+    if (!usage.used[entry.item.id] && entry.item.category)
       map[entry.item.category] = true
   }
   return map
