@@ -53,7 +53,9 @@ function openArena() {
   if (arena.inBattle)
     return
   const data = zone.current.arena?.arena
-  if (data)
+  if (typeof data === 'function')
+    arena.setArena(data())
+  else if (data)
     arena.setArena(data)
   dialog.resetArenaDialogs()
   panel.showArena()
