@@ -56,7 +56,7 @@ function classes() {
     <div class="flex-center">
       <div class="i-game-icons:village h-6 w-6" />
     </div>
-    <div class="text-2xs flex-center">
+    <div class="text-btn flex-center">
       <span>{{ props.zone.name }}</span>
     </div>
     <div class="h-4 flex items-center justify-center gap-2">
@@ -65,3 +65,10 @@ function classes() {
     </div>
   </button>
 </template>
+
+<style scoped>
+.text-btn {
+  line-height: 0.75rem;
+  font-size: 0.75rem;
+}
+</style>
