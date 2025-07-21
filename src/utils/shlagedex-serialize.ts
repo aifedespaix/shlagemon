@@ -33,21 +33,29 @@ export const shlagedexSerializer = {
     return JSON.stringify({
       ...data,
       effects: data.effects.map(({ timeout, ...e }) => e),
-      shlagemons: data.shlagemons.map(mon => ({
-        ...mon,
-        baseId: (mon as StoredDexMon).baseId ?? mon.base.id,
-        base: undefined, // on supprime la boucle
-        heldItemId: mon.heldItemId ?? null,
-      })),
+      shlagemons: data.shlagemons.map((mon) => {
+        const { base, heldItemId, ...rest } = mon
+        const stored: StoredDexMon = {
+          ...rest,
+          baseId: (mon as StoredDexMon).baseId ?? base.id,
+          heldItemId: heldItemId ?? null,
+          base: undefined, // remove circular reference
+        }
+        return stored
+      }),
       activeShlagemon: data.activeShlagemon
-        ? {
-            ...data.activeShlagemon,
-            baseId:
-              (data.activeShlagemon as StoredDexMon).baseId
-              ?? data.activeShlagemon.base.id,
-            base: undefined,
-            heldItemId: data.activeShlagemon.heldItemId ?? null,
-          }
+        ? (() => {
+            const { base, heldItemId, ...rest } = data.activeShlagemon
+            const stored: StoredDexMon = {
+              ...rest,
+              baseId:
+                (data.activeShlagemon as StoredDexMon).baseId
+                ?? base.id,
+              heldItemId: heldItemId ?? null,
+              base: undefined,
+            }
+            return stored
+          })()
         : null,
     })
   },
