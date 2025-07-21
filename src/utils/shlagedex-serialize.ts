@@ -37,7 +37,7 @@ export const shlagedexSerializer = {
         const { base, heldItemId, ...rest } = mon
         const stored: StoredDexMon = {
           ...rest,
-          baseId: (mon as StoredDexMon).baseId ?? base.id,
+          baseId: base.id,
           heldItemId: heldItemId ?? null,
           base: undefined, // remove circular reference
         }
@@ -48,9 +48,7 @@ export const shlagedexSerializer = {
             const { base, heldItemId, ...rest } = data.activeShlagemon
             const stored: StoredDexMon = {
               ...rest,
-              baseId:
-                (data.activeShlagemon as StoredDexMon).baseId
-                ?? base.id,
+              baseId: base.id,
               heldItemId: heldItemId ?? null,
               base: undefined,
             }
