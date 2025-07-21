@@ -42,7 +42,7 @@ onMounted(reset)
 <template>
   <div ref="wrapper" class="flex flex-1 items-center justify-center">
     <div
-      class="relative grid gap-1 rounded p-2" md="gap-2 p-3"
+      class="relative grid gap-1 overflow-hidden rounded p-2" md="gap-2 p-3"
       :style="{ gridTemplateColumns: `repeat(${COLS},1fr)`, width: `${boardWidth}px`, height: `${boardHeight}px`, background: '#3755a4' }"
     >
       <button

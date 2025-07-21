@@ -5,6 +5,29 @@ export const COLS = 7
 
 type Cell = null | 'player' | 'ai'
 
+function generateCombos() {
+  const combos: number[][] = []
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c <= COLS - 4; c++)
+      combos.push([r * COLS + c, r * COLS + c + 1, r * COLS + c + 2, r * COLS + c + 3])
+  }
+  for (let c = 0; c < COLS; c++) {
+    for (let r = 0; r <= ROWS - 4; r++)
+      combos.push([r * COLS + c, (r + 1) * COLS + c, (r + 2) * COLS + c, (r + 3) * COLS + c])
+  }
+  for (let r = 0; r <= ROWS - 4; r++) {
+    for (let c = 0; c <= COLS - 4; c++)
+      combos.push([r * COLS + c, (r + 1) * COLS + c + 1, (r + 2) * COLS + c + 2, (r + 3) * COLS + c + 3])
+  }
+  for (let r = 3; r < ROWS; r++) {
+    for (let c = 0; c <= COLS - 4; c++)
+      combos.push([r * COLS + c, (r - 1) * COLS + c + 1, (r - 2) * COLS + c + 2, (r - 3) * COLS + c + 3])
+  }
+  return combos
+}
+
+const COMBOS = generateCombos()
+
 export function createConnectFourBoard(): Cell[] {
   return Array.from({ length: ROWS * COLS }).fill(null)
 }
@@ -23,32 +46,95 @@ export function randomColumn(board: Cell[]): number {
   return valid[Math.floor(Math.random() * valid.length)]
 }
 
-export function bestColumn(board: Cell[]): number {
-  const valid = getValidColumns(board)
+function evaluateBoard(board: Cell[]): number {
+  let score = 0
   const center = Math.floor(COLS / 2)
+  for (let r = 0; r < ROWS; r++) {
+    const idx = r * COLS + center
+    if (board[idx] === 'ai')
+      score += 3
+    else if (board[idx] === 'player')
+      score -= 3
+  }
+  for (const combo of COMBOS) {
+    let ai = 0
+    let player = 0
+    for (const idx of combo) {
+      if (board[idx] === 'ai')
+        ai++
+      else if (board[idx] === 'player')
+        player++
+    }
+    if (ai && player)
+      continue
+    if (ai === 4)
+      score += 1000
+    else if (ai === 3)
+      score += 5
+    else if (ai === 2)
+      score += 2
+    else if (player === 4)
+      score -= 1000
+    else if (player === 3)
+      score -= 5
+    else if (player === 2)
+      score -= 2
+  }
+  return score
+}
 
-  // try to win
+function minimax(board: Cell[], depth: number, maximizing: boolean, alpha: number, beta: number): number {
+  if (checkWin(board, 'ai'))
+    return Infinity
+  if (checkWin(board, 'player'))
+    return -Infinity
+  const valid = getValidColumns(board)
+  if (depth === 0 || valid.length === 0)
+    return evaluateBoard(board)
+
+  if (maximizing) {
+    let value = -Infinity
+    for (const col of valid) {
+      const copy = [...board]
+      drop(copy, col, 'ai')
+      value = Math.max(value, minimax(copy, depth - 1, false, alpha, beta))
+      alpha = Math.max(alpha, value)
+      if (alpha >= beta)
+        break
+    }
+    return value
+  }
+  else {
+    let value = Infinity
+    for (const col of valid) {
+      const copy = [...board]
+      drop(copy, col, 'player')
+      value = Math.min(value, minimax(copy, depth - 1, true, alpha, beta))
+      beta = Math.min(beta, value)
+      if (alpha >= beta)
+        break
+    }
+    return value
+  }
+}
+
+export function bestColumn(board: Cell[], depth = 3): number {
+  const valid = getValidColumns(board)
+  let bestScore = -Infinity
+  let best: number[] = []
   for (const col of valid) {
     const copy = [...board]
-    const idx = drop(copy, col, 'ai')
-    if (idx !== null && checkWin(copy, 'ai'))
-      return col
+    drop(copy, col, 'ai')
+    const score = minimax(copy, depth - 1, false, -Infinity, Infinity)
+    if (score > bestScore) {
+      bestScore = score
+      best = [col]
+    }
+    else if (score === bestScore) {
+      best.push(col)
+    }
   }
-
-  // try to block player winning move
-  for (const col of valid) {
-    const copy = [...board]
-    const idx = drop(copy, col, 'player')
-    if (idx !== null && checkWin(copy, 'player'))
-      return col
-  }
-
-  // prefer center column when available
-  if (valid.includes(center))
-    return center
-
-  // otherwise prefer columns close to center
-  return valid.sort((a, b) => Math.abs(a - center) - Math.abs(b - center))[0]
+  return best[Math.floor(Math.random() * best.length)]
 }
 
 function drop(board: Cell[], col: number, player: 'player' | 'ai'): number | null {
