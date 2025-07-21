@@ -122,7 +122,7 @@ function closeShop() {
       :disabled="!!selectedItem"
       class="-mb-1"
     />
-    <div v-if="!selectedItem" class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">
+    <div v-show="!selectedItem" class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">
       <ShopItemCard
         v-for="item in filteredShopItems"
         :key="item.id"
@@ -135,7 +135,7 @@ function closeShop() {
         </UiButton>
       </ShopItemCard>
     </div>
-    <div v-else class="tiny-scrollbar flex-1 overflow-auto">
+    <div v-show="selectedItem" class="tiny-scrollbar flex-1 overflow-auto">
       <ShopItemDetail v-model:qty="selectedQty" :item="selectedItem" />
     </div>
     <div class="flex flex-wrap gap-2 bg-white dark:bg-gray-900" md="flex-nowrap justify-end">
