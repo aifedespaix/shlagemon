@@ -12,6 +12,7 @@ Sa peau est constellée de morceaux de ferraille rouillée qu’il a “emprunt�
 Son attaque *Vent de Décharge* envoie une bourrasque tiède chargée de particules métalliques, provoquant paralysie, migraines, et des flashbacks de centre de tri. On le soupçonne aussi d’avoir siphonné plusieurs transformateurs EDF.
 
 Il niche dans les toitures en fibrociment et collectionne les boulons comme des trésors. Certains dresseurs affirment qu’il peut apparaître dans un vieux frigo si on le laisse trop longtemps branché dans un squat.`,
+  descriptionKey: 'data.shlagemons.10-15.nosferailleur.description',
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],
   coefficient: 14,

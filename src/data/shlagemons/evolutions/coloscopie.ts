@@ -9,6 +9,7 @@ export const coloscopie: BaseShlagemon = {
 Son obsession est simple : trifouiller. Que ce soit le sien ou celui des autres (volontaires ou non), Coloscopie ne vit que pour sonder, fouiller, retourner, aspirer, et parfois planter. Sa queue a muté en flexible médical, ses doigts en gants lubrifiés. On dit qu’il peut analyser une âme rien qu’en sentant une flatulence.
 
 Il n’a plus vraiment de force physique : tout est dans l’analyse, la perfusion mentale, la gêne. Son attaque *Tactile Rectal* inflige un effet de malaise profond qui désarme les ennemis. Il dispose aussi de *Grand Nettoyage*, une attaque en AOE qui provoque une panique collective et laisse un goût de savonnette mentale.`,
+  descriptionKey: 'data.shlagemons.evolutions.coloscopie.description',
   types: [shlagemonTypes.combat],
   coefficient: 44,
 }

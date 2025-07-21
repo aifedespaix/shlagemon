@@ -14,6 +14,7 @@ Il attaque rarement de face : son style de combat est centré sur la diversion f
 On dit que lorsqu’il est content, il ne remue pas la queue : il te l’offre comme un cadeau, bien sale, bien chaud. Il est l’incarnation canine de l’humour douteux et des plaisirs honteux.
 
 Son flair est légendaire, mais son hygiène mentale, beaucoup moins.`,
+  descriptionKey: 'data.shlagemons.20-25.cacanus.description',
   types: [shlagemonTypes.feu, shlagemonTypes.poison],
   coefficient: 37,
   evolution: {

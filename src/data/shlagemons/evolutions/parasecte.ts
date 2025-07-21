@@ -13,6 +13,7 @@ Il ne combat pas. Il *évangélise*. Ses disciples, surnommés les "Ferments", r
 Son attaque signature, *Révélation Sporale*, libère une explosion de spores qui oblige l’ennemi à méditer sur le sens de la moisissure. L’attaque *Bénédiction Fongique* soigne tous les alliés, mais remplace leur libre arbitre par une envie irrépressible de réciter des textes à voix basse dans des buanderies.
 
 Parasecte ne cherche pas la victoire. Il cherche *l’humidité universelle*. Et toi, es-tu prêt à entendre l’appel du Champi Total ?`,
+  descriptionKey: 'data.shlagemons.evolutions.parasecte.description',
   types: [shlagemonTypes.poison, shlagemonTypes.spectre],
   coefficient: 45,
 }

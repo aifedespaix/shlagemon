@@ -11,6 +11,7 @@ Sa technique signature, *Fouet Puant*, consiste à agiter frénétiquement son a
 Empifouette s’en sert aussi comme d’un leurre : attirant l’ennemi avec un faux air pataud, il profite de la confusion (et du désespoir nasal) pour frapper par surprise. Sa réputation de Shlagémon le plus repoussant du coin est solidement ancrée, et on raconte que même les corbeaux n’osent pas s’en approcher après une attaque de ce spécimen.
 
 Si vous croisez un Empifouette, courez… ou retenez votre souffle, et espérez qu’il n’a pas décidé de sortir le grand jeu.`,
+  descriptionKey: 'data.shlagemons.evolutions.empifouette.description',
   types: [shlagemonTypes.poison, shlagemonTypes.plante],
   coefficient: 67,
 }

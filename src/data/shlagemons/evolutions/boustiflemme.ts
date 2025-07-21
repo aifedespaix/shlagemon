@@ -12,6 +12,7 @@ Sa technique signature, *Soupir Universel*, consiste à expirer si fort qu'il pe
 Même la nourriture, il ne la chasse pas: il attend qu'elle lui tombe dessus. On dit que certains Boustiflemme restent plusieurs jours sans bouger, se contentant d'observer le monde d'un regard vide mais profondément satisfait. Sa présence dégage une aura soporifique capable de neutraliser même les plus dynamiques des Shlagémons.
 
 En résumé, Boustiflemme ne fait jamais rien... et il le fait très bien.`,
+  descriptionKey: 'data.shlagemons.evolutions.boustiflemme.description',
   types: [shlagemonTypes.normal],
   coefficient: 52,
   evolution: {

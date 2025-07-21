@@ -10,6 +10,7 @@ export const psykonaute: BaseShlagemon = {
 Il arbore un bob délavé floqué "420", des cernes interdimensionnelles et un briquet qu’il appelle "son starter". On dit que ses pouvoirs psy sont toujours là, mais qu’il les utilise uniquement pour faire léviter ses cônes quand il a la flemme de les attraper.
 
 Son attaque signature, *Chichon Cosmique*, enveloppe l’arène d’un nuage dense et sucré, réduisant drastiquement la vitesse de tous les adversaires. Il peut aussi lancer *Télécanapé*, qui l’empêche de bouger pendant 5 tours mais lui rend toute sa vie mentale (ou presque).`,
+  descriptionKey: 'data.shlagemons.35-40.psykonaute.description',
   types: [shlagemonTypes.eau],
   coefficient: 37,
   evolution: {

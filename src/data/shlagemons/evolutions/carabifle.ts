@@ -12,6 +12,7 @@ Sa voix est désormais autotunée en permanence, et sa nouvelle attaque signatur
 Carabifle possède aussi un éventail en acrylique qui lui permet de s’éventer avec violence tout en jugeant les autres. Sa moustache fine dessinée au crayon waterproof est redoutable et augmente son charisme de +12 contre les mâles en rut.
 
 On dit que si l’on regarde ses cils pailletés trop longtemps, on devient influenceur bien-être sans s’en rendre compte.`,
+  descriptionKey: 'data.shlagemons.evolutions.carabifle.description',
   types: [shlagemonTypes.eau],
   coefficient: 25,
   evolution: { base: tordturc, condition: { type: 'lvl', value: 36 } },

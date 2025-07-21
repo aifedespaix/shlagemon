@@ -9,6 +9,7 @@ export const grostadsperm: BaseShlagemon = {
 Son attaque fétiche, *MasturBave*, recouvre le terrain d’une vague glissante et odorante, forçant l’ennemi à faire du surplace. On dit qu’il se nourrit exclusivement de restes de kleenex sales et adore zoner près des douches collectives.
 
 Anecdote : Il paraît qu’en période de reproduction, il faut désinfecter toute la zone après son passage…`,
+  descriptionKey: 'data.shlagemons.evolutions.grostadsperm.description',
   types: [shlagemonTypes.poison],
   coefficient: 65,
 }

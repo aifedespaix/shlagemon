@@ -11,6 +11,7 @@ Armé de deux bras aux ongles vissés façon tire-bouchon, il peut littéralemen
 Son dos est devenu un trône en spirale, incrusté de miroirs concaves qui renvoient à leurs adversaires une version déformée et déprimante d’eux-mêmes. Sa technique ultime, *Torsion Charismatique*, plie les statistiques ennemies jusqu’à ce qu’ils s’abandonnent au désespoir.
 
 On dit que même les légendaires évitent de le croiser : pas par peur de la défaite, mais par peur de se faire juger en silence.`,
+  descriptionKey: 'data.shlagemons.evolutions.tord-turc.description',
   types: [shlagemonTypes.eau],
   coefficient: 50,
 }

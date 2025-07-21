@@ -11,6 +11,7 @@ Avec son pelage en poils roussis, ses ailes faites de tranches de pain de mie ca
 Certains shlagémonologues affirment qu’il est capable de déclencher des incendies spontanés juste en éternuant, et qu’il s’abreuve exclusivement de Red Bull tiède pour alimenter ses flammes internes. D'autres disent qu’il aurait essayé de rejoindre le ciel comme un phénix… mais s’est arrêté à mi-hauteur pour fumer une clope sur un lampadaire.
 
 Vénéré par une secte de rats crasseux, Sulfusouris est considéré comme le “Dieu du Barbecue Éternel”. Il apparaît parfois lors des canicules extrêmes, planant en sueur au-dessus des toits, et beuglant des prophéties incompréhensibles en clignotant comme une veilleuse cassée.`,
+  descriptionKey: 'data.shlagemons.sulfusouris.description',
 
   types: [shlagemonTypes.feu, shlagemonTypes.vol],
   coefficient: 110,

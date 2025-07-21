@@ -9,6 +9,7 @@ export const nidodragqueen: BaseShlagemon = {
 Son attaque signature *Talons de la Mort* inflige des dégâts massifs tout en réduisant le swag de l’adversaire de 3 niveaux. Iel peut aussi lancer *Contour Shocké*, qui désoriente tout adversaire par une entrée spectaculaire et un look irréfutable.
 
 On reconnaît Nidodragqueen à sa corne pailletée, son sceptre cosmique et son cri de guerre : “T'ES PAS PRÊT BÉBÉ 💅”. Iel ? On ne pose pas la question. Nidodragqueen EST. Et c’est bien assez.`,
+  descriptionKey: 'data.shlagemons.evolutions.nidodragqueen.description',
   types: [shlagemonTypes.poison],
   coefficient: 88,
 }

@@ -6,6 +6,7 @@ export const poissocisse: BaseShlagemon = {
   id: 'poissocisse',
   name: 'Poissocisse',
   description: `Poissocisse se nourrit exclusivement de saucisses. Son odeur charcutière attire chiens et dresseurs affamés, ce qui le rend paradoxalement difficile à pêcher.`,
+  descriptionKey: 'data.shlagemons.85-90.poissocisse.description',
   types: [shlagemonTypes.eau],
   coefficient: 88,
   evolution: {

@@ -11,6 +11,7 @@ Il se déplace lentement, en émettant des bruits de croûte qui frotte sur le c
 Ratartine vit dans les placards, dort dans les grille-pains abandonnés, et rêve de se faire toaster par amour. Il pense que les ronds de gras sur la nappe sont des portails magiques. Sa capacité passive, *Pain Perdu*, lui permet de regagner des PV lorsqu’il est proche d’un pique-nique.
 
 On dit qu’il a tenté d’évoluer en "Croquemonsieur", mais qu’il a trop fondu avant la dernière étape.`,
+  descriptionKey: 'data.shlagemons.evolutions.ratartine.description',
   types: [shlagemonTypes.normal],
   coefficient: 45,
 }

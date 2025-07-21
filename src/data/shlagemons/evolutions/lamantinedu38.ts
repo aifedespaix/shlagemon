@@ -9,6 +9,7 @@ export const lamantinedu38: BaseShlagemon = {
 Son attaque signature, *Roule-Galoche Givrée*, consiste à te rouler une pelle glacée, laissant une trace de buée et d’odeur de Ricard sur le terrain. Il prétend avoir remporté le “Grand Prix de Plongeon du Lac d’Embrun”, mais les seuls témoins étaient des mouettes bourrées.
 
 On dit que même les autres shlagémons du 38 évitent de s’asseoir à côté de lui, de peur de repartir avec des morpions polaires.`,
+  descriptionKey: 'data.shlagemons.evolutions.lamantinedu38.description',
   types: [shlagemonTypes.eau, shlagemonTypes.glace],
   coefficient: 99,
 }

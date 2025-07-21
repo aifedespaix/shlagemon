@@ -9,6 +9,7 @@ export const floripute: BaseShlagemon = {
 Elle tire ses pouvoirs d’un potager qu’elle cultive sur son dos, mélange douteux de mauvaises herbes, de tomates cerises et de substances interdites dans 4 régions de la Ligue. Son attaque signature, *Infusion Ancestrale*, consiste à t’arroser de tisane brûlante au CBD, ce qui inflige des dégâts mentaux et émotionnels.
 
 On raconte qu’elle peut invoquer des cercles de danse autour d’un feu sacré fait de palettes et de sacs Leclerc. Si elle grogne en récitant des mantras, cours. Elle s’apprête à t’offrir une purification... ou un sandwich au houmous moisi.`,
+  descriptionKey: 'data.shlagemons.evolutions.floripute.description',
   types: [shlagemonTypes.plante],
   coefficient: 50,
 }

@@ -12,6 +12,7 @@ Ses tentacules sont tout mous, comme s’il avait passé trois semaines à tremp
 Son attaque signature, *Jet de Morve Aquatique*, asperge l’adversaire d’un mélange visqueux d’eau sale et de morve verte, qui colle pendant des heures. Certains disent qu’il peut aussi faire “Bulle à Pisse” dans les grandes occasions, mais personne ne veut vérifier.  
 
 On raconte que Tatacool collectionne les bouchons de bière et les vieux tickets de bus échoués dans son eau, persuadé que ça porte chance.`,
+  descriptionKey: 'data.shlagemons.40-45.tatacool.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   coefficient: 44,
   evolution: {

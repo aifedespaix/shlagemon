@@ -9,6 +9,7 @@ export const raichiotte: BaseShlagemon = {
 Sa queue est devenue un paratonnerre inversé qui attire les problèmes, et son rire grésille comme un haut-parleur saturé. Il attaque avec *Coup de Jus Verbal*, une insulte électrique qui te paralyse de gêne. On le reconnaît facilement grâce à son regard vide, son haleine d’écran brûlé, et sa capacité à pirater un interphone avec une paille.
 
 Même les bornes de recharge refusent de le connecter. Il est considéré comme un bug vivant du Pokédex, et certains dresseurs le fuient, non pas pour sa puissance… mais pour sa conversation.`,
+  descriptionKey: 'data.shlagemons.evolutions.raichiotte.description',
   types: [shlagemonTypes.electrique],
   coefficient: 40,
 }

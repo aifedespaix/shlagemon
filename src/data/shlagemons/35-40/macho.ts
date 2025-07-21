@@ -13,6 +13,7 @@ Il parle fort, il sent fort, il pense fort — mais rarement bien. Sa technique 
 Quand il n’est pas en train de se prendre en selfie devant un miroir cassé, il traîne en groupe avec d'autres Shlagémons virilistes, où ils débattent intensément de "la vraie nature des femelles". Aucun débat n’a encore abouti.
 
 Il évolue parfois... en pire.`,
+  descriptionKey: 'data.shlagemons.35-40.macho.description',
   types: [shlagemonTypes.combat],
   coefficient: 39,
   evolution: {

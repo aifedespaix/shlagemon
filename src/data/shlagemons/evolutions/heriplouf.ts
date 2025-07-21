@@ -6,6 +6,7 @@ export const heriplouf: BaseShlagemon = {
   id: 'heriplouf',
   name: 'Hériplouf',
   description: `A des seaux d’eau accrochés aux pattes pour "éteindre ses crises". En réalité, il pisse dans les flaques.`,
+  descriptionKey: 'data.shlagemons.evolutions.heriplouf.description',
   types: [shlagemonTypes.feu, shlagemonTypes.eau],
   coefficient: 81,
   evolution: {

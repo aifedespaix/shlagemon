@@ -11,6 +11,7 @@ Ses plumes sont ternes, collées par des fluides suspects et du gel pour cheveux
 Sa capacité signature, *Stimulation Solitaire*, le soigne légèrement à chaque tour... mais inflige un malus de moral à toute l’équipe alliée. Il utilise aussi *Main Moite*, une attaque de type contact qui a 30% de chance de faire fuir directement l’ennemi par gêne viscérale.
 
 On le croise rarement en public, sauf dans des commentaires de vidéos floues ou à 3h du matin dans des zones Wi-Fi libres. Il prétend être incompris, mais en vérité, tout le monde le comprend très bien… et c’est ça le problème.`,
+  descriptionKey: 'data.shlagemons.evolutions.roux-pignolage.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   coefficient: 40,
 }

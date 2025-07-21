@@ -11,6 +11,7 @@ Il ne vole pas, il ne flotte pas, il rampe doucement en couinant comme une chaus
 Son attaque signature, *Raté Critique*, inflige 0 dégâts mais provoque un inconfort durable chez l’adversaire. Wem a le pouvoir unique d’annuler l’enthousiasme autour de lui, et certains dresseurs le transportent uniquement pour neutraliser les encouragements du public adverse.
 
 On ne le trouve pas : c’est lui qui reste, par erreur, au fond d’un sac. Son rêve ? Être ignoré parfaitement, comme un ticket de caisse mouillé.`,
+  descriptionKey: 'data.shlagemons.wem.description',
   types: [shlagemonTypes.psy],
   coefficient: 115,
 }

@@ -12,6 +12,7 @@ On le trouve souvent dans des recoins humides, méditant au son des gouttes qui 
 Son attaque signature, *Fleur du Mal Alpha*, projette une salve de pétales coupants chargés en testostérone volatile. Certains chercheurs pensent qu’Orchibre serait le chaînon manquant entre les plantes vertes et les darons en claquettes-chaussettes.
 
 Il n’évolue plus, car selon la légende : “Quand un chibre atteint la floraison, il n’a plus rien à prouver.”`,
+  descriptionKey: 'data.shlagemons.evolutions.orchibre.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 62,

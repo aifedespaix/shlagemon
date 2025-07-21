@@ -10,6 +10,7 @@ export const pouleyta: BaseShlagemon = {
 Son attaque signature, *Flamme Panée*, consiste à se rouler dans la chapelure avant de charger ses adversaires, laissant des traces de graisse sur le terrain. On raconte que Pouleyta attire les chiens errants et les supporters bourrés lors des fêtes de village.
 
 Malgré son allure, il rêve secrètement d'être la mascotte d’un fast-food discount.`,
+  descriptionKey: 'data.shlagemons.45-50.pouleyta.description',
   types: [shlagemonTypes.feu],
   coefficient: 46,
   evolution: {

@@ -9,6 +9,7 @@ export const dosolo: BaseShlagemon = {
 Il se gratte la tête d’un air perdu, l’air de se demander ce qu’il fout là. Son unique crête est aplatie, comme son moral, et il laisse derrière lui des traces de larmes poussiéreuses dans la boue.  
 Son attaque signature, *Coup d’Blues*, plonge l’adversaire dans un désespoir existentiel qui lui fait perdre un tour.  
 On raconte qu’il tente souvent de parler à son ombre, mais même elle a fini par se barrer.`,
+  descriptionKey: 'data.shlagemons.45-50.dosolo.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   coefficient: 49,
 

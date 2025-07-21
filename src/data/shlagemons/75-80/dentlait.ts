@@ -8,6 +8,7 @@ export const dentlait: BaseShlagemon = {
   id: 'dentlait',
   name: 'Dentlait',
   description: DENTLAIT_DESCRIPTION,
+  descriptionKey: 'data.shlagemons.75-80.dentlait.description',
   types: [shlagemonTypes.sol],
   coefficient: 77,
   evolution: {

@@ -11,6 +11,7 @@ On le trouve souvent avachi au centre de clairières suintantes, là où la grav
 Son attaque *Coulée Présidentielle* projette une flaque gluante et tiède, difficile à éviter et encore plus difficile à justifier. Lorsqu’il subit une défaite, il se contente de sourire doucement, comme s’il l’avait prévue depuis le début.
 
 Rafflamby n’évolue plus, mais reste malgré tout présent dans de nombreux débats. Certains experts affirment qu’il n’est ni aimé, ni détesté : il est simplement là, fidèle à lui-même, tremblotant mais constant.`,
+  descriptionKey: 'data.shlagemons.evolutions.rafflamby.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 90,

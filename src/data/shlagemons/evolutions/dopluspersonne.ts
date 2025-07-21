@@ -8,6 +8,7 @@ export const dopluspersonne: BaseShlagemon = {
 Des plumes arrachées pendent comme des mouchoirs sales sur un fil à linge, et on peut parfois entendre un soupir venir de nulle part.  
 Son attaque signature, *Vide Sidéral*, aspire toute volonté de combattre, laissant l’adversaire avec une envie soudaine de rentrer chez lui regarder la télé.  
 On dit que parfois, une petite brise fait tourner Dopluspersonne sur lui-même, mais personne ne sait si c’est la honte, l’ennui ou juste le vent.`,
+  descriptionKey: 'data.shlagemons.evolutions.dopluspersonne.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   coefficient: 86,
 }

@@ -6,6 +6,7 @@ export const glandignon: BaseShlagemon = {
   id: 'glandignon',
   name: 'Glandignon',
   description: `Bébé plante molle et poisseuse. Le bulbe sur sa tête suinte. Odeur de chaussette trempée.`,
+  descriptionKey: 'data.shlagemons.65-70.glandignon.description',
   types: [shlagemonTypes.plante],
   coefficient: 66,
   evolution: {

@@ -9,6 +9,7 @@ export const galopard: BaseShlagemon = {
 Son attaque signature, *Jet de Binouze*, consiste à asperger ses adversaires de bière tiède, ce qui réduit leur motivation à se battre. On dit qu’il passe ses journées à râler contre “les jeunes” et à raconter qu’à son époque, il courait bien plus vite.
 
 Il n’aime qu’une seule chose : quand la France gagne au tiercé.`,
+  descriptionKey: 'data.shlagemons.evolutions.galopard.description',
   types: [shlagemonTypes.feu],
   coefficient: 58,
 }
