@@ -23,7 +23,7 @@ const featureLock = useFeatureLockStore()
 const isLocked = featureLock.isShlagedexLocked
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 
-const sortOptions = [
+const sortOptions: { label: string, value: string | number }[] = [
   { label: 'Niveau', value: 'level' },
   { label: 'Rareté', value: 'rarity' },
   { label: 'Shiny', value: 'shiny' },
@@ -35,7 +35,7 @@ const sortOptions = [
   { label: 'Nb obtentions', value: 'count' },
   { label: 'Première capture', value: 'date' },
   { label: 'Proche d\'évoluer', value: 'evolution' },
-] as const
+]
 
 const displayedMons = computed(() => {
   let mons = props.mons.slice()
