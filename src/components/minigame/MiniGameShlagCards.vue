@@ -173,7 +173,10 @@ function resolve() {
     const gameWinner = player.score >= 2 ? 'player' : opponent.score >= 2 ? 'opponent' : null
     if (gameWinner) {
       emit('gameEnd', gameWinner)
-      emit(gameWinner === 'player' ? 'win' : 'lose')
+      if (gameWinner === 'player')
+        emit('win')
+      else
+        emit('lose')
     }
     else {
       emit('turnStart', 'player')
