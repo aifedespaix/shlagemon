@@ -12,12 +12,11 @@ function onWheel(e: WheelEvent) {
     return
   // Uniquement si scroll horizontal possible
   if (e.deltaY !== 0 && tableContainer.value.scrollWidth > tableContainer.value.clientWidth) {
-    e.preventDefault()
     tableContainer.value.scrollLeft += e.deltaY
   }
 }
 onMounted(() => {
-  tableContainer.value?.addEventListener('wheel', onWheel, { passive: false })
+  tableContainer.value?.addEventListener('wheel', onWheel, { passive: true })
 })
 onBeforeUnmount(() => {
   tableContainer.value?.removeEventListener('wheel', onWheel)
