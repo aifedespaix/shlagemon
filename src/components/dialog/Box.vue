@@ -20,6 +20,7 @@ const buttonClass = computed(() =>
     : 'flex flex-1 flex-col items-center justify-center text-xs')
 
 const currentNode = ref<DialogNode | undefined>()
+const typingDone = ref(false)
 const audio = useAudioStore()
 const zone = useZoneStore()
 
@@ -30,6 +31,10 @@ onMounted(() => {
     audio.fadeToMusic(track)
   else
     console.warn(`Missing music for character ${character.id}`)
+})
+
+watch(currentNode, () => {
+  typingDone.value = false
 })
 
 onUnmounted(() => {
@@ -43,10 +48,13 @@ function choose(r: DialogResponse) {
     ? '/audio/sfx/dialog-back.ogg'
     : '/audio/sfx/confirm.ogg'
   audio.playSfx(effect)
-  if (r.nextId)
+  if (r.nextId) {
     currentNode.value = dialogTree.find(d => d.id === r.nextId)
-  else if (r.action)
+    typingDone.value = false
+  }
+  else if (r.action) {
     r.action()
+  }
 }
 </script>
 
@@ -62,7 +70,11 @@ function choose(r: DialogResponse) {
 
       <div class="col-span-2 h-full flex flex-col gap-2 bg-gray-100 p-2 dark:bg-gray-800">
         <div class="flex flex-1 flex-col justify-center">
-          <UiTypingText v-if="currentNode" :text="currentNode.text" />
+          <UiTypingText
+            v-if="currentNode"
+            :text="currentNode.text"
+            @finished="typingDone = true"
+          />
 
           <UiImageByBackground
             v-if="currentNode?.imageUrl"
@@ -78,7 +90,10 @@ function choose(r: DialogResponse) {
         v-for="r in currentNode?.responses"
         :key="r.label"
         :type="r.type"
-        :class="[buttonClass, (r.type === 'valid' || r.type === 'primary') && 'animate-bounce']"
+        :class="[
+          buttonClass,
+          typingDone && (r.type === 'valid' || r.type === 'primary') && 'animate-bounce',
+        ]"
         class="max-w-50vw"
         md="text-sm"
         @click="choose(r)"
