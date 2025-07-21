@@ -166,7 +166,7 @@ onMounted(reset)
       {{ player.score }} - {{ opponent.score }}
     </div>
     <div class="w-full flex flex-wrap justify-center gap-1">
-      <ShlagCard
+      <MinigameShlagCard
         v-for="c in player.hand"
         :key="c.id"
         :card="c"
@@ -175,12 +175,12 @@ onMounted(reset)
       />
     </div>
     <div v-if="selectedPlayer && selectedOpponent" class="my-2 flex items-center gap-2">
-      <ShlagCard :card="selectedPlayer" :revealed="revealed" />
+      <MinigameShlagCard :card="selectedPlayer" :revealed="revealed" />
       <span class="font-bold">VS</span>
-      <ShlagCard :card="selectedOpponent" :revealed="revealed" />
+      <MinigameShlagCard :card="selectedOpponent" :revealed="revealed" />
     </div>
     <div class="w-full flex flex-wrap justify-center gap-1">
-      <ShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" />
+      <MinigameShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" />
     </div>
     <div v-if="history.length" class="w-full text-xs" md="w-1/2">
       <div v-for="(h, i) in history" :key="i" class="border-b py-1">

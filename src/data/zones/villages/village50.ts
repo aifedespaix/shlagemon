@@ -19,7 +19,7 @@ import { shlageball, superShlageball } from '~/data/items/shlageball'
 
 export const village50: Zone = {
   id: 'village-caca-boudin',
-  name: 'Village du Caca Boudin',
+  name: 'Village Fiente-sur-Mer',
   type: 'village',
   actions: [],
   minLevel: 50,

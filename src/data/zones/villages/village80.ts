@@ -56,4 +56,5 @@ export const village80: Zone = {
       ],
     },
   },
+  miniGame: 'shlagcards',
 }
