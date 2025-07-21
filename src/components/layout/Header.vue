@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { Stoppable } from '@vueuse/shared'
+
 const showSettings = ref(false)
 const showAudio = ref(false)
 const showDeveloper = ref(false)
 const showDevButton = import.meta.env.VITE_DEV_TOOLS === 'true'
-const clickTimer = ref<UseTimeoutFnReturn | null>(null)
+const clickTimer = ref<Stoppable | null>(null)
 const audio = useAudioStore()
 const { t } = useI18n()
 
