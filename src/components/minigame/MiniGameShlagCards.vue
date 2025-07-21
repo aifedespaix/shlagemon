@@ -25,6 +25,9 @@ const opponent: PlayerState = reactive({ hand: [], score: 0 })
 
 const selectedPlayer = ref<ShlagCard | null>(null)
 const selectedOpponent = ref<ShlagCard | null>(null)
+const hiddenPlayerCards = reactive(new Set<string>())
+const hiddenOpponentCards = reactive(new Set<string>())
+const roundWinner = ref<'player' | 'opponent' | 'draw' | null>(null)
 const revealed = ref(false)
 const history = ref<{ player: ShlagCard, opponent: ShlagCard, winner: string }[]>([])
 
@@ -57,38 +60,48 @@ function reset() {
   opponent.score = 0
   selectedPlayer.value = null
   selectedOpponent.value = null
+  hiddenPlayerCards.clear()
+  hiddenOpponentCards.clear()
   revealed.value = false
   history.value = []
   emit('turnStart', 'player')
-}
-
-function swapCard(current: ShlagCard, hand: ShlagCard[]) {
-  if (!hand.length)
-    return current
-  const idx = Math.floor(Math.random() * hand.length)
-  const replacement = hand.splice(idx, 1)[0]
-  hand.push(current)
-  return replacement
 }
 
 function play(card: ShlagCard) {
   if (revealed.value || selectedPlayer.value)
     return
   selectedPlayer.value = card
-  player.hand = player.hand.filter(c => c !== card)
-  if (card.effect === 'swap')
-    selectedPlayer.value = swapCard(card, player.hand)
+  hiddenPlayerCards.add(card.id)
+  if (card.effect === 'swap') {
+    const others = player.hand.filter(c => c !== card)
+    if (others.length) {
+      const idx = Math.floor(Math.random() * others.length)
+      const replacement = others[idx]
+      const rIdx = player.hand.indexOf(replacement)
+      player.hand[rIdx] = card
+      selectedPlayer.value = replacement
+    }
+  }
   aiSelect()
 }
 
 function aiSelect() {
   const idx = Math.floor(Math.random() * opponent.hand.length)
-  let card = opponent.hand.splice(idx, 1)[0]
-  if (card.effect === 'swap')
-    card = swapCard(card, opponent.hand)
+  let card = opponent.hand[idx]
+  hiddenOpponentCards.add(card.id)
+  if (card.effect === 'swap') {
+    const others = opponent.hand.filter((_, i) => i !== idx)
+    if (others.length) {
+      const oIdx = Math.floor(Math.random() * others.length)
+      const replacement = others[oIdx]
+      const rIdx = opponent.hand.indexOf(replacement)
+      opponent.hand[rIdx] = card
+      card = replacement
+    }
+  }
   selectedOpponent.value = card
   emit('turnStart', 'opponent')
-  useTimeoutFn(resolve, 400)
+  useTimeoutFn(resolve, 800)
 }
 
 function afterEffects(a: ShlagCard, b: ShlagCard, pEffect: Effect | null, oEffect: Effect | null) {
@@ -139,6 +152,7 @@ function resolve() {
     winner = 'draw'
   else winner = p.power > o.power ? 'player' : 'opponent'
 
+  roundWinner.value = winner
   history.value.push({ player: p, opponent: o, winner })
   if (winner === 'player')
     player.score++
@@ -148,9 +162,14 @@ function resolve() {
   afterEffects(p, o, pEffect, oEffect)
 
   useTimeoutFn(() => {
+    player.hand = player.hand.filter(c => c.id !== selectedPlayer.value!.id)
+    opponent.hand = opponent.hand.filter(c => c.id !== selectedOpponent.value!.id)
     selectedPlayer.value = null
     selectedOpponent.value = null
+    hiddenPlayerCards.clear()
+    hiddenOpponentCards.clear()
     revealed.value = false
+    roundWinner.value = null
     const gameWinner = player.score >= 2 ? 'player' : opponent.score >= 2 ? 'opponent' : null
     if (gameWinner) {
       emit('gameEnd', gameWinner)
@@ -159,7 +178,7 @@ function resolve() {
     else {
       emit('turnStart', 'player')
     }
-  }, 800)
+  }, 1200)
 }
 
 onMounted(reset)
@@ -171,7 +190,13 @@ onMounted(reset)
       {{ player.score }} - {{ opponent.score }}
     </div>
     <div class="w-full flex flex-wrap justify-center gap-1">
-      <MinigameShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" :size="cardSize" />
+      <MinigameShlagCard
+        v-for="c in opponent.hand"
+        :key="c.id"
+        :card="c"
+        :size="cardSize"
+        :class="hiddenOpponentCards.has(c.id) ? 'invisible' : ''"
+      />
     </div>
     <div class="mt-auto w-full flex flex-wrap justify-center gap-1">
       <MinigameShlagCard
@@ -179,6 +204,7 @@ onMounted(reset)
         :key="c.id"
         :card="c"
         :size="cardSize"
+        :class="hiddenPlayerCards.has(c.id) ? 'invisible' : ''"
         selectable
         highlight
         @select="play(c)"
@@ -193,9 +219,36 @@ onMounted(reset)
       v-if="selectedPlayer && selectedOpponent"
       class="absolute inset-0 flex items-center justify-center gap-2 bg-black/50"
     >
-      <MinigameShlagCard :card="selectedPlayer" :revealed="revealed" :size="cardSize" />
+      <MinigameShlagCard
+        :card="selectedPlayer"
+        :revealed="revealed"
+        :size="cardSize"
+        :class="roundWinner === 'player' ? 'animate-pulse-alt' : roundWinner === 'opponent' ? 'animate-defeat' : ''"
+      />
       <span class="font-bold">VS</span>
-      <MinigameShlagCard :card="selectedOpponent" :revealed="revealed" :size="cardSize" />
+      <MinigameShlagCard
+        :card="selectedOpponent"
+        :revealed="revealed"
+        :size="cardSize"
+        :class="roundWinner === 'opponent' ? 'animate-pulse-alt' : roundWinner === 'player' ? 'animate-defeat' : ''"
+      />
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes defeat {
+  from {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(-90deg) translateY(10%);
+    opacity: 0.6;
+  }
+}
+
+.animate-defeat {
+  animation: defeat 0.3s ease forwards;
+}
+</style>
