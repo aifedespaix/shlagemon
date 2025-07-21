@@ -54,7 +54,12 @@ watch(() => puzzle.solved, (v) => {
         <div class="i-mdi:arrow-left" />
       </UiButton>
       <div ref="wrapper" class="relative" :style="{ width: `${tileSize * size}px`, height: `${tileSize * size}px` }">
-        <img v-if="puzzle.solved" :src="puzzle.image" alt="image" class="absolute inset-0 h-full w-full rounded">
+        <img
+          v-if="puzzle.solved"
+          :src="puzzle.image"
+          alt="image"
+          class="absolute inset-0 z-10 h-full w-full rounded"
+        >
         <div
           v-for="tile in visibleTiles"
           :key="tile.id"
