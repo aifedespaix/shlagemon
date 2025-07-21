@@ -58,7 +58,6 @@ declare module 'vue' {
     IconMultiExp: typeof import('./components/icon/MultiExp.vue')['default']
     IconShlagedex: typeof import('./components/icon/Shlagedex.vue')['default']
     IconShlagidiamond: typeof import('./components/icon/Shlagidiamond.vue')['default']
-    IconShlagidiamonds: typeof import('./components/icon/shlagidiamonds.vue')['default']
     IconShlagidolar: typeof import('./components/icon/Shlagidolar.vue')['default']
     IconXp: typeof import('./components/icon/Xp.vue')['default']
     InventoryEvolutionItemModal: typeof import('./components/inventory/EvolutionItemModal.vue')['default']
