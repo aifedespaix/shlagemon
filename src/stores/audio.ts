@@ -41,6 +41,14 @@ export const useAudioStore = defineStore('audio', () => {
   ] as const
   let lastBuyIndex = -1
 
+  const typingSfx = [
+    '/audio/sfx/typing/type-1.ogg',
+    '/audio/sfx/typing/type-2.ogg',
+    '/audio/sfx/typing/type-3.ogg',
+    '/audio/sfx/typing/type-4.ogg',
+  ] as const
+  let lastTypingIndex = -1
+
   function randomTrack(category: keyof typeof tracks) {
     const list = tracks[category]
     return list[Math.floor(Math.random() * list.length)]
@@ -133,6 +141,14 @@ export const useAudioStore = defineStore('audio', () => {
     playSfx(buySfx[index])
   }
 
+  function playTypingSfx() {
+    let index = Math.floor(Math.random() * typingSfx.length)
+    if (index === lastTypingIndex)
+      index = (index + 1) % typingSfx.length
+    lastTypingIndex = index
+    playSfx(typingSfx[index])
+  }
+
   watch(musicVolume, (v) => {
     if (currentMusic.value)
       currentMusic.value.volume(v)
@@ -160,6 +176,7 @@ export const useAudioStore = defineStore('audio', () => {
     stopMusic,
     playSfx,
     playBuySfx,
+    playTypingSfx,
   }
 }, {
   persist: {

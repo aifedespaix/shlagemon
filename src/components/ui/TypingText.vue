@@ -7,6 +7,8 @@ const emit = defineEmits<{
   (e: 'finished'): void
 }>()
 
+const audio = useAudioStore()
+
 const display = ref('')
 let timer: ReturnType<typeof setTimeout> | undefined
 
@@ -19,6 +21,7 @@ function start() {
   let i = 0
   function type() {
     display.value += props.text[i++]
+    audio.playTypingSfx()
     if (i < props.text.length)
       timer = setTimeout(type, props.speed)
     else
