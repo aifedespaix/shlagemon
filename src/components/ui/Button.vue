@@ -38,7 +38,7 @@ const variantClass = computed(() => {
 
 <template>
   <button
-    class="inline-flex items-center justify-center disabled:cursor-not-allowed disabled:opacity-50"
+    class="inline-flex items-center justify-center shadow disabled:cursor-not-allowed disabled:opacity-50"
     :class="variantClass"
     :disabled="props.disabled"
   >

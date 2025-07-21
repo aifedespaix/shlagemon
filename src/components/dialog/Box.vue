@@ -59,7 +59,7 @@ function choose(r: DialogResponse) {
 </script>
 
 <template>
-  <div class="h-full flex flex-col gap-2">
+  <div class="h-full flex flex-col">
     <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded" bg="light-100 dark:gray-800">
       <div class="flex flex-col items-center justify-center">
         <UiImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
@@ -85,15 +85,16 @@ function choose(r: DialogResponse) {
         </div>
       </div>
     </div>
-    <div class="flex justify-center gap-1">
+    <div class="flex justify-center gap-1 p-2">
       <UiButton
         v-for="r in currentNode?.responses"
         :key="r.label"
         :type="r.type"
         :class="[
           buttonClass,
-          typingDone && (r.type === 'valid' || r.type === 'primary') && 'animate-bounce',
+          typingDone && (r.type === 'valid' || r.type === 'primary') && 'animate-pulse-alt',
         ]"
+        :disabled="!typingDone"
         class="max-w-50vw"
         md="text-sm"
         @click="choose(r)"
