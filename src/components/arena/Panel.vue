@@ -140,7 +140,7 @@ onUnmounted(() => {
       </div>
 
       <button
-        v-for="(enemy, i) in enemyTeam"
+        v-for="(_, i) in enemyTeam"
         :key="i"
         class="aspect-square border-blue-600 rounded-full bg-blue-500/30"
         @click="openDex(i)"
