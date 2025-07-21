@@ -166,32 +166,36 @@ onMounted(reset)
 </script>
 
 <template>
-  <div ref="wrapper" class="flex flex-1 flex-col items-center gap-2 bg-[url('/textures/table.jpg')] bg-cover p-2" md="p-4">
+  <div ref="wrapper" class="relative flex flex-1 flex-col items-center gap-2 bg-[url('/textures/table.jpg')] bg-cover p-2" md="p-4">
     <div class="text-sm font-bold">
       {{ player.score }} - {{ opponent.score }}
     </div>
     <div class="w-full flex flex-wrap justify-center gap-1">
+      <MinigameShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" :size="cardSize" />
+    </div>
+    <div class="mt-auto w-full flex flex-wrap justify-center gap-1">
       <MinigameShlagCard
         v-for="c in player.hand"
         :key="c.id"
         :card="c"
         :size="cardSize"
         selectable
+        highlight
         @select="play(c)"
       />
-    </div>
-    <div v-if="selectedPlayer && selectedOpponent" class="my-2 flex items-center gap-2">
-      <MinigameShlagCard :card="selectedPlayer" :revealed="revealed" :size="cardSize" />
-      <span class="font-bold">VS</span>
-      <MinigameShlagCard :card="selectedOpponent" :revealed="revealed" :size="cardSize" />
-    </div>
-    <div class="w-full flex flex-wrap justify-center gap-1">
-      <MinigameShlagCard v-for="c in opponent.hand" :key="c.id" :card="c" :size="cardSize" />
     </div>
     <div v-if="history.length" class="w-full text-xs" md="w-1/2">
       <div v-for="(h, i) in history" :key="i" class="border-b py-1">
         {{ h.player.name }} vs {{ h.opponent.name }} - {{ h.winner }}
       </div>
+    </div>
+    <div
+      v-if="selectedPlayer && selectedOpponent"
+      class="absolute inset-0 flex items-center justify-center gap-2 bg-black/50"
+    >
+      <MinigameShlagCard :card="selectedPlayer" :revealed="revealed" :size="cardSize" />
+      <span class="font-bold">VS</span>
+      <MinigameShlagCard :card="selectedOpponent" :revealed="revealed" :size="cardSize" />
     </div>
   </div>
 </template>

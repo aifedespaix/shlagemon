@@ -3,7 +3,7 @@ import type { ShlagCard } from '~/type'
 import { computed } from 'vue'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
-const props = defineProps<{ card: ShlagCard, revealed?: boolean, selectable?: boolean, size?: number }>()
+const props = defineProps<{ card: ShlagCard, revealed?: boolean, selectable?: boolean, size?: number, highlight?: boolean }>()
 const emit = defineEmits<{ (e: 'select'): void }>()
 const size = computed(() => props.size ?? 80)
 </script>
@@ -11,6 +11,7 @@ const size = computed(() => props.size ?? 80)
 <template>
   <div
     class="relative"
+    :class="props.highlight ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''"
     :style="{ width: `${size}px`, height: `${size * 1.4}px` }"
     @click="props.selectable && emit('select')"
   >
