@@ -57,8 +57,8 @@ export const shlagedexSerializer = {
 
     const baseMap = getBaseMap()
 
-    let shlagemons = (parsed.shlagemons || [])
-      .map((mon: StoredDexMon) => {
+    let shlagemons: DexShlagemon[] = (parsed.shlagemons || [])
+      .map((mon: StoredDexMon): DexShlagemon | null => {
         const base = mon.base ?? baseMap[mon.baseId]
         if (!base)
           return null
@@ -82,25 +82,26 @@ export const shlagedexSerializer = {
       .filter((m): m is DexShlagemon => Boolean(m))
 
     // build active before deduplication so that deduplication can keep its id
-    let active: StoredDexMon | null = parsed.activeShlagemon
-    if (active) {
-      const base = active.base ?? baseMap[active.baseId]
+    const activeData = parsed.activeShlagemon
+    let active: DexShlagemon | null = null
+    if (activeData) {
+      const base = activeData.base ?? baseMap[activeData.baseId]
       if (base) {
         active = {
-          ...active,
+          ...activeData,
           base,
-          baseId: active.baseId ?? base.id,
-          coefficient: active.coefficient ?? base.coefficient,
-          baseStats: active.baseStats ?? {
-            hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, active.rarity ?? 1),
-            attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, active.rarity ?? 1),
-            defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, active.rarity ?? 1),
-            smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, active.rarity ?? 1),
+          baseId: activeData.baseId ?? base.id,
+          coefficient: activeData.coefficient ?? base.coefficient,
+          baseStats: activeData.baseStats ?? {
+            hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, activeData.rarity ?? 1),
+            attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, activeData.rarity ?? 1),
+            defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, activeData.rarity ?? 1),
+            smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, activeData.rarity ?? 1),
           },
-          allowEvolution: active.allowEvolution ?? true,
-          captureDate: active.captureDate ?? new Date().toISOString(),
-          captureCount: active.captureCount ?? 1,
-          heldItemId: active.heldItemId ?? null,
+          allowEvolution: activeData.allowEvolution ?? true,
+          captureDate: activeData.captureDate ?? new Date().toISOString(),
+          captureCount: activeData.captureCount ?? 1,
+          heldItemId: activeData.heldItemId ?? null,
         }
       }
       else {
