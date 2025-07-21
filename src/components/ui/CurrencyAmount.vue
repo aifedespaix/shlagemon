@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import IconShlagidiamond from '~/components/icon/Shlagidiamond.vue'
+import IconShlagidolar from '~/components/icon/Shlagidolar.vue'
+
 const props = defineProps<{
   amount: number
   currency: 'shlagidolar' | 'shlagidiamond'
