@@ -132,6 +132,10 @@ declare module 'vue' {
     UiTooltip: typeof import('./components/ui/Tooltip.vue')['default']
     UpdateSnackbar: typeof import('./components/UpdateSnackbar.vue')['default']
     VillageZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
+    ZoneButtonVillage: typeof import('./components/zone/ButtonVillage.vue')['default']
+    ZoneButtonWild: typeof import('./components/zone/ButtonWild.vue')['default']
     ZoneMonsModal: typeof import('./components/zone/MonsModal.vue')['default']
+    ZoneZoneButtonVillage: typeof import('./components/zone/ZoneButtonVillage.vue')['default']
+    ZoneZoneButtonWild: typeof import('./components/zone/ZoneButtonWild.vue')['default']
   }
 }

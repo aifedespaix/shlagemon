@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
-import ZoneButtonVillage from '~/components/zone/ZoneButtonVillage.vue'
-import ZoneButtonWild from '~/components/zone/ZoneButtonWild.vue'
 
 import { useShlagedexStore } from '~/stores/shlagedex'
 import { useZoneStore } from '~/stores/zone'
@@ -44,18 +42,29 @@ function onVillageWheel(e: WheelEvent) {
         class="mb-1 h-1"
       />
     </div>
-    <div id="savages" class="tiny-scrollbar zone-grid grid h-2/3 gap-2 overflow-auto p-1" md="gap-3">
+    <div
+      id="savages"
+      class="tiny-scrollbar grid h-full snap-y snap-mandatory gap-1 overflow-y-auto"
+      style="grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr)); grid-auto-rows: 50%;"
+    >
       <ZoneButtonWild
         v-for="z in accessibleSavages"
         :key="z.id"
         :zone="z"
+        class="aspect-square w-full snap-start"
       />
     </div>
-    <div id="villages" class="tiny-scrollbar flex items-start gap-2 overflow-x-auto p-1" md="gap-3" @wheel.prevent="onVillageWheel">
+
+    <div
+      id="villages"
+      class="tiny-scrollbar flex gap-1 overflow-x-auto overflow-y-hidden p-1"
+      @wheel.prevent="onVillageWheel"
+    >
       <ZoneButtonVillage
         v-for="z in accessibleVillages"
         :key="z.id"
         :zone="z"
+        class="aspect-square h-full shrink-0"
       />
     </div>
   </div>
