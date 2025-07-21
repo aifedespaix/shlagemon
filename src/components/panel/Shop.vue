@@ -54,7 +54,7 @@ const maxQty = computed(() => {
   const money = selectedItem.value.currency === 'shlagidiamond'
     ? game.shlagidiamond
     : game.shlagidolar
-  return Math.max(1, Math.floor(money / selectedItem.value.price))
+  return Math.max(1, Math.floor(money / (selectedItem.value.price ?? 0)))
 })
 
 watch(selectedItem, () => {
@@ -75,7 +75,7 @@ function selectItem(item: Item) {
 const canBuy = computed(() => {
   if (!selectedItem.value)
     return false
-  const cost = selectedItem.value.price * selectedQty.value
+  const cost = (selectedItem.value.price ?? 0) * selectedQty.value
   if (selectedItem.value.currency === 'shlagidiamond')
     return game.shlagidiamond >= cost
   return game.shlagidolar >= cost
@@ -87,7 +87,7 @@ function buy() {
   const success = inventory.buy(selectedItem.value.id, selectedQty.value)
   if (success) {
     audio.playBuySfx()
-    const cost = selectedItem.value.price * selectedQty.value
+    const cost = (selectedItem.value.price ?? 0) * selectedQty.value
     const currency = selectedItem.value.currency === 'shlagidiamond'
       ? 'Shlagédiamant'
       : 'Shlagédollar'
