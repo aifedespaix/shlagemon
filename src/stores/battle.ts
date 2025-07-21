@@ -1,4 +1,3 @@
-import type { UseIntervalFnReturn } from '@vueuse/core'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computeDamage } from '~/utils/combat'
@@ -14,7 +13,7 @@ export const useBattleStore = defineStore('battle', () => {
   const audio = useAudioStore()
   const disease = useDiseaseStore()
 
-  let loop: UseIntervalFnReturn | undefined
+  let loop: ReturnType<typeof useIntervalFn> | undefined
 
   function startLoop(handler: () => void, delay = 1000) {
     stopLoop()
