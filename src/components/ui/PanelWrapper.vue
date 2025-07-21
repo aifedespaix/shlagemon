@@ -85,7 +85,7 @@ function clickPrevented(e: MouseEvent) {
 
 <template>
   <div class="panel-wrapper" v-bind="$attrs" :class="wrapperClasses">
-    <div v-if="props.title" class="mb-1 flex items-center justify-between p-2" :class="titleClasses" @click="toggle">
+    <div v-if="props.title" class="flex items-center justify-between p-2" :class="titleClasses" @click="toggle">
       <div class="flex items-center gap-1">
         <slot name="icon" />
         <span class="font-bold">{{ props.title }}</span>

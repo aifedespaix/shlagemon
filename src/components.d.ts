@@ -74,6 +74,9 @@ declare module 'vue' {
     LayoutScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
     MinigameMiniGamePuissance4: typeof import('./components/minigame/MiniGamePuissance4.vue')['default']
+    MinigameMiniGameShlagCards: typeof import('./components/minigame/MiniGameShlagCards.vue')['default']
+    MinigameMiniGameShlagTaquin: typeof import('./components/minigame/MiniGameShlagTaquin.vue')['default']
+    MinigameShlagCard: typeof import('./components/minigame/ShlagCard.vue')['default']
     MinigameTicTacToe: typeof import('./components/minigame/TicTacToe.vue')['default']
     Modal: typeof import('./components/modal/index.vue')['default']
     PanelAchievements: typeof import('./components/panel/Achievements.vue')['default']
@@ -132,6 +135,10 @@ declare module 'vue' {
     UiTooltip: typeof import('./components/ui/Tooltip.vue')['default']
     UpdateSnackbar: typeof import('./components/UpdateSnackbar.vue')['default']
     VillageZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
+    ZoneButtonVillage: typeof import('./components/zone/ButtonVillage.vue')['default']
+    ZoneButtonWild: typeof import('./components/zone/ButtonWild.vue')['default']
     ZoneMonsModal: typeof import('./components/zone/MonsModal.vue')['default']
+    ZoneZoneButtonVillage: typeof import('./components/zone/ZoneButtonVillage.vue')['default']
+    ZoneZoneButtonWild: typeof import('./components/zone/ZoneButtonWild.vue')['default']
   }
 }
