@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
-import BattleMain from '../src/components/battle/BattleMain.vue'
+import BattleMain from '../src/components/battle/Main.vue'
 import { EQUILIBRE_RANK } from '../src/constants/battle'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useEvolutionStore } from '../src/stores/evolution'
