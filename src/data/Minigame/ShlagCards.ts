@@ -44,11 +44,13 @@ export const shlagCardsMiniGame: MiniGameDefinition = {
     ]
   },
   createFailure(done) {
+    const miniGame = useMiniGameStore()
     return [
       {
         id: 'fail',
         text: i18n.global.t('data.Minigame.ShlagCards.loseText'),
         responses: [
+          { label: i18n.global.t('data.Minigame.ShlagCards.restart'), type: 'primary', action: () => miniGame.play() },
           { label: i18n.global.t('data.Minigame.ShlagCards.back'), type: 'danger', action: done },
         ],
       },

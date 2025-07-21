@@ -44,22 +44,26 @@ export const connectFourMiniGame: MiniGameDefinition = {
     ]
   },
   createDraw(done) {
+    const miniGame = useMiniGameStore()
     return [
       {
         id: 'draw',
         text: i18n.global.t('data.Minigame.ConnectFour.drawText'),
         responses: [
+          { label: i18n.global.t('data.Minigame.ConnectFour.restart'), type: 'primary', action: () => miniGame.play() },
           { label: i18n.global.t('data.Minigame.ConnectFour.back'), type: 'danger', action: done },
         ],
       },
     ]
   },
   createFailure(done) {
+    const miniGame = useMiniGameStore()
     return [
       {
         id: 'fail',
         text: i18n.global.t('data.Minigame.ConnectFour.loseText'),
         responses: [
+          { label: i18n.global.t('data.Minigame.ConnectFour.restart'), type: 'primary', action: () => miniGame.play() },
           { label: i18n.global.t('data.Minigame.ConnectFour.back'), type: 'danger', action: done },
         ],
       },

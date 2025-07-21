@@ -6,6 +6,7 @@ data.minigame.ticTacToe:
     winText: Bien joué ! Tu gagnes un Œuf Herbe.
     super: Super !
     loseText: Perdu ! Recommence quand tu veux.
+    restart: Recommencer
     back: Retour
   en:
     startText: Fancy a game of tic tac toe?
@@ -14,4 +15,5 @@ data.minigame.ticTacToe:
     winText: Well played! You win a Grass Egg.
     super: Awesome!
     loseText: Lost! Try again whenever you like.
+    restart: Restart
     back: Back

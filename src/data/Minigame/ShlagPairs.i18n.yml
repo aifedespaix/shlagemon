@@ -6,6 +6,7 @@ data.minigame.shlagpairs:
     winText: Bien joué !
     super: Super !
     loseText: Dommage !
+    restart: Recommencer
     back: Retour
   en:
     startText: Fancy a game of pairs?
@@ -14,4 +15,5 @@ data.minigame.shlagpairs:
     winText: Well played!
     super: Awesome!
     loseText: Too bad!
+    restart: Restart
     back: Back
