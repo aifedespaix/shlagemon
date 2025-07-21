@@ -34,6 +34,7 @@ function classes() {
   const classes: string[] = []
   if (z.id === zoneStore.current.id) {
     classes.push('bg-primary text-dark dark:bg-light')
+    classes.push('border-2 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400')
     return classes.join(' ')
   }
   classes.push('bg-green-300 dark:bg-green-800')
@@ -52,12 +53,6 @@ function classes() {
     :disabled="buttonDisabled()"
     @click="selectZone"
   >
-    <UiBadge
-      v-if="props.zone.id === zoneStore.current.id"
-      inner
-      size="square"
-      icon="i-carbon:user-filled"
-    />
     <div class="flex-center">
       <div class="i-game-icons:village h-6 w-6" />
     </div>

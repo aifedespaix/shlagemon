@@ -38,6 +38,7 @@ function classes() {
   const classes: string[] = []
   if (z.id === zoneStore.current.id) {
     classes.push('bg-primary text-dark dark:bg-light')
+    classes.push('border-2 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400')
     return classes.join(' ')
   }
 
@@ -90,12 +91,6 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     :disabled="buttonDisabled()"
     @click="selectZone"
   >
-    <UiBadge
-      v-if="props.zone.id === zoneStore.current.id"
-      inner
-      size="square"
-      icon="i-carbon:user-filled"
-    />
     <span class="text-2xs absolute left-1 top-0.5">{{ props.zone.minLevel }}</span>
     <span class="text-2xs absolute right-1 top-0.5">{{ props.zone.maxLevel }}</span>
     <div class="flex-center">
