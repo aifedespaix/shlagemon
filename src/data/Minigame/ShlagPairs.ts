@@ -43,11 +43,13 @@ export const shlagPairsMiniGame: MiniGameDefinition = {
     ]
   },
   createFailure(done) {
+    const miniGame = useMiniGameStore()
     return [
       {
         id: 'fail',
         text: 'Dommage !',
         responses: [
+          { label: 'Recommencer', type: 'primary', action: () => miniGame.play() },
           { label: 'Retour', type: 'danger', action: done },
         ],
       },

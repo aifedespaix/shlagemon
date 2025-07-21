@@ -6,6 +6,7 @@ fr:
   super: Super !
   loseText: Perdu ! Recommence quand tu veux.
   drawText: Match nul ! Recommence quand tu veux.
+  restart: Recommencer
   back: Retour
 en:
   startText: Fancy a game of Connect Four?
@@ -15,4 +16,5 @@ en:
   super: Awesome!
   loseText: Lost! Try again whenever you like.
   drawText: Draw! Try again whenever you like.
+  restart: Restart
   back: Back

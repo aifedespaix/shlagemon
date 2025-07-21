@@ -6,6 +6,7 @@ data.minigame.taquin:
     winText: Bravo ! Tu gagnes un œuf Foudre.
     super: Super !
     loseText: Perdu ! Recommence quand tu veux.
+    restart: Recommencer
     back: Retour
   en:
     startText: Fancy a sliding puzzle game?
@@ -14,4 +15,5 @@ data.minigame.taquin:
     winText: Congrats! You win a Thunder Egg.
     super: Awesome!
     loseText: Lost! Try again whenever you like.
+    restart: Restart
     back: Back

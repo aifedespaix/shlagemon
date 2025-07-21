@@ -43,11 +43,13 @@ export const battleshipMiniGame: MiniGameDefinition = {
     ]
   },
   createFailure(done) {
+    const miniGame = useMiniGameStore()
     return [
       {
         id: 'fail',
         text: 'Perdu ! Recommence quand tu veux.',
         responses: [
+          { label: 'Recommencer', type: 'primary', action: () => miniGame.play() },
           { label: 'Retour', type: 'danger', action: done },
         ],
       },
