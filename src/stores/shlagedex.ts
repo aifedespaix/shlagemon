@@ -657,15 +657,14 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     debug: true,
     serializer: shlagedexSerializer,
     afterHydrate(ctx) {
-      const store = ctx.store as ReturnType<typeof useShlagedexStore>
       const now = Date.now()
-      store.effects.slice().forEach((effect) => {
+      ctx.store.effects.slice().forEach((effect) => {
         if (effect.expiresAt <= now) {
-          store.removeEffect(effect.id)
+          removeEffect(effect.id)
           return
         }
         if (typeof effect.timeout?.stop !== 'function')
-          effect.timeout = useTimeoutFn(() => store.removeEffect(effect.id), effect.expiresAt - now)
+          effect.timeout = useTimeoutFn(() => removeEffect(effect.id), effect.expiresAt - now)
       })
     },
   },
