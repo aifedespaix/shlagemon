@@ -83,7 +83,7 @@ const filteredList = computed(() => {
       list.sort((a, b) => a.item.name.localeCompare(b.item.name))
       break
     case 'price':
-      list.sort((a, b) => a.item.price - b.item.price)
+      list.sort((a, b) => (a.item.price ?? 0) - (b.item.price ?? 0))
       break
   }
   if (!filter.sortAsc)

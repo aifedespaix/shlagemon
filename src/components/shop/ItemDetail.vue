@@ -11,7 +11,7 @@ const maxQty = computed(() => {
   const money = props.item.currency === 'shlagidiamond'
     ? game.shlagidiamond
     : game.shlagidolar
-  return Math.max(1, Math.floor(money / props.item.price))
+  return Math.max(1, Math.floor(money / (props.item.price ?? 0)))
 })
 
 watch(() => props.qty, (v) => {
