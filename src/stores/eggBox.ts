@@ -1,7 +1,7 @@
 import type { ItemId } from '~/data/items/items'
 import { defineStore } from 'pinia'
 
-export const eggIds = ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe', 'oeuf-psy'] as const
+export const eggIds = ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe', 'oeuf-psy', 'oeuf-foudre'] as const
 export type EggItemId = typeof eggIds[number]
 
 export const useEggBoxStore = defineStore('eggBox', () => {

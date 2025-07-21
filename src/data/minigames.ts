@@ -2,6 +2,8 @@ import type { MiniGameDefinition } from '~/type/minigame'
 import { battleshipMiniGame } from './Minigame/Battleship'
 import { connectFourMiniGame } from './Minigame/ConnectFour'
 import { shlagCardsMiniGame } from './Minigame/ShlagCards'
+import { shlagPairsMiniGame } from './Minigame/ShlagPairs'
+import { shlagTaquinMiniGame } from './Minigame/ShlagTaquin'
 import { ticTacToeMiniGame } from './Minigame/TicTacToe'
 
 export const miniGames: MiniGameDefinition[] = [
@@ -9,6 +11,8 @@ export const miniGames: MiniGameDefinition[] = [
   battleshipMiniGame,
   connectFourMiniGame,
   shlagCardsMiniGame,
+  shlagPairsMiniGame,
+  shlagTaquinMiniGame,
 ]
 
 export function getMiniGame(id: string): MiniGameDefinition | undefined {
