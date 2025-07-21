@@ -1,3 +1,4 @@
+import type { Serializer } from 'pinia-plugin-persistedstate'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allShlagemons } from '~/data/shlagemons'
@@ -28,12 +29,13 @@ interface StoredDex extends Omit<SerializedDex, 'shlagemons' | 'activeShlagemon'
   activeShlagemon: StoredDexMon | null
 }
 
-export const shlagedexSerializer = {
-  serialize(data: SerializedDex): string {
+export const shlagedexSerializer: Serializer = {
+  serialize(data: any): string {
+    const typed = data as SerializedDex
     return JSON.stringify({
-      ...data,
-      effects: data.effects.map(({ timeout, ...e }) => e),
-      shlagemons: data.shlagemons.map((mon) => {
+      ...typed,
+      effects: typed.effects.map(({ timeout, ...e }) => e),
+      shlagemons: typed.shlagemons.map((mon) => {
         const { base, heldItemId, ...rest } = mon
         const stored: StoredDexMon = {
           ...rest,
@@ -43,13 +45,13 @@ export const shlagedexSerializer = {
         }
         return stored
       }),
-      activeShlagemon: data.activeShlagemon
+      activeShlagemon: typed.activeShlagemon
         ? (() => {
-            const { base, heldItemId, ...rest } = data.activeShlagemon
+            const { base, heldItemId, ...rest } = typed.activeShlagemon
             const stored: StoredDexMon = {
               ...rest,
               baseId:
-                (data.activeShlagemon as StoredDexMon).baseId
+                (typed.activeShlagemon as StoredDexMon).baseId
                 ?? base.id,
               heldItemId: heldItemId ?? null,
               base: undefined,
@@ -60,7 +62,7 @@ export const shlagedexSerializer = {
     })
   },
 
-  deserialize(raw: string): SerializedDex {
+  deserialize(raw: string): any {
     const parsed = JSON.parse(raw) as StoredDex
 
     const baseMap = getBaseMap()
@@ -136,6 +138,6 @@ export const shlagedexSerializer = {
       shlagemons,
       activeShlagemon: active ?? null,
       effects,
-    }
+    } as any
   },
 }
