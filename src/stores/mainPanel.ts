@@ -1,4 +1,3 @@
-import type { ZoneId, ZoneType } from '~/type/zone'
 import { defineStore } from 'pinia'
 
 export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler'
@@ -13,9 +12,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   const isBattle = computed(() => current.value === 'battle' || current.value === 'trainerBattle')
 
   // Update the panel when the zone changes
-  // Keep watch sources typed with a tuple for clarity
-  watch<[ZoneType, ZoneId]>(
-    () => [zone.current.type, zone.current.id],
+  watch(
+    [() => zone.current.type, () => zone.current.id],
     ([type]) => {
       current.value = type === 'village' ? 'village' : 'battle'
     },

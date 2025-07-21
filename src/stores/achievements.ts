@@ -357,7 +357,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
   )
   watch(level100Count, v => checkThresholds(v, 'lvl100', lvl100Thresholds))
   // Use explicit tuple typing when watching multiple sources
-  watch<[number, number, number]>(
+  watch(
     [() => dex.potentialCompletionPercent, level100Count, () => dex.shlagemons.length],
     () => {
       if (
@@ -367,6 +367,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
         unlock('dex-full-100')
       }
     },
+    { immediate: true },
   )
 
   watch(() => dex.shlagemons.length, (v) => {
