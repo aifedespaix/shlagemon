@@ -397,6 +397,9 @@ declare global {
   export type { Cell } from './composables/useBattleship'
   import('./composables/useBattleship')
   // @ts-ignore
+  export type { SlidingPuzzle } from './composables/useSlidingPuzzle'
+  import('./composables/useSlidingPuzzle')
+  // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
   // @ts-ignore
@@ -742,6 +745,7 @@ declare module 'vue' {
     readonly useShopFilterStore: UnwrapRef<typeof import('./stores/shopFilter')['useShopFilterStore']>
     readonly useShortcutsStore: UnwrapRef<typeof import('./stores/shortcuts')['useShortcutsStore']>
     readonly useSingleInterval: UnwrapRef<typeof import('./composables/battleEngine')['useSingleInterval']>
+    readonly useSlidingPuzzle: UnwrapRef<typeof import('./composables/useSlidingPuzzle')['useSlidingPuzzle']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>

@@ -82,7 +82,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 
 <template>
   <button
-    class="relative grid grid-rows-2 aspect-square gap-1 rounded px-2 py-1 text-xs"
+    class="relative grid grid-rows-2 gap-1 rounded px-2 text-xs"
     :class="[
       classes(),
       buttonDisabled() ? 'opacity-50 cursor-not-allowed' : '',
