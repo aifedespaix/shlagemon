@@ -177,7 +177,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   watch(accessibleXpZones, () => {
-    shlagemons.value.forEach(updateCoefficient)
+    shlagemons.value.forEach(mon => updateCoefficient(mon))
   })
 
   function addShlagemon(mon: DexShlagemon) {
