@@ -1,6 +1,4 @@
 import type { UserModule } from '~/types'
-import { useKeyboardCaptureStore } from '~/stores/keyboardCapture'
-import { useShortcutsStore } from '~/stores/shortcuts'
 
 export const install: UserModule = ({ isClient }) => {
   if (!isClient)

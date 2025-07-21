@@ -1,9 +1,6 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computeDamage } from '~/utils/combat'
-import { useAudioStore } from './audio'
-import { useDiseaseStore } from './disease'
-import { useShlagedexStore } from './shlagedex'
 
 export interface AttackResult {
   damage: number

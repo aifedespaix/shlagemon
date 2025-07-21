@@ -1,9 +1,6 @@
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
 import { zonesData } from '~/data/zones'
-import { useGameStore } from './game'
-import { useShlagedexStore } from './shlagedex'
-import { useZoneProgressStore } from './zoneProgress'
 
 export interface Achievement {
   id: string

@@ -1,11 +1,9 @@
 import type { TypeName } from '~/data/shlagemons-type'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
 import { bulgrosboule } from '~/data/shlagemons/bulgrosboule'
 import { carapouffe } from '~/data/shlagemons/carapouffe'
 import { mewteub } from '~/data/shlagemons/mewteub'
 import { salamiches } from '~/data/shlagemons/salamiches'
-import { useShlagedexStore } from './shlagedex'
 
 export type EggType = TypeName
 

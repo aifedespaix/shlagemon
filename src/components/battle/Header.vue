@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Trainer } from '~/type'
-import { useZoneStore } from '~/stores/zone'
 
 const props = defineProps<{ zoneName?: string, trainer?: Trainer, defeated?: number }>()
 const defeated = computed(() => props.defeated ?? 0)

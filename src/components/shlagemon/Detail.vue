@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useI18n } from 'vue-i18n'
 import WearableItemIcon from '~/components/inventory/WearableItemIcon.vue'
 import ShlagemonStats from '~/components/shlagemon/Stats.vue'
 import { allItems } from '~/data/items/items'
-import { useDiseaseStore } from '~/stores/disease'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useWearableEquipModalStore } from '~/stores/wearableEquipModal'
-import { useWearableItemStore } from '~/stores/wearableItem'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 const emit = defineEmits<{

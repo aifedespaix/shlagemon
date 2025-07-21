@@ -1,12 +1,4 @@
 <script setup lang="ts">
-import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMiniGameStore } from '~/stores/miniGame'
-import { useTrainerBattleStore } from '~/stores/trainerBattle'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
-
 const zone = useZoneStore()
 const panel = useMainPanelStore()
 const mini = useMiniGameStore()

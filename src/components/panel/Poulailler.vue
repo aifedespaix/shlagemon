@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import type { EggItemId } from '~/stores/eggBox'
-import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import EggHatchModal from '~/components/egg/HatchModal.vue'
 import { allItems } from '~/data/items/items'
-import { useEggStore } from '~/stores/egg'
-import { eggIds, useEggBoxStore } from '~/stores/eggBox'
-import { useEggHatchModalStore } from '~/stores/eggHatchModal'
-import { useMainPanelStore } from '~/stores/mainPanel'
 
 const eggs = useEggStore()
 const box = useEggBoxStore()

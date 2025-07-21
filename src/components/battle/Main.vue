@@ -1,18 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
-import { useI18n } from 'vue-i18n'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
-import { notifyAchievement } from '~/stores/achievements'
-import { useAudioStore } from '~/stores/audio'
-import { useBattleStatsStore } from '~/stores/battleStats'
-import { useEventStore } from '~/stores/event'
-import { useGameStore } from '~/stores/game'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useWearableItemStore } from '~/stores/wearableItem'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneMonsModalStore } from '~/stores/zoneMonsModal'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 

@@ -1,6 +1,4 @@
-import type { Component } from 'vue'
 import { defineStore } from 'pinia'
-import { markRaw } from 'vue'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
@@ -31,17 +29,6 @@ import {
   vitalityRing,
 } from '~/data/items/wearables/vitalityRing'
 import { advancedXpRing, xpAmulet, xpRing } from '~/data/items/wearables/xpRing'
-import { useGameStore } from '~/stores/game'
-import { useGameStateStore } from '~/stores/gameState'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useArenaStore } from './arena'
-import { useBattleStatsStore } from './battleStats'
-import { useEggBoxStore } from './eggBox'
-import { useInventoryStore } from './inventory'
-import { useMainPanelStore } from './mainPanel'
-import { useZoneStore } from './zone'
-import { useZoneProgressStore } from './zoneProgress'
-import { useZoneVisitStore } from './zoneVisit'
 
 interface DialogItem {
   id: string

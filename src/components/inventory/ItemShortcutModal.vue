@@ -1,9 +1,5 @@
 <script setup lang="ts">
 import type { ItemId } from '~/data/items/items'
-import { useI18n } from 'vue-i18n'
-import UiKeyCapture from '~/components/ui/KeyCapture.vue'
-import { useItemShortcutModalStore } from '~/stores/itemShortcutModal'
-import { useShortcutsStore } from '~/stores/shortcuts'
 
 const modal = useItemShortcutModalStore()
 const shortcuts = useShortcutsStore()

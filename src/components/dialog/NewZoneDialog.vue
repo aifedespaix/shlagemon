@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
-import { useInventoryStore } from '~/stores/inventory'
-import { useMobileTabStore } from '~/stores/mobileTab'
-import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()

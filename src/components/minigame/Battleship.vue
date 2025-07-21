@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { BOARD_SIZE, useBattleship } from '~/composables/useBattleship'
-
 const emit = defineEmits(['win', 'lose'])
 const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit(w ? 'win' : 'lose'))
 </script>

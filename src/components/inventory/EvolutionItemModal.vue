@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { useEvolutionItemStore } from '~/stores/evolutionItem'
-
 const store = useEvolutionItemStore()
 const { t } = useI18n()
 </script>

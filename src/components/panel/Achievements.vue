@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { useAchievementsStore } from '~/stores/achievements'
-import { useAchievementsFilterStore } from '~/stores/achievementsFilter'
-
 const openedId = ref<string | null>(null)
 
 const store = useAchievementsStore()

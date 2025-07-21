@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import { ref } from 'vue'
 import { getArenaTrack, getZoneTrack } from '~/data/music'
-import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useZoneStore } from '~/stores/zone'
 
 const emit = defineEmits(['done'])
 const arena = useArenaStore()

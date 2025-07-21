@@ -1,6 +1,4 @@
 import type { Ball, DexShlagemon } from '~/type'
-import { useDeveloperStore } from '~/stores/developer'
-import { useShlagedexStore } from '~/stores/shlagedex'
 
 export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
   const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import ShlagemonStats from '~/components/shlagemon/Stats.vue'
 
 const props = defineProps<{ mon: DexShlagemon }>()
 

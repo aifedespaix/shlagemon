@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useTypeChartModalStore } from '~/stores/typeChartModal'
 import TypeChart from './TypeChart.vue'
 
 const modal = useTypeChartModalStore()

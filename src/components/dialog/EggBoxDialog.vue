@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
-import { useEggBoxStore } from '~/stores/eggBox'
-import { useInventoryStore } from '~/stores/inventory'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()

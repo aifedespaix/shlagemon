@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-
 export const SIZE = 5
 export const CENTER_CELLS = [6, 7, 8, 11, 12, 13, 16, 17, 18]
 

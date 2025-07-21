@@ -1,9 +1,6 @@
 import type { Item } from '~/type/item'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
-import { useInventoryStore } from './inventory'
-import { useItemUsageStore } from './itemUsage'
-import { useShlagedexStore } from './shlagedex'
 
 export const useEvolutionItemStore = defineStore('evolutionItem', () => {
   const current = ref<Item | null>(null)

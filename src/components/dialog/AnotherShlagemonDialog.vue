@@ -2,7 +2,6 @@
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import pikachiant from '~/data/shlagemons/15-20/pikachiant'
-import { useShlagedexStore } from '~/stores/shlagedex'
 
 const emit = defineEmits(['done'])
 const dex = useShlagedexStore()

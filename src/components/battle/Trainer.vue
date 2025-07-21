@@ -2,16 +2,6 @@
 import type { DexShlagemon } from '~/type'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
-import { notifyAchievement } from '~/stores/achievements'
-import { useBattleStatsStore } from '~/stores/battleStats'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useGameStore } from '~/stores/game'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useMobileTabStore } from '~/stores/mobileTab'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useTrainerBattleStore } from '~/stores/trainerBattle'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { createDexShlagemon } from '~/utils/dexFactory'
 
 const dex = useShlagedexStore()

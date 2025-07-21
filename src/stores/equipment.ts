@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia'
-import { useInventoryStore } from './inventory'
-import { useShlagedexStore } from './shlagedex'
 
 export const useEquipmentStore = defineStore('equipment', () => {
   const holders = ref<Record<string, string | null>>({})

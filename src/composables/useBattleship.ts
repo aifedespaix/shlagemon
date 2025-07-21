@@ -1,6 +1,3 @@
-import { useTimeoutFn } from '@vueuse/core'
-import { ref } from 'vue'
-
 export interface Cell {
   ship: boolean
   hit: boolean

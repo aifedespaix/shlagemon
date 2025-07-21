@@ -2,8 +2,6 @@
 import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import { getCharacterTrack, getZoneTrack } from '~/data/music'
-import { useAudioStore } from '~/stores/audio'
-import { useZoneStore } from '~/stores/zone'
 
 const { dialogTree, character, avatarUrl, orientation, exitTrack }
   = withDefaults(defineProps<{

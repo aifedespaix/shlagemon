@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { usePwaUpdateStore } from '~/stores/pwaUpdate'
-
 const store = usePwaUpdateStore()
 const { t } = useI18n()
 </script>

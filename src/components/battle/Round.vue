@@ -1,11 +1,5 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useBattleCore } from '~/composables/useBattleCore'
-import { notifyAchievement } from '~/stores/achievements'
-import { useDiseaseStore } from '~/stores/disease'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useWearableItemStore } from '~/stores/wearableItem'
-import { useZoneStore } from '~/stores/zone'
 
 const props = withDefaults(defineProps<{
   player: DexShlagemon

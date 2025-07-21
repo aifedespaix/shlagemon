@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { allItems } from '~/data/items/items'
-import { eggIds, useEggBoxStore } from '~/stores/eggBox'
 
 const box = useEggBoxStore()
 const { t } = useI18n()

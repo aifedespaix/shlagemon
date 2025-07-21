@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import type { Zone } from '~/type'
 
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
-
 const zone = useZoneStore()
 const dex = useShlagedexStore()
 const progress = useZoneProgressStore()

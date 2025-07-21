@@ -1,6 +1,5 @@
 import type { BaseShlagemon, DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
-import { useAudioStore } from './audio'
 
 interface EvolutionRequest {
   mon: DexShlagemon
