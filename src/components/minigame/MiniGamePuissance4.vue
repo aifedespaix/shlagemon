@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const emit = defineEmits(['win', 'lose'])
+const emit = defineEmits(['win', 'lose', 'draw'])
 
 const { board, finished, winningCells, lastMove, reset, play } = useConnectFour()
 const hoverCol = ref<number | null>(null)
@@ -14,6 +14,10 @@ watch(winningCells, (cells) => {
     return
   const win = board.value[cells[0]] === 'player'
   useTimeoutFn(() => emit(win ? 'win' : 'lose'), 800)
+})
+watch(finished, (f) => {
+  if (f && !winningCells.value.length)
+    useTimeoutFn(() => emit('draw'), 800)
 })
 
 function onClick(i: number) {

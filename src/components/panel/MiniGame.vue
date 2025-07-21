@@ -28,14 +28,18 @@ function exit() {
   audio.fadeToMusic(zoneTrack.value)
 }
 function win() {
-  mini.finish(true)
+  mini.finish('win')
 }
 function lose() {
-  mini.finish(false)
+  mini.finish('lose')
+}
+function draw() {
+  mini.finish('draw')
 }
 
 const intro = computed(() => gameDef.value?.createIntro(start))
 const success = computed(() => gameDef.value?.createSuccess(exit))
+const drawDialog = computed(() => gameDef.value?.createDraw?.(exit))
 const failure = computed(() => gameDef.value?.createFailure(exit))
 </script>
 
@@ -54,6 +58,7 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
       v-else-if="mini.phase === 'game'"
       @win="win"
       @lose="lose"
+      @draw="draw"
     />
     <DialogBox
       v-else-if="mini.phase === 'success'"
@@ -68,6 +73,14 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
       :character="gameDef.character"
       :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="failure!"
+      :exit-track="zoneTrack"
+      orientation="col"
+    />
+    <DialogBox
+      v-else-if="mini.phase === 'draw'"
+      :character="gameDef.character"
+      :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
+      :dialog-tree="drawDialog!"
       :exit-track="zoneTrack"
       orientation="col"
     />

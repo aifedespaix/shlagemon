@@ -1249,7 +1249,8 @@ data:
       no: No
       winText: Well played! You win a Fire Egg.
       super: Awesome!
-      loseText: Draw or lost! Try again whenever you like.
+      loseText: Lost! Try again whenever you like.
+      drawText: Draw! Try again whenever you like.
       back: Back
 pages:
   indexPage:

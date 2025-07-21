@@ -43,6 +43,17 @@ export const connectFourMiniGame: MiniGameDefinition = {
       },
     ]
   },
+  createDraw(done) {
+    return [
+      {
+        id: 'draw',
+        text: i18n.global.t('data.Minigame.ConnectFour.drawText'),
+        responses: [
+          { label: i18n.global.t('data.Minigame.ConnectFour.back'), type: 'danger', action: done },
+        ],
+      },
+    ]
+  },
   createFailure(done) {
     return [
       {

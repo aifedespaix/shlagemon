@@ -4,7 +4,8 @@ fr:
   no: Non
   winText: Bien joué ! Tu gagnes un œuf Feu.
   super: Super !
-  loseText: Match nul ou perdu ! Recommence quand tu veux.
+  loseText: Perdu ! Recommence quand tu veux.
+  drawText: Match nul ! Recommence quand tu veux.
   back: Retour
 en:
   startText: Fancy a game of Connect Four?
@@ -12,5 +13,6 @@ en:
   no: No
   winText: Well played! You win a Fire Egg.
   super: Awesome!
-  loseText: Draw or lost! Try again whenever you like.
+  loseText: Lost! Try again whenever you like.
+  drawText: Draw! Try again whenever you like.
   back: Back
