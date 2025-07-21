@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useAudioStore } from '~/stores/audio'
-
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits(['update:modelValue'])
 const show = computed({

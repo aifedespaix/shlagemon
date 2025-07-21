@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { createModalStore } from './helpers'
 
 export const useZoneMonsModalStore = defineStore('zoneMonsModal', () => {
   // Keep the current mobile tab when opening this modal so the secondary panel

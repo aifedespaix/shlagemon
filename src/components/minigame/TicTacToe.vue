@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useElementSize } from '@vueuse/core'
-import { CENTER_CELLS, combos, findBestMove, SIZE } from '~/composables/useTicTacToe'
-
 const emit = defineEmits(['win', 'lose'])
 const board = ref<(null | 'player' | 'ai')[]>(Array.from({ length: SIZE * SIZE }).fill(null))
 const turn = ref<'player' | 'ai'>('player')

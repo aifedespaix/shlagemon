@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useElementSize, useTimeoutFn } from '@vueuse/core'
-import { COLS, ROWS, useConnectFour } from '~/composables/useConnectFour'
-
 const emit = defineEmits(['win', 'lose'])
 
 const { board, finished, winningCells, lastMove, reset, play } = useConnectFour()

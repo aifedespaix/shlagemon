@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
-import { useI18n } from 'vue-i18n'
 import { balls } from '~/data/items/shlageball'
-import { useAudioStore } from '~/stores/audio'
-import { useBallStore } from '~/stores/ball'
-import { useCaptureLimitModalStore } from '~/stores/captureLimitModal'
-import { useInventoryStore } from '~/stores/inventory'
-import { usePlayerStore } from '~/stores/player'
-import { useShlagedexStore } from '~/stores/shlagedex'
 import { ballHues } from '~/utils/ball'
 import { tryCapture } from '~/utils/capture'
 

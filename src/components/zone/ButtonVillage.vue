@@ -1,12 +1,5 @@
 <script setup lang="ts">
 import type { Zone } from '~/type/zone'
-import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const props = defineProps<{ zone: Zone }>()
 const zoneStore = useZoneStore()

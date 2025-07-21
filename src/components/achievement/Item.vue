@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Achievement } from '~/stores/achievements'
-
 const props = withDefaults(defineProps<{ achievement: Achievement & { achieved: boolean }, opened?: boolean }>(), {
   opened: false,
 })

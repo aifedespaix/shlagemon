@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { BallId } from '~/data/items/shlageball'
 import { balls } from '~/data/items/shlageball'
-import { useBallStore } from '~/stores/ball'
-import { useInventoryStore } from '~/stores/inventory'
 import { ballHues } from '~/utils/ball'
 
 const inventory = useInventoryStore()

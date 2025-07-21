@@ -1,18 +1,6 @@
-import type { MainPanel } from './mainPanel'
 import type { ZoneId, ZoneType } from '~/type/zone'
-import { useMediaQuery } from '@vueuse/core'
 import { defineStore } from 'pinia'
 import { getArenaTrack, getCharacterTrack, getZoneBattleTrack, getZoneTrack } from '~/data/music'
-import { useAchievementsStore } from './achievements'
-import { useArenaStore } from './arena'
-import { useAudioStore } from './audio'
-import { useDialogStore } from './dialog'
-import { useGameStateStore } from './gameState'
-import { useInventoryStore } from './inventory'
-import { useMainPanelStore } from './mainPanel'
-import { useShlagedexStore } from './shlagedex'
-import { useTrainerBattleStore } from './trainerBattle'
-import { useZoneStore } from './zone'
 
 export const useUIStore = defineStore('ui', () => {
   const mainPanel = useMainPanelStore()

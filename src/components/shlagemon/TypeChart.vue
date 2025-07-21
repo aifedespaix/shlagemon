@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
 const props = defineProps<{ highlight?: string | null }>()

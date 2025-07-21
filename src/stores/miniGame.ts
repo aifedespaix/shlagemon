@@ -1,9 +1,6 @@
 import type { MiniGameId } from '~/type/minigame'
 import { defineStore } from 'pinia'
 import { getMiniGame } from '~/data/minigames'
-import { notifyAchievement } from './achievements'
-import { useGameStore } from './game'
-import { useInventoryStore } from './inventory'
 
 export const useMiniGameStore = defineStore('miniGame', () => {
   const currentId = ref<MiniGameId | null>(null)

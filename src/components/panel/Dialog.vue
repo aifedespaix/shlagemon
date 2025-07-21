@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useDialogStore } from '~/stores/dialog'
-import { useFeatureLockStore } from '~/stores/featureLock'
-
 const dialogStore = useDialogStore()
 const featureLock = useFeatureLockStore()
 

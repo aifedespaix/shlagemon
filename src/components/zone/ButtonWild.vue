@@ -1,14 +1,5 @@
 <script setup lang="ts">
 import type { SavageZone } from '~/type/zone'
-import { useI18n } from 'vue-i18n'
-import { useArenaStore } from '~/stores/arena'
-import { useDialogStore } from '~/stores/dialog'
-import { useFeatureLockStore } from '~/stores/featureLock'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
-import { useZoneVisitStore } from '~/stores/zoneVisit'
 
 const props = defineProps<{ zone: SavageZone }>()
 const zoneStore = useZoneStore()

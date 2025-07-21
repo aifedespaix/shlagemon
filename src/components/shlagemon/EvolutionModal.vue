@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useEvolutionStore } from '~/stores/evolution'
-
 const store = useEvolutionStore()
 </script>
 

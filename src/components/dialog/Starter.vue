@@ -5,8 +5,6 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 import bulgrosboule from '~/data/shlagemons/bulgrosboule'
 import carapouffe from '~/data/shlagemons/carapouffe'
 import salamiches from '~/data/shlagemons/salamiches'
-import { useGameStateStore } from '~/stores/gameState'
-import { useShlagedexStore } from '~/stores/shlagedex'
 
 const emit = defineEmits(['done'])
 

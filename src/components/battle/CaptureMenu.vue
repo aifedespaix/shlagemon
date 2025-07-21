@@ -2,9 +2,6 @@
 import type { Ball, DexShlagemon } from '~/type'
 import { toast } from 'vue3-toastify'
 import { balls as ballData } from '~/data/items/shlageball'
-import { useAudioStore } from '~/stores/audio'
-import { useInventoryStore } from '~/stores/inventory'
-import { useShlagedexStore } from '~/stores/shlagedex'
 import { tryCapture } from '~/utils/capture'
 
 const props = defineProps<{ enemy: DexShlagemon | null }>()

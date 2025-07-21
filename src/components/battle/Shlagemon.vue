@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useTypeChartModalStore } from '~/stores/typeChartModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 

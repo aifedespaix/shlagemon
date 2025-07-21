@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import ShlagemonImage from '~/components/shlagemon/Image.vue'
-import { useEggHatchModalStore } from '~/stores/eggHatchModal'
-
 const modal = useEggHatchModalStore()
 </script>
 

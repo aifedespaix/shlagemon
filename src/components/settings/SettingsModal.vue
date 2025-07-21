@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import LanguageSelector from '~/components/LanguageSelector.vue'
-import { useSaveStore } from '~/stores/save'
-import ShortcutsTab from './ShortcutsTab.vue'
-
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits(['update:modelValue'])
 
@@ -64,7 +60,7 @@ function removeSave() {
           </UiButton>
         </div>
         <div v-else-if="tab === 'shortcuts'" class="flex flex-col gap-2">
-          <ShortcutsTab />
+          <SettingsShortcutsTab />
         </div>
         <div v-else class="flex justify-center">
           <LanguageSelector />

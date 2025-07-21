@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { createModalStore } from './helpers'
 
 export const useTypeChartModalStore = defineStore('typeChartModal', () => {
   const { isVisible, open: openModal, close } = createModalStore('game')

@@ -1,17 +1,8 @@
-import type { EggItemId } from './eggBox'
 import type { ItemId } from '~/data/items/items'
 import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
-import { notifyAchievement } from './achievements'
-import { useCaptureLimitModalStore } from './captureLimitModal'
-import { useEggBoxStore } from './eggBox'
-import { useFeatureLockStore } from './featureLock'
-import { useGameStore } from './game'
-import { useItemUsageStore } from './itemUsage'
-import { usePlayerStore } from './player'
-import { useShlagedexStore } from './shlagedex'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Partial<Record<ItemId, number>>>({})

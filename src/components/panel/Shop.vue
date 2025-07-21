@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { toast } from 'vue3-toastify'
-import { useI18n } from 'vue-i18n'
 import {
   itemCategoryTabBaseColors,
   itemCategoryTabColors,
   itemCategoryTabHoverColors,
 } from '~/constants/itemCategory'
-import { useAudioStore } from '~/stores/audio'
-import { useGameStore } from '~/stores/game'
-import { useInventoryStore } from '~/stores/inventory'
-import { useMainPanelStore } from '~/stores/mainPanel'
-import { useShopFilterStore } from '~/stores/shopFilter'
-import { useZoneStore } from '~/stores/zone'
 
 const panel = useMainPanelStore()
 const zone = useZoneStore()

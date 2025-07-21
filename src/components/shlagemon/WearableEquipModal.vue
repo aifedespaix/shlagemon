@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import { useWearableEquipModalStore } from '~/stores/wearableEquipModal'
-
 const store = useWearableEquipModalStore()
 const { t } = useI18n()
 </script>

@@ -1,8 +1,4 @@
 import type { DexShlagemon } from '~/type/shlagemon'
-import { useAudioStore } from '~/stores/audio'
-import { useBattleStore } from '~/stores/battle'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useBattleEffects } from './battleEngine'
 
 export interface BattleCoreOptions {
   createEnemy: () => DexShlagemon | null

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useArenaStore } from '~/stores/arena'
-
 const arena = useArenaStore()
 </script>
 

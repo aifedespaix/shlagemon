@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ShlagCard } from '~/type'
-import { useTimeoutFn } from '@vueuse/core'
 import { allShlagemons } from '~/data/shlagemons'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 

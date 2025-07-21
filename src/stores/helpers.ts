@@ -1,6 +1,3 @@
-import type { MobileTab } from './mobileTab'
-import { useMobileTabStore } from './mobileTab'
-
 /**
  * Simple utility to manage modal visibility.
  * Optionally switches the mobile tab when opened.

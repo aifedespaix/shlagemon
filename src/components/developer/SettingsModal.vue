@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { getArena } from '~/data/arenas'
 import { allShlagemons } from '~/data/shlagemons'
-import { useDeveloperStore } from '~/stores/developer'
-import { useGameStore } from '~/stores/game'
-import { usePlayerStore } from '~/stores/player'
-import { useShlagedexStore } from '~/stores/shlagedex'
-import { useZoneStore } from '~/stores/zone'
-import { useZoneProgressStore } from '~/stores/zoneProgress'
 import { applyCurrentStats, applyStats, xpForLevel } from '~/utils/dexFactory'
 
 const props = defineProps<{ modelValue: boolean }>()

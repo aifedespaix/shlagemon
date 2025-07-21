@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
-import { useBallStore } from '~/stores/ball'
-import { useDiseaseStore } from '~/stores/disease'
-import { useInventoryStore } from '~/stores/inventory'
-import { usePlayerStore } from '~/stores/player'
 import { ballHues } from '~/utils/ball'
 
 const game = useGameStore()
