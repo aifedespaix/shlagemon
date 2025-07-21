@@ -33,7 +33,7 @@ function classes() {
   const z = props.zone
   const classes: string[] = []
   if (z.id === zoneStore.current.id) {
-    classes.push('bg-primary text-dark dark:bg-light')
+    classes.push('bg-blue-500 text-white dark:bg-blue-600')
     classes.push('border-2 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400')
     return classes.join(' ')
   }
