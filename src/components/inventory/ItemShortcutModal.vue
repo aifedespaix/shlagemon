@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type UiKeyCapture from '~/components/ui/KeyCapture.vue'
 import type { ItemId } from '~/data/items/items'
 
 const modal = useItemShortcutModalStore()
