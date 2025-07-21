@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { BOARD_SIZE } from '~/composables/useBattleship'
+
 const emit = defineEmits(['win', 'lose'])
 const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit(w ? 'win' : 'lose'))
 </script>
@@ -18,6 +20,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
             : cell.ship
               ? 'bg-blue-400 dark:bg-blue-700'
               : 'bg-blue-100 dark:bg-blue-800',
+          cell.sinking ? 'animate-sink' : '',
         ]"
       >
         <div v-if="cell.hit && cell.ship" class="i-mdi:sail-boat text-white" />
@@ -30,7 +33,10 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
         v-for="(cell, i) in aiBoard"
         :key="`a-${i}`"
         class="aspect-square flex-center rounded bg-blue-100 text-xl dark:bg-blue-800"
-        :class="cell.hit ? (cell.ship ? 'bg-red-500' : 'bg-gray-400') : ''"
+        :class="[
+          cell.hit ? (cell.ship ? 'bg-red-500' : 'bg-gray-400') : '',
+          cell.sinking ? 'animate-sink' : '',
+        ]"
         :hover="!cell.hit && !finished && turn === 'player' ? 'bg-blue-200 dark:bg-blue-700' : undefined"
         :disabled="cell.hit || finished || turn !== 'player'"
         @click="attack(i)"
@@ -41,3 +47,19 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes sink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}
+
+.animate-sink {
+  animation: sink 0.6s ease forwards;
+}
+</style>
