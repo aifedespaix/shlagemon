@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ItemId } from '~/data/items/items'
+import type { ShortcutEntry } from '~/stores/shortcuts'
 import { allItems } from '~/data/items/items'
 
 const store = useShortcutsStore()
@@ -13,13 +14,20 @@ function updateKey(index: number, key: string) {
 }
 
 function updateItem(index: number, itemId: ItemId) {
-  const entry = { key: store.shortcuts[index].key, action: { type: 'use-item', itemId } }
+  const entry: ShortcutEntry = {
+    key: store.shortcuts[index].key,
+    action: { type: 'use-item', itemId },
+  }
   store.update(index, entry)
 }
 
 function addShortcut() {
   const firstItem = allItems[0]
-  store.add({ key: '', action: { type: 'use-item', itemId: firstItem.id } })
+  const entry: ShortcutEntry = {
+    key: '',
+    action: { type: 'use-item', itemId: firstItem.id },
+  }
+  store.add(entry)
 }
 
 function removeShortcut(index: number) {
