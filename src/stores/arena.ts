@@ -22,7 +22,7 @@ export const useArenaStore = defineStore('arena', () => {
     lineupDex.value = enemies.map(m =>
       createDexShlagemon(m, false, coefficientMultiplier, level),
     )
-    selections.value = Array.from({ length: enemies.length }).fill(null)
+    selections.value = Array.from({ length: enemies.length }).fill(null) as (string | null)[]
   }
 
   function setArena(arena: Arena) {
