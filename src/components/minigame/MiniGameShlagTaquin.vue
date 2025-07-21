@@ -23,19 +23,15 @@ const squareSize = computed(() => Math.min(width.value, height.value))
 
 useSwipe(wrapper, {
   onSwipeEnd(_, dir) {
-    if (puzzle.solved)
+    if (puzzle.solved || puzzle.shuffling)
       return
     if (dir !== 'none')
       puzzle.move(dir as any)
   },
 })
 
-watch(size, () => {
-  Object.assign(puzzle, useSlidingPuzzle(size.value))
-})
-
 useEventListener('keydown', (e: KeyboardEvent) => {
-  if (puzzle.solved)
+  if (puzzle.solved || puzzle.shuffling)
     return
   if (e.key === 'ArrowUp')
     puzzle.move('up')
@@ -45,6 +41,21 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     puzzle.move('left')
   else if (e.key === 'ArrowRight')
     puzzle.move('right')
+})
+
+onMounted(async () => {
+  await nextTick()
+  setTimeout(async () => {
+    await puzzle.shuffleBoard(50, 80)
+  }, 500)
+})
+
+watch(size, async () => {
+  Object.assign(puzzle, useSlidingPuzzle(size.value))
+  await nextTick()
+  setTimeout(async () => {
+    await puzzle.shuffleBoard(50, 80)
+  }, 500)
 })
 
 watch(() => puzzle.solved, (v) => {
@@ -59,16 +70,36 @@ watch(() => puzzle.solved, (v) => {
       class="relative flex flex-col items-center justify-center"
       :style="{ width: `${squareSize}px`, height: `${squareSize}px`, overflow: 'hidden' }"
     >
-      <div class="direction-button left-8 right-8 top-0 h-8" type="icon" @click="puzzle.move('up')">
+      <div
+        class="direction-button left-8 right-8 top-0 h-8"
+        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        type="icon"
+        @click="puzzle.move('up')"
+      >
         <div class="i-mdi:arrow-up" />
       </div>
-      <div class="direction-button bottom-8 left-0 top-8 w-8" type="icon" @click="puzzle.move('left')">
+      <div
+        class="direction-button bottom-8 left-0 top-8 w-8"
+        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        type="icon"
+        @click="puzzle.move('left')"
+      >
         <div class="i-mdi:arrow-left" />
       </div>
-      <div class="direction-button bottom-8 right-0 top-8 w-8" type="icon" @click="puzzle.move('right')">
+      <div
+        class="direction-button bottom-8 right-0 top-8 w-8"
+        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        type="icon"
+        @click="puzzle.move('right')"
+      >
         <div class="i-mdi:arrow-right" />
       </div>
-      <div class="direction-button bottom-0 left-8 right-8 h-8" type="icon" @click="puzzle.move('down')">
+      <div
+        class="direction-button bottom-0 left-8 right-8 h-8"
+        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        type="icon"
+        @click="puzzle.move('down')"
+      >
         <div class="i-mdi:arrow-down" />
       </div>
 
@@ -84,15 +115,17 @@ watch(() => puzzle.solved, (v) => {
           v-for="tile in visibleTiles"
           :key="tile.id"
           class="absolute cursor-pointer overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
+          :class="{ 'pointer-events-none': puzzle.shuffling }"
           :style="{
             width: `${tilePercent}%`,
             height: `${tilePercent}%`,
-            left: `${(tile.idx % size) * tilePercent}%`,
-            top: `${Math.floor(tile.idx / size) * tilePercent}%`,
+            left: '0%',
+            top: '0%',
+            transform: `translate(${(tile.idx % size) * tilePercent}%, ${(Math.floor(tile.idx / size) * tilePercent)}%)`,
             backgroundImage: `url(${puzzle.image})`,
             backgroundSize: `${size * 100}% ${size * 100}%`,
             backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
-            transition: 'left 0.3s, top 0.3s',
+            transition: 'transform 0.3s',
           }"
           @click="puzzle.moveTile(tile.idx)"
         />
