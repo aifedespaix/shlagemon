@@ -1,9 +1,12 @@
+import { useTimeoutFn } from '@vueuse/core'
 import { useAudioStore } from '~/stores/audio'
 
 export interface Cell {
   ship: boolean
   hit: boolean
   shipId?: number
+  sunk?: boolean
+  sinking?: boolean
 }
 
 export const BOARD_SIZE = 5
@@ -14,6 +17,8 @@ function createBoard(): Cell[] {
     ship: false,
     hit: false,
     shipId: undefined,
+    sunk: false,
+    sinking: false,
   }))
 }
 
@@ -72,6 +77,23 @@ function shipSunk(board: Cell[], id: number | undefined) {
   return board.every(c => c.shipId !== id || c.hit)
 }
 
+function markSunk(board: Cell[], id: number | undefined) {
+  if (id === undefined)
+    return
+  board.forEach((c) => {
+    if (c.shipId === id) {
+      c.sunk = true
+      c.sinking = true
+    }
+  })
+  useTimeoutFn(() => {
+    board.forEach((c) => {
+      if (c.shipId === id)
+        c.sinking = false
+    })
+  }, 600)
+}
+
 export function createBattleshipAI() {
   const queue: number[] = []
   const attacked = new Set<number>()
@@ -121,10 +143,13 @@ export function useBattleship(onEnd: (win: boolean) => void) {
     cell.hit = true
     if (cell.ship) {
       aiShips--
-      if (shipSunk(aiBoard.value, cell.shipId))
+      if (shipSunk(aiBoard.value, cell.shipId)) {
+        markSunk(aiBoard.value, cell.shipId)
         audio.playSfx('/audio/sfx/mini-game/battleship/touche-coule.ogg')
-      else
+      }
+      else {
         audio.playSfx('/audio/sfx/mini-game/battleship/touche.ogg')
+      }
     }
     else {
       audio.playSfx('/audio/sfx/mini-game/battleship/rate.ogg')
@@ -146,22 +171,41 @@ export function useBattleship(onEnd: (win: boolean) => void) {
     ai.record(idx, cell.ship)
     if (cell.ship) {
       playerShips--
-      if (shipSunk(playerBoard.value, cell.shipId))
+      if (shipSunk(playerBoard.value, cell.shipId)) {
+        markSunk(playerBoard.value, cell.shipId)
         audio.playSfx('/audio/sfx/mini-game/battleship/touche-coule.ogg')
-      else
+      }
+      else {
         audio.playSfx('/audio/sfx/mini-game/battleship/touche.ogg')
+      }
     }
     else {
       audio.playSfx('/audio/sfx/mini-game/battleship/rate.ogg')
     }
     if (playerShips <= 0)
       return end(false)
-    turn.value = 'player'
+    useTimeoutFn(() => {
+      turn.value = 'player'
+    }, 300)
   }
 
   function end(win: boolean) {
     finished.value = true
-    onEnd(win)
+    const board = win ? aiBoard.value : playerBoard.value
+    board.forEach((c) => {
+      if (c.ship) {
+        c.hit = true
+        c.sunk = true
+        c.sinking = true
+      }
+    })
+    useTimeoutFn(() => {
+      board.forEach((c) => {
+        if (c.ship)
+          c.sinking = false
+      })
+      onEnd(win)
+    }, 800)
   }
 
   reset()
