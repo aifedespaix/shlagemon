@@ -16,4 +16,4 @@ const props = withDefaults(defineProps<{
     :style="props.shiny ? { filter: 'hue-rotate(180deg)' } : {}"
     v-bind="$attrs"
   />
-</template>d
+</template>
