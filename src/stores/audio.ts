@@ -75,6 +75,8 @@ export const useAudioStore = defineStore('audio', () => {
       currentMusic.value.play()
   }
 
+  let fadeTimer: ReturnType<typeof setTimeout> | null = null
+
   function fadeToMusic(track: string) {
     if (!currentMusic.value) {
       playMusic(track)
@@ -91,9 +93,12 @@ export const useAudioStore = defineStore('audio', () => {
       next.play()
       next.fade(0, musicVolume.value, 1000)
       old.fade(old.volume(), 0, 1000)
-      useTimeoutFn(() => {
+      if (fadeTimer)
+        clearTimeout(fadeTimer)
+      fadeTimer = setTimeout(() => {
         old.stop()
         old.unload()
+        fadeTimer = null
       }, 1000)
     }
     else {
@@ -118,6 +123,10 @@ export const useAudioStore = defineStore('audio', () => {
     currentMusic.value.stop()
     currentMusic.value.unload()
     currentMusic.value = null
+    if (fadeTimer) {
+      clearTimeout(fadeTimer)
+      fadeTimer = null
+    }
   }
 
   function playSfx(effect: string) {
