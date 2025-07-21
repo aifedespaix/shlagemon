@@ -1,3 +1,5 @@
+import { useAudioStore } from '~/stores/audio'
+
 export interface Cell {
   ship: boolean
   hit: boolean
@@ -98,6 +100,7 @@ export function useBattleship(onEnd: (win: boolean) => void) {
   const finished = ref(false)
   let playerShips = 0
   let aiShips = 0
+  const audio = useAudioStore()
   const ai = createBattleshipAI()
 
   function reset() {
@@ -119,15 +122,12 @@ export function useBattleship(onEnd: (win: boolean) => void) {
     if (cell.ship) {
       aiShips--
       if (shipSunk(aiBoard.value, cell.shipId))
-        // eslint-disable-next-line no-console
-        console.log('touche coule')
+        audio.playSfx('/audio/sfx/mini-game/battleship/touche-coule.ogg')
       else
-        // eslint-disable-next-line no-console
-        console.log('touche')
+        audio.playSfx('/audio/sfx/mini-game/battleship/touche.ogg')
     }
     else {
-      // eslint-disable-next-line no-console
-      console.log('rate')
+      audio.playSfx('/audio/sfx/mini-game/battleship/rate.ogg')
     }
     if (aiShips <= 0)
       return end(true)
@@ -147,15 +147,12 @@ export function useBattleship(onEnd: (win: boolean) => void) {
     if (cell.ship) {
       playerShips--
       if (shipSunk(playerBoard.value, cell.shipId))
-        // eslint-disable-next-line no-console
-        console.log('touche coule')
+        audio.playSfx('/audio/sfx/mini-game/battleship/touche-coule.ogg')
       else
-        // eslint-disable-next-line no-console
-        console.log('touche')
+        audio.playSfx('/audio/sfx/mini-game/battleship/touche.ogg')
     }
     else {
-      // eslint-disable-next-line no-console
-      console.log('rate')
+      audio.playSfx('/audio/sfx/mini-game/battleship/rate.ogg')
     }
     if (playerShips <= 0)
       return end(false)
