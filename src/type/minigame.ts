@@ -27,4 +27,4 @@ export interface MiniGameDefinition {
   createFailure: (done: () => void) => DialogNode[]
 }
 
-export type MiniGameId = 'tictactoe' | 'battleship' | 'connectfour' | 'shlagcards' | 'taquin'
+export type MiniGameId = 'tictactoe' | 'battleship' | 'connectfour' | 'shlagcards' | 'shlagpairs' | 'taquin'
