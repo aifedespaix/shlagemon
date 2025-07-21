@@ -4,7 +4,9 @@ import { zonesData } from '~/data/zones'
 export function useZoneAccess(highestLevel: Ref<number>) {
   const progress = useZoneProgressStore()
   const zones = zonesData
-  const xpZones = computed(() => zones.filter(z => z.maxLevel > 0))
+  const xpZones = computed(() =>
+    zones.filter(z => (z.maxLevel ?? 0) > 0),
+  )
 
   function canAccess(z: Zone) {
     if (z.type === 'village')
@@ -18,7 +20,7 @@ export function useZoneAccess(highestLevel: Ref<number>) {
 
   const accessibleZones = computed(() => zones.filter(z => canAccess(z)))
   const accessibleXpZones = computed(() =>
-    accessibleZones.value.filter(z => z.maxLevel > 0),
+    accessibleZones.value.filter(z => (z.maxLevel ?? 0) > 0),
   )
 
   return {

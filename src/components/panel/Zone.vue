@@ -5,7 +5,9 @@ const zone = useZoneStore()
 const dex = useShlagedexStore()
 const progress = useZoneProgressStore()
 
-const xpZones = computed(() => zone.zones.filter(z => z.maxLevel > 0))
+const xpZones = computed(() =>
+  zone.zones.filter(z => (z.maxLevel ?? 0) > 0),
+)
 
 const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
 const accessibleSavages = computed(() => accessibleZones.value.filter(z => z.type === 'sauvage'))
