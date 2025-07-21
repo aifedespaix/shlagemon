@@ -18,9 +18,9 @@ const { t } = useI18n()
     </div>
     <div class="flex justify-center gap-1">
       <ShlagemonType
-        v-for="t in props.mon.types"
-        :key="t.id"
-        :value="t"
+        v-for="typeItem in props.mon.types"
+        :key="typeItem.id"
+        :value="typeItem"
         open-on-click
       />
     </div>
