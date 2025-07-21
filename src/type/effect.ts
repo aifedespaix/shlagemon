@@ -1,4 +1,4 @@
-import type { UseTimeoutFnReturn } from '@vueuse/core'
+import type { Stoppable } from '@vueuse/shared'
 
 export interface ActiveEffect {
   id: number
@@ -9,5 +9,5 @@ export interface ActiveEffect {
   expiresAt: number
   /** @deprecated No longer used, kept for save compatibility */
   amount?: number
-  timeout?: UseTimeoutFnReturn
+  timeout?: Stoppable
 }

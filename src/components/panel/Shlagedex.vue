@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Stoppable } from '@vueuse/shared'
 import type { DexShlagemon } from '~/type/shlagemon'
 
 const dex = useShlagedexStore()
@@ -6,7 +7,7 @@ const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
-const clickTimer = ref<UseTimeoutFnReturn | null>(null)
+const clickTimer = ref<Stoppable | null>(null)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {

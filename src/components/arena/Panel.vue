@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Stoppable } from '@vueuse/shared'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { delay } from '~/utils/delay'
@@ -17,7 +18,7 @@ const activeSlot = ref<number | null>(null)
 const showDuel = ref(false)
 const showEnemy = ref(false)
 const enemyDetail = ref<DexShlagemon | null>(null)
-let nextTimer: UseTimeoutFnReturn | undefined
+let nextTimer: Stoppable | undefined
 
 async function autoSelect() {
   const team = dex.shlagemons
