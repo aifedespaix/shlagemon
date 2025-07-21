@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core'
+import { useElementSize, useEventListener } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
 const props = withDefaults(defineProps<{ difficulty?: 'easy' | 'hard' }>(), {
@@ -16,6 +16,10 @@ const visibleTiles = computed(() =>
     .filter(t => puzzle.solved || t.id !== size.value * size.value - 1),
 )
 const tilePercent = computed(() => 100 / size.value)
+
+const wrapper = ref<HTMLElement | null>(null)
+const { width, height } = useElementSize(wrapper)
+const boardSize = computed(() => Math.min(width.value, height.value))
 
 watch(size, () => {
   Object.assign(puzzle, useSlidingPuzzle(size.value))
@@ -41,7 +45,7 @@ watch(() => puzzle.solved, (v) => {
 </script>
 
 <template>
-  <div class="relative h-full w-full bg-red">
+  <div ref="wrapper" class="relative h-full w-full flex flex-1 items-center justify-center bg-red">
     <div class="direction-button left-4 right-4 top-0 h-4" type="icon" @click="puzzle.move('up')">
       <div class="i-mdi:arrow-up" />
     </div>
@@ -54,7 +58,7 @@ watch(() => puzzle.solved, (v) => {
     <div class="direction-button bottom-0 left-4 right-4 h-4" type="icon" @click="puzzle.move('down')">
       <div class="i-mdi:arrow-down" />
     </div>
-    <div class="relative h-full w-full flex flex-1 items-center gap-2">
+    <div class="relative flex items-center" :style="{ width: `${boardSize}px`, height: `${boardSize}px` }">
       <img v-if="puzzle.solved" :src="puzzle.image" alt="image" class="absolute inset-0 h-full w-full rounded">
       <div
         v-for="tile in visibleTiles"
