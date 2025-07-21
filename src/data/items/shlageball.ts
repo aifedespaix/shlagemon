@@ -20,7 +20,7 @@ export const superShlageball: Ball = {
   description: 'Améliore les chances de capture.',
   details:
     'Capture des Shlagémons plus récalcitrants avec un léger bonus de chance.',
-  price: 25,
+  price: 1000,
   currency: 'shlagidolar',
   category: 'actif',
   image: '/items/shlageball/shlageball.png',
@@ -34,7 +34,7 @@ export const hyperShlageball: Ball = {
   description: 'Offre de très hautes chances de capture.',
   details:
     'Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.',
-  price: 50,
+  price: 10000,
   currency: 'shlagidolar',
   category: 'actif',
   image: '/items/shlageball/shlageball.png',
