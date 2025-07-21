@@ -19,6 +19,7 @@ Son plumage, censé briller, est en réalité collé par des fluides douteux, de
 Son cri ressemble à *"BLU-PFRT-GAAAAAAAAAAAAH"*, mélange d’effort intestinal et de désespoir artistique. Il possède l’attaque spéciale *Déjection Expansive*, qui inflige des dégâts de zone et réduit la dignité de tous les participants. Il dispose également de *Plumexplosion*, une attaque aléatoire qui projette des plumes rigides en spirale — parfois vers l’ennemi, parfois vers le ciel, parfois dans son propre œil.
 
 Chrysachier ne vole pas : il s’élève un peu, puis redescend avec le bruit d’un sac de linge sale. Il est cependant très respecté dans certains cercles underground pour sa capacité à ruiner l’ambiance instantanément.`,
+  descriptionKey: 'data.shlagemons.evolutions.chrysachier.description',
   types: [shlagemonTypes.insecte],
   coefficient: 10,
 }

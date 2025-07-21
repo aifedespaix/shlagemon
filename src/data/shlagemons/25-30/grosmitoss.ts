@@ -10,6 +10,7 @@ export const grosmitoss: BaseShlagemon = {
 Il parle sans arrêt, même quand personne ne l’écoute, et chaque phrase commence par "C’est vrai, j’te jure !". Les autres Shlagémons le fuient, non pas pour ses attaques, mais pour sa capacité à déformer la réalité à chaque mot. 
 
 Sa compétence spéciale, *Mythobluff*, embrouille l’adversaire en lui faisant douter de tout — y compris de ses propres attaques. Il peut aussi utiliser *Souffle de Pipeau*, un vent nauséabond qui sent fort la mauvaise excuse et la clope froide.`,
+  descriptionKey: 'data.shlagemons.25-30.grosmitoss.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   coefficient: 28,
   evolution: {

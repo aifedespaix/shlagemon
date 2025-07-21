@@ -14,6 +14,7 @@ Il ne peut ni manger proprement, ni picorer, ni faire peur aux autres oiseaux �
 Sa capacité passive, *Silence Pesant*, fait baisser l’initiative des adversaires en les mettant mal à l’aise.
 
 Piafsansbec est souvent vu au bord des routes, essayant de siffler le vent ou de grignoter des miettes qu’il finit par pousser du front, la dignité en option. Mais dans son regard brille une chose rare… non, en fait, non. Rien ne brille. C’est juste humide.`,
+  descriptionKey: 'data.shlagemons.25-30.piafsansbec.description',
   types: [shlagemonTypes.vol],
   coefficient: 30,
   evolution: { base: rapasdepisse, condition: { type: 'lvl', value: 50 } },

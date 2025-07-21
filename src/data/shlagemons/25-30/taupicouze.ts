@@ -10,6 +10,7 @@ export const taupicouze: BaseShlagemon = {
 Son problème ? Il ne trouve *jamais* la veine. Il plante, il retire, il re-plante… et il jubile. Car derrière son sourire crispant, se cache une âme légèrement sadique. Il adore les cris d’agonie, qu’il interprète comme des encouragements.
 
 Son attaque signature, *Tricouze Saignante*, inflige des dégâts progressifs et désoriente l’ennemi avec une sensation de malaise médical. Il peut aussi utiliser *Piqure Surprise*, qui a 30% de chances de faire perdre connaissance à un Shlagémon... ou au dresseur.`,
+  descriptionKey: 'data.shlagemons.25-30.taupicouze.description',
   types: [shlagemonTypes.sol],
   coefficient: 26,
   evolution: {

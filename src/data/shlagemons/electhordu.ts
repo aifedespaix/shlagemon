@@ -13,6 +13,7 @@ Son cri, proche d’un vieux néon qui grésille, perturbe les ondes radio à de
 Selon les shlagémonologues, Électhordu était jadis le gardien du “Courant Originel”, une énergie sacrée qui devait équilibrer le monde… mais il a confondu le disjoncteur sacré avec une friteuse et a tout cramé.
 
 Aujourd’hui, il erre, tordu du bec au voltage, parlant seul dans les fils électriques, et semant le chaos statique dans son sillage. Il est à la fois craint, moqué, et branché sur du 12 000 volts en permanence.`,
+  descriptionKey: 'data.shlagemons.electhordu.description',
 
   types: [shlagemonTypes.electrique, shlagemonTypes.vol],
   coefficient: 110,

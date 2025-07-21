@@ -11,6 +11,7 @@ Son visage, tout plissé et tiré vers le bas, inspire l'effroi et le respect, a
 Tatacruelle adore faire la morale en jetant du vinaigre partout, piquer les biscuits des autres et verrouiller les confitures dans une armoire à code secret. Son attaque signature, *Remontrance Aqueuse*, t’envoie une vague d’eau froide et d’insultes cinglantes, te laissant grelottant de honte et de remords.
 
 On raconte qu’elle hante les cuisines après 22h, prête à punir ceux qui osent ouvrir le frigo. Son rêve ? Être immortalisée en portrait sur chaque pot de cornichons du coin. Même les plus téméraires n’osent pas traîner près d’elle quand la nuit tombe.`,
+  descriptionKey: 'data.shlagemons.evolutions.tatacruelle.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   coefficient: 58,
 }

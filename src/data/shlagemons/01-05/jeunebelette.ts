@@ -10,6 +10,7 @@ export const jeunebelette: BaseShlagemon = {
 Il attaque rarement, sauf s’il sent que "ça parle mal". Sa capacité spéciale *Tacle Banal* inflige des dégâts moyens mais a une chance de provoquer l’état **Flemme Profonde**. En général, Jeunebelette traîne autour des autres Shlagémons pour "voir ce qu’il se passe", sans vraiment participer. Il est là, quoi. 
 
 On raconte qu'il pourrait évoluer s'il trouvait enfin une vraie motivation. Mais c'est pas pour tout de suite.`,
+  descriptionKey: 'data.shlagemons.01-05.jeunebelette.description',
   types: [shlagemonTypes.sol],
   coefficient: 3,
   evolution: {

@@ -10,6 +10,7 @@ export const tadsperm: BaseShlagemon = {
 Sa principale occupation : s’isoler dans des coins sombres pour savourer les plaisirs les plus solitaires de la vie. Son attaque signature, *Jet Spontané*, consiste à projeter une gerbe collante et opaque qui ralentit et colle l’adversaire sur place.
 
 On raconte qu’il passe plus de temps à “méditer” qu’à se battre. Certains dresseurs disent avoir glissé dessus dans les vestiaires…`,
+  descriptionKey: 'data.shlagemons.50-55.tadsperm.description',
   types: [shlagemonTypes.poison],
   coefficient: 52,
   evolution: {

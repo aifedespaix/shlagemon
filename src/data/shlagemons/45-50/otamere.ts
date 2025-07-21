@@ -10,6 +10,7 @@ export const otamere: BaseShlagemon = {
 Son attaque signature, *Jet de Morve Polaire*, consiste à éternuer un glaçon baveux sur ses adversaires, ce qui leur colle un rhume pour trois semaines. On raconte qu’Otamère est interdit de piscine municipale depuis un incident impliquant une bouée percée et un lot de frites en mousse moisis.
 
 Personne n’a jamais vu Otamère sobre. Il aurait soi-disant un tatouage “MAMAN” sous une nageoire, mais personne n’ose vérifier.`,
+  descriptionKey: 'data.shlagemons.45-50.otamere.description',
   types: [shlagemonTypes.eau],
   coefficient: 50,
 

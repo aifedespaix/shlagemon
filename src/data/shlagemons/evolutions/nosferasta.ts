@@ -9,6 +9,7 @@ export const nosferasta: BaseShlagemon = {
 Influencé par les écrits rastafaris et les vinyles usés de Koffeekeur et Bombé Marlée, il prêche une philosophie de vie fondée sur la non-violence, la connexion avec la nature, et une consommation très généreuse de plantes médicinales. Il parle en paraboles confuses, parfois entrecoupées de rires nerveux ou de citations approximatives de textes sacrés qu’il n’a jamais vraiment lus.
 
 Son attaque signature *Chant de Jah* étourdit tous les ennemis dans un large rayon, accompagnée d’un léger fondu reggae et d’un relent suspect. On dit que même les Pokémon de type acier se détendent à son contact.`,
+  descriptionKey: 'data.shlagemons.evolutions.nosferasta.description',
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],
   coefficient: 33,

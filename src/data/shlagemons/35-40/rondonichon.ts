@@ -12,6 +12,7 @@ Né d’un croisement douteux avec une peluche retrouvée dans un vide-ordures, 
 Il adore s’incruster dans les sacs des dresseurs pour “y faire sa sieste”, mais finit toujours par s’y reproduire à l’insu de tous. On dit qu’un seul Rondonichon peut contaminer une Shlagéball pour toujours.
 
 Ne pas le caresser. Jamais.`,
+  descriptionKey: 'data.shlagemons.35-40.rondonichon.description',
 
   types: [shlagemonTypes.normal],
   coefficient: 38,

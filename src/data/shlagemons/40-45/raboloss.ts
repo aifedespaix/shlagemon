@@ -12,6 +12,7 @@ Avec son expression de poisson-panique et son vieux sac à dos déchiré, il tra
 Son attaque signature, *Gros Lancer de Cartable*, consiste à balancer son sac (qui sent la cantine froide et la misère) sur ses adversaires, infligeant confusion et gêne sociale.
 
 On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir populaire... ou au moins d’avoir un goûter entier pour lui tout seul.`,
+  descriptionKey: 'data.shlagemons.40-45.raboloss.description',
   types: [shlagemonTypes.eau, shlagemonTypes.psy],
   coefficient: 43,
   evolution: {

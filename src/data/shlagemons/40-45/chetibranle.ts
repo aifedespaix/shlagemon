@@ -10,6 +10,7 @@ export const chetibranle: BaseShlagemon = {
 Sa technique favorite, *Pompage Introspectif*, consiste à canaliser toutes ses forces vers l’intérieur pour un plaisir personnel rarement égalé dans la faune des shlagémons. D’aucuns racontent qu’après ses longues séances d’absorption, il semble toujours un peu vidé, mais paradoxalement plus rayonnant que jamais.
 
 On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser, mais il laisse toujours derrière lui une étrange atmosphère… moite et contemplative.`,
+  descriptionKey: 'data.shlagemons.40-45.chetibranle.description',
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 42,
   evolution: {

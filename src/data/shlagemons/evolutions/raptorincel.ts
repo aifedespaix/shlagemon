@@ -12,6 +12,7 @@ Son hoodie à capuche intégrée est maintenant fusionné à sa peau, et sa flam
 Il possède une attaque spéciale : *Flamme Frustrée*, qui explose si l’adversaire est un Shlagémon féminin. Il peut aussi utiliser *Monologue Évolutif*, une capacité qui fait fuir les ennemis en leur expliquant pourquoi ils ont tort d'exister.
 
 On le trouve souvent dans des grottes sombres, en train de taper sur des claviers invisibles tout en s’entraînant à l’art du regard méprisant. Son rêve ? Devenir le Shlagémon alpha… et surtout que quelqu’un daigne lui répondre un jour.`,
+  descriptionKey: 'data.shlagemons.evolutions.raptorincel.description',
   types: [shlagemonTypes.feu],
   coefficient: 25,
   evolution: { base: dracoCon, condition: { type: 'lvl', value: 36 } },

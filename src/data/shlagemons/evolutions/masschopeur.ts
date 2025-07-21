@@ -15,6 +15,7 @@ Sa capacité *Ghosting Flash* permet de fuir instantanément un combat sentiment
 Malgré ses défauts évidents, il **choppe**. Tout le temps. C’est inexplicable. Peut-être le combo parfum discount + regard de prédateur affectif. Peut-être une malédiction. Ou une stat secrète appelée "charisme de l’enfer". Les scientifiques hésitent encore.
 
 On raconte qu’il s’auto-like sur Pokégram avec des faux comptes et laisse des commentaires à base de "🔥🔥🔥 t trop bg frèro".`,
+  descriptionKey: 'data.shlagemons.evolutions.masschopeur.description',
   types: [shlagemonTypes.combat],
   coefficient: 60,
   evolution: {

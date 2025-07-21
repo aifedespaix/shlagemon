@@ -12,6 +12,7 @@ Sa gueule affiche en permanence un sourire narquois, trois dents en or, et un ai
 **Attaque signature :** *Émanation douteuse* — Racaillou relâche un nuage de fumée nauséabonde qui fait planer tout le monde dans un rayon de 2 mètres, embrouillant les esprits et ralentissant les adversaires.
 
 On raconte qu'il ne se déplace jamais sans sa bande de Gravashlag, toujours prêts à lui fournir un briquet ou à jeter un caillou sur un dresseur trop curieux.`,
+  descriptionKey: 'data.shlagemons.40-45.racaillou.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
   coefficient: 45,
   evolution: {

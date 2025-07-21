@@ -11,6 +11,7 @@ Son intérieur n’est plus qu’un mélange douteux entre fromage qui coule, ro
 Attitude : Crustabridou est persuadé qu’il est la star de tous les apéros, alors qu’en vrai, tout le monde l’évite à cause de son odeur de cave. Son attaque signature, *Jet de Graillon*, consiste à expulser une bouillie huileuse et collante qui fait fuir même les Pokémon les plus courageux.
 
 Anecdote : On raconte que Crustabridou rêve secrètement de devenir ambassadeur du saucisson, mais il confond toujours les plateaux de fromages avec les arènes Pokémon.`,
+  descriptionKey: 'data.shlagemons.evolutions.crustabridou.description',
   types: [shlagemonTypes.eau],
   coefficient: 64,
 }

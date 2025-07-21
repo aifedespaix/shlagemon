@@ -11,6 +11,7 @@ Son pelage est cramé par endroits à cause de ses propres attaques ratées, et 
 Feunouille attaque rarement, sauf si on critique son style ou qu’on dit que Ninetales est "mieux designé". Dans ce cas, il enchaîne *Queue-Slap TikTok* et *Souffle de Théorie Fumeuse*, une combinaison qui désoriente tous les Shlagémons normaux.
 
 Il est persuadé d’être l’élu d’une prophétie inventée par lui-même. Aucun autre Shlagémon ne valide.`,
+  descriptionKey: 'data.shlagemons.evolutions.feunouille.description',
 
   types: [shlagemonTypes.feu],
   coefficient: 80,

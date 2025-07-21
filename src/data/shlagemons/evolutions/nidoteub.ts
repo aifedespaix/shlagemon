@@ -10,6 +10,7 @@ export const nidoteub: BaseShlagemon = {
 Iel voue un culte étrange à une entité nommée “Chibrax”, dont iel porte un médaillon autour du cou en plastique doré. Personne ne sait qui c’est, ni ce que ça veut dire, mais Nidoteub y croit très fort. Iel utilise principalement l’attaque *DM Massif*, qui ne touche presque jamais, mais qui contient beaucoup trop d’émojis feu.
 
 Iel est bruyant·e, inefficace, et persuadé·e qu’iel est “trop stylé”. Ses dents sont toujours en PLS et son haleine est classée comme capacité toxique passive.`,
+  descriptionKey: 'data.shlagemons.evolutions.nidoteub.description',
   types: [shlagemonTypes.poison],
   coefficient: 66,
 

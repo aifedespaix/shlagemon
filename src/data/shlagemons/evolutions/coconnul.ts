@@ -23,6 +23,7 @@ Il ne croit en rien, pas même en ses propres stats. D’ailleurs, son cri resse
 Sa capacité passive, *Auto-Sabotage*, lui fait perdre 1 point de vie à chaque fois qu’on l’encourage. On dit qu’il pourrait évoluer en quelque chose de puissant... mais qu’il "veut pas déranger".
 
 Il traîne dans les buissons, évite les regards et se planque dès qu’il entend le mot "match". Une icône de la lose, une légende de l’échec.`,
+  descriptionKey: 'data.shlagemons.evolutions.coconnul.description',
   types: [shlagemonTypes.insecte],
   coefficient: 10,
 }

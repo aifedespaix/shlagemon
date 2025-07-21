@@ -5,6 +5,7 @@ export const pyrolise: BaseShlagemon = {
   id: 'pyrolise',
   name: 'Pyrolise',
   description: `Toujours entouré d’une fumée douteuse, Pyrolise adore brûler tout ce qu’il touche et sentir les vapeurs toxiques.`,
+  descriptionKey: 'data.shlagemons.evolutions.pyrolise.description',
   types: [shlagemonTypes.feu],
   coefficient: 60,
 }

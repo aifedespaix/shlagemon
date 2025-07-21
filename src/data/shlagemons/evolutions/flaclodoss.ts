@@ -11,6 +11,7 @@ Sa fourrure a viré au gris sale, son regard flotte dans le vague comme s’il c
 Son attaque signature, *Nuage de Misère*, dégage une aura de fatigue et de vieux sandwichs, plongeant ses adversaires dans un état de démotivation intense.
 
 On raconte que Flaclodoss possède le secret pour ouvrir toutes les poubelles à un seul doigt, et qu’il médite souvent sur la vie en fixant les pigeons. Sa philosophie ? “Tant qu’il y a un banc, y’a de l’espoir…”`,
+  descriptionKey: 'data.shlagemons.evolutions.flaclodoss.description',
   types: [shlagemonTypes.eau, shlagemonTypes.psy],
   coefficient: 71,
 }

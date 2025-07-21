@@ -9,6 +9,7 @@ export const nidoqueer: BaseShlagemon = {
 Son attaque signature *Marche de la Fierté* lui permet de traverser n’importe quelle zone sans être interrompu·e, tout en boostant le moral de ses alliés. Iel manie aussi *Pluie de Paillettes*, une capacité de zone peu douloureuse mais extrêmement humiliante pour l’adversaire.
 
 Nidoqueer est un pilier des zones communautaires de Shlagémon, toujours là pour défendre les plus petit·e·s, corriger les propos déplacés avec élégance, et lâcher un *wink* bien placé. On reconnaît Nidoqueer à ses épines colorées, son regard fardé et sa démarche impeccable. Iel n'est pas là pour se battre... mais si iel le fait, ce sera avec **panache**.`,
+  descriptionKey: 'data.shlagemons.evolutions.nidoqueer.description',
   types: [shlagemonTypes.poison],
   coefficient: 88,
 }

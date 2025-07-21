@@ -11,6 +11,7 @@ Ses muscles sont toujours là, mais personne n’y touche plus. Les meufs ? Part
 Il attaque avec *Clavier Rageur*, qui spam des insultes mal orthographiées, et *Copié/Collé de Citation*, un move inutile où il cite Alex Hitchens (son modèle) sans contexte. Il a également accès à *Alt+Tab Discret*, qui lui permet de cacher son onglet “Podcasts alpha” quand sa daronne rentre dans la pièce.
 
 On raconte qu’il a installé un fond d’écran de lui torse nu en noir et blanc avec marqué “GRIND” en majuscules. Aucun Shlagémon ne veut le combattre : pas par peur… par pitié.`,
+  descriptionKey: 'data.shlagemons.evolutions.macintosh.description',
   types: [shlagemonTypes.combat],
   coefficient: 90,
 }

@@ -12,6 +12,7 @@ On ne sait pas exactement *pourquoi* il fait ça. Est-ce un rituel ? Un besoin a
 Son attaque *Embrasse Froide* paralyse d’effroi toute cible vivante, tandis que *Marche Funeste* inflige des dégâts psychiques au rythme de ses pas lugubres. Plus il avance, plus l’air se refroidit… et plus le silence devient pesant.
 
 On dit que Kadavrebras ne dort jamais. Il se contente de bercer ses cadavres en murmurant des berceuses oubliées, avec une voix tremblante et désaccordée. Ne croisez jamais son regard : il pourrait penser que vous êtes prêt… à être porté.`,
+  descriptionKey: 'data.shlagemons.evolutions.kadavrebras.description',
   types: [shlagemonTypes.psy],
   coefficient: 52,
   evolution: {

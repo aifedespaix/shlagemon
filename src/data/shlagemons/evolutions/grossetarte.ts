@@ -9,6 +9,7 @@ export const grossetarte: BaseShlagemon = {
 Il ne se bat pas : il *sert*. À répétition. Son attaque *Service Trois Parts* invoque une volée de projectiles pâtissiers, chacun ayant une texture plus imprévisible que le précédent. Il dispose aussi de *Croûte Brutale*, une attaque physique qui explose en miettes de granite sucré, infligeant des blessures internes et une honte culinaire durable.
 
 Certains Shlagémons l’évitent non pas par peur, mais par goût. On raconte qu’un seul fragment de sa Tarte Ultime peut bloquer une mâchoire pendant 3 jours.`,
+  descriptionKey: 'data.shlagemons.evolutions.grossetarte.description',
   types: [shlagemonTypes.eau],
   coefficient: 57,
 }

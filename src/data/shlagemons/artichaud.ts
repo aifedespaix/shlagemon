@@ -11,6 +11,7 @@ On raconte qu’il est capable de déclencher des tempêtes de neige tiède, et 
 Autrefois vénéré comme le “Gardien du Micro-ondes Sacré”, il aurait été banni du royaume des Shlagémons nobles pour avoir tenté de cuire des raviolis surgelés… sans enlever l’opercule métallique.
 
 Aujourd’hui, Artichaud veille sur les zones de non-droit climatiques, où il impose son règne moite et frigorifié, entre deux éternuements fumants et des engelures de l’aisselle.`,
+  descriptionKey: 'data.shlagemons.artichaud.description',
 
   types: [shlagemonTypes.glace, shlagemonTypes.vol],
   coefficient: 110,

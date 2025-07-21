@@ -13,6 +13,7 @@ Son attaque signature, *Jet Honteux*, inflige un malus de défense à l’ennemi
 Rapasdepisse ne vole pas vraiment. Il fait des sauts nerveux et humides. Son cri ressemble à un "PRRRFFFFFT !" suivi d’un long silence gênant. Il évite les zones aérées et les dresseurs trop propres.
 
 On le garde par compassion, ou par erreur. Mais même s’il fait un peu pitié, certains affirment qu’il est doux, affectueux... et toujours tiède.`,
+  descriptionKey: 'data.shlagemons.evolutions.rapasdepisse.description',
   types: [shlagemonTypes.vol],
   coefficient: 60,
 }

@@ -10,6 +10,7 @@ export const nidoschneck: BaseShlagemon = {
 Son attaque signature *Frappe de Schnek* est moins puissante qu’iel en a l’air, mais elle fait toujours son petit effet dans les zones sauvages. En combat, iel aime provoquer ses adversaires avec *Cris Gênants*, ce qui inflige l’état **Malaise Profond** à tout le monde autour, alliés inclus.
 
 Iel s’entoure souvent de Nidononbinaire♀ ou d’autres Shlagémons influençables, qu’iel appelle ses “sœurs de la teucha”. On ne sait jamais si iel est sérieux·se ou si iel trolle. Probablement les deux.`,
+  descriptionKey: 'data.shlagemons.evolutions.nidoschneck.description',
   types: [shlagemonTypes.poison],
   coefficient: 66,
 

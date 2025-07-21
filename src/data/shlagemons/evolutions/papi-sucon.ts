@@ -13,6 +13,7 @@ Il ne distingue plus les ennemis des alliés. Dès qu’il voit quelque chose bo
 Sa capacité passive, *Salive Persistante*, ralentit les adversaires qui l’ont approché de trop près, à cause de la texture collante laissée sur leur peau. On raconte qu’un dresseur a tenté de le prendre dans ses bras et s’est retrouvé avec une marque mauve sur le front pendant 4 jours.
 
 Papy Suçon est un type crasse par excellence, mais il est aussi classé *affection*, car il prétend toujours "faire ça avec tendresse".`,
+  descriptionKey: 'data.shlagemons.evolutions.papi-sucon.description',
   types: [shlagemonTypes.insecte],
   coefficient: 35,
 }

@@ -6,6 +6,7 @@ export const kaiminable: BaseShlagemon = {
   id: 'kaiminable',
   name: 'Kaiminable',
   description: `Petit croco tout bouffi, baveux, qui mord ses propres doigts. A déjà une canette vide accrochée à la queue.`,
+  descriptionKey: 'data.shlagemons.60-65.kaiminable.description',
   types: [shlagemonTypes.eau],
   coefficient: 62,
   evolution: {

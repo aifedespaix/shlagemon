@@ -11,6 +11,7 @@ Son corps est couvert de taches suspectes et de traces d'usure en forme de... be
 Son attaque signature, *Souffle de Troudbal*, relâche un jet gazeux issu de l’au-delà (et de l’en-d’ssous), infligeant de lourds dégâts olfactifs et mentaux. Elle peut provoquer la panique, l’étourdissement, ou un fou rire nerveux chez les plus fragiles.
 
 On raconte qu’Ectroudbal peut apparaître dans tes chiottes si tu dis “Papier triple épaisseur” trois fois devant ton miroir après un kebab trop épicé.`,
+  descriptionKey: 'data.shlagemons.evolutions.ectroudbal.description',
   types: [shlagemonTypes.spectre, shlagemonTypes.poison],
   coefficient: 56,
 }

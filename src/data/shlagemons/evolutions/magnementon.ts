@@ -12,6 +12,7 @@ Magnementon flotte en meute dans les parkings, l’air mauvais, prêt à te juge
 Son attaque signature, *Menton Omnipotent*, consiste à donner un coup de menton magistral, capable d’aplatir un panneau de signalisation… ou simplement de faire voler en éclats la dignité de l’adversaire.
 
 On raconte que croiser un Magnementon, c’est risquer de finir avec “8 mentons, 6 bosses” et une bonne excuse bidon pour rentrer au camping.`,
+  descriptionKey: 'data.shlagemons.evolutions.magnementon.description',
   types: [shlagemonTypes.electrique, shlagemonTypes.insecte],
   coefficient: 66,
 }

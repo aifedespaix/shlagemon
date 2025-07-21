@@ -13,6 +13,7 @@ Grochichon ne marche plus : il flotte à dix centimètres du sol, uniquement qua
 On ne sait pas vraiment s’il combat, ou s’il est juste là pour poser une ambiance. Son cri ressemble à un “pfffft” suivi d’un éclat de rire essoufflé. Les experts en Shlagologie recommandent de ne jamais le déranger après 16h : “il redescend”.
 
 On ignore s’il a une évolution. Certains parlent d’un “Tontonchichon” tapi dans une cave…`,
+  descriptionKey: 'data.shlagemons.evolutions.grochichon.description',
 
   types: [shlagemonTypes.normal, shlagemonTypes.poison],
   coefficient: 55,

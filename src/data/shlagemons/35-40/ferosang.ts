@@ -12,6 +12,7 @@ Il a déjà tenté de donner son sang, mais les médecins lui ont dit qu’il n�
 Férosang est recouvert de pansements douteux, de croûtes arrachées trop tôt et de tatouages faits avec du stylo bic. Ses poings sont constamment en sang, soit parce qu’il frappe, soit parce qu’il frappe *mal*. On le voit souvent rire après s’être pris une droite dans le nez par un lampadaire.
 
 Son attaque signature, *Jet Hémato*, projette un arc de sang corrosif et contaminé, qui inflige panique et malaise. Il possède aussi *Patate Réflexe*, une attaque incontrôlable qui s’active à la moindre tape sur l’épaule.`,
+  descriptionKey: 'data.shlagemons.35-40.ferosang.description',
   types: [shlagemonTypes.combat],
   coefficient: 36,
   evolution: {

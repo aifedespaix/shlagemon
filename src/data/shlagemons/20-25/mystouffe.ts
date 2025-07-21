@@ -14,6 +14,7 @@ Il déteste l’eau, les peignes, et les remarques sur son hygiène. Il attaque 
 Son attaque *Pollen de Touffe* est connue pour déclencher des crises d’éternuements en chaîne chez les dresseurs non préparés. On dit qu’un Mystouffe particulièrement touffu aurait un jour étouffé un aspirateur industriel.
 
 Sa touffe le protège des coups directs, mais le rend lent et imprévisible. Son regard reste un mystère : personne ne l’a jamais vu sous les poils.`,
+  descriptionKey: 'data.shlagemons.20-25.mystouffe.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 23,
