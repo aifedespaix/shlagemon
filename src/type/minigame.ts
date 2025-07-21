@@ -23,6 +23,7 @@ export interface MiniGameDefinition {
   reward: MiniGameReward
   createIntro: (start: () => void) => DialogNode[]
   createSuccess: (done: () => void) => DialogNode[]
+  createDraw?: (done: () => void) => DialogNode[]
   createFailure: (done: () => void) => DialogNode[]
 }
 

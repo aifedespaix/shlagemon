@@ -1270,7 +1270,8 @@ data:
       no: Non
       winText: Bien joué ! Tu gagnes un œuf Feu.
       super: Super !
-      loseText: Match nul ou perdu ! Recommence quand tu veux.
+      loseText: Perdu ! Recommence quand tu veux.
+      drawText: Match nul ! Recommence quand tu veux.
       back: Retour
 pages:
   indexPage:

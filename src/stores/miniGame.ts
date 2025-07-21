@@ -4,7 +4,7 @@ import { getMiniGame } from '~/data/minigames'
 
 export const useMiniGameStore = defineStore('miniGame', () => {
   const currentId = ref<MiniGameId | null>(null)
-  const phase = ref<'intro' | 'game' | 'success' | 'failure'>('intro')
+  const phase = ref<'intro' | 'game' | 'success' | 'failure' | 'draw'>('intro')
   const wins = ref(0)
 
   function select(id: MiniGameId) {
@@ -16,9 +16,9 @@ export const useMiniGameStore = defineStore('miniGame', () => {
     phase.value = 'game'
   }
 
-  function finish(win: boolean) {
+  function finish(result: 'win' | 'lose' | 'draw') {
     const def = currentId.value ? getMiniGame(currentId.value) : undefined
-    if (win && def) {
+    if (result === 'win' && def) {
       const game = useGameStore()
       const inventory = useInventoryStore()
       if (def.reward.type === 'money')
@@ -28,7 +28,12 @@ export const useMiniGameStore = defineStore('miniGame', () => {
       wins.value += 1
       notifyAchievement({ type: 'minigame-win' })
     }
-    phase.value = win ? 'success' : 'failure'
+    if (result === 'win')
+      phase.value = 'success'
+    else if (result === 'lose')
+      phase.value = 'failure'
+    else
+      phase.value = 'draw'
   }
 
   function quit() {
