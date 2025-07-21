@@ -48,4 +48,5 @@ export const village50: Zone = {
       icon: 'i-game-icons:bird-house',
     },
   },
+  miniGame: 'taquin',
 }
