@@ -75,6 +75,7 @@ declare module 'vue' {
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
     MinigameMiniGamePuissance4: typeof import('./components/minigame/MiniGamePuissance4.vue')['default']
     MinigameMiniGameShlagCards: typeof import('./components/minigame/MiniGameShlagCards.vue')['default']
+    MinigameMiniGameShlagPairs: typeof import('./components/minigame/MiniGameShlagPairs.vue')['default']
     MinigameMiniGameShlagTaquin: typeof import('./components/minigame/MiniGameShlagTaquin.vue')['default']
     MinigameShlagCard: typeof import('./components/minigame/ShlagCard.vue')['default']
     MinigameTicTacToe: typeof import('./components/minigame/TicTacToe.vue')['default']

@@ -43,45 +43,45 @@ watch(() => puzzle.solved, (v) => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
-    <div class="flex gap-2">
-      <UiButton type="icon" @click="puzzle.move('up')">
-        <div class="i-mdi:arrow-up" />
-      </UiButton>
+  <div class="relative h-full w-full bg-red">
+    <div class="direction-button left-4 right-4 top-0 h-4" type="icon" @click="puzzle.move('up')">
+      <div class="i-mdi:arrow-up" />
     </div>
-    <div class="flex items-center gap-2">
-      <UiButton type="icon" @click="puzzle.move('left')">
-        <div class="i-mdi:arrow-left" />
-      </UiButton>
-      <div ref="wrapper" class="relative" :style="{ width: `${tileSize * size}px`, height: `${tileSize * size}px` }">
-        <img v-if="puzzle.solved" :src="puzzle.image" alt="image" class="absolute inset-0 h-full w-full rounded">
-        <div
-          v-for="tile in visibleTiles"
-          :key="tile.id"
-          class="absolute overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
-          :style="{
-            width: `${tileSize}px`,
-            height: `${tileSize}px`,
-            transition: 'transform 0.3s',
-            transform: `translate(${(tile.idx % size) * tileSize}px, ${Math.floor(tile.idx / size) * tileSize}px)`,
-            backgroundImage: `url(${puzzle.image})`,
-            backgroundSize: `${size * 100}% ${size * 100}%`,
-            backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
-          }"
-          @click="puzzle.moveTile(tile.idx)"
-        />
-      </div>
-      <UiButton type="icon" @click="puzzle.move('right')">
-        <div class="i-mdi:arrow-right" />
-      </UiButton>
+    <div class="direction-button bottom-4 left-0 top-4 w-4" type="icon" @click="puzzle.move('left')">
+      <div class="i-mdi:arrow-left" />
     </div>
-    <div class="flex gap-2">
-      <UiButton type="icon" @click="puzzle.move('down')">
-        <div class="i-mdi:arrow-down" />
-      </UiButton>
+    <div class="direction-button bottom-4 right-0 top-4 w-4" type="icon" @click="puzzle.move('right')">
+      <div class="i-mdi:arrow-right" />
+    </div>
+    <div class="direction-button bottom-0 left-4 right-4 h-4" type="icon" @click="puzzle.move('down')">
+      <div class="i-mdi:arrow-down" />
+    </div>
+    <div class="h-full w-full flex flex-1 items-center gap-2">
+      <img v-if="puzzle.solved" :src="puzzle.image" alt="image" class="absolute inset-0 h-full w-full rounded">
+      <div
+        v-for="tile in visibleTiles"
+        :key="tile.id"
+        class="absolute overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
+        :style="{
+          width: `${tileSize}px`,
+          height: `${tileSize}px`,
+          transition: 'transform 0.3s',
+          transform: `translate(${(tile.idx % size) * tileSize}px, ${Math.floor(tile.idx / size) * tileSize}px)`,
+          backgroundImage: `url(${puzzle.image})`,
+          backgroundSize: `${size * 100}% ${size * 100}%`,
+          backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
+        }"
+        @click="puzzle.moveTile(tile.idx)"
+      />
     </div>
     <div v-if="puzzle.solved" class="mt-2 animate-bounce text-xl font-bold">
       Gagné !
     </div>
   </div>
 </template>
+
+<style scoped>
+.direction-button {
+  @apply flex justify-center items-center absolute;
+}
+</style>
