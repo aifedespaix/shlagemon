@@ -202,7 +202,7 @@ function onClick(_e: MouseEvent) {
           :fainted="playerFainted"
           :flash="flashPlayer"
           flipped
-          :effects="props.showEffects ? dex.effects.value : []"
+          :effects="props.showEffects ? dex.effects : []"
           :disease="disease.active"
           :disease-remaining="disease.remaining"
           @faint-end="onPlayerFaintEnd"

@@ -123,7 +123,7 @@ function isHighlighted(mon: DexShlagemon) {
 }
 
 function changeActive(mon: DexShlagemon) {
-  if (isLocked.value)
+  if (isLocked)
     return
   dex.setActiveShlagemon(mon)
 }
