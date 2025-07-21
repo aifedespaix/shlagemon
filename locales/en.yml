@@ -1252,6 +1252,7 @@ data:
       loseText: Lost! Try again whenever you like.
       drawText: Draw! Try again whenever you like.
       back: Back
+      restart: Restart
     ShlagCards:
       startText: Fancy a game of Shlag Cards?
       yes: Yes
@@ -1260,6 +1261,7 @@ data:
       super: Awesome!
       loseText: Lost! Try again whenever you like.
       back: Back
+      restart: Restart
 pages:
   indexPage:
     title: Shlagemon

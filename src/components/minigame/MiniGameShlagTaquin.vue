@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useEventListener } from '@vueuse/core'
+import { useElementSize, useEventListener, useSwipe } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
 const props = withDefaults(defineProps<{ difficulty?: 'easy' | 'hard' }>(), {
@@ -16,6 +16,19 @@ const visibleTiles = computed(() =>
     .filter(t => puzzle.solved || t.id !== size.value * size.value - 1),
 )
 const tilePercent = computed(() => 100 / size.value)
+
+const wrapper = ref<HTMLElement | null>(null)
+const { width, height } = useElementSize(wrapper)
+const squareSize = computed(() => Math.min(width.value, height.value))
+
+useSwipe(wrapper, {
+  onSwipeEnd(_, dir) {
+    if (puzzle.solved)
+      return
+    if (dir !== 'none')
+      puzzle.move(dir as any)
+  },
+})
 
 watch(size, () => {
   Object.assign(puzzle, useSlidingPuzzle(size.value))
@@ -41,54 +54,56 @@ watch(() => puzzle.solved, (v) => {
 </script>
 
 <template>
-  <div
-    class="relative aspect-square flex flex-1 flex-col items-center justify-center"
-    style="overflow:hidden;"
-  >
-    <div class="direction-button left-8 right-8 top-0 h-8" type="icon" @click="puzzle.move('up')">
-      <div class="i-mdi:arrow-up" />
-    </div>
-    <div class="direction-button bottom-8 left-0 top-8 w-8" type="icon" @click="puzzle.move('left')">
-      <div class="i-mdi:arrow-left" />
-    </div>
-    <div class="direction-button bottom-8 right-0 top-8 w-8" type="icon" @click="puzzle.move('right')">
-      <div class="i-mdi:arrow-right" />
-    </div>
-    <div class="direction-button bottom-0 left-8 right-8 h-8" type="icon" @click="puzzle.move('down')">
-      <div class="i-mdi:arrow-down" />
-    </div>
-
-    <div class="relative aspect-square w-full flex-1">
-      <img
-        v-if="puzzle.solved"
-        :src="puzzle.image"
-        alt="image"
-        class="absolute inset-0 h-full w-full rounded"
-        style="z-index: 10;"
-      >
-      <div
-        v-for="tile in visibleTiles"
-        :key="tile.id"
-        class="absolute cursor-pointer overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
-        :style="{
-          width: `${tilePercent}%`,
-          height: `${tilePercent}%`,
-          left: `${(tile.idx % size) * tilePercent}%`,
-          top: `${Math.floor(tile.idx / size) * tilePercent}%`,
-          backgroundImage: `url(${puzzle.image})`,
-          backgroundSize: `${size * 100}% ${size * 100}%`,
-          backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
-          transition: 'left 0.3s, top 0.3s',
-        }"
-        @click="puzzle.moveTile(tile.idx)"
-      />
-    </div>
-
+  <div ref="wrapper" class="flex flex-1 items-center justify-center">
     <div
-      v-if="puzzle.solved"
-      class="absolute bottom-4 left-1/2 z-20 animate-bounce text-xl font-bold -translate-x-1/2"
+      class="relative flex flex-col items-center justify-center"
+      :style="{ width: `${squareSize}px`, height: `${squareSize}px`, overflow: 'hidden' }"
     >
-      Gagné !
+      <div class="direction-button left-8 right-8 top-0 h-8" type="icon" @click="puzzle.move('up')">
+        <div class="i-mdi:arrow-up" />
+      </div>
+      <div class="direction-button bottom-8 left-0 top-8 w-8" type="icon" @click="puzzle.move('left')">
+        <div class="i-mdi:arrow-left" />
+      </div>
+      <div class="direction-button bottom-8 right-0 top-8 w-8" type="icon" @click="puzzle.move('right')">
+        <div class="i-mdi:arrow-right" />
+      </div>
+      <div class="direction-button bottom-0 left-8 right-8 h-8" type="icon" @click="puzzle.move('down')">
+        <div class="i-mdi:arrow-down" />
+      </div>
+
+      <div class="relative aspect-square w-full flex-1">
+        <img
+          v-if="puzzle.solved"
+          :src="puzzle.image"
+          alt="image"
+          class="absolute inset-0 h-full w-full rounded"
+          style="z-index: 10;"
+        >
+        <div
+          v-for="tile in visibleTiles"
+          :key="tile.id"
+          class="absolute cursor-pointer overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
+          :style="{
+            width: `${tilePercent}%`,
+            height: `${tilePercent}%`,
+            left: `${(tile.idx % size) * tilePercent}%`,
+            top: `${Math.floor(tile.idx / size) * tilePercent}%`,
+            backgroundImage: `url(${puzzle.image})`,
+            backgroundSize: `${size * 100}% ${size * 100}%`,
+            backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
+            transition: 'left 0.3s, top 0.3s',
+          }"
+          @click="puzzle.moveTile(tile.idx)"
+        />
+      </div>
+
+      <div
+        v-if="puzzle.solved"
+        class="absolute bottom-4 left-1/2 z-20 animate-bounce text-xl font-bold -translate-x-1/2"
+      >
+        Gagné !
+      </div>
     </div>
   </div>
 </template>

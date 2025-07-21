@@ -54,7 +54,7 @@ function onVillageWheel(e: WheelEvent) {
     <div
       id="villages"
       class="tiny-scrollbar flex gap-1 overflow-x-auto overflow-y-hidden"
-      @wheel.prevent="onVillageWheel"
+      @wheel.passive="onVillageWheel"
     >
       <ZoneButtonVillage
         v-for="z in accessibleVillages"
