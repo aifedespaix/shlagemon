@@ -147,7 +147,7 @@ function closeShop() {
         @click="buy"
       >
         {{ t('components.panel.Shop.buy', { qty: selectedQty }) }}
-        <UiCurrencyAmount :amount="(selectedItem?.price || 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
+        <UiCurrencyAmount :amount="(selectedItem?.price ?? 0) * selectedQty" :currency="selectedItem?.currency ?? 'shlagidolar'" />
       </UiButton>
       <div class="w-full flex gap-1" md="flex-col w-auto">
         <UiButton

@@ -51,7 +51,7 @@ const details = computed(() => props.item.details || props.item.description)
       </h3>
     </div>
     <div class="flex items-center gap-1">
-      Prix Unitaire <UiCurrencyAmount :amount="props.item.price" :currency="props.item.currency ?? 'shlagidolar'" />
+      Prix Unitaire <UiCurrencyAmount :amount="props.item.price ?? 0" :currency="props.item.currency ?? 'shlagidolar'" />
     </div>
     <p class="text-sm">
       {{ details }}
