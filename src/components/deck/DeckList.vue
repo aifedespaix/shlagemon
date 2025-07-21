@@ -37,9 +37,9 @@ const displayed = computed(() => {
           <span class="font-semibold">{{ mon.name }}</span>
           <div class="flex gap-1">
             <ShlagemonType
-              v-for="t in mon.types"
-              :key="t.id"
-              :value="t"
+              v-for="typeItem in mon.types"
+              :key="typeItem.id"
+              :value="typeItem"
               size="xs"
               open-on-click
             />
