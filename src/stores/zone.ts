@@ -18,7 +18,9 @@ export const useZoneStore = defineStore('zone', () => {
   })
   const visit = useZoneVisitStore()
   visit.markVisited(currentId.value)
-  const xpZones = computed(() => zones.value.filter(z => z.maxLevel > 0))
+  const xpZones = computed(() =>
+    zones.value.filter(z => (z.maxLevel ?? 0) > 0),
+  )
 
   const wildCooldownRemaining = computed(() => {
     if (current.value.type !== 'sauvage')
@@ -58,10 +60,11 @@ export const useZoneStore = defineStore('zone', () => {
 
   const rewardMultiplier = computed(() => {
     const zone = current.value
-    if (!zone.maxLevel)
+    const maxLevel = zone.maxLevel ?? 0
+    if (!maxLevel)
       return 1
-    const rank = zone.maxLevel / 5
-    return (rank >= 0 ? 2 ** rank : 1)
+    const rank = maxLevel / 5
+    return rank >= 0 ? 2 ** rank : 1
   })
 
   function setZone(id: string) {
