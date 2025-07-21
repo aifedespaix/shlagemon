@@ -91,10 +91,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return effect?.percent || 0
   })
 
-  const wearableBonus = (
-    id: string | undefined,
+  function wearableBonus(
+    id: string | null | undefined,
     type: WearableItem['effectType'],
-  ) => {
+  ) {
     if (!id)
       return 0
     const item = allItems.find(i => i.id === id) as WearableItem | undefined
