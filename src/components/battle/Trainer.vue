@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
+import type { DialogNode } from '~/type/dialog'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { createDexShlagemon } from '~/utils/dexFactory'
+import DialogBox from '../dialog/Box.vue'
 
 const dex = useShlagedexStore()
 const trainerStore = useTrainerBattleStore()
@@ -22,6 +24,55 @@ const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
 const enemyIndex = ref(0)
 const enemy = ref(null as DexShlagemon | null)
+
+const beforeDialogTree = computed<DialogNode[]>(() => {
+  if (!trainer.value)
+    return []
+  return [
+    {
+      id: 'start',
+      text: trainer.value.dialogBefore,
+      responses: [
+        { label: 'D\u00E9marrer le combat', type: 'primary', action: startFight },
+        { label: 'Abandonner', type: 'danger', action: cancelFight },
+      ],
+    },
+  ]
+})
+
+const afterDialogTree = computed<DialogNode[]>(() => {
+  if (!trainer.value)
+    return []
+  if (result.value === 'win') {
+    return [
+      {
+        id: 'start',
+        text: trainer.value.dialogAfter,
+        responses: [
+          { label: 'Continuer', nextId: 'reward', type: 'primary' },
+        ],
+      },
+      {
+        id: 'reward',
+        text: `+${trainer.value.reward} Shlag\u00E9diamonds`,
+        responses: [
+          { label: 'Continuer', type: 'valid', action: finish },
+        ],
+      },
+    ]
+  }
+  else {
+    return [
+      {
+        id: 'start',
+        text: trainer.value.dialogDefeat || 'D\u00E9faite...',
+        responses: [
+          { label: 'Continuer', type: 'valid', action: finish },
+        ],
+      },
+    ]
+  }
+})
 
 function createEnemy(): DexShlagemon | null {
   const t = trainer.value
@@ -139,18 +190,11 @@ onUnmounted(featureLock.unlockAll)
           {{ trainer.character.name }}
         </div>
       </template>
-      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="min-h-24 flex-1" />
-      <div>{{ trainer.dialogBefore }}</div>
-      <div class="flex gap-2">
-        <UiButton type="primary" @click="startFight">
-          <div class="i-mdi:sword" />
-          Démarrer le combat
-        </UiButton>
-        <UiButton type="danger" @click="cancelFight">
-          <div class="i-mdi:close" />
-          Abandonner
-        </UiButton>
-      </div>
+      <DialogBox
+        :character="trainer.character"
+        :avatar-url="`/characters/${trainer.character.id}/${trainer.character.id}.png`"
+        :dialog-tree="beforeDialogTree"
+      />
     </div>
     <template v-else-if="stage === 'battle' && dex.activeShlagemon && enemy">
       <BattleRound
@@ -167,19 +211,11 @@ onUnmounted(featureLock.unlockAll)
     </template>
 
     <div v-else class="h-full flex flex-col items-center gap-2 text-center">
-      <CharacterImage :id="trainer.character.id" :alt="trainer.character.name" class="min-h-24 flex-1" />
-      <div v-if="result === 'win'">
-        {{ trainer.dialogAfter }}
-      </div>
-      <div v-else class="text-red-600 font-bold dark:text-red-400">
-        {{ trainer.dialogDefeat || 'Défaite...' }}
-      </div>
-      <div v-if="result === 'win'" class="font-bold">
-        +{{ trainer.reward }} Shlagédiamonds
-      </div>
-      <UiButton @click="finish">
-        Continuer
-      </UiButton>
+      <DialogBox
+        :character="trainer.character"
+        :avatar-url="`/characters/${trainer.character.id}/${trainer.character.id}.png`"
+        :dialog-tree="afterDialogTree"
+      />
     </div>
   </div>
 </template>
