@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { EggType } from '~/stores/egg'
+import type { EggItemId } from '~/stores/eggBox'
 import { allItems } from '~/data/items/items'
 
 const eggs = useEggStore()
@@ -22,12 +24,18 @@ const inventoryEggs = computed(() => {
     .filter(e => e.qty > 0)
 })
 
-function startIncubation(id: string) {
+function startIncubation(id: EggItemId) {
   if (eggs.incubator)
     return
-  const map = { 'oeuf-feu': 'feu', 'oeuf-eau': 'eau', 'oeuf-herbe': 'plante', 'oeuf-psy': 'psy', 'oeuf-foudre': 'electrique' } as const
+  const map: Record<EggItemId, EggType> = {
+    'oeuf-feu': 'feu',
+    'oeuf-eau': 'eau',
+    'oeuf-herbe': 'plante',
+    'oeuf-psy': 'psy',
+    'oeuf-foudre': 'electrique',
+  }
   if (eggs.startIncubation(map[id]))
-    box.removeEgg(id as EggItemId)
+    box.removeEgg(id)
 }
 
 function hatch() {
@@ -108,7 +116,7 @@ function remaining(egg: { hatchesAt: number }) {
                 <UiButton
                   v-if="!eggs.incubator"
                   class="text-xs"
-                  @click="startIncubation(entry.id)"
+                  @click="startIncubation(entry.id as EggItemId)"
                 >
                   {{ t('components.panel.Poulailler.incubate') }}
                 </UiButton>
