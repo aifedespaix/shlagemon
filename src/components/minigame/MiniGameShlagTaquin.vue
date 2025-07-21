@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useElementSize, useEventListener } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
 const props = withDefaults(defineProps<{ difficulty?: 'easy' | 'hard' }>(), {
@@ -16,10 +16,6 @@ const visibleTiles = computed(() =>
     .filter(t => puzzle.solved || t.id !== size.value * size.value - 1),
 )
 const tilePercent = computed(() => 100 / size.value)
-
-const wrapper = ref<HTMLElement | null>(null)
-const { width, height } = useElementSize(wrapper)
-const boardSize = computed(() => Math.min(width.value, height.value))
 
 watch(size, () => {
   Object.assign(puzzle, useSlidingPuzzle(size.value))
@@ -45,38 +41,53 @@ watch(() => puzzle.solved, (v) => {
 </script>
 
 <template>
-  <div ref="wrapper" class="relative h-full w-full flex flex-1 items-center justify-center bg-red">
-    <div class="direction-button left-4 right-4 top-0 h-4" type="icon" @click="puzzle.move('up')">
+  <div
+    class="relative aspect-square flex flex-1 flex-col items-center justify-center"
+    style="overflow:hidden;"
+  >
+    <div class="direction-button left-8 right-8 top-0 h-8" type="icon" @click="puzzle.move('up')">
       <div class="i-mdi:arrow-up" />
     </div>
-    <div class="direction-button bottom-4 left-0 top-4 w-4" type="icon" @click="puzzle.move('left')">
+    <div class="direction-button bottom-8 left-0 top-8 w-8" type="icon" @click="puzzle.move('left')">
       <div class="i-mdi:arrow-left" />
     </div>
-    <div class="direction-button bottom-4 right-0 top-4 w-4" type="icon" @click="puzzle.move('right')">
+    <div class="direction-button bottom-8 right-0 top-8 w-8" type="icon" @click="puzzle.move('right')">
       <div class="i-mdi:arrow-right" />
     </div>
-    <div class="direction-button bottom-0 left-4 right-4 h-4" type="icon" @click="puzzle.move('down')">
+    <div class="direction-button bottom-0 left-8 right-8 h-8" type="icon" @click="puzzle.move('down')">
       <div class="i-mdi:arrow-down" />
     </div>
-    <div class="relative flex items-center" :style="{ width: `${boardSize}px`, height: `${boardSize}px` }">
-      <img v-if="puzzle.solved" :src="puzzle.image" alt="image" class="absolute inset-0 h-full w-full rounded">
+
+    <div class="relative aspect-square w-full flex-1">
+      <img
+        v-if="puzzle.solved"
+        :src="puzzle.image"
+        alt="image"
+        class="absolute inset-0 h-full w-full rounded"
+        style="z-index: 10;"
+      >
       <div
         v-for="tile in visibleTiles"
         :key="tile.id"
-        class="absolute overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
+        class="absolute cursor-pointer overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
         :style="{
           width: `${tilePercent}%`,
           height: `${tilePercent}%`,
-          transition: 'transform 0.3s',
-          transform: `translate(${(tile.idx % size) * tilePercent}%, ${Math.floor(tile.idx / size) * tilePercent}%)`,
+          left: `${(tile.idx % size) * tilePercent}%`,
+          top: `${Math.floor(tile.idx / size) * tilePercent}%`,
           backgroundImage: `url(${puzzle.image})`,
           backgroundSize: `${size * 100}% ${size * 100}%`,
           backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
+          transition: 'left 0.3s, top 0.3s',
         }"
         @click="puzzle.moveTile(tile.idx)"
       />
     </div>
-    <div v-if="puzzle.solved" class="mt-2 animate-bounce text-xl font-bold">
+
+    <div
+      v-if="puzzle.solved"
+      class="absolute bottom-4 left-1/2 z-20 animate-bounce text-xl font-bold -translate-x-1/2"
+    >
       Gagné !
     </div>
   </div>
@@ -84,6 +95,6 @@ watch(() => puzzle.solved, (v) => {
 
 <style scoped>
 .direction-button {
-  @apply flex justify-center items-center absolute;
+  @apply flex justify-center items-center absolute z-50 cursor-pointer hover:bg-dark/50 rounded-full;
 }
 </style>
