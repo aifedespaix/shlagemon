@@ -50,3 +50,13 @@ This repository is a Vue 3 project built with Vite and TypeScript. It follows th
 - `uno.config.ts` – UnoCSS config
 
 Check `package.json` for additional scripts such as `lint`, `typecheck`, or `deploy`.
+
+## Auto import and folder naming
+
+- Components, composables and stores are auto imported with `unplugin-auto-import` and `unplugin-vue-components`.
+- When a component sits in a subfolder, its folder name becomes part of the component name thanks to the `directoryAsNamespace` option.
+
+## Translations
+
+- Translation files `*.i18n.yml` live next to components, stores and data modules and are merged automatically.
+- See `translations.md` for the complete workflow.
