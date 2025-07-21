@@ -1,3 +1,4 @@
+import type { UseIntervalFnReturn } from '@vueuse/core'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computeDamage } from '~/utils/combat'

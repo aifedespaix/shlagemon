@@ -85,7 +85,7 @@ export function findBestMove(state: Cell[]): number {
 }
 
 export function useTicTacToe() {
-  const board = ref<Cell[]>(Array.from({ length: SIZE * SIZE }).fill(null))
+  const board = ref<Cell[]>(Array.from({ length: SIZE * SIZE }).fill(null) as Cell[])
   const turn = ref<'player' | 'ai'>('player')
   const finished = ref(false)
 
@@ -94,7 +94,7 @@ export function useTicTacToe() {
   }
 
   function reset() {
-    board.value = Array.from({ length: SIZE * SIZE }).fill(null)
+    board.value = Array.from({ length: SIZE * SIZE }).fill(null) as Cell[]
     turn.value = 'player'
     finished.value = false
   }

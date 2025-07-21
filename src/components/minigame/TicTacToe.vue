@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits(['win', 'lose'])
-const board = ref<(null | 'player' | 'ai')[]>(Array.from({ length: SIZE * SIZE }).fill(null))
+const board = ref<(null | 'player' | 'ai')[]>(Array.from({ length: SIZE * SIZE }).fill(null) as (null | 'player' | 'ai')[])
 const turn = ref<'player' | 'ai'>('player')
 const finished = ref(false)
 const winningCells = ref<number[]>([])
@@ -20,7 +20,7 @@ function centerFull() {
 }
 
 function reset() {
-  board.value = Array.from({ length: SIZE * SIZE }).fill(null)
+  board.value = Array.from({ length: SIZE * SIZE }).fill(null) as (null | 'player' | 'ai')[]
   turn.value = 'player'
   finished.value = false
   winningCells.value = []

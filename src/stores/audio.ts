@@ -82,7 +82,7 @@ export const useAudioStore = defineStore('audio', () => {
       playMusic(track)
       return
     }
-    if (currentMusic.value._src === track)
+    if ((currentMusic.value as any)._src === track)
       return
 
     const old = currentMusic.value

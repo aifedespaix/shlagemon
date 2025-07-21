@@ -5,7 +5,7 @@ export const useItemUsageStore = defineStore('itemUsage', () => {
   const inventory = useInventoryStore()
 
   const hasUnusedItem = computed(() =>
-    Object.entries(inventory.items).some(([id, qty]) => qty > 0 && !used.value[id]),
+    Object.entries(inventory.items).some(([id, qty]) => (qty ?? 0) > 0 && !used.value[id]),
   )
 
   function markUsed(id: string) {
