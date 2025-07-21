@@ -62,9 +62,7 @@ function choose(r: DialogResponse) {
 
       <div class="col-span-2 h-full flex flex-col gap-2 bg-gray-100 p-2 dark:bg-gray-800">
         <div class="flex flex-1 flex-col justify-center">
-          <div>
-            {{ currentNode?.text }}
-          </div>
+          <UiTypingText v-if="currentNode" :text="currentNode.text" />
 
           <UiImageByBackground
             v-if="currentNode?.imageUrl"
@@ -80,7 +78,7 @@ function choose(r: DialogResponse) {
         v-for="r in currentNode?.responses"
         :key="r.label"
         :type="r.type"
-        :class="buttonClass"
+        :class="[buttonClass, (r.type === 'valid' || r.type === 'primary') && 'animate-bounce']"
         class="max-w-50vw"
         md="text-sm"
         @click="choose(r)"
