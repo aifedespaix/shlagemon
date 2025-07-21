@@ -37,7 +37,7 @@ function classes() {
   const z = props.zone
   const classes: string[] = []
   if (z.id === zoneStore.current.id) {
-    classes.push('bg-primary text-dark dark:bg-light')
+    classes.push('bg-blue-500 text-white dark:bg-blue-600')
     classes.push('border-2 border-blue-500 dark:border-blue-400 ring-2 ring-blue-500 dark:ring-blue-400')
     return classes.join(' ')
   }
@@ -46,7 +46,7 @@ function classes() {
   if (z.maxLevel < level)
     classes.push('bg-blue-200 dark:bg-gray-700')
   else if (level >= z.minLevel && level <= z.maxLevel)
-    classes.push('bg-blue-500 dark:bg-blue-600')
+    classes.push('bg-amber-300 dark:bg-amber-700')
   else if (z.minLevel > level && z.minLevel - level <= 5)
     classes.push('bg-orange-400 dark:bg-orange-800')
   else
@@ -97,7 +97,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
       <div class="i-game-icons:forest h-6 w-6" />
     </div>
     <div class="flex-center">
-      <span>{{ props.zone.name }}</span>
+      <span class="text-2xs">{{ props.zone.name }}</span>
     </div>
     <div class="flex items-center justify-center gap-2">
       <img
