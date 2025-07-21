@@ -50,16 +50,6 @@ const highlightClasses = 'animate-jello animate-count-infinite color-blue-500 da
     </button>
     <button
       class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
-      :class="[mobile.current === 'zones' ? 'active' : '']"
-      :disabled="zoneDisabled"
-      @click="onSecondButton"
-    >
-      <div :class="highlightMap ? highlightClasses : ''">
-        <div class="i-carbon-map" />
-      </div>
-    </button>
-    <button
-      class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
       :class="mobile.current === 'dex' ? 'active' : ''"
       :disabled="dexDisabled"
       @click="mobile.toggle('dex')"
@@ -74,6 +64,16 @@ const highlightClasses = 'animate-jello animate-count-infinite color-blue-500 da
     >
       <div :class="highlightInventory ? highlightClasses : ''">
         <div class="i-carbon-inventory-management" />
+      </div>
+    </button>
+    <button
+      class="button button-rectangle disabled:cursor-not-allowed disabled:opacity-50"
+      :class="[mobile.current === 'zones' ? 'active' : '']"
+      :disabled="zoneDisabled"
+      @click="onSecondButton"
+    >
+      <div :class="highlightMap ? highlightClasses : ''">
+        <div class="i-carbon-map" />
       </div>
     </button>
     <button
