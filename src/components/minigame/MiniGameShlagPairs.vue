@@ -79,29 +79,31 @@ onMounted(reset)
 </script>
 
 <template>
-  <div ref="wrapper" class="flex flex-1 items-center justify-center">
-    <div
-      class="grid gap-1" md="gap-2"
-      :style="{ gridTemplateColumns: `repeat(${GRID_SIZE},1fr)`, width: `${size}px`, height: `${size}px` }"
-    >
-      <button
-        v-for="cell in board"
-        :key="cell.id"
-        class="relative aspect-square select-none"
-        :class="cell.state === 'matched' ? 'animate-pulse' : ''"
-        @click="choose(cell)"
+  <div class="flex flex-1 flex-col items-center">
+    <div ref="wrapper" class="flex flex-1 items-center justify-center">
+      <div
+        class="grid gap-1" md="gap-2"
+        :style="{ gridTemplateColumns: `repeat(${GRID_SIZE},1fr)`, width: `${size}px`, height: `${size}px` }"
       >
-        <div class="absolute inset-0 preserve-3d transition-transform duration-300" :class="cell.state !== 'hidden' ? 'rotate-y-180' : ''">
-          <div class="backface-hidden absolute inset-0 h-full w-full flex-center rounded bg-gray-200 dark:bg-gray-700" />
-          <div class="backface-hidden absolute inset-0 h-full w-full flex-center rotate-y-180 rounded bg-white dark:bg-gray-900">
-            <img :src="`/shlagemons/${cell.monId}/${cell.monId}.png`" class="h-5/6 w-5/6 object-contain" :alt="cell.monId">
+        <button
+          v-for="cell in board"
+          :key="cell.id"
+          class="relative aspect-square select-none"
+          :class="cell.state === 'matched' ? 'animate-pulse' : ''"
+          @click="choose(cell)"
+        >
+          <div class="absolute inset-0 preserve-3d transition-transform duration-300" :class="cell.state !== 'hidden' ? 'rotate-y-180' : ''">
+            <div class="backface-hidden absolute inset-0 h-full w-full flex-center rounded bg-gray-200 dark:bg-gray-700" />
+            <div class="backface-hidden absolute inset-0 h-full w-full flex-center rotate-y-180 rounded bg-white dark:bg-gray-900">
+              <img :src="`/shlagemons/${cell.monId}/${cell.monId}.png`" class="h-5/6 w-5/6 object-contain" :alt="cell.monId">
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="mt-2 text-center text-sm font-bold">
-    {{ attempts }} tentative{{ attempts > 1 ? 's' : '' }}
+    <div class="mt-2 text-center text-sm font-bold">
+      {{ attempts }} tentative{{ attempts > 1 ? 's' : '' }}
+    </div>
   </div>
 </template>
 
