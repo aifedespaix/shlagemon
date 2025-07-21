@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue'
 import { allShlagemons } from '~/data/shlagemons'
+import { useAudioStore } from '~/stores/audio'
 
 export interface SlidingPuzzle {
   tiles: number[]
@@ -40,6 +41,7 @@ export function useSlidingPuzzle(size: number) {
   const emptyIndex = ref(0)
   const image = ref('')
   const solved = ref(false)
+  const audio = useAudioStore()
 
   function reset() {
     const mon = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
@@ -58,6 +60,7 @@ export function useSlidingPuzzle(size: number) {
       = [tiles.value[emptyIndex.value], tiles.value[idx]]
     emptyIndex.value = idx
     solved.value = tiles.value.every((v, i) => v === i)
+    audio.playSfx('/audio/sfx/mini-game/taquin/move.ogg')
   }
 
   function move(dir: 'up' | 'down' | 'left' | 'right') {
