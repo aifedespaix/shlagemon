@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import type { ShlagCard } from '~/type'
+import { computed } from 'vue'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
-const props = defineProps<{ card: ShlagCard, revealed?: boolean, selectable?: boolean }>()
+const props = defineProps<{ card: ShlagCard, revealed?: boolean, selectable?: boolean, size?: number }>()
 const emit = defineEmits<{ (e: 'select'): void }>()
+const size = computed(() => props.size ?? 80)
 </script>
 
 <template>
   <div
-    class="relative h-28 w-20 md:w-24" @click="props.selectable && emit('select')"
+    class="relative"
+    :style="{ width: `${size}px`, height: `${size * 1.4}px` }"
+    @click="props.selectable && emit('select')"
   >
     <div
       class="absolute inset-0 preserve-3d transition-transform duration-500"

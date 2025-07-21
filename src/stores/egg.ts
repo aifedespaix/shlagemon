@@ -1,5 +1,6 @@
 import type { TypeName } from '~/data/shlagemons-type'
 import { defineStore } from 'pinia'
+import { pikachiant } from '~/data/shlagemons/15-20/pikachiant'
 import { bulgrosboule } from '~/data/shlagemons/bulgrosboule'
 import { carapouffe } from '~/data/shlagemons/carapouffe'
 import { mewteub } from '~/data/shlagemons/mewteub'
@@ -43,6 +44,8 @@ export const useEggStore = defineStore('egg', () => {
         return dex.captureShlagemon(bulgrosboule)
       case 'psy':
         return dex.captureShlagemon(mewteub)
+      case 'electrique':
+        return dex.captureShlagemon(pikachiant)
     }
     return null
   }

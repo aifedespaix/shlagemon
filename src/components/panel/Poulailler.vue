@@ -25,7 +25,7 @@ const inventoryEggs = computed(() => {
 function startIncubation(id: string) {
   if (eggs.incubator)
     return
-  const map = { 'oeuf-feu': 'feu', 'oeuf-eau': 'eau', 'oeuf-herbe': 'plante', 'oeuf-psy': 'psy' } as const
+  const map = { 'oeuf-feu': 'feu', 'oeuf-eau': 'eau', 'oeuf-herbe': 'plante', 'oeuf-psy': 'psy', 'oeuf-foudre': 'electrique' } as const
   if (eggs.startIncubation(map[id]))
     box.removeEgg(id as EggItemId)
 }
@@ -75,6 +75,7 @@ function remaining(egg: { hatchesAt: number }) {
                     'text-orange-500 dark:text-orange-400': eggs.incubator.type === 'feu',
                     'text-blue-500 dark:text-blue-400': eggs.incubator.type === 'eau',
                     'text-green-500 dark:text-green-400': eggs.incubator.type === 'plante',
+                    'text-yellow-500 dark:text-yellow-400': eggs.incubator.type === 'electrique',
                   },
                 ]"
                 @click="eggs.isReady && hatch()"
