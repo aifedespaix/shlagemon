@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useElementSize, useEventListener } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
 const props = withDefaults(defineProps<{ difficulty?: 'easy' | 'hard' }>(), {
@@ -15,9 +15,7 @@ const visibleTiles = computed(() =>
     .map((id, idx) => ({ id, idx }))
     .filter(t => puzzle.solved || t.id !== size.value * size.value - 1),
 )
-const wrapper = ref<HTMLElement | null>(null)
-const { width } = useElementSize(wrapper)
-const tileSize = computed(() => width.value / size.value)
+const tilePercent = computed(() => 100 / size.value)
 
 watch(size, () => {
   Object.assign(puzzle, useSlidingPuzzle(size.value))
@@ -56,17 +54,17 @@ watch(() => puzzle.solved, (v) => {
     <div class="direction-button bottom-0 left-4 right-4 h-4" type="icon" @click="puzzle.move('down')">
       <div class="i-mdi:arrow-down" />
     </div>
-    <div class="h-full w-full flex flex-1 items-center gap-2">
+    <div class="relative h-full w-full flex flex-1 items-center gap-2">
       <img v-if="puzzle.solved" :src="puzzle.image" alt="image" class="absolute inset-0 h-full w-full rounded">
       <div
         v-for="tile in visibleTiles"
         :key="tile.id"
         class="absolute overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
         :style="{
-          width: `${tileSize}px`,
-          height: `${tileSize}px`,
+          width: `${tilePercent}%`,
+          height: `${tilePercent}%`,
           transition: 'transform 0.3s',
-          transform: `translate(${(tile.idx % size) * tileSize}px, ${Math.floor(tile.idx / size) * tileSize}px)`,
+          transform: `translate(${(tile.idx % size) * tilePercent}%, ${Math.floor(tile.idx / size) * tilePercent}%)`,
           backgroundImage: `url(${puzzle.image})`,
           backgroundSize: `${size * 100}% ${size * 100}%`,
           backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
