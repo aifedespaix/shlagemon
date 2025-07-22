@@ -193,6 +193,7 @@ declare global {
   const useDeviceOrientation: typeof import('@vueuse/core')['useDeviceOrientation']
   const useDevicePixelRatio: typeof import('@vueuse/core')['useDevicePixelRatio']
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
+  const useDexDetailModalStore: typeof import('./stores/dexDetailModal')['useDexDetailModalStore']
   const useDexFilterStore: typeof import('./stores/dexFilter')['useDexFilterStore']
   const useDialogStore: typeof import('./stores/dialog')['useDialogStore']
   const useDiseaseStore: typeof import('./stores/disease')['useDiseaseStore']
@@ -629,6 +630,7 @@ declare module 'vue' {
     readonly useDeviceOrientation: UnwrapRef<typeof import('@vueuse/core')['useDeviceOrientation']>
     readonly useDevicePixelRatio: UnwrapRef<typeof import('@vueuse/core')['useDevicePixelRatio']>
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
+    readonly useDexDetailModalStore: UnwrapRef<typeof import('./stores/dexDetailModal')['useDexDetailModalStore']>
     readonly useDexFilterStore: UnwrapRef<typeof import('./stores/dexFilter')['useDexFilterStore']>
     readonly useDialogStore: UnwrapRef<typeof import('./stores/dialog')['useDialogStore']>
     readonly useDiseaseStore: UnwrapRef<typeof import('./stores/disease')['useDiseaseStore']>
