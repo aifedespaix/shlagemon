@@ -26,7 +26,7 @@ OUTPUT_DIR = './musique'
 # Couleur principale de l'application (teal WPA)
 BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
-FPS = 30
+FPS = 1
 
 def load_music_data():
     with open(MUSIC_DATA_PATH, 'r', encoding='utf-8') as f:
@@ -183,8 +183,8 @@ def make_title_clip(text, duration, fontsize=110, color="yellow", y_offset=160):
 
 def make_logo_clip(duration, width=W // 2, y_offset=80):
     clip = ImageClip(LOGO_PATH).with_duration(duration)
-    clip = clip.resize(width=width)
-    clip = clip.resize(lambda t: 0.96 + 0.04 * np.sin(2 * np.pi * t))
+    clip = clip.resized(width=width)
+    clip = clip.resized(lambda t: 0.96 + 0.04 * np.sin(2 * np.pi * t))
     clip = clip.with_position(("center", y_offset))
     return clip
 
