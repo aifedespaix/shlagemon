@@ -11,3 +11,4 @@ cypress/downloads
 public/assets/fonts
 node-compile-cache
 scripts/venv/*
+scripts/musique/

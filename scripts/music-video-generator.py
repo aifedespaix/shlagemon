@@ -15,8 +15,14 @@ from moviepy import (
 # --- CONFIG ---
 MUSIC_DATA_PATH = '../public/music-data.json'
 BASE_AUDIO_PATH = '../public'
+# Path to the bouncing Shlagéball image
 CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
+# Background of the video
 BG_IMG_PATH = './clip/bg.png'
+# Game logo displayed on top of the video
+LOGO_PATH = '../public/logo.png'
+# Output directory for generated clips
+OUTPUT_DIR = './musique'
 # Couleur principale de l'application (teal WPA)
 BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
@@ -142,7 +148,7 @@ def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=
         return frame
     return VideoClip(make_frame, duration=duration).with_fps(FPS)
 
-def make_title_clip(text, duration, fontsize=90, color="white", y_offset=160):
+def make_title_clip(text, duration, fontsize=110, color="yellow", y_offset=160):
     # Police système basique (arial), tu peux changer le chemin vers un .ttf si tu veux
     try:
         font = ImageFont.truetype("arial.ttf", fontsize)
@@ -160,14 +166,26 @@ def make_title_clip(text, duration, fontsize=90, color="white", y_offset=160):
     x = (W - wtxt) // 2
     y = (200 - htxt) // 2
     
-    # Ombre noire
-    draw.text((x+4, y+4), text, font=font, fill="black")
-    # Texte blanc
-    draw.text((x, y), text, font=font, fill=color)
+    draw.text(
+        (x, y),
+        text,
+        font=font,
+        fill=color,
+        stroke_width=4,
+        stroke_fill="blue",
+    )
     
     # Convertit en clip MoviePy (colle sous la HB)
     clip = ImageClip(np.array(img)).with_duration(duration)
     clip = clip.with_position(("center", H//2 + y_offset))
+    return clip
+
+
+def make_logo_clip(duration, width=W // 2, y_offset=80):
+    clip = ImageClip(LOGO_PATH).with_duration(duration)
+    clip = clip.resize(width=width)
+    clip = clip.resize(lambda t: 0.96 + 0.04 * np.sin(2 * np.pi * t))
+    clip = clip.with_position(("center", y_offset))
     return clip
 
 
@@ -177,6 +195,7 @@ def safe_filename(name):
 def main():
     data = load_music_data()
     musics = [m for m in data if m.get('url')]
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     for music in musics:
         clip_audio = make_audio_clip(music)
         if not clip_audio:
@@ -185,12 +204,25 @@ def main():
         duration = clip_audio.duration
         bg_clip = ImageClip(BG_IMG_PATH).with_duration(duration).resized(width=W, height=H)
         spectrum_clip = make_audio_spectrum_clip(get_audio_full_path(music['url']), duration)
-        pulse_clip = make_shlageball_pulse_clip(get_audio_full_path(music['url']), duration, CENTER_IMG_PATH)
+        pulse_clip = make_shlageball_pulse_clip(
+            get_audio_full_path(music['url']),
+            duration,
+            CENTER_IMG_PATH,
+            min_scale=0.35,
+            max_scale=0.45,
+        )
+        logo_clip = make_logo_clip(duration)
         title = f"{music['nom']}"
         title_clip = make_title_clip(title, duration)
-        final_video = CompositeVideoClip([bg_clip, spectrum_clip, pulse_clip, title_clip]).with_audio(clip_audio)
+        final_video = CompositeVideoClip([
+            bg_clip,
+            logo_clip,
+            spectrum_clip,
+            pulse_clip,
+            title_clip,
+        ]).with_audio(clip_audio)
         outname = safe_filename(music["nom"])
-        output_path = f"./output_{outname}.mp4"
+        output_path = os.path.join(OUTPUT_DIR, f"{outname}.mp4")
         print(f"Export de {output_path}...")
         final_video.write_videofile(output_path, fps=FPS, audio_codec='aac')
 
