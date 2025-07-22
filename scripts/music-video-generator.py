@@ -89,7 +89,8 @@ def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=6
             alphas = (np.linspace(0, 255, bar_h)).astype(np.uint8)
             bar = np.zeros((bar_h, x2 - x1, 4), dtype=np.uint8)
             bar[:, :, :3] = bar_color(i)
-            bar[:, :, 3] = alphas
+            # repeat the alpha gradient across the bar width
+            bar[:, :, 3] = alphas[:, None]
             y1 = y2 - bar_h + 1
             img[y1:y2 + 1, x1:x2, :] = bar
         return img
