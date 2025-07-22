@@ -17,8 +17,8 @@ MUSIC_DATA_PATH = '../public/music-data.json'
 BASE_AUDIO_PATH = '../public'
 # Path to the bouncing Shlagéball image
 CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
-# Background of the video
-BG_IMG_PATH = './clip/bg.png'
+# Backgrounds of the video are stored in ./clip and named after music type
+BG_IMG_DIR = './clip'
 # Game logo displayed on top of the video
 LOGO_PATH = '../public/logo.png'
 # Font used for the title text
@@ -30,6 +30,8 @@ TITLE_COLOR = '#fafafa'
 TITLE_STROKE_COLOR = '#010101'
 # Output directory for generated clips
 OUTPUT_DIR = './musique'
+# Temporary working directory for moviepy
+TMP_DIR = os.path.join(OUTPUT_DIR, '_tmp')
 # Couleur principale de l'application (teal WPA)
 BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
@@ -216,6 +218,7 @@ def main():
     data = load_music_data()
     musics = [m for m in data if m.get('url')]
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(TMP_DIR, exist_ok=True)
     for music in musics:
         outname = safe_filename(music["nom"])
         output_path = os.path.join(OUTPUT_DIR, f"{outname}.mp4")
@@ -229,7 +232,12 @@ def main():
             continue
 
         duration = clip_audio.duration
-        bg_clip = ImageClip(BG_IMG_PATH).with_duration(duration).resized(width=W, height=H)
+        bg_filename = f"{music.get('type', 'bg')}.png"
+        bg_path = os.path.join(BG_IMG_DIR, bg_filename)
+        if not os.path.isfile(bg_path):
+            print(f"Background image not found: {bg_path}")
+            continue
+        bg_clip = ImageClip(bg_path).with_duration(duration).resized(width=W, height=H)
         spectrum_clip = make_audio_spectrum_clip(get_audio_full_path(music['url']), duration)
         logo_clip = make_logo_clip(duration)
         title = f"{music['nom']}"
@@ -255,7 +263,16 @@ def main():
         final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
 
         print(f"Export de {output_path}...")
-        final_video.write_videofile(output_path, fps=FPS, audio_codec='aac', audio_bitrate="320k", audio_fps=48000)
+        temp_audio_path = os.path.join(TMP_DIR, f"{outname}_audio.m4a")
+        final_video.write_videofile(
+            output_path,
+            fps=FPS,
+            audio_codec='aac',
+            audio_bitrate="320k",
+            audio_fps=48000,
+            temp_audiofile=temp_audio_path,
+            remove_temp=True,
+        )
 
 if __name__ == "__main__":
     main()
