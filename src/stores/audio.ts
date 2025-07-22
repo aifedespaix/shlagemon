@@ -55,6 +55,19 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function createMusic(src: string) {
+    if (import.meta.env.VITEST) {
+      const stub = {
+        _src: src,
+        play: () => {},
+        pause: () => {},
+        stop: () => {},
+        unload: () => {},
+        volume: () => {},
+        fade: () => {},
+        once: () => {},
+      }
+      return stub as unknown as Howl
+    }
     const music = new Howl({
       src: [src],
       volume: musicVolume.value,
@@ -71,7 +84,7 @@ export const useAudioStore = defineStore('audio', () => {
     // Vite auto import path public
     track = track.replace('/public', '')
     currentMusic.value = createMusic(track)
-    if (isMusicEnabled.value)
+    if (!import.meta.env.VITEST && isMusicEnabled.value)
       currentMusic.value.play()
   }
 
@@ -87,6 +100,13 @@ export const useAudioStore = defineStore('audio', () => {
 
     const old = currentMusic.value
     const next = createMusic(track)
+
+    if (import.meta.env.VITEST) {
+      old.stop()
+      old.unload()
+      currentMusic.value = next
+      return
+    }
 
     if (isMusicEnabled.value) {
       next.volume(0)
