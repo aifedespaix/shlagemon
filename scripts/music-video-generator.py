@@ -33,7 +33,7 @@ OUTPUT_DIR = './musique'
 # Couleur principale de l'application (teal WPA)
 BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
-FPS = 1
+FPS = 60
 
 def load_music_data():
     with open(MUSIC_DATA_PATH, 'r', encoding='utf-8') as f:
@@ -204,7 +204,7 @@ def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=16
 def make_logo_clip(duration, width=W // 2, y_offset=-130):
     clip = ImageClip(LOGO_PATH).with_duration(duration)
     clip = clip.resized(width=width)
-    clip = clip.resized(lambda t: 0.96 + 0.04 * np.sin(2 * np.pi * t))
+    clip = clip.resized(lambda t: 0.99 + 0.007 * np.sin(2 * np.pi * t * 0.33))
     clip = clip.with_position(("center", y_offset))
     return clip
 
@@ -255,7 +255,7 @@ def main():
         final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
 
         print(f"Export de {output_path}...")
-        final_video.write_videofile(output_path, fps=FPS, audio_codec='aac')
+        final_video.write_videofile(output_path, fps=FPS, audio_codec='aac', audio_bitrate="320k", audio_fps=48000)
 
 if __name__ == "__main__":
     main()
