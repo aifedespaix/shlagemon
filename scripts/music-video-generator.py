@@ -3,7 +3,6 @@ import os
 import numpy as np
 import librosa
 from PIL import Image, ImageDraw, ImageFont
-import cv2
 from moviepy import (
     AudioFileClip,
     VideoClip,
@@ -18,6 +17,8 @@ MUSIC_DATA_PATH = '../public/music-data.json'
 BASE_AUDIO_PATH = '../public'
 CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
 BG_IMG_PATH = './clip/bg.png'
+# Couleur principale de l'application (teal WPA)
+BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
 FPS = 30
 
@@ -52,18 +53,14 @@ def make_audio_clip(music):
     return concatenate_audioclips([clip] * loops)
 
 def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=64):
-    # Dégradé bleu → cyan → rouge
-    def bar_color(i):
-        ratio = i / (n_bars - 1)
-        if ratio < 0.5:
-            r = 0
-            g = int(255 * (ratio * 2))
-            b = 255
-        else:
-            r = int(255 * ((ratio - 0.5) * 2))
-            g = int(255 * (1 - (ratio - 0.5) * 2))
-            b = int(255 * (1 - (ratio - 0.5) * 2))
-        return (r, g, b)
+    """Create an audio spectrum clip with transparent background.
+
+    Bars use the application's main color with a vertical gradient
+    fading to transparent towards the top.
+    """
+    def bar_color(_i):
+        # all bars share the same base color
+        return BASE_COLOR
     import librosa
     y, sr = librosa.load(audio_path, sr=None, mono=True)
     hop_length = max(1, int(len(y) / (duration * FPS)))
@@ -72,26 +69,35 @@ def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=6
     maxes = S.max(axis=1)
     maxes[maxes == 0] = 1
     S = S / maxes[:, None]
+
     def make_frame(t):
         frame_idx = int((t / duration) * S.shape[1])
-        img = np.zeros((height, width, 3), dtype=np.uint8)
+        img = np.zeros((height, width, 4), dtype=np.uint8)
         if frame_idx < S.shape[1]:
             spectrum = S[:, frame_idx]
         else:
             spectrum = S[:, -1]
         bar_width = int(width / n_bars)
         for i, s in enumerate(spectrum):
-            bar_h = int(np.clip(s, 0, 1) * (height-18))
+            bar_h = int(np.clip(s, 0, 1) * (height - 18))
+            if bar_h <= 0:
+                continue
             x1 = i * bar_width
-            y1 = height - bar_h
             x2 = x1 + bar_width - 2
             y2 = height - 1
-            color = bar_color(i)
-            cv2.rectangle(img, (x1, y1), (x2, y2), color, -1)
+            # gradient alpha from top (0) to bottom (255)
+            alphas = (np.linspace(0, 255, bar_h)).astype(np.uint8)
+            bar = np.zeros((bar_h, x2 - x1, 4), dtype=np.uint8)
+            bar[:, :, :3] = bar_color(i)
+            bar[:, :, 3] = alphas
+            y1 = y2 - bar_h + 1
+            img[y1:y2 + 1, x1:x2, :] = bar
         return img
-    return VideoClip(make_frame, duration=duration).with_fps(FPS).with_position(("center", H-height-40))
 
-def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=1.0, max_scale=1.13):
+    clip = VideoClip(make_frame, duration=duration).with_fps(FPS)
+    return clip.with_position(("center", H - height))
+
+def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=0.7, max_scale=0.9):
     y, sr = librosa.load(audio_path, sr=None)
     hop_length = int(sr/FPS)
     rms = librosa.feature.rms(y=y, hop_length=hop_length)[0]
