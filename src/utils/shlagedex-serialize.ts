@@ -1,3 +1,4 @@
+import type { Serializer } from 'pinia-plugin-persistedstate'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allShlagemons } from '~/data/shlagemons'
@@ -33,7 +34,7 @@ interface StoredDex extends Omit<SerializedDex, 'shlagemons' | 'activeShlagemon'
   activeShlagemon: StoredDexMon | null
 }
 
-export const shlagedexSerializer = {
+export const shlagedexSerializer: Serializer<SerializedDex> = {
   serialize(data: SerializedDex): string {
     return JSON.stringify({
       ...data,
