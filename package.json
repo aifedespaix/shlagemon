@@ -1,7 +1,7 @@
 {
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.13.1",
   "scripts": {
     "build": "vite-ssg build",
     "i18n": "node scripts/merge-i18n.cjs",
