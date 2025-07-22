@@ -42,6 +42,10 @@ def load_music_data():
 def get_audio_full_path(url):
     return os.path.join(BASE_AUDIO_PATH, url.strip("/"))
 
+def get_public_full_path(url):
+    """Return the absolute path for a file located in the public directory."""
+    return os.path.join('../public', url.strip('/'))
+
 def decide_loops(audio_path):
     y, sr = librosa.load(audio_path, sr=None)
     duration = librosa.get_duration(y=y, sr=sr)
@@ -155,6 +159,15 @@ def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=
         return frame
     return VideoClip(make_frame, duration=duration).with_fps(FPS)
 
+def make_character_clip(image_path, duration, height_ratio=0.8):
+    """Display the character image on the left at the specified height."""
+    if not os.path.isfile(image_path):
+        print(f"Image not found: {image_path}")
+        return None
+    clip = ImageClip(image_path).with_duration(duration)
+    clip = clip.resized(height=int(H * height_ratio))
+    return clip.with_position(("left", "center"))
+
 def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=160):
     """Create a clip containing the title text."""
     try:
@@ -204,32 +217,43 @@ def main():
     musics = [m for m in data if m.get('url')]
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     for music in musics:
+        outname = safe_filename(music["nom"])
+        output_path = os.path.join(OUTPUT_DIR, f"{outname}.mp4")
+        if os.path.isfile(output_path):
+            print(f"Skipping {music['nom']}, video already exists.")
+            continue
+
         clip_audio = make_audio_clip(music)
         if not clip_audio:
             print(f"Skipping {music['nom']}, audio missing.")
             continue
+
         duration = clip_audio.duration
         bg_clip = ImageClip(BG_IMG_PATH).with_duration(duration).resized(width=W, height=H)
         spectrum_clip = make_audio_spectrum_clip(get_audio_full_path(music['url']), duration)
-        pulse_clip = make_shlageball_pulse_clip(
-            get_audio_full_path(music['url']),
-            duration,
-            CENTER_IMG_PATH,
-            min_scale=0.35,
-            max_scale=0.45,
-        )
         logo_clip = make_logo_clip(duration)
         title = f"{music['nom']}"
         title_clip = make_title_clip(title, duration)
-        final_video = CompositeVideoClip([
-            bg_clip,
-            logo_clip,
-            spectrum_clip,
-            pulse_clip,
-            title_clip,
-        ]).with_audio(clip_audio)
-        outname = safe_filename(music["nom"])
-        output_path = os.path.join(OUTPUT_DIR, f"{outname}.mp4")
+
+        overlays = [bg_clip, logo_clip, spectrum_clip]
+        if music.get('image'):
+            character_path = get_public_full_path(music['image'])
+            character_clip = make_character_clip(character_path, duration)
+            if character_clip:
+                overlays.append(character_clip)
+        else:
+            pulse_clip = make_shlageball_pulse_clip(
+                get_audio_full_path(music['url']),
+                duration,
+                CENTER_IMG_PATH,
+                min_scale=0.35,
+                max_scale=0.45,
+            )
+            overlays.append(pulse_clip)
+
+        overlays.append(title_clip)
+        final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
+
         print(f"Export de {output_path}...")
         final_video.write_videofile(output_path, fps=FPS, audio_codec='aac')
 
