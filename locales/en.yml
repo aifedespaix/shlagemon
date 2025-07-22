@@ -141,6 +141,15 @@ components:
     label: Language
     en: English
     fr: French
+  ui:
+    CurrencyAmount:
+      shlagidiamond: Shlagiamond
+      shlagidolar: Shlagidollar
+    FullscreenToggle:
+      label: Fullscreen
+    SortControls:
+      ascending: Ascending sort
+      descending: Descending sort
 data:
   shlagemons:
     01-05:
@@ -2449,6 +2458,42 @@ data:
       loseText: Lost! Try again whenever you like.
       back: Back
       restart: Restart
+    Battleship:
+      startText: How about a game of Battleship?
+      yes: Yes
+      no: No
+      winText: Victory! You win a Water Egg.
+      super: Awesome!
+      loseText: Lost! Try again whenever you like.
+      restart: Restart
+      back: Back
+    ShlagPairs:
+      startText: Fancy a game of pairs?
+      yes: Yes
+      no: No
+      winText: Well played!
+      super: Awesome!
+      loseText: Too bad!
+      restart: Restart
+      back: Back
+    ShlagTaquin:
+      startText: Fancy a sliding puzzle game?
+      yes: Yes
+      no: No
+      winText: Congrats! You win a Thunder Egg.
+      super: Awesome!
+      loseText: Lost! Try again whenever you like.
+      restart: Restart
+      back: Back
+    TicTacToe:
+      startText: Fancy a game of tic tac toe?
+      yes: Yes
+      no: No
+      winText: Well played! You win a Grass Egg.
+      super: Awesome!
+      loseText: Lost! Try again whenever you like.
+      restart: Restart
+      back: Back
 pages:
   indexPage:
     title: Shlagemon
@@ -2460,3 +2505,18 @@ App:
   title: Shlagemon - It smells very strong
   description: Catch all the Shlagemons before they rot the whole world.
   author: Shlagemon Team
+stores:
+  achievements:
+    unlocked: 'Achievement unlocked: {title}'
+  disease:
+    sick: >-
+      Your Shlagemon is sick! It will be back to normal after winning {n}
+      battles.
+    cured: Your Shlagemon is no longer sick!
+  shlagedex:
+    rarityReached: '{name} reached rarity {rarity}!'
+    evolved: '{name} evolved!'
+    obtained: You obtained {name}!
+    alreadyMax: You already have this Shlagemon at max rarity
+    rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
+    released: '{name} was released!'

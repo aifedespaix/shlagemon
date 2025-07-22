@@ -143,6 +143,15 @@ components:
     label: Langue
     en: Anglais
     fr: Français
+  ui:
+    CurrencyAmount:
+      shlagidiamond: Shlagédiamant
+      shlagidolar: Shlagédollar
+    FullscreenToggle:
+      label: Plein écran
+    SortControls:
+      ascending: Tri ascendant
+      descending: Tri descendant
 data:
   shlagemons:
     01-05:
@@ -2470,6 +2479,42 @@ data:
       loseText: Perdu ! Recommence quand tu veux.
       back: Retour
       restart: Recommencer
+    Battleship:
+      startText: Une partie de bataille navale ?
+      yes: Oui
+      no: Non
+      winText: Victoire ! Tu gagnes un œuf Eau.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    ShlagPairs:
+      startText: Une partie du jeu des paires ?
+      yes: Oui
+      no: Non
+      winText: Bien joué !
+      super: Super !
+      loseText: Dommage !
+      restart: Recommencer
+      back: Retour
+    ShlagTaquin:
+      startText: Une partie de taquin ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Tu gagnes un œuf Foudre.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    TicTacToe:
+      startText: Envie d'une partie de morpion ?
+      yes: Oui
+      no: Non
+      winText: Bien joué ! Tu gagnes un Œuf Herbe.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
 pages:
   indexPage:
     title: Shlagémon
@@ -2483,3 +2528,18 @@ App:
     Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre
     entière.
   author: Shlagémon Team
+stores:
+  achievements:
+    unlocked: 'Succès déverrouillé : {title}'
+  disease:
+    sick: >-
+      Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné
+      {n} combats.
+    cured: Votre Shlagémon n'est plus malade !
+  shlagedex:
+    rarityReached: '{name} atteint la rareté {rarity} !'
+    evolved: '{name} a évolué !'
+    obtained: Tu as obtenu {name} !
+    alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
+    rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
+    released: '{name} a été relâché !'

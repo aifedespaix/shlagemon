@@ -1,3 +1,4 @@
+import type { PersistedStateOptions } from 'pinia-plugin-persistedstate'
 import type { ActiveEffect } from '~/type/effect'
 import type { Item, WearableItem } from '~/type/item'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
@@ -669,5 +670,5 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
           effect.timeout = useTimeoutFn(() => store.removeEffect(effect.id), effect.expiresAt - now)
       })
     },
-  },
+  } as PersistedStateOptions,
 })

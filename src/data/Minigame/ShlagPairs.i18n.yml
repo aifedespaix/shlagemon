@@ -1,19 +1,18 @@
-data.minigame.shlagpairs:
-  fr:
-    startText: Une partie du jeu des paires ?
-    yes: Oui
-    no: Non
-    winText: Bien joué !
-    super: Super !
-    loseText: Dommage !
-    restart: Recommencer
-    back: Retour
-  en:
-    startText: Fancy a game of pairs?
-    yes: Yes
-    no: No
-    winText: Well played!
-    super: Awesome!
-    loseText: Too bad!
-    restart: Restart
-    back: Back
+fr:
+  startText: Une partie du jeu des paires ?
+  yes: Oui
+  no: Non
+  winText: Bien joué !
+  super: Super !
+  loseText: Dommage !
+  restart: Recommencer
+  back: Retour
+en:
+  startText: Fancy a game of pairs?
+  yes: Yes
+  no: No
+  winText: Well played!
+  super: Awesome!
+  loseText: Too bad!
+  restart: Restart
+  back: Back

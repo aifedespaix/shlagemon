@@ -1,7 +1,6 @@
-stores.disease:
-  fr:
-    sick: 'Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné {n} combats.'
-    cured: "Votre Shlagémon n'est plus malade !"
-  en:
-    sick: 'Your Shlagemon is sick! It will be back to normal after winning {n} battles.'
-    cured: Your Shlagemon is no longer sick!
+fr:
+  sick: 'Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné {n} combats.'
+  cured: "Votre Shlagémon n'est plus malade !"
+en:
+  sick: 'Your Shlagemon is sick! It will be back to normal after winning {n} battles.'
+  cured: Your Shlagemon is no longer sick!
