@@ -1,6 +1,16 @@
 const fs = require('node:fs')
 const path = require('node:path')
 
+function findImage(dir, id) {
+  const base = path.join(__dirname, '..', 'public', dir, id)
+  for (const ext of ['png', 'webp']) {
+    const file = path.join(base, `${id}.${ext}`)
+    if (fs.existsSync(file))
+      return path.join('/', dir, id, `${id}.${ext}`)
+  }
+  return null
+}
+
 function readTracks(dir) {
   const map = {}
   if (!fs.existsSync(dir))
@@ -35,6 +45,7 @@ function parseVillages() {
       nom: name[1],
       type: 'village',
       url: tracks[id[1]] || null,
+      image: findImage('villages', id[1]),
     }
   }).filter(Boolean)
 }
@@ -50,6 +61,7 @@ function parseSavageZones() {
       nom: match[2],
       type: 'sauvage',
       url: tracks[match[1]] || null,
+      image: findImage('zones', match[1]),
     })
     match = regex.exec(content)
   }
@@ -71,6 +83,7 @@ function parseCharacters() {
       nom: name[1],
       type: 'character',
       url: tracks[key] || null,
+      image: findImage('characters', id[1]),
     }
   }).filter(Boolean)
 }
@@ -87,6 +100,7 @@ function parseArenas() {
       nom: id,
       type: 'arena',
       url: tracks[id] || null,
+      image: findImage('arenas', id),
     })
     match = regex.exec(content)
   }

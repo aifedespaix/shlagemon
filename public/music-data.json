@@ -2,196 +2,235 @@
   {
     "nom": "Veaux du Gland sur Marne",
     "type": "village",
-    "url": "/audio/musics/villages/village-veaux-du-gland.ogg"
+    "url": "/audio/musics/villages/village-veaux-du-gland.ogg",
+    "image": null
   },
   {
     "nom": "Citadelle Giga-Schlag",
     "type": "village",
-    "url": "/audio/musics/villages/village-giga-schlag.ogg"
+    "url": "/audio/musics/villages/village-giga-schlag.ogg",
+    "image": null
   },
   {
     "nom": "Village Sux-Mais-Bouls",
     "type": "village",
-    "url": "/audio/musics/villages/village-boule.ogg"
+    "url": "/audio/musics/villages/village-boule.ogg",
+    "image": null
   },
   {
     "nom": "Village Paumé du cul",
     "type": "village",
-    "url": "/audio/musics/villages/village-paume.ogg"
+    "url": "/audio/musics/villages/village-paume.ogg",
+    "image": null
   },
   {
     "nom": "Village Fiente-sur-Mer",
     "type": "village",
-    "url": "/audio/musics/villages/village-caca-boudin.ogg"
+    "url": "/audio/musics/villages/village-caca-boudin.ogg",
+    "image": null
   },
   {
     "nom": "Village des Cassos",
     "type": "village",
-    "url": "/audio/musics/villages/village-cassos-land.ogg"
+    "url": "/audio/musics/villages/village-cassos-land.ogg",
+    "image": null
   },
   {
     "nom": "Clito Land",
     "type": "village",
-    "url": "/audio/musics/villages/village-clitoland.ogg"
+    "url": "/audio/musics/villages/village-clitoland.ogg",
+    "image": null
   },
   {
     "nom": "Plaine Kékette",
     "type": "sauvage",
-    "url": "/audio/musics/battle/plaine-kekette.ogg"
+    "url": "/audio/musics/battle/plaine-kekette.ogg",
+    "image": null
   },
   {
     "nom": "Bois des Bouffons",
     "type": "sauvage",
-    "url": "/audio/musics/battle/bois-de-bouffon.ogg"
+    "url": "/audio/musics/battle/bois-de-bouffon.ogg",
+    "image": null
   },
   {
     "nom": "Chemin du Slip",
     "type": "sauvage",
-    "url": "/audio/musics/battle/chemin-du-slip.ogg"
+    "url": "/audio/musics/battle/chemin-du-slip.ogg",
+    "image": null
   },
   {
     "nom": "Ravin de la Fesse Molle",
     "type": "sauvage",
-    "url": "/audio/musics/battle/ravin-fesse-molle.ogg"
+    "url": "/audio/musics/battle/ravin-fesse-molle.ogg",
+    "image": null
   },
   {
     "nom": "Précipice du Vieux Nanard",
     "type": "sauvage",
-    "url": "/audio/musics/battle/precipice-nanard.ogg"
+    "url": "/audio/musics/battle/precipice-nanard.ogg",
+    "image": null
   },
   {
     "nom": "Marais Moudugenou",
     "type": "sauvage",
-    "url": "/audio/musics/battle/marais-moudugenou.ogg"
+    "url": "/audio/musics/battle/marais-moudugenou.ogg",
+    "image": null
   },
   {
     "nom": "Forteresse Pètmoalfiak",
     "type": "sauvage",
-    "url": "/audio/musics/battle/forteresse-petmoalfiak.ogg"
+    "url": "/audio/musics/battle/forteresse-petmoalfiak.ogg",
+    "image": null
   },
   {
     "nom": "Route du Nawak",
     "type": "sauvage",
-    "url": "/audio/musics/battle/route-du-nawak.ogg"
+    "url": "/audio/musics/battle/route-du-nawak.ogg",
+    "image": null
   },
   {
     "nom": "Mont Cul",
     "type": "sauvage",
-    "url": "/audio/musics/battle/mont-dracatombe.ogg"
+    "url": "/audio/musics/battle/mont-dracatombe.ogg",
+    "image": null
   },
   {
     "nom": "Catacombes Merdifientes",
     "type": "sauvage",
-    "url": "/audio/musics/battle/catacombes-merdifientes.ogg"
+    "url": "/audio/musics/battle/catacombes-merdifientes.ogg",
+    "image": null
   },
   {
     "nom": "Route Aguicheuse",
     "type": "sauvage",
-    "url": "/audio/musics/battle/route-aguicheuse.ogg"
+    "url": "/audio/musics/battle/route-aguicheuse.ogg",
+    "image": null
   },
   {
     "nom": "Vallée des Chieurs",
     "type": "sauvage",
-    "url": "/audio/musics/battle/vallee-des-chieurs.ogg"
+    "url": "/audio/musics/battle/vallee-des-chieurs.ogg",
+    "image": null
   },
   {
     "nom": "Trou du Bide",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Lac aux Relous",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Aire du Giga Zob",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Mont Kouillasse",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Pâturage Crado",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Canyon à la Derp",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Cratère des Légends",
     "type": "sauvage",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Caillou",
     "type": "character",
-    "url": "/audio/musics/character/caillou.ogg"
+    "url": "/audio/musics/character/caillou.ogg",
+    "image": "/characters/caillou/caillou.png"
   },
   {
     "nom": "Donald Trompe",
     "type": "character",
-    "url": "/audio/musics/character/donald-trompe.ogg"
+    "url": "/audio/musics/character/donald-trompe.ogg",
+    "image": "/characters/donald-trompe/donald-trompe.png"
   },
   {
     "nom": "Emmanuel Marcon",
     "type": "character",
-    "url": "/audio/musics/character/marcon.ogg"
+    "url": "/audio/musics/character/marcon.ogg",
+    "image": "/characters/marcon/marcon.png"
   },
   {
     "nom": "Marine Lahaine",
     "type": "character",
-    "url": "/audio/musics/character/marine-lahaine.ogg"
+    "url": "/audio/musics/character/marine-lahaine.ogg",
+    "image": "/characters/marine-lahaine/marine-lahaine.png"
   },
   {
     "nom": "Norman le babysiter",
     "type": "character",
-    "url": "/audio/musics/character/norman.ogg"
+    "url": "/audio/musics/character/norman.ogg",
+    "image": "/characters/norman/norman.png"
   },
   {
     "nom": "Professeur Merdant",
     "type": "character",
-    "url": "/audio/musics/character/prof-merdant.ogg"
+    "url": "/audio/musics/character/prof-merdant.ogg",
+    "image": "/characters/prof-merdant/prof-merdant.png"
   },
   {
     "nom": "Professeur Shlag",
     "type": "character",
-    "url": null
+    "url": null,
+    "image": null
   },
   {
     "nom": "Sachatte",
     "type": "character",
-    "url": "/audio/musics/character/sachatte.ogg"
+    "url": "/audio/musics/character/sachatte.ogg",
+    "image": "/characters/sachatte/sachatte.png"
   },
   {
     "nom": "Siphanus",
     "type": "character",
-    "url": "/audio/musics/character/siphanus.ogg"
+    "url": "/audio/musics/character/siphanus.ogg",
+    "image": "/characters/siphanus/siphanus.png"
   },
   {
     "nom": "Vladimir Putain",
     "type": "character",
-    "url": "/audio/musics/character/poutine.ogg"
+    "url": "/audio/musics/character/poutine.ogg",
+    "image": null
   },
   {
     "nom": "arena20",
     "type": "arena",
-    "url": "/audio/musics/arenas/arena20.ogg"
+    "url": "/audio/musics/arenas/arena20.ogg",
+    "image": null
   },
   {
     "nom": "arena40",
     "type": "arena",
-    "url": "/audio/musics/arenas/arena40.ogg"
+    "url": "/audio/musics/arenas/arena40.ogg",
+    "image": null
   },
   {
     "nom": "arena60",
     "type": "arena",
-    "url": "/audio/musics/arenas/arena60.ogg"
+    "url": "/audio/musics/arenas/arena60.ogg",
+    "image": null
   }
 ]
