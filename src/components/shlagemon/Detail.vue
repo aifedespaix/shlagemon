@@ -3,6 +3,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import WearableItemIcon from '~/components/inventory/WearableItemIcon.vue'
 import ShlagemonStats from '~/components/shlagemon/Stats.vue'
 import { allItems } from '~/data/items/items'
+import { useDexDetailModalStore } from '~/stores/dexDetailModal'
 
 const props = defineProps<{ mon: DexShlagemon | null }>()
 const emit = defineEmits<{
