@@ -1,19 +1,18 @@
-data.minigame.battleship:
-  fr:
-    startText: Une partie de bataille navale ?
-    yes: Oui
-    no: Non
-    winText: Victoire ! Tu gagnes un œuf Eau.
-    super: Super !
-    loseText: Perdu ! Recommence quand tu veux.
-    restart: Recommencer
-    back: Retour
-  en:
-    startText: How about a game of Battleship?
-    yes: Yes
-    no: No
-    winText: Victory! You win a Water Egg.
-    super: Awesome!
-    loseText: Lost! Try again whenever you like.
-    restart: Restart
-    back: Back
+fr:
+  startText: Une partie de bataille navale ?
+  yes: Oui
+  no: Non
+  winText: Victoire ! Tu gagnes un œuf Eau.
+  super: Super !
+  loseText: Perdu ! Recommence quand tu veux.
+  restart: Recommencer
+  back: Retour
+en:
+  startText: How about a game of Battleship?
+  yes: Yes
+  no: No
+  winText: Victory! You win a Water Egg.
+  super: Awesome!
+  loseText: Lost! Try again whenever you like.
+  restart: Restart
+  back: Back
