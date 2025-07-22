@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDexDetailModalStore } from '~/stores/dexDetailModal'
+
 const modal = useDexDetailModalStore()
 </script>
 
