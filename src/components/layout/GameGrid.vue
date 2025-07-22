@@ -4,6 +4,7 @@ import PanelAchievements from '~/components/panel/Achievements.vue'
 import PanelInventory from '~/components/panel/Inventory.vue'
 import PanelShlagedex from '~/components/panel/Shlagedex.vue'
 import PanelZone from '~/components/panel/Zone.vue'
+import ShlagemonDetailModal from '~/components/shlagemon/DetailModal.vue'
 
 const lockStore = useFeatureLockStore()
 const shlagedex = useShlagedexStore()
@@ -133,6 +134,7 @@ const bottomLocked = computed(() => {
       <ShlagemonEvolutionModal />
       <ShlagemonTypeChartModal />
       <ShlagemonWearableEquipModal />
+      <ShlagemonDetailModal />
     </div>
   </div>
 </template>
