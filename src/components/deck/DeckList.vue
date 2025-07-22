@@ -20,7 +20,7 @@ const displayed = computed(() => {
 <template>
   <LayoutScrollablePanel>
     <template #header>
-      <UiSearchInput v-model="search" :placeholder="t('deckList.search')" />
+      <UiSearchInput v-model="search" :placeholder="t('components.deck.DeckList.search')" />
     </template>
     <template #content>
       <div

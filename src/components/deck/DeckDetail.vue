@@ -28,13 +28,13 @@ const { t } = useI18n()
       {{ t(props.mon.descriptionKey || props.mon.description) }}
     </p>
     <div v-if="props.mon.evolution" class="flex flex-col items-center text-sm font-medium">
-      <span>{{ t('deckDetail.evolution') }}</span>
+      <span>{{ t('components.deck.DeckDetail.evolution') }}</span>
       <div class="mt-1 flex items-center gap-1">
         <UiButton variant="outline" @click="emit('openMon', props.mon.evolution.base)">
           {{ props.mon.evolution.base.name }}
         </UiButton>
         <span v-if="props.mon.evolution.condition.type === 'lvl'">
-          - {{ t('deckDetail.level', { n: props.mon.evolution.condition.value }) }}
+          - {{ t('components.deck.DeckDetail.level', { n: props.mon.evolution.condition.value }) }}
         </span>
         <span v-else>
           - {{ props.mon.evolution.condition.value.name }}
