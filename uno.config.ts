@@ -1,3 +1,4 @@
+import process from 'node:process'
 import {
   createLocalFontProcessor,
 } from '@unocss/preset-web-fonts/local'
@@ -13,6 +14,8 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 
+const isVitest = !!process.env.VITEST
+
 export default defineConfig({
   shortcuts: [
     ['flex-center', 'flex justify-center items-center'],
@@ -24,14 +27,18 @@ export default defineConfig({
       scale: 1.2,
     }),
     presetTypography(),
-    presetWebFonts({
-      fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
-      },
-      processors: createLocalFontProcessor(),
-    }),
+    presetWebFonts(
+      isVitest
+        ? { provider: 'none', inlineImports: false }
+        : {
+            fonts: {
+              sans: 'DM Sans',
+              serif: 'DM Serif Display',
+              mono: 'DM Mono',
+            },
+            processors: createLocalFontProcessor(),
+          },
+    ),
   ],
   transformers: [
     transformerDirectives(),
