@@ -10,6 +10,7 @@ from moviepy import (
     concatenate_audioclips,
     CompositeVideoClip,
     TextClip,
+    vfx,
 )
 
 # --- CONFIG ---
@@ -49,16 +50,17 @@ def get_public_full_path(url):
     return os.path.join('../public', url.strip('/'))
 
 def decide_loops(audio_path):
+    """Return the number of loops required for a track.
+
+    Music shorter than a minute should be repeated enough times so the
+    resulting clip lasts at least two minutes.
+    """
     y, sr = librosa.load(audio_path, sr=None)
     duration = librosa.get_duration(y=y, sr=sr)
-    if duration > 120:
+    if duration >= 60:
         return 1
-    elif duration > 60:
-        return 1
-    elif duration < 30:
-        return 3
-    else:
-        return 2
+    # ensure the final length is at least 120 seconds
+    return max(2, int(np.ceil(120 / duration)))
 
 def make_audio_clip(music):
     if not music['url']:
@@ -69,7 +71,9 @@ def make_audio_clip(music):
         return None
     loops = decide_loops(path)
     clip = AudioFileClip(path)
-    return concatenate_audioclips([clip] * loops)
+    final_clip = concatenate_audioclips([clip] * loops)
+    # fade out during the last second of the audio
+    return final_clip.audio_fadeout(1)
 
 def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=64):
     """Create an audio spectrum clip with transparent background.
@@ -261,6 +265,8 @@ def main():
 
         overlays.append(title_clip)
         final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
+        # fade to black over the last second of the video
+        final_video = final_video.fx(vfx.fadeout, 1, final_color=(0, 0, 0))
 
         print(f"Export de {output_path}...")
         temp_audio_path = os.path.join(TMP_DIR, f"{outname}_audio.m4a")
