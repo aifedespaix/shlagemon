@@ -34,6 +34,7 @@ const store = useShlagedexStore()
 const wearableItemStore = useWearableItemStore()
 const equipModal = useWearableEquipModalStore()
 const disease = useDiseaseStore()
+const detailModal = useDexDetailModalStore()
 const { t } = useI18n()
 const showConfirm = ref(false)
 
@@ -41,6 +42,12 @@ const heldItem = computed(() => {
   if (!props.mon?.heldItemId)
     return null
   return allItems.find(i => i.id === props.mon!.heldItemId) || null
+})
+
+const ownedEvolution = computed(() => {
+  if (!props.mon?.base.evolution)
+    return null
+  return store.shlagemons.find(m => m.base.id === props.mon!.base.evolution!.base.id) || null
 })
 
 const evolutionInfo = computed(() => {
@@ -85,6 +92,11 @@ function cancelRelease() {
 function openEquip() {
   if (props.mon)
     equipModal.open(props.mon)
+}
+
+function openOwnedEvolution() {
+  if (ownedEvolution.value)
+    detailModal.open(ownedEvolution.value)
 }
 const captureInfo = computed(() => {
   if (!props.mon)
@@ -150,7 +162,19 @@ const captureInfo = computed(() => {
         </div>
       </div>
       <div v-if="evolutionInfo" class="flex-center flex-col gap-1">
-        <div class="rounded-full bg-blue-200 px-2 py-0.5 text-xs text-blue-800 dark:bg-blue-700 dark:text-blue-200">
+        <button
+          v-if="ownedEvolution"
+          type="button"
+          class="rounded-full bg-blue-200 px-2 py-0.5 text-xs text-blue-800 dark:bg-blue-700 dark:text-blue-200"
+          hover="bg-blue-300 dark:bg-blue-600"
+          @click="openOwnedEvolution"
+        >
+          {{ evolutionInfo }}
+        </button>
+        <div
+          v-else
+          class="rounded-full bg-blue-200 px-2 py-0.5 text-xs text-blue-800 dark:bg-blue-700 dark:text-blue-200"
+        >
           {{ evolutionInfo }}
         </div>
         <UiCheckBox v-model="allowEvolution" class="flex items-center gap-2 text-xs">
