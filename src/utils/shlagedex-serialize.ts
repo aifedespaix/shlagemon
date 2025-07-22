@@ -18,6 +18,11 @@ function getBaseMap() {
 }
 
 interface StoredDexMon extends Omit<DexShlagemon, 'base' | 'heldItemId'> {
+  /**
+   * Legacy identifier used to rebuild the base when loading a save.
+   * This property isn't part of {@link DexShlagemon} and gets discarded on
+   * deserialization.
+   */
   baseId: string
   heldItemId: string | null
   base?: undefined
@@ -37,6 +42,7 @@ export const shlagedexSerializer = {
         const { base, heldItemId, ...rest } = mon
         const stored: StoredDexMon = {
           ...rest,
+          // Persist baseId to support older saves that rely on this field
           baseId: base.id,
           heldItemId: heldItemId ?? null,
           base: undefined, // remove circular reference
@@ -48,6 +54,7 @@ export const shlagedexSerializer = {
             const { base, heldItemId, ...rest } = data.activeShlagemon
             const stored: StoredDexMon = {
               ...rest,
+              // Persist baseId for backward compatibility
               baseId: base.id,
               heldItemId: heldItemId ?? null,
               base: undefined,
@@ -68,10 +75,10 @@ export const shlagedexSerializer = {
         const base = mon.base ?? baseMap[mon.baseId]
         if (!base)
           return null
+        const { baseId: _baseId, ...rest } = mon
         return {
-          ...mon,
+          ...rest,
           base,
-          baseId: mon.baseId ?? base.id,
           coefficient: mon.coefficient ?? base.coefficient,
           baseStats: mon.baseStats ?? {
             hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, mon.rarity ?? 1),
@@ -93,10 +100,10 @@ export const shlagedexSerializer = {
     if (activeData) {
       const base = activeData.base ?? baseMap[activeData.baseId]
       if (base) {
+        const { baseId: _baseId, ...rest } = activeData
         active = {
-          ...activeData,
+          ...rest,
           base,
-          baseId: activeData.baseId ?? base.id,
           coefficient: activeData.coefficient ?? base.coefficient,
           baseStats: activeData.baseStats ?? {
             hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, activeData.rarity ?? 1),
