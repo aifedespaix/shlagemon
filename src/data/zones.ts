@@ -100,8 +100,38 @@ const savagesZonesDescription: SavageZoneDescription[] = [
     shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/55-60/*.ts`, { eager: true }),
   },
   { id: 'trou-du-bide', lvl: zoneIndex++ * lvlsByZone, name: 'Trou du Bide', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/60-65/*.ts`, { eager: true }) },
-  // { id: 'zone-giga-zob', lvl: zoneIndex++ * lvlsByZone, name: 'Aire du Giga Zob', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/70-75/*.ts`, { eager: true }) } },
-  // { id: 'route-so-dom', lvl: zoneIndex++ * lvlsByZone, name: `Route So'Dom`, shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/75-80/*.ts`, { eager: true }) } },
+  {
+    id: 'lac-aux-relous',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Lac aux Relous',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/65-70/*.ts`, { eager: true }),
+  },
+  { id: 'zone-giga-zob', lvl: zoneIndex++ * lvlsByZone, name: 'Aire du Giga Zob', shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/70-75/*.ts`, { eager: true }) },
+  { id: 'route-so-dom', lvl: zoneIndex++ * lvlsByZone, name: `Route So'Dom`, shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/75-80/*.ts`, { eager: true }) },
+  {
+    id: 'mont-kouillasse',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Mont Kouillasse',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/80-85/*.ts`, { eager: true }),
+  },
+  {
+    id: 'paturage-crado',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Pâturage Crado',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/85-90/*.ts`, { eager: true }),
+  },
+  {
+    id: 'canyon-a-la-derp',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Canyon à la Derp',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/90-95/*.ts`, { eager: true }),
+  },
+  {
+    id: 'cratere-des-legends',
+    lvl: zoneIndex++ * lvlsByZone,
+    name: 'Cratère des Légends',
+    shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/95-100/*.ts`, { eager: true }),
+  },
 ]
 
 const lvlMax = 100
