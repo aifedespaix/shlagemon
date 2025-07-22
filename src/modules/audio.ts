@@ -9,6 +9,6 @@ export const install: UserModule = ({ isClient }) => {
   if (audio.isMusicEnabled && !audio.currentMusic) {
     const track = getZoneTrack(zone.current.id, zone.current.type)
     if (track)
-      audio.playMusic(track)
+      audio.fadeToMusic(track)
   }
 }
