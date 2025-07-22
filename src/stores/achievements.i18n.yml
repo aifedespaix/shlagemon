@@ -1,5 +1,4 @@
-stores.achievements:
-  fr:
-    unlocked: 'Succès déverrouillé : {title}'
-  en:
-    unlocked: 'Achievement unlocked: {title}'
+fr:
+  unlocked: 'Succès déverrouillé : {title}'
+en:
+  unlocked: 'Achievement unlocked: {title}'

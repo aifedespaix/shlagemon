@@ -1,5 +1,4 @@
-components.ui.fullscreenToggle:
-  fr:
-    label: Plein écran
-  en:
-    label: Fullscreen
+fr:
+  label: Plein écran
+en:
+  label: Fullscreen

@@ -1,7 +1,6 @@
-components.ui.currencyAmount:
-  fr:
-    shlagidiamond: Shlagédiamant
-    shlagidolar: Shlagédollar
-  en:
-    shlagidiamond: Shlagiamond
-    shlagidolar: Shlagidollar
+fr:
+  shlagidiamond: Shlagédiamant
+  shlagidolar: Shlagédollar
+en:
+  shlagidiamond: Shlagiamond
+  shlagidolar: Shlagidollar
