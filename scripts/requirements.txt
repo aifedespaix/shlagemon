@@ -1,0 +1,5 @@
+moviepy
+librosa
+soundfile
+matplotlib
+pillow
