@@ -11,6 +11,7 @@ from moviepy import (
     CompositeVideoClip,
     TextClip,
 )
+from moviepy.video.fx.all import mirror_x
 
 # --- CONFIG ---
 MUSIC_DATA_PATH = '../public/music-data.json'
@@ -167,6 +168,7 @@ def make_character_clip(image_path, duration, height_ratio=0.8):
         print(f"Image not found: {image_path}")
         return None
     clip = ImageClip(image_path).with_duration(duration)
+    clip = clip.fx(mirror_x)
     clip = clip.resized(height=int(H * height_ratio))
     return clip.with_position(("left", "center"))
 
