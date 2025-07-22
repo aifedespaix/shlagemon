@@ -22,10 +22,12 @@ BG_IMG_PATH = './clip/bg.png'
 # Game logo displayed on top of the video
 LOGO_PATH = '../public/logo.png'
 # Font used for the title text
-TITLE_FONT_PATH = './clip/Pokemon Hollow.ttf'
+TITLE_FONT_PATH = './clip/LilitaOne-Regular.ttf'
 # Title color and outline
-TITLE_COLOR = '#c7a008'
-TITLE_STROKE_COLOR = '#2a75bb'
+# TITLE_COLOR = '#0951b6'
+# TITLE_STROKE_COLOR = '#ffdb02'
+TITLE_COLOR = '#fafafa'
+TITLE_STROKE_COLOR = '#010101'
 # Output directory for generated clips
 OUTPUT_DIR = './musique'
 # Couleur principale de l'application (teal WPA)
@@ -186,7 +188,7 @@ def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=16
     return clip
 
 
-def make_logo_clip(duration, width=W // 2, y_offset=40):
+def make_logo_clip(duration, width=W // 2, y_offset=-130):
     clip = ImageClip(LOGO_PATH).with_duration(duration)
     clip = clip.resized(width=width)
     clip = clip.resized(lambda t: 0.96 + 0.04 * np.sin(2 * np.pi * t))
