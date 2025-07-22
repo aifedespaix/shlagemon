@@ -21,6 +21,11 @@ CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
 BG_IMG_PATH = './clip/bg.png'
 # Game logo displayed on top of the video
 LOGO_PATH = '../public/logo.png'
+# Font used for the title text
+TITLE_FONT_PATH = './clip/Pokemon Hollow.ttf'
+# Title color and outline
+TITLE_COLOR = '#c7a008'
+TITLE_STROKE_COLOR = '#2a75bb'
 # Output directory for generated clips
 OUTPUT_DIR = './musique'
 # Couleur principale de l'application (teal WPA)
@@ -148,11 +153,11 @@ def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=
         return frame
     return VideoClip(make_frame, duration=duration).with_fps(FPS)
 
-def make_title_clip(text, duration, fontsize=110, color="yellow", y_offset=160):
-    # Police système basique (arial), tu peux changer le chemin vers un .ttf si tu veux
+def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=160):
+    """Create a clip containing the title text."""
     try:
-        font = ImageFont.truetype("arial.ttf", fontsize)
-    except:
+        font = ImageFont.truetype(TITLE_FONT_PATH, fontsize)
+    except Exception:
         font = ImageFont.load_default()
     
     # Taille image
@@ -172,7 +177,7 @@ def make_title_clip(text, duration, fontsize=110, color="yellow", y_offset=160):
         font=font,
         fill=color,
         stroke_width=4,
-        stroke_fill="blue",
+        stroke_fill=TITLE_STROKE_COLOR,
     )
     
     # Convertit en clip MoviePy (colle sous la HB)
@@ -181,7 +186,7 @@ def make_title_clip(text, duration, fontsize=110, color="yellow", y_offset=160):
     return clip
 
 
-def make_logo_clip(duration, width=W // 2, y_offset=80):
+def make_logo_clip(duration, width=W // 2, y_offset=40):
     clip = ImageClip(LOGO_PATH).with_duration(duration)
     clip = clip.resized(width=width)
     clip = clip.resized(lambda t: 0.96 + 0.04 * np.sin(2 * np.pi * t))
