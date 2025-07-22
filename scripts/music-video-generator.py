@@ -271,7 +271,8 @@ def main():
         overlays.append(title_clip)
         final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
         # fade to black over the last second of the video
-        final_video = final_video.fx(vfx.fadeout, 1, final_color=(0, 0, 0))
+        final_video = final_video.with_effects([vfx.FadeOut(1, final_color=(0, 0, 0))])
+
 
         print(f"Export de {output_path}...")
         temp_audio_path = os.path.join(TMP_DIR, f"{outname}_audio.m4a")
