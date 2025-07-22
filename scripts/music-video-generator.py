@@ -11,8 +11,9 @@ from moviepy import (
     CompositeVideoClip,
     TextClip,
     vfx,
-    video
+    video,
 )
+from moviepy.audio.fx import AudioFadeOut
 
 # --- CONFIG ---
 MUSIC_DATA_PATH = '../public/music-data.json'
@@ -74,7 +75,9 @@ def make_audio_clip(music):
     clip = AudioFileClip(path)
     final_clip = concatenate_audioclips([clip] * loops)
     # fade out during the last second of the audio
-    return final_clip.audio_fadeout(1)
+    if hasattr(final_clip, "audio_fadeout"):
+        return final_clip.audio_fadeout(1)
+    return final_clip.with_effects([AudioFadeOut(1)])
 
 def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=64):
     """Create an audio spectrum clip with transparent background.
