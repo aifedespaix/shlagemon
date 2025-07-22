@@ -18,7 +18,7 @@ const activeSlot = ref<number | null>(null)
 const showDuel = ref(false)
 const showEnemy = ref(false)
 const enemyDetail = ref<DexShlagemon | null>(null)
-let nextTimer: Stoppable | undefined
+let nextTimer: Stoppable<[]> | undefined
 
 async function autoSelect() {
   const team = dex.shlagemons
