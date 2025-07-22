@@ -10,15 +10,17 @@ from moviepy import (
     concatenate_audioclips,
     CompositeVideoClip,
     TextClip,
+    vfx,
 )
+from moviepy.video.fx.all import mirror_x
 
 # --- CONFIG ---
 MUSIC_DATA_PATH = '../public/music-data.json'
 BASE_AUDIO_PATH = '../public'
 # Path to the bouncing Shlagéball image
 CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
-# Background of the video
-BG_IMG_PATH = './clip/bg.png'
+# Backgrounds of the video are stored in ./clip and named after music type
+BG_IMG_DIR = './clip'
 # Game logo displayed on top of the video
 LOGO_PATH = '../public/logo.png'
 # Font used for the title text
@@ -30,6 +32,8 @@ TITLE_COLOR = '#fafafa'
 TITLE_STROKE_COLOR = '#010101'
 # Output directory for generated clips
 OUTPUT_DIR = './musique'
+# Temporary working directory for moviepy
+TMP_DIR = os.path.join(OUTPUT_DIR, '_tmp')
 # Couleur principale de l'application (teal WPA)
 BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
@@ -47,16 +51,17 @@ def get_public_full_path(url):
     return os.path.join('../public', url.strip('/'))
 
 def decide_loops(audio_path):
+    """Return the number of loops required for a track.
+
+    Music shorter than a minute should be repeated enough times so the
+    resulting clip lasts at least two minutes.
+    """
     y, sr = librosa.load(audio_path, sr=None)
     duration = librosa.get_duration(y=y, sr=sr)
-    if duration > 120:
+    if duration >= 60:
         return 1
-    elif duration > 60:
-        return 1
-    elif duration < 30:
-        return 3
-    else:
-        return 2
+    # ensure the final length is at least 120 seconds
+    return max(2, int(np.ceil(120 / duration)))
 
 def make_audio_clip(music):
     if not music['url']:
@@ -67,7 +72,9 @@ def make_audio_clip(music):
         return None
     loops = decide_loops(path)
     clip = AudioFileClip(path)
-    return concatenate_audioclips([clip] * loops)
+    final_clip = concatenate_audioclips([clip] * loops)
+    # fade out during the last second of the audio
+    return final_clip.audio_fadeout(1)
 
 def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=64):
     """Create an audio spectrum clip with transparent background.
@@ -165,6 +172,7 @@ def make_character_clip(image_path, duration, height_ratio=0.8):
         print(f"Image not found: {image_path}")
         return None
     clip = ImageClip(image_path).with_duration(duration)
+    clip = clip.fx(mirror_x)
     clip = clip.resized(height=int(H * height_ratio))
     return clip.with_position(("left", "center"))
 
@@ -216,6 +224,7 @@ def main():
     data = load_music_data()
     musics = [m for m in data if m.get('url')]
     os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(TMP_DIR, exist_ok=True)
     for music in musics:
         outname = safe_filename(music["nom"])
         output_path = os.path.join(OUTPUT_DIR, f"{outname}.mp4")
@@ -229,7 +238,12 @@ def main():
             continue
 
         duration = clip_audio.duration
-        bg_clip = ImageClip(BG_IMG_PATH).with_duration(duration).resized(width=W, height=H)
+        bg_filename = f"{music.get('type', 'bg')}.png"
+        bg_path = os.path.join(BG_IMG_DIR, bg_filename)
+        if not os.path.isfile(bg_path):
+            print(f"Background image not found: {bg_path}")
+            continue
+        bg_clip = ImageClip(bg_path).with_duration(duration).resized(width=W, height=H)
         spectrum_clip = make_audio_spectrum_clip(get_audio_full_path(music['url']), duration)
         logo_clip = make_logo_clip(duration)
         title = f"{music['nom']}"
@@ -253,9 +267,20 @@ def main():
 
         overlays.append(title_clip)
         final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
+        # fade to black over the last second of the video
+        final_video = final_video.fx(vfx.fadeout, 1, final_color=(0, 0, 0))
 
         print(f"Export de {output_path}...")
-        final_video.write_videofile(output_path, fps=FPS, audio_codec='aac', audio_bitrate="320k", audio_fps=48000)
+        temp_audio_path = os.path.join(TMP_DIR, f"{outname}_audio.m4a")
+        final_video.write_videofile(
+            output_path,
+            fps=FPS,
+            audio_codec='aac',
+            audio_bitrate="320k",
+            audio_fps=48000,
+            temp_audiofile=temp_audio_path,
+            remove_temp=True,
+        )
 
 if __name__ == "__main__":
     main()
