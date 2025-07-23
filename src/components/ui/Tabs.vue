@@ -66,7 +66,7 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
         {{ tab.label }}
       </button>
     </div>
-    <div ref="container" class="relative flex-1 overflow-hidden">
+    <div ref="container" class="tiny-scrollbar relative flex-1 overflow-x-hidden overflow-y-auto">
       <Transition :name="transitionName" mode="out-in">
         <component :is="props.tabs[active].component" :key="active" class="absolute inset-0" />
       </Transition>
@@ -80,8 +80,8 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 .slide-left-enter-from,
 .slide-right-leave-to {
