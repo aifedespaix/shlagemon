@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import type { Item } from '~/type/item'
+import type { Item, ItemCategory } from '~/type/item'
+import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
-import {
-  itemCategoryTabBaseColors,
-  itemCategoryTabColors,
-  itemCategoryTabHoverColors,
-} from '~/constants/itemCategory'
+import ShopItemCard from '../shop/ItemCard.vue'
 
 const panel = useMainPanelStore()
 const zone = useZoneStore()
@@ -21,8 +18,28 @@ const categoryOptions = [
   { label: t('components.panel.Shop.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
 ] as const
 const availableCategories = computed(() =>
-  categoryOptions.filter(opt => shopItems.value.some(i => i.category === opt.value)),
+  categoryOptions
+    .filter(opt => shopItems.value.some(i => i.category === opt.value))
+    .map(opt => ({
+      label: { text: opt.label, icon: opt.icon },
+      value: opt.value,
+    })),
 )
+
+const activeTab = ref(0)
+const categories = computed(() => availableCategories.value)
+
+watch(() => filter.category, (val) => {
+  const idx = categories.value.findIndex(c => c.value === val)
+  if (idx !== -1 && idx !== activeTab.value)
+    activeTab.value = idx
+}, { immediate: true })
+
+watch(activeTab, (val) => {
+  const cat = categories.value[val]?.value
+  if (cat && cat !== filter.category)
+    filter.category = cat
+})
 
 watch(availableCategories, (cats) => {
   if (!cats.length)
@@ -31,20 +48,49 @@ watch(availableCategories, (cats) => {
     filter.category = cats[0].value
 }, { immediate: true })
 
-const tabColors = itemCategoryTabBaseColors
-const tabHoverColors = itemCategoryTabHoverColors
-const tabActiveColors = itemCategoryTabColors
-const filteredShopItems = computed(() =>
-  shopItems.value
-    .filter(item => filter.category === 'all' ? true : item.category === filter.category)
-    .slice()
-    .sort((a, b) => {
+function getList(category: ItemCategory | 'all') {
+  return computed(() => {
+    let list = shopItems.value.slice()
+    if (category !== 'all')
+      list = list.filter(item => item.category === category)
+    return list.sort((a, b) => {
       const typeComp = (a.type || '').localeCompare(b.type || '')
       if (typeComp !== 0)
         return typeComp
       return (a.power || 0) - (b.power || 0)
+    })
+  })
+}
+
+const tabs = computed(() =>
+  categories.value.map(cat => ({
+    label: cat.label,
+    component: defineComponent({
+      name: `ShopTab_${cat.value}`,
+      setup() {
+        const list = getList(cat.value)
+        return () => h('div', {
+          class: 'tiny-scrollbar flex flex-col gap-2 overflow-auto py-1',
+        }, list.value.map(item => h(ShopItemCard, {
+          item,
+          class: 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800',
+          onClick: () => selectItem(item),
+        }, {
+          default: () => h(UiButton, {
+            class: 'ml-auto text-xs',
+            onClick: (e: Event) => {
+              e.stopPropagation()
+              selectItem(item)
+            },
+          }, () => t('components.panel.Shop.details')),
+        })))
+      },
     }),
+  })),
 )
+
+const filteredShopItems = getList('all')
+
 const selectedItem = ref<Item | null>(null)
 const selectedQty = ref(1)
 
@@ -112,17 +158,16 @@ function closeShop() {
     <h2 class="text-center font-bold">
       {{ t('components.panel.Shop.title') }}
     </h2>
-    <UiTabBar
+    <UiTabs
       v-if="availableCategories.length > 0"
-      v-model="filter.category"
-      :options="availableCategories"
-      :colors="tabColors"
-      :hover-colors="tabHoverColors"
-      :active-colors="tabActiveColors"
-      :disabled="!!selectedItem"
-      class="-mb-1"
+      v-show="!selectedItem"
+      v-model="activeTab"
+      :tabs="tabs"
+      is-small
+      class="flex-1"
+      :class="selectedItem ? 'pointer-events-none opacity-50' : ''"
     />
-    <div v-show="!selectedItem" class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">
+    <div v-else class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">
       <ShopItemCard
         v-for="item in filteredShopItems"
         :key="item.id"
