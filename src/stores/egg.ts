@@ -64,10 +64,13 @@ export const useEggStore = defineStore('egg', () => {
   persist: {
     afterHydrate(ctx) {
       const store = ctx.store as ReturnType<typeof useEggStore>
-      if (Array.isArray((store as any).incubator))
-        store.incubator = ref([...(store as any).incubator])
-      else if (!Array.isArray(store.incubator))
-        store.incubator = ref([])
+      const raw = (store as any).incubator
+      if (Array.isArray(raw))
+        store.incubator.value = [...raw]
+      else if (Array.isArray(raw?.value))
+        store.incubator.value = [...raw.value]
+      else
+        store.incubator.value = []
     },
   } as PersistedStateOptions,
 })
