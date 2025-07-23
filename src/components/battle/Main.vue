@@ -107,10 +107,10 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
     notifyAchievement({ type: 'battle-win', stronger })
     if (dex.activeShlagemon) {
       const xp = dex.xpGainForLevel(defeated.lvl)
-      await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
+      await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zone.current.maxLevel)
       const holder = wearableItemStore.getHolder('multi-exp')
       if (holder)
-        await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
+        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zone.current.maxLevel)
     }
   }
   else if (result === 'lose') {
