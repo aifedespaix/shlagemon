@@ -4,6 +4,7 @@ import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { allShlagemons } from '~/data/shlagemons'
 import { mewteub } from '~/data/shlagemons/mewteub'
+import { eggSerializer } from '~/utils/egg-serialize'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
 export type EggType = TypeName
@@ -62,14 +63,10 @@ export const useEggStore = defineStore('egg', () => {
   return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, reset }
 }, {
   persist: {
+    serializer: eggSerializer,
     afterHydrate(ctx) {
       const store = ctx.store as ReturnType<typeof useEggStore>
-      const raw = (store as any).incubator
-      if (Array.isArray(raw))
-        store.incubator = [...raw]
-      else if (Array.isArray(raw?.value))
-        store.incubator = [...raw.value]
-      else
+      if (!Array.isArray(store.incubator))
         store.incubator = []
     },
   } as PersistedStateOptions,
