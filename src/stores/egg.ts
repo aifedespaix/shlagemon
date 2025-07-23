@@ -66,11 +66,11 @@ export const useEggStore = defineStore('egg', () => {
       const store = ctx.store as ReturnType<typeof useEggStore>
       const raw = (store as any).incubator
       if (Array.isArray(raw))
-        store.incubator.value = [...raw]
+        store.incubator = [...raw]
       else if (Array.isArray(raw?.value))
-        store.incubator.value = [...raw.value]
+        store.incubator = [...raw.value]
       else
-        store.incubator.value = []
+        store.incubator = []
     },
   } as PersistedStateOptions,
 })
