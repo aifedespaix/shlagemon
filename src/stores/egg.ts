@@ -13,6 +13,7 @@ export interface Egg {
   id: number
   type: EggType
   base: BaseShlagemon
+  startedAt: number
   hatchesAt: number
 }
 
@@ -30,8 +31,9 @@ export const useEggStore = defineStore('egg', () => {
       candidates = candidates.filter(b => b.id !== mewteub.id)
     const base = pickRandomByCoefficient(candidates)
     const duration = (base.coefficient / 10) * 60_000
-    const id = Date.now() + Math.random()
-    incubator.value.push({ id, type, base, hatchesAt: Date.now() + duration })
+    const startedAt = Date.now()
+    const id = startedAt + Math.random()
+    incubator.value.push({ id, type, base, startedAt, hatchesAt: startedAt + duration })
     return true
   }
 
@@ -63,6 +65,7 @@ export const useEggStore = defineStore('egg', () => {
   return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, reset }
 }, {
   persist: {
+    paths: ['incubator'],
     serializer: eggSerializer,
     afterHydrate(ctx) {
       const store = ctx.store as ReturnType<typeof useEggStore>
