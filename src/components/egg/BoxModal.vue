@@ -12,7 +12,7 @@ function getItem(id: string) {
 </script>
 
 <template>
-  <Modal v-model="box.isModalOpen" footer-close>
+  <UiModal v-model="box.isModalOpen" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
         {{ t('components.egg.BoxModal.title') }}
@@ -32,5 +32,5 @@ function getItem(id: string) {
       </div>
       <span v-else class="text-center text-sm">{{ t('components.egg.BoxModal.empty') }}</span>
     </div>
-  </Modal>
+  </UiModal>
 </template>

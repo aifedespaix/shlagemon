@@ -43,7 +43,7 @@ function onItemClick(mon: DexShlagemon) {
     show-checkbox
     :on-item-click="onItemClick"
   />
-  <Modal
+  <UiModal
     v-model="showDetail"
     footer-close
     :golden-border="detailMon?.rarity === 100"
@@ -54,5 +54,5 @@ function onItemClick(mon: DexShlagemon) {
       @release="showDetail = false"
       @active="showDetail = false"
     />
-  </Modal>
+  </UiModal>
 </template>

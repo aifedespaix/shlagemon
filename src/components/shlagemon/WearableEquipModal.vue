@@ -4,7 +4,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <Modal v-model="store.isVisible" footer-close>
+  <UiModal v-model="store.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
       <h3 class="text-center text-lg font-bold">
         {{ t('components.shlagemon.WearableEquipModal.title') }}
@@ -29,5 +29,5 @@ const { t } = useI18n()
         {{ t('components.shlagemon.WearableEquipModal.noAvailable') }}
       </p>
     </div>
-  </Modal>
+  </UiModal>
 </template>

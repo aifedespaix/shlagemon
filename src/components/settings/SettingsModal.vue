@@ -17,7 +17,7 @@ function removeSave() {
 </script>
 
 <template>
-  <Modal
+  <UiModal
     :model-value="props.modelValue"
     @update:model-value="emit('update:modelValue', $event)"
     @close="close"
@@ -67,5 +67,5 @@ function removeSave() {
         </div>
       </template>
     </LayoutScrollablePanel>
-  </Modal>
+  </UiModal>
 </template>

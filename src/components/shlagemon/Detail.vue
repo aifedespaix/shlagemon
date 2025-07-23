@@ -210,7 +210,7 @@ const captureInfo = computed(() => {
           {{ t('components.shlagemon.Detail.main') }}
         </UiButton>
       </div>
-      <Modal v-model="showConfirm" :close-on-outside-click="false">
+      <UiModal v-model="showConfirm" :close-on-outside-click="false">
         <div class="flex flex-col items-center gap-4">
           <h3 class="text-lg font-bold">
             {{ t('components.shlagemon.Detail.confirmTitle') }}
@@ -229,7 +229,7 @@ const captureInfo = computed(() => {
             </UiButton>
           </div>
         </div>
-      </Modal>
+      </UiModal>
     </div>
   </div>
 </template>

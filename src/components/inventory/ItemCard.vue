@@ -107,7 +107,7 @@ watch(showInfo, (val) => {
         {{ actionLabel }}
       </UiButton>
     </div>
-    <Modal v-model="showInfo" footer-close>
+    <UiModal v-model="showInfo" footer-close>
       <div class="flex flex-col items-center gap-2">
         <div
           v-if="props.item.icon"
@@ -137,7 +137,7 @@ watch(showInfo, (val) => {
           {{ actionLabel }}
         </UiButton>
       </div>
-    </Modal>
+    </UiModal>
   </div>
 </template>
 

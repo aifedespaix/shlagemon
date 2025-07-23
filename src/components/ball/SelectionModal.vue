@@ -16,7 +16,7 @@ function choose(id: BallId) {
 </script>
 
 <template>
-  <Modal v-model="ballStore.isVisible" footer-close>
+  <UiModal v-model="ballStore.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
       <h3 class="text-lg font-bold">
         Choix de la Shlagéball
@@ -41,5 +41,5 @@ function choose(id: BallId) {
         {{ ball.name }} (x{{ ball.qty }})
       </UiButton>
     </div>
-  </Modal>
+  </UiModal>
 </template>

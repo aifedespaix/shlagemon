@@ -3,7 +3,7 @@ const modal = useEggHatchModalStore()
 </script>
 
 <template>
-  <Modal v-model="modal.isVisible" footer-close>
+  <UiModal v-model="modal.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
       <h3 class="text-center text-lg font-bold">
         Vous avez obtenu {{ modal.mon?.base.name }} !
@@ -18,5 +18,5 @@ const modal = useEggHatchModalStore()
         />
       </div>
     </div>
-  </Modal>
+  </UiModal>
 </template>

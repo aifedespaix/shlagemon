@@ -52,9 +52,9 @@ const totalInDex = allShlagemons.length
         <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
       </div>
     </UiTooltip>
-    <Modal v-model="showBonus" footer-close>
+    <UiModal v-model="showBonus" footer-close>
       <PanelBonusDetails />
-    </Modal>
+    </UiModal>
     <UiTooltip :text="t('components.panel.PlayerInfos.balls')">
       <div
         class="min-w-0 flex cursor-pointer items-center gap-1"

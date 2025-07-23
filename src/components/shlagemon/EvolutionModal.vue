@@ -6,7 +6,7 @@ const store = useEvolutionStore()
   <!-- We only bind the visibility as a prop because `isVisible` is a
        computed value without a setter. Using `v-model` would attempt to
        write to it and trigger an error. -->
-  <Modal
+  <UiModal
     :model-value="store.isVisible"
     :close-on-outside-click="false"
     @close="store.reject"
@@ -29,5 +29,5 @@ const store = useEvolutionStore()
         </UiButton>
       </div>
     </div>
-  </Modal>
+  </UiModal>
 </template>

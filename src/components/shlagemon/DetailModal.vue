@@ -5,7 +5,7 @@ const modal = useDexDetailModalStore()
 </script>
 
 <template>
-  <Modal
+  <UiModal
     v-model="modal.isVisible"
     footer-close
     :golden-border="modal.mon?.rarity === 100"
@@ -16,5 +16,5 @@ const modal = useDexDetailModalStore()
       @release="modal.close()"
       @active="modal.close()"
     />
-  </Modal>
+  </UiModal>
 </template>

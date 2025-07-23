@@ -9,7 +9,7 @@ const audio = useAudioStore()
 </script>
 
 <template>
-  <Modal v-model="show" footer-close>
+  <UiModal v-model="show" footer-close>
     <div class="flex flex-col gap-3">
       <h3 class="text-center text-lg font-bold">
         Paramètres audio
@@ -32,5 +32,5 @@ const audio = useAudioStore()
         :disabled="!audio.isSfxEnabled"
       />
     </div>
-  </Modal>
+  </UiModal>
 </template>

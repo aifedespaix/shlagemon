@@ -11,7 +11,7 @@ function select(mon: DexShlagemon) {
 </script>
 
 <template>
-  <Modal v-model="store.isVisible" footer-close>
+  <UiModal v-model="store.isVisible" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
         {{ t('components.inventory.WearableItemModal.title', { name: store.current?.name }) }}
@@ -26,5 +26,5 @@ function select(mon: DexShlagemon) {
         {{ t('components.inventory.WearableItemModal.noAvailable') }}
       </p>
     </div>
-  </Modal>
+  </UiModal>
 </template>

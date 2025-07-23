@@ -21,7 +21,7 @@ function assign(key: string) {
 </script>
 
 <template>
-  <Modal v-model="modal.isVisible" :close-on-outside-click="false" @close="capture?.stopCapture()">
+  <UiModal v-model="modal.isVisible" :close-on-outside-click="false" @close="capture?.stopCapture()">
     <div class="flex flex-col items-center gap-4">
       <h3 class="text-center text-lg font-bold">
         {{ t('components.inventory.ItemShortcutModal.title') }}
@@ -53,5 +53,5 @@ function assign(key: string) {
         />
       </div>
     </div>
-  </Modal>
+  </UiModal>
 </template>

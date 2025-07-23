@@ -109,7 +109,7 @@ function resetArenas() {
 </script>
 
 <template>
-  <Modal v-model="show" footer-close>
+  <UiModal v-model="show" footer-close>
     <h3 class="mb-2 text-center text-lg font-bold">
       Paramètres développeur
     </h3>
@@ -166,5 +166,5 @@ function resetArenas() {
         Reset arènes
       </UiButton>
     </div>
-  </Modal>
+  </UiModal>
 </template>

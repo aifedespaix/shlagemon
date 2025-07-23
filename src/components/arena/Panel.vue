@@ -195,7 +195,7 @@ onUnmounted(() => {
             </UiTooltip>
           </div>
         </div>
-        <Modal v-model="showDex" footer-close>
+        <UiModal v-model="showDex" footer-close>
           <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
             Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
           </h3>
@@ -203,11 +203,11 @@ onUnmounted(() => {
             :selected="arena.selections.filter(Boolean) as string[]"
             @select="onMonSelected"
           />
-        </Modal>
+        </UiModal>
 
-        <Modal v-model="showEnemy" footer-close>
+        <UiModal v-model="showEnemy" footer-close>
           <ArenaEnemyStats v-if="enemyDetail" :mon="enemyDetail" />
-        </Modal>
+        </UiModal>
       </div>
     </div>
     <div v-if="showDuel" class="w-full flex flex-1 flex-col items-center gap-2">
