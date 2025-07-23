@@ -37,7 +37,7 @@ export function useSlidingPuzzle(size: number) {
 
   function reset() {
     const mon = allShlagemons[Math.floor(Math.random() * allShlagemons.length)]
-    image.value = `/shlagemons/${mon.id}/${mon.id}.png`
+    image.value = `/shlagemons/${mon.id}/${mon.id}.webp`
     init()
   }
 

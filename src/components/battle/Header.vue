@@ -27,7 +27,7 @@ const zone = useZoneStore()
             <UiImageByBackground
               v-for="i in props.trainer.shlagemons.length"
               :key="i"
-              src="/items/shlageball/shlageball.png"
+              src="/items/shlageball/shlageball.webp"
               class="h-4 w-4"
               :class="{ 'saturate-0': i <= defeated }"
             />

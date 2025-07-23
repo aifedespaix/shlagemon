@@ -98,7 +98,7 @@ onMounted(reset)
           <div class="absolute inset-0 preserve-3d transition-transform duration-300" :class="cell.state !== 'hidden' ? 'rotate-y-180' : ''">
             <div class="backface-hidden absolute inset-0 h-full w-full flex-center rounded bg-gray-200 dark:bg-gray-700" />
             <div class="backface-hidden absolute inset-0 h-full w-full flex-center rotate-y-180 rounded bg-white dark:bg-gray-900">
-              <img :src="`/shlagemons/${cell.monId}/${cell.monId}.png`" class="h-5/6 w-5/6 object-cover" :alt="cell.monId">
+              <img :src="`/shlagemons/${cell.monId}/${cell.monId}.webp`" class="h-5/6 w-5/6 object-cover" :alt="cell.monId">
             </div>
           </div>
         </button>

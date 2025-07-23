@@ -44,7 +44,7 @@ function randomCard(): ShlagCard {
     type: base.types[0].id as ShlagCard['type'],
     power: Math.floor(Math.random() * 9) + 1,
     effect,
-    image: `/shlagemons/${base.id}/${base.id}.png`,
+    image: `/shlagemons/${base.id}/${base.id}.webp`,
   }
 }
 

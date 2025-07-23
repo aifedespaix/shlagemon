@@ -103,7 +103,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
       <UiTooltip text="Vous possédez déjà ce Shlagémon">
         <img
           v-if="props.showBall && props.owned"
-          src="/items/shlageball/shlageball.png"
+          src="/items/shlageball/shlageball.webp"
           alt="ball"
           class="h-4 w-4"
         >

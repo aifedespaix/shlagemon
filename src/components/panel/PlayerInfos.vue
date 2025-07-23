@@ -61,7 +61,7 @@ const totalInDex = allShlagemons.length
         @click="ballStore.open()"
       >
         <img
-          src="/items/shlageball/shlageball.png"
+          src="/items/shlageball/shlageball.webp"
           :alt="t('components.panel.PlayerInfos.ballAlt')"
           class="h-4 w-4"
           :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"

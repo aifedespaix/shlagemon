@@ -99,7 +99,7 @@ defineExpose({ open })
     >
       <UiTooltip :text="captureButtonTooltip" is-button>
         <UiImageByBackground
-          src="/items/shlageball/shlageball.png"
+          src="/items/shlageball/shlageball.webp"
           alt="capture"
           class="h-8 w-8"
           :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"

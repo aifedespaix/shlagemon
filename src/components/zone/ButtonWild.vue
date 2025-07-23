@@ -102,7 +102,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     <div class="flex items-center justify-center gap-2">
       <img
         v-if="allCaptured()"
-        src="/items/shlageball/shlageball.png"
+        src="/items/shlageball/shlageball.webp"
         :alt="t('components.panel.Zone.capturedAlt')"
         class="h-4 w-4"
         :style="perfectZone() ? { filter: 'hue-rotate(60deg) brightness(1.1)' } : {}"

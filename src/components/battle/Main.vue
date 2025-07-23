@@ -133,7 +133,7 @@ function onCapture() {
     <div class="absolute left-0 top-0 flex items-center gap-2">
       <UiTooltip :text="captureTooltip">
         <UiButton type="icon" class="rounded-tl-0" :aria-label="t('components.battle.Main.zoneMons')" @click="zoneMonsModal.open()">
-          <img src="/items/shlageball/shlageball.png" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
+          <img src="/items/shlageball/shlageball.webp" alt="liste" class="h-6 w-6" :class="{ 'opacity-50': !hasAllZoneMons }">
         </UiButton>
       </UiTooltip>
       <UiTooltip :text="winTooltip">

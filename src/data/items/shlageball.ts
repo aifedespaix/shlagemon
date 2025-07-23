@@ -9,9 +9,9 @@ export const shlageball: Ball = {
   price: 10,
   currency: 'shlagidolar',
   category: 'actif',
-  image: '/items/shlageball/shlageball.png',
+  image: '/items/shlageball/shlageball.webp',
   catchBonus: 1,
-  animation: '/items/shlageball/shlageball.png',
+  animation: '/items/shlageball/shlageball.webp',
 }
 
 export const superShlageball: Ball = {
@@ -23,9 +23,9 @@ export const superShlageball: Ball = {
   price: 1000,
   currency: 'shlagidolar',
   category: 'actif',
-  image: '/items/shlageball/shlageball.png',
+  image: '/items/shlageball/shlageball.webp',
   catchBonus: 2,
-  animation: '/items/shlageball/shlageball.png',
+  animation: '/items/shlageball/shlageball.webp',
 }
 
 export const hyperShlageball: Ball = {
@@ -37,9 +37,9 @@ export const hyperShlageball: Ball = {
   price: 10000,
   currency: 'shlagidolar',
   category: 'actif',
-  image: '/items/shlageball/shlageball.png',
+  image: '/items/shlageball/shlageball.webp',
   catchBonus: 3,
-  animation: '/items/shlageball/shlageball.png',
+  animation: '/items/shlageball/shlageball.webp',
 }
 
 export const balls = [

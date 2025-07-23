@@ -13,7 +13,7 @@ function owned(id: string) {
   <UiModal v-model="modal.isVisible" footer-close>
     <UiPanelWrapper :title="`Shlagémons de ${zone.current.name}`" is-inline>
       <template #icon>
-        <img src="/items/shlageball/shlageball.png" alt="ball" class="h-4 w-4">
+        <img src="/items/shlageball/shlageball.webp" alt="ball" class="h-4 w-4">
       </template>
       <div class="flex flex-wrap justify-center gap-2 p-2">
         <div
