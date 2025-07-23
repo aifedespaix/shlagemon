@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import IconShlagidiamond from '~/components/icon/Shlagidiamond.vue'
 import IconShlagidolar from '~/components/icon/Shlagidolar.vue'
+import AnimatedNumber from '~/components/ui/AnimatedNumber.vue'
 
 const props = defineProps<{
   amount: number
@@ -19,7 +20,7 @@ const icon = computed(() => props.currency === 'shlagidiamond' ? IconShlagidiamo
   <UiTooltip :text="currencyName">
     <span class="inline-flex items-center gap-1">
       <component :is="icon" class="h-4 w-4" />
-      <span class="font-bold">{{ amount.toLocaleString() }}</span>
+      <AnimatedNumber class="font-bold" :value="amount" />
     </span>
   </UiTooltip>
 </template>
