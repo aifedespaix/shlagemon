@@ -184,10 +184,7 @@ onUnmounted(featureLock.unlockAll)
     <div v-if="stage === 'before'" class="h-full flex flex-col items-center gap-2 text-center">
       <template v-if="isZoneKing">
         <div class="font-bold capitalize">
-          {{ kingLabel }} de la zone
-        </div>
-        <div class="font-bold">
-          {{ trainer.character.name }}
+          Défi du {{ kingLabel }} de la zone
         </div>
       </template>
       <DialogBox

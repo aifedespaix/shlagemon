@@ -59,7 +59,7 @@ function choose(r: DialogResponse) {
 </script>
 
 <template>
-  <div class="h-full flex flex-col">
+  <div class="h-full w-full flex flex-col">
     <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded" bg="light-100 dark:gray-800">
       <div class="flex flex-col items-center justify-center">
         <UiImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
@@ -85,7 +85,7 @@ function choose(r: DialogResponse) {
         </div>
       </div>
     </div>
-    <div class="flex justify-center gap-1 p-2">
+    <div class="flex justify-center gap-1 overflow-hidden p-2">
       <UiButton
         v-for="r in currentNode?.responses"
         :key="r.label"
