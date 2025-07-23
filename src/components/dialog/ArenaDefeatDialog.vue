@@ -7,6 +7,7 @@ const arena = useArenaStore()
 const dialog = useDialogStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
+const { t } = useI18n()
 const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
 const exitTrack = ref(preparationMusic)
 
@@ -27,16 +28,16 @@ function quit() {
   emit('done', 'arenaDefeat')
 }
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'Défaite... Veux-tu retenter ta chance ?',
+    text: t('components.dialog.ArenaDefeatDialog.steps.step1.text'),
     responses: [
-      { label: 'Réessayer', type: 'valid', action: retry },
-      { label: 'Quitter', type: 'danger', action: quit },
+      { label: t('components.dialog.ArenaDefeatDialog.steps.step1.responses.retry'), type: 'valid', action: retry },
+      { label: t('components.dialog.ArenaDefeatDialog.steps.step1.responses.quit'), type: 'danger', action: quit },
     ],
   },
-]
+])
 </script>
 
 <template>

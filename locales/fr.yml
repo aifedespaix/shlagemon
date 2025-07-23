@@ -152,6 +152,311 @@ components:
     SortControls:
       ascending: Tri ascendant
       descending: Tri descendant
+  dialog:
+    AnotherShlagemonDialog:
+      steps:
+        step1:
+          text: Bravo pour ta richesse ! Prends donc ce {name}.
+          responses:
+            valid: Merci professeur !
+    ArenaDefeatDialog:
+      steps:
+        step1:
+          text: Défaite... Veux-tu retenter ta chance ?
+          responses:
+            retry: Réessayer
+            quit: Quitter
+    ArenaVictoryDialog:
+      steps:
+        step1:
+          text: Félicitations ! Tu as triomphé de l'arène.
+          responses:
+            collect: Récupérer le badge
+    ArenaWelcomeDialog:
+      steps:
+        step1:
+          text: >-
+            Bienvenue dans l'arène, cette arène te permet de capturer des
+            Shlagémons jusqu'au niveau {levelCap}. Les combats se déroulent en
+            un contre un sans potion ni attaque manuelle. Tous tes bonus de
+            potions seront annulés en entrant. Choisis des Shlagémons entraînés
+            et puissants contre les types opposés.
+          responses:
+            start: C'est parti !
+            quit: Quitter
+    AttackPotionDialog:
+      steps:
+        step1:
+          text: Félicitations ! Tes Shlagémons deviennent redoutables.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Les potions d'attaque peuvent temporairement augmenter la puissance
+            de ton Shlagémon.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Utilise-les pendant un combat pour prendre l'avantage sur ton
+            adversaire.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Tiens, prends-en une et bonne chance pour la suite !
+          responses:
+            back: Retour
+            valid: Merci !
+    Box: {}
+    CapturePotionDialog:
+      steps:
+        step1:
+          text: Incroyable, l'un de tes Shlagémons a atteint le niveau 50 !
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Je viens d'achever une nouvelle potion qui augmente les chances de
+            capture.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Utilise-la avant un lancer de Shlagéball pour bénéficier d'un bonus
+            temporaire.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Les versions super et hyper offrent un bonus encore plus grand.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Tiens, voici la première. Fais-en bon usage !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    EggBoxDialog:
+      steps:
+        step1:
+          text: Félicitations ! Tu as obtenu ton premier œuf.
+          responses:
+            next: Continuer
+        step2:
+          text: Pour les conserver, voici une boîte spéciale.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Elle stocke tous tes œufs sans encombrer ton inventaire.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Utilise-la pour voir la liste de tes œufs à tout moment.
+          responses:
+            back: Retour
+            valid: Merci Prof !
+    FirstLossDialog:
+      steps:
+        step1:
+          text: Eh ben dis donc, tu viens de perdre ton premier combat !
+          responses:
+            next: ...
+        step2:
+          text: >-
+            Faut vraiment être un peu débile pour se faire battre par un
+            Shlagémon.
+          responses:
+            next: Oups
+        step3:
+          text: >-
+            Pour gagner, tu peux tabasser le Shlagémon adverse pour aider le
+            tien. Pour ce faire, rien de plus simple, fracasse le avec ton doigt
+            ou ta souris.
+          responses:
+            next: Je vais essayer
+        step4:
+          text: Le but est de vaincre la puanteur de tous ces Shlagémon !
+          responses:
+            next: Ok
+        step5:
+          text: Tiens, prends ces 10 Potions Dégueulasses, ça peut servir.
+          responses:
+            valid: Merci !
+    HalfDexDialog:
+      steps:
+        step1:
+          text: Félicitations ! Tu as déjà complété la moitié du Shlagedex.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Je suis {name}. Pour t'aider, je vais te remettre un objet très
+            spécial : le Multi-UXP.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Fais-le tenir par un Shlagémon et il recevra la moitié de
+            l'expérience gagnée en combat.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Un seul Shlagémon peut le porter, alors choisis bien son porteur !
+          responses:
+            back: Retour
+            valid: Merci !
+    KingUnlockDialog:
+      steps:
+        step1:
+          text: >-
+            Félicitations ! Tes victoires ont débloqué l'accès au combat contre
+            le roi ou la reine de cette zone.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Pour progresser, tu devras vaincre ce Roi ou cette Reine redoutable.
+            Mais attention, ce bal-trou a tellement spam la zone qu'il est
+            devenu grave fort !
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Dans un combat contre dresseur, tu n'as pas le droit de changer de
+            Shlagémon ! De plus, tu ne peux pas utiliser de potion de soin,
+            seuls les effets passifs de certaines potions ont un impact sur le
+            combat.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: >-
+            Je t'offre une Potion de Défense. Elle s'utilise dans ton inventaire
+            et booste toute ton équipe.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: >-
+            Attention, son effet dure 10 minutes et ne fonctionne qu'une seule
+            fois, quel que soit ton Shlagémon actif.
+          responses:
+            back: Retour
+            next: Continuer
+        step6:
+          text: >-
+            Bonne chance pour le combat contre les différent(e)s reines et rois
+            !
+          responses:
+            back: Retour
+            valid: Merci Prof !
+    Level5Dialog:
+      steps:
+        step1:
+          text: Félicitations, tu possèdes enfin un Shlagémon de niveau 5 !
+          responses:
+            next: Continuer
+        step2:
+          text: Plus ils montent en niveau, plus leur odeur devient insupportable.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Nous devons tous les capturer pour comprendre comment stopper ces
+            miasmes.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Je compte sur toi pour remplir le Shlagedex au plus vite.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Pour t'aider, voici 10 Shlagéballs. Attention, elles sentent fort !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    NewZoneDialog:
+      steps:
+        step1:
+          text: Bien joué ! Tu as dégommé le boss et débloqué une nouvelle zone.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Pour faire progresser tes Shlagémons et découvrir d'autres horreurs,
+            balade-toi dans la zone qui vient d'ouvrir.
+          responses:
+            back: Retour
+            next: Suite
+        step3:
+          text: >-
+            Souviens-toi, un Shlagémon ne peut pas dépasser le niveau maximal de
+            la zone où tu te trouves.
+          responses:
+            back: Retour
+            next: Suite
+        step4:
+          text: >-
+            Explore d'autres endroits pour continuer à les faire évoluer. Tiens,
+            prends cette Potion d'Expérience, j'en ai qu'une !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    Starter:
+      steps:
+        start:
+          text: Salut, je suis {name}, mes amis disent que je sens bon.
+          responses:
+            next: Tu n''as pas l''air très intelligent.
+        step2:
+          text: >-
+            Je t'emmerde mon petit, pour la peine, je vais te forcer à adopter
+            un de mes Shlagémons.
+          responses:
+            next: Ho nooon, pas un Shlagémon, ils sentent trop mauvais !
+        choice:
+          text: Je te laisse choisir le moins pire, tu veux quel Shlagémon ?
+        common:
+          responses:
+            back: T''as pas mieux que cette merde ?
+        bulgrosboule:
+          text: Je te déconseille de choisir celui là, il est horriblement mauvais.
+          responses:
+            valid: Je l''aime pas trop mais ok
+        salamiches:
+          text: Attention, il rote du feu quand il mange du pain.
+          responses:
+            valid: Merci {name}
+        carapouffe:
+          text: Attention, il ne sait pas nager.
+          responses:
+            valid: Merci {name}
+    WearableItemDialog:
+      steps:
+        step1:
+          text: Impressionnant ! Tu as capturé au moins {count} Shlagémons.
+        step2:
+          text: 'Voici un objet unique : {name}.'
+        step3:
+          text: Il augmente {stat} du porteur de {percent}%.
+        step4:
+          text: L'effet se cumule avec les potions {potion}.
+        step5:
+          text: Équipe-le sur le Shlagémon de ton choix.
+        step6:
+          text: Bonne chance pour la suite !
 data:
   shlagemons:
     01-05:
@@ -2464,7 +2769,7 @@ data:
       startText: Une partie de Puissance 4 ?
       yes: Oui
       no: Non
-      winText: Bien joué ! Tu gagnes un œuf Feu.
+      winText: Bravo ! Bien joué ! Je te donne un œuf Feu.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
       drawText: Match nul ! Recommence quand tu veux.
@@ -2474,7 +2779,7 @@ data:
       startText: Une partie de Duel de Cartes ?
       yes: Oui
       no: Non
-      winText: Bien joué ! Tu gagnes un œuf Psy.
+      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
       back: Retour
@@ -2483,7 +2788,7 @@ data:
       startText: Une partie de bataille navale ?
       yes: Oui
       no: Non
-      winText: Victoire ! Tu gagnes un œuf Eau.
+      winText: Bravo ! Victoire ! Je te donne un œuf Eau.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
       restart: Recommencer
@@ -2492,7 +2797,7 @@ data:
       startText: Une partie du jeu des paires ?
       yes: Oui
       no: Non
-      winText: Bien joué !
+      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Dommage !
       restart: Recommencer
@@ -2501,7 +2806,7 @@ data:
       startText: Une partie de taquin ?
       yes: Oui
       no: Non
-      winText: Bravo ! Tu gagnes un œuf Foudre.
+      winText: Bravo ! Je te donne un œuf Foudre.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
       restart: Recommencer
@@ -2510,7 +2815,7 @@ data:
       startText: Envie d'une partie de morpion ?
       yes: Oui
       no: Non
-      winText: Bien joué ! Tu gagnes un Œuf Herbe.
+      winText: Bravo ! Bien joué ! Je te donne un Œuf Herbe.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
       restart: Recommencer

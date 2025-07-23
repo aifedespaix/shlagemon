@@ -150,6 +150,292 @@ components:
     SortControls:
       ascending: Ascending sort
       descending: Descending sort
+  dialog:
+    AnotherShlagemonDialog:
+      steps:
+        step1:
+          text: Congrats on your wealth! Take this {name}.
+          responses:
+            valid: Thanks professor!
+    ArenaDefeatDialog:
+      steps:
+        step1:
+          text: Defeat... Want to try again?
+          responses:
+            retry: Retry
+            quit: Quit
+    ArenaVictoryDialog:
+      steps:
+        step1:
+          text: Congratulations! You triumphed at the arena.
+          responses:
+            collect: Collect the badge
+    ArenaWelcomeDialog:
+      steps:
+        step1:
+          text: >-
+            Welcome to the arena. Here you can capture Shlagemons up to level
+            {levelCap}. Battles are one-on-one without potions or manual
+            attacks. All your potion bonuses are cancelled on entry. Choose
+            well-trained Shlagemons strong against opposite types.
+          responses:
+            start: Let''s go!
+            quit: Leave
+    AttackPotionDialog:
+      steps:
+        step1:
+          text: Congratulations! Your Shlagemons are becoming formidable.
+          responses:
+            next: Continue
+        step2:
+          text: Attack potions can temporarily boost your Shlagemon's power.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: Use them during battle to gain an edge over your opponent.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: Here, take one and good luck for the future!
+          responses:
+            back: Back
+            valid: Thanks!
+    Box: {}
+    CapturePotionDialog:
+      steps:
+        step1:
+          text: Incredible, one of your Shlagemons reached level 50!
+          responses:
+            next: Continue
+        step2:
+          text: I've just finished a new potion that increases capture chances.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: Use it before throwing a Shlageball to get a temporary bonus.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: Super and hyper versions give an even greater bonus.
+          responses:
+            back: Back
+            next: Continue
+        step5:
+          text: Here is the first one. Use it wisely!
+          responses:
+            back: Back
+            valid: Thanks Professor!
+    EggBoxDialog:
+      steps:
+        step1:
+          text: Congratulations! You got your first egg.
+          responses:
+            next: Continue
+        step2:
+          text: To keep them safe, here's a special box.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: It stores all your eggs without cluttering your inventory.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: Use it to see your eggs list anytime.
+          responses:
+            back: Back
+            valid: Thanks Prof!
+    FirstLossDialog:
+      steps:
+        step1:
+          text: Well, you just lost your first battle!
+          responses:
+            next: ...
+        step2:
+          text: You must be a bit dumb to get beaten by a Shlagemon.
+          responses:
+            next: Oops
+        step3:
+          text: >-
+            To win, you can slap the opposing Shlagemon to help yours. Just
+            smash it with your finger or mouse.
+          responses:
+            next: I'll try
+        step4:
+          text: The goal is to overcome the stench of all those Shlagemons!
+          responses:
+            next: Ok
+        step5:
+          text: Here, take these 10 Disgusting Potions, they might help.
+          responses:
+            valid: Thanks!
+    HalfDexDialog:
+      steps:
+        step1:
+          text: Congratulations! You've already completed half of the Shlagedex.
+          responses:
+            next: Continue
+        step2:
+          text: >-
+            I'm {name}. To help you, I'll give you a very special item: the
+            Multi-UXP.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: >-
+            Have a Shlagemon hold it and it will receive half the experience
+            earned in battle.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: Only one Shlagemon can hold it, so choose its bearer wisely!
+          responses:
+            back: Back
+            valid: Thanks!
+    KingUnlockDialog:
+      steps:
+        step1:
+          text: >-
+            Congratulations! Your victories unlocked the fight against this
+            area's king or queen.
+          responses:
+            next: Continue
+        step2:
+          text: >-
+            To progress you must defeat this fearsome ruler. Be careful, this
+            jerk spammed the zone so much that they've become really strong!
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: >-
+            In a trainer battle you can't switch Shlagemon! You also can't use
+            healing potions, only passive potion effects apply.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: >-
+            I give you a Defense Potion. Use it from your inventory to boost
+            your whole team.
+          responses:
+            back: Back
+            next: Continue
+        step5:
+          text: >-
+            Its effect lasts 10 minutes and works only once, whatever your
+            active Shlagemon.
+          responses:
+            back: Back
+            next: Continue
+        step6:
+          text: Good luck battling the various kings and queens!
+          responses:
+            back: Back
+            valid: Thanks Prof!
+    Level5Dialog:
+      steps:
+        step1:
+          text: Congratulations, you finally own a level 5 Shlagemon!
+          responses:
+            next: Continue
+        step2:
+          text: The higher their level, the worse they smell.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: We must capture them all to understand how to stop these miasmas.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: I'm counting on you to fill the Shlagedex as quickly as possible.
+          responses:
+            back: Back
+            next: Continue
+        step5:
+          text: To help you, here are 10 Shlageballs. Careful, they stink!
+          responses:
+            back: Back
+            valid: Thanks Professor!
+    NewZoneDialog:
+      steps:
+        step1:
+          text: Well done! You smashed the boss and unlocked a new area.
+          responses:
+            next: Continue
+        step2:
+          text: >-
+            To level up your Shlagemons and discover more horrors, wander in the
+            new area that just opened.
+          responses:
+            back: Back
+            next: Next
+        step3:
+          text: >-
+            Remember, a Shlagemon can't exceed the maximum level of the area
+            you're in.
+          responses:
+            back: Back
+            next: Next
+        step4:
+          text: >-
+            Explore other places to keep them evolving. Here, take this
+            Experience Potion, I only have one!
+          responses:
+            back: Back
+            valid: Thanks Professor!
+    Starter:
+      steps:
+        start:
+          text: Hi, I'm {name}, my friends say I smell nice.
+          responses:
+            next: You don''t look very smart.
+        step2:
+          text: Screw you kid, I'm going to force you to adopt one of my Shlagemons.
+          responses:
+            next: Oh nooo, not a Shlagemon, they smell too bad!
+        choice:
+          text: >-
+            I''ll let you choose the least awful one, which Shlagemon do you
+            want?
+        common:
+          responses:
+            back: Don''t you have something better than this crap?
+        bulgrosboule:
+          text: I wouldn''t pick that one, it''s horribly bad.
+          responses:
+            valid: I don''t like it much but ok
+        salamiches:
+          text: Careful, it belches fire when it eats bread.
+          responses:
+            valid: Thanks {name}
+        carapouffe:
+          text: Careful, it can''t swim.
+          responses:
+            valid: Thanks {name}
+    WearableItemDialog:
+      steps:
+        step1:
+          text: Impressive! You've captured at least {count} Shlagemons.
+        step2:
+          text: 'Here is a unique item: {name}.'
+        step3:
+          text: It increases the holder's {stat} by {percent}%.
+        step4:
+          text: The effect stacks with {potion} potions.
+        step5:
+          text: Equip it on the Shlagemon of your choice.
+        step6:
+          text: Good luck from here on!
 data:
   shlagemons:
     01-05:
@@ -2443,7 +2729,7 @@ data:
       startText: Fancy a game of Connect Four?
       yes: Yes
       no: No
-      winText: Well played! You win a Fire Egg.
+      winText: Bravo! Well played! I give you a Fire Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
       drawText: Draw! Try again whenever you like.
@@ -2453,7 +2739,7 @@ data:
       startText: Fancy a game of Shlag Cards?
       yes: Yes
       no: No
-      winText: Well played! You win a Psy Egg.
+      winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
       back: Back
@@ -2462,7 +2748,7 @@ data:
       startText: How about a game of Battleship?
       yes: Yes
       no: No
-      winText: Victory! You win a Water Egg.
+      winText: Bravo! Victory! I give you a Water Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
       restart: Restart
@@ -2471,7 +2757,7 @@ data:
       startText: Fancy a game of pairs?
       yes: Yes
       no: No
-      winText: Well played!
+      winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
       restart: Restart
@@ -2480,7 +2766,7 @@ data:
       startText: Fancy a sliding puzzle game?
       yes: Yes
       no: No
-      winText: Congrats! You win a Thunder Egg.
+      winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
       restart: Restart
@@ -2489,7 +2775,7 @@ data:
       startText: Fancy a game of tic tac toe?
       yes: Yes
       no: No
-      winText: Well played! You win a Grass Egg.
+      winText: Bravo! Well played! I give you a Grass Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
       restart: Restart

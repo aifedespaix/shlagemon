@@ -4,42 +4,43 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'Eh ben dis donc, tu viens de perdre ton premier combat !',
+    text: t('components.dialog.FirstLossDialog.steps.step1.text'),
     responses: [
-      { label: '...', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.FirstLossDialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: 'Faut vraiment être un peu débile pour se faire battre par un Shlagémon.',
+    text: t('components.dialog.FirstLossDialog.steps.step2.text'),
     responses: [
-      { label: 'Oups', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.FirstLossDialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Pour gagner, tu peux tabasser le Shlagémon adverse pour aider le tien. Pour ce faire, rien de plus simple, fracasse le avec ton doigt ou ta souris.',
+    text: t('components.dialog.FirstLossDialog.steps.step3.text'),
     responses: [
-      { label: 'Je vais essayer', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.FirstLossDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Le but est de vaincre la puanteur de tous ces Shlagémon !',
+    text: t('components.dialog.FirstLossDialog.steps.step4.text'),
     responses: [
-      { label: 'Ok', nextId: 'step5', type: 'primary' },
+      { label: t('components.dialog.FirstLossDialog.steps.step4.responses.next'), nextId: 'step5', type: 'primary' },
     ],
   },
   {
     id: 'step5',
-    text: 'Tiens, prends ces 10 Potions Dégueulasses, ça peut servir.',
+    text: t('components.dialog.FirstLossDialog.steps.step5.text'),
     responses: [
       {
-        label: 'Merci !',
+        label: t('components.dialog.FirstLossDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
           inventory.add('potion', 10)
@@ -48,7 +49,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>

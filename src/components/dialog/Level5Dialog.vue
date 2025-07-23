@@ -4,46 +4,47 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'step1',
-    text: `Félicitations, tu poss\xE8des enfin un Shlagémon de niveau 5 !`,
+    text: t('components.dialog.Level5Dialog.steps.step1.text'),
     responses: [
-      { label: 'Continuer', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.Level5Dialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: 'Plus ils montent en niveau, plus leur odeur devient insupportable.',
+    text: t('components.dialog.Level5Dialog.steps.step2.text'),
     responses: [
-      { label: 'Retour', nextId: 'step1', type: 'danger' },
-      { label: 'Continuer', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.Level5Dialog.steps.step2.responses.back'), nextId: 'step1', type: 'danger' },
+      { label: t('components.dialog.Level5Dialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Nous devons tous les capturer pour comprendre comment stopper ces miasmes.',
+    text: t('components.dialog.Level5Dialog.steps.step3.text'),
     responses: [
-      { label: 'Retour', nextId: 'step2', type: 'danger' },
-      { label: 'Continuer', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.Level5Dialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
+      { label: t('components.dialog.Level5Dialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Je compte sur toi pour remplir le Shlagedex au plus vite.',
+    text: t('components.dialog.Level5Dialog.steps.step4.text'),
     responses: [
-      { label: 'Retour', nextId: 'step3', type: 'danger' },
-      { label: 'Continuer', nextId: 'step5', type: 'primary' },
+      { label: t('components.dialog.Level5Dialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
+      { label: t('components.dialog.Level5Dialog.steps.step4.responses.next'), nextId: 'step5', type: 'primary' },
     ],
   },
   {
     id: 'step5',
-    text: 'Pour t\'aider, voici 10 Shlagéballs. Attention, elles sentent fort !',
+    text: t('components.dialog.Level5Dialog.steps.step5.text'),
     responses: [
-      { label: 'Retour', nextId: 'step4', type: 'danger' },
+      { label: t('components.dialog.Level5Dialog.steps.step5.responses.back'), nextId: 'step4', type: 'danger' },
       {
-        label: 'Merci Professeur !',
+        label: t('components.dialog.Level5Dialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
           inventory.add('shlageball', 10)
@@ -52,7 +53,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>

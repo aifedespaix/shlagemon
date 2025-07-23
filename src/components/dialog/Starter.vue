@@ -8,6 +8,8 @@ import salamiches from '~/data/shlagemons/salamiches'
 
 const emit = defineEmits(['done'])
 
+const { t } = useI18n()
+
 const starters: BaseShlagemon[] = [carapouffe, salamiches, bulgrosboule]
 const gameState = useGameStateStore()
 const dex = useShlagedexStore()
@@ -20,24 +22,24 @@ function imageUrl(id: string) {
   return `/shlagemons/${id}/${id}.png`
 }
 
-const dialogTree = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: `Salut, je suis ${profMerdant.name}, mes amis disent que je sens bon.`,
+    text: t('components.dialog.Starter.steps.start.text', { name: profMerdant.name }),
     responses: [
-      { label: 'Tu n\'as pas l\'air très intelligent.', nextId: '2', type: 'primary' },
+      { label: t('components.dialog.Starter.steps.start.responses.next'), nextId: '2', type: 'primary' },
     ],
   },
   {
     id: '2',
-    text: 'Je t\'emmerde mon petit, pour la peine, je vais te forcer à adopter un de mes Shlagémons.',
+    text: t('components.dialog.Starter.steps.step2.text'),
     responses: [
-      { label: 'Ho nooon, pas un Shlagémon, ils sentent trop mauvais !', nextId: 'choice', type: 'primary' },
+      { label: t('components.dialog.Starter.steps.step2.responses.next'), nextId: 'choice', type: 'primary' },
     ],
   },
   {
     id: 'choice',
-    text: 'Je te laisse choisir le moins pire, tu veux quel Shlagémon ?',
+    text: t('components.dialog.Starter.steps.choice.text'),
     responses: starters.map(s => ({
       label: s.name,
       nextId: nextId(s.id),
@@ -47,16 +49,12 @@ const dialogTree = [
   },
   ...starters.map(s => ({
     id: nextId(s.id),
-    text: s.id === 'bulgrosboule'
-      ? 'Je te déconseille de choisir celui là, il est horriblement mauvais.'
-      : s.id === 'salamiches'
-        ? 'Attention, il rote du feu quand il mange du pain.'
-        : 'Attention, il ne sait pas nager.',
+    text: t(`components.dialog.Starter.steps.${s.id}.text`),
     imageUrl: imageUrl(s.id),
     responses: [
-      { label: 'T\'as pas mieux que cette merde ?', nextId: 'choice', type: 'danger' },
+      { label: t('components.dialog.Starter.steps.common.responses.back'), nextId: 'choice', type: 'danger' },
       {
-        label: s.id === 'bulgrosboule' ? 'Je l\'aime pas trop mais ok' : `Merci ${profMerdant.name}`,
+        label: t(`components.dialog.Starter.steps.${s.id}.responses.valid`, { name: profMerdant.name }),
         type: 'valid',
         action: () => {
           gameState.setStarterId(s.id)
@@ -67,7 +65,7 @@ const dialogTree = [
       },
     ],
   })),
-] as DialogNode[]
+])
 </script>
 
 <template>

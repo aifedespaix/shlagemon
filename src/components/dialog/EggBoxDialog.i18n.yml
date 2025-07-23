@@ -1,0 +1,42 @@
+fr:
+  steps:
+    step1:
+      text: Félicitations ! Tu as obtenu ton premier œuf.
+      responses:
+        next: Continuer
+    step2:
+      text: Pour les conserver, voici une boîte spéciale.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Elle stocke tous tes œufs sans encombrer ton inventaire.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Utilise-la pour voir la liste de tes œufs à tout moment.
+      responses:
+        back: Retour
+        valid: Merci Prof !
+en:
+  steps:
+    step1:
+      text: Congratulations! You got your first egg.
+      responses:
+        next: Continue
+    step2:
+      text: To keep them safe, here's a special box.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: It stores all your eggs without cluttering your inventory.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Use it to see your eggs list anytime.
+      responses:
+        back: Back
+        valid: Thanks Prof!

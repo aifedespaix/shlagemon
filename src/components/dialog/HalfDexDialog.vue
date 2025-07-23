@@ -4,38 +4,39 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'step1',
-    text: 'Félicitations ! Tu as déjà complété la moitié du Shlagedex.',
+    text: t('components.dialog.HalfDexDialog.steps.step1.text'),
     responses: [
-      { label: 'Continuer', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.HalfDexDialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: `Je suis ${profMerdant.name}. Pour t\'aider, je vais te remettre un objet très spécial : le Multi-UXP.`,
+    text: t('components.dialog.HalfDexDialog.steps.step2.text', { name: profMerdant.name }),
     responses: [
-      { label: 'Retour', nextId: 'step1', type: 'danger' },
-      { label: 'Continuer', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.HalfDexDialog.steps.step2.responses.back'), nextId: 'step1', type: 'danger' },
+      { label: t('components.dialog.HalfDexDialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Fais-le tenir par un Shlagémon et il recevra la moitié de l\'expérience gagnée en combat.',
+    text: t('components.dialog.HalfDexDialog.steps.step3.text'),
     responses: [
-      { label: 'Retour', nextId: 'step2', type: 'danger' },
-      { label: 'Continuer', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.HalfDexDialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
+      { label: t('components.dialog.HalfDexDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Un seul Shlagémon peut le porter, alors choisis bien son porteur !',
+    text: t('components.dialog.HalfDexDialog.steps.step4.text'),
     responses: [
-      { label: 'Retour', nextId: 'step3', type: 'danger' },
+      { label: t('components.dialog.HalfDexDialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
       {
-        label: 'Merci !',
+        label: t('components.dialog.HalfDexDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
           inventory.add('multi-exp', 1)
@@ -44,7 +45,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>
