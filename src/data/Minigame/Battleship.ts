@@ -17,11 +17,11 @@ export const battleshipMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: 'Une partie de bataille navale ?',
+        text: i18n.global.t('data.Minigame.Battleship.startText'),
         responses: [
-          { label: 'Oui', type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.Battleship.yes'), type: 'primary', action: start },
           {
-            label: 'Non',
+            label: i18n.global.t('data.Minigame.Battleship.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -48,10 +48,10 @@ export const battleshipMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: 'Perdu ! Recommence quand tu veux.',
+        text: i18n.global.t('data.Minigame.Battleship.loseText'),
         responses: [
-          { label: 'Recommencer', type: 'primary', action: () => miniGame.play() },
-          { label: 'Retour', type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.Battleship.restart'), type: 'primary', action: () => miniGame.play() },
+          { label: i18n.global.t('data.Minigame.Battleship.back'), type: 'danger', action: done },
         ],
       },
     ]

@@ -17,11 +17,11 @@ export const shlagTaquinMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: 'Une partie de taquin ?',
+        text: i18n.global.t('data.Minigame.ShlagTaquin.startText'),
         responses: [
-          { label: 'Oui', type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.ShlagTaquin.yes'), type: 'primary', action: start },
           {
-            label: 'Non',
+            label: i18n.global.t('data.Minigame.ShlagTaquin.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -48,10 +48,10 @@ export const shlagTaquinMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: 'Perdu ! Recommence quand tu veux.',
+        text: i18n.global.t('data.Minigame.ShlagTaquin.loseText'),
         responses: [
-          { label: 'Recommencer', type: 'primary', action: () => miniGame.play() },
-          { label: 'Retour', type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.ShlagTaquin.restart'), type: 'primary', action: () => miniGame.play() },
+          { label: i18n.global.t('data.Minigame.ShlagTaquin.back'), type: 'danger', action: done },
         ],
       },
     ]

@@ -17,11 +17,11 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: 'Envie d\'une partie de morpion ?',
+        text: i18n.global.t('data.Minigame.TicTacToe.startText'),
         responses: [
-          { label: 'Oui', type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.TicTacToe.yes'), type: 'primary', action: start },
           {
-            label: 'Non',
+            label: i18n.global.t('data.Minigame.TicTacToe.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -48,10 +48,10 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: 'Perdu ! Recommence quand tu veux.',
+        text: i18n.global.t('data.Minigame.TicTacToe.loseText'),
         responses: [
-          { label: 'Recommencer', type: 'primary', action: () => miniGame.play() },
-          { label: 'Retour', type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.TicTacToe.restart'), type: 'primary', action: () => miniGame.play() },
+          { label: i18n.global.t('data.Minigame.TicTacToe.back'), type: 'danger', action: done },
         ],
       },
     ]
