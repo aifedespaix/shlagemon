@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useElementSize, useEventListener, useSwipe } from '@vueuse/core'
+import { useElementSize, useEventListener, useSwipe, useTimeoutFn } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
 const props = withDefaults(defineProps<{ difficulty?: 'easy' | 'hard' }>(), {
   difficulty: 'easy',
 })
-const emit = defineEmits<{ (e: 'gameEnd', result: 'success'): void }>()
+const emit = defineEmits<{ (e: 'win'): void }>()
 
 const size = computed(() => props.difficulty === 'hard' ? 4 : 3)
 
@@ -60,7 +60,7 @@ watch(size, async () => {
 
 watch(() => puzzle.solved, (v) => {
   if (v)
-    setTimeout(() => emit('gameEnd', 'success'), 1000)
+    useTimeoutFn(() => emit('win'), 2000)
 })
 </script>
 
@@ -128,13 +128,6 @@ watch(() => puzzle.solved, (v) => {
           }"
           @click="puzzle.moveTile(tile.idx)"
         />
-      </div>
-
-      <div
-        v-if="puzzle.solved"
-        class="absolute bottom-4 left-1/2 z-20 animate-bounce text-xl font-bold -translate-x-1/2"
-      >
-        Gagné !
       </div>
     </div>
   </div>
