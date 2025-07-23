@@ -18,24 +18,14 @@ from moviepy.audio.fx import AudioFadeOut
 # --- CONFIG ---
 MUSIC_DATA_PATH = '../public/music-data.json'
 BASE_AUDIO_PATH = '../public'
-# Path to the bouncing Shlagéball image
 CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
-# Backgrounds of the video are stored in ./clip and named after music type
 BG_IMG_DIR = './clip'
-# Game logo displayed on top of the video
 LOGO_PATH = '../public/logo.png'
-# Font used for the title text
 TITLE_FONT_PATH = './clip/LilitaOne-Regular.ttf'
-# Title color and outline
-# TITLE_COLOR = '#0951b6'
-# TITLE_STROKE_COLOR = '#ffdb02'
 TITLE_COLOR = '#fafafa'
 TITLE_STROKE_COLOR = '#010101'
-# Output directory for generated clips
 OUTPUT_DIR = './musique'
-# Temporary working directory for moviepy
 TMP_DIR = os.path.join(OUTPUT_DIR, '_tmp')
-# Couleur principale de l'application (teal WPA)
 BASE_COLOR = (13, 148, 136)
 W, H = 1920, 1080
 FPS = 60
@@ -44,8 +34,18 @@ def load_music_data():
     with open(MUSIC_DATA_PATH, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-def get_audio_full_path(url):
-    return os.path.join(BASE_AUDIO_PATH, url.strip("/"))
+def get_audio_wav_path(music):
+    """
+    Cherche le fichier WAV correspondant à la musique (par le nom, sans tenir compte du sous-dossier),
+    dans tout le dossier 'musique/source/' et ses sous-dossiers.
+    """
+    import glob
+    base = os.path.basename(music['url'])
+    name, _ = os.path.splitext(base)
+    pattern = os.path.join('musique', 'source', '**', f"{name}.wav")
+    results = glob.glob(pattern, recursive=True)
+    return results[0] if results else None
+
 
 def get_public_full_path(url):
     """Return the absolute path for a file located in the public directory."""
@@ -65,9 +65,7 @@ def decide_loops(audio_path):
     return max(2, int(np.ceil(120 / duration)))
 
 def make_audio_clip(music):
-    if not music['url']:
-        return None
-    path = get_audio_full_path(music['url'])
+    path = get_audio_wav_path(music)
     if not os.path.isfile(path):
         print(f"File not found: {path}")
         return None
@@ -86,9 +84,7 @@ def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=6
     fading to transparent towards the top.
     """
     def bar_color(_i):
-        # all bars share the same base color
         return BASE_COLOR
-    import librosa
     y, sr = librosa.load(audio_path, sr=None, mono=True)
     hop_length = max(1, int(len(y) / (duration * FPS)))
     S = np.abs(librosa.stft(y, n_fft=512, hop_length=hop_length))
@@ -112,11 +108,9 @@ def make_audio_spectrum_clip(audio_path, duration, width=W, height=180, n_bars=6
             x1 = i * bar_width
             x2 = x1 + bar_width - 2
             y2 = height - 1
-            # gradient alpha from top (0) to bottom (255)
             alphas = (np.linspace(0, 255, bar_h)).astype(np.uint8)
             bar = np.zeros((bar_h, x2 - x1, 4), dtype=np.uint8)
             bar[:, :, :3] = bar_color(i)
-            # repeat the alpha gradient across the bar width
             bar[:, :, 3] = alphas[:, None]
             y1 = y2 - bar_h + 1
             img[y1:y2 + 1, x1:x2, :] = bar
@@ -170,7 +164,6 @@ def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=
     return VideoClip(make_frame, duration=duration).with_fps(FPS)
 
 def make_character_clip(image_path, duration, height_ratio=0.8):
-    """Display the character image on the left at the specified height."""
     if not os.path.isfile(image_path):
         print(f"Image not found: {image_path}")
         return None
@@ -180,23 +173,17 @@ def make_character_clip(image_path, duration, height_ratio=0.8):
     return clip.with_position(("left", "center"))
 
 def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=160):
-    """Create a clip containing the title text."""
     try:
         font = ImageFont.truetype(TITLE_FONT_PATH, fontsize)
     except Exception:
         font = ImageFont.load_default()
-    
-    # Taille image
     img = Image.new("RGBA", (W, 200), (0,0,0,0))
     draw = ImageDraw.Draw(img)
-    
-    # Mesure le texte et centre
     bbox = draw.textbbox((0,0), text, font=font)
     wtxt = bbox[2] - bbox[0]
     htxt = bbox[3] - bbox[1]
     x = (W - wtxt) // 2
     y = (200 - htxt) // 2
-    
     draw.text(
         (x, y),
         text,
@@ -205,12 +192,9 @@ def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=16
         stroke_width=4,
         stroke_fill=TITLE_STROKE_COLOR,
     )
-    
-    # Convertit en clip MoviePy (colle sous la HB)
     clip = ImageClip(np.array(img)).with_duration(duration)
     clip = clip.with_position(("center", H//2 + y_offset))
     return clip
-
 
 def make_logo_clip(duration, width=W // 2, y_offset=-130):
     clip = ImageClip(LOGO_PATH).with_duration(duration)
@@ -218,7 +202,6 @@ def make_logo_clip(duration, width=W // 2, y_offset=-130):
     clip = clip.resized(lambda t: 0.99 + 0.007 * np.sin(2 * np.pi * t * 0.33))
     clip = clip.with_position(("center", y_offset))
     return clip
-
 
 def safe_filename(name):
     return "".join(c if c.isalnum() or c in "-_" else "_" for c in name)
@@ -235,6 +218,11 @@ def main():
             print(f"Skipping {music['nom']}, video already exists.")
             continue
 
+        audio_path = get_audio_wav_path(music)
+        if not os.path.isfile(audio_path):
+            print(f"Skipping {music['nom']}, WAV audio not found at {audio_path}")
+            continue
+
         clip_audio = make_audio_clip(music)
         if not clip_audio:
             print(f"Skipping {music['nom']}, audio missing.")
@@ -247,7 +235,7 @@ def main():
             print(f"Background image not found: {bg_path}")
             continue
         bg_clip = ImageClip(bg_path).with_duration(duration).resized(width=W, height=H)
-        spectrum_clip = make_audio_spectrum_clip(get_audio_full_path(music['url']), duration)
+        spectrum_clip = make_audio_spectrum_clip(audio_path, duration)
         logo_clip = make_logo_clip(duration)
         title = f"{music['nom']}"
         title_clip = make_title_clip(title, duration)
@@ -260,7 +248,7 @@ def main():
                 overlays.append(character_clip)
         else:
             pulse_clip = make_shlageball_pulse_clip(
-                get_audio_full_path(music['url']),
+                audio_path,
                 duration,
                 CENTER_IMG_PATH,
                 min_scale=0.35,
@@ -270,9 +258,7 @@ def main():
 
         overlays.append(title_clip)
         final_video = CompositeVideoClip(overlays).with_audio(clip_audio)
-        # fade to black over the last second of the video
         final_video = final_video.with_effects([vfx.FadeOut(1, final_color=(0, 0, 0))])
-
 
         print(f"Export de {output_path}...")
         temp_audio_path = os.path.join(TMP_DIR, f"{outname}_audio.m4a")
