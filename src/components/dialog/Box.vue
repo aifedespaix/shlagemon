@@ -3,17 +3,17 @@ import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import { getCharacterTrack, getZoneTrack } from '~/data/music'
 
-const { dialogTree, character, avatarUrl, orientation, exitTrack }
+const { dialogTree, character, orientation, exitTrack }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
     character: Character
-    avatarUrl: string
     orientation?: 'row' | 'col'
     exitTrack?: string
   }>(), {
     orientation: 'row',
   })
 
+const avatarUrl = computed(() => `/characters/${character.id}/${character.id}.webp`)
 const buttonClass = computed(() =>
   orientation === 'col'
     ? 'flex w-full flex-col items-center justify-center text-xs'

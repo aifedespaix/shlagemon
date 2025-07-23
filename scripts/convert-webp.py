@@ -8,7 +8,7 @@ parser.add_argument("--force", "-f", action="store_true", help="Force la reconve
 args = parser.parse_args()
 
 # Dossier cible
-target_path = Path(__file__).resolve().parent.parent / "public" / "shlagemons"
+target_path = Path(__file__).resolve().parent.parent / "public"
 
 for png_path in target_path.rglob("*.png"):
     webp_path = png_path.with_suffix('.webp')
