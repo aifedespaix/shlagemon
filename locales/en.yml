@@ -1358,6 +1358,11 @@ data:
           Ses yeux partent chacun dans une direction différente, ce qui
           déstabilise ses adversaires. Il brille d'une lueur aquatique quand on
           lui parle de vacances au bord de la mer.
+      poissaucisse:
+        description: >-
+          Poissaucisse se nourrit exclusivement de saucisses. Son odeur
+          charcutière attire chiens et dresseurs affamés, ce qui le rend
+          paradoxalement difficile à pêcher.
     90-95:
       elektektonik:
         description: >-
@@ -2724,6 +2729,10 @@ data:
           reste floue. Aujourd’hui, il râle, il grogne, et parfois, il dort en
           plein combat. Mais attention : sous la couche de rhumatismes, il reste
           dangereux… surtout pour les nerfs.
+    mairiousse:
+      description: ''
+    zebrapoisbleu:
+      description: ''
   Minigame:
     ConnectFour:
       startText: Fancy a game of Connect Four?

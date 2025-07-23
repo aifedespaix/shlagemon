@@ -42,7 +42,7 @@ function onVillageWheel(e: WheelEvent) {
     </div>
     <div
       id="savages"
-      class="tiny-scrollbar grid h-full snap-y snap-mandatory gap-1 overflow-y-auto"
+      class="tiny-scrollbar grid h-full snap-y snap-mandatory gap-1 overflow-y-auto p-1"
       style="grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr))"
     >
       <ZoneButtonWild
