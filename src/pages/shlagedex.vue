@@ -19,7 +19,7 @@ function open(mon: BaseShlagemon) {
 
 <template>
   <div class="mx-auto max-w-160 w-full p-4">
-    <DeckList :mons="allShlagemons" :on-item-click="open" />
+    <DeckList :mons="allShlagemons" :on-item-click="open" :selected-id="selected?.id" />
     <UiModal v-model="showDetail" footer-close @close="showDetail = false">
       <DeckDetail :mon="selected" @open-mon="open" />
     </UiModal>

@@ -4,6 +4,7 @@ import type { BaseShlagemon } from '~/type/shlagemon'
 const props = defineProps<{
   mons: BaseShlagemon[]
   onItemClick?: (mon: BaseShlagemon) => void
+  selectedId?: string | null
 }>()
 
 const search = ref('')
@@ -11,9 +12,17 @@ const { t } = useI18n()
 
 const displayed = computed(() => {
   const q = search.value.trim().toLowerCase()
-  return props.mons
+  const result = props.mons
     .filter(m => m.name.toLowerCase().includes(q))
     .sort((a, b) => a.name.localeCompare(b.name))
+  if (props.selectedId) {
+    const idx = result.findIndex(m => m.id === props.selectedId)
+    if (idx > 0) {
+      const [selected] = result.splice(idx, 1)
+      result.unshift(selected)
+    }
+  }
+  return result
 })
 </script>
 
