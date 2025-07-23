@@ -119,6 +119,7 @@ declare module 'vue' {
     ShopItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     ShopItemDetail: typeof import('./components/shop/ItemDetail.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
+    UiAnimatedNumber: typeof import('./components/ui/AnimatedNumber.vue')['default']
     UiBadge: typeof import('./components/ui/Badge.vue')['default']
     UiButton: typeof import('./components/ui/Button.vue')['default']
     UiCheckBox: typeof import('./components/ui/CheckBox.vue')['default']

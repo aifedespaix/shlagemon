@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AnimatedNumber from '~/components/ui/AnimatedNumber.vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { ballHues } from '~/utils/ball'
 
@@ -34,13 +35,14 @@ const totalInDex = allShlagemons.length
     <UiTooltip :text="t('components.panel.PlayerInfos.dex')">
       <div class="min-w-0 flex items-center gap-1">
         <IconShlagedex class="h-4 w-4" />
-        <span class="shrink-0 font-bold">{{ dex.shlagemons.length ?? 0 }} / {{ totalInDex }}</span>
+        <AnimatedNumber class="shrink-0 font-bold" :value="dex.shlagemons.length ?? 0" />
+        <span class="shrink-0">/ {{ totalInDex }}</span>
       </div>
     </UiTooltip>
     <UiTooltip :text="t('components.panel.PlayerInfos.averageLevel')">
       <div class="min-w-0 flex items-center gap-1">
         <IconXp class="h-4 w-4" />
-        <span class="shrink-0 font-bold">{{ dex.averageLevel.toFixed(1) }}</span>
+        <AnimatedNumber class="shrink-0 font-bold" :value="Number(dex.averageLevel.toFixed(1))" :precision="1" />
       </div>
     </UiTooltip>
     <UiTooltip :text="t('components.panel.PlayerInfos.bonus')">
@@ -49,7 +51,7 @@ const totalInDex = allShlagemons.length
         @click="showBonus = true"
       >
         <IconBonus class="h-4 w-4" />
-        <span class="shrink-0 font-bold">+{{ Math.round(dex.bonusPercent) }}%</span>
+        <span class="shrink-0 font-bold">+<AnimatedNumber :value="Math.round(dex.bonusPercent)" />%</span>
       </div>
     </UiTooltip>
     <UiModal v-model="showBonus" footer-close>
@@ -66,7 +68,7 @@ const totalInDex = allShlagemons.length
           class="h-4 w-4"
           :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
         >
-        <span class="shrink-0 font-bold">{{ inventory.items[ballStore.current]?.toLocaleString() || 0 }}</span>
+        <AnimatedNumber class="shrink-0 font-bold" :value="inventory.items[ballStore.current] ?? 0" />
       </div>
     </UiTooltip>
     <BallSelectionModal />
