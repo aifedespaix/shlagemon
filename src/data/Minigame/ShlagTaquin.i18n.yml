@@ -2,7 +2,7 @@ fr:
   startText: Une partie de taquin ?
   yes: Oui
   no: Non
-  winText: Bravo ! Tu gagnes un œuf Foudre.
+  winText: Bravo ! Je te donne un œuf Foudre.
   super: Super !
   loseText: Perdu ! Recommence quand tu veux.
   restart: Recommencer
@@ -11,7 +11,7 @@ en:
   startText: Fancy a sliding puzzle game?
   yes: Yes
   no: No
-  winText: Congrats! You win a Thunder Egg.
+  winText: Bravo! I give you a Thunder Egg.
   super: Awesome!
   loseText: Lost! Try again whenever you like.
   restart: Restart

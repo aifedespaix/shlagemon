@@ -2,7 +2,7 @@ fr:
   startText: Une partie de bataille navale ?
   yes: Oui
   no: Non
-  winText: Victoire ! Tu gagnes un œuf Eau.
+  winText: Bravo ! Victoire ! Je te donne un œuf Eau.
   super: Super !
   loseText: Perdu ! Recommence quand tu veux.
   restart: Recommencer
@@ -11,7 +11,7 @@ en:
   startText: How about a game of Battleship?
   yes: Yes
   no: No
-  winText: Victory! You win a Water Egg.
+  winText: Bravo! Victory! I give you a Water Egg.
   super: Awesome!
   loseText: Lost! Try again whenever you like.
   restart: Restart

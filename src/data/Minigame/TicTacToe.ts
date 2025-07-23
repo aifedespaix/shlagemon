@@ -1,4 +1,5 @@
 import type { MiniGameDefinition } from '~/type/minigame'
+import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { sachatte } from '../characters/sachatte'
@@ -35,9 +36,9 @@ export const ticTacToeMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: 'Bien joué ! Tu gagnes un Œuf Herbe.',
+        text: i18n.global.t('data.Minigame.TicTacToe.winText'),
         responses: [
-          { label: 'Super !', type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.TicTacToe.super'), type: 'valid', action: done },
         ],
       },
     ]

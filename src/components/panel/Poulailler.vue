@@ -14,6 +14,18 @@ function tick() {
 }
 useIntervalFn(tick, 1000)
 
+const colorMap: Record<EggType, string> = {
+  feu: 'text-orange-500 dark:text-orange-400',
+  eau: 'text-blue-500 dark:text-blue-400',
+  plante: 'text-green-500 dark:text-green-400',
+  electrique: 'text-yellow-500 dark:text-yellow-400',
+  psy: 'text-pink-500 dark:text-pink-400',
+}
+
+function colorClass(type: EggType) {
+  return colorMap[type] || ''
+}
+
 const inventoryEggs = computed(() => {
   return eggIds
     .map(id => ({
@@ -25,7 +37,7 @@ const inventoryEggs = computed(() => {
 })
 
 function startIncubation(id: EggItemId) {
-  if (eggs.incubator)
+  if (eggs.incubator.length >= 3)
     return
   const map: Record<EggItemId, EggType> = {
     'oeuf-feu': 'feu',
@@ -38,8 +50,8 @@ function startIncubation(id: EggItemId) {
     box.removeEgg(id)
 }
 
-function hatch() {
-  const mon = eggs.hatchEgg()
+function hatch(id: number) {
+  const mon = eggs.hatchEgg(id)
   if (mon)
     modal.open(mon)
 }
@@ -73,22 +85,25 @@ function remaining(egg: { hatchesAt: number }) {
           <h4 class="font-semibold">
             {{ t('components.panel.Poulailler.incubator') }}
           </h4>
-          <div class="flex-center flex-col gap-1 border rounded p-2">
-            <template v-if="eggs.incubator">
+          <div class="flex-center flex-wrap gap-2 border rounded p-2">
+            <template v-if="eggs.incubator.length">
               <div
-                class="i-game-icons:egg-eye transition-all duration-300"
-                :class="[
-                  eggs.isReady ? 'h-12 w-12 animate-pulse-alt animate-count-infinite cursor-pointer' : 'h-8 w-8',
-                  {
-                    'text-orange-500 dark:text-orange-400': eggs.incubator.type === 'feu',
-                    'text-blue-500 dark:text-blue-400': eggs.incubator.type === 'eau',
-                    'text-green-500 dark:text-green-400': eggs.incubator.type === 'plante',
-                    'text-yellow-500 dark:text-yellow-400': eggs.incubator.type === 'electrique',
-                  },
-                ]"
-                @click="eggs.isReady && hatch()"
-              />
-              <span v-if="!eggs.isReady" class="text-xs">{{ remaining(eggs.incubator) }}s</span>
+                v-for="egg in eggs.incubator"
+                :key="egg.id"
+                class="flex flex-col items-center gap-1"
+              >
+                <div
+                  class="i-game-icons:egg-eye transition-all duration-300"
+                  :class="[
+                    eggs.isReady(egg)
+                      ? 'h-12 w-12 animate-pulse-alt animate-count-infinite cursor-pointer'
+                      : 'h-8 w-8',
+                    colorClass(egg.type),
+                  ]"
+                  @click="eggs.isReady(egg) && hatch(egg.id)"
+                />
+                <span v-if="!eggs.isReady(egg)" class="text-xs">{{ remaining(egg) }}s</span>
+              </div>
             </template>
             <span v-else class="text-sm">{{ t('components.panel.Poulailler.noEgg') }}</span>
           </div>
@@ -114,7 +129,7 @@ function remaining(egg: { hatchesAt: number }) {
               <div class="flex items-center gap-1">
                 <span class="text-xs font-bold">x{{ entry.qty }}</span>
                 <UiButton
-                  v-if="!eggs.incubator"
+                  v-if="eggs.incubator.length < 3"
                   class="text-xs"
                   @click="startIncubation(entry.id as EggItemId)"
                 >

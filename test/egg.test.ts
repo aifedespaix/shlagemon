@@ -15,11 +15,13 @@ describe('egg workflow', () => {
     inventory.add('oeuf-feu')
     eggs.startIncubation('feu')
     inventory.remove('oeuf-feu')
-    expect(eggs.incubator).not.toBeNull()
+    expect(eggs.incubator.length).toBe(1)
 
-    vi.advanceTimersByTime(61_000)
-    expect(eggs.isReady).toBe(true)
-    const mon = eggs.hatchEgg()
+    const egg = eggs.incubator[0]
+    const duration = egg.hatchesAt - Date.now()
+    vi.advanceTimersByTime(duration + 1)
+    expect(eggs.isReady(egg)).toBe(true)
+    const mon = eggs.hatchEgg(egg.id)
     expect(mon).not.toBeNull()
     expect(dex.shlagemons.length).toBe(1)
     vi.useRealTimers()

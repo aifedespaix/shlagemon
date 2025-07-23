@@ -2,7 +2,7 @@ fr:
   startText: Une partie du jeu des paires ?
   yes: Oui
   no: Non
-  winText: Bien joué !
+  winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
   super: Super !
   loseText: Dommage !
   restart: Recommencer
@@ -11,7 +11,7 @@ en:
   startText: Fancy a game of pairs?
   yes: Yes
   no: No
-  winText: Well played!
+  winText: Bravo! Well played! I give you a Psy Egg.
   super: Awesome!
   loseText: Too bad!
   restart: Restart
