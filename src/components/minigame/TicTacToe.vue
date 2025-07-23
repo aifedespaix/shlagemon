@@ -64,7 +64,8 @@ function play(i: number) {
   if (centerFull())
     return end(false, true)
   turn.value = 'ai'
-  useTimeoutFn(aiMove, 300)
+  const delay = 250 + Math.random() * 1250
+  useTimeoutFn(aiMove, delay)
 }
 
 function end(win: boolean, draw = false) {
