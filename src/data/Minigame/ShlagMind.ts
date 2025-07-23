@@ -5,11 +5,11 @@ import { useMiniGameStore } from '~/stores/miniGame'
 import { marcon } from '../characters/marcon'
 import { psyEgg } from '../items/items'
 
-export const shlagCardsMiniGame: MiniGameDefinition = {
-  id: 'shlagcards',
-  label: 'Duel de Cartes',
+export const shlagMindMiniGame: MiniGameDefinition = {
+  id: 'shlagmind',
+  label: 'Mastermind Shlagémon',
   character: marcon,
-  component: () => import('~/components/minigame/MiniGameShlagCards.vue'),
+  component: () => import('~/components/minigame/MiniGameShlagMind.vue'),
   reward: { type: 'item', itemId: psyEgg.id },
   createIntro(start) {
     const miniGame = useMiniGameStore()
@@ -17,11 +17,11 @@ export const shlagCardsMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: i18n.global.t('data.Minigame.ShlagCards.startText'),
+        text: i18n.global.t('data.Minigame.ShlagMind.startText'),
         responses: [
-          { label: i18n.global.t('data.Minigame.ShlagCards.yes'), type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.ShlagMind.yes'), type: 'primary', action: start },
           {
-            label: i18n.global.t('data.Minigame.ShlagCards.no'),
+            label: i18n.global.t('data.Minigame.ShlagMind.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -36,9 +36,9 @@ export const shlagCardsMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: i18n.global.t('data.Minigame.ShlagCards.winText'),
+        text: i18n.global.t('data.Minigame.ShlagMind.winText'),
         responses: [
-          { label: i18n.global.t('data.Minigame.ShlagCards.super'), type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.ShlagMind.super'), type: 'valid', action: done },
         ],
       },
     ]
@@ -48,10 +48,10 @@ export const shlagCardsMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: i18n.global.t('data.Minigame.ShlagCards.loseText'),
+        text: i18n.global.t('data.Minigame.ShlagMind.loseText'),
         responses: [
-          { label: i18n.global.t('data.Minigame.ShlagCards.restart'), type: 'primary', action: () => miniGame.play() },
-          { label: i18n.global.t('data.Minigame.ShlagCards.back'), type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.ShlagMind.restart'), type: 'primary', action: () => miniGame.play() },
+          { label: i18n.global.t('data.Minigame.ShlagMind.back'), type: 'danger', action: done },
         ],
       },
     ]

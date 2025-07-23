@@ -1,7 +1,7 @@
 import type { MiniGameDefinition } from '~/type/minigame'
 import { battleshipMiniGame } from './Minigame/Battleship'
 import { connectFourMiniGame } from './Minigame/ConnectFour'
-import { shlagCardsMiniGame } from './Minigame/ShlagCards'
+import { shlagMindMiniGame } from './Minigame/ShlagMind'
 import { shlagPairsMiniGame } from './Minigame/ShlagPairs'
 import { shlagTaquinMiniGame } from './Minigame/ShlagTaquin'
 import { ticTacToeMiniGame } from './Minigame/TicTacToe'
@@ -10,7 +10,7 @@ export const miniGames: MiniGameDefinition[] = [
   ticTacToeMiniGame,
   battleshipMiniGame,
   connectFourMiniGame,
-  shlagCardsMiniGame,
+  shlagMindMiniGame,
   shlagPairsMiniGame,
   shlagTaquinMiniGame,
 ]

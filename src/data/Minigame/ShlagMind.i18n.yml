@@ -1,5 +1,5 @@
 fr:
-  startText: Une partie de Duel de Cartes ?
+  startText: Une partie de ShlagMind ?
   yes: Oui
   no: Non
   winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
@@ -8,7 +8,7 @@ fr:
   restart: Recommencer
   back: Retour
 en:
-  startText: Fancy a game of Shlag Cards?
+  startText: Fancy a game of ShlagMind?
   yes: Yes
   no: No
   winText: Bravo! Well played! I give you a Psy Egg.
