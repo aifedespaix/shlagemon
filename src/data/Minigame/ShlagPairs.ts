@@ -1,13 +1,13 @@
 import type { MiniGameDefinition } from '~/type/minigame'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
-import { sachatte } from '../characters/sachatte'
+import { profMerdant } from '../characters/prof-merdant'
 import { fireEgg } from '../items/items'
 
 export const shlagPairsMiniGame: MiniGameDefinition = {
   id: 'shlagpairs',
   label: 'Shlag Pairs',
-  character: sachatte,
+  character: profMerdant,
   component: () => import('~/components/minigame/MiniGameShlagPairs.vue'),
   reward: { type: 'item', itemId: fireEgg.id },
   createIntro(start) {

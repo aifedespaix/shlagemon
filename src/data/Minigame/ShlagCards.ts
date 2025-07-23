@@ -2,13 +2,13 @@ import type { MiniGameDefinition } from '~/type/minigame'
 import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
-import { sachatte } from '../characters/sachatte'
+import { marcon } from '../characters/marcon'
 import { psyEgg } from '../items/items'
 
 export const shlagCardsMiniGame: MiniGameDefinition = {
   id: 'shlagcards',
   label: 'Duel de Cartes',
-  character: sachatte,
+  character: marcon,
   component: () => import('~/components/minigame/MiniGameShlagCards.vue'),
   reward: { type: 'item', itemId: psyEgg.id },
   createIntro(start) {
