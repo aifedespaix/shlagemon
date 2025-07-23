@@ -1,0 +1,42 @@
+fr:
+  steps:
+    step1:
+      text: Bien joué ! Tu as dégommé le boss et débloqué une nouvelle zone.
+      responses:
+        next: Continuer
+    step2:
+      text: Pour faire progresser tes Shlagémons et découvrir d'autres horreurs, balade-toi dans la zone qui vient d'ouvrir.
+      responses:
+        back: Retour
+        next: Suite
+    step3:
+      text: Souviens-toi, un Shlagémon ne peut pas dépasser le niveau maximal de la zone où tu te trouves.
+      responses:
+        back: Retour
+        next: Suite
+    step4:
+      text: Explore d'autres endroits pour continuer à les faire évoluer. Tiens, prends cette Potion d'Expérience, j'en ai qu'une !
+      responses:
+        back: Retour
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: Well done! You smashed the boss and unlocked a new area.
+      responses:
+        next: Continue
+    step2:
+      text: To level up your Shlagemons and discover more horrors, wander in the new area that just opened.
+      responses:
+        back: Back
+        next: Next
+    step3:
+      text: Remember, a Shlagemon can't exceed the maximum level of the area you're in.
+      responses:
+        back: Back
+        next: Next
+    step4:
+      text: Explore other places to keep them evolving. Here, take this Experience Potion, I only have one!
+      responses:
+        back: Back
+        valid: Thanks Professor!

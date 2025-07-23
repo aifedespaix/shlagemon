@@ -1,0 +1,28 @@
+fr:
+  steps:
+    step1:
+      text: Impressionnant ! Tu as capturé au moins {count} Shlagémons.
+    step2:
+      text: 'Voici un objet unique : {name}.'
+    step3:
+      text: Il augmente {stat} du porteur de {percent}%.
+    step4:
+      text: L'effet se cumule avec les potions {potion}.
+    step5:
+      text: Équipe-le sur le Shlagémon de ton choix.
+    step6:
+      text: Bonne chance pour la suite !
+en:
+  steps:
+    step1:
+      text: Impressive! You've captured at least {count} Shlagemons.
+    step2:
+      text: 'Here is a unique item: {name}.'
+    step3:
+      text: It increases the holder's {stat} by {percent}%.
+    step4:
+      text: The effect stacks with {potion} potions.
+    step5:
+      text: Equip it on the Shlagemon of your choice.
+    step6:
+      text: Good luck from here on!

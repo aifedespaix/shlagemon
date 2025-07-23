@@ -5,38 +5,39 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
 const box = useEggBoxStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'Félicitations ! Tu as obtenu ton premier œuf.',
+    text: t('components.dialog.EggBoxDialog.steps.step1.text'),
     responses: [
-      { label: 'Continuer', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.EggBoxDialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: 'Pour les conserver, voici une boîte spéciale.',
+    text: t('components.dialog.EggBoxDialog.steps.step2.text'),
     responses: [
-      { label: 'Retour', nextId: 'start', type: 'danger' },
-      { label: 'Continuer', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.EggBoxDialog.steps.step2.responses.back'), nextId: 'start', type: 'danger' },
+      { label: t('components.dialog.EggBoxDialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Elle stocke tous tes œufs sans encombrer ton inventaire.',
+    text: t('components.dialog.EggBoxDialog.steps.step3.text'),
     responses: [
-      { label: 'Retour', nextId: 'step2', type: 'danger' },
-      { label: 'Continuer', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.EggBoxDialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
+      { label: t('components.dialog.EggBoxDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Utilise-la pour voir la liste de tes œufs à tout moment.',
+    text: t('components.dialog.EggBoxDialog.steps.step4.text'),
     responses: [
-      { label: 'Retour', nextId: 'step3', type: 'danger' },
+      { label: t('components.dialog.EggBoxDialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
       {
-        label: 'Merci Prof !',
+        label: t('components.dialog.EggBoxDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
           box.unlock()
@@ -47,7 +48,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>

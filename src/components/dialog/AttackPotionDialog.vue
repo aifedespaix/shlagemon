@@ -4,38 +4,39 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'Félicitations ! Tes Shlagémons deviennent redoutables.',
+    text: t('components.dialog.AttackPotionDialog.steps.step1.text'),
     responses: [
-      { label: 'Continuer', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.AttackPotionDialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: 'Les potions d\'attaque peuvent temporairement augmenter la puissance de ton Shlagémon.',
+    text: t('components.dialog.AttackPotionDialog.steps.step2.text'),
     responses: [
-      { label: 'Retour', nextId: 'start', type: 'danger' },
-      { label: 'Continuer', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.AttackPotionDialog.steps.step2.responses.back'), nextId: 'start', type: 'danger' },
+      { label: t('components.dialog.AttackPotionDialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Utilise-les pendant un combat pour prendre l\'avantage sur ton adversaire.',
+    text: t('components.dialog.AttackPotionDialog.steps.step3.text'),
     responses: [
-      { label: 'Retour', nextId: 'step2', type: 'danger' },
-      { label: 'Continuer', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.AttackPotionDialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
+      { label: t('components.dialog.AttackPotionDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Tiens, prends-en une et bonne chance pour la suite !',
+    text: t('components.dialog.AttackPotionDialog.steps.step4.text'),
     responses: [
-      { label: 'Retour', nextId: 'step3', type: 'danger' },
+      { label: t('components.dialog.AttackPotionDialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
       {
-        label: 'Merci !',
+        label: t('components.dialog.AttackPotionDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
           inventory.add('attack-potion', 1)
@@ -44,7 +45,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>

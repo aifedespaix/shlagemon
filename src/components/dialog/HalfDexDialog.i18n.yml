@@ -1,0 +1,42 @@
+fr:
+  steps:
+    step1:
+      text: Félicitations ! Tu as déjà complété la moitié du Shlagedex.
+      responses:
+        next: Continuer
+    step2:
+      text: 'Je suis {name}. Pour t''aider, je vais te remettre un objet très spécial : le Multi-UXP.'
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Fais-le tenir par un Shlagémon et il recevra la moitié de l'expérience gagnée en combat.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Un seul Shlagémon peut le porter, alors choisis bien son porteur !
+      responses:
+        back: Retour
+        valid: Merci !
+en:
+  steps:
+    step1:
+      text: Congratulations! You've already completed half of the Shlagedex.
+      responses:
+        next: Continue
+    step2:
+      text: 'I''m {name}. To help you, I''ll give you a very special item: the Multi-UXP.'
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: Have a Shlagemon hold it and it will receive half the experience earned in battle.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Only one Shlagemon can hold it, so choose its bearer wisely!
+      responses:
+        back: Back
+        valid: Thanks!

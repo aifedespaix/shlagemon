@@ -1,0 +1,52 @@
+fr:
+  steps:
+    step1:
+      text: 'Incroyable, l''un de tes Shlagémons a atteint le niveau 50 !'
+      responses:
+        next: Continuer
+    step2:
+      text: 'Je viens d''achever une nouvelle potion qui augmente les chances de capture.'
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: 'Utilise-la avant un lancer de Shlagéball pour bénéficier d''un bonus temporaire.'
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Les versions super et hyper offrent un bonus encore plus grand.
+      responses:
+        back: Retour
+        next: Continuer
+    step5:
+      text: 'Tiens, voici la première. Fais-en bon usage !'
+      responses:
+        back: Retour
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: 'Incredible, one of your Shlagemons reached level 50!'
+      responses:
+        next: Continue
+    step2:
+      text: 'I''ve just finished a new potion that increases capture chances.'
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: Use it before throwing a Shlageball to get a temporary bonus.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Super and hyper versions give an even greater bonus.
+      responses:
+        back: Back
+        next: Continue
+    step5:
+      text: Here is the first one. Use it wisely!
+      responses:
+        back: Back
+        valid: Thanks Professor!

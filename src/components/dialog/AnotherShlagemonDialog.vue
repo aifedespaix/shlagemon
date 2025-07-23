@@ -4,6 +4,7 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 import pikachiant from '~/data/shlagemons/15-20/pikachiant'
 
 const emit = defineEmits(['done'])
+const { t } = useI18n()
 const dex = useShlagedexStore()
 const mon = pikachiant
 
@@ -11,14 +12,14 @@ function imageUrl(id: string) {
   return `/shlagemons/${id}/${id}.png`
 }
 
-const dialogTree = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: `Bravo pour ta richesse ! Prends donc ce ${mon.name}.`,
+    text: t('components.dialog.AnotherShlagemonDialog.steps.step1.text', { name: mon.name }),
     imageUrl: imageUrl(mon.id),
     responses: [
       {
-        label: 'Merci professeur !',
+        label: t('components.dialog.AnotherShlagemonDialog.steps.step1.responses.valid'),
         type: 'valid',
         action: () => {
           dex.createShlagemon(mon)
@@ -27,7 +28,7 @@ const dialogTree = [
       },
     ],
   },
-] as DialogNode[]
+])
 </script>
 
 <template>

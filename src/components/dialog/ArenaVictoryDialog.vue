@@ -12,6 +12,7 @@ const progress = useZoneProgressStore()
 const zone = useZoneStore()
 const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
 const exitTrack = ref(preparationMusic)
+const { t } = useI18n()
 
 function collectBadge() {
   if (!arena.arenaData)
@@ -26,19 +27,19 @@ function collectBadge() {
   emit('done', 'arenaVictory')
 }
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'F\u00E9licitations ! Tu as triomph\u00E9 de l\u0027ar\u00E8ne.',
+    text: t('components.dialog.ArenaVictoryDialog.steps.step1.text'),
     responses: [
       {
-        label: 'R\u00E9cup\u00E9rer le badge',
+        label: t('components.dialog.ArenaVictoryDialog.steps.step1.responses.collect'),
         type: 'valid',
         action: collectBadge,
       },
     ],
   },
-]
+])
 </script>
 
 <template>

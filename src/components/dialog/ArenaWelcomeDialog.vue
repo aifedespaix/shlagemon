@@ -8,6 +8,7 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
 const exitTrack = ref(preparationMusic)
+const { t } = useI18n()
 
 function quit() {
   arena.reset()
@@ -16,24 +17,26 @@ function quit() {
   emit('done', 'arenaWelcome')
 }
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: `Bienvenue dans l'ar\u00E8ne, cette ar\u00E8ne te permet de capturer des Shlagémons jusqu'au niveau ${arena.arenaData?.badge.levelCap ?? ''}. Les combats se d\u00E9roulent en un contre un sans potion ni attaque manuelle. Tous tes bonus de potions seront annulés en entrant. Choisis des Shlag\u00E9mons entra\u00EEn\u00E9s et puissants contre les types oppos\u00E9s.`,
+    text: t('components.dialog.ArenaWelcomeDialog.steps.step1.text', {
+      levelCap: arena.arenaData?.badge.levelCap ?? '',
+    }),
     responses: [
       {
-        label: 'C\u0027est parti !',
+        label: t('components.dialog.ArenaWelcomeDialog.steps.step1.responses.start'),
         type: 'valid',
         action: () => emit('done', 'arenaWelcome'),
       },
       {
-        label: 'Quitter',
+        label: t('components.dialog.ArenaWelcomeDialog.steps.step1.responses.quit'),
         type: 'danger',
         action: quit,
       },
     ],
   },
-]
+])
 </script>
 
 <template>
