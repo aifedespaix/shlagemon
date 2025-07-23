@@ -1,3 +1,5 @@
+# a
+
 ## 📌 **Guide Complet : Organisation Avancée des Traductions Vue avec vue-i18n (TypeScript)**
 
 ### 📂 **1. Structure recommandée du projet :**
@@ -165,6 +167,7 @@ Utilisation dans Vue :
 ```vue
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+
 const { t } = useI18n()
 </script>
 

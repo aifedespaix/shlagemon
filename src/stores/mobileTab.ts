@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
-export type MobileTab =
-  | 'game'
-  | 'achievements'
-  | 'zones'
-  | 'dex'
-  | 'inventory'
+export type MobileTab
+  = | 'game'
+    | 'achievements'
+    | 'zones'
+    | 'dex'
+    | 'inventory'
 
 export const useMobileTabStore = defineStore('mobileTab', () => {
   const current = ref<MobileTab>('game')

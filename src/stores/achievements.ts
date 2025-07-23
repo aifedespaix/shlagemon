@@ -9,13 +9,13 @@ export interface Achievement {
   icon: string
 }
 
-export type AchievementEvent =
-  | { type: 'capture', shiny?: boolean }
-  | { type: 'battle-win', stronger: boolean }
-  | { type: 'battle-loss' }
-  | { type: 'item-used' }
-  | { type: 'king-defeated' }
-  | { type: 'minigame-win' }
+export type AchievementEvent
+  = | { type: 'capture', shiny?: boolean }
+    | { type: 'battle-win', stronger: boolean }
+    | { type: 'battle-loss' }
+    | { type: 'item-used' }
+    | { type: 'king-defeated' }
+    | { type: 'minigame-win' }
 
 export const useAchievementsStore = defineStore('achievements', () => {
   const game = useGameStore()

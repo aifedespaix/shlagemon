@@ -58,8 +58,8 @@ export type ZoneId = SavageZoneId | VillageZoneId
 
 export type VillageZoneId = 'village-paume' | 'village-caca-boudin' | 'village-veaux-du-gland' | 'village-boule' | 'village-cassos-land' | 'village-clitoland' | 'village-giga-schlag'
 
-export type SavageZoneId =
-  | 'plaine-kekette'
+export type SavageZoneId
+= | 'plaine-kekette'
   | 'bois-de-bouffon'
   | 'chemin-du-slip'
   | 'ravin-fesse-molle'

@@ -1,17 +1,17 @@
 import { defineStore } from 'pinia'
 
-export type DexSort =
-  | 'level'
-  | 'rarity'
-  | 'name'
-  | 'type'
-  | 'shiny'
-  | 'item'
-  | 'attack'
-  | 'defense'
-  | 'count'
-  | 'date'
-  | 'evolution'
+export type DexSort
+  = | 'level'
+    | 'rarity'
+    | 'name'
+    | 'type'
+    | 'shiny'
+    | 'item'
+    | 'attack'
+    | 'defense'
+    | 'count'
+    | 'date'
+    | 'evolution'
 
 export const useDexFilterStore = defineStore('dexFilter', () => {
   const search = ref('')
