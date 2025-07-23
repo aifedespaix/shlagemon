@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useTimeoutFn } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { allShlagemons } from '~/data/shlagemons'
+import ShlagMindSelectionModal from './ShlagMindSelectionModal.vue'
 
 const emit = defineEmits<{ (e: 'win'): void, (e: 'lose'): void }>()
 
@@ -13,7 +14,7 @@ const messages = [
   'T\u2019es \u00E0 deux doigts de faire un pet c\u00E9r\u00E9bral.',
 ]
 
-const palette = allShlagemons.slice(0, 10)
+const palette = allShlagemons.slice(0, 12)
 const comboLength = 6
 const maxAttempts = 10
 
@@ -24,8 +25,20 @@ const guess = ref<(string | null)[]>(
   Array.from({ length: comboLength }).fill(null),
 )
 const selected = ref<number | null>(null)
+const showPicker = ref(false)
+const showConfetti = ref(false)
 const message = ref('')
 const attemptsLeft = computed(() => maxAttempts - attempts.value.length)
+
+watch(showPicker, (v) => {
+  if (!v)
+    selected.value = null
+})
+
+function openPicker(i: number) {
+  selected.value = i
+  showPicker.value = true
+}
 
 function initGame() {
   solution.value = Array.from({ length: comboLength }, () => {
@@ -35,6 +48,8 @@ function initGame() {
   feedback.value = []
   guess.value = Array.from({ length: comboLength }).fill(null)
   selected.value = null
+  showPicker.value = false
+  showConfetti.value = false
   message.value = ''
 }
 
@@ -43,6 +58,7 @@ function choose(id: string) {
     return
   guess.value[selected.value] = id
   selected.value = null
+  showPicker.value = false
 }
 
 function validate() {
@@ -76,7 +92,11 @@ function validate() {
   const win = res.every(r => r === 'green')
   if (win) {
     message.value = 'T\u2019as perc\u00E9 le cerveau d\u2019un Shlag !'
-    useTimeoutFn(() => emit('win'), 1200)
+    showConfetti.value = true
+    useTimeoutFn(() => {
+      showConfetti.value = false
+      emit('win')
+    }, 1200)
   }
   else if (attempts.value.length >= maxAttempts) {
     message.value = 'M\u00EAme un Petmorv y serait arriv\u00E9'
@@ -92,7 +112,7 @@ initGame()
 </script>
 
 <template>
-  <div class="h-full w-full flex flex-col items-center gap-2 p-2" md="p-4">
+  <div class="relative aspect-video h-full w-full flex flex-col items-center gap-2 p-2" md="p-4">
     <div class="text-sm font-bold">
       {{ attemptsLeft }} tentatives restantes
     </div>
@@ -143,7 +163,7 @@ initGame()
             :key="i"
             class="h-8 w-8 flex-center border rounded bg-gray-100 dark:bg-gray-700"
             :class="selected === i ? 'animate-pulse-alt' : ''"
-            @click="selected = i"
+            @click="openPicker(i)"
           >
             <img
               v-if="guess[i]"
@@ -162,19 +182,15 @@ initGame()
         </UiButton>
       </div>
     </div>
-    <div
-      v-if="selected !== null"
-      class="w-full flex gap-1 overflow-x-auto border-t p-1"
-    >
-      <UiTooltip v-for="m in palette" :key="m.id" :text="m.name" is-button>
-        <button class="h-10 w-10 flex-shrink-0" @click="choose(m.id)">
-          <img
-            :src="`/shlagemons/${m.id}/${m.id}.png`"
-            class="h-full w-full"
-            :alt="m.name"
-          >
-        </button>
-      </UiTooltip>
+    <ShlagMindSelectionModal
+      v-model="showPicker"
+      :palette="palette"
+      @select="choose"
+    />
+    <div v-if="showConfetti" class="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div class="confetti">
+        🎉
+      </div>
     </div>
     <div class="text-center text-xs">
       {{ message }}
@@ -195,5 +211,25 @@ initGame()
 .line-enter-to {
   opacity: 1;
   transform: translateY(0);
+}
+
+.confetti {
+  animation: confetti-pop 0.8s ease forwards;
+  font-size: 3rem;
+}
+
+@keyframes confetti-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 </style>
