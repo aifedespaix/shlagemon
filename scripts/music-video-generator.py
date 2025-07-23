@@ -26,7 +26,7 @@ TITLE_COLOR = '#fafafa'
 TITLE_STROKE_COLOR = '#010101'
 OUTPUT_DIR = './musique'
 TMP_DIR = os.path.join(OUTPUT_DIR, '_tmp')
-BASE_COLOR = (13, 148, 136)
+BASE_COLOR = (22, 101, 170)
 W, H = 1920, 1080
 FPS = 60
 
