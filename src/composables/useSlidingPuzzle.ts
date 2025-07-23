@@ -23,13 +23,31 @@ export function useSlidingPuzzle(size: number) {
     solved.value = true
   }
 
+  function validDirections() {
+    const r = Math.floor(emptyIndex.value / size)
+    const c = emptyIndex.value % size
+    const dirs: ('up' | 'down' | 'left' | 'right')[] = []
+    if (r < size - 1)
+      dirs.push('up')
+    if (r > 0)
+      dirs.push('down')
+    if (c < size - 1)
+      dirs.push('left')
+    if (c > 0)
+      dirs.push('right')
+    return dirs
+  }
+
   async function shuffleBoard(moves = 50, delay = 50) {
     shuffling.value = true
     solved.value = false
-    const dirs = ['up', 'down', 'left', 'right'] as const
+    const opposites = { up: 'down', down: 'up', left: 'right', right: 'left' } as const
+    let lastDir: 'up' | 'down' | 'left' | 'right' | null = null
     for (let i = 0; i < moves; i++) {
+      const dirs = validDirections().filter(d => opposites[d] !== lastDir)
       const dir = dirs[Math.floor(Math.random() * dirs.length)]
       move(dir)
+      lastDir = dir
       await new Promise(r => setTimeout(r, delay))
     }
     shuffling.value = false
