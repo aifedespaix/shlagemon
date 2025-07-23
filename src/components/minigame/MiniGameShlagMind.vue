@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useTimeoutFn } from '@vueuse/core'
-import { computed, ref, watch } from 'vue'
 import { allShlagemons } from '~/data/shlagemons'
 import ShlagMindSelectionModal from './ShlagMindSelectionModal.vue'
 
@@ -10,13 +9,14 @@ const messages = [
   'Tu te rapproches... ou pas.',
   'Ce n\u2019est pas \u00E7a, mais tu fais de ton mieux, petit Shlag.',
   'Essaie encore, champion du n\u00E9ant.',
-  'T\u2019as choisi Fromagron ? S\u00E9rieux ?',
+  'Tu es nul à chier !',
   'T\u2019es \u00E0 deux doigts de faire un pet c\u00E9r\u00E9bral.',
+  'Rarement vu quelqu\'un aussi merdique.',
 ]
 
 const palette = allShlagemons.slice(0, 12)
 const comboLength = 6
-const maxAttempts = 10
+const maxAttempts = 5
 
 const solution = ref<string[]>([])
 const attempts = ref<string[][]>([])
