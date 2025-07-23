@@ -1,0 +1,12 @@
+fr:
+  steps:
+    step1:
+      text: 'Bravo pour ta richesse ! Prends donc ce {name}.'
+      responses:
+        valid: Merci professeur !
+en:
+  steps:
+    step1:
+      text: 'Congrats on your wealth! Take this {name}.'
+      responses:
+        valid: Thanks professor!

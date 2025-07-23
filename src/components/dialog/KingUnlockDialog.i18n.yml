@@ -1,0 +1,62 @@
+fr:
+  steps:
+    step1:
+      text: Félicitations ! Tes victoires ont débloqué l'accès au combat contre le roi ou la reine de cette zone.
+      responses:
+        next: Continuer
+    step2:
+      text: Pour progresser, tu devras vaincre ce Roi ou cette Reine redoutable. Mais attention, ce bal-trou a tellement spam la zone qu'il est devenu grave fort !
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Dans un combat contre dresseur, tu n'as pas le droit de changer de Shlagémon ! De plus, tu ne peux pas utiliser de potion de soin, seuls les effets passifs de certaines potions ont un impact sur le combat.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Je t'offre une Potion de Défense. Elle s'utilise dans ton inventaire et booste toute ton équipe.
+      responses:
+        back: Retour
+        next: Continuer
+    step5:
+      text: Attention, son effet dure 10 minutes et ne fonctionne qu'une seule fois, quel que soit ton Shlagémon actif.
+      responses:
+        back: Retour
+        next: Continuer
+    step6:
+      text: Bonne chance pour le combat contre les différent(e)s reines et rois !
+      responses:
+        back: Retour
+        valid: Merci Prof !
+en:
+  steps:
+    step1:
+      text: Congratulations! Your victories unlocked the fight against this area's king or queen.
+      responses:
+        next: Continue
+    step2:
+      text: To progress you must defeat this fearsome ruler. Be careful, this jerk spammed the zone so much that they've become really strong!
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: In a trainer battle you can't switch Shlagemon! You also can't use healing potions, only passive potion effects apply.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: I give you a Defense Potion. Use it from your inventory to boost your whole team.
+      responses:
+        back: Back
+        next: Continue
+    step5:
+      text: Its effect lasts 10 minutes and works only once, whatever your active Shlagemon.
+      responses:
+        back: Back
+        next: Continue
+    step6:
+      text: Good luck battling the various kings and queens!
+      responses:
+        back: Back
+        valid: Thanks Prof!

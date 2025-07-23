@@ -6,6 +6,7 @@ import { buildDialog } from '~/utils/dialogBuilder'
 const props = defineProps<{ item: WearableItem, requiredCount: number, finishId: string }>()
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
+const { t } = useI18n()
 
 const effectText: Record<WearableItem['effectType'], string> = {
   attack: 'l\'attaque',
@@ -21,17 +22,19 @@ const potionText: Record<WearableItem['effectType'], string> = {
   xp: 'd\'expérience',
 }
 
-const dialogTree = buildDialog([
-  `Impressionnant ! Tu as capturé au moins ${props.requiredCount} Shlagémons.`,
-  `Voici un objet unique : ${props.item.name}.`,
-  `Il augmente ${effectText[props.item.effectType]} du porteur de ${props.item.percent}%.`,
-  `L'effet se cumule avec les potions ${potionText[props.item.effectType]}.`,
-  'Équipe-le sur le Shlagémon de ton choix.',
-  'Bonne chance pour la suite !',
-], () => {
-  inventory.add(props.item.id, 1)
-  emit('done', props.finishId)
-})
+const dialogTree = computed(() =>
+  buildDialog([
+    t('components.dialog.WearableItemDialog.steps.step1.text', { count: props.requiredCount }),
+    t('components.dialog.WearableItemDialog.steps.step2.text', { name: props.item.name }),
+    t('components.dialog.WearableItemDialog.steps.step3.text', { stat: effectText[props.item.effectType], percent: props.item.percent }),
+    t('components.dialog.WearableItemDialog.steps.step4.text', { potion: potionText[props.item.effectType] }),
+    t('components.dialog.WearableItemDialog.steps.step5.text'),
+    t('components.dialog.WearableItemDialog.steps.step6.text'),
+  ], () => {
+    inventory.add(props.item.id, 1)
+    emit('done', props.finishId)
+  }),
+)
 </script>
 
 <template>

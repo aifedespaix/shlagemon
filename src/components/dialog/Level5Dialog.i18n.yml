@@ -1,0 +1,52 @@
+fr:
+  steps:
+    step1:
+      text: Félicitations, tu possèdes enfin un Shlagémon de niveau 5 !
+      responses:
+        next: Continuer
+    step2:
+      text: Plus ils montent en niveau, plus leur odeur devient insupportable.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Nous devons tous les capturer pour comprendre comment stopper ces miasmes.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Je compte sur toi pour remplir le Shlagedex au plus vite.
+      responses:
+        back: Retour
+        next: Continuer
+    step5:
+      text: Pour t'aider, voici 10 Shlagéballs. Attention, elles sentent fort !
+      responses:
+        back: Retour
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: Congratulations, you finally own a level 5 Shlagemon!
+      responses:
+        next: Continue
+    step2:
+      text: The higher their level, the worse they smell.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: We must capture them all to understand how to stop these miasmas.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: I'm counting on you to fill the Shlagedex as quickly as possible.
+      responses:
+        back: Back
+        next: Continue
+    step5:
+      text: To help you, here are 10 Shlageballs. Careful, they stink!
+      responses:
+        back: Back
+        valid: Thanks Professor!

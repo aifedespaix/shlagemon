@@ -6,38 +6,39 @@ const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
 const visit = useZoneVisitStore()
 const mobile = useMobileTabStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'Bien joué ! Tu as dégommé le boss et débloqué une nouvelle zone.',
+    text: t('components.dialog.NewZoneDialog.steps.step1.text'),
     responses: [
-      { label: 'Continuer', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.NewZoneDialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: 'Pour faire progresser tes Shlagémons et découvrir d\'autres horreurs, balade-toi dans la zone qui vient d\'ouvrir.',
+    text: t('components.dialog.NewZoneDialog.steps.step2.text'),
     responses: [
-      { label: 'Retour', nextId: 'start', type: 'danger' },
-      { label: 'Suite', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.NewZoneDialog.steps.step2.responses.back'), nextId: 'start', type: 'danger' },
+      { label: t('components.dialog.NewZoneDialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Souviens-toi, un Shlagémon ne peut pas dépasser le niveau maximal de la zone où tu te trouves.',
+    text: t('components.dialog.NewZoneDialog.steps.step3.text'),
     responses: [
-      { label: 'Retour', nextId: 'step2', type: 'danger' },
-      { label: 'Suite', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.NewZoneDialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
+      { label: t('components.dialog.NewZoneDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Explore d\'autres endroits pour continuer à les faire évoluer. Tiens, prends cette Potion d\'Expérience, j\'en ai qu\'une !',
+    text: t('components.dialog.NewZoneDialog.steps.step4.text'),
     responses: [
-      { label: 'Retour', nextId: 'step3', type: 'danger' },
+      { label: t('components.dialog.NewZoneDialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
       {
-        label: 'Merci Professeur !',
+        label: t('components.dialog.NewZoneDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
           inventory.add('xp-potion', 1)
@@ -48,7 +49,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>

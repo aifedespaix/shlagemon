@@ -4,46 +4,47 @@ import { profMerdant } from '~/data/characters/prof-merdant'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
+const { t } = useI18n()
 
-const dialogTree: DialogNode[] = [
+const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: 'Incroyable, l\'un de tes Shlagémons a atteint le niveau 50 !',
+    text: t('components.dialog.CapturePotionDialog.steps.step1.text'),
     responses: [
-      { label: 'Continuer', nextId: 'step2', type: 'primary' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step1.responses.next'), nextId: 'step2', type: 'primary' },
     ],
   },
   {
     id: 'step2',
-    text: `Je viens d\'achever une nouvelle potion qui augmente les chances de capture.`,
+    text: t('components.dialog.CapturePotionDialog.steps.step2.text'),
     responses: [
-      { label: 'Retour', nextId: 'start', type: 'danger' },
-      { label: 'Continuer', nextId: 'step3', type: 'primary' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step2.responses.back'), nextId: 'start', type: 'danger' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step2.responses.next'), nextId: 'step3', type: 'primary' },
     ],
   },
   {
     id: 'step3',
-    text: 'Utilise-la avant un lancer de Shlagéball pour bénéficier d\'un bonus temporaire.',
+    text: t('components.dialog.CapturePotionDialog.steps.step3.text'),
     responses: [
-      { label: 'Retour', nextId: 'step2', type: 'danger' },
-      { label: 'Continuer', nextId: 'step4', type: 'primary' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
     ],
   },
   {
     id: 'step4',
-    text: 'Les versions super et hyper offrent un bonus encore plus grand.',
+    text: t('components.dialog.CapturePotionDialog.steps.step4.text'),
     responses: [
-      { label: 'Retour', nextId: 'step3', type: 'danger' },
-      { label: 'Continuer', nextId: 'step5', type: 'primary' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step4.responses.next'), nextId: 'step5', type: 'primary' },
     ],
   },
   {
     id: 'step5',
-    text: 'Tiens, voici la première. Fais-en bon usage !',
+    text: t('components.dialog.CapturePotionDialog.steps.step5.text'),
     responses: [
-      { label: 'Retour', nextId: 'step4', type: 'danger' },
+      { label: t('components.dialog.CapturePotionDialog.steps.step5.responses.back'), nextId: 'step4', type: 'danger' },
       {
-        label: 'Merci Professeur !',
+        label: t('components.dialog.CapturePotionDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
           inventory.add('capture-potion', 1)
@@ -52,7 +53,7 @@ const dialogTree: DialogNode[] = [
       },
     ],
   },
-]
+])
 </script>
 
 <template>

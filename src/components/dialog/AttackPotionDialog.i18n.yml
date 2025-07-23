@@ -1,0 +1,42 @@
+fr:
+  steps:
+    step1:
+      text: Félicitations ! Tes Shlagémons deviennent redoutables.
+      responses:
+        next: Continuer
+    step2:
+      text: Les potions d'attaque peuvent temporairement augmenter la puissance de ton Shlagémon.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Utilise-les pendant un combat pour prendre l'avantage sur ton adversaire.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Tiens, prends-en une et bonne chance pour la suite !
+      responses:
+        back: Retour
+        valid: Merci !
+en:
+  steps:
+    step1:
+      text: Congratulations! Your Shlagemons are becoming formidable.
+      responses:
+        next: Continue
+    step2:
+      text: Attack potions can temporarily boost your Shlagemon's power.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: Use them during battle to gain an edge over your opponent.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Here, take one and good luck for the future!
+      responses:
+        back: Back
+        valid: Thanks!
