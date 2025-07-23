@@ -48,7 +48,6 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
     <DialogBox
       v-if="mini.phase === 'intro'"
       :character="gameDef.character"
-      :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="intro!"
       :exit-track="miniGameMusic"
       orientation="col"
@@ -63,7 +62,6 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
     <DialogBox
       v-else-if="mini.phase === 'success'"
       :character="gameDef.character"
-      :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="success!"
       :exit-track="zoneTrack"
       orientation="col"
@@ -71,7 +69,6 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
     <DialogBox
       v-else-if="mini.phase === 'failure'"
       :character="gameDef.character"
-      :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="failure!"
       :exit-track="zoneTrack"
       orientation="col"
@@ -79,7 +76,6 @@ const failure = computed(() => gameDef.value?.createFailure(exit))
     <DialogBox
       v-else-if="mini.phase === 'draw'"
       :character="gameDef.character"
-      :avatar-url="`/characters/${gameDef.character.id}/${gameDef.character.id}.png`"
       :dialog-tree="drawDialog!"
       :exit-track="zoneTrack"
       orientation="col"

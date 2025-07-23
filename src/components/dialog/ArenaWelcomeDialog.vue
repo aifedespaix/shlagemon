@@ -42,7 +42,6 @@ const dialogTree = computed<DialogNode[]>(() => [
 <template>
   <DialogBox
     :character="arena.arenaData!.character"
-    :avatar-url="`/characters/${arena.arenaData?.character.id}/${arena.arenaData?.character.id}.png`"
     :dialog-tree="dialogTree"
     :exit-track="exitTrack"
   />

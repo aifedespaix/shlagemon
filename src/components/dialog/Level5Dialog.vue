@@ -59,7 +59,6 @@ const dialogTree = computed<DialogNode[]>(() => [
 <template>
   <DialogBox
     :character="profMerdant"
-    :avatar-url="`/characters/${profMerdant.id}/${profMerdant.id}.png`"
     :dialog-tree="dialogTree"
   />
 </template>
