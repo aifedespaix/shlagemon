@@ -57,15 +57,15 @@ watch(
 
 @keyframes xp-gain {
   0% {
-    transform: scale(1);
+    transform: scaleY(1);
     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
   }
   50% {
-    transform: scale(1.1);
+    transform: scaleY(1.2);
     box-shadow: 0 0 6px 2px rgba(250, 204, 21, 0.7);
   }
   100% {
-    transform: scale(1);
+    transform: scaleY(1);
     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
   }
 }
