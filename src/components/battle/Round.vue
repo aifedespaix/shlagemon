@@ -88,10 +88,10 @@ async function onCaptureEnd(success: boolean) {
     notifyAchievement({ type: 'capture', shiny: props.enemy.isShiny })
     if (dex.activeShlagemon) {
       const xp = dex.xpGainForLevel(props.enemy.lvl)
-      await dex.gainXp(dex.activeShlagemon, xp, zone.current.maxLevel)
+      await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zone.current.maxLevel)
       const holder = wearableItemStore.getHolder('multi-exp')
       if (holder)
-        await dex.gainXp(holder, Math.round(xp * 0.5), zone.current.maxLevel)
+        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zone.current.maxLevel)
     }
     emit('capture')
     showConfetti.value = true
