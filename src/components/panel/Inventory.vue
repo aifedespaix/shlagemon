@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import type { BallId } from '~/data/items/shlageball'
-import type { Item } from '~/type/item'
+import type { Item, ItemCategory } from '~/type/item'
+import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
-import {
-  itemCategoryTabBaseColors,
-  itemCategoryTabColors,
-  itemCategoryTabHoverColors,
-} from '~/constants/itemCategory'
 
 const inventory = useInventoryStore()
 const eggBox = useEggBoxStore()
@@ -33,6 +29,43 @@ const availableCategories = computed(() =>
   ),
 )
 
+const activeTab = ref(0)
+const categories = computed(() => availableCategories.value)
+
+const tabs = computed(() =>
+  categories.value.map(cat => ({
+    label: cat.label,
+    component: defineComponent({
+      name: `InventoryTab_${cat.value}`,
+      setup() {
+        const list = getList(cat.value)
+        return () => h('div', {
+          class: 'tiny-scrollbar flex flex-col gap-2 overflow-x-hidden overflow-y-auto py-1',
+        }, list.value.map(entry =>
+          h(InventoryItemCard, {
+            item: entry.item,
+            qty: entry.qty,
+            disabled: isDisabled(entry.item),
+            onUse: () => onUse(entry.item),
+            onSell: () => inventory.sell(entry.item.id),
+          })))
+      },
+    }),
+  })),
+)
+
+watch(() => filter.category, (val) => {
+  const idx = categories.value.findIndex(c => c.value === val)
+  if (idx !== -1 && idx !== activeTab.value)
+    activeTab.value = idx
+}, { immediate: true })
+
+watch(activeTab, (val) => {
+  const cat = categories.value[val]?.value
+  if (cat && cat !== filter.category)
+    filter.category = cat
+})
+
 watch(availableCategories, (cats) => {
   if (!cats.length)
     filter.category = 'all'
@@ -40,56 +73,36 @@ watch(availableCategories, (cats) => {
     filter.category = cats[0].value
 }, { immediate: true })
 
-const highlightCategories = computed(() => {
-  const map = {
-    actif: false,
-    passif: false,
-    utilitaire: false,
-  } as Record<typeof categoryOptions[number]['value'], boolean>
-  for (const entry of inventory.list) {
-    if (!usage.used[entry.item.id] && entry.item.category)
-      map[entry.item.category] = true
-  }
-  return map
-})
-
-const categoryTabs = computed(() =>
-  availableCategories.value.map(opt => ({
-    ...opt,
-    highlight: highlightCategories.value[opt.value] && filter.category !== opt.value,
-  })),
-)
-
-const tabColors = itemCategoryTabBaseColors
-const tabHoverColors = itemCategoryTabHoverColors
-const tabActiveColors = itemCategoryTabColors
-const filteredList = computed(() => {
-  let list = inventory.list.slice()
-  if (filter.category !== 'all')
-    list = list.filter(e => e.item.category === filter.category)
-  const q = filter.search.toLowerCase().trim()
-  if (q)
-    list = list.filter(entry => entry.item.name.toLowerCase().includes(q))
-  switch (filter.sortBy) {
-    case 'type':
-      list.sort((a, b) => {
-        const typeComp = (a.item.type || '').localeCompare(b.item.type || '')
-        if (typeComp !== 0)
-          return typeComp
-        return (a.item.power || 0) - (b.item.power || 0)
-      })
-      break
-    case 'name':
-      list.sort((a, b) => a.item.name.localeCompare(b.item.name))
-      break
-    case 'price':
-      list.sort((a, b) => (a.item.price ?? 0) - (b.item.price ?? 0))
-      break
-  }
-  if (!filter.sortAsc)
-    list.reverse()
-  return list
-})
+function getList(category: ItemCategory | 'all') {
+  return computed(() => {
+    let list = inventory.list.slice()
+    if (category !== 'all')
+      list = list.filter(e => e.item.category === category)
+    const q = filter.search.toLowerCase().trim()
+    if (q)
+      list = list.filter(entry => entry.item.name.toLowerCase().includes(q))
+    switch (filter.sortBy) {
+      case 'type':
+        list.sort((a, b) => {
+          const typeComp = (a.item.type || '').localeCompare(b.item.type || '')
+          if (typeComp !== 0)
+            return typeComp
+          return (a.item.power || 0) - (b.item.power || 0)
+        })
+        break
+      case 'name':
+        list.sort((a, b) => a.item.name.localeCompare(b.item.name))
+        break
+      case 'price':
+        list.sort((a, b) => (a.item.price ?? 0) - (b.item.price ?? 0))
+        break
+    }
+    if (!filter.sortAsc)
+      list.reverse()
+    return list
+  })
+}
+const filteredList = getList('all')
 
 function isDisabled(item: Item) {
   if (featureLock.isInventoryLocked)
@@ -125,27 +138,25 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <LayoutScrollablePanel v-if="inventory.list.length">
-    <template #header>
+  <section v-if="inventory.list.length" class="h-full w-full flex flex-col gap-2 overflow-hidden">
+    <div class="flex flex-wrap gap-2 px-1">
       <UiSortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
       <UiSearchInput v-model="filter.search" class="flex-1" />
-      <UiTabBar
-        v-if="availableCategories.length > 0"
-        v-model="filter.category"
-        :options="categoryTabs"
-        :colors="tabColors"
-        :hover-colors="tabHoverColors"
-        :active-colors="tabActiveColors"
-        highlight-classes="animate-pulse-alt animate-count-infinite"
-        class="w-full -mb-2"
-      />
-    </template>
-
-    <template #content>
+    </div>
+    <UiTabs
+      v-if="availableCategories.length > 0"
+      v-model="activeTab"
+      :tabs="tabs"
+      class="flex-1"
+    />
+    <div
+      v-else
+      class="tiny-scrollbar flex flex-col gap-2 overflow-x-hidden overflow-y-auto py-1"
+    >
       <InventoryItemCard
         v-for="entry in filteredList"
         :key="entry.item.id"
@@ -155,8 +166,8 @@ function onUse(item: Item) {
         @use="onUse(entry.item)"
         @sell="inventory.sell(entry.item.id)"
       />
-    </template>
-  </LayoutScrollablePanel>
+    </div>
+  </section>
   <InventoryEvolutionItemModal />
   <InventoryWearableItemModal />
   <InventoryItemShortcutModal />
