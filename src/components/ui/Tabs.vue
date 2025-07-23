@@ -1,12 +1,20 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 import { useSwipe } from '@vueuse/core'
+import { nextTick, onMounted, ref, watch } from 'vue'
+
+interface Label {
+  text: string
+  icon?: string
+}
 
 const props = withDefaults(defineProps<{
   modelValue?: number
-  tabs: { label: string, component: Component }[]
+  tabs: { label: Label, component: Component }[]
+  isSmall?: boolean
 }>(), {
   modelValue: 0,
+  isSmall: false,
 })
 
 const emit = defineEmits<{
@@ -51,19 +59,83 @@ useSwipe(container, {
 })
 
 const transitionName = computed(() => direction.value === 'left' ? 'slide-left' : 'slide-right')
+
+const tabButtonClasses = computed(() => {
+  const unoCss = []
+  if (props.isSmall) {
+    unoCss.push('text-sm', 'py-1')
+  }
+  else {
+    unoCss.push('text-base', 'py-2')
+  }
+  return unoCss.join(' ')
+})
+
+function tabButtonActiveClasses(actual: number) {
+  const unoCss = []
+  if (active.value === actual) {
+    unoCss.push('font-bold', 'border-b-2', 'border-blue-600', 'dark:border-blue-400')
+  }
+  else {
+    unoCss.push('hover:bg-gray-100', 'dark:hover:bg-gray-800')
+  }
+  return unoCss.join(' ')
+}
+
+const tabBarRef = ref<HTMLElement | null>(null)
+const showOnlyIcons = ref(false)
+
+function checkTabsOverflow() {
+  const bar = tabBarRef.value
+  if (!bar)
+    return
+  // Si le contenu déborde horizontalement, on affiche seulement les icônes
+  showOnlyIcons.value = bar.scrollWidth > bar.clientWidth
+}
+
+onMounted(() => {
+  nextTick(() => {
+    checkTabsOverflow()
+    // Observe dynamiquement la taille de la barre
+    if (window.ResizeObserver) {
+      const observer = new ResizeObserver(checkTabsOverflow)
+      if (tabBarRef.value)
+        observer.observe(tabBarRef.value)
+    }
+    window.addEventListener('resize', checkTabsOverflow)
+  })
+})
+watch(() => props.tabs, () => nextTick(checkTabsOverflow))
 </script>
 
 <template>
   <div class="h-full flex flex-col">
-    <div class="flex border-b border-gray-200" dark="border-gray-800">
+    <div
+      ref="tabBarRef" class="flex border-b border-gray-200"
+      dark="border-gray-800"
+    >
       <button
         v-for="(tab, i) in props.tabs"
         :key="i"
-        class="flex-1 py-2 text-center"
-        :class="active === i ? 'font-bold border-b-2 border-blue-600 dark:border-blue-400' : 'hover:bg-gray-100 dark:hover:bg-gray-800'"
+        class="min-w-0 flex flex-1 items-center gap-1 px-1 text-center"
+        :class="`${tabButtonActiveClasses(i)} ${tabButtonClasses}`"
         @click="select(i)"
       >
-        {{ tab.label }}
+        <!-- Si pas assez de place et icône dispo, on montre QUE l'icône -->
+        <template v-if="showOnlyIcons && tab.label.icon">
+          <div :class="tab.label.icon" />
+        </template>
+        <!-- Sinon, on montre l'icône puis le texte (tronqué si besoin) -->
+        <template v-else>
+          <div v-if="tab.label.icon" :class="tab.label.icon" />
+          <span
+            v-if="!showOnlyIcons || !tab.label.icon"
+            class="block truncate"
+            style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; min-width: 0;"
+          >
+            {{ tab.label.text }}
+          </span>
+        </template>
       </button>
     </div>
     <div ref="container" class="tiny-scrollbar relative flex-1 overflow-x-hidden overflow-y-auto">

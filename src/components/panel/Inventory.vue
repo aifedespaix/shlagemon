@@ -3,6 +3,7 @@ import type { BallId } from '~/data/items/shlageball'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
+import InventoryItemCard from '../inventory/ItemCard.vue'
 
 const inventory = useInventoryStore()
 const eggBox = useEggBoxStore()
@@ -23,10 +24,17 @@ const categoryOptions = [
   { label: t('components.panel.Inventory.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
   { label: t('components.panel.Inventory.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
 ] as const
+
 const availableCategories = computed(() =>
   categoryOptions.filter(opt =>
     inventory.list.some(entry => entry.item.category === opt.value),
-  ),
+  ).map(opt => ({
+    label: {
+      text: opt.label,
+      icon: opt.icon,
+    },
+    value: opt.value,
+  })),
 )
 
 const activeTab = ref(0)
@@ -150,6 +158,7 @@ function onUse(item: Item) {
     <UiTabs
       v-if="availableCategories.length > 0"
       v-model="activeTab"
+      is-small
       :tabs="tabs"
       class="flex-1"
     />
