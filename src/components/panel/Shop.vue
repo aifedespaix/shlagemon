@@ -3,6 +3,7 @@ import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
 import ShopItemCard from '../shop/ItemCard.vue'
+import UiButton from '../ui/Button.vue'
 
 const panel = useMainPanelStore()
 const zone = useZoneStore()
