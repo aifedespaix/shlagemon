@@ -192,7 +192,6 @@ onUnmounted(featureLock.unlockAll)
       </template>
       <DialogBox
         :character="trainer.character"
-        :avatar-url="`/characters/${trainer.character.id}/${trainer.character.id}.png`"
         :dialog-tree="beforeDialogTree"
       />
     </div>
@@ -213,7 +212,6 @@ onUnmounted(featureLock.unlockAll)
     <div v-else class="h-full flex flex-col items-center gap-2 text-center">
       <DialogBox
         :character="trainer.character"
-        :avatar-url="`/characters/${trainer.character.id}/${trainer.character.id}.png`"
         :dialog-tree="afterDialogTree"
       />
     </div>
