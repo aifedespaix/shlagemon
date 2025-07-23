@@ -18,7 +18,8 @@ describe('egg workflow', () => {
     expect(eggs.incubator.length).toBe(1)
 
     const egg = eggs.incubator[0]
-    const duration = egg.hatchesAt - Date.now()
+    const duration = egg.hatchesAt - egg.startedAt
+    expect(egg.startedAt).toBeLessThanOrEqual(Date.now())
     vi.advanceTimersByTime(duration + 1)
     expect(eggs.isReady(egg)).toBe(true)
     const mon = eggs.hatchEgg(egg.id)

@@ -6,29 +6,34 @@ interface StoredEgg {
   id: number
   type: Egg['type']
   baseId: string
+  startedAt: number
   hatchesAt: number
 }
 
-export const eggSerializer: Serializer<Egg[]> = {
-  serialize(eggs) {
-    const data: StoredEgg[] = eggs.map(e => ({
+export const eggSerializer: Serializer<{ incubator: Egg[] }> = {
+  serialize(data) {
+    const eggs = data.incubator || []
+    const list: StoredEgg[] = eggs.map(e => ({
       id: e.id,
       type: e.type,
       baseId: e.base.id,
+      startedAt: e.startedAt,
       hatchesAt: e.hatchesAt,
     }))
-    return JSON.stringify(data)
+    return JSON.stringify(list)
   },
   deserialize(raw) {
     if (!raw)
-      return []
+      return { incubator: [] }
     const list = JSON.parse(raw) as StoredEgg[]
     const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
-    return list.map(e => ({
+    const incubator = list.map(e => ({
       id: e.id,
       type: e.type,
       base: baseMap[e.baseId],
+      startedAt: e.startedAt,
       hatchesAt: e.hatchesAt,
     })).filter(e => e.base)
+    return { incubator }
   },
 }
