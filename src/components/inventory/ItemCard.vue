@@ -70,10 +70,10 @@ watch(showInfo, (val) => {
     @click="onCardClick"
   >
     <div class="flex items-center justify-between gap-1">
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1 text-sm">
         <div
           v-if="props.item.icon"
-          class="h-8 w-8"
+          class="h-5 w-5"
           :class="[props.item.iconClass, props.item.icon]"
         />
         <img
