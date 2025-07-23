@@ -37,7 +37,7 @@ const inventoryEggs = computed(() => {
 })
 
 function startIncubation(id: EggItemId) {
-  if (eggs.incubator.length >= 3)
+  if (eggs.incubator.length >= 4)
     return
   const map: Record<EggItemId, EggType> = {
     'oeuf-feu': 'feu',
@@ -62,88 +62,87 @@ function remaining(egg: { hatchesAt: number }) {
 </script>
 
 <template>
-  <LayoutScrollablePanel>
-    <template #header>
-      <div class="w-full flex items-center justify-between">
-        <h3 class="font-bold">
-          {{ t('components.panel.Poulailler.title') }}
-        </h3>
-        <UiButton
-          type="danger"
-          variant="outline"
-          class="flex gap-1 text-xs"
-          @click="panel.showVillage()"
+  <section class="h-full w-full flex flex-col gap-2 overflow-hidden">
+    <div class="w-full flex items-center justify-between">
+      <h3 class="font-bold">
+        {{ t('components.panel.Poulailler.title') }}
+      </h3>
+      <UiButton
+        type="danger"
+        variant="outline"
+        class="flex gap-1 text-xs"
+        @click="panel.showVillage()"
+      >
+        <div class="i-carbon:exit" />
+        {{ t('components.panel.Poulailler.exit') }}
+      </UiButton>
+    </div>
+    <div class="flex flex-1 flex-col gap-2 overflow-hidden" md="flex-row">
+      <div class="flex flex-col gap-1" md="w-1/3">
+        <h4 class="font-semibold">
+          {{ t('components.panel.Poulailler.yourEggs') }}
+        </h4>
+        <div
+          v-if="inventoryEggs.length"
+          class="tiny-scrollbar flex flex-col gap-1 overflow-y-auto"
         >
-          <div class="i-carbon:exit" />
-          {{ t('components.panel.Poulailler.exit') }}
-        </UiButton>
-      </div>
-    </template>
-    <template #content>
-      <div class="flex flex-col gap-2">
-        <div>
-          <h4 class="font-semibold">
-            {{ t('components.panel.Poulailler.incubator') }}
-          </h4>
-          <div class="aspect-video h-full max-h-60 w-full flex-center flex-wrap gap-2 border rounded p-2 md:max-h-80">
-            <template v-if="eggs.incubator.length">
+          <div
+            v-for="entry in inventoryEggs"
+            :key="entry.id"
+            class="flex items-center justify-between border-b p-1"
+          >
+            <div class="flex items-center gap-1">
               <div
-                v-for="egg in eggs.incubator"
-                :key="egg.id"
-                class="flex flex-col items-center gap-1"
+                v-if="entry.item.icon"
+                class="h-6 w-6"
+                :class="[entry.item.icon, entry.item.iconClass]"
+              />
+              <span class="text-sm">{{ entry.item.name }}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="text-xs font-bold">x{{ entry.qty }}</span>
+              <UiButton
+                class="text-xs"
+                :disabled="eggs.incubator.length >= 4"
+                @click="startIncubation(entry.id as EggItemId)"
               >
-                <div
-                  class="i-game-icons:egg-eye transition-all duration-300"
-                  :class="[
-                    eggs.isReady(egg)
-                      ? 'h-12 w-12 animate-pulse-alt animate-count-infinite cursor-pointer'
-                      : 'h-8 w-8 animate-bounce animate-count-infinite',
-                    colorClass(egg.type),
-                  ]"
-                  @click="eggs.isReady(egg) && hatch(egg.id)"
-                />
-                <span v-if="!eggs.isReady(egg)" class="text-xs">{{ remaining(egg) }}s</span>
-              </div>
-            </template>
-            <span v-else class="text-sm">{{ t('components.panel.Poulailler.noEgg') }}</span>
-          </div>
-        </div>
-        <div>
-          <h4 class="font-semibold">
-            {{ t('components.panel.Poulailler.yourEggs') }}
-          </h4>
-          <div v-if="inventoryEggs.length" class="flex flex-col gap-1">
-            <div
-              v-for="entry in inventoryEggs"
-              :key="entry.id"
-              class="flex items-center justify-between border-b p-1"
-            >
-              <div class="flex items-center gap-1">
-                <div
-                  v-if="entry.item.icon"
-                  class="h-6 w-6"
-                  :class="[entry.item.icon, entry.item.iconClass]"
-                />
-                <span class="text-sm">{{ entry.item.name }}</span>
-              </div>
-              <div class="flex items-center gap-1">
-                <span class="text-xs font-bold">x{{ entry.qty }}</span>
-                <UiButton
-                  class="text-xs"
-                  :disabled="eggs.incubator.length >= 3"
-                  @click="startIncubation(entry.id as EggItemId)"
-                >
-                  {{ t('components.panel.Poulailler.incubate') }}
-                </UiButton>
-              </div>
+                {{ t('components.panel.Poulailler.incubate') }}
+              </UiButton>
             </div>
           </div>
-          <div v-else class="text-center text-sm">
-            {{ t('components.panel.Poulailler.noEggBox') }}
-          </div>
+        </div>
+        <div v-else class="text-center text-sm">
+          {{ t('components.panel.Poulailler.noEggBox') }}
         </div>
       </div>
-      <EggHatchModal />
-    </template>
-  </LayoutScrollablePanel>
+      <div class="flex flex-1 flex-col gap-1" md="w-2/3">
+        <h4 class="font-semibold">
+          {{ t('components.panel.Poulailler.incubator') }}
+        </h4>
+        <div class="grid grid-cols-2 grid-rows-2 flex-1 place-items-center gap-2 border rounded p-2">
+          <template v-if="eggs.incubator.length">
+            <div
+              v-for="egg in eggs.incubator"
+              :key="egg.id"
+              class="flex flex-col items-center gap-1"
+            >
+              <div
+                class="i-game-icons:egg-eye transition-all duration-300"
+                :class="[
+                  eggs.isReady(egg)
+                    ? 'h-12 w-12 animate-pulse-alt animate-count-infinite cursor-pointer'
+                    : 'h-8 w-8 animate-bounce animate-count-infinite',
+                  colorClass(egg.type),
+                ]"
+                @click="eggs.isReady(egg) && hatch(egg.id)"
+              />
+              <span v-if="!eggs.isReady(egg)" class="text-xs">{{ remaining(egg) }}s</span>
+            </div>
+          </template>
+          <span v-else class="text-sm">{{ t('components.panel.Poulailler.noEgg') }}</span>
+        </div>
+      </div>
+    </div>
+    <EggHatchModal />
+  </section>
 </template>

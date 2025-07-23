@@ -20,7 +20,7 @@ export const useEggStore = defineStore('egg', () => {
   const dex = useShlagedexStore()
 
   function startIncubation(type: EggType) {
-    if (incubator.value.length >= 3)
+    if (incubator.value.length >= 4)
       return false
     let candidates = allShlagemons.filter(b =>
       b.types.some(t => t.id === type),
