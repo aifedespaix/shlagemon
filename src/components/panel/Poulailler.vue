@@ -85,7 +85,7 @@ function remaining(egg: { hatchesAt: number }) {
           <h4 class="font-semibold">
             {{ t('components.panel.Poulailler.incubator') }}
           </h4>
-          <div class="flex-center flex-wrap gap-2 border rounded p-2">
+          <div class="aspect-video h-full max-h-60 w-full flex-center flex-wrap gap-2 border rounded p-2 md:max-h-80">
             <template v-if="eggs.incubator.length">
               <div
                 v-for="egg in eggs.incubator"
@@ -97,7 +97,7 @@ function remaining(egg: { hatchesAt: number }) {
                   :class="[
                     eggs.isReady(egg)
                       ? 'h-12 w-12 animate-pulse-alt animate-count-infinite cursor-pointer'
-                      : 'h-8 w-8',
+                      : 'h-8 w-8 animate-bounce animate-count-infinite',
                     colorClass(egg.type),
                   ]"
                   @click="eggs.isReady(egg) && hatch(egg.id)"
@@ -129,8 +129,8 @@ function remaining(egg: { hatchesAt: number }) {
               <div class="flex items-center gap-1">
                 <span class="text-xs font-bold">x{{ entry.qty }}</span>
                 <UiButton
-                  v-if="eggs.incubator.length < 3"
                   class="text-xs"
+                  :disabled="eggs.incubator.length >= 3"
                   @click="startIncubation(entry.id as EggItemId)"
                 >
                   {{ t('components.panel.Poulailler.incubate') }}
