@@ -1,5 +1,12 @@
 <script setup lang="ts">
 const store = useEvolutionStore()
+const dex = useShlagedexStore()
+
+const hasEvolution = computed(() => {
+  if (!store.pending)
+    return false
+  return dex.shlagemons.some(m => m.base.id === store.pending!.to.id)
+})
 </script>
 
 <template>
@@ -17,6 +24,12 @@ const store = useEvolutionStore()
       </h3>
       <p class="text-center">
         « {{ store.pending?.mon.base.name }} » veut évoluer en « {{ store.pending?.to.name }} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?
+      </p>
+      <p
+        v-if="hasEvolution"
+        class="text-center text-xs text-red-500 dark:text-red-400"
+      >
+        Vous possédez déjà l'évolution de ce Shlagémon
       </p>
       <div class="flex gap-2">
         <UiButton type="valid" class="flex items-center gap-1" @click="store.accept">
