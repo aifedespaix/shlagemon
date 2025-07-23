@@ -48,11 +48,17 @@ export const useEggStore = defineStore('egg', () => {
     return dex.captureShlagemon(egg.base)
   }
 
+  function cancelIncubation(id: number) {
+    const idx = incubator.value.findIndex(e => e.id === id)
+    if (idx !== -1)
+      incubator.value.splice(idx, 1)
+  }
+
   function reset() {
     incubator.value = []
   }
 
-  return { incubator, startIncubation, hatchEgg, isReady, reset }
+  return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, reset }
 }, {
   persist: true,
 })
