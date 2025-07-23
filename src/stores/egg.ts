@@ -1,3 +1,4 @@
+import type { PersistedStateOptions } from 'pinia-plugin-persistedstate'
 import type { TypeName } from '~/data/shlagemons-type'
 import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
@@ -19,7 +20,7 @@ export const useEggStore = defineStore('egg', () => {
   const dex = useShlagedexStore()
 
   function startIncubation(type: EggType) {
-    if (incubator.value.length >= 3)
+    if (incubator.value.length >= 4)
       return false
     let candidates = allShlagemons.filter(b =>
       b.types.some(t => t.id === type),
@@ -60,5 +61,13 @@ export const useEggStore = defineStore('egg', () => {
 
   return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, reset }
 }, {
-  persist: true,
+  persist: {
+    afterHydrate(ctx) {
+      const store = ctx.store as ReturnType<typeof useEggStore>
+      if (Array.isArray((store as any).incubator))
+        store.incubator = ref([...(store as any).incubator])
+      else if (!Array.isArray(store.incubator))
+        store.incubator = ref([])
+    },
+  } as PersistedStateOptions,
 })
