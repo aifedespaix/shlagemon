@@ -2,7 +2,7 @@ fr:
   startText: "Envie d'une partie de morpion ?"
   yes: Oui
   no: Non
-  winText: Bien joué ! Tu gagnes un Œuf Herbe.
+  winText: Bravo ! Bien joué ! Je te donne un Œuf Herbe.
   super: Super !
   loseText: Perdu ! Recommence quand tu veux.
   restart: Recommencer
@@ -11,7 +11,7 @@ en:
   startText: Fancy a game of tic tac toe?
   yes: Yes
   no: No
-  winText: Well played! You win a Grass Egg.
+  winText: Bravo! Well played! I give you a Grass Egg.
   super: Awesome!
   loseText: Lost! Try again whenever you like.
   restart: Restart

@@ -1,4 +1,5 @@
 import type { MiniGameDefinition } from '~/type/minigame'
+import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { vladimirPutain } from '../characters/vladimir-putain'
@@ -35,9 +36,9 @@ export const battleshipMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: 'Victoire ! Tu gagnes un \u0153uf Eau.',
+        text: i18n.global.t('data.Minigame.Battleship.winText'),
         responses: [
-          { label: 'Super !', type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.Battleship.super'), type: 'valid', action: done },
         ],
       },
     ]

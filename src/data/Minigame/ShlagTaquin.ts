@@ -1,4 +1,5 @@
 import type { MiniGameDefinition } from '~/type/minigame'
+import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { norman } from '../characters/norman'
@@ -35,9 +36,9 @@ export const shlagTaquinMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: 'Bravo ! Tu gagnes un œuf Foudre.',
+        text: i18n.global.t('data.Minigame.ShlagTaquin.winText'),
         responses: [
-          { label: 'Super !', type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.ShlagTaquin.super'), type: 'valid', action: done },
         ],
       },
     ]

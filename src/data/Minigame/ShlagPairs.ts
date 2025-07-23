@@ -1,4 +1,5 @@
 import type { MiniGameDefinition } from '~/type/minigame'
+import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { profMerdant } from '../characters/prof-merdant'
@@ -35,9 +36,9 @@ export const shlagPairsMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: 'Bien joué !',
+        text: i18n.global.t('data.Minigame.ShlagPairs.winText'),
         responses: [
-          { label: 'Super !', type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.ShlagPairs.super'), type: 'valid', action: done },
         ],
       },
     ]

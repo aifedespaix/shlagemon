@@ -2,7 +2,7 @@ fr:
   startText: Une partie de Duel de Cartes ?
   yes: Oui
   no: Non
-  winText: Bien joué ! Tu gagnes un œuf Psy.
+  winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
   super: Super !
   loseText: Perdu ! Recommence quand tu veux.
   restart: Recommencer
@@ -11,7 +11,7 @@ en:
   startText: Fancy a game of Shlag Cards?
   yes: Yes
   no: No
-  winText: Well played! You win a Psy Egg.
+  winText: Bravo! Well played! I give you a Psy Egg.
   super: Awesome!
   loseText: Lost! Try again whenever you like.
   restart: Restart

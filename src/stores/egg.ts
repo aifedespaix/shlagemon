@@ -1,57 +1,55 @@
 import type { TypeName } from '~/data/shlagemons-type'
+import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
-import { pikachiant } from '~/data/shlagemons/15-20/pikachiant'
-import { bulgrosboule } from '~/data/shlagemons/bulgrosboule'
-import { carapouffe } from '~/data/shlagemons/carapouffe'
+import { allShlagemons } from '~/data/shlagemons'
 import { mewteub } from '~/data/shlagemons/mewteub'
-import { salamiches } from '~/data/shlagemons/salamiches'
+import { pickRandomByCoefficient } from '~/utils/spawn'
 
 export type EggType = TypeName
 
 export interface Egg {
   id: number
   type: EggType
+  base: BaseShlagemon
   hatchesAt: number
 }
 
 export const useEggStore = defineStore('egg', () => {
-  const incubator = ref<Egg | null>(null)
+  const incubator = ref<Egg[]>([])
   const dex = useShlagedexStore()
 
-  function startIncubation(type: EggType, duration = 60_000) {
-    if (incubator.value)
+  function startIncubation(type: EggType) {
+    if (incubator.value.length >= 3)
       return false
+    let candidates = allShlagemons.filter(b =>
+      b.types.some(t => t.id === type),
+    )
+    if (type === 'psy')
+      candidates = candidates.filter(b => b.id !== mewteub.id)
+    const base = pickRandomByCoefficient(candidates)
+    const duration = (base.coefficient / 10) * 60_000
     const id = Date.now() + Math.random()
-    incubator.value = { id, type, hatchesAt: Date.now() + duration }
+    incubator.value.push({ id, type, base, hatchesAt: Date.now() + duration })
     return true
   }
 
-  const isReady = computed(() =>
-    incubator.value ? incubator.value.hatchesAt <= Date.now() : false,
-  )
+  function isReady(egg: Egg) {
+    return egg.hatchesAt <= Date.now()
+  }
 
-  function hatchEgg() {
-    const egg = incubator.value
-    if (!egg || egg.hatchesAt > Date.now())
+  function hatchEgg(id: number) {
+    const idx = incubator.value.findIndex(e => e.id === id)
+    if (idx === -1)
       return null
-    incubator.value = null
-    switch (egg.type) {
-      case 'feu':
-        return dex.captureShlagemon(salamiches)
-      case 'eau':
-        return dex.captureShlagemon(carapouffe)
-      case 'plante':
-        return dex.captureShlagemon(bulgrosboule)
-      case 'psy':
-        return dex.captureShlagemon(mewteub)
-      case 'electrique':
-        return dex.captureShlagemon(pikachiant)
-    }
-    return null
+    const egg = incubator.value[idx]
+    if (egg.hatchesAt > Date.now())
+      return null
+    incubator.value.splice(idx, 1)
+    return dex.captureShlagemon(egg.base)
   }
 
   function reset() {
-    incubator.value = null
+    incubator.value = []
   }
 
   return { incubator, startIncubation, hatchEgg, isReady, reset }
