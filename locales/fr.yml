@@ -2470,8 +2470,8 @@ data:
       drawText: Match nul ! Recommence quand tu veux.
       back: Retour
       restart: Recommencer
-    ShlagCards:
-      startText: Une partie de Duel de Cartes ?
+    ShlagMind:
+      startText: Une partie de ShlagMind ?
       yes: Oui
       no: Non
       winText: Bien joué ! Tu gagnes un œuf Psy.

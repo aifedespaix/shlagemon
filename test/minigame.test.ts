@@ -45,11 +45,11 @@ describe('mini game store', () => {
     expect(inventory.items['oeuf-feu']).toBe(1)
   })
 
-  it('grants psy egg on shlagcards victory', () => {
+  it('grants psy egg on shlagmind victory', () => {
     setActivePinia(createPinia())
     const mini = useMiniGameStore()
     const inventory = useInventoryStore()
-    mini.select('shlagcards')
+    mini.select('shlagmind')
     mini.finish('win')
     expect(inventory.items['oeuf-psy']).toBe(1)
   })

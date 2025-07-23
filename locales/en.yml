@@ -2449,8 +2449,8 @@ data:
       drawText: Draw! Try again whenever you like.
       back: Back
       restart: Restart
-    ShlagCards:
-      startText: Fancy a game of Shlag Cards?
+    ShlagMind:
+      startText: Fancy a game of ShlagMind?
       yes: Yes
       no: No
       winText: Well played! You win a Psy Egg.
