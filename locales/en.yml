@@ -2781,11 +2781,11 @@ data:
       restart: Restart
       back: Back
 pages:
-  indexPage:
+  index:
     title: Shlagemon
     description: A parody of Pokémon with crazy creatures
     welcome: Welcome to Shlagemon
-  shlagedexPage:
+  shlagedex:
     title: Shlagedex
 App:
   title: Shlagemon - It smells very strong

@@ -2821,11 +2821,11 @@ data:
       restart: Recommencer
       back: Retour
 pages:
-  indexPage:
+  index:
     title: Shlagémon
     description: Parodie de Pokémon avec des créatures loufoques
     welcome: Bienvenue dans Shlagémon
-  shlagedexPage:
+  shlagedex:
     title: Shlagédex
 App:
   title: Shlagémon - Ça sent très fort
