@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
 import type { BallId } from '~/data/items/shlageball'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
@@ -40,25 +41,34 @@ const availableCategories = computed(() =>
 const activeTab = ref(0)
 const categories = computed(() => availableCategories.value)
 
+const tabComponents = new Map<ItemCategory | 'all', Component>()
+function getTabComponent(category: ItemCategory | 'all') {
+  if (tabComponents.has(category))
+    return tabComponents.get(category)!
+  const comp = defineComponent({
+    name: `InventoryTab_${category}`,
+    setup() {
+      const list = getList(category)
+      return () => h('div', {
+        class: 'tiny-scrollbar flex flex-col gap-2 overflow-x-hidden overflow-y-auto py-1',
+      }, list.value.map(entry =>
+        h(InventoryItemCard, {
+          item: entry.item,
+          qty: entry.qty,
+          disabled: isDisabled(entry.item),
+          onUse: () => onUse(entry.item),
+          onSell: () => inventory.sell(entry.item.id),
+        })))
+    },
+  })
+  tabComponents.set(category, comp)
+  return comp
+}
+
 const tabs = computed(() =>
   categories.value.map(cat => ({
     label: cat.label,
-    component: defineComponent({
-      name: `InventoryTab_${cat.value}`,
-      setup() {
-        const list = getList(cat.value)
-        return () => h('div', {
-          class: 'tiny-scrollbar flex flex-col gap-2 overflow-x-hidden overflow-y-auto py-1',
-        }, list.value.map(entry =>
-          h(InventoryItemCard, {
-            item: entry.item,
-            qty: entry.qty,
-            disabled: isDisabled(entry.item),
-            onUse: () => onUse(entry.item),
-            onSell: () => inventory.sell(entry.item.id),
-          })))
-      },
-    }),
+    component: getTabComponent(cat.value),
   })),
 )
 
