@@ -17,11 +17,11 @@ export const shlagPairsMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: 'Une partie du jeu des paires ?',
+        text: i18n.global.t('data.Minigame.ShlagPairs.startText'),
         responses: [
-          { label: 'Oui', type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.ShlagPairs.yes'), type: 'primary', action: start },
           {
-            label: 'Non',
+            label: i18n.global.t('data.Minigame.ShlagPairs.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -48,10 +48,10 @@ export const shlagPairsMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: 'Dommage !',
+        text: i18n.global.t('data.Minigame.ShlagPairs.loseText'),
         responses: [
-          { label: 'Recommencer', type: 'primary', action: () => miniGame.play() },
-          { label: 'Retour', type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.ShlagPairs.restart'), type: 'primary', action: () => miniGame.play() },
+          { label: i18n.global.t('data.Minigame.ShlagPairs.back'), type: 'danger', action: done },
         ],
       },
     ]
