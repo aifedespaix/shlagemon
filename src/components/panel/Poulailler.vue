@@ -62,21 +62,12 @@ function remaining(egg: { hatchesAt: number }) {
 </script>
 
 <template>
-  <section class="h-full w-full flex flex-col gap-2 overflow-hidden">
-    <div class="w-full flex items-center justify-between">
-      <h3 class="font-bold">
-        {{ t('components.panel.Poulailler.title') }}
-      </h3>
-      <UiButton
-        type="danger"
-        variant="outline"
-        class="flex gap-1 text-xs"
-        @click="panel.showVillage()"
-      >
-        <div class="i-carbon:exit" />
-        {{ t('components.panel.Poulailler.exit') }}
-      </UiButton>
-    </div>
+  <LayoutTitledPanel
+    :title="t('components.panel.Poulailler.title')"
+    :exit-text="t('components.panel.Poulailler.exit')"
+    class="h-full"
+    @exit="panel.showVillage()"
+  >
     <div class="flex flex-1 flex-col gap-2 overflow-hidden" md="flex-row">
       <div class="flex flex-col gap-1" md="w-1/3">
         <h4 class="font-semibold">
@@ -144,5 +135,5 @@ function remaining(egg: { hatchesAt: number }) {
       </div>
     </div>
     <EggHatchModal />
-  </section>
+  </LayoutTitledPanel>
 </template>
