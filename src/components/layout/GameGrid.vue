@@ -2,8 +2,8 @@
 import { storeToRefs } from 'pinia'
 import PanelAchievements from '~/components/panel/Achievements.vue'
 import PanelInventory from '~/components/panel/Inventory.vue'
+import PanelMap from '~/components/panel/Map.vue'
 import PanelShlagedex from '~/components/panel/Shlagedex.vue'
-import PanelZone from '~/components/panel/Zone.vue'
 import ShlagemonDetailModal from '~/components/shlagemon/DetailModal.vue'
 
 const lockStore = useFeatureLockStore()
@@ -28,7 +28,7 @@ const bottomComponent = computed(() => {
     case 'achievements':
       return PanelAchievements
     case 'zones':
-      return PanelZone
+      return PanelMap
     case 'dex':
       return shlagedex.shlagemons.length ? PanelShlagedex : null
     case 'inventory':
@@ -104,7 +104,7 @@ const bottomLocked = computed(() => {
           <template #icon>
             <div class="i-carbon-map" />
           </template>
-          <PanelZone />
+          <PanelMap />
         </UiPanelWrapper>
       </div>
 
