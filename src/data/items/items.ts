@@ -24,8 +24,11 @@ import {
 // @unocss-include
 export const defensePotion: Item = {
   id: 'defense-potion',
+  nameKey: 'data.items.items.defensePotion.name',
   name: 'Potion de Défense',
+  descriptionKey: 'data.items.items.defensePotion.description',
   description: 'Augmente temporairement la défense.',
+  detailsKey: 'data.items.items.defensePotion.details',
   details: 'Renforce brièvement la défense de votre Shlagémon actif.',
   type: 'defense',
   power: 10,
@@ -38,8 +41,11 @@ export const defensePotion: Item = {
 
 export const superDefensePotion: Item = {
   id: 'super-defense-potion',
+  nameKey: 'data.items.items.superDefensePotion.name',
   name: 'Super Potion de Défense',
+  descriptionKey: 'data.items.items.superDefensePotion.description',
   description: 'Augmente beaucoup la défense.',
+  detailsKey: 'data.items.items.superDefensePotion.details',
   details: 'Renforce considérablement la défense de votre Shlagémon actif.',
   type: 'defense',
   power: 25,
@@ -52,8 +58,11 @@ export const superDefensePotion: Item = {
 
 export const hyperDefensePotion: Item = {
   id: 'hyper-defense-potion',
+  nameKey: 'data.items.items.hyperDefensePotion.name',
   name: 'Hyper Potion de Défense',
+  descriptionKey: 'data.items.items.hyperDefensePotion.description',
   description: 'Maximise temporairement la défense.',
+  detailsKey: 'data.items.items.hyperDefensePotion.details',
   details: 'Booste énormément la défense de votre Shlagémon actif.',
   type: 'defense',
   power: 50,
@@ -66,8 +75,11 @@ export const hyperDefensePotion: Item = {
 
 export const attackPotion: Item = {
   id: 'attack-potion',
+  nameKey: 'data.items.items.attackPotion.name',
   name: 'Potion d\'Attaque',
+  descriptionKey: 'data.items.items.attackPotion.description',
   description: 'Augmente temporairement l\'attaque.',
+  detailsKey: 'data.items.items.attackPotion.details',
   details: 'Renforce brièvement l\'attaque de votre Shlagémon actif.',
   type: 'attack',
   power: 10,
@@ -80,8 +92,11 @@ export const attackPotion: Item = {
 
 export const superAttackPotion: Item = {
   id: 'super-attack-potion',
+  nameKey: 'data.items.items.superAttackPotion.name',
   name: 'Super Potion d\'Attaque',
+  descriptionKey: 'data.items.items.superAttackPotion.description',
   description: 'Augmente beaucoup l\'attaque.',
+  detailsKey: 'data.items.items.superAttackPotion.details',
   details: 'Renforce considérablement l\'attaque de votre Shlagémon actif.',
   type: 'attack',
   power: 25,
@@ -94,8 +109,11 @@ export const superAttackPotion: Item = {
 
 export const hyperAttackPotion: Item = {
   id: 'hyper-attack-potion',
+  nameKey: 'data.items.items.hyperAttackPotion.name',
   name: 'Hyper Potion d\'Attaque',
+  descriptionKey: 'data.items.items.hyperAttackPotion.description',
   description: 'Maximise temporairement l\'attaque.',
+  detailsKey: 'data.items.items.hyperAttackPotion.details',
   details: 'Booste énormément l\'attaque de votre Shlagémon actif.',
   type: 'attack',
   power: 50,
@@ -108,8 +126,11 @@ export const hyperAttackPotion: Item = {
 
 export const vitalityPotion: Item = {
   id: 'vitality-potion',
+  nameKey: 'data.items.items.vitalityPotion.name',
   name: 'Potion de Vitalité',
+  descriptionKey: 'data.items.items.vitalityPotion.description',
   description: 'Augmente temporairement les PV.',
+  detailsKey: 'data.items.items.vitalityPotion.details',
   details: 'Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.',
   type: 'vitality',
   power: 10,
@@ -122,8 +143,11 @@ export const vitalityPotion: Item = {
 
 export const superVitalityPotion: Item = {
   id: 'super-vitality-potion',
+  nameKey: 'data.items.items.superVitalityPotion.name',
   name: 'Super Potion de Vitalité',
+  descriptionKey: 'data.items.items.superVitalityPotion.description',
   description: 'Augmente beaucoup les PV.',
+  detailsKey: 'data.items.items.superVitalityPotion.details',
   details: 'Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.',
   type: 'vitality',
   power: 25,
@@ -136,8 +160,11 @@ export const superVitalityPotion: Item = {
 
 export const hyperVitalityPotion: Item = {
   id: 'hyper-vitality-potion',
+  nameKey: 'data.items.items.hyperVitalityPotion.name',
   name: 'Hyper Potion de Vitalité',
+  descriptionKey: 'data.items.items.hyperVitalityPotion.description',
   description: 'Maximise temporairement les PV.',
+  detailsKey: 'data.items.items.hyperVitalityPotion.details',
   details: 'Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.',
   type: 'vitality',
   power: 50,
@@ -150,8 +177,11 @@ export const hyperVitalityPotion: Item = {
 
 export const xpPotion: Item = {
   id: 'xp-potion',
+  nameKey: 'data.items.items.xpPotion.name',
   name: 'Potion d\'Expérience',
+  descriptionKey: 'data.items.items.xpPotion.description',
   description: 'Augmente temporairement les gains d\'XP.',
+  detailsKey: 'data.items.items.xpPotion.details',
   details: 'Améliore l\'XP gagnée de 10% pendant quelques minutes.',
   type: 'xp',
   power: 10,
@@ -164,8 +194,11 @@ export const xpPotion: Item = {
 
 export const superXpPotion: Item = {
   id: 'super-xp-potion',
+  nameKey: 'data.items.items.superXpPotion.name',
   name: 'Super Potion d\'Expérience',
+  descriptionKey: 'data.items.items.superXpPotion.description',
   description: 'Augmente beaucoup les gains d\'XP.',
+  detailsKey: 'data.items.items.superXpPotion.details',
   details: 'Améliore l\'XP gagnée de 25% pendant quelques minutes.',
   type: 'xp',
   power: 25,
@@ -178,8 +211,11 @@ export const superXpPotion: Item = {
 
 export const hyperXpPotion: Item = {
   id: 'hyper-xp-potion',
+  nameKey: 'data.items.items.hyperXpPotion.name',
   name: 'Hyper Potion d\'Expérience',
+  descriptionKey: 'data.items.items.hyperXpPotion.description',
   description: 'Maximise temporairement les gains d\'XP.',
+  detailsKey: 'data.items.items.hyperXpPotion.details',
   details: 'Améliore l\'XP gagnée de 50% pendant quelques minutes.',
   type: 'xp',
   power: 50,
@@ -192,8 +228,11 @@ export const hyperXpPotion: Item = {
 
 export const capturePotion: Item = {
   id: 'capture-potion',
+  nameKey: 'data.items.items.capturePotion.name',
   name: 'Potion de Capture',
+  descriptionKey: 'data.items.items.capturePotion.description',
   description: 'Augmente légèrement les chances de capture.',
+  detailsKey: 'data.items.items.capturePotion.details',
   details: 'Améliore la probabilité de capture de 10% pendant quelques minutes.',
   type: 'capture',
   power: 10,
@@ -206,8 +245,11 @@ export const capturePotion: Item = {
 
 export const superCapturePotion: Item = {
   id: 'super-capture-potion',
+  nameKey: 'data.items.items.superCapturePotion.name',
   name: 'Super Potion de Capture',
+  descriptionKey: 'data.items.items.superCapturePotion.description',
   description: 'Augmente beaucoup les chances de capture.',
+  detailsKey: 'data.items.items.superCapturePotion.details',
   details: 'Améliore la probabilité de capture de 25% pendant quelques minutes.',
   type: 'capture',
   power: 25,
@@ -220,8 +262,11 @@ export const superCapturePotion: Item = {
 
 export const hyperCapturePotion: Item = {
   id: 'hyper-capture-potion',
+  nameKey: 'data.items.items.hyperCapturePotion.name',
   name: 'Hyper Potion de Capture',
+  descriptionKey: 'data.items.items.hyperCapturePotion.description',
   description: 'Maximise les chances de capture.',
+  detailsKey: 'data.items.items.hyperCapturePotion.details',
   details: 'Améliore la probabilité de capture de 50% pendant quelques minutes.',
   type: 'capture',
   power: 50,
@@ -234,8 +279,11 @@ export const hyperCapturePotion: Item = {
 
 export const potion: Item = {
   id: 'potion',
+  nameKey: 'data.items.items.potion.name',
   name: 'Potion Dégueulasse',
+  descriptionKey: 'data.items.items.potion.description',
   description: 'Soigne 50 HP de votre Shlagémon.',
+  detailsKey: 'data.items.items.potion.details',
   details: 'Redonne 50 points de vie à votre Shlagémon actif pendant le combat.',
   type: 'heal',
   power: 50,
@@ -248,8 +296,11 @@ export const potion: Item = {
 
 export const superPotion: Item = {
   id: 'super-potion',
+  nameKey: 'data.items.items.superPotion.name',
   name: 'Super Potion',
+  descriptionKey: 'data.items.items.superPotion.description',
   description: 'Soigne 100 HP de votre Shlagémon.',
+  detailsKey: 'data.items.items.superPotion.details',
   details: 'Redonne 100 points de vie à votre Shlagémon actif pendant le combat.',
   type: 'heal',
   power: 100,
@@ -262,8 +313,11 @@ export const superPotion: Item = {
 
 export const hyperPotion: Item = {
   id: 'hyper-potion',
+  nameKey: 'data.items.items.hyperPotion.name',
   name: 'Hyper Potion',
+  descriptionKey: 'data.items.items.hyperPotion.description',
   description: 'Soigne 200 HP de votre Shlagémon.',
+  detailsKey: 'data.items.items.hyperPotion.details',
   details: 'Redonne 200 points de vie à votre Shlagémon actif pendant le combat.',
   type: 'heal',
   power: 200,
@@ -276,8 +330,11 @@ export const hyperPotion: Item = {
 
 export const multiExp: Item = {
   id: 'multi-exp',
+  nameKey: 'data.items.items.multiExp.name',
   name: 'Multi-EXP',
+  descriptionKey: 'data.items.items.multiExp.description',
   description: 'Partage l\'XP avec un Shlagémon.',
+  detailsKey: 'data.items.items.multiExp.details',
   details:
     'Permet de partager 50% de l\'XP gagnée en combat avec le Shlagémon porteur.',
   price: 20,
@@ -291,8 +348,11 @@ export const multiExp: Item = {
 
 export const thunderStone: Item = {
   id: 'pierre-foutre',
+  nameKey: 'data.items.items.thunderStone.name',
   name: 'Pierre Foutre',
+  descriptionKey: 'data.items.items.thunderStone.description',
   description: 'Permet certaines évolutions de type électrique.',
+  detailsKey: 'data.items.items.thunderStone.details',
   details: 'Fait évoluer Pikachiant en Raïchiotte.',
   price: 10,
   currency: 'shlagidiamond',
@@ -303,8 +363,11 @@ export const thunderStone: Item = {
 
 export const steroids: Item = {
   id: 'steroides',
+  nameKey: 'data.items.items.steroids.name',
   name: 'Stéroïdes',
+  descriptionKey: 'data.items.items.steroids.description',
   description: 'Permet certaines évolutions de type "gros beauf bodybuildé toxique".',
+  detailsKey: 'data.items.items.steroids.details',
   details: `Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.`,
   price: 50,
   currency: 'shlagidiamond',
@@ -316,8 +379,11 @@ export const steroids: Item = {
 
 export const ultraSteroid: Item = {
   id: 'ultra-steroide',
+  nameKey: 'data.items.items.ultraSteroid.name',
   name: 'Ultra-Stéroïde',
+  descriptionKey: 'data.items.items.ultraSteroid.description',
   description: `Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.`,
+  detailsKey: 'data.items.items.ultraSteroid.details',
   details: `Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.`,
   price: 100,
   currency: 'shlagidiamond',
@@ -329,7 +395,9 @@ export const ultraSteroid: Item = {
 
 export const eggBox: Item = {
   id: 'egg-box',
+  nameKey: 'data.items.items.eggBox.name',
   name: 'Boîte à œufs',
+  descriptionKey: 'data.items.items.eggBox.description',
   description: 'Permet de stocker tous tes œufs sans encombrer l\'inventaire.',
   category: 'utilitaire',
   unique: true,
@@ -339,7 +407,9 @@ export const eggBox: Item = {
 
 export const fireEgg: Item = {
   id: 'oeuf-feu',
+  nameKey: 'data.items.items.fireEgg.name',
   name: 'Œuf Feu',
+  descriptionKey: 'data.items.items.fireEgg.description',
   description: 'Un œuf chaud bouillant.',
   price: 30,
   currency: 'shlagidolar',
@@ -350,7 +420,9 @@ export const fireEgg: Item = {
 
 export const waterEgg: Item = {
   id: 'oeuf-eau',
+  nameKey: 'data.items.items.waterEgg.name',
   name: 'Œuf Eau',
+  descriptionKey: 'data.items.items.waterEgg.description',
   description: 'Un œuf qui ruisselle.',
   price: 30,
   currency: 'shlagidolar',
@@ -361,7 +433,9 @@ export const waterEgg: Item = {
 
 export const grassEgg: Item = {
   id: 'oeuf-herbe',
+  nameKey: 'data.items.items.grassEgg.name',
   name: 'Œuf Herbe',
+  descriptionKey: 'data.items.items.grassEgg.description',
   description: 'Un œuf qui sent la pelouse.',
   price: 30,
   currency: 'shlagidolar',
@@ -372,7 +446,9 @@ export const grassEgg: Item = {
 
 export const psyEgg: Item = {
   id: 'oeuf-psy',
+  nameKey: 'data.items.items.psyEgg.name',
   name: 'Œuf Psy',
+  descriptionKey: 'data.items.items.psyEgg.description',
   description: 'Un œuf qui te fixe intensément.',
   price: 30,
   currency: 'shlagidolar',
@@ -383,7 +459,9 @@ export const psyEgg: Item = {
 
 export const thunderEgg: Item = {
   id: 'oeuf-foudre',
+  nameKey: 'data.items.items.thunderEgg.name',
   name: 'Œuf Foudre',
+  descriptionKey: 'data.items.items.thunderEgg.description',
   description: 'Un œuf parcouru d\'étincelles.',
   price: 30,
   currency: 'shlagidolar',

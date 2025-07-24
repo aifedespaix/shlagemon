@@ -1,0 +1,26 @@
+en:
+  attackRing:
+    name: Attack Ring
+    description: Increases the wearer's attack.
+    details: When worn, boosts attack by 15%. Can stack with attack potions.
+  advancedAttackRing:
+    name: Advanced Attack Ring
+    description: Strongly increases the wearer's attack.
+    details: When worn, boosts attack by 25%. Can stack with attack potions.
+  attackAmulet:
+    name: Attack Amulet
+    description: Greatly increases the wearer's attack.
+    details: When worn, boosts attack by 33%. Can stack with attack potions.
+fr:
+  attackRing:
+    name: Bague d'attaque
+    description: Augmente l'attaque du porteur.
+    details: Portée par un Shlagémon, elle augmente son attaque de 15%. Effet cumulable avec les potions d'attaque.
+  advancedAttackRing:
+    name: Bague d'attaque avancée
+    description: Augmente fortement l'attaque du porteur.
+    details: Portée par un Shlagémon, elle augmente son attaque de 25%. Effet cumulable avec les potions d'attaque.
+  attackAmulet:
+    name: Amulette d'attaque
+    description: Augmente grandement l'attaque du porteur.
+    details: Portée par un Shlagémon, elle augmente son attaque de 33%. Effet cumulable avec les potions d'attaque.
