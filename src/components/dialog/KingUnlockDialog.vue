@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { defensePotion } from '~/data/items/items'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
@@ -55,7 +56,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.KingUnlockDialog.steps.step6.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add('defense-potion', 1)
+          inventory.add(defensePotion.id, 1)
           emit('done', 'kingUnlock')
         },
       },

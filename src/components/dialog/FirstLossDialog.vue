@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { potion } from '~/data/items/items'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
@@ -43,7 +44,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.FirstLossDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add('potion', 10)
+          inventory.add(potion.id, 10)
           emit('done', 'firstLoss')
         },
       },

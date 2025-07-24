@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { shlageball } from '~/data/items/shlageball'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
@@ -47,7 +48,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.Level5Dialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add('shlageball', 10)
+          inventory.add(shlageball.id, 10)
           emit('done', 'level5')
         },
       },

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { eggBox } from '~/data/items/items'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
@@ -42,7 +43,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         action: () => {
           box.unlock()
           box.importFromInventory(inventory.items as any)
-          inventory.add('egg-box')
+          inventory.add(eggBox.id)
           emit('done', 'eggBox')
         },
       },

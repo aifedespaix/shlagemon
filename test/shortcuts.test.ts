@@ -1,5 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
+import { potion, superPotion } from '../src/data/items/items'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useInventoryStore } from '../src/stores/inventory'
 import { useShlagedexStore } from '../src/stores/shlagedex'
@@ -16,14 +17,14 @@ describe('shortcuts', () => {
     // need an active shlagemon for potions to work
     const mon = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
-    inventory.add('potion')
-    inventory.add('super-potion')
+    inventory.add(potion.id)
+    inventory.add(superPotion.id)
     shortcuts.shortcuts = [
-      { key: 'a', action: { type: 'use-item', itemId: 'potion' } },
-      { key: 'a', action: { type: 'use-item', itemId: 'super-potion' } },
+      { key: 'a', action: { type: 'use-item', itemId: potion.id } },
+      { key: 'a', action: { type: 'use-item', itemId: superPotion.id } },
     ]
     shortcuts.handleKeydown(new KeyboardEvent('keydown', { key: 'a' }))
-    expect(inventory.items.potion).toBeUndefined()
-    expect(inventory.items['super-potion']).toBeUndefined()
+    expect(inventory.items[potion.id]).toBeUndefined()
+    expect(inventory.items[superPotion.id]).toBeUndefined()
   })
 })

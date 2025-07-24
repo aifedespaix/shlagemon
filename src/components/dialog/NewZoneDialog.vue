@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { xpPotion } from '~/data/items/items'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
@@ -41,7 +42,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.NewZoneDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add('xp-potion', 1)
+          inventory.add(xpPotion.id, 1)
           visit.markAllAccessibleVisited()
           mobile.set('zones')
           emit('done', 'newZone')

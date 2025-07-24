@@ -1,9 +1,11 @@
+import { multiExp } from '../../src/data/items/items'
+
 describe('multi-exp item', () => {
   beforeEach(() => {
     cy.visit('/', {
       onBeforeLoad(win) {
         win.localStorage.clear()
-        win.localStorage.setItem('inventory', JSON.stringify({ items: { 'multi-exp': 1 } }))
+        win.localStorage.setItem('inventory', JSON.stringify({ items: { [multiExp.id]: 1 } }))
       },
     })
   })

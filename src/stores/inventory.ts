@@ -1,7 +1,12 @@
 import type { ItemId } from '~/data/items/items'
 import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
-import { allItems } from '~/data/items/items'
+import {
+  allItems,
+  hyperShlageball,
+  shlageball,
+  superShlageball,
+} from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 
 export const useInventoryStore = defineStore('inventory', () => {
@@ -102,13 +107,13 @@ export const useInventoryStore = defineStore('inventory', () => {
     }
 
     const handlers: Record<ItemId, () => boolean> = {
-      'egg-box': () => {
+      [eggBox.id]: () => {
         eggBox.open()
         return true
       },
-      'shlageball': capture,
-      'super-shlageball': capture,
-      'hyper-shlageball': capture,
+      [shlageball.id]: capture,
+      [superShlageball.id]: capture,
+      [hyperShlageball.id]: capture,
     }
 
     const typeHandlers: Record<string, (power: number) => boolean> = {
