@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import ZonePanel from '../src/components/panel/Zone.vue'
 import ZoneActions from '../src/components/village/ZoneActions.vue'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useMainPanelStore } from '../src/stores/mainPanel'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useZoneStore } from '../src/stores/zone'
@@ -15,8 +15,8 @@ describe('zone store', () => {
     setActivePinia(createPinia())
     const store = useZoneStore()
     expect(store.current.id).toBe(store.zones[0].id)
-    store.setZone('grotte-du-slip')
-    expect(store.current.id).toBe('grotte-du-slip')
+    store.setZone('chemin-du-slip')
+    expect(store.current.id).toBe('chemin-du-slip')
   })
 })
 
@@ -67,7 +67,7 @@ describe('zone panel', () => {
     for (let i = 0; i < 20; i++)
       progress.addWin('plaine-kekette')
     await wrapper.vm.$nextTick()
-    expect(wrapper.text()).toContain('Défier le roi de la zone')
+    expect(wrapper.text()).toContain('Défier la roi de la zone')
   })
 
   it('disables zone buttons during trainer battle', async () => {

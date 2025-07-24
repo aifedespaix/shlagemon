@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 import { shlagedexSerializer } from '../src/utils/shlagedex-serialize'
 

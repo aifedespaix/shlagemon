@@ -4,7 +4,8 @@ import { describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import BattleMain from '../src/components/battle/Main.vue'
 import { EQUILIBRE_RANK } from '../src/constants/battle'
-import { carapouffe, salamiches } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
+import { salamiches } from '../src/data/shlagemons/salamiches'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 
 describe('battleMain switch', () => {

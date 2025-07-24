@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
-import BattleCapture from '../src/components/battle/BattleCapture.vue'
+import BattleCapture from '../src/components/battle/Capture.vue'
 import { shlageball } from '../src/data/items/shlageball'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useBallStore } from '../src/stores/ball'
