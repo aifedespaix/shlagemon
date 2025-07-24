@@ -17,6 +17,7 @@ export interface BaseShlagemon {
   types: ShlagemonType[]
   evolution?: ShlagemonEvolution
   coefficient: number
+  legendary?: boolean
 }
 
 export interface DexShlagemon extends Stats {

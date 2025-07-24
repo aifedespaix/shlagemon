@@ -19,6 +19,7 @@ Ce Shlagémon n’attaque jamais directement. Il infuse le terrain d’une paix 
 
   types: [shlagemonTypes.psy, shlagemonTypes.vol],
   coefficient: 150,
+  legendary: true,
 }
 
 export default zebrapoisbleu

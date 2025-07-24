@@ -15,6 +15,7 @@ Vénéré par une secte de rats crasseux, Sulfusouris est considéré comme le �
 
   types: [shlagemonTypes.feu, shlagemonTypes.vol],
   coefficient: 110,
+  legendary: true,
 }
 
 export default sulfusouris

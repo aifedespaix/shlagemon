@@ -15,6 +15,7 @@ On dit que Mairiousse n’aboie pas : il fait des discours interminables qui end
 
   types: [shlagemonTypes.sol, shlagemonTypes.eau],
   coefficient: 150,
+  legendary: true,
 }
 
 export default mairiousse

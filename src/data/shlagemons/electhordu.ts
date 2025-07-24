@@ -17,6 +17,7 @@ Aujourd’hui, il erre, tordu du bec au voltage, parlant seul dans les fils éle
 
   types: [shlagemonTypes.electrique, shlagemonTypes.vol],
   coefficient: 110,
+  legendary: true,
 }
 
 export default electhordu

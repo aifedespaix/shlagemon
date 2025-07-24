@@ -15,6 +15,7 @@ Aujourd’hui, Artichaud veille sur les zones de non-droit climatiques, où il i
 
   types: [shlagemonTypes.glace, shlagemonTypes.vol],
   coefficient: 110,
+  legendary: true,
 }
 
 export default artichaud
