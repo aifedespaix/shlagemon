@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { balls } from '../src/data/items/shlageball'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { captureChanceFromHp, tryCapture } from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 

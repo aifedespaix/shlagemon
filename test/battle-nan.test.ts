@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import BattleMain from '../src/components/battle/Main.vue'
 import { EQUILIBRE_RANK } from '../src/constants/battle'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useZoneStore } from '../src/stores/zone'
 

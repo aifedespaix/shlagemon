@@ -1,7 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { useBattleCore } from '../src/composables/useBattleCore'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 
 function setup() {

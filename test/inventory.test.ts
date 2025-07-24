@@ -1,7 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { potion, shlageball } from '../src/data/items/items'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useCaptureLimitModalStore } from '../src/stores/captureLimitModal'
 import { useInventoryStore } from '../src/stores/inventory'
 import { usePlayerStore } from '../src/stores/player'

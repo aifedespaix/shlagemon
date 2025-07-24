@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import { carapouffe } from '../src/data/shlagemons'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useBattleStore } from '../src/stores/battle'
 import { useDiseaseStore } from '../src/stores/disease'
 import { useShlagedexStore } from '../src/stores/shlagedex'
