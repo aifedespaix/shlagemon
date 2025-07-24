@@ -21,6 +21,7 @@ export const village50: Zone = {
   id: 'village-caca-boudin',
   name: 'Village Fiente-sur-Mer',
   type: 'village',
+  position: { lat: 41, lng: -52 },
   actions: [],
   minLevel: 50,
   village: {

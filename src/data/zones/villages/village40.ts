@@ -21,6 +21,7 @@ export const village40: Zone = {
   id: 'village-paume',
   name: 'Village Paumé du cul',
   type: 'village',
+  position: { lat: 36, lng: -100 },
   actions: [],
   minLevel: 40,
   arena: {
