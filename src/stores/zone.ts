@@ -1,5 +1,5 @@
 import type { Trainer } from '~/type/trainer'
-import type { Zone } from '~/type/zone'
+import type { SavageZoneId, Zone } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
@@ -28,18 +28,10 @@ export const useZoneStore = defineStore('zone', () => {
     return Math.max(0, 1000 - (now.value.getTime() - selectedAt.value))
   })
 
-  const kings = ref<Record<string, Trainer>>({})
+  const kings = toRaw({ ...kingsData })
 
-  function getKing(id: string): Trainer | undefined {
-    const z = zones.value.find(z => z.id === id)
-    if (!z)
-      throw new Error('Zone not found')
-    const hasKing = z.hasKing ?? z.type === 'sauvage'
-    if (!hasKing)
-      return undefined
-    if (!kings.value[id])
-      kings.value[id] = kingsData.find(k => k.id === `king-${id}`)!
-    return kings.value[id]
+  function getKing(id: SavageZoneId): Trainer | undefined {
+    return kings[id]
   }
 
   function getZoneRank(id: string): number {

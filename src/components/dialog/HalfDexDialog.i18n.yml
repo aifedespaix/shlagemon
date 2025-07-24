@@ -5,7 +5,7 @@ fr:
       responses:
         next: Continuer
     step2:
-      text: 'Je suis {name}. Pour t''aider, je vais te remettre un objet très spécial : le Multi-UXP.'
+      text: "En tant que {name} je suis fier de toi. Pour t'aider dans ton aventure, je vais te remettre un objet très spécial : le Multi-EXP."
       responses:
         back: Retour
         next: Continuer
@@ -26,7 +26,7 @@ en:
       responses:
         next: Continue
     step2:
-      text: 'I''m {name}. To help you, I''ll give you a very special item: the Multi-UXP.'
+      text: 'As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP.'
       responses:
         back: Back
         next: Continue

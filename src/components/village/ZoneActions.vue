@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SavageZoneId } from '~/type'
+
 const zone = useZoneStore()
 const panel = useMainPanelStore()
 const mini = useMiniGameStore()
@@ -14,7 +16,7 @@ const hasArena = computed(() => !!zone.current.arena)
 const hasPoulailler = computed(() => !!zone.current.village?.poulailler)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentKing = computed(() =>
-  hasKing.value ? zone.getKing(zone.current.id) : undefined,
+  hasKing.value ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
 )
 const kingLabel = computed(() =>
   currentKing.value?.character.gender === 'female' ? 'reine' : 'roi',
