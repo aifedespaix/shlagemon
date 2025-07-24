@@ -316,16 +316,38 @@ export const useAchievementsStore = defineStore('achievements', () => {
     })
   }
 
-  watch(() => game.shlagidolar, v => checkThresholds(v, 'money', moneyThresholds), { immediate: true })
-  watch(() => counters.captures, v => checkThresholds(v, 'capture', captureThresholds))
-  watch(() => dex.averageLevel, v => checkThresholds(v, 'avg', levelThresholds), { immediate: true })
-  watch(() => counters.wins, v => checkThresholds(v, 'win', winThresholds))
-  watch(() => counters.winsStronger, v => checkThresholds(v, 'stronger', winThresholds))
-  watch(() => counters.losses, v => checkThresholds(v, 'loss', lossThresholds))
-  watch(() => counters.itemsUsed, v => checkThresholds(v, 'item', itemThresholds))
-  watch(() => counters.kings, v => checkThresholds(v, 'king', kingThresholds))
-  watch(() => counters.shiny, v => checkThresholds(v, 'shiny', shinyThresholds))
-  watch(() => counters.minigameWins, v => checkThresholds(v, 'minigame', minigameThresholds))
+  const thresholdMap = {
+    money: moneyThresholds,
+    capture: captureThresholds,
+    avg: levelThresholds,
+    win: winThresholds,
+    stronger: winThresholds,
+    loss: lossThresholds,
+    item: itemThresholds,
+    king: kingThresholds,
+    shiny: shinyThresholds,
+    minigame: minigameThresholds,
+  } as const
+
+  const thresholdCounters = computed(() => ({
+    money: game.shlagidolar,
+    capture: counters.captures,
+    avg: dex.averageLevel,
+    win: counters.wins,
+    stronger: counters.winsStronger,
+    loss: counters.losses,
+    item: counters.itemsUsed,
+    king: counters.kings,
+    shiny: counters.shiny,
+    minigame: counters.minigameWins,
+  }))
+
+  watch(thresholdCounters, (vals) => {
+    Object.entries(thresholdMap).forEach(([key, thresholds]) => {
+      const v = vals[key as keyof typeof vals]
+      checkThresholds(v, key, thresholds as number[])
+    })
+  }, { immediate: true })
 
   function checkZoneCompletion() {
     zonesData.forEach((z) => {
