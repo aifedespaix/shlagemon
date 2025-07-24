@@ -31,6 +31,8 @@ function onVillageWheel(e: WheelEvent) {
 
 <template>
   <div class="relative flex flex-1 flex-col gap-1 overflow-hidden">
+    <ZonePrevButton />
+    <ZoneNextButton />
     <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-200">
       <UiProgressBar
 
