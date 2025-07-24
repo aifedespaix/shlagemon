@@ -4,7 +4,6 @@ import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import { eggTypeMap } from '~/constants/egg'
 import { allShlagemons } from '~/data/shlagemons'
-import { mewteub } from '~/data/shlagemons/mewteub'
 
 export const useEggMonsModalStore = defineStore('eggMonsModal', () => {
   const { isVisible, open: openModal, close } = createModalStore()
@@ -17,7 +16,7 @@ export const useEggMonsModalStore = defineStore('eggMonsModal', () => {
       return []
     return allShlagemons
       .filter(b => b.types.some(t => t.id === type.value))
-      .filter(b => !(type.value === 'psy' && b.id === mewteub.id))
+      .filter(b => !b.legendary)
   })
 
   function open(id: EggItemId, eggItem: Item) {

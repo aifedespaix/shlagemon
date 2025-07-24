@@ -3,7 +3,6 @@ import type { TypeName } from '~/data/shlagemons-type'
 import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { allShlagemons } from '~/data/shlagemons'
-import { mewteub } from '~/data/shlagemons/mewteub'
 import { eggSerializer } from '~/utils/egg-serialize'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
@@ -24,11 +23,9 @@ export const useEggStore = defineStore('egg', () => {
   function startIncubation(type: EggType) {
     if (incubator.value.length >= 4)
       return false
-    let candidates = allShlagemons.filter(b =>
-      b.types.some(t => t.id === type),
-    )
-    if (type === 'psy')
-      candidates = candidates.filter(b => b.id !== mewteub.id)
+    const candidates = allShlagemons
+      .filter(b => b.types.some(t => t.id === type))
+      .filter(b => !b.legendary)
     const base = pickRandomByCoefficient(candidates)
     const duration = (base.coefficient / 10) * 60_000
     const startedAt = Date.now()
