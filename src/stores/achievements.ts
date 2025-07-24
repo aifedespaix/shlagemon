@@ -400,7 +400,6 @@ export const useAchievementsStore = defineStore('achievements', () => {
   return { list, unlockedList, hasAny, handleEvent, reset }
 }, {
   persist: {
-    // @ts-expect-error wrong typings from pinia-plugin
     paths: ['counters'],
   },
 })
