@@ -83,9 +83,9 @@ const maxLng = 110
 onMounted(() => {
   leafletMap.value = new Map(mapRef.value!, {
     center: [80, -10],
-    zoom: 3,
-    minZoom: 1,
-    maxZoom: 3,
+    zoom: 2,
+    minZoom: 2,
+    maxZoom: 2,
     zoomControl: true,
     attributionControl: false,
     maxBounds: [
