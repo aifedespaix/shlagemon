@@ -1,4 +1,5 @@
 import type { Zone } from '~/type'
+import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
   capturePotion,
@@ -18,12 +19,13 @@ import {
 } from '~/data/items/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
 import { arena60 } from '../../arenas'
+import { savage55 } from '../savages/55-vallee-des-chieurs'
 
 export const village60: Zone = {
   id: 'village-cassos-land',
   name: 'Village des Cassos',
   type: 'village',
-  position: { lat: -3, lng: -91 },
+  position: { lat: savage55.position.lat, lng: savage55.position.lng + VILLAGE_OFFSET },
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

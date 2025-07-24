@@ -1,4 +1,5 @@
 import type { Zone } from '~/type'
+import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
   capturePotion,
@@ -16,12 +17,13 @@ import {
 } from '~/data/items/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
 import { arena40 } from '../../arenas'
+import { savage35 } from '../savages/35-route-du-nawak'
 
 export const village40: Zone = {
   id: 'village-paume',
   name: 'Village Paumé du cul',
   type: 'village',
-  position: { lat: 36, lng: -100 },
+  position: { lat: savage35.position.lat, lng: savage35.position.lng + VILLAGE_OFFSET },
   actions: [],
   minLevel: 40,
   arena: {

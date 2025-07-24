@@ -1,4 +1,5 @@
 import type { Zone } from '~/type'
+import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
   capturePotion,
@@ -21,12 +22,13 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
+import { savage95 } from '../savages/95-cratere-des-legends'
 
 export const village100: Zone = {
   id: 'village-giga-schlag',
   name: 'Citadelle Giga-Schlag',
   type: 'village',
-  position: { lat: -78.5, lng: -58 },
+  position: { lat: savage95.position.lat, lng: savage95.position.lng + VILLAGE_OFFSET },
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

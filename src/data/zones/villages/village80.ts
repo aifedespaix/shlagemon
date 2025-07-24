@@ -1,4 +1,5 @@
 import type { Zone } from '~/type'
+import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
   capturePotion,
@@ -21,12 +22,13 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
+import { savage75 } from '../savages/75-route-so-dom'
 
 export const village80: Zone = {
   id: 'village-clitoland',
   name: 'Clito Land',
   type: 'village',
-  position: { lat: -17, lng: -81 },
+  position: { lat: savage75.position.lat, lng: savage75.position.lng + VILLAGE_OFFSET },
   actions: [],
   minLevel: 80,
   village: {
