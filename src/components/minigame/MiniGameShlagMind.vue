@@ -89,7 +89,7 @@ function validate() {
   feedback.value.push(res)
   const win = res.every(r => r === 'green')
   if (win) {
-    message.value = 'T\u2019as perc\u00E9 le cerveau d\u2019un Shlag !'
+    message.value = t('components.minigame.MiniGameShlagMind.win')
     showConfetti.value = true
     useTimeoutFn(() => {
       showConfetti.value = false
@@ -97,7 +97,7 @@ function validate() {
     }, 1200)
   }
   else if (attempts.value.length >= maxAttempts) {
-    message.value = 'M\u00EAme un Petmorv y serait arriv\u00E9'
+    message.value = t('components.minigame.MiniGameShlagMind.lose')
     useTimeoutFn(() => emit('lose'), 1200)
   }
   else {
@@ -152,7 +152,7 @@ initGame()
       <div
         v-if="
           attemptsLeft > 0
-            && message !== 'T\u2019as perc\u00e9 le cerveau d\u2019un Shlag !'
+            && message !== t('components.minigame.MiniGameShlagMind.win')
         "
         class="flex items-center justify-between"
       >
