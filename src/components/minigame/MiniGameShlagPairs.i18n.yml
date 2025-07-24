@@ -1,0 +1,4 @@
+fr:
+  attempts: '{n} tentative | {n} tentatives'
+en:
+  attempts: '{n} attempt | {n} attempts'

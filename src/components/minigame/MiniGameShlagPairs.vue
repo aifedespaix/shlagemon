@@ -4,6 +4,9 @@ import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
 
 const emit = defineEmits(['win'])
+
+const { t } = useI18n()
+
 const audio = useAudioStore()
 
 interface Cell {
@@ -105,7 +108,7 @@ onMounted(reset)
       </div>
     </div>
     <div class="mt-2 text-center text-sm font-bold">
-      {{ attempts }} tentative{{ attempts > 1 ? 's' : '' }}
+      {{ t('components.minigame.MiniGameShlagPairs.attempts', attempts) }}
     </div>
   </div>
 </template>

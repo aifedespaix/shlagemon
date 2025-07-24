@@ -436,6 +436,9 @@ components:
           text: Equip it on the Shlagemon of your choice.
         step6:
           text: Good luck from here on!
+  minigame:
+    MiniGameShlagPairs:
+      attempts: '{n} attempt | {n} attempts'
 data:
   shlagemons:
     01-05:

@@ -457,6 +457,9 @@ components:
           text: Équipe-le sur le Shlagémon de ton choix.
         step6:
           text: Bonne chance pour la suite !
+  minigame:
+    MiniGameShlagPairs:
+      attempts: '{n} tentative | {n} tentatives'
 data:
   shlagemons:
     01-05:
