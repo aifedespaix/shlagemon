@@ -38,19 +38,21 @@ export function buildSimplePath(from: Position, to: Position): LatLngExpression[
 
 export function useMapPaths(map: LeafletMap) {
   function drawPolylineWithBorder(path: LatLngExpression[], color = '#ffaa00') {
-    new Polyline(path, {
+    const border = new Polyline(path, {
       color: '#000000',
       weight: 18,
       opacity: 1,
       smoothFactor: 4,
     }).addTo(map)
 
-    new Polyline(path, {
+    const line = new Polyline(path, {
       color,
       weight: 14,
       opacity: 1,
       smoothFactor: 4,
     }).addTo(map)
+
+    return [border, line]
   }
 
   return { drawPolylineWithBorder }
