@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import type { EggItemId } from '~/stores/eggBox'
 import { allItems } from '~/data/items/items'
+
+const eggMonsModal = useEggMonsModalStore()
 
 const box = useEggBoxStore()
 const { t } = useI18n()
@@ -8,6 +11,10 @@ const eggList = computed(() => eggIds.filter(id => box.eggs[id]))
 
 function getItem(id: string) {
   return allItems.find(i => i.id === id)!
+}
+
+function openEgg(id: EggItemId) {
+  eggMonsModal.open(id, getItem(id))
 }
 </script>
 
@@ -21,7 +28,8 @@ function getItem(id: string) {
         <div
           v-for="id in eggList"
           :key="id"
-          class="flex items-center justify-between border-b p-1"
+          class="flex cursor-pointer items-center justify-between border-b p-1"
+          @click="openEgg(id as EggItemId)"
         >
           <div class="flex items-center gap-1">
             <div v-if="getItem(id).icon" class="h-6 w-6" :class="[getItem(id).icon, getItem(id).iconClass]" />
@@ -33,4 +41,5 @@ function getItem(id: string) {
       <span v-else class="text-center text-sm">{{ t('components.egg.BoxModal.empty') }}</span>
     </div>
   </UiModal>
+  <EggMonsModal />
 </template>
