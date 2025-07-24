@@ -8,27 +8,16 @@ import { useLeafletMarker } from '~/composables/leaflet/useLeafletMarker'
 import { zonesData } from '~/data/zones'
 import 'leaflet/dist/leaflet.css'
 
+const props = defineProps<{ zones?: Zone[] }>()
+const emit = defineEmits<{
+  (e: 'select', id: ZoneId): void
+}>()
+
 const mapRef = ref<HTMLElement | null>(null)
 const leafletMap = ref<Map | null>(null)
 
 function iconPath(name: ZoneId): string {
   return `/map/icons/${name}.webp`
-}
-
-function createStairLine(from: Zone, to: Zone): void {
-  const p1 = from.position
-  const p2 = to.position
-
-  // Tu peux choisir vertical puis horizontal (ici)
-  const mid: LatLngExpression = [p2.lat, p1.lng]
-
-  const path: LatLngExpression[] = [
-    [p1.lat, p1.lng],
-    mid,
-    [p2.lat, p2.lng],
-  ]
-
-  drawPolylineWithBorder(path)
 }
 
 function buildZigzagPath(zones: Zone[]): LatLngExpression[] {
@@ -76,12 +65,14 @@ function drawPolylineWithBorder(path: LatLngExpression[]) {
 }
 
 function placeMaker(zone: Zone) {
-  return useLeafletMarker({
+  const marker = useLeafletMarker({
     map: leafletMap.value!,
     position: [zone.position.lat, zone.position.lng],
     iconUrl: iconPath(zone.id),
     size: 48,
   })
+  marker.on('click', () => emit('select', zone.id))
+  return marker
 }
 
 const minLat = -90
@@ -104,7 +95,7 @@ onMounted(() => {
   })
 
   leafletMap.value.on('contextmenu', (e) => {
-    console.log(`position: {lat: ${e.latlng.lat}, lng:${e.latlng.lng}},`)
+    console.warn(`position: {lat: ${e.latlng.lat}, lng:${e.latlng.lng}},`)
   })
   const tileLayer: TileLayer = new TileLayer('/map/tiles/{z}/{x}/{y}.webp', {
     tileSize: 256,
@@ -115,12 +106,12 @@ onMounted(() => {
   mapRef.value!.style.background = '#508ed7'
 
   tileLayer.addTo(leafletMap.value!)
-  zonesData.forEach((zone, index) => {
-    if (zone.position) {
+  const zones = props.zones ?? zonesData
+  zones.forEach((zone) => {
+    if (zone.position)
       placeMaker(zone)
-    }
   })
-  const allPath = buildZigzagPath(zonesData.filter(z => z.position))
+  const allPath = buildZigzagPath(zones.filter(z => z.position))
   drawPolylineWithBorder(allPath)
 })
 </script>

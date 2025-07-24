@@ -122,7 +122,7 @@ const savagesZonesDescription: SavageZoneDescription[] = [
   {
     id: 'lac-aux-relous',
     lvl: zoneIndex++ * lvlsByZone,
-position: {lat: 0.03320602577323381, lng:-131.87589174937966},
+    position: { lat: 0.03320602577323381, lng: -131.87589174937966 },
     name: 'Lac aux Relous',
     shlagemons: import.meta.glob<{ default: BaseShlagemon }>(`./shlagemons/65-70/*.ts`, { eager: true }),
   },
