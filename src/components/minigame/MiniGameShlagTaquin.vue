@@ -9,7 +9,7 @@ const emit = defineEmits<{ (e: 'win'): void }>()
 
 const size = computed(() => props.difficulty === 'hard' ? 4 : 3)
 
-const puzzle = reactive(useSlidingPuzzle(size.value))
+const puzzle = useSlidingPuzzle(size)
 const visibleTiles = computed(() =>
   puzzle.tiles
     .map((id, idx) => ({ id, idx }))
@@ -51,7 +51,7 @@ onMounted(async () => {
 })
 
 watch(size, async () => {
-  Object.assign(puzzle, useSlidingPuzzle(size.value))
+  puzzle.reset()
   await nextTick()
   setTimeout(async () => {
     await puzzle.shuffleBoard(50, 80)

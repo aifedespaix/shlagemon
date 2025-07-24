@@ -1,4 +1,5 @@
-import { computed, ref } from 'vue'
+import type { Ref } from 'vue'
+import { computed, isRef, ref } from 'vue'
 import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
 
@@ -9,7 +10,8 @@ export interface SlidingPuzzle {
   size: number
 }
 
-export function useSlidingPuzzle(size: number) {
+export function useSlidingPuzzle(size: number | Ref<number>) {
+  const sizeRef = isRef(size) ? size : ref(size)
   const tiles = ref<number[]>([])
   const emptyIndex = ref(0)
   const image = ref('')
@@ -18,20 +20,20 @@ export function useSlidingPuzzle(size: number) {
   const shuffling = ref(false)
 
   function init() {
-    tiles.value = Array.from({ length: size * size }, (_, i) => i)
-    emptyIndex.value = size * size - 1
+    tiles.value = Array.from({ length: sizeRef.value * sizeRef.value }, (_, i) => i)
+    emptyIndex.value = sizeRef.value * sizeRef.value - 1
     solved.value = true
   }
 
   function validDirections() {
-    const r = Math.floor(emptyIndex.value / size)
-    const c = emptyIndex.value % size
+    const r = Math.floor(emptyIndex.value / sizeRef.value)
+    const c = emptyIndex.value % sizeRef.value
     const dirs: ('up' | 'down' | 'left' | 'right')[] = []
-    if (r < size - 1)
+    if (r < sizeRef.value - 1)
       dirs.push('up')
     if (r > 0)
       dirs.push('down')
-    if (c < size - 1)
+    if (c < sizeRef.value - 1)
       dirs.push('left')
     if (c > 0)
       dirs.push('right')
@@ -68,8 +70,8 @@ export function useSlidingPuzzle(size: number) {
   }
 
   function move(dir: 'up' | 'down' | 'left' | 'right') {
-    const r = Math.floor(emptyIndex.value / size)
-    const c = emptyIndex.value % size
+    const r = Math.floor(emptyIndex.value / sizeRef.value)
+    const c = emptyIndex.value % sizeRef.value
     let r2 = r
     let c2 = c
     if (dir === 'up')
@@ -80,17 +82,17 @@ export function useSlidingPuzzle(size: number) {
       c2++
     else if (dir === 'right')
       c2--
-    if (r2 < 0 || r2 >= size || c2 < 0 || c2 >= size)
+    if (r2 < 0 || r2 >= sizeRef.value || c2 < 0 || c2 >= sizeRef.value)
       return
-    const idx = r2 * size + c2
+    const idx = r2 * sizeRef.value + c2
     swap(idx)
   }
 
   function moveTile(idx: number) {
-    const r = Math.floor(idx / size)
-    const c = idx % size
-    const r0 = Math.floor(emptyIndex.value / size)
-    const c0 = emptyIndex.value % size
+    const r = Math.floor(idx / sizeRef.value)
+    const c = idx % sizeRef.value
+    const r0 = Math.floor(emptyIndex.value / sizeRef.value)
+    const c0 = emptyIndex.value % sizeRef.value
     if (Math.abs(r - r0) + Math.abs(c - c0) === 1)
       swap(idx)
   }
@@ -105,6 +107,7 @@ export function useSlidingPuzzle(size: number) {
     emptyIndex,
     image,
     solved,
+    size: sizeRef,
     shuffling,
     move,
     moveTile,
