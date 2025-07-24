@@ -51,21 +51,21 @@ function parseVillages() {
 }
 
 function parseSavageZones() {
-  const file = path.join(__dirname, '../src/data/zones.ts')
-  const content = fs.readFileSync(file, 'utf8')
-  const regex = /\{\s*id:\s*'([^']+)'[^}]*?name:\s*'([^']+)'/g
-  const zones = []
-  let match = regex.exec(content)
-  while (match) {
-    zones.push({
-      nom: match[2],
+  const dir = path.join(__dirname, '../src/data/zones/savages')
+  const files = fs.readdirSync(dir).filter(f => f.endsWith('.ts'))
+  return files.map((f) => {
+    const content = fs.readFileSync(path.join(dir, f), 'utf8')
+    const id = content.match(/id:\s*'([^']+)'/)
+    const name = content.match(/name:\s*'([^']+)'/)
+    if (!id || !name)
+      return null
+    return {
+      nom: name[1],
       type: 'sauvage',
-      url: tracks[match[1]] || null,
-      image: findImage('zones', match[1]),
-    })
-    match = regex.exec(content)
-  }
-  return zones
+      url: tracks[id[1]] || null,
+      image: findImage('zones', id[1]),
+    }
+  }).filter(Boolean)
 }
 
 function parseCharacters() {
