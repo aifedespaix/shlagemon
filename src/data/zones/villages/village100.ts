@@ -26,6 +26,7 @@ export const village100: Zone = {
   id: 'village-giga-schlag',
   name: 'Citadelle Giga-Schlag',
   type: 'village',
+  position: { lat: -78.5, lng: -58 },
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

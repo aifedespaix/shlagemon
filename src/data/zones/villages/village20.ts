@@ -14,6 +14,7 @@ export const village20: Zone = {
   id: 'village-boule',
   name: 'Village Sux-Mais-Bouls',
   type: 'village',
+  position: { lat: 63, lng: 6 },
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

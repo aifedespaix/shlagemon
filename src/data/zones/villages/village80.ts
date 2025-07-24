@@ -26,6 +26,7 @@ export const village80: Zone = {
   id: 'village-clitoland',
   name: 'Clito Land',
   type: 'village',
+  position: { lat: -17, lng: -81 },
   actions: [],
   minLevel: 80,
   village: {

@@ -23,6 +23,7 @@ export const village60: Zone = {
   id: 'village-cassos-land',
   name: 'Village des Cassos',
   type: 'village',
+  position: { lat: -3, lng: -91 },
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],
