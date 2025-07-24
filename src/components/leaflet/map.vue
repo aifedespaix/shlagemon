@@ -3,7 +3,7 @@ import type { Zone, ZoneId } from '~/type'
 import { onMounted } from 'vue'
 import { useLeafletMap } from '~/composables/leaflet/useLeafletMap'
 import { useMapMarkers } from '~/composables/leaflet/useMapMarkers'
-import { buildZigzagPath, useMapPaths } from '~/composables/leaflet/useMapPaths'
+import { buildSimplePath, buildZigzagPath, useMapPaths } from '~/composables/leaflet/useMapPaths'
 import { zonesData } from '~/data/zones'
 import 'leaflet/dist/leaflet.css'
 
@@ -35,8 +35,18 @@ onMounted(() => {
       markers.addMarker(zone, selectZone)
   })
 
-  const allPath = buildZigzagPath(zones.filter(z => z.position))
-  drawPolylineWithBorder(allPath)
+  const savageZones = zones.filter(z => z.type === 'sauvage' && z.position)
+  const mainPath = buildZigzagPath(savageZones)
+  drawPolylineWithBorder(mainPath)
+
+  const villages = zones.filter(z => z.type === 'village' && z.position)
+  villages.forEach((village) => {
+    const target = zones.find(z => z.type === 'sauvage' && z.maxLevel === village.minLevel && z.position)
+    if (!target)
+      return
+    const path = buildSimplePath(target.position, village.position)
+    drawPolylineWithBorder(path, '#00ff00')
+  })
 })
 </script>
 

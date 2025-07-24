@@ -3,24 +3,24 @@ const zone = useZoneStore()
 const dex = useShlagedexStore()
 const { accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
 
-const disabled = computed(() => accessibleZones.value[0]?.id === zone.currentId)
+const disabled = computed(() => accessibleZones.value[accessibleZones.value.length - 1]?.id === zone.currentId)
 
-function goPrev() {
+function goNext() {
   if (disabled.value)
     return
   const idx = accessibleZones.value.findIndex(z => z.id === zone.currentId)
-  if (idx > 0)
-    zone.setZone(accessibleZones.value[idx - 1].id)
+  if (idx < accessibleZones.value.length - 1)
+    zone.setZone(accessibleZones.value[idx + 1].id)
 }
 </script>
 
 <template>
   <UiButton
     type="icon"
-    class="absolute bottom-2 left-2 z-50"
+    class="absolute bottom-1 right-1 z-500"
     :disabled="disabled"
-    @click="goPrev"
+    @click="goNext"
   >
-    <div class="i-carbon:chevron-left text-xl" />
+    <div class="i-carbon:chevron-right text-xl" />
   </UiButton>
 </template>

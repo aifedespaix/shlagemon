@@ -4,8 +4,8 @@ const zone = useZoneStore()
 
 <template>
   <div class="relative flex-1 overflow-hidden">
-    <ZonePrevButton />
-    <ZoneNextButton />
+    <ZonePrevButton class="h-12 w-12" />
+    <ZoneNextButton class="h-12 w-12" />
     <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-200">
       <UiProgressBar
         :value="1000 - zone.wildCooldownRemaining"

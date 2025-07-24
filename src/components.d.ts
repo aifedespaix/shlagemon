@@ -58,7 +58,7 @@ declare module 'vue' {
     IconDisease: typeof import('./components/icon/Disease.vue')['default']
     IconMultiExp: typeof import('./components/icon/MultiExp.vue')['default']
     IconShlagedex: typeof import('./components/icon/Shlagedex.vue')['default']
-    IconShlagidiamond: typeof import('./components/icon/shlagidiamond.vue')['default']
+    IconShlagidiamond: typeof import('./components/icon/Shlagidiamond.vue')['default']
     IconShlagidolar: typeof import('./components/icon/Shlagidolar.vue')['default']
     IconXp: typeof import('./components/icon/Xp.vue')['default']
     InventoryEvolutionItemModal: typeof import('./components/inventory/EvolutionItemModal.vue')['default']
@@ -149,9 +149,7 @@ declare module 'vue' {
     ZoneButtonVillage: typeof import('./components/zone/ButtonVillage.vue')['default']
     ZoneButtonWild: typeof import('./components/zone/ButtonWild.vue')['default']
     ZoneMonsModal: typeof import('./components/zone/MonsModal.vue')['default']
-    ZoneNextButton: typeof import('./components/zone/NextZoneButton.vue')['default']
-    ZoneNextZoneButton: typeof import('./components/zone/NextZoneButton.vue')['default']
-    ZonePrevButton: typeof import('./components/zone/PrevZoneButton.vue')['default']
-    ZonePrevZoneButton: typeof import('./components/zone/PrevZoneButton.vue')['default']
+    ZoneNextButton: typeof import('./components/zone/NextButton.vue')['default']
+    ZonePrevButton: typeof import('./components/zone/PrevButton.vue')['default']
   }
 }
