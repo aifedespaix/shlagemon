@@ -4,7 +4,7 @@ import type { Ref } from 'vue'
 import { ref, watch, watchEffect } from 'vue'
 import { useZoneStore } from '~/stores/zone'
 
-const props = defineProps<{ map: Ref<LeafletMap | null> }>()
+const props = defineProps<{ map?: Ref<LeafletMap | null> }>()
 
 const zone = useZoneStore()
 const visible = ref(false)
@@ -17,7 +17,7 @@ function isCentered(map: LeafletMap): boolean {
 }
 
 function update() {
-  const map = props.map.value
+  const map = props.map?.value
   if (map)
     visible.value = !isCentered(map)
   else
@@ -25,7 +25,7 @@ function update() {
 }
 
 watchEffect((onCleanup) => {
-  const map = props.map.value
+  const map = props.map?.value
   if (!map) {
     visible.value = false
     return
@@ -42,7 +42,7 @@ watch(() => zone.currentId, () => {
 })
 
 function center() {
-  const map = props.map.value
+  const map = props.map?.value
   if (!map)
     return
   const pos = zone.current.position
