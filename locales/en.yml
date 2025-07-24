@@ -2815,3 +2815,6 @@ stores:
     alreadyMax: You already have this Shlagemon at max rarity
     rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
     released: '{name} was released!'
+layouts:
+  NotFound:
+    not-found: Page not found
