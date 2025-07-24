@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { SavageZone } from '~/type/zone'
+import { useZoneCompletion } from '~/composables/useZoneCompletion'
 
 const props = defineProps<{ zone: SavageZone }>()
 const zoneStore = useZoneStore()
 const dex = useShlagedexStore()
 const panel = useMainPanelStore()
 const arena = useArenaStore()
-const progress = useZoneProgressStore()
 const dialog = useDialogStore()
 const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
@@ -55,27 +55,7 @@ function classes() {
   return classes.join(' ')
 }
 
-function allCaptured() {
-  const list = props.zone.shlagemons
-  if (!list?.length)
-    return false
-  return list.every(base => dex.shlagemons.some(mon => mon.base.id === base.id))
-}
-
-function perfectZone() {
-  const list = props.zone.shlagemons
-  if (!list?.length)
-    return false
-  return list.every((base) => {
-    const mon = dex.shlagemons.find(m => m.base.id === base.id)
-    return mon?.rarity === 100
-  })
-}
-
-function kingDefeated() {
-  const hasKing = props.zone.hasKing ?? props.zone.type === 'sauvage'
-  return hasKing && progress.isKingDefeated(props.zone.id)
-}
+const { allCaptured, perfectZone, kingDefeated } = useZoneCompletion(props.zone)
 
 const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
 </script>
@@ -101,14 +81,14 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     </div>
     <div class="flex items-center justify-center gap-2">
       <img
-        v-if="allCaptured()"
+        v-if="allCaptured"
         src="/items/shlageball/shlageball.webp"
         :alt="t('components.panel.Zone.capturedAlt')"
         class="h-4 w-4"
-        :style="perfectZone() ? { filter: 'hue-rotate(60deg) brightness(1.1)' } : {}"
+        :style="perfectZone ? { filter: 'hue-rotate(60deg) brightness(1.1)' } : {}"
       >
       <div
-        v-if="kingDefeated()"
+        v-if="kingDefeated"
         class="i-game-icons:crown h-4 w-4"
       />
     </div>
