@@ -203,6 +203,7 @@ declare global {
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
   const useEggBoxStore: typeof import('./stores/eggBox')['useEggBoxStore']
   const useEggHatchModalStore: typeof import('./stores/eggHatchModal')['useEggHatchModalStore']
+  const useEggMonsModalStore: typeof import('./stores/eggMonsModal')['useEggMonsModalStore']
   const useEggStore: typeof import('./stores/egg')['useEggStore']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
   const useElementByPoint: typeof import('@vueuse/core')['useElementByPoint']
@@ -640,6 +641,7 @@ declare module 'vue' {
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
     readonly useEggBoxStore: UnwrapRef<typeof import('./stores/eggBox')['useEggBoxStore']>
     readonly useEggHatchModalStore: UnwrapRef<typeof import('./stores/eggHatchModal')['useEggHatchModalStore']>
+    readonly useEggMonsModalStore: UnwrapRef<typeof import('./stores/eggMonsModal')['useEggMonsModalStore']>
     readonly useEggStore: UnwrapRef<typeof import('./stores/egg')['useEggStore']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>

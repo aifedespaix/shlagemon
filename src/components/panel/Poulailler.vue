@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { EggType } from '~/stores/egg'
 import type { EggItemId } from '~/stores/eggBox'
+import { eggTypeMap } from '~/constants/egg'
 import { allItems } from '~/data/items/items'
+
+const eggMonsModal = useEggMonsModalStore()
 
 const eggs = useEggStore()
 const box = useEggBoxStore()
@@ -39,14 +42,7 @@ const inventoryEggs = computed(() => {
 function startIncubation(id: EggItemId) {
   if (eggs.incubator.length >= 4)
     return
-  const map: Record<EggItemId, EggType> = {
-    'oeuf-feu': 'feu',
-    'oeuf-eau': 'eau',
-    'oeuf-herbe': 'plante',
-    'oeuf-psy': 'psy',
-    'oeuf-foudre': 'electrique',
-  }
-  if (eggs.startIncubation(map[id]))
+  if (eggs.startIncubation(eggTypeMap[id]))
     box.removeEgg(id)
 }
 
@@ -54,6 +50,11 @@ function hatch(id: number) {
   const mon = eggs.hatchEgg(id)
   if (mon)
     modal.open(mon)
+}
+
+function showEggMons(id: EggItemId) {
+  const item = allItems.find(i => i.id === id)!
+  eggMonsModal.open(id, item)
 }
 
 function remaining(egg: { hatchesAt: number }) {
@@ -80,7 +81,8 @@ function remaining(egg: { hatchesAt: number }) {
           <div
             v-for="entry in inventoryEggs"
             :key="entry.id"
-            class="flex items-center justify-between border-b p-1"
+            class="flex cursor-pointer items-center justify-between border-b p-1"
+            @click="showEggMons(entry.id as EggItemId)"
           >
             <div class="flex items-center gap-1">
               <div
@@ -135,5 +137,6 @@ function remaining(egg: { hatchesAt: number }) {
       </div>
     </div>
     <EggHatchModal />
+    <EggMonsModal />
   </LayoutTitledPanel>
 </template>

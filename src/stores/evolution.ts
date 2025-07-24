@@ -8,22 +8,30 @@ interface EvolutionRequest {
 }
 
 export const useEvolutionStore = defineStore('evolution', () => {
-  const pending = ref<EvolutionRequest | null>(null)
+  const queue = ref<EvolutionRequest[]>([])
+  const pending = computed(() => queue.value[0] || null)
   const isVisible = computed(() => pending.value !== null)
   const audio = useAudioStore()
 
   function requestEvolution(mon: DexShlagemon, to: BaseShlagemon) {
     return new Promise<boolean>((resolve) => {
-      pending.value = { mon, to, resolve }
-      audio.playSfx('/audio/sfx/evolution.ogg')
+      queue.value.push({ mon, to, resolve })
+      if (queue.value.length === 1)
+        audio.playSfx('/audio/sfx/evolution.ogg')
     })
+  }
+
+  function next() {
+    queue.value.shift()
+    if (pending.value)
+      audio.playSfx('/audio/sfx/evolution.ogg')
   }
 
   function accept() {
     if (pending.value) {
       audio.playSfx('/audio/sfx/evolued.ogg')
       pending.value.resolve(true)
-      pending.value = null
+      next()
     }
   }
 
@@ -31,7 +39,7 @@ export const useEvolutionStore = defineStore('evolution', () => {
     if (pending.value) {
       pending.value.mon.allowEvolution = false
       pending.value.resolve(false)
-      pending.value = null
+      next()
     }
   }
 
