@@ -1,6 +1,6 @@
 import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
 import { Map, TileLayer } from 'leaflet'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 export interface UseLeafletMapOptions {
   center?: LatLngExpression
@@ -9,6 +9,7 @@ export interface UseLeafletMapOptions {
 export function useLeafletMap(options: UseLeafletMapOptions = {}) {
   const mapRef = ref<HTMLElement | null>(null)
   const map = ref<LeafletMap | null>(null)
+  const tileLayer = ref<TileLayer | null>(null)
 
   const minLat = -90
   const minLng = -180
@@ -31,14 +32,19 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
 
     mapRef.value!.style.background = '#508ed7'
 
-    const tileLayer = new TileLayer('/map/tiles/{z}/{x}/{y}.webp', {
+    tileLayer.value = new TileLayer('/map/tiles/{z}/{x}/{y}.webp', {
       tileSize: 256,
       minZoom: 0,
       maxZoom: 4,
       noWrap: true,
     })
 
-    tileLayer.addTo(map.value!)
+    tileLayer.value.addTo(map.value!)
+
+    onUnmounted(() => {
+      map.value?.remove()
+      tileLayer.value?.remove()
+    })
   })
 
   return { mapRef, map }
