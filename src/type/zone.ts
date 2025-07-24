@@ -17,8 +17,14 @@ export interface ZoneArena {
   completed: boolean
 }
 
+export interface Position {
+  lat: number
+  lng: number
+}
+
 interface BaseZone {
   id: ZoneId
+  position: Position
   name: string
   type: ZoneType
   actions: ZoneAction[]

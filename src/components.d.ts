@@ -74,6 +74,7 @@ declare module 'vue' {
     LayoutMobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     LayoutScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
     LayoutTitledPanel: typeof import('./components/layout/TitledPanel.vue')['default']
+    LeafletMap: typeof import('./components/leaflet/map.vue')['default']
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
     MinigameMiniGamePuissance4: typeof import('./components/minigame/MiniGamePuissance4.vue')['default']
     MinigameMiniGameShlagMind: typeof import('./components/minigame/MiniGameShlagMind.vue')['default']

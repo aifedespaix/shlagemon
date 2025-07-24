@@ -3,10 +3,9 @@ import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import {
   allItems,
-  hyperShlageball,
-  shlageball,
-  superShlageball,
+  eggBox as eggBoxItem,
 } from '~/data/items/items'
+import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 
 export const useInventoryStore = defineStore('inventory', () => {
@@ -107,7 +106,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     }
 
     const handlers: Record<ItemId, () => boolean> = {
-      [eggBox.id]: () => {
+      [eggBoxItem.id]: () => {
         eggBox.open()
         return true
       },
