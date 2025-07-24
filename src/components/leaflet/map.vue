@@ -13,16 +13,24 @@ const emit = defineEmits<{
 }>()
 
 const { mapRef, map: leafletMap } = useLeafletMap()
+const zones = props.zones ?? zonesData
+
+function selectZone(id: ZoneId) {
+  emit('select', id)
+  const zone = zones.find(z => z.id === id)
+  const pos = zone?.position
+  if (pos)
+    leafletMap.value?.panTo([pos.lat, pos.lng])
+}
 
 onMounted(() => {
   const map = leafletMap.value!
   const markers = useMapMarkers(map)
   const { drawPolylineWithBorder } = useMapPaths(map)
 
-  const zones = props.zones ?? zonesData
   zones.forEach((zone) => {
     if (zone.position)
-      markers.addMarker(zone, id => emit('select', id))
+      markers.addMarker(zone, selectZone)
   })
 
   const allPath = buildZigzagPath(zones.filter(z => z.position))
