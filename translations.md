@@ -1,5 +1,3 @@
-# a
-
 ## 📌 **Guide Complet : Organisation Avancée des Traductions Vue avec vue-i18n (TypeScript)**
 
 ### 📂 **1. Structure recommandée du projet :**
