@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { useTimeoutFn } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
 import ShlagMindSelectionModal from './ShlagMindSelectionModal.vue'
 
 const emit = defineEmits<{ (e: 'win'): void, (e: 'lose'): void }>()
 
-const messages = [
-  'Tu te rapproches... ou pas.',
-  'Ce n\u2019est pas \u00E7a, mais tu fais de ton mieux, petit Shlag.',
-  'Essaie encore, champion du n\u00E9ant.',
-  'Tu es nul à chier !',
-  'T\u2019es \u00E0 deux doigts de faire un pet c\u00E9r\u00E9bral.',
-  'Rarement vu quelqu\'un aussi merdique.',
-]
+const { t, tm } = useI18n()
+
+const messages = computed(() =>
+  tm('components.minigame.MiniGameShlagMind.messages') as string[],
+)
 
 const palette = allShlagemons.slice(0, 12)
 const comboLength = 6
@@ -103,7 +101,8 @@ function validate() {
     useTimeoutFn(() => emit('lose'), 1200)
   }
   else {
-    message.value = messages[Math.floor(Math.random() * messages.length)]
+    const list = messages.value
+    message.value = list[Math.floor(Math.random() * list.length)]
     guess.value = Array.from({ length: comboLength }).fill(null)
   }
 }
@@ -114,7 +113,7 @@ initGame()
 <template>
   <div class="relative aspect-video h-full w-full flex flex-col items-center gap-2 p-2" md="p-4">
     <div class="text-sm font-bold">
-      {{ attemptsLeft }} tentatives restantes
+      {{ t('components.minigame.MiniGameShlagMind.attemptsLeft', { n: attemptsLeft }) }}
     </div>
     <div class="w-full flex flex-1 flex-col gap-2 overflow-y-auto">
       <TransitionGroup name="line">
@@ -178,7 +177,7 @@ initGame()
           :disabled="guess.some((v) => !v)"
           @click="validate"
         >
-          Valider
+          {{ t('components.minigame.MiniGameShlagMind.validate') }}
         </UiButton>
       </div>
     </div>
