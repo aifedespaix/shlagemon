@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
+import { eggBox } from '~/data/items/items'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
@@ -26,7 +27,7 @@ const ballFilter = computed(() =>
 )
 
 const isEgg = computed(() => props.item.id.startsWith('oeuf-'))
-const isEggBox = computed(() => props.item.id === 'egg-box')
+const isEggBox = computed(() => props.item.id === eggBox.id)
 
 const actionLabel = computed(() => {
   if (isEggBox.value)

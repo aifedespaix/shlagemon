@@ -1,9 +1,9 @@
 import type { BallId } from '~/data/items/shlageball'
 import { defineStore } from 'pinia'
-import { balls } from '~/data/items/shlageball'
+import { balls, shlageball } from '~/data/items/shlageball'
 
 export const useBallStore = defineStore('ball', () => {
-  const current = ref<BallId>('shlageball')
+  const current = ref<BallId>(shlageball.id)
   const isVisible = ref(false)
 
   const currentBall = computed(() =>
@@ -24,7 +24,7 @@ export const useBallStore = defineStore('ball', () => {
   }
 
   function reset() {
-    current.value = 'shlageball'
+    current.value = shlageball.id
   }
 
   return { current, currentBall, isVisible, open, close, setBall, reset }

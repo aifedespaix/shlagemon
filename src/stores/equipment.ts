@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { multiExp } from '~/data/items/items'
 
 export const useEquipmentStore = defineStore('equipment', () => {
   const holders = ref<Record<string, string | null>>({})
@@ -40,7 +41,7 @@ export const useEquipmentStore = defineStore('equipment', () => {
     inventory.remove(itemId)
     if (isVitalityItem(itemId))
       mon.hpCurrent = dex.maxHp(mon)
-    if (itemId !== 'multi-exp')
+    if (itemId !== multiExp.id)
       dex.setActiveShlagemon(mon)
   }
 

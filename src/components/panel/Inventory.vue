@@ -4,6 +4,7 @@ import type { BallId } from '~/data/items/shlageball'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
+import { eggBox as eggBoxItem } from '~/data/items/items'
 import InventoryItemCard from '../inventory/ItemCard.vue'
 
 const inventory = useInventoryStore()
@@ -149,7 +150,7 @@ function onUse(item: Item) {
   else if (item.wearable) {
     wearableStore.open(item)
   }
-  else if (item.id === 'egg-box') {
+  else if (item.id === eggBoxItem.id) {
     eggBox.open()
     usage.markUsed(item.id)
   }

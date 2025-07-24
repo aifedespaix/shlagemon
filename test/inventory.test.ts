@@ -1,5 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
+import { potion, shlageball } from '../src/data/items/items'
 import { carapouffe } from '../src/data/shlagemons'
 import { useCaptureLimitModalStore } from '../src/stores/captureLimitModal'
 import { useInventoryStore } from '../src/stores/inventory'
@@ -14,8 +15,8 @@ describe('inventory actions', () => {
     const mon = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
     mon.hpCurrent = 10
-    inventory.add('potion')
-    const result = inventory.useItem('potion')
+    inventory.add(potion.id)
+    const result = inventory.useItem(potion.id)
     expect(result).toBe(true)
     expect(mon.hpCurrent).toBeGreaterThan(10)
   })
@@ -25,8 +26,8 @@ describe('inventory actions', () => {
     const inventory = useInventoryStore()
     const dex = useShlagedexStore()
     const count = dex.shlagemons.length
-    inventory.add('shlageball')
-    const result = inventory.useItem('shlageball')
+    inventory.add(shlageball.id)
+    const result = inventory.useItem(shlageball.id)
     expect(result).toBe(true)
     expect(dex.shlagemons.length).toBe(count + 1)
   })
@@ -39,8 +40,8 @@ describe('inventory actions', () => {
     const modal = useCaptureLimitModalStore()
 
     player.captureLevelCap = 0
-    inventory.add('shlageball')
-    const result = inventory.useItem('shlageball')
+    inventory.add(shlageball.id)
+    const result = inventory.useItem(shlageball.id)
 
     expect(result).toBe(false)
     expect(dex.shlagemons.length).toBe(0)

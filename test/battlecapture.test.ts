@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import BattleCapture from '../src/components/battle/BattleCapture.vue'
+import { shlageball } from '../src/data/items/shlageball'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useBallStore } from '../src/stores/ball'
 import { useInventoryStore } from '../src/stores/inventory'
@@ -20,8 +21,8 @@ describe('battleCapture', () => {
     const inventory = useInventoryStore()
     const player = usePlayerStore()
 
-    ball.current = 'shlageball'
-    inventory.add('shlageball')
+    ball.current = shlageball.id
+    inventory.add(shlageball.id)
     player.captureLevelCap = 100
 
     const enemy = createDexShlagemon(carapouffe)

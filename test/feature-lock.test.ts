@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import InventoryPanel from '../src/components/panel/Inventory.vue'
 import ZonePanel from '../src/components/panel/Zone.vue'
 import ShlagemonList from '../src/components/shlagemon/ShlagemonList.vue'
+import { potion } from '../src/data/items/items'
 import { carapouffe } from '../src/data/shlagemons'
 import { useFeatureLockStore } from '../src/stores/featureLock'
 import { useInventoryStore } from '../src/stores/inventory'
@@ -42,7 +43,7 @@ describe('feature lock flags', () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const inventory = useInventoryStore()
-    inventory.add('potion')
+    inventory.add(potion.id)
     const featureLock = useFeatureLockStore()
     featureLock.lockInventory()
     const wrapper = mount(InventoryPanel, { global: { plugins: [pinia] } })

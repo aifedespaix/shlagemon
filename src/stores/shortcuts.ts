@@ -1,7 +1,12 @@
 import type { ItemId } from '~/data/items/items'
 import type { BallId } from '~/data/items/shlageball'
 import { defineStore } from 'pinia'
-import { allItems } from '~/data/items/items'
+import {
+  allItems,
+  hyperPotion,
+  potion,
+  superPotion,
+} from '~/data/items/items'
 
 export interface UseItemAction {
   type: 'use-item'
@@ -16,9 +21,9 @@ export interface ShortcutEntry {
 }
 
 const defaultShortcuts: ShortcutEntry[] = [
-  { key: 'a', action: { type: 'use-item', itemId: 'potion' } },
-  { key: 'z', action: { type: 'use-item', itemId: 'super-potion' } },
-  { key: 'e', action: { type: 'use-item', itemId: 'hyper-potion' } },
+  { key: 'a', action: { type: 'use-item', itemId: potion.id } },
+  { key: 'z', action: { type: 'use-item', itemId: superPotion.id } },
+  { key: 'e', action: { type: 'use-item', itemId: hyperPotion.id } },
 ]
 
 export const useShortcutsStore = defineStore('shortcuts', () => {
