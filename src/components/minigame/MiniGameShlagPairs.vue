@@ -5,6 +5,9 @@ import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
 
 const emit = defineEmits(['win'])
+
+const { t } = useI18n()
+
 const audio = useAudioStore()
 const { t } = useI18n()
 
