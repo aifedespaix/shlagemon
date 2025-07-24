@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
+import { multiExp } from '~/data/items/items'
 
 const props = withDefaults(defineProps<{
   player: DexShlagemon
@@ -89,7 +90,7 @@ async function onCaptureEnd(success: boolean) {
     if (dex.activeShlagemon) {
       const xp = dex.xpGainForLevel(props.enemy.lvl)
       await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zone.current.maxLevel)
-      const holder = wearableItemStore.getHolder('multi-exp')
+      const holder = wearableItemStore.getHolder(multiExp.id)
       if (holder)
         await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zone.current.maxLevel)
     }

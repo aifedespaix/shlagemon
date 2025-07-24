@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
 import { EQUILIBRE_RANK } from '~/constants/battle'
+import { multiExp } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import { pickRandomByCoefficient } from '~/utils/spawn'
@@ -108,7 +109,7 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
     if (dex.activeShlagemon) {
       const xp = dex.xpGainForLevel(defeated.lvl)
       await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zone.current.maxLevel)
-      const holder = wearableItemStore.getHolder('multi-exp')
+      const holder = wearableItemStore.getHolder(multiExp.id)
       if (holder)
         await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zone.current.maxLevel)
     }
