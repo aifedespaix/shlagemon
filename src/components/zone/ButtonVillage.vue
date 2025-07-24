@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { Zone } from '~/type/zone'
+import { useZoneCompletion } from '~/composables/useZoneCompletion'
 
 const props = defineProps<{ zone: Zone }>()
 const zoneStore = useZoneStore()
 const panel = useMainPanelStore()
 const arena = useArenaStore()
-const progress = useZoneProgressStore()
 const dialog = useDialogStore()
 const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
+const { arenaCompleted } = useZoneCompletion(props.zone)
 
 const zoneButtonsDisabled = computed(
   () =>
@@ -60,7 +61,7 @@ function classes() {
       <span>{{ props.zone.name }}</span>
     </div>
     <div class="h-4 flex items-center justify-center gap-2">
-      <div v-if="progress.isArenaCompleted(props.zone.id)" class="i-mdi:sword-cross h-4 w-4" />
+      <div v-if="arenaCompleted" class="i-mdi:sword-cross h-4 w-4" />
       <div v-else-if="props.zone.arena" class="i-mdi:sword-cross h-4 w-4 opacity-50 grayscale" />
     </div>
   </button>
