@@ -18,7 +18,9 @@ function onCardClick() {
   showInfo.value = true
   usage.markUsed(props.item.id)
 }
-const details = computed(() => props.item.details || props.item.description)
+const details = computed(() =>
+  t(props.item.detailsKey || props.item.descriptionKey || props.item.description),
+)
 const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
 )
@@ -79,11 +81,11 @@ watch(showInfo, (val) => {
         <img
           v-else-if="props.item.image"
           :src="props.item.image"
-          :alt="props.item.name"
+          :alt="t(props.item.nameKey || props.item.name)"
           class="h-8 w-8 object-contain"
           :style="ballFilter"
         >
-        <span class="font-bold">{{ props.item.name }}</span>
+        <span class="font-bold">{{ t(props.item.nameKey || props.item.name) }}</span>
       </div>
       <UiKbd
         v-if="!isMobile"
@@ -117,12 +119,12 @@ watch(showInfo, (val) => {
         <img
           v-else-if="props.item.image"
           :src="props.item.image"
-          :alt="props.item.name"
+          :alt="t(props.item.nameKey || props.item.name)"
           class="h-16 w-16 object-contain"
           :style="ballFilter"
         >
         <h3 class="text-lg font-bold">
-          {{ props.item.name }}
+          {{ t(props.item.nameKey || props.item.name) }}
         </h3>
         <p class="text-center text-sm">
           {{ details }}

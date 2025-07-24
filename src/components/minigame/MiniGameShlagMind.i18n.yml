@@ -1,0 +1,20 @@
+fr:
+  messages:
+    - Tu te rapproches... ou pas.
+    - Ce n'est pas ça, mais tu fais de ton mieux, petit Shlag.
+    - Essaie encore, champion du néant.
+    - Tu es nul à chier !
+    - T'es à deux doigts de faire un pet cérébral.
+    - Rarement vu quelqu'un aussi merdique.
+  validate: Valider
+  attemptsLeft: '{n} tentatives restantes'
+en:
+  messages:
+    - You're getting closer... or not.
+    - That's not it, but you're doing your best, little Shlag.
+    - Try again, champion of nothingness.
+    - You suck!
+    - You're one step away from a brain fart.
+    - Rarely seen someone so pathetic.
+  validate: Validate
+  attemptsLeft: '{n} attempts left'

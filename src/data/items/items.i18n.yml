@@ -1,0 +1,214 @@
+en:
+  defensePotion:
+    name: Defense Potion
+    description: Temporarily increases defense.
+    details: Briefly boosts your active Shlagémon's defense.
+  superDefensePotion:
+    name: Super Defense Potion
+    description: Greatly increases defense.
+    details: Significantly boosts your active Shlagémon's defense.
+  hyperDefensePotion:
+    name: Hyper Defense Potion
+    description: Maximizes defense temporarily.
+    details: Massively boosts your active Shlagémon's defense.
+  attackPotion:
+    name: Attack Potion
+    description: Temporarily increases attack.
+    details: Briefly boosts your active Shlagémon's attack.
+  superAttackPotion:
+    name: Super Attack Potion
+    description: Greatly increases attack.
+    details: Significantly boosts your active Shlagémon's attack.
+  hyperAttackPotion:
+    name: Hyper Attack Potion
+    description: Maximizes attack temporarily.
+    details: Massively boosts your active Shlagémon's attack.
+  vitalityPotion:
+    name: Vitality Potion
+    description: Temporarily increases HP.
+    details: Increases your active Shlagémon's HP by 10% for a few minutes.
+  superVitalityPotion:
+    name: Super Vitality Potion
+    description: Greatly increases HP.
+    details: Increases your active Shlagémon's HP by 25% for a few minutes.
+  hyperVitalityPotion:
+    name: Hyper Vitality Potion
+    description: Maximizes HP temporarily.
+    details: Increases your active Shlagémon's HP by 50% for a few minutes.
+  xpPotion:
+    name: Experience Potion
+    description: Temporarily increases XP gains.
+    details: Improves XP gained by 10% for a few minutes.
+  superXpPotion:
+    name: Super Experience Potion
+    description: Greatly increases XP gains.
+    details: Improves XP gained by 25% for a few minutes.
+  hyperXpPotion:
+    name: Hyper Experience Potion
+    description: Maximizes XP gains temporarily.
+    details: Improves XP gained by 50% for a few minutes.
+  capturePotion:
+    name: Capture Potion
+    description: Slightly increases capture chance.
+    details: Improves capture chance by 10% for a few minutes.
+  superCapturePotion:
+    name: Super Capture Potion
+    description: Greatly increases capture chance.
+    details: Improves capture chance by 25% for a few minutes.
+  hyperCapturePotion:
+    name: Hyper Capture Potion
+    description: Maximizes capture chance.
+    details: Improves capture chance by 50% for a few minutes.
+  potion:
+    name: Gross Potion
+    description: Heals 50 HP of your Shlagémon.
+    details: Restores 50 HP to your active Shlagémon during battle.
+  superPotion:
+    name: Super Potion
+    description: Heals 100 HP of your Shlagémon.
+    details: Restores 100 HP to your active Shlagémon during battle.
+  hyperPotion:
+    name: Hyper Potion
+    description: Heals 200 HP of your Shlagémon.
+    details: Restores 200 HP to your active Shlagémon during battle.
+  multiExp:
+    name: Multi-EXP
+    description: Shares XP with a Shlagémon.
+    details: Shares 50% of the XP earned in battle with the holder.
+  thunderStone:
+    name: Thunder Stone
+    description: Allows certain electric evolutions.
+    details: Evolves Pikachiant into Raïchiotte.
+  steroids:
+    name: Steroids
+    description: Enables certain "toxic bodybuilder" evolutions.
+    details: Evolves Macho into Masschopeur if he spent at least 3h at the gym.
+  ultraSteroid:
+    name: Ultra-Steroid
+    description: A substance banned in 97 countries.
+    details: Evolves Masschopeur into Macintosh, an irreversible hypertrophy.
+  eggBox:
+    name: Egg Box
+    description: Stores all your eggs without cluttering the inventory.
+  fireEgg:
+    name: Fire Egg
+    description: A burning hot egg.
+  waterEgg:
+    name: Water Egg
+    description: A dripping wet egg.
+  grassEgg:
+    name: Grass Egg
+    description: An egg that smells like grass.
+  psyEgg:
+    name: Psy Egg
+    description: An egg that stares intensely at you.
+  thunderEgg:
+    name: Thunder Egg
+    description: An egg crackling with sparks.
+fr:
+  defensePotion:
+    name: Potion de Défense
+    description: Augmente temporairement la défense.
+    details: Renforce brièvement la défense de votre Shlagémon actif.
+  superDefensePotion:
+    name: Super Potion de Défense
+    description: Augmente beaucoup la défense.
+    details: Renforce considérablement la défense de votre Shlagémon actif.
+  hyperDefensePotion:
+    name: Hyper Potion de Défense
+    description: Maximise temporairement la défense.
+    details: Booste énormément la défense de votre Shlagémon actif.
+  attackPotion:
+    name: Potion d'Attaque
+    description: Augmente temporairement l'attaque.
+    details: Renforce brièvement l'attaque de votre Shlagémon actif.
+  superAttackPotion:
+    name: Super Potion d'Attaque
+    description: Augmente beaucoup l'attaque.
+    details: Renforce considérablement l'attaque de votre Shlagémon actif.
+  hyperAttackPotion:
+    name: Hyper Potion d'Attaque
+    description: Maximise temporairement l'attaque.
+    details: Booste énormément l'attaque de votre Shlagémon actif.
+  vitalityPotion:
+    name: Potion de Vitalité
+    description: Augmente temporairement les PV.
+    details: Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.
+  superVitalityPotion:
+    name: Super Potion de Vitalité
+    description: Augmente beaucoup les PV.
+    details: Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.
+  hyperVitalityPotion:
+    name: Hyper Potion de Vitalité
+    description: Maximise temporairement les PV.
+    details: Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.
+  xpPotion:
+    name: Potion d'Expérience
+    description: Augmente temporairement les gains d'XP.
+    details: Améliore l'XP gagnée de 10% pendant quelques minutes.
+  superXpPotion:
+    name: Super Potion d'Expérience
+    description: Augmente beaucoup les gains d'XP.
+    details: Améliore l'XP gagnée de 25% pendant quelques minutes.
+  hyperXpPotion:
+    name: Hyper Potion d'Expérience
+    description: Maximise temporairement les gains d'XP.
+    details: Améliore l'XP gagnée de 50% pendant quelques minutes.
+  capturePotion:
+    name: Potion de Capture
+    description: Augmente légèrement les chances de capture.
+    details: Améliore la probabilité de capture de 10% pendant quelques minutes.
+  superCapturePotion:
+    name: Super Potion de Capture
+    description: Augmente beaucoup les chances de capture.
+    details: Améliore la probabilité de capture de 25% pendant quelques minutes.
+  hyperCapturePotion:
+    name: Hyper Potion de Capture
+    description: Maximise les chances de capture.
+    details: Améliore la probabilité de capture de 50% pendant quelques minutes.
+  potion:
+    name: Potion Dégueulasse
+    description: Soigne 50 HP de votre Shlagémon.
+    details: Redonne 50 points de vie à votre Shlagémon actif pendant le combat.
+  superPotion:
+    name: Super Potion
+    description: Soigne 100 HP de votre Shlagémon.
+    details: Redonne 100 points de vie à votre Shlagémon actif pendant le combat.
+  hyperPotion:
+    name: Hyper Potion
+    description: Soigne 200 HP de votre Shlagémon.
+    details: Redonne 200 points de vie à votre Shlagémon actif pendant le combat.
+  multiExp:
+    name: Multi-EXP
+    description: Partage l'XP avec un Shlagémon.
+    details: Permet de partager 50% de l'XP gagnée en combat avec le Shlagémon porteur.
+  thunderStone:
+    name: Pierre Foutre
+    description: Permet certaines évolutions de type électrique.
+    details: Fait évoluer Pikachiant en Raïchiotte.
+  steroids:
+    name: Stéroïdes
+    description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
+    details: Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.
+  ultraSteroid:
+    name: Ultra-Stéroïde
+    description: Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.
+    details: Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
+  eggBox:
+    name: Boîte à œufs
+    description: Permet de stocker tous tes œufs sans encombrer l'inventaire.
+  fireEgg:
+    name: Œuf Feu
+    description: Un œuf chaud bouillant.
+  waterEgg:
+    name: Œuf Eau
+    description: Un œuf qui ruisselle.
+  grassEgg:
+    name: Œuf Herbe
+    description: Un œuf qui sent la pelouse.
+  psyEgg:
+    name: Œuf Psy
+    description: Un œuf qui te fixe intensément.
+  thunderEgg:
+    name: Œuf Foudre
+    description: Un œuf parcouru d'étincelles.

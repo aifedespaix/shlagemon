@@ -5,12 +5,18 @@ export type ItemCategory = 'actif' | 'passif' | 'utilitaire'
 export interface Item {
   id: string
   name: string
+  /** i18n key for the name */
+  nameKey?: string
   description: string
+  /** i18n key for the description */
+  descriptionKey?: string
   /**
    * Detailed explanation of how the item works.
    * When not provided, `description` will be used instead.
    */
   details?: string
+  /** i18n key for the details */
+  detailsKey?: string
   price?: number
   /** Currency used to buy this item. Defaults to shlagidolar. */
   currency?: ItemCurrency

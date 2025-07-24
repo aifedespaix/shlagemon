@@ -88,7 +88,7 @@ function remaining(egg: { hatchesAt: number }) {
                 class="h-6 w-6"
                 :class="[entry.item.icon, entry.item.iconClass]"
               />
-              <span class="text-sm">{{ entry.item.name }}</span>
+              <span class="text-sm">{{ t(entry.item.nameKey || entry.item.name) }}</span>
             </div>
             <div class="flex items-center gap-1">
               <span class="text-xs font-bold">x{{ entry.qty }}</span>

@@ -1,0 +1,26 @@
+en:
+  shlageball:
+    name: Shlagéball
+    description: Used to catch wild Shlagémon.
+    details: Allows you to catch the current opponent. Lower HP means higher catch chance.
+  superShlageball:
+    name: Super Shlagéball
+    description: Improves catch chances.
+    details: Gives a small bonus when catching stubborn Shlagémon.
+  hyperShlageball:
+    name: Hyper Shlagéball
+    description: Offers very high catch chances.
+    details: Designed for tough Shlagémon, it grants a huge bonus.
+fr:
+  shlageball:
+    name: Shlagéball
+    description: Permet de capturer des Shlagémons sauvages.
+    details: Permet de capturer le Shlagémon actuellement en combat. Moins il a de points de vie, plus la chance de capture augmente.
+  superShlageball:
+    name: Super Shlagéball
+    description: Améliore les chances de capture.
+    details: Capture des Shlagémons plus récalcitrants avec un léger bonus de chance.
+  hyperShlageball:
+    name: Hyper Shlagéball
+    description: Offre de très hautes chances de capture.
+    details: Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.

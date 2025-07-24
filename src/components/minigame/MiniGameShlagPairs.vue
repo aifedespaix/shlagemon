@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useElementSize, useTimeoutFn } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
 
@@ -8,6 +9,7 @@ const emit = defineEmits(['win'])
 const { t } = useI18n()
 
 const audio = useAudioStore()
+const { t } = useI18n()
 
 interface Cell {
   id: number

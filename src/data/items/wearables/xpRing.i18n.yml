@@ -1,0 +1,26 @@
+en:
+  xpRing:
+    name: Experience Ring
+    description: Increases the wearer's XP.
+    details: When worn, increases experience gained in battle by 15%. Can stack with XP potions.
+  advancedXpRing:
+    name: Advanced Experience Ring
+    description: Strongly increases the wearer's XP.
+    details: When worn, increases experience gained in battle by 25%. Can stack with XP potions.
+  xpAmulet:
+    name: Experience Amulet
+    description: Greatly increases the wearer's XP.
+    details: When worn, increases experience gained in battle by 33%. Can stack with XP potions.
+fr:
+  xpRing:
+    name: Anneau d'expérience
+    description: Augmente l'XP du porteur.
+    details: Porté par un Shlagémon, il augmente l'expérience gagnée en combat de 15%. Effet cumulable avec les potions d'expérience.
+  advancedXpRing:
+    name: Anneau d'expérience avancé
+    description: Augmente fortement l'XP du porteur.
+    details: Porté par un Shlagémon, il augmente l'expérience gagnée en combat de 25%. Effet cumulable avec les potions d'expérience.
+  xpAmulet:
+    name: Amulette d'expérience
+    description: Augmente grandement l'XP du porteur.
+    details: Portée par un Shlagémon, elle augmente l'expérience gagnée en combat de 33%. Effet cumulable avec les potions d'expérience.

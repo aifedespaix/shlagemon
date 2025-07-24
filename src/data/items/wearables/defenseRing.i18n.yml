@@ -1,0 +1,26 @@
+en:
+  defenseRing:
+    name: Defense Ring
+    description: Increases the wearer's defense.
+    details: When worn, boosts defense by 15%. Can stack with defense potions.
+  advancedDefenseRing:
+    name: Advanced Defense Ring
+    description: Strongly increases the wearer's defense.
+    details: When worn, boosts defense by 25%. Can stack with defense potions.
+  defenseAmulet:
+    name: Defense Amulet
+    description: Greatly increases the wearer's defense.
+    details: When worn, boosts defense by 33%. Can stack with defense potions.
+fr:
+  defenseRing:
+    name: Bague de défense
+    description: Augmente la défense du porteur.
+    details: Portée par un Shlagémon, elle augmente sa défense de 15%. Effet cumulable avec les potions de défense.
+  advancedDefenseRing:
+    name: Bague de défense avancée
+    description: Augmente fortement la défense du porteur.
+    details: Portée par un Shlagémon, elle augmente sa défense de 25%. Effet cumulable avec les potions de défense.
+  defenseAmulet:
+    name: Amulette de défense
+    description: Augmente grandement la défense du porteur.
+    details: Portée par un Shlagémon, elle augmente sa défense de 33%. Effet cumulable avec les potions de défense.
