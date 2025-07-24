@@ -7,6 +7,8 @@ import { buildZigzagPath, useMapPaths } from '~/composables/leaflet/useMapPaths'
 import { zonesData } from '~/data/zones'
 import 'leaflet/dist/leaflet.css'
 
+defineOptions({ inheritAttrs: false })
+
 const props = defineProps<{ zones?: Zone[] }>()
 const emit = defineEmits<{
   (e: 'select', id: ZoneId): void
@@ -39,5 +41,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="mapRef" />
+  <div class="relative">
+    <div ref="mapRef" class="absolute inset-0 h-full w-full" v-bind="$attrs" />
+    <LeafletCenterCurrentZoneButton :map="leafletMap" />
+  </div>
 </template>
