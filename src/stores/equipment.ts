@@ -40,6 +40,8 @@ export const useEquipmentStore = defineStore('equipment', () => {
     inventory.remove(itemId)
     if (isVitalityItem(itemId))
       mon.hpCurrent = dex.maxHp(mon)
+    if (itemId !== 'multi-exp')
+      dex.setActiveShlagemon(mon)
   }
 
   function unequip(monId: string) {
