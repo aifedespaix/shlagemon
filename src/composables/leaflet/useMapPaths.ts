@@ -1,5 +1,5 @@
 import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
-import type { Zone } from '~/type'
+import type { Position, Zone } from '~/type'
 import { Polyline } from 'leaflet'
 
 export function buildZigzagPath(zones: Zone[]): LatLngExpression[] {
@@ -28,8 +28,16 @@ export function buildZigzagPath(zones: Zone[]): LatLngExpression[] {
   return path
 }
 
+export function buildSimplePath(from: Position, to: Position): LatLngExpression[] {
+  return [
+    [from.lat, from.lng],
+    [to.lat, from.lng],
+    [to.lat, to.lng],
+  ]
+}
+
 export function useMapPaths(map: LeafletMap) {
-  function drawPolylineWithBorder(path: LatLngExpression[]) {
+  function drawPolylineWithBorder(path: LatLngExpression[], color = '#ffaa00') {
     new Polyline(path, {
       color: '#000000',
       weight: 18,
@@ -38,7 +46,7 @@ export function useMapPaths(map: LeafletMap) {
     }).addTo(map)
 
     new Polyline(path, {
-      color: '#ffaa00',
+      color,
       weight: 14,
       opacity: 1,
       smoothFactor: 4,
