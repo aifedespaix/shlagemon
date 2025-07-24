@@ -2,7 +2,7 @@
 const router = useRouter()
 const { t } = useI18n()
 useHead({
-  title: () => t('not-found'),
+  title: () => t('layouts.NotFound.not-found'),
 })
 </script>
 
