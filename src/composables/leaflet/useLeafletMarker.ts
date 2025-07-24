@@ -6,15 +6,19 @@ export function useLeafletMarker(options: {
   position: LatLngExpression
   iconUrl?: string
   size?: number
+  className?: string
+  interactive?: boolean
 }): Marker {
-  const { map, position, iconUrl } = options
+  const { map, position, iconUrl, className } = options
   const size = options.size || 48
   const marker = new Marker(position, {
+    interactive: options.interactive ?? true,
     icon: iconUrl
       ? new Icon({
         iconUrl,
         iconSize: [size, size],
         iconAnchor: [Math.round(size / 2), size],
+        className,
       })
       : undefined,
   })

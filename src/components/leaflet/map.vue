@@ -31,15 +31,18 @@ onMounted(() => {
   const markers = useMapMarkers(map)
   const { drawPolylineWithBorder } = useMapPaths(map)
 
+  const dex = useShlagedexStore()
+  const { canAccess, accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
+
   zones.forEach((zone) => {
-    if (zone.position)
-      markers.addMarker(zone, selectZone)
+    if (!zone.position)
+      return
+    const locked = !canAccess(zone)
+    markers.addMarker(zone, selectZone, locked)
   })
 
   const savageZones = zones.filter(z => z.type === 'sauvage' && z.position)
   const villages = zones.filter(z => z.type === 'village' && z.position)
-  const dex = useShlagedexStore()
-  const { accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
 
   const lines = ref<Polyline[]>([])
 
