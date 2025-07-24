@@ -457,6 +457,21 @@ components:
           text: Équipe-le sur le Shlagémon de ton choix.
         step6:
           text: Bonne chance pour la suite !
+  minigame:
+    MiniGameShlagMind:
+      messages:
+        - Tu te rapproches... ou pas.
+        - Ce n'est pas ça, mais tu fais de ton mieux, petit Shlag.
+        - Essaie encore, champion du néant.
+        - Tu es nul à chier !
+        - T'es à deux doigts de faire un pet cérébral.
+        - Rarement vu quelqu'un aussi merdique.
+      validate: Valider
+      attemptsLeft: '{n} tentatives restantes'
+    MiniGameShlagPairs:
+      attempts: '{n} tentative | {n} tentatives'
+    ShlagMindSelectionModal:
+      title: Choisis un Shlagémon
 data:
   shlagemons:
     01-05:

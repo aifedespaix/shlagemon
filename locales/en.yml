@@ -436,6 +436,21 @@ components:
           text: Equip it on the Shlagemon of your choice.
         step6:
           text: Good luck from here on!
+  minigame:
+    MiniGameShlagMind:
+      messages:
+        - You're getting closer... or not.
+        - That's not it, but you're doing your best, little Shlag.
+        - Try again, champion of nothingness.
+        - You suck!
+        - You're one step away from a brain fart.
+        - Rarely seen someone so pathetic.
+      validate: Validate
+      attemptsLeft: '{n} attempts left'
+    MiniGameShlagPairs:
+      attempts: '{n} attempt | {n} attempts'
+    ShlagMindSelectionModal:
+      title: Choose a Shlagemon
 data:
   shlagemons:
     01-05:

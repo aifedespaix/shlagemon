@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useElementSize, useTimeoutFn } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
 
 const emit = defineEmits(['win'])
 const audio = useAudioStore()
+const { t } = useI18n()
 
 interface Cell {
   id: number
@@ -105,7 +107,7 @@ onMounted(reset)
       </div>
     </div>
     <div class="mt-2 text-center text-sm font-bold">
-      {{ attempts }} tentative{{ attempts > 1 ? 's' : '' }}
+      {{ t('components.minigame.MiniGameShlagPairs.attempts', attempts) }}
     </div>
   </div>
 </template>
