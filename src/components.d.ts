@@ -74,6 +74,7 @@ declare module 'vue' {
     LayoutMobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     LayoutScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
     LayoutTitledPanel: typeof import('./components/layout/TitledPanel.vue')['default']
+    LeafletCenterCurrentZoneButton: typeof import('./components/leaflet/CenterCurrentZoneButton.vue')['default']
     LeafletMap: typeof import('./components/leaflet/map.vue')['default']
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
     MinigameMiniGamePuissance4: typeof import('./components/minigame/MiniGamePuissance4.vue')['default']
@@ -149,8 +150,6 @@ declare module 'vue' {
     ZoneButtonWild: typeof import('./components/zone/ButtonWild.vue')['default']
     ZoneMonsModal: typeof import('./components/zone/MonsModal.vue')['default']
     ZoneNextButton: typeof import('./components/zone/NextButton.vue')['default']
-    ZoneNextZoneButton: typeof import('./components/zone/NextZoneButton.vue')['default']
     ZonePrevButton: typeof import('./components/zone/PrevButton.vue')['default']
-    ZonePrevZoneButton: typeof import('./components/zone/PrevZoneButton.vue')['default']
   }
 }
