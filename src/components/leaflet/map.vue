@@ -86,7 +86,7 @@ onMounted(() => {
     zoom: 2,
     minZoom: 2,
     maxZoom: 2,
-    zoomControl: true,
+    zoomControl: false,
     attributionControl: false,
     maxBounds: [
       [minLat, minLng], // coin sud-ouest
