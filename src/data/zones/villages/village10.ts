@@ -1,4 +1,5 @@
 import type { Zone } from '~/type'
+import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
   capturePotion,
@@ -14,7 +15,7 @@ export const village10: Zone = {
   id: 'village-veaux-du-gland',
   name: 'Veaux du Gland sur Marne',
   type: 'village',
-  position: { lat: savage05.position.lat, lng: savage05.position.lng + 10 },
+  position: { lat: savage05.position.lat, lng: savage05.position.lng + VILLAGE_OFFSET },
   minLevel: 10,
   actions: [],
   village: {
