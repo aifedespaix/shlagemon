@@ -2888,6 +2888,225 @@ data:
       loseText: Perdu ! Recommence quand tu veux.
       restart: Recommencer
       back: Retour
+  items:
+    items:
+      defensePotion:
+        name: Potion de Défense
+        description: Augmente temporairement la défense.
+        details: Renforce brièvement la défense de votre Shlagémon actif.
+      superDefensePotion:
+        name: Super Potion de Défense
+        description: Augmente beaucoup la défense.
+        details: Renforce considérablement la défense de votre Shlagémon actif.
+      hyperDefensePotion:
+        name: Hyper Potion de Défense
+        description: Maximise temporairement la défense.
+        details: Booste énormément la défense de votre Shlagémon actif.
+      attackPotion:
+        name: Potion d'Attaque
+        description: Augmente temporairement l'attaque.
+        details: Renforce brièvement l'attaque de votre Shlagémon actif.
+      superAttackPotion:
+        name: Super Potion d'Attaque
+        description: Augmente beaucoup l'attaque.
+        details: Renforce considérablement l'attaque de votre Shlagémon actif.
+      hyperAttackPotion:
+        name: Hyper Potion d'Attaque
+        description: Maximise temporairement l'attaque.
+        details: Booste énormément l'attaque de votre Shlagémon actif.
+      vitalityPotion:
+        name: Potion de Vitalité
+        description: Augmente temporairement les PV.
+        details: >-
+          Augmente les PV de votre Shlagémon actif de 10% pendant quelques
+          minutes.
+      superVitalityPotion:
+        name: Super Potion de Vitalité
+        description: Augmente beaucoup les PV.
+        details: >-
+          Augmente les PV de votre Shlagémon actif de 25% pendant quelques
+          minutes.
+      hyperVitalityPotion:
+        name: Hyper Potion de Vitalité
+        description: Maximise temporairement les PV.
+        details: >-
+          Augmente les PV de votre Shlagémon actif de 50% pendant quelques
+          minutes.
+      xpPotion:
+        name: Potion d'Expérience
+        description: Augmente temporairement les gains d'XP.
+        details: Améliore l'XP gagnée de 10% pendant quelques minutes.
+      superXpPotion:
+        name: Super Potion d'Expérience
+        description: Augmente beaucoup les gains d'XP.
+        details: Améliore l'XP gagnée de 25% pendant quelques minutes.
+      hyperXpPotion:
+        name: Hyper Potion d'Expérience
+        description: Maximise temporairement les gains d'XP.
+        details: Améliore l'XP gagnée de 50% pendant quelques minutes.
+      capturePotion:
+        name: Potion de Capture
+        description: Augmente légèrement les chances de capture.
+        details: Améliore la probabilité de capture de 10% pendant quelques minutes.
+      superCapturePotion:
+        name: Super Potion de Capture
+        description: Augmente beaucoup les chances de capture.
+        details: Améliore la probabilité de capture de 25% pendant quelques minutes.
+      hyperCapturePotion:
+        name: Hyper Potion de Capture
+        description: Maximise les chances de capture.
+        details: Améliore la probabilité de capture de 50% pendant quelques minutes.
+      potion:
+        name: Potion Dégueulasse
+        description: Soigne 50 HP de votre Shlagémon.
+        details: Redonne 50 points de vie à votre Shlagémon actif pendant le combat.
+      superPotion:
+        name: Super Potion
+        description: Soigne 100 HP de votre Shlagémon.
+        details: Redonne 100 points de vie à votre Shlagémon actif pendant le combat.
+      hyperPotion:
+        name: Hyper Potion
+        description: Soigne 200 HP de votre Shlagémon.
+        details: Redonne 200 points de vie à votre Shlagémon actif pendant le combat.
+      multiExp:
+        name: Multi-EXP
+        description: Partage l'XP avec un Shlagémon.
+        details: >-
+          Permet de partager 50% de l'XP gagnée en combat avec le Shlagémon
+          porteur.
+      thunderStone:
+        name: Pierre Foutre
+        description: Permet certaines évolutions de type électrique.
+        details: Fait évoluer Pikachiant en Raïchiotte.
+      steroids:
+        name: Stéroïdes
+        description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
+        details: >-
+          Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au
+          moins 3h à la salle, sans jambes, évidemment.
+      ultraSteroid:
+        name: Ultra-Stéroïde
+        description: >-
+          Une substance interdite dans 97 pays, 2 dimensions et au moins une
+          timeline.
+        details: >-
+          Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie
+          critique atteignant le point de non-retour. À manipuler avec des
+          gants, une perche, et un avocat.
+      eggBox:
+        name: Boîte à œufs
+        description: Permet de stocker tous tes œufs sans encombrer l'inventaire.
+      fireEgg:
+        name: Œuf Feu
+        description: Un œuf chaud bouillant.
+      waterEgg:
+        name: Œuf Eau
+        description: Un œuf qui ruisselle.
+      grassEgg:
+        name: Œuf Herbe
+        description: Un œuf qui sent la pelouse.
+      psyEgg:
+        name: Œuf Psy
+        description: Un œuf qui te fixe intensément.
+      thunderEgg:
+        name: Œuf Foudre
+        description: Un œuf parcouru d'étincelles.
+    shlageball:
+      shlageball:
+        name: Shlagéball
+        description: Permet de capturer des Shlagémons sauvages.
+        details: >-
+          Permet de capturer le Shlagémon actuellement en combat. Moins il a de
+          points de vie, plus la chance de capture augmente.
+      superShlageball:
+        name: Super Shlagéball
+        description: Améliore les chances de capture.
+        details: >-
+          Capture des Shlagémons plus récalcitrants avec un léger bonus de
+          chance.
+      hyperShlageball:
+        name: Hyper Shlagéball
+        description: Offre de très hautes chances de capture.
+        details: >-
+          Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros
+          bonus.
+    wearables:
+      attackRing:
+        attackRing:
+          name: Bague d'attaque
+          description: Augmente l'attaque du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente son attaque de 15%. Effet
+            cumulable avec les potions d'attaque.
+        advancedAttackRing:
+          name: Bague d'attaque avancée
+          description: Augmente fortement l'attaque du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente son attaque de 25%. Effet
+            cumulable avec les potions d'attaque.
+        attackAmulet:
+          name: Amulette d'attaque
+          description: Augmente grandement l'attaque du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente son attaque de 33%. Effet
+            cumulable avec les potions d'attaque.
+      defenseRing:
+        defenseRing:
+          name: Bague de défense
+          description: Augmente la défense du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente sa défense de 15%. Effet
+            cumulable avec les potions de défense.
+        advancedDefenseRing:
+          name: Bague de défense avancée
+          description: Augmente fortement la défense du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente sa défense de 25%. Effet
+            cumulable avec les potions de défense.
+        defenseAmulet:
+          name: Amulette de défense
+          description: Augmente grandement la défense du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente sa défense de 33%. Effet
+            cumulable avec les potions de défense.
+      vitalityRing:
+        vitalityRing:
+          name: Bague Vitalesque
+          description: Augmente les PV max du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet
+            cumulable avec les potions de vitalité.
+        advancedVitalityRing:
+          name: Bague Vitalesque avancée
+          description: Augmente fortement les PV max du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente ses PV maximum de 25%. Effet
+            cumulable avec les potions de vitalité.
+        vitalityAmulet:
+          name: Amulette Vitalesque
+          description: Augmente grandement les PV max du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente ses PV maximum de 33%. Effet
+            cumulable avec les potions de vitalité.
+      xpRing:
+        xpRing:
+          name: Anneau d'expérience
+          description: Augmente l'XP du porteur.
+          details: >-
+            Porté par un Shlagémon, il augmente l'expérience gagnée en combat de
+            15%. Effet cumulable avec les potions d'expérience.
+        advancedXpRing:
+          name: Anneau d'expérience avancé
+          description: Augmente fortement l'XP du porteur.
+          details: >-
+            Porté par un Shlagémon, il augmente l'expérience gagnée en combat de
+            25%. Effet cumulable avec les potions d'expérience.
+        xpAmulet:
+          name: Amulette d'expérience
+          description: Augmente grandement l'XP du porteur.
+          details: >-
+            Portée par un Shlagémon, elle augmente l'expérience gagnée en combat
+            de 33%. Effet cumulable avec les potions d'expérience.
 pages:
   index:
     title: Shlagémon

@@ -2,7 +2,10 @@
 import type { Item } from '~/type/item'
 
 const props = withDefaults(defineProps<{ item: Item, qty?: number }>(), { qty: 1 })
+
 const emit = defineEmits<{ (e: 'update:qty', value: number): void }>()
+
+const { t } = useI18n()
 
 const game = useGameStore()
 const qty = ref(props.qty)
@@ -34,7 +37,9 @@ function setMax() {
   qty.value = maxQty.value
 }
 
-const details = computed(() => props.item.details || props.item.description)
+const details = computed(() =>
+  t(props.item.detailsKey || props.item.descriptionKey || props.item.description),
+)
 </script>
 
 <template>
@@ -45,9 +50,9 @@ const details = computed(() => props.item.details || props.item.description)
         class="h-10 w-10"
         :class="[props.item.iconClass, props.item.icon]"
       />
-      <img v-else-if="props.item.image" :src="props.item.image" :alt="props.item.name" class="h-10 w-10 object-contain">
+      <img v-else-if="props.item.image" :src="props.item.image" :alt="t(props.item.nameKey || props.item.name)" class="h-10 w-10 object-contain">
       <h3 class="text-lg font-bold">
-        {{ props.item.name }}
+        {{ t(props.item.nameKey || props.item.name) }}
       </h3>
     </div>
     <div class="flex items-center gap-1">

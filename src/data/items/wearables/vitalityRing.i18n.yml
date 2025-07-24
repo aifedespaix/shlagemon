@@ -1,0 +1,26 @@
+en:
+  vitalityRing:
+    name: Vitality Ring
+    description: Increases the wearer's max HP.
+    details: When worn, increases max HP by 15%. Can stack with vitality potions.
+  advancedVitalityRing:
+    name: Advanced Vitality Ring
+    description: Strongly increases the wearer's max HP.
+    details: When worn, increases max HP by 25%. Can stack with vitality potions.
+  vitalityAmulet:
+    name: Vitality Amulet
+    description: Greatly increases the wearer's max HP.
+    details: When worn, increases max HP by 33%. Can stack with vitality potions.
+fr:
+  vitalityRing:
+    name: Bague Vitalesque
+    description: Augmente les PV max du porteur.
+    details: Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.
+  advancedVitalityRing:
+    name: Bague Vitalesque avancée
+    description: Augmente fortement les PV max du porteur.
+    details: Portée par un Shlagémon, elle augmente ses PV maximum de 25%. Effet cumulable avec les potions de vitalité.
+  vitalityAmulet:
+    name: Amulette Vitalesque
+    description: Augmente grandement les PV max du porteur.
+    details: Portée par un Shlagémon, elle augmente ses PV maximum de 33%. Effet cumulable avec les potions de vitalité.
