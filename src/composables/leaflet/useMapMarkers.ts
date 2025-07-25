@@ -6,10 +6,10 @@ import { useZoneCompletion } from '~/composables/useZoneCompletion'
 import { useLeafletMarker } from './useLeafletMarker'
 
 export function useMapMarkers(map: LeafletMap) {
-  const markers = new Map<ZoneId, Marker>()
+  const markers = new Map<ZoneId, { marker: Marker, update: (inactive: boolean) => void }>()
 
   function highlightActive(id?: ZoneId) {
-    markers.forEach((marker, zoneId) => {
+    markers.forEach(({ marker }, zoneId) => {
       const el = marker.getElement() as HTMLElement | null
       if (!el)
         return
@@ -38,6 +38,8 @@ export function useMapMarkers(map: LeafletMap) {
     inactive = false,
   ) {
     const { allCaptured, perfectZone, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
+    let locked = inactive
+    let clickHandler: (() => void) | null = null
 
     function buildHtml() {
       const size = 12
@@ -52,7 +54,7 @@ export function useMapMarkers(map: LeafletMap) {
           ? '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
           : ''
       const icons = [ball, crown, arena].filter(Boolean).join('')
-      return `<div class="flex flex-col items-center ${inactive ? 'grayscale opacity-50' : ''}">
+      return `<div class="flex flex-col items-center ${locked ? 'grayscale opacity-50' : ''}">
         ${icon}
         <div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>
       </div>`
@@ -64,18 +66,40 @@ export function useMapMarkers(map: LeafletMap) {
       html: buildHtml(),
       size: 60,
       anchorY: 48,
-      interactive: !inactive,
+      interactive: true,
     })
 
     watch([allCaptured, perfectZone, kingDefeated, arenaCompleted], () => {
       marker.setIcon(new DivIcon({ html: buildHtml(), iconSize: [60, 60], iconAnchor: [30, 48] }))
     })
 
-    if (onSelect && !inactive)
-      marker.on('click', () => onSelect(zone.id))
-    markers.set(zone.id, marker)
+    function update(value: boolean) {
+      locked = value
+      marker.setIcon(new DivIcon({ html: buildHtml(), iconSize: [60, 60], iconAnchor: [30, 48] }))
+      if (!onSelect)
+        return
+      if (!locked && !clickHandler) {
+        clickHandler = () => onSelect(zone.id)
+        marker.on('click', clickHandler)
+      }
+      else if (locked && clickHandler) {
+        marker.off('click', clickHandler)
+        clickHandler = null
+      }
+    }
+
+    if (onSelect && !locked) {
+      clickHandler = () => onSelect(zone.id)
+      marker.on('click', clickHandler)
+    }
+
+    markers.set(zone.id, { marker, update })
     return marker
   }
 
-  return { addMarker, highlightActive }
+  function setInactive(id: ZoneId, value: boolean) {
+    markers.get(id)?.update(value)
+  }
+
+  return { addMarker, highlightActive, setInactive }
 }

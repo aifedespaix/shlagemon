@@ -92,7 +92,16 @@ onMounted(() => {
     })
   }
 
-  watch(accessibleZones, draw, { immediate: true })
+  watch(accessibleZones, () => {
+    zones.forEach((zone) => {
+      if (!zone.position)
+        return
+      const locked = !canAccess(zone)
+      markers.setInactive(zone.id, locked)
+    })
+    draw()
+    markers.highlightActive(zoneStore.currentId)
+  }, { immediate: true })
 })
 </script>
 
