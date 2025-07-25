@@ -20,9 +20,9 @@ function goNext() {
 
 <template>
   <UiButton
+    v-if="!disabled"
     type="icon"
     class="absolute bottom-1 right-1 z-500"
-    v-if="!disabled"
     @click="goNext"
   >
     <div class="i-carbon:chevron-right text-xl" />

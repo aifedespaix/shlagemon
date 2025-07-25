@@ -20,9 +20,9 @@ function goPrev() {
 
 <template>
   <UiButton
+    v-if="!disabled"
     type="icon"
     class="absolute bottom-1 left-1 z-500"
-    v-if="!disabled"
     @click="goPrev"
   >
     <div class="i-carbon:chevron-left text-xl" />
