@@ -13,8 +13,13 @@ export function useMapMarkers(map: LeafletMap) {
       const el = marker.getElement() as HTMLElement | null
       if (!el)
         return
-      if (zoneId === id)
-        el.style.filter = 'drop-shadow(0 0 8px rgba(59,130,246,0.8))'
+      if (zoneId === id) {
+        el.style.filter = `
+          drop-shadow(0 0 0px #3b82f6)       /* effet bord net */
+          drop-shadow(0 0 6px #3b82f6)       /* halo diffus autour */
+          drop-shadow(0 0 16px #3b82f6)      /* aura externe étendue */
+        `;
+      }
       else
         el.style.filter = ''
     })
