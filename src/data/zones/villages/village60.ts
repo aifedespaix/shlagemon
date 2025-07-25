@@ -26,7 +26,7 @@ export const village60: Zone = {
   id: 'village-cassos-land',
   name: 'Village des Cassos',
   type: 'village',
-  position: move.right(savage55.position, VILLAGE_OFFSET),
+  position: move.left(savage55.position, VILLAGE_OFFSET),
   attachedTo: savage55.id,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
