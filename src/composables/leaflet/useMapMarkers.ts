@@ -1,4 +1,4 @@
-import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
+import type { LatLngExpression, Map as LeafletMap, Marker } from 'leaflet'
 import type { Zone, ZoneId } from '~/type'
 import { DivIcon } from 'leaflet'
 import { watch } from 'vue'
@@ -6,6 +6,19 @@ import { useZoneCompletion } from '~/composables/useZoneCompletion'
 import { useLeafletMarker } from './useLeafletMarker'
 
 export function useMapMarkers(map: LeafletMap) {
+  const markers = new Map<ZoneId, Marker>()
+
+  function highlightActive(id?: ZoneId) {
+    markers.forEach((marker, zoneId) => {
+      const el = marker.getElement() as HTMLElement | null
+      if (!el)
+        return
+      if (zoneId === id)
+        el.style.filter = 'drop-shadow(0 0 8px rgba(59,130,246,0.8))'
+      else
+        el.style.filter = ''
+    })
+  }
   function iconPath(zone: Zone): string {
     return zone.type === 'village'
       ? `/map/icons/village-${zone.villageType}.webp`
@@ -53,8 +66,9 @@ export function useMapMarkers(map: LeafletMap) {
 
     if (onSelect && !inactive)
       marker.on('click', () => onSelect(zone.id))
+    markers.set(zone.id, marker)
     return marker
   }
 
-  return { addMarker }
+  return { addMarker, highlightActive }
 }
