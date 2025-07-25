@@ -6,6 +6,7 @@ import { useLeafletMap } from '~/composables/leaflet/useLeafletMap'
 import { useMapMarkers } from '~/composables/leaflet/useMapMarkers'
 import { buildSimplePath, buildZigzagPath, useMapPaths } from '~/composables/leaflet/useMapPaths'
 import { zonesData } from '~/data/zones'
+import { useZoneStore } from '~/stores/zone'
 import 'leaflet/dist/leaflet.css'
 
 defineOptions({ inheritAttrs: false })
@@ -17,6 +18,7 @@ const emit = defineEmits<{
 
 const { mapRef, map: leafletMap } = useLeafletMap()
 const zones = props.zones ?? zonesData
+const zoneStore = useZoneStore()
 
 function selectZone(id: ZoneId) {
   emit('select', id)
@@ -44,6 +46,9 @@ onMounted(() => {
     const locked = !canAccess(zone)
     markers.addMarker(zone, selectZone, locked)
   })
+
+  markers.highlightActive(zoneStore.currentId)
+  watch(() => zoneStore.currentId, id => markers.highlightActive(id))
 
   const savageZones = zones.filter(z => z.type === 'sauvage' && z.position)
   const villages = zones.filter(z => z.type === 'village' && z.position)
