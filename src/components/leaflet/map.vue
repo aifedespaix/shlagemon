@@ -97,8 +97,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-full w-full">
-    <LeafletCenterCurrentZoneButton :map="leafletMap" />
+  <div class="relative h-full w-full">
+    <LeafletCenterCurrentZoneButton v-bind="{ map: leafletMap }" />
     <div ref="mapRef" class="h-full w-full" v-bind="$attrs" />
   </div>
 </template>
