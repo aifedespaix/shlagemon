@@ -22,7 +22,7 @@ function goPrev() {
   <UiButton
     type="icon"
     class="absolute bottom-1 left-1 z-500"
-    :disabled="disabled"
+    v-if="!disabled"
     @click="goPrev"
   >
     <div class="i-carbon:chevron-left text-xl" />

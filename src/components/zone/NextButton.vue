@@ -22,7 +22,7 @@ function goNext() {
   <UiButton
     type="icon"
     class="absolute bottom-1 right-1 z-500"
-    :disabled="disabled"
+    v-if="!disabled"
     @click="goNext"
   >
     <div class="i-carbon:chevron-right text-xl" />

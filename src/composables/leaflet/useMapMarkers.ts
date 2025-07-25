@@ -34,7 +34,7 @@ export function useMapMarkers(map: LeafletMap) {
       const icons = [ball, crown, arena].filter(Boolean).join('')
       return `<div class="flex flex-col items-center ${inactive ? 'grayscale opacity-50' : ''}">
         ${icon}
-        <div class="flex gap-0.5 -mt-1 bg-dark/50 px-2 py-1 rounded-full">${icons}</div>
+        <div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>
       </div>`
     }
 

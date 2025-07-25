@@ -52,9 +52,9 @@ function center() {
 
 <template>
   <UiButton
-    v-if="visible"
+    v-if="visible || true"
     type="icon"
-    class="absolute bottom-2 left-1/2 z-500 h-8 w-8 -translate-x-1/2"
+    class="absolute bottom-0 left-1/2 z-5000 h-10 w-10 -translate-x-1/2 opacity-75 rounded-b-0"
     aria-label="Center on zone"
     @click="center"
   >

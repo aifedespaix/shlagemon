@@ -93,7 +93,7 @@ onMounted(() => {
 
 <template>
   <div class="h-full w-full">
-    <div ref="mapRef" class="h-full w-full" v-bind="$attrs" />
     <LeafletCenterCurrentZoneButton :map="leafletMap" />
+    <div ref="mapRef" class="h-full w-full" v-bind="$attrs" />
   </div>
 </template>
