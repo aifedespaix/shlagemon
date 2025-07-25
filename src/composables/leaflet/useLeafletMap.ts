@@ -12,9 +12,10 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
   const tileLayer = ref<TileLayer | null>(null)
 
   const minLat = -90
-  const minLng = -180
-  const maxLat = 90
-  const maxLng = 110
+  const minLng = -300
+
+  const maxLat = 120
+  const maxLng = 230
 
   onMounted(() => {
     map.value = new Map(mapRef.value!, {
