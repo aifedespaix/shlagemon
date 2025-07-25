@@ -17,13 +17,15 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
+import { move } from '~/utils/position'
 import { savage45 } from '../savages/45-catacombes-merdifientes'
 
 export const village50: Zone = {
   id: 'village-caca-boudin',
   name: 'Village Fiente-sur-Mer',
   type: 'village',
-  position: { lat: savage45.position.lat, lng: savage45.position.lng + VILLAGE_OFFSET },
+  position: move.right(savage45.position, VILLAGE_OFFSET),
+  attachedTo: savage45.id,
   actions: [],
   minLevel: 50,
   village: {

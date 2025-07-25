@@ -16,6 +16,7 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
+import { move } from '~/utils/position'
 import { arena40 } from '../../arenas'
 import { savage35 } from '../savages/35-route-du-nawak'
 
@@ -23,7 +24,8 @@ export const village40: Zone = {
   id: 'village-paume',
   name: 'Village Paumé du cul',
   type: 'village',
-  position: { lat: savage35.position.lat, lng: savage35.position.lng + VILLAGE_OFFSET },
+  position: move.right(savage35.position, VILLAGE_OFFSET),
+  attachedTo: savage35.id,
   actions: [],
   minLevel: 40,
   arena: {

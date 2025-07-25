@@ -22,13 +22,15 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
+import { move } from '~/utils/position'
 import { savage75 } from '../savages/75-route-so-dom'
 
 export const village80: Zone = {
   id: 'village-clitoland',
   name: 'Clito Land',
   type: 'village',
-  position: { lat: savage75.position.lat, lng: savage75.position.lng + VILLAGE_OFFSET },
+  position: move.right(savage75.position, VILLAGE_OFFSET),
+  attachedTo: savage75.id,
   actions: [],
   minLevel: 80,
   village: {

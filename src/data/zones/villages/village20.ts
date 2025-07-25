@@ -18,6 +18,7 @@ export const village20: Zone = {
   name: 'Village Sux-Mais-Bouls',
   type: 'village',
   position: move.bottom(savage15.position, VILLAGE_OFFSET),
+  attachedTo: savage15.id,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

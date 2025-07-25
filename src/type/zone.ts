@@ -55,6 +55,8 @@ export interface SavageZone extends BaseZone {
 interface NonSavageZone extends BaseZone {
   type: Exclude<ZoneType, 'sauvage'>
   maxLevel?: undefined // interdit explicitement (ou facultatif si tu préfères)
+  /** Zone sauvage à laquelle cette zone est reliée */
+  attachedTo?: SavageZoneId
 }
 
 // Union finale
