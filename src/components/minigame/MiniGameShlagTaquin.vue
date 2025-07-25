@@ -11,9 +11,9 @@ const size = computed(() => props.difficulty === 'hard' ? 4 : 3)
 
 const puzzle = useSlidingPuzzle(size)
 const visibleTiles = computed(() =>
-  puzzle.tiles
+  puzzle.tiles.value
     .map((id, idx) => ({ id, idx }))
-    .filter(t => puzzle.solved || t.id !== size.value * size.value - 1),
+    .filter(t => puzzle.solved.value || t.id !== size.value * size.value - 1),
 )
 const tilePercent = computed(() => 100 / size.value)
 
@@ -23,7 +23,7 @@ const squareSize = computed(() => Math.min(width.value, height.value))
 
 useSwipe(wrapper, {
   onSwipeEnd(_, dir) {
-    if (puzzle.solved || puzzle.shuffling)
+    if (puzzle.solved.value || puzzle.shuffling.value)
       return
     if (dir !== 'none')
       puzzle.move(dir as any)
@@ -31,7 +31,7 @@ useSwipe(wrapper, {
 })
 
 useEventListener('keydown', (e: KeyboardEvent) => {
-  if (puzzle.solved || puzzle.shuffling)
+  if (puzzle.solved.value || puzzle.shuffling.value)
     return
   if (e.key === 'ArrowUp')
     puzzle.move('up')
@@ -58,7 +58,7 @@ watch(size, async () => {
   }, 500)
 })
 
-watch(() => puzzle.solved, (v) => {
+watch(puzzle.solved, (v) => {
   if (v)
     useTimeoutFn(() => emit('win'), 2000)
 })
