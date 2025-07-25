@@ -63,15 +63,15 @@ onMounted(() => {
     )
     const accessibleCount = accessibleSavage.length
 
-    if (accessibleCount > 1) {
-      const path = buildZigzagPath(savageZones.slice(0, accessibleCount))
-      lines.value.push(...drawPolylineWithBorder(path, '#facc15'))
-    }
-
     if (accessibleCount < savageZones.length) {
       const start = Math.max(accessibleCount - 1, 0)
       const path = buildZigzagPath(savageZones.slice(start))
       lines.value.push(...drawPolylineWithBorder(path, '#9ca3af'))
+    }
+
+    if (accessibleCount > 1) {
+      const path = buildZigzagPath(savageZones.slice(0, accessibleCount))
+      lines.value.push(...drawPolylineWithBorder(path, '#facc15'))
     }
 
     villages.forEach((village) => {
@@ -82,7 +82,8 @@ onMounted(() => {
       const arrival = idx % 2 === 0 ? 'vertical' : 'horizontal'
       const start = arrival === 'vertical' ? 'horizontal' : 'vertical'
       const path = buildSimplePath(target.position!, village.position!, start)
-      lines.value.push(...drawPolylineWithBorder(path, '#22c55e', 10))
+      const color = canAccess(village) ? '#22c55e' : '#9ca3af'
+      lines.value.push(...drawPolylineWithBorder(path, color, 10))
     })
   }
 
