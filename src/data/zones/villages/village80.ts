@@ -24,6 +24,7 @@ import {
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { savage75 } from '../savages/75-route-so-dom'
+import { arena80 } from '~/data/arenas'
 
 export const village80: Zone = {
   id: 'village-clitoland',
@@ -34,6 +35,10 @@ export const village80: Zone = {
   attachedTo: savage75.id,
   actions: [],
   minLevel: 80,
+    arena: {
+      get arena() { return arena80 },
+      completed: false,
+    },
   village: {
     shop: {
       items: [

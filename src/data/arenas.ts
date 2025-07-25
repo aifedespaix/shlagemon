@@ -90,10 +90,25 @@ export const arena60: Arena = createArena({
   },
 })
 
+
+export const arena80: Arena = createArena({
+  id: 'arena80',
+  zoneId: 'village-paume',
+  character: profMerdant,
+  level: 81,
+  badge: {
+    id: 'badge-fiak',
+    name: 'Badge Fiak',
+    levelCap: 99,
+    image: '',
+  },
+})
+
 export const arenas: Arena[] = [
   arena20,
   arena40,
   arena60,
+  arena80,
 ]
 
 export function getArena(id: string): Arena | undefined {
