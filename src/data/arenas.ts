@@ -90,7 +90,6 @@ export const arena60: Arena = createArena({
   },
 })
 
-
 export const arena80: Arena = createArena({
   id: 'arena80',
   zoneId: 'village-paume',
