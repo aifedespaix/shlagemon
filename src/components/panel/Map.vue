@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import type LeafletMap from '~/components/leaflet/map.vue'
+import type { ZoneId } from '~/type/zone'
+
 const zone = useZoneStore()
+const mapRef = ref<InstanceType<typeof LeafletMap> | null>(null)
+
+provide('selectZone', (id: ZoneId) => {
+  mapRef.value?.selectZone(id)
+})
 </script>
 
 <template>
@@ -14,6 +22,6 @@ const zone = useZoneStore()
         class="mb-1 h-1"
       />
     </div>
-    <LeafletMap @select="zone.setZone" />
+    <LeafletMap ref="mapRef" @select="zone.setZone" />
   </div>
 </template>
