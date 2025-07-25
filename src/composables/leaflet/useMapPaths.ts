@@ -1,6 +1,8 @@
 import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
 import type { Position, Zone } from '~/type'
-import { Polyline } from 'leaflet'
+import { Polyline, SVG } from 'leaflet'
+
+const renderer = new SVG({ padding: 40 })
 
 export function buildZigzagPath(zones: Zone[]): LatLngExpression[] {
   const path: LatLngExpression[] = []
@@ -58,6 +60,7 @@ export function useMapPaths(map: LeafletMap) {
       weight: weight + 4,
       opacity: 1,
       smoothFactor: 4,
+      renderer,
     }).addTo(map)
 
     const line = new Polyline(path, {
@@ -65,6 +68,7 @@ export function useMapPaths(map: LeafletMap) {
       weight,
       opacity: 1,
       smoothFactor: 4,
+      renderer,
     }).addTo(map)
 
     return [border, line]
