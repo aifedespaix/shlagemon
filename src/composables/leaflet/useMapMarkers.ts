@@ -6,19 +6,33 @@ import { useZoneCompletion } from '~/composables/useZoneCompletion'
 import { useLeafletMarker } from './useLeafletMarker'
 
 export function useMapMarkers(map: LeafletMap) {
-  const markers = new Map<ZoneId, { marker: Marker, update: (inactive: boolean) => void }>()
+  const markers = new Map<ZoneId, {
+    marker: Marker
+    update: (inactive: boolean) => void
+    hovered: boolean
+  }>()
+  let active: ZoneId | undefined
 
   function highlightActive(id?: ZoneId) {
-    markers.forEach(({ marker }, zoneId) => {
-      const el = marker.getElement() as HTMLElement | null
+    if (id !== undefined)
+      active = id
+    markers.forEach((entry, zoneId) => {
+      const el = entry.marker.getElement() as HTMLElement | null
       if (!el)
         return
 
-      if (zoneId === id) {
+      if (zoneId === active) {
         el.style.filter = `
           drop-shadow(0 0 0px #3b82f6)       /* effet bord net */
           drop-shadow(0 0 6px #3b82f6)       /* halo diffus autour */
           drop-shadow(0 0 16px #3b82f6)      /* aura externe étendue */
+        `
+      }
+      else if (entry.hovered) {
+        el.style.filter = `
+          drop-shadow(0 0 0px #ffffff)
+          drop-shadow(0 0 6px #ffffff)
+          drop-shadow(0 0 16px #ffffff)
         `
       }
       else {
@@ -93,7 +107,20 @@ export function useMapMarkers(map: LeafletMap) {
       marker.on('click', clickHandler)
     }
 
-    markers.set(zone.id, { marker, update })
+    const entry = { marker, update, hovered: false }
+
+    marker.on('mouseover', () => {
+      entry.hovered = true
+      highlightActive()
+    })
+
+    marker.on('mouseout', () => {
+      entry.hovered = false
+      highlightActive()
+    })
+
+    markers.set(zone.id, entry)
+    highlightActive()
     return marker
   }
 
