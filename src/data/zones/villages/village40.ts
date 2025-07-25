@@ -24,6 +24,7 @@ export const village40: Zone = {
   id: 'village-paume',
   name: 'Village Paumé du cul',
   type: 'village',
+  villageType: 'super',
   position: move.right(savage35.position, VILLAGE_OFFSET),
   attachedTo: savage35.id,
   actions: [],

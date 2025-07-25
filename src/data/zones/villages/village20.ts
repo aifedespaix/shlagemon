@@ -17,6 +17,7 @@ export const village20: Zone = {
   id: 'village-boule',
   name: 'Village Sux-Mais-Bouls',
   type: 'village',
+  villageType: 'basic',
   position: move.bottom(savage15.position, VILLAGE_OFFSET),
   attachedTo: savage15.id,
   actions: [

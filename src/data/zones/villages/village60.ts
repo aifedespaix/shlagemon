@@ -26,6 +26,7 @@ export const village60: Zone = {
   id: 'village-cassos-land',
   name: 'Village des Cassos',
   type: 'village',
+  villageType: 'hyper',
   position: move.right(savage55.position, VILLAGE_OFFSET),
   attachedTo: savage55.id,
   actions: [
