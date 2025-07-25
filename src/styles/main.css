@@ -28,3 +28,9 @@ html.dark {
   width: 100%;
   height: 2px;
 }
+
+/* ensure leaflet markers have no white background */
+.leaflet-div-icon {
+  background: transparent;
+  border: none;
+}
