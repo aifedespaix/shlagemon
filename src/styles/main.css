@@ -31,6 +31,6 @@ html.dark {
 
 /* ensure leaflet markers have no white background */
 .leaflet-div-icon {
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
 }
