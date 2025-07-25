@@ -181,7 +181,7 @@ components:
             attacks. All your potion bonuses are cancelled on entry. Choose
             well-trained Shlagemons strong against opposite types.
           responses:
-            start: Let''s go!
+            start: Let's go!
             quit: Leave
     AttackPotionDialog:
       steps:
@@ -284,8 +284,8 @@ components:
             next: Continue
         step2:
           text: >-
-            I'm {name}. To help you, I'll give you a very special item: the
-            Multi-UXP.
+            As {name}, I am proud of you. To help you on your adventure, I will
+            give you a very special item: the Multi-EXP.
           responses:
             back: Back
             next: Continue
@@ -400,28 +400,28 @@ components:
         start:
           text: Hi, I'm {name}, my friends say I smell nice.
           responses:
-            next: You don''t look very smart.
+            next: You don't look very smart.
         step2:
           text: Screw you kid, I'm going to force you to adopt one of my Shlagemons.
           responses:
             next: Oh nooo, not a Shlagemon, they smell too bad!
         choice:
           text: >-
-            I''ll let you choose the least awful one, which Shlagemon do you
+            I'll let you choose the least awful one, which Shlagemon do you
             want?
         common:
           responses:
-            back: Don''t you have something better than this crap?
+            back: Don't you have something better than this crap?
         bulgrosboule:
-          text: I wouldn''t pick that one, it''s horribly bad.
+          text: I wouldn't pick that one, it's horribly bad.
           responses:
-            valid: I don''t like it much but ok
+            valid: I don't like it much but ok
         salamiches:
           text: Careful, it belches fire when it eats bread.
           responses:
             valid: Thanks {name}
         carapouffe:
-          text: Careful, it can''t swim.
+          text: Careful, it can't swim.
           responses:
             valid: Thanks {name}
     WearableItemDialog:
@@ -449,6 +449,8 @@ components:
         - Rarely seen someone so pathetic.
       validate: Validate
       attemptsLeft: '{n} attempts left'
+      win: You've cracked a Shlag's mind!
+      lose: Even a Grimer would have done it
     MiniGameShlagPairs:
       attempts: '{n} attempt | {n} attempts'
     ShlagMindSelectionModal:
@@ -1509,13 +1511,12 @@ data:
 
         Mewteub is rare. Too rare. And frankly, it might be better that way.
     salamiches:
-      salamiches:
-        name: Salamiches
-        description: >
-          Salamiches burns with the weak flame of an empty lighter. Always
-          shirtless, he records himself spitting sparks on trash cans. His
-          special ability, *Ego Fire*, boosts his power whenever people boo him.
-          Loyal unless offered a free kebab or a sale at the auto shop.
+      name: Salamiches
+      description: >
+        Salamiches burns with the weak flame of an empty lighter. Always
+        shirtless, he records himself spitting sparks on trash cans. His special
+        ability, *Ego Fire*, boosts his power whenever people boo him. Loyal
+        unless offered a free kebab or a sale at the auto shop.
     sulfusouris:
       description: >-
         Sulfumouse is a legendary Shalagemon born of a short circuit in an

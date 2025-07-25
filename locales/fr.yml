@@ -298,8 +298,8 @@ components:
             next: Continuer
         step2:
           text: >-
-            Je suis {name}. Pour t'aider, je vais te remettre un objet très
-            spécial : le Multi-UXP.
+            En tant que {name} je suis fier de toi. Pour t'aider dans ton
+            aventure, je vais te remettre un objet très spécial : le Multi-EXP.
           responses:
             back: Retour
             next: Continuer
@@ -432,11 +432,11 @@ components:
           text: Je te laisse choisir le moins pire, tu veux quel Shlagémon ?
         common:
           responses:
-            back: T''as pas mieux que cette merde ?
+            back: T'as pas mieux que cette merde ?
         bulgrosboule:
           text: Je te déconseille de choisir celui là, il est horriblement mauvais.
           responses:
-            valid: Je l''aime pas trop mais ok
+            valid: Je l'aime pas trop mais ok
         salamiches:
           text: Attention, il rote du feu quand il mange du pain.
           responses:
@@ -470,6 +470,8 @@ components:
         - Rarement vu quelqu'un aussi merdique.
       validate: Valider
       attemptsLeft: '{n} tentatives restantes'
+      win: T'as percé le cerveau d'un Shlag !
+      lose: Même un Petmorv y serait arrivé
     MiniGameShlagPairs:
       attempts: '{n} tentative | {n} tentatives'
     ShlagMindSelectionModal:
@@ -1538,21 +1540,20 @@ data:
         Mewteub est rare. Trop rare. Et franchement, c’est peut-être mieux
         ainsi.
     salamiches:
-      salamiches:
-        name: Salamiches
-        description: >
-          Salamiches brûle, mais pas de feu noble, non, plutôt de feu de briquet
-          BIC vide qu’on rallume à la 27ᵉ tentative. Toujours torse nu, même en
-          hiver, il arbore une crête en feu mal fixée et des lunettes de soleil
-          qui fondent partiellement à chaque attaque. Il se nourrit
-          exclusivement de chips au paprika, de whisky bon marché, et
-          d’approbation sociale. On le trouve souvent en train de se filmer en
-          selfie pendant qu’il crache des étincelles sur des poubelles. Sa
-          capacité spéciale, *Feu d’ego*, augmente sa puissance chaque fois
-          qu’il se fait huer. Il envoie des punchlines nulles entre deux jets de
-          flamme molle, et rêve de devenir influenceur muscu alors qu’il n’a que
-          deux abdos (et encore, en ombrage). C’est un être loyal, sauf si on
-          lui propose un kebab gratuit ou une promotion chez Feu Vert.
+      name: Salamiches
+      description: >
+        Salamiches brûle, mais pas de feu noble, non, plutôt de feu de briquet
+        BIC vide qu’on rallume à la 27ᵉ tentative. Toujours torse nu, même en
+        hiver, il arbore une crête en feu mal fixée et des lunettes de soleil
+        qui fondent partiellement à chaque attaque. Il se nourrit exclusivement
+        de chips au paprika, de whisky bon marché, et d’approbation sociale. On
+        le trouve souvent en train de se filmer en selfie pendant qu’il crache
+        des étincelles sur des poubelles. Sa capacité spéciale, *Feu d’ego*,
+        augmente sa puissance chaque fois qu’il se fait huer. Il envoie des
+        punchlines nulles entre deux jets de flamme molle, et rêve de devenir
+        influenceur muscu alors qu’il n’a que deux abdos (et encore, en
+        ombrage). C’est un être loyal, sauf si on lui propose un kebab gratuit
+        ou une promotion chez Feu Vert.
     sulfusouris:
       description: >-
         Sulfusouris est un Shlagémon légendaire né d’un court-circuit dans un
