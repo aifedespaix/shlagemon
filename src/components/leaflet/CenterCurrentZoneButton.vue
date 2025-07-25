@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Map as LeafletMap } from 'leaflet'
 import type { Ref } from 'vue'
-import { ref, watch, watchEffect } from 'vue'
+import { ref, watch } from 'vue'
 import { useZoneStore } from '~/stores/zone'
 
 const props = defineProps<{ map?: Ref<LeafletMap | null> }>()
@@ -24,18 +24,21 @@ function update() {
     visible.value = false
 }
 
-watchEffect((onCleanup) => {
-  const map = props.map?.value
-  if (!map) {
-    visible.value = false
-    return
-  }
-  update()
-  map.on('moveend', update)
-  onCleanup(() => {
-    map.off('moveend', update)
-  })
-})
+watch(
+  () => props.map?.value,
+  (map, _, onCleanup) => {
+    if (!map) {
+      visible.value = false
+      return
+    }
+    update()
+    map.on('moveend', update)
+    onCleanup(() => {
+      map.off('moveend', update)
+    })
+  },
+  { immediate: true },
+)
 
 watch(() => zone.currentId, () => {
   update()
