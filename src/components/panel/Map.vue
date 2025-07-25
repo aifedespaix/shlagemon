@@ -14,6 +14,6 @@ const zone = useZoneStore()
         class="mb-1 h-1"
       />
     </div>
-    <LeafletMap class="absolute inset-0" @select="zone.setZone" />
+    <LeafletMap @select="zone.setZone" />
   </div>
 </template>

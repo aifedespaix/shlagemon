@@ -10,11 +10,15 @@ export function useMapMarkers(map: LeafletMap) {
     return `/map/icons/${id}.webp`
   }
 
-  function addMarker(zone: Zone, onSelect?: (id: ZoneId) => void, inactive = false) {
+  function addMarker(
+    zone: Zone,
+    onSelect?: (id: ZoneId) => void,
+    inactive = false,
+  ) {
     const { allCaptured, perfectZone, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
 
     function buildHtml() {
-      const size = 48
+      const size = 12
       const icon = `<img src="${iconPath(zone.id)}" class="w-${size} h-${size} block" />`
       const ball = allCaptured.value
         ? `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}" />`
@@ -28,7 +32,7 @@ export function useMapMarkers(map: LeafletMap) {
       const icons = [ball, crown, arena].filter(Boolean).join('')
       return `<div class="flex flex-col items-center ${inactive ? 'grayscale opacity-50' : ''}">
         ${icon}
-        <div class="flex gap-0.5 mt-1">${icons}</div>
+        <div class="flex gap-0.5 mt-1 bg-dark/50 px-2 py-1 rounded-full">${icons}</div>
       </div>`
     }
 

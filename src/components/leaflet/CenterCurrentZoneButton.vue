@@ -54,7 +54,7 @@ function center() {
   <UiButton
     v-if="visible"
     type="icon"
-    class="absolute bottom-2 left-1/2 z-50 -translate-x-1/2"
+    class="absolute bottom-2 left-1/2 z-500 h-8 w-8 -translate-x-1/2"
     aria-label="Center on zone"
     @click="center"
   >
