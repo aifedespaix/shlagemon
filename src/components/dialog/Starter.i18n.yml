@@ -3,20 +3,20 @@ fr:
     start:
       text: 'Salut, je suis {name}, mes amis disent que je sens bon.'
       responses:
-        next: Tu n''as pas l''air très intelligent.
+        next: Tu n'as pas l'air très intelligent.
     step2:
-      text: 'Je t''emmerde mon petit, pour la peine, je vais te forcer à adopter un de mes Shlagémons.'
+      text: 'Je t'emmerde mon petit, pour la peine, je vais te forcer à adopter un de mes Shlagémons.'
       responses:
         next: Ho nooon, pas un Shlagémon, ils sentent trop mauvais !
     choice:
       text: Je te laisse choisir le moins pire, tu veux quel Shlagémon ?
     common:
       responses:
-        back: T''as pas mieux que cette merde ?
+        back: T'as pas mieux que cette merde ?
     bulgrosboule:
       text: Je te déconseille de choisir celui là, il est horriblement mauvais.
       responses:
-        valid: Je l''aime pas trop mais ok
+        valid: Je l'aime pas trop mais ok
     salamiches:
       text: Attention, il rote du feu quand il mange du pain.
       responses:
@@ -28,27 +28,27 @@ fr:
 en:
   steps:
     start:
-      text: 'Hi, I''m {name}, my friends say I smell nice.'
+      text: 'Hi, I'm {name}, my friends say I smell nice.'
       responses:
-        next: You don''t look very smart.
+        next: You don't look very smart.
     step2:
-      text: 'Screw you kid, I''m going to force you to adopt one of my Shlagemons.'
+      text: 'Screw you kid, I'm going to force you to adopt one of my Shlagemons.'
       responses:
         next: Oh nooo, not a Shlagemon, they smell too bad!
     choice:
-      text: I''ll let you choose the least awful one, which Shlagemon do you want?
+      text: I'll let you choose the least awful one, which Shlagemon do you want?
     common:
       responses:
-        back: Don''t you have something better than this crap?
+        back: Don't you have something better than this crap?
     bulgrosboule:
-      text: I wouldn''t pick that one, it''s horribly bad.
+      text: I wouldn't pick that one, it's horribly bad.
       responses:
-        valid: I don''t like it much but ok
+        valid: I don't like it much but ok
     salamiches:
       text: Careful, it belches fire when it eats bread.
       responses:
         valid: Thanks {name}
     carapouffe:
-      text: Careful, it can''t swim.
+      text: Careful, it can't swim.
       responses:
         valid: Thanks {name}

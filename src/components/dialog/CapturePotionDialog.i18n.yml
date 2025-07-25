@@ -1,16 +1,16 @@
 fr:
   steps:
     step1:
-      text: 'Incroyable, l''un de tes Shlagémons a atteint le niveau 50 !'
+      text: 'Incroyable, l'un de tes Shlagémons a atteint le niveau 50 !'
       responses:
         next: Continuer
     step2:
-      text: 'Je viens d''achever une nouvelle potion qui augmente les chances de capture.'
+      text: 'Je viens d'achever une nouvelle potion qui augmente les chances de capture.'
       responses:
         back: Retour
         next: Continuer
     step3:
-      text: 'Utilise-la avant un lancer de Shlagéball pour bénéficier d''un bonus temporaire.'
+      text: 'Utilise-la avant un lancer de Shlagéball pour bénéficier d'un bonus temporaire.'
       responses:
         back: Retour
         next: Continuer
@@ -31,7 +31,7 @@ en:
       responses:
         next: Continue
     step2:
-      text: 'I''ve just finished a new potion that increases capture chances.'
+      text: 'I've just finished a new potion that increases capture chances.'
       responses:
         back: Back
         next: Continue

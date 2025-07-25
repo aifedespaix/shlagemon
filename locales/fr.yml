@@ -419,7 +419,7 @@ components:
         start:
           text: Salut, je suis {name}, mes amis disent que je sens bon.
           responses:
-            next: Tu n''as pas l''air très intelligent.
+            next: Tu n'as pas l'air très intelligent.
         step2:
           text: >-
             Je t'emmerde mon petit, pour la peine, je vais te forcer à adopter
