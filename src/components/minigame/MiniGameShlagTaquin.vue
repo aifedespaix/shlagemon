@@ -104,13 +104,13 @@ watch(puzzle.solved, (v) => {
       </div>
 
       <div class="relative h-full w-full">
-        <img
+        <!-- <img
           v-if="puzzle.solved"
-          :src="puzzle.image"
+          :src="puzzle.image.value"
           alt="image"
           class="absolute inset-0 h-full w-full rounded"
           style="z-index: 10;"
-        >
+        > -->
         <div
           v-for="tile in visibleTiles"
           :key="tile.id"
@@ -121,7 +121,7 @@ watch(puzzle.solved, (v) => {
             height: `${tilePercent}%`,
             left: `${(tile.idx % size) * tilePercent}%`,
             top: `${Math.floor(tile.idx / size) * tilePercent}%`,
-            backgroundImage: `url(${puzzle.image})`,
+            backgroundImage: `url(${puzzle.image.value})`,
             backgroundSize: `${size * 100}% ${size * 100}%`,
             backgroundPosition: `${(tile.id % size) * (100 / (size - 1))}% ${(Math.floor(tile.id / size)) * (100 / (size - 1))}%`,
             transition: 'left 0.3s, top 0.3s',
