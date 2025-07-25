@@ -1,11 +1,20 @@
 <script setup lang="ts">
 import type LeafletMap from '~/components/leaflet/map.vue'
 import type { ZoneId } from '~/type/zone'
+import { onMounted, watch } from 'vue'
 
 const zone = useZoneStore()
 const mapRef = ref<InstanceType<typeof LeafletMap> | null>(null)
 
 provide('selectZone', (id: ZoneId) => {
+  mapRef.value?.selectZone(id)
+})
+
+onMounted(() => {
+  mapRef.value?.selectZone(zone.currentZoneId)
+})
+
+watch(() => zone.currentZoneId, (id) => {
   mapRef.value?.selectZone(id)
 })
 </script>
