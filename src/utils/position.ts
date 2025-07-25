@@ -11,10 +11,10 @@ export const move = {
   }),
   left: (position: Position, value: number): Position => ({
     lat: position.lat,
-    lng: position.lng - value,
+    lng: position.lng - value * 2,
   }),
   right: (position: Position, value: number): Position => ({
     lat: position.lat,
-    lng: position.lng + value,
+    lng: position.lng + value * 2,
   }),
 }

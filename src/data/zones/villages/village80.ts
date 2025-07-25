@@ -30,7 +30,7 @@ export const village80: Zone = {
   name: 'Clito Land',
   type: 'village',
   villageType: 'hyper',
-  position: move.right(savage75.position, VILLAGE_OFFSET),
+  position: move.bottom(savage75.position, VILLAGE_OFFSET),
   attachedTo: savage75.id,
   actions: [],
   minLevel: 80,
