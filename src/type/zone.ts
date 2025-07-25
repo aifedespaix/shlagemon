@@ -5,6 +5,8 @@ import type { BaseShlagemon } from './shlagemon'
 
 export type ZoneType = 'village' | 'grotte' | 'sauvage'
 
+export type VillageType = 'basic' | 'super' | 'hyper'
+
 export interface ZoneAction {
   id: string
   label: string
@@ -52,12 +54,23 @@ export interface SavageZone extends BaseZone {
 }
 
 // Variante générique pour toutes les autres zones
-interface NonSavageZone extends BaseZone {
+interface BaseNonSavageZone extends BaseZone {
   type: Exclude<ZoneType, 'sauvage'>
   maxLevel?: undefined // interdit explicitement (ou facultatif si tu préfères)
   /** Zone sauvage à laquelle cette zone est reliée */
   attachedTo?: SavageZoneId
 }
+
+export interface VillageZone extends BaseNonSavageZone {
+  type: 'village'
+  villageType: VillageType
+}
+
+interface NonVillageZone extends BaseNonSavageZone {
+  type: Exclude<ZoneType, 'sauvage' | 'village'>
+}
+
+type NonSavageZone = VillageZone | NonVillageZone
 
 // Union finale
 export type Zone = SavageZone | NonSavageZone

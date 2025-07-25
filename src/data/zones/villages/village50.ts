@@ -24,6 +24,7 @@ export const village50: Zone = {
   id: 'village-caca-boudin',
   name: 'Village Fiente-sur-Mer',
   type: 'village',
+  villageType: 'super',
   position: move.right(savage45.position, VILLAGE_OFFSET),
   attachedTo: savage45.id,
   actions: [],
