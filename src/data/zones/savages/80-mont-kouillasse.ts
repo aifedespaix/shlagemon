@@ -4,7 +4,7 @@ export const savage80: Zone = {
   id: 'mont-kouillasse',
   name: 'Mont Kouillasse',
   type: 'sauvage',
-position: {lat: -145.97988089845296, lng: 78.68610421836229},
+  position: { lat: -145.97988089845296, lng: 78.68610421836229 },
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/80-85/*.ts',

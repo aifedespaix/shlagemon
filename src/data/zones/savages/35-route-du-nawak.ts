@@ -4,7 +4,7 @@ export const savage35: Zone = {
   id: 'route-du-nawak',
   name: 'Route du Nawak',
   type: 'sauvage',
-position: {lat: -80.23196607144244, lng: 61.694665012406944},
+  position: { lat: -80.23196607144244, lng: 61.694665012406944 },
   completionAchievement: 'Voyageur de la Route du Nawak',
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(

@@ -69,7 +69,7 @@ function remaining(egg: { hatchesAt: number }) {
     class="h-full"
     @exit="panel.showVillage()"
   >
-    <div class="flex flex-1 flex-col gap-2 overflow-hidden" md="flex-row">
+    <div class="flex flex-1 gap-2 overflow-hidden">
       <div class="flex flex-col gap-1" md="w-1/3">
         <h4 class="font-semibold">
           {{ t('components.panel.Poulailler.yourEggs') }}
@@ -81,25 +81,35 @@ function remaining(egg: { hatchesAt: number }) {
           <div
             v-for="entry in inventoryEggs"
             :key="entry.id"
-            class="flex cursor-pointer items-center justify-between border-b p-1"
+            class="flex items-center justify-between gap-2 border-b p-2"
             @click="showEggMons(entry.id as EggItemId)"
           >
-            <div class="flex items-center gap-1">
+            <!-- Icône + Nom -->
+            <div class="min-w-0 flex flex-1 items-center gap-2 overflow-hidden">
               <div
                 v-if="entry.item.icon"
-                class="h-6 w-6"
+                class="h-6 w-6 shrink-0"
                 :class="[entry.item.icon, entry.item.iconClass]"
               />
-              <span class="text-sm">{{ t(entry.item.nameKey || entry.item.name) }}</span>
+              <span class="truncate text-sm font-medium">
+                {{ t(entry.item.nameKey || entry.item.name) }}
+              </span>
             </div>
-            <div class="flex items-center gap-1">
-              <span class="text-xs font-bold">x{{ entry.qty }}</span>
+
+            <!-- Quantité + Bouton -->
+            <div class="max-w-[120px] flex flex-nowrap items-center justify-end gap-2 overflow-hidden">
+              <span class="shrink-0 text-xs text-gray-700 font-semibold">
+                x{{ entry.qty }}
+              </span>
               <UiButton
-                class="text-xs"
+                class="flex shrink-0 items-center gap-1 px-2 py-1 text-xs"
                 :disabled="eggs.incubator.length >= 4"
-                @click="startIncubation(entry.id as EggItemId)"
+                @click.stop="startIncubation(entry.id as EggItemId)"
               >
-                {{ t('components.panel.Poulailler.incubate') }}
+                <div class="i-carbon:chemistry text-base" />
+                <span class="hidden truncate sm:inline">
+                  {{ t('components.panel.Poulailler.incubate') }}
+                </span>
               </UiButton>
             </div>
           </div>

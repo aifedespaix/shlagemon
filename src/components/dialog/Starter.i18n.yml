@@ -5,7 +5,7 @@ fr:
       responses:
         next: Tu n'as pas l'air très intelligent.
     step2:
-      text: 'Je t'emmerde mon petit, pour la peine, je vais te forcer à adopter un de mes Shlagémons.'
+      text: Je t'emmerde mon petit, pour la peine, je vais te forcer à adopter un de mes Shlagémons.
       responses:
         next: Ho nooon, pas un Shlagémon, ils sentent trop mauvais !
     choice:
@@ -28,11 +28,11 @@ fr:
 en:
   steps:
     start:
-      text: 'Hi, I'm {name}, my friends say I smell nice.'
+      text: Hi, I'm {name}, my friends say I smell nice.
       responses:
         next: You don't look very smart.
     step2:
-      text: 'Screw you kid, I'm going to force you to adopt one of my Shlagemons.'
+      text: Screw you kid, I'm going to force you to adopt one of my Shlagemons.
       responses:
         next: Oh nooo, not a Shlagemon, they smell too bad!
     choice:

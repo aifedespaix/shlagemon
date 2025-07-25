@@ -1,5 +1,5 @@
 import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
-import { Map, TileLayer,CRS } from 'leaflet'
+import { CRS, Map, TileLayer } from 'leaflet'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 export interface UseLeafletMapOptions {
@@ -22,7 +22,7 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
       center: options.center ?? [80, -10],
       zoom: 2,
       minZoom: 2,
-      crs: CRS.Simple, 
+      crs: CRS.Simple,
       maxZoom: 2,
       zoomControl: false,
       attributionControl: false,
@@ -32,14 +32,13 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
       ],
     })
 
-    map.value.on('contextmenu', (e) => {
-      if (map.value) {
-        const lat = e.latlng.lat
-        const lng = e.latlng.lng
-        console.log(`position: {lat: ${lat}, lng: ${lng}},`)
-      }
-    })
-
+    // map.value.on('contextmenu', (e) => {
+    //   if (map.value) {
+    //     const lat = e.latlng.lat
+    //     const lng = e.latlng.lng
+    //     // console.log(`position: {lat: ${lat}, lng: ${lng}},`)
+    //   }
+    // })
 
     mapRef.value!.style.background = '#508ed7'
 
