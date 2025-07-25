@@ -56,6 +56,7 @@ describe('zone rank scaling', () => {
     dex.captureShlagemon(carapouffe)
     await Promise.resolve()
     expect(mon.rarity).toBe(100)
-    expect(mon.coefficient).toBe(carapouffe.coefficient * rank)
+    const expected = (mon.lvl + 1) * rank
+    expect(mon.coefficient).toBe(expected)
   })
 })
