@@ -82,7 +82,8 @@ onMounted(() => {
       const arrival = idx % 2 === 0 ? 'vertical' : 'horizontal'
       const start = arrival === 'vertical' ? 'horizontal' : 'vertical'
       const path = buildSimplePath(target.position!, village.position!, start)
-      lines.value.push(...drawPolylineWithBorder(path, '#22c55e', 10))
+      const color = canAccess(village) ? '#22c55e' : '#9ca3af'
+      lines.value.push(...drawPolylineWithBorder(path, color, 10))
     })
   }
 
