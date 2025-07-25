@@ -27,7 +27,7 @@ function onDoubleClick() {
 <template>
   <header class="h-12 flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800">
     <div class="flex items-center gap-2">
-      <img src="/logo.png" :alt="t('components.layout.Header.logoAlt')" class="h-20 -my-4">
+      <img src="/logo.png" :alt="t('components.layout.Header.logoAlt')" class="h-20 select-none -my-4">
     </div>
     <div class="flex items-center gap-2">
       <ThemeToggle />

@@ -5,7 +5,7 @@ const { t } = useI18n()
 
 <template>
   <Transition name="slide-fade">
-    <div v-if="store.needRefresh" class="pointer-events-none fixed inset-x-0 bottom-4 z-100 flex justify-center">
+    <div v-if="store.needRefresh" class="pointer-events-none absolute fixed inset-x-0 bottom-4 z-100 z-20000 flex justify-center p-1" md="p-2">
       <div class="pointer-events-auto flex items-center gap-2 rounded bg-gray-200 px-4 py-2 text-gray-800 shadow" dark="bg-gray-800 text-white">
         <span>{{ t('components.UpdateSnackbar.updateAvailable') }}</span>
         <UiButton type="primary" variant="solid" @click="store.reload">
