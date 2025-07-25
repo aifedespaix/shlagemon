@@ -28,26 +28,41 @@ export function buildZigzagPath(zones: Zone[]): LatLngExpression[] {
   return path
 }
 
-export function buildSimplePath(from: Position, to: Position): LatLngExpression[] {
+export function buildSimplePath(
+  from: Position,
+  to: Position,
+  first: 'vertical' | 'horizontal' = 'vertical',
+): LatLngExpression[] {
+  if (first === 'vertical') {
+    return [
+      [from.lat, from.lng],
+      [to.lat, from.lng],
+      [to.lat, to.lng],
+    ]
+  }
   return [
     [from.lat, from.lng],
-    [to.lat, from.lng],
+    [from.lat, to.lng],
     [to.lat, to.lng],
   ]
 }
 
 export function useMapPaths(map: LeafletMap) {
-  function drawPolylineWithBorder(path: LatLngExpression[], color = '#ffaa00') {
+  function drawPolylineWithBorder(
+    path: LatLngExpression[],
+    color = '#ffaa00',
+    weight = 14,
+  ) {
     const border = new Polyline(path, {
       color: '#000000',
-      weight: 18,
+      weight: weight + 4,
       opacity: 1,
       smoothFactor: 4,
     }).addTo(map)
 
     const line = new Polyline(path, {
       color,
-      weight: 14,
+      weight,
       opacity: 1,
       smoothFactor: 4,
     }).addTo(map)

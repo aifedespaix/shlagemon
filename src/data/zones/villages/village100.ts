@@ -22,13 +22,15 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
+import { move } from '~/utils/position'
 import { savage95 } from '../savages/95-cratere-des-legends'
 
 export const village100: Zone = {
   id: 'village-giga-schlag',
   name: 'Citadelle Giga-Schlag',
   type: 'village',
-  position: { lat: savage95.position.lat, lng: savage95.position.lng + VILLAGE_OFFSET },
+  position: move.right(savage95.position, VILLAGE_OFFSET),
+  attachedTo: savage95.id,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],
