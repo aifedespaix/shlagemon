@@ -428,7 +428,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       if (activeShlagemon.value?.id === mon.id)
         activeShlagemon.value = existing
       recomputeHighestLevel()
-      updateCoefficient(existing, zoneStore.current.id, true, true)
+      updateCoefficient(existing, undefined, true, true)
     }
     else {
       mon.base = to
@@ -438,7 +438,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
       toast(`${mon.base.name} a évolué !`)
-      updateCoefficient(mon, zoneStore.current.id, true, true)
+      updateCoefficient(mon, undefined, true, true)
     }
   }
 
