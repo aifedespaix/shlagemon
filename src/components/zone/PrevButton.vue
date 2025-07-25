@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import type { ZoneId } from '~/type/zone'
+
 const zone = useZoneStore()
 const dex = useShlagedexStore()
 const { accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
+
+const selectZone = inject<(id: ZoneId) => void>('selectZone')
 
 const disabled = computed(() => accessibleZones.value[0]?.id === zone.currentId)
 
@@ -10,7 +14,7 @@ function goPrev() {
     return
   const idx = accessibleZones.value.findIndex(z => z.id === zone.currentId)
   if (idx > 0)
-    zone.setZone(accessibleZones.value[idx - 1].id)
+    (selectZone ?? zone.setZone)(accessibleZones.value[idx - 1].id)
 }
 </script>
 

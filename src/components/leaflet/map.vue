@@ -26,6 +26,10 @@ function selectZone(id: ZoneId) {
     leafletMap.value?.panTo([pos.lat, pos.lng])
 }
 
+defineExpose({
+  selectZone,
+})
+
 onMounted(() => {
   const map = leafletMap.value!
   const markers = useMapMarkers(map)
