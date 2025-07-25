@@ -100,6 +100,8 @@ components:
     BoxModal:
       title: Egg box
       empty: No egg
+    MonsModal:
+      title: Shlagemons from {name}
   inventory:
     EvolutionItemModal:
       title: Use {name}

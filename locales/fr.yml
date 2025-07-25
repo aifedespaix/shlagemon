@@ -102,6 +102,8 @@ components:
     BoxModal:
       title: Boîte à œufs
       empty: Aucun œuf
+    MonsModal:
+      title: Shlagémons de {name}
   inventory:
     EvolutionItemModal:
       title: Utiliser {name}
