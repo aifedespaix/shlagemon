@@ -9,6 +9,7 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { shlageball } from '~/data/items/shlageball'
+import { move } from '~/utils/position'
 import { arena20 } from '../../arenas'
 import { savage15 } from '../savages/15-ravin-fesse-molle'
 
@@ -16,7 +17,7 @@ export const village20: Zone = {
   id: 'village-boule',
   name: 'Village Sux-Mais-Bouls',
   type: 'village',
-  position: { lat: savage15.position.lat - VILLAGE_OFFSET, lng: savage15.position.lng },
+  position: move.bottom(savage15.position, VILLAGE_OFFSET),
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

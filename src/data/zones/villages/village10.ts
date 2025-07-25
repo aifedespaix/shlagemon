@@ -9,13 +9,14 @@ import {
   xpPotion,
 } from '~/data/items/items'
 import { shlageball } from '~/data/items/shlageball'
+import { move } from '~/utils/position'
 import { savage05 } from '../savages/05-bois-de-bouffon'
 
 export const village10: Zone = {
   id: 'village-veaux-du-gland',
   name: 'Veaux du Gland sur Marne',
   type: 'village',
-  position: { lat: savage05.position.lat - VILLAGE_OFFSET, lng: savage05.position.lng },
+  position: move.bottom(savage05.position, VILLAGE_OFFSET),
   minLevel: 10,
   actions: [],
   village: {
