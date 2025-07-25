@@ -6,8 +6,10 @@ import { useZoneCompletion } from '~/composables/useZoneCompletion'
 import { useLeafletMarker } from './useLeafletMarker'
 
 export function useMapMarkers(map: LeafletMap) {
-  function iconPath(id: ZoneId): string {
-    return `/map/icons/${id}.webp`
+  function iconPath(zone: Zone): string {
+    return zone.type === 'village'
+      ? `/map/icons/village-${zone.villageType}.webp`
+      : `/map/icons/${zone.id}.webp`
   }
 
   function addMarker(
@@ -19,7 +21,7 @@ export function useMapMarkers(map: LeafletMap) {
 
     function buildHtml() {
       const size = 12
-      const icon = `<img src="${iconPath(zone.id)}" class="w-${size} h-${size} block" />`
+      const icon = `<img src="${iconPath(zone)}" class="w-${size} h-${size} block" />`
       const ball = allCaptured.value
         ? `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}" />`
         : ''
