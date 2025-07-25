@@ -57,8 +57,22 @@ onMounted(() => {
 
   function draw() {
     clear()
-    const mainPath = buildZigzagPath(savageZones)
-    lines.value.push(...drawPolylineWithBorder(mainPath, '#facc15'))
+
+    const accessibleSavage = savageZones.filter(z =>
+      accessibleZones.value.some(a => a.id === z.id),
+    )
+    const accessibleCount = accessibleSavage.length
+
+    if (accessibleCount > 1) {
+      const path = buildZigzagPath(savageZones.slice(0, accessibleCount))
+      lines.value.push(...drawPolylineWithBorder(path, '#facc15'))
+    }
+
+    if (accessibleCount < savageZones.length) {
+      const start = Math.max(accessibleCount - 1, 0)
+      const path = buildZigzagPath(savageZones.slice(start))
+      lines.value.push(...drawPolylineWithBorder(path, '#9ca3af'))
+    }
 
     villages.forEach((village) => {
       const target = zones.find(z => z.id === village.attachedTo)
