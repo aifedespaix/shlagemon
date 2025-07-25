@@ -17,7 +17,7 @@ export const village10: Zone = {
   name: 'Veaux du Gland sur Marne',
   type: 'village',
   villageType: 'basic',
-  position: move.bottom(savage05.position, VILLAGE_OFFSET),
+  position: move.top(savage05.position, VILLAGE_OFFSET),
   attachedTo: savage05.id,
   minLevel: 10,
   actions: [],

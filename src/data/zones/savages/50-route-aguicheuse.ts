@@ -4,7 +4,7 @@ export const savage50: Zone = {
   id: 'route-aguicheuse',
   name: 'Route Aguicheuse',
   type: 'sauvage',
-  position: { lat: 14.449697402363375, lng: -64.31153678421705 },
+position: {lat: -99.97751394532979, lng: 72.68920595533498},
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/50-55/*.ts',

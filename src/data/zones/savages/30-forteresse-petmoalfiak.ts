@@ -4,7 +4,7 @@ export const savage30: Zone = {
   id: 'forteresse-petmoalfiak',
   name: 'Forteresse Pètmoalfiak',
   type: 'sauvage',
-  position: { lat: 62.91876900690104, lng: -117.7983870967742 },
+position: {lat: -68.98450209264584, lng: 99.18995037220844},
   completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak',
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(

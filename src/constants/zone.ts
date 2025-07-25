@@ -1,1 +1,1 @@
-export const VILLAGE_OFFSET = 8
+export const VILLAGE_OFFSET = 12

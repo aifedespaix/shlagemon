@@ -4,7 +4,7 @@ export const savage65: Zone = {
   id: 'lac-aux-relous',
   name: 'Lac aux Relous',
   type: 'sauvage',
-  position: { lat: 0.03320602577323381, lng: -131.87589174937966 },
+position: {lat: -140.96827155694405, lng: 36.45719602977667},
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/65-70/*.ts',

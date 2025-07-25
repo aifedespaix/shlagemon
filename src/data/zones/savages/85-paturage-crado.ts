@@ -4,7 +4,7 @@ export const savage85: Zone = {
   id: 'paturage-crado',
   name: 'Pâturage Crado',
   type: 'sauvage',
-  position: { lat: -27.443103072062925, lng: -40.08974795747376 },
+position: {lat: -146.00878391249714, lng: 98.67630272952854},
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/85-90/*.ts',

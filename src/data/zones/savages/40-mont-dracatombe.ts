@@ -4,7 +4,7 @@ export const savage40: Zone = {
   id: 'mont-dracatombe',
   name: 'Mont Cul',
   type: 'sauvage',
-  position: { lat: 37.17512580969415, lng: -103.22171603598018 },
+position: {lat: -87.23038810269365, lng: 41.95446650124069},
   actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/40-45/*.ts',

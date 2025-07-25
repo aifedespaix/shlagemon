@@ -25,7 +25,7 @@ export const village50: Zone = {
   name: 'Village Fiente-sur-Mer',
   type: 'village',
   villageType: 'super',
-  position: move.right(savage45.position, VILLAGE_OFFSET),
+  position: move.top(savage45.position, VILLAGE_OFFSET),
   attachedTo: savage45.id,
   actions: [],
   minLevel: 50,
