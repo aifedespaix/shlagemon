@@ -20,6 +20,7 @@
     "bd": "pnpm run build && pnpm run deploy",
     "csv": "node scripts/generate-evolutions-csv.cjs",
     "mons": "py scripts/convert-webp.py",
+    "music": "node scripts/generate-music-json.cjs",
     "sfx": "py scripts/clean-meta.py"
   },
   "dependencies": {

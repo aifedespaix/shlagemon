@@ -115,5 +115,5 @@ const data = [
 ]
 
 const output = path.join(__dirname, '../public/music-data.json')
-fs.writeFileSync(output, JSON.stringify(data, null, 2))
+fs.writeFileSync(output, JSON.stringify(data, null, 2).replaceAll('\\\\', '/'), 'utf8')
 console.log(`Generated ${output} with ${data.length} entries`)

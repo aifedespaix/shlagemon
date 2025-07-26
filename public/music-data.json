@@ -134,19 +134,19 @@
   {
     "nom": "Mont Kouillasse",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/mont-kouillasse.ogg",
     "image": null
   },
   {
     "nom": "Pâturage Crado",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/paturage-crado.ogg",
     "image": null
   },
   {
     "nom": "Canyon à la Derp",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/canyon-a-la-derp.ogg",
     "image": null
   },
   {
@@ -231,6 +231,12 @@
     "nom": "arena60",
     "type": "arena",
     "url": "/audio/musics/arenas/arena60.ogg",
+    "image": null
+  },
+  {
+    "nom": "arena80",
+    "type": "arena",
+    "url": "/audio/musics/arenas/arena80.ogg",
     "image": null
   }
 ]
