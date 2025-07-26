@@ -15,9 +15,10 @@ describe('evolution', () => {
     const evo = useEvolutionStore()
     const spy = vi.spyOn(evo, 'requestEvolution').mockResolvedValue(true)
     const mon = dex.createShlagemon(abraquemar)
-    await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
-    expect(mon.base.id).toBe(alakalbar.id)
-    expect(mon.lvl).toBe(3)
+    mon.lvl = 45
+    await dex.gainXp(mon, xpForLevel(mon.lvl))
+    expect(mon.base.id).toBe(kadavrebras.id)
+    expect(mon.lvl).toBe(46)
     expect(spy).toHaveBeenCalled()
   })
 
@@ -28,10 +29,11 @@ describe('evolution', () => {
     const spy = vi.spyOn(evo, 'requestEvolution').mockResolvedValue(true)
     const mon = dex.createShlagemon(abraquemar)
     mon.allowEvolution = false
-    await dex.gainXp(mon, xpForLevel(1) + xpForLevel(2))
+    mon.lvl = 45
+    await dex.gainXp(mon, xpForLevel(mon.lvl))
     expect(spy).not.toHaveBeenCalled()
     expect(mon.base.id).toBe(abraquemar.id)
-    expect(mon.lvl).toBe(3)
+    expect(mon.lvl).toBe(46)
   })
 
   it('disables future evolutions when user rejects', async () => {
