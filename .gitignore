@@ -12,3 +12,5 @@ public/assets/fonts
 node-compile-cache
 scripts/venv/*
 scripts/musique/
+vitest-failed-only/*
+vitest-report.json
