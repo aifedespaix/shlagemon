@@ -22,6 +22,11 @@ function onDoubleClick() {
     clickTimer.value.stop()
   audio.isMusicEnabled = !audio.isMusicEnabled
 }
+
+function onContextMenu(event: Event) {
+  event.preventDefault()
+  onDoubleClick()
+}
 </script>
 
 <template>
@@ -36,6 +41,7 @@ function onDoubleClick() {
         :aria-label="t('components.layout.Header.audio')"
         @click.stop="onClick"
         @dblclick.stop="onDoubleClick"
+        @contextmenu.stop.prevent="onContextMenu"
       >
         <div :class="audio.isMusicEnabled ? 'i-carbon-volume-up' : 'i-carbon-volume-mute'" />
       </UiButton>
