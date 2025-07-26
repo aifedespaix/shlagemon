@@ -18,7 +18,9 @@ describe('feature lock flags', () => {
     featureLock.lockZones()
     const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
     await wrapper.vm.$nextTick()
-    const buttons = wrapper.findAll('div.zone-grid button')
+    const savageButtons = wrapper.findAll('#savages button')
+    const villageButtons = wrapper.findAll('#villages button')
+    const buttons = [...savageButtons, ...villageButtons]
     expect(buttons.length).toBeGreaterThan(0)
     expect(buttons.every(b => b.attributes('disabled') !== undefined)).toBe(true)
   })
