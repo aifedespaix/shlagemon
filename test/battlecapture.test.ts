@@ -35,6 +35,7 @@ describe('battleCapture', () => {
     })
 
     await wrapper.get('button').trigger('click')
+    await Promise.resolve()
     vi.runOnlyPendingTimers()
     vi.runOnlyPendingTimers()
     expect(captureSpy).toHaveBeenCalledWith(enemy)
