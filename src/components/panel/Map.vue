@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type LeafletMap from '~/components/leaflet/map.vue'
 import type { ZoneId } from '~/type/zone'
+import { storeToRefs } from 'pinia'
 import { onMounted, watch } from 'vue'
 
 const zone = useZoneStore()
+const { currentZoneId } = storeToRefs(zone)
 const mapRef = ref<InstanceType<typeof LeafletMap> | null>(null)
 
 provide('selectZone', (id: ZoneId) => {
@@ -11,10 +13,10 @@ provide('selectZone', (id: ZoneId) => {
 })
 
 onMounted(() => {
-  mapRef.value?.selectZone(zone.currentZoneId)
+  mapRef.value?.selectZone(currentZoneId.value)
 })
 
-watch(() => zone.currentZoneId, (id) => {
+watch(currentZoneId, (id) => {
   mapRef.value?.selectZone(id)
 })
 </script>
