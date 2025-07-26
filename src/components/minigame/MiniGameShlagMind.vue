@@ -8,9 +8,10 @@ const emit = defineEmits<{ (e: 'win'): void, (e: 'lose'): void }>()
 
 const { t, tm } = useI18n()
 
-const messages = computed(() =>
-  tm('components.minigame.MiniGameShlagMind.messages') as string[],
-)
+const messages = computed(() => {
+  const list = tm('components.minigame.MiniGameShlagMind.messages')
+  return Array.isArray(list) ? list as string[] : []
+})
 
 const palette = allShlagemons.slice(0, 12)
 const comboLength = 6
