@@ -2,7 +2,7 @@
 
 exports[`component Header.vue > should render 1`] = `
 "<header class="h-12 flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800">
-  <div class="flex items-center gap-2"><img src="/logo.png" alt="Logo Shlagémon" class="h-20 -my-4"></div>
+  <div class="flex items-center gap-2"><img src="/logo.png" alt="Logo Shlagémon" class="h-20 select-none -my-4"></div>
   <div class="flex items-center gap-2"><button aria-label="Changer de thème" class="relative h-6 w-12 rounded-full bg-gray-200 transition-colors dark:bg-gray-700" type="button"><span class="absolute left-0.5 top-0.5 h-5 w-5 flex items-center justify-center rounded-full bg-white text-yellow-500 transition-all dark:bg-gray-900 dark:text-yellow-300"><div class="i-carbon-sun"></div></span></button><button class="inline-flex items-center justify-center shadow disabled:cursor-not-allowed disabled:opacity-50 rounded-full p-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600" aria-label="Audio">
       <div class="i-carbon-volume-up"></div>
     </button>
