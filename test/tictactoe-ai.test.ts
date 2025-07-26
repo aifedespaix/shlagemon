@@ -36,7 +36,9 @@ function search(board: (null | 'player' | 'ai')[], playerTurn: boolean): 'ai' | 
   if (board.every(Boolean))
     return 'draw'
   if (playerTurn) {
-    const empty = board.map((v, i) => (v ? -1 : i)).filter(i => i >= 0)
+    const empty = board
+      .map((v, i) => (v ? -1 : i))
+      .filter(i => i >= 0 && CENTER_CELLS.includes(i))
     for (const idx of empty) {
       board[idx] = 'player'
       const res = search(board, false)
