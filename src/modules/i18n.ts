@@ -1,5 +1,7 @@
 import type { Locale } from 'vue-i18n'
 import type { UserModule } from '~/types'
+import { useHead } from '@unhead/vue'
+import { getCurrentInstance } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { useLocaleStore } from '~/stores/locale'
 
@@ -25,7 +27,14 @@ const loadedLanguages: string[] = []
 function setI18nLanguage(lang: Locale) {
   i18n.global.locale.value = lang as any
   if (typeof document !== 'undefined')
-    document.querySelector('html')?.setAttribute('lang', lang)
+    document.documentElement.setAttribute('lang', lang)
+  if (getCurrentInstance()) {
+    useHead({
+      htmlAttrs: {
+        lang,
+      },
+    })
+  }
   return lang
 }
 
