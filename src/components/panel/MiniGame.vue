@@ -51,7 +51,7 @@ const failure = computed(() => gameDef.value?.createFailure(leaveGame))
     :exit-text="t('components.panel.MiniGame.exit')"
     @exit="leaveGame"
   >
-    <div class="tiny-scrollbar flex flex-col overflow-auto">
+    <div class="tiny-scrollbar flex flex-1 flex-col overflow-auto">
       <DialogBox
         v-if="mini.phase === 'intro'"
         :character="gameDef.character"
