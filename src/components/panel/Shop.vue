@@ -156,7 +156,6 @@ function closeShop() {
 
 <template>
   <LayoutTitledPanel
-    class="flex flex-1 flex-col gap-1 overflow-hidden p-1"
     :title="t('components.panel.Shop.title')"
     :exit-text="t('components.panel.Shop.exit')"
     v-bind="$attrs"

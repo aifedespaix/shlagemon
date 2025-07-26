@@ -66,7 +66,6 @@ function remaining(egg: { hatchesAt: number }) {
   <LayoutTitledPanel
     :title="t('components.panel.Poulailler.title')"
     :exit-text="t('components.panel.Poulailler.exit')"
-    class="h-full"
     @exit="panel.showVillage()"
   >
     <div class="flex flex-1 gap-2 overflow-hidden">
