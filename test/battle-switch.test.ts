@@ -25,11 +25,11 @@ describe('battleMain switch', () => {
       },
     })
     await nextTick()
-    let hpDisplay = wrapper.findAll('.hp').at(0)!.text()
+    let hpDisplay = wrapper.findAll('.text-right').at(0)!.text()
     expect(hpDisplay).toContain(String(mon1.hp))
     dex.setActiveShlagemon(mon2)
     await nextTick()
-    hpDisplay = wrapper.findAll('.hp').at(0)!.text()
+    hpDisplay = wrapper.findAll('.text-right').at(0)!.text()
     expect(hpDisplay).toContain(String(mon2.hp))
     wrapper.unmount()
     vi.useRealTimers()
