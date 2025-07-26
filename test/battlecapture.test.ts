@@ -36,8 +36,7 @@ describe('battleCapture', () => {
 
     await wrapper.get('button').trigger('click')
     await Promise.resolve()
-    vi.runOnlyPendingTimers()
-    vi.runOnlyPendingTimers()
+    vi.runAllTimers()
     expect(captureSpy).toHaveBeenCalledWith(enemy)
     expect(dex.shlagemons.some(m => m.base.id === enemy.base.id)).toBe(true)
     vi.useRealTimers()
