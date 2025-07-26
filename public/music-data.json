@@ -116,19 +116,19 @@
   {
     "nom": "Trou du Bide",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/trou-du-bide.ogg",
     "image": null
   },
   {
     "nom": "Lac aux Relous",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/lac-aux-relous.ogg",
     "image": null
   },
   {
     "nom": "Aire du Giga Zob",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/zone-giga-zob.ogg",
     "image": null
   },
   {
@@ -152,7 +152,7 @@
   {
     "nom": "Cratère des Légends",
     "type": "sauvage",
-    "url": null,
+    "url": "/audio/musics/battle/cratere-des-legends.ogg",
     "image": null
   },
   {
