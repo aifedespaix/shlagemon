@@ -156,7 +156,15 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   ) {
     if (!force && mon.rarity !== 100)
       return
-    const target = zoneId ? { id: zoneId } : zoneStore.getZoneForLevel(mon.lvl)
+    const levelZone = zoneStore.getZoneForLevel(mon.lvl)
+    const highestAccessible = accessibleXpZones.value[accessibleXpZones.value.length - 1]
+    const levelRank = levelZone ? zoneStore.getZoneRank(levelZone.id) : 1
+    const accessibleRank = highestAccessible ? zoneStore.getZoneRank(highestAccessible.id) : levelRank
+    const target = zoneId
+      ? { id: zoneId }
+      : mon.rarity === 100 && highestAccessible && accessibleRank > levelRank && highestAccessible.minLevel <= mon.lvl + 1
+        ? highestAccessible
+        : levelZone
     if (!target)
       return
     const rank = zoneStore.getZoneRank(target.id)
