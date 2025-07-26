@@ -80,10 +80,14 @@ components:
         utility: Utilitaire
     Zone:
       capturedAlt: capturé
+    MiniGame:
+      exit: Quitter
+    Village:
+      exit: Quitter le Village
   ThemeToggle:
     toggle: Changer de thème
   UpdateSnackbar:
-    updateAvailable: Mise à jour de l'application disponible
+    updateAvailable: Une mise à jour de l'application est disponible
     reload: Recharger
   battle:
     Capture:
@@ -3113,7 +3117,7 @@ data:
 pages:
   index:
     title: Shlagémon
-    description: Parodie de Pokémon avec des créatures loufoques
+    description: Les Shlagémons ne sentent pas très bon.
     welcome: Bienvenue dans Shlagémon
   shlagedex:
     title: Shlagédex
