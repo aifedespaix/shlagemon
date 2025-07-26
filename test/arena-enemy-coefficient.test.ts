@@ -14,9 +14,10 @@ describe('arena enemies', () => {
     const arena = useArenaStore()
     const dex = useShlagedexStore()
     arena.setArena(arena20)
-    const mon = dex.createShlagemon(carapouffe)
-    for (let i = 0; i < arena.selections.length; i++)
+    for (let i = 0; i < arena.selections.length; i++) {
+      const mon = dex.createShlagemon(carapouffe)
       arena.selectPlayer(i, mon.id)
+    }
 
     const wrapper = mount(ArenaPanel, {
       global: {
@@ -28,7 +29,8 @@ describe('arena enemies', () => {
     wrapper.vm.startBattle()
 
     const enemy = arena.enemyTeam[0]
-    expect(enemy.coefficient).toBe(arena20.level)
+    const multiplier = Math.floor(arena20.level / 2) - 1
+    expect(enemy.coefficient).toBe(enemy.base.coefficient * multiplier)
     wrapper.unmount()
   })
 })
