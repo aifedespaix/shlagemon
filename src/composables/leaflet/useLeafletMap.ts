@@ -11,6 +11,13 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
   const map = ref<LeafletMap | null>(null)
   const tileLayer = ref<TileLayer | null>(null)
 
+  useResizeObserver(mapRef, () => {
+    map.value?.invalidateSize()
+  })
+  useEventListener('resize', () => {
+    map.value?.invalidateSize()
+  })
+
   const minLat = 45
   const minLng = -90
 
