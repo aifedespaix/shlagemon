@@ -14,7 +14,7 @@ describe('disease damage', () => {
     const player = dex.createShlagemon(carapouffe)
     const enemy = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(player)
-    disease.active.value = true
+    disease.start()
     const initialHp = enemy.hpCurrent
     const result = battle.clickAttack(player, enemy)
     expect(result.damage).toBe(10)
