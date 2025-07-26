@@ -1,6 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { describe, expect, it } from 'vitest'
+import { createApp } from 'vue'
 import { allShlagemons } from '../src/data/shlagemons'
 import { useEggStore } from '../src/stores/egg'
 import { eggSerializer } from '../src/utils/egg-serialize'
@@ -9,6 +10,8 @@ describe('egg persistence', () => {
   it('restores incubator from storage', () => {
     const pinia = createPinia()
     pinia.use(piniaPluginPersistedstate)
+    const app = createApp({})
+    app.use(pinia)
     setActivePinia(pinia)
 
     const stored = eggSerializer.serialize({
