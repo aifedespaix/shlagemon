@@ -58,9 +58,10 @@ export function useMapMarkers(map: LeafletMap) {
     function buildHtml() {
       const size = 12
       const icon = `<img src="${iconPath(zone)}" class="w-${size} h-${size} block" />`
-      const ball = allCaptured.value
-        ? `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}" />`
-        : ''
+      const ballClasses = allCaptured.value
+        ? `h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}`
+        : 'h-3 w-3 opacity-90 grayscale'
+      const ball = `<img src="/items/shlageball/shlageball.webp" class="${ballClasses}" />`
       const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
       const arena = arenaCompleted.value
         ? '<div class="i-mdi:sword-cross h-3 w-3"></div>'
