@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Polyline } from 'leaflet'
 import type { Zone, ZoneId } from '~/type'
+import { storeToRefs } from 'pinia'
 import { onMounted, ref, toRef, watch } from 'vue'
 import { useLeafletMap } from '~/composables/leaflet/useLeafletMap'
 import { useMapMarkers } from '~/composables/leaflet/useMapMarkers'
@@ -19,6 +20,7 @@ const emit = defineEmits<{
 const { mapRef, map: leafletMap } = useLeafletMap()
 const zones = props.zones ?? zonesData
 const zoneStore = useZoneStore()
+const { currentId } = storeToRefs(zoneStore)
 
 function selectZone(id: ZoneId) {
   emit('select', id)
@@ -47,8 +49,8 @@ onMounted(() => {
     markers.addMarker(zone, selectZone, locked)
   })
 
-  markers.highlightActive(zoneStore.currentId)
-  watch(() => zoneStore.currentId, id => markers.highlightActive(id))
+  markers.highlightActive(currentId.value)
+  watch(currentId, id => markers.highlightActive(id))
 
   const savageZones = zones.filter(z => z.type === 'sauvage' && z.position)
   const villages = zones.filter(z => z.type === 'village' && z.position)
@@ -100,7 +102,7 @@ onMounted(() => {
       markers.setInactive(zone.id, locked)
     })
     draw()
-    markers.highlightActive(zoneStore.currentId)
+    markers.highlightActive(currentId.value)
   }, { immediate: true })
 })
 </script>
