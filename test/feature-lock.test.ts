@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import InventoryPanel from '../src/components/panel/Inventory.vue'
 import ZonePanel from '../src/components/panel/Zone.vue'
 import ShlagemonList from '../src/components/shlagemon/List.vue'
@@ -16,7 +16,9 @@ describe('feature lock flags', () => {
     setActivePinia(pinia)
     const featureLock = useFeatureLockStore()
     featureLock.lockZones()
-    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    const wrapper = mount(ZonePanel, {
+      global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
+    })
     await wrapper.vm.$nextTick()
     const savageButtons = wrapper.findAll('#savages button')
     const villageButtons = wrapper.findAll('#villages button')

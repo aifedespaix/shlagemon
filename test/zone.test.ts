@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import ZonePanel from '../src/components/panel/Zone.vue'
 import ZoneActions from '../src/components/village/ZoneActions.vue'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
@@ -25,7 +25,7 @@ describe('zone panel', () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const wrapper = mount(ZonePanel, {
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
     })
     // first zone is now the Plaine Kékette
     expect(wrapper.text()).toContain('Plaine Kékette')
@@ -38,7 +38,7 @@ describe('zone panel', () => {
     const progress = useZoneProgressStore()
     const mon = dex.createShlagemon(carapouffe)
     const wrapper = mount(ZonePanel, {
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
     })
     let btn = [
       ...wrapper.findAll('#savages button'),
@@ -82,7 +82,9 @@ describe('zone panel', () => {
     const dex = useShlagedexStore()
     dex.createShlagemon(carapouffe)
     const panel = useMainPanelStore()
-    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    const wrapper = mount(ZonePanel, {
+      global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
+    })
     panel.showTrainerBattle()
     await wrapper.vm.$nextTick()
     const buttons = [
@@ -96,7 +98,9 @@ describe('zone panel', () => {
   it('disables zone buttons when dialog is visible', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
-    const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
+    const wrapper = mount(ZonePanel, {
+      global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
+    })
     await wrapper.vm.$nextTick()
     const buttons = [
       ...wrapper.findAll('#savages button'),
