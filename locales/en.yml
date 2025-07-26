@@ -78,6 +78,10 @@ components:
         utility: Utility
     Zone:
       capturedAlt: captured
+    MiniGame:
+      exit: Exit
+    Village:
+      exit: Leave the village
   ThemeToggle:
     toggle: Switch theme
   UpdateSnackbar:
@@ -2992,7 +2996,7 @@ data:
 pages:
   index:
     title: Shlagemon
-    description: A parody of Pokémon with crazy creatures
+    description: Shlagemons don't smell very good.
     welcome: Welcome to Shlagemon
   shlagedex:
     title: Shlagedex
