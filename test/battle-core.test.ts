@@ -13,7 +13,7 @@ function setup() {
     createEnemy: () => dex.createShlagemon(carapouffe),
   })
   composable.startBattle()
-  return { ...composable, enemy: composable.enemy!, player }
+  return { ...composable, enemy: composable.enemy.value!, player }
 }
 
 describe('useBattleCore', () => {
