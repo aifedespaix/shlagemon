@@ -159,7 +159,13 @@ export default defineConfig({
       reduceInlineStyles: false,
     },
     onFinished() {
-      generateSitemap()
+      generateSitemap({
+        basePath: 'https://shlagemon.aife.io',
+        i18n: {
+          languages: ['fr', 'en'],
+          defaultLanguage: 'fr',
+        },
+      })
     },
   },
 
