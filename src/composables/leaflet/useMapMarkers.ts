@@ -61,7 +61,9 @@ export function useMapMarkers(map: LeafletMap) {
       const ballClasses = allCaptured.value
         ? `h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}`
         : 'h-3 w-3 opacity-90 grayscale'
-      const ball = `<img src="/items/shlageball/shlageball.webp" class="${ballClasses}" />`
+      const ball = zone.type !== 'village'
+        ? `<img src="/items/shlageball/shlageball.webp" class="${ballClasses}" />`
+        : ''
       const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
       const arena = arenaCompleted.value
         ? '<div class="i-mdi:sword-cross h-3 w-3"></div>'
