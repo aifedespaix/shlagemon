@@ -17,7 +17,7 @@ function owned(id: string) {
       <template #icon>
         <div v-if="modal.item?.icon" class="h-4 w-4" :class="[modal.item.icon, modal.item.iconClass]" />
       </template>
-      <div class="flex flex-wrap justify-center gap-2 p-2">
+      <div class="tiny-scrollbar max-h-60vh flex flex-wrap justify-center gap-2 overflow-auto p-2">
         <div
           v-for="mon in modal.mons"
           :key="mon.id"
