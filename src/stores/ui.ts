@@ -1,6 +1,7 @@
 import type { ZoneId, ZoneType } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { getArenaTrack, getCharacterTrack, getZoneBattleTrack, getZoneTrack } from '~/data/music'
+import { useZoneAccess } from '~/stores/zoneAccess'
 
 export const useUIStore = defineStore('ui', () => {
   const mainPanel = useMainPanelStore()
@@ -13,6 +14,7 @@ export const useUIStore = defineStore('ui', () => {
   const inventory = useInventoryStore()
   const shlagedex = useShlagedexStore()
   const achievements = useAchievementsStore()
+  const { accessibleZones } = useZoneAccess(toRef(shlagedex, 'highestLevel'))
 
   const isMobile = useMediaQuery('(max-width: 767px)')
 
@@ -25,7 +27,7 @@ export const useUIStore = defineStore('ui', () => {
   const isShlagedexVisible = computed(() => shlagedex.shlagemons.length > 0)
   const isAchievementVisible = computed(() => achievements.hasAny)
 
-  const displayZonePanel = computed(() => !isMobile.value && isShlagedexVisible.value && shlagedex.shlagemons.length >= 2)
+  const displayZonePanel = computed(() => !isMobile.value && isShlagedexVisible.value && accessibleZones.value.length >= 2)
 
   const displayGamePanel = computed(() => showMainPanel.value)
 

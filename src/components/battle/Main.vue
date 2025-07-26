@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
+import { storeToRefs } from 'pinia'
 import { EQUILIBRE_RANK } from '~/constants/battle'
 import { multiExp } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
@@ -8,6 +9,7 @@ import { pickRandomByCoefficient } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
 const zone = useZoneStore()
+const { selectedAt } = storeToRefs(zone)
 const progress = useZoneProgressStore()
 const wearableItemStore = useWearableItemStore()
 const events = useEventStore()
@@ -65,7 +67,7 @@ watch(
 )
 
 watch(
-  () => zone.selectedAt,
+  selectedAt,
   () => {
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)

@@ -21,6 +21,8 @@ import {
   xpRing,
 } from './wearables/xpRing'
 
+export { hyperShlageball, shlageball, superShlageball } from './shlageball'
+
 // @unocss-include
 export const defensePotion: Item = {
   id: 'defense-potion',

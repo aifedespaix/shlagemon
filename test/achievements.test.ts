@@ -1,10 +1,10 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
+import { fantomanus } from '../src/data/shlagemons/01-05/fantomanus'
+import { jeunebelette } from '../src/data/shlagemons/01-05/jeunebelette'
 import { rouxPasCool } from '../src/data/shlagemons/01-05/rouxPasCool'
 import { sacdepates } from '../src/data/shlagemons/01-05/sacdepates'
-import { canarchicon } from '../src/data/shlagemons/30-35/canarchicon'
-import sperectum from '../src/data/shlagemons/evolutions/sperectum'
 import { notifyAchievement, useAchievementsStore } from '../src/stores/achievements'
 import { useGameStore } from '../src/stores/game'
 import { useShlagedexStore } from '../src/stores/shlagedex'
@@ -30,8 +30,8 @@ describe('achievements', () => {
 
     dex.createShlagemon(sacdepates)
     dex.createShlagemon(rouxPasCool)
-    dex.createShlagemon(canarchicon)
-    dex.createShlagemon(sperectum)
+    dex.createShlagemon(fantomanus)
+    dex.createShlagemon(jeunebelette)
     await nextTick()
     expect(achievements.unlockedList.some(a => a.id === 'zone-plaine-kekette-complete')).toBe(true)
 

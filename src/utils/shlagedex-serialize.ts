@@ -38,7 +38,7 @@ export const shlagedexSerializer: Serializer<SerializedDex> = {
   serialize(data: SerializedDex): string {
     return JSON.stringify({
       ...data,
-      effects: data.effects.map(({ timeout, ...e }) => e),
+      effects: (data.effects || []).map(({ timeout, ...e }) => e),
       shlagemons: data.shlagemons.map((mon) => {
         const { base, heldItemId, ...rest } = mon
         const stored: StoredDexMon = {

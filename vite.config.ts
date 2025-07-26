@@ -109,8 +109,8 @@ export default defineConfig({
       manifest: {
         name: 'Shlagémon',
         short_name: 'Shlagémon',
-        theme_color: '#0d9488',
-        background_color: '#0d9488',
+        theme_color: '#1865ab',
+        background_color: '#1865ab',
         icons: [
           {
             src: '/pwa-192x192.png',

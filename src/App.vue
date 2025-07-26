@@ -22,7 +22,7 @@ useHead({
     },
     {
       name: 'theme-color',
-      content: () => isDark.value ? '#0d9488' : '#ffffff',
+      content: () => isDark.value ? '#1865ab' : '#ffffff',
     },
     {
       property: 'og:title',

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { Map as LeafletMap } from 'leaflet'
+import { storeToRefs } from 'pinia'
 import { useZoneStore } from '~/stores/zone'
 
 const props = defineProps<{ map?: LeafletMap | null }>()
 
 const zone = useZoneStore()
+const { currentId } = storeToRefs(zone)
 const visible = ref(false)
 
 function isCentered(map: LeafletMap): boolean {
@@ -38,7 +40,7 @@ watch(
   { immediate: true },
 )
 
-watch(() => zone.currentId, () => {
+watch(currentId, () => {
   update()
 })
 

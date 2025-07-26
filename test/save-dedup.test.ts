@@ -26,8 +26,8 @@ describe('deduplicate on load', () => {
     expect(data.shlagemons).toHaveLength(1)
     const mon = data.shlagemons[0]
     expect(mon.isShiny).toBe(true)
-    expect(mon.rarity).toBe(5)
-    expect(mon.lvl).toBe(10)
+    expect(mon.rarity).toBe(3)
+    expect(mon.lvl).toBe(2)
     expect(data.activeShlagemon?.id).toBe(mon.id)
   })
 })

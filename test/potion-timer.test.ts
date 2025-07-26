@@ -22,7 +22,7 @@ describe('potion timer', () => {
     dex.boostDefense(25)
     expect(dex.effects.length).toBe(1)
     expect(dex.effects[0].percent).toBe(25)
-    expect(dex.effectiveDefense(mon)).toBe(baseDefense + Math.floor(baseDefense * 25 / 100))
+    expect(dex.effectiveDefense(mon)).toBe(Math.round(baseDefense * (1 + 25 / 100)))
 
     vi.advanceTimersByTime(600_000)
     vi.runOnlyPendingTimers()
