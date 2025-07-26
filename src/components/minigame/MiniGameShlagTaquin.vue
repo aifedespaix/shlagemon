@@ -30,6 +30,19 @@ useSwipe(wrapper, {
   },
 })
 
+onMounted(() => {
+  const el = wrapper.value
+  if (!el)
+    return
+
+  const preventScroll = (e: TouchEvent) => e.preventDefault()
+  el.addEventListener('touchmove', preventScroll, { passive: false })
+
+  onUnmounted(() => {
+    el.removeEventListener('touchmove', preventScroll)
+  })
+})
+
 useEventListener('keydown', (e: KeyboardEvent) => {
   if (puzzle.solved.value || puzzle.shuffling.value)
     return
@@ -135,6 +148,6 @@ watch(puzzle.solved, (v) => {
 
 <style scoped>
 .direction-button {
-  @apply flex justify-center items-center absolute z-50 cursor-pointer hover:bg-dark/50 rounded-full;
+  @apply flex justify-center items-center absolute z-500 cursor-pointer hover:bg-dark/50 rounded-full;
 }
 </style>
