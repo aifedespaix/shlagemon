@@ -16,8 +16,6 @@ export const useZoneStore = defineStore('zone', () => {
     const zone = zones.value.find(z => z.id === currentId.value)
     return zone ?? zones.value[0]
   })
-  const visit = useZoneVisitStore()
-  visit.markVisited(currentId.value)
   const xpZones = computed(() =>
     zones.value.filter(z => (z.maxLevel ?? 0) > 0),
   )
