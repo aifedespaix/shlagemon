@@ -40,7 +40,10 @@ describe('zone panel', () => {
     const wrapper = mount(ZonePanel, {
       global: { plugins: [pinia] },
     })
-    let btn = wrapper.findAll('button').find(b => b.text().includes('Grotte du Slip'))
+    let btn = [
+      ...wrapper.findAll('#savages button'),
+      ...wrapper.findAll('#villages button'),
+    ].find(b => b.text().includes('Chemin du Slip'))
     expect(btn).toBeUndefined()
     for (let i = 0; i < 20; i++)
       progress.addWin('plaine-kekette')
@@ -51,7 +54,10 @@ describe('zone panel', () => {
     for (let i = 0; i < 9; i++)
       await dex.gainXp(mon, xpForLevel(mon.lvl))
     await wrapper.vm.$nextTick()
-    btn = wrapper.findAll('button').find(b => b.text().includes('Grotte du Slip'))
+    btn = [
+      ...wrapper.findAll('#savages button'),
+      ...wrapper.findAll('#villages button'),
+    ].find(b => b.text().includes('Chemin du Slip'))
     expect(btn).toBeDefined()
   })
 
@@ -79,7 +85,10 @@ describe('zone panel', () => {
     const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
     panel.showTrainerBattle()
     await wrapper.vm.$nextTick()
-    const buttons = wrapper.findAll('div.flex-wrap button')
+    const buttons = [
+      ...wrapper.findAll('#savages button'),
+      ...wrapper.findAll('#villages button'),
+    ]
     expect(buttons.length).toBeGreaterThan(0)
     expect(buttons.every(b => b.attributes('disabled') !== undefined)).toBe(true)
   })
@@ -89,7 +98,10 @@ describe('zone panel', () => {
     setActivePinia(pinia)
     const wrapper = mount(ZonePanel, { global: { plugins: [pinia] } })
     await wrapper.vm.$nextTick()
-    const buttons = wrapper.findAll('div.flex-wrap button')
+    const buttons = [
+      ...wrapper.findAll('#savages button'),
+      ...wrapper.findAll('#villages button'),
+    ]
     expect(buttons.length).toBeGreaterThan(0)
     expect(buttons.every(b => b.attributes('disabled') !== undefined)).toBe(true)
   })
