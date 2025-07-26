@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Map as LeafletMap } from 'leaflet'
-import { ref, watch } from 'vue'
 import { useZoneStore } from '~/stores/zone'
 
 const props = defineProps<{ map?: LeafletMap | null }>()
@@ -11,7 +10,7 @@ const visible = ref(false)
 function isCentered(map: LeafletMap): boolean {
   const pos = zone.current.position
   const center = map.getCenter()
-  const threshold = 0.0001
+  const threshold = 2
   return Math.abs(center.lat - pos.lat) < threshold && Math.abs(center.lng - pos.lng) < threshold
 }
 
