@@ -25,7 +25,7 @@ watch(currentZoneId, (id) => {
   <div class="relative w-full flex-1 overflow-hidden">
     <ZonePrevButton class="h-12 w-12" />
     <ZoneNextButton class="h-12 w-12" />
-    <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-200">
+    <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-20000">
       <UiProgressBar
         :value="1000 - zone.wildCooldownRemaining"
         :max="1000"
