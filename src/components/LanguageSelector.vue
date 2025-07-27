@@ -10,7 +10,7 @@ const options = computed(() => availableLocales.map(l => ({
 })))
 
 async function change(val: string | number) {
-  const lang = val as string
+  const lang = val as Locale
   store.setLocale(lang as 'en' | 'fr')
   await loadLanguageAsync(lang)
 }

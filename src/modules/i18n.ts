@@ -20,12 +20,12 @@ const localesMap = Object.fromEntries(
     .map(([path, loadLocale]) => [path.match(/([\w-]*)\.yml$/)?.[1], loadLocale]),
 ) as Record<Locale, () => Promise<{ default: Record<string, string> }>>
 
-export const availableLocales = Object.keys(localesMap)
+export const availableLocales = Object.keys(localesMap) as Locale[]
 
-const loadedLanguages: string[] = []
+const loadedLanguages: Locale[] = []
 
 function setI18nLanguage(lang: Locale) {
-  i18n.global.locale.value = lang as any
+  i18n.global.locale.value = lang
   if (typeof document !== 'undefined')
     document.documentElement.setAttribute('lang', lang)
   if (getCurrentInstance()) {
@@ -38,7 +38,7 @@ function setI18nLanguage(lang: Locale) {
   return lang
 }
 
-export async function loadLanguageAsync(lang: string): Promise<Locale> {
+export async function loadLanguageAsync(lang: Locale): Promise<Locale> {
   // If the same language
   if (i18n.global.locale.value === lang)
     return setI18nLanguage(lang)
@@ -57,7 +57,7 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 export const install: UserModule = ({ app, isClient }) => {
   app.use(i18n)
   const localeStore = useLocaleStore()
-  let lang = localeStore.locale
+  let lang: Locale = localeStore.locale.value
 
   if (isClient && !localStorage.getItem('locale')) {
     const navigatorLang = navigator.language || 'en'
