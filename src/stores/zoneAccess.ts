@@ -8,9 +8,12 @@ export function useZoneAccess(highestLevel: Ref<number>) {
     zones.filter(z => (z.maxLevel ?? 0) > 0),
   )
 
-  function canAccess(z: Zone) {
-    if (z.type === 'village')
+  function canAccess(z: Zone): boolean {
+    if (z.type === 'village') {
+      const attached = zones.find(zone => zone.id === z.attachedTo)
       return z.minLevel <= unref(highestLevel)
+        && (!!attached && canAccess(attached))
+    }
     const idx = xpZones.value.findIndex(x => x.id === z.id)
     if (idx === 0)
       return true
