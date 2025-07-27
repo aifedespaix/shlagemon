@@ -19,14 +19,14 @@ The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0
 
 ### Changed
 
-- Capture chance at plein HP grandement augmentée pour les ennemis de coefficient 1.
+- Capture chance at plein HP grandement augmentée pour les ennemis de niveau 1.
 - Bonus de capture à très faible HP légèrement réduit pour équilibrer les combats de haut niveau.
 
 ## [0.3.5] - 2025-07-07
 
 ### Changed
 
-- Capture formula adjusted: coefficient scaling now uses a cube root and level impact is softer.
+- Capture formula adjusted: scaling now uses a cube root and level impact is softer.
 
 ## [0.3.4] - 2025-07-06
 

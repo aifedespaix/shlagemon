@@ -32,14 +32,12 @@ async function parseFile(file) {
   const content = await fs.promises.readFile(file, 'utf8')
   const nameMatch = content.match(/\bname:\s*['"]([^'"]+)['"]/)
   const idMatch = content.match(/\bid:\s*['"]([^'"]+)['"]/)
-  const coeffMatch = content.match(/coefficient:\s*(\d+)/)
   const name = nameMatch ? nameMatch[1] : (idMatch ? idMatch[1] : null)
   const evoMatch = content.match(/evolution:\s*\{[\s\S]*?condition:\s*\{[\s\S]*?type:\s*['"]lvl['"][\s\S]*?value:\s*(\d+)/)
   if (name) {
     const spawn = extractSpawnInfo(file)
     const evoLevel = evoMatch ? Number(evoMatch[1]) : ''
-    const coefficient = coeffMatch ? Number(coeffMatch[1]) : ''
-    return { name, spawn, evoLevel, coefficient }
+    return { name, spawn, evoLevel }
   }
   return null
 }
@@ -53,9 +51,9 @@ async function main() {
     if (row)
       rows.push(row)
   }
-  rows.sort((a, b) => a.coefficient - b.coefficient)
-  const header = 'Index,Name,Level,Coefficient,EvolutionLevel'
-  const csv = `${header}\n${rows.map((r, i) => `${i + 1},${r.name},${r.spawn.range},${r.coefficient},${r.evoLevel}`).join('\n')}\n`
+  rows.sort((a, b) => a.spawn.sort - b.spawn.sort)
+  const header = 'Index,Name,Level,EvolutionLevel'
+  const csv = `${header}\n${rows.map((r, i) => `${i + 1},${r.name},${r.spawn.range},${r.evoLevel}`).join('\n')}\n`
   await fs.promises.writeFile(path.join(__dirname, '../evolutions.csv'), csv)
 }
 
