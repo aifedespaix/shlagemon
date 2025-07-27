@@ -12,6 +12,7 @@ import { useLocaleStore } from '~/stores/locale'
 export const i18n = createI18n({
   legacy: false,
   locale: '',
+  fallbackLocale: 'en',
   messages: {},
 })
 
