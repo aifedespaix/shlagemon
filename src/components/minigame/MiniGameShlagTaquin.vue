@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { PuzzleDirection } from '~/composables/useSlidingPuzzle'
 import { useElementSize, useEventListener, useSwipe, useTimeoutFn } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
@@ -22,11 +23,11 @@ const { width, height } = useElementSize(wrapper)
 const squareSize = computed(() => Math.min(width.value, height.value))
 
 useSwipe(wrapper, {
-  onSwipeEnd(_, dir) {
+  onSwipeEnd(_: Event, dir: PuzzleDirection | 'none') {
     if (puzzle.solved.value || puzzle.shuffling.value)
       return
     if (dir !== 'none')
-      puzzle.move(dir as any)
+      puzzle.move(dir)
   },
 })
 

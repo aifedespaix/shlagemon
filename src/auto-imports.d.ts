@@ -402,7 +402,7 @@ declare global {
   export type { Cell } from './composables/useBattleship'
   import('./composables/useBattleship')
   // @ts-ignore
-  export type { SlidingPuzzle } from './composables/useSlidingPuzzle'
+  export type { SlidingPuzzle, PuzzleDirection } from './composables/useSlidingPuzzle'
   import('./composables/useSlidingPuzzle')
   // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'

@@ -10,6 +10,8 @@ export interface SlidingPuzzle {
   size: number
 }
 
+export type PuzzleDirection = 'up' | 'down' | 'left' | 'right'
+
 export function useSlidingPuzzle(size: number | Ref<number>) {
   const sizeRef = isRef(size) ? size : ref(size)
   const tiles = ref<number[]>([])
@@ -25,10 +27,10 @@ export function useSlidingPuzzle(size: number | Ref<number>) {
     solved.value = true
   }
 
-  function validDirections() {
+  function validDirections(): PuzzleDirection[] {
     const r = Math.floor(emptyIndex.value / sizeRef.value)
     const c = emptyIndex.value % sizeRef.value
-    const dirs: ('up' | 'down' | 'left' | 'right')[] = []
+    const dirs: PuzzleDirection[] = []
     if (r < sizeRef.value - 1)
       dirs.push('up')
     if (r > 0)
@@ -43,8 +45,8 @@ export function useSlidingPuzzle(size: number | Ref<number>) {
   async function shuffleBoard(moves = 50, delay = 50) {
     shuffling.value = true
     solved.value = false
-    const opposites = { up: 'down', down: 'up', left: 'right', right: 'left' } as const
-    let lastDir: 'up' | 'down' | 'left' | 'right' | null = null
+    const opposites: Record<PuzzleDirection, PuzzleDirection> = { up: 'down', down: 'up', left: 'right', right: 'left' }
+    let lastDir: PuzzleDirection | null = null
     for (let i = 0; i < moves; i++) {
       const dirs = validDirections().filter(d => opposites[d] !== lastDir)
       const dir = dirs[Math.floor(Math.random() * dirs.length)]
@@ -69,7 +71,7 @@ export function useSlidingPuzzle(size: number | Ref<number>) {
     audio.playSfx('/audio/sfx/mini-game/taquin/move.ogg')
   }
 
-  function move(dir: 'up' | 'down' | 'left' | 'right') {
+  function move(dir: PuzzleDirection) {
     const r = Math.floor(emptyIndex.value / sizeRef.value)
     const c = emptyIndex.value % sizeRef.value
     let r2 = r
