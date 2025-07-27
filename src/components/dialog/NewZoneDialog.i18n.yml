@@ -10,7 +10,7 @@ fr:
         back: Retour
         next: Suite
     step3:
-      text: Souviens-toi, un Shlagémon ne peut pas dépasser le niveau maximal de la zone où tu te trouves.
+      text: Souviens-toi, tes Shlagémons progressent bien plus vite dans les zones adaptées à leur niveau !
       responses:
         back: Retour
         next: Suite
@@ -31,7 +31,7 @@ en:
         back: Back
         next: Next
     step3:
-      text: Remember, a Shlagemon can't exceed the maximum level of the area you're in.
+      text: Remember, your Shlagemons level up much faster in areas suited to their level!
       responses:
         back: Back
         next: Next

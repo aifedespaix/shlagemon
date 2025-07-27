@@ -387,8 +387,8 @@ components:
             next: Next
         step3:
           text: >-
-            Remember, a Shlagemon can't exceed the maximum level of the area
-            you're in.
+            Remember, your Shlagemons level up much faster in areas suited to
+            their level!
           responses:
             back: Back
             next: Next

@@ -408,8 +408,8 @@ components:
             next: Suite
         step3:
           text: >-
-            Souviens-toi, un Shlagémon ne peut pas dépasser le niveau maximal de
-            la zone où tu te trouves.
+            Souviens-toi, tes Shlagémons progressent bien plus vite dans les
+            zones adaptées à leur niveau !
           responses:
             back: Retour
             next: Suite
