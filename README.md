@@ -60,6 +60,8 @@ Les fichiers prêts à être servis se trouvent dans le dossier `dist`.
 
 ### Tests
 
+- Avant de lancer les tests, exécutez `pnpm install` pour installer les dépendances.
+
 - Tests unitaires : `pnpm test:unit`
 - Tests end‑to‑end : `pnpm test:e2e`
 
