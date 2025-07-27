@@ -10,6 +10,7 @@ declare global {
   const CENTER_CELLS: typeof import('./composables/useTicTacToe')['CENTER_CELLS']
   const COLS: typeof import('./composables/useConnectFour')['COLS']
   const EffectScope: typeof import('vue')['EffectScope']
+  const HIDDEN_COLS: typeof import('./composables/useConnectFour')['HIDDEN_COLS']
   const ROWS: typeof import('./composables/useConnectFour')['ROWS']
   const SIZE: typeof import('./composables/useTicTacToe')['SIZE']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -452,6 +453,7 @@ declare module 'vue' {
     readonly CENTER_CELLS: UnwrapRef<typeof import('./composables/useTicTacToe')['CENTER_CELLS']>
     readonly COLS: UnwrapRef<typeof import('./composables/useConnectFour')['COLS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly HIDDEN_COLS: UnwrapRef<typeof import('./composables/useConnectFour')['HIDDEN_COLS']>
     readonly ROWS: UnwrapRef<typeof import('./composables/useConnectFour')['ROWS']>
     readonly SIZE: UnwrapRef<typeof import('./composables/useTicTacToe')['SIZE']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>

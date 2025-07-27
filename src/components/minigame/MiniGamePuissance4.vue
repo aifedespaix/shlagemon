@@ -4,6 +4,10 @@ const emit = defineEmits(['win', 'lose', 'draw'])
 const { board, finished, winningCells, lastMove, reset, play } = useConnectFour()
 const hoverCol = ref<number | null>(null)
 
+function isHiddenColumn(col: number) {
+  return HIDDEN_COLS.includes(col)
+}
+
 const wrapper = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(wrapper)
 const boardWidth = computed(() => Math.min(width.value, height.value * COLS / ROWS))
@@ -28,7 +32,7 @@ function onClick(i: number) {
 }
 
 function setHover(i: number) {
-  if (!finished.value)
+  if (!finished.value && !isHiddenColumn(i % COLS))
     hoverCol.value = i % COLS
 }
 
@@ -49,8 +53,11 @@ onMounted(reset)
         v-for="(cell, i) in board"
         :key="i"
         class="relative aspect-square flex items-center justify-center overflow-hidden rounded-full bg-[#1e2f70]"
-        :class="hoverCol === i % COLS && !finished ? 'bg-[#273878]' : ''"
-        :hover="!finished ? 'scale-105' : undefined"
+        :class="[
+          hoverCol === i % COLS && !finished ? 'bg-[#273878]' : '',
+          isHiddenColumn(i % COLS) ? 'cursor-default' : '',
+        ]"
+        :hover="!finished && !isHiddenColumn(i % COLS) ? 'scale-105' : undefined"
         @mouseenter="setHover(i)"
         @mouseleave="clearHover"
         @click="onClick(i)"
