@@ -10,12 +10,21 @@ const { t } = useI18n()
 const game = useGameStore()
 const qty = ref(props.qty)
 
-const maxQty = computed(() => {
-  const money = props.item.currency === 'shlagidiamond'
+const playerMoney = computed(() =>
+  props.item.currency === 'shlagidiamond'
     ? game.shlagidiamond
-    : game.shlagidolar
-  return Math.max(1, Math.floor(money / (props.item.price ?? 0)))
-})
+    : game.shlagidolar,
+)
+
+const maxQty = computed(() =>
+  Math.max(1, Math.floor(playerMoney.value / (props.item.price ?? 0))),
+)
+
+const steps = [1, 10, 100, 1000]
+
+const availableSteps = computed(() =>
+  steps.filter(step => step === 1 || playerMoney.value >= step * (props.item.price ?? 0)),
+)
 
 watch(() => props.qty, (v) => {
   qty.value = v
@@ -62,12 +71,26 @@ const details = computed(() =>
       {{ details }}
     </p>
     <div class="mt-2 flex flex-wrap items-center gap-2">
-      <div v-for="i in 3" :key="i" class="flex flex-col gap-1">
-        <UiButton :disabled="qty >= maxQty" class="text-sm" type="primary" @click="adjustQty(1 * 10 ** i)">
-          + {{ (1 * 10 ** i).toLocaleString() }}
+      <div
+        v-for="step in availableSteps"
+        :key="step"
+        class="flex flex-col gap-1"
+      >
+        <UiButton
+          :disabled="qty >= maxQty"
+          class="text-sm"
+          type="primary"
+          @click="adjustQty(step)"
+        >
+          + {{ step.toLocaleString() }}
         </UiButton>
-        <UiButton :disabled="qty <= 1" type="danger" class="text-xs" @click="adjustQty(-1 * 10 ** i)">
-          - {{ (1 * 10 ** i).toLocaleString() }}
+        <UiButton
+          :disabled="qty <= 1"
+          type="danger"
+          class="text-xs"
+          @click="adjustQty(-step)"
+        >
+          - {{ step.toLocaleString() }}
         </UiButton>
       </div>
       <div class="flex items-center gap-2">
