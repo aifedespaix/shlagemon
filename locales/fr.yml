@@ -3286,6 +3286,18 @@ data:
     thunderEgg:
       name: Œuf Foudre
       description: Un œuf parcouru d'étincelles.
+    lighter:
+      name: Briquet
+      description: Fait briller la pyromanie chez certains Shlagémons.
+      details: Permet à Emboli de se changer en Pyrolise pour tout cramer.
+    pissBottle:
+      name: Bouteille de Pisse
+      description: Ça pue, mais c'est bourré de bactéries bien juteuses.
+      details: Transforme Emboli en Salmoneli après une bonne rasade.
+    defibrillator:
+      name: Défibrillateur
+      description: Un coup de jus pour repartir de travers.
+      details: Nécessaire pour qu'Emboli évolue en Tuberculi.
 pages:
   index:
     title: Shlagémon
