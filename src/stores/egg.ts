@@ -2,7 +2,7 @@ import type { PersistedStateOptions } from 'pinia-plugin-persistedstate'
 import type { TypeName } from '~/data/shlagemons-type'
 import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
-import { allShlagemons } from '~/data/shlagemons'
+import { baseShlagemons } from '~/data/shlagemons'
 import { eggSerializer } from '~/utils/egg-serialize'
 import { pickRandomByCoefficient } from '~/utils/spawn'
 
@@ -23,7 +23,7 @@ export const useEggStore = defineStore('egg', () => {
   function startIncubation(type: EggType) {
     if (incubator.value.length >= 4)
       return false
-    const candidates = allShlagemons
+    const candidates = baseShlagemons
       .filter(b => b.types.some(t => t.id === type))
       .filter(b => !b.legendary)
     const base = pickRandomByCoefficient(candidates)
