@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { pickRandomByCoefficient } from '../src/utils/spawn'
+import { pickRandom } from '../src/utils/spawn'
 
 const list = [
   { id: 'm1', name: 'm1', description: '', types: [] },
@@ -9,7 +9,7 @@ const list = [
 
 describe('spawn selection', () => {
   it('returns a monster from the list', () => {
-    const result = pickRandomByCoefficient(list)
+    const result = pickRandom(list)
     expect(list).toContain(result)
   })
 })
