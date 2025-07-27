@@ -1,7 +1,8 @@
 import { useAudioStore } from '~/stores/audio'
 
 export const ROWS = 6
-export const COLS = 7
+export const COLS = 9
+export const HIDDEN_COLS = [0, COLS - 1]
 
 type Cell = null | 'player' | 'ai'
 
@@ -32,17 +33,19 @@ export function createConnectFourBoard(): Cell[] {
   return Array.from({ length: ROWS * COLS }).fill(null) as Cell[]
 }
 
-export function getValidColumns(board: Cell[]): number[] {
+export function getValidColumns(board: Cell[], excludeHidden = false): number[] {
   const cols: number[] = []
   for (let c = 0; c < COLS; c++) {
+    if (excludeHidden && HIDDEN_COLS.includes(c))
+      continue
     if (!board[c])
       cols.push(c)
   }
   return cols
 }
 
-export function randomColumn(board: Cell[]): number {
-  const valid = getValidColumns(board)
+export function randomColumn(board: Cell[], excludeHidden = false): number {
+  const valid = getValidColumns(board, excludeHidden)
   return valid[Math.floor(Math.random() * valid.length)]
 }
 
@@ -88,7 +91,7 @@ function minimax(board: Cell[], depth: number, maximizing: boolean, alpha: numbe
     return Infinity
   if (checkWin(board, 'player'))
     return -Infinity
-  const valid = getValidColumns(board)
+  const valid = getValidColumns(board, maximizing)
   if (depth === 0 || valid.length === 0)
     return evaluateBoard(board)
 
@@ -118,8 +121,8 @@ function minimax(board: Cell[], depth: number, maximizing: boolean, alpha: numbe
   }
 }
 
-export function bestColumn(board: Cell[], depth = 3): number {
-  const valid = getValidColumns(board)
+export function bestColumn(board: Cell[], depth = 4): number {
+  const valid = getValidColumns(board, true)
   let bestScore = -Infinity
   let best: number[] = []
   for (const col of valid) {
