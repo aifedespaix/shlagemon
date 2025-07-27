@@ -138,6 +138,7 @@ declare module 'vue' {
     UiNavigationButton: typeof import('./components/ui/NavigationButton.vue')['default']
     UiNumberInput: typeof import('./components/ui/NumberInput.vue')['default']
     UiPanelWrapper: typeof import('./components/ui/PanelWrapper.vue')['default']
+    UiPictureImage: typeof import('./components/ui/PictureImage.vue')['default']
     UiProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     UiSearchInput: typeof import('./components/ui/SearchInput.vue')['default']
     UiSelectOption: typeof import('./components/ui/SelectOption.vue')['default']
