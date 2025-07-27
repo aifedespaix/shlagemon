@@ -15,6 +15,6 @@ Sa capacité passive, *Salive Persistante*, ralentit les adversaires qui l’ont
 Papy Suçon est un type crasse par excellence, mais il est aussi classé *affection*, car il prétend toujours "faire ça avec tendresse".`,
   descriptionKey: 'data.shlagemons.evolutions.papi-sucon.description',
   types: [shlagemonTypes.insecte],
+  speciality: 'evolution2',
 }
-
 export default papysucon

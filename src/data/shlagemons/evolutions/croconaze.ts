@@ -12,6 +12,6 @@ export const croconaze: BaseShlagemon = {
     base: alligastro,
     condition: { type: 'lvl', value: 92 },
   },
+  speciality: 'evolution1',
 }
-
 export default croconaze

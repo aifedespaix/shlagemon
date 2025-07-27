@@ -19,6 +19,6 @@ Son attaque signature, *Croquette Mental*, inflige des dégâts aléatoires en f
       value: 38,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default waouff

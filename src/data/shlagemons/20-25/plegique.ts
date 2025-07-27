@@ -23,6 +23,6 @@ Il vit dans des zones Wi-Fi oubliées, collé contre des murs suintants. On dit 
       value: 45,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default plegique

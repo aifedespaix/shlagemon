@@ -12,6 +12,6 @@ export const qwiflash: BaseShlagemon = {
     base: qwiflouch,
     condition: { type: 'lvl', value: 82 },
   },
+  speciality: 'evolution0',
 }
-
 export default qwiflash

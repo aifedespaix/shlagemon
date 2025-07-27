@@ -9,6 +9,6 @@ export const rouxScoop: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.roux-scoop.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   evolution: { base: rouxPignolage, condition: { type: 'lvl', value: 36 } },
+  speciality: 'evolution0',
 }
-
 export default rouxScoop

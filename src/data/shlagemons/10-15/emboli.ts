@@ -16,6 +16,6 @@ export const emboli: BaseShlagemon = {
     { base: salmoneli, condition: { type: 'item', value: pissBottle } },
     { base: tuberculi, condition: { type: 'item', value: defibrillator } },
   ],
+  speciality: 'evolution0',
 }
-
 export default emboli

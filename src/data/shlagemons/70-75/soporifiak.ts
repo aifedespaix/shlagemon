@@ -12,6 +12,6 @@ export const soporifiak: BaseShlagemon = {
     base: hypsedentaire,
     condition: { type: 'lvl', value: 78 },
   },
+  speciality: 'evolution0',
 }
-
 export default soporifiak

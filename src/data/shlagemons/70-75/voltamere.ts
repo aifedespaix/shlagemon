@@ -13,6 +13,6 @@ export const voltamere: BaseShlagemon = {
     base: electrobeauf,
     condition: { type: 'item', value: thunderStone },
   },
+  speciality: 'evolution0',
 }
-
 export default voltamere

@@ -15,6 +15,6 @@ On dit que si l’on regarde ses cils pailletés trop longtemps, on devient infl
   descriptionKey: 'data.shlagemons.evolutions.carabifle.description',
   types: [shlagemonTypes.eau],
   evolution: { base: tordturc, condition: { type: 'lvl', value: 36 } },
+  speciality: 'evolution1',
 }
-
 export default carabifle

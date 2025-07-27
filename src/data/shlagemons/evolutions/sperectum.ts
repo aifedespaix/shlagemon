@@ -15,6 +15,6 @@ export const sperectum: BaseShlagemon = {
       value: 52,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default sperectum

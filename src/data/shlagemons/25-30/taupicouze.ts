@@ -19,6 +19,6 @@ Son attaque signature, *Tricouze Saignante*, inflige des dégâts progressifs et
       value: 38,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default taupicouze

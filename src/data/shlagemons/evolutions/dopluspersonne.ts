@@ -10,6 +10,6 @@ Son attaque signature, *Vide Sidéral*, aspire toute volonté de combattre, lais
 On dit que parfois, une petite brise fait tourner Dopluspersonne sur lui-même, mais personne ne sait si c’est la honte, l’ennui ou juste le vent.`,
   descriptionKey: 'data.shlagemons.evolutions.dopluspersonne.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
+  speciality: 'evolution1',
 }
-
 export default dopluspersonne

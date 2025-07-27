@@ -13,6 +13,6 @@ Il attaque avec *Clavier Rageur*, qui spam des insultes mal orthographiées, et 
 On raconte qu’il a installé un fond d’écran de lui torse nu en noir et blanc avec marqué “GRIND” en majuscules. Aucun Shlagémon ne veut le combattre : pas par peur… par pitié.`,
   descriptionKey: 'data.shlagemons.evolutions.macintosh.description',
   types: [shlagemonTypes.combat],
+  speciality: 'evolution2',
 }
-
 export default macintosh

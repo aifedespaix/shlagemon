@@ -9,6 +9,6 @@ export const amoche: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.10-15.amoche.description',
   types: [shlagemonTypes.poison],
   evolution: { base: barbok, condition: { type: 'lvl', value: 42 } },
+  speciality: 'evolution0',
 }
-
 export default amoche

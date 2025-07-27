@@ -7,6 +7,6 @@ export const kistlee: BaseShlagemon = {
   description: `Kistlee possède un énorme kyste qui sert autant d'arme que de chaise. Il frappe ses ennemis à coups de pied tout en se plaignant que ça tire un peu.`,
   descriptionKey: 'data.shlagemons.75-80.kistlee.description',
   types: [shlagemonTypes.combat],
+  speciality: 'unique',
 }
-
 export default kistlee

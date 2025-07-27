@@ -19,6 +19,6 @@ On raconte qu’il tente souvent de parler à son ombre, mais même elle a fini 
       value: 83,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default dosolo

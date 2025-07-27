@@ -12,6 +12,6 @@ export const huithuit: BaseShlagemon = {
     base: noadcajou,
     condition: { type: 'lvl', value: 82 },
   },
+  speciality: 'evolution0',
 }
-
 export default huithuit

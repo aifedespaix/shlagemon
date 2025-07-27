@@ -7,6 +7,6 @@ export const hyporuisseau: BaseShlagemon = {
   description: `Hyporuisseau ne nage que dans les petits ruisseaux par peur des grandes eaux. Son courage grandit à mesure que le débit augmente, mais pas trop quand même.`,
   descriptionKey: 'data.shlagemons.evolutions.hyporuisseau.description',
   types: [shlagemonTypes.eau],
+  speciality: 'evolution1',
 }
-
 export default hyporuisseau

@@ -22,6 +22,6 @@ Il niche dans les toitures en fibrociment et collectionne les boulons comme des 
       value: 32,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default nosferailleur

@@ -19,6 +19,6 @@ Malgré son allure, il rêve secrètement d'être la mascotte d’un fast-food d
       value: 53,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default pouleyta

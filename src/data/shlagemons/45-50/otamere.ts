@@ -20,6 +20,6 @@ Personne n’a jamais vu Otamère sobre. Il aurait soi-disant un tatouage “MAM
       value: 90,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default otamere

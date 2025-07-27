@@ -12,6 +12,6 @@ Son attaque signature *Chant de Jah* étourdit tous les ennemis dans un large ra
   descriptionKey: 'data.shlagemons.evolutions.nosferasta.description',
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],
+  speciality: 'evolution1',
 }
-
 export default nosferasta

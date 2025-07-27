@@ -7,6 +7,6 @@ export const poissomerguez: BaseShlagemon = {
   description: `Poissomerguez dégage une forte odeur de barbecue. Il fait frire l'eau autour de lui et provoque des fringales incontrôlables chez ses adversaires.`,
   descriptionKey: 'data.shlagemons.evolutions.poissomerguez.description',
   types: [shlagemonTypes.eau],
+  speciality: 'evolution1',
 }
-
 export default poissomerguez

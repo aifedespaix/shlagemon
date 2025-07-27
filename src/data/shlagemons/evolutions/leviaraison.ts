@@ -7,6 +7,6 @@ export const leviaraison: BaseShlagemon = {
   description: `Toujours persuadé d'avoir raison, ce serpent de mer géant fulmine dès qu'on le contredit. Ses colères déclenchent des tempêtes monumentales.`,
   descriptionKey: 'data.shlagemons.evolutions.leviaraison.description',
   types: [shlagemonTypes.eau, shlagemonTypes.vol],
+  speciality: 'evolution1',
 }
-
 export default leviaraison

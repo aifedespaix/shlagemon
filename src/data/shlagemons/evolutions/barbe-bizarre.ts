@@ -12,6 +12,6 @@ Il parle en citations absurdes qu’il invente sur le moment (“si l’eau mont
 
   types: [shlagemonTypes.plante],
   evolution: { base: floripute, condition: { type: 'lvl', value: 36 } },
+  speciality: 'evolution0',
 }
-
 export default barbeBizarre

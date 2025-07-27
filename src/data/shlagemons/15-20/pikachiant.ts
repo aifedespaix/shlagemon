@@ -17,6 +17,6 @@ Il vit généralement dans des squats connectés où il recharge ses batteries a
       value: thunderStone,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default pikachiant

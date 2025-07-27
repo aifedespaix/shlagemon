@@ -7,6 +7,6 @@ export const rhinoplastie: BaseShlagemon = {
   description: `Après une chirurgie esthétique ratée, Rhinoplastie a la face entièrement remodelée. Il fait peur à tout le monde mais se trouve magnifique.`,
   descriptionKey: 'data.shlagemons.evolutions.rhinoplastie.description',
   types: [shlagemonTypes.sol, shlagemonTypes.roche],
+  speciality: 'evolution1',
 }
-
 export default rhinoplastie

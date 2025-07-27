@@ -9,6 +9,6 @@ export const magmaretfred: BaseShlagemon = {
   description: MAGMARETFRED_DESCRIPTION,
   descriptionKey: 'data.shlagemons.95-99.magmaretfred.description',
   types: [shlagemonTypes.feu],
+  speciality: 'unique',
 }
-
 export default magmaretfred

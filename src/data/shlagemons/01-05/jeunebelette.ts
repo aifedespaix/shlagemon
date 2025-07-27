@@ -19,6 +19,6 @@ On raconte qu'il pourrait évoluer s'il trouvait enfin une vraie motivation. Mai
       value: 5,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default jeunebelette

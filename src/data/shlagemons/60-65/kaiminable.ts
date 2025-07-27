@@ -12,6 +12,6 @@ export const kaiminable: BaseShlagemon = {
     base: croconaze,
     condition: { type: 'lvl', value: 78 },
   },
+  speciality: 'evolution0',
 }
-
 export default kaiminable

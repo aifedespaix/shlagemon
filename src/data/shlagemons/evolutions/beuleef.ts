@@ -12,6 +12,6 @@ export const beuleef: BaseShlagemon = {
     base: moisanium,
     condition: { type: 'lvl', value: 92 },
   },
+  speciality: 'evolution1',
 }
-
 export default beuleef

@@ -20,6 +20,6 @@ Iel est bruyant·e, inefficace, et persuadé·e qu’iel est “trop stylé”. 
       value: 88,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default nidoteub

@@ -24,6 +24,6 @@ On raconte qu’il s’auto-like sur Pokégram avec des faux comptes et laisse d
       value: ultraSteroid,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default masschopeur

@@ -21,6 +21,6 @@ En résumé, Boustiflemme ne fait jamais rien... et il le fait très bien.`,
       value: 62,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default boustiflemme

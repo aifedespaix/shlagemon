@@ -17,6 +17,6 @@ Sa capacité *Point-Virgule* inflige peu de dégâts mais perturbe l’ordre d�
       value: 66,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default nidononbinaireM

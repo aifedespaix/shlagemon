@@ -22,6 +22,6 @@ Il évolue parfois... en pire.`,
       value: steroids,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default macho

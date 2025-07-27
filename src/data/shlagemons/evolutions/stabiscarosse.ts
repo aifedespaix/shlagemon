@@ -7,6 +7,6 @@ export const stabiscarosse: BaseShlagemon = {
   description: `Parti s'installer à Biscarrosse pour profiter des vagues, ce Shlagémon se pavane désormais avec une planche de surf sous chaque bras.`,
   descriptionKey: 'data.shlagemons.evolutions.stabiscarosse.description',
   types: [shlagemonTypes.eau, shlagemonTypes.psy],
+  speciality: 'evolution1',
 }
-
 export default stabiscarosse

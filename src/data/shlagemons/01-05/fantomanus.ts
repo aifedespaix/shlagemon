@@ -19,6 +19,6 @@ On raconte qu’il rêve d’atteindre la perfection du prout astral, mais il ga
       value: 22,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default fantomanus

@@ -22,6 +22,6 @@ On raconte que chaque fois que Magnubellule passe en rase-motte, il laisse derri
       value: 61,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default magnubellule

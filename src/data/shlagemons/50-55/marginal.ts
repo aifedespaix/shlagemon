@@ -12,6 +12,6 @@ export const marginal: BaseShlagemon = {
     base: leviaraison,
     condition: { type: 'lvl', value: 100 },
   },
+  speciality: 'evolution0',
 }
-
 export default marginal

@@ -11,6 +11,6 @@ Elle tire ses pouvoirs d’un potager qu’elle cultive sur son dos, mélange do
 On raconte qu’elle peut invoquer des cercles de danse autour d’un feu sacré fait de palettes et de sacs Leclerc. Si elle grogne en récitant des mantras, cours. Elle s’apprête à t’offrir une purification... ou un sandwich au houmous moisi.`,
   descriptionKey: 'data.shlagemons.evolutions.floripute.description',
   types: [shlagemonTypes.plante],
+  speciality: 'evolution1',
 }
-
 export default floripute

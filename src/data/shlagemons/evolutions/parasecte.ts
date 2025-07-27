@@ -15,6 +15,6 @@ Son attaque signature, *Révélation Sporale*, libère une explosion de spores q
 Parasecte ne cherche pas la victoire. Il cherche *l’humidité universelle*. Et toi, es-tu prêt à entendre l’appel du Champi Total ?`,
   descriptionKey: 'data.shlagemons.evolutions.parasecte.description',
   types: [shlagemonTypes.poison, shlagemonTypes.spectre],
+  speciality: 'evolution1',
 }
-
 export default parasecte

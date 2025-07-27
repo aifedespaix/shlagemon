@@ -15,6 +15,6 @@ export const ptitocard: BaseShlagemon = {
       value: 50,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default ptitocard

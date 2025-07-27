@@ -12,6 +12,6 @@ export const minidrapcon: BaseShlagemon = {
     base: drapcon,
     condition: { type: 'lvl', value: 90 },
   },
+  speciality: 'evolution0',
 }
-
 export default minidrapcon

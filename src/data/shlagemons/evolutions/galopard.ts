@@ -11,6 +11,6 @@ Son attaque signature, *Jet de Binouze*, consiste à asperger ses adversaires de
 Il n’aime qu’une seule chose : quand la France gagne au tiercé.`,
   descriptionKey: 'data.shlagemons.evolutions.galopard.description',
   types: [shlagemonTypes.feu],
+  speciality: 'evolution1',
 }
-
 export default galopard

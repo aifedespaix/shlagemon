@@ -21,6 +21,6 @@ On raconte qu'il ne se d√©place jamais sans sa bande de Gravashlag, toujours pr√
       value: 76,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default racaillou

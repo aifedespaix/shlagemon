@@ -21,6 +21,6 @@ Son cri officiel est enregistré dans les bases de données comme *"KRRRR-païï
 Il possède l’attaque spéciale *Roule Par Terre Coloré*, qui inflige des dégâts aléatoires et laisse des plumes toxiques sur le champ de bataille. Il peut également utiliser *Faux Charisme*, qui augmente brièvement son taux de critique en fonction du nombre de regards consternés qu’il reçoit.`,
   descriptionKey: 'data.shlagemons.05-10.chenipaon.description',
   types: [shlagemonTypes.insecte],
+  speciality: 'evolution0',
 }
-
 export default chenipaon
