@@ -42,7 +42,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         type: 'valid',
         action: () => {
           box.unlock()
-          box.importFromInventory(inventory.items as any)
+          box.importFromInventory(inventory.items)
           inventory.add(eggBox.id)
           emit('done', 'eggBox')
         },
