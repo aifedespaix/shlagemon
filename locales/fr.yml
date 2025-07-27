@@ -2870,6 +2870,26 @@ data:
         Ce Shlagémon n’attaque jamais directement. Il infuse le terrain d’une
         paix surnaturelle qui rend confus tous les Shlagémons agressifs. Sauf
         s’ils ont le type Métal Brutal, là ça les énerve encore plus.
+    95-99:
+      lokhlash:
+        description: >-
+          Lokhlash adore participer à des battles de rap improvisées sur son
+          dos. Il navigue de scène en scène, lâchant des punchlines glaciales
+          qui font frissonner l'auditoire.
+      magmaretfred:
+        description: >-
+          Toujours en duo imaginaire avec son compère absent, Magmar&Fred crache
+          des flammes en récitant des blagues douteuses. Il chauffe l'ambiance
+          mais finit souvent seul sur scène.
+      scarapute:
+        description: >-
+          Cet insecte adore "sucer" le sang des voyageurs imprudents. On le voit
+          souvent roder près des campings à la recherche d'un mollet juteux.
+      taurus:
+        description: >-
+          Taurus est littéralement un taureau géométrique. Ses angles parfaits
+          le rendent difficile à approcher sans se prendre une arrête dans les
+          côtes.
   Minigame:
     ConnectFour:
       startText: Une partie de Puissance 4 ?

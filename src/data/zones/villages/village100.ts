@@ -30,7 +30,7 @@ export const village100: Zone = {
   name: 'Citadelle Giga-Schlag',
   type: 'village',
   villageType: 'hyper',
-  position: move.bottom(savage95.position, VILLAGE_OFFSET),
+  position: move.right(savage95.position, VILLAGE_OFFSET),
   attachedTo: savage95.id,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
