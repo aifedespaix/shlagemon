@@ -192,7 +192,7 @@ function closeShop() {
           v-if="selectedItem"
           :disabled="!canBuy"
           type="primary"
-          class="flex flex-1 items-center gap-1"
+          class="flex flex-1 flex-wrap items-center gap-1"
           @click="buy"
         >
           {{ t('components.panel.Shop.buy', { qty: selectedQty }) }}
