@@ -3,11 +3,9 @@ import type { Ball, DexShlagemon } from '~/type'
 export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
   const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
   const levelMod = 1 / (1 + enemy.lvl / 40)
-  // Slightly increase the global capture rate to make encounters less frustrating
-  const difficultyMod = 1.3
   const dex = useShlagedexStore()
   const captureMod = 1 + dex.captureBonusPercent / 100
-  const chance = Math.min(100, hpChance * levelMod * ball.catchBonus * difficultyMod * captureMod)
+  const chance = Math.min(100, hpChance * levelMod * ball.catchBonus * captureMod)
   const dev = useDeveloperStore()
   if (dev.debug) {
     console.warn(
