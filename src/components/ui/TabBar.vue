@@ -28,7 +28,7 @@ function select(val: string | number) {
           : [
             props.colors?.[opt.value] ?? 'bg-white dark:bg-gray-900',
             props.disabled ? '' : props.hoverColors?.[opt.value] ?? 'hover:bg-gray-100 dark:hover:bg-gray-800',
-            opt.highlight && !props.disabled ? props.highlightClasses ?? 'animate-pulse-alt animate-count-infinite' : '',
+            opt.highlight && opt.value !== props.modelValue && !props.disabled ? props.highlightClasses ?? 'animate-pulse-alt animate-count-infinite' : '',
           ],
         props.disabled ? 'pointer-events-none opacity-50' : '',
       ]"
