@@ -75,6 +75,8 @@ watch(puzzle.solved, (v) => {
   if (v)
     useTimeoutFn(() => emit('win'), 2000)
 })
+
+const shuffling = computed(() => puzzle.shuffling.value)
 </script>
 
 <template>
@@ -85,7 +87,7 @@ watch(puzzle.solved, (v) => {
     >
       <div
         class="direction-button left-8 right-8 top-0 h-8"
-        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        :class="{ 'opacity-50 pointer-events-none': shuffling }"
         type="icon"
         @click="puzzle.move('up')"
       >
@@ -93,7 +95,7 @@ watch(puzzle.solved, (v) => {
       </div>
       <div
         class="direction-button bottom-8 left-0 top-8 w-8"
-        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        :class="{ 'opacity-50 pointer-events-none': shuffling }"
         type="icon"
         @click="puzzle.move('left')"
       >
@@ -101,7 +103,7 @@ watch(puzzle.solved, (v) => {
       </div>
       <div
         class="direction-button bottom-8 right-0 top-8 w-8"
-        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        :class="{ 'opacity-50 pointer-events-none': shuffling }"
         type="icon"
         @click="puzzle.move('right')"
       >
@@ -109,7 +111,7 @@ watch(puzzle.solved, (v) => {
       </div>
       <div
         class="direction-button bottom-0 left-8 right-8 h-8"
-        :class="{ 'opacity-50 pointer-events-none': puzzle.shuffling }"
+        :class="{ 'opacity-50 pointer-events-none': shuffling }"
         type="icon"
         @click="puzzle.move('down')"
       >
@@ -117,18 +119,11 @@ watch(puzzle.solved, (v) => {
       </div>
 
       <div class="relative h-full w-full">
-        <!-- <img
-          v-if="puzzle.solved"
-          :src="puzzle.image.value"
-          alt="image"
-          class="absolute inset-0 h-full w-full rounded"
-          style="z-index: 10;"
-        > -->
         <div
           v-for="tile in visibleTiles"
           :key="tile.id"
           class="absolute cursor-pointer overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
-          :class="{ 'pointer-events-none': puzzle.shuffling }"
+          :class="{ 'pointer-events-none': shuffling }"
           :style="{
             width: `${tilePercent}%`,
             height: `${tilePercent}%`,
