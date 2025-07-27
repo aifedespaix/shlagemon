@@ -16,7 +16,6 @@ On ignore s’il a une évolution. Certains parlent d’un “Tontonchichon” t
   descriptionKey: 'data.shlagemons.evolutions.grochichon.description',
 
   types: [shlagemonTypes.normal, shlagemonTypes.poison],
-  coefficient: 55,
 }
 
 export default grochichon

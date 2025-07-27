@@ -12,7 +12,6 @@ Son attaque signature, *Jet de Morve Polaire*, consiste à éternuer un glaçon 
 Personne n’a jamais vu Otamère sobre. Il aurait soi-disant un tatouage “MAMAN” sous une nageoire, mais personne n’ose vérifier.`,
   descriptionKey: 'data.shlagemons.45-50.otamere.description',
   types: [shlagemonTypes.eau],
-  coefficient: 50,
 
   evolution: {
     base: lamantinedu38,

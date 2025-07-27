@@ -12,7 +12,6 @@ Iel voue un culte étrange à une entité nommée “Chibrax”, dont iel porte 
 Iel est bruyant·e, inefficace, et persuadé·e qu’iel est “trop stylé”. Ses dents sont toujours en PLS et son haleine est classée comme capacité toxique passive.`,
   descriptionKey: 'data.shlagemons.evolutions.nidoteub.description',
   types: [shlagemonTypes.poison],
-  coefficient: 66,
 
   evolution: {
     base: nidodragqueen,

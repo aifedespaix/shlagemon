@@ -25,7 +25,6 @@ Sa capacité passive, *Auto-Sabotage*, lui fait perdre 1 point de vie à chaque 
 Il traîne dans les buissons, évite les regards et se planque dès qu’il entend le mot "match". Une icône de la lose, une légende de l’échec.`,
   descriptionKey: 'data.shlagemons.evolutions.coconnul.description',
   types: [shlagemonTypes.insecte],
-  coefficient: 10,
 }
 
 export default coconnul

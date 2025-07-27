@@ -36,9 +36,7 @@ function createKing(
     }, {})
   const uniqueMons = Object.values(available)
 
-  // Sort by coefficient descending to pick the strongest ones
-  const sorted = uniqueMons.sort((a, b) => b.coefficient - a.coefficient)
-  const selected = sorted.slice(0, qteShlagemons).reverse()
+  const selected = uniqueMons.slice(0, qteShlagemons).reverse()
 
   const shlagemons: { baseId: string, level: number }[] = selected.map((b, idx) => ({
     baseId: b.id,

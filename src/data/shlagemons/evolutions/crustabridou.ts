@@ -13,7 +13,6 @@ Attitude : Crustabridou est persuadé qu’il est la star de tous les apéros, a
 Anecdote : On raconte que Crustabridou rêve secrètement de devenir ambassadeur du saucisson, mais il confond toujours les plateaux de fromages avec les arènes Pokémon.`,
   descriptionKey: 'data.shlagemons.evolutions.crustabridou.description',
   types: [shlagemonTypes.eau],
-  coefficient: 64,
 }
 
 export default crustabridou

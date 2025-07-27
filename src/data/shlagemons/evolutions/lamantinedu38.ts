@@ -11,7 +11,6 @@ Son attaque signature, *Roule-Galoche Givrée*, consiste à te rouler une pelle 
 On dit que même les autres shlagémons du 38 évitent de s’asseoir à côté de lui, de peur de repartir avec des morpions polaires.`,
   descriptionKey: 'data.shlagemons.evolutions.lamantinedu38.description',
   types: [shlagemonTypes.eau, shlagemonTypes.glace],
-  coefficient: 99,
 }
 
 export default lamantinedu38

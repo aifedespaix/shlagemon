@@ -14,7 +14,6 @@ Rafflamby n’évolue plus, mais reste malgré tout présent dans de nombreux d�
   descriptionKey: 'data.shlagemons.evolutions.rafflamby.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
-  coefficient: 90,
 }
 
 export default rafflamby

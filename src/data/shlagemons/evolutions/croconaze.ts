@@ -8,7 +8,6 @@ export const croconaze: BaseShlagemon = {
   description: `Il porte une veste en cuir moisi, fait le caïd dans les parkings, mais a des dents en plastique.`,
   descriptionKey: 'data.shlagemons.evolutions.croconaze.description',
   types: [shlagemonTypes.eau, shlagemonTypes.combat],
-  coefficient: 78,
   evolution: {
     base: alligastro,
     condition: { type: 'lvl', value: 92 },

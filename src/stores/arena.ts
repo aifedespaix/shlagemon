@@ -18,9 +18,8 @@ export const useArenaStore = defineStore('arena', () => {
 
   function setLineup(enemies: BaseShlagemon[], level: number) {
     lineup.value = enemies
-    const coefficientMultiplier = Math.floor(level / 2) - 1
     lineupDex.value = enemies.map(m =>
-      createDexShlagemon(m, false, coefficientMultiplier, level),
+      createDexShlagemon(m, false, level),
     )
     selections.value = Array.from({ length: enemies.length }).fill(null) as (string | null)[]
   }

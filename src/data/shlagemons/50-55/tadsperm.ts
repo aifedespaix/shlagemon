@@ -12,7 +12,6 @@ Sa principale occupation : s’isoler dans des coins sombres pour savourer les p
 On raconte qu’il passe plus de temps à “méditer” qu’à se battre. Certains dresseurs disent avoir glissé dessus dans les vestiaires…`,
   descriptionKey: 'data.shlagemons.50-55.tadsperm.description',
   types: [shlagemonTypes.poison],
-  coefficient: 52,
   evolution: {
     base: grostadsperm,
     condition: {

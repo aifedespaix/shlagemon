@@ -8,7 +8,6 @@ export const soporifiak: BaseShlagemon = {
   description: `Soporifiak roupille partout où il passe et son postérieur disproportionné lui sert d’oreiller improvisé. Il charme les passants en promettant des siestes miraculeuses avant de s’endormir lui-même en plein milieu de la conversation.`,
   descriptionKey: 'data.shlagemons.70-75.soporifiak.description',
   types: [shlagemonTypes.psy],
-  coefficient: 72,
   evolution: {
     base: hypsedentaire,
     condition: { type: 'lvl', value: 78 },

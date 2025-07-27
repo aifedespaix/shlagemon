@@ -15,7 +15,6 @@ Ne pas le caresser. Jamais.`,
   descriptionKey: 'data.shlagemons.35-40.rondonichon.description',
 
   types: [shlagemonTypes.normal],
-  coefficient: 38,
   evolution: {
     base: grochichon,
     condition: {

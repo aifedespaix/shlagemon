@@ -13,7 +13,6 @@ Son dos est devenu un trône en spirale, incrusté de miroirs concaves qui renvo
 On dit que même les légendaires évitent de le croiser : pas par peur de la défaite, mais par peur de se faire juger en silence.`,
   descriptionKey: 'data.shlagemons.evolutions.tord-turc.description',
   types: [shlagemonTypes.eau],
-  coefficient: 50,
 }
 
 export default tordturc

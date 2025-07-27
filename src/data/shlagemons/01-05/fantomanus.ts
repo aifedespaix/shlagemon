@@ -12,7 +12,6 @@ Il adore apparaître dans les toilettes publiques, les vestiaires de gymnase ou 
 On raconte qu’il rêve d’atteindre la perfection du prout astral, mais il galère à viser droit, même dans l’au-delà.`,
   descriptionKey: 'data.shlagemons.01-05.fantomanus.description',
   types: [shlagemonTypes.spectre, shlagemonTypes.poison],
-  coefficient: 5,
   evolution: {
     base: sperectum,
     condition: {

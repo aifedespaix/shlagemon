@@ -12,7 +12,6 @@ Il a un regard vide mais sincère, une langue toujours pendante, et porte autour
 Son attaque signature, *Croquette Mental*, inflige des dégâts aléatoires en fonction de la météo, de la phase lunaire et de la marque de la balle qu'on utilise. Il peut aussi utiliser *Aboyeur Passif-Agressif*, qui inflige la confusion à tout le monde... y compris à lui-même.`,
   descriptionKey: 'data.shlagemons.25-30.waouff.description',
   types: [shlagemonTypes.normal],
-  coefficient: 29,
   evolution: {
     base: perchiste,
     condition: {

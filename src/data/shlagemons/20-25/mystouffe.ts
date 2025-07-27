@@ -17,7 +17,6 @@ Sa touffe le protège des coups directs, mais le rend lent et imprévisible. Son
   descriptionKey: 'data.shlagemons.20-25.mystouffe.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
-  coefficient: 23,
   evolution: {
     base: orchibre,
     condition: {

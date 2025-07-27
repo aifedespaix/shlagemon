@@ -15,7 +15,6 @@ Rapasdepisse ne vole pas vraiment. Il fait des sauts nerveux et humides. Son cri
 On le garde par compassion, ou par erreur. Mais même s’il fait un peu pitié, certains affirment qu’il est doux, affectueux... et toujours tiède.`,
   descriptionKey: 'data.shlagemons.evolutions.rapasdepisse.description',
   types: [shlagemonTypes.vol],
-  coefficient: 60,
 }
 
 export default rapasdepisse

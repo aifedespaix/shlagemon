@@ -11,7 +11,6 @@ Avec ses plumes en vrac, son regard halluciné et son bec fendu par les rires ne
 Il porte parfois un sac plastique en guise de cape et marmonne des théories cosmologiques incompréhensibles à des lampadaires. Son attaque signature, *Flashback Violent*, plonge tous les combattants dans une confusion intense pendant plusieurs tours. Il utilise aussi *Tirage d’Urgence*, qui lui permet de rejouer un tour au prix de la moitié de sa santé mentale.`,
   descriptionKey: 'data.shlagemons.evolutions.accrocrack.description',
   types: [shlagemonTypes.eau],
-  coefficient: 90,
 }
 
 export default accrocrack

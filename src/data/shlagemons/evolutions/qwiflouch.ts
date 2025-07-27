@@ -7,7 +7,6 @@ export const qwiflouch: BaseShlagemon = {
   description: `Enflé comme une boule à mites, recouvert de pics rouillés. Il lâche du gaz au moindre stress et fait fuir les autres Shlagémons.`,
   descriptionKey: 'data.shlagemons.evolutions.qwiflouch.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
-  coefficient: 83,
 }
 
 export default qwiflouch

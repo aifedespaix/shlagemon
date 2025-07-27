@@ -14,7 +14,6 @@ Son attaque signature, *Jet de Morve Aquatique*, asperge l’adversaire d’un m
 On raconte que Tatacool collectionne les bouchons de bière et les vieux tickets de bus échoués dans son eau, persuadé que ça porte chance.`,
   descriptionKey: 'data.shlagemons.40-45.tatacool.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
-  coefficient: 44,
   evolution: {
     base: tatacruelle,
     condition: {

@@ -15,7 +15,6 @@ Quand il n’est pas en train de se prendre en selfie devant un miroir cassé, i
 Il évolue parfois... en pire.`,
   descriptionKey: 'data.shlagemons.35-40.macho.description',
   types: [shlagemonTypes.combat],
-  coefficient: 39,
   evolution: {
     base: masschopeur,
     condition: {

@@ -8,7 +8,6 @@ export const minidrapcon: BaseShlagemon = {
   description: `Petit serpent drapé et un peu demeuré, il se prend souvent les crochets dans ses propres replis.`,
   descriptionKey: 'data.shlagemons.65-70.minidrapcon.description',
   types: [shlagemonTypes.dragon],
-  coefficient: 67,
   evolution: {
     base: drapcon,
     condition: { type: 'lvl', value: 90 },

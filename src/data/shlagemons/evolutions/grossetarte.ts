@@ -11,7 +11,6 @@ Il ne se bat pas : il *sert*. À répétition. Son attaque *Service Trois Parts*
 Certains Shlagémons l’évitent non pas par peur, mais par goût. On raconte qu’un seul fragment de sa Tarte Ultime peut bloquer une mâchoire pendant 3 jours.`,
   descriptionKey: 'data.shlagemons.evolutions.grossetarte.description',
   types: [shlagemonTypes.eau],
-  coefficient: 57,
 }
 
 export default grossetarte

@@ -12,7 +12,6 @@ Son aura autoritaire et son parfum de naphtaline lui valent d’être banni de p
   descriptionKey: 'data.shlagemons.evolutions.meladolphe.description',
 
   types: [shlagemonTypes.fee],
-  coefficient: 72,
 }
 
 export default meladolphe

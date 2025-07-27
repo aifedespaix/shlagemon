@@ -14,7 +14,6 @@ Carabifle possède aussi un éventail en acrylique qui lui permet de s’évente
 On dit que si l’on regarde ses cils pailletés trop longtemps, on devient influenceur bien-être sans s’en rendre compte.`,
   descriptionKey: 'data.shlagemons.evolutions.carabifle.description',
   types: [shlagemonTypes.eau],
-  coefficient: 25,
   evolution: { base: tordturc, condition: { type: 'lvl', value: 36 } },
 }
 

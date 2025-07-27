@@ -9,7 +9,6 @@ export const voltamere: BaseShlagemon = {
   description: `Voltamère ressemble à une vieille daronne déguisée en boule. Il vole tout ce qui brille pour l'empiler dans son sac à main imaginaire. Gare à la décharge statique quand il te fouille les poches !`,
   descriptionKey: 'data.shlagemons.70-75.voltamere.description',
   types: [shlagemonTypes.electrique],
-  coefficient: 74,
   evolution: {
     base: electrobeauf,
     condition: { type: 'item', value: thunderStone },

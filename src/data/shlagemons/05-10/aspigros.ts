@@ -23,7 +23,6 @@ Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il adore les
 On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de satiété, et à sa devise gravée sur son ventre : "Si ça rentre, c’est que c’est bon."`,
   descriptionKey: 'data.shlagemons.05-10.aspigros.description',
   types: [shlagemonTypes.insecte],
-  coefficient: 2,
 }
 
 export default aspigros

@@ -10,7 +10,6 @@ export const nidononbinaireF: BaseShlagemon = {
 Iel utilise souvent *Postillonnage Toxique*, une attaque à faible portée mais dont les effets durent étonnamment longtemps. Iel s’entend très bien avec les autres Shlagémons, surtout les moins bavards. En zone sauvage, iel se poste près des bancs et observe… longtemps. Peut-être trop longtemps.`,
   descriptionKey: 'data.shlagemons.30-35.nidononbinaire-f.description',
   types: [shlagemonTypes.poison],
-  coefficient: 34,
   evolution: {
     base: nidoschneck,
     condition: {

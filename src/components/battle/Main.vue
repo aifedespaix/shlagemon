@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
 import { storeToRefs } from 'pinia'
-import { EQUILIBRE_RANK } from '~/constants/battle'
 import { multiExp } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { createDexShlagemon } from '~/utils/dexFactory'
@@ -32,12 +31,11 @@ function createEnemy(): DexShlagemon | null {
   }
   const base = pickRandomByCoefficient(pool)
   progress.registerEncounter(zone.current.id, base.id)
-  const rank = zone.getZoneRank(zone.current.id) * EQUILIBRE_RANK
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
   const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
-  const created = createDexShlagemon(base, false, rank, lvl)
+  const created = createDexShlagemon(base, false, lvl)
   if (created.isShiny) {
     audio.playSfx('/audio/sfx/shiny.ogg')
   }

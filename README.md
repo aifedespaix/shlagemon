@@ -28,8 +28,7 @@ Un mini-jeu de réflexion « Tic Tac Toe » permet aussi de récolter quelques S
 - Prêt pour le _PWA_ et l'internationalisation.
 - Mini-jeu « Tic Tac Toe » accessible depuis le village Sux-Mais-Bouls.
 - IA du Tic Tac Toe renforcée avec un algorithme minimax pour éviter toute défaite.
-- Chances de capture basées sur la vie restante, le coefficient (racine cubique) et le niveau de l'ennemi.
-- Un ennemi de coefficient 1 à pleine vie peut désormais être capturé presque systématiquement avec une Shlagéball.
+- Chances de capture basées sur la vie restante et le niveau de l'ennemi.
 - Les œufs existent déjà dans le jeu mais ne sont pas encore obtenables.
 
 ## Installation
@@ -69,7 +68,7 @@ Depuis le jeu, rendez-vous au village **Sux-Mais-Bouls** et cliquez sur « Mini-
 
 ### Générer le fichier d'évolutions
 
-Ce script parcourt les données de chaque Shlagémon pour générer un tableau ordonné par niveau. Le fichier `evolutions.csv` liste pour chacun la tranche de niveau où on le rencontre, son coefficient ainsi que le niveau d'évolution le cas échéant.
+Ce script parcourt les données de chaque Shlagémon pour générer un tableau ordonné par niveau. Le fichier `evolutions.csv` liste pour chacun la tranche de niveau où on le rencontre ainsi que le niveau d'évolution le cas échéant.
 
 ```bash
 pnpm evolutions:csv

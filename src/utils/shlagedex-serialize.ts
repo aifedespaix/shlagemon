@@ -2,7 +2,7 @@ import type { Serializer } from 'pinia-plugin-persistedstate'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allShlagemons } from '~/data/shlagemons'
-import { baseStats, statWithRarityAndCoefficient } from './dexFactory'
+import { baseStats, statWithRarity } from './dexFactory'
 import { deduplicateDex } from './saveFix'
 
 export interface SerializedDex {
@@ -80,12 +80,11 @@ export const shlagedexSerializer = {
         return {
           ...rest,
           base,
-          coefficient: mon.coefficient ?? base.coefficient,
           baseStats: mon.baseStats ?? {
-            hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, mon.rarity ?? 1),
-            attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, mon.rarity ?? 1),
-            defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, mon.rarity ?? 1),
-            smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, mon.rarity ?? 1),
+            hp: statWithRarity(baseStats.hp, mon.rarity ?? 1),
+            attack: statWithRarity(baseStats.attack, mon.rarity ?? 1),
+            defense: statWithRarity(baseStats.defense, mon.rarity ?? 1),
+            smelling: statWithRarity(baseStats.smelling, mon.rarity ?? 1),
           },
           allowEvolution: mon.allowEvolution ?? true,
           captureDate: mon.captureDate ?? new Date().toISOString(),
@@ -105,12 +104,11 @@ export const shlagedexSerializer = {
         active = {
           ...rest,
           base,
-          coefficient: activeData.coefficient ?? base.coefficient,
           baseStats: activeData.baseStats ?? {
-            hp: statWithRarityAndCoefficient(baseStats.hp, base.coefficient, activeData.rarity ?? 1),
-            attack: statWithRarityAndCoefficient(baseStats.attack, base.coefficient, activeData.rarity ?? 1),
-            defense: statWithRarityAndCoefficient(baseStats.defense, base.coefficient, activeData.rarity ?? 1),
-            smelling: statWithRarityAndCoefficient(baseStats.smelling, base.coefficient, activeData.rarity ?? 1),
+            hp: statWithRarity(baseStats.hp, activeData.rarity ?? 1),
+            attack: statWithRarity(baseStats.attack, activeData.rarity ?? 1),
+            defense: statWithRarity(baseStats.defense, activeData.rarity ?? 1),
+            smelling: statWithRarity(baseStats.smelling, activeData.rarity ?? 1),
           },
           allowEvolution: activeData.allowEvolution ?? true,
           captureDate: activeData.captureDate ?? new Date().toISOString(),

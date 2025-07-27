@@ -10,7 +10,6 @@ export const nidononbinaireM: BaseShlagemon = {
 Sa capacité *Point-Virgule* inflige peu de dégâts mais perturbe l’ordre d’attaque adverse en le rendant confus grammaticalement. Iel est souvent vu en train de refaire son look dans les flaques d’eau, persuadé que "l’esthétique, c’est déjà une stratégie".`,
   descriptionKey: 'data.shlagemons.30-35.nidononbinaire-m.description',
   types: [shlagemonTypes.poison],
-  coefficient: 34,
   evolution: {
     base: nidoteub,
     condition: {

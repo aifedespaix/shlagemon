@@ -11,7 +11,6 @@ Son attaque signature, *Coup d’Blues*, plonge l’adversaire dans un désespoi
 On raconte qu’il tente souvent de parler à son ombre, mais même elle a fini par se barrer.`,
   descriptionKey: 'data.shlagemons.45-50.dosolo.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
-  coefficient: 49,
 
   evolution: {
     base: dopluspersonne,

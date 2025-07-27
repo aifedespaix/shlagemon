@@ -12,7 +12,6 @@ Son attaque signature, *Flamme Panée*, consiste à se rouler dans la chapelure 
 Malgré son allure, il rêve secrètement d'être la mascotte d’un fast-food discount.`,
   descriptionKey: 'data.shlagemons.45-50.pouleyta.description',
   types: [shlagemonTypes.feu],
-  coefficient: 46,
   evolution: {
     base: galopard,
     condition: {

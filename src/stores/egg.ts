@@ -27,7 +27,7 @@ export const useEggStore = defineStore('egg', () => {
       .filter(b => b.types.some(t => t.id === type))
       .filter(b => !b.legendary)
     const base = pickRandomByCoefficient(candidates)
-    const duration = (base.coefficient / 10) * 60_000
+    const duration = 60_000
     const startedAt = Date.now()
     const id = startedAt + Math.random()
     incubator.value.push({ id, type, base, startedAt, hatchesAt: startedAt + duration })

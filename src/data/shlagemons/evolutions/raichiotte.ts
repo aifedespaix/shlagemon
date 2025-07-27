@@ -11,7 +11,6 @@ Sa queue est devenue un paratonnerre inversé qui attire les problèmes, et son 
 Même les bornes de recharge refusent de le connecter. Il est considéré comme un bug vivant du Pokédex, et certains dresseurs le fuient, non pas pour sa puissance… mais pour sa conversation.`,
   descriptionKey: 'data.shlagemons.evolutions.raichiotte.description',
   types: [shlagemonTypes.electrique],
-  coefficient: 40,
 }
 
 export default raichiotte

@@ -8,7 +8,6 @@ export const drapcon: BaseShlagemon = {
   description: `Cette étape intermédiaire se prend pour un grand drap majestueux mais reste aussi stupide que sa version minuscule.`,
   descriptionKey: 'data.shlagemons.evolutions.drapcon.description',
   types: [shlagemonTypes.dragon],
-  coefficient: 88,
   evolution: {
     base: drapcoloscopie,
     condition: { type: 'lvl', value: 100 },

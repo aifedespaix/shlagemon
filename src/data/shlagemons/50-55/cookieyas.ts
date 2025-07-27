@@ -14,7 +14,6 @@ Attitude générale : Cookieyas passe sa vie vautré dans les miettes, grognant 
 On raconte que Cookieyas ne rêve que d’une chose : qu’on le laisse tranquille pour finir sa sieste au chaud derrière la cafetière. Mais gare à celui qui essaie de le grignoter : il mord, et c’est sec !`,
   descriptionKey: 'data.shlagemons.50-55.cookieyas.description',
   types: [shlagemonTypes.eau],
-  coefficient: 53,
 
   evolution: {
     base: crustabridou,

@@ -8,7 +8,6 @@ export const mewteub: BaseShlagemon = {
 Mewteub est rare. Trop rare. Et franchement, c’est peut-être mieux ainsi.`,
   descriptionKey: 'data.shlagemons.mewteub.description',
   types: [shlagemonTypes.psy],
-  coefficient: 120,
   legendary: true,
 }
 
