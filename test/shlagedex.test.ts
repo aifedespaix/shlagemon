@@ -1,12 +1,9 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
-import { nextTick } from 'vue'
 import { toast } from 'vue3-toastify'
 import { sacdepates } from '../src/data/shlagemons/01-05/sacdepates'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useShlagedexStore } from '../src/stores/shlagedex'
-import { useZoneStore } from '../src/stores/zone'
-import { useZoneProgressStore } from '../src/stores/zoneProgress'
 import { applyCurrentStats, applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
@@ -155,77 +152,6 @@ describe('potential completion percent', () => {
     const dex = useShlagedexStore()
     dex.captureShlagemon(sacdepates)
     expect(Math.round(dex.potentialCompletionPercent)).toBe(25)
-  })
-})
-
-describe('rarity 100 coefficient update', () => {
-  it('updates stats when rarity hits 100', async () => {
-    setActivePinia(createPinia())
-    const dex = useShlagedexStore()
-    const progress = useZoneProgressStore()
-    const zone = useZoneStore()
-
-    const mon = dex.createShlagemon(carapouffe)
-    mon.rarity = 99
-    applyStats(mon)
-    applyCurrentStats(mon)
-    for (let i = 0; i < 4; i++)
-      await dex.gainXp(mon, xpForLevel(mon.lvl))
-    progress.defeatKing('plaine-kekette')
-    await nextTick()
-    dex.captureShlagemon(carapouffe)
-    await nextTick()
-    const rank = zone.getZoneRank('bois-de-bouffon')
-    expect(mon.rarity).toBe(100)
-    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
-  })
-
-  it('recalculates stats when a new zone unlocks', async () => {
-    setActivePinia(createPinia())
-    const dex = useShlagedexStore()
-    const progress = useZoneProgressStore()
-    const zone = useZoneStore()
-
-    const mon = dex.createShlagemon(carapouffe)
-    mon.rarity = 100
-    applyStats(mon)
-    applyCurrentStats(mon)
-    await nextTick()
-    expect(mon.coefficient).toBe((mon.lvl + 1) * zone.getZoneRank('plaine-kekette'))
-    for (let i = 0; i < 4; i++)
-      await dex.gainXp(mon, xpForLevel(mon.lvl))
-    progress.defeatKing('plaine-kekette')
-    await nextTick()
-    const rank = zone.getZoneRank('bois-de-bouffon')
-    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
-  })
-
-  it('keeps coefficient from level bracket when higher zone unlocks', async () => {
-    setActivePinia(createPinia())
-    const dex = useShlagedexStore()
-    const progress = useZoneProgressStore()
-    const zone = useZoneStore()
-
-    const enemy = createDexShlagemon(carapouffe, false, 1, 27)
-    enemy.rarity = 100
-    applyStats(enemy)
-    applyCurrentStats(enemy)
-    const mon = dex.captureEnemy(enemy)
-    await nextTick()
-    const rank = zone.getZoneRank('marais-moudugenou')
-    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
-
-    ;[
-      'plaine-kekette',
-      'bois-de-bouffon',
-      'chemin-du-slip',
-      'ravin-fesse-molle',
-      'precipice-nanard',
-      'marais-moudugenou',
-    ].forEach(id => progress.defeatKing(id))
-    await nextTick()
-
-    expect(mon.coefficient).toBe((mon.lvl + 1) * rank)
   })
 })
 

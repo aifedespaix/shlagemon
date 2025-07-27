@@ -7,7 +7,6 @@ export const coxymort: BaseShlagemon = {
   description: `Immense insecte décrépi, recouvert de résidus douteux, avec des tatouages au blanco et un regard perdu. Il claque des ailes sans raison.`,
   descriptionKey: 'data.shlagemons.evolutions.coxymort.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
-  coefficient: 92,
 }
 
 export default coxymort

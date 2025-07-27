@@ -14,7 +14,6 @@ export const gravaglaire: BaseShlagemon = {
 On dit que plus personne ne veut s’asseoir à côté de lui, même dans les squats abandonnés. Mais, malgré sa crasse et ses glaires, il conserve toujours son éternelle casquette et une banane encore plus trouée.`,
   descriptionKey: 'data.shlagemons.evolutions.gravaglaire.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
-  coefficient: 82,
   evolution: {
     base: grosseflemme,
     condition: {

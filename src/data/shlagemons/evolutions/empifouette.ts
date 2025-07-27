@@ -13,7 +13,6 @@ Empifouette s’en sert aussi comme d’un leurre : attirant l’ennemi avec un 
 Si vous croisez un Empifouette, courez… ou retenez votre souffle, et espérez qu’il n’a pas décidé de sortir le grand jeu.`,
   descriptionKey: 'data.shlagemons.evolutions.empifouette.description',
   types: [shlagemonTypes.poison, shlagemonTypes.plante],
-  coefficient: 67,
 }
 
 export default empifouette

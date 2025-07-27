@@ -14,7 +14,6 @@ Aujourd’hui, Artichaud veille sur les zones de non-droit climatiques, où il i
   descriptionKey: 'data.shlagemons.artichaud.description',
 
   types: [shlagemonTypes.glace, shlagemonTypes.vol],
-  coefficient: 110,
   legendary: true,
 }
 

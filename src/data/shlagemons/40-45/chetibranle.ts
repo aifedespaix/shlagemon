@@ -12,7 +12,6 @@ Sa technique favorite, *Pompage Introspectif*, consiste à canaliser toutes ses 
 On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser, mais il laisse toujours derrière lui une étrange atmosphère… moite et contemplative.`,
   descriptionKey: 'data.shlagemons.40-45.chetibranle.description',
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
-  coefficient: 42,
   evolution: {
     base: boustiflemme,
     condition: {

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
 import type { DialogNode } from '~/type/dialog'
-import { EQUILIBRE_RANK } from '~/constants/battle'
 import { allShlagemons } from '~/data/shlagemons'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import DialogBox from '../dialog/Box.vue'
@@ -84,8 +83,7 @@ function createEnemy(): DexShlagemon | null {
   const base = allShlagemons.find(b => b.id === spec.baseId)
   if (!base)
     return null
-  const rank = t.id.startsWith('king-') ? zone.getZoneRank(zone.current.id) : 1
-  return createDexShlagemon(base, false, rank * EQUILIBRE_RANK, spec.level)
+  return createDexShlagemon(base, false, spec.level)
 }
 
 function startFight() {

@@ -8,7 +8,6 @@ export const rhinofaringite: BaseShlagemon = {
   description: `Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en permanence, ce qui le rend aussi glissant qu'imprévisible.`,
   descriptionKey: 'data.shlagemons.80-85.rhinofaringite.description',
   types: [shlagemonTypes.sol, shlagemonTypes.roche],
-  coefficient: 83,
   evolution: {
     base: rhinoplastie,
     condition: { type: 'lvl', value: 89 },

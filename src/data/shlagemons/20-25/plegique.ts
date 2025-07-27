@@ -16,7 +16,6 @@ Son attaque *Spore Rampante* endort l’ennemi en libérant un sifflement humide
 Il vit dans des zones Wi-Fi oubliées, collé contre des murs suintants. On dit qu’il peut survivre plusieurs jours sans bouger, simplement en absorbant l’humidité ambiante et des pensées négatives. Un vrai survivant… à sa manière.`,
   descriptionKey: 'data.shlagemons.20-25.plegique.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
-  coefficient: 24,
   evolution: {
     base: parasecte,
     condition: {

@@ -14,7 +14,6 @@ Vénéré par une secte de rats crasseux, Sulfusouris est considéré comme le �
   descriptionKey: 'data.shlagemons.sulfusouris.description',
 
   types: [shlagemonTypes.feu, shlagemonTypes.vol],
-  coefficient: 110,
   legendary: true,
 }
 

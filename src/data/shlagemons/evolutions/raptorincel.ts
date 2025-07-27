@@ -14,7 +14,6 @@ Il possède une attaque spéciale : *Flamme Frustrée*, qui explose si l’adver
 On le trouve souvent dans des grottes sombres, en train de taper sur des claviers invisibles tout en s’entraînant à l’art du regard méprisant. Son rêve ? Devenir le Shlagémon alpha… et surtout que quelqu’un daigne lui répondre un jour.`,
   descriptionKey: 'data.shlagemons.evolutions.raptorincel.description',
   types: [shlagemonTypes.feu],
-  coefficient: 25,
   evolution: { base: dracoCon, condition: { type: 'lvl', value: 36 } },
 }
 

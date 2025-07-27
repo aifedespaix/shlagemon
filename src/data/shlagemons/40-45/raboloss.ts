@@ -14,7 +14,6 @@ Son attaque signature, *Gros Lancer de Cartable*, consiste à balancer son sac (
 On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir populaire... ou au moins d’avoir un goûter entier pour lui tout seul.`,
   descriptionKey: 'data.shlagemons.40-45.raboloss.description',
   types: [shlagemonTypes.eau, shlagemonTypes.psy],
-  coefficient: 43,
   evolution: {
     base: flaclodoss,
     condition: {

@@ -16,7 +16,6 @@ On dit que lorsqu’il est content, il ne remue pas la queue : il te l’offre c
 Son flair est légendaire, mais son hygiène mentale, beaucoup moins.`,
   descriptionKey: 'data.shlagemons.20-25.cacanus.description',
   types: [shlagemonTypes.feu, shlagemonTypes.poison],
-  coefficient: 37,
   evolution: {
     base: ricardnin,
     condition: {

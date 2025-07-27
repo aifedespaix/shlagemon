@@ -12,7 +12,6 @@ Il parle sans arrêt, même quand personne ne l’écoute, et chaque phrase comm
 Sa compétence spéciale, *Mythobluff*, embrouille l’adversaire en lui faisant douter de tout — y compris de ses propres attaques. Il peut aussi utiliser *Souffle de Pipeau*, un vent nauséabond qui sent fort la mauvaise excuse et la clope froide.`,
   descriptionKey: 'data.shlagemons.25-30.grosmitoss.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
-  coefficient: 28,
   evolution: {
     base: aerobite,
     condition: {

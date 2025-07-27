@@ -14,7 +14,6 @@ Même la nourriture, il ne la chasse pas: il attend qu'elle lui tombe dessus. On
 En résumé, Boustiflemme ne fait jamais rien... et il le fait très bien.`,
   descriptionKey: 'data.shlagemons.evolutions.boustiflemme.description',
   types: [shlagemonTypes.normal],
-  coefficient: 52,
   evolution: {
     base: empifouette,
     condition: {

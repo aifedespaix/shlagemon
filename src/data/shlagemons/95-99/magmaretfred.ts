@@ -9,7 +9,6 @@ export const magmaretfred: BaseShlagemon = {
   description: MAGMARETFRED_DESCRIPTION,
   descriptionKey: 'data.shlagemons.95-99.magmaretfred.description',
   types: [shlagemonTypes.feu],
-  coefficient: 96,
 }
 
 export default magmaretfred

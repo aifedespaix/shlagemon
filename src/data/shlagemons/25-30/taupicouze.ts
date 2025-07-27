@@ -12,7 +12,6 @@ Son problème ? Il ne trouve *jamais* la veine. Il plante, il retire, il re-plan
 Son attaque signature, *Tricouze Saignante*, inflige des dégâts progressifs et désoriente l’ennemi avec une sensation de malaise médical. Il peut aussi utiliser *Piqure Surprise*, qui a 30% de chances de faire perdre connaissance à un Shlagémon... ou au dresseur.`,
   descriptionKey: 'data.shlagemons.25-30.taupicouze.description',
   types: [shlagemonTypes.sol],
-  coefficient: 26,
   evolution: {
     base: triopikouze,
     condition: {

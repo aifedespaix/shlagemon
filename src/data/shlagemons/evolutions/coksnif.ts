@@ -8,7 +8,6 @@ export const coksnif: BaseShlagemon = {
   description: `Elle a maintenant 4 bras, un sac banane, et les narines couvertes de poussière blanche. Plane constamment.`,
   descriptionKey: 'data.shlagemons.evolutions.coksnif.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
-  coefficient: 75,
   evolution: {
     base: coxymort,
     condition: { type: 'lvl', value: 90 },

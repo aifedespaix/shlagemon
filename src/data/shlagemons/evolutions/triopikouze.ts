@@ -11,7 +11,6 @@ Composé de trois têtes aux regards fuyants, il discute souvent avec lui-même 
 Son attaque signature, *Injection Festive*, inflige un statut aléatoire à tous les ennemis présents. Il peut aussi déclencher *Soirée Non Consentante*, une capacité qui interrompt toutes les actions ennemies pendant un tour, le temps de créer un malaise palpable.`,
   descriptionKey: 'data.shlagemons.evolutions.triopikouze.description',
   types: [shlagemonTypes.poison, shlagemonTypes.spectre],
-  coefficient: 42,
 }
 
 export default triopikouze

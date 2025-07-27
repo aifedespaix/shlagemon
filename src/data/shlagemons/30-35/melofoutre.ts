@@ -13,7 +13,6 @@ Mélofoutre ne cherche pas le combat, mais s’y retrouve souvent par accident�
   descriptionKey: 'data.shlagemons.30-35.melofoutre.description',
 
   types: [shlagemonTypes.fee, shlagemonTypes.normal],
-  coefficient: 31,
   evolution: {
     base: meladolphe,
     condition: {

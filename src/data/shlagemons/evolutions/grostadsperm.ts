@@ -11,7 +11,6 @@ Son attaque fétiche, *MasturBave*, recouvre le terrain d’une vague glissante 
 Anecdote : Il paraît qu’en période de reproduction, il faut désinfecter toute la zone après son passage…`,
   descriptionKey: 'data.shlagemons.evolutions.grostadsperm.description',
   types: [shlagemonTypes.poison],
-  coefficient: 65,
 }
 
 export default grostadsperm

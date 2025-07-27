@@ -11,7 +11,6 @@ Son attaque signature *Marche de la Fierté* lui permet de traverser n’importe
 Nidoqueer est un pilier des zones communautaires de Shlagémon, toujours là pour défendre les plus petit·e·s, corriger les propos déplacés avec élégance, et lâcher un *wink* bien placé. On reconnaît Nidoqueer à ses épines colorées, son regard fardé et sa démarche impeccable. Iel n'est pas là pour se battre... mais si iel le fait, ce sera avec **panache**.`,
   descriptionKey: 'data.shlagemons.evolutions.nidoqueer.description',
   types: [shlagemonTypes.poison],
-  coefficient: 88,
 }
 
 export default nidoqueer

@@ -14,7 +14,6 @@ Férosang est recouvert de pansements douteux, de croûtes arrachées trop tôt 
 Son attaque signature, *Jet Hémato*, projette un arc de sang corrosif et contaminé, qui inflige panique et malaise. Il possède aussi *Patate Réflexe*, une attaque incontrôlable qui s’active à la moindre tape sur l’épaule.`,
   descriptionKey: 'data.shlagemons.35-40.ferosang.description',
   types: [shlagemonTypes.combat],
-  coefficient: 36,
   evolution: {
     base: coloscopie,
     condition: {

@@ -13,7 +13,6 @@ Tatacruelle adore faire la morale en jetant du vinaigre partout, piquer les bisc
 On raconte qu’elle hante les cuisines après 22h, prête à punir ceux qui osent ouvrir le frigo. Son rêve ? Être immortalisée en portrait sur chaque pot de cornichons du coin. Même les plus téméraires n’osent pas traîner près d’elle quand la nuit tombe.`,
   descriptionKey: 'data.shlagemons.evolutions.tatacruelle.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
-  coefficient: 58,
 }
 
 export default tatacruelle

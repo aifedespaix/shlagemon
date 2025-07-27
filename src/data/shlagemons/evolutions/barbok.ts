@@ -9,7 +9,6 @@ export const barbok: BaseShlagemon = {
 Ancien joueur de Iop sur un vieux serveur oublié, il croit toujours qu’il a un rôle crucial dans le combat, même s’il passe plus de temps à commenter les tours qu’à les jouer. Ses attaques sont bruyantes et peu efficaces, comme *Coup d'Barbe*, qui inflige des dégâts très moyens mais provoque parfois un saignement de honte chez l’adversaire.`,
   descriptionKey: 'data.shlagemons.evolutions.barbok.description',
   types: [shlagemonTypes.poison],
-  coefficient: 43,
 }
 
 export default barbok

@@ -11,7 +11,6 @@ function topShlagemons(zone: Zone, count = 2): BaseShlagemon[] {
     }, {})
 
   return Object.values(unique)
-    .sort((a, b) => b.coefficient - a.coefficient)
     .slice(0, count)
 }
 

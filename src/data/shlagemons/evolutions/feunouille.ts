@@ -14,7 +14,6 @@ Il est persuadé d’être l’élu d’une prophétie inventée par lui-même. 
   descriptionKey: 'data.shlagemons.evolutions.feunouille.description',
 
   types: [shlagemonTypes.feu],
-  coefficient: 80,
 }
 
 export default feunouille

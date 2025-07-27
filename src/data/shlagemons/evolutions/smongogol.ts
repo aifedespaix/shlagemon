@@ -7,7 +7,6 @@ export const smongogol: BaseShlagemon = {
   description: `Toujours plus imbécile et plus toxique que Smongol, Smongogol libère un nuage épais qui empeste la débilité. On le confond souvent avec un vieux pneu en feu.`,
   descriptionKey: 'data.shlagemons.evolutions.smongogol.description',
   types: [shlagemonTypes.poison],
-  coefficient: 90,
 }
 
 export default smongogol

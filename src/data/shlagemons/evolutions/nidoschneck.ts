@@ -12,7 +12,6 @@ Son attaque signature *Frappe de Schnek* est moins puissante qu’iel en a l’a
 Iel s’entoure souvent de Nidononbinaire♀ ou d’autres Shlagémons influençables, qu’iel appelle ses “sœurs de la teucha”. On ne sait jamais si iel est sérieux·se ou si iel trolle. Probablement les deux.`,
   descriptionKey: 'data.shlagemons.evolutions.nidoschneck.description',
   types: [shlagemonTypes.poison],
-  coefficient: 66,
 
   evolution: {
     base: nidoqueer,

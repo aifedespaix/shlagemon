@@ -17,7 +17,6 @@ Malgré ses défauts évidents, il **choppe**. Tout le temps. C’est inexplicab
 On raconte qu’il s’auto-like sur Pokégram avec des faux comptes et laisse des commentaires à base de "🔥🔥🔥 t trop bg frèro".`,
   descriptionKey: 'data.shlagemons.evolutions.masschopeur.description',
   types: [shlagemonTypes.combat],
-  coefficient: 60,
   evolution: {
     base: macintosh,
     condition: {

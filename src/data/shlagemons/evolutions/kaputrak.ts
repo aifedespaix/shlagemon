@@ -7,7 +7,6 @@ export const kaputrak: BaseShlagemon = {
   description: `Issu de Kraputo, ce guerrier fossile manie des lames rouillées et vit dans la paranoïa permanente.`,
   descriptionKey: 'data.shlagemons.evolutions.kaputrak.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
-  coefficient: 74,
 }
 
 export default kaputrak

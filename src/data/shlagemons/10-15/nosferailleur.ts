@@ -15,7 +15,6 @@ Il niche dans les toitures en fibrociment et collectionne les boulons comme des 
   descriptionKey: 'data.shlagemons.10-15.nosferailleur.description',
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],
-  coefficient: 14,
   evolution: {
     base: nosferasta,
     condition: {

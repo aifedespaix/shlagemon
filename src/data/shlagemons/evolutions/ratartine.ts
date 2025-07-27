@@ -13,7 +13,6 @@ Ratartine vit dans les placards, dort dans les grille-pains abandonnés, et rêv
 On dit qu’il a tenté d’évoluer en "Croquemonsieur", mais qu’il a trop fondu avant la dernière étape.`,
   descriptionKey: 'data.shlagemons.evolutions.ratartine.description',
   types: [shlagemonTypes.normal],
-  coefficient: 45,
 }
 
 export default ratartine

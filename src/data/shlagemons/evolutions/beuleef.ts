@@ -8,7 +8,6 @@ export const beuleef: BaseShlagemon = {
   description: `Elle porte une écharpe en mousse moisie autour du cou. Se plaint tout le temps et attire les limaces.`,
   descriptionKey: 'data.shlagemons.evolutions.beuleef.description',
   types: [shlagemonTypes.plante],
-  coefficient: 78,
   evolution: {
     base: moisanium,
     condition: { type: 'lvl', value: 92 },

@@ -10,7 +10,6 @@ export const pikachiant: BaseShlagemon = {
 Il vit généralement dans des squats connectés où il recharge ses batteries avec des câbles USB volés dans les trains. Il pense que TikTok est une source d’énergie et parle en onomatopées gênantes. À ne pas confondre avec Pikachu, même si lui aussi finit souvent dans une Poképrison pour tapage nocturne.`,
   descriptionKey: 'data.shlagemons.15-20.pikachiant.description',
   types: [shlagemonTypes.electrique],
-  coefficient: 17,
   evolution: {
     base: raichiotte,
     condition: {

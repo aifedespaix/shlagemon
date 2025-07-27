@@ -11,7 +11,6 @@ D’une impudeur sans faille, Aérobite adore surgir sans prévenir dans des lie
 Son attaque signature *Claqueburnes* inflige des dégâts sonores et psychologiques, tandis que *Vent Glacial* laisse souvent les adversaires tétanisés — pas à cause du froid, mais du traumatisme visuel. On dit qu’aucun dresseur n’est jamais vraiment prêt à le voir voler au ralenti… jambes écartées.`,
   descriptionKey: 'data.shlagemons.evolutions.aerobite.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
-  coefficient: 75,
 }
 
 export default aerobite

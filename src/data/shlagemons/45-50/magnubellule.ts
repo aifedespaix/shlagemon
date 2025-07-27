@@ -14,7 +14,6 @@ Son attaque signature, *Brise-Canette*, projette un jet mousseux et tiède, lais
 On raconte que chaque fois que Magnubellule passe en rase-motte, il laisse derrière lui une énigme de la loose et une odeur de festival terminé depuis trois semaines.`,
   descriptionKey: 'data.shlagemons.45-50.magnubellule.description',
   types: [shlagemonTypes.electrique, shlagemonTypes.insecte],
-  coefficient: 48,
 
   evolution: {
     base: magnementon,

@@ -14,7 +14,6 @@ Son attaque *Embrasse Froide* paralyse d’effroi toute cible vivante, tandis qu
 On dit que Kadavrebras ne dort jamais. Il se contente de bercer ses cadavres en murmurant des berceuses oubliées, avec une voix tremblante et désaccordée. Ne croisez jamais son regard : il pourrait penser que vous êtes prêt… à être porté.`,
   descriptionKey: 'data.shlagemons.evolutions.kadavrebras.description',
   types: [shlagemonTypes.psy],
-  coefficient: 52,
   evolution: {
     base: alakalbar,
     condition: {

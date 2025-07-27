@@ -7,7 +7,6 @@ export const hosoltueur: BaseShlagemon = {
   description: `Armé d'un os gigantesque, Hosoltueur règle ses comptes en une seule frappe. Il garde pourtant un air mélancolique en pensant à son enfance perdue.`,
   descriptionKey: 'data.shlagemons.evolutions.hosoltueur.description',
   types: [shlagemonTypes.sol],
-  coefficient: 85,
 }
 
 export default hosoltueur

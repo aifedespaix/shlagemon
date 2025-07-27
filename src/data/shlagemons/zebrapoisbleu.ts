@@ -18,7 +18,6 @@ Ce Shlagémon n’attaque jamais directement. Il infuse le terrain d’une paix 
   descriptionKey: 'data.shlagemons.electhordu.description',
 
   types: [shlagemonTypes.psy, shlagemonTypes.vol],
-  coefficient: 150,
   legendary: true,
 }
 

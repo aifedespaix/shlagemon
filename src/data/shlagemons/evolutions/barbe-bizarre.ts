@@ -11,7 +11,6 @@ Il parle en citations absurdes qu’il invente sur le moment (“si l’eau mont
   descriptionKey: 'data.shlagemons.evolutions.barbe-bizarre.description',
 
   types: [shlagemonTypes.plante],
-  coefficient: 25,
   evolution: { base: floripute, condition: { type: 'lvl', value: 36 } },
 }
 
