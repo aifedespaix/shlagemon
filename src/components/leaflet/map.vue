@@ -94,11 +94,15 @@ onMounted(() => {
     })
   }
 
-  watch(accessibleZones, () => {
+  watch([
+    accessibleZones,
+    () => zoneStore.wildCooldownRemaining,
+  ], () => {
+    const inCooldown = zoneStore.wildCooldownRemaining > 0
     zones.forEach((zone) => {
       if (!zone.position)
         return
-      const locked = !canAccess(zone)
+      const locked = inCooldown || !canAccess(zone)
       markers.setInactive(zone.id, locked)
     })
     draw()

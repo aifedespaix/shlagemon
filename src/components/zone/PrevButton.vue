@@ -7,7 +7,10 @@ const { accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
 
 const selectZone = inject<(id: ZoneId) => void>('selectZone')
 
-const disabled = computed(() => accessibleZones.value[0]?.id === zone.currentId)
+const disabled = computed(() =>
+  accessibleZones.value[0]?.id === zone.currentId
+  || zone.wildCooldownRemaining > 0,
+)
 
 function goPrev() {
   if (disabled.value)
