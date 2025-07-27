@@ -25,7 +25,7 @@ export const useEggStore = defineStore('egg', () => {
       return false
     const candidates = baseShlagemons
       .filter(b => b.types.some(t => t.id === type))
-      .filter(b => !b.legendary)
+      .filter(b => b.speciality !== 'legendary')
     const base = pickRandomByCoefficient(candidates)
     const duration = 60_000
     const startedAt = Date.now()
