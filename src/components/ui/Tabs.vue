@@ -8,9 +8,15 @@ interface Label {
   icon?: string
 }
 
+interface Tab {
+  label: Label
+  component: Component
+  highlight?: boolean
+}
+
 const props = withDefaults(defineProps<{
   modelValue?: number
-  tabs: { label: Label, component: Component }[]
+  tabs: Tab[]
   isSmall?: boolean
 }>(), {
   modelValue: 0,
@@ -118,7 +124,10 @@ watch(() => props.tabs, () => nextTick(checkTabsOverflow))
         v-for="(tab, i) in props.tabs"
         :key="i"
         class="min-w-0 flex flex-1 items-center gap-1 px-1 text-center"
-        :class="`${tabButtonActiveClasses(i)} ${tabButtonClasses}`"
+        :class="[
+          `${tabButtonActiveClasses(i)} ${tabButtonClasses}`,
+          tab.highlight ? 'animate-pulse-alt animate-count-infinite' : '',
+        ]"
         @click="select(i)"
       >
         <!-- Si pas assez de place et icône dispo, on montre QUE l'icône -->
