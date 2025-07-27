@@ -33,13 +33,13 @@ export function applyStats(mon: DexShlagemon) {
 }
 
 export function applyCurrentStats(mon: DexShlagemon) {
-  const levelBoost = 1 + (mon.lvl - 1) * 0.02
+  const levelBoost = 1.04 ** (mon.lvl - 1)
 
   const hpBase = Math.floor(mon.baseStats.hp / 5) * 5
-  mon.hp = Math.floor((hpBase + (mon.lvl - 1) * 5) * levelBoost)
-  mon.attack = Math.floor(mon.baseStats.attack + (mon.lvl - 1) * 2)
-  mon.defense = Math.floor(mon.baseStats.defense + (mon.lvl - 1) * 2)
-  mon.smelling = Math.floor(mon.baseStats.smelling + (mon.lvl - 1) * 0.5)
+  mon.hp = Math.floor(hpBase * levelBoost)
+  mon.attack = Math.floor(mon.baseStats.attack * levelBoost)
+  mon.defense = Math.floor(mon.baseStats.defense * levelBoost)
+  mon.smelling = Math.floor(mon.baseStats.smelling * levelBoost)
   mon.hpCurrent = mon.hp
 
   if (mon.base.id === marginal.id)
