@@ -126,7 +126,7 @@ watch(() => props.tabs, () => nextTick(checkTabsOverflow))
         class="min-w-0 flex flex-1 items-center gap-1 px-1 text-center"
         :class="[
           `${tabButtonActiveClasses(i)} ${tabButtonClasses}`,
-          tab.highlight ? 'animate-pulse-alt animate-count-infinite' : '',
+          tab.highlight && active !== i ? 'animate-pulse-alt animate-count-infinite' : '',
         ]"
         @click="select(i)"
       >
