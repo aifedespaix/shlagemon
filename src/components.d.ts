@@ -79,6 +79,7 @@ declare module 'vue' {
     LeafletCenterCurrentZoneButton: typeof import('./components/leaflet/CenterCurrentZoneButton.vue')['default']
     LeafletMap: typeof import('./components/leaflet/map.vue')['default']
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
+    MinigameConnect4: typeof import('./components/minigame/Connect4.vue')['default']
     MinigameMiniGamePuissance4: typeof import('./components/minigame/MiniGamePuissance4.vue')['default']
     MinigameMiniGameShlagMind: typeof import('./components/minigame/MiniGameShlagMind.vue')['default']
     MinigameMiniGameShlagPairs: typeof import('./components/minigame/MiniGameShlagPairs.vue')['default']
