@@ -21,6 +21,6 @@ On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir populair
       value: 67,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default raboloss

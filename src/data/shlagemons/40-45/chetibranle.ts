@@ -19,6 +19,6 @@ On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser, mais 
       value: 48,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default chetibranle

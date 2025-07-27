@@ -12,6 +12,6 @@ export const hypotrompe: BaseShlagemon = {
     base: hyporuisseau,
     condition: { type: 'lvl', value: 92 },
   },
+  speciality: 'evolution0',
 }
-
 export default hypotrompe

@@ -20,6 +20,6 @@ Sa compétence spéciale, *Mythobluff*, embrouille l’adversaire en lui faisant
     },
   },
 
+  speciality: 'evolution0',
 }
-
 export default grosmitoss

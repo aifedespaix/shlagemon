@@ -22,6 +22,6 @@ On raconte que Tatacool collectionne les bouchons de bière et les vieux tickets
     },
   },
 
+  speciality: 'evolution0',
 }
-
 export default tatacool

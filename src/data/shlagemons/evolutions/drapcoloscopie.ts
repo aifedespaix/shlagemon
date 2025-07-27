@@ -7,6 +7,6 @@ export const drapcoloscopie: BaseShlagemon = {
   description: `Forme finale du DrapCon, ce drap géant se prend pour un médecin de l’obscur et fouille tout ce qui passe à sa portée.`,
   descriptionKey: 'data.shlagemons.evolutions.drapcoloscopie.description',
   types: [shlagemonTypes.dragon, shlagemonTypes.vol],
+  speciality: 'evolution2',
 }
-
 export default drapcoloscopie

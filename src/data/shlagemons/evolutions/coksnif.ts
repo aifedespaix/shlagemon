@@ -12,6 +12,6 @@ export const coksnif: BaseShlagemon = {
     base: coxymort,
     condition: { type: 'lvl', value: 90 },
   },
+  speciality: 'evolution1',
 }
-
 export default coksnif

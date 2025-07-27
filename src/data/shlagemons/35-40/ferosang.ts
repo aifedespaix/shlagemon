@@ -21,6 +21,6 @@ Son attaque signature, *Jet Hémato*, projette un arc de sang corrosif et contam
       value: 44,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default ferosang

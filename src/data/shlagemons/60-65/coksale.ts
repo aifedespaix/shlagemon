@@ -12,6 +12,6 @@ export const coksale: BaseShlagemon = {
     base: coksnif,
     condition: { type: 'lvl', value: 75 },
   },
+  speciality: 'evolution0',
 }
-
 export default coksale

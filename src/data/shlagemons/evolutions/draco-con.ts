@@ -15,6 +15,6 @@ Il possède la capacité *Combo Kéké*, qui mélange toutes ses attaques en un 
 On dit que même le Professeur Merdant a arrêté d’essayer de l’étudier : "trop con pour la science", selon ses notes.`,
   descriptionKey: 'data.shlagemons.evolutions.draco-con.description',
   types: [shlagemonTypes.feu, shlagemonTypes.vol],
+  speciality: 'unique',
 }
-
 export default dracoCon

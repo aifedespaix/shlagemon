@@ -12,6 +12,6 @@ export const amonichiasse: BaseShlagemon = {
     base: amonitrace,
     condition: { type: 'lvl', value: 72 },
   },
+  speciality: 'evolution0',
 }
-
 export default amonichiasse

@@ -22,6 +22,6 @@ Il n’évolue plus, car selon la légende : “Quand un chibre atteint la flora
       value: 90,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default orchibre

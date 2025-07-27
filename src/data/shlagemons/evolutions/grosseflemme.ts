@@ -13,6 +13,6 @@ Son visage affiche un mélange de lassitude et d’aigreur, les yeux mi-clos, ce
 On raconte que personne n’a jamais vu Grosseflemme se lever de son canapé, sauf une fois, pour atteindre une télécommande tombée trop loin. Même là, il a préféré lancer une pantoufle plutôt que de faire l’effort de bouger.`,
   descriptionKey: 'data.shlagemons.evolutions.grosseflemme.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
+  speciality: 'evolution2',
 }
-
 export default grosseflemme

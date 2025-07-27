@@ -9,6 +9,6 @@ export const carapouffe: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.carapouffe.description',
   types: [shlagemonTypes.eau],
   evolution: { base: carabifle, condition: { type: 'lvl', value: 16 } },
+  speciality: 'evolution0',
 }
-
 export default carapouffe

@@ -15,6 +15,6 @@ export const goubite: BaseShlagemon = {
       value: 80,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default goubite

@@ -13,6 +13,6 @@ export const strabisme: BaseShlagemon = {
     base: stabiscarosse,
     condition: { type: 'item', value: thunderStone },
   },
+  speciality: 'evolution0',
 }
-
 export default strabisme

@@ -7,6 +7,6 @@ export const pauvreetcon: BaseShlagemon = {
   description: `Pauvreetcon est un amas de polygones bancals issu d’un bug informatique. Il flotte maladroitement en cherchant sa connexion Wi-Fi et affiche de temps en temps un écran bleu en guise de cri.`,
   descriptionKey: 'data.shlagemons.55-60.pauvreetcon.description',
   types: [shlagemonTypes.normal],
+  speciality: 'unique',
 }
-
 export default pauvreetcon

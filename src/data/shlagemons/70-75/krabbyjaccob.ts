@@ -12,6 +12,6 @@ export const krabbyjaccob: BaseShlagemon = {
     base: krabbolosse,
     condition: { type: 'lvl', value: 79 },
   },
+  speciality: 'evolution0',
 }
-
 export default krabbyjaccob

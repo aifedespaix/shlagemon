@@ -7,6 +7,6 @@ export const krabbolosse: BaseShlagemon = {
   description: `Krabbolosse est un crabe massif mais un peu benêt. Il écrase tout sur son passage en bredouillant des prières en vieux dialecte.`,
   descriptionKey: 'data.shlagemons.evolutions.krabbolosse.description',
   types: [shlagemonTypes.eau],
+  speciality: 'evolution1',
 }
-
 export default krabbolosse

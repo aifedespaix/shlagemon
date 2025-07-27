@@ -12,6 +12,6 @@ export const kraputo: BaseShlagemon = {
     base: kaputrak,
     condition: { type: 'lvl', value: 75 },
   },
+  speciality: 'evolution0',
 }
-
 export default kraputo

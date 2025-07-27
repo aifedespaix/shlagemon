@@ -13,6 +13,6 @@ Sa capacité signature, *Stimulation Solitaire*, le soigne légèrement à chaqu
 On le croise rarement en public, sauf dans des commentaires de vidéos floues ou à 3h du matin dans des zones Wi-Fi libres. Il prétend être incompris, mais en vérité, tout le monde le comprend très bien… et c’est ça le problème.`,
   descriptionKey: 'data.shlagemons.evolutions.roux-pignolage.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
+  speciality: 'unique',
 }
-
 export default rouxPignolage

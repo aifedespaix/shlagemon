@@ -19,6 +19,6 @@ Son attaque signature, *Chichon Cosmique*, enveloppe l’arène d’un nuage den
       value: 85,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default psykonaute

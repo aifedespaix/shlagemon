@@ -19,6 +19,6 @@ On raconte qu’il passe plus de temps à “méditer” qu’à se battre. Cert
       value: 59,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default tadsperm

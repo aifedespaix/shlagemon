@@ -21,6 +21,6 @@ Son cri ressemble à *"BLU-PFRT-GAAAAAAAAAAAAH"*, mélange d’effort intestinal
 Chrysachier ne vole pas : il s’élève un peu, puis redescend avec le bruit d’un sac de linge sale. Il est cependant très respecté dans certains cercles underground pour sa capacité à ruiner l’ambiance instantanément.`,
   descriptionKey: 'data.shlagemons.evolutions.chrysachier.description',
   types: [shlagemonTypes.insecte],
+  speciality: 'evolution1',
 }
-
 export default chrysachier

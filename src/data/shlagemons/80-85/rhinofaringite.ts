@@ -12,6 +12,6 @@ export const rhinofaringite: BaseShlagemon = {
     base: rhinoplastie,
     condition: { type: 'lvl', value: 89 },
   },
+  speciality: 'evolution0',
 }
-
 export default rhinofaringite

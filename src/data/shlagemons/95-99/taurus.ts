@@ -7,6 +7,6 @@ export const taurus: BaseShlagemon = {
   description: `Taurus est littéralement un taureau géométrique. Ses angles parfaits le rendent difficile à approcher sans se prendre une arrête dans les côtes.`,
   descriptionKey: 'data.shlagemons.95-99.taurus.description',
   types: [shlagemonTypes.normal],
+  speciality: 'unique',
 }
-
 export default taurus

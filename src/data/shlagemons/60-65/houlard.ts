@@ -12,6 +12,6 @@ export const houlard: BaseShlagemon = {
     base: noctedard,
     condition: { type: 'lvl', value: 80 },
   },
+  speciality: 'evolution0',
 }
-
 export default houlard

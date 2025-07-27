@@ -7,6 +7,6 @@ export const lipposucsion: BaseShlagemon = {
   description: `Après une liposuccion ratée, ce Shlagémon a la peau toute fripée et un tempérament glacial. Il embrasse ses ennemis pour les geler sur place avant de se plaindre de ses kilos en trop.`,
   descriptionKey: 'data.shlagemons.90-95.lipposucsion.description',
   types: [shlagemonTypes.glace, shlagemonTypes.psy],
+  speciality: 'unique',
 }
-
 export default lipposucsion

@@ -12,6 +12,6 @@ export const smongol: BaseShlagemon = {
     base: smongogol,
     condition: { type: 'lvl', value: 88 },
   },
+  speciality: 'evolution0',
 }
-
 export default smongol

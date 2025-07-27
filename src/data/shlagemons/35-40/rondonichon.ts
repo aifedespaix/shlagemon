@@ -22,6 +22,6 @@ Ne pas le caresser. Jamais.`,
       value: 55,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default rondonichon

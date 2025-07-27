@@ -7,6 +7,6 @@ export const tuberculi: BaseShlagemon = {
   description: `Permanemment parcouru d’étincelles maladives, Tuberculi tousse des arcs électriques sur ses adversaires.`,
   descriptionKey: 'data.shlagemons.evolutions.tuberculi.description',
   types: [shlagemonTypes.electrique],
+  speciality: 'evolution1',
 }
-
 export default tuberculi

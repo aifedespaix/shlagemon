@@ -12,6 +12,6 @@ export const glandignon: BaseShlagemon = {
     base: beuleef,
     condition: { type: 'lvl', value: 78 },
   },
+  speciality: 'evolution0',
 }
-
 export default glandignon

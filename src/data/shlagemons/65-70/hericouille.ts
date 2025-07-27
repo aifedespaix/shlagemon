@@ -12,6 +12,6 @@ export const hericouille: BaseShlagemon = {
     base: heriplouf,
     condition: { type: 'lvl', value: 81 },
   },
+  speciality: 'evolution0',
 }
-
 export default hericouille

@@ -12,6 +12,6 @@ export const poissaucisse: BaseShlagemon = {
     base: poissomerguez,
     condition: { type: 'lvl', value: 94 },
   },
+  speciality: 'evolution0',
 }
-
 export default poissaucisse

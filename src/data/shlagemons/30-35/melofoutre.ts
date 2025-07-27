@@ -20,6 +20,6 @@ Mélofoutre ne cherche pas le combat, mais s’y retrouve souvent par accident�
       value: 70,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default melofoutre

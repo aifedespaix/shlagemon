@@ -23,6 +23,6 @@ Son flair est légendaire, mais son hygiène mentale, beaucoup moins.`,
       value: 54,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default cacanus

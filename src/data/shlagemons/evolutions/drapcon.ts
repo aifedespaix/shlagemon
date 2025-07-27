@@ -12,6 +12,6 @@ export const drapcon: BaseShlagemon = {
     base: drapcoloscopie,
     condition: { type: 'lvl', value: 100 },
   },
+  speciality: 'evolution1',
 }
-
 export default drapcon

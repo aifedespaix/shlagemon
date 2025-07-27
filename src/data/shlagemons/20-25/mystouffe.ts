@@ -24,6 +24,6 @@ Sa touffe le protège des coups directs, mais le rend lent et imprévisible. Son
       value: 62,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default mystouffe

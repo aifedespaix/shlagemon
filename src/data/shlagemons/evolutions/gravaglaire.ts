@@ -21,6 +21,6 @@ On dit que plus personne ne veut s’asseoir à côté de lui, même dans les sq
       value: 89,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default gravaglaire

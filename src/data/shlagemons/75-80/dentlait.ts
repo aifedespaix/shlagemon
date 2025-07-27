@@ -14,6 +14,6 @@ export const dentlait: BaseShlagemon = {
     base: hosoltueur,
     condition: { type: 'lvl', value: 83 },
   },
+  speciality: 'evolution0',
 }
-
 export default dentlait

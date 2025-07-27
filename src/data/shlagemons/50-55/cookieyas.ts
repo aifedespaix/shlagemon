@@ -22,6 +22,6 @@ On raconte que Cookieyas ne rêve que d’une chose : qu’on le laisse tranquil
       value: 61,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default cookieyas

@@ -7,6 +7,6 @@ export const electrobeauf: BaseShlagemon = {
   description: `DJ de soirée miteuse, Électrobeauf fait exploser les watts et les tympans à coups de beats ringards. Il se prend pour la star des discothèques de camping.`,
   descriptionKey: 'data.shlagemons.evolutions.electrobeauf.description',
   types: [shlagemonTypes.electrique],
+  speciality: 'evolution1',
 }
-
 export default electrobeauf

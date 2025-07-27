@@ -21,6 +21,6 @@ On dit que Kadavrebras ne dort jamais. Il se contente de bercer ses cadavres en 
       value: 95,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default kadavrebras

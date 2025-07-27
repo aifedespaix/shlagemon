@@ -17,6 +17,6 @@ Iel utilise souvent *Postillonnage Toxique*, une attaque à faible portée mais 
       value: 66,
     },
   },
+  speciality: 'evolution0',
 }
-
 export default nidononbinaireF

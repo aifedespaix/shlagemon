@@ -20,6 +20,6 @@ Iel s’entoure souvent de Nidononbinaire♀ ou d’autres Shlagémons influenç
       value: 88,
     },
   },
+  speciality: 'evolution1',
 }
-
 export default nidoschneck

@@ -11,6 +11,6 @@ Il prend très à cœur son rôle, quitte à interrompre une scène pour recadre
 Son attaque signature, *Grésil du Désespoir*, inflige un bruit statique à l’ennemi pendant 3 tours, tandis que *Silence Plateau !* le fait disparaître temporairement du combat, le temps d’un long plan fixe inutile.`,
   descriptionKey: 'data.shlagemons.evolutions.perchiste.description',
   types: [shlagemonTypes.normal],
+  speciality: 'evolution1',
 }
-
 export default perchiste

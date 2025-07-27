@@ -12,6 +12,6 @@ export const heriplouf: BaseShlagemon = {
     base: heristrash,
     condition: { type: 'lvl', value: 95 },
   },
+  speciality: 'evolution1',
 }
-
 export default heriplouf
