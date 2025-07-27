@@ -29,7 +29,10 @@ export interface BaseShlagemon {
    * Multiple options can be provided.
    */
   evolutions?: ShlagemonEvolution[]
-  speciality?: Speciality
+  /**
+   * Classification of the Shlagémon based on its evolution stage.
+   */
+  speciality: Speciality
 }
 
 export interface DexShlagemon extends Stats {
