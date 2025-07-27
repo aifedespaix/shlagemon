@@ -4,7 +4,7 @@ import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { baseShlagemons } from '~/data/shlagemons'
 import { eggSerializer } from '~/utils/egg-serialize'
-import { pickRandomByCoefficient } from '~/utils/spawn'
+import { pickRandom } from '~/utils/spawn'
 
 export type EggType = TypeName
 
@@ -26,7 +26,7 @@ export const useEggStore = defineStore('egg', () => {
     const candidates = baseShlagemons
       .filter(b => b.types.some(t => t.id === type))
       .filter(b => b.speciality !== 'legendary')
-    const base = pickRandomByCoefficient(candidates)
+    const base = pickRandom(candidates)
     const duration = 60_000
     const startedAt = Date.now()
     const id = startedAt + Math.random()
