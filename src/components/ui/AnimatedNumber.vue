@@ -48,15 +48,17 @@ watch(
 
     const stepTime = Math.max(desiredDuration / steps, MIN_STEP_TIME)
 
-    interval = useIntervalFn(() => {
-      displayValue.value += stepValue
-      if ((sign > 0 && displayValue.value >= target) || (sign < 0 && displayValue.value <= target)) {
-        displayValue.value = target
-        interval!.pause()
-        pulsing.value = true
-        stopPulse()
-      }
-    }, stepTime, { immediate: true })
+    if (!process.env.VITEST) {
+      interval = useIntervalFn(() => {
+        displayValue.value += stepValue
+        if ((sign > 0 && displayValue.value >= target) || (sign < 0 && displayValue.value <= target)) {
+          displayValue.value = target
+          interval!.pause()
+          pulsing.value = true
+          stopPulse()
+        }
+      }, stepTime, { immediate: true })
+    }
   },
   { immediate: true },
 )

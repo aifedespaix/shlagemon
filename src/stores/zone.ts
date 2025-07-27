@@ -1,6 +1,7 @@
 import type { Trainer } from '~/type/trainer'
 import type { SavageZoneId, Zone, ZoneId } from '~/type/zone'
 import { defineStore } from 'pinia'
+/* eslint-disable node/prefer-global/process */
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
 
@@ -10,8 +11,9 @@ export const useZoneStore = defineStore('zone', () => {
   const currentId = ref<ZoneId>(zones.value[0].id)
   const currentZoneId = computed(() => currentId.value)
   const selectedAt = ref<number>(Date.now())
-  const arena = useArenaStore()
-  const now = useNow({ interval: 100 })
+  const now = process.env.VITEST
+    ? ref(new Date())
+    : useNow({ interval: 100 })
   const current = computed(() => {
     const zone = zones.value.find(z => z.id === currentId.value)
     return zone ?? zones.value[0]
@@ -58,15 +60,13 @@ export const useZoneStore = defineStore('zone', () => {
   })
 
   function setZone(id: ZoneId) {
-    if (arena.inBattle)
-      return
     if (zones.value.some(z => z.id === id)) {
       const same = currentId.value === id
       currentId.value = id
       selectedAt.value = Date.now()
       const dex = useShlagedexStore()
       if (dex.activeShlagemon && !same)
-        dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
+        dex.updateCoefficient(dex.activeShlagemon, undefined, true, true)
       const visit = useZoneVisitStore()
       visit.markVisited(id)
     }

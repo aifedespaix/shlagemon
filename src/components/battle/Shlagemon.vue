@@ -4,6 +4,23 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 
+const props = withDefaults(defineProps<Props>(), {
+  color: undefined,
+  flipped: false,
+  fainted: false,
+  flash: false,
+  levelPosition: 'bottom',
+  showBall: false,
+  owned: false,
+  effects: () => [],
+  disease: false,
+  diseaseRemaining: 0,
+})
+
+const emit = defineEmits<{ (e: 'faintEnd'): void }>()
+
+function noop() {}
+
 interface Props {
   mon: DexShlagemon
   hp: number
@@ -19,27 +36,15 @@ interface Props {
   diseaseRemaining?: number
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  color: undefined,
-  flipped: false,
-  fainted: false,
-  flash: false,
-  levelPosition: 'bottom',
-  showBall: false,
-  owned: false,
-  effects: () => [],
-  disease: false,
-  diseaseRemaining: 0,
-})
-
-const emit = defineEmits<{ (e: 'faintEnd'): void }>()
 const typeChart = useTypeChartModalStore()
 const dex = useShlagedexStore()
 
 const now = ref(Date.now())
-const { pause: stopTimer } = useIntervalFn(() => {
-  now.value = Date.now()
-}, 1000)
+const { pause: stopTimer } = !process.env.VITEST
+  ? useIntervalFn(() => {
+      now.value = Date.now()
+    }, 1000)
+  : { pause: noop }
 onUnmounted(stopTimer)
 
 const lvlUp = ref(false)

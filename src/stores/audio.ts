@@ -1,6 +1,7 @@
 import type { AudioSettings } from '~/type'
 import { Howl } from 'howler'
 import { defineStore, skipHydrate } from 'pinia'
+/* eslint-disable node/prefer-global/process */
 
 export const useAudioStore = defineStore('audio', () => {
   const settings = reactive<AudioSettings>({
@@ -55,7 +56,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function createMusic(src: string) {
-    if (import.meta.env.VITEST) {
+    if (process.env.VITEST) {
       const stub = {
         _src: src,
         play: () => {},
@@ -84,7 +85,7 @@ export const useAudioStore = defineStore('audio', () => {
     // Vite auto import path public
     track = track.replace('/public', '')
     currentMusic.value = createMusic(track)
-    if (!import.meta.env.VITEST && isMusicEnabled.value)
+    if (!process.env.VITEST && isMusicEnabled.value)
       currentMusic.value.play()
   }
 
@@ -113,7 +114,7 @@ export const useAudioStore = defineStore('audio', () => {
     const old = currentMusic.value
     const next = createMusic(track)
 
-    if (import.meta.env.VITEST) {
+    if (process.env.VITEST) {
       old.stop()
       old.unload()
       currentMusic.value = next
@@ -162,7 +163,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function playSfx(effect: string) {
-    if (import.meta.env.VITEST || !isSfxEnabled.value)
+    if (process.env.VITEST || !isSfxEnabled.value)
       return
     const sfx = new Howl({
       src: [effect],

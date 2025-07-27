@@ -46,12 +46,22 @@ function attempt(step: number) {
   if (!props.enemy)
     return
   const success = tryCapture(props.enemy, captureBall.value)
-  if (success)
-    useTimeoutFn(() => finish(true), 500)
-  else if (step >= 3)
-    useTimeoutFn(() => finish(false), 500)
-  else
-    useTimeoutFn(() => attempt(step + 1), 700)
+  if (process.env.VITEST) {
+    if (success)
+      finish(true)
+    else if (step >= 3)
+      finish(false)
+    else
+      attempt(step + 1)
+  }
+  else {
+    if (success)
+      useTimeoutFn(() => finish(true), 500)
+    else if (step >= 3)
+      useTimeoutFn(() => finish(false), 500)
+    else
+      useTimeoutFn(() => attempt(step + 1), 700)
+  }
 }
 
 function open() {
@@ -69,7 +79,10 @@ function open() {
   showCapture.value = true
   shake.value = 0
   audio.playSfx('/audio/sfx/capture-start.ogg')
-  useTimeoutFn(() => attempt(1), 500)
+  if (process.env.VITEST)
+    attempt(1)
+  else
+    useTimeoutFn(() => attempt(1), 500)
 }
 
 function finish(success: boolean) {
@@ -81,7 +94,10 @@ function finish(success: boolean) {
   emit('finished', success)
   if (success) {
     captureCooldown.value = true
-    useTimeoutFn(() => (captureCooldown.value = false), 1000)
+    if (process.env.VITEST)
+      captureCooldown.value = false
+    else
+      useTimeoutFn(() => (captureCooldown.value = false), 1000)
   }
 }
 

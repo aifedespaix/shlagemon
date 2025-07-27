@@ -3,6 +3,7 @@ import type { ActiveEffect } from '~/type/effect'
 import type { Item, WearableItem } from '~/type/item'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
+/* eslint-disable node/prefer-global/process */
 import { toast } from 'vue3-toastify'
 import { allItems } from '~/data/items/items'
 import { allShlagemons } from '~/data/shlagemons'
@@ -28,7 +29,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   cleanupEffects()
   watchEffect(cleanupEffects)
   // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
-  useIntervalFn(cleanupEffects, 1000)
+  if (!process.env.VITEST)
+    useIntervalFn(cleanupEffects, 1000)
 
   function rarityToastMessage(name: string, rarityGain: number, levelLoss: number) {
     const point = rarityGain > 1 ? 'points' : 'point'
@@ -668,6 +670,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     effects,
     evolveWithItem,
     removeEffect,
+    updateCoefficient,
   }
 }, {
   persist: {

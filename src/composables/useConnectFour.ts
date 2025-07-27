@@ -123,6 +123,26 @@ function minimax(board: Cell[], depth: number, maximizing: boolean, alpha: numbe
 
 export function bestColumn(board: Cell[], depth = 4): number {
   const valid = getValidColumns(board, true)
+
+  // check for immediate winning move
+  for (const col of valid) {
+    const copy = [...board]
+    drop(copy, col, 'ai')
+    if (checkWin(copy, 'ai'))
+      return col
+  }
+
+  // block player's winning move
+  const block: number[] = []
+  for (const col of valid) {
+    const copy = [...board]
+    drop(copy, col, 'player')
+    if (checkWin(copy, 'player'))
+      block.push(col)
+  }
+  if (block.length)
+    return block[Math.floor(Math.random() * block.length)]
+
   let bestScore = -Infinity
   let best: number[] = []
   for (const col of valid) {

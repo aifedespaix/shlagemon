@@ -15,7 +15,8 @@ const now = ref(Date.now())
 function tick() {
   now.value = Date.now()
 }
-useIntervalFn(tick, 1000)
+if (!process.env.VITEST)
+  useIntervalFn(tick, 1000)
 
 const colorMap: Record<EggType, string> = {
   feu: 'text-orange-500 dark:text-orange-400',

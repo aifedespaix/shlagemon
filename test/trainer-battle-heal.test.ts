@@ -52,7 +52,7 @@ describe('trainer battle healing', () => {
     const hpBefore = player.hpCurrent
     const xpBefore = player.xp
     await wrapper.vm.onEnd('win')
-    const expected = hpBefore + Math.round((player.hp - hpBefore) * 0.15)
+    const expected = hpBefore + Math.round((player.hp - hpBefore) * trainerStore.winHealPercent / 100)
     expect(player.hpCurrent).toBe(expected)
     expect(player.xp).toBe(xpBefore)
   })

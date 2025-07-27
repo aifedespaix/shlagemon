@@ -1,6 +1,7 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { computeDamage } from '~/utils/combat'
+/* eslint-disable node/prefer-global/process */
 
 export interface AttackResult {
   damage: number
@@ -17,7 +18,8 @@ export const useBattleStore = defineStore('battle', () => {
 
   function startLoop(handler: () => void, delay = 1000) {
     stopLoop()
-    loop = useIntervalFn(handler, delay)
+    if (!process.env.VITEST)
+      loop = useIntervalFn(handler, delay)
   }
 
   function stopLoop() {
