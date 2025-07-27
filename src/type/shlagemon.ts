@@ -4,6 +4,13 @@ import type { Stats } from './stats'
 
 export type Sex = 'male' | 'female'
 
+export type Speciality
+  = 'legendary'
+    | 'unique'
+    | 'evolution0'
+    | 'evolution1'
+    | 'evolution2'
+
 export interface BaseShlagemon {
   id: string
   name: string
@@ -22,7 +29,7 @@ export interface BaseShlagemon {
    * Multiple options can be provided.
    */
   evolutions?: ShlagemonEvolution[]
-  legendary?: boolean
+  speciality?: Speciality
 }
 
 export interface DexShlagemon extends Stats {

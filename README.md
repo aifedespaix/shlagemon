@@ -68,7 +68,7 @@ Depuis le jeu, rendez-vous au village **Sux-Mais-Bouls** et cliquez sur « Mini-
 
 ### Générer le fichier d'évolutions
 
-Ce script parcourt les données de chaque Shlagémon pour générer un tableau ordonné par niveau. Le fichier `evolutions.csv` liste pour chacun la tranche de niveau où on le rencontre ainsi que le niveau d'évolution le cas échéant.
+Ce script parcourt les données de chaque Shlagémon pour générer un tableau ordonné par niveau. Le fichier `evolutions.csv` indique la tranche de niveau à laquelle on rencontre chaque monstre et, s'il existe, son niveau d'évolution.
 
 ```bash
 pnpm evolutions:csv

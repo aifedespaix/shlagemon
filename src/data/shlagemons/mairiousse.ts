@@ -14,7 +14,7 @@ On dit que Mairiousse n’aboie pas : il fait des discours interminables qui end
   descriptionKey: 'data.shlagemons.mairiousse.description',
 
   types: [shlagemonTypes.sol, shlagemonTypes.eau],
-  legendary: true,
+  speciality: 'legendary',
 }
 
 export default mairiousse

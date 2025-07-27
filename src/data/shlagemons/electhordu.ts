@@ -16,7 +16,7 @@ Aujourd’hui, il erre, tordu du bec au voltage, parlant seul dans les fils éle
   descriptionKey: 'data.shlagemons.electhordu.description',
 
   types: [shlagemonTypes.electrique, shlagemonTypes.vol],
-  legendary: true,
+  speciality: 'legendary',
 }
 
 export default electhordu
