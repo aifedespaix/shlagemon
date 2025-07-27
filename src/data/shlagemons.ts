@@ -1,21 +1,26 @@
 import type { BaseShlagemon, Speciality } from '~/type'
 
-export const modules = import.meta.glob<{ default: BaseShlagemon }>('./shlagemons/**/*.ts', { eager: true })
+interface RawShlagemon extends Omit<BaseShlagemon, 'speciality'> {
+  speciality?: Speciality
+  /** Temporary property for backwards compatibility */
+  legendary?: boolean
+}
+export const modules = import.meta.glob<{ default: RawShlagemon }>('./shlagemons/**/*.ts', { eager: true })
 
 export const allShlagemons: BaseShlagemon[] = Object.entries(modules)
   .filter(([path]) => !path.endsWith('index.ts'))
   .map(([path, m]) => {
-    const base = m.default
-    if ((base as any).legendary) {
-      ;(base as any).speciality = 'legendary'
-      delete (base as any).legendary
+    const raw = m.default
+    if (raw.legendary) {
+      raw.speciality = 'legendary'
+      delete raw.legendary
     }
     const rel = path
       .replace('./shlagemons/', '')
       .replace(/\.ts$/, '')
     const key = rel.replace(/\//g, '.')
-    base.descriptionKey = `data.shlagemons.${key}.description`
-    return base
+    raw.descriptionKey = `data.shlagemons.${key}.description`
+    return raw as BaseShlagemon
   })
 
 const evolvedIds = new Set<string>()

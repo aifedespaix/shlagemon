@@ -36,7 +36,7 @@ export function applyStats(mon: DexShlagemon) {
 export function applyCurrentStats(mon: DexShlagemon) {
   const levelBoost = 1.04 ** (mon.lvl - 1)
   const specialityBoost = 1
-    + (specialityBonus[mon.base.speciality ?? 'evolution0'] || 0) / 100
+    + (specialityBonus[mon.base.speciality] || 0) / 100
 
   const hpBase = Math.floor(mon.baseStats.hp / 5) * 5
   mon.hp = Math.floor(hpBase * levelBoost)
