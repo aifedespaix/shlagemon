@@ -1,0 +1,32 @@
+fr:
+  steps:
+    step1:
+      text: Bienvenue dans ton inventaire ! Tu y retrouveras tous les objets que tu ramasses.
+      responses:
+        next: Continuer
+    step2:
+      text: Les objets sont classés par catégorie dans différents onglets. Navigue entre eux pour tout voir.
+      responses:
+        back: Retour
+        next: Suite
+    step3:
+      text: N'hésite pas à utiliser les objets pour découvrir leur effet. Certains s'utilisent, d'autres s'équipent.
+      responses:
+        back: Retour
+        valid: J'ai compris !
+en:
+  steps:
+    step1:
+      text: Welcome to your inventory! Here you will find every item you pick up.
+      responses:
+        next: Continue
+    step2:
+      text: Items are sorted by category across multiple tabs. Switch between them to browse everything.
+      responses:
+        back: Back
+        next: Next
+    step3:
+      text: Feel free to try items to see what they do. Some are consumable while others can be equipped.
+      responses:
+        back: Back
+        valid: Got it!
