@@ -121,7 +121,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tiny-scrollbar relative h-full flex flex-col items-center overflow-auto">
+  <div class="tiny-scrollbar relative h-full w-full flex flex-col items-center overflow-auto">
     <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-2">
       <button
         v-for="(enemy, i) in enemyTeam"

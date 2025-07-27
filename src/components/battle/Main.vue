@@ -131,7 +131,7 @@ function onCapture() {
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-1 overflow-auto p-1">
+  <div class="relative w-full flex flex-col gap-1 overflow-auto p-1">
     <BattleFightKingButton />
     <div class="absolute left-0 top-0 flex items-center gap-2">
       <UiTooltip :text="captureTooltip">

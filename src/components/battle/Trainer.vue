@@ -180,7 +180,7 @@ onUnmounted(featureLock.unlockAll)
 </script>
 
 <template>
-  <div class="relative flex flex-col gap-1 overflow-auto p-1">
+  <div class="relative w-full flex flex-col gap-1 overflow-auto p-1">
     <div v-if="stage === 'before'" class="h-full flex flex-col items-center gap-2 text-center">
       <template v-if="isZoneKing">
         <div class="font-bold capitalize">

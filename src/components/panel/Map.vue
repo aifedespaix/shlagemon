@@ -22,7 +22,7 @@ watch(currentZoneId, (id) => {
 </script>
 
 <template>
-  <div class="relative flex-1 overflow-hidden">
+  <div class="relative w-full flex-1 overflow-hidden">
     <ZonePrevButton class="h-12 w-12" />
     <ZoneNextButton class="h-12 w-12" />
     <div v-if="zone.wildCooldownRemaining > 0" class="absolute bottom-0 left-4 right-4 z-200">

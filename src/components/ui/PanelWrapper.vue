@@ -101,7 +101,7 @@ function clickPrevented(e: MouseEvent) {
       @leave="leave"
       @after-leave="afterLeave"
     >
-      <div v-show="opened" class="flex flex-1 flex-col" :class="contentClasses">
+      <div v-show="opened" class="flex flex-1 flex-col items-center" :class="contentClasses">
         <slot />
       </div>
     </Transition>
