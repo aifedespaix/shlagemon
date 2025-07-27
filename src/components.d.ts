@@ -46,6 +46,7 @@ declare module 'vue' {
     DialogKingUnlockDialog: typeof import('./components/dialog/KingUnlockDialog.vue')['default']
     DialogLevel5Dialog: typeof import('./components/dialog/Level5Dialog.vue')['default']
     DialogNewZoneDialog: typeof import('./components/dialog/NewZoneDialog.vue')['default']
+    DialogPotionInfoDialog: typeof import('./components/dialog/PotionInfoDialog.vue')['default']
     DialogStarter: typeof import('./components/dialog/Starter.vue')['default']
     DialogWearableItemDialog: typeof import('./components/dialog/WearableItemDialog.vue')['default']
     EggBoxModal: typeof import('./components/egg/BoxModal.vue')['default']
