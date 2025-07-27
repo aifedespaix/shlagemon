@@ -463,6 +463,37 @@ components:
           text: Équipe-le sur le Shlagémon de ton choix.
         step6:
           text: Bonne chance pour la suite !
+    InventoryIntroDialog:
+      steps:
+        step1:
+          text: >-
+            Bienvenue dans ton inventaire ! Tu y retrouveras tous les objets que
+            tu ramasses.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Les objets sont classés par catégorie dans différents onglets.
+            Navigue entre eux pour tout voir.
+          responses:
+            back: Retour
+            next: Suite
+        step3:
+          text: >-
+            N'hésite pas à utiliser les objets pour découvrir leur effet.
+            Certains s'utilisent, d'autres s'équipent.
+          responses:
+            back: Retour
+            valid: J'ai compris !
+    PotionInfoDialog:
+      steps:
+        step1:
+          text: >-
+            Les effets de cette potion durent 10 minutes et s'appliquent à toute
+            ton équipe. Elles sont compatibles avec les objets portés et très
+            utiles lors des combats contre les dresseurs.
+          responses:
+            valid: Merci Professeur !
   minigame:
     MiniGameShlagMind:
       messages:

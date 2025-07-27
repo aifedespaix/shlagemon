@@ -442,6 +442,36 @@ components:
           text: Equip it on the Shlagemon of your choice.
         step6:
           text: Good luck from here on!
+    InventoryIntroDialog:
+      steps:
+        step1:
+          text: >-
+            Welcome to your inventory! Here you will find every item you pick
+            up.
+          responses:
+            next: Continue
+        step2:
+          text: >-
+            Items are sorted by category across multiple tabs. Switch between
+            them to browse everything.
+          responses:
+            back: Back
+            next: Next
+        step3:
+          text: >-
+            Feel free to try items to see what they do. Some are consumable
+            while others can be equipped.
+          responses:
+            back: Back
+            valid: Got it!
+    PotionInfoDialog:
+      steps:
+        step1:
+          text: >-
+            These potions last for 10 minutes and affect your whole team. They
+            work with equipped items and are very useful in trainer battles.
+          responses:
+            valid: Thanks Professor!
   minigame:
     MiniGameShlagMind:
       messages:
