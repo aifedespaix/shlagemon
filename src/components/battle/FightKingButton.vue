@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { SavageZoneId } from '~/type/zone'
+
 const panel = useMainPanelStore()
 const trainerBattle = useTrainerBattleStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 
-const currentKing = computed(() => zone.getKing(zone.current.id))
+const currentKing = computed(() => zone.getKing(zone.current.id as SavageZoneId))
 const kingLabel = computed(() =>
   currentKing.value?.character.gender === 'female' ? 'la reine' : 'le roi',
 )

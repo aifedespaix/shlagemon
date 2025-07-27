@@ -1,5 +1,3 @@
-import type { Stoppable } from '@vueuse/shared'
-
 export interface ActiveEffect {
   id: number
   type: 'attack' | 'defense' | 'xp' | 'vitality' | 'capture'
@@ -9,5 +7,5 @@ export interface ActiveEffect {
   expiresAt: number
   /** @deprecated No longer used, kept for save compatibility */
   amount?: number
-  timeout?: Stoppable<[]>
+  timeout?: any
 }

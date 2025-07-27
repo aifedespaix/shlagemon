@@ -34,7 +34,7 @@ interface StoredDex extends Omit<SerializedDex, 'shlagemons' | 'activeShlagemon'
   activeShlagemon: StoredDexMon | null
 }
 
-export const shlagedexSerializer: Serializer<SerializedDex> = {
+export const shlagedexSerializer = {
   serialize(data: SerializedDex): string {
     return JSON.stringify({
       ...data,
@@ -144,4 +144,4 @@ export const shlagedexSerializer: Serializer<SerializedDex> = {
       effects,
     }
   },
-}
+} as unknown as Serializer
