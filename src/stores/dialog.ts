@@ -56,7 +56,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const visit = useZoneVisitStore()
   const inventory = useInventoryStore()
   const box = useEggBoxStore()
-  const ui = useUIStore()
+  const ui: ReturnType<typeof useUIStore> = useUIStore()
   const mobile = useMobileTabStore()
   const potionInfo = usePotionInfoStore()
 
