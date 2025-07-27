@@ -21,7 +21,7 @@ const solution = ref<string[]>([])
 const attempts = ref<string[][]>([])
 const feedback = ref<('green' | 'yellow' | 'gray')[][]>([])
 const guess = ref<(string | null)[]>(
-  Array.from({ length: comboLength }).fill(null),
+  Array.from({ length: comboLength }).fill(null) as (string | null)[],
 )
 const selected = ref<number | null>(null)
 const showPicker = ref(false)
@@ -42,10 +42,10 @@ function openPicker(i: number) {
 function initGame() {
   solution.value = Array.from({ length: comboLength }, () => {
     return palette[Math.floor(Math.random() * palette.length)].id
-  })
+  }) as (string | null)[]
   attempts.value = []
   feedback.value = []
-  guess.value = Array.from({ length: comboLength }).fill(null)
+  guess.value = Array.from({ length: comboLength }).fill(null) as (string | null)[]
   selected.value = null
   showPicker.value = false
   showConfetti.value = false
@@ -115,7 +115,7 @@ function validate() {
     const list = messages.value
     const idx = Math.floor(Math.random() * list.length)
     message.value = t(`components.minigame.MiniGameShlagMind.messages[${idx}]`)
-    guess.value = Array.from({ length: comboLength }).fill(null)
+    guess.value = Array.from({ length: comboLength }).fill(null) as (string | null)[]
   }
 }
 
