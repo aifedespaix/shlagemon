@@ -11,6 +11,7 @@ import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
+import PotionInfoDialog from '~/components/dialog/PotionInfoDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import WearableItemDialog from '~/components/dialog/WearableItemDialog.vue'
 import {
@@ -52,6 +53,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const visit = useZoneVisitStore()
   const inventory = useInventoryStore()
   const box = useEggBoxStore()
+  const potionInfo = usePotionInfoStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -161,6 +163,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'capturePotion',
       component: markRaw(CapturePotionDialog),
       condition: () => dex.highestLevel >= 50,
+    },
+    {
+      id: 'potionInfo',
+      component: markRaw(PotionInfoDialog),
+      condition: () => potionInfo.pending,
     },
     {
       id: 'kingUnlock',

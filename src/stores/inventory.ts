@@ -153,8 +153,11 @@ export const useInventoryStore = defineStore('inventory', () => {
         ? () => typeHandlers[item.type!](item.power || 0)
         : undefined)
     const result = handler ? handler() : false
-    if (result)
+    if (result) {
       itemUsage.markUsed(id)
+      if (['defense', 'attack', 'vitality', 'xp', 'capture'].includes(item.type ?? ''))
+        usePotionInfoStore().trigger()
+    }
     return result
   }
 

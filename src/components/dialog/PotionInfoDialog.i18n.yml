@@ -1,0 +1,12 @@
+fr:
+  steps:
+    step1:
+      text: Les effets de cette potion durent 10 minutes et s'appliquent à toute ton équipe. Elles sont compatibles avec les objets portés et très utiles lors des combats contre les dresseurs.
+      responses:
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: These potions last for 10 minutes and affect your whole team. They work with equipped items and are very useful in trainer battles.
+      responses:
+        valid: Thanks Professor!
