@@ -10,6 +10,7 @@ declare global {
   const CENTER_CELLS: typeof import('./composables/useTicTacToe')['CENTER_CELLS']
   const COLS: typeof import('./composables/useConnectFour')['COLS']
   const EffectScope: typeof import('vue')['EffectScope']
+  const HIDDEN_COLS: typeof import('./composables/useConnectFour')['HIDDEN_COLS']
   const ROWS: typeof import('./composables/useConnectFour')['ROWS']
   const SIZE: typeof import('./composables/useTicTacToe')['SIZE']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -285,6 +286,7 @@ declare global {
   const usePointer: typeof import('@vueuse/core')['usePointer']
   const usePointerLock: typeof import('@vueuse/core')['usePointerLock']
   const usePointerSwipe: typeof import('@vueuse/core')['usePointerSwipe']
+  const usePotionInfoStore: typeof import('./stores/potionInfo')['usePotionInfoStore']
   const usePreferredColorScheme: typeof import('@vueuse/core')['usePreferredColorScheme']
   const usePreferredContrast: typeof import('@vueuse/core')['usePreferredContrast']
   const usePreferredDark: typeof import('@vueuse/core')['usePreferredDark']
@@ -452,6 +454,7 @@ declare module 'vue' {
     readonly CENTER_CELLS: UnwrapRef<typeof import('./composables/useTicTacToe')['CENTER_CELLS']>
     readonly COLS: UnwrapRef<typeof import('./composables/useConnectFour')['COLS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly HIDDEN_COLS: UnwrapRef<typeof import('./composables/useConnectFour')['HIDDEN_COLS']>
     readonly ROWS: UnwrapRef<typeof import('./composables/useConnectFour')['ROWS']>
     readonly SIZE: UnwrapRef<typeof import('./composables/useTicTacToe')['SIZE']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -720,6 +723,7 @@ declare module 'vue' {
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>
     readonly usePointerLock: UnwrapRef<typeof import('@vueuse/core')['usePointerLock']>
     readonly usePointerSwipe: UnwrapRef<typeof import('@vueuse/core')['usePointerSwipe']>
+    readonly usePotionInfoStore: UnwrapRef<typeof import('./stores/potionInfo')['usePotionInfoStore']>
     readonly usePreferredColorScheme: UnwrapRef<typeof import('@vueuse/core')['usePreferredColorScheme']>
     readonly usePreferredContrast: UnwrapRef<typeof import('@vueuse/core')['usePreferredContrast']>
     readonly usePreferredDark: UnwrapRef<typeof import('@vueuse/core')['usePreferredDark']>

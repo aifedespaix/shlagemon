@@ -36,22 +36,14 @@ const dialogTree = computed<DialogNode[]>(() => [
     text: t('components.dialog.KingUnlockDialog.steps.step4.text'),
     responses: [
       { label: t('components.dialog.KingUnlockDialog.steps.step4.responses.back'), nextId: 'step3', type: 'danger' },
-      { label: t('components.dialog.KingUnlockDialog.steps.step4.responses.next'), nextId: 'step5', type: 'primary' },
-    ],
-  },
-  {
-    id: 'step5',
-    text: t('components.dialog.KingUnlockDialog.steps.step5.text'),
-    responses: [
-      { label: t('components.dialog.KingUnlockDialog.steps.step5.responses.back'), nextId: 'step4', type: 'danger' },
-      { label: t('components.dialog.KingUnlockDialog.steps.step5.responses.next'), nextId: 'step6', type: 'primary' },
+      { label: t('components.dialog.KingUnlockDialog.steps.step4.responses.next'), nextId: 'step6', type: 'primary' },
     ],
   },
   {
     id: 'step6',
     text: t('components.dialog.KingUnlockDialog.steps.step6.text'),
     responses: [
-      { label: t('components.dialog.KingUnlockDialog.steps.step6.responses.back'), nextId: 'step5', type: 'danger' },
+      { label: t('components.dialog.KingUnlockDialog.steps.step6.responses.back'), nextId: 'step4', type: 'danger' },
       {
         label: t('components.dialog.KingUnlockDialog.steps.step6.responses.valid'),
         type: 'valid',

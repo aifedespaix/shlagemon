@@ -8,9 +8,11 @@ import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
+import InventoryIntroDialog from '~/components/dialog/InventoryIntroDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
+import PotionInfoDialog from '~/components/dialog/PotionInfoDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import WearableItemDialog from '~/components/dialog/WearableItemDialog.vue'
 import {
@@ -29,6 +31,8 @@ import {
   vitalityRing,
 } from '~/data/items/wearables/vitalityRing'
 import { advancedXpRing, xpAmulet, xpRing } from '~/data/items/wearables/xpRing'
+import { useMobileTabStore } from '~/stores/mobileTab'
+import { useUIStore } from '~/stores/ui'
 
 interface DialogItem {
   id: string
@@ -52,6 +56,9 @@ export const useDialogStore = defineStore('dialog', () => {
   const visit = useZoneVisitStore()
   const inventory = useInventoryStore()
   const box = useEggBoxStore()
+  const ui = useUIStore()
+  const mobile = useMobileTabStore()
+  const potionInfo = usePotionInfoStore()
 
   const done = ref<DialogDone>({})
   const dialogs: DialogItem[] = [
@@ -59,6 +66,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'starter',
       component: markRaw(DialogStarter),
       condition: () => !gameState.hasPokemon,
+    },
+    {
+      id: 'inventoryIntro',
+      component: markRaw(InventoryIntroDialog),
+      condition: () => ui.isMobile.value && mobile.current === 'inventory',
     },
     {
       id: 'richReward',
@@ -161,6 +173,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'capturePotion',
       component: markRaw(CapturePotionDialog),
       condition: () => dex.highestLevel >= 50,
+    },
+    {
+      id: 'potionInfo',
+      component: markRaw(PotionInfoDialog),
+      condition: () => potionInfo.pending,
     },
     {
       id: 'kingUnlock',

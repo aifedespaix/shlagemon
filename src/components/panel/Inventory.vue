@@ -70,6 +70,11 @@ const tabs = computed(() =>
   categories.value.map(cat => ({
     label: cat.label,
     component: getTabComponent(cat.value),
+    highlight: inventory.list.some((entry) => {
+      if (cat.value !== 'all' && entry.item.category !== cat.value)
+        return false
+      return !usage.used[entry.item.id]
+    }),
   })),
 )
 

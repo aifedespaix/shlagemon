@@ -19,11 +19,6 @@ fr:
       responses:
         back: Retour
         next: Continuer
-    step5:
-      text: Attention, son effet dure 10 minutes et ne fonctionne qu'une seule fois, quel que soit ton Shlagémon actif.
-      responses:
-        back: Retour
-        next: Continuer
     step6:
       text: Bonne chance pour le combat contre les différent(e)s reines et rois !
       responses:
@@ -47,11 +42,6 @@ en:
         next: Continue
     step4:
       text: I give you a Defense Potion. Use it from your inventory to boost your whole team.
-      responses:
-        back: Back
-        next: Continue
-    step5:
-      text: Its effect lasts 10 minutes and works only once, whatever your active Shlagemon.
       responses:
         back: Back
         next: Continue
