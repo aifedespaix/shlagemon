@@ -103,7 +103,8 @@ function validate() {
   }
   else {
     const list = messages.value
-    message.value = list[Math.floor(Math.random() * list.length)]
+    const idx = Math.floor(Math.random() * list.length)
+    message.value = t(`components.minigame.MiniGameShlagMind.messages[${idx}]`)
     guess.value = Array.from({ length: comboLength }).fill(null)
   }
 }
