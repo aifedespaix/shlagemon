@@ -16,7 +16,7 @@ export const useEggMonsModalStore = defineStore('eggMonsModal', () => {
       return []
     return baseShlagemons
       .filter(b => b.types.some(t => t.id === type.value))
-      .filter(b => !b.legendary)
+      .filter(b => b.speciality !== 'legendary')
   })
 
   function open(id: EggItemId, eggItem: Item) {

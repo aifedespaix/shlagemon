@@ -1,5 +1,6 @@
 import type { Stats } from '~/type'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
+import { specialityBonus } from '~/constants/speciality'
 import marginal from '~/data/shlagemons/50-55/marginal'
 
 export const baseStats: Stats = {
@@ -34,11 +35,13 @@ export function applyStats(mon: DexShlagemon) {
 
 export function applyCurrentStats(mon: DexShlagemon) {
   const levelBoost = 1.04 ** (mon.lvl - 1)
+  const specialityBoost = 1
+    + (specialityBonus[mon.base.speciality ?? 'evolution0'] || 0) / 100
 
   const hpBase = Math.floor(mon.baseStats.hp / 5) * 5
   mon.hp = Math.floor(hpBase * levelBoost)
-  mon.attack = Math.floor(mon.baseStats.attack * levelBoost)
-  mon.defense = Math.floor(mon.baseStats.defense * levelBoost)
+  mon.attack = Math.floor(mon.baseStats.attack * levelBoost * specialityBoost)
+  mon.defense = Math.floor(mon.baseStats.defense * levelBoost * specialityBoost)
   mon.smelling = Math.floor(mon.baseStats.smelling * levelBoost)
   mon.hpCurrent = mon.hp
 
