@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconShlagidiamond from '~/components/icon/shlagidiamond.vue'
+import IconShlagidiamond from '~/components/icon/Shlagidiamond.vue'
 import IconShlagidolar from '~/components/icon/Shlagidolar.vue'
 import AnimatedNumber from '~/components/ui/AnimatedNumber.vue'
 

@@ -1,4 +1,4 @@
-import type { Zone } from '~/type'
+import type { SavageZoneId, Zone } from '~/type'
 import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
@@ -31,7 +31,7 @@ export const village100: Zone = {
   type: 'village',
   villageType: 'hyper',
   position: move.right(savage95.position, VILLAGE_OFFSET),
-  attachedTo: savage95.id,
+  attachedTo: savage95.id as SavageZoneId,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],

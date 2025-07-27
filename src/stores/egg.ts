@@ -62,7 +62,7 @@ export const useEggStore = defineStore('egg', () => {
   return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, reset }
 }, {
   persist: {
-    paths: ['incubator'],
+    pick: ['incubator'],
     serializer: eggSerializer,
     afterHydrate(ctx) {
       const store = ctx.store as ReturnType<typeof useEggStore>

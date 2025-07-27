@@ -10,8 +10,8 @@ interface StoredEgg {
   hatchesAt: number
 }
 
-export const eggSerializer: Serializer<{ incubator: Egg[] }> = {
-  serialize(data) {
+export const eggSerializer = {
+  serialize(data: { incubator: Egg[] }): string {
     const eggs = data.incubator || []
     const list: StoredEgg[] = eggs.map(e => ({
       id: e.id,
@@ -22,7 +22,7 @@ export const eggSerializer: Serializer<{ incubator: Egg[] }> = {
     }))
     return JSON.stringify(list)
   },
-  deserialize(raw) {
+  deserialize(raw: string): { incubator: Egg[] } {
     if (!raw)
       return { incubator: [] }
     const list = JSON.parse(raw) as StoredEgg[]
@@ -36,4 +36,4 @@ export const eggSerializer: Serializer<{ incubator: Egg[] }> = {
     })).filter(e => e.base)
     return { incubator }
   },
-}
+} as unknown as Serializer

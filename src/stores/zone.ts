@@ -1,5 +1,5 @@
 import type { Trainer } from '~/type/trainer'
-import type { SavageZoneId, Zone } from '~/type/zone'
+import type { SavageZoneId, Zone, ZoneId } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
@@ -7,7 +7,7 @@ import { zonesData } from '~/data/zones'
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
   // Persist the current zone id so the user stays in the same zone after reload
-  const currentId = ref<string>(zones.value[0].id)
+  const currentId = ref<ZoneId>(zones.value[0].id)
   const currentZoneId = computed(() => currentId.value)
   const selectedAt = ref<number>(Date.now())
   const arena = useArenaStore()
@@ -57,7 +57,7 @@ export const useZoneStore = defineStore('zone', () => {
     return rank >= 0 ? 2 ** rank : 1
   })
 
-  function setZone(id: string) {
+  function setZone(id: ZoneId) {
     if (arena.inBattle)
       return
     if (zones.value.some(z => z.id === id)) {

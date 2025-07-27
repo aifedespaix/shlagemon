@@ -63,6 +63,7 @@ catalogs:
     vue-router: ^4.5.1
     vue3-toastify: ^0.2.8
   types:
+    '@types/leaflet': ^1.9.20
     '@types/markdown-it-link-attributes': ^3.0.5
     '@types/nprogress': ^0.2.3
 onlyBuiltDependencies:

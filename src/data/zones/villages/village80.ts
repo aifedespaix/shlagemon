@@ -1,4 +1,4 @@
-import type { Zone } from '~/type'
+import type { SavageZoneId, Zone } from '~/type'
 import { VILLAGE_OFFSET } from '~/constants/zone'
 import { arena80 } from '~/data/arenas'
 import {
@@ -32,7 +32,7 @@ export const village80: Zone = {
   type: 'village',
   villageType: 'hyper',
   position: move.right(savage75.position, VILLAGE_OFFSET),
-  attachedTo: savage75.id,
+  attachedTo: savage75.id as SavageZoneId,
   actions: [],
   minLevel: 80,
   arena: {
