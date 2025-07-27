@@ -18,13 +18,13 @@ Sa touffe le protège des coups directs, mais le rend lent et imprévisible. Son
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 23,
-  evolution: {
+  evolutions: [{
     base: orchibre,
     condition: {
       type: 'lvl',
       value: 62,
     },
-  },
+  }],
 }
 
 export default mystouffe

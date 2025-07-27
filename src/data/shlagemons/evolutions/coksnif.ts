@@ -9,10 +9,10 @@ export const coksnif: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.coksnif.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   coefficient: 75,
-  evolution: {
+  evolutions: [{
     base: coxymort,
     condition: { type: 'lvl', value: 90 },
-  },
+  }],
 }
 
 export default coksnif

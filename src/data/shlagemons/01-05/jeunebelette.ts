@@ -13,13 +13,13 @@ On raconte qu'il pourrait évoluer s'il trouvait enfin une vraie motivation. Mai
   descriptionKey: 'data.shlagemons.01-05.jeunebelette.description',
   types: [shlagemonTypes.sol],
   coefficient: 3,
-  evolution: {
+  evolutions: [{
     base: vieuxBlaireau,
     condition: {
       type: 'lvl',
       value: 5,
     },
-  },
+  }],
 }
 
 export default jeunebelette

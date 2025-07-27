@@ -9,10 +9,10 @@ export const coksale: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.60-65.coksale.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   coefficient: 61,
-  evolution: {
+  evolutions: [{
     base: coksnif,
     condition: { type: 'lvl', value: 75 },
-  },
+  }],
 }
 
 export default coksale

@@ -15,13 +15,13 @@ En résumé, Boustiflemme ne fait jamais rien... et il le fait très bien.`,
   descriptionKey: 'data.shlagemons.evolutions.boustiflemme.description',
   types: [shlagemonTypes.normal],
   coefficient: 52,
-  evolution: {
+  evolutions: [{
     base: empifouette,
     condition: {
       type: 'lvl',
       value: 62,
     },
-  },
+  }],
 }
 
 export default boustiflemme

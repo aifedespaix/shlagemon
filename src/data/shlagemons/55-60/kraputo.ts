@@ -9,10 +9,10 @@ export const kraputo: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.55-60.kraputo.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
   coefficient: 58,
-  evolution: {
+  evolutions: [{
     base: kaputrak,
     condition: { type: 'lvl', value: 75 },
-  },
+  }],
 }
 
 export default kraputo

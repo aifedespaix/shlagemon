@@ -18,13 +18,13 @@ On raconte qu’il s’auto-like sur Pokégram avec des faux comptes et laisse d
   descriptionKey: 'data.shlagemons.evolutions.masschopeur.description',
   types: [shlagemonTypes.combat],
   coefficient: 60,
-  evolution: {
+  evolutions: [{
     base: macintosh,
     condition: {
       type: 'item',
       value: ultraSteroid,
     },
-  },
+  }],
 }
 
 export default masschopeur

@@ -15,7 +15,7 @@ On le trouve souvent dans des grottes sombres, en train de taper sur des clavier
   descriptionKey: 'data.shlagemons.evolutions.raptorincel.description',
   types: [shlagemonTypes.feu],
   coefficient: 25,
-  evolution: { base: dracoCon, condition: { type: 'lvl', value: 36 } },
+  evolutions: [{ base: dracoCon, condition: { type: 'lvl', value: 36 } }],
 }
 
 export default raptorincel

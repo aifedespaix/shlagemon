@@ -9,10 +9,10 @@ export const huithuit: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.75-80.huithuit.description',
   types: [shlagemonTypes.plante, shlagemonTypes.psy],
   coefficient: 76,
-  evolution: {
+  evolutions: [{
     base: noadcajou,
     condition: { type: 'lvl', value: 82 },
-  },
+  }],
 }
 
 export default huithuit

@@ -9,10 +9,10 @@ export const houlard: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.60-65.houlard.description',
   types: [shlagemonTypes.vol, shlagemonTypes.psy],
   coefficient: 63,
-  evolution: {
+  evolutions: [{
     base: noctedard,
     condition: { type: 'lvl', value: 80 },
-  },
+  }],
 }
 
 export default houlard

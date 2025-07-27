@@ -5,13 +5,13 @@ import dartagnan from './dartagnan'
 export const coconnul: BaseShlagemon = {
   id: 'coconnul',
   name: 'Coconnul',
-  evolution: {
+  evolutions: [{
     base: dartagnan,
     condition: {
       type: 'lvl',
       value: 25,
     },
-  },
+  }],
   description: `Coconnul est une tentative d'évolution qui a mal tourné. Coincé dans une coquille trop petite pour son ego mais trop grande pour ses ambitions, il passe ses journées à soupirer et à dire "j’suis désolé" même quand personne ne lui parle.
 
 Son armure censée être rigide est molle comme du carton détrempé, et son attaque principale, *Jet de Doute*, inflige un léger inconfort moral à l’adversaire... et surtout à lui-même. Il rate 90% de ses attaques, 100% de ses esquives, et 120% de ses décisions.

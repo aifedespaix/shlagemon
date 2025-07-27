@@ -379,6 +379,54 @@ export const steroids: Item = {
   iconClass: 'text-orange-500 dark:text-orange-300',
 }
 
+export const lighter: Item = {
+  id: 'briquet',
+  nameKey: 'data.items.items.lighter.name',
+  name: 'Briquet',
+  descriptionKey: 'data.items.items.lighter.description',
+  description: 'Un briquet gras qui flambe au moindre souffle.',
+  detailsKey: 'data.items.items.lighter.details',
+  details: 'Permet de transformer Emboli en Pyrolise.',
+  price: 10,
+  currency: 'shlagidiamond',
+  category: 'actif',
+  type: 'evolution',
+  icon: 'i-game-icons:lighter',
+  iconClass: 'text-orange-600 dark:text-orange-400',
+}
+
+export const pissBottle: Item = {
+  id: 'bouteille-pisse',
+  nameKey: 'data.items.items.pissBottle.name',
+  name: 'Bouteille de Pisse',
+  descriptionKey: 'data.items.items.pissBottle.description',
+  description: 'Une bouteille remplie de liquide douteux.',
+  detailsKey: 'data.items.items.pissBottle.details',
+  details: 'Permet de transformer Emboli en Salmoneli.',
+  price: 10,
+  currency: 'shlagidiamond',
+  category: 'actif',
+  type: 'evolution',
+  icon: 'i-game-icons:soda-bottle',
+  iconClass: 'text-yellow-600 dark:text-yellow-400',
+}
+
+export const defibrillator: Item = {
+  id: 'defibrilateur',
+  nameKey: 'data.items.items.defibrillator.name',
+  name: 'Défibrilateur',
+  descriptionKey: 'data.items.items.defibrillator.description',
+  description: 'Choc garanti, même sur un cadavre.',
+  detailsKey: 'data.items.items.defibrillator.details',
+  details: 'Permet de transformer Emboli en Tuberculi.',
+  price: 10,
+  currency: 'shlagidiamond',
+  category: 'actif',
+  type: 'evolution',
+  icon: 'i-game-icons:tesla-coil',
+  iconClass: 'text-purple-600 dark:text-purple-400',
+}
+
 export const ultraSteroid: Item = {
   id: 'ultra-steroide',
   nameKey: 'data.items.items.ultraSteroid.name',
@@ -509,6 +557,9 @@ export const allItems = [
   defenseAmulet,
   thunderStone,
   steroids,
+  lighter,
+  pissBottle,
+  defibrillator,
   ultraSteroid,
   eggBox,
   fireEgg,

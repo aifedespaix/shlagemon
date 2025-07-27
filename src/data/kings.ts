@@ -28,7 +28,7 @@ function createKing(
 
   // Gather base shlagemons and their first evolution stage
   const available = zone.shlagemons!
-    .flatMap(b => b.evolution?.base ? [b, b.evolution.base] : [b])
+    .flatMap(b => b.evolutions?.[0]?.base ? [b, b.evolutions[0].base] : [b])
     // Remove potential duplicates by id
     .reduce<Record<string, BaseShlagemon>>((acc, mon) => {
       acc[mon.id] = mon

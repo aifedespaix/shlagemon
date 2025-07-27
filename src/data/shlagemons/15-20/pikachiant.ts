@@ -11,13 +11,13 @@ Il vit généralement dans des squats connectés où il recharge ses batteries a
   descriptionKey: 'data.shlagemons.15-20.pikachiant.description',
   types: [shlagemonTypes.electrique],
   coefficient: 17,
-  evolution: {
+  evolutions: [{
     base: raichiotte,
     condition: {
       type: 'item',
       value: thunderStone,
     },
-  },
+  }],
 }
 
 export default pikachiant

@@ -9,10 +9,10 @@ export const soporifiak: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.70-75.soporifiak.description',
   types: [shlagemonTypes.psy],
   coefficient: 72,
-  evolution: {
+  evolutions: [{
     base: hypsedentaire,
     condition: { type: 'lvl', value: 78 },
-  },
+  }],
 }
 
 export default soporifiak

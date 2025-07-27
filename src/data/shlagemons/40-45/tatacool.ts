@@ -15,13 +15,13 @@ On raconte que Tatacool collectionne les bouchons de bière et les vieux tickets
   descriptionKey: 'data.shlagemons.40-45.tatacool.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   coefficient: 44,
-  evolution: {
+  evolutions: [{
     base: tatacruelle,
     condition: {
       type: 'lvl',
       value: 53,
     },
-  },
+  }],
 
 }
 

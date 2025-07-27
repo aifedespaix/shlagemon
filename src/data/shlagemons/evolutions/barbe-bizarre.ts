@@ -12,7 +12,7 @@ Il parle en citations absurdes qu’il invente sur le moment (“si l’eau mont
 
   types: [shlagemonTypes.plante],
   coefficient: 25,
-  evolution: { base: floripute, condition: { type: 'lvl', value: 36 } },
+  evolutions: [{ base: floripute, condition: { type: 'lvl', value: 36 } }],
 }
 
 export default barbeBizarre

@@ -92,7 +92,7 @@ const displayedMons = computed(() => {
 })
 
 function evolutionDistance(mon: DexShlagemon): number {
-  const evo = mon.base.evolution
+  const evo = mon.base.evolutions?.[0]
   if (!evo)
     return Number.POSITIVE_INFINITY
   if (!mon.allowEvolution)

@@ -17,13 +17,13 @@ Son flair est légendaire, mais son hygiène mentale, beaucoup moins.`,
   descriptionKey: 'data.shlagemons.20-25.cacanus.description',
   types: [shlagemonTypes.feu, shlagemonTypes.poison],
   coefficient: 37,
-  evolution: {
+  evolutions: [{
     base: ricardnin,
     condition: {
       type: 'lvl',
       value: 54,
     },
-  },
+  }],
 }
 
 export default cacanus

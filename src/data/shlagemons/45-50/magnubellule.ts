@@ -16,13 +16,13 @@ On raconte que chaque fois que Magnubellule passe en rase-motte, il laisse derri
   types: [shlagemonTypes.electrique, shlagemonTypes.insecte],
   coefficient: 48,
 
-  evolution: {
+  evolutions: [{
     base: magnementon,
     condition: {
       type: 'lvl',
       value: 61,
     },
-  },
+  }],
 }
 
 export default magnubellule

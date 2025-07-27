@@ -9,10 +9,10 @@ export const rhinofaringite: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.80-85.rhinofaringite.description',
   types: [shlagemonTypes.sol, shlagemonTypes.roche],
   coefficient: 83,
-  evolution: {
+  evolutions: [{
     base: rhinoplastie,
     condition: { type: 'lvl', value: 89 },
-  },
+  }],
 }
 
 export default rhinofaringite

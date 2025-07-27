@@ -14,13 +14,13 @@ Mélofoutre ne cherche pas le combat, mais s’y retrouve souvent par accident�
 
   types: [shlagemonTypes.fee, shlagemonTypes.normal],
   coefficient: 31,
-  evolution: {
+  evolutions: [{
     base: meladolphe,
     condition: {
       type: 'lvl',
       value: 70,
     },
-  },
+  }],
 }
 
 export default melofoutre

@@ -13,13 +13,13 @@ Son attaque signature, *Croquette Mental*, inflige des dégâts aléatoires en f
   descriptionKey: 'data.shlagemons.25-30.waouff.description',
   types: [shlagemonTypes.normal],
   coefficient: 29,
-  evolution: {
+  evolutions: [{
     base: perchiste,
     condition: {
       type: 'lvl',
       value: 38,
     },
-  },
+  }],
 }
 
 export default waouff

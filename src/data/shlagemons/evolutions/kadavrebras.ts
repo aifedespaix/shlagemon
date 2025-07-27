@@ -15,13 +15,13 @@ On dit que Kadavrebras ne dort jamais. Il se contente de bercer ses cadavres en 
   descriptionKey: 'data.shlagemons.evolutions.kadavrebras.description',
   types: [shlagemonTypes.psy],
   coefficient: 52,
-  evolution: {
+  evolutions: [{
     base: alakalbar,
     condition: {
       type: 'lvl',
       value: 95,
     },
-  },
+  }],
 }
 
 export default kadavrebras

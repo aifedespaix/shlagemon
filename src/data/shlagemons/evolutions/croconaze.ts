@@ -9,10 +9,10 @@ export const croconaze: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.croconaze.description',
   types: [shlagemonTypes.eau, shlagemonTypes.combat],
   coefficient: 78,
-  evolution: {
+  evolutions: [{
     base: alligastro,
     condition: { type: 'lvl', value: 92 },
-  },
+  }],
 }
 
 export default croconaze

@@ -17,7 +17,7 @@ Piafsansbec est souvent vu au bord des routes, essayant de siffler le vent ou de
   descriptionKey: 'data.shlagemons.25-30.piafsansbec.description',
   types: [shlagemonTypes.vol],
   coefficient: 30,
-  evolution: { base: rapasdepisse, condition: { type: 'lvl', value: 50 } },
+  evolutions: [{ base: rapasdepisse, condition: { type: 'lvl', value: 50 } }],
 }
 
 export default piafsansbec

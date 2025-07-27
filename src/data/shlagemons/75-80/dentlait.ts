@@ -11,10 +11,10 @@ export const dentlait: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.75-80.dentlait.description',
   types: [shlagemonTypes.sol],
   coefficient: 77,
-  evolution: {
+  evolutions: [{
     base: hosoltueur,
     condition: { type: 'lvl', value: 83 },
-  },
+  }],
 }
 
 export default dentlait

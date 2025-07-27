@@ -13,13 +13,13 @@ On raconte qu’il rêve d’atteindre la perfection du prout astral, mais il ga
   descriptionKey: 'data.shlagemons.01-05.fantomanus.description',
   types: [shlagemonTypes.spectre, shlagemonTypes.poison],
   coefficient: 5,
-  evolution: {
+  evolutions: [{
     base: sperectum,
     condition: {
       type: 'lvl',
       value: 22,
     },
-  },
+  }],
 }
 
 export default fantomanus

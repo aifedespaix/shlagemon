@@ -17,13 +17,13 @@ Il vit dans des zones Wi-Fi oubliées, collé contre des murs suintants. On dit 
   descriptionKey: 'data.shlagemons.20-25.plegique.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   coefficient: 24,
-  evolution: {
+  evolutions: [{
     base: parasecte,
     condition: {
       type: 'lvl',
       value: 45,
     },
-  },
+  }],
 }
 
 export default plegique

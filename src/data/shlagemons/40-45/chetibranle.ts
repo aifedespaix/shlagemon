@@ -13,13 +13,13 @@ On ne sait jamais vraiment ce qu’il absorbe, ni ce qu’il fait pousser, mais 
   descriptionKey: 'data.shlagemons.40-45.chetibranle.description',
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 42,
-  evolution: {
+  evolutions: [{
     base: boustiflemme,
     condition: {
       type: 'lvl',
       value: 48,
     },
-  },
+  }],
 }
 
 export default chetibranle

@@ -15,7 +15,7 @@ Il adore les coins d’ombre, les parasols Lidl, et les anecdotes gênantes. Si 
   descriptionKey: 'data.shlagemons.20-25.ratonton.description',
   types: [shlagemonTypes.normal],
   coefficient: 25,
-  evolution: { base: ratartine, condition: { type: 'lvl', value: 45 } },
+  evolutions: [{ base: ratartine, condition: { type: 'lvl', value: 45 } }],
 }
 
 export default ratonton

@@ -9,10 +9,10 @@ export const poissaucisse: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.85-90.poissaucisse.description',
   types: [shlagemonTypes.eau],
   coefficient: 88,
-  evolution: {
+  evolutions: [{
     base: poissomerguez,
     condition: { type: 'lvl', value: 94 },
-  },
+  }],
 }
 
 export default poissaucisse

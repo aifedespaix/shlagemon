@@ -15,13 +15,13 @@ On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir populair
   descriptionKey: 'data.shlagemons.40-45.raboloss.description',
   types: [shlagemonTypes.eau, shlagemonTypes.psy],
   coefficient: 43,
-  evolution: {
+  evolutions: [{
     base: flaclodoss,
     condition: {
       type: 'lvl',
       value: 67,
     },
-  },
+  }],
 }
 
 export default raboloss

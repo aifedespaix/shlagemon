@@ -9,10 +9,10 @@ export const hypotrompe: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.85-90.hypotrompe.description',
   types: [shlagemonTypes.eau],
   coefficient: 87,
-  evolution: {
+  evolutions: [{
     base: hyporuisseau,
     condition: { type: 'lvl', value: 92 },
-  },
+  }],
 }
 
 export default hypotrompe

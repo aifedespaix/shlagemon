@@ -5,13 +5,13 @@ import { papysucon } from './papi-sucon'
 export const chrysachier: BaseShlagemon = {
   id: 'chrysachier',
   name: 'Chrysachier',
-  evolution: {
+  evolutions: [{
     base: papysucon,
     condition: {
       type: 'lvl',
       value: 25,
     },
-  },
+  }],
   description: `Chrysachier est coincée entre la majesté d’un paon et le désespoir d’une larve mal digérée. Censé être un papillon royal ou un oiseau sacré, il a raté son cocon à cause d’un excès de chips au vinaigre et d’un cycle de sommeil perturbé par ses propres flatulences.
 
 Son plumage, censé briller, est en réalité collé par des fluides douteux, des restes de compotes oubliées, et ce qui semble être… de la peinture à doigts. Il déploie ses ailes dans un grand *FLOP* sonore, suivi d’un nuage d’odeurs qui rappelle une cantine scolaire en été. Il fait caca. Partout. Tout le temps. Par réflexe. Par peur. Par joie aussi.

@@ -10,10 +10,10 @@ export const strabisme: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.85-90.strabisme.description',
   types: [shlagemonTypes.eau],
   coefficient: 89,
-  evolution: {
+  evolutions: [{
     base: stabiscarosse,
     condition: { type: 'item', value: thunderStone },
-  },
+  }],
 }
 
 export default strabisme

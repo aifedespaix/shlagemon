@@ -13,13 +13,13 @@ Malgré son allure, il rêve secrètement d'être la mascotte d’un fast-food d
   descriptionKey: 'data.shlagemons.45-50.pouleyta.description',
   types: [shlagemonTypes.feu],
   coefficient: 46,
-  evolution: {
+  evolutions: [{
     base: galopard,
     condition: {
       type: 'lvl',
       value: 53,
     },
-  },
+  }],
 }
 
 export default pouleyta

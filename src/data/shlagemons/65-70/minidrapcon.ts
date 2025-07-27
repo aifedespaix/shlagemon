@@ -9,10 +9,10 @@ export const minidrapcon: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.65-70.minidrapcon.description',
   types: [shlagemonTypes.dragon],
   coefficient: 67,
-  evolution: {
+  evolutions: [{
     base: drapcon,
     condition: { type: 'lvl', value: 90 },
-  },
+  }],
 }
 
 export default minidrapcon

@@ -9,7 +9,7 @@ export const salamiches: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.salamiches.description',
   types: [shlagemonTypes.feu],
   coefficient: 4,
-  evolution: { base: raptorincel, condition: { type: 'lvl', value: 16 } },
+  evolutions: [{ base: raptorincel, condition: { type: 'lvl', value: 16 } }],
 }
 
 export default salamiches

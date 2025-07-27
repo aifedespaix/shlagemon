@@ -9,10 +9,10 @@ export const marginal: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.50-55.marginal.description',
   types: [shlagemonTypes.eau],
   coefficient: 59,
-  evolution: {
+  evolutions: [{
     base: leviaraison,
     condition: { type: 'lvl', value: 100 },
-  },
+  }],
 }
 
 export default marginal

@@ -83,6 +83,18 @@ en:
     name: Steroids
     description: Enables certain "toxic bodybuilder" evolutions.
     details: Evolves Macho into Masschopeur if he spent at least 3h at the gym.
+  lighter:
+    name: Lighter
+    description: Sparks questionable flames.
+    details: Evolves Emboli into Pyrolise.
+  pissBottle:
+    name: Piss Bottle
+    description: Warm and unsettling.
+    details: Evolves Emboli into Salmoneli.
+  defibrillator:
+    name: Defibrillator
+    description: Delivers shocking revivals.
+    details: Evolves Emboli into Tuberculi.
   ultraSteroid:
     name: Ultra-Steroid
     description: A substance banned in 97 countries.
@@ -190,6 +202,18 @@ fr:
     name: Stéroïdes
     description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
     details: Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.
+  lighter:
+    name: Briquet
+    description: Flambe et pue l'essence.
+    details: Fait évoluer Emboli en Pyrolise.
+  pissBottle:
+    name: Bouteille de Pisse
+    description: Tiède et vraiment dégueu.
+    details: Fait évoluer Emboli en Salmoneli.
+  defibrillator:
+    name: Défibrilateur
+    description: Pour réveiller les morts.
+    details: Fait évoluer Emboli en Tuberculi.
   ultraSteroid:
     name: Ultra-Stéroïde
     description: Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.

@@ -14,13 +14,13 @@ Iel s’entoure souvent de Nidononbinaire♀ ou d’autres Shlagémons influenç
   types: [shlagemonTypes.poison],
   coefficient: 66,
 
-  evolution: {
+  evolutions: [{
     base: nidoqueer,
     condition: {
       type: 'lvl',
       value: 88,
     },
-  },
+  }],
 }
 
 export default nidoschneck

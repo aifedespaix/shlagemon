@@ -9,13 +9,13 @@ export const sperectum: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.sperectum.description',
   types: [shlagemonTypes.spectre],
   coefficient: 26,
-  evolution: {
+  evolutions: [{
     base: ectroudbal,
     condition: {
       type: 'lvl',
       value: 52,
     },
-  },
+  }],
 }
 
 export default sperectum

@@ -27,17 +27,17 @@ const { t } = useI18n()
     <p class="tiny-scrollbar max-h-40 overflow-auto text-sm italic">
       {{ t(props.mon.descriptionKey || props.mon.description) }}
     </p>
-    <div v-if="props.mon.evolution" class="flex flex-col items-center text-sm font-medium">
+    <div v-if="props.mon.evolutions?.length" class="flex flex-col items-center text-sm font-medium">
       <span>{{ t('components.deck.DeckDetail.evolution') }}</span>
-      <div class="mt-1 flex items-center gap-1">
-        <UiButton variant="outline" @click="emit('openMon', props.mon.evolution.base)">
-          {{ props.mon.evolution.base.name }}
+      <div v-for="evo in props.mon.evolutions" :key="evo.base.id" class="mt-1 flex items-center gap-1">
+        <UiButton variant="outline" @click="emit('openMon', evo.base)">
+          {{ evo.base.name }}
         </UiButton>
-        <span v-if="props.mon.evolution.condition.type === 'lvl'">
-          - {{ t('components.deck.DeckDetail.level', { n: props.mon.evolution.condition.value }) }}
+        <span v-if="evo.condition.type === 'lvl'">
+          - {{ t('components.deck.DeckDetail.level', { n: evo.condition.value }) }}
         </span>
         <span v-else>
-          - {{ props.mon.evolution.condition.value.name }}
+          - {{ evo.condition.value.name }}
         </span>
       </div>
     </div>

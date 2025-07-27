@@ -9,10 +9,10 @@ export const amonichiasse: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.55-60.amonichiasse.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
   coefficient: 57,
-  evolution: {
+  evolutions: [{
     base: amonitrace,
     condition: { type: 'lvl', value: 72 },
-  },
+  }],
 }
 
 export default amonichiasse

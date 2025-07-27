@@ -14,13 +14,13 @@ Personne n’a jamais vu Otamère sobre. Il aurait soi-disant un tatouage “MAM
   types: [shlagemonTypes.eau],
   coefficient: 50,
 
-  evolution: {
+  evolutions: [{
     base: lamantinedu38,
     condition: {
       type: 'lvl',
       value: 90,
     },
-  },
+  }],
 }
 
 export default otamere

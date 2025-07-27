@@ -9,10 +9,10 @@ export const krabbyjaccob: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.70-75.krabbyjaccob.description',
   types: [shlagemonTypes.eau],
   coefficient: 73,
-  evolution: {
+  evolutions: [{
     base: krabbolosse,
     condition: { type: 'lvl', value: 79 },
-  },
+  }],
 }
 
 export default krabbyjaccob

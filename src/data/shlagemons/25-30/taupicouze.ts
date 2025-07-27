@@ -13,13 +13,13 @@ Son attaque signature, *Tricouze Saignante*, inflige des dégâts progressifs et
   descriptionKey: 'data.shlagemons.25-30.taupicouze.description',
   types: [shlagemonTypes.sol],
   coefficient: 26,
-  evolution: {
+  evolutions: [{
     base: triopikouze,
     condition: {
       type: 'lvl',
       value: 38,
     },
-  },
+  }],
 }
 
 export default taupicouze

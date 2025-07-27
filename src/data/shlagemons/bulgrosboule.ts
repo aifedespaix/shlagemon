@@ -9,7 +9,7 @@ export const bulgrosboule: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.bulgrosboule.description',
   types: [shlagemonTypes.plante],
   coefficient: 4,
-  evolution: { base: barbeBizarre, condition: { type: 'lvl', value: 16 } },
+  evolutions: [{ base: barbeBizarre, condition: { type: 'lvl', value: 16 } }],
 }
 
 export default bulgrosboule

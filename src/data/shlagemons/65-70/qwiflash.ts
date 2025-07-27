@@ -9,10 +9,10 @@ export const qwiflash: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.65-70.qwiflash.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   coefficient: 68,
-  evolution: {
+  evolutions: [{
     base: qwiflouch,
     condition: { type: 'lvl', value: 82 },
-  },
+  }],
 }
 
 export default qwiflash

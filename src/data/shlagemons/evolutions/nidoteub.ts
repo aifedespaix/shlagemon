@@ -14,13 +14,13 @@ Iel est bruyant·e, inefficace, et persuadé·e qu’iel est “trop stylé”. 
   types: [shlagemonTypes.poison],
   coefficient: 66,
 
-  evolution: {
+  evolutions: [{
     base: nidodragqueen,
     condition: {
       type: 'lvl',
       value: 88,
     },
-  },
+  }],
 }
 
 export default nidoteub

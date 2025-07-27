@@ -9,7 +9,7 @@ export const rouxScoop: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.roux-scoop.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   coefficient: 20,
-  evolution: { base: rouxPignolage, condition: { type: 'lvl', value: 36 } },
+  evolutions: [{ base: rouxPignolage, condition: { type: 'lvl', value: 36 } }],
 }
 
 export default rouxScoop

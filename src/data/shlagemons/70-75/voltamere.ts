@@ -10,10 +10,10 @@ export const voltamere: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.70-75.voltamere.description',
   types: [shlagemonTypes.electrique],
   coefficient: 74,
-  evolution: {
+  evolutions: [{
     base: electrobeauf,
     condition: { type: 'item', value: thunderStone },
-  },
+  }],
 }
 
 export default voltamere

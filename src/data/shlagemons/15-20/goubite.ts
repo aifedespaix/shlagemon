@@ -9,13 +9,13 @@ export const goubite: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.15-20.goubite.description',
   types: [shlagemonTypes.feu],
   coefficient: 19,
-  evolution: {
+  evolutions: [{
     base: feunouille,
     condition: {
       type: 'lvl',
       value: 80,
     },
-  },
+  }],
 }
 
 export default goubite

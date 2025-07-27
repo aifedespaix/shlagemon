@@ -26,8 +26,8 @@ function generateArenaLineup(zoneId: string): BaseShlagemon[] {
   previous.reverse()
   const lineup = previous.flatMap((z, i) => topShlagemons(z, i < 2 ? 1 : 2))
   const last = lineup[lineup.length - 1]
-  if (last?.evolution?.base)
-    lineup[lineup.length - 1] = last.evolution.base
+  if (last?.evolutions?.[0]?.base)
+    lineup[lineup.length - 1] = last.evolutions[0].base
   return lineup
 }
 

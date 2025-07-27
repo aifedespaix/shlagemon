@@ -16,13 +16,13 @@ Il niche dans les toitures en fibrociment et collectionne les boulons comme des 
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],
   coefficient: 14,
-  evolution: {
+  evolutions: [{
     base: nosferasta,
     condition: {
       type: 'lvl',
       value: 32,
     },
-  },
+  }],
 }
 
 export default nosferailleur

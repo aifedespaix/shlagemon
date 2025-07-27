@@ -16,13 +16,13 @@ Il évolue parfois... en pire.`,
   descriptionKey: 'data.shlagemons.35-40.macho.description',
   types: [shlagemonTypes.combat],
   coefficient: 39,
-  evolution: {
+  evolutions: [{
     base: masschopeur,
     condition: {
       type: 'item',
       value: steroids,
     },
-  },
+  }],
 }
 
 export default macho

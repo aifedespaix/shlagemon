@@ -16,13 +16,13 @@ Il n’évolue plus, car selon la légende : “Quand un chibre atteint la flora
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   coefficient: 62,
-  evolution: {
+  evolutions: [{
     base: rafflamby,
     condition: {
       type: 'lvl',
       value: 90,
     },
-  },
+  }],
 }
 
 export default orchibre

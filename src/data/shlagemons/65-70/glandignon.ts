@@ -9,10 +9,10 @@ export const glandignon: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.65-70.glandignon.description',
   types: [shlagemonTypes.plante],
   coefficient: 66,
-  evolution: {
+  evolutions: [{
     base: beuleef,
     condition: { type: 'lvl', value: 78 },
-  },
+  }],
 }
 
 export default glandignon

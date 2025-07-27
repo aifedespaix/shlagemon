@@ -9,7 +9,7 @@ export const rouxPasCool: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.01-05.rouxPasCool.description',
   types: [shlagemonTypes.vol],
   coefficient: 1,
-  evolution: { base: rouxScoop, condition: { type: 'lvl', value: 18 } },
+  evolutions: [{ base: rouxScoop, condition: { type: 'lvl', value: 18 } }],
 }
 
 export default rouxPasCool

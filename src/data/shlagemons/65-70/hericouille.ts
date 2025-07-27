@@ -9,10 +9,10 @@ export const hericouille: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.65-70.hericouille.description',
   types: [shlagemonTypes.feu],
   coefficient: 69,
-  evolution: {
+  evolutions: [{
     base: heriplouf,
     condition: { type: 'lvl', value: 81 },
-  },
+  }],
 }
 
 export default hericouille

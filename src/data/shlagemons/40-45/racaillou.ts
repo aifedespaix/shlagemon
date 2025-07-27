@@ -15,13 +15,13 @@ On raconte qu'il ne se d√©place jamais sans sa bande de Gravashlag, toujours pr√
   descriptionKey: 'data.shlagemons.40-45.racaillou.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
   coefficient: 45,
-  evolution: {
+  evolutions: [{
     base: gravaglaire,
     condition: {
       type: 'lvl',
       value: 76,
     },
-  },
+  }],
 }
 
 export default racaillou

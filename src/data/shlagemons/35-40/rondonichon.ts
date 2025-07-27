@@ -16,13 +16,13 @@ Ne pas le caresser. Jamais.`,
 
   types: [shlagemonTypes.normal],
   coefficient: 38,
-  evolution: {
+  evolutions: [{
     base: grochichon,
     condition: {
       type: 'lvl',
       value: 55,
     },
-  },
+  }],
 }
 
 export default rondonichon

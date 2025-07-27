@@ -9,10 +9,10 @@ export const beuleef: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.beuleef.description',
   types: [shlagemonTypes.plante],
   coefficient: 78,
-  evolution: {
+  evolutions: [{
     base: moisanium,
     condition: { type: 'lvl', value: 92 },
-  },
+  }],
 }
 
 export default beuleef

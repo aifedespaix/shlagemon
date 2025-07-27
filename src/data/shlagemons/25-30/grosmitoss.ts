@@ -13,13 +13,13 @@ Sa compétence spéciale, *Mythobluff*, embrouille l’adversaire en lui faisant
   descriptionKey: 'data.shlagemons.25-30.grosmitoss.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   coefficient: 28,
-  evolution: {
+  evolutions: [{
     base: aerobite,
     condition: {
       type: 'lvl',
       value: 69,
     },
-  },
+  }],
 
 }
 

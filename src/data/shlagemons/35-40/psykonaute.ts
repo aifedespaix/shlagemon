@@ -13,13 +13,13 @@ Son attaque signature, *Chichon Cosmique*, enveloppe l’arène d’un nuage den
   descriptionKey: 'data.shlagemons.35-40.psykonaute.description',
   types: [shlagemonTypes.eau],
   coefficient: 37,
-  evolution: {
+  evolutions: [{
     base: accrocrack,
     condition: {
       type: 'lvl',
       value: 85,
     },
-  },
+  }],
 }
 
 export default psykonaute

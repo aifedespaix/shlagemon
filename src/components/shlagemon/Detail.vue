@@ -46,15 +46,17 @@ const heldItem = computed(() => {
 })
 
 const ownedEvolution = computed(() => {
-  if (!props.mon?.base.evolution)
+  const evo = props.mon?.base.evolutions?.[0]
+  if (!evo)
     return null
-  return store.shlagemons.find(m => m.base.id === props.mon!.base.evolution!.base.id) || null
+  return store.shlagemons.find(m => m.base.id === evo.base.id) || null
 })
 
 const evolutionInfo = computed(() => {
-  if (!props.mon?.base.evolution)
+  const evo = props.mon?.base.evolutions?.[0]
+  if (!evo)
     return null
-  const { condition } = props.mon.base.evolution
+  const { condition } = evo
   if (condition.type === 'lvl')
     return `Peut évoluer au niveau ${condition.value}`
   if (condition.type === 'item')

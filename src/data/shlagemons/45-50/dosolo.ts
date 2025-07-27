@@ -13,13 +13,13 @@ On raconte qu’il tente souvent de parler à son ombre, mais même elle a fini 
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   coefficient: 49,
 
-  evolution: {
+  evolutions: [{
     base: dopluspersonne,
     condition: {
       type: 'lvl',
       value: 83,
     },
-  },
+  }],
 }
 
 export default dosolo

@@ -15,13 +15,13 @@ On dit que plus personne ne veut s’asseoir à côté de lui, même dans les sq
   descriptionKey: 'data.shlagemons.evolutions.gravaglaire.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
   coefficient: 82,
-  evolution: {
+  evolutions: [{
     base: grosseflemme,
     condition: {
       type: 'lvl',
       value: 89,
     },
-  },
+  }],
 }
 
 export default gravaglaire

@@ -9,10 +9,10 @@ export const kaiminable: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.60-65.kaiminable.description',
   types: [shlagemonTypes.eau],
   coefficient: 62,
-  evolution: {
+  evolutions: [{
     base: croconaze,
     condition: { type: 'lvl', value: 78 },
-  },
+  }],
 }
 
 export default kaiminable

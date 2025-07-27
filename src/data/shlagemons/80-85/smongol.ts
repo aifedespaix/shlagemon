@@ -9,10 +9,10 @@ export const smongol: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.80-85.smongol.description',
   types: [shlagemonTypes.poison],
   coefficient: 82,
-  evolution: {
+  evolutions: [{
     base: smongogol,
     condition: { type: 'lvl', value: 88 },
-  },
+  }],
 }
 
 export default smongol

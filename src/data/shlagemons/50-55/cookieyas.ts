@@ -16,13 +16,13 @@ On raconte que Cookieyas ne rêve que d’une chose : qu’on le laisse tranquil
   types: [shlagemonTypes.eau],
   coefficient: 53,
 
-  evolution: {
+  evolutions: [{
     base: crustabridou,
     condition: {
       type: 'lvl',
       value: 61,
     },
-  },
+  }],
 }
 
 export default cookieyas

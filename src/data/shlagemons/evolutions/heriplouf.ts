@@ -9,10 +9,10 @@ export const heriplouf: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.heriplouf.description',
   types: [shlagemonTypes.feu, shlagemonTypes.eau],
   coefficient: 81,
-  evolution: {
+  evolutions: [{
     base: heristrash,
     condition: { type: 'lvl', value: 95 },
-  },
+  }],
 }
 
 export default heriplouf

@@ -5,13 +5,13 @@ import coconnul from '../evolutions/coconnul'
 export const aspigros: BaseShlagemon = {
   id: 'aspigros',
   name: 'Aspigros',
-  evolution: {
+  evolutions: [{
     base: coconnul,
     condition: {
       type: 'lvl',
       value: 14,
     },
-  },
+  }],
   description: `Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle affectueusement ses "paniers-repas". Son dard a disparu sous une couche de gras douteux, remplacé par une fourchette plantée là "par commodité".
 
 Il est constamment en train de mâchouiller quelque chose : une feuille, un emballage, un caillou, ou parfois un de ses propres segments. Lorsqu’il attaque, il roule vers l’ennemi en gémissant de plaisir, espérant qu’un snack se trouve en chemin.

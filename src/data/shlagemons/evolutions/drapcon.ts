@@ -9,10 +9,10 @@ export const drapcon: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.evolutions.drapcon.description',
   types: [shlagemonTypes.dragon],
   coefficient: 88,
-  evolution: {
+  evolutions: [{
     base: drapcoloscopie,
     condition: { type: 'lvl', value: 100 },
-  },
+  }],
 }
 
 export default drapcon

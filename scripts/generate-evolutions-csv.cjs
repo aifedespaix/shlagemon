@@ -34,7 +34,7 @@ async function parseFile(file) {
   const idMatch = content.match(/\bid:\s*['"]([^'"]+)['"]/)
   const coeffMatch = content.match(/coefficient:\s*(\d+)/)
   const name = nameMatch ? nameMatch[1] : (idMatch ? idMatch[1] : null)
-  const evoMatch = content.match(/evolution:\s*\{[\s\S]*?condition:\s*\{[\s\S]*?type:\s*['"]lvl['"][\s\S]*?value:\s*(\d+)/)
+  const evoMatch = content.match(/type:\s*['"]lvl['"][\s\S]*?value:\s*(\d+)/)
   if (name) {
     const spawn = extractSpawnInfo(file)
     const evoLevel = evoMatch ? Number(evoMatch[1]) : ''

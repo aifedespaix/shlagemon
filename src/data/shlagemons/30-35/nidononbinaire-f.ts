@@ -11,13 +11,13 @@ Iel utilise souvent *Postillonnage Toxique*, une attaque à faible portée mais 
   descriptionKey: 'data.shlagemons.30-35.nidononbinaire-f.description',
   types: [shlagemonTypes.poison],
   coefficient: 34,
-  evolution: {
+  evolutions: [{
     base: nidoschneck,
     condition: {
       type: 'lvl',
       value: 66,
     },
-  },
+  }],
 }
 
 export default nidononbinaireF

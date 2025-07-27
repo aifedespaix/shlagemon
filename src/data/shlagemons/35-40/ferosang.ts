@@ -15,13 +15,13 @@ Son attaque signature, *Jet Hémato*, projette un arc de sang corrosif et contam
   descriptionKey: 'data.shlagemons.35-40.ferosang.description',
   types: [shlagemonTypes.combat],
   coefficient: 36,
-  evolution: {
+  evolutions: [{
     base: coloscopie,
     condition: {
       type: 'lvl',
       value: 44,
     },
-  },
+  }],
 }
 
 export default ferosang

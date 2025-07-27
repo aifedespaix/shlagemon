@@ -13,13 +13,13 @@ On raconte qu’il passe plus de temps à “méditer” qu’à se battre. Cert
   descriptionKey: 'data.shlagemons.50-55.tadsperm.description',
   types: [shlagemonTypes.poison],
   coefficient: 52,
-  evolution: {
+  evolutions: [{
     base: grostadsperm,
     condition: {
       type: 'lvl',
       value: 59,
     },
-  },
+  }],
 }
 
 export default tadsperm

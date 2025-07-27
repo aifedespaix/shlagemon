@@ -9,13 +9,13 @@ export const ptitocard: BaseShlagemon = {
   descriptionKey: 'data.shlagemons.05-10.ptitocard.description',
   types: [shlagemonTypes.eau],
   coefficient: 9,
-  evolution: {
+  evolutions: [{
     base: grossetarte,
     condition: {
       type: 'lvl',
       value: 50,
     },
-  },
+  }],
 }
 
 export default ptitocard

@@ -11,13 +11,13 @@ Sa capacité *Point-Virgule* inflige peu de dégâts mais perturbe l’ordre d�
   descriptionKey: 'data.shlagemons.30-35.nidononbinaire-m.description',
   types: [shlagemonTypes.poison],
   coefficient: 34,
-  evolution: {
+  evolutions: [{
     base: nidoteub,
     condition: {
       type: 'lvl',
       value: 66,
     },
-  },
+  }],
 }
 
 export default nidononbinaireM
