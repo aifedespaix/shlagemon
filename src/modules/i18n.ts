@@ -66,5 +66,5 @@ export const install: UserModule = ({ app, isClient }) => {
     localeStore.setLocale(lang)
   }
 
-  loadLanguageAsync(localeStore.locale.value)
+  loadLanguageAsync(localeStore.locale)
 }
