@@ -43,9 +43,9 @@ export const useDiseaseStore = defineStore('disease', () => {
     afterHydrate(ctx) {
       const store = ctx.store as ReturnType<typeof useDiseaseStore>
       if (typeof store.active !== 'object')
-        store.active = ref(Boolean(store.active))
+        store.active.value = Boolean(store.active)
       if (typeof store.remaining !== 'object')
-        store.remaining = ref(Number(store.remaining) || 0)
+        store.remaining.value = Number(store.remaining) || 0
     },
   },
 })
