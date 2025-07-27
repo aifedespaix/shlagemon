@@ -11,7 +11,7 @@ import { useLocaleStore } from '~/stores/locale'
 // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
 export const i18n = createI18n({
   legacy: false,
-  locale: '',
+  locale: 'en',
   fallbackLocale: 'en',
   messages: {},
 })
