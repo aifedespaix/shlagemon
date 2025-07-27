@@ -13,9 +13,11 @@ const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
 const accessibleSavages = computed(() => accessibleZones.value.filter(z => z.type === 'sauvage'))
 const accessibleVillages = computed(() => accessibleZones.value.filter(z => z.type === 'village'))
 
-function canAccess(z: Zone) {
-  if (z.type === 'village')
-    return z.minLevel <= dex.highestLevel
+function canAccess(z: Zone): boolean {
+  if (z.type === 'village') {
+    const attached = zone.zones.find(zz => zz.id === z.attachedTo)
+    return z.minLevel <= dex.highestLevel && (!!attached && canAccess(attached))
+  }
   const idx = xpZones.value.findIndex(x => x.id === z.id)
   if (idx === 0)
     return true
