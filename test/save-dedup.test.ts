@@ -4,13 +4,13 @@ import { createDexShlagemon } from '../src/utils/dexFactory'
 import { shlagedexSerializer } from '../src/utils/shlagedex-serialize'
 
 function prepare() {
-  const m1 = createDexShlagemon(carapouffe, false, 1, 1)
+  const m1 = createDexShlagemon(carapouffe, false, 1)
   m1.isShiny = false
   m1.rarity = 1
-  const m2 = createDexShlagemon(carapouffe, false, 1, 10)
+  const m2 = createDexShlagemon(carapouffe, false, 10)
   m2.isShiny = false
   m2.rarity = 5
-  const m3 = createDexShlagemon(carapouffe, false, 1, 2)
+  const m3 = createDexShlagemon(carapouffe, false, 2)
   m3.isShiny = true
   m3.rarity = 3
   const raw = shlagedexSerializer.serialize({

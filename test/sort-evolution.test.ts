@@ -17,10 +17,10 @@ describe('shlagedex sort evolution', () => {
     const dex = useShlagedexStore()
     const filter = useDexFilterStore()
 
-    const item = createDexShlagemon(pikachiant, false, 1, 10)
-    const ready = createDexShlagemon(carapouffe, false, 1, 20)
-    const near = createDexShlagemon(jeunebelette, false, 1, 4)
-    const disabled = createDexShlagemon(rouxPasCool, false, 1, 20)
+    const item = createDexShlagemon(pikachiant, false, 10)
+    const ready = createDexShlagemon(carapouffe, false, 20)
+    const near = createDexShlagemon(jeunebelette, false, 4)
+    const disabled = createDexShlagemon(rouxPasCool, false, 20)
     disabled.allowEvolution = false
 
     dex.addShlagemon(item)

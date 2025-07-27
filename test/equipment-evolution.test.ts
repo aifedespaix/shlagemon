@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
-import { multiExp, thunderStone } from '../src/data/items/items'
+import { multiExp, thunderStone } from '../src/data/items'
 import { pikachiant } from '../src/data/shlagemons/15-20/pikachiant'
 import raichiotte from '../src/data/shlagemons/evolutions/raichiotte'
 import { useEquipmentStore } from '../src/stores/equipment'
