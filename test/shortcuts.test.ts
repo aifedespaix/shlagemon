@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import { potion, superPotion } from '../src/data/items/items'
+import { potion, superPotion } from '../src/data/items'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useInventoryStore } from '../src/stores/inventory'
 import { useShlagedexStore } from '../src/stores/shlagedex'

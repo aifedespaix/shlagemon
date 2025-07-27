@@ -1,6 +1,6 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import { multiExp } from '../src/data/items/items'
+import { multiExp } from '../src/data/items'
 import { pikachiant } from '../src/data/shlagemons/15-20/pikachiant'
 import { useEquipmentStore } from '../src/stores/equipment'
 import { useInventoryStore } from '../src/stores/inventory'

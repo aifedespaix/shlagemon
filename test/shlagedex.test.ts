@@ -18,7 +18,7 @@ describe('shlagedex capture', () => {
     mon.rarity = 1
     mon.lvl = 10
     toastMock.mockClear()
-    const enemy = createDexShlagemon(carapouffe, false, 1, 3)
+    const enemy = createDexShlagemon(carapouffe, false, 3)
     enemy.rarity = 5
     applyStats(enemy)
     applyCurrentStats(enemy)
@@ -37,7 +37,7 @@ describe('shlagedex capture', () => {
     mon.rarity = 1
     mon.lvl = 5
     toastMock.mockClear()
-    const enemy = createDexShlagemon(carapouffe, false, 1, 4)
+    const enemy = createDexShlagemon(carapouffe, false, 4)
     enemy.rarity = 2
     applyStats(enemy)
     applyCurrentStats(enemy)
@@ -62,7 +62,7 @@ describe('shlagedex capture', () => {
   it('captures new enemy with same level and rarity', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
-    const enemy = createDexShlagemon(carapouffe, false, 1, 17)
+    const enemy = createDexShlagemon(carapouffe, false, 17)
     enemy.rarity = 42
     applyStats(enemy)
     applyCurrentStats(enemy)
@@ -79,7 +79,7 @@ describe('shlagedex capture', () => {
     existing.lvl = 5
     applyStats(existing)
     applyCurrentStats(existing)
-    const enemy = createDexShlagemon(carapouffe, false, 1, 10)
+    const enemy = createDexShlagemon(carapouffe, false, 10)
     enemy.isShiny = true
     enemy.rarity = 1
     applyStats(enemy)
@@ -113,7 +113,7 @@ describe('shlagedex capture', () => {
     const existing = dex.createShlagemon(carapouffe)
     existing.rarity = 100
     existing.lvl = 8
-    const enemy = createDexShlagemon(carapouffe, false, 1, 20)
+    const enemy = createDexShlagemon(carapouffe, false, 20)
     enemy.rarity = 100
     applyStats(enemy)
     toastMock.mockClear()
@@ -164,7 +164,7 @@ describe('duplicate capture at max rarity with both methods', () => {
     mon.lvl = 12
 
     toastMock.mockClear()
-    const sameBaseEnemy = createDexShlagemon(carapouffe, false, 1, 20)
+    const sameBaseEnemy = createDexShlagemon(carapouffe, false, 20)
     sameBaseEnemy.rarity = 100
     applyStats(sameBaseEnemy)
     applyCurrentStats(sameBaseEnemy)

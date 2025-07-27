@@ -12,4 +12,20 @@ describe('spawn selection', () => {
     const result = pickRandomByCoefficient(list)
     expect(list).toContain(result)
   })
+
+  it('picks each monster with roughly equal probability', () => {
+    const counts = {
+      m1: 0,
+      m2: 0,
+      m3: 0,
+    }
+    const runs = 3000
+    for (let i = 0; i < runs; i++) {
+      const pick = pickRandomByCoefficient(list)
+      counts[pick.id as keyof typeof counts]++
+    }
+    const expected = runs / list.length
+    for (const c of Object.values(counts))
+      expect(c).toBeGreaterThan(expected * 0.8)
+  })
 })
