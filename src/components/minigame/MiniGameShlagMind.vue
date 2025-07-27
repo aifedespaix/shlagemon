@@ -60,6 +60,16 @@ function choose(id: string) {
   showPicker.value = false
 }
 
+function copyFromHistory(index: number, id: string) {
+  if (
+    attemptsLeft.value <= 0
+    || message.value === t('components.minigame.MiniGameShlagMind.win')
+  ) {
+    return
+  }
+  guess.value[index] = id
+}
+
 function validate() {
   if (guess.value.some(v => !v))
     return
@@ -132,8 +142,9 @@ initGame()
             >
               <img
                 :src="`/shlagemons/${id}/${id}.png`"
-                class="h-8 w-8"
+                class="h-8 w-8 cursor-pointer"
                 :alt="id"
+                @click="copyFromHistory(j, id)"
               >
             </UiTooltip>
           </div>
