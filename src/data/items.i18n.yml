@@ -87,6 +87,18 @@ en:
     name: Ultra-Steroid
     description: A substance banned in 97 countries.
     details: Evolves Masschopeur into Macintosh, an irreversible hypertrophy.
+  lighter:
+    name: Lighter
+    description: Makes some Shlagémons love fire.
+    details: 'Lets Emboli turn into Pyrolise, because arson is fun.'
+  pissBottle:
+    name: Piss Bottle
+    description: Smells awful but triggers aquatic diseases.
+    details: Lets Emboli mutate into Salmoneli after a good shower.
+  defibrillator:
+    name: Defibrillator
+    description: Jolt your Shlagémon back to shocking life.
+    details: Needed for Emboli to evolve into Tuberculi.
   eggBox:
     name: Egg Box
     description: Stores all your eggs without cluttering the inventory.
@@ -194,6 +206,18 @@ fr:
     name: Ultra-Stéroïde
     description: Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.
     details: Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
+  lighter:
+    name: Briquet
+    description: Fait briller la pyromanie chez certains Shlagémons.
+    details: Permet à Emboli de se changer en Pyrolise pour tout cramer.
+  pissBottle:
+    name: Bouteille de Pisse
+    description: "Ça pue, mais c'est bourré de bactéries bien juteuses."
+    details: Transforme Emboli en Salmoneli après une bonne rasade.
+  defibrillator:
+    name: Défibrillateur
+    description: Un coup de jus pour repartir de travers.
+    details: "Nécessaire pour qu'Emboli évolue en Tuberculi."
   eggBox:
     name: Boîte à œufs
     description: Permet de stocker tous tes œufs sans encombrer l'inventaire.

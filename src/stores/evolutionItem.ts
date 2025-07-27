@@ -14,15 +14,15 @@ export const useEvolutionItemStore = defineStore('evolutionItem', () => {
     if (!current.value)
       return []
     return dex.shlagemons.filter((m) => {
-      const evo = m.base.evolution
-      return evo && evo.condition.type === 'item' && evo.condition.value.id === current.value!.id
+      const evolutions = m.base.evolutions ?? (m.base.evolution ? [m.base.evolution] : [])
+      return evolutions.some(e => e.condition.type === 'item' && e.condition.value.id === current.value!.id)
     })
   })
 
   function canUse(item: Item) {
     return dex.shlagemons.some((m) => {
-      const evo = m.base.evolution
-      return evo && evo.condition.type === 'item' && evo.condition.value.id === item.id
+      const evolutions = m.base.evolutions ?? (m.base.evolution ? [m.base.evolution] : [])
+      return evolutions.some(e => e.condition.type === 'item' && e.condition.value.id === item.id)
     })
   }
 

@@ -395,6 +395,54 @@ export const ultraSteroid: Item = {
   iconClass: 'text-purple-500 dark:text-purple-300',
 }
 
+export const lighter: Item = {
+  id: 'briquet',
+  nameKey: 'data.items.items.lighter.name',
+  name: 'Briquet',
+  descriptionKey: 'data.items.items.lighter.description',
+  description: 'Fait briller la pyromanie chez certains Shlagémons.',
+  detailsKey: 'data.items.items.lighter.details',
+  details: 'Permet à Emboli de se changer en Pyrolise pour tout cramer.',
+  price: 25,
+  currency: 'shlagidiamond',
+  category: 'actif',
+  type: 'evolution',
+  icon: 'i-game-icons:lighter',
+  iconClass: 'text-red-500 dark:text-red-400',
+}
+
+export const pissBottle: Item = {
+  id: 'bouteille-pisse',
+  nameKey: 'data.items.items.pissBottle.name',
+  name: 'Bouteille de Pisse',
+  descriptionKey: 'data.items.items.pissBottle.description',
+  description: 'Un breuvage douteux qui dégouline de germes.',
+  detailsKey: 'data.items.items.pissBottle.details',
+  details: 'Transforme Emboli en Salmoneli après une bonne rasade.',
+  price: 25,
+  currency: 'shlagidiamond',
+  category: 'actif',
+  type: 'evolution',
+  icon: 'i-game-icons:soda-bottle',
+  iconClass: 'text-yellow-700 dark:text-yellow-500',
+}
+
+export const defibrillator: Item = {
+  id: 'defibrilateur',
+  nameKey: 'data.items.items.defibrillator.name',
+  name: 'Défibrillateur',
+  descriptionKey: 'data.items.items.defibrillator.description',
+  description: 'Un coup de jus pour repartir de travers.',
+  detailsKey: 'data.items.items.defibrillator.details',
+  details: 'Nécessaire pour qu\'Emboli évolue en Tuberculi.',
+  price: 25,
+  currency: 'shlagidiamond',
+  category: 'actif',
+  type: 'evolution',
+  icon: 'i-game-icons:tesla-coil',
+  iconClass: 'text-green-600 dark:text-green-400',
+}
+
 export const eggBox: Item = {
   id: 'egg-box',
   nameKey: 'data.items.items.eggBox.name',
@@ -510,6 +558,9 @@ export const allItems = [
   thunderStone,
   steroids,
   ultraSteroid,
+  lighter,
+  pissBottle,
+  defibrillator,
   eggBox,
   fireEgg,
   waterEgg,

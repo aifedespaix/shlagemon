@@ -15,7 +15,13 @@ export interface BaseShlagemon {
    * The first element represents the main type.
    */
   types: ShlagemonType[]
+  /** @deprecated Temporary legacy field */
   evolution?: ShlagemonEvolution
+  /**
+   * Possible evolutions for this Shlagémon.
+   * Multiple options can be provided.
+   */
+  evolutions?: ShlagemonEvolution[]
   coefficient: number
   legendary?: boolean
 }

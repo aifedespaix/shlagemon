@@ -3149,6 +3149,18 @@ data:
     thunderEgg:
       name: Thunder Egg
       description: An egg crackling with sparks.
+    lighter:
+      name: Lighter
+      description: Makes some Shlagémons love fire.
+      details: Lets Emboli turn into Pyrolise, because arson is fun.
+    pissBottle:
+      name: Piss Bottle
+      description: Smells awful but triggers aquatic diseases.
+      details: Lets Emboli mutate into Salmoneli after a good shower.
+    defibrillator:
+      name: Defibrillator
+      description: Jolt your Shlagémon back to shocking life.
+      details: Needed for Emboli to evolve into Tuberculi.
 pages:
   index:
     title: Shlagemon

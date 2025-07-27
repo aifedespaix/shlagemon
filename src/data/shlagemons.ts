@@ -16,9 +16,12 @@ export const allShlagemons: BaseShlagemon[] = Object.entries(modules)
 
 const evolvedIds = new Set<string>()
 for (const mon of allShlagemons) {
-  const id = mon.evolution?.base.id
-  if (id)
-    evolvedIds.add(id)
+  const evolutions = mon.evolutions ?? (mon.evolution ? [mon.evolution] : [])
+  evolutions.forEach((e) => {
+    const id = e.base.id
+    if (id)
+      evolvedIds.add(id)
+  })
 }
 
 export const baseShlagemons = allShlagemons.filter(m => !evolvedIds.has(m.id))

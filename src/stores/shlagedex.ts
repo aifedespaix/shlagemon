@@ -451,10 +451,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   async function checkEvolution(mon: DexShlagemon) {
-    const evo = mon.base.evolution
+    const evolutions = mon.base.evolutions ?? (mon.base.evolution ? [mon.base.evolution] : [])
+    const evo = evolutions.find(e => e.condition.type === 'lvl' && mon.lvl >= e.condition.value)
     if (!evo)
-      return
-    if (evo.condition.type !== 'lvl' || mon.lvl < evo.condition.value)
       return
     if (!mon.allowEvolution)
       return
@@ -465,8 +464,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   async function evolveWithItem(mon: DexShlagemon, item: Item) {
-    const evo = mon.base.evolution
-    if (!evo || evo.condition.type !== 'item' || evo.condition.value.id !== item.id)
+    const evolutions = mon.base.evolutions ?? (mon.base.evolution ? [mon.base.evolution] : [])
+    const evo = evolutions.find(e => e.condition.type === 'item' && e.condition.value.id === item.id)
+    if (!evo)
       return false
     const accepted = await evolutionStore.requestEvolution(mon, evo.base)
     if (!accepted)
