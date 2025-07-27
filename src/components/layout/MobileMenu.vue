@@ -19,14 +19,6 @@ const dexDisabled = computed(() => menuDisabled.value || shlagedex.shlagemons.le
 const achievementsDisabled = computed(() => menuDisabled.value || !achievements.hasAny)
 const inventoryDisabled = computed(() => menuDisabled.value || inventory.list.length === 0 || arena.inBattle || lockStore.isInventoryLocked)
 
-watch(
-  () => dialog.isDialogVisible,
-  (val) => {
-    if (val)
-      mobile.set('game')
-  },
-)
-
 function toggleInventory() {
   mobile.toggle('inventory')
 }
