@@ -59,13 +59,12 @@ export async function loadLanguageAsync(lang: Locale): Promise<Locale> {
 export const install: UserModule = ({ app, isClient }) => {
   app.use(i18n)
   const localeStore = useLocaleStore()
-  let lang: Locale = localeStore.locale.value
 
   if (isClient && !localStorage.getItem('locale')) {
     const navigatorLang = navigator.language || 'en'
-    lang = navigatorLang.toLowerCase().startsWith('fr') ? 'fr' : 'en'
+    const lang = navigatorLang.toLowerCase().startsWith('fr') ? 'fr' : 'en'
     localeStore.setLocale(lang)
   }
 
-  loadLanguageAsync(lang)
+  loadLanguageAsync(localeStore.locale.value)
 }
