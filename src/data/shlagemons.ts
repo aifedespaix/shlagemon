@@ -13,3 +13,12 @@ export const allShlagemons: BaseShlagemon[] = Object.entries(modules)
     base.descriptionKey = `data.shlagemons.${key}.description`
     return base
   })
+
+const evolvedIds = new Set<string>()
+for (const mon of allShlagemons) {
+  const id = mon.evolution?.base.id
+  if (id)
+    evolvedIds.add(id)
+}
+
+export const baseShlagemons = allShlagemons.filter(m => !evolvedIds.has(m.id))
