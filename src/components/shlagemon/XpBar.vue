@@ -5,13 +5,20 @@ import { xpForLevel } from '~/utils/dexFactory'
 const props = defineProps<{ mon: DexShlagemon }>()
 
 const maxXp = computed(() => xpForLevel(props.mon.lvl))
+const isMaxLevel = computed(() => props.mon.lvl >= 100)
 </script>
 
 <template>
   <div class="flex flex-col">
-    <div class="mb-1 text-center text-xs">
+    <div v-if="!isMaxLevel" class="mb-1 text-center text-xs">
       Expérience : {{ props.mon.xp.toLocaleString() }} / {{ maxXp.toLocaleString() }}
     </div>
-    <UiProgressBar :value="props.mon.xp" :max="maxXp" xp class="w-full" />
+    <UiProgressBar
+      :value="isMaxLevel ? 1 : props.mon.xp"
+      :max="isMaxLevel ? 1 : maxXp"
+      xp
+      :rainbow="isMaxLevel"
+      class="w-full"
+    />
   </div>
 </template>

@@ -4,7 +4,8 @@ const props = withDefaults(defineProps<{
   max: number
   color?: string
   xp?: boolean
-}>(), { xp: false })
+  rainbow?: boolean
+}>(), { xp: false, rainbow: false })
 
 const percent = computed(() => props.max === 0 ? 0 : (props.value / props.max) * 100)
 const gainAnim = ref(false)
@@ -13,19 +14,25 @@ const { start: stopGainAnim } = useTimeoutFn(() => (gainAnim.value = false), 400
 watch(
   () => props.value,
   (val, old) => {
-    if (props.xp && val > old) {
+    if ((props.xp || props.rainbow) && val > old) {
       gainAnim.value = true
       stopGainAnim()
     }
   },
 )
+
+const barClass = computed(() => {
+  if (props.rainbow)
+    return 'rainbow-bar rainbow-aura'
+  return props.xp ? 'xp-bar' : (props.color ?? 'bg-blue-800')
+})
 </script>
 
 <template>
   <div class="h-2 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700">
     <div
       class="h-full transition-all duration-300"
-      :class="[props.xp ? 'xp-bar' : (props.color ?? 'bg-blue-800'), gainAnim ? 'xp-gain' : '']"
+      :class="[barClass, gainAnim ? 'xp-gain' : '']"
       :style="{ width: `${percent}%` }"
     />
   </div>
@@ -36,6 +43,20 @@ watch(
   background-image: linear-gradient(90deg, #4ade80, #67e8f9, #4ade80);
   background-size: 200% 100%;
   animation: xp-flow 4s linear infinite;
+}
+
+.rainbow-bar {
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #3333ff, #ff00cc);
+  background-size: 400% 100%;
+  animation: rainbow-shift 5s linear infinite;
+}
+
+.rainbow-aura {
+  box-shadow: 0 0 6px 2px rgba(255, 128, 255, 0.6);
+}
+
+.dark .rainbow-aura {
+  box-shadow: 0 0 6px 2px rgba(255, 128, 255, 0.3);
 }
 
 .dark .xp-bar {
@@ -67,6 +88,18 @@ watch(
   100% {
     transform: scaleY(1);
     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
+  }
+}
+
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 </style>
