@@ -29,12 +29,13 @@ export const useEggBoxStore = defineStore('eggBox', () => {
       delete eggs.value[id]
   }
 
-  function importFromInventory(items: Partial<Record<ItemId, number>>) {
+  function importFromInventory(items: MaybeRef<Partial<Record<ItemId, number>>>) {
+    const source = unref(items)
     for (const id of eggIds) {
-      const count = items[id]
+      const count = source[id]
       if (count && count > 0) {
         addEgg(id, count)
-        delete items[id]
+        delete source[id]
       }
     }
   }
