@@ -1,6 +1,6 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
-import { allItems } from '~/data/items/items'
+import { allItems } from '~/data/items'
 
 export const useWearableEquipModalStore = defineStore('wearableEquipModal', () => {
   // Keep the current mobile tab when opening this modal so the secondary panel

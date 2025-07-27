@@ -2,7 +2,7 @@
 import type { EggType } from '~/stores/egg'
 import type { EggItemId } from '~/stores/eggBox'
 import { eggTypeMap } from '~/constants/egg'
-import { allItems } from '~/data/items/items'
+import { allItems } from '~/data/items'
 
 const eggMonsModal = useEggMonsModalStore()
 

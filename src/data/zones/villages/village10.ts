@@ -7,7 +7,7 @@ import {
   potion,
   vitalityPotion,
   xpPotion,
-} from '~/data/items/items'
+} from '~/data/items'
 import { shlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { savage05 } from '../savages/05-bois-de-bouffon'

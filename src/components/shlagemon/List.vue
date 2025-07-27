@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import WearableItemIcon from '~/components/inventory/WearableItemIcon.vue'
-import { allItems } from '~/data/items/items'
+import { allItems } from '~/data/items'
 
 interface Props {
   mons: DexShlagemon[]

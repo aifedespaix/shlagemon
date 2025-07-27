@@ -4,7 +4,7 @@ import type { BallId } from '~/data/items/shlageball'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
-import { eggBox as eggBoxItem } from '~/data/items/items'
+import { eggBox as eggBoxItem } from '~/data/items'
 import InventoryItemCard from '../inventory/ItemCard.vue'
 
 const inventory = useInventoryStore()

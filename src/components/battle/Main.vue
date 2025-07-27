@@ -2,7 +2,7 @@
 import type { DexShlagemon } from '~/type'
 import { storeToRefs } from 'pinia'
 import { EQUILIBRE_RANK } from '~/constants/battle'
-import { multiExp } from '~/data/items/items'
+import { multiExp } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import { pickRandomByCoefficient } from '~/utils/spawn'

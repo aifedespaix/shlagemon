@@ -1,5 +1,5 @@
 import type { BaseShlagemon } from '~/type'
-import { steroids } from '~/data/items/items'
+import { steroids } from '~/data/items'
 import { shlagemonTypes } from '../../shlagemons-type'
 import masschopeur from '../evolutions/masschopeur'
 

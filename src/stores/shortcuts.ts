@@ -1,4 +1,4 @@
-import type { ItemId } from '~/data/items/items'
+import type { ItemId } from '~/data/items'
 import type { BallId } from '~/data/items/shlageball'
 import { defineStore } from 'pinia'
 import {
@@ -6,7 +6,7 @@ import {
   hyperPotion,
   potion,
   superPotion,
-} from '~/data/items/items'
+} from '~/data/items'
 
 export interface UseItemAction {
   type: 'use-item'

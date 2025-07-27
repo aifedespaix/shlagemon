@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { EggItemId } from '~/stores/eggBox'
-import { allItems } from '~/data/items/items'
+import { allItems } from '~/data/items'
 
 const eggMonsModal = useEggMonsModalStore()
 

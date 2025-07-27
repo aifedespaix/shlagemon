@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
-import { eggBox } from '~/data/items/items'
+import { eggBox } from '~/data/items'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()

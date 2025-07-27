@@ -3,7 +3,7 @@ import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { norman } from '../characters/norman'
-import { thunderEgg } from '../items/items'
+import { thunderEgg } from '../items'
 
 export const shlagTaquinMiniGame: MiniGameDefinition = {
   id: 'taquin',

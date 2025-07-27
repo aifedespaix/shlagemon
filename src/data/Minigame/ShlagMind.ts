@@ -3,7 +3,7 @@ import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { marcon } from '../characters/marcon'
-import { psyEgg } from '../items/items'
+import { psyEgg } from '../items'
 
 export const shlagMindMiniGame: MiniGameDefinition = {
   id: 'shlagmind',

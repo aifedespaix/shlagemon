@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
-import { potion } from '~/data/items/items'
+import { potion } from '~/data/items'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()

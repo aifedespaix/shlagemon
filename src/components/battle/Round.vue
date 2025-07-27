@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { multiExp } from '~/data/items/items'
+import { multiExp } from '~/data/items'
 
 const props = withDefaults(defineProps<{
   player: DexShlagemon

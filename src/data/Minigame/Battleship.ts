@@ -3,7 +3,7 @@ import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { vladimirPutain } from '../characters/vladimir-putain'
-import { waterEgg } from '../items/items'
+import { waterEgg } from '../items'
 
 export const battleshipMiniGame: MiniGameDefinition = {
   id: 'battleship',

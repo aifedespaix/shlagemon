@@ -7,7 +7,7 @@ import {
   potion,
   vitalityPotion,
   xpPotion,
-} from '~/data/items/items'
+} from '~/data/items'
 import { shlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { arena20 } from '../../arenas'

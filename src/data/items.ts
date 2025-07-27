@@ -1,27 +1,27 @@
 import type { Item } from '~/type/item'
-import { hyperShlageball, shlageball, superShlageball } from './shlageball'
+import { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
 import {
   advancedAttackRing,
   attackAmulet,
   attackRing,
-} from './wearables/attackRing'
+} from './items/wearables/attackRing'
 import {
   advancedDefenseRing,
   defenseAmulet,
   defenseRing,
-} from './wearables/defenseRing'
+} from './items/wearables/defenseRing'
 import {
   advancedVitalityRing,
   vitalityAmulet,
   vitalityRing,
-} from './wearables/vitalityRing'
+} from './items/wearables/vitalityRing'
 import {
   advancedXpRing,
   xpAmulet,
   xpRing,
-} from './wearables/xpRing'
+} from './items/wearables/xpRing'
 
-export { hyperShlageball, shlageball, superShlageball } from './shlageball'
+export { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
 
 // @unocss-include
 export const defensePotion: Item = {

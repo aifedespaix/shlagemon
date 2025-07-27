@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { multiExp } from '~/data/items/items'
+import { multiExp } from '~/data/items'
 
 export const useEquipmentStore = defineStore('equipment', () => {
   const holders = ref<Record<string, string | null>>({})

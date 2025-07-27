@@ -15,7 +15,7 @@ import {
   superXpPotion,
   vitalityPotion,
   xpPotion,
-} from '~/data/items/items'
+} from '~/data/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { savage45 } from '../savages/45-catacombes-merdifientes'

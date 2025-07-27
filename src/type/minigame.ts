@@ -1,7 +1,7 @@
 import type { Component } from 'vue'
 import type { Character } from './character'
 import type { DialogNode } from './dialog'
-import type { ItemId } from '~/data/items/items'
+import type { ItemId } from '~/data/items'
 
 export interface MoneyReward {
   type: 'money'

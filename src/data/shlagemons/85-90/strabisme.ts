@@ -1,5 +1,5 @@
 import type { BaseShlagemon } from '~/type'
-import { thunderStone } from '~/data/items/items'
+import { thunderStone } from '~/data/items'
 import { shlagemonTypes } from '../../shlagemons-type'
 import stabiscarosse from '../evolutions/stabiscarosse'
 

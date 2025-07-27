@@ -4,7 +4,7 @@ import type { Item, WearableItem } from '~/type/item'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
-import { allItems } from '~/data/items/items'
+import { allItems } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
 import {
   applyCurrentStats,

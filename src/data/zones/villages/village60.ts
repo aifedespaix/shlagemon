@@ -16,7 +16,7 @@ import {
   superXpPotion,
   vitalityPotion,
   xpPotion,
-} from '~/data/items/items'
+} from '~/data/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { arena60 } from '../../arenas'

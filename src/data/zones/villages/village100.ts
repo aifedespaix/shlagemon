@@ -20,7 +20,7 @@ import {
   ultraSteroid,
   vitalityPotion,
   xpPotion,
-} from '~/data/items/items'
+} from '~/data/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { savage95 } from '../savages/95-cratere-des-legends'

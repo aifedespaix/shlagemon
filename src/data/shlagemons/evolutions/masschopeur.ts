@@ -1,5 +1,5 @@
 import type { BaseShlagemon } from '~/type'
-import { ultraSteroid } from '~/data/items/items'
+import { ultraSteroid } from '~/data/items'
 import { shlagemonTypes } from '../../shlagemons-type'
 import macintosh from './macintosh'
 

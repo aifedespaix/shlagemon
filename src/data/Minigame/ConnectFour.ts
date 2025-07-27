@@ -3,7 +3,7 @@ import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { donaldTrompe } from '../characters/donald-trompe'
-import { fireEgg } from '../items/items'
+import { fireEgg } from '../items'
 
 export const connectFourMiniGame: MiniGameDefinition = {
   id: 'connectfour',

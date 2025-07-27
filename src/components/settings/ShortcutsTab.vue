@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ItemId } from '~/data/items/items'
+import type { ItemId } from '~/data/items'
 import type { ShortcutEntry } from '~/stores/shortcuts'
-import { allItems } from '~/data/items/items'
+import { allItems } from '~/data/items'
 
 const store = useShortcutsStore()
 const { t } = useI18n()

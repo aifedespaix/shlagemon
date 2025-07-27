@@ -3,7 +3,7 @@ import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
 import { sachatte } from '../characters/sachatte'
-import { grassEgg } from '../items/items'
+import { grassEgg } from '../items'
 
 export const ticTacToeMiniGame: MiniGameDefinition = {
   id: 'tictactoe',

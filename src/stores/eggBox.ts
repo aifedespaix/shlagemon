@@ -1,4 +1,4 @@
-import type { ItemId } from '~/data/items/items'
+import type { ItemId } from '~/data/items'
 import { defineStore } from 'pinia'
 
 export const eggIds = ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe', 'oeuf-psy', 'oeuf-foudre'] as const

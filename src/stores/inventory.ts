@@ -1,10 +1,10 @@
-import type { ItemId } from '~/data/items/items'
+import type { ItemId } from '~/data/items'
 import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import {
   allItems,
   eggBox as eggBoxItem,
-} from '~/data/items/items'
+} from '~/data/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 
