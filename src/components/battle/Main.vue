@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia'
 import { multiExp } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { createDexShlagemon } from '~/utils/dexFactory'
-import { pickRandom } from '~/utils/spawn'
+import { pickByAlphabet } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
 const zone = useZoneStore()
@@ -29,7 +29,8 @@ function createEnemy(): DexShlagemon | null {
     if (filtered.length)
       pool = filtered
   }
-  const base = pickRandom(pool)
+  const count = progress.getEncounterCount(zone.current.id)
+  const base = pickByAlphabet(pool, count)
   progress.registerEncounter(zone.current.id, base.id)
   const min = Number(zone.current.minLevel ?? 1)
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
