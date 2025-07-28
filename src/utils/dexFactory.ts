@@ -56,7 +56,12 @@ export function createDexShlagemon(
   maxRarity = 99,
   minRarity = 1,
 ): DexShlagemon {
-  const rarity = generateRarity(maxRarity, minRarity)
+  let rarity = generateRarity(maxRarity, minRarity)
+  let rarityFollowsLevel = false
+  if (base.id === 'wem') {
+    rarity = level
+    rarityFollowsLevel = true
+  }
   const mon: DexShlagemon = {
     id: crypto.randomUUID(),
     base,
@@ -80,7 +85,7 @@ export function createDexShlagemon(
     hpCurrent: 0,
     allowEvolution: true,
     heldItemId: null,
-    rarityFollowsLevel: false,
+    rarityFollowsLevel,
   }
   applyStats(mon)
   applyCurrentStats(mon)
