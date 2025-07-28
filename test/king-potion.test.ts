@@ -24,8 +24,9 @@ describe('king potion', () => {
     expect(mon.hpCurrent).toBeGreaterThan(half)
     vi.spyOn(Math, 'random').mockReturnValue(1)
     const before = mon.hpCurrent
-    store.activate()
-    expect(mon.hpCurrent).toBeLessThan(before)
+    const result = store.activate()
+    expect(result).toBe(false)
+    expect(mon.hpCurrent).toBe(before)
     vi.useRealTimers()
   })
 

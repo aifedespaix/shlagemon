@@ -111,6 +111,7 @@ function startFight() {
   enemyIndex.value = 0
   if (dex.activeShlagemon.hpCurrent <= 0)
     dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
+  kingPotion.reset()
   result.value = 'none'
   stage.value = 'battle'
   enemy.value = createEnemy()
@@ -121,6 +122,7 @@ watch(trainer, (t) => {
     stage.value = 'before'
     enemyIndex.value = 0
     result.value = 'none'
+    kingPotion.reset()
   }
 })
 

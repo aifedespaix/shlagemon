@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
 import { useInventoryStore } from './inventory'
 import { useShlagedexStore } from './shlagedex'
@@ -10,6 +10,8 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
   const inventory = useInventoryStore()
   const dex = useShlagedexStore()
 
+  const used = ref(false)
+
   const owned = computed(() =>
     potions.find(p => inventory.items[p.id] > 0) || null,
   )
@@ -17,6 +19,8 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
   const power = computed(() => owned.value?.power ?? 0)
 
   function activate() {
+    if (used.value)
+      return false
     const potion = owned.value
     if (!potion || !dex.activeShlagemon)
       return false
@@ -26,8 +30,14 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
       dex.healActive(amount)
     else
       dex.activeShlagemon.hpCurrent = Math.max(0, dex.activeShlagemon.hpCurrent - amount)
+    inventory.remove(potion.id)
+    used.value = true
     return true
   }
 
-  return { owned, power, activate }
+  function reset() {
+    used.value = false
+  }
+
+  return { owned, power, used, activate, reset }
 })
