@@ -12,5 +12,5 @@ export interface Trainer {
   dialogAfter: string
   dialogDefeat?: string
   reward: number
-  shlagemons: TrainerShlagemon[]
+  shlagemons: (TrainerShlagemon | string)[]
 }

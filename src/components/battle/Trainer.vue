@@ -82,12 +82,17 @@ function createEnemy(): DexShlagemon | null {
   const spec = t.shlagemons[enemyIndex.value]
   if (!spec)
     return null
-  const base = allShlagemons.find(b => b.id === spec.baseId)
+  const baseId = typeof spec === 'string' ? spec : spec.baseId
+  const base = allShlagemons.find(b => b.id === baseId)
   if (!base)
     return null
   const max = wildLevel.highestWildLevel
   const min = isZoneKing.value ? Math.max(1, max - 20) : 1
-  return createDexShlagemon(base, false, spec.level, max, min)
+  const zoneMax = zone.current.maxLevel ?? 1
+  const level = typeof spec === 'string'
+    ? zoneMax + 1 - (t.shlagemons.length - 1 - enemyIndex.value)
+    : spec.level
+  return createDexShlagemon(base, false, level, max, min)
 }
 
 function startFight() {
