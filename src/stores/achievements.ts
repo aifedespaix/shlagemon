@@ -451,7 +451,15 @@ export const useAchievementsStore = defineStore('achievements', () => {
     return null
   }
 
-  return { list, unlockedList, hasAny, handleEvent, reset, getProgress }
+  return {
+    list,
+    unlockedList,
+    hasAny,
+    handleEvent,
+    reset,
+    getProgress,
+    counters,
+  }
 }, {
   persist: {
     pick: ['counters'],
