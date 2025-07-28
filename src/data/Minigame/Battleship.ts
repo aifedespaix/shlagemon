@@ -2,13 +2,13 @@ import type { MiniGameDefinition } from '~/type/minigame'
 import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
-import { vladimirPutain } from '../characters/vladimir-putain'
+import { afidaTourments } from '../characters/afida-tourments'
 import { waterEgg } from '../items'
 
 export const battleshipMiniGame: MiniGameDefinition = {
   id: 'battleship',
   label: 'Bataille Navale',
-  character: vladimirPutain,
+  character: afidaTourments,
   component: () => import('~/components/minigame/Battleship.vue'),
   reward: { type: 'item', itemId: waterEgg.id },
   createIntro(start) {

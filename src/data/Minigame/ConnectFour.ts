@@ -2,13 +2,13 @@ import type { MiniGameDefinition } from '~/type/minigame'
 import { i18n } from '~/modules/i18n'
 import { useMainPanelStore } from '~/stores/mainPanel'
 import { useMiniGameStore } from '~/stores/miniGame'
-import { donaldTrompe } from '../characters/donald-trompe'
+import { magalieBredouille } from '../characters/magalie-bredouille'
 import { fireEgg } from '../items'
 
 export const connectFourMiniGame: MiniGameDefinition = {
   id: 'connectfour',
   label: 'Puissance 4',
-  character: donaldTrompe,
+  character: magalieBredouille,
   component: () => import('~/components/minigame/MiniGamePuissance4.vue'),
   reward: { type: 'item', itemId: fireEgg.id },
   createIntro(start) {
