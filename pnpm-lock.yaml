@@ -164,6 +164,9 @@ catalogs:
     vue-router:
       specifier: ^4.5.1
       version: 4.5.1
+    vue3-select-component:
+      specifier: ^0.11.8
+      version: 0.11.8
     vue3-toastify:
       specifier: ^0.2.8
       version: 0.2.8
@@ -223,6 +226,9 @@ importers:
       vue-router:
         specifier: catalog:frontend
         version: 4.5.1(vue@3.5.17(typescript@5.8.3))
+      vue3-select-component:
+        specifier: catalog:frontend
+        version: 0.11.8(vue@3.5.17(typescript@5.8.3))
       vue3-toastify:
         specifier: catalog:frontend
         version: 0.2.8(vue@3.5.17(typescript@5.8.3))
@@ -1841,6 +1847,11 @@ packages:
   '@rollup/rollup-linux-s390x-gnu@4.45.1':
     resolution: {integrity: sha512-NITBOCv3Qqc6hhwFt7jLV78VEO/il4YcBzoMGGNxznLgRQf43VQDae0aAzKiBeEPIxnDrACiMgbqjuihx08OOw==}
     cpu: [s390x]
+    os: [linux]
+
+  '@rollup/rollup-linux-x64-gnu@4.44.0':
+    resolution: {integrity: sha512-iUVJc3c0o8l9Sa/qlDL2Z9UP92UZZW1+EmQ4xfjTc1akr0iUFZNfxrXJ/R1T90h/ILm9iXEY6+iPrmYB3pXKjw==}
+    cpu: [x64]
     os: [linux]
 
   '@rollup/rollup-linux-x64-gnu@4.45.1':
@@ -6133,6 +6144,11 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
+  vue3-select-component@0.11.8:
+    resolution: {integrity: sha512-fNFZXg/fwrels/xYH3URXkV4df4mPxy4q35DZMjUth6u1JUGYHTci29ND5GgNmQncS2vQeMyeTzejqlQD16zOA==}
+    peerDependencies:
+      vue: ^3.5.0
+
   vue3-toastify@0.2.8:
     resolution: {integrity: sha512-8jDOqsJaBZEbGpCbhWDETJc11D1lZefvgFPq/IPdM+U7+qyXoVPDvK6uq/FIgyV7qV0NcNzvGBMEzjsLQqGROw==}
     engines: {node: '>=20', npm: '>=9.0.0'}
@@ -7881,6 +7897,9 @@ snapshots:
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.45.1':
+    optional: true
+
+  '@rollup/rollup-linux-x64-gnu@4.44.0':
     optional: true
 
   '@rollup/rollup-linux-x64-gnu@4.45.1':
@@ -13108,6 +13127,12 @@ snapshots:
       '@volar/typescript': 2.4.20
       '@vue/language-core': 3.0.3(typescript@5.8.3)
       typescript: 5.8.3
+
+  vue3-select-component@0.11.8(vue@3.5.17(typescript@5.8.3)):
+    dependencies:
+      vue: 3.5.17(typescript@5.8.3)
+    optionalDependencies:
+      '@rollup/rollup-linux-x64-gnu': 4.44.0
 
   vue3-toastify@0.2.8(vue@3.5.17(typescript@5.8.3)):
     optionalDependencies:

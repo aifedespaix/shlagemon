@@ -4,27 +4,23 @@ const emit = defineEmits(['win', 'lose', 'draw'])
 const { board, finished, winningCells, lastMove, reset, play } = useConnectFour()
 const hoverCol = ref<number | null>(null)
 
-function isHiddenColumn(col: number) {
-  return HIDDEN_COLS.includes(col)
-}
-
 const wrapper = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(wrapper)
+
+const COLS = 9
+const ROWS = 6
+const LEFT_GHOST_COL = 0
+const RIGHT_GHOST_COL = COLS - 1
+const visibleCols = computed(() => Array.from({ length: COLS }, (_, i) => i).slice(1, COLS - 1))
+
 const boardWidth = computed(() => Math.min(width.value, height.value * COLS / ROWS))
 const boardHeight = computed(() => boardWidth.value * ROWS / COLS)
 
-watch(winningCells, (cells) => {
-  if (!cells.length)
-    return
-  const win = board.value[cells[0]] === 'player'
-  useTimeoutFn(() => emit(win ? 'win' : 'lose'), 800)
-})
-watch(finished, (f) => {
-  if (f && !winningCells.value.length)
-    useTimeoutFn(() => emit('draw'), 800)
-})
+function isGhostCol(col: number) {
+  return col === LEFT_GHOST_COL || col === RIGHT_GHOST_COL
+}
 
-function onClick(i: number) {
+function playIfPossible(i: number) {
   if (finished.value)
     return
   const col = i % COLS
@@ -32,13 +28,28 @@ function onClick(i: number) {
 }
 
 function setHover(i: number) {
-  if (!finished.value && !isHiddenColumn(i % COLS))
-    hoverCol.value = i % COLS
+  if (finished.value)
+    return
+  const col = i % COLS
+  if (!isGhostCol(col))
+    hoverCol.value = col
 }
 
 function clearHover() {
   hoverCol.value = null
 }
+
+watch(winningCells, (cells) => {
+  if (!cells.length)
+    return
+  const win = board.value[cells[0]] === 'player'
+  useTimeoutFn(() => emit(win ? 'win' : 'lose'), 800)
+})
+
+watch(finished, (f) => {
+  if (f && !winningCells.value.length)
+    useTimeoutFn(() => emit('draw'), 800)
+})
 
 onMounted(reset)
 </script>
@@ -46,21 +57,26 @@ onMounted(reset)
 <template>
   <div ref="wrapper" class="flex flex-1 items-center justify-center">
     <div
-      class="relative grid gap-1 overflow-hidden rounded p-2" md="gap-2 p-3"
-      :style="{ gridTemplateColumns: `repeat(${COLS},1fr)`, width: `${boardWidth}px`, height: `${boardHeight}px`, background: '#3755a4' }"
+      class="grid gap-1 p-2 md:gap-2 md:p-3"
+      :style="{
+        gridTemplateColumns: `repeat(${COLS}, 1fr)`,
+        width: `${boardWidth}px`,
+        height: `${boardHeight}px`,
+      }"
     >
-      <button
+      <div
         v-for="(cell, i) in board"
         :key="i"
-        class="relative aspect-square flex items-center justify-center overflow-hidden rounded-full bg-[#1e2f70]"
+        class="relative aspect-square flex items-center justify-center overflow-hidden rounded-full transition-colors"
         :class="[
-          hoverCol === i % COLS && !finished ? 'bg-[#273878]' : '',
-          isHiddenColumn(i % COLS) ? 'cursor-default' : '',
+          i % COLS > 0 && i % COLS < COLS - 1 ? 'bg-[#3755a4]' : '',
+          i % COLS > 0 && i % COLS < COLS - 1 ? 'ring-1 ring-[#1e2f70]' : '',
+          i % COLS === hoverCol && !finished ? 'bg-[#273878]' : '',
+          isGhostCol(i % COLS) ? 'cursor-default' : 'cursor-pointer',
         ]"
-        :hover="!finished && !isHiddenColumn(i % COLS) ? 'scale-105' : undefined"
         @mouseenter="setHover(i)"
         @mouseleave="clearHover"
-        @click="onClick(i)"
+        @click="playIfPossible(i)"
       >
         <div
           v-if="cell"
@@ -72,7 +88,7 @@ onMounted(reset)
             winningCells.includes(i) ? 'animate-glow' : '',
           ]"
         />
-      </button>
+      </div>
     </div>
   </div>
 </template>
