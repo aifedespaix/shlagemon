@@ -1,6 +1,6 @@
 export type ItemCurrency = 'shlagidolar' | 'shlagidiamond'
 
-export type ItemCategory = 'actif' | 'passif' | 'utilitaire'
+export type ItemCategory = 'actif' | 'passif' | 'utilitaire' | 'activable'
 
 export interface Item {
   id: string
