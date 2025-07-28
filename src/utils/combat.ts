@@ -10,9 +10,9 @@ export function getTypeMultiplier(
   let base = 1
 
   if (targetType.weakness.some(w => w.id === attackType.id))
-    base = 1.2 // La cible est faible contre ce type
+    base = 1.5 // La cible est faible contre ce type
   else if (targetType.resistance.some(r => r.id === attackType.id))
-    base = 0.8 // La cible résiste à ce type
+    base = 0.5 // La cible résiste à ce type
 
   const effect: 'super' | 'not' | 'normal'
     = base > 1 ? 'super' : base < 1 ? 'not' : 'normal'

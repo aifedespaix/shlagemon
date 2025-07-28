@@ -25,9 +25,9 @@ onBeforeUnmount(() => {
 // --- Table logique
 function getMultiplier(att: typeof types[number], def: typeof types[number]) {
   if (def.weakness.some(w => w.id === att.id))
-    return 1.2
+    return 1.5
   if (def.resistance.some(r => r.id === att.id))
-    return 0.8
+    return 0.5
   return 1
 }
 </script>
