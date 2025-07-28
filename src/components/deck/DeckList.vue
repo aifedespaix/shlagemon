@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
+import { useDeckFilterStore } from '~/stores/deckFilter'
 
 const props = defineProps<{
   mons: BaseShlagemon[]
@@ -7,14 +8,25 @@ const props = defineProps<{
   selectedId?: string | null
 }>()
 
-const search = ref('')
+const filter = useDeckFilterStore()
 const { t } = useI18n()
+const sortOptions = [
+  { label: t('components.deck.DeckList.sort.name'), value: 'name' },
+  { label: t('components.deck.DeckList.sort.type'), value: 'type' },
+]
 
 const displayed = computed(() => {
-  const q = search.value.trim().toLowerCase()
-  const result = props.mons
-    .filter(m => m.name.toLowerCase().includes(q))
-    .sort((a, b) => a.name.localeCompare(b.name))
+  const q = filter.search.trim().toLowerCase()
+  const result = props.mons.filter(m => m.name.toLowerCase().includes(q))
+  switch (filter.sortBy) {
+    case 'type':
+      result.sort((a, b) => (a.types[0]?.name || '').localeCompare(b.types[0]?.name || ''))
+      break
+    default:
+      result.sort((a, b) => a.name.localeCompare(b.name))
+  }
+  if (!filter.sortAsc)
+    result.reverse()
   if (props.selectedId) {
     const idx = result.findIndex(m => m.id === props.selectedId)
     if (idx > 0) {
@@ -29,7 +41,18 @@ const displayed = computed(() => {
 <template>
   <LayoutScrollablePanel>
     <template #header>
-      <UiSearchInput v-model="search" :placeholder="t('components.deck.DeckList.search')" />
+      <div class="flex gap-2">
+        <UiSortControls
+          v-model:sort-by="filter.sortBy"
+          v-model:sort-asc="filter.sortAsc"
+          :options="sortOptions"
+        />
+        <UiSearchInput
+          v-model="filter.search"
+          :placeholder="t('components.deck.DeckList.search')"
+          class="flex-1"
+        />
+      </div>
     </template>
     <template #content>
       <div
