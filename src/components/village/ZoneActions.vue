@@ -4,6 +4,7 @@ import type { SavageZoneId } from '~/type'
 const zone = useZoneStore()
 const panel = useMainPanelStore()
 const mini = useMiniGameStore()
+const mobile = useMobileTabStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
@@ -48,6 +49,7 @@ function onAction(id: string) {
     if (zone.current.miniGame)
       mini.select(zone.current.miniGame)
     panel.showMiniGame()
+    mobile.set('game')
   }
 }
 
