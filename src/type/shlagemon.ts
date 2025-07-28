@@ -58,4 +58,10 @@ export interface DexShlagemon extends Stats {
    * ID of the item currently held by the Shlagémon, if any.
    */
   heldItemId?: string | null
+
+  /**
+   * When true, the rarity of this Shlagémon will always match its level.
+   * Useful for the starter whose rarity scales with leveling.
+   */
+  rarityFollowsLevel?: boolean
 }

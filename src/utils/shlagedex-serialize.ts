@@ -90,6 +90,7 @@ export const shlagedexSerializer = {
           captureDate: mon.captureDate ?? new Date().toISOString(),
           captureCount: mon.captureCount ?? 1,
           heldItemId: mon.heldItemId ?? null,
+          rarityFollowsLevel: mon.rarityFollowsLevel ?? false,
         }
       })
       .filter((m): m is DexShlagemon => Boolean(m))
@@ -114,6 +115,7 @@ export const shlagedexSerializer = {
           captureDate: activeData.captureDate ?? new Date().toISOString(),
           captureCount: activeData.captureCount ?? 1,
           heldItemId: activeData.heldItemId ?? null,
+          rarityFollowsLevel: activeData.rarityFollowsLevel ?? false,
         }
       }
       else {

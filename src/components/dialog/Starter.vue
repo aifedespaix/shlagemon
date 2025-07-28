@@ -59,7 +59,8 @@ const dialogTree = computed((): DialogNode[] => [
         type: 'valid' as ButtonType,
         action: () => {
           gameState.setStarterId(s.id)
-          dex.createShlagemon(s)
+          const mon = dex.createShlagemon(s)
+          mon.rarityFollowsLevel = true
           gameState.setHasPokemon(true)
           emit('done', 'starter')
         },

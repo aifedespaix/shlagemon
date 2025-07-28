@@ -80,6 +80,7 @@ export function createDexShlagemon(
     hpCurrent: 0,
     allowEvolution: true,
     heldItemId: null,
+    rarityFollowsLevel: false,
   }
   applyStats(mon)
   applyCurrentStats(mon)
