@@ -433,7 +433,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
 
       const zoneWin = prefix.match(/^zone-(.*)-win$/)
       if (zoneWin)
-        return { value: progress.wins.value[zoneWin[1]] || 0, max }
+        return { value: progress.wins[zoneWin[1]] || 0, max }
     }
 
     const zoneComplete = id.match(/^zone-(.*)-complete$/)
