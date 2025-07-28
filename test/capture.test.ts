@@ -9,38 +9,31 @@ describe('capture mechanics', () => {
     vi.restoreAllMocks()
   })
 
-  it('succeeds when random is low', () => {
-    const mon = createDexShlagemon(carapouffe)
-    mon.hpCurrent = 0
-    mon.rarity = 50
-    vi.spyOn(Math, 'random').mockReturnValue(0)
-    expect(tryCapture(mon, balls[0])).toBe(true)
+  it('capture chance from hp is linear', () => {
+    expect(captureChanceFromHp(0.5)).toBeCloseTo(44.5, 1)
   })
 
-  it('fails when random is high', () => {
-    const mon = createDexShlagemon(carapouffe)
-    mon.hpCurrent = mon.hp
-    mon.rarity = 100
-    vi.spyOn(Math, 'random').mockReturnValue(0.99)
+  it('basic ball cannot capture high level foe', () => {
+    const mon = createDexShlagemon(carapouffe, false, 40)
+    mon.hpCurrent = 0
+    vi.spyOn(Math, 'random').mockReturnValue(0)
     expect(tryCapture(mon, balls[0])).toBe(false)
   })
 
-  it('hyper ball versus strong foe is guaranteed', () => {
-    const mon = createDexShlagemon(carapouffe, false, 100)
+  it('super ball doubles chance for low level foe', () => {
+    const mon = createDexShlagemon(carapouffe, false, 20)
     mon.hp = 100
-    mon.hpCurrent = 10
-    const hpChance = captureChanceFromHp(mon.hpCurrent / mon.hp)
-    const levelMod = 1 / (1 + mon.lvl / 40)
-    const chance = Math.min(100, hpChance * levelMod * balls[2].catchBonus)
-    expect(chance).toBe(100)
+    mon.hpCurrent = 1
+    vi.spyOn(Math, 'random').mockReturnValue(0.5)
+    expect(tryCapture(mon, balls[1])).toBe(true)
   })
 
-  it('regular ball against lvl1 foe at full HP is almost guaranteed', () => {
-    const mon = createDexShlagemon(carapouffe, false, 1)
-    mon.hpCurrent = mon.hp
-    const hpChance = captureChanceFromHp(mon.hpCurrent / mon.hp)
-    const levelMod = 1 / (1 + mon.lvl / 40)
-    const chance = Math.min(100, hpChance * levelMod * balls[0].catchBonus)
-    expect(chance).toBeCloseTo(78, 0)
+  it('rarity reduces capture probability', () => {
+    const mon = createDexShlagemon(carapouffe, false, 70)
+    mon.hp = 100
+    mon.hpCurrent = 1
+    mon.rarity = 100
+    vi.spyOn(Math, 'random').mockReturnValue(0.3)
+    expect(tryCapture(mon, balls[2])).toBe(false)
   })
 })
