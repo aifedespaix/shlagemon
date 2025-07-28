@@ -44,7 +44,7 @@ function startHold() {
       :class="`rainbow-${power}`"
     >
       <div class="potion-aura absolute inset-0 rounded-full" :class="{ holding }" />
-      <div class="i-game-icons:potion-ball relative z-1 h-8 w-8" />
+      <div class="mask-rainbow i-game-icons:potion-ball relative z-1 h-8 w-8" />
     </div>
   </UiButton>
 </template>
@@ -57,7 +57,7 @@ function startHold() {
   transition: transform 0.2s ease;
 }
 .potion-aura.holding {
-  transform: scale(1.1);
+  transform: scale(2);
   transition: transform 1s linear;
 }
 .rainbow-15 .potion-aura {

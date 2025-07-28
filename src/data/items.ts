@@ -535,7 +535,6 @@ export const specialPotion: Item = {
   category: 'activable',
   wearable: true,
   icon: 'i-game-icons:potion-ball',
-  iconClass: 'text-fuchsia-500 dark:text-fuchsia-400',
 }
 
 export const mysteriousPotion: Item = {
@@ -552,7 +551,6 @@ export const mysteriousPotion: Item = {
   category: 'activable',
   wearable: true,
   icon: 'i-game-icons:potion-of-madness',
-  iconClass: 'text-fuchsia-600 dark:text-fuchsia-500',
 }
 
 export const fabulousPotion: Item = {
@@ -569,7 +567,6 @@ export const fabulousPotion: Item = {
   category: 'activable',
   wearable: true,
   icon: 'i-game-icons:bubbling-flask',
-  iconClass: 'text-fuchsia-700 dark:text-fuchsia-600',
 }
 
 export const allItems = [
