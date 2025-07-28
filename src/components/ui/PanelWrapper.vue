@@ -105,18 +105,12 @@ function clickPrevented(e: MouseEvent) {
         <slot />
       </div>
     </Transition>
-    <div v-if="props.isLocked" class="absolute inset-0 z-50 bg-black/20 dark:bg-black/40" @click="clickPrevented" />
+    <div v-if="props.isLocked" class="absolute inset-0 z-99999999 bg-black/20 dark:bg-black/40" @click="clickPrevented" />
   </div>
 </template>
 
 <style scoped>
 .panel-wrapper {
-  @apply relative flex flex-col;
-  @apply rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800;
-}
-
-.collapse-enter-active,
-.collapse-leave-active {
-  /* transition: height 0.2s ease;*/
+  @apply relative flex flex-col rounded bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800;
 }
 </style>
