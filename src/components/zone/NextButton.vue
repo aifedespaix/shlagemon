@@ -34,7 +34,7 @@ function goNext() {
   </Transition>
 </template>
 
-<style>
+<style scoped>
 .fade-slide-enter-active,
 .fade-slide-leave-active {
   transition:

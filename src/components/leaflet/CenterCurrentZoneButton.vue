@@ -54,13 +54,34 @@ function center() {
 </script>
 
 <template>
-  <UiButton
-    v-if="visible"
-    type="icon"
-    class="absolute bottom-0 left-1/2 z-5000 h-10 w-10 rounded-b-0 opacity-75 -translate-x-1/2"
-    aria-label="Center on zone"
-    @click="center"
-  >
-    <div class="i-carbon-location text-xl" />
-  </UiButton>
+  <Transition name="fade-slide">
+    <UiButton
+      v-if="visible"
+      type="icon"
+      class="absolute bottom-0 left-1/2 z-5000 h-10 w-10 rounded-b-0 opacity-75 -translate-x-1/2"
+      aria-label="Center on zone"
+      @click="center"
+    >
+      <div class="i-carbon-location text-xl" />
+    </UiButton>
+  </Transition>
 </template>
+
+<style scoped>
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translate(-50%, 100%);
+}
+.fade-slide-enter-to,
+.fade-slide-leave-from {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+</style>
