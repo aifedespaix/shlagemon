@@ -28,7 +28,7 @@ function fightKing() {
 
 <template>
   <UiButton
-    v-if="visible"
+    v-if="visible || true"
     class="absolute right-0 top-6 z-150 m-1 flex animate-pulse-alt gap-2 text-xs"
     hover="animate-none"
     type="danger"
