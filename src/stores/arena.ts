@@ -1,5 +1,6 @@
 import type { Arena, BaseShlagemon, DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
+import { useWildLevelStore } from '~/stores/wildLevel'
 import { createDexShlagemon } from '~/utils/dexFactory'
 
 export type ArenaResult = 'none' | 'win' | 'lose'
@@ -10,6 +11,7 @@ export const useArenaStore = defineStore('arena', () => {
   const lineup = ref<BaseShlagemon[]>([])
   const lineupDex = ref<DexShlagemon[]>([])
   const arenaData = ref<Arena | null>(null)
+  const wildLevel = useWildLevelStore()
   const selections = ref<(string | null)[]>([])
   const currentIndex = ref(0)
   const result = ref<ArenaResult>('none')
@@ -19,7 +21,7 @@ export const useArenaStore = defineStore('arena', () => {
   function setLineup(enemies: BaseShlagemon[], level: number) {
     lineup.value = enemies
     lineupDex.value = enemies.map(m =>
-      createDexShlagemon(m, false, level),
+      createDexShlagemon(m, false, level, wildLevel.highestWildLevel),
     )
     selections.value = Array.from({ length: enemies.length }).fill(null) as (string | null)[]
   }

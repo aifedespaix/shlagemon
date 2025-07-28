@@ -54,8 +54,9 @@ export function createDexShlagemon(
   shiny = false,
   level = 1,
   maxRarity = 99,
+  minRarity = 1,
 ): DexShlagemon {
-  const rarity = generateRarity(maxRarity)
+  const rarity = generateRarity(maxRarity, minRarity)
   const mon: DexShlagemon = {
     id: crypto.randomUUID(),
     base,
@@ -85,10 +86,11 @@ export function createDexShlagemon(
   return mon
 }
 
-function generateRarity(max = 99): number {
+function generateRarity(max = 99, min = 1): number {
   const x = Math.random()
   const skewed = x ** 2
-  return Math.floor(1 + skewed * (max - 1))
+  const value = Math.floor(1 + skewed * (max - 1))
+  return Math.min(max, Math.max(min, value))
 }
 
 export function statWithRarity(base: number, rarity: number): number {

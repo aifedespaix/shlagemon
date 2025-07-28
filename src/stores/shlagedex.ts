@@ -6,6 +6,7 @@ import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
 import { allItems } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
+import { useWildLevelStore } from '~/stores/wildLevel'
 import {
   applyCurrentStats,
   applyStats,
@@ -38,6 +39,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const {
     accessibleZones,
   } = useZoneAccess(highestLevel)
+  const wildLevel = useWildLevelStore()
 
   const accessibleShopLevel = computed(() =>
     accessibleZones.value
@@ -470,7 +472,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function createShlagemon(base: BaseShlagemon, shiny = false) {
-    const mon = createDexShlagemon(base, shiny)
+    const mon = createDexShlagemon(base, shiny, 1, wildLevel.highestWildLevel)
     mon.captureDate = new Date().toISOString()
     mon.captureCount = 1
     addShlagemon(mon)
@@ -486,7 +488,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
         return existing
       }
-      const incoming = createDexShlagemon(base, shiny)
+      const incoming = createDexShlagemon(base, shiny, 1, wildLevel.highestWildLevel)
       existing.captureCount += 1
       let rarityGain = 1
       let levelLoss = 1
@@ -513,7 +515,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       toast(rarityToastMessage(existing.base.name, rarityGain, levelLoss))
       return existing
     }
-    const incoming = createDexShlagemon(base, shiny)
+    const incoming = createDexShlagemon(base, shiny, 1, wildLevel.highestWildLevel)
     incoming.captureDate = new Date().toISOString()
     incoming.captureCount = 1
     addShlagemon(incoming)
