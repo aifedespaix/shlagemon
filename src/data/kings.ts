@@ -6,10 +6,15 @@ import { donaldTrompe } from './characters/donald-trompe'
 import { marcon } from './characters/marcon'
 import { marineLahaine } from './characters/marine-lahaine'
 import { norman } from './characters/norman'
+import { ondejeune } from './characters/ondejeune'
 import { profMerdant } from './characters/prof-merdant'
 import { sachatte } from './characters/sachatte'
 import { siphanus } from './characters/siphanus'
 import { vladimirPutain } from './characters/vladimir-putain'
+import racaillou from './shlagemons/40-45/racaillou'
+import onixtamere from './shlagemons/70-75/onixtamere'
+import poissaucisse from './shlagemons/85-90/poissaucisse'
+import hyporuisseau from './shlagemons/evolutions/hyporuisseau'
 import { zonesData } from './zones'
 
 function _createKing(
@@ -72,21 +77,27 @@ function createStaticShlags(zoneId: SavageZoneId) {
 export const kings: Kings = {
   'plaine-kekette': {
     id: 'king-plaine-kekette',
+    character: ondejeune,
+    reward: zonesData.find(z => z.id === 'plaine-kekette')?.maxLevel || 1,
+    dialogBefore: 'Coucou, si tu gagnes, je te paye le petit déjeuné !',
+    dialogAfter: 'Ok, ok, tu as gagné, je vais t\'inviter pour ce petit déj !',
+    dialogDefeat: 'Mais quel grosse merde, tu vas me payer un petit déj\' de ouf !',
+    shlagemons: [
+      { baseId: poissaucisse.id, level: 5 },
+      { baseId: hyporuisseau.id, level: 6 },
+    ],
+  },
+  'bois-de-bouffon': {
+    id: 'king-bois-de-bouffon',
     character: caillou,
     dialogBefore: 'Ici, c\'est ma street, et tu as trop de cheveux pour pouvoir continuer ton chemin.',
     dialogAfter: 'Tu m\'as bien déglingué, bravo ! Je vais aller me faire un shampoing et je reviendrai bien plus fort !',
     dialogDefeat: 'Je vais te faire bouffer tes cheveux espèce de sous merde !',
-    reward: zonesData.find(z => z.id === 'plaine-kekette')?.maxLevel || 1,
-    shlagemons: createStaticShlags('plaine-kekette'),
-  },
-  'bois-de-bouffon': {
-    id: 'king-bois-de-bouffon',
-    character: sachatte,
-    dialogBefore: 'Ces bois seront ta tombe. Et je vais t\'y griffer !',
-    dialogAfter: 'Je reviendrai plus forte, avec les ongles encore plus aiguisés.',
-    dialogDefeat: 'Tes griffes sont émoussées, je t\'ai humilié, sale chien de tes morts !',
     reward: zonesData.find(z => z.id === 'bois-de-bouffon')?.maxLevel || 1,
-    shlagemons: createStaticShlags('bois-de-bouffon'),
+    shlagemons: [
+      { baseId: racaillou.id, level: 5 },
+      { baseId: onixtamere.id, level: 6 },
+    ],
   },
   'chemin-du-slip': {
     id: 'king-chemin-du-slip',
