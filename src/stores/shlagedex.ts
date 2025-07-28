@@ -459,8 +459,12 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
       mon.lvl += 1
+      if (mon.rarityFollowsLevel)
+        mon.rarity = mon.lvl
       audio.playSfx('/audio/sfx/lvl-up.ogg')
       const prevHp = mon.hpCurrent
+      if (mon.rarityFollowsLevel)
+        applyStats(mon)
       applyCurrentStats(mon)
       const healAmount = Math.round((mon.hp * healPercent) / 100)
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
