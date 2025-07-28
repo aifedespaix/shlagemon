@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 import numpy as np
 import librosa
 from PIL import Image, ImageDraw, ImageFont
@@ -44,7 +45,27 @@ def get_audio_wav_path(music):
     name, _ = os.path.splitext(base)
     pattern = os.path.join('musique', 'source', '**', f"{name}.wav")
     results = glob.glob(pattern, recursive=True)
-    return results[0] if results else None
+    if results:
+        return results[0]
+
+    # WAV not found, try converting from source OGG
+    ogg_path = get_public_full_path(music['url'])
+    if not os.path.isfile(ogg_path):
+        return None
+
+    rel = music['url'].lstrip('/')
+    if rel.startswith('audio/musics/'):
+        rel = rel[len('audio/musics/') :]
+    target_dir = os.path.join('musique', 'source', os.path.dirname(rel))
+    os.makedirs(target_dir, exist_ok=True)
+    wav_path = os.path.join(target_dir, f"{name}.wav")
+    cmd = ['ffmpeg', '-y', '-i', ogg_path, '-ar', '48000', wav_path]
+    try:
+        subprocess.run(cmd, check=True)
+    except Exception as e:
+        print(f"ffmpeg conversion failed for {ogg_path}: {e}")
+        return None
+    return wav_path if os.path.isfile(wav_path) else None
 
 
 def get_public_full_path(url):
