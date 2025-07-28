@@ -1,4 +1,10 @@
 fr:
   search: Rechercher
+  sort:
+    name: Nom
+    type: Type
 en:
   search: Search
+  sort:
+    name: Name
+    type: Type
