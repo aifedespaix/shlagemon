@@ -11,7 +11,7 @@ describe('connect four component', () => {
 
   it('renders correct number of cells', () => {
     const wrapper = mount(MiniGamePuissance4)
-    const cells = wrapper.findAll('button')
+    const cells = wrapper.findAll('.aspect-square')
     expect(cells.length).toBe(ROWS * COLS)
   })
 })
