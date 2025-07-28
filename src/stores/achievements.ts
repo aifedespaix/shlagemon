@@ -397,7 +397,61 @@ export const useAchievementsStore = defineStore('achievements', () => {
       unlock('team-6')
   })
 
-  return { list, unlockedList, hasAny, handleEvent, reset }
+  function getProgress(id: string): { value: number, max: number } | null {
+    const numericMatch = id.match(/^(.*)-(\d+)$/)
+    if (numericMatch) {
+      const prefix = numericMatch[1]
+      const max = Number(numericMatch[2])
+      switch (prefix) {
+        case 'money':
+          return { value: game.shlagidolar, max }
+        case 'capture':
+          return { value: counters.captures, max }
+        case 'avg':
+          return { value: dex.averageLevel, max }
+        case 'win':
+          return { value: counters.wins, max }
+        case 'stronger':
+          return { value: counters.winsStronger, max }
+        case 'loss':
+          return { value: counters.losses, max }
+        case 'item':
+          return { value: counters.itemsUsed, max }
+        case 'king':
+          return { value: counters.kings, max }
+        case 'shiny':
+          return { value: counters.shiny, max }
+        case 'minigame':
+          return { value: counters.minigameWins, max }
+        case 'dex':
+          return { value: dex.potentialCompletionPercent, max }
+        case 'lvl100':
+          return { value: level100Count.value, max }
+        case 'team':
+          return { value: dex.shlagemons.length, max }
+      }
+
+      const zoneWin = prefix.match(/^zone-(.*)-win$/)
+      if (zoneWin)
+        return { value: progress.wins.value[zoneWin[1]] || 0, max }
+    }
+
+    const zoneComplete = id.match(/^zone-(.*)-complete$/)
+    if (zoneComplete) {
+      const zoneId = zoneComplete[1]
+      const zone = zonesData.find(z => z.id === zoneId)
+      if (zone && zone.shlagemons?.length) {
+        const captured = zone.shlagemons.filter(base =>
+          dex.shlagemons.some(m => m.base.id === base.id),
+        ).length
+        return { value: captured, max: zone.shlagemons.length }
+      }
+    }
+
+    return null
+  }
+
+  return { list, unlockedList, hasAny, handleEvent, reset, getProgress }
 }, {
   persist: {
     pick: ['counters'],

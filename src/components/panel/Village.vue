@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ZoneActions from '../village/ZoneActions.vue'
 
+const mobile = useMobileTabStore()
+
 const zone = useZoneStore()
 const panel = useMainPanelStore()
 const { t } = useI18n()
@@ -9,6 +11,7 @@ function leaveVillage() {
   if (zone.current.attachedTo)
     zone.setZone(zone.current.attachedTo)
   panel.showBattle()
+  mobile.set('zones')
 }
 </script>
 

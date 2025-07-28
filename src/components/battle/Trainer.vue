@@ -2,6 +2,7 @@
 import type { DexShlagemon } from '~/type'
 import type { DialogNode } from '~/type/dialog'
 import { allShlagemons } from '~/data/shlagemons'
+import { useWildLevelStore } from '~/stores/wildLevel'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import DialogBox from '../dialog/Box.vue'
 
@@ -14,6 +15,7 @@ const panel = useMainPanelStore()
 const featureLock = useFeatureLockStore()
 const game = useGameStore()
 const mobile = useMobileTabStore()
+const wildLevel = useWildLevelStore()
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -83,7 +85,9 @@ function createEnemy(): DexShlagemon | null {
   const base = allShlagemons.find(b => b.id === spec.baseId)
   if (!base)
     return null
-  return createDexShlagemon(base, false, spec.level, zone.current.maxLevel ?? 99)
+  const max = wildLevel.highestWildLevel
+  const min = isZoneKing.value ? Math.max(1, max - 20) : 1
+  return createDexShlagemon(base, false, spec.level, max, min)
 }
 
 function startFight() {
