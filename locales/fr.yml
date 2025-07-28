@@ -62,6 +62,7 @@ components:
         active: Actif
         passive: Passif
         utility: Utilitaire
+        activable: Activable
       equip: Vous avez équipé la {item}
     PlayerInfos:
       sick: 'Malade : {n} combats restants'
@@ -89,6 +90,7 @@ components:
         active: Actif
         passive: Passif
         utility: Utilitaire
+        activable: Activable
     Zone:
       capturedAlt: capturé
     MiniGame:
@@ -3338,6 +3340,30 @@ data:
       name: Défibrillateur
       description: Un coup de jus pour repartir de travers.
       details: Nécessaire pour qu'Emboli évolue en Tuberculi.
+    specialPotion:
+      name: Potion Spéciale
+      description: >-
+        S'utilise seulement contre les rois et se déclenche en maintenant le
+        bouton.
+      details: >-
+        Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour
+        soigner ou blesser de 15% des PV max.
+    mysteriousPotion:
+      name: Potion Mystérieuse
+      description: >-
+        S'utilise seulement contre les rois et se déclenche en maintenant le
+        bouton.
+      details: >-
+        Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour
+        soigner ou blesser de 30% des PV max.
+    fabulousPotion:
+      name: Potion Fabuleuse
+      description: >-
+        S'utilise seulement contre les rois et se déclenche en maintenant le
+        bouton.
+      details: >-
+        Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour
+        soigner ou blesser de 50% des PV max.
 pages:
   index:
     title: Shlagémon

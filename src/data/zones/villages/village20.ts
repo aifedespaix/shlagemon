@@ -5,6 +5,7 @@ import {
   capturePotion,
   defensePotion,
   potion,
+  specialPotion,
   vitalityPotion,
   xpPotion,
 } from '~/data/items'
@@ -38,6 +39,7 @@ export const village20: Zone = {
         xpPotion,
         capturePotion,
         shlageball,
+        specialPotion,
       ],
     },
   },

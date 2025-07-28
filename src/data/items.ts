@@ -528,9 +528,10 @@ export const specialPotion: Item = {
   description: 'Fonctionne uniquement contre les rois.',
   detailsKey: 'data.items.specialPotion.details',
   details:
-    'Tenue pendant un combat de roi, elle soigne ou blesse de 15% des PV max.',
+    'Tenue pendant un combat de roi, elle peut avoir un pouvoir surprenant !',
   type: 'heal',
   power: 15,
+  price: 11111,
   category: 'activable',
   wearable: true,
   icon: 'i-game-icons:potion-ball',
@@ -545,7 +546,7 @@ export const mysteriousPotion: Item = {
   description: 'Fonctionne uniquement contre les rois.',
   detailsKey: 'data.items.mysteriousPotion.details',
   details:
-    'Tenue pendant un combat de roi, elle soigne ou blesse de 30% des PV max.',
+    'Tenue pendant un combat de roi, elle peut avoir un pouvoir très surprenant !',
   type: 'heal',
   power: 30,
   category: 'activable',
@@ -562,7 +563,7 @@ export const fabulousPotion: Item = {
   description: 'Fonctionne uniquement contre les rois.',
   detailsKey: 'data.items.fabulousPotion.details',
   details:
-    'Tenue pendant un combat de roi, elle soigne ou blesse de 50% des PV max.',
+    'Tenue pendant un combat de roi, elle peut avoir un pouvoir extrêmement surprenant !',
   type: 'heal',
   power: 50,
   category: 'activable',

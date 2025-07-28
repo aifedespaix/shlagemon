@@ -60,6 +60,7 @@ components:
         active: Active
         passive: Passive
         utility: Utility
+        activable: Activable
       equip: You equipped the {item}
     PlayerInfos:
       sick: 'Sick: {n} battles left'
@@ -87,6 +88,7 @@ components:
         active: Active
         passive: Passive
         utility: Utility
+        activable: Activable
     Zone:
       capturedAlt: captured
     MiniGame:
@@ -3200,6 +3202,24 @@ data:
       name: Defibrillator
       description: Jolt your Shlagémon back to shocking life.
       details: Needed for Emboli to evolve into Tuberculi.
+    specialPotion:
+      name: Special Potion
+      description: Works only during king battles. Hold to unleash its effect.
+      details: >-
+        During trainer fights against kings, hold the button to heal or damage
+        your active Shlagémon by 15% of max HP.
+    mysteriousPotion:
+      name: Mysterious Potion
+      description: Works only during king battles. Hold to unleash its effect.
+      details: >-
+        During trainer fights against kings, hold the button to heal or damage
+        your active Shlagémon by 30% of max HP.
+    fabulousPotion:
+      name: Fabulous Potion
+      description: Works only during king battles. Hold to unleash its effect.
+      details: >-
+        During trainer fights against kings, hold the button to heal or damage
+        your active Shlagémon by 50% of max HP.
 pages:
   index:
     title: Shlagemon
