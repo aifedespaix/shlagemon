@@ -36,7 +36,15 @@ function createKing(
     }, {})
   const uniqueMons = Object.values(available)
 
-  const selected = uniqueMons.slice(0, qteShlagemons).reverse()
+  const baseMons = uniqueMons.filter(b => b.speciality === 'evolution0')
+  const evolvedMons = uniqueMons.filter(b => b.speciality !== 'evolution0')
+
+  let evolCount = qteShlagemons > 6 ? 3 : qteShlagemons > 3 ? 2 : 1
+  evolCount = Math.min(evolCount, evolvedMons.length, qteShlagemons)
+
+  const selectedBases = baseMons.slice(0, qteShlagemons - evolCount)
+  const selectedEvols = evolvedMons.slice(0, evolCount)
+  const selected = [...selectedBases, ...selectedEvols]
 
   const shlagemons: { baseId: string, level: number }[] = selected.map((b, idx) => ({
     baseId: b.id,
