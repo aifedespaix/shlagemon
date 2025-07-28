@@ -143,7 +143,10 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
     }
   }
   else if (type === 'lose') {
-    battleStats.addLoss()
+    if (isZoneKing.value)
+      battleStats.addKingLoss()
+    else
+      battleStats.addLoss()
     notifyAchievement({ type: 'battle-loss' })
     result.value = 'lose'
     stage.value = 'after'

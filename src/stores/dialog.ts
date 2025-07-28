@@ -9,6 +9,7 @@ import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import InventoryIntroDialog from '~/components/dialog/InventoryIntroDialog.vue'
+import KingLossDialog from '~/components/dialog/KingLossDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
@@ -205,6 +206,11 @@ export const useDialogStore = defineStore('dialog', () => {
       condition: () => arena.result === 'lose',
     },
     {
+      id: 'kingLoss',
+      component: markRaw(KingLossDialog),
+      condition: () => stats.kingLosses > 0,
+    },
+    {
       id: 'firstLoss',
       component: markRaw(FirstLossDialog),
       condition: () => stats.losses > 0,
@@ -215,9 +221,12 @@ export const useDialogStore = defineStore('dialog', () => {
     const firstLoss = dialogs.find(d => d.id === 'firstLoss')
     const showFirstLoss = firstLoss?.condition()
       && !done.value[firstLoss.id]
+    const kingLoss = dialogs.find(d => d.id === 'kingLoss')
+    const showKingLoss = kingLoss?.condition()
+      && !done.value[kingLoss.id]
 
     if (panel.current === 'trainerBattle')
-      return Boolean(showFirstLoss)
+      return Boolean(showFirstLoss || showKingLoss)
 
     return dialogs.some(d => d.condition() && !done.value[d.id])
   })
