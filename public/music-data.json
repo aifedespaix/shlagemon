@@ -156,16 +156,88 @@
     "image": null
   },
   {
+    "nom": "Afida Tourments",
+    "type": "character",
+    "url": null,
+    "image": null
+  },
+  {
+    "nom": "Alice Cordonbleu",
+    "type": "character",
+    "url": null,
+    "image": "/characters/alice-cordonbleu/alice-cordonbleu.png"
+  },
+  {
+    "nom": "Bouba",
+    "type": "character",
+    "url": null,
+    "image": "/characters/bouba/bouba.png"
+  },
+  {
     "nom": "Caillou",
     "type": "character",
     "url": "/audio/musics/character/caillou.ogg",
     "image": "/characters/caillou/caillou.png"
   },
   {
+    "nom": "Charles Manoir",
+    "type": "character",
+    "url": null,
+    "image": "/characters/charles-manoir/charles-manoir.png"
+  },
+  {
     "nom": "Donald Trompe",
     "type": "character",
     "url": "/audio/musics/character/donald-trompe.ogg",
     "image": "/characters/donald-trompe/donald-trompe.png"
+  },
+  {
+    "nom": "Élisabeth Borgne",
+    "type": "character",
+    "url": null,
+    "image": "/characters/elisabeth-borgne/elisabeth-borgne.png"
+  },
+  {
+    "nom": "Elizabeth Homeless",
+    "type": "character",
+    "url": null,
+    "image": "/characters/elizabeth-homeless/elizabeth-homeless.png"
+  },
+  {
+    "nom": "Émilie Louise",
+    "type": "character",
+    "url": null,
+    "image": "/characters/emilie-louise/emilie-louise.png"
+  },
+  {
+    "nom": "Étron Muscle",
+    "type": "character",
+    "url": null,
+    "image": "/characters/etron-muscle/etron-muscle.png"
+  },
+  {
+    "nom": "Glandhi",
+    "type": "character",
+    "url": null,
+    "image": "/characters/glandhi/glandhi.png"
+  },
+  {
+    "nom": "J.K. Râlwing",
+    "type": "character",
+    "url": null,
+    "image": "/characters/jk-ralwing/jk-ralwing.png"
+  },
+  {
+    "nom": "L'Abbé Bière",
+    "type": "character",
+    "url": null,
+    "image": "/characters/labbe-biere/labbe-biere.png"
+  },
+  {
+    "nom": "Magalie Bredouille",
+    "type": "character",
+    "url": null,
+    "image": null
   },
   {
     "nom": "Emmanuel Marcon",
@@ -180,10 +252,28 @@
     "image": "/characters/marine-lahaine/marine-lahaine.png"
   },
   {
+    "nom": "Monique Cerisier",
+    "type": "character",
+    "url": null,
+    "image": "/characters/monique-cerisier/monique-cerisier.png"
+  },
+  {
     "nom": "Norman le babysiter",
     "type": "character",
     "url": "/audio/musics/character/norman.ogg",
     "image": "/characters/norman/norman.png"
+  },
+  {
+    "nom": "Ondéjeune",
+    "type": "character",
+    "url": null,
+    "image": "/characters/ondejeune/ondejeune.png"
+  },
+  {
+    "nom": "Picassos",
+    "type": "character",
+    "url": null,
+    "image": "/characters/picassos/picassos.png"
   },
   {
     "nom": "Professeur Merdant",
@@ -202,6 +292,12 @@
     "type": "character",
     "url": "/audio/musics/character/siphanus.ogg",
     "image": "/characters/siphanus/siphanus.png"
+  },
+  {
+    "nom": "Thaïs d'Escufion",
+    "type": "character",
+    "url": null,
+    "image": "/characters/thais-descufion/thais-descufion.png"
   },
   {
     "nom": "Vladimir Putain",

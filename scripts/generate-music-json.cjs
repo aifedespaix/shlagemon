@@ -38,11 +38,12 @@ function parseVillages() {
   return files.map((f) => {
     const content = fs.readFileSync(path.join(dir, f), 'utf8')
     const id = content.match(/id:\s*'([^']+)'/)
-    const name = content.match(/name:\s*'([^']+)'/)
+    const name = content.match(/name:\s*'((?:\\'|[^'])+)'/)
     if (!id || !name)
       return null
+    const label = name[1].replace(/\\'/g, '\'')
     return {
-      nom: name[1],
+      nom: label,
       type: 'village',
       url: tracks[id[1]] || null,
       image: findImage('villages', id[1]),
@@ -56,11 +57,12 @@ function parseSavageZones() {
   return files.map((f) => {
     const content = fs.readFileSync(path.join(dir, f), 'utf8')
     const id = content.match(/id:\s*'([^']+)'/)
-    const name = content.match(/name:\s*'([^']+)'/)
+    const name = content.match(/name:\s*'((?:\\'|[^'])+)'/)
     if (!id || !name)
       return null
+    const label = name[1].replace(/\\'/g, '\'')
     return {
-      nom: name[1],
+      nom: label,
       type: 'sauvage',
       url: tracks[id[1]] || null,
       image: findImage('zones', id[1]),
@@ -75,12 +77,13 @@ function parseCharacters() {
   return files.map((f) => {
     const content = fs.readFileSync(path.join(dir, f), 'utf8')
     const id = content.match(/id:\s*'([^']+)'/)
-    const name = content.match(/name:\s*'([^']+)'/)
+    const name = content.match(/name:\s*'((?:\\'|[^'])+)'/)
     if (!id || !name)
       return null
+    const label = name[1].replace(/\\'/g, '\'')
     const key = alias[id[1]] || id[1]
     return {
-      nom: name[1],
+      nom: label,
       type: 'character',
       url: tracks[key] || null,
       image: findImage('characters', id[1]),
