@@ -4,6 +4,9 @@ const props = withDefaults(defineProps<{ achievement: Achievement & { achieved: 
 })
 const emit = defineEmits(['toggle'])
 
+const store = useAchievementsStore()
+const progress = computed(() => store.getProgress(props.achievement.id))
+
 function toggle() {
   emit('toggle')
 }
@@ -25,6 +28,15 @@ function toggle() {
     </div>
     <div v-show="props.opened" class="mt-1 text-xs">
       <p>{{ props.achievement.description }}</p>
+      <div
+        v-if="!props.achievement.achieved && progress"
+        class="mt-1"
+      >
+        <div class="mb-1 text-center">
+          {{ progress.value.toLocaleString() }} / {{ progress.max.toLocaleString() }}
+        </div>
+        <UiProgressBar :value="progress.value" :max="progress.max" class="h-1" />
+      </div>
     </div>
   </div>
 </template>
