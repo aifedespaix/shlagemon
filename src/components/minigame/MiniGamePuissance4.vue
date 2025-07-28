@@ -11,7 +11,6 @@ const COLS = 9
 const ROWS = 6
 const LEFT_GHOST_COL = 0
 const RIGHT_GHOST_COL = COLS - 1
-const visibleCols = computed(() => Array.from({ length: COLS }, (_, i) => i).slice(1, COLS - 1))
 
 const boardWidth = computed(() => Math.min(width.value, height.value * COLS / ROWS))
 const boardHeight = computed(() => boardWidth.value * ROWS / COLS)
