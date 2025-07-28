@@ -3,6 +3,7 @@ import type { DexShlagemon } from '~/type'
 import { storeToRefs } from 'pinia'
 import { multiExp } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
+import { useWildLevelStore } from '~/stores/wildLevel'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import { pickByAlphabet } from '~/utils/spawn'
 
@@ -16,6 +17,7 @@ const game = useGameStore()
 const audio = useAudioStore()
 const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
+const wildLevel = useWildLevelStore()
 
 const enemy = ref(null as DexShlagemon | null)
 const { t } = useI18n()
@@ -36,7 +38,7 @@ function createEnemy(): DexShlagemon | null {
   const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
   const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
-  const created = createDexShlagemon(base, false, lvl, zone.current.maxLevel ?? 99)
+  const created = createDexShlagemon(base, false, lvl, wildLevel.highestWildLevel)
   if (created.isShiny) {
     audio.playSfx('/audio/sfx/shiny.ogg')
   }
