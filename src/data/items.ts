@@ -530,11 +530,12 @@ export const specialPotion: Item = {
   details:
     'Tenue pendant un combat de roi, elle peut avoir un pouvoir surprenant !',
   type: 'heal',
-  power: 15,
+  power: 25,
   price: 11111,
   category: 'activable',
   wearable: true,
   icon: 'i-game-icons:potion-ball',
+  iconClass: 'mask-rainbow',
 }
 
 export const mysteriousPotion: Item = {
@@ -547,10 +548,12 @@ export const mysteriousPotion: Item = {
   details:
     'Tenue pendant un combat de roi, elle peut avoir un pouvoir très surprenant !',
   type: 'heal',
-  power: 30,
+  power: 50,
+  price: 111111,
   category: 'activable',
   wearable: true,
-  icon: 'i-game-icons:potion-of-madness',
+  icon: 'i-game-icons:potion-ball',
+  iconClass: 'mask-rainbow',
 }
 
 export const fabulousPotion: Item = {
@@ -563,10 +566,13 @@ export const fabulousPotion: Item = {
   details:
     'Tenue pendant un combat de roi, elle peut avoir un pouvoir extrêmement surprenant !',
   type: 'heal',
-  power: 50,
+  power: 100,
+  price: 1111111,
   category: 'activable',
   wearable: true,
   icon: 'i-game-icons:bubbling-flask',
+  iconClass: 'mask-rainbow',
+
 }
 
 export const allItems = [

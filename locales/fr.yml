@@ -3346,24 +3346,24 @@ data:
         S'utilise seulement contre les rois et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour
-        soigner ou blesser de 15% des PV max.
+        Pendant les combats face aux rois, maintenez le bouton pour effectuer
+        une action spéciale.
     mysteriousPotion:
       name: Potion Mystérieuse
       description: >-
         S'utilise seulement contre les rois et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour
-        soigner ou blesser de 30% des PV max.
+        Pendant les combats face aux rois, maintenez le bouton pour effectuer
+        une action mystérieuse.
     fabulousPotion:
       name: Potion Fabuleuse
       description: >-
         S'utilise seulement contre les rois et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour
-        soigner ou blesser de 50% des PV max.
+        Pendant les combats face aux rois, maintenez le bouton pour effectuer
+        une action fabuleuse.
 pages:
   index:
     title: Shlagémon
