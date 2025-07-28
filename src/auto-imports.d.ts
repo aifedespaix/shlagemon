@@ -189,6 +189,7 @@ declare global {
   const useDebounce: typeof import('@vueuse/core')['useDebounce']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useDebouncedRefHistory: typeof import('@vueuse/core')['useDebouncedRefHistory']
+  const useDeckFilterStore: typeof import('./stores/deckFilter')['useDeckFilterStore']
   const useDeveloperStore: typeof import('./stores/developer')['useDeveloperStore']
   const useDeviceMotion: typeof import('@vueuse/core')['useDeviceMotion']
   const useDeviceOrientation: typeof import('@vueuse/core')['useDeviceOrientation']
@@ -418,6 +419,9 @@ declare global {
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')
   // @ts-ignore
+  export type { DeckSort } from './stores/deckFilter'
+  import('./stores/deckFilter')
+  // @ts-ignore
   export type { DexSort } from './stores/dexFilter'
   import('./stores/dexFilter')
   // @ts-ignore
@@ -631,6 +635,7 @@ declare module 'vue' {
     readonly useDebounce: UnwrapRef<typeof import('@vueuse/core')['useDebounce']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useDebouncedRefHistory: UnwrapRef<typeof import('@vueuse/core')['useDebouncedRefHistory']>
+    readonly useDeckFilterStore: UnwrapRef<typeof import('./stores/deckFilter')['useDeckFilterStore']>
     readonly useDeveloperStore: UnwrapRef<typeof import('./stores/developer')['useDeveloperStore']>
     readonly useDeviceMotion: UnwrapRef<typeof import('@vueuse/core')['useDeviceMotion']>
     readonly useDeviceOrientation: UnwrapRef<typeof import('@vueuse/core')['useDeviceOrientation']>
