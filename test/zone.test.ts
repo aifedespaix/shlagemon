@@ -73,7 +73,7 @@ describe('zone panel', () => {
     for (let i = 0; i < 20; i++)
       progress.addWin('plaine-kekette')
     await wrapper.vm.$nextTick()
-    expect(wrapper.text()).toContain('Défier la roi de la zone')
+    expect(wrapper.text()).toContain('Défier la reine de la zone')
   })
 
   it('disables zone buttons during trainer battle', async () => {
