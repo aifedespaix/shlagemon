@@ -9,6 +9,7 @@ fr:
     active: Actif
     passive: Passif
     utility: Utilitaire
+    activable: Activable
 en:
   title: Shop
   details: Details
@@ -20,3 +21,4 @@ en:
     active: Active
     passive: Passive
     utility: Utility
+    activable: Activable

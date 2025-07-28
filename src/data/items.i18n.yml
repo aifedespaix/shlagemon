@@ -117,6 +117,18 @@ en:
   thunderEgg:
     name: Thunder Egg
     description: An egg crackling with sparks.
+  specialPotion:
+    name: Special Potion
+    description: Works only during king battles. Hold to unleash its effect.
+    details: During trainer fights against kings, hold the button to heal or damage your active Shlagémon by 15% of max HP.
+  mysteriousPotion:
+    name: Mysterious Potion
+    description: Works only during king battles. Hold to unleash its effect.
+    details: During trainer fights against kings, hold the button to heal or damage your active Shlagémon by 30% of max HP.
+  fabulousPotion:
+    name: Fabulous Potion
+    description: Works only during king battles. Hold to unleash its effect.
+    details: During trainer fights against kings, hold the button to heal or damage your active Shlagémon by 50% of max HP.
 fr:
   defensePotion:
     name: Potion de Défense
@@ -236,3 +248,15 @@ fr:
   thunderEgg:
     name: Œuf Foudre
     description: Un œuf parcouru d'étincelles.
+  specialPotion:
+    name: Potion Spéciale
+    description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
+    details: Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour soigner ou blesser de 15% des PV max.
+  mysteriousPotion:
+    name: Potion Mystérieuse
+    description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
+    details: Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour soigner ou blesser de 30% des PV max.
+  fabulousPotion:
+    name: Potion Fabuleuse
+    description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
+    details: Pendant les combats d'entraîneur face aux rois, maintenez le bouton pour soigner ou blesser de 50% des PV max.

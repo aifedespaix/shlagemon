@@ -2,9 +2,11 @@
 import type { DexShlagemon } from '~/type'
 import type { DialogNode } from '~/type/dialog'
 import { allShlagemons } from '~/data/shlagemons'
+import { useKingPotionStore } from '~/stores/kingPotion'
 import { useWildLevelStore } from '~/stores/wildLevel'
 import { createDexShlagemon } from '~/utils/dexFactory'
 import DialogBox from '../dialog/Box.vue'
+import KingPotionButton from './KingPotionButton.vue'
 
 const dex = useShlagedexStore()
 const trainerStore = useTrainerBattleStore()
@@ -16,6 +18,7 @@ const featureLock = useFeatureLockStore()
 const game = useGameStore()
 const mobile = useMobileTabStore()
 const wildLevel = useWildLevelStore()
+const kingPotion = useKingPotionStore()
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
@@ -221,6 +224,7 @@ onUnmounted(featureLock.unlockAll)
           <BattleHeader :trainer="trainer" :defeated="enemyIndex" />
         </template>
       </BattleRound>
+      <KingPotionButton v-if="isZoneKing && kingPotion.power" />
     </template>
 
     <div v-else class="h-full flex flex-col items-center gap-2 text-center">

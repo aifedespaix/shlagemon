@@ -251,6 +251,7 @@ declare global {
   const useItemUsageStore: typeof import('./stores/itemUsage')['useItemUsageStore']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
+  const useKingPotionStore: typeof import('./stores/kingPotion')['useKingPotionStore']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router/auto')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
@@ -695,6 +696,7 @@ declare module 'vue' {
     readonly useItemUsageStore: UnwrapRef<typeof import('./stores/itemUsage')['useItemUsageStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
+    readonly useKingPotionStore: UnwrapRef<typeof import('./stores/kingPotion')['useKingPotionStore']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>

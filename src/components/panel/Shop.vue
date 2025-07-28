@@ -17,6 +17,7 @@ const categoryOptions = [
   { label: t('components.panel.Shop.category.active'), value: 'actif', icon: 'i-carbon-flash' },
   { label: t('components.panel.Shop.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
   { label: t('components.panel.Shop.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
+  { label: t('components.panel.Shop.category.activable'), value: 'activable', icon: 'i-carbon-fire' },
 ] as const
 const availableCategories = computed(() =>
   categoryOptions

@@ -520,6 +520,57 @@ export const thunderEgg: Item = {
   iconClass: 'text-yellow-500 dark:text-yellow-400',
 }
 
+export const specialPotion: Item = {
+  id: 'special-potion',
+  nameKey: 'data.items.specialPotion.name',
+  name: 'Potion Spéciale',
+  descriptionKey: 'data.items.specialPotion.description',
+  description: 'Fonctionne uniquement contre les rois.',
+  detailsKey: 'data.items.specialPotion.details',
+  details:
+    'Tenue pendant un combat de roi, elle soigne ou blesse de 15% des PV max.',
+  type: 'heal',
+  power: 15,
+  category: 'activable',
+  wearable: true,
+  icon: 'i-game-icons:potion-ball',
+  iconClass: 'text-fuchsia-500 dark:text-fuchsia-400',
+}
+
+export const mysteriousPotion: Item = {
+  id: 'mysterious-potion',
+  nameKey: 'data.items.mysteriousPotion.name',
+  name: 'Potion Mystérieuse',
+  descriptionKey: 'data.items.mysteriousPotion.description',
+  description: 'Fonctionne uniquement contre les rois.',
+  detailsKey: 'data.items.mysteriousPotion.details',
+  details:
+    'Tenue pendant un combat de roi, elle soigne ou blesse de 30% des PV max.',
+  type: 'heal',
+  power: 30,
+  category: 'activable',
+  wearable: true,
+  icon: 'i-game-icons:potion-of-madness',
+  iconClass: 'text-fuchsia-600 dark:text-fuchsia-500',
+}
+
+export const fabulousPotion: Item = {
+  id: 'fabulous-potion',
+  nameKey: 'data.items.fabulousPotion.name',
+  name: 'Potion Fabuleuse',
+  descriptionKey: 'data.items.fabulousPotion.description',
+  description: 'Fonctionne uniquement contre les rois.',
+  detailsKey: 'data.items.fabulousPotion.details',
+  details:
+    'Tenue pendant un combat de roi, elle soigne ou blesse de 50% des PV max.',
+  type: 'heal',
+  power: 50,
+  category: 'activable',
+  wearable: true,
+  icon: 'i-game-icons:bubbling-flask',
+  iconClass: 'text-fuchsia-700 dark:text-fuchsia-600',
+}
+
 export const allItems = [
   shlageball,
   superShlageball,
@@ -567,6 +618,9 @@ export const allItems = [
   grassEgg,
   psyEgg,
   thunderEgg,
+  specialPotion,
+  mysteriousPotion,
+  fabulousPotion,
 ] as const satisfies Item[]
 
 export type ItemId = typeof allItems[number]['id']
