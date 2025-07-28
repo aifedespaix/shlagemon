@@ -6,43 +6,44 @@ import { useKingPotionStore } from '~/stores/kingPotion'
 const potion = useKingPotionStore()
 const { power } = storeToRefs(potion)
 
-const anim = ref(false)
+const holding = ref(false)
 let timer: ReturnType<typeof setTimeout> | null = null
 
-function endHold() {
+function cancelHold() {
   if (timer) {
     clearTimeout(timer)
     timer = null
   }
+  holding.value = false
 }
 
 function startHold() {
-  if (!power.value)
+  if (!power.value || potion.used)
     return
+  holding.value = true
   timer = setTimeout(() => {
-    anim.value = true
     potion.activate()
-    setTimeout(() => (anim.value = false), 600)
+    holding.value = false
   }, 1000)
 }
 </script>
 
 <template>
   <UiButton
-    v-if="power"
+    v-if="power && !potion.used"
     class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 items-center justify-center rounded-full text-xs"
     md="top-16 h-16 w-16"
     type="icon"
     @pointerdown="startHold"
-    @pointerup="endHold"
-    @pointerleave="endHold"
-    @pointercancel="endHold"
+    @pointerup="cancelHold"
+    @pointerleave="cancelHold"
+    @pointercancel="cancelHold"
   >
     <div
       class="relative flex items-center justify-center rounded-full p-1"
       :class="`rainbow-${power}`"
     >
-      <div class="potion-aura absolute inset-0 rounded-full" :class="{ 'scale-110': anim }" />
+      <div class="potion-aura absolute inset-0 rounded-full" :class="{ holding }" />
       <div class="i-game-icons:potion-ball relative z-1 h-8 w-8" />
     </div>
   </UiButton>
@@ -52,7 +53,12 @@ function startHold() {
 .potion-aura {
   background: conic-gradient(red, orange, yellow, lime, cyan, blue, purple, red);
   opacity: 0.6;
-  transition: transform 0.3s ease;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+.potion-aura.holding {
+  transform: scale(1.1);
+  transition: transform 1s linear;
 }
 .rainbow-15 .potion-aura {
   filter: brightness(0.8);
