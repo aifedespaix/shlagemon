@@ -1,0 +1,40 @@
+fr:
+  steps:
+    step1:
+      text: Ouch... Ce roi t'a mis une sacrée raclée ! Ces monarques de zone sont bien plus coriaces que les dresseurs lambda.
+      responses:
+        next: Continuer
+    step2:
+      text: Rappelle-toi que chaque Shlagémon possède un type. Clique dessus pour ouvrir la table des types.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Cette table indique les faiblesses et résistances de chaque type. Choisis le bon Shlagémon pour frapper plus fort et subir moins de dégâts.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Utilise ce savoir pour humilier le roi la prochaine fois et faire honneur au Professeur Merdant !
+      responses:
+        valid: Merci Prof !
+en:
+  steps:
+    step1:
+      text: Ouch... That king gave you quite a beating! These rulers are tougher than regular trainers.
+      responses:
+        next: Continue
+    step2:
+      text: Remember every Shlagemon has a type. Click it to open the type chart.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: The chart shows each type's weaknesses and resistances. Pick the right Shlagemon to hit harder and take less damage.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Use this knowledge to humiliate the king next time and make Professor Merdant proud!
+      responses:
+        valid: Thanks Prof!

@@ -43,6 +43,7 @@ declare module 'vue' {
     DialogFirstLossDialog: typeof import('./components/dialog/FirstLossDialog.vue')['default']
     DialogHalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     DialogInventoryIntroDialog: typeof import('./components/dialog/InventoryIntroDialog.vue')['default']
+    DialogKingLossDialog: typeof import('./components/dialog/KingLossDialog.vue')['default']
     DialogKingUnlockDialog: typeof import('./components/dialog/KingUnlockDialog.vue')['default']
     DialogLevel5Dialog: typeof import('./components/dialog/Level5Dialog.vue')['default']
     DialogNewZoneDialog: typeof import('./components/dialog/NewZoneDialog.vue')['default']
