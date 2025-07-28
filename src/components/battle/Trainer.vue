@@ -83,7 +83,7 @@ function createEnemy(): DexShlagemon | null {
   const base = allShlagemons.find(b => b.id === spec.baseId)
   if (!base)
     return null
-  return createDexShlagemon(base, false, spec.level)
+  return createDexShlagemon(base, false, spec.level, zone.current.maxLevel ?? 99)
 }
 
 function startFight() {
