@@ -533,7 +533,6 @@ export const specialPotion: Item = {
   power: 25,
   price: 11111,
   category: 'activable',
-  wearable: true,
   icon: 'i-game-icons:potion-ball',
   iconClass: 'mask-rainbow',
 }
@@ -551,8 +550,7 @@ export const mysteriousPotion: Item = {
   power: 50,
   price: 111111,
   category: 'activable',
-  wearable: true,
-  icon: 'i-game-icons:potion-ball',
+  icon: 'i-game-icons:bubbling-flask',
   iconClass: 'mask-rainbow',
 }
 
@@ -569,8 +567,7 @@ export const fabulousPotion: Item = {
   power: 100,
   price: 1111111,
   category: 'activable',
-  wearable: true,
-  icon: 'i-game-icons:bubbling-flask',
+  icon: 'i-game-icons:fizzing-flask',
   iconClass: 'mask-rainbow',
 
 }

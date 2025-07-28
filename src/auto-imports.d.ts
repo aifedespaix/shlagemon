@@ -420,6 +420,9 @@ declare global {
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')
   // @ts-ignore
+  export type { DeckSort } from './stores/deckFilter'
+  import('./stores/deckFilter')
+  // @ts-ignore
   export type { DexSort } from './stores/dexFilter'
   import('./stores/dexFilter')
   // @ts-ignore
@@ -633,6 +636,7 @@ declare module 'vue' {
     readonly useDebounce: UnwrapRef<typeof import('@vueuse/core')['useDebounce']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useDebouncedRefHistory: UnwrapRef<typeof import('@vueuse/core')['useDebouncedRefHistory']>
+    readonly useDeckFilterStore: UnwrapRef<typeof import('./stores/deckFilter')['useDeckFilterStore']>
     readonly useDeveloperStore: UnwrapRef<typeof import('./stores/developer')['useDeveloperStore']>
     readonly useDeviceMotion: UnwrapRef<typeof import('@vueuse/core')['useDeviceMotion']>
     readonly useDeviceOrientation: UnwrapRef<typeof import('@vueuse/core')['useDeviceOrientation']>
@@ -692,6 +696,7 @@ declare module 'vue' {
     readonly useItemUsageStore: UnwrapRef<typeof import('./stores/itemUsage')['useItemUsageStore']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
+    readonly useKingPotionStore: UnwrapRef<typeof import('./stores/kingPotion')['useKingPotionStore']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
@@ -803,6 +808,7 @@ declare module 'vue' {
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>
     readonly useWebWorkerFn: UnwrapRef<typeof import('@vueuse/core')['useWebWorkerFn']>
+    readonly useWildLevelStore: UnwrapRef<typeof import('./stores/wildLevel')['useWildLevelStore']>
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
