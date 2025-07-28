@@ -355,7 +355,7 @@ export const thunderStone: Item = {
   descriptionKey: 'data.items.thunderStone.description',
   description: 'Permet certaines évolutions de type électrique.',
   detailsKey: 'data.items.thunderStone.details',
-  details: 'Fait évoluer Pikachiant en Raïchiotte.',
+  details: 'À des effets foutrement intéressants.',
   price: 10,
   currency: 'shlagidiamond',
   category: 'actif',
