@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { BaseShlagemon } from '~/type/shlagemon'
-import DeckDetail from '~/components/deck/DeckDetail.vue'
-import DeckList from '~/components/deck/DeckList.vue'
 import { allShlagemons } from '~/data/shlagemons'
 
 const showDetail = ref(false)

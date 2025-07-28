@@ -5,6 +5,17 @@ components:
       level: lvl {n}
     DeckList:
       search: Search
+      sort:
+        name: Name
+        type: Type
+    Detail:
+      evolution: 'Evolution:'
+      level: lvl {n}
+    List:
+      search: Search
+      sort:
+        name: Name
+        type: Type
   layout:
     Header:
       title: Shlagemon - It smells very strong
@@ -472,6 +483,34 @@ components:
             work with equipped items and are very useful in trainer battles.
           responses:
             valid: Thanks Professor!
+    KingLossDialog:
+      steps:
+        step1:
+          text: >-
+            Ouch... That king gave you quite a beating! These rulers are tougher
+            than regular trainers.
+          responses:
+            next: Continue
+        step2:
+          text: >-
+            Remember every Shlagemon has a type. Click it to open the type
+            chart.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: >-
+            The chart shows each type's weaknesses and resistances. Pick the
+            right Shlagemon to hit harder and take less damage.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: >-
+            Use this knowledge to humiliate the king next time and make
+            Professor Merdant proud!
+          responses:
+            valid: Thanks Prof!
   minigame:
     MiniGameShlagMind:
       messages:

@@ -5,6 +5,17 @@ components:
       level: lvl {n}
     DeckList:
       search: Rechercher
+      sort:
+        name: Nom
+        type: Type
+    Detail:
+      evolution: 'Évolution :'
+      level: lvl {n}
+    List:
+      search: Rechercher
+      sort:
+        name: Nom
+        type: Type
   layout:
     Header:
       title: Shlagémon - Ça sent très fort
@@ -494,6 +505,35 @@ components:
             utiles lors des combats contre les dresseurs.
           responses:
             valid: Merci Professeur !
+    KingLossDialog:
+      steps:
+        step1:
+          text: >-
+            Ouch... Ce roi t'a mis une sacrée raclée ! Ces monarques de zone
+            sont bien plus coriaces que les dresseurs lambda.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Rappelle-toi que chaque Shlagémon possède un type. Clique dessus
+            pour ouvrir la table des types.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Cette table indique les faiblesses et résistances de chaque type.
+            Choisis le bon Shlagémon pour frapper plus fort et subir moins de
+            dégâts.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: >-
+            Utilise ce savoir pour humilier le roi la prochaine fois et faire
+            honneur au Professeur Merdant !
+          responses:
+            valid: Merci Prof !
   minigame:
     MiniGameShlagMind:
       messages:
