@@ -192,12 +192,6 @@
     "image": "/characters/prof-merdant/prof-merdant.png"
   },
   {
-    "nom": "Professeur Shlag",
-    "type": "character",
-    "url": null,
-    "image": null
-  },
-  {
     "nom": "Sachatte",
     "type": "character",
     "url": "/audio/musics/character/sachatte.ogg",
