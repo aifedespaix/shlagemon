@@ -17,6 +17,7 @@ describe('king potion', () => {
     const mon = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
     inventory.add('special-potion')
+    store.equip('special-potion')
     vi.spyOn(Math, 'random').mockReturnValue(0)
     const half = Math.round(dex.maxHp(mon) / 2)
     mon.hpCurrent = half
@@ -39,10 +40,11 @@ describe('king potion', () => {
     const mon = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
     inventory.add('special-potion')
+    const store = useKingPotionStore()
+    store.equip('special-potion')
     const wrapper = mount(KingPotionButton, {
       global: { plugins: [pinia], stubs: ['UiButton'] },
     })
-    const store = useKingPotionStore()
     const spy = vi.spyOn(store, 'activate')
     await wrapper.trigger('pointerdown')
     vi.advanceTimersByTime(1000)
