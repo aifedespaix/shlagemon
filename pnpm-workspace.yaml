@@ -53,8 +53,10 @@ catalogs:
     '@unhead/vue': ^2.0.12
     '@unocss/reset': ^66.3.3
     '@vueuse/core': ^13.5.0
+    crypto-js: ^4.2.0
     howler: ^2.2.4
     leaflet: ^2.0.0-alpha
+    lz-string: ^1.5.0
     nprogress: ^0.2.0
     pinia: ^3.0.3
     pinia-plugin-persistedstate: ^4.4.1

@@ -147,6 +147,16 @@ components:
     ShortcutsTab:
       add: Ajouter un raccourci
       reset: Réinitialiser
+    SaveTab:
+      exportLabel: Code de sauvegarde
+      copy: Copier
+      download: Télécharger
+      importLabel: Importer une sauvegarde
+      load: Charger
+      remove: Supprimer
+      invalid: Code invalide
+      loaded: Sauvegarde chargée
+      copied: Copié
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet
