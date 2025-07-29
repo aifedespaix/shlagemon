@@ -206,16 +206,18 @@ export const useAchievementsStore = defineStore('achievements', () => {
       defs.push(def)
       defMap[def.id] = def
     }
-    zoneWinThresholds.forEach((n) => {
-      const def = {
-        id: `zone-${z.id}-win-${n}`,
-        title: `${n.toLocaleString()} victoires - ${z.name}`,
-        description: `Vaincre ${n.toLocaleString()} Shlagémon dans ${z.name}.`,
-        icon: 'carbon:sword',
-      }
-      defs.push(def)
-      defMap[def.id] = def
-    })
+    if (z.type !== 'village') {
+      zoneWinThresholds.forEach((n) => {
+        const def = {
+          id: `zone-${z.id}-win-${n}`,
+          title: `${n.toLocaleString()} victoires - ${z.name}`,
+          description: `Vaincre ${n.toLocaleString()} Shlagémon dans ${z.name}.`,
+          icon: 'carbon:sword',
+        }
+        defs.push(def)
+        defMap[def.id] = def
+      })
+    }
   })
 
   // extra achievements
@@ -364,6 +366,8 @@ export const useAchievementsStore = defineStore('achievements', () => {
   watch(() => dex.shlagemons.length, () => checkZoneCompletion(), { immediate: true })
   watch(progress.wins, (val) => {
     zonesData.forEach((z) => {
+      if (z.type === 'village')
+        return
       const count = val[z.id] || 0
       checkThresholds(count, `zone-${z.id}-win`, zoneWinThresholds)
     })
