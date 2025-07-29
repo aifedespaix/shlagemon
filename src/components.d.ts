@@ -113,6 +113,8 @@ declare module 'vue' {
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SettingsLanguageTab: typeof import('./components/settings/LanguageTab.vue')['default']
+    SettingsSaveTab: typeof import('./components/settings/SaveTab.vue')['default']
     SettingsSettingsModal: typeof import('./components/settings/SettingsModal.vue')['default']
     SettingsShortcutsTab: typeof import('./components/settings/ShortcutsTab.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/Detail.vue')['default']

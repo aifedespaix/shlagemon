@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import LanguageTab from './LanguageTab.vue'
+import SaveTab from './SaveTab.vue'
+import SettingsShortcutsTab from './ShortcutsTab.vue'
+
 const props = defineProps<{ modelValue: boolean }>()
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 
 const save = useSaveStore()
-
-const tab = ref<'save' | 'shortcuts' | 'language'>('save')
 
 function close() {
   emit('update:modelValue', false)
@@ -14,6 +16,22 @@ function removeSave() {
   save.reset()
   close()
 }
+
+const tabs = [
+  {
+    label: { text: 'Sauvegarde' },
+    component: defineComponent({
+      name: 'SettingsSaveTabWrapper',
+      setup() {
+        return () => h(SaveTab, { onRemove: removeSave })
+      },
+    }),
+  },
+  { label: { text: 'Raccourcis' }, component: SettingsShortcutsTab },
+  { label: { text: 'Langue' }, component: LanguageTab },
+] as const
+
+const activeTab = ref(0)
 </script>
 
 <template>
@@ -25,46 +43,10 @@ function removeSave() {
     <h2 class="mb-2 text-center text-lg font-bold">
       Paramètres
     </h2>
-    <nav class="mb-4 flex justify-center gap-2">
-      <button
-        class="rounded px-2 py-1"
-        :class="tab === 'save' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-        @click="tab = 'save'"
-      >
-        Sauvegarde
-      </button>
-      <button
-        class="rounded px-2 py-1"
-        :class="tab === 'shortcuts' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-        @click="tab = 'shortcuts'"
-      >
-        Raccourcis
-      </button>
-      <button
-        class="rounded px-2 py-1"
-        :class="tab === 'language' ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-        @click="tab = 'language'"
-      >
-        Langue
-      </button>
-    </nav>
+    <UiTabs v-model="activeTab" :tabs="tabs" is-small class="mb-4" />
     <LayoutScrollablePanel class="max-h-60vh">
       <template #content>
-        <div v-if="tab === 'save'" class="flex flex-col gap-4">
-          <p class="text-center">
-            Voulez-vous supprimer toutes vos progressions et votre sauvegarde ?
-          </p>
-          <UiButton type="danger" class="mx-auto flex items-center gap-1" @click="removeSave">
-            <div i-carbon-trash-can />
-            Supprimer
-          </UiButton>
-        </div>
-        <div v-else-if="tab === 'shortcuts'" class="flex flex-col gap-2">
-          <SettingsShortcutsTab />
-        </div>
-        <div v-else class="flex justify-center">
-          <LanguageSelector />
-        </div>
+        <component :is="tabs[activeTab].component" />
       </template>
     </LayoutScrollablePanel>
   </UiModal>
