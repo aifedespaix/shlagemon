@@ -1,3 +1,4 @@
+import type { DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
@@ -29,7 +30,7 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
       current.value = id
   }
 
-  function activate() {
+  function activate(enemy?: DexShlagemon | null) {
     if (used.value)
       return false
     const potion = equipped.value
@@ -41,9 +42,12 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
       dex.healActive(amount)
       audio.playSfx('items-KingPotion-heal')
     }
-    else {
-      dex.activeShlagemon.hpCurrent = Math.max(0, dex.activeShlagemon.hpCurrent - amount)
+    else if (enemy) {
+      enemy.hpCurrent = Math.max(0, enemy.hpCurrent - amount)
       audio.playSfx('items-KingPotion-hit')
+    }
+    else {
+      return false
     }
     inventory.remove(potion.id)
     used.value = true

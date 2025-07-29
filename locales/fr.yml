@@ -3343,26 +3343,26 @@ data:
     specialPotion:
       name: Potion Spéciale
       description: >-
-        S'utilise seulement contre les rois et se déclenche en maintenant le
+        S'utilise seulement contre les dresseurs et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats face aux rois, maintenez le bouton pour effectuer
+        Pendant les combats face aux dresseurs, maintenez le bouton pour effectuer
         une action spéciale.
     mysteriousPotion:
       name: Potion Mystérieuse
       description: >-
-        S'utilise seulement contre les rois et se déclenche en maintenant le
+        S'utilise seulement contre les dresseurs et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats face aux rois, maintenez le bouton pour effectuer
+        Pendant les combats face aux dresseurs, maintenez le bouton pour effectuer
         une action mystérieuse.
     fabulousPotion:
       name: Potion Fabuleuse
       description: >-
-        S'utilise seulement contre les rois et se déclenche en maintenant le
+        S'utilise seulement contre les dresseurs et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats face aux rois, maintenez le bouton pour effectuer
+        Pendant les combats face aux dresseurs, maintenez le bouton pour effectuer
         une action fabuleuse.
 pages:
   index:
