@@ -129,6 +129,10 @@ en:
     name: Fabulous Potion
     description: Works only during king battles. Hold to unleash its effect.
     details: During king battles, hold the button to perform a special action.
+  odorElixir:
+    name: Odor Elixir
+    description: A rare scent to bond forever with a Shlagemon.
+    details: Use it on a beloved Shlagemon so its rarity matches its level from now on.
 fr:
   defensePotion:
     name: Potion de Défense
@@ -260,3 +264,7 @@ fr:
     name: Potion Fabuleuse
     description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
     details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action fabuleuse.
+  odorElixir:
+    name: Élixir d'Odeur
+    description: Un élixir très rare à offrir à un Shlagémon qu'on adore.
+    details: Utilisé sur un Shlagémon, sa rareté suivra désormais son niveau.

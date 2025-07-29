@@ -137,6 +137,9 @@ components:
     WearableItemModal:
       title: Choose the holder of {name}
       noAvailable: No Shlagemon available.
+    OdorElixirModal:
+      title: Choose the recipient of {name}
+      noAvailable: No Shlagemon needs this elixir.
   settings:
     ShortcutsTab:
       add: Add shortcut
@@ -513,6 +516,32 @@ components:
             Professor Merdant proud!
           responses:
             valid: Thanks Prof!
+    OdorElixirDialog:
+      steps:
+        step1:
+          text: Holy crap, your Shlagemon hit level 50!
+          responses:
+            next: Continue
+        step2:
+          text: Here's the Odor Elixir, a brew even my mom would sniff.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: Pour it on your favorite and its rarity will match its level.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: The higher it climbs, the more others will drool with envy.
+          responses:
+            back: Back
+            next: Continue
+        step5:
+          text: Take this bottle and don't waste it on a loser.
+          responses:
+            back: Back
+            valid: Thanks!
   minigame:
     MiniGameShlagMind:
       messages:
@@ -3204,16 +3233,22 @@ data:
       details: Needed for Emboli to evolve into Tuberculi.
     specialPotion:
       name: Special Potion
-      description: Works only during trainer battles. Hold to unleash its effect.
-      details: During trainer battles, hold the button to perform a special action.
+      description: Works only during king battles. Hold to unleash its effect.
+      details: During king battles, hold the button to perform a special action.
     mysteriousPotion:
       name: Mysterious Potion
-      description: Works only during trainer battles. Hold to unleash its effect.
-      details: During trainer battles, hold the button to perform a mysterious action.
+      description: Works only during king battles. Hold to unleash its effect.
+      details: During king battles, hold the button to perform a special action.
     fabulousPotion:
       name: Fabulous Potion
-      description: Works only during trainer battles. Hold to unleash its effect.
-      details: During trainer battles, hold the button to perform a fabulous action.
+      description: Works only during king battles. Hold to unleash its effect.
+      details: During king battles, hold the button to perform a special action.
+    odorElixir:
+      name: Odor Elixir
+      description: A rare scent to bond forever with a Shlagemon.
+      details: >-
+        Use it on a beloved Shlagemon so its rarity matches its level from now
+        on.
 pages:
   index:
     title: Shlagemon

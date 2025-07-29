@@ -228,6 +228,20 @@ export const hyperXpPotion: Item = {
   iconClass: 'text-green-800 dark:text-green-600',
 }
 
+export const odorElixir: Item = {
+  id: 'elixir-odeur',
+  nameKey: 'data.items.odorElixir.name',
+  name: 'Élixir d\'Odeur',
+  descriptionKey: 'data.items.odorElixir.description',
+  description: 'Un parfum si rare qu\'il rend jaloux les collectionneurs.',
+  detailsKey: 'data.items.odorElixir.details',
+  details:
+    'À offrir à un Shlagémon adoré : sa rareté suivra désormais son niveau.',
+  category: 'actif',
+  icon: 'i-game-icons:delicate-perfume',
+  iconClass: 'text-yellow-500 dark:text-yellow-300',
+}
+
 export const capturePotion: Item = {
   id: 'capture-potion',
   nameKey: 'data.items.capturePotion.name',
@@ -594,6 +608,7 @@ export const allItems = [
   xpPotion,
   superXpPotion,
   hyperXpPotion,
+  odorElixir,
   multiExp,
   vitalityRing,
   advancedVitalityRing,

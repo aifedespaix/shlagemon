@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 import {
   allItems,
   hyperPotion,
+  odorElixir,
   potion,
   superPotion,
 } from '~/data/items'
@@ -82,6 +83,9 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
         }
         else if (item.wearable) {
           useWearableItemStore().open(item)
+        }
+        else if (item.id === odorElixir.id) {
+          useOdorElixirStore().open(item)
         }
         else {
           if (inventory.useItem(item.id))
