@@ -23,6 +23,8 @@ const emit = defineEmits<{
   (e: 'capture'): void
 }>()
 
+const { t } = useI18n()
+
 const dex = useShlagedexStore()
 const disease = useDiseaseStore()
 const zone = useZoneStore()
@@ -215,7 +217,7 @@ function onClick(_e: MouseEvent) {
         </BattleShlagemon>
       </Transition>
       <div class="vs font-bold">
-        VS
+        {{ t('components.battle.Round.vs') }}
       </div>
       <div
         class="relative h-full w-full flex-1"

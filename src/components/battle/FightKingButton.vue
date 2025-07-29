@@ -6,6 +6,7 @@ const trainerBattle = useTrainerBattleStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
 const dev = useDeveloperStore()
+const { t } = useI18n()
 
 const currentKing = computed(() => zone.getKing(zone.current.id as SavageZoneId))
 const kingLabel = computed(() =>
@@ -35,7 +36,7 @@ function fightKing() {
     type="danger"
     @click="fightKing"
   >
-    <div>Défier {{ kingLabel }}</div>
+    <div>{{ t('components.battle.FightKingButton.challenge', { label: kingLabel }) }}</div>
 
     <div class="i-mdi:sword" />
   </UiButton>

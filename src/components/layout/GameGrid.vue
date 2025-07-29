@@ -23,6 +23,8 @@ const {
 
 const { current: activeTab } = storeToRefs(mobileTab)
 
+const { t } = useI18n()
+
 const bottomComponent = computed(() => {
   switch (activeTab.value) {
     case 'achievements':
@@ -41,13 +43,13 @@ const bottomComponent = computed(() => {
 const bottomTitle = computed(() => {
   switch (activeTab.value) {
     case 'achievements':
-      return 'Succès'
+      return t('components.layout.GameGrid.achievements')
     case 'zones':
-      return 'Zones'
+      return t('components.layout.GameGrid.zones')
     case 'dex':
-      return 'Shlagédex'
+      return t('components.layout.GameGrid.dex')
     case 'inventory':
-      return 'Inventaire'
+      return t('components.layout.GameGrid.inventory')
     default:
       return ''
   }
@@ -76,14 +78,14 @@ const bottomLocked = computed(() => {
       md="flex-row justify-between"
     >
       <div v-if="!isMobile && (displayInventory || displayAchievements || displayDex)" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
-        <UiPanelWrapper v-if="displayInventory" title="Inventaire" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
+        <UiPanelWrapper v-if="displayInventory" :title="t('components.layout.GameGrid.inventory')" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
           <PanelInventory />
         </UiPanelWrapper>
 
-        <UiPanelWrapper v-if="displayAchievements" title="Succès" class="overflow-hidden" :is-locked="lockStore.areAchievementsLocked">
+        <UiPanelWrapper v-if="displayAchievements" :title="t('components.layout.GameGrid.achievements')" class="overflow-hidden" :is-locked="lockStore.areAchievementsLocked">
           <template #icon>
             <div class="i-carbon-trophy" />
           </template>
@@ -100,7 +102,7 @@ const bottomLocked = computed(() => {
           <PanelMain class="flex-1" />
         </UiPanelWrapper>
 
-        <UiPanelWrapper v-if="displayZonePanel" title="Zones" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.areZonesLocked">
+        <UiPanelWrapper v-if="displayZonePanel" :title="t('components.layout.GameGrid.zones')" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.areZonesLocked">
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -109,7 +111,7 @@ const bottomLocked = computed(() => {
       </div>
 
       <div v-if="!isMobile && displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
-        <UiPanelWrapper title="Shlagédex" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
+        <UiPanelWrapper :title="t('components.layout.GameGrid.dex')" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
           <template #icon>
             <IconShlagedex class="h-4 w-4" />
           </template>
