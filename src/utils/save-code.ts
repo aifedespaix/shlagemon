@@ -1,5 +1,7 @@
 import CryptoJS from 'crypto-js'
-import { compressToUint8Array, decompressFromUint8Array } from 'lz-string'
+import lzString from 'lz-string'
+
+const { compressToUint8Array, decompressFromUint8Array } = lzString
 
 export const DEFAULT_SAVE_KEY = 'shlagemon-save-key'
 
