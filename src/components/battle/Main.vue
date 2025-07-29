@@ -39,9 +39,8 @@ function createEnemy(): DexShlagemon | null {
   const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
   const created = createDexShlagemon(base, false, lvl, wildLevel.highestWildLevel)
-  if (created.isShiny) {
-    audio.playSfx('/audio/sfx/shiny.ogg')
-  }
+  if (created.isShiny)
+    audio.playSfx('shiny')
   return created
 }
 

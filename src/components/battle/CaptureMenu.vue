@@ -28,12 +28,12 @@ function useBall(ball: Ball) {
   if (success) {
     dex.captureEnemy(props.enemy)
     emit('capture', true)
-    audio.playSfx('/audio/sfx/capture-success.ogg')
+    audio.playSfx('capture-success')
     toast(`Vous avez capturé ${props.enemy.base.name} !`)
   }
   else {
     emit('capture', false)
-    audio.playSfx('/audio/sfx/capture-fail.ogg')
+    audio.playSfx('capture-fail')
     toast('Raté !')
   }
 }

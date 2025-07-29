@@ -17,19 +17,19 @@ export const useEvolutionStore = defineStore('evolution', () => {
     return new Promise<boolean>((resolve) => {
       queue.value.push({ mon, to, resolve })
       if (queue.value.length === 1)
-        audio.playSfx('/audio/sfx/evolution.ogg')
+        audio.playSfx('evolution')
     })
   }
 
   function next() {
     queue.value.shift()
     if (pending.value)
-      audio.playSfx('/audio/sfx/evolution.ogg')
+      audio.playSfx('evolution')
   }
 
   function accept() {
     if (pending.value) {
-      audio.playSfx('/audio/sfx/evolued.ogg')
+      audio.playSfx('evolued')
       pending.value.resolve(true)
       next()
     }

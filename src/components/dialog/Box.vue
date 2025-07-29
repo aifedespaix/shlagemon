@@ -45,8 +45,8 @@ onUnmounted(() => {
 
 function choose(r: DialogResponse) {
   const effect = r.type === 'danger' && r.nextId
-    ? '/audio/sfx/dialog-back.ogg'
-    : '/audio/sfx/confirm.ogg'
+    ? 'dialog-back'
+    : 'confirm'
   audio.playSfx(effect)
   if (r.nextId) {
     currentNode.value = dialogTree.find(d => d.id === r.nextId)
