@@ -107,7 +107,7 @@ onMounted(reset)
       </div>
     </div>
     <div class="mt-2 text-center text-sm font-bold">
-      {{ t('components.minigame.MiniGameShlagPairs.attempts', attempts) }}
+      {{ t('components.minigame.Pairs.attempts', attempts) }}
     </div>
   </div>
 </template>

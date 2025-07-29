@@ -85,7 +85,7 @@ declare module 'vue' {
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']
     MinigameConnectFour: typeof import('./components/minigame/ConnectFour.vue')['default']
     MinigameMasterMind: typeof import('./components/minigame/MasterMind.vue')['default']
-    MinigameMasterMindSelectionModal: typeof import('./components/minigame/MasterMind/SelectionModal.vue')['default']
+    MinigameMasterMindSelectionModal: typeof import('./components/minigame/masterMind/SelectionModal.vue')['default']
     MinigamePairs: typeof import('./components/minigame/Pairs.vue')['default']
     MinigameSelectionModal: typeof import('./components/minigame/SelectionModal.vue')['default']
     MinigameShlagCard: typeof import('./components/minigame/ShlagCard.vue')['default']

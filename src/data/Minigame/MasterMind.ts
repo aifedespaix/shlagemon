@@ -17,11 +17,11 @@ export const shlagMindMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'start',
-        text: i18n.global.t('data.Minigame.ShlagMind.startText'),
+        text: i18n.global.t('data.Minigame.MasterMind.startText'),
         responses: [
-          { label: i18n.global.t('data.Minigame.ShlagMind.yes'), type: 'primary', action: start },
+          { label: i18n.global.t('data.Minigame.MasterMind.yes'), type: 'primary', action: start },
           {
-            label: i18n.global.t('data.Minigame.ShlagMind.no'),
+            label: i18n.global.t('data.Minigame.MasterMind.no'),
             type: 'danger',
             action: () => {
               miniGame.quit()
@@ -36,9 +36,9 @@ export const shlagMindMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'win',
-        text: i18n.global.t('data.Minigame.ShlagMind.winText'),
+        text: i18n.global.t('data.Minigame.MasterMind.winText'),
         responses: [
-          { label: i18n.global.t('data.Minigame.ShlagMind.super'), type: 'valid', action: done },
+          { label: i18n.global.t('data.Minigame.MasterMind.super'), type: 'valid', action: done },
         ],
       },
     ]
@@ -48,10 +48,10 @@ export const shlagMindMiniGame: MiniGameDefinition = {
     return [
       {
         id: 'fail',
-        text: i18n.global.t('data.Minigame.ShlagMind.loseText'),
+        text: i18n.global.t('data.Minigame.MasterMind.loseText'),
         responses: [
-          { label: i18n.global.t('data.Minigame.ShlagMind.restart'), type: 'primary', action: () => miniGame.play() },
-          { label: i18n.global.t('data.Minigame.ShlagMind.back'), type: 'danger', action: done },
+          { label: i18n.global.t('data.Minigame.MasterMind.restart'), type: 'primary', action: () => miniGame.play() },
+          { label: i18n.global.t('data.Minigame.MasterMind.back'), type: 'danger', action: done },
         ],
       },
     ]
