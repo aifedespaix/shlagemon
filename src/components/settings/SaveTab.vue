@@ -7,16 +7,20 @@ const { t } = useI18n()
 const exportCode = ref('')
 const importCode = ref('')
 
-onMounted(() => {
+function generateExport() {
   exportCode.value = exportSave(collectSave())
-})
+}
 
 function copyExport() {
+  if (!exportCode.value)
+    generateExport()
   navigator.clipboard.writeText(exportCode.value)
   toast.success(t('components.settings.SaveTab.copied'))
 }
 
 function downloadExport() {
+  if (!exportCode.value)
+    generateExport()
   const blob = new Blob([exportCode.value], { type: 'text/plain;charset=utf-8' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
@@ -52,10 +56,13 @@ function loadImport() {
         @focus="($event.target as HTMLTextAreaElement).select()"
       />
       <div class="flex gap-2">
-        <UiButton class="flex-1" @click="copyExport">
+        <UiButton class="flex-1" @click="generateExport">
+          {{ t('components.settings.SaveTab.generate') }}
+        </UiButton>
+        <UiButton class="flex-1" :disabled="!exportCode" @click="copyExport">
           {{ t('components.settings.SaveTab.copy') }}
         </UiButton>
-        <UiButton class="flex-1" @click="downloadExport">
+        <UiButton class="flex-1" :disabled="!exportCode" @click="downloadExport">
           {{ t('components.settings.SaveTab.download') }}
         </UiButton>
       </div>
