@@ -169,6 +169,7 @@ components:
       loaded: Save loaded
       copied: Copied
       generate: Generate
+      loadFile: Load from file
   shlagemon:
     Detail:
       equipItemTitle: Equip an item

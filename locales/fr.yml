@@ -171,6 +171,7 @@ components:
       loaded: Sauvegarde chargée
       copied: Copié
       generate: Générer
+      loadFile: Charger depuis un fichier
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet
