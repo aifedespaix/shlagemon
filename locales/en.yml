@@ -130,6 +130,7 @@ components:
       queen: queen
       king: king
       zoneKingChallenge: '{label} zone challenge'
+      reward: +{amount} Shlagidiamonds
     CaptureLimitModal:
       text: >-
         To capture this level {level} Shlagemon, you need a badge. Visit the
@@ -200,9 +201,25 @@ components:
       confirmText: Be careful, if you release it, it will shlage the whole land.
       yes: Yes
       no: No
+      hp: HP
+      attack: Attack
+      defense: Defense
+      smell: Smell
+      evolveByLevel: Can evolve at level {level}
+      evolveByItem: Can evolve with item {item}
+      rarityInfo: The rarer a Shlagemon is, the higher its potential power.
+      sick: sick
     WearableEquipModal:
       title: Choose an item to equip
       noAvailable: No item available.
+    EvolutionModal:
+      evolveTitle: '{name} is evolving'
+      question: >-
+        "{from}" wants to evolve into "{to}", will you allow it or stop the
+        spread of shlaguitude?
+      alreadyOwned: You already own this evolution
+      yes: Yes
+      no: No
   LanguageSelector:
     label: Language
     en: English
@@ -612,6 +629,11 @@ components:
       fight: Fight
       autoSelect: Automatic team selection
       choose: Choose a Shlagemon against {name}
+    EnemyStats:
+      hp: HP
+      attack: Attack
+      defense: Defense
+      smell: Smell
   audio:
     SettingsModal:
       title: Audio settings
@@ -621,6 +643,21 @@ components:
       sfxLabel: Sound effects
       sfxDisabledInfo: Warning, some audio feedback will be missing.
       sfxDisabledNote: (Especially shiny sounds, it'd be a shame to miss one!)
+  ball:
+    SelectionModal:
+      title: Shlageball selection
+      info: The Super and Hyper Shlageballs improve your capture odds (x1.5 and x2).
+  village:
+    ZoneActions:
+      shop: Shop
+      minigame: Minigame
+      arena: Arena
+      henhouse: Henhouse
+      fightKing: Challenge the {label} of the zone
+      kingDefeated: '{label} defeated!'
+  zone:
+    MonsModal:
+      title: '{zone} Shlagemons'
 data:
   shlagemons:
     01-05:

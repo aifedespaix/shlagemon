@@ -11,14 +11,15 @@ const emit = defineEmits<{
   (e: 'active'): void
 }>()
 
+const { t } = useI18n()
 const stats = computed(() => {
   if (!props.mon)
     return []
   return [
-    { label: 'HP', value: props.mon.hp },
-    { label: 'Attaque', value: props.mon.attack },
-    { label: 'Défense', value: props.mon.defense },
-    { label: 'Puanteur', value: props.mon.smelling },
+    { label: t('components.shlagemon.Detail.hp'), value: props.mon.hp },
+    { label: t('components.shlagemon.Detail.attack'), value: props.mon.attack },
+    { label: t('components.shlagemon.Detail.defense'), value: props.mon.defense },
+    { label: t('components.shlagemon.Detail.smell'), value: props.mon.smelling },
   ]
 })
 
@@ -36,7 +37,6 @@ const wearableItemStore = useWearableItemStore()
 const equipModal = useWearableEquipModalStore()
 const disease = useDiseaseStore()
 const detailModal = useDexDetailModalStore()
-const { t } = useI18n()
 const showConfirm = ref(false)
 
 const heldItem = computed(() => {
@@ -56,9 +56,9 @@ const evolutionInfo = computed(() => {
     return null
   const { condition } = props.mon.base.evolution
   if (condition.type === 'lvl')
-    return `Peut évoluer au niveau ${condition.value}`
+    return t('components.shlagemon.Detail.evolveByLevel', { level: condition.value })
   if (condition.type === 'item')
-    return `Peut évoluer grâce à l'objet ${condition.value.name}`
+    return t('components.shlagemon.Detail.evolveByItem', { item: condition.value.name })
   return null
 })
 
@@ -116,9 +116,9 @@ const captureInfo = computed(() => {
       <h2 class="flex items-center justify-between text-lg font-bold">
         <div class="flex items-center gap-1">
           <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
-          - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> (malade)</span>
+          - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> ({{ t('components.shlagemon.Detail.sick') }})</span>
         </div>
-        <UiTooltip text="Plus un Pokémon est rare, plus son potentiel de puissance est élevé.">
+        <UiTooltip :text="t('components.shlagemon.Detail.rarityInfo')">
           <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0" />
         </UiTooltip>
       </h2>
