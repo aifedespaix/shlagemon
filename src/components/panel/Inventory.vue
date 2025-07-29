@@ -35,7 +35,7 @@ const categoryOptions = [
   { label: t('components.panel.Inventory.category.active'), value: 'actif', icon: 'i-carbon-flash' },
   { label: t('components.panel.Inventory.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
   { label: t('components.panel.Inventory.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
-  { label: t('components.panel.Inventory.category.activable'), value: 'activable', icon: 'i-carbon-fire' },
+  { label: t('components.panel.Inventory.category.activable'), value: 'activable', icon: 'i-carbon:touch-1-filled' },
 ] as const
 
 const availableCategories = computed(() =>
