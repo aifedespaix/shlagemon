@@ -176,7 +176,22 @@ const { t } = useI18n()
 
 ---
 
-### 📖 **6. Avantages de cette approche :**
+### 📖 **6. Pas de duplication de texte :**
+
+Les objets doivent être nourris de clés de traduction uniquement :
+exemple pas de :
+{
+description: "sample",
+descriptionKey: "object.description",
+}
+uniquement :
+{
+description: "object.description",
+}
+
+---
+
+### 📖 **7. Avantages de cette approche :**
 
 - Modularité : Maintenance facile, chaque composant, store, ou donnée est indépendant.
 - Automatisation : Pas d’intervention manuelle nécessaire.
