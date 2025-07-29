@@ -226,7 +226,7 @@ onUnmounted(featureLock.unlockAll)
           <BattleHeader :trainer="trainer" :defeated="enemyIndex" />
         </template>
       </BattleRound>
-      <KingPotionButton v-if="isZoneKing && kingPotion.power" />
+      <KingPotionButton v-if="isZoneKing && kingPotion.power" :enemy="enemy" />
     </template>
 
     <div v-else class="h-full flex flex-col items-center gap-2 text-center">

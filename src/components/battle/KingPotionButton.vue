@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { DexShlagemon } from '~/type'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useKingPotionStore } from '~/stores/kingPotion'
+
+const props = defineProps<{ enemy: DexShlagemon | null }>()
 
 const potion = useKingPotionStore()
 const { power } = storeToRefs(potion)
@@ -22,7 +25,7 @@ function startHold() {
     return
   holding.value = true
   timer = setTimeout(() => {
-    potion.activate()
+    potion.activate(props.enemy ?? undefined)
     holding.value = false
   }, 1000)
 }

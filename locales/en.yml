@@ -3204,16 +3204,16 @@ data:
       details: Needed for Emboli to evolve into Tuberculi.
     specialPotion:
       name: Special Potion
-      description: Works only during king battles. Hold to unleash its effect.
-      details: During king battles, hold the button to perform a special action.
+      description: Works only during trainer battles. Hold to unleash its effect.
+      details: During trainer battles, hold the button to perform a special action.
     mysteriousPotion:
       name: Mysterious Potion
-      description: Works only during king battles. Hold to unleash its effect.
-      details: During king battles, hold the button to perform a special action.
+      description: Works only during trainer battles. Hold to unleash its effect.
+      details: During trainer battles, hold the button to perform a mysterious action.
     fabulousPotion:
       name: Fabulous Potion
-      description: Works only during king battles. Hold to unleash its effect.
-      details: During king battles, hold the button to perform a special action.
+      description: Works only during trainer battles. Hold to unleash its effect.
+      details: During trainer battles, hold the button to perform a fabulous action.
 pages:
   index:
     title: Shlagemon
