@@ -3,6 +3,8 @@ import type { TypeName } from '~/data/shlagemons-type'
 import type { BaseShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { baseShlagemons } from '~/data/shlagemons'
+import { generateRarity } from '~/utils/dexFactory'
+import { hatchDurationForRarity } from '~/utils/egg'
 import { eggSerializer } from '~/utils/egg-serialize'
 import { pickRandom } from '~/utils/spawn'
 
@@ -12,6 +14,7 @@ export interface Egg {
   id: number
   type: EggType
   base: BaseShlagemon
+  rarity: number
   startedAt: number
   hatchesAt: number
 }
@@ -27,10 +30,18 @@ export const useEggStore = defineStore('egg', () => {
       .filter(b => b.types.some(t => t.id === type))
       .filter(b => b.speciality !== 'legendary')
     const base = pickRandom(candidates)
-    const duration = 60_000
+    const rarity = generateRarity(100)
+    const duration = hatchDurationForRarity(rarity)
     const startedAt = Date.now()
     const id = startedAt + Math.random()
-    incubator.value.push({ id, type, base, startedAt, hatchesAt: startedAt + duration })
+    incubator.value.push({
+      id,
+      type,
+      base,
+      rarity,
+      startedAt,
+      hatchesAt: startedAt + duration,
+    })
     return true
   }
 
@@ -46,7 +57,7 @@ export const useEggStore = defineStore('egg', () => {
     if (egg.hatchesAt > Date.now())
       return null
     incubator.value.splice(idx, 1)
-    return dex.captureShlagemon(egg.base)
+    return dex.captureShlagemon(egg.base, false, egg.rarity)
   }
 
   function cancelIncubation(id: number) {

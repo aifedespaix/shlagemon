@@ -6,13 +6,14 @@ interface StoredEgg {
   id: number
   type: Egg['type']
   baseId: string
+  rarity: number
   startedAt: number
   hatchesAt: number
 }
 
 /**
  * Eggs are stored as a JSON array of plain objects containing only
- * `id`, `type`, `baseId`, `startedAt`, and `hatchesAt`.
+ * `id`, `type`, `baseId`, `rarity`, `startedAt`, and `hatchesAt`.
  */
 export const eggSerializer: Serializer = {
   serialize(data: { incubator: Egg[] }): string {
@@ -21,6 +22,7 @@ export const eggSerializer: Serializer = {
       id: e.id,
       type: e.type,
       baseId: e.base.id,
+      rarity: e.rarity,
       startedAt: e.startedAt,
       hatchesAt: e.hatchesAt,
     }))
@@ -35,6 +37,7 @@ export const eggSerializer: Serializer = {
       id: e.id,
       type: e.type,
       base: baseMap[e.baseId],
+      rarity: e.rarity,
       startedAt: e.startedAt,
       hatchesAt: e.hatchesAt,
     })).filter(e => e.base)
