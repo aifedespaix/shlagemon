@@ -2,6 +2,7 @@
 const modal = useZoneMonsModalStore()
 const zone = useZoneStore()
 const dex = useShlagedexStore()
+const { t } = useI18n()
 
 const mons = computed(() => zone.current.shlagemons || [])
 function owned(id: string) {
@@ -11,7 +12,7 @@ function owned(id: string) {
 
 <template>
   <UiModal v-model="modal.isVisible" footer-close>
-    <UiPanelWrapper :title="`Shlagémons de ${zone.current.name}`" is-inline>
+    <UiPanelWrapper :title="t('components.zone.MonsModal.title', { zone: zone.current.name })" is-inline>
       <template #icon>
         <img src="/items/shlageball/shlageball.webp" alt="ball" class="h-4 w-4">
       </template>

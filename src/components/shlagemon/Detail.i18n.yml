@@ -9,6 +9,14 @@ fr:
   confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
   yes: Oui
   no: Non
+  hp: PV
+  attack: Attaque
+  defense: Défense
+  smell: Puanteur
+  evolveByLevel: 'Peut évoluer au niveau {level}'
+  evolveByItem: "Peut évoluer grâce à l'objet {item}"
+  rarityInfo: Plus un Pokémon est rare, plus son potentiel de puissance est élevé.
+  sick: malade
 en:
   equipItemTitle: Equip an item
   allowEvolution: Allow this Shlagemon to evolve?
@@ -20,3 +28,11 @@ en:
   confirmText: Be careful, if you release it, it will shlage the whole land.
   yes: Yes
   no: No
+  hp: HP
+  attack: Attack
+  defense: Defense
+  smell: Smell
+  evolveByLevel: 'Can evolve at level {level}'
+  evolveByItem: 'Can evolve with item {item}'
+  rarityInfo: The rarer a Shlagemon is, the higher its potential power.
+  sick: sick
