@@ -1,0 +1,10 @@
+fr:
+  hp: PV
+  attack: Attaque
+  defense: Défense
+  smell: Puanteur
+en:
+  hp: HP
+  attack: Attack
+  defense: Defense
+  smell: Smell

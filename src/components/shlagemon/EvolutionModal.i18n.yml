@@ -1,0 +1,12 @@
+fr:
+  evolveTitle: '{name} évolue'
+  question: "« {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?"
+  alreadyOwned: "Vous possédez déjà l'évolution de ce Shlagémon"
+  yes: Oui
+  no: Non
+en:
+  evolveTitle: '{name} is evolving'
+  question: '"{from}" wants to evolve into "{to}", will you allow it or stop the spread of shlaguitude?'
+  alreadyOwned: You already own this evolution
+  yes: Yes
+  no: No

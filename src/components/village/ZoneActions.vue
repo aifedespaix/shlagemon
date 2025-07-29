@@ -9,6 +9,7 @@ const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
 const dialog = useDialogStore()
+const { t } = useI18n()
 
 const hasKing = computed(() =>
   zone.current.hasKing ?? zone.current.type === 'sauvage',
@@ -87,7 +88,7 @@ function openPoulailler() {
     <UiNavigationButton
       v-if="zone.current.village?.shop"
       icon="i-carbon:shopping-bag"
-      label="Magasin"
+      :label="t('components.village.ZoneActions.shop')"
       class="bg-green-600 text-white dark:bg-green-700"
       hover="bg-green-700 dark:bg-green-800"
       :disabled="arena.inBattle"
@@ -106,7 +107,7 @@ function openPoulailler() {
     <UiNavigationButton
       v-if="zone.current.miniGame && !zone.current.actions.some(a => a.id === 'minigame')"
       icon="i-carbon:game-console"
-      label="Mini-jeu"
+      :label="t('components.village.ZoneActions.minigame')"
       class="bg-violet-600 text-white dark:bg-violet-700"
       hover="bg-violet-700 dark:bg-violet-800"
       :disabled="arena.inBattle"
@@ -115,7 +116,7 @@ function openPoulailler() {
     <UiNavigationButton
       v-if="hasArena && !arenaCompleted"
       icon="i-mdi:sword-cross"
-      label="Arène"
+      :label="t('components.village.ZoneActions.arena')"
       class="bg-red-600 text-white dark:bg-red-700"
       hover="bg-red-700 dark:bg-red-800"
       :disabled="arena.inBattle"
@@ -124,14 +125,14 @@ function openPoulailler() {
     <UiNavigationButton
       v-if="hasPoulailler"
       icon="i-game-icons:bird-house"
-      label="Poulailler"
+      :label="t('components.village.ZoneActions.henhouse')"
       :disabled="arena.inBattle"
       @click="openPoulailler"
     />
     <UiNavigationButton
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
       icon="i-game-icons:crown"
-      :label="`Défier la ${kingLabel} de la zone`"
+      :label="t('components.village.ZoneActions.fightKing', { label: kingLabel })"
       :disabled="arena.inBattle"
       @click="fightKing"
     />
@@ -139,8 +140,7 @@ function openPoulailler() {
       v-else-if="hasKing && progress.isKingDefeated(zone.current.id)"
       class="flex-center text-xs font-bold"
     >
-      {{ kingLabel.charAt(0).toUpperCase() + kingLabel.slice(1) }}
-      vaincu{{ kingLabel === 'reine' ? 'e' : '' }} !
+      {{ t('components.village.ZoneActions.kingDefeated', { label: kingLabel.charAt(0).toUpperCase() + kingLabel.slice(1), suffix: kingLabel === 'reine' ? 'e' : '' }) }}
     </div>
   </div>
 </template>
