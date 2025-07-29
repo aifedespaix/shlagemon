@@ -10,7 +10,11 @@ interface StoredEgg {
   hatchesAt: number
 }
 
-export const eggSerializer = {
+/**
+ * Eggs are stored as a JSON array of plain objects containing only
+ * `id`, `type`, `baseId`, `startedAt`, and `hatchesAt`.
+ */
+export const eggSerializer: Serializer = {
   serialize(data: { incubator: Egg[] }): string {
     const eggs = data.incubator || []
     const list: StoredEgg[] = eggs.map(e => ({
@@ -36,4 +40,4 @@ export const eggSerializer = {
     })).filter(e => e.base)
     return { incubator }
   },
-} as unknown as Serializer
+} as const

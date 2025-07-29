@@ -34,7 +34,12 @@ interface StoredDex extends Omit<SerializedDex, 'shlagemons' | 'activeShlagemon'
   activeShlagemon: StoredDexMon | null
 }
 
-export const shlagedexSerializer = {
+/**
+ * Data is stored as a JSON object containing the dex arrays and effects.
+ * Each monster includes `baseId` and `heldItemId` so older saves remain
+ * readable even if the schema evolves.
+ */
+export const shlagedexSerializer: Serializer = {
   serialize(data: SerializedDex): string {
     return JSON.stringify({
       ...data,
@@ -144,4 +149,4 @@ export const shlagedexSerializer = {
       effects,
     }
   },
-} as unknown as Serializer
+} as const
