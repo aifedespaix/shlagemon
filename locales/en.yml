@@ -544,25 +544,7 @@ components:
             back: Back
             valid: Thanks!
   minigame:
-    MiniGameShlagMind:
-      messages:
-        - You're getting closer… or not.
-        - That's not it, but you're doing your best, little Shlag.
-        - Try again, champion of nothingness.
-        - You suck!
-        - You're one step away from a brain fart.
-        - Rarely seen someone so pathetic.
-      validate: Validate
-      attemptsLeft: '{n} attempts left'
-      win: You've cracked a Shlag's mind!
-      lose: Even a Grimer would have done it
-    MiniGameShlagPairs:
-      attempts: '{n} attempt | {n} attempts'
-    ShlagMindSelectionModal:
-      title: Choose a Shlagemon
     MasterMind:
-      SelectionModal:
-        title: Choose a Shlagemon
       messages:
         - You're getting closer… or not.
         - That's not it, but you're doing your best, little Shlag.

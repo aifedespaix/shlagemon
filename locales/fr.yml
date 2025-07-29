@@ -569,25 +569,7 @@ components:
             back: Retour
             valid: Merci vieux !
   minigame:
-    MiniGameShlagMind:
-      messages:
-        - Tu te rapproches… ou pas.
-        - Ce n'est pas ça, mais tu fais de ton mieux, petit Shlag.
-        - Essaie encore, champion du néant.
-        - Tu es nul à chier !
-        - T'es à deux doigts de faire un pet cérébral.
-        - Rarement vu quelqu'un aussi merdique.
-      validate: Valider
-      attemptsLeft: '{n} tentatives restantes'
-      win: T'as percé le cerveau d'un Shlag !
-      lose: Même un Petmorv y serait arrivé
-    MiniGameShlagPairs:
-      attempts: '{n} tentative | {n} tentatives'
-    ShlagMindSelectionModal:
-      title: Choisis un Shlagémon
     MasterMind:
-      SelectionModal:
-        title: Choisis un Shlagémon
       messages:
         - Tu te rapproches… ou pas.
         - Ce n'est pas ça, mais tu fais de ton mieux, petit Shlag.
