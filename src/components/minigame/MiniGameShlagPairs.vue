@@ -67,7 +67,7 @@ function choose(cell: Cell) {
   if (cell.state !== 'hidden' || selected.value.length >= 2)
     return
   cell.state = 'revealed'
-  audio.playSfx('/audio/sfx/mini-game/shlagpairs/turn.ogg')
+  audio.playSfx('mini-game-shlagpairs-turn')
   selected.value.push(cell)
   if (selected.value.length === 2) {
     if (selected.value[0].monId === selected.value[1].monId) {
