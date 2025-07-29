@@ -168,7 +168,10 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'eggBox',
       component: markRaw(EggBoxDialog),
-      condition: () => !box.unlocked && ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe', 'oeuf-foudre'].some(id => inventory.items[id]),
+      condition: () =>
+        !box.unlocked
+        && ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe', 'oeuf-foudre'].some(id => inventory.items[id])
+        && panel.current !== 'miniGame',
     },
     {
       id: 'capturePotion',
