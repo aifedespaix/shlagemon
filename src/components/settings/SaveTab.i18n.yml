@@ -9,6 +9,7 @@ fr:
   invalid: Code invalide
   loaded: Sauvegarde chargée
   copied: Copié
+  loadFile: Charger depuis un fichier
 en:
   exportLabel: Save code
   generate: Generate
@@ -20,3 +21,4 @@ en:
   invalid: Invalid code
   loaded: Save loaded
   copied: Copied
+  loadFile: Load from file
