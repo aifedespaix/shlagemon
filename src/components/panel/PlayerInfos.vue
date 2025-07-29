@@ -14,6 +14,9 @@ const showBonus = ref(false)
 const { t } = useI18n()
 
 const totalInDex = allShlagemons.length
+
+const currentBallHue = computed(() => ballStore.current ? ballHues[ballStore.current] : '0deg')
+const currentBallCount = computed(() => ballStore.current ? inventory.items[ballStore.current] ?? 0 : 0)
 </script>
 
 <template>
@@ -66,9 +69,9 @@ const totalInDex = allShlagemons.length
           src="/items/shlageball/shlageball.webp"
           :alt="t('components.panel.PlayerInfos.ballAlt')"
           class="h-4 w-4"
-          :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
+          :style="{ filter: `hue-rotate(${currentBallHue})` }"
         >
-        <AnimatedNumber class="shrink-0 font-bold" :value="inventory.items[ballStore.current] ?? 0" />
+        <AnimatedNumber class="shrink-0 font-bold" :value="currentBallCount" />
       </div>
     </UiTooltip>
     <BallSelectionModal />
