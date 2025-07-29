@@ -9,6 +9,7 @@ const potions = [fabulousPotion, mysteriousPotion, specialPotion]
 export const useKingPotionStore = defineStore('kingPotion', () => {
   const inventory = useInventoryStore()
   const dex = useShlagedexStore()
+  const audio = useAudioStore()
 
   const used = ref(false)
 
@@ -26,10 +27,14 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
       return false
     const max = dex.maxHp(dex.activeShlagemon)
     const amount = Math.round((max * potion.power) / 100)
-    if (Math.random() < 0.5)
+    if (Math.random() < 0.5) {
       dex.healActive(amount)
-    else
+      audio.playSfx('items-KingPotion-heal')
+    }
+    else {
       dex.activeShlagemon.hpCurrent = Math.max(0, dex.activeShlagemon.hpCurrent - amount)
+      audio.playSfx('items-KingPotion-hit')
+    }
     inventory.remove(potion.id)
     used.value = true
     return true
