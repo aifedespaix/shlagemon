@@ -8,6 +8,7 @@ import {
   eggBox as eggBoxItem,
   fabulousPotion,
   mysteriousPotion,
+  odorElixir,
   specialPotion,
 } from '~/data/items'
 import { useKingPotionStore } from '~/stores/kingPotion'
@@ -20,6 +21,7 @@ const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
 const kingPotion = useKingPotionStore()
 const kingPotionIds = [fabulousPotion.id, mysteriousPotion.id, specialPotion.id]
+const odorElixirStore = useOdorElixirStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
@@ -169,6 +171,9 @@ function onUse(item: Item) {
   else if (item.wearable) {
     wearableStore.open(item)
   }
+  else if (item.id === odorElixir.id) {
+    odorElixirStore.open(item)
+  }
   else if (item.id === eggBoxItem.id) {
     eggBox.open()
     usage.markUsed(item.id)
@@ -214,6 +219,7 @@ function onUse(item: Item) {
   </section>
   <InventoryEvolutionItemModal />
   <InventoryWearableItemModal />
+  <InventoryOdorElixirModal />
   <InventoryItemShortcutModal />
   <EggBoxModal />
 </template>

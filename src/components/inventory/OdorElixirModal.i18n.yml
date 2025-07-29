@@ -1,0 +1,6 @@
+fr:
+  title: 'Choisir le bénéficiaire de {name}'
+  noAvailable: Aucun Shlagémon n'a besoin de cet élixir.
+en:
+  title: 'Choose the recipient of {name}'
+  noAvailable: No Shlagemon needs this elixir.

@@ -4,9 +4,11 @@ import { defineStore } from 'pinia'
 import {
   allItems,
   eggBox as eggBoxItem,
+  odorElixir,
 } from '~/data/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
+import { useOdorElixirStore } from './odorElixir'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Partial<Record<ItemId, number>>>({})
@@ -17,6 +19,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const captureLimitModal = useCaptureLimitModalStore()
   const itemUsage = useItemUsageStore()
   const eggBox = useEggBoxStore()
+  const odorElixirStore = useOdorElixirStore()
 
   interface ListedItem {
     item: Item
@@ -113,6 +116,10 @@ export const useInventoryStore = defineStore('inventory', () => {
       [shlageball.id]: capture,
       [superShlageball.id]: capture,
       [hyperShlageball.id]: capture,
+      [odorElixir.id]: () => {
+        odorElixirStore.open(item)
+        return true
+      },
     }
 
     const typeHandlers: Record<string, (power: number) => boolean> = {
