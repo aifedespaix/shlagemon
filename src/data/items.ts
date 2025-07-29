@@ -462,7 +462,7 @@ export const eggBox: Item = {
   nameKey: 'data.items.eggBox.name',
   name: 'Boîte à œufs',
   descriptionKey: 'data.items.eggBox.description',
-  description: 'Permet de stocker tous tes œufs sans encombrer l\'inventaire.',
+  description: 'Permet de stocker tous tes œufs sans encombrer l\'inventaire. C\'est super pour collectionner les œufs, mais tu n\'as aucune idée de ce qu\'il peut y avoir à l\'intérieur.',
   category: 'utilitaire',
   unique: true,
   icon: 'i-game-icons:nest-eggs',

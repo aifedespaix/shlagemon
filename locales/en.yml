@@ -3023,7 +3023,8 @@ data:
         details: Evolves Masschopeur into Macintosh, an irreversible hypertrophy.
       eggBox:
         name: Egg Box
-        description: Stores all your eggs without cluttering the inventory.
+        description: >-
+          Stores all your eggs without cluttering the inventory. Great for collecting eggs, but you have no idea what might be inside.
       fireEgg:
         name: Fire Egg
         description: A burning hot egg.
@@ -3203,7 +3204,8 @@ data:
       details: Evolves Masschopeur into Macintosh, an irreversible hypertrophy.
     eggBox:
       name: Egg Box
-      description: Stores all your eggs without cluttering the inventory.
+      description: >-
+        Stores all your eggs without cluttering the inventory. Great for collecting eggs, but you have no idea what might be inside.
     fireEgg:
       name: Fire Egg
       description: A burning hot egg.
