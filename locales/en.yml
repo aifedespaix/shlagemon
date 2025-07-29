@@ -35,6 +35,11 @@ components:
       title: Shlagemon
       home: Home
       dex: Shlagedex
+    GameGrid:
+      inventory: Inventory
+      achievements: Achievements
+      zones: Zones
+      dex: Shlagedex
   panel:
     Achievements:
       all: All
@@ -126,6 +131,16 @@ components:
       king: king
       zoneKingChallenge: '{label} zone challenge'
       reward: +{amount} Shlagidiamonds
+    CaptureLimitModal:
+      text: >-
+        To capture this level {level} Shlagemon, you need a badge. Visit the
+        village to challenge the arena and earn this right.
+    FightKingButton:
+      challenge: Challenge {label}
+    Round:
+      vs: VS
+    Shlagemon:
+      ownedTooltip: You already own this Shlagemon
   egg:
     BoxModal:
       title: Egg box
@@ -170,6 +185,10 @@ components:
       loaded: Save loaded
       copied: Copied
       generate: Generate
+    LanguageTab:
+      label: Language
+      description: The application is available in English and French.
+      loadFile: Load from file
   shlagemon:
     Detail:
       equipItemTitle: Equip an item

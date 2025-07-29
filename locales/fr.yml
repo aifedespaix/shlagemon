@@ -36,6 +36,11 @@ components:
       title: Shlagémon
       home: Accueil
       dex: Shlagédex
+    GameGrid:
+      inventory: Inventaire
+      achievements: Succès
+      zones: Zones
+      dex: Shlagédex
   panel:
     Achievements:
       all: Tous
@@ -128,6 +133,17 @@ components:
       king: roi
       zoneKingChallenge: Défi du {label} de la zone
       reward: +{amount} Shlagédiamonds
+    CaptureLimitModal:
+      text: >-
+        Pour pouvoir attraper ce Shlagémon de niveau {level}, il vous faut un
+        badge. Rendez-vous dans le village pour défier l'arène et remporter ce
+        droit.
+    FightKingButton:
+      challenge: Défier {label}
+    Round:
+      vs: VS
+    Shlagemon:
+      ownedTooltip: Vous possédez déjà ce Shlagémon
   egg:
     BoxModal:
       title: Boîte à œufs
@@ -172,6 +188,10 @@ components:
       loaded: Sauvegarde chargée
       copied: Copié
       generate: Générer
+    LanguageTab:
+      label: Langue
+      description: L'application est disponible en français et en anglais.
+      loadFile: Charger depuis un fichier
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet

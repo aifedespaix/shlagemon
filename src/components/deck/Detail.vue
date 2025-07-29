@@ -25,7 +25,7 @@ const { t } = useI18n()
       />
     </div>
     <p class="tiny-scrollbar max-h-40 overflow-auto text-sm italic">
-      {{ t(props.mon.descriptionKey || props.mon.description) }}
+      {{ t(props.mon.description) }}
     </p>
     <div v-if="props.mon.evolution" class="flex flex-col items-center text-sm font-medium">
       <span>{{ t('components.deck.DeckDetail.evolution') }}</span>
