@@ -74,7 +74,7 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
           continue
 
         if ('catchBonus' in item) {
-          useBallStore().setBall(item.id as BallId)
+          useBallStore().equip(item.id as BallId)
           usage.markUsed(item.id)
         }
         else if (item.type === 'evolution') {

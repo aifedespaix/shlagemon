@@ -154,7 +154,7 @@ function onUse(item: Item) {
   if (featureLock.isInventoryLocked)
     return
   if ('catchBonus' in item) {
-    ballStore.setBall(item.id as BallId)
+    ballStore.equip(item.id as BallId)
     usage.markUsed(item.id)
     toast(t('components.panel.Inventory.equip', { item: t(item.nameKey || item.name) }))
   }
