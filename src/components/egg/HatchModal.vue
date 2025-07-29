@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const modal = useEggHatchModalStore()
+const { t } = useI18n()
 </script>
 
 <template>
   <UiModal v-model="modal.isVisible" footer-close>
     <div class="flex flex-col items-center gap-2">
       <h3 class="text-center text-lg font-bold">
-        Vous avez obtenu {{ modal.mon?.base.name }} !
+        {{ t('components.egg.HatchModal.message', { name: modal.mon?.base.name }) }}
       </h3>
       <div
         class="h-24 w-24"

@@ -1,0 +1,4 @@
+fr:
+  message: Vous avez obtenu {name} !
+en:
+  message: You obtained {name}!
