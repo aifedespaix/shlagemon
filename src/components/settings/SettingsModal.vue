@@ -19,7 +19,7 @@ function removeSave() {
 
 const tabs = [
   {
-    label: { text: 'Sauvegarde' },
+    label: { text: 'Sauvegarde', icon: 'i-carbon-save' },
     component: defineComponent({
       name: 'SettingsSaveTabWrapper',
       setup() {
@@ -27,8 +27,11 @@ const tabs = [
       },
     }),
   },
-  { label: { text: 'Raccourcis' }, component: SettingsShortcutsTab },
-  { label: { text: 'Langue' }, component: LanguageTab },
+  {
+    label: { text: 'Raccourcis', icon: 'i-carbon-keyboard' },
+    component: SettingsShortcutsTab,
+  },
+  { label: { text: 'Langue', icon: 'i-carbon-language' }, component: LanguageTab },
 ] as const
 
 const activeTab = ref(0)
