@@ -47,7 +47,7 @@ function setMax() {
 }
 
 const details = computed(() =>
-  t(props.item.detailsKey || props.item.descriptionKey || props.item.description),
+  t(props.item.details ?? props.item.description),
 )
 </script>
 
@@ -59,9 +59,9 @@ const details = computed(() =>
         class="h-10 w-10"
         :class="[props.item.iconClass, props.item.icon]"
       />
-      <img v-else-if="props.item.image" :src="props.item.image" :alt="t(props.item.nameKey || props.item.name)" class="h-10 w-10 object-contain">
+      <img v-else-if="props.item.image" :src="props.item.image" :alt="t(props.item.name)" class="h-10 w-10 object-contain">
       <h3 class="text-lg font-bold">
-        {{ t(props.item.nameKey || props.item.name) }}
+        {{ t(props.item.name) }}
       </h3>
     </div>
     <div class="flex items-center gap-1">
