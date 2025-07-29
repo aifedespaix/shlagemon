@@ -374,6 +374,15 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     effects.value.push(effect)
   }
 
+  function applyOdorElixir(mon: DexShlagemon) {
+    if (mon.rarityFollowsLevel)
+      return
+    mon.rarityFollowsLevel = true
+    mon.rarity = mon.lvl
+    applyStats(mon)
+    applyCurrentStats(mon)
+  }
+
   const evolutionStore = useEvolutionStore()
 
   function applyEvolution(mon: DexShlagemon, to: BaseShlagemon) {
@@ -615,6 +624,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     boostVitality,
     boostXp,
     boostCapture,
+    applyOdorElixir,
     effectiveAttack,
     effectiveDefense,
     maxHp,

@@ -13,6 +13,7 @@ import KingLossDialog from '~/components/dialog/KingLossDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
 import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
+import OdorElixirDialog from '~/components/dialog/OdorElixirDialog.vue'
 import PotionInfoDialog from '~/components/dialog/PotionInfoDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import WearableItemDialog from '~/components/dialog/WearableItemDialog.vue'
@@ -173,6 +174,11 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'capturePotion',
       component: markRaw(CapturePotionDialog),
+      condition: () => dex.highestLevel >= 50,
+    },
+    {
+      id: 'odorElixir',
+      component: markRaw(OdorElixirDialog),
       condition: () => dex.highestLevel >= 50,
     },
     {

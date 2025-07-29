@@ -11,7 +11,7 @@ const options = computed(() =>
 )
 
 function choose(id: BallId) {
-  ballStore.setBall(id)
+  ballStore.equip(id)
 }
 </script>
 

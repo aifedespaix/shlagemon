@@ -139,6 +139,9 @@ components:
     WearableItemModal:
       title: Choisir le porteur de {name}
       noAvailable: Aucun Shlagémon disponible.
+    OdorElixirModal:
+      title: Choisir le bénéficiaire de {name}
+      noAvailable: Aucun Shlagémon n'a besoin de cet élixir.
   settings:
     ShortcutsTab:
       add: Ajouter un raccourci
@@ -536,6 +539,34 @@ components:
             honneur au Professeur Merdant !
           responses:
             valid: Merci Prof !
+    OdorElixirDialog:
+      steps:
+        step1:
+          text: Nom d'un slip, ton Shlagémon a atteint le niveau 50 !
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Voilà l'Élixir d'Odeur, une mixture que même ma mère voudrait
+            sniffer.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Verse ça sur ton chouchou et sa rareté collera à son niveau.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Plus il progressera, plus il fera baver les autres d'envie.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Tiens, j'te file la fiole. Gâche-la pas sur un tocard.
+          responses:
+            back: Retour
+            valid: Merci vieux !
   minigame:
     MiniGameShlagMind:
       messages:
@@ -3343,27 +3374,31 @@ data:
     specialPotion:
       name: Potion Spéciale
       description: >-
-        S'utilise seulement contre les dresseurs et se déclenche en maintenant le
+        S'utilise seulement contre les rois et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats face aux dresseurs, maintenez le bouton pour effectuer
+        Pendant les combats face aux rois, maintenez le bouton pour effectuer
         une action spéciale.
     mysteriousPotion:
       name: Potion Mystérieuse
       description: >-
-        S'utilise seulement contre les dresseurs et se déclenche en maintenant le
+        S'utilise seulement contre les rois et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats face aux dresseurs, maintenez le bouton pour effectuer
+        Pendant les combats face aux rois, maintenez le bouton pour effectuer
         une action mystérieuse.
     fabulousPotion:
       name: Potion Fabuleuse
       description: >-
-        S'utilise seulement contre les dresseurs et se déclenche en maintenant le
+        S'utilise seulement contre les rois et se déclenche en maintenant le
         bouton.
       details: >-
-        Pendant les combats face aux dresseurs, maintenez le bouton pour effectuer
+        Pendant les combats face aux rois, maintenez le bouton pour effectuer
         une action fabuleuse.
+    odorElixir:
+      name: Élixir d'Odeur
+      description: Un élixir très rare à offrir à un Shlagémon qu'on adore.
+      details: Utilisé sur un Shlagémon, sa rareté suivra désormais son niveau.
 pages:
   index:
     title: Shlagémon

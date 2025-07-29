@@ -8,6 +8,7 @@ import {
   eggBox as eggBoxItem,
   fabulousPotion,
   mysteriousPotion,
+  odorElixir,
   specialPotion,
 } from '~/data/items'
 import { useKingPotionStore } from '~/stores/kingPotion'
@@ -20,6 +21,7 @@ const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
 const kingPotion = useKingPotionStore()
 const kingPotionIds = [fabulousPotion.id, mysteriousPotion.id, specialPotion.id]
+const odorElixirStore = useOdorElixirStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
@@ -154,7 +156,7 @@ function onUse(item: Item) {
   if (featureLock.isInventoryLocked)
     return
   if ('catchBonus' in item) {
-    ballStore.setBall(item.id as BallId)
+    ballStore.equip(item.id as BallId)
     usage.markUsed(item.id)
     toast(t('components.panel.Inventory.equip', { item: t(item.nameKey || item.name) }))
   }
@@ -168,6 +170,9 @@ function onUse(item: Item) {
   }
   else if (item.wearable) {
     wearableStore.open(item)
+  }
+  else if (item.id === odorElixir.id) {
+    odorElixirStore.open(item)
   }
   else if (item.id === eggBoxItem.id) {
     eggBox.open()
@@ -214,6 +219,7 @@ function onUse(item: Item) {
   </section>
   <InventoryEvolutionItemModal />
   <InventoryWearableItemModal />
+  <InventoryOdorElixirModal />
   <InventoryItemShortcutModal />
   <EggBoxModal />
 </template>

@@ -258,6 +258,7 @@ function onClick(_e: MouseEvent) {
     v-if="props.captureEnabled"
     :enemy="props.enemy"
     :enemy-hp="enemyHp"
+    :player-hp="playerHp"
     :stop-battle="stopBattle"
     @finished="onCaptureEnd"
   />

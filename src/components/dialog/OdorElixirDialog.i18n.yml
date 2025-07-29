@@ -1,0 +1,52 @@
+fr:
+  steps:
+    step1:
+      text: "Nom d'un slip, ton Shlagémon a atteint le niveau 50 !"
+      responses:
+        next: Continuer
+    step2:
+      text: "Voilà l'Élixir d'Odeur, une mixture que même ma mère voudrait sniffer."
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Verse ça sur ton chouchou et sa rareté collera à son niveau.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: "Plus il progressera, plus il fera baver les autres d'envie."
+      responses:
+        back: Retour
+        next: Continuer
+    step5:
+      text: "Tiens, j'te file la fiole. Gâche-la pas sur un tocard."
+      responses:
+        back: Retour
+        valid: Merci vieux !
+en:
+  steps:
+    step1:
+      text: 'Holy crap, your Shlagemon hit level 50!'
+      responses:
+        next: Continue
+    step2:
+      text: "Here's the Odor Elixir, a brew even my mom would sniff."
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: Pour it on your favorite and its rarity will match its level.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: 'The higher it climbs, the more others will drool with envy.'
+      responses:
+        back: Back
+        next: Continue
+    step5:
+      text: "Take this bottle and don't waste it on a loser."
+      responses:
+        back: Back
+        valid: Thanks!

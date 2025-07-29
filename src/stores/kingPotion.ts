@@ -2,6 +2,7 @@ import type { DexShlagemon } from '~/type'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
+import { useAutoEquip } from './helpers'
 import { useInventoryStore } from './inventory'
 import { useShlagedexStore } from './shlagedex'
 
@@ -13,10 +14,11 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
   const audio = useAudioStore()
 
   const used = ref(false)
-  const current = ref<string | null>(null)
 
-  const owned = computed(() =>
-    potions.filter(p => (inventory.items[p.id] || 0) > 0),
+  const { current, owned, equip } = useAutoEquip(
+    potions,
+    id => inventory.items[id] || 0,
+    (a, b) => (b.power ?? 0) - (a.power ?? 0),
   )
 
   const equipped = computed(() =>
@@ -24,11 +26,6 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
   )
 
   const power = computed(() => equipped.value?.power ?? 0)
-
-  function equip(id: string) {
-    if (owned.value.some(p => p.id === id))
-      current.value = id
-  }
 
   function activate(enemy?: DexShlagemon | null) {
     if (used.value)
@@ -51,7 +48,6 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
     }
     inventory.remove(potion.id)
     used.value = true
-    current.value = null
     return true
   }
 
