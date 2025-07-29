@@ -3,14 +3,16 @@ import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import { getCharacterTrack, getZoneTrack } from '~/data/music'
 
-const { dialogTree, character, orientation, exitTrack }
+const { dialogTree, character, orientation, exitTrack, keepMusic }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
     character: Character
     orientation?: 'row' | 'col'
     exitTrack?: string
+    keepMusic?: boolean
   }>(), {
     orientation: 'row',
+    keepMusic: false,
   })
 
 const avatarUrl = computed(() => `/characters/${character.id}/${character.id}.webp`)
@@ -38,6 +40,8 @@ watch(currentNode, () => {
 })
 
 onUnmounted(() => {
+  if (keepMusic)
+    return
   const track = exitTrack || getZoneTrack(zone.current.id, zone.current.type)
   if (track)
     audio.fadeToMusic(track)
