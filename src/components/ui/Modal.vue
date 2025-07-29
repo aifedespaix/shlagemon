@@ -1,4 +1,11 @@
 <script setup lang="ts">
+/**
+ * Generic modal dialog component.
+ *
+ * All attributes passed to this component are forwarded to the underlying
+ * `<dialog>` element so consumers can set ARIA labels and additional classes.
+ */
+defineOptions({ inheritAttrs: false })
 const props = withDefaults(defineProps<{
   modelValue: boolean
   closeOnOutsideClick?: boolean
@@ -12,6 +19,7 @@ const props = withDefaults(defineProps<{
   goldenBorder: false,
 })
 const emit = defineEmits(['update:modelValue', 'close'])
+const attrs = useAttrs()
 const dialogRef = ref<HTMLDialogElement | null>(null)
 
 onUnmounted(() => {
@@ -55,6 +63,7 @@ function close() {
   <teleport to="body">
     <dialog
       ref="dialogRef"
+      v-bind="attrs"
       class="modal flex flex-col overflow-hidden"
       :autofocus="props.dialogAutofocus || undefined"
       tabindex="-1"
