@@ -245,8 +245,8 @@ export const kings: Kings = {
     reward: zonesData.find(z => z.id === 'forteresse-petmoalfiak')?.maxLevel || 1,
     character: charlesManoir,
     dialogBefore: 'Tu entends cette petite voix dans ta tête ? Elle te dit de perdre... C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !',
-    dialogAfter: 'Wow… T’as survécu à mon délire ! Pas mal, mais attention, les vraies hallucinations commencent à la prochaine pleine lune…',
-    dialogDefeat: 'Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…',
+    dialogAfter: 'Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…',
+    dialogDefeat: 'Wow… tu pues la loose ! Attention, les vraies hallucinations commencent à la prochaine pleine lune…',
     shlagemons: [
       macho.id,
       ferosang.id,
