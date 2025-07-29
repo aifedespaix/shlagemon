@@ -145,6 +145,16 @@ components:
     ShortcutsTab:
       add: Add shortcut
       reset: Reset
+    SaveTab:
+      exportLabel: Save code
+      copy: Copy
+      download: Download
+      importLabel: Import save
+      load: Load
+      remove: Delete
+      invalid: Invalid code
+      loaded: Save loaded
+      copied: Copied
   shlagemon:
     Detail:
       equipItemTitle: Equip an item
