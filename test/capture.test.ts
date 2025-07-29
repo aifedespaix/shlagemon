@@ -24,7 +24,7 @@ describe('capture mechanics', () => {
     const mon = createDexShlagemon(carapouffe, false, 20)
     mon.hp = 100
     mon.hpCurrent = 1
-    vi.spyOn(Math, 'random').mockReturnValue(0.5)
+    vi.spyOn(Math, 'random').mockReturnValue(0.3)
     expect(tryCapture(mon, balls[1])).toBe(true)
   })
 
@@ -34,6 +34,14 @@ describe('capture mechanics', () => {
     mon.hpCurrent = 1
     mon.rarity = 100
     vi.spyOn(Math, 'random').mockReturnValue(0.3)
+    expect(tryCapture(mon, balls[2])).toBe(false)
+  })
+
+  it('level 33 halves capture chance', () => {
+    const mon = createDexShlagemon(carapouffe, false, 33)
+    mon.hp = 100
+    mon.hpCurrent = 1
+    vi.spyOn(Math, 'random').mockReturnValue(0.6)
     expect(tryCapture(mon, balls[2])).toBe(false)
   })
 })
