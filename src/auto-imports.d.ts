@@ -319,6 +319,8 @@ declare global {
   const useShare: typeof import('@vueuse/core')['useShare']
   const useShlagedexStore: typeof import('./stores/shlagedex')['useShlagedexStore']
   const useShopFilterStore: typeof import('./stores/shopFilter')['useShopFilterStore']
+  const useShopPurchase: typeof import('./composables/useShopPurchase')['useShopPurchase']
+  const useShopTabs: typeof import('./composables/useShopTabs')['useShopTabs']
   const useShortcutsStore: typeof import('./stores/shortcuts')['useShortcutsStore']
   const useSingleInterval: typeof import('./composables/battleEngine')['useSingleInterval']
   const useSlidingPuzzle: typeof import('./composables/useSlidingPuzzle')['useSlidingPuzzle']
@@ -764,6 +766,8 @@ declare module 'vue' {
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useShlagedexStore: UnwrapRef<typeof import('./stores/shlagedex')['useShlagedexStore']>
     readonly useShopFilterStore: UnwrapRef<typeof import('./stores/shopFilter')['useShopFilterStore']>
+    readonly useShopPurchase: UnwrapRef<typeof import('./composables/useShopPurchase')['useShopPurchase']>
+    readonly useShopTabs: UnwrapRef<typeof import('./composables/useShopTabs')['useShopTabs']>
     readonly useShortcutsStore: UnwrapRef<typeof import('./stores/shortcuts')['useShortcutsStore']>
     readonly useSingleInterval: UnwrapRef<typeof import('./composables/battleEngine')['useSingleInterval']>
     readonly useSlidingPuzzle: UnwrapRef<typeof import('./composables/useSlidingPuzzle')['useSlidingPuzzle']>
