@@ -17,13 +17,14 @@ const audio = useAudioStore()
       <UiCheckBox v-model="audio.isMusicEnabled" class="flex items-center justify-between">
         <span>Musique</span>
       </UiCheckBox>
-      <UiInfo v-if="!audio.isMusicEnabled" color="alert">
-        Désactiver la musique réduit les dégâts de vos Shlagémons de 10&nbsp;%.
-      </UiInfo>
       <UiInputTipRange
         v-model="audio.musicVolume"
         :disabled="!audio.isMusicEnabled"
       />
+      <UiInfo v-if="!audio.isMusicEnabled" color="alert">
+        Désactiver la musique réduit les dégâts de vos Shlagémons de 10%.
+        <br>(Ba oui, je me suis pas cassé le cul à faire une bande-son pour rien !)
+      </UiInfo>
       <UiCheckBox v-model="audio.isSfxEnabled" class="flex items-center justify-between">
         <span>Effets</span>
       </UiCheckBox>
