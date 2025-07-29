@@ -73,17 +73,10 @@ def get_public_full_path(url):
     return os.path.join('../public', url.strip('/'))
 
 def decide_loops(audio_path):
-    """Return the number of loops required for a track.
-
-    Music shorter than a minute should be repeated enough times so the
-    resulting clip lasts at least two minutes.
-    """
     y, sr = librosa.load(audio_path, sr=None)
     duration = librosa.get_duration(y=y, sr=sr)
-    if duration >= 60:
-        return 1
-    # ensure the final length is at least 120 seconds
-    return max(2, int(np.ceil(120 / duration)))
+    # Toujours boucler pour arriver à au moins 120s
+    return max(1, int(np.ceil(120 / duration)))
 
 def make_audio_clip(music):
     path = get_audio_wav_path(music)
@@ -184,15 +177,16 @@ def make_shlageball_pulse_clip(audio_path, duration, center_img_path, min_scale=
         return frame
     return VideoClip(make_frame, duration=duration).with_fps(FPS)
 
-def make_character_clip(image_path, duration, height_ratio=0.8):
+def make_character_clip(image_path, duration, height_ratio=0.8, H=1080):
     if not os.path.isfile(image_path):
         print(f"Image not found: {image_path}")
         return None
-    clip = ImageClip(image_path).with_duration(duration)
-    clip = clip.with_effects([vfx.MirrorX()]) 
-    print(__version__)
-    clip = clip.resized(height=int(H * height_ratio))  # resize en 2.x
+    img = Image.open(image_path).convert("RGBA")
+    img_np = np.fliplr(np.array(img))
+    clip = ImageClip(img_np).with_duration(duration)
+    clip = clip.resized(height=int(H * height_ratio))
     return clip.with_position(("left", "center"))
+
 
 def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=160):
     try:

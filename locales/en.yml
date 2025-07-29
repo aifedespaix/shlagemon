@@ -114,12 +114,25 @@ components:
         missing: You haven't captured all Shlagemon in the area
       winTooltip: You defeated {n} Shlagemon in this area
       zoneMons: Zone Shlagemons
+    CaptureMenu:
+      captured: You captured {name}!
+      fail: Missed!
+    Trainer:
+      startBattle: Start battle
+      quit: Surrender
+      continue: Continue
+      defeat: Defeat...
+      queen: queen
+      king: king
+      zoneKingChallenge: '{label} zone challenge'
   egg:
     BoxModal:
       title: Egg box
       empty: No egg
     MonsModal:
       title: Shlagemons from {name}
+    HatchModal:
+      message: You obtained {name}!
   inventory:
     EvolutionItemModal:
       title: Use {name}
@@ -155,6 +168,7 @@ components:
       invalid: Invalid code
       loaded: Save loaded
       copied: Copied
+      generate: Generate
   shlagemon:
     Detail:
       equipItemTitle: Equip an item
@@ -571,6 +585,23 @@ components:
     masterMind:
       SelectionModal:
         title: Choose a Shlagemon
+  arena:
+    Panel:
+      selectSix: You must select 6 Shlagemon to fight in the arena
+      autoBattleInfo: The battle is automatic and proceeds without clicks.
+      quit: Give up
+      fight: Fight
+      autoSelect: Automatic team selection
+      choose: Choose a Shlagemon against {name}
+  audio:
+    SettingsModal:
+      title: Audio settings
+      musicLabel: Music
+      musicDisabledInfo: Disabling music reduces your Shlagemons' damage by 10%.
+      musicDisabledNote: (Hey, I did not compose a soundtrack for nothing!)
+      sfxLabel: Sound effects
+      sfxDisabledInfo: Warning, some audio feedback will be missing.
+      sfxDisabledNote: (Especially shiny sounds, it'd be a shame to miss one!)
 data:
   shlagemons:
     01-05:

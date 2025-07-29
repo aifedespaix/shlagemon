@@ -116,12 +116,25 @@ components:
         missing: Vous n'avez pas capturé tous les Shlagémon de la zone
       winTooltip: Vous avez vaincu {n} Shlagémon dans cette zone
       zoneMons: Shlagémons de la zone
+    CaptureMenu:
+      captured: Vous avez capturé {name} !
+      fail: Raté !
+    Trainer:
+      startBattle: Démarrer le combat
+      quit: Abandonner
+      continue: Continuer
+      defeat: Défaite...
+      queen: reine
+      king: roi
+      zoneKingChallenge: Défi du {label} de la zone
   egg:
     BoxModal:
       title: Boîte à œufs
       empty: Aucun œuf
     MonsModal:
       title: Shlagémons de {name}
+    HatchModal:
+      message: Vous avez obtenu {name} !
   inventory:
     EvolutionItemModal:
       title: Utiliser {name}
@@ -157,6 +170,7 @@ components:
       invalid: Code invalide
       loaded: Sauvegarde chargée
       copied: Copié
+      generate: Générer
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet
@@ -596,6 +610,25 @@ components:
     masterMind:
       SelectionModal:
         title: Choisis un Shlagémon
+  arena:
+    Panel:
+      selectSix: Vous devez sélectionner 6 Shlagémons pour combattre dans l'arène
+      autoBattleInfo: Le combat est automatique et se déroule sans clics.
+      quit: Abandonner
+      fight: Combattre
+      autoSelect: Sélection automatique de l'équipe
+      choose: Choisir un Shlagémon contre {name}
+  audio:
+    SettingsModal:
+      title: Paramètres audio
+      musicLabel: Musique
+      musicDisabledInfo: Désactiver la musique réduit les dégâts de vos Shlagémons de 10%.
+      musicDisabledNote: (Ba oui, je me suis pas cassé le cul à faire une bande-son pour rien !)
+      sfxLabel: Effets sonores
+      sfxDisabledInfo: Attention, certains feedbacks sonores seront absents.
+      sfxDisabledNote: >-
+        (Notamment les sons liés au Shiny, ça serait dommage d'en rater un, sale
+        connasse !)
 data:
   shlagemons:
     01-05:
