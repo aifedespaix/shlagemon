@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
-import { eggBox } from '~/data/items'
+import {
+  eggBox,
+  fabulousPotion,
+  mysteriousPotion,
+  specialPotion,
+} from '~/data/items'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item, qty: number, disabled?: boolean }>()
@@ -13,6 +18,7 @@ const { t } = useI18n()
 
 const showInfo = ref(false)
 const usage = useItemUsageStore()
+const kingPotionIds = [fabulousPotion.id, mysteriousPotion.id, specialPotion.id]
 const isUnused = computed(() => !usage.used[props.item.id])
 const zoom = ref(false)
 function onCardClick() {
@@ -28,11 +34,12 @@ const ballFilter = computed(() =>
 
 const isEgg = computed(() => props.item.id.startsWith('oeuf-'))
 const isEggBox = computed(() => props.item.id === eggBox.id)
+const isKingPotion = computed(() => kingPotionIds.includes(props.item.id))
 
 const actionLabel = computed(() => {
   if (isEggBox.value)
     return t('components.inventory.ItemCard.action.open')
-  if ('catchBonus' in props.item || props.item.wearable)
+  if ('catchBonus' in props.item || props.item.wearable || isKingPotion.value)
     return props.disabled ? t('components.inventory.ItemCard.action.equipped') : t('components.inventory.ItemCard.action.equip')
   return t('components.inventory.ItemCard.action.use')
 })
