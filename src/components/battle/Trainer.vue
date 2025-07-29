@@ -212,6 +212,7 @@ onUnmounted(featureLock.unlockAll)
       <DialogBox
         :character="trainer.character"
         :dialog-tree="beforeDialogTree"
+        :keep-music-on-exit="isZoneKing"
       />
     </div>
     <template v-else-if="stage === 'battle' && dex.activeShlagemon && enemy">
@@ -233,6 +234,7 @@ onUnmounted(featureLock.unlockAll)
       <DialogBox
         :character="trainer.character"
         :dialog-tree="afterDialogTree"
+        :keep-music-on-exit="isZoneKing"
       />
     </div>
   </div>
