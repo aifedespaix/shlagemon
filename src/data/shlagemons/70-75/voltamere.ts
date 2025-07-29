@@ -6,8 +6,7 @@ import electrobeauf from '../evolutions/electrobeauf'
 export const voltamere: BaseShlagemon = {
   id: 'voltamere',
   name: 'Voltamère',
-  description: `Voltamère ressemble à une vieille daronne déguisée en boule. Il vole tout ce qui brille pour l'empiler dans son sac à main imaginaire. Gare à la décharge statique quand il te fouille les poches !`,
-  descriptionKey: 'data.shlagemons.70-75.voltamere.description',
+  description: 'data.shlagemons.70-75.voltamere.description',
   types: [shlagemonTypes.electrique],
   evolution: {
     base: electrobeauf,

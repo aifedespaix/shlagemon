@@ -5,8 +5,7 @@ import ectroudbal from './ectroudbal'
 export const sperectum: BaseShlagemon = {
   id: 'sperectum',
   name: 'Sperectum',
-  description: `Sperectum est la réincarnation d'un pet émis par un Shlagemon.`,
-  descriptionKey: 'data.shlagemons.evolutions.sperectum.description',
+  description: 'data.shlagemons.evolutions.sperectum.description',
   types: [shlagemonTypes.spectre],
   evolution: {
     base: ectroudbal,

@@ -5,8 +5,7 @@ import noctedard from '../evolutions/noctedard'
 export const houlard: BaseShlagemon = {
   id: 'houlard',
   name: 'Houlard',
-  description: `Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des poteaux EDF, lâche des fientes phosphorescentes.`,
-  descriptionKey: 'data.shlagemons.60-65.houlard.description',
+  description: 'data.shlagemons.60-65.houlard.description',
   types: [shlagemonTypes.vol, shlagemonTypes.psy],
   evolution: {
     base: noctedard,

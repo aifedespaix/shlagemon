@@ -2,13 +2,9 @@ import type { WearableItem } from '~/type/item'
 
 export const xpRing: WearableItem = {
   id: 'xp-ring',
-  nameKey: 'data.items.wearables.xpRing.xpRing.name',
-  name: 'Anneau d\'expérience',
-  descriptionKey: 'data.items.wearables.xpRing.xpRing.description',
-  description: 'Augmente l\'XP du porteur.',
-  detailsKey: 'data.items.wearables.xpRing.xpRing.details',
-  details:
-    'Porté par un Shlagémon, il augmente l\'expérience gagnée en combat de 15%. Effet cumulable avec les potions d\'expérience.',
+  name: 'data.items.wearables.xpRing.xpRing.name',
+  description: 'data.items.wearables.xpRing.xpRing.description',
+  details: 'data.items.wearables.xpRing.xpRing.details',
   price: 20,
   currency: 'shlagidiamond',
   category: 'utilitaire',
@@ -22,13 +18,9 @@ export const xpRing: WearableItem = {
 
 export const advancedXpRing: WearableItem = {
   id: 'advanced-xp-ring',
-  nameKey: 'data.items.wearables.xpRing.advancedXpRing.name',
-  name: 'Anneau d\'expérience avancé',
-  descriptionKey: 'data.items.wearables.xpRing.advancedXpRing.description',
-  description: 'Augmente fortement l\'XP du porteur.',
-  detailsKey: 'data.items.wearables.xpRing.advancedXpRing.details',
-  details:
-    'Porté par un Shlagémon, il augmente l\'expérience gagnée en combat de 25%. Effet cumulable avec les potions d\'expérience.',
+  name: 'data.items.wearables.xpRing.advancedXpRing.name',
+  description: 'data.items.wearables.xpRing.advancedXpRing.description',
+  details: 'data.items.wearables.xpRing.advancedXpRing.details',
   price: 50,
   currency: 'shlagidiamond',
   category: 'utilitaire',
@@ -42,13 +34,9 @@ export const advancedXpRing: WearableItem = {
 
 export const xpAmulet: WearableItem = {
   id: 'xp-amulet',
-  nameKey: 'data.items.wearables.xpRing.xpAmulet.name',
-  name: 'Amulette d\'expérience',
-  descriptionKey: 'data.items.wearables.xpRing.xpAmulet.description',
-  description: 'Augmente grandement l\'XP du porteur.',
-  detailsKey: 'data.items.wearables.xpRing.xpAmulet.details',
-  details:
-    'Portée par un Shlagémon, elle augmente l\'expérience gagnée en combat de 33%. Effet cumulable avec les potions d\'expérience.',
+  name: 'data.items.wearables.xpRing.xpAmulet.name',
+  description: 'data.items.wearables.xpRing.xpAmulet.description',
+  details: 'data.items.wearables.xpRing.xpAmulet.details',
   price: 100,
   currency: 'shlagidiamond',
   category: 'utilitaire',

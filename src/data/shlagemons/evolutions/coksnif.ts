@@ -5,8 +5,7 @@ import coxymort from './coxymort'
 export const coksnif: BaseShlagemon = {
   id: 'coksnif',
   name: 'Coksnif',
-  description: `Elle a maintenant 4 bras, un sac banane, et les narines couvertes de poussière blanche. Plane constamment.`,
-  descriptionKey: 'data.shlagemons.evolutions.coksnif.description',
+  description: 'data.shlagemons.evolutions.coksnif.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   evolution: {
     base: coxymort,

@@ -91,7 +91,7 @@ function remaining(egg: { hatchesAt: number }) {
                 :class="[entry.item.icon, entry.item.iconClass]"
               />
               <span class="truncate text-sm font-medium">
-                {{ t(entry.item.nameKey || entry.item.name) }}
+                {{ t(entry.item.name) }}
               </span>
             </div>
 

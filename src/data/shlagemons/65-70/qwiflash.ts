@@ -5,8 +5,7 @@ import qwiflouch from '../evolutions/qwiflouch'
 export const qwiflash: BaseShlagemon = {
   id: 'qwiflash',
   name: 'Qwiflash',
-  description: `Poisson gonflé, mais tout mollasson, flotte à moitié crevé dans les caniveaux. Tire la langue, sans raison.`,
-  descriptionKey: 'data.shlagemons.65-70.qwiflash.description',
+  description: 'data.shlagemons.65-70.qwiflash.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   evolution: {
     base: qwiflouch,

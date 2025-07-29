@@ -5,8 +5,7 @@ import drapcon from '../evolutions/drapcon'
 export const minidrapcon: BaseShlagemon = {
   id: 'minidrapcon',
   name: 'Minidrapcon',
-  description: `Petit serpent drapé et un peu demeuré, il se prend souvent les crochets dans ses propres replis.`,
-  descriptionKey: 'data.shlagemons.65-70.minidrapcon.description',
+  description: 'data.shlagemons.65-70.minidrapcon.description',
   types: [shlagemonTypes.dragon],
   evolution: {
     base: drapcon,

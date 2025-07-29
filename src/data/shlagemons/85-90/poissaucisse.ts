@@ -5,8 +5,7 @@ import poissomerguez from '../evolutions/poissomerguez'
 export const poissaucisse: BaseShlagemon = {
   id: 'poissaucisse',
   name: 'Poissaucisse',
-  description: `Poissocisse se nourrit exclusivement de saucisses. Son odeur charcutière attire chiens et dresseurs affamés, ce qui le rend paradoxalement difficile à pêcher.`,
-  descriptionKey: 'data.shlagemons.85-90.poissaucisse.description',
+  description: 'data.shlagemons.85-90.poissaucisse.description',
   types: [shlagemonTypes.eau],
   evolution: {
     base: poissomerguez,

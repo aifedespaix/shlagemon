@@ -4,8 +4,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 export const heristrash: BaseShlagemon = {
   id: 'heristrash',
   name: 'Héristrash',
-  description: `Ressemble à un raton-laveur carbonisé. Les flammes sont vertes et sentent l’œuf pourri.`,
-  descriptionKey: 'data.shlagemons.evolutions.heristrash.description',
+  description: 'data.shlagemons.evolutions.heristrash.description',
   types: [shlagemonTypes.feu, shlagemonTypes.poison],
   speciality: 'evolution2',
 }
