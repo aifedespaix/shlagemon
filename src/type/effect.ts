@@ -7,5 +7,5 @@ export interface ActiveEffect {
   expiresAt: number
   /** @deprecated No longer used, kept for save compatibility */
   amount?: number
-  timeout?: any
+  timeout?: ReturnType<typeof setTimeout>
 }

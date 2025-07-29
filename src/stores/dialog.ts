@@ -1,3 +1,4 @@
+import type { WearableItem } from '~/type/item'
 import { defineStore } from 'pinia'
 import AnotherShlagemonDialog from '~/components/dialog/AnotherShlagemonDialog.vue'
 import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
@@ -36,11 +37,17 @@ import { advancedXpRing, xpAmulet, xpRing } from '~/data/items/wearables/xpRing'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useUIStore } from '~/stores/ui'
 
-interface DialogItem {
+interface WearableItemDialogProps {
+  item: WearableItem
+  requiredCount: number
+  finishId: string
+}
+
+interface DialogItem<T = Record<string, unknown>> {
   id: string
   component: Component
   condition: () => boolean
-  props?: Record<string, any>
+  props?: T
 }
 export interface DialogDone {
   [id: string]: boolean
@@ -63,7 +70,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const potionInfo = usePotionInfoStore()
 
   const done = ref<DialogDone>({})
-  const dialogs: DialogItem[] = [
+  const dialogs: Array<DialogItem | DialogItem<WearableItemDialogProps>> = [
     {
       id: 'starter',
       component: markRaw(DialogStarter),
@@ -99,73 +106,73 @@ export const useDialogStore = defineStore('dialog', () => {
       component: markRaw(WearableItemDialog),
       props: { item: vitalityRing, requiredCount: 10, finishId: 'vitalityRing' },
       condition: () => dex.shlagemons.length >= 10,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'defenseRing',
       component: markRaw(WearableItemDialog),
       props: { item: defenseRing, requiredCount: 20, finishId: 'defenseRing' },
       condition: () => dex.shlagemons.length >= 20,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'attackRing',
       component: markRaw(WearableItemDialog),
       props: { item: attackRing, requiredCount: 30, finishId: 'attackRing' },
       condition: () => dex.shlagemons.length >= 30,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'xpRing',
       component: markRaw(WearableItemDialog),
       props: { item: xpRing, requiredCount: 40, finishId: 'xpRing' },
       condition: () => dex.shlagemons.length >= 40,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'advancedVitalityRing',
       component: markRaw(WearableItemDialog),
       props: { item: advancedVitalityRing, requiredCount: 50, finishId: 'advancedVitalityRing' },
       condition: () => dex.shlagemons.length >= 50,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'advancedDefenseRing',
       component: markRaw(WearableItemDialog),
       props: { item: advancedDefenseRing, requiredCount: 60, finishId: 'advancedDefenseRing' },
       condition: () => dex.shlagemons.length >= 60,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'advancedAttackRing',
       component: markRaw(WearableItemDialog),
       props: { item: advancedAttackRing, requiredCount: 70, finishId: 'advancedAttackRing' },
       condition: () => dex.shlagemons.length >= 70,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'advancedXpRing',
       component: markRaw(WearableItemDialog),
       props: { item: advancedXpRing, requiredCount: 80, finishId: 'advancedXpRing' },
       condition: () => dex.shlagemons.length >= 80,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'vitalityAmulet',
       component: markRaw(WearableItemDialog),
       props: { item: vitalityAmulet, requiredCount: 90, finishId: 'vitalityAmulet' },
       condition: () => dex.shlagemons.length >= 90,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'defenseAmulet',
       component: markRaw(WearableItemDialog),
       props: { item: defenseAmulet, requiredCount: 100, finishId: 'defenseAmulet' },
       condition: () => dex.shlagemons.length >= 100,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'attackAmulet',
       component: markRaw(WearableItemDialog),
       props: { item: attackAmulet, requiredCount: 110, finishId: 'attackAmulet' },
       condition: () => dex.shlagemons.length >= 110,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'xpAmulet',
       component: markRaw(WearableItemDialog),
       props: { item: xpAmulet, requiredCount: 120, finishId: 'xpAmulet' },
       condition: () => dex.shlagemons.length >= 120,
-    },
+    } as DialogItem<WearableItemDialogProps>,
     {
       id: 'eggBox',
       component: markRaw(EggBoxDialog),

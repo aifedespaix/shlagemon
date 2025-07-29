@@ -4,6 +4,10 @@ import { Howl } from 'howler'
 import { defineStore, skipHydrate } from 'pinia'
 import { preloadSfx } from '~/data/sfx'
 
+function getTrackSrc(howl: Howl): string | undefined {
+  return (howl as unknown as { _src?: string })._src
+}
+
 export const useAudioStore = defineStore('audio', () => {
   const settings = reactive<AudioSettings>({
     musicVolume: 0.5,
@@ -100,7 +104,7 @@ export const useAudioStore = defineStore('audio', () => {
       return
     }
 
-    if ((currentMusic.value as any)._src === track)
+    if (getTrackSrc(currentMusic.value) === track)
       return
 
     if (fadeTimer) {
