@@ -219,7 +219,7 @@ export function useConnectFour() {
     const col = bestColumn(board.value)
     const idx = drop(board.value, col, 'ai')
     lastMove.value = idx
-    audio.playSfx('/audio/sfx/mini-game/connectfour/ai.ogg')
+    audio.playSfx('mini-game-connectfour-ai')
     const combo = checkWin(board.value, 'ai')
     if (combo)
       return end(false, combo)
@@ -235,7 +235,7 @@ export function useConnectFour() {
     if (idx === null)
       return
     lastMove.value = idx
-    audio.playSfx('/audio/sfx/mini-game/connectfour/player.ogg')
+    audio.playSfx('mini-game-connectfour-player')
     const combo = checkWin(board.value, 'player')
     if (combo)
       return end(true, combo)

@@ -41,7 +41,7 @@ function aiMove() {
     return end(false, true)
   const idx = findBestMove(board.value)
   board.value[idx] = 'ai'
-  audio.playSfx('/audio/sfx/mini-game/tictactoe/ai.ogg')
+  audio.playSfx('mini-game-tictactoe-ai')
   if (check('ai'))
     return end(false)
   if (centerFull())
@@ -58,7 +58,7 @@ function play(i: number) {
     return
   }
   board.value[i] = 'player'
-  audio.playSfx('/audio/sfx/mini-game/tictactoe/player.ogg')
+  audio.playSfx('mini-game-tictactoe-player')
   if (check('player'))
     return end(true)
   if (centerFull())
