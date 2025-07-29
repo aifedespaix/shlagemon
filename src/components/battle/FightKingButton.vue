@@ -5,16 +5,17 @@ const panel = useMainPanelStore()
 const trainerBattle = useTrainerBattleStore()
 const zone = useZoneStore()
 const progress = useZoneProgressStore()
+const dev = useDeveloperStore()
 
 const currentKing = computed(() => zone.getKing(zone.current.id as SavageZoneId))
 const kingLabel = computed(() =>
   currentKing.value?.character.gender === 'female' ? 'la reine' : 'le roi',
 )
 
-const visible = computed(() =>
+const visible = computed(() => (
   !!currentKing.value
   && !progress.isKingDefeated(zone.current.id)
-  && progress.canFightKing(zone.current.id),
+  && progress.canFightKing(zone.current.id)) || dev.debug,
 )
 
 function fightKing() {
