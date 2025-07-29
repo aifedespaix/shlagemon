@@ -10,9 +10,9 @@ from moviepy import (
     ImageClip,
     concatenate_audioclips,
     CompositeVideoClip,
-    TextClip,
     vfx,
     video,
+    __version__
 )
 from moviepy.audio.fx import AudioFadeOut
 
@@ -189,8 +189,9 @@ def make_character_clip(image_path, duration, height_ratio=0.8):
         print(f"Image not found: {image_path}")
         return None
     clip = ImageClip(image_path).with_duration(duration)
-    clip = clip.fx(video.fx.all.mirror_x)
-    clip = clip.resized(height=int(H * height_ratio))
+    clip = clip.with_effects([vfx.MirrorX()]) 
+    print(__version__)
+    clip = clip.resized(height=int(H * height_ratio))  # resize en 2.x
     return clip.with_position(("left", "center"))
 
 def make_title_clip(text, duration, fontsize=110, color=TITLE_COLOR, y_offset=160):
