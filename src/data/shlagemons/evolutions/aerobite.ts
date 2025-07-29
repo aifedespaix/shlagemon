@@ -4,12 +4,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 export const aerobite: BaseShlagemon = {
   id: 'aerobite',
   name: 'Aérobite',
-  description: `Aérobite est l’évolution honteusement assumée de GrosMitoss. Une créature ailée qui plane dans les airs... en toute impunité. Il a troqué son pelage pour une pilosité sélective : le torse rasé de près, mais le bas... comment dire… *aéré*. Et ça ne le dérange pas, bien au contraire — il revendique une "liberté corporelle totale".
-
-D’une impudeur sans faille, Aérobite adore surgir sans prévenir dans des lieux publics, déclenchant malaise et regards fuyants. Il clame haut et fort que “le corps, c’est naturel”, tout en déployant ses ailes à paillettes façon exhibition de foire.
-
-Son attaque signature *Claqueburnes* inflige des dégâts sonores et psychologiques, tandis que *Vent Glacial* laisse souvent les adversaires tétanisés — pas à cause du froid, mais du traumatisme visuel. On dit qu’aucun dresseur n’est jamais vraiment prêt à le voir voler au ralenti… jambes écartées.`,
-  descriptionKey: 'data.shlagemons.evolutions.aerobite.description',
+  description: 'data.shlagemons.evolutions.aerobite.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   speciality: 'evolution1',
 }

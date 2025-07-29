@@ -4,14 +4,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 export const macintosh: BaseShlagemon = {
   id: 'macintosh',
   name: 'Macintosh',
-  description: `Macintosh est la dernière évolution de la lignée Macho. Une évolution tragique, obtenue après avoir absorbé une *Ultra-Stéroïde* tout en lisant trois threads de Reddit sur "la féminité moderne".
-
-Ses muscles sont toujours là, mais personne n’y touche plus. Les meufs ? Parties. L’arrogance ? Transformée en *posts passifs-agressifs sur X*. Macintosh est désormais seul, vissé à son ordinateur portable, dans une chambre qui sent la **whey périmée et les rêves brisés**. Il s'est autoproclamé "coach en masculinité numérique", mais il passe surtout ses journées à commenter des shorts TikTok avec "bah elle va finir seule mdr".
-
-Il attaque avec *Clavier Rageur*, qui spam des insultes mal orthographiées, et *Copié/Collé de Citation*, un move inutile où il cite Alex Hitchens (son modèle) sans contexte. Il a également accès à *Alt+Tab Discret*, qui lui permet de cacher son onglet “Podcasts alpha” quand sa daronne rentre dans la pièce.
-
-On raconte qu’il a installé un fond d’écran de lui torse nu en noir et blanc avec marqué “GRIND” en majuscules. Aucun Shlagémon ne veut le combattre : pas par peur… par pitié.`,
-  descriptionKey: 'data.shlagemons.evolutions.macintosh.description',
+  description: 'data.shlagemons.evolutions.macintosh.description',
   types: [shlagemonTypes.combat],
   speciality: 'evolution2',
 }

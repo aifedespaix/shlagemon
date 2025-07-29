@@ -5,8 +5,7 @@ import noadcajou from '../evolutions/noadcajou'
 export const huithuit: BaseShlagemon = {
   id: 'huithuit',
   name: 'Huithuit',
-  description: `Formé de deux chiffres huit tout collés, Huithuit adore faire des blagues sur les œufs. Il se dandine maladroitement et déclenche parfois des visions psychédéliques chez ceux qui le regardent trop longtemps.`,
-  descriptionKey: 'data.shlagemons.75-80.huithuit.description',
+  description: 'data.shlagemons.75-80.huithuit.description',
   types: [shlagemonTypes.plante, shlagemonTypes.psy],
   evolution: {
     base: noadcajou,

@@ -5,12 +5,7 @@ import galopard from '../evolutions/galopard'
 export const pouleyta: BaseShlagemon = {
   id: 'pouleyta',
   name: 'Pouleyta',
-  description: `Pouleyta ressemble à un poney, mais c’est surtout un poulet sur pattes dont les plumes ont pris feu il y a bien trop longtemps. Son crin est constitué de plumes calcinées, mêlées de mégots et de miettes de chips. Il boite légèrement, sent le graillon, et laisse derrière lui une odeur persistante de barbecue foiré.
-
-Son attaque signature, *Flamme Panée*, consiste à se rouler dans la chapelure avant de charger ses adversaires, laissant des traces de graisse sur le terrain. On raconte que Pouleyta attire les chiens errants et les supporters bourrés lors des fêtes de village.
-
-Malgré son allure, il rêve secrètement d'être la mascotte d’un fast-food discount.`,
-  descriptionKey: 'data.shlagemons.45-50.pouleyta.description',
+  description: 'data.shlagemons.45-50.pouleyta.description',
   types: [shlagemonTypes.feu],
   evolution: {
     base: galopard,

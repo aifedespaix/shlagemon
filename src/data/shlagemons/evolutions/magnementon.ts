@@ -4,15 +4,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 export const magnementon: BaseShlagemon = {
   id: 'magnementon',
   name: 'Magnementon',
-  description: `Magnementon, c’est la fusion de trois Magnubellules qui se sont pris la canette (et le trottoir) un peu trop fort. Leur carapace est cabossée et soudée autour d’un menton proéminent, d’une dureté légendaire — on raconte qu'il a déjà ouvert un distributeur de canettes d'un simple coup de boule.
-
-Leur corps évoque une libellule rouillée avec trois gros mentons métalliques qui s’entrechoquent bruyamment, chacun orné d’ecchymoses et de traces de mousse séchée. Leur couleur rappelle un festival de bières renversées : bleu profond, doré blafard, et reflets de canette usée.
-
-Magnementon flotte en meute dans les parkings, l’air mauvais, prêt à te juger du regard ou à te bousculer d’un coup de menton.  
-Son attaque signature, *Menton Omnipotent*, consiste à donner un coup de menton magistral, capable d’aplatir un panneau de signalisation… ou simplement de faire voler en éclats la dignité de l’adversaire.
-
-On raconte que croiser un Magnementon, c’est risquer de finir avec “8 mentons, 6 bosses” et une bonne excuse bidon pour rentrer au camping.`,
-  descriptionKey: 'data.shlagemons.evolutions.magnementon.description',
+  description: 'data.shlagemons.evolutions.magnementon.description',
   types: [shlagemonTypes.electrique, shlagemonTypes.insecte],
   speciality: 'evolution1',
 }

@@ -4,12 +4,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 export const perchiste: BaseShlagemon = {
   id: 'perchiste',
   name: 'Perchiste',
-  description: `Perchiste a quitté le grand banditisme des ruelles de Kanto pour se reconvertir dans le cinéma d’auteur... mais pas le bon. Armé de sa perche micro rafistolée avec du chatterton et un vieux t-shirt de crew, il hante les plateaux de tournage miteux, toujours prêt à capter les souffles, les silences, et parfois... ses propres soupirs de dépression.
-
-Il prend très à cœur son rôle, quitte à interrompre une scène pour recadrer un angle de son ou insulter un stagiaire lumière. Ses coussinets amortissent les bruits de pas, mais sa touffe de poils sur l’oreille capte toutes les mauvaises vibes. 
-
-Son attaque signature, *Grésil du Désespoir*, inflige un bruit statique à l’ennemi pendant 3 tours, tandis que *Silence Plateau !* le fait disparaître temporairement du combat, le temps d’un long plan fixe inutile.`,
-  descriptionKey: 'data.shlagemons.evolutions.perchiste.description',
+  description: 'data.shlagemons.evolutions.perchiste.description',
   types: [shlagemonTypes.normal],
   speciality: 'evolution1',
 }

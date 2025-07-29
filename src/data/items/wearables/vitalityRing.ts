@@ -2,13 +2,9 @@ import type { WearableItem } from '~/type/item'
 
 export const vitalityRing: WearableItem = {
   id: 'vitality-ring',
-  nameKey: 'data.items.wearables.vitalityRing.vitalityRing.name',
-  name: 'Bague Vitalesque',
-  descriptionKey: 'data.items.wearables.vitalityRing.vitalityRing.description',
-  description: 'Augmente les PV max du porteur.',
-  detailsKey: 'data.items.wearables.vitalityRing.vitalityRing.details',
-  details:
-    'Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.',
+  name: 'data.items.wearables.vitalityRing.vitalityRing.name',
+  description: 'data.items.wearables.vitalityRing.vitalityRing.description',
+  details: 'data.items.wearables.vitalityRing.vitalityRing.details',
   price: 20,
   currency: 'shlagidiamond',
   category: 'utilitaire',
@@ -22,13 +18,9 @@ export const vitalityRing: WearableItem = {
 
 export const advancedVitalityRing: WearableItem = {
   id: 'advanced-vitality-ring',
-  nameKey: 'data.items.wearables.vitalityRing.advancedVitalityRing.name',
-  name: 'Bague Vitalesque avancée',
-  descriptionKey: 'data.items.wearables.vitalityRing.advancedVitalityRing.description',
-  description: 'Augmente fortement les PV max du porteur.',
-  detailsKey: 'data.items.wearables.vitalityRing.advancedVitalityRing.details',
-  details:
-    'Portée par un Shlagémon, elle augmente ses PV maximum de 25%. Effet cumulable avec les potions de vitalité.',
+  name: 'data.items.wearables.vitalityRing.advancedVitalityRing.name',
+  description: 'data.items.wearables.vitalityRing.advancedVitalityRing.description',
+  details: 'data.items.wearables.vitalityRing.advancedVitalityRing.details',
   price: 50,
   currency: 'shlagidiamond',
   category: 'utilitaire',
@@ -42,13 +34,9 @@ export const advancedVitalityRing: WearableItem = {
 
 export const vitalityAmulet: WearableItem = {
   id: 'vitality-amulet',
-  nameKey: 'data.items.wearables.vitalityRing.vitalityAmulet.name',
-  name: 'Amulette Vitalesque',
-  descriptionKey: 'data.items.wearables.vitalityRing.vitalityAmulet.description',
-  description: 'Augmente grandement les PV max du porteur.',
-  detailsKey: 'data.items.wearables.vitalityRing.vitalityAmulet.details',
-  details:
-    'Portée par un Shlagémon, elle augmente ses PV maximum de 33%. Effet cumulable avec les potions de vitalité.',
+  name: 'data.items.wearables.vitalityRing.vitalityAmulet.name',
+  description: 'data.items.wearables.vitalityRing.vitalityAmulet.description',
+  details: 'data.items.wearables.vitalityRing.vitalityAmulet.details',
   price: 100,
   currency: 'shlagidiamond',
   category: 'utilitaire',

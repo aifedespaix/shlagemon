@@ -4,8 +4,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 export const qwiflouch: BaseShlagemon = {
   id: 'qwiflouch',
   name: 'Qwiflouch',
-  description: `Enflé comme une boule à mites, recouvert de pics rouillés. Il lâche du gaz au moindre stress et fait fuir les autres Shlagémons.`,
-  descriptionKey: 'data.shlagemons.evolutions.qwiflouch.description',
+  description: 'data.shlagemons.evolutions.qwiflouch.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   speciality: 'evolution1',
 }

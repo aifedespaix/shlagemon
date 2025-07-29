@@ -5,8 +5,7 @@ import kaputrak from '../evolutions/kaputrak'
 export const kraputo: BaseShlagemon = {
   id: 'kraputo',
   name: 'Kraputo',
-  description: `Ce crabe éraflé se cache sous un casque cassé et offre ses pinces au plus offrant. Il raffole des fonds de verre et des pièces rouillées.`,
-  descriptionKey: 'data.shlagemons.55-60.kraputo.description',
+  description: 'data.shlagemons.55-60.kraputo.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
   evolution: {
     base: kaputrak,
