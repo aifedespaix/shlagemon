@@ -4,7 +4,7 @@ import { balls } from '~/data/items/shlageball'
 import { ballHues } from '~/utils/ball'
 import { tryCapture } from '~/utils/capture'
 
-const props = defineProps<{ enemy: DexShlagemon | null, enemyHp: number, stopBattle: () => void }>()
+const props = defineProps<{ enemy: DexShlagemon | null, enemyHp: number, playerHp: number, stopBattle: () => void }>()
 const emit = defineEmits<{ (e: 'finished', success: boolean): void }>()
 
 const inventory = useInventoryStore()
@@ -26,7 +26,8 @@ const captureCooldown = ref(false)
 const captureButtonDisabled = computed(() =>
   captureCooldown.value
   || (inventory.items[ballStore.current] || 0) <= 0
-  || props.enemyHp <= 0,
+  || props.enemyHp <= 0
+  || props.playerHp <= 0,
 )
 
 const captureButtonTooltip = computed(() => {
@@ -34,6 +35,8 @@ const captureButtonTooltip = computed(() => {
     return t('components.battle.Capture.cooldown')
   if ((inventory.items[ballStore.current] || 0) <= 0)
     return t('components.battle.Capture.noBall')
+  if (props.playerHp <= 0)
+    return t('components.battle.Capture.playerKo')
   if (props.enemyHp <= 0)
     return t('components.battle.Capture.ko')
   if (props.enemy && props.enemy.lvl > player.captureLevelCap)
@@ -56,7 +59,7 @@ function attempt(step: number) {
 
 function open() {
   const id = ballStore.current
-  if (!props.enemy || (inventory.items[id] || 0) <= 0 || props.enemyHp <= 0)
+  if (!props.enemy || (inventory.items[id] || 0) <= 0 || props.enemyHp <= 0 || props.playerHp <= 0)
     return
   if (props.enemy.lvl > player.captureLevelCap) {
     captureLimitModal.open(props.enemy.lvl)
