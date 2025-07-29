@@ -140,12 +140,18 @@ catalogs:
     '@vueuse/core':
       specifier: ^13.5.0
       version: 13.5.0
+    crypto-js:
+      specifier: ^4.2.0
+      version: 4.2.0
     howler:
       specifier: ^2.2.4
       version: 2.2.4
     leaflet:
       specifier: ^2.0.0-alpha
       version: 2.0.0-alpha
+    lz-string:
+      specifier: ^1.5.0
+      version: 1.5.0
     nprogress:
       specifier: ^0.2.0
       version: 0.2.0
@@ -203,7 +209,7 @@ importers:
         specifier: catalog:frontend
         version: 13.5.0(vue@3.5.17(typescript@5.8.3))
       crypto-js:
-        specifier: ^4.2.0
+        specifier: catalog:frontend
         version: 4.2.0
       howler:
         specifier: catalog:frontend
@@ -212,7 +218,7 @@ importers:
         specifier: catalog:frontend
         version: 2.0.0-alpha
       lz-string:
-        specifier: ^1.5.0
+        specifier: catalog:frontend
         version: 1.5.0
       nprogress:
         specifier: catalog:frontend
