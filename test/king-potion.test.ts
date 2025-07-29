@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
 import KingPotionButton from '../src/components/battle/KingPotionButton.vue'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useInventoryStore } from '../src/stores/inventory'
@@ -32,7 +33,7 @@ describe('king potion', () => {
     vi.useRealTimers()
   })
 
-  it('damages the enemy when unlucky', () => {
+  it('damages the enemy when unlucky', async () => {
     vi.useFakeTimers()
     setActivePinia(createPinia())
     const inventory = useInventoryStore()
@@ -42,10 +43,50 @@ describe('king potion', () => {
     const enemy = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
     inventory.add('special-potion')
+    await nextTick()
     vi.spyOn(Math, 'random').mockReturnValue(0.9)
     const before = enemy.hpCurrent
     store.activate(enemy)
     expect(enemy.hpCurrent).toBeLessThan(before)
+    vi.useRealTimers()
+  })
+
+  it('auto-equips a potion when bought without one equipped', async () => {
+    setActivePinia(createPinia())
+    const inventory = useInventoryStore()
+    const store = useKingPotionStore()
+
+    expect(store.current).toBeNull()
+
+    inventory.add('mysterious-potion')
+    await nextTick()
+
+    expect(store.current).toBe('mysterious-potion')
+  })
+
+  it('equips the next best potion after using the last one', async () => {
+    setActivePinia(createPinia())
+    vi.useFakeTimers()
+    const inventory = useInventoryStore()
+    const dex = useShlagedexStore()
+    const store = useKingPotionStore()
+    const mon = dex.createShlagemon(carapouffe)
+    const enemy = dex.createShlagemon(carapouffe)
+    dex.setActiveShlagemon(mon)
+
+    inventory.add('fabulous-potion')
+    inventory.add('special-potion')
+    await nextTick()
+    expect(store.current).toBe('fabulous-potion')
+
+    store.activate(enemy)
+    await nextTick()
+    expect(store.current).toBe('special-potion')
+
+    store.reset()
+    store.activate(enemy)
+    await nextTick()
+    expect(store.current).toBeNull()
     vi.useRealTimers()
   })
 
