@@ -34,12 +34,13 @@ export const useKingPotionStore = defineStore('kingPotion', () => {
     if (!potion || !dex.activeShlagemon)
       return false
     const max = dex.maxHp(dex.activeShlagemon)
-    const amount = Math.round((max * potion.power) / 100)
     if (Math.random() < 0.5) {
+      const amount = Math.round((max * potion.power) / 100)
       dex.healActive(amount)
       audio.playSfx('items-KingPotion-heal')
     }
     else if (enemy) {
+      const amount = Math.round((enemy.hp * potion.power) / 100)
       enemy.hpCurrent = Math.max(0, enemy.hpCurrent - amount)
       audio.playSfx('items-KingPotion-hit')
     }

@@ -27,7 +27,7 @@ const selected = computed<string | number>({
     v-model="selected"
     :options="props.options"
     placeholder="Sélectionner..."
-    class="custom-select"
+    class="custom-select cursor-pointer"
     :is-clearable
   />
 </template>
