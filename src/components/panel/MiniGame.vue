@@ -21,7 +21,6 @@ watchEffect(async () => {
 
 function start() {
   mini.play()
-  audio.fadeToMusic(miniGameMusic)
 }
 function leaveGame() {
   mini.quit()
@@ -56,7 +55,7 @@ const failure = computed(() => gameDef.value?.createFailure(leaveGame))
         v-if="mini.phase === 'intro'"
         :character="gameDef.character"
         :dialog-tree="intro!"
-        :exit-track="miniGameMusic"
+        keep-music-on-exit
         orientation="col"
       />
       <component

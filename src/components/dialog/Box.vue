@@ -3,14 +3,24 @@ import type { Character } from '~/type/character'
 import type { DialogNode, DialogResponse } from '~/type/dialog'
 import { getCharacterTrack, getZoneTrack } from '~/data/music'
 
-const { dialogTree, character, orientation, exitTrack }
+/**
+ * Props for {@link DialogBox}. Handles dialog tree and music behavior.
+ */
+const { dialogTree, character, orientation, exitTrack, keepMusicOnExit }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
     character: Character
     orientation?: 'row' | 'col'
+    /** Track to play when the dialog closes. If omitted, the zone track is used. */
     exitTrack?: string
+    /**
+     * If true, the currently playing music continues when the dialog closes.
+     * Useful when a following scene should keep the character track.
+     */
+    keepMusicOnExit?: boolean
   }>(), {
     orientation: 'row',
+    keepMusicOnExit: false,
   })
 
 const avatarUrl = computed(() => `/characters/${character.id}/${character.id}.webp`)
@@ -38,6 +48,8 @@ watch(currentNode, () => {
 })
 
 onUnmounted(() => {
+  if (keepMusicOnExit)
+    return
   const track = exitTrack || getZoneTrack(zone.current.id, zone.current.type)
   if (track)
     audio.fadeToMusic(track)
