@@ -8,8 +8,9 @@ const props = defineProps<{
   currency: 'shlagidolar' | 'shlagidiamond'
 }>()
 
+const { t } = useI18n()
 const currencyName = computed(() => {
-  const base = props.currency === 'shlagidiamond' ? 'Shlagédiamant' : 'Shlagédollar'
+  const base = t(`components.ui.CurrencyAmount.${props.currency}`)
   return props.amount > 1 ? `${base}s` : base
 })
 const icon = computed(() => props.currency === 'shlagidiamond' ? IconShlagidiamond : IconShlagidolar,

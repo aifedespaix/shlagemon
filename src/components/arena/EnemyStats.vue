@@ -2,12 +2,13 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 
 const props = defineProps<{ mon: DexShlagemon }>()
+const { t } = useI18n()
 
 const stats = computed(() => [
-  { label: 'HP', value: props.mon.hp },
-  { label: 'Attaque', value: props.mon.attack },
-  { label: 'Défense', value: props.mon.defense },
-  { label: 'Puanteur', value: props.mon.smelling },
+  { label: t('components.arena.EnemyStats.hp'), value: props.mon.hp },
+  { label: t('components.arena.EnemyStats.attack'), value: props.mon.attack },
+  { label: t('components.arena.EnemyStats.defense'), value: props.mon.defense },
+  { label: t('components.arena.EnemyStats.smell'), value: props.mon.smelling },
 ])
 </script>
 
@@ -20,7 +21,12 @@ const stats = computed(() => [
       <ShlagemonImage :id="props.mon.base.id" :alt="props.mon.base.name" class="object-contain" />
     </div>
     <div class="flex gap-1">
-      <ShlagemonType v-for="t in props.mon.base.types" :key="t.id" :value="t" open-on-click />
+      <ShlagemonType
+        v-for="typeItem in props.mon.base.types"
+        :key="typeItem.id"
+        :value="typeItem"
+        open-on-click
+      />
     </div>
     <ShlagemonStats :stats="stats" />
   </div>

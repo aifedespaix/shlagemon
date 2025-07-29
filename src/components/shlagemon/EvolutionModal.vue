@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const store = useEvolutionStore()
 const dex = useShlagedexStore()
+const { t } = useI18n()
 
 const hasEvolution = computed(() => {
   if (!store.pending)
@@ -20,25 +21,25 @@ const hasEvolution = computed(() => {
   >
     <div class="flex flex-col items-center gap-4">
       <h3 class="text-center text-lg font-bold">
-        {{ store.pending?.mon.base.name }} évolue
+        {{ t('components.shlagemon.EvolutionModal.evolveTitle', { name: store.pending?.mon.base.name }) }}
       </h3>
       <p class="text-center">
-        « {{ store.pending?.mon.base.name }} » veut évoluer en « {{ store.pending?.to.name }} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?
+        {{ t('components.shlagemon.EvolutionModal.question', { from: store.pending?.mon.base.name, to: store.pending?.to.name }) }}
       </p>
       <p
         v-if="hasEvolution"
         class="text-center text-xs text-red-500 dark:text-red-400"
       >
-        Vous possédez déjà l'évolution de ce Shlagémon
+        {{ t('components.shlagemon.EvolutionModal.alreadyOwned') }}
       </p>
       <div class="flex gap-2">
         <UiButton type="valid" class="flex items-center gap-1" @click="store.accept">
           <div i-carbon-checkmark />
-          Oui
+          {{ t('components.shlagemon.EvolutionModal.yes') }}
         </UiButton>
         <UiButton type="danger" class="flex items-center gap-1" @click="store.reject">
           <div i-carbon-close />
-          Non
+          {{ t('components.shlagemon.EvolutionModal.no') }}
         </UiButton>
       </div>
     </div>
