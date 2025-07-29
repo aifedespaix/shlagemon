@@ -9,7 +9,7 @@ export const shlagPairsMiniGame: MiniGameDefinition = {
   id: 'shlagpairs',
   label: 'Shlag Pairs',
   character: profMerdant,
-  component: () => import('~/components/minigame/MiniGameShlagPairs.vue'),
+  component: () => import('~/components/minigame/Pairs.vue'),
   reward: { type: 'item', itemId: psyEgg.id },
   createIntro(start) {
     const miniGame = useMiniGameStore()

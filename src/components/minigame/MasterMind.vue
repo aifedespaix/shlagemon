@@ -2,14 +2,13 @@
 import { useTimeoutFn } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
-import ShlagMindSelectionModal from './ShlagMindSelectionModal.vue'
 
 const emit = defineEmits<{ (e: 'win'): void, (e: 'lose'): void }>()
 
 const { t, tm } = useI18n()
 
 const messages = computed(() => {
-  const list = tm('components.minigame.MiniGameShlagMind.messages')
+  const list = tm('components.minigame.MasterMind.messages')
   return Array.isArray(list) ? list as string[] : []
 })
 
@@ -63,7 +62,7 @@ function choose(id: string) {
 function copyFromHistory(index: number, id: string) {
   if (
     attemptsLeft.value <= 0
-    || message.value === t('components.minigame.MiniGameShlagMind.win')
+    || message.value === t('components.minigame.MasterMind.win')
   ) {
     return
   }
@@ -100,7 +99,7 @@ function validate() {
   feedback.value.push(res)
   const win = res.every(r => r === 'green')
   if (win) {
-    message.value = t('components.minigame.MiniGameShlagMind.win')
+    message.value = t('components.minigame.MasterMind.win')
     showConfetti.value = true
     useTimeoutFn(() => {
       showConfetti.value = false
@@ -108,13 +107,13 @@ function validate() {
     }, 1200)
   }
   else if (attempts.value.length >= maxAttempts) {
-    message.value = t('components.minigame.MiniGameShlagMind.lose')
+    message.value = t('components.minigame.MasterMind.lose')
     useTimeoutFn(() => emit('lose'), 1200)
   }
   else {
     const list = messages.value
     const idx = Math.floor(Math.random() * list.length)
-    message.value = t(`components.minigame.MiniGameShlagMind.messages[${idx}]`)
+    message.value = t(`components.minigame.MasterMind.messages[${idx}]`)
     guess.value = Array.from({ length: comboLength }).fill(null) as (string | null)[]
   }
 }
@@ -125,7 +124,7 @@ initGame()
 <template>
   <div class="relative aspect-video h-full w-full flex flex-col items-center gap-2 p-2" md="p-4">
     <div class="text-sm font-bold">
-      {{ t('components.minigame.MiniGameShlagMind.attemptsLeft', { n: attemptsLeft }) }}
+      {{ t('components.minigame.MasterMind.attemptsLeft', { n: attemptsLeft }) }}
     </div>
     <div class="w-full flex flex-1 flex-col gap-2 overflow-y-auto">
       <TransitionGroup name="line">
@@ -165,7 +164,7 @@ initGame()
       <div
         v-if="
           attemptsLeft > 0
-            && message !== t('components.minigame.MiniGameShlagMind.win')
+            && message !== t('components.minigame.MasterMind.win')
         "
         class="flex items-center justify-between"
       >
@@ -190,11 +189,11 @@ initGame()
           :disabled="guess.some((v) => !v)"
           @click="validate"
         >
-          {{ t('components.minigame.MiniGameShlagMind.validate') }}
+          {{ t('components.minigame.MasterMind.validate') }}
         </UiButton>
       </div>
     </div>
-    <ShlagMindSelectionModal
+    <MinigameMasterMindSelectionModal
       v-model="showPicker"
       :palette="palette"
       @select="choose"

@@ -9,7 +9,7 @@ export const shlagMindMiniGame: MiniGameDefinition = {
   id: 'shlagmind',
   label: 'Mastermind Shlagémon',
   character: emilieLouise,
-  component: () => import('~/components/minigame/MiniGameShlagMind.vue'),
+  component: () => import('~/components/minigame/MasterMind.vue'),
   reward: { type: 'item', itemId: psyEgg.id },
   createIntro(start) {
     const miniGame = useMiniGameStore()

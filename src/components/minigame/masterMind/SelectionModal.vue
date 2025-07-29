@@ -23,7 +23,7 @@ function choose(id: string) {
   <UiModal :model-value="props.modelValue" footer-close @update:model-value="emit('update:modelValue', $event)">
     <div class="flex flex-col items-center gap-2">
       <h3 class="text-lg font-bold">
-        {{ t('components.minigame.ShlagMindSelectionModal.title') }}
+        {{ t('components.minigame.masterMind.SelectionModal.title') }}
       </h3>
       <div class="grid grid-cols-3 gap-2" md="grid-cols-4 gap-3">
         <button

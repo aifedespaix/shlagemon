@@ -109,6 +109,7 @@ components:
       ko: Impossible de capturer un Shlagémon K.O.
       needBadge: Un badge est nécessaire pour capturer ce niveau
       capture: Capturer le Shlagémon
+      playerKo: Impossible de capturer avec un Shlagémon K.O.
     Main:
       captureTooltip:
         all: Vous avez capturé tous les Shlagémon de la zone
@@ -514,8 +515,8 @@ components:
       steps:
         step1:
           text: >-
-            Ouch… Ce roi t'a mis une sacrée raclée ! Ces monarques de zone
-            sont bien plus coriaces que les dresseurs lambda.
+            Ouch… Ce roi t'a mis une sacrée raclée ! Ces monarques de zone sont
+            bien plus coriaces que les dresseurs lambda.
           responses:
             next: Continuer
         step2:
@@ -584,6 +585,25 @@ components:
       attempts: '{n} tentative | {n} tentatives'
     ShlagMindSelectionModal:
       title: Choisis un Shlagémon
+    MasterMind:
+      SelectionModal:
+        title: Choisis un Shlagémon
+      messages:
+        - Tu te rapproches… ou pas.
+        - Ce n'est pas ça, mais tu fais de ton mieux, petit Shlag.
+        - Essaie encore, champion du néant.
+        - Tu es nul à chier !
+        - T'es à deux doigts de faire un pet cérébral.
+        - Rarement vu quelqu'un aussi merdique.
+      validate: Valider
+      attemptsLeft: '{n} tentatives restantes'
+      win: T'as percé le cerveau d'un Shlag !
+      lose: Même un Petmorv y serait arrivé
+    Pairs:
+      attempts: '{n} tentative | {n} tentatives'
+    masterMind:
+      SelectionModal:
+        title: Choisis un Shlagémon
 data:
   shlagemons:
     01-05:
@@ -788,22 +808,22 @@ data:
     15-20:
       goubite:
         description: >-
-          Goubite est difficile à regarder… et encore plus difficile à
-          oublier. Doté d’un corps long et rosâtre, légèrement bombé sur le
-          haut, il est souvent victime de malentendus anatomiques dans les
-          écoles de dresseurs. Pourtant, lui, il s’assume. Fier, droit, et
-          toujours un peu moite. Sa tête est cerclée d’une barbe flasque,
-          dégoulinante de sueur tiède, qu’il secoue parfois pour marquer son
-          territoire. Il sourit en permanence, d’un air satisfait qui met tout
-          le monde mal à l’aise, même les aveugles. Ses pieds sont fripés,
-          velus, et sentent la crevette oubliée dans une chaussette humide. Il
-          se déplace lentement en produisant un petit bruit mou et répétitif,
-          comparable à un bisou dont on ne veut pas. Sa capacité signature,
-          *Giclée Visqueuse*, inflige des dégâts modérés mais impose un malus
-          mental permanent à ceux qui en sont témoins. Certains affirment qu’il
-          peut aussi lancer *Barbe Emotive*, une attaque qui colle et qui sent
-          la salle de muscu humide. À ne pas confondre avec un objet sexuel.
-          Sauf si vraiment on est pressé de consulter.
+          Goubite est difficile à regarder… et encore plus difficile à oublier.
+          Doté d’un corps long et rosâtre, légèrement bombé sur le haut, il est
+          souvent victime de malentendus anatomiques dans les écoles de
+          dresseurs. Pourtant, lui, il s’assume. Fier, droit, et toujours un peu
+          moite. Sa tête est cerclée d’une barbe flasque, dégoulinante de sueur
+          tiède, qu’il secoue parfois pour marquer son territoire. Il sourit en
+          permanence, d’un air satisfait qui met tout le monde mal à l’aise,
+          même les aveugles. Ses pieds sont fripés, velus, et sentent la
+          crevette oubliée dans une chaussette humide. Il se déplace lentement
+          en produisant un petit bruit mou et répétitif, comparable à un bisou
+          dont on ne veut pas. Sa capacité signature, *Giclée Visqueuse*,
+          inflige des dégâts modérés mais impose un malus mental permanent à
+          ceux qui en sont témoins. Certains affirment qu’il peut aussi lancer
+          *Barbe Emotive*, une attaque qui colle et qui sent la salle de muscu
+          humide. À ne pas confondre avec un objet sexuel. Sauf si vraiment on
+          est pressé de consulter.
       nameouesh:
         description: >-
           Nanmeouesh passe ses journées à zoner devant la pharmacie en donnant
@@ -1017,8 +1037,8 @@ data:
           Son attaque signature, *Croquette Mental*, inflige des dégâts
           aléatoires en fonction de la météo, de la phase lunaire et de la
           marque de la balle qu'on utilise. Il peut aussi utiliser *Aboyeur
-          Passif-Agressif*, qui inflige la confusion à tout le monde… y
-          compris à lui-même.
+          Passif-Agressif*, qui inflige la confusion à tout le monde… y compris
+          à lui-même.
     30-35:
       canarchicon:
         description: >-
@@ -1033,8 +1053,8 @@ data:
           cuisson. Sa capacité signature, *Coup de Poireau Tournoyant*, inflige
           peu de dégâts mais une honte durable. Il peut aussi utiliser
           *Flatulence de Gras*, une attaque à effet de zone olfactif.
-          Canarchichon n’a jamais gagné un seul combat, mais il persiste…
-          parce qu’il a oublié qu’il pouvait abandonner.
+          Canarchichon n’a jamais gagné un seul combat, mais il persiste… parce
+          qu’il a oublié qu’il pouvait abandonner.
       melofoutre:
         description: >-
           Mélofoutre est un petit être visqueux à l’apparence faussement
@@ -1730,9 +1750,9 @@ data:
       aerobite:
         description: >-
           Aérobite est l’évolution honteusement assumée de GrosMitoss. Une
-          créature ailée qui plane dans les airs… en toute impunité. Il a
-          troqué son pelage pour une pilosité sélective : le torse rasé de près,
-          mais le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au
+          créature ailée qui plane dans les airs… en toute impunité. Il a troqué
+          son pelage pour une pilosité sélective : le torse rasé de près, mais
+          le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au
           contraire — il revendique une "liberté corporelle totale".
 
           D’une impudeur sans faille, Aérobite adore surgir sans prévenir dans
@@ -1824,8 +1844,7 @@ data:
           profondément satisfait. Sa présence dégage une aura soporifique
           capable de neutraliser même les plus dynamiques des Shlagémons.
 
-          En résumé, Boustiflemme ne fait jamais rien… et il le fait très
-          bien.
+          En résumé, Boustiflemme ne fait jamais rien… et il le fait très bien.
       carabifle:
         description: >-
           Carabifle est l’évolution logique — mais pas forcément souhaitable —
@@ -2134,8 +2153,8 @@ data:
 
           On raconte qu’elle peut invoquer des cercles de danse autour d’un feu
           sacré fait de palettes et de sacs Leclerc. Si elle grogne en récitant
-          des mantras, cours. Elle s’apprête à t’offrir une purification… ou
-          un sandwich au houmous moisi.
+          des mantras, cours. Elle s’apprête à t’offrir une purification… ou un
+          sandwich au houmous moisi.
       galopard:
         description: >-
           Galopard était autrefois un fier destrier, mais aujourd’hui il traîne
@@ -3019,6 +3038,33 @@ data:
       loseText: Perdu ! Recommence quand tu veux.
       restart: Recommencer
       back: Retour
+    MasterMind:
+      startText: Une partie de ShlagMind ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    Pairs:
+      startText: Une partie du jeu des paires ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
+      super: Super !
+      loseText: Dommage !
+      restart: Recommencer
+      back: Retour
+    Taquin:
+      startText: Une partie de taquin ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Je te donne un œuf Foudre.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
   items:
     items:
       defensePotion:
@@ -3127,7 +3173,9 @@ data:
       eggBox:
         name: Boîte à œufs
         description: >-
-          Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y avoir à l'intérieur.
+          Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est
+          super pour collectionner les œufs, mais tu n'as aucune idée de ce
+          qu'il peut y avoir à l'intérieur.
       fireEgg:
         name: Œuf Feu
         description: Un œuf chaud bouillant.
@@ -3345,7 +3393,9 @@ data:
     eggBox:
       name: Boîte à œufs
       description: >-
-        Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y avoir à l'intérieur.
+        Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super
+        pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y
+        avoir à l'intérieur.
     fireEgg:
       name: Œuf Feu
       description: Un œuf chaud bouillant.

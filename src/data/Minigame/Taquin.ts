@@ -9,7 +9,7 @@ export const shlagTaquinMiniGame: MiniGameDefinition = {
   id: 'taquin',
   label: 'Taquin',
   character: norman,
-  component: () => import('~/components/minigame/MiniGameShlagTaquin.vue'),
+  component: () => import('~/components/minigame/Taquin.vue'),
   reward: { type: 'item', itemId: thunderEgg.id },
   createIntro(start) {
     const miniGame = useMiniGameStore()

@@ -9,7 +9,7 @@ export const connectFourMiniGame: MiniGameDefinition = {
   id: 'connectfour',
   label: 'Puissance 4',
   character: magalieBredouille,
-  component: () => import('~/components/minigame/MiniGamePuissance4.vue'),
+  component: () => import('~/components/minigame/ConnectFour.vue'),
   reward: { type: 'item', itemId: fireEgg.id },
   createIntro(start) {
     const miniGame = useMiniGameStore()

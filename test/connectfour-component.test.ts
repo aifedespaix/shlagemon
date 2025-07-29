@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import MiniGamePuissance4 from '../src/components/minigame/MiniGamePuissance4.vue'
+import MiniGamePuissance4 from '../src/components/minigame/ConnectFour.vue'
 import { COLS, ROWS } from '../src/composables/useConnectFour'
 
 describe('connect four component', () => {

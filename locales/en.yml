@@ -107,6 +107,7 @@ components:
       ko: Impossible to capture a fainted Shlagemon
       needBadge: A badge is required to capture this level
       capture: Capture the Shlagemon
+      playerKo: Can't capture with a fainted Shlagemon
     Main:
       captureTooltip:
         all: You captured all Shlagemon in the area
@@ -559,6 +560,25 @@ components:
       attempts: '{n} attempt | {n} attempts'
     ShlagMindSelectionModal:
       title: Choose a Shlagemon
+    MasterMind:
+      SelectionModal:
+        title: Choose a Shlagemon
+      messages:
+        - You're getting closer… or not.
+        - That's not it, but you're doing your best, little Shlag.
+        - Try again, champion of nothingness.
+        - You suck!
+        - You're one step away from a brain fart.
+        - Rarely seen someone so pathetic.
+      validate: Validate
+      attemptsLeft: '{n} attempts left'
+      win: You've cracked a Shlag's mind!
+      lose: Even a Grimer would have done it
+    Pairs:
+      attempts: '{n} attempt | {n} attempts'
+    masterMind:
+      SelectionModal:
+        title: Choose a Shlagemon
 data:
   shlagemons:
     01-05:
@@ -758,22 +778,22 @@ data:
     15-20:
       goubite:
         description: >-
-          Goubite est difficile à regarder… et encore plus difficile à
-          oublier. Doté d’un corps long et rosâtre, légèrement bombé sur le
-          haut, il est souvent victime de malentendus anatomiques dans les
-          écoles de dresseurs. Pourtant, lui, il s’assume. Fier, droit, et
-          toujours un peu moite. Sa tête est cerclée d’une barbe flasque,
-          dégoulinante de sueur tiède, qu’il secoue parfois pour marquer son
-          territoire. Il sourit en permanence, d’un air satisfait qui met tout
-          le monde mal à l’aise, même les aveugles. Ses pieds sont fripés,
-          velus, et sentent la crevette oubliée dans une chaussette humide. Il
-          se déplace lentement en produisant un petit bruit mou et répétitif,
-          comparable à un bisou dont on ne veut pas. Sa capacité signature,
-          *Giclée Visqueuse*, inflige des dégâts modérés mais impose un malus
-          mental permanent à ceux qui en sont témoins. Certains affirment qu’il
-          peut aussi lancer *Barbe Emotive*, une attaque qui colle et qui sent
-          la salle de muscu humide. À ne pas confondre avec un objet sexuel.
-          Sauf si vraiment on est pressé de consulter.
+          Goubite est difficile à regarder… et encore plus difficile à oublier.
+          Doté d’un corps long et rosâtre, légèrement bombé sur le haut, il est
+          souvent victime de malentendus anatomiques dans les écoles de
+          dresseurs. Pourtant, lui, il s’assume. Fier, droit, et toujours un peu
+          moite. Sa tête est cerclée d’une barbe flasque, dégoulinante de sueur
+          tiède, qu’il secoue parfois pour marquer son territoire. Il sourit en
+          permanence, d’un air satisfait qui met tout le monde mal à l’aise,
+          même les aveugles. Ses pieds sont fripés, velus, et sentent la
+          crevette oubliée dans une chaussette humide. Il se déplace lentement
+          en produisant un petit bruit mou et répétitif, comparable à un bisou
+          dont on ne veut pas. Sa capacité signature, *Giclée Visqueuse*,
+          inflige des dégâts modérés mais impose un malus mental permanent à
+          ceux qui en sont témoins. Certains affirment qu’il peut aussi lancer
+          *Barbe Emotive*, une attaque qui colle et qui sent la salle de muscu
+          humide. À ne pas confondre avec un objet sexuel. Sauf si vraiment on
+          est pressé de consulter.
       nameouesh:
         description: >-
           Nanmeouesh passe ses journées à zoner devant la pharmacie en donnant
@@ -983,8 +1003,8 @@ data:
           Son attaque signature, *Croquette Mental*, inflige des dégâts
           aléatoires en fonction de la météo, de la phase lunaire et de la
           marque de la balle qu'on utilise. Il peut aussi utiliser *Aboyeur
-          Passif-Agressif*, qui inflige la confusion à tout le monde… y
-          compris à lui-même.
+          Passif-Agressif*, qui inflige la confusion à tout le monde… y compris
+          à lui-même.
     30-35:
       canarchicon:
         description: >-
@@ -999,8 +1019,8 @@ data:
           cuisson. Sa capacité signature, *Coup de Poireau Tournoyant*, inflige
           peu de dégâts mais une honte durable. Il peut aussi utiliser
           *Flatulence de Gras*, une attaque à effet de zone olfactif.
-          Canarchichon n’a jamais gagné un seul combat, mais il persiste…
-          parce qu’il a oublié qu’il pouvait abandonner.
+          Canarchichon n’a jamais gagné un seul combat, mais il persiste… parce
+          qu’il a oublié qu’il pouvait abandonner.
       melofoutre:
         description: >-
           Mélofoutre est un petit être visqueux à l’apparence faussement
@@ -1591,8 +1611,8 @@ data:
         elevator failures, and panic alarms.
 
         According to the shlagémonologists, Electhordu was once the guardian of
-        the Original Runner, a sacred energy that had to balance the world…
-        but he confused the sacred circuit breaker with a fryer and burned
+        the Original Runner, a sacred energy that had to balance the world… but
+        he confused the sacred circuit breaker with a fryer and burned
         everything.
 
         Today, he wanders, twisted from beak to voltage, speaking alone in
@@ -1686,9 +1706,9 @@ data:
       aerobite:
         description: >-
           Aérobite est l’évolution honteusement assumée de GrosMitoss. Une
-          créature ailée qui plane dans les airs… en toute impunité. Il a
-          troqué son pelage pour une pilosité sélective : le torse rasé de près,
-          mais le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au
+          créature ailée qui plane dans les airs… en toute impunité. Il a troqué
+          son pelage pour une pilosité sélective : le torse rasé de près, mais
+          le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au
           contraire — il revendique une "liberté corporelle totale".
 
           D’une impudeur sans faille, Aérobite adore surgir sans prévenir dans
@@ -1780,8 +1800,7 @@ data:
           profondément satisfait. Sa présence dégage une aura soporifique
           capable de neutraliser même les plus dynamiques des Shlagémons.
 
-          En résumé, Boustiflemme ne fait jamais rien… et il le fait très
-          bien.
+          En résumé, Boustiflemme ne fait jamais rien… et il le fait très bien.
       carabifle:
         description: >-
           Carabifle est l’évolution logique — mais pas forcément souhaitable —
@@ -2090,8 +2109,8 @@ data:
 
           On raconte qu’elle peut invoquer des cercles de danse autour d’un feu
           sacré fait de palettes et de sacs Leclerc. Si elle grogne en récitant
-          des mantras, cours. Elle s’apprête à t’offrir une purification… ou
-          un sandwich au houmous moisi.
+          des mantras, cours. Elle s’apprête à t’offrir une purification… ou un
+          sandwich au houmous moisi.
       galopard:
         description: >-
           Galopard était autrefois un fier destrier, mais aujourd’hui il traîne
@@ -2931,6 +2950,33 @@ data:
       loseText: Lost! Try again whenever you like.
       restart: Restart
       back: Back
+    MasterMind:
+      startText: Fancy a game of ShlagMind?
+      yes: Yes
+      no: No
+      winText: Bravo! Well played! I give you a Psy Egg.
+      super: Awesome!
+      loseText: Lost! Try again whenever you like.
+      restart: Restart
+      back: Back
+    Pairs:
+      startText: Fancy a game of pairs?
+      yes: Yes
+      no: No
+      winText: Bravo! Well played! I give you a Psy Egg.
+      super: Awesome!
+      loseText: Too bad!
+      restart: Restart
+      back: Back
+    Taquin:
+      startText: Fancy a sliding puzzle game?
+      yes: Yes
+      no: No
+      winText: Bravo! I give you a Thunder Egg.
+      super: Awesome!
+      loseText: Lost! Try again whenever you like.
+      restart: Restart
+      back: Back
   items:
     items:
       defensePotion:
@@ -3024,7 +3070,8 @@ data:
       eggBox:
         name: Egg Box
         description: >-
-          Stores all your eggs without cluttering the inventory. Great for collecting eggs, but you have no idea what might be inside.
+          Stores all your eggs without cluttering the inventory. Great for
+          collecting eggs, but you have no idea what might be inside.
       fireEgg:
         name: Fire Egg
         description: A burning hot egg.
@@ -3205,7 +3252,8 @@ data:
     eggBox:
       name: Egg Box
       description: >-
-        Stores all your eggs without cluttering the inventory. Great for collecting eggs, but you have no idea what might be inside.
+        Stores all your eggs without cluttering the inventory. Great for
+        collecting eggs, but you have no idea what might be inside.
     fireEgg:
       name: Fire Egg
       description: A burning hot egg.
