@@ -132,6 +132,7 @@ components:
       queen: reine
       king: roi
       zoneKingChallenge: Défi du {label} de la zone
+      reward: +{amount} Shlagédiamonds
     CaptureLimitModal:
       text: >-
         Pour pouvoir attraper ce Shlagémon de niveau {level}, il vous faut un
@@ -204,9 +205,25 @@ components:
       confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
       yes: Oui
       no: Non
+      hp: PV
+      attack: Attaque
+      defense: Défense
+      smell: Puanteur
+      evolveByLevel: Peut évoluer au niveau {level}
+      evolveByItem: Peut évoluer grâce à l'objet {item}
+      rarityInfo: Plus un Pokémon est rare, plus son potentiel de puissance est élevé.
+      sick: malade
     WearableEquipModal:
       title: Choisir un objet à équiper
       noAvailable: Aucun objet disponible.
+    EvolutionModal:
+      evolveTitle: '{name} évolue'
+      question: >-
+        « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou
+        l'empêcher de répandre sa shlaguitude ?
+      alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
+      yes: Oui
+      no: Non
   LanguageSelector:
     label: Langue
     en: Anglais
@@ -639,6 +656,11 @@ components:
       fight: Combattre
       autoSelect: Sélection automatique de l'équipe
       choose: Choisir un Shlagémon contre {name}
+    EnemyStats:
+      hp: PV
+      attack: Attaque
+      defense: Défense
+      smell: Puanteur
   audio:
     SettingsModal:
       title: Paramètres audio
@@ -650,6 +672,23 @@ components:
       sfxDisabledNote: >-
         (Notamment les sons liés au Shiny, ça serait dommage d'en rater un, sale
         connasse !)
+  ball:
+    SelectionModal:
+      title: Choix de la Shlagéball
+      info: >-
+        La Super et l'Hyper Shlagéball améliorent vos chances de capture (x1.5
+        et x2).
+  village:
+    ZoneActions:
+      shop: Magasin
+      minigame: Mini-jeu
+      arena: Arène
+      henhouse: Poulailler
+      fightKing: Défier la {label} de la zone
+      kingDefeated: '{label} vaincu{suffix} !'
+  zone:
+    MonsModal:
+      title: Shlagémons de {zone}
 data:
   shlagemons:
     01-05:

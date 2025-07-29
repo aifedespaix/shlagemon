@@ -63,7 +63,7 @@ const afterDialogTree = computed<DialogNode[]>(() => {
       },
       {
         id: 'reward',
-        text: `+${trainer.value.reward} Shlag\u00E9diamonds`,
+        text: t('components.battle.Trainer.reward', { amount: trainer.value.reward }),
         responses: [
           { label: t('components.battle.Trainer.continue'), type: 'valid', action: finish },
         ],
