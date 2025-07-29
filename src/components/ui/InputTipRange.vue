@@ -31,7 +31,9 @@ const displayValue = computed(() =>
 
 const bubblePercent = ref(percent.value)
 watch(percent, (val) => {
-  requestAnimationFrame(() => { bubblePercent.value = val })
+  requestAnimationFrame(() => {
+    bubblePercent.value = val
+  })
 })
 </script>
 
