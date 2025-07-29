@@ -68,7 +68,7 @@ export function useSlidingPuzzle(size: number | Ref<number>) {
       = [tiles.value[emptyIndex.value], tiles.value[idx]]
     emptyIndex.value = idx
     solved.value = tiles.value.every((v, i) => v === i)
-    audio.playSfx('/audio/sfx/mini-game/taquin/move.ogg')
+    audio.playSfx('mini-game-taquin-move')
   }
 
   function move(dir: PuzzleDirection) {

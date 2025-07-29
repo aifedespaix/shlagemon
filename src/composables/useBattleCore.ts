@@ -94,9 +94,9 @@ export function useBattleCore(options: BattleCoreOptions) {
   function checkEnd() {
     if (enemyHp.value <= 0 || playerHp.value <= 0) {
       if (playerHp.value <= 0 && !playerFainted.value)
-        audio.playSfx('/audio/sfx/die.ogg')
+        audio.playSfx('die')
       else if (enemyHp.value <= 0 && !enemyFainted.value)
-        audio.playSfx('/audio/sfx/kill.ogg')
+        audio.playSfx('kill')
       stopBattle()
       playerFainted.value = playerHp.value <= 0
       enemyFainted.value = enemyHp.value <= 0

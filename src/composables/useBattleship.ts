@@ -145,14 +145,14 @@ export function useBattleship(onEnd: (win: boolean) => void) {
       aiShips--
       if (shipSunk(aiBoard.value, cell.shipId)) {
         markSunk(aiBoard.value, cell.shipId)
-        audio.playSfx('/audio/sfx/mini-game/battleship/touche-coule.ogg')
+        audio.playSfx('mini-game-battleship-touche-coule')
       }
       else {
-        audio.playSfx('/audio/sfx/mini-game/battleship/touche.ogg')
+        audio.playSfx('mini-game-battleship-touche')
       }
     }
     else {
-      audio.playSfx('/audio/sfx/mini-game/battleship/rate.ogg')
+      audio.playSfx('mini-game-battleship-rate')
     }
     if (aiShips <= 0)
       return end(true)
@@ -173,14 +173,14 @@ export function useBattleship(onEnd: (win: boolean) => void) {
       playerShips--
       if (shipSunk(playerBoard.value, cell.shipId)) {
         markSunk(playerBoard.value, cell.shipId)
-        audio.playSfx('/audio/sfx/mini-game/battleship/touche-coule.ogg')
+        audio.playSfx('mini-game-battleship-touche-coule')
       }
       else {
-        audio.playSfx('/audio/sfx/mini-game/battleship/touche.ogg')
+        audio.playSfx('mini-game-battleship-touche')
       }
     }
     else {
-      audio.playSfx('/audio/sfx/mini-game/battleship/rate.ogg')
+      audio.playSfx('mini-game-battleship-rate')
     }
     if (playerShips <= 0)
       return end(false)

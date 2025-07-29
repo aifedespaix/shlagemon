@@ -530,7 +530,7 @@ export const specialPotion: Item = {
   details:
     'Tenue pendant un combat de roi, elle peut avoir un pouvoir surprenant !',
   type: 'heal',
-  power: 25,
+  power: 50,
   price: 11111,
   category: 'activable',
   icon: 'i-game-icons:potion-ball',
@@ -547,7 +547,7 @@ export const mysteriousPotion: Item = {
   details:
     'Tenue pendant un combat de roi, elle peut avoir un pouvoir très surprenant !',
   type: 'heal',
-  power: 50,
+  power: 75,
   price: 111111,
   category: 'activable',
   icon: 'i-game-icons:bubbling-flask',

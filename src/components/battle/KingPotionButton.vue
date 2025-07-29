@@ -2,20 +2,27 @@
 import type { DexShlagemon } from '~/type'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
+import { useAudioStore } from '~/stores/audio'
 import { useKingPotionStore } from '~/stores/kingPotion'
 
 const props = defineProps<{ enemy: DexShlagemon | null }>()
 
 const potion = useKingPotionStore()
 const { power } = storeToRefs(potion)
+const audio = useAudioStore()
 
 const holding = ref(false)
 let timer: ReturnType<typeof setTimeout> | null = null
+let soundId: number | undefined
 
 function cancelHold() {
   if (timer) {
     clearTimeout(timer)
     timer = null
+  }
+  if (soundId !== undefined) {
+    audio.stopSfx('items-KingPotion', soundId)
+    soundId = undefined
   }
   holding.value = false
 }
@@ -24,9 +31,14 @@ function startHold() {
   if (!power.value || potion.used)
     return
   holding.value = true
+  soundId = audio.playSfx('items-KingPotion', { loop: true })
   timer = setTimeout(() => {
     potion.activate(props.enemy ?? undefined)
     holding.value = false
+    if (soundId !== undefined) {
+      audio.stopSfx('items-KingPotion', soundId)
+      soundId = undefined
+    }
   }, 1000)
 }
 </script>

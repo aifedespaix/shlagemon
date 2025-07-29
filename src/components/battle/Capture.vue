@@ -68,13 +68,13 @@ function open() {
   props.stopBattle()
   showCapture.value = true
   shake.value = 0
-  audio.playSfx('/audio/sfx/capture-start.ogg')
+  audio.playSfx('capture-start')
   useTimeoutFn(() => attempt(1), 500)
 }
 
 function finish(success: boolean) {
   showCapture.value = false
-  audio.playSfx(success ? '/audio/sfx/capture-success.ogg' : '/audio/sfx/capture-fail.ogg')
+  audio.playSfx(success ? 'capture-success' : 'capture-fail')
   if (success && capturedEnemy.value)
     dex.captureEnemy(capturedEnemy.value)
   capturedEnemy.value = null

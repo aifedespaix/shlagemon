@@ -4,7 +4,13 @@ import type { BallId } from '~/data/items/shlageball'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
-import { eggBox as eggBoxItem } from '~/data/items'
+import {
+  eggBox as eggBoxItem,
+  fabulousPotion,
+  mysteriousPotion,
+  specialPotion,
+} from '~/data/items'
+import { useKingPotionStore } from '~/stores/kingPotion'
 import InventoryItemCard from '../inventory/ItemCard.vue'
 
 const inventory = useInventoryStore()
@@ -12,6 +18,8 @@ const eggBox = useEggBoxStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
+const kingPotion = useKingPotionStore()
+const kingPotionIds = [fabulousPotion.id, mysteriousPotion.id, specialPotion.id]
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
@@ -137,6 +145,8 @@ function isDisabled(item: Item) {
     return true
   if ('catchBonus' in item)
     return ballStore.current === item.id
+  if (kingPotionIds.includes(item.id))
+    return kingPotion.current === item.id
   return item.type === 'evolution' && !evoItemStore.canUse(item)
 }
 
@@ -145,6 +155,11 @@ function onUse(item: Item) {
     return
   if ('catchBonus' in item) {
     ballStore.setBall(item.id as BallId)
+    usage.markUsed(item.id)
+    toast(t('components.panel.Inventory.equip', { item: t(item.nameKey || item.name) }))
+  }
+  else if (kingPotionIds.includes(item.id)) {
+    kingPotion.equip(item.id)
     usage.markUsed(item.id)
     toast(t('components.panel.Inventory.equip', { item: t(item.nameKey || item.name) }))
   }

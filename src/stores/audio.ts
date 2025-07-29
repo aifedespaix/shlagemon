@@ -1,6 +1,8 @@
+import type { SfxId } from '~/data/sfx'
 import type { AudioSettings } from '~/type'
 import { Howl } from 'howler'
 import { defineStore, skipHydrate } from 'pinia'
+import { preloadSfx } from '~/data/sfx'
 
 export const useAudioStore = defineStore('audio', () => {
   const settings = reactive<AudioSettings>({
@@ -11,6 +13,7 @@ export const useAudioStore = defineStore('audio', () => {
   })
   const { musicVolume, sfxVolume, isMusicEnabled, isSfxEnabled } = toRefs(settings)
   const currentMusic = ref<Howl | null>(null)
+  const sfxMap = preloadSfx()
 
   const tracks = {
     battle: [
@@ -32,21 +35,21 @@ export const useAudioStore = defineStore('audio', () => {
     ],
   } as const
 
-  const buySfx = [
-    '/audio/sfx/buy/buy-a.ogg',
-    '/audio/sfx/buy/buy-b.ogg',
-    '/audio/sfx/buy/buy-c.ogg',
-    '/audio/sfx/buy/buy-d.ogg',
-    '/audio/sfx/buy/buy-e.ogg',
-  ] as const
+  const buySfx: SfxId[] = [
+    'buy-buy-a',
+    'buy-buy-b',
+    'buy-buy-c',
+    'buy-buy-d',
+    'buy-buy-e',
+  ]
   let lastBuyIndex = -1
 
-  const typingSfx = [
-    '/audio/sfx/typing/type-1.ogg',
-    '/audio/sfx/typing/type-2.ogg',
-    '/audio/sfx/typing/type-3.ogg',
-    '/audio/sfx/typing/type-4.ogg',
-  ] as const
+  const typingSfx: SfxId[] = [
+    'typing-type-1',
+    'typing-type-2',
+    'typing-type-3',
+    'typing-type-4',
+  ]
   let lastTypingIndex = -1
 
   function randomTrack(category: keyof typeof tracks) {
@@ -161,17 +164,28 @@ export const useAudioStore = defineStore('audio', () => {
     }
   }
 
-  function playSfx(effect: string) {
+  function playSfx(id: SfxId, options: { loop?: boolean } = {}) {
     if (import.meta.env.VITEST || !isSfxEnabled.value)
+      return undefined
+    const sound = sfxMap[id]
+    if (!sound)
+      return undefined
+    const soundId = sound.play()
+    sound.volume(sfxVolume.value, soundId)
+    if (options.loop)
+      sound.loop(true, soundId)
+    return soundId
+  }
+
+  function stopSfx(id: SfxId, soundId?: number) {
+    const sound = sfxMap[id]
+    if (!sound)
       return
-    const sfx = new Howl({
-      src: [effect],
-      volume: sfxVolume.value,
-      onplayerror: () => {
-        sfx.once('unlock', () => sfx.play())
-      },
-    })
-    sfx.play()
+    if (typeof soundId === 'number')
+      sound.stop(soundId)
+    else
+      sound.stop()
+    sound.loop(false)
   }
 
   function playBuySfx() {
@@ -195,6 +209,10 @@ export const useAudioStore = defineStore('audio', () => {
       currentMusic.value.volume(v)
   })
 
+  watch(sfxVolume, (v) => {
+    Object.values(sfxMap).forEach(s => s.volume(v))
+  })
+
   watch(isMusicEnabled, (enabled) => {
     if (!currentMusic.value)
       return
@@ -202,6 +220,11 @@ export const useAudioStore = defineStore('audio', () => {
       currentMusic.value.play()
     else
       currentMusic.value.pause()
+  })
+
+  watch(isSfxEnabled, (enabled) => {
+    if (!enabled)
+      Object.values(sfxMap).forEach(s => s.stop())
   })
 
   return {
@@ -216,6 +239,7 @@ export const useAudioStore = defineStore('audio', () => {
     fadeToRandomMusic,
     stopMusic,
     playSfx,
+    stopSfx,
     playBuySfx,
     playTypingSfx,
   }
