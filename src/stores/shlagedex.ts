@@ -640,14 +640,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         if (typeof effect.timeout?.stop !== 'function')
           effect.timeout = useTimeoutFn(() => store.removeEffect(effect.id), effect.expiresAt - now)
       })
-      const oldest = [...store.shlagemons]
-        .sort((a, b) => new Date(a.captureDate).getTime() - new Date(b.captureDate).getTime())[0]
-      if (oldest && !oldest.rarityFollowsLevel) {
-        oldest.rarityFollowsLevel = true
-        oldest.rarity = oldest.lvl
-        applyStats(oldest)
-        applyCurrentStats(oldest)
-      }
     },
   } as PersistedStateOptions,
 })
