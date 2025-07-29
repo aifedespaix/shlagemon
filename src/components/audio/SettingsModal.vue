@@ -13,6 +13,7 @@ const show = computed<boolean>({
 })
 
 const audio = useAudioStore()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -27,7 +28,7 @@ const audio = useAudioStore()
     <template #default>
       <div id="audio-modal-desc" class="flex flex-col gap-5 p-2 sm:p-4">
         <h3 id="audio-modal-title" class="text-center text-lg font-bold">
-          Paramètres audio
+          {{ t('components.audio.SettingsModal.title') }}
         </h3>
 
         <section
@@ -45,7 +46,7 @@ const audio = useAudioStore()
 
           <!-- Ligne 1, colonne 2 : Label -->
           <label for="music-checkbox" class="col-start-2 row-start-1 cursor-pointer select-none font-medium">
-            Musique
+            {{ t('components.audio.SettingsModal.musicLabel') }}
           </label>
 
           <!-- Ligne 2, colonne 1 : Input number (volume direct) -->
@@ -79,8 +80,8 @@ const audio = useAudioStore()
             color="alert"
             class="col-span-2 row-start-3 mt-2"
           >
-            Désactiver la musique réduit les dégâts de vos Shlagémons de 10%.<br>
-            <small class="opacity-80">(Ba oui, je me suis pas cassé le cul à faire une bande-son pour rien !)</small>
+            {{ t('components.audio.SettingsModal.musicDisabledInfo') }}<br>
+            <small class="opacity-80">{{ t('components.audio.SettingsModal.musicDisabledNote') }}</small>
           </UiInfo>
         </section>
         <!-- Bloc effets -->
@@ -100,7 +101,7 @@ const audio = useAudioStore()
 
           <!-- Ligne 1, colonne 2 : Label -->
           <label for="sfx-checkbox" class="col-start-2 row-start-1 cursor-pointer select-none font-medium">
-            Effets sonores
+            {{ t('components.audio.SettingsModal.sfxLabel') }}
           </label>
 
           <!-- Ligne 2, colonne 1 : Input number (volume direct) -->
@@ -135,8 +136,8 @@ const audio = useAudioStore()
             color="alert"
             class="col-span-2 row-start-3 mt-2"
           >
-            Attention, certains feedbacks sonores seront absents.<br>
-            <small class="opacity-80">(Notamment les sons liés au Shiny, ça serait dommage d'en rater un, sale connasse !)</small>
+            {{ t('components.audio.SettingsModal.sfxDisabledInfo') }}<br>
+            <small class="opacity-80">{{ t('components.audio.SettingsModal.sfxDisabledNote') }}</small>
           </UiInfo>
         </section>
       </div>

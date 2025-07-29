@@ -1,0 +1,16 @@
+fr:
+  startBattle: Démarrer le combat
+  quit: Abandonner
+  continue: Continuer
+  defeat: Défaite...
+  queen: reine
+  king: roi
+  zoneKingChallenge: 'Défi du {label} de la zone'
+en:
+  startBattle: Start battle
+  quit: Surrender
+  continue: Continue
+  defeat: Defeat...
+  queen: queen
+  king: king
+  zoneKingChallenge: '{label} zone challenge'

@@ -1,0 +1,6 @@
+fr:
+  captured: 'Vous avez capturé {name} !'
+  fail: Raté !
+en:
+  captured: 'You captured {name}!'
+  fail: Missed!
