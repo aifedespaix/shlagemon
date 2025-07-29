@@ -2,13 +2,9 @@ import type { Ball } from '~/type'
 
 export const shlageball: Ball = {
   id: 'shlageball',
-  nameKey: 'data.items.shlageball.shlageball.name',
-  name: 'Shlagéball',
-  descriptionKey: 'data.items.shlageball.shlageball.description',
-  description: 'Permet de capturer des Shlagémons sauvages.',
-  detailsKey: 'data.items.shlageball.shlageball.details',
-  details:
-    'Permet de capturer le Shlagémon actuellement en combat. Moins il a de points de vie, plus la chance de capture augmente.',
+  name: 'data.items.shlageball.shlageball.name',
+  description: 'data.items.shlageball.shlageball.description',
+  details: 'data.items.shlageball.shlageball.details',
   price: 10,
   currency: 'shlagidolar',
   category: 'activable',
@@ -19,13 +15,9 @@ export const shlageball: Ball = {
 
 export const superShlageball: Ball = {
   id: 'super-shlageball',
-  nameKey: 'data.items.shlageball.superShlageball.name',
-  name: 'Super Shlagéball',
-  descriptionKey: 'data.items.shlageball.superShlageball.description',
-  description: 'Améliore les chances de capture.',
-  detailsKey: 'data.items.shlageball.superShlageball.details',
-  details:
-    'Capture des Shlagémons plus récalcitrants avec un léger bonus de chance.',
+  name: 'data.items.shlageball.superShlageball.name',
+  description: 'data.items.shlageball.superShlageball.description',
+  details: 'data.items.shlageball.superShlageball.details',
   price: 1000,
   currency: 'shlagidolar',
   category: 'activable',
@@ -36,13 +28,9 @@ export const superShlageball: Ball = {
 
 export const hyperShlageball: Ball = {
   id: 'hyper-shlageball',
-  nameKey: 'data.items.shlageball.hyperShlageball.name',
-  name: 'Hyper Shlagéball',
-  descriptionKey: 'data.items.shlageball.hyperShlageball.description',
-  description: 'Offre de très hautes chances de capture.',
-  detailsKey: 'data.items.shlageball.hyperShlageball.details',
-  details:
-    'Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.',
+  name: 'data.items.shlageball.hyperShlageball.name',
+  description: 'data.items.shlageball.hyperShlageball.description',
+  details: 'data.items.shlageball.hyperShlageball.details',
   price: 10000,
   currency: 'shlagidolar',
   category: 'activable',

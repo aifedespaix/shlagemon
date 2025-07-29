@@ -19,8 +19,8 @@ const { t } = useI18n()
         >
           <div class="flex items-center gap-2">
             <div v-if="o.item.icon" class="h-6 w-6" :class="[o.item.icon, o.item.iconClass]" />
-            <img v-else-if="o.item.image" :src="o.item.image" :alt="t(o.item.nameKey || o.item.name)" class="h-6 w-6 object-contain">
-            <span>{{ t(o.item.nameKey || o.item.name) }}</span>
+            <img v-else-if="o.item.image" :src="o.item.image" :alt="t(o.item.name)" class="h-6 w-6 object-contain">
+            <span>{{ t(o.item.name) }}</span>
           </div>
           <span class="text-xs font-bold">x{{ o.qty }}</span>
         </UiButton>

@@ -25,7 +25,7 @@ const potionText: Record<WearableItem['effectType'], string> = {
 const dialogTree = computed(() =>
   buildDialog([
     t('components.dialog.WearableItemDialog.steps.step1.text', { count: props.requiredCount }),
-    t('components.dialog.WearableItemDialog.steps.step2.text', { name: t(props.item.nameKey || props.item.name) }),
+    t('components.dialog.WearableItemDialog.steps.step2.text', { name: t(props.item.name) }),
     t('components.dialog.WearableItemDialog.steps.step3.text', { stat: effectText[props.item.effectType], percent: props.item.percent }),
     t('components.dialog.WearableItemDialog.steps.step4.text', { potion: potionText[props.item.effectType] }),
     t('components.dialog.WearableItemDialog.steps.step5.text'),
