@@ -184,6 +184,7 @@ components:
       loaded: Save loaded
       copied: Copied
       generate: Generate
+      loadFile: Load from file
     LanguageTab:
       label: Language
       description: The application is available in English and French.

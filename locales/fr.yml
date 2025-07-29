@@ -187,6 +187,7 @@ components:
       loaded: Sauvegarde chargée
       copied: Copié
       generate: Générer
+      loadFile: Charger depuis un fichier
     LanguageTab:
       label: Langue
       description: L'application est disponible en français et en anglais.
