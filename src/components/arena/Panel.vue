@@ -10,6 +10,7 @@ const arena = useArenaStore()
 const featureLock = useFeatureLockStore()
 const panel = useMainPanelStore()
 const savedActive = ref<DexShlagemon | null>(null)
+const { t } = useI18n()
 
 const enemyTeam = computed(() => arena.lineup)
 const enemyDexTeam = computed(() => arena.lineupDex)
@@ -162,11 +163,11 @@ onUnmounted(() => {
 
       <div class="col-span-6 flex flex-col gap-2">
         <UiInfo v-if="playerSelection.some(m => !m)" color="danger" class="text-center text-xs">
-          Vous devez sélectionner 6 Shlagémons pour combattre dans l'arène
+          {{ t('components.arena.Panel.selectSix') }}
         </UiInfo>
         <div class="col-span-6 flex flex-col gap-2">
           <UiInfo color="alert" class="text-center text-xs">
-            Le combat est automatique et se déroule sans clics.
+            {{ t('components.arena.Panel.autoBattleInfo') }}
           </UiInfo>
           <div class="flex gap-2">
             <UiButton
@@ -174,7 +175,7 @@ onUnmounted(() => {
               variant="outline"
               @click="quit"
             >
-              Abandonner
+              {{ t('components.arena.Panel.quit') }}
             </UiButton>
             <UiButton
               type="primary"
@@ -182,9 +183,9 @@ onUnmounted(() => {
               :disabled="playerSelection.some(m => !m)"
               @click="startBattle"
             >
-              Combattre
+              {{ t('components.arena.Panel.fight') }}
             </UiButton>
-            <UiTooltip text="Sélection automatique de l'équipe" is-button>
+            <UiTooltip :text="t('components.arena.Panel.autoSelect')" is-button>
               <UiButton
                 type="icon"
                 class="bottom-0 left-0 z-10 rounded-full"
@@ -197,7 +198,7 @@ onUnmounted(() => {
         </div>
         <UiModal v-model="showDex" footer-close>
           <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
-            Choisir un Shlagémon contre {{ enemyTeam[activeSlot].name }}
+            {{ t('components.arena.Panel.choose', { name: enemyTeam[activeSlot].name }) }}
           </h3>
           <ShlagemonQuickSelect
             :selected="arena.selections.filter(Boolean) as string[]"

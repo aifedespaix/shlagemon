@@ -10,6 +10,7 @@ const emit = defineEmits<{ (e: 'capture', success: boolean): void }>()
 const inventory = useInventoryStore()
 const dex = useShlagedexStore()
 const audio = useAudioStore()
+const { t } = useI18n()
 const animBall = ref<string | null>(null)
 
 const availableBalls = computed(() =>
@@ -29,12 +30,12 @@ function useBall(ball: Ball) {
     dex.captureEnemy(props.enemy)
     emit('capture', true)
     audio.playSfx('capture-success')
-    toast(`Vous avez capturé ${props.enemy.base.name} !`)
+    toast(t('components.battle.CaptureMenu.captured', { name: props.enemy.base.name }))
   }
   else {
     emit('capture', false)
     audio.playSfx('capture-fail')
-    toast('Raté !')
+    toast(t('components.battle.CaptureMenu.fail'))
   }
 }
 </script>

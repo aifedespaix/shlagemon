@@ -19,10 +19,15 @@ const game = useGameStore()
 const mobile = useMobileTabStore()
 const wildLevel = useWildLevelStore()
 const kingPotion = useKingPotionStore()
+const { t } = useI18n()
 
 const trainer = computed(() => trainerStore.current)
 const isZoneKing = computed(() => trainer.value?.id.startsWith('king-'))
-const kingLabel = computed(() => trainer.value?.character.gender === 'female' ? 'reine' : 'roi')
+const kingLabel = computed(() =>
+  trainer.value?.character.gender === 'female'
+    ? t('components.battle.Trainer.queen')
+    : t('components.battle.Trainer.king'),
+)
 
 const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
@@ -37,8 +42,8 @@ const beforeDialogTree = computed<DialogNode[]>(() => {
       id: 'start',
       text: trainer.value.dialogBefore,
       responses: [
-        { label: 'D\u00E9marrer le combat', type: 'primary', action: startFight },
-        { label: 'Abandonner', type: 'danger', action: cancelFight },
+        { label: t('components.battle.Trainer.startBattle'), type: 'primary', action: startFight },
+        { label: t('components.battle.Trainer.quit'), type: 'danger', action: cancelFight },
       ],
     },
   ]
@@ -53,14 +58,14 @@ const afterDialogTree = computed<DialogNode[]>(() => {
         id: 'start',
         text: trainer.value.dialogAfter,
         responses: [
-          { label: 'Continuer', nextId: 'reward', type: 'primary' },
+          { label: t('components.battle.Trainer.continue'), nextId: 'reward', type: 'primary' },
         ],
       },
       {
         id: 'reward',
         text: `+${trainer.value.reward} Shlag\u00E9diamonds`,
         responses: [
-          { label: 'Continuer', type: 'valid', action: finish },
+          { label: t('components.battle.Trainer.continue'), type: 'valid', action: finish },
         ],
       },
     ]
@@ -69,9 +74,9 @@ const afterDialogTree = computed<DialogNode[]>(() => {
     return [
       {
         id: 'start',
-        text: trainer.value.dialogDefeat || 'D\u00E9faite...',
+        text: trainer.value.dialogDefeat || t('components.battle.Trainer.defeat'),
         responses: [
-          { label: 'Continuer', type: 'valid', action: finish },
+          { label: t('components.battle.Trainer.continue'), type: 'valid', action: finish },
         ],
       },
     ]
@@ -206,7 +211,7 @@ onUnmounted(featureLock.unlockAll)
     <div v-if="stage === 'before'" class="h-full flex flex-col items-center gap-2 text-center">
       <template v-if="isZoneKing">
         <div class="font-bold capitalize">
-          Défi du {{ kingLabel }} de la zone
+          {{ t('components.battle.Trainer.zoneKingChallenge', { label: kingLabel }) }}
         </div>
       </template>
       <DialogBox

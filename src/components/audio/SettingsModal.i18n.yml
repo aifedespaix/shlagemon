@@ -1,0 +1,16 @@
+fr:
+  title: Paramètres audio
+  musicLabel: Musique
+  musicDisabledInfo: Désactiver la musique réduit les dégâts de vos Shlagémons de 10%.
+  musicDisabledNote: '(Ba oui, je me suis pas cassé le cul à faire une bande-son pour rien !)'
+  sfxLabel: Effets sonores
+  sfxDisabledInfo: Attention, certains feedbacks sonores seront absents.
+  sfxDisabledNote: "(Notamment les sons liés au Shiny, ça serait dommage d'en rater un, sale connasse !)"
+en:
+  title: Audio settings
+  musicLabel: Music
+  musicDisabledInfo: Disabling music reduces your Shlagemons' damage by 10%.
+  musicDisabledNote: '(Hey, I did not compose a soundtrack for nothing!)'
+  sfxLabel: Sound effects
+  sfxDisabledInfo: Warning, some audio feedback will be missing.
+  sfxDisabledNote: "(Especially shiny sounds, it'd be a shame to miss one!)"
