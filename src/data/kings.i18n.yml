@@ -1,0 +1,162 @@
+en:
+  plaine-kekette:
+    dialogBefore: 'Coucou, si tu gagnes, je te paye le petit déjeuné !'
+    dialogAfter: "Ok, ok, tu as gagné, je vais t'inviter pour ce petit déj !"
+    dialogDefeat: "Mais quel grosse merde, tu vas me payer un petit déj' de ouf !"
+  bois-de-bouffon:
+    dialogBefore: "Ici, c'est ma street, et tu as trop de cheveux pour pouvoir continuer ton chemin."
+    dialogAfter: "Tu m'as bien déglingué, bravo ! Je vais aller me faire un shampoing et je reviendrai bien plus fort !"
+    dialogDefeat: Je vais te faire bouffer tes cheveux espèce de sous merde !
+  chemin-du-slip:
+    dialogBefore: "Entres dans ma grotte si tu l'oses."
+    dialogAfter: 'Ta victoire ne sera que temporaire, je retourne en garde à vue.'
+    dialogDefeat: 'Tu pues la lose, file te laver !'
+  ravin-fesse-molle:
+    dialogBefore: "Yo, j'suis raciste."
+    dialogAfter: "Incroyable... tu as gagné. Je vais donc arrêter d'être raciste. Merci de m'avoir ouvert les yeux !"
+    dialogDefeat: Dégage ! Retourne dans ton pays !
+  precipice-nanard:
+    dialogBefore: 'Je suis prêt à te mettre une sacrée rouste espèce de cassos ! Je déteste les pauvres comme toi, sale bâtard !'
+    dialogAfter: "Tu m'as explosé le fiak, je vais te foutre une grosse loi dans ta gueule, ça va te calmer."
+    dialogDefeat: "T'es une merde, t'as toujours été une merde, tu resteras une merde toute ta vie."
+  marais-moudugenou:
+    dialogBefore: "J'ai des infos sur la sortie de la prochaine Switch !"
+    dialogAfter: "Tu t'extirpes du marais victorieux, tu ne sauras donc jamais quand la prochaine Switch va sortir..."
+    dialogDefeat: "Je t'éclabousse de ma boue, retourne barboter ailleurs."
+  forteresse-petmoalfiak:
+    dialogBefore: 'Tu entends cette petite voix dans ta tête ? Elle te dit de perdre... C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !'
+    dialogAfter: 'Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…'
+    dialogDefeat: 'Wow… tu pues la loose ! Attention, les vraies hallucinations commencent à la prochaine pleine lune…'
+  route-du-nawak:
+    dialogBefore: "Je n'aime ni la couleur de tes cheveux, ni la forme de ton nez, ni la taille de tes pieds. Prépare toi à perdre tes couilles !"
+    dialogAfter: "Tu t'en sors, pour l'instant."
+    dialogDefeat: 'Je suis obligée de quitter le territoire, mais je reviendrai pour te bouffer le cul, enculé de ta race !'
+  mont-dracatombe:
+    dialogBefore: "Salut, j'aime beaucoup les couleurs mais également tabasser des meufs."
+    dialogAfter: 'Tu as réussi à me vaincre, je te peindrait tout de même en looser.'
+    dialogDefeat: 'Tu pues la merde, je te nique tes morts !'
+  catacombes-merdifientes:
+    dialogBefore: "Peux tu m'aider à descendre ce sac dans ma cave, s'il te plaît ?"
+    dialogAfter: "Je sombre dans l'ombre des catacombes avec mon terrible secret."
+    dialogDefeat: 'Remonte donc à la surface, larve.'
+  route-aguicheuse:
+    dialogBefore: "Moi j'aide les pauvre mais je les baises aussi. Avec ou sans consentement."
+    dialogAfter: "Bien joué, voyageur, tu m'as bien enculé."
+    dialogDefeat: 'Et je te baise toi aussi, espèce de trou de balle informe !'
+  vallee-des-chieurs:
+    dialogBefore: Tu es plutôt un garçon ou une fille ? Décide toi car je ne veux pas perdre mon temps avec les indécis.
+    dialogAfter: "Tu m'as ovuert les yeux, je vais t'accepter comme tu es : un vagin à tête de gland."
+    dialogDefeat: "Je t'ai violenté aussi fort qu'un expéliermus, tu es un vrai loser."
+  trou-du-bide:
+    dialogBefore: "Bienvenue dans mon trou, il est imprenable, j'y ai construit un mur titanesque !"
+    dialogAfter: Tu as brisé mon trou... je vais te niquer ton père et construire un mur tout autour !
+    dialogDefeat: "Boum ! Mon trou t'écrase, petit looser de mort ! J'te baise !"
+  zone-giga-zob:
+    dialogBefore: "Je suis paix, je suis amour, tu n'as qu'à m'écouter et tu seras sauvé !"
+    dialogAfter: 'Je te hais, toi et tes idées de merde !'
+    dialogDefeat: 'Je suis ta haine, je suis ta colère, je suis ton désespoir !'
+  route-so-dom:
+    dialogBefore: "Les meufs, c'est toutes des putes, alors que moi j'adoooorrrreee faire la vaiselle !"
+    dialogAfter: "Tu me l'as mise bien profonde, mais je reviendrai plus forte !"
+    dialogDefeat: "T'es ma pute, je fais ce que je veux de toi !"
+  lac-aux-relous:
+    dialogBefore: Я люблю хорошие ясли из кулей
+    dialogAfter: 'Я люблю тебя, хочешь pойти со мной на свидание?'
+    dialogDefeat: Я засунул свой палец тебе в задницу
+  canyon-a-la-derp:
+    dialogBefore: 'Bienvenue au Canyon-a-la-derp™, le seul endroit où une simple goutte de sueur suffit à prouver ta grandeur... enfin, en théorie.'
+    dialogAfter: 'Incroyable, tu as survécu à ma technologie révolutionnaire 100% inefficace. Tu mériterais presque un brevet.'
+    dialogDefeat: "Échec critique détecté. Mais t’inquiète, avec un bon PowerPoint, tu pourrais faire croire que t'as gagné."
+  cratere-des-legends:
+    dialogBefore: Wesh fdp.
+    dialogAfter: 'Je vais retourner a Los Angeles, et je serai beaucoup plus fort enculé !'
+    dialogDefeat: 'Tu es un perdant, tu ne mérites pas de traverser ce cratère ! Baise ton frère.'
+  mont-kouillasse:
+    dialogBefore: "Bonjour, en tant que Roi du Mont Kouillasse, j'ai une liberté d'expression TOTALE ! Je peux dire ce que je veux et sucer des petits moustachus Allemands sans aucune censure !"
+    dialogAfter: "Vas te faire foutre, je t'enverrai dans une fusée pour que t'ailles sucer des couilles sur Mars !"
+    dialogDefeat: "T'es aussi con que ta mère, tu ne mérites pas de traverser le Mont Kouillasse !"
+  paturage-crado:
+    dialogBefore: Je vais te faire bouffer ton petit cul !
+    dialogAfter: 'Alors là bravo, tu as réussi à me battre. Je vais aller me faire un petit café pour me remettre de cette défaite.'
+    dialogDefeat: Je vais imposer une loi pour interdire les losers comme toi de se balader dans les pâturages !
+fr:
+  plaine-kekette:
+    dialogBefore: 'Coucou, si tu gagnes, je te paye le petit déjeuné !'
+    dialogAfter: "Ok, ok, tu as gagné, je vais t'inviter pour ce petit déj !"
+    dialogDefeat: "Mais quel grosse merde, tu vas me payer un petit déj' de ouf !"
+  bois-de-bouffon:
+    dialogBefore: "Ici, c'est ma street, et tu as trop de cheveux pour pouvoir continuer ton chemin."
+    dialogAfter: "Tu m'as bien déglingué, bravo ! Je vais aller me faire un shampoing et je reviendrai bien plus fort !"
+    dialogDefeat: Je vais te faire bouffer tes cheveux espèce de sous merde !
+  chemin-du-slip:
+    dialogBefore: "Entres dans ma grotte si tu l'oses."
+    dialogAfter: 'Ta victoire ne sera que temporaire, je retourne en garde à vue.'
+    dialogDefeat: 'Tu pues la lose, file te laver !'
+  ravin-fesse-molle:
+    dialogBefore: "Yo, j'suis raciste."
+    dialogAfter: "Incroyable... tu as gagné. Je vais donc arrêter d'être raciste. Merci de m'avoir ouvert les yeux !"
+    dialogDefeat: Dégage ! Retourne dans ton pays !
+  precipice-nanard:
+    dialogBefore: 'Je suis prêt à te mettre une sacrée rouste espèce de cassos ! Je déteste les pauvres comme toi, sale bâtard !'
+    dialogAfter: "Tu m'as explosé le fiak, je vais te foutre une grosse loi dans ta gueule, ça va te calmer."
+    dialogDefeat: "T'es une merde, t'as toujours été une merde, tu resteras une merde toute ta vie."
+  marais-moudugenou:
+    dialogBefore: "J'ai des infos sur la sortie de la prochaine Switch !"
+    dialogAfter: "Tu t'extirpes du marais victorieux, tu ne sauras donc jamais quand la prochaine Switch va sortir..."
+    dialogDefeat: "Je t'éclabousse de ma boue, retourne barboter ailleurs."
+  forteresse-petmoalfiak:
+    dialogBefore: 'Tu entends cette petite voix dans ta tête ? Elle te dit de perdre... C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !'
+    dialogAfter: 'Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…'
+    dialogDefeat: 'Wow… tu pues la loose ! Attention, les vraies hallucinations commencent à la prochaine pleine lune…'
+  route-du-nawak:
+    dialogBefore: "Je n'aime ni la couleur de tes cheveux, ni la forme de ton nez, ni la taille de tes pieds. Prépare toi à perdre tes couilles !"
+    dialogAfter: "Tu t'en sors, pour l'instant."
+    dialogDefeat: 'Je suis obligée de quitter le territoire, mais je reviendrai pour te bouffer le cul, enculé de ta race !'
+  mont-dracatombe:
+    dialogBefore: "Salut, j'aime beaucoup les couleurs mais également tabasser des meufs."
+    dialogAfter: 'Tu as réussi à me vaincre, je te peindrait tout de même en looser.'
+    dialogDefeat: 'Tu pues la merde, je te nique tes morts !'
+  catacombes-merdifientes:
+    dialogBefore: "Peux tu m'aider à descendre ce sac dans ma cave, s'il te plaît ?"
+    dialogAfter: "Je sombre dans l'ombre des catacombes avec mon terrible secret."
+    dialogDefeat: 'Remonte donc à la surface, larve.'
+  route-aguicheuse:
+    dialogBefore: "Moi j'aide les pauvre mais je les baises aussi. Avec ou sans consentement."
+    dialogAfter: "Bien joué, voyageur, tu m'as bien enculé."
+    dialogDefeat: 'Et je te baise toi aussi, espèce de trou de balle informe !'
+  vallee-des-chieurs:
+    dialogBefore: Tu es plutôt un garçon ou une fille ? Décide toi car je ne veux pas perdre mon temps avec les indécis.
+    dialogAfter: "Tu m'as ovuert les yeux, je vais t'accepter comme tu es : un vagin à tête de gland."
+    dialogDefeat: "Je t'ai violenté aussi fort qu'un expéliermus, tu es un vrai loser."
+  trou-du-bide:
+    dialogBefore: "Bienvenue dans mon trou, il est imprenable, j'y ai construit un mur titanesque !"
+    dialogAfter: Tu as brisé mon trou... je vais te niquer ton père et construire un mur tout autour !
+    dialogDefeat: "Boum ! Mon trou t'écrase, petit looser de mort ! J'te baise !"
+  zone-giga-zob:
+    dialogBefore: "Je suis paix, je suis amour, tu n'as qu'à m'écouter et tu seras sauvé !"
+    dialogAfter: 'Je te hais, toi et tes idées de merde !'
+    dialogDefeat: 'Je suis ta haine, je suis ta colère, je suis ton désespoir !'
+  route-so-dom:
+    dialogBefore: "Les meufs, c'est toutes des putes, alors que moi j'adoooorrrreee faire la vaiselle !"
+    dialogAfter: "Tu me l'as mise bien profonde, mais je reviendrai plus forte !"
+    dialogDefeat: "T'es ma pute, je fais ce que je veux de toi !"
+  lac-aux-relous:
+    dialogBefore: Я люблю хорошие ясли из кулей
+    dialogAfter: 'Я люблю тебя, хочешь pойти со мной на свидание?'
+    dialogDefeat: Я засунул свой палец тебе в задницу
+  canyon-a-la-derp:
+    dialogBefore: 'Bienvenue au Canyon-a-la-derp™, le seul endroit où une simple goutte de sueur suffit à prouver ta grandeur... enfin, en théorie.'
+    dialogAfter: 'Incroyable, tu as survécu à ma technologie révolutionnaire 100% inefficace. Tu mériterais presque un brevet.'
+    dialogDefeat: "Échec critique détecté. Mais t’inquiète, avec un bon PowerPoint, tu pourrais faire croire que t'as gagné."
+  cratere-des-legends:
+    dialogBefore: Wesh fdp.
+    dialogAfter: 'Je vais retourner a Los Angeles, et je serai beaucoup plus fort enculé !'
+    dialogDefeat: 'Tu es un perdant, tu ne mérites pas de traverser ce cratère ! Baise ton frère.'
+  mont-kouillasse:
+    dialogBefore: "Bonjour, en tant que Roi du Mont Kouillasse, j'ai une liberté d'expression TOTALE ! Je peux dire ce que je veux et sucer des petits moustachus Allemands sans aucune censure !"
+    dialogAfter: "Vas te faire foutre, je t'enverrai dans une fusée pour que t'ailles sucer des couilles sur Mars !"
+    dialogDefeat: "T'es aussi con que ta mère, tu ne mérites pas de traverser le Mont Kouillasse !"
+  paturage-crado:
+    dialogBefore: Je vais te faire bouffer ton petit cul !
+    dialogAfter: 'Alors là bravo, tu as réussi à me battre. Je vais aller me faire un petit café pour me remettre de cette défaite.'
+    dialogDefeat: Je vais imposer une loi pour interdire les losers comme toi de se balader dans les pâturages !
