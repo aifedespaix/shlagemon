@@ -1,0 +1,20 @@
+fr:
+  exportLabel: Code de sauvegarde
+  copy: Copier
+  download: Télécharger
+  importLabel: Importer une sauvegarde
+  load: Charger
+  remove: Supprimer
+  invalid: Code invalide
+  loaded: Sauvegarde chargée
+  copied: Copié
+en:
+  exportLabel: Save code
+  copy: Copy
+  download: Download
+  importLabel: Import save
+  load: Load
+  remove: Delete
+  invalid: Invalid code
+  loaded: Save loaded
+  copied: Copied

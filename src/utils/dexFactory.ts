@@ -92,7 +92,13 @@ export function createDexShlagemon(
   return mon
 }
 
-function generateRarity(max = 99, min = 1): number {
+/**
+ * Generate a rarity value with the same skew as used for battles.
+ *
+ * @param max - Maximum rarity (inclusive).
+ * @param min - Minimum rarity (inclusive).
+ */
+export function generateRarity(max = 99, min = 1): number {
   const x = Math.random()
   const skewed = x ** 2
   const value = Math.floor(1 + skewed * (max - 1))

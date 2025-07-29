@@ -1,15 +1,82 @@
 <script setup lang="ts">
+import { applySave, collectSave, exportSave, importSave } from '~/utils/save-code'
+
 const emit = defineEmits<{ (e: 'remove'): void }>()
+const { t } = useI18n()
+const exportCode = ref('')
+const importCode = ref('')
+
+onMounted(() => {
+  exportCode.value = exportSave(collectSave())
+})
+
+function copyExport() {
+  navigator.clipboard.writeText(exportCode.value)
+  toast.success(t('components.settings.SaveTab.copied'))
+}
+
+function downloadExport() {
+  const blob = new Blob([exportCode.value], { type: 'text/plain;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = 'shlagemon-save.txt'
+  link.click()
+  URL.revokeObjectURL(url)
+}
+
+function loadImport() {
+  const data = importSave(importCode.value)
+  if (!data) {
+    toast.error(t('components.settings.SaveTab.invalid'))
+    return
+  }
+  applySave(data)
+  toast.success(t('components.settings.SaveTab.loaded'))
+  window.location.reload()
+}
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    <p class="text-center">
-      Voulez-vous supprimer toutes vos progressions et votre sauvegarde ?
-    </p>
-    <UiButton type="danger" class="mx-auto flex items-center gap-1" @click="emit('remove')">
-      <div i-carbon-trash-can />
-      Supprimer
-    </UiButton>
+  <div class="flex flex-col gap-6">
+    <section class="flex flex-col gap-2">
+      <label class="font-bold">
+        {{ t('components.settings.SaveTab.exportLabel') }}
+      </label>
+      <textarea
+        :value="exportCode"
+        readonly
+        rows="4"
+        class="w-full border border-gray-300 rounded bg-gray-100 p-2 text-xs font-mono dark:border-gray-700 dark:bg-gray-900"
+        @focus="($event.target as HTMLTextAreaElement).select()"
+      />
+      <div class="flex gap-2">
+        <UiButton class="flex-1" @click="copyExport">
+          {{ t('components.settings.SaveTab.copy') }}
+        </UiButton>
+        <UiButton class="flex-1" @click="downloadExport">
+          {{ t('components.settings.SaveTab.download') }}
+        </UiButton>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-2">
+      <label class="font-bold">
+        {{ t('components.settings.SaveTab.importLabel') }}
+      </label>
+      <textarea
+        v-model="importCode"
+        rows="4"
+        class="w-full border border-gray-300 rounded bg-white p-2 text-xs font-mono dark:border-gray-700 dark:bg-gray-800"
+      />
+      <div class="flex gap-2">
+        <UiButton class="flex-1" @click="loadImport">
+          {{ t('components.settings.SaveTab.load') }}
+        </UiButton>
+        <UiButton type="danger" class="flex-1" @click="emit('remove')">
+          {{ t('components.settings.SaveTab.remove') }}
+        </UiButton>
+      </div>
+    </section>
   </div>
 </template>
