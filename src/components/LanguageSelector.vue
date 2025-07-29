@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Locale } from 'vue-i18n'
 import { availableLocales, loadLanguageAsync } from '~/modules/i18n'
 
 const { locale, t } = useI18n()
@@ -17,11 +18,13 @@ async function change(val: string | number) {
 </script>
 
 <template>
-  <UiSelectOption
-    class="w-24"
-    :aria-label="t('components.LanguageSelector.label')"
-    :model-value="locale"
-    :options="options"
-    @update:model-value="change"
-  />
+  <div class="h-50 w-full">
+    <UiSelectOption
+      class="w-24"
+      :aria-label="t('components.LanguageSelector.label')"
+      :model-value="locale"
+      :options="options"
+      @update:model-value="change"
+    />
+  </div>
 </template>
