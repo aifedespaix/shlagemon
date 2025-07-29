@@ -1,7 +1,7 @@
 fr:
   steps:
     step1:
-      text: Ouch... Ce roi t'a mis une sacrée raclée ! Ces monarques de zone sont bien plus coriaces que les dresseurs lambda.
+      text: Ouch… Ce roi t'a mis une sacrée raclée ! Ces monarques de zone sont bien plus coriaces que les dresseurs lambda.
       responses:
         next: Continuer
     step2:
@@ -21,7 +21,7 @@ fr:
 en:
   steps:
     step1:
-      text: Ouch... That king gave you quite a beating! These rulers are tougher than regular trainers.
+      text: Ouch… That king gave you quite a beating! These rulers are tougher than regular trainers.
       responses:
         next: Continue
     step2:

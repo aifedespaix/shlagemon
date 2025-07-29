@@ -158,19 +158,19 @@
   {
     "nom": "Afida Tourments",
     "type": "character",
-    "url": null,
-    "image": null
+    "url": "/audio/musics/character/afida-tourments.ogg",
+    "image": "/characters/afida-tourments/afida-tourments.png"
   },
   {
     "nom": "Alice Cordonbleu",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/alice-cordonbleu.ogg",
     "image": "/characters/alice-cordonbleu/alice-cordonbleu.png"
   },
   {
     "nom": "Bouba",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/bouba.ogg",
     "image": "/characters/bouba/bouba.png"
   },
   {
@@ -182,7 +182,7 @@
   {
     "nom": "Charles Manoir",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/charles-manoir.ogg",
     "image": "/characters/charles-manoir/charles-manoir.png"
   },
   {
@@ -194,50 +194,50 @@
   {
     "nom": "Élisabeth Borgne",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/elisabeth-borgne.ogg",
     "image": "/characters/elisabeth-borgne/elisabeth-borgne.png"
   },
   {
     "nom": "Elizabeth Homeless",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/elizabeth-homeless.ogg",
     "image": "/characters/elizabeth-homeless/elizabeth-homeless.png"
   },
   {
     "nom": "Émilie Louise",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/emilie-louise.ogg",
     "image": "/characters/emilie-louise/emilie-louise.png"
   },
   {
     "nom": "Étron Muscle",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/etron-muscle.ogg",
     "image": "/characters/etron-muscle/etron-muscle.png"
   },
   {
     "nom": "Glandhi",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/glandhi.ogg",
     "image": "/characters/glandhi/glandhi.png"
   },
   {
     "nom": "J.K. Râlwing",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/jk-ralwing.ogg",
     "image": "/characters/jk-ralwing/jk-ralwing.png"
   },
   {
     "nom": "L'Abbé Bière",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/labbe-biere.ogg",
     "image": "/characters/labbe-biere/labbe-biere.png"
   },
   {
     "nom": "Magalie Bredouille",
     "type": "character",
-    "url": null,
-    "image": null
+    "url": "/audio/musics/character/magalie-bredouille.ogg",
+    "image": "/characters/magalie-bredouille/magalie-bredouille.png"
   },
   {
     "nom": "Emmanuel Marcon",
@@ -254,7 +254,7 @@
   {
     "nom": "Monique Cerisier",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/monique-cerisier.ogg",
     "image": "/characters/monique-cerisier/monique-cerisier.png"
   },
   {
@@ -266,13 +266,13 @@
   {
     "nom": "Ondéjeune",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/ondejeune.ogg",
     "image": "/characters/ondejeune/ondejeune.png"
   },
   {
     "nom": "Picassos",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/picassos.ogg",
     "image": "/characters/picassos/picassos.png"
   },
   {
@@ -296,7 +296,7 @@
   {
     "nom": "Thaïs d'Escufion",
     "type": "character",
-    "url": null,
+    "url": "/audio/musics/character/thais-descufion.ogg",
     "image": "/characters/thais-descufion/thais-descufion.png"
   },
   {

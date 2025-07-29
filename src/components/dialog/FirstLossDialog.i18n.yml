@@ -3,7 +3,7 @@ fr:
     step1:
       text: Eh ben dis donc, tu viens de perdre ton premier combat !
       responses:
-        next: ...
+        next: …
     step2:
       text: Faut vraiment être un peu débile pour se faire battre par un Shlagémon.
       responses:
@@ -25,7 +25,7 @@ en:
     step1:
       text: Well, you just lost your first battle!
       responses:
-        next: ...
+        next: …
     step2:
       text: You must be a bit dumb to get beaten by a Shlagemon.
       responses:

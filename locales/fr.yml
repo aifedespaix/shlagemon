@@ -184,7 +184,7 @@ components:
     ArenaDefeatDialog:
       steps:
         step1:
-          text: Défaite... Veux-tu retenter ta chance ?
+          text: Défaite… Veux-tu retenter ta chance ?
           responses:
             retry: Réessayer
             quit: Quitter
@@ -288,7 +288,7 @@ components:
         step1:
           text: Eh ben dis donc, tu viens de perdre ton premier combat !
           responses:
-            next: ...
+            next: …
         step2:
           text: >-
             Faut vraiment être un peu débile pour se faire battre par un
@@ -514,7 +514,7 @@ components:
       steps:
         step1:
           text: >-
-            Ouch... Ce roi t'a mis une sacrée raclée ! Ces monarques de zone
+            Ouch… Ce roi t'a mis une sacrée raclée ! Ces monarques de zone
             sont bien plus coriaces que les dresseurs lambda.
           responses:
             next: Continuer
@@ -570,7 +570,7 @@ components:
   minigame:
     MiniGameShlagMind:
       messages:
-        - Tu te rapproches... ou pas.
+        - Tu te rapproches… ou pas.
         - Ce n'est pas ça, mais tu fais de ton mieux, petit Shlag.
         - Essaie encore, champion du néant.
         - Tu es nul à chier !
@@ -721,7 +721,7 @@ data:
           la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel
           chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10
           secondes peut tomber dans un coma d’indifférence profonde. Ptitocard
-          rêve de devenir un grand champion... mais ne fait rien pour. On le
+          rêve de devenir un grand champion… mais ne fait rien pour. On le
           trouve souvent flottant à la surface des flaques, en train de se
           demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.
     10-15:
@@ -788,7 +788,7 @@ data:
     15-20:
       goubite:
         description: >-
-          Goubite est difficile à regarder... et encore plus difficile à
+          Goubite est difficile à regarder… et encore plus difficile à
           oublier. Doté d’un corps long et rosâtre, légèrement bombé sur le
           haut, il est souvent victime de malentendus anatomiques dans les
           écoles de dresseurs. Pourtant, lui, il s’assume. Fier, droit, et
@@ -907,7 +907,7 @@ data:
 
           Son attaque *Spore Rampante* endort l’ennemi en libérant un sifflement
           humide au ras du sol, tandis que *Myco-Suceur*, sa capacité signature,
-          draine lentement la vie des ennemis... et un peu la tienne aussi,
+          draine lentement la vie des ennemis… et un peu la tienne aussi,
           émotionnellement.
 
           Il vit dans des zones Wi-Fi oubliées, collé contre des murs suintants.
@@ -959,7 +959,7 @@ data:
           la mauvaise excuse et la clope froide.
       piafsansbec:
         description: >-
-          Piafsansbec est un Shlagémon maudit, né avec un potentiel de piaf...
+          Piafsansbec est un Shlagémon maudit, né avec un potentiel de piaf…
           mais sans l’accessoire principal : son bec. L’histoire raconte qu’il
           aurait tenté de l’échanger contre un bonbon dans une brocante, ou
           qu’il l’a simplement perdu en essayant d’ouvrir une canette de soda
@@ -1001,7 +1001,7 @@ data:
           Son attaque signature, *Tricouze Saignante*, inflige des dégâts
           progressifs et désoriente l’ennemi avec une sensation de malaise
           médical. Il peut aussi utiliser *Piqure Surprise*, qui a 30% de
-          chances de faire perdre connaissance à un Shlagémon... ou au dresseur.
+          chances de faire perdre connaissance à un Shlagémon… ou au dresseur.
       waouff:
         description: >-
           Waouff est le fruit d’une expérience génétique ratée entre un chat
@@ -1017,7 +1017,7 @@ data:
           Son attaque signature, *Croquette Mental*, inflige des dégâts
           aléatoires en fonction de la météo, de la phase lunaire et de la
           marque de la balle qu'on utilise. Il peut aussi utiliser *Aboyeur
-          Passif-Agressif*, qui inflige la confusion à tout le monde... y
+          Passif-Agressif*, qui inflige la confusion à tout le monde… y
           compris à lui-même.
     30-35:
       canarchicon:
@@ -1033,7 +1033,7 @@ data:
           cuisson. Sa capacité signature, *Coup de Poireau Tournoyant*, inflige
           peu de dégâts mais une honte durable. Il peut aussi utiliser
           *Flatulence de Gras*, une attaque à effet de zone olfactif.
-          Canarchichon n’a jamais gagné un seul combat, mais il persiste...
+          Canarchichon n’a jamais gagné un seul combat, mais il persiste…
           parce qu’il a oublié qu’il pouvait abandonner.
       melofoutre:
         description: >-
@@ -1103,7 +1103,7 @@ data:
           l’épaule.
       macho:
         description: >-
-          Macho a absorbé trop de protéines... et de podcasts douteux. Musclé
+          Macho a absorbé trop de protéines… et de podcasts douteux. Musclé
           comme un couvercle de poubelle et persuadé d’être irrésistible, il
           passe son temps à faire des pompes, des clins d’œil et des blagues de
           vestiaire à toute créature possédant deux chromosomes X.
@@ -1119,7 +1119,7 @@ data:
           débattent intensément de "la vraie nature des femelles". Aucun débat
           n’a encore abouti.
 
-          Il évolue parfois... en pire.
+          Il évolue parfois… en pire.
       psykonaute:
         description: >-
           Psykonaute est l’évolution déviante de PsychoQuack, après qu’il ait
@@ -1183,7 +1183,7 @@ data:
           trouées et son jogging trop grand qu'il a récupéré dans un carton
           discount. Sa fourrure autrefois rose est devenue terne, mouchetée de
           taches douteuses et de pellicules. Toujours l'air un peu perdu, il
-          garde les yeux rivés au sol, espérant qu'on ne le remarque pas... mais
+          garde les yeux rivés au sol, espérant qu'on ne le remarque pas… mais
           évidemment, il attire tous les regards, surtout ceux des autres
           shlagémons qui le prennent pour cible.
 
@@ -1198,7 +1198,7 @@ data:
           infligeant confusion et gêne sociale.
 
           On raconte qu’il rêve, dans ses rares moments d’éveil, de devenir
-          populaire... ou au moins d’avoir un goûter entier pour lui tout seul.
+          populaire… ou au moins d’avoir un goûter entier pour lui tout seul.
       racaillou:
         description: >-
           Racaillou traîne toute la journée affalé contre un muret tagué, les
@@ -1730,9 +1730,9 @@ data:
       aerobite:
         description: >-
           Aérobite est l’évolution honteusement assumée de GrosMitoss. Une
-          créature ailée qui plane dans les airs... en toute impunité. Il a
+          créature ailée qui plane dans les airs… en toute impunité. Il a
           troqué son pelage pour une pilosité sélective : le torse rasé de près,
-          mais le bas... comment dire… *aéré*. Et ça ne le dérange pas, bien au
+          mais le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au
           contraire — il revendique une "liberté corporelle totale".
 
           D’une impudeur sans faille, Aérobite adore surgir sans prévenir dans
@@ -1747,7 +1747,7 @@ data:
           voler au ralenti… jambes écartées.
       alakalbar:
         description: >-
-          Considéré comme un sage dans son quartier... du moins par lui-même. Il
+          Considéré comme un sage dans son quartier… du moins par lui-même. Il
           prétend maîtriser les arts mystiques du *Contrôle du Destin* mais
           confond souvent télékinésie et procrastination. On le reconnaît à ses
           deux grosses cuillères de cantine, tordues à force de remuer du thé
@@ -1824,7 +1824,7 @@ data:
           profondément satisfait. Sa présence dégage une aura soporifique
           capable de neutraliser même les plus dynamiques des Shlagémons.
 
-          En résumé, Boustiflemme ne fait jamais rien... et il le fait très
+          En résumé, Boustiflemme ne fait jamais rien… et il le fait très
           bien.
       carabifle:
         description: >-
@@ -1882,7 +1882,7 @@ data:
 
           Son armure censée être rigide est molle comme du carton détrempé, et
           son attaque principale, *Jet de Doute*, inflige un léger inconfort
-          moral à l’adversaire... et surtout à lui-même. Il rate 90% de ses
+          moral à l’adversaire… et surtout à lui-même. Il rate 90% de ses
           attaques, 100% de ses esquives, et 120% de ses décisions.
 
           Il perd tous ses combats, même contre des adversaires inanimés. On l’a
@@ -1890,12 +1890,12 @@ data:
           auprès de la pierre.
 
           Il ne croit en rien, pas même en ses propres stats. D’ailleurs, son
-          cri ressemble à un "haaaan..." suivi d’un bruit de plastique qui se
+          cri ressemble à un "haaaan…" suivi d’un bruit de plastique qui se
           dégonfle.
 
           Sa capacité passive, *Auto-Sabotage*, lui fait perdre 1 point de vie à
           chaque fois qu’on l’encourage. On dit qu’il pourrait évoluer en
-          quelque chose de puissant... mais qu’il "veut pas déranger".
+          quelque chose de puissant… mais qu’il "veut pas déranger".
 
           Il traîne dans les buissons, évite les regards et se planque dès qu’il
           entend le mot "match". Une icône de la lose, une légende de l’échec.
@@ -2032,7 +2032,7 @@ data:
           décisions.
 
           Son corps est couvert de taches suspectes et de traces d'usure en
-          forme de... ben de trous de balle, justement. Certains disent que ce
+          forme de… ben de trous de balle, justement. Certains disent que ce
           sont des impacts de sorts, d'autres penchent pour une malédiction
           scatologique. Il flotte en éructant des bruits de chasse d’eau, et
           laisse derrière lui un sillage de gaz verdâtres qui forment parfois
@@ -2134,7 +2134,7 @@ data:
 
           On raconte qu’elle peut invoquer des cercles de danse autour d’un feu
           sacré fait de palettes et de sacs Leclerc. Si elle grogne en récitant
-          des mantras, cours. Elle s’apprête à t’offrir une purification... ou
+          des mantras, cours. Elle s’apprête à t’offrir une purification… ou
           un sandwich au houmous moisi.
       galopard:
         description: >-
@@ -2223,7 +2223,7 @@ data:
         description: >-
           Grossetarte est l’évolution regrettable de Ptitocard, obtenue après
           une overdose de sucre industriel et de mauvaises idées. Autoproclamé
-          "Maître Tartenier", il passe ses journées à cuisiner, lancer et...
+          "Maître Tartenier", il passe ses journées à cuisiner, lancer et…
           recuire des tartes. Le problème ? Ses créations sont infâmes.
           Collantes, croquantes, souvent vivantes, elles causent plus de dégâts
           buccaux que toutes les chutes de trottoirs réunies.
@@ -2454,7 +2454,7 @@ data:
           toujours là pour défendre les plus petit·e·s, corriger les propos
           déplacés avec élégance, et lâcher un *wink* bien placé. On reconnaît
           Nidoqueer à ses épines colorées, son regard fardé et sa démarche
-          impeccable. Iel n'est pas là pour se battre... mais si iel le fait, ce
+          impeccable. Iel n'est pas là pour se battre… mais si iel le fait, ce
           sera avec **panache**.
       nidoschneck:
         description: >-
@@ -2596,10 +2596,10 @@ data:
       perchiste:
         description: >-
           Perchiste a quitté le grand banditisme des ruelles de Kanto pour se
-          reconvertir dans le cinéma d’auteur... mais pas le bon. Armé de sa
+          reconvertir dans le cinéma d’auteur… mais pas le bon. Armé de sa
           perche micro rafistolée avec du chatterton et un vieux t-shirt de
           crew, il hante les plateaux de tournage miteux, toujours prêt à capter
-          les souffles, les silences, et parfois... ses propres soupirs de
+          les souffles, les silences, et parfois… ses propres soupirs de
           dépression.
 
           Il prend très à cœur son rôle, quitte à interrompre une scène pour
@@ -2668,7 +2668,7 @@ data:
           Rapasdepisse est l’évolution tragiquement humide de Piafsansbec. Il a
           enfin récupéré un peu de plumage, une carrure plus imposante, et même
           un cri (aigu, inutile, tremblant). Mais tout cela est ruiné par un
-          détail... il fait pipi. Tout le temps. Par petites gouttes. Sans
+          détail… il fait pipi. Tout le temps. Par petites gouttes. Sans
           prévenir.
 
           Il n’a aucun contrôle. À chaque battement d’ailes : *plitch*. À chaque
@@ -2681,7 +2681,7 @@ data:
           Son attaque signature, *Jet Honteux*, inflige un malus de défense à
           l’ennemi (et de respect à lui-même). Il possède aussi *Fuite
           Incontrôlée*, une attaque passive qui inflige des dégâts mineurs à
-          chaque tour... au sol uniquement. Il peut aussi apprendre *Averse
+          chaque tour… au sol uniquement. Il peut aussi apprendre *Averse
           Doublée*, qui remplace les effets de météo par quelque chose de bien
           plus personnel.
 
@@ -2690,7 +2690,7 @@ data:
           gênant. Il évite les zones aérées et les dresseurs trop propres.
 
           On le garde par compassion, ou par erreur. Mais même s’il fait un peu
-          pitié, certains affirment qu’il est doux, affectueux... et toujours
+          pitié, certains affirment qu’il est doux, affectueux… et toujours
           tiède.
       raptorincel:
         description: >-
@@ -2771,7 +2771,7 @@ data:
           Les autres appellent ça un délit.
 
           Sa capacité signature, *Stimulation Solitaire*, le soigne légèrement à
-          chaque tour... mais inflige un malus de moral à toute l’équipe alliée.
+          chaque tour… mais inflige un malus de moral à toute l’équipe alliée.
           Il utilise aussi *Main Moite*, une attaque de type contact qui a 30%
           de chance de faire fuir directement l’ennemi par gêne viscérale.
 
@@ -2792,7 +2792,7 @@ data:
           "j’ai mes sources". Son attaque signature, *Flash Infâme*, aveugle
           tous les adversaires, mais il oublie souvent de retirer le cache de
           l’objectif. Malgré ses ambitions, il reste désespérément à la
-          recherche d’un vrai sujet... ou d’un peu de respect.
+          recherche d’un vrai sujet… ou d’un peu de respect.
       salmoneli:
         description: >-
           Ce poisson aux couleurs ternes traîne des germes partout où il passe
@@ -2860,7 +2860,7 @@ data:
           ambulant". Radié de l’ordre des médecins pour raisons évidentes (et
           nombreuses), il a trouvé un nouveau terrain de jeu : les soirées
           crades et les rave-parties en sous-sol. Là où d'autres apportent de la
-          bonne humeur, lui apporte... des piqûres surprises.
+          bonne humeur, lui apporte… des piqûres surprises.
 
           Composé de trois têtes aux regards fuyants, il discute souvent avec
           lui-même pour se mettre d’accord sur *qui on va piquer ce soir*.

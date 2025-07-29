@@ -242,11 +242,11 @@ export const kings: Kings = {
   },
   'forteresse-petmoalfiak': {
     id: 'king-forteresse-petmoalfiak',
-    character: donaldTrompe,
-    dialogBefore: 'Ma forteresse est imprenable, j\'y ai construit un mur titanesque !',
-    dialogAfter: 'Tu as brisé ma forteresse... je vais te niquer ton père et construire un mur tout autour !',
-    dialogDefeat: 'Boum ! Ma forteresse t\'écrase, petit looser de mort ! J\'te baise !',
     reward: zonesData.find(z => z.id === 'forteresse-petmoalfiak')?.maxLevel || 1,
+    character: charlesManoir,
+    dialogBefore: 'Tu entends cette petite voix dans ta tête ? Elle te dit de perdre... C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !',
+    dialogAfter: 'Wow… T’as survécu à mon délire ! Pas mal, mais attention, les vraies hallucinations commencent à la prochaine pleine lune…',
+    dialogDefeat: 'Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…',
     shlagemons: [
       macho.id,
       ferosang.id,
@@ -330,10 +330,10 @@ export const kings: Kings = {
   },
   'trou-du-bide': {
     id: 'king-trou-du-bide',
-    character: charlesManoir,
-    dialogBefore: 'Helllo !  Veux tu goutter à ma nouvelle beuh ?',
-    dialogAfter: 'Je vais te faire subir ma colère, personne ne me manque de respect !',
-    dialogDefeat: 'Viens avec moi, je t\'accompagne mon Loulou...',
+    character: donaldTrompe,
+    dialogBefore: 'Bienvenue dans mon trou, il est imprenable, j\'y ai construit un mur titanesque !',
+    dialogAfter: 'Tu as brisé mon trou... je vais te niquer ton père et construire un mur tout autour !',
+    dialogDefeat: 'Boum ! Mon trou t\'écrase, petit looser de mort ! J\'te baise !',
     reward: zonesData.find(z => z.id === 'trou-du-bide')?.maxLevel || 1,
     shlagemons: [
       fantomanus.id,

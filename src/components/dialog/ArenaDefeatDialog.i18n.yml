@@ -1,14 +1,14 @@
 fr:
   steps:
     step1:
-      text: Défaite... Veux-tu retenter ta chance ?
+      text: Défaite… Veux-tu retenter ta chance ?
       responses:
         retry: Réessayer
         quit: Quitter
 en:
   steps:
     step1:
-      text: Defeat... Want to try again?
+      text: Defeat… Want to try again?
       responses:
         retry: Retry
         quit: Quit
