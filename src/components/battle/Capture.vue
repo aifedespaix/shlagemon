@@ -23,9 +23,12 @@ const shake = ref(0)
 
 const captureCooldown = ref(false)
 
+const currentBallHue = computed(() => ballStore.current ? ballHues[ballStore.current] : '0deg')
+const currentBallCount = computed(() => ballStore.current ? inventory.items[ballStore.current] ?? 0 : 0)
+
 const captureButtonDisabled = computed(() =>
   captureCooldown.value
-  || (inventory.items[ballStore.current] || 0) <= 0
+  || currentBallCount.value <= 0
   || props.enemyHp <= 0
   || props.playerHp <= 0,
 )
@@ -33,7 +36,7 @@ const captureButtonDisabled = computed(() =>
 const captureButtonTooltip = computed(() => {
   if (captureCooldown.value)
     return t('components.battle.Capture.cooldown')
-  if ((inventory.items[ballStore.current] || 0) <= 0)
+  if (currentBallCount.value <= 0)
     return t('components.battle.Capture.noBall')
   if (props.playerHp <= 0)
     return t('components.battle.Capture.playerKo')
@@ -59,7 +62,7 @@ function attempt(step: number) {
 
 function open() {
   const id = ballStore.current
-  if (!props.enemy || (inventory.items[id] || 0) <= 0 || props.enemyHp <= 0 || props.playerHp <= 0)
+  if (!id || !props.enemy || currentBallCount.value <= 0 || props.enemyHp <= 0 || props.playerHp <= 0)
     return
   if (props.enemy.lvl > player.captureLevelCap) {
     captureLimitModal.open(props.enemy.lvl)
@@ -105,7 +108,7 @@ defineExpose({ open })
           src="/items/shlageball/shlageball.webp"
           alt="capture"
           class="h-8 w-8"
-          :style="{ filter: `hue-rotate(${ballHues[ballStore.current]})` }"
+          :style="{ filter: `hue-rotate(${currentBallHue})` }"
           md="h-10 w-10"
         />
       </UiTooltip>
