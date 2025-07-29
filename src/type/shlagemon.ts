@@ -1,3 +1,4 @@
+import type { I18nKey } from './i18n'
 import type { ShlagemonEvolution } from './shlagemonEvolution'
 import type { ShlagemonType } from './shlagemonType'
 import type { Stats } from './stats'
@@ -13,10 +14,8 @@ export type Speciality
 
 export interface BaseShlagemon {
   id: string
-  name: string
-  description: string
-  /** i18n key for the description */
-  descriptionKey?: string
+  name: I18nKey
+  description: I18nKey
   /**
    * Primary and optional secondary type of the Shlagémon.
    * The first element represents the main type.

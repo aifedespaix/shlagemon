@@ -2,13 +2,9 @@ import type { WearableItem } from '~/type/item'
 
 export const attackRing: WearableItem = {
   id: 'attack-ring',
-  nameKey: 'data.items.wearables.attackRing.attackRing.name',
-  name: 'Bague d\'attaque',
-  descriptionKey: 'data.items.wearables.attackRing.attackRing.description',
-  description: 'Augmente l\'attaque du porteur.',
-  detailsKey: 'data.items.wearables.attackRing.attackRing.details',
-  details:
-    'Portée par un Shlagémon, elle augmente son attaque de 15%. Effet cumulable avec les potions d\'attaque.',
+  name: 'data.items.wearables.attackRing.attackRing.name',
+  description: 'data.items.wearables.attackRing.attackRing.description',
+  details: 'data.items.wearables.attackRing.attackRing.details',
   price: 20,
   currency: 'shlagidiamond',
   category: 'utilitaire',
@@ -22,13 +18,9 @@ export const attackRing: WearableItem = {
 
 export const advancedAttackRing: WearableItem = {
   id: 'advanced-attack-ring',
-  nameKey: 'data.items.wearables.attackRing.advancedAttackRing.name',
-  name: 'Bague d\'attaque avancée',
-  descriptionKey: 'data.items.wearables.attackRing.advancedAttackRing.description',
-  description: 'Augmente fortement l\'attaque du porteur.',
-  detailsKey: 'data.items.wearables.attackRing.advancedAttackRing.details',
-  details:
-    'Portée par un Shlagémon, elle augmente son attaque de 25%. Effet cumulable avec les potions d\'attaque.',
+  name: 'data.items.wearables.attackRing.advancedAttackRing.name',
+  description: 'data.items.wearables.attackRing.advancedAttackRing.description',
+  details: 'data.items.wearables.attackRing.advancedAttackRing.details',
   price: 50,
   currency: 'shlagidiamond',
   category: 'utilitaire',
@@ -42,13 +34,9 @@ export const advancedAttackRing: WearableItem = {
 
 export const attackAmulet: WearableItem = {
   id: 'attack-amulet',
-  nameKey: 'data.items.wearables.attackRing.attackAmulet.name',
-  name: 'Amulette d\'attaque',
-  descriptionKey: 'data.items.wearables.attackRing.attackAmulet.description',
-  description: 'Augmente grandement l\'attaque du porteur.',
-  detailsKey: 'data.items.wearables.attackRing.attackAmulet.details',
-  details:
-    'Portée par un Shlagémon, elle augmente son attaque de 33%. Effet cumulable avec les potions d\'attaque.',
+  name: 'data.items.wearables.attackRing.attackAmulet.name',
+  description: 'data.items.wearables.attackRing.attackAmulet.description',
+  details: 'data.items.wearables.attackRing.attackAmulet.details',
   price: 100,
   currency: 'shlagidiamond',
   category: 'utilitaire',

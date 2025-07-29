@@ -114,7 +114,7 @@ function getList(category: ItemCategory | 'all') {
     const q = filter.search.toLowerCase().trim()
     if (q) {
       list = list.filter(entry =>
-        t(entry.item.nameKey || entry.item.name).toLowerCase().includes(q),
+        t(entry.item.name).toLowerCase().includes(q),
       )
     }
     switch (filter.sortBy) {
@@ -128,7 +128,7 @@ function getList(category: ItemCategory | 'all') {
         break
       case 'name':
         list.sort((a, b) =>
-          t(a.item.nameKey || a.item.name).localeCompare(t(b.item.nameKey || b.item.name)),
+          t(a.item.name).localeCompare(t(b.item.name)),
         )
         break
       case 'price':
@@ -158,12 +158,12 @@ function onUse(item: Item) {
   if ('catchBonus' in item) {
     ballStore.equip(item.id as BallId)
     usage.markUsed(item.id)
-    toast(t('components.panel.Inventory.equip', { item: t(item.nameKey || item.name) }))
+    toast(t('components.panel.Inventory.equip', { item: t(item.name) }))
   }
   else if (kingPotionIds.includes(item.id)) {
     kingPotion.equip(item.id)
     usage.markUsed(item.id)
-    toast(t('components.panel.Inventory.equip', { item: t(item.nameKey || item.name) }))
+    toast(t('components.panel.Inventory.equip', { item: t(item.name) }))
   }
   else if (item.type === 'evolution') {
     evoItemStore.open(item)

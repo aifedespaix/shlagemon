@@ -1,4 +1,5 @@
 import type { Character } from './character'
+import type { I18nKey } from './i18n'
 
 export interface TrainerShlagemon {
   baseId: string
@@ -8,15 +9,9 @@ export interface TrainerShlagemon {
 export interface Trainer {
   id: string
   character: Character
-  dialogBefore: string
-  /** i18n key for the dialog before battle */
-  dialogBeforeKey?: string
-  dialogAfter: string
-  /** i18n key for the dialog after battle */
-  dialogAfterKey?: string
-  dialogDefeat?: string
-  /** i18n key for the dialog when defeated */
-  dialogDefeatKey?: string
+  dialogBefore: I18nKey
+  dialogAfter: I18nKey
+  dialogDefeat?: I18nKey
   reward: number
   shlagemons: (TrainerShlagemon | string)[]
 }
