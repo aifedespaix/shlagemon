@@ -6,14 +6,18 @@ export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
   if (levelBonus <= 0)
     return false
   const rarityMod = rarityModifier(enemy.rarity)
+  const levelPenalty = levelDifficultyMultiplier(enemy.lvl)
   const dex = useShlagedexStore()
   const captureMod = 1 + dex.captureBonusPercent / 100
-  const chance = Math.min(100, hpChance * levelBonus * rarityMod * captureMod)
+  const chance = Math.min(
+    100,
+    hpChance * levelBonus * rarityMod * captureMod * levelPenalty,
+  )
   const dev = useDeveloperStore()
   if (dev.debug) {
     console.warn(
       `Capture chance: ${chance.toFixed(2)}%`,
-      { level: enemy.lvl, hpChance, levelBonus, rarityMod, captureMod },
+      { level: enemy.lvl, hpChance, levelBonus, rarityMod, captureMod, levelPenalty },
     )
   }
   return Math.random() * 100 < chance
@@ -51,4 +55,26 @@ export function captureChanceFromHp(ratio: number): number {
 export function simpleCapture(enemy: DexShlagemon): boolean {
   const chance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
   return Math.random() * 100 < chance
+}
+
+/**
+ * Linear difficulty scaling based on the enemy level.
+ *
+ * Levels are divided into three tiers: 1-33, 33-66 and 66-99. Each tier
+ * increases the capture difficulty linearly from no penalty at the start of
+ * the tier to a 50% penalty at the end.
+ */
+export function levelDifficultyMultiplier(level: number): number {
+  const tiers = [
+    { start: 1, end: 33 },
+    { start: 33, end: 66 },
+    { start: 66, end: 99 },
+  ] as const
+  const tier = tiers.find(t => level >= t.start && level <= t.end)
+  if (!tier)
+    return level > 99 ? 0.5 : 1
+
+  const progress = (level - tier.start) / (tier.end - tier.start)
+  const clamped = Math.min(1, Math.max(0, progress))
+  return 1 - 0.5 * clamped
 }
