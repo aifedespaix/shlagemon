@@ -4,6 +4,23 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 
+const props = withDefaults(defineProps<Props>(), {
+  color: undefined,
+  flipped: false,
+  fainted: false,
+  flash: false,
+  levelPosition: 'bottom',
+  showBall: false,
+  owned: false,
+  effects: () => [],
+  disease: false,
+  diseaseRemaining: 0,
+})
+
+const emit = defineEmits<{ (e: 'faintEnd'): void }>()
+
+const { t } = useI18n()
+
 interface Props {
   mon: DexShlagemon
   hp: number
@@ -19,20 +36,6 @@ interface Props {
   diseaseRemaining?: number
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  color: undefined,
-  flipped: false,
-  fainted: false,
-  flash: false,
-  levelPosition: 'bottom',
-  showBall: false,
-  owned: false,
-  effects: () => [],
-  disease: false,
-  diseaseRemaining: 0,
-})
-
-const emit = defineEmits<{ (e: 'faintEnd'): void }>()
 const typeChart = useTypeChartModalStore()
 const dex = useShlagedexStore()
 
@@ -100,7 +103,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
-      <UiTooltip text="Vous possédez déjà ce Shlagémon">
+      <UiTooltip :text="t('components.battle.Shlagemon.ownedTooltip')">
         <img
           v-if="props.showBall && props.owned"
           src="/items/shlageball/shlageball.webp"
