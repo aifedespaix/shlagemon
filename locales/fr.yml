@@ -171,6 +171,9 @@ components:
       loaded: Sauvegarde chargée
       copied: Copié
       generate: Générer
+    LanguageTab:
+      label: Langue
+      description: L'application est disponible en français et en anglais.
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet

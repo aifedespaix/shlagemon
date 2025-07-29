@@ -1,0 +1,6 @@
+fr:
+  label: Langue
+  description: L'application est disponible en français et en anglais.
+en:
+  label: Language
+  description: The application is available in English and French.

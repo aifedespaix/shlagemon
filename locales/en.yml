@@ -169,6 +169,9 @@ components:
       loaded: Save loaded
       copied: Copied
       generate: Generate
+    LanguageTab:
+      label: Language
+      description: The application is available in English and French.
   shlagemon:
     Detail:
       equipItemTitle: Equip an item
