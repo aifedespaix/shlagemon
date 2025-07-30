@@ -3,13 +3,20 @@ import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/d
 
 const props = defineProps<{ text: string, isButton?: boolean }>()
 
+const isTouch = useMediaQuery('(pointer: coarse)')
+
 const wrapper = ref<HTMLElement | null>(null)
 const tooltip = ref<HTMLElement | null>(null)
 const visible = ref(false)
 let cleanup: (() => void) | undefined
+let timeout: ReturnType<typeof setTimeout> | undefined
 
 function show() {
   visible.value = true
+  if (isTouch.value) {
+    clearTimeout(timeout)
+    timeout = setTimeout(hide, 4000)
+  }
   const wrapperEl = wrapper.value
   const tooltipEl = tooltip.value
   if (wrapperEl && tooltipEl) {
@@ -31,6 +38,10 @@ function show() {
 
 function hide() {
   visible.value = false
+  if (timeout) {
+    clearTimeout(timeout)
+    timeout = undefined
+  }
   if (cleanup) {
     cleanup()
     cleanup = undefined
@@ -52,10 +63,24 @@ onUnmounted(hide)
     @click="show"
   >
     <slot />
-    <span
-      v-show="visible"
-      ref="tooltip"
-      class="pointer-events-none absolute z-50 whitespace-nowrap rounded bg-gray-700 px-2 py-1 text-xs text-white dark:bg-gray-200 dark:text-gray-800"
-    >{{ props.text }}</span>
+    <Transition name="fade">
+      <span
+        v-if="visible"
+        ref="tooltip"
+        role="tooltip"
+        class="pointer-events-none absolute z-50 whitespace-nowrap rounded bg-gray-200 px-2 py-1 text-xs text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+      >{{ props.text }}</span>
+    </Transition>
   </span>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
