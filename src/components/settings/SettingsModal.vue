@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import LanguageTab from './LanguageTab.vue'
 import SaveTab from './SaveTab.vue'
 import SettingsShortcutsTab from './ShortcutsTab.vue'
+import SupportTab from './SupportTab.vue'
 
 const props = defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
@@ -41,6 +42,10 @@ const tabs = computed(() => {
     })
   }
 
+  arr.push({
+    label: { text: 'Soutien', icon: 'i-carbon-favorite' },
+    component: SupportTab,
+  })
   return arr
 })
 

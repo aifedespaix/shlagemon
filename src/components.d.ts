@@ -115,6 +115,7 @@ declare module 'vue' {
     SettingsSaveTab: typeof import('./components/settings/SaveTab.vue')['default']
     SettingsSettingsModal: typeof import('./components/settings/SettingsModal.vue')['default']
     SettingsShortcutsTab: typeof import('./components/settings/ShortcutsTab.vue')['default']
+    SettingsSupportTab: typeof import('./components/settings/SupportTab.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/Detail.vue')['default']
     ShlagemonDetailModal: typeof import('./components/shlagemon/DetailModal.vue')['default']
     ShlagemonEvolutionModal: typeof import('./components/shlagemon/EvolutionModal.vue')['default']
