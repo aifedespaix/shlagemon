@@ -1,157 +1,171 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
-import { useSwipe } from '@vueuse/core'
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, useAttrs } from 'vue'
 
+/** Label pour chaque onglet */
 interface Label {
   text: string
   icon?: string
 }
 
+/** Définition forte des tabs */
 interface Tab {
   label: Label
-  component: Component
+  component: any // Remplace par DefineComponent si tu veux du typage ultra strict
   highlight?: boolean
+  disabled?: boolean
+  'aria-label'?: string
 }
 
 const props = withDefaults(defineProps<{
   modelValue?: number
-  tabs: Tab[]
+  tabs: readonly Tab[]
   isSmall?: boolean
 }>(), {
   modelValue: 0,
   isSmall: false,
 })
 
+// Fix warning Vue: on gère nous-même les attrs
+defineOptions({ inheritAttrs: false })
+const $attrs = useAttrs()
+
 const emit = defineEmits<{
   (e: 'update:modelValue', value: number): void
+  (e: 'change', value: number): void
 }>()
 
 const active = ref(props.modelValue)
-
-watch(() => props.modelValue, (val) => {
-  if (val !== undefined)
-    active.value = val
+watch(() => props.modelValue, v => active.value = v)
+watch(active, v => {
+  emit('update:modelValue', v)
+  emit('change', v)
 })
-watch(active, value => emit('update:modelValue', value))
 
 const container = ref<HTMLElement>()
 const direction = ref<'left' | 'right'>('left')
 
 function select(i: number) {
-  if (i === active.value)
-    return
+  if (i === active.value || props.tabs[i]?.disabled) return
   direction.value = i > active.value ? 'left' : 'right'
   active.value = i
 }
-
 function next() {
-  if (active.value < props.tabs.length - 1)
-    select(active.value + 1)
+  for (let i = active.value + 1; i < props.tabs.length; i++)
+    if (!props.tabs[i].disabled) return select(i)
 }
 function prev() {
-  if (active.value > 0)
-    select(active.value - 1)
+  for (let i = active.value - 1; i >= 0; i--)
+    if (!props.tabs[i].disabled) return select(i)
 }
 
+// Swipe mobile
 useSwipe(container, {
-  threshold: 50,
+  threshold: 40,
   onSwipeEnd(_, dir) {
-    if (dir === 'left')
-      next()
-    else if (dir === 'right')
-      prev()
+    if (dir === 'left') next()
+    else if (dir === 'right') prev()
   },
 })
 
-const transitionName = computed(() => direction.value === 'left' ? 'slide-left' : 'slide-right')
-
-const tabButtonClasses = computed(() => {
-  const unoCss = []
-  if (props.isSmall) {
-    unoCss.push('text-sm', 'py-1')
-  }
-  else {
-    unoCss.push('text-base', 'py-2')
-  }
-  return unoCss.join(' ')
-})
-
-function tabButtonActiveClasses(actual: number) {
-  const unoCss = []
-  if (active.value === actual) {
-    unoCss.push('font-bold', 'border-b-2', 'border-blue-600', 'dark:border-blue-400')
-  }
-  else {
-    unoCss.push('hover:bg-gray-100', 'dark:hover:bg-gray-800')
-  }
-  return unoCss.join(' ')
-}
-
-const tabBarRef = ref<HTMLElement | null>(null)
+// Responsive/overflow : scroll horizontale auto des tabs sur mobile
+const tabBarRef = ref<HTMLElement>()
 const showOnlyIcons = ref(false)
 
 function checkTabsOverflow() {
   const bar = tabBarRef.value
-  if (!bar)
-    return
-  // Si le contenu déborde horizontalement, on affiche seulement les icônes
-  showOnlyIcons.value = bar.scrollWidth > bar.clientWidth
+  if (!bar) return
+  showOnlyIcons.value = bar.scrollWidth > bar.clientWidth + 2
 }
-
 onMounted(() => {
   nextTick(() => {
     checkTabsOverflow()
-    // Observe dynamiquement la taille de la barre
     if (window.ResizeObserver) {
-      const observer = new ResizeObserver(checkTabsOverflow)
-      if (tabBarRef.value)
-        observer.observe(tabBarRef.value)
+      const obs = new ResizeObserver(checkTabsOverflow)
+      tabBarRef.value && obs.observe(tabBarRef.value)
     }
     window.addEventListener('resize', checkTabsOverflow)
   })
 })
+
 watch(() => props.tabs, () => nextTick(checkTabsOverflow))
+
+const tabBtnBase = computed(() =>
+  [
+    'relative', 'flex', 'flex-1', 'justify-center', 'items-center',
+    'gap-1', 'px-2', 'min-w-0', 'transition-all', 'select-none',
+    'outline-none', 'focus-visible:z-10', 'focus-visible:ring-2', 'focus-visible:ring-sky-500',
+    props.isSmall ? 'text-sm py-1' : 'text-base py-2',
+    'border-b-2 border-transparent',
+    'cursor-pointer',
+  ].join(' ')
+)
+
+function tabBtnActive(i: number) {
+  return [
+    active.value === i
+      ? 'font-bold border-sky-600 dark:border-sky-400 bg-sky-50 dark:bg-sky-900/60 text-sky-700 dark:text-sky-100 shadow-inner'
+      : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200',
+    props.tabs[i].highlight && active.value !== i
+      ? 'animate-pulse-alt animate-count-infinite'
+      : '',
+    props.tabs[i].disabled
+      ? 'opacity-40 pointer-events-none'
+      : ''
+  ].join(' ')
+}
+
+const transitionName = computed(() => direction.value === 'left' ? 'slide-left' : 'slide-right')
 </script>
 
 <template>
-  <div class="h-full flex flex-col">
-    <div
-      ref="tabBarRef" class="flex border-b border-gray-200"
-      dark="border-gray-800"
+  <div
+    class="h-full flex flex-col"
+    v-bind="$attrs"
+  >
+    <nav
+      ref="tabBarRef"
+      class="flex border-b border-gray-200 dark:border-gray-800 overflow-x-auto no-scrollbar"
+      aria-label="Navigation par onglets"
+      tabindex="0"
+      @keydown.left.prevent="prev"
+      @keydown.right.prevent="next"
     >
       <button
         v-for="(tab, i) in props.tabs"
         :key="i"
-        class="min-w-0 flex flex-1 items-center gap-1 px-1 text-center"
-        :class="[
-          `${tabButtonActiveClasses(i)} ${tabButtonClasses}`,
-          tab.highlight && active !== i ? 'animate-pulse-alt animate-count-infinite' : '',
-        ]"
+        type="button"
+        :tabindex="active === i ? 0 : -1"
+        :aria-selected="active === i"
+        :aria-label="tab['aria-label'] || tab.label.text"
+        class="group w-full"
+        :class="[tabBtnBase, tabBtnActive(i)]"
         @click="select(i)"
+        @keydown.enter.space.prevent="select(i)"
+        :disabled="tab.disabled"
       >
-        <!-- Si pas assez de place et icône dispo, on montre QUE l'icône -->
-        <template v-if="showOnlyIcons && tab.label.icon">
-          <div :class="tab.label.icon" />
-        </template>
-        <!-- Sinon, on montre l'icône puis le texte (tronqué si besoin) -->
-        <template v-else>
-          <div v-if="tab.label.icon" :class="tab.label.icon" />
-          <span
-            v-if="!showOnlyIcons || !tab.label.icon"
-            class="block truncate"
-            style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; min-width: 0;"
-          >
-            {{ tab.label.text }}
-          </span>
-        </template>
+        <div v-if="tab.label.icon" :class="['shrink-0 text-xl', tab.label.icon]" aria-hidden="true" />
+        <span
+          v-if="!showOnlyIcons || !tab.label.icon"
+          class="block truncate min-w-0 max-w-full text-ellipsis"
+        >
+          {{ tab.label.text }}
+        </span>
       </button>
-    </div>
-    <div ref="container" class="tiny-scrollbar relative flex-1 overflow-x-hidden overflow-y-auto">
+    </nav>
+
+    <section
+      ref="container"
+      class="relative flex-1 overflow-x-hidden overflow-y-auto min-h-0 bg-white dark:bg-gray-900 focus:outline-none"
+      tabindex="-1"
+    >
       <Transition :name="transitionName" mode="out-in">
-        <component :is="props.tabs[active].component" :key="active" class="absolute inset-0" />
+        <component
+          :is="props.tabs[active]?.component"
+          :key="active"
+          class="absolute inset-0"
+        />
       </Transition>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -161,8 +175,8 @@ watch(() => props.tabs, () => nextTick(checkTabsOverflow))
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition:
-    transform 0.15s ease,
-    opacity 0.15s ease;
+    transform 0.18s cubic-bezier(.33,1.02,.57,1.01),
+    opacity 0.18s cubic-bezier(.33,1.02,.57,1.01);
 }
 .slide-left-enter-from,
 .slide-right-leave-to {
