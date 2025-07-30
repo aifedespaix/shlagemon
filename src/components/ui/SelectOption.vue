@@ -29,6 +29,7 @@ const selected = computed<string | number>({
     placeholder="Sélectionner..."
     class="custom-select cursor-pointer"
     :is-clearable
+    :is-searchable="false"
   />
 </template>
 

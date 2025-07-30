@@ -162,6 +162,12 @@
     "image": "/characters/afida-tourments/afida-tourments.png"
   },
   {
+    "nom": "Aife",
+    "type": "character",
+    "url": "/audio/musics/character/aife.ogg",
+    "image": null
+  },
+  {
     "nom": "Alice Cordonbleu",
     "type": "character",
     "url": "/audio/musics/character/alice-cordonbleu.ogg",
