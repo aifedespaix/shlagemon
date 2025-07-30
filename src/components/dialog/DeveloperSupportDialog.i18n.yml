@@ -3,7 +3,7 @@ fr:
     start:
       text: >-
         Salut, moi c'est Aife, le développeur de ce jeu.
-        Si tu apprécies Shlagémon, et que tu souhaites me soutenir dans le développement du jeu et pourquoi pas d'autres projets, tu peux contribuer financièrement à mon travail.
+        Si tu apprécies Shlagémon et que tu souhaites me soutenir dans le développement du jeu, et pourquoi pas d'autres projets, tu peux contribuer financièrement à mon travail.
       responses:
         donate: Faire un don
         refuse: Refuser
@@ -12,11 +12,11 @@ fr:
       responses:
         next: Suite
     donateNo:
-      text: Pas cool, sale pauvre. Bon tant pis, le jeu est gratuit après tout.
+      text: Pas cool, sale pauvre. Bon, tant pis, le jeu est gratuit après tout.
       responses:
         next: Suite
     discord:
-      text: Tu peux aussi rejoindre la communauté sur Discord. Pour discuter du jeu, partager tes idées, les potentiels bugs, ou juste pour le fun.
+      text: Tu peux aussi rejoindre la communauté sur Discord. Pour discuter du jeu, partager tes idées, les bugs potentiels, ou juste pour le fun.
       responses:
         join: Rejoindre
         skip: Refuser
@@ -25,27 +25,28 @@ fr:
       responses:
         finish: Fermer
     discordNo:
-      text: T'es vraiment dégueulasse. Mais bon... amuse toi bien quand même tête de bite.
+      text: T'es vraiment dégueulasse. Mais bon... amuse-toi bien quand même, tête de bite.
       responses:
         finish: Fermer
 en:
   steps:
     start:
       text: >-
-        Hi, I'm Aife, the developer of this game. If you enjoy Shlagémon, you can support development.
+        Hi, I'm Aife, the developer of this game.
+        If you enjoy Shlagémon and want to support me as I continue developing this game and maybe other projects, you can contribute financially to my work.
       responses:
         donate: Donate
         refuse: Refuse
     donateYes:
-      text: Thanks a lot for your support!
+      text: Thanks so much for your support!
       responses:
         next: Next
     donateNo:
-      text: Not cool, cheapskate!
+      text: Not cool, you cheapskate. Oh well, the game is free after all.
       responses:
         next: Next
     discord:
-      text: You can also join the community on Discord.
+      text: You can also join the community on Discord to discuss the game, share your ideas, report potential bugs, or just for fun.
       responses:
         join: Join
         skip: Refuse
@@ -54,6 +55,6 @@ en:
       responses:
         finish: Close
     discordNo:
-      text: You're disgusting. Enjoy the game!
+      text: You're really disgusting. Oh well... have fun anyway, dickhead.
       responses:
         finish: Close
