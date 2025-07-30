@@ -40,19 +40,12 @@ function setI18nLanguage(lang: Locale) {
 }
 
 export async function loadLanguageAsync(lang: Locale): Promise<Locale> {
-  // If the same language
-  if (i18n.global.locale.value === lang)
-    return setI18nLanguage(lang)
-
-  // If the language was already loaded
-  if (loadedLanguages.includes(lang))
-    return setI18nLanguage(lang)
-
-  // If the language hasn't been loaded yet
-  const messages = localesMap[lang]
-  if (messages)
-    i18n.global.setLocaleMessage(lang, messages)
-  loadedLanguages.push(lang)
+  if (!loadedLanguages.includes(lang)) {
+    const messages = localesMap[lang]
+    if (messages)
+      i18n.global.setLocaleMessage(lang, messages)
+    loadedLanguages.push(lang)
+  }
   return setI18nLanguage(lang)
 }
 
