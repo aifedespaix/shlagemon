@@ -35,10 +35,10 @@ function assign(key: string) {
         <img
           v-else-if="modal.current?.image"
           :src="modal.current.image"
-          :alt="modal.current?.name"
+          :alt="t(modal.current?.name || '')"
           class="h-10 w-10 object-contain"
         >
-        <span class="text-center font-semibold">{{ modal.current?.name }}</span>
+        <span class="text-center font-semibold">{{ t(modal.current?.name || '') }}</span>
       </div>
       <div class="w-full flex flex-col items-center gap-2 border rounded p-2">
         <p class="text-center text-sm">
