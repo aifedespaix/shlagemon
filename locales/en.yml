@@ -604,6 +604,34 @@ components:
           responses:
             back: Back
             valid: Thanks!
+    DeveloperSupportDialog:
+      steps:
+        start:
+          text: Hi, I'm F, the developer of this game. You've been idle for a while. If you enjoy Shlagémon, consider supporting development.
+          responses:
+            donate: Donate
+            refuse: Refuse
+        donateYes:
+          text: Thanks a lot for your support!
+          responses:
+            next: Next
+        donateNo:
+          text: Not cool, cheapskate!
+          responses:
+            next: Next
+        discord:
+          text: You can also join the community on Discord.
+          responses:
+            join: Join
+            skip: Refuse
+        discordYes:
+          text: Thanks! See you on the server. Enjoy the game!
+          responses:
+            finish: Close
+        discordNo:
+          text: You're disgusting. Enjoy the game!
+          responses:
+            finish: Close
   minigame:
     MasterMind:
       messages:

@@ -630,6 +630,34 @@ components:
           responses:
             back: Retour
             valid: Merci vieux !
+    DeveloperSupportDialog:
+      steps:
+        start:
+          text: Salut, moi c'est F, le développeur de ce jeu. On dirait que tu es inactif depuis un moment. Si tu apprécies Shlagémon, tu peux me soutenir.
+          responses:
+            donate: Faire un don
+            refuse: Refuser
+        donateYes:
+          text: Merci beaucoup pour ton soutien !
+          responses:
+            next: Suite
+        donateNo:
+          text: Pas cool, radin !
+          responses:
+            next: Suite
+        discord:
+          text: Tu peux aussi rejoindre la communauté sur Discord.
+          responses:
+            join: Rejoindre
+            skip: Refuser
+        discordYes:
+          text: Merci ! À bientôt sur le serveur. Bon jeu !
+          responses:
+            finish: Fermer
+        discordNo:
+          text: T'es vraiment dégueulasse. Bon jeu !
+          responses:
+            finish: Fermer
   minigame:
     MasterMind:
       messages:

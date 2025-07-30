@@ -60,12 +60,11 @@ function choose(r: DialogResponse) {
     ? 'dialog-back'
     : 'confirm'
   audio.playSfx(effect)
+  if (r.action)
+    r.action()
   if (r.nextId) {
     currentNode.value = dialogTree.find(d => d.id === r.nextId)
     typingDone.value = false
-  }
-  else if (r.action) {
-    r.action()
   }
 }
 </script>
