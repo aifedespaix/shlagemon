@@ -1,6 +1,7 @@
 fr:
   startBattle: Démarrer le combat
   quit: Abandonner
+  retry: Recommencer
   continue: Continuer
   defeat: Défaite...
   queen: reine
@@ -10,6 +11,7 @@ fr:
 en:
   startBattle: Start battle
   quit: Surrender
+  retry: Retry
   continue: Continue
   defeat: Defeat...
   queen: queen

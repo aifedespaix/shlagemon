@@ -71,10 +71,25 @@ const afterDialogTree = computed<DialogNode[]>(() => {
     ]
   }
   else {
+    const defeatText = trainer.value.dialogDefeat
+      ? t(trainer.value.dialogDefeat)
+      : t('components.battle.Trainer.defeat')
+    if (isZoneKing.value) {
+      return [
+        {
+          id: 'start',
+          text: defeatText,
+          responses: [
+            { label: t('components.battle.Trainer.retry'), type: 'valid', action: startFight },
+            { label: t('components.battle.Trainer.quit'), type: 'danger', action: cancelFight },
+          ],
+        },
+      ]
+    }
     return [
       {
         id: 'start',
-        text: trainer.value.dialogDefeat ? t(trainer.value.dialogDefeat) : t('components.battle.Trainer.defeat'),
+        text: defeatText,
         responses: [
           { label: t('components.battle.Trainer.continue'), type: 'valid', action: finish },
         ],
