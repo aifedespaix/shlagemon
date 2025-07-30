@@ -33,11 +33,15 @@ function toggleItem(id: string) {
 <template>
   <LayoutScrollablePanel>
     <template #header>
-      <UiSelectOption
-        v-model="filter.status"
-        :options="statusOptions"
-      />
-      <UiSearchInput v-model="filter.search" class="flex-1" />
+      <div class="flex flex-wrap gap-1 p-1 w-full">
+        <div class="min-w-24 flex-1">
+        <UiSelectOption
+          v-model="filter.status"
+          :options="statusOptions"
+        />
+        </div>
+        <UiSearchInput v-model="filter.search" class="flex-1 min-w-22" />
+      </div>
     </template>
 
     <template #content>

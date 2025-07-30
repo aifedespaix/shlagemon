@@ -187,13 +187,13 @@ function onUse(item: Item) {
 
 <template>
   <section v-if="inventory.list.length" class="h-full w-full flex flex-col gap-2 overflow-hidden">
-    <div class="flex flex-wrap gap-2 px-1">
+    <div class="flex flex-wrap gap-1 px-2">
       <UiSortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
-      <UiSearchInput v-model="filter.search" class="flex-1" />
+      <UiSearchInput v-model="filter.search" class="min-w-22 flex-1" />
     </div>
     <UiTabs
       v-if="availableCategories.length > 0"
