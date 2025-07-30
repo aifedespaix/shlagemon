@@ -1,4 +1,8 @@
 fr:
   challenge: 'Défier {label}'
+  male: le roi
+  female: la reine
 en:
   challenge: 'Challenge {label}'
+  male: the king
+  female: the queen
