@@ -57,8 +57,11 @@ const evolutionInfo = computed(() => {
   const { condition } = props.mon.base.evolution
   if (condition.type === 'lvl')
     return t('components.shlagemon.Detail.evolveByLevel', { level: condition.value })
-  if (condition.type === 'item')
-    return t('components.shlagemon.Detail.evolveByItem', { item: condition.value.name })
+  if (condition.type === 'item') {
+    return t('components.shlagemon.Detail.evolveByItem', {
+      item: t(condition.value.name),
+    })
+  }
   return null
 })
 
