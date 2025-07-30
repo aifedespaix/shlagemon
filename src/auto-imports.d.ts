@@ -259,6 +259,7 @@ declare global {
   const useLocaleStore: typeof import('./stores/locale')['useLocaleStore']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useMainPanelStore: typeof import('./stores/mainPanel')['useMainPanelStore']
+  const useManualAttackStatsStore: typeof import('./stores/manualAttackStats')['useManualAttackStatsStore']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMapModalStore: typeof import('./stores/mapModal')['useMapModalStore']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
@@ -448,6 +449,9 @@ declare global {
   // @ts-ignore
   export type { MainPanel } from './stores/mainPanel'
   import('./stores/mainPanel')
+  // @ts-ignore
+  export type { CombatClickStats } from './stores/manualAttackStats'
+  import('./stores/manualAttackStats')
   // @ts-ignore
   export type { MobileTab } from './stores/mobileTab'
   import('./stores/mobileTab')
@@ -709,6 +713,7 @@ declare module 'vue' {
     readonly useLocaleStore: UnwrapRef<typeof import('./stores/locale')['useLocaleStore']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
+    readonly useManualAttackStatsStore: UnwrapRef<typeof import('./stores/manualAttackStats')['useManualAttackStatsStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>

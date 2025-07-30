@@ -9,6 +9,7 @@ export function useBattleCore(options: BattleCoreOptions) {
   const battle = useBattleStore()
   const dex = useShlagedexStore()
   const audio = useAudioStore()
+  const manualAttack = useManualAttackStatsStore()
   const {
     playerEffect,
     enemyEffect,
@@ -43,6 +44,7 @@ export function useBattleCore(options: BattleCoreOptions) {
   function stopBattle() {
     battleActive.value = false
     stopInterval()
+    manualAttack.endCombat()
   }
 
   function startBattle(existing?: DexShlagemon | null) {
@@ -57,6 +59,7 @@ export function useBattleCore(options: BattleCoreOptions) {
     playerFainted.value = false
     enemyFainted.value = false
     battleActive.value = true
+    manualAttack.startCombat()
     startInterval()
   }
 
