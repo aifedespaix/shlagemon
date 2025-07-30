@@ -165,7 +165,7 @@
     "nom": "Aife",
     "type": "character",
     "url": "/audio/musics/character/aife.ogg",
-    "image": null
+    "image": "/characters/aife/aife.png"
   },
   {
     "nom": "Alice Cordonbleu",

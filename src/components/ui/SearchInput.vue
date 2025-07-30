@@ -1,8 +1,17 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{ modelValue?: string, placeholder?: string }>(), {
+const props = withDefaults(defineProps<{
+  modelValue?: string
+  placeholder?: string
+  disabled?: boolean
+  isCompact?: boolean
+}>(), {
   placeholder: 'Recherche',
+  modelValue: '',
+  disabled: false,
+  isCompact: true,
 })
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
+
 function onInput(e: Event) {
   emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
@@ -12,21 +21,32 @@ function clear() {
 </script>
 
 <template>
-  <div class="relative min-w-36 flex-1">
+  <div class="relative w-full">
     <input
       :value="props.modelValue"
       type="text"
       :placeholder="props.placeholder"
-      class="focus:border-primary w-full border border-gray-300 rounded bg-white px-2 py-1 pr-6 text-sm dark:border-gray-700 dark:bg-gray-800 focus:outline-none"
+      :disabled="props.disabled"
+      class="w-full border-2 border-slate-400 rounded-lg bg-white pr-10 text-sm text-slate-800 shadow-sm transition-all dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-sky-500" :class="[
+        props.isCompact
+          ? 'px-2 py-1 h-8 text-xs'
+          : 'px-4 py-2 h-11',
+      ]"
       @input="onInput"
     >
     <button
       v-if="props.modelValue"
       type="button"
-      class="absolute right-1 top-1/2 h-4 w-4 flex items-center justify-center rounded text-gray-500 -translate-y-1/2 hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
+      class="absolute right-2 top-1/2 flex items-center justify-center rounded text-slate-400 transition-colors -translate-y-1/2 hover:bg-slate-100 dark:text-slate-300 focus-visible:ring-2 focus-visible:ring-sky-500 dark:hover:bg-slate-700" :class="[
+        props.isCompact
+          ? 'h-5 w-5 text-base'
+          : 'h-6 w-6 text-lg',
+      ]"
+      aria-label="Effacer la recherche"
+      tabindex="0"
       @click="clear"
     >
-      <div i-carbon-close />
+      <span class="i-carbon-close pointer-events-none" aria-hidden="true" />
     </button>
   </div>
 </template>
