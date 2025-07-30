@@ -40,7 +40,7 @@ const beforeDialogTree = computed<DialogNode[]>(() => {
   return [
     {
       id: 'start',
-      text: trainer.value.dialogBefore,
+      text: t(trainer.value.dialogBefore),
       responses: [
         { label: t('components.battle.Trainer.startBattle'), type: 'primary', action: startFight },
         { label: t('components.battle.Trainer.quit'), type: 'danger', action: cancelFight },
@@ -56,7 +56,7 @@ const afterDialogTree = computed<DialogNode[]>(() => {
     return [
       {
         id: 'start',
-        text: trainer.value.dialogAfter,
+        text: t(trainer.value.dialogAfter),
         responses: [
           { label: t('components.battle.Trainer.continue'), nextId: 'reward', type: 'primary' },
         ],
@@ -74,7 +74,7 @@ const afterDialogTree = computed<DialogNode[]>(() => {
     return [
       {
         id: 'start',
-        text: trainer.value.dialogDefeat || t('components.battle.Trainer.defeat'),
+        text: trainer.value.dialogDefeat ? t(trainer.value.dialogDefeat) : t('components.battle.Trainer.defeat'),
         responses: [
           { label: t('components.battle.Trainer.continue'), type: 'valid', action: finish },
         ],
