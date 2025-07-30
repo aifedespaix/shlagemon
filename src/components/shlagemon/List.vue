@@ -158,6 +158,7 @@ function changeActive(mon: DexShlagemon) {
             : '',
         ]"
         @click.stop="handleClick(mon)"
+        @contextmenu.stop.prevent="changeActive(mon)"
       >
         <div v-if="mon.heldItemId" class="absolute right-1 top-1 h-4 w-4">
           <WearableItemIcon
