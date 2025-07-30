@@ -5,7 +5,7 @@ fr:
       responses:
         next: Continuer
     step2:
-      text: La rareté définit le véritable potentiel d'un Shlagémon.
+      text: Sache que la rareté définit le véritable potentiel d'un Shlagémon.
       responses:
         back: Retour
         next: Suite
@@ -15,7 +15,7 @@ fr:
         back: Retour
         next: Suite
     step4:
-      text: Capturer un doublon échange des niveaux contre de la rareté.
+      text: Capturer un doublon permet d'échanger des niveaux contre de la rareté.
       responses:
         back: Retour
         next: Suite
@@ -25,38 +25,38 @@ fr:
         back: Retour
         next: Suite
     step6:
-      text: Certains lient leur rareté à leur niveau. {starter} en est capable. Prends donc cette Super Shlagéball !
+      text: Certains Shlagémons ont la faculté de relier leur rareté à leur niveau. C'est une capacité rare que peuvent avoir certains Shlagémons comme ton {starter} ! En attendant, prends donc cette Super Shlagéball !
       responses:
         back: Retour
         valid: Merci Professeur !
 en:
   steps:
     step1:
-      text: Look, you caught a Shlagemon you already owned.
+      text: Looks like you’ve captured a Shlagémon you already own.
       responses:
         next: Continue
     step2:
-      text: Rarity determines a Shlagemon's true potential.
+      text: Keep in mind that rarity defines the true potential of a Shlagémon.
       responses:
         back: Back
         next: Next
     step3:
-      text: The further you go, the rarer the Shlagemon you'll meet.
+      text: The further you progress, the more rare Shlagémons you’ll encounter.
       responses:
         back: Back
         next: Next
     step4:
-      text: Catching a duplicate trades levels for rarity.
+      text: Capturing a duplicate lets you trade levels for rarity.
       responses:
         back: Back
         next: Next
     step5:
-      text: If the captured one is very rare, yours inherits its rarity. Otherwise it gains only one rarity point and loses one level.
+      text: If the one you catch is very rare, your Shlagémon will inherit its rarity. Otherwise, it’ll gain just one rarity point and lose a level.
       responses:
         back: Back
         next: Next
     step6:
-      text: A few link rarity to their level. {starter} can do it. Here, take this Super Shlageball!
+      text: Some Shlagémons can link their rarity to their level. That’s a rare ability found in a few Shlagémons—like your {starter}! In the meantime, take this Super Shlagéball!
       responses:
         back: Back
-        valid: Thanks Professor!
+        valid: Thanks, Professor!

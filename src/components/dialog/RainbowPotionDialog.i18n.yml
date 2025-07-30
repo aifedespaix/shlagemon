@@ -1,55 +1,74 @@
 fr:
   steps:
     step1:
-      text: Bravo ! Ton Shlagémon atteint le niveau 25. Les rois deviennent de plus en plus coriaces.
+      text: >-
+        Bravo ! Tu as un Shlagémon qui a atteint le niveau 25 ! 
+        Tu dois te rendre compte que les combats deviennent de plus en plus difficiles. Surtout contre les rois et reines de zone !
       responses:
         next: Continuer
     step2:
-      text: Chaque victoire renforce leur couronne. Prépare-toi à des affrontements plus stratégiques.
+      text: >-
+        Plus tu progresses, plus tu croisera des adversaires coriaces !
+        Prépare-toi à des affrontements plus stratégiques.
       responses:
         back: Retour
         next: Continuer
     step3:
       text: >-
-        Il existe une potion très rare aux couleurs d'arc-en-ciel. Utilisée à la fin d'un combat,
-        elle peut asséner de lourds dégâts ou soigner ton compagnon.
+        Il existe une potion très rare aux couleurs d'arc-en-ciel. 
+        Elle a un pouvoir d'une puissance rare !
+        Elle peut asséner de lourds dégâts à un adversaire, ou même soigner ton compagnon !
       responses:
         back: Retour
         next: Continuer
     step4:
-      text: Cette potion ne peut être utilisée qu'une seule fois et uniquement face à un roi. Choisis bien ton moment.
+      text: >-
+        J'en possède une, justement ! 
+        Cette potion ne peut être utilisée qu'une seule fois et uniquement face au roi ou la reine d'une zone.
       responses:
         back: Retour
         next: Continuer
     step5:
-      text: J'en ai une seule, mais je te la donne. Prends-en grand soin, elle vaut extrêmement cher !
+      text: >-
+        J'en ai une seule, mais je te la donne. 
+        Prends-en grand soin, elle vaut extrêmement cher ! Choisis bien ton moment.
       responses:
         back: Retour
         valid: Merci Professeur !
 en:
   steps:
     step1:
-      text: Congrats! Your Shlagemon reached level 25. Kings are becoming tougher.
+      text: >-
+        Congratulations! You’ve got a Shlagémon that reached level 25!
+        You should realize that battles are getting tougher—especially against zone kings and queens!
       responses:
         next: Continue
     step2:
-      text: Each victory makes them stronger, so you'll need sharper strategies.
+      text: >-
+        The further you go, the tougher your opponents will be!
+        Get ready for more strategic battles.
       responses:
         back: Back
         next: Continue
     step3:
       text: >-
-        There's a very rare rainbow potion. Used at the end of battle, it can deal massive damage or heal your companion.
+        There’s a very rare potion, shimmering with all the colors of the rainbow.
+        It holds incredible power!
+        It can deal massive damage to an opponent, or even heal your companion!
       responses:
         back: Back
         next: Continue
     step4:
-      text: This potion works only once and only in a king battle. Choose your moment carefully.
+      text: >-
+        As it happens, I have one!
+        This potion can only be used once, and only against a king or queen of a zone.
       responses:
         back: Back
         next: Continue
     step5:
-      text: I have only one, but I'm giving it to you. Use it wisely, it's extremely valuable!
+      text: >-
+        I have just one, but I’m giving it to you.
+        Take great care of it—it’s extremely valuable! Pick your moment wisely.
       responses:
         back: Back
-        valid: Thanks Professor!
+        valid: Thanks, Professor!

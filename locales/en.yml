@@ -131,6 +131,7 @@ components:
       king: king
       zoneKingChallenge: '{label} zone challenge'
       reward: +{amount} Shlagidiamonds
+      retry: Retry
     CaptureLimitModal:
       text: >-
         To capture this level {level} Shlagemon, you need a badge. Visit the
@@ -205,8 +206,8 @@ components:
       main: Main
       confirmTitle: Release a Shlagemon?
       confirmText: Be careful, if you release it, it will shlage the whole land.
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       hp: HP
       attack: Attack
       defense: Defense
@@ -224,8 +225,8 @@ components:
         "{from}" wants to evolve into "{to}", will you allow it or stop the
         spread of shlaguitude?
       alreadyOwned: You already own this evolution
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
   LanguageSelector:
     label: Language
     en: English
@@ -645,38 +646,40 @@ components:
     DuplicateRarityDialog:
       steps:
         step1:
-          text: Look, you caught a Shlagemon you already owned.
+          text: Looks like you’ve captured a Shlagémon you already own.
           responses:
             next: Continue
         step2:
-          text: Rarity determines a Shlagemon's true potential.
+          text: Keep in mind that rarity defines the true potential of a Shlagémon.
           responses:
             back: Back
             next: Next
         step3:
-          text: The further you go, the rarer the Shlagemon you'll meet.
+          text: The further you progress, the more rare Shlagémons you’ll encounter.
           responses:
             back: Back
             next: Next
         step4:
-          text: Catching a duplicate trades levels for rarity.
+          text: Capturing a duplicate lets you trade levels for rarity.
           responses:
             back: Back
             next: Next
         step5:
           text: >-
-            If the captured one is very rare, yours inherits its rarity.
-            Otherwise it gains only one rarity point and loses one level.
+            If the one you catch is very rare, your Shlagémon will inherit its
+            rarity. Otherwise, it’ll gain just one rarity point and lose a
+            level.
           responses:
             back: Back
             next: Next
         step6:
           text: >-
-            A few link rarity to their level. {starter} can do it. Here, take
-            this Super Shlageball!
+            Some Shlagémons can link their rarity to their level. That’s a rare
+            ability found in a few Shlagémons—like your {starter}! In the
+            meantime, take this Super Shlagéball!
           responses:
             back: Back
-            valid: Thanks Professor!
+            valid: Thanks, Professor!
         discordNo:
           text: You're really disgusting. Oh well... have fun anyway, dickhead.
           responses:
@@ -685,36 +688,40 @@ components:
       steps:
         step1:
           text: >-
-            Congrats! Your Shlagemon reached level 25. Kings are becoming
-            tougher.
+            Congratulations! You’ve got a Shlagémon that reached level 25! You
+            should realize that battles are getting tougher—especially against
+            zone kings and queens!
           responses:
             next: Continue
         step2:
-          text: Each victory makes them stronger, so you'll need sharper strategies.
+          text: >-
+            The further you go, the tougher your opponents will be! Get ready
+            for more strategic battles.
           responses:
             back: Back
             next: Continue
         step3:
           text: >-
-            There's a very rare rainbow potion. Used at the end of battle, it
-            can deal massive damage or heal your companion.
+            There’s a very rare potion, shimmering with all the colors of the
+            rainbow. It holds incredible power! It can deal massive damage to an
+            opponent, or even heal your companion!
           responses:
             back: Back
             next: Continue
         step4:
           text: >-
-            This potion works only once and only in a king battle. Choose your
-            moment carefully.
+            As it happens, I have one! This potion can only be used once, and
+            only against a king or queen of a zone.
           responses:
             back: Back
             next: Continue
         step5:
           text: >-
-            I have only one, but I'm giving it to you. Use it wisely, it's
-            extremely valuable!
+            I have just one, but I’m giving it to you. Take great care of
+            it—it’s extremely valuable! Pick your moment wisely.
           responses:
             back: Back
-            valid: Thanks Professor!
+            valid: Thanks, Professor!
   minigame:
     MasterMind:
       messages:
@@ -2851,8 +2858,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Fancy a game of Connect Four?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Fire Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2861,8 +2868,8 @@ data:
       restart: Restart
     ShlagMind:
       startText: Fancy a game of ShlagMind?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2870,8 +2877,8 @@ data:
       restart: Restart
     Battleship:
       startText: How about a game of Battleship?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Victory! I give you a Water Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2879,8 +2886,8 @@ data:
       back: Back
     ShlagPairs:
       startText: Fancy a game of pairs?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2888,8 +2895,8 @@ data:
       back: Back
     ShlagTaquin:
       startText: Fancy a sliding puzzle game?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2897,8 +2904,8 @@ data:
       back: Back
     TicTacToe:
       startText: Fancy a game of tic tac toe?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Grass Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2906,8 +2913,8 @@ data:
       back: Back
     MasterMind:
       startText: Fancy a game of ShlagMind?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2915,8 +2922,8 @@ data:
       back: Back
     Pairs:
       startText: Fancy a game of pairs?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2924,8 +2931,8 @@ data:
       back: Back
     Taquin:
       startText: Fancy a sliding puzzle game?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.

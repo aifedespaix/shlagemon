@@ -133,6 +133,7 @@ components:
       king: roi
       zoneKingChallenge: Défi du {label} de la zone
       reward: +{amount} Shlagédiamonds
+      retry: Recommencer
     CaptureLimitModal:
       text: >-
         Pour pouvoir attraper ce Shlagémon de niveau {level}, il vous faut un
@@ -210,8 +211,8 @@ components:
       main: Principal
       confirmTitle: Relâcher un Shlagémon ?
       confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       hp: PV
       attack: Attaque
       defense: Défense
@@ -229,8 +230,8 @@ components:
         « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou
         l'empêcher de répandre sa shlaguitude ?
       alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
   LanguageSelector:
     label: Langue
     en: Anglais
@@ -680,7 +681,7 @@ components:
           responses:
             next: Continuer
         step2:
-          text: La rareté définit le véritable potentiel d'un Shlagémon.
+          text: Sache que la rareté définit le véritable potentiel d'un Shlagémon.
           responses:
             back: Retour
             next: Suite
@@ -690,7 +691,9 @@ components:
             back: Retour
             next: Suite
         step4:
-          text: Capturer un doublon échange des niveaux contre de la rareté.
+          text: >-
+            Capturer un doublon permet d'échanger des niveaux contre de la
+            rareté.
           responses:
             back: Retour
             next: Suite
@@ -703,8 +706,10 @@ components:
             next: Suite
         step6:
           text: >-
-            Certains lient leur rareté à leur niveau. {starter} en est capable.
-            Prends donc cette Super Shlagéball !
+            Certains Shlagémons ont la faculté de relier leur rareté à leur
+            niveau. C'est une capacité rare que peuvent avoir certains
+            Shlagémons comme ton {starter} ! En attendant, prends donc cette
+            Super Shlagéball !
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -718,36 +723,37 @@ components:
       steps:
         step1:
           text: >-
-            Bravo ! Ton Shlagémon atteint le niveau 25. Les rois deviennent de
-            plus en plus coriaces.
+            Bravo ! Tu as un Shlagémon qui a atteint le niveau 25 !  Tu dois te
+            rendre compte que les combats deviennent de plus en plus difficiles.
+            Surtout contre les rois et reines de zone !
           responses:
             next: Continuer
         step2:
           text: >-
-            Chaque victoire renforce leur couronne. Prépare-toi à des
-            affrontements plus stratégiques.
+            Plus tu progresses, plus tu croisera des adversaires coriaces !
+            Prépare-toi à des affrontements plus stratégiques.
           responses:
             back: Retour
             next: Continuer
         step3:
           text: >-
-            Il existe une potion très rare aux couleurs d'arc-en-ciel. Utilisée
-            à la fin d'un combat, elle peut asséner de lourds dégâts ou soigner
-            ton compagnon.
+            Il existe une potion très rare aux couleurs d'arc-en-ciel.  Elle a
+            un pouvoir d'une puissance rare ! Elle peut asséner de lourds dégâts
+            à un adversaire, ou même soigner ton compagnon !
           responses:
             back: Retour
             next: Continuer
         step4:
           text: >-
-            Cette potion ne peut être utilisée qu'une seule fois et uniquement
-            face à un roi. Choisis bien ton moment.
+            J'en possède une, justement !  Cette potion ne peut être utilisée
+            qu'une seule fois et uniquement face au roi ou la reine d'une zone.
           responses:
             back: Retour
             next: Continuer
         step5:
           text: >-
-            J'en ai une seule, mais je te la donne. Prends-en grand soin, elle
-            vaut extrêmement cher !
+            J'en ai une seule, mais je te la donne.  Prends-en grand soin, elle
+            vaut extrêmement cher ! Choisis bien ton moment.
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -3191,8 +3197,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Une partie de Puissance 4 ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Feu.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3201,8 +3207,8 @@ data:
       restart: Recommencer
     ShlagMind:
       startText: Une partie de ShlagMind ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3210,8 +3216,8 @@ data:
       restart: Recommencer
     Battleship:
       startText: Une partie de bataille navale ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Victoire ! Je te donne un œuf Eau.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3219,8 +3225,8 @@ data:
       back: Retour
     ShlagPairs:
       startText: Une partie du jeu des paires ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Dommage !
@@ -3228,8 +3234,8 @@ data:
       back: Retour
     ShlagTaquin:
       startText: Une partie de taquin ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Je te donne un œuf Foudre.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3237,8 +3243,8 @@ data:
       back: Retour
     TicTacToe:
       startText: Envie d'une partie de morpion ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Bien joué ! Je te donne un Œuf Herbe.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3246,8 +3252,8 @@ data:
       back: Retour
     MasterMind:
       startText: Une partie de ShlagMind ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3255,8 +3261,8 @@ data:
       back: Retour
     Pairs:
       startText: Une partie du jeu des paires ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Dommage !
@@ -3264,8 +3270,8 @@ data:
       back: Retour
     Taquin:
       startText: Une partie de taquin ?
-      yes: Oui
-      no: Non
+      'yes': Oui
+      'no': Non
       winText: Bravo ! Je te donne un œuf Foudre.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
