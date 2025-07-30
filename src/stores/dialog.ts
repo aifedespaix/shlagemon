@@ -69,8 +69,9 @@ export const useDialogStore = defineStore('dialog', () => {
   const ui: ReturnType<typeof useUIStore> = useUIStore()
   const mobile = useMobileTabStore()
   const potionInfo = usePotionInfoStore()
-  const showDeveloperSupport = ref(false)
-  useTimeoutFn(() => (showDeveloperSupport.value = true), 20 * 60_000)
+  const showDeveloperSupport = computed(
+    () => Boolean(visit.visited['village-boule']),
+  )
 
   const done = ref<DialogDone>({})
   const dialogs: Array<DialogItem | DialogItem<WearableItemDialogProps>> = [
