@@ -5,6 +5,8 @@ const store = useWearableItemStore()
 const dex = useShlagedexStore()
 const { t } = useI18n()
 
+const itemName = computed(() => store.current ? t(store.current.name) : '')
+
 function select(mon: DexShlagemon) {
   store.setHolder(mon.id)
 }
@@ -14,7 +16,7 @@ function select(mon: DexShlagemon) {
   <UiModal v-model="store.isVisible" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
-        {{ t('components.inventory.WearableItemModal.title', { name: t(store.current?.name || '') }) }}
+        {{ store.current ? t('components.inventory.WearableItemModal.title', { name: itemName }) : '' }}
       </h3>
       <ShlagemonQuickSelect
         v-if="dex.shlagemons.length"
