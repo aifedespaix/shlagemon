@@ -2,7 +2,7 @@ fr:
   steps:
     start:
       text: >-
-        Salut, moi c'est F, le développeur de ce jeu. On dirait que tu es inactif depuis un moment. Si tu apprécies Shlagémon, tu peux me soutenir.
+        Salut, moi c'est Aife, le développeur de ce jeu. Tu joues depuis un bon moment d'affilée. Si tu apprécies Shlagémon, tu peux me soutenir.
       responses:
         donate: Faire un don
         refuse: Refuser
@@ -31,7 +31,7 @@ en:
   steps:
     start:
       text: >-
-        Hi, I'm F, the developer of this game. Looks like you've been idle for a while. If you enjoy Shlagémon, you can support development.
+        Hi, I'm Aife, the developer of this game. You've been playing for a while. If you enjoy Shlagémon, you can support development.
       responses:
         donate: Donate
         refuse: Refuse

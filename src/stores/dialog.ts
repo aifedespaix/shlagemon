@@ -69,7 +69,8 @@ export const useDialogStore = defineStore('dialog', () => {
   const ui: ReturnType<typeof useUIStore> = useUIStore()
   const mobile = useMobileTabStore()
   const potionInfo = usePotionInfoStore()
-  const idle = useIdle(20 * 60_000)
+  const showDeveloperSupport = ref(false)
+  useTimeoutFn(() => (showDeveloperSupport.value = true), 20 * 60_000)
 
   const done = ref<DialogDone>({})
   const dialogs: Array<DialogItem | DialogItem<WearableItemDialogProps>> = [
@@ -236,7 +237,7 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'developerSupport',
       component: markRaw(DeveloperSupportDialog),
-      condition: () => idle.value,
+      condition: () => showDeveloperSupport.value,
     },
   ]
 
