@@ -58,7 +58,7 @@ const emit = defineEmits(['click', 'activate'])
       </span>
     </div>
     <!-- Infos principales (toujours 2 lignes) -->
-    <div class="flex flex-col min-w-0 flex-1 leading-tight">
+    <div class="flex flex-col min-w-0 flex-1 leading-tight gap-1">
       <div class="flex items-center gap-0.5 font-semibold text-sm truncate">
         {{ mon.base.name }}
         <span
@@ -70,7 +70,7 @@ const emit = defineEmits(['click', 'activate'])
         </span>
       </div>
       <div class="flex gap-0.5">
-        <ShlagemonType v-for="t in mon.base.types" :key="t.id" :value="t" size="2xs" />
+        <ShlagemonType v-for="t in mon.base.types" :key="t.id" :value="t" size="xs" />
       </div>
     </div>
     <!-- Colonne droite, compacte et alignée -->
