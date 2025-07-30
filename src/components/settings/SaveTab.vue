@@ -10,14 +10,20 @@ const importCode = ref('')
 const showImport = ref(false)
 const copied = ref(false)
 const fileInput = ref<HTMLInputElement>()
+const generating = ref(false)
+const loading = ref(false)
 
-function generateExport() {
+async function generateExport() {
+  generating.value = true
+  await nextTick()
+  await new Promise(resolve => setTimeout(resolve))
   exportCode.value = exportSave(collectSave())
+  generating.value = false
 }
 
-function copyExport() {
+async function copyExport() {
   if (!exportCode.value)
-    generateExport()
+    await generateExport()
   navigator.clipboard.writeText(exportCode.value)
   copied.value = true
   toast.success(t('components.settings.SaveTab.copied'))
@@ -38,10 +44,14 @@ function downloadExport() {
   URL.revokeObjectURL(url)
 }
 
-function loadImport() {
+async function loadImport() {
+  loading.value = true
+  await nextTick()
+  await new Promise(resolve => setTimeout(resolve))
   const data = importSave(importCode.value)
   if (!data) {
     toast.error(t('components.settings.SaveTab.invalid'))
+    loading.value = false
     return
   }
   applySave(data)
@@ -70,6 +80,9 @@ function loadFromFile(event: Event) {
       {{ t('components.settings.SaveTab.playtime', { minutes: playtime.minutes }) }}
     </p>
     <section class="flex flex-col items-center gap-2">
+      <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+        {{ t('components.settings.SaveTab.exportDesc') }}
+      </p>
       <label v-if="exportCode" class="font-bold">
         {{ t('components.settings.SaveTab.exportLabel') }}
       </label>
@@ -82,9 +95,16 @@ function loadFromFile(event: Event) {
         @focus="($event.target as HTMLTextAreaElement).select()"
       />
       <div v-if="exportCode" class="w-full flex gap-2">
-        <UiButton class="flex flex-1 items-center justify-center gap-1" @click="generateExport">
-          <div i-carbon-refresh />
-          {{ t('components.settings.SaveTab.generate') }}
+        <UiButton
+          class="flex flex-1 items-center justify-center gap-1"
+          :disabled="generating"
+          @click="generateExport"
+        >
+          <UiLoader v-if="generating" size="xs" />
+          <template v-else>
+            <div i-carbon-refresh />
+            {{ t('components.settings.SaveTab.generate') }}
+          </template>
         </UiButton>
         <UiButton class="flex flex-1 items-center justify-center gap-1" @click="copyExport">
           <div :class="copied ? 'i-carbon-checkmark' : 'i-carbon-copy'" />
@@ -98,14 +118,21 @@ function loadFromFile(event: Event) {
       <UiButton
         v-else
         class="mx-auto flex items-center gap-1"
+        :disabled="generating"
         @click="generateExport"
       >
-        <div i-carbon-play />
-        {{ t('components.settings.SaveTab.generate') }}
+        <UiLoader v-if="generating" size="xs" />
+        <template v-else>
+          <div i-carbon-play />
+          {{ t('components.settings.SaveTab.generate') }}
+        </template>
       </UiButton>
     </section>
 
     <section class="flex flex-col items-center gap-2">
+      <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+        {{ t('components.settings.SaveTab.importDesc') }}
+      </p>
       <label v-if="showImport" class="font-bold">
         {{ t('components.settings.SaveTab.importLabel') }}
       </label>
@@ -116,9 +143,16 @@ function loadFromFile(event: Event) {
         class="w-full border border-gray-300 rounded bg-white p-2 text-xs font-mono dark:border-gray-700 dark:bg-gray-800"
       />
       <div v-if="showImport" class="w-full flex gap-2">
-        <UiButton class="flex flex-1 items-center justify-center gap-1" @click="loadImport">
-          <div i-carbon-upload />
-          {{ t('components.settings.SaveTab.load') }}
+        <UiButton
+          class="flex flex-1 items-center justify-center gap-1"
+          :disabled="loading"
+          @click="loadImport"
+        >
+          <UiLoader v-if="loading" size="xs" />
+          <template v-else>
+            <div i-carbon-upload />
+            {{ t('components.settings.SaveTab.load') }}
+          </template>
         </UiButton>
         <UiButton type="default" class="flex flex-1 items-center justify-center gap-1" @click="triggerFileInput">
           <div i-carbon-folder-open />
