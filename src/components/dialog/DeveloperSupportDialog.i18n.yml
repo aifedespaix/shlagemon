@@ -2,7 +2,7 @@ fr:
   steps:
     start:
       text: >-
-        Salut, moi c'est Aife, le développeur de ce jeu. 
+        Salut, moi c'est Aife, le développeur de ce jeu.
         Si tu apprécies Shlagémon, et que tu souhaites me soutenir dans le développement du jeu et pourquoi pas d'autres projets, tu peux contribuer financièrement à mon travail.
       responses:
         donate: Faire un don
