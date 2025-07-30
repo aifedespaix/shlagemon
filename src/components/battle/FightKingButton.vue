@@ -10,7 +10,9 @@ const { t } = useI18n()
 
 const currentKing = computed(() => zone.getKing(zone.current.id as SavageZoneId))
 const kingLabel = computed(() =>
-  currentKing.value?.character.gender === 'female' ? 'la reine' : 'le roi',
+  currentKing.value?.character.gender === 'female'
+    ? t('components.battle.FightKingButton.female')
+    : t('components.battle.FightKingButton.male'),
 )
 
 const visible = computed(() => (
