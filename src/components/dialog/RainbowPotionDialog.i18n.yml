@@ -1,0 +1,55 @@
+fr:
+  steps:
+    step1:
+      text: Bravo ! Ton Shlagémon atteint le niveau 25. Les rois deviennent de plus en plus coriaces.
+      responses:
+        next: Continuer
+    step2:
+      text: Chaque victoire renforce leur couronne. Prépare-toi à des affrontements plus stratégiques.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: >-
+        Il existe une potion très rare aux couleurs d'arc-en-ciel. Utilisée à la fin d'un combat,
+        elle peut asséner de lourds dégâts ou soigner ton compagnon.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Cette potion ne peut être utilisée qu'une seule fois et uniquement face à un roi. Choisis bien ton moment.
+      responses:
+        back: Retour
+        next: Continuer
+    step5:
+      text: J'en ai une seule, mais je te la donne. Prends-en grand soin, elle vaut extrêmement cher !
+      responses:
+        back: Retour
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: Congrats! Your Shlagemon reached level 25. Kings are becoming tougher.
+      responses:
+        next: Continue
+    step2:
+      text: Each victory makes them stronger, so you'll need sharper strategies.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: >-
+        There's a very rare rainbow potion. Used at the end of battle, it can deal massive damage or heal your companion.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: This potion works only once and only in a king battle. Choose your moment carefully.
+      responses:
+        back: Back
+        next: Continue
+    step5:
+      text: I have only one, but I'm giving it to you. Use it wisely, it's extremely valuable!
+      responses:
+        back: Back
+        valid: Thanks Professor!

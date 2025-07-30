@@ -130,6 +130,10 @@ en:
     name: Fabulous Potion
     description: Works only during king battles. Hold to unleash its effect.
     details: During king battles, hold the button to perform a special action.
+  rainbowPotion:
+    name: Rainbow Potion
+    description: Use at the end of a king battle for massive damage or strong healing.
+    details: A unique rainbow-colored potion usable once per king fight.
   odorElixir:
     name: Odor Elixir
     description: A rare scent to bond forever with a Shlagemon.
@@ -266,6 +270,10 @@ fr:
     name: Potion Fabuleuse
     description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
     details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action fabuleuse.
+  rainbowPotion:
+    name: Potion Arc-en-ciel
+    description: A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un soin puissant.
+    details: Potion unique aux couleurs d'arc-en-ciel. Elle ne peut être employée qu'une fois lors d'un combat de roi.
   odorElixir:
     name: Élixir d'Odeur
     description: Un élixir très rare à offrir à un Shlagémon qu'on adore.
