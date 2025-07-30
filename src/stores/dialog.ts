@@ -6,6 +6,7 @@ import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
+import DeveloperSupportDialog from '~/components/dialog/DeveloperSupportDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
@@ -68,6 +69,8 @@ export const useDialogStore = defineStore('dialog', () => {
   const ui: ReturnType<typeof useUIStore> = useUIStore()
   const mobile = useMobileTabStore()
   const potionInfo = usePotionInfoStore()
+  const showDeveloperSupport = ref(false)
+  useTimeoutFn(() => (showDeveloperSupport.value = true), 20 * 60_000)
 
   const done = ref<DialogDone>({})
   const dialogs: Array<DialogItem | DialogItem<WearableItemDialogProps>> = [
@@ -230,6 +233,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'firstLoss',
       component: markRaw(FirstLossDialog),
       condition: () => stats.losses > 0,
+    },
+    {
+      id: 'developerSupport',
+      component: markRaw(DeveloperSupportDialog),
+      condition: () => showDeveloperSupport.value,
     },
   ]
 

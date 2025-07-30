@@ -1,0 +1,58 @@
+fr:
+  steps:
+    start:
+      text: >-
+        Salut, moi c'est Aife, le développeur de ce jeu. Tu joues depuis un bon moment d'affilée. Si tu apprécies Shlagémon, tu peux me soutenir.
+      responses:
+        donate: Faire un don
+        refuse: Refuser
+    donateYes:
+      text: Merci beaucoup pour ton soutien !
+      responses:
+        next: Suite
+    donateNo:
+      text: Pas cool, radin !
+      responses:
+        next: Suite
+    discord:
+      text: Tu peux aussi rejoindre la communauté sur Discord.
+      responses:
+        join: Rejoindre
+        skip: Refuser
+    discordYes:
+      text: Merci ! À bientôt sur le serveur. Bon jeu !
+      responses:
+        finish: Fermer
+    discordNo:
+      text: T'es vraiment dégueulasse. Bon jeu !
+      responses:
+        finish: Fermer
+en:
+  steps:
+    start:
+      text: >-
+        Hi, I'm Aife, the developer of this game. You've been playing for a while. If you enjoy Shlagémon, you can support development.
+      responses:
+        donate: Donate
+        refuse: Refuse
+    donateYes:
+      text: Thanks a lot for your support!
+      responses:
+        next: Next
+    donateNo:
+      text: Not cool, cheapskate!
+      responses:
+        next: Next
+    discord:
+      text: You can also join the community on Discord.
+      responses:
+        join: Join
+        skip: Refuse
+    discordYes:
+      text: Thanks! See you on the server. Enjoy the game!
+      responses:
+        finish: Close
+    discordNo:
+      text: You're disgusting. Enjoy the game!
+      responses:
+        finish: Close
