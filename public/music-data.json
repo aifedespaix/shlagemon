@@ -306,25 +306,25 @@
     "image": "/characters/vladimir-putain/vladimir-putain.png"
   },
   {
-    "nom": "arena20",
+    "nom": "Arène lvl 20",
     "type": "arena",
     "url": "/audio/musics/arenas/arena20.ogg",
     "image": null
   },
   {
-    "nom": "arena40",
+    "nom": "Arène lvl 40",
     "type": "arena",
     "url": "/audio/musics/arenas/arena40.ogg",
     "image": null
   },
   {
-    "nom": "arena60",
+    "nom": "Arène lvl 60",
     "type": "arena",
     "url": "/audio/musics/arenas/arena60.ogg",
     "image": null
   },
   {
-    "nom": "arena80",
+    "nom": "Arène lvl 80",
     "type": "arena",
     "url": "/audio/musics/arenas/arena80.ogg",
     "image": null

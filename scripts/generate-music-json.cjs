@@ -99,8 +99,9 @@ function parseArenas() {
   let match = regex.exec(content)
   while (match) {
     const id = match[1]
+    const lvl = id.match(/\d+/)?.[0]
     arenas.push({
-      nom: id,
+      nom: lvl ? `Arène lvl ${lvl}` : id,
       type: 'arena',
       url: tracks[id] || null,
       image: findImage('arenas', id),
