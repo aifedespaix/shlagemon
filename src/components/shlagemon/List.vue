@@ -133,12 +133,15 @@ function changeActive(mon: DexShlagemon) {
 <template>
   <LayoutScrollablePanel>
     <template #header>
+      <div class="pt-1 w-full flex flex-col gap-1">
       <UiSortControls
         v-model:sort-by="filter.sortBy"
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
       <UiSearchInput v-model="filter.search" />
+
+      </div>
     </template>
 
     <template #content>
