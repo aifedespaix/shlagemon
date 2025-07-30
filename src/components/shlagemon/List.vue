@@ -20,7 +20,8 @@ const props = withDefaults(defineProps<Props>(), {
 const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()
-const isLocked = featureLock.isShlagedexLocked
+// track lock state reactively so checkboxes update when the dex unlocks
+const isLocked = toRef(featureLock, 'isShlagedexLocked')
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 
 const sortOptions: { label: string, value: string | number }[] = [
@@ -123,7 +124,7 @@ function isHighlighted(mon: DexShlagemon) {
 }
 
 function changeActive(mon: DexShlagemon) {
-  if (isLocked)
+  if (isLocked.value)
     return
   dex.setActiveShlagemon(mon)
 }
