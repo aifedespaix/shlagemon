@@ -190,6 +190,10 @@ components:
       playtime: Tu as joué pendant {minutes} minutes.
       generate: Générer
       loadFile: Charger depuis un fichier
+      exportDesc: Générez un code pour sauvegarder votre progression.
+      importDesc: >-
+        Chargez une sauvegarde en collant un code ou en sélectionnant un
+        fichier.
     LanguageTab:
       label: Langue
       description: L'application est disponible en français et en anglais.
