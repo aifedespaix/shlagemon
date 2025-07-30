@@ -19,8 +19,7 @@ const props = withDefaults(defineProps<{
 // =======================
 
 // -- Types props
-const _sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const
-type Size = typeof _sizes[number]
+type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 // -- Taille réelle en pixels par taille
 const sizeMap: Record<Size, string> = {
