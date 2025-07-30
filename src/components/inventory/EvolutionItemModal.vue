@@ -1,13 +1,15 @@
 <script setup lang="ts">
 const store = useEvolutionItemStore()
 const { t } = useI18n()
+
+const itemName = computed(() => store.current ? t(store.current.name) : '')
 </script>
 
 <template>
   <UiModal v-model="store.isVisible" footer-close>
     <div class="flex flex-col gap-2">
       <h3 class="text-center text-lg font-bold">
-        {{ t('components.inventory.EvolutionItemModal.title', { name: t(store.current?.name || '') }) }}
+        {{ store.current ? t('components.inventory.EvolutionItemModal.title', { name: itemName }) : '' }}
       </h3>
       <div v-if="store.availableMons.length" class="flex flex-col gap-2">
         <div

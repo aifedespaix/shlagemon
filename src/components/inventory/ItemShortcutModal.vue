@@ -7,6 +7,8 @@ const shortcuts = useShortcutsStore()
 const { t } = useI18n()
 const capture = ref<InstanceType<typeof UiKeyCapture> | null>(null)
 
+const itemName = computed(() => modal.current ? t(modal.current.name) : '')
+
 watch(() => modal.isVisible, (visible) => {
   if (!visible)
     capture.value?.stopCapture()
@@ -35,10 +37,10 @@ function assign(key: string) {
         <img
           v-else-if="modal.current?.image"
           :src="modal.current.image"
-          :alt="t(modal.current?.name || '')"
+          :alt="itemName"
           class="h-10 w-10 object-contain"
         >
-        <span class="text-center font-semibold">{{ t(modal.current?.name || '') }}</span>
+        <span class="text-center font-semibold">{{ itemName }}</span>
       </div>
       <div class="w-full flex flex-col items-center gap-2 border rounded p-2">
         <p class="text-center text-sm">
