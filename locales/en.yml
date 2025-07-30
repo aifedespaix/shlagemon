@@ -203,8 +203,8 @@ components:
       main: Main
       confirmTitle: Release a Shlagemon?
       confirmText: Be careful, if you release it, it will shlage the whole land.
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       hp: HP
       attack: Attack
       defense: Defense
@@ -222,8 +222,8 @@ components:
         "{from}" wants to evolve into "{to}", will you allow it or stop the
         spread of shlaguitude?
       alreadyOwned: You already own this evolution
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
   LanguageSelector:
     label: Language
     en: English
@@ -636,6 +636,37 @@ components:
           text: Thanks! See you on the server. Enjoy the game!
           responses:
             finish: Close
+    DuplicateRarityDialog:
+      steps:
+        step1:
+          text: Look, you caught a Shlagemon you already owned.
+          responses:
+            next: Continue
+        step2:
+          text: Rarity determines a Shlagemon's true potential.
+          responses:
+            back: Back
+            next: Next
+        step3:
+          text: The further you go, the rarer the Shlagemon you'll meet.
+          responses:
+            back: Back
+            next: Next
+        step4:
+          text: Catching a duplicate trades levels for rarity.
+          responses:
+            back: Back
+            next: Next
+        step5:
+          text: If the captured one is very rare, yours inherits its rarity. Otherwise it gains only one rarity point and loses one level.
+          responses:
+            back: Back
+            next: Next
+        step6:
+          text: A few link rarity to their level. {starter} can do it. Here, take this Super Shlageball!
+          responses:
+            back: Back
+            valid: Thanks Professor!
         discordNo:
           text: You're really disgusting. Oh well... have fun anyway, dickhead.
           responses:
@@ -2776,8 +2807,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Fancy a game of Connect Four?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Fire Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2786,8 +2817,8 @@ data:
       restart: Restart
     ShlagMind:
       startText: Fancy a game of ShlagMind?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2795,8 +2826,8 @@ data:
       restart: Restart
     Battleship:
       startText: How about a game of Battleship?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Victory! I give you a Water Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2804,8 +2835,8 @@ data:
       back: Back
     ShlagPairs:
       startText: Fancy a game of pairs?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2813,8 +2844,8 @@ data:
       back: Back
     ShlagTaquin:
       startText: Fancy a sliding puzzle game?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2822,8 +2853,8 @@ data:
       back: Back
     TicTacToe:
       startText: Fancy a game of tic tac toe?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Grass Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2831,8 +2862,8 @@ data:
       back: Back
     MasterMind:
       startText: Fancy a game of ShlagMind?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2840,8 +2871,8 @@ data:
       back: Back
     Pairs:
       startText: Fancy a game of pairs?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2849,8 +2880,8 @@ data:
       back: Back
     Taquin:
       startText: Fancy a sliding puzzle game?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.

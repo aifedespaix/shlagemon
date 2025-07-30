@@ -7,6 +7,7 @@ import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
 import DeveloperSupportDialog from '~/components/dialog/DeveloperSupportDialog.vue'
+import DuplicateRarityDialog from '~/components/dialog/DuplicateRarityDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
@@ -84,6 +85,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'inventoryIntro',
       component: markRaw(InventoryIntroDialog),
       condition: () => ui.isMobile.value && mobile.current === 'inventory',
+    },
+    {
+      id: 'rarityIntro',
+      component: markRaw(DuplicateRarityDialog),
+      condition: () => dex.shlagemons.some(m => m.captureCount > 1),
     },
     {
       id: 'richReward',
