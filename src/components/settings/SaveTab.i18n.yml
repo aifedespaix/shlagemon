@@ -9,6 +9,7 @@ fr:
   invalid: Code invalide
   loaded: Sauvegarde chargée
   copied: Copié
+  playtime: Tu as joué pendant {minutes} minutes.
   loadFile: Charger depuis un fichier
 en:
   exportLabel: Save code
@@ -21,4 +22,5 @@ en:
   invalid: Invalid code
   loaded: Save loaded
   copied: Copied
+  playtime: You have played for {minutes} minutes.
   loadFile: Load from file

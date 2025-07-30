@@ -4,6 +4,7 @@ import { applySave, collectSave, exportSave, importSave } from '~/utils/save-cod
 
 const emit = defineEmits<{ (e: 'remove'): void }>()
 const { t } = useI18n()
+const playtime = usePlaytimeStore()
 const exportCode = ref('')
 const importCode = ref('')
 const showImport = ref(false)
@@ -65,6 +66,9 @@ function loadFromFile(event: Event) {
 
 <template>
   <div class="flex flex-col gap-6">
+    <p class="text-center">
+      {{ t('components.settings.SaveTab.playtime', { minutes: playtime.minutes }) }}
+    </p>
     <section class="flex flex-col items-center gap-2">
       <label v-if="exportCode" class="font-bold">
         {{ t('components.settings.SaveTab.exportLabel') }}

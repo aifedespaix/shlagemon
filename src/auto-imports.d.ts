@@ -287,6 +287,7 @@ declare global {
   const usePerformanceObserver: typeof import('@vueuse/core')['usePerformanceObserver']
   const usePermission: typeof import('@vueuse/core')['usePermission']
   const usePlayerStore: typeof import('./stores/player')['usePlayerStore']
+  const usePlaytimeStore: typeof import('./stores/playtime')['usePlaytimeStore']
   const usePointer: typeof import('@vueuse/core')['usePointer']
   const usePointerLock: typeof import('@vueuse/core')['usePointerLock']
   const usePointerSwipe: typeof import('@vueuse/core')['usePointerSwipe']
@@ -734,6 +735,7 @@ declare module 'vue' {
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
     readonly usePermission: UnwrapRef<typeof import('@vueuse/core')['usePermission']>
     readonly usePlayerStore: UnwrapRef<typeof import('./stores/player')['usePlayerStore']>
+    readonly usePlaytimeStore: UnwrapRef<typeof import('./stores/playtime')['usePlaytimeStore']>
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>
     readonly usePointerLock: UnwrapRef<typeof import('@vueuse/core')['usePointerLock']>
     readonly usePointerSwipe: UnwrapRef<typeof import('@vueuse/core')['usePointerSwipe']>
