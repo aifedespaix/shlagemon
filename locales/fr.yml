@@ -140,6 +140,8 @@ components:
         droit.
     FightKingButton:
       challenge: Défier {label}
+      male: le roi
+      female: la reine
     Round:
       vs: VS
     Shlagemon:
@@ -665,6 +667,12 @@ components:
           text: Merci ! À bientôt sur le serveur. Bon jeu !
           responses:
             finish: Fermer
+        discordNo:
+          text: >-
+            T'es vraiment dégueulasse. Mais bon... amuse-toi bien quand même,
+            tête de bite.
+          responses:
+            finish: Fermer
     DuplicateRarityDialog:
       steps:
         step1:
@@ -687,12 +695,16 @@ components:
             back: Retour
             next: Suite
         step5:
-          text: Si celui que tu attrapes est très rare, ton Shlagémon en héritera. Sinon il ne gagnera qu'un point de rareté et perdra un niveau.
+          text: >-
+            Si celui que tu attrapes est très rare, ton Shlagémon en héritera.
+            Sinon il ne gagnera qu'un point de rareté et perdra un niveau.
           responses:
             back: Retour
             next: Suite
         step6:
-          text: Certains lient leur rareté à leur niveau. {starter} en est capable. Prends donc cette Super Shlagéball !
+          text: >-
+            Certains lient leur rareté à leur niveau. {starter} en est capable.
+            Prends donc cette Super Shlagéball !
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -702,6 +714,43 @@ components:
             tête de bite.
           responses:
             finish: Fermer
+    RainbowPotionDialog:
+      steps:
+        step1:
+          text: >-
+            Bravo ! Ton Shlagémon atteint le niveau 25. Les rois deviennent de
+            plus en plus coriaces.
+          responses:
+            next: Continuer
+        step2:
+          text: >-
+            Chaque victoire renforce leur couronne. Prépare-toi à des
+            affrontements plus stratégiques.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: >-
+            Il existe une potion très rare aux couleurs d'arc-en-ciel. Utilisée
+            à la fin d'un combat, elle peut asséner de lourds dégâts ou soigner
+            ton compagnon.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: >-
+            Cette potion ne peut être utilisée qu'une seule fois et uniquement
+            face à un roi. Choisis bien ton moment.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: >-
+            J'en ai une seule, mais je te la donne. Prends-en grand soin, elle
+            vaut extrêmement cher !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
   minigame:
     MasterMind:
       messages:
@@ -3608,6 +3657,14 @@ data:
       name: Élixir d'Odeur
       description: Un élixir très rare à offrir à un Shlagémon qu'on adore.
       details: Utilisé sur un Shlagémon, sa rareté suivra désormais son niveau.
+    rainbowPotion:
+      name: Potion Arc-en-ciel
+      description: >-
+        A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un
+        soin puissant.
+      details: >-
+        Potion unique aux couleurs d'arc-en-ciel. Elle ne peut être employée
+        qu'une fois lors d'un combat de roi.
   kings:
     plaine-kekette:
       dialogBefore: Coucou, si tu gagnes, je te paye le petit déjeuné !
