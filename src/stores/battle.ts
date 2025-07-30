@@ -12,6 +12,7 @@ export const useBattleStore = defineStore('battle', () => {
   const dex = useShlagedexStore()
   const audio = useAudioStore()
   const disease = useDiseaseStore()
+  const manualAttack = useManualAttackStatsStore()
 
   let loop: ReturnType<typeof useIntervalFn> | undefined
 
@@ -53,6 +54,7 @@ export const useBattleStore = defineStore('battle', () => {
   }
 
   function clickAttack(attacker: DexShlagemon, defender: DexShlagemon) {
+    manualAttack.registerClick()
     return attack(attacker, defender, false, false, true)
   }
 
