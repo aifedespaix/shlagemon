@@ -18,7 +18,7 @@ const emit = defineEmits(['click', 'activate'])
     class="
       relative flex items-center px-1.5 py-0.5 rounded-lg border shadow-sm
       cursor-pointer transition-all duration-150 group select-none outline-none
-      min-h-11
+      min-h-11 gap-1
       focus:ring-2 focus:ring-sky-400
     "
     :class="[
@@ -42,7 +42,7 @@ const emit = defineEmits(['click', 'activate'])
     @keydown.enter.space.prevent="() => emit('click')"
   >
     <!-- Image Shlagemon, carré, prend toute la hauteur -->
-    <div class="relative flex items-center justify-center h-10 w-10 mr-1 flex-shrink-0">
+    <div class="relative flex items-center justify-center h-10 w-10 flex-shrink-0">
       <ShlagemonImage
         :id="mon.base.id"
         :alt="mon.base.name"
@@ -74,21 +74,23 @@ const emit = defineEmits(['click', 'activate'])
       </div>
     </div>
     <!-- Colonne droite, compacte et alignée -->
-    <div class="flex flex-col items-center justify-between h-full min-w-7 ml-1">
+    <div class="flex flex-col items-end justify-between h-full min-w-7 gap-0.5">
+        <div class="flex-1">
       <InventoryWearableItemIcon
         v-if="item"
         :item="item"
-        class="h-4 w-4 mb-0.5"
+        class="h-4 w-4"
       />
+        </div>
       <UiCheckBox
         v-if="showCheckbox"
-        class="scale-90 mb-0.5"
+        class="scale-85"
         :model-value="isActive"
         :disabled="locked || disabled"
         @update:model-value="() => emit('activate')"
         @click.stop
       />
-      <div class="text-[10px] text-gray-500 dark:text-gray-400 font-mono text-center leading-none">
+      <div class="text-[10px] text-gray-500 dark:text-gray-400 font-mono text-center leading-none flex-1">
         lvl <span class="font-bold">{{ mon.lvl }}</span>
       </div>
     </div>

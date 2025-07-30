@@ -32,7 +32,7 @@ function onChange(event: Event) {
 <template>
   <label
     :for="internalId"
-    class="group flex select-none items-center gap-3 text-base font-medium transition-opacity"
+    class="group flex select-none items-center text-base font-medium transition-opacity"
     :class="props.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'"
   >
     <!-- Checkbox stylisée -->
