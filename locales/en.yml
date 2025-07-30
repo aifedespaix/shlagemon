@@ -203,8 +203,8 @@ components:
       main: Main
       confirmTitle: Release a Shlagemon?
       confirmText: Be careful, if you release it, it will shlage the whole land.
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       hp: HP
       attack: Attack
       defense: Defense
@@ -222,8 +222,8 @@ components:
         "{from}" wants to evolve into "{to}", will you allow it or stop the
         spread of shlaguitude?
       alreadyOwned: You already own this evolution
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
   LanguageSelector:
     label: Language
     en: English
@@ -2987,9 +2987,47 @@ data:
           plein combat. Mais attention : sous la couche de rhumatismes, il reste
           dangereux… surtout pour les nerfs.
     mairiousse:
-      description: ''
+      description: >-
+        Mairiousse is a huge white dog with fur yellowed by age, always wrapped
+        in a grimy tricolor scarf hanging crooked along his flank. His chest
+        sticks out as if he's shaken fifty municipal hands, but his legs sag
+        from too many standing meetings. Dirty glasses fog half his face,
+        perched on a constantly drooling snout.
+
+        His gaze is tired yet bossy, one brow raised while the other droops like
+        a torn street sign. A whiff of stale office follows him everywhere, and
+        crumbs from a king cake cling to his jowls since January. One fang pokes
+        out, worn down like a chewed council pen.
+
+        He stands in a ridiculous yet solemn pose, leaning slightly with one paw
+        on a busted microphone and the other trembling on a fur-covered town
+        register. Sometimes he lifts his leg by reflex—right onto a ballot box.
+
+        They say Mairiousse doesn't bark; instead he delivers endless speeches
+        that bore enemy Shlagémons into submission.
     zebrapoisbleu:
-      description: ''
+      description: >-
+        ZebraPoisBleu is an ultra-rare Shlagémon seen only at dawn, curled up
+        beside a bush of glowing blue peas. It looks like a chubby pastel zebra
+        sitting in a sloppy meditation pose, serene gaze and hypnotic scent.
+
+        Its body is a washed-out sky blue dotted with large blue flowers wedged
+        into its mane and rump, as if someone tried to style it lovingly with
+        their eyes closed. These flowers send out zen waves that either lull
+        nearby Shlagémons to sleep or drive them to uncontrollable tears.
+
+        It often hugs a magic blossom to its chest, murmuring strange lines like
+        "calm your inner violence, brother." Its posture is limp—more boiled
+        potato than master—yet somehow graceful like a forgotten guru.
+
+        Expression: a blissful smile with eyes closed, floating three
+        centimeters off the ground. Absurd detail: tiny blue petals pop from its
+        ears when it sneezes. Aura: a vaporous fairy-like halo sprinkled with
+        blue motes, like cosmic incense.
+
+        This Shlagémon never attacks directly. Instead it fills the area with a
+        supernatural peace that confuses aggressive Shlagémons—except those of
+        the Brutal Metal type, who get even angrier.
     95-99:
       lokhlash:
         description: >-
@@ -3013,8 +3051,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Fancy a game of Connect Four?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Fire Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3023,8 +3061,8 @@ data:
       restart: Restart
     ShlagMind:
       startText: Fancy a game of ShlagMind?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3032,8 +3070,8 @@ data:
       restart: Restart
     Battleship:
       startText: How about a game of Battleship?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Victory! I give you a Water Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3041,8 +3079,8 @@ data:
       back: Back
     ShlagPairs:
       startText: Fancy a game of pairs?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -3050,8 +3088,8 @@ data:
       back: Back
     ShlagTaquin:
       startText: Fancy a sliding puzzle game?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3059,8 +3097,8 @@ data:
       back: Back
     TicTacToe:
       startText: Fancy a game of tic tac toe?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Grass Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3068,8 +3106,8 @@ data:
       back: Back
     MasterMind:
       startText: Fancy a game of ShlagMind?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3077,8 +3115,8 @@ data:
       back: Back
     Pairs:
       startText: Fancy a game of pairs?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -3086,8 +3124,8 @@ data:
       back: Back
     Taquin:
       startText: Fancy a sliding puzzle game?
-      'yes': 'Yes'
-      'no': 'No'
+      yes: Yes
+      no: No
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3417,140 +3455,119 @@ data:
         on.
   kings:
     plaine-kekette:
-      dialogBefore: Coucou, si tu gagnes, je te paye le petit déjeuné !
-      dialogAfter: Ok, ok, tu as gagné, je vais t'inviter pour ce petit déj !
-      dialogDefeat: Mais quel grosse merde, tu vas me payer un petit déj' de ouf !
+      dialogBefore: Hey, if you win I'll treat you to breakfast!
+      dialogAfter: Fine, you won. I'll invite you for that breakfast!
+      dialogDefeat: What a loser, you're buying me an epic breakfast!
     bois-de-bouffon:
-      dialogBefore: >-
-        Ici, c'est ma street, et tu as trop de cheveux pour pouvoir continuer
-        ton chemin.
-      dialogAfter: >-
-        Tu m'as bien déglingué, bravo ! Je vais aller me faire un shampoing et
-        je reviendrai bien plus fort !
-      dialogDefeat: Je vais te faire bouffer tes cheveux espèce de sous merde !
+      dialogBefore: This is my turf and you've got way too much hair to pass.
+      dialogAfter: You smashed me good! I'll wash my hair and come back stronger!
+      dialogDefeat: I'm gonna make you eat your hair, you little punk!
     chemin-du-slip:
-      dialogBefore: Entres dans ma grotte si tu l'oses.
-      dialogAfter: Ta victoire ne sera que temporaire, je retourne en garde à vue.
-      dialogDefeat: Tu pues la lose, file te laver !
+      dialogBefore: Come into my cave if you dare.
+      dialogAfter: Your victory won't last, I'm heading back to jail.
+      dialogDefeat: You stink of failure, go clean yourself up!
     ravin-fesse-molle:
-      dialogBefore: Yo, j'suis raciste.
+      dialogBefore: Yo, I'm a straight-up racist.
       dialogAfter: >-
-        Incroyable... tu as gagné. Je vais donc arrêter d'être raciste. Merci de
-        m'avoir ouvert les yeux !
-      dialogDefeat: Dégage ! Retourne dans ton pays !
+        Unbelievable... you won. Guess I'll stop being racist. Thanks for
+        opening my eyes!
+      dialogDefeat: Get lost! Go back to your country!
     precipice-nanard:
       dialogBefore: >-
-        Je suis prêt à te mettre une sacrée rouste espèce de cassos ! Je déteste
-        les pauvres comme toi, sale bâtard !
+        I'm ready to beat you down, you lowlife! I hate poor folks like you,
+        bastard!
       dialogAfter: >-
-        Tu m'as explosé le fiak, je vais te foutre une grosse loi dans ta
-        gueule, ça va te calmer.
-      dialogDefeat: >-
-        T'es une merde, t'as toujours été une merde, tu resteras une merde toute
-        ta vie.
+        You wrecked my ass, I'm gonna shove a huge law down your throat to shut
+        you up.
+      dialogDefeat: You're trash, you've always been trash, you'll stay trash forever.
     marais-moudugenou:
-      dialogBefore: J'ai des infos sur la sortie de la prochaine Switch !
+      dialogBefore: I know when the next Switch is coming out!
       dialogAfter: >-
-        Tu t'extirpes du marais victorieux, tu ne sauras donc jamais quand la
-        prochaine Switch va sortir...
-      dialogDefeat: Je t'éclabousse de ma boue, retourne barboter ailleurs.
+        You crawl out of the swamp victorious, so you'll never learn the release
+        date...
+      dialogDefeat: I splash you with my mud, go wallow somewhere else.
     forteresse-petmoalfiak:
       dialogBefore: >-
-        Tu entends cette petite voix dans ta tête ? Elle te dit de perdre...
-        C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !
+        Hear that little voice in your head telling you to lose? That's me.
+        Welcome to my trip—you're not coming out unscathed!
       dialogAfter: >-
-        Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois
-        être vraiment perché, toi aussi…
-      dialogDefeat: >-
-        Wow… tu pues la loose ! Attention, les vraies hallucinations commencent
-        à la prochaine pleine lune…
+        What?! Even my twisted speeches didn't faze you? You must be pretty high
+        too...
+      dialogDefeat: Wow... you reek of failure! Real hallucinations start next full moon.
     route-du-nawak:
       dialogBefore: >-
-        Je n'aime ni la couleur de tes cheveux, ni la forme de ton nez, ni la
-        taille de tes pieds. Prépare toi à perdre tes couilles !
-      dialogAfter: Tu t'en sors, pour l'instant.
+        I don't like your hair, your nose, or your feet. Get ready to lose your
+        balls!
+      dialogAfter: You got away... for now.
       dialogDefeat: >-
-        Je suis obligée de quitter le territoire, mais je reviendrai pour te
-        bouffer le cul, enculé de ta race !
+        I have to leave, but I'll come back to chew your ass, you worthless
+        punk!
     mont-dracatombe:
-      dialogBefore: Salut, j'aime beaucoup les couleurs mais également tabasser des meufs.
-      dialogAfter: Tu as réussi à me vaincre, je te peindrait tout de même en looser.
-      dialogDefeat: Tu pues la merde, je te nique tes morts !
+      dialogBefore: Hi, I really love colors... and beating up chicks.
+      dialogAfter: You beat me, but I'll still paint you as a loser.
+      dialogDefeat: You stink like crap, screw your dead ancestors!
     catacombes-merdifientes:
-      dialogBefore: Peux tu m'aider à descendre ce sac dans ma cave, s'il te plaît ?
-      dialogAfter: Je sombre dans l'ombre des catacombes avec mon terrible secret.
-      dialogDefeat: Remonte donc à la surface, larve.
+      dialogBefore: Could you help me carry this bag down to my cellar, please?
+      dialogAfter: I sink back into the catacombs with my terrible secret.
+      dialogDefeat: Crawl back to the surface, maggot.
     route-aguicheuse:
-      dialogBefore: >-
-        Moi j'aide les pauvre mais je les baises aussi. Avec ou sans
-        consentement.
-      dialogAfter: Bien joué, voyageur, tu m'as bien enculé.
-      dialogDefeat: Et je te baise toi aussi, espèce de trou de balle informe !
+      dialogBefore: I help the poor but I screw them too—consent or not.
+      dialogAfter: Well played, traveler, you really fucked me over.
+      dialogDefeat: I'm screwing you too, you shapeless asshole!
     vallee-des-chieurs:
-      dialogBefore: >-
-        Tu es plutôt un garçon ou une fille ? Décide toi car je ne veux pas
-        perdre mon temps avec les indécis.
+      dialogBefore: So are you a boy or a girl? Decide, I don't waste time on fence-sitters.
       dialogAfter: >-
-        Tu m'as ovuert les yeux, je vais t'accepter comme tu es : un vagin à
-        tête de gland.
-      dialogDefeat: Je t'ai violenté aussi fort qu'un expéliermus, tu es un vrai loser.
+        You've opened my eyes—I'll accept you as you are: a vagina with a
+        dickhead.
+      dialogDefeat: I smacked you harder than an Expelliarmus. You're a real loser.
     trou-du-bide:
-      dialogBefore: >-
-        Bienvenue dans mon trou, il est imprenable, j'y ai construit un mur
-        titanesque !
-      dialogAfter: >-
-        Tu as brisé mon trou... je vais te niquer ton père et construire un mur
-        tout autour !
-      dialogDefeat: Boum ! Mon trou t'écrase, petit looser de mort ! J'te baise !
+      dialogBefore: Welcome to my pit—it's untakeable, I built a titanic wall around it!
+      dialogAfter: You broke my pit... I'm gonna fuck your dad and build a wall around it!
+      dialogDefeat: Boom! My pit crushes you, little dead loser! I'm fucking you!
     zone-giga-zob:
-      dialogBefore: Je suis paix, je suis amour, tu n'as qu'à m'écouter et tu seras sauvé !
-      dialogAfter: Je te hais, toi et tes idées de merde !
-      dialogDefeat: Je suis ta haine, je suis ta colère, je suis ton désespoir !
+      dialogBefore: I am peace, I am love—just listen to me and you'll be saved!
+      dialogAfter: I hate you and your shitty ideas!
+      dialogDefeat: I am your hatred, your anger, your despair!
     route-so-dom:
-      dialogBefore: >-
-        Les meufs, c'est toutes des putes, alors que moi j'adoooorrrreee faire
-        la vaiselle !
-      dialogAfter: Tu me l'as mise bien profonde, mais je reviendrai plus forte !
-      dialogDefeat: T'es ma pute, je fais ce que je veux de toi !
+      dialogBefore: Women are all sluts while I just looove doing the dishes!
+      dialogAfter: You really stuck it to me, but I'll come back stronger!
+      dialogDefeat: You're my bitch and I'll do whatever I want with you!
     lac-aux-relous:
-      dialogBefore: Я люблю хорошие ясли из кулей
-      dialogAfter: Я люблю тебя, хочешь pойти со мной на свидание?
-      dialogDefeat: Я засунул свой палец тебе в задницу
+      dialogBefore: I love good nurseries made of bullets.
+      dialogAfter: I love you, wanna go on a date?
+      dialogDefeat: I shoved my finger up your ass.
     canyon-a-la-derp:
       dialogBefore: >-
-        Bienvenue au Canyon-a-la-derp™, le seul endroit où une simple goutte de
-        sueur suffit à prouver ta grandeur... enfin, en théorie.
+        Welcome to Canyon-a-la-derp™, where a single drop of sweat proves your
+        greatness... in theory.
       dialogAfter: >-
-        Incroyable, tu as survécu à ma technologie révolutionnaire 100%
-        inefficace. Tu mériterais presque un brevet.
+        Incredible, you survived my 100% useless revolutionary tech. You almost
+        deserve a patent.
       dialogDefeat: >-
-        Échec critique détecté. Mais t’inquiète, avec un bon PowerPoint, tu
-        pourrais faire croire que t'as gagné.
+        Critical failure detected. But with a good PowerPoint you could pretend
+        you won.
     cratere-des-legends:
-      dialogBefore: Wesh fdp.
-      dialogAfter: Je vais retourner a Los Angeles, et je serai beaucoup plus fort enculé !
+      dialogBefore: Yo, motherfucker.
+      dialogAfter: >-
+        I'm heading back to Los Angeles and I'll come back way stronger,
+        asshole!
       dialogDefeat: >-
-        Tu es un perdant, tu ne mérites pas de traverser ce cratère ! Baise ton
-        frère.
+        You're a loser and don't deserve to cross this crater! Go fuck your
+        brother.
     mont-kouillasse:
       dialogBefore: >-
-        Bonjour, en tant que Roi du Mont Kouillasse, j'ai une liberté
-        d'expression TOTALE ! Je peux dire ce que je veux et sucer des petits
-        moustachus Allemands sans aucune censure !
-      dialogAfter: >-
-        Vas te faire foutre, je t'enverrai dans une fusée pour que t'ailles
-        sucer des couilles sur Mars !
+        Hello! As King of Mount Kouillasse I have TOTAL free speech. I can say
+        anything and suck little mustached Germans with zero censorship!
+      dialogAfter: Go fuck yourself—I'll send you on a rocket to suck balls on Mars!
       dialogDefeat: >-
-        T'es aussi con que ta mère, tu ne mérites pas de traverser le Mont
-        Kouillasse !
+        You're as dumb as your mother. You don't deserve to cross Mount
+        Kouillasse!
     paturage-crado:
-      dialogBefore: Je vais te faire bouffer ton petit cul !
+      dialogBefore: I'm gonna make you eat your own little ass!
       dialogAfter: >-
-        Alors là bravo, tu as réussi à me battre. Je vais aller me faire un
-        petit café pour me remettre de cette défaite.
-      dialogDefeat: >-
-        Je vais imposer une loi pour interdire les losers comme toi de se
-        balader dans les pâturages !
+        Well done, you beat me. I'm grabbing a coffee to recover from this
+        defeat.
+      dialogDefeat: I'm passing a law to ban losers like you from roaming these pastures!
 pages:
   index:
     title: Shlagemon
