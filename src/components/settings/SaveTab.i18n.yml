@@ -11,7 +11,7 @@ fr:
   copied: Copié
   playtime: Tu as joué pendant {minutes} minutes.
   loadFile: Charger depuis un fichier
-  exportDesc: Générez un code pour sauvegarder votre progression.
+  exportDesc: Générez un code pour exporter votre progression.
   importDesc: Chargez une sauvegarde en collant un code ou en sélectionnant un fichier.
 en:
   exportLabel: Save code
@@ -26,5 +26,5 @@ en:
   copied: Copied
   playtime: You have played for {minutes} minutes.
   loadFile: Load from file
-  exportDesc: Generate a code to back up your progress.
+  exportDesc: Generate a code to export your progress.
   importDesc: Load a save by pasting a code or selecting a file.
