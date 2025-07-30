@@ -33,7 +33,7 @@ function openEgg(id: EggItemId) {
         >
           <div class="flex items-center gap-1">
             <div v-if="getItem(id).icon" class="h-6 w-6" :class="[getItem(id).icon, getItem(id).iconClass]" />
-            <span class="text-sm">{{ getItem(id).name }}</span>
+            <span class="text-sm">{{ t(getItem(id).name) }}</span>
           </div>
           <span class="text-xs font-bold">x{{ box.eggs[id] }}</span>
         </div>

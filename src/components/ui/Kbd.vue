@@ -1,75 +1,98 @@
 <script setup lang="ts">
-type Size = 'sm' | 'md' | 'lg' | 'xl'
+// Types stricts pour la taille (readonly tuple)
+const sizes = ['sm', 'md', 'lg', 'xl'] as const
+type Size = typeof sizes[number]
 
-const props = withDefaults(defineProps<{ keyName: string, size?: Size, waiting?: boolean, clickable?: boolean }>(), {
-  size: 'md',
-  waiting: false,
-  clickable: false,
-})
+const props = withDefaults(
+  defineProps<{
+    keyName: string
+    size?: Size
+    waiting?: boolean
+    clickable?: boolean
+    ariaLabel?: string
+  }>(),
+  {
+    size: 'md',
+    waiting: false,
+    clickable: false,
+    ariaLabel: undefined,
+  }
+)
 
-const KEY_LABELS: Record<string, string> = {
+// Dictionnaire de labels humanisés pour les touches courantes
+const KEY_LABELS = Object.freeze({
   'Control': 'Ctrl',
   'Alt': 'Alt',
   'Shift': 'Maj',
   'Meta': 'Windows',
   'Tab': 'Tab',
-  ' ': 'Space',
+  ' ': 'Espace',
+  'Enter': 'Entrée',
+  'Backspace': 'Retour',
+  'Escape': 'Échap',
   'ArrowUp': '↑',
   'ArrowDown': '↓',
   'ArrowLeft': '←',
   'ArrowRight': '→',
-}
+} as const)
 
-const label = computed(() => KEY_LABELS[props.keyName] ?? props.keyName)
+const label = computed(() => KEY_LABELS[props.keyName as keyof typeof KEY_LABELS] ?? props.keyName)
 
-const sizeClass = computed(() => {
-  switch (props.size) {
-    case 'sm':
-      return 'text-xs px-1 py-0.5'
-    case 'lg':
-      return 'text-base px-3 py-1'
-    case 'xl':
-      return 'text-lg px-4 py-1'
-    default:
-      return 'text-sm px-2 py-0.5'
+// UnoCSS responsive size map, mobile-first
+const sizeMap: Record<Size, string> = {
+  sm:  'text-xs px-1.5 py-0.5 min-w-[1.75em] min-h-[1.5em]',
+  md:  'text-sm px-2 py-0.5 min-w-[2em] min-h-[1.8em]',
+  lg:  'text-base px-3 py-1 min-w-[2.4em] min-h-[2.2em]',
+  xl:  'text-lg px-4 py-1.5 min-w-[2.7em] min-h-[2.5em]',
+} as const
+
+// Classes UnoCSS (éviter le SCSS @apply pour la purge)
+const baseClass =
+  'inline-flex items-center justify-center rounded select-none border border-gray-300 dark:border-gray-500 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-inner-sm transition-all duration-75 font-mono font-semibold outline-none'
+
+const clickableClass =
+  'cursor-pointer active:scale-95 hover:bg-gray-200 dark:hover:bg-gray-600 focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-600'
+
+// Animation attente
+const waitingClass =
+  'animate-pulse opacity-70 pointer-events-none'
+
+// Focus ring pour accessibilité
+const focusClass =
+  'focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-600'
+
+// Keyboard accessibility: gestion du click clavier
+function onKeydown(e: KeyboardEvent) {
+  if (!props.clickable) return
+  if (e.key === 'Enter' || e.key === ' ') {
+    (e.target as HTMLElement).click()
+    e.preventDefault()
   }
-})
-
-const clickableClass = computed(() => props.clickable ? 'kbd-clickable' : '')
+}
 </script>
 
 <template>
   <kbd
-    class="kbd-base"
+    :tabindex="props.clickable ? 0 : undefined"
+    role="button"
+    :aria-label="props.ariaLabel ?? label"
+    :aria-disabled="props.waiting ? 'true' : undefined"
     :class="[
-      sizeClass,
-      props.waiting ? 'animate-pulse opacity-70' : '',
-      clickableClass,
+      baseClass,
+      sizeMap[props.size],
+      props.clickable ? clickableClass : '',
+      props.waiting ? waitingClass : '',
+      focusClass,
     ]"
+    @keydown="onKeydown"
+    :disabled="props.waiting"
   >
-    {{ label }}
+    <span class="pointer-events-none">{{ label }}</span>
+    <!-- Petit spinner animé si waiting -->
+    <span
+      v-if="props.waiting"
+      class="ml-1 h-3 w-3 inline-block align-middle border-2 border-gray-400 dark:border-gray-400 border-t-transparent rounded-full animate-spin"
+      aria-hidden="true"
+    />
   </kbd>
 </template>
-
-<style scoped>
-.kbd-base {
-  @apply inline-flex items-center justify-center select-none border rounded bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-500;
-  box-shadow:
-    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
-    inset 0 2px 0 rgba(255, 255, 255, 0.8),
-    0 1px 1px rgba(0, 0, 0, 0.1);
-}
-.dark .kbd-base {
-  box-shadow:
-    inset 0 -2px 0 rgba(0, 0, 0, 0.5),
-    inset 0 2px 0 rgba(255, 255, 255, 0.1),
-    0 1px 1px rgba(0, 0, 0, 0.3);
-}
-.kbd-clickable {
-  cursor: pointer;
-  transition: transform 0.05s;
-}
-.kbd-clickable:active {
-  transform: translateY(2px);
-}
-</style>

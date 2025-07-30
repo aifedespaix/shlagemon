@@ -44,7 +44,7 @@ const actionLabel = computed(() => {
   return t('components.inventory.ItemCard.action.use')
 })
 
-const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
+const highlightClasses = 'animate-pulse-alt animate-count-infinite'
 
 const shortcutStore = useShortcutsStore()
 const { shortcuts } = storeToRefs(shortcutStore)
@@ -75,48 +75,84 @@ watch(showInfo, (val) => {
 
 <template>
   <div
-    class="relative m-x-1 flex flex-col cursor-pointer gap-1 border rounded bg-white p-1 dark:bg-gray-900"
-    :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '']"
+    class="relative flex items-center gap-2 py-1 px-2 rounded-lg border shadow-sm
+      cursor-pointer transition-all duration-150 group select-none outline-none
+      min-h-12 bg-white dark:bg-gray-900"
+    :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '', disabled ? 'opacity-50 pointer-events-none' : 'hover:shadow-lg hover:scale-[1.01] active:scale-100']"
     @click="onCardClick"
+    tabindex="0"
+    role="button"
+    :aria-disabled="disabled"
   >
-    <div class="flex items-center justify-between gap-1">
-      <div class="flex items-center gap-1 text-sm">
-        <div
-          v-if="props.item.icon"
-          class="h-5 w-5"
-          :class="[props.item.iconClass, props.item.icon]"
-        />
-        <img
-          v-else-if="props.item.image"
-          :src="props.item.image"
-          :alt="t(props.item.name)"
-          class="h-8 w-8 object-contain"
-          :style="ballFilter"
+    <!-- Icone à gauche -->
+    <div class="flex items-center justify-center h-9 w-9 flex-shrink-0 relative">
+      <div
+        v-if="props.item.icon"
+        :class="[props.item.iconClass, props.item.icon, 'h-full w-full']"
+      />
+      <img
+        v-else-if="props.item.image"
+        :src="props.item.image"
+        :alt="t(props.item.name)"
+        class="h-full w-full object-contain"
+        :style="ballFilter"
+      >
+    </div>
+
+<!-- Colonne centrale : nom et desc -->
+<div class="flex flex-col min-w-0 flex-1 leading-tight justify-center">
+  <div
+    class="flex items-center gap-1 font-semibold text-sm leading-tight min-h-[2.4em]"
+    style="word-break: break-word;"
+  >
+    <span
+      class="block line-clamp-2 overflow-hidden"
+      style="max-height: 2.8em;"
+    >
+      {{ t(props.item.name) }}
+    </span>
+  </div>
+  <div
+    v-if="props.item.shortDesc"
+    class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 overflow-hidden"
+  >
+    {{ t(props.item.shortDesc) }}
+  </div>
+</div>
+
+
+    <!-- Actions à droite : quantité + bouton (jamais débordant) -->
+    <div class="flex flex-col items-end justify-center min-w-20 ml-2 gap-0.5">
+      <div class="flex items-center gap-1 h-7">
+        <span
+          v-if="qty > 1"
+          class="px-1 py-0 rounded bg-gray-100 dark:bg-gray-700 text-xs font-bold text-gray-700 dark:text-gray-100 flex-shrink-0"
+          style="height: 22px; display: flex; align-items: center;"
         >
-        <span class="font-bold">{{ t(props.item.name) }}</span>
-      </div>
+          x{{ qty }}
+        </span>
+        <UiButton
+          v-if="!isEgg"
+          :disabled="props.disabled"
+          @click.stop="emit('use')"
+          size="xs"
+        >
+          <div i-carbon-play inline-block class="text-base text-xs" />
+          {{ actionLabel }}
+        </UiButton>
       <UiKbd
         v-if="!isMobile"
         clickable
         size="sm"
         :key-name="shortcutKey"
-        class="self-baseline"
         :title="t('components.inventory.ItemCard.shortcutTooltip')"
         @click.stop="openShortcutModal"
       />
+      </div>
+
     </div>
-    <div class="flex items-center justify-end gap-1">
-      <span class="font-bold">x{{ props.qty }}</span>
-      <UiButton
-        v-if="!isEgg"
-        class="flex items-center gap-1 text-xs"
-        :disabled="props.disabled"
-        @click.stop="emit('use')"
-      >
-        <div i-carbon-play inline-block />
-        {{ actionLabel }}
-      </UiButton>
-    </div>
+
+    <!-- MODAL inchangé -->
     <UiModal v-model="showInfo" footer-close>
       <div class="flex flex-col items-center gap-2">
         <div
@@ -142,6 +178,7 @@ watch(showInfo, (val) => {
           class="flex items-center gap-1 text-xs"
           :disabled="props.disabled"
           @click.stop="useFromModal"
+          size="sm"
         >
           <div i-carbon-play inline-block />
           {{ actionLabel }}
