@@ -30,6 +30,7 @@ export const PERSISTED_STORE_KEYS = [
   'miniGame',
   'mobileTab',
   'player',
+  'playtime',
   'potionInfo',
   'shlagedex',
   'shopFilter',

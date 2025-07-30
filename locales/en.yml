@@ -184,6 +184,7 @@ components:
       invalid: Invalid code
       loaded: Save loaded
       copied: Copied
+      playtime: You have played for {minutes} minutes.
       generate: Generate
       loadFile: Load from file
     LanguageTab:
