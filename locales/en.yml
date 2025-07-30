@@ -137,6 +137,8 @@ components:
         village to challenge the arena and earn this right.
     FightKingButton:
       challenge: Challenge {label}
+      male: the king
+      female: the queen
     Round:
       vs: VS
     Shlagemon:
@@ -636,6 +638,10 @@ components:
           text: Thanks! See you on the server. Enjoy the game!
           responses:
             finish: Close
+        discordNo:
+          text: You're really disgusting. Oh well... have fun anyway, dickhead.
+          responses:
+            finish: Close
     DuplicateRarityDialog:
       steps:
         step1:
@@ -658,12 +664,16 @@ components:
             back: Back
             next: Next
         step5:
-          text: If the captured one is very rare, yours inherits its rarity. Otherwise it gains only one rarity point and loses one level.
+          text: >-
+            If the captured one is very rare, yours inherits its rarity.
+            Otherwise it gains only one rarity point and loses one level.
           responses:
             back: Back
             next: Next
         step6:
-          text: A few link rarity to their level. {starter} can do it. Here, take this Super Shlageball!
+          text: >-
+            A few link rarity to their level. {starter} can do it. Here, take
+            this Super Shlageball!
           responses:
             back: Back
             valid: Thanks Professor!
@@ -671,6 +681,40 @@ components:
           text: You're really disgusting. Oh well... have fun anyway, dickhead.
           responses:
             finish: Close
+    RainbowPotionDialog:
+      steps:
+        step1:
+          text: >-
+            Congrats! Your Shlagemon reached level 25. Kings are becoming
+            tougher.
+          responses:
+            next: Continue
+        step2:
+          text: Each victory makes them stronger, so you'll need sharper strategies.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: >-
+            There's a very rare rainbow potion. Used at the end of battle, it
+            can deal massive damage or heal your companion.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: >-
+            This potion works only once and only in a king battle. Choose your
+            moment carefully.
+          responses:
+            back: Back
+            next: Continue
+        step5:
+          text: >-
+            I have only one, but I'm giving it to you. Use it wisely, it's
+            extremely valuable!
+          responses:
+            back: Back
+            valid: Thanks Professor!
   minigame:
     MasterMind:
       messages:
@@ -3209,6 +3253,10 @@ data:
       details: >-
         Use it on a beloved Shlagemon so its rarity matches its level from now
         on.
+    rainbowPotion:
+      name: Rainbow Potion
+      description: Use at the end of a king battle for massive damage or strong healing.
+      details: A unique rainbow-colored potion usable once per king fight.
   kings:
     plaine-kekette:
       dialogBefore: Hey, if you win I'll treat you to breakfast!
