@@ -482,20 +482,6 @@ export const fabulousPotion: Item = {
 
 }
 
-export const rainbowPotion: Item = {
-  id: 'rainbow-potion',
-  name: 'data.items.rainbowPotion.name',
-  description: 'data.items.rainbowPotion.description',
-  details: 'data.items.rainbowPotion.details',
-  type: 'heal',
-  power: 125,
-  price: 999999,
-  category: 'activable',
-  icon: 'i-game-icons:fizzing-flask',
-  iconClass: 'mask-rainbow',
-  unique: true,
-}
-
 export const allItems = [
   shlageball,
   superShlageball,
@@ -547,7 +533,6 @@ export const allItems = [
   specialPotion,
   mysteriousPotion,
   fabulousPotion,
-  rainbowPotion,
 ] as const satisfies Item[]
 
 export type ItemId = typeof allItems[number]['id']
