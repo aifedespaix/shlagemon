@@ -609,21 +609,24 @@ components:
       steps:
         start:
           text: >-
-            Hi, I'm Aife, the developer of this game. If you enjoy Shlagémon,
-            you can support development.
+            Hi, I'm Aife, the developer of this game. If you enjoy Shlagémon and
+            want to support me as I continue developing this game and maybe
+            other projects, you can contribute financially to my work.
           responses:
             donate: Donate
             refuse: Refuse
         donateYes:
-          text: Thanks a lot for your support!
+          text: Thanks so much for your support!
           responses:
             next: Next
         donateNo:
-          text: Not cool, cheapskate!
+          text: Not cool, you cheapskate. Oh well, the game is free after all.
           responses:
             next: Next
         discord:
-          text: You can also join the community on Discord.
+          text: >-
+            You can also join the community on Discord to discuss the game,
+            share your ideas, report potential bugs, or just for fun.
           responses:
             join: Join
             skip: Refuse
@@ -632,7 +635,7 @@ components:
           responses:
             finish: Close
         discordNo:
-          text: You're disgusting. Enjoy the game!
+          text: You're really disgusting. Oh well... have fun anyway, dickhead.
           responses:
             finish: Close
   minigame:

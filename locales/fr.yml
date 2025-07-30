@@ -635,9 +635,9 @@ components:
       steps:
         start:
           text: >-
-            Salut, moi c'est Aife, le développeur de ce jeu.  Si tu apprécies
-            Shlagémon, et que tu souhaites me soutenir dans le développement du
-            jeu et pourquoi pas d'autres projets, tu peux contribuer
+            Salut, moi c'est Aife, le développeur de ce jeu. Si tu apprécies
+            Shlagémon et que tu souhaites me soutenir dans le développement du
+            jeu, et pourquoi pas d'autres projets, tu peux contribuer
             financièrement à mon travail.
           responses:
             donate: Faire un don
@@ -647,13 +647,13 @@ components:
           responses:
             next: Suite
         donateNo:
-          text: Pas cool, sale pauvre. Bon tant pis, le jeu est gratuit après tout.
+          text: Pas cool, sale pauvre. Bon, tant pis, le jeu est gratuit après tout.
           responses:
             next: Suite
         discord:
           text: >-
             Tu peux aussi rejoindre la communauté sur Discord. Pour discuter du
-            jeu, partager tes idées, les potentiels bugs, ou juste pour le fun.
+            jeu, partager tes idées, les bugs potentiels, ou juste pour le fun.
           responses:
             join: Rejoindre
             skip: Refuser
@@ -663,7 +663,7 @@ components:
             finish: Fermer
         discordNo:
           text: >-
-            T'es vraiment dégueulasse. Mais bon... amuse toi bien quand même
+            T'es vraiment dégueulasse. Mais bon... amuse-toi bien quand même,
             tête de bite.
           responses:
             finish: Fermer
