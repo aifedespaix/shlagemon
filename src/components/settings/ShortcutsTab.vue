@@ -6,7 +6,12 @@ import { allItems } from '~/data/items'
 const store = useShortcutsStore()
 const { t } = useI18n()
 
-const itemOptions = allItems.map(i => ({ label: i.name, value: i.id }))
+const itemOptions = computed(() =>
+  allItems.map(i => ({
+    label: t(i.name),
+    value: i.id,
+  })),
+)
 
 function updateKey(index: number, key: string) {
   const entry = { ...store.shortcuts[index], key }
