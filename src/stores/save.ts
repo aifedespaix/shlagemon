@@ -19,6 +19,8 @@ export const useSaveStore = defineStore('save', () => {
   const player = usePlayerStore()
   const itemUsage = useItemUsageStore()
   const equipment = useEquipmentStore()
+  const eggBox = useEggBoxStore()
+  const egg = useEggStore()
 
   function reset() {
     dex.reset()
@@ -39,6 +41,8 @@ export const useSaveStore = defineStore('save', () => {
     player.reset()
     itemUsage.reset()
     equipment.reset()
+    eggBox.reset()
+    egg.reset()
   }
 
   return { reset }
