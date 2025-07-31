@@ -199,13 +199,9 @@ onUnmounted(() => {
             </UiTooltip>
           </div>
         </div>
-        <ArenaSelectionModal
-          v-if="selectedEnemy"
-          v-model="showDex"
-          :enemy="selectedEnemy"
-          :selected="arena.selections.filter(Boolean) as string[]"
-          @select="onMonSelected"
-        />
+        <UiModal v-model="showDex" footer-close @select="onMonSelected">
+          <ArenaSelectionModal v-if="selectedEnemy" :mon="selectedEnemy" :selected="arena.selections.filter(Boolean) as string[]" />
+        </UiModal>
 
         <UiModal v-model="showEnemy" footer-close>
           <ArenaEnemyStats v-if="enemyDetail" :mon="enemyDetail" />
