@@ -137,6 +137,7 @@ const bottomLocked = computed(() => {
       <ShlagemonTypeChartModal />
       <ShlagemonWearableEquipModal />
       <ShlagemonDetailModal />
+      <ShlagemonDexInfoModal />
     </div>
   </div>
 </template>

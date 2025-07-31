@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
+import { useDexInfoModalStore } from '~/stores/dexInfoModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 
@@ -38,6 +39,7 @@ interface Props {
 
 const typeChart = useTypeChartModalStore()
 const dex = useShlagedexStore()
+const infoModal = useDexInfoModalStore()
 
 const now = ref(Date.now())
 const { pause: stopTimer } = useIntervalFn(() => {
@@ -68,6 +70,10 @@ function showTypeChart() {
     typeChart.open(type.id)
 }
 
+function openInfo() {
+  infoModal.open(props.mon)
+}
+
 const maxHp = computed(() => dex.maxHp(props.mon))
 </script>
 
@@ -75,6 +81,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
   <div
     class="relative h-full flex flex-1 flex-col items-center"
     :class="[{ 'saturate-10 contrast-200': props.disease }, { flash: props.flash }]"
+    @contextmenu.prevent="openInfo"
   >
     <slot />
     <div class="absolute left-0 top-2 z-150 flex flex-col gap-1">
