@@ -75,20 +75,18 @@ watch(showInfo, (val) => {
 
 <template>
   <div
-    class="relative flex items-center gap-2 py-1 px-2 rounded-lg border shadow-sm
-      cursor-pointer transition-all duration-150 group select-none outline-none
-      min-h-12 bg-white dark:bg-gray-900"
-    :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '', disabled ? 'opacity-50 pointer-events-none' : 'hover:shadow-lg hover:scale-[1.01] active:scale-100']"
-    @click="onCardClick"
+    class="group relative min-h-12 flex cursor-pointer select-none items-center gap-2 border rounded-lg bg-white px-2 py-1 shadow-sm outline-none transition-all duration-150 dark:bg-gray-900"
+    :class="[isUnused ? highlightClasses : '', zoom ? 'open-zoom' : '', disabled ? 'opacity-50' : 'hover:shadow-lg hover:scale-[1.01] active:scale-100']"
     tabindex="0"
     role="button"
     :aria-disabled="disabled"
+    @click="onCardClick"
   >
     <!-- Icone à gauche -->
-    <div class="flex items-center justify-center h-9 w-9 flex-shrink-0 relative">
+    <div class="relative h-9 w-9 flex flex-shrink-0 items-center justify-center">
       <div
         v-if="props.item.icon"
-        :class="[props.item.iconClass, props.item.icon, 'h-full w-full']"
+        class="h-full w-full" :class="[props.item.iconClass, props.item.icon]"
       />
       <img
         v-else-if="props.item.image"
@@ -99,34 +97,33 @@ watch(showInfo, (val) => {
       >
     </div>
 
-<!-- Colonne centrale : nom et desc -->
-<div class="flex flex-col min-w-0 flex-1 leading-tight justify-center">
-  <div
-    class="flex items-center gap-1 font-semibold text-sm leading-tight min-h-[2.4em]"
-    style="word-break: break-word;"
-  >
-    <span
-      class="block line-clamp-2 overflow-hidden"
-      style="max-height: 2.8em;"
-    >
-      {{ t(props.item.name) }}
-    </span>
-  </div>
-  <div
-    v-if="props.item.shortDesc"
-    class="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 overflow-hidden"
-  >
-    {{ t(props.item.shortDesc) }}
-  </div>
-</div>
-
+    <!-- Colonne centrale : nom et desc -->
+    <div class="min-w-0 flex flex-1 flex-col justify-center leading-tight">
+      <div
+        class="min-h-[2.4em] flex items-center gap-1 text-sm font-semibold leading-tight"
+        style="word-break: break-word;"
+      >
+        <span
+          class="line-clamp-2 block overflow-hidden"
+          style="max-height: 2.8em;"
+        >
+          {{ t(props.item.name) }}
+        </span>
+      </div>
+      <div
+        v-if="props.item.shortDesc"
+        class="line-clamp-1 overflow-hidden text-xs text-gray-500 dark:text-gray-400"
+      >
+        {{ t(props.item.shortDesc) }}
+      </div>
+    </div>
 
     <!-- Actions à droite : quantité + bouton (jamais débordant) -->
-    <div class="flex flex-col items-end justify-center min-w-20 ml-2 gap-0.5">
-      <div class="flex items-center gap-1 h-7">
+    <div class="ml-2 min-w-20 flex flex-col items-end justify-center gap-0.5">
+      <div class="h-7 flex items-center gap-1">
         <span
           v-if="qty > 1"
-          class="px-1 py-0 rounded bg-gray-100 dark:bg-gray-700 text-xs font-bold text-gray-700 dark:text-gray-100 flex-shrink-0"
+          class="flex-shrink-0 rounded bg-gray-100 px-1 py-0 text-xs text-gray-700 font-bold dark:bg-gray-700 dark:text-gray-100"
           style="height: 22px; display: flex; align-items: center;"
         >
           x{{ qty }}
@@ -134,22 +131,21 @@ watch(showInfo, (val) => {
         <UiButton
           v-if="!isEgg"
           :disabled="props.disabled"
-          @click.stop="emit('use')"
           size="xs"
+          @click.stop="emit('use')"
         >
           <div i-carbon-play inline-block class="text-base text-xs" />
           {{ actionLabel }}
         </UiButton>
-      <UiKbd
-        v-if="!isMobile"
-        clickable
-        size="sm"
-        :key-name="shortcutKey"
-        :title="t('components.inventory.ItemCard.shortcutTooltip')"
-        @click.stop="openShortcutModal"
-      />
+        <UiKbd
+          v-if="!isMobile"
+          clickable
+          size="sm"
+          :key-name="shortcutKey"
+          :title="t('components.inventory.ItemCard.shortcutTooltip')"
+          @click.stop="openShortcutModal"
+        />
       </div>
-
     </div>
 
     <!-- MODAL inchangé -->
@@ -177,8 +173,8 @@ watch(showInfo, (val) => {
           v-if="!isEgg"
           class="flex items-center gap-1 text-xs"
           :disabled="props.disabled"
-          @click.stop="useFromModal"
           size="sm"
+          @click.stop="useFromModal"
         >
           <div i-carbon-play inline-block />
           {{ actionLabel }}
