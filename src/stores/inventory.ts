@@ -8,6 +8,7 @@ import {
 } from '~/data/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
+import { useAudioStore } from './audio'
 import { useOdorElixirStore } from './odorElixir'
 
 export const useInventoryStore = defineStore('inventory', () => {
@@ -20,6 +21,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const itemUsage = useItemUsageStore()
   const eggBox = useEggBoxStore()
   const odorElixirStore = useOdorElixirStore()
+  const audio = useAudioStore()
 
   interface ListedItem {
     item: Item
@@ -162,6 +164,8 @@ export const useInventoryStore = defineStore('inventory', () => {
     const result = handler ? handler() : false
     if (result) {
       itemUsage.markUsed(id)
+      if (item.sfxId)
+        audio.playSfx(item.sfxId)
       if (['defense', 'attack', 'vitality', 'xp', 'capture'].includes(item.type ?? ''))
         usePotionInfoStore().trigger()
     }
