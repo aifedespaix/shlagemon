@@ -154,7 +154,7 @@ const captureInfo = computed(() => {
           <UiButton
             v-else
             type="icon"
-              size="xs"
+            size="xs"
             :title="t('components.shlagemon.Detail.equipItemTitle')"
             @click="openEquip"
           >
