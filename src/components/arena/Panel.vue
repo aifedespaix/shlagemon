@@ -197,8 +197,9 @@ onUnmounted(() => {
           </div>
         </div>
         <ArenaSelectionModal
+          v-if="activeSlot"
           v-model="showDex"
-          :enemy-name="activeSlot !== null ? enemyTeam[activeSlot].name : ''"
+          :enemy="enemyTeam[activeSlot]"
           :selected="arena.selections.filter(Boolean) as string[]"
           @select="onMonSelected"
         />

@@ -3,7 +3,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 
 interface Props {
   modelValue: boolean
-  enemyName: string
+  enemy: DexShlagemon
   selected: string[]
 }
 
@@ -29,8 +29,9 @@ function onSelect(mon: DexShlagemon) {
   <UiModal :model-value="props.modelValue" footer-close @update:model-value="emit('update:modelValue', $event)">
     <div class="h-full flex flex-col">
       <h3 class="mb-2 text-center text-lg font-bold">
-        {{ t('components.arena.SelectionModal.title', { name: props.enemyName }) }}
+        {{ t('components.arena.SelectionModal.title', { name: props.enemy.base.name }) }}
       </h3>
+      <ArenaEnemyStatsCompact :mon="enemy" />
       <ShlagemonQuickSelect :selected="props.selected" @select="onSelect" />
     </div>
   </UiModal>
