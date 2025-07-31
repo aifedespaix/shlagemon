@@ -6,12 +6,20 @@ useHead({
     { name: 'description', content: t('pages.index.description') },
   ],
 })
+const app = useAppStore()
 </script>
 
 <template>
-  <div class="mx-auto max-w-160 w-full py-10 text-center">
-    <h1 class="mb-4 text-2xl font-bold">
-      {{ t('pages.index.welcome') }}
-    </h1>
+  <div class="relative h-full flex flex-col select-none overflow-hidden">
+    <LayoutHeader />
+    <LayoutGameGrid class="flex-1" />
+    <LayoutMobileMenu />
+    <UpdateSnackbar />
+    <div
+      v-if="!app.isReady"
+      class="absolute inset-0 z-50 flex items-center justify-center bg-white/90 dark:bg-black/90"
+    >
+      <UiLoader />
+    </div>
   </div>
 </template>

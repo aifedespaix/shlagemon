@@ -35,7 +35,7 @@ export const localizedRoutes: LocalizedRoute[] = [
       en: '/en',
     },
     i18nKey: 'pages.index.title',
-    layout: 'home',
+    layout: 'empty',
   },
   {
     name: 'shlagedex',
@@ -45,7 +45,7 @@ export const localizedRoutes: LocalizedRoute[] = [
       en: '/en/shlagedex',
     },
     i18nKey: 'pages.shlagedex.title',
-    layout: 'home',
+    layout: 'default',
   },
 ]
 export default localizedRoutes

@@ -1,18 +1,14 @@
 <script setup lang="ts">
-const app = useAppStore()
+import HomeFooter from '~/components/layout/HomeFooter.vue'
+import HomeHeader from '~/components/layout/HomeHeader.vue'
 </script>
 
 <template>
-  <div class="relative h-full flex flex-col select-none overflow-hidden">
-    <LayoutHeader />
-    <LayoutGameGrid class="flex-1" />
-    <LayoutMobileMenu />
-    <UpdateSnackbar />
-    <div
-      v-if="!app.isReady"
-      class="absolute inset-0 z-50 flex items-center justify-center bg-white/90 dark:bg-black/90"
-    >
-      <UiLoader />
-    </div>
+  <div class="h-screen flex flex-col">
+    <HomeHeader />
+    <main class="mx-auto max-w-160 w-full flex-1 overflow-auto p-4">
+      <RouterView />
+      <HomeFooter />
+    </main>
   </div>
 </template>
