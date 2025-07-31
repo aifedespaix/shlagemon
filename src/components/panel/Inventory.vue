@@ -201,6 +201,7 @@ function onUse(item: Item) {
       is-small
       :tabs="tabs"
       class="flex-1"
+      icons-only
     />
     <div
       v-else

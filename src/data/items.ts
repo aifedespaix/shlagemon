@@ -309,7 +309,8 @@ export const thunderStone: Item = {
   currency: 'shlagidiamond',
   category: 'actif',
   type: 'evolution',
-  image: '/items/pierre-foutre/pierre-foutre.svg',
+  icon: 'i-carbon:flash-filled',
+  iconClass: 'text-yellow-500 dark:text-yellow-300',
 }
 
 export const steroids: Item = {

@@ -1,31 +1,27 @@
 <script setup lang="ts">
 import { useSwipe } from '@vueuse/core'
-import { computed, defineEmits, defineProps, nextTick, onMounted, ref, useAttrs, watch } from 'vue'
+import { computed, defineEmits, defineProps, ref, useAttrs, watch } from 'vue'
 
-/** Label pour chaque onglet */
-interface Label {
-  text: string
-  icon?: string // class ou name
-}
-/** Définition forte des tabs */
+interface Label { text: string, icon?: string }
 interface Tab {
   'label': Label
-  'component': any // Met DefineComponent pour un typage encore plus strict si besoin
+  'component': any
   'highlight'?: boolean
   'disabled'?: boolean
   'aria-label'?: string
 }
 
-// Fix warning Vue: on gère nous-même les attrs
 defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<{
   modelValue?: number
   tabs: readonly Tab[]
   isSmall?: boolean
+  iconsOnly?: boolean
 }>(), {
   modelValue: 0,
   isSmall: false,
+  iconsOnly: false,
 })
 
 const emit = defineEmits<{
@@ -63,8 +59,6 @@ function prev() {
       return select(i)
   }
 }
-
-// Swipe mobile (facultatif mais tellement UX++ sur mobile)
 useSwipe(container, {
   threshold: 40,
   onSwipeEnd(_, dir) {
@@ -75,43 +69,14 @@ useSwipe(container, {
   },
 })
 
-// Gestion du mode "icônes only" si texte ellipsé
-const tabBarRef = ref<HTMLElement>()
-const labelRefs = ref<(HTMLElement | null)[]>([])
-const showOnlyIcons = ref(false)
-
-/** True si un des labels est ellipsé */
-function isEllipsisActive(el: HTMLElement): boolean {
-  return el.scrollWidth > el.clientWidth + 1 // +1 = marge anti-bug pixel
-}
-function checkLabelsOverflow() {
-  nextTick(() => {
-    // on teste tous les labels : si un seul ellipsé, icônes only !
-    const anyEllipsed = labelRefs.value.some(el => el && isEllipsisActive(el))
-    showOnlyIcons.value = anyEllipsed
-  })
-}
-onMounted(() => {
-  nextTick(() => {
-    checkLabelsOverflow()
-    if (window.ResizeObserver) {
-      const obs = new ResizeObserver(checkLabelsOverflow)
-      tabBarRef.value && obs.observe(tabBarRef.value)
-    }
-    window.addEventListener('resize', checkLabelsOverflow)
-  })
-})
-watch(() => props.tabs, () => nextTick(checkLabelsOverflow))
-
-// Base classes boutons tabs
 const tabBtnBase = computed(() =>
   [
-    'relative flex flex-1 justify-center items-center gap-1 min-w-0 transition-all select-none',
+    'relative inline-flex items-center justify-center transition-all select-none',
     'outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-sky-500',
     props.isSmall ? 'text-sm py-1' : 'text-base py-2',
-    'border-b-2 border-transparent cursor-pointer',
-    'overflow-hidden', // important pour clamp
-    'group',
+    'border-b-2 border-transparent cursor-pointer group',
+    'px-3 whitespace-nowrap',
+    'bg-transparent',
   ].join(' '),
 )
 function tabBtnActive(i: number) {
@@ -119,16 +84,11 @@ function tabBtnActive(i: number) {
     active.value === i
       ? 'font-bold border-sky-600 dark:border-sky-400 bg-sky-50 dark:bg-sky-900/60 text-sky-700 dark:text-sky-100 shadow-inner'
       : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200',
-    props.tabs[i].highlight && active.value !== i
-      ? 'animate-pulse-alt animate-count-infinite'
-      : '',
-    props.tabs[i].disabled
-      ? 'opacity-40 pointer-events-none'
-      : '',
+    props.tabs[i].highlight && active.value !== i ? 'animate-pulse-alt animate-count-infinite' : '',
+    props.tabs[i].disabled ? 'opacity-40 pointer-events-none' : '',
   ].join(' ')
 }
 
-// Slide direction
 const transitionName = computed(() => direction.value === 'left' ? 'slide-left' : 'slide-right')
 </script>
 
@@ -136,10 +96,10 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
   <div class="h-full flex flex-col" v-bind="$attrs">
     <!-- Nav Tabs -->
     <nav
-      ref="tabBarRef"
-      class="no-scrollbar flex overflow-x-auto border-b border-gray-200 dark:border-gray-800"
+      class="no-scrollbar flex overflow-x-auto whitespace-nowrap border-b border-gray-200 dark:border-gray-800"
       aria-label="Navigation par onglets"
       tabindex="0"
+      style="scrollbar-width: none;"
       @keydown.left.prevent="prev"
       @keydown.right.prevent="next"
     >
@@ -152,30 +112,30 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
         :aria-label="tab['aria-label'] || tab.label.text"
         :class="[tabBtnBase, tabBtnActive(i)]"
         :disabled="tab.disabled"
-        style="min-width: 0;"
+        style="flex: 0 0 auto;"
         @click="select(i)"
         @keydown.enter.space.prevent="select(i)"
       >
+        <!-- Icone -->
         <div
           v-if="tab.label.icon"
-          class="shrink-0 transition-all" :class="[
-            showOnlyIcons ? (props.isSmall ? 'text-xl' : 'text-2xl') : 'text-xl',
+          class="flex shrink-0 items-center justify-center transition-all" :class="[
+            props.iconsOnly ? (props.isSmall ? 'text-xl' : 'text-2xl') : 'text-xl',
             tab.label.icon,
           ]"
           aria-hidden="true"
         />
-        <!-- Le span label n'est jamais affiché si on est en mode icônes only -->
+        <!-- Label -->
         <span
-          v-if="!showOnlyIcons || !tab.label.icon"
-          :ref="el => labelRefs[i] = el"
-          class="block max-w-full min-w-0 truncate text-ellipsis transition-all duration-150"
+          v-if="!props.iconsOnly"
+          class="ml-1 transition-all duration-150"
         >
           {{ tab.label.text }}
         </span>
       </button>
     </nav>
 
-    <!-- Tab content (slot dynamiques avec transitions) -->
+    <!-- Tab content avec transitions -->
     <section
       ref="container"
       class="relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto bg-white dark:bg-gray-900 focus:outline-none"
@@ -193,6 +153,13 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
 </template>
 
 <style scoped>
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
