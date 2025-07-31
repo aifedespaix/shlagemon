@@ -16,6 +16,7 @@ function retry() {
   if (!data)
     return
   dialog.resetArenaDialogs()
+  dialog.markDone('arenaWelcome')
   arena.reset()
   arena.setArena(data)
   emit('done', 'arenaDefeat')
