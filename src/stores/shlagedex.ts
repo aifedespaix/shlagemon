@@ -506,6 +506,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
         return existing
       }
+      const before = existing.rarity
       const incoming = createDexShlagemon(
         base,
         shiny,
@@ -524,7 +525,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       else if (existing.rarity < 100) {
         existing.rarity += 1
       }
-      const before = existing.rarity
       existing.rarity = Math.min(existing.rarity, 100)
       if (before < 100 && existing.rarity === 100)
         audio.playSfx('rarity-100')
@@ -563,6 +563,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
         return existing
       }
+      const before = existing.rarity
       existing.captureCount += 1
       let rarityGain = 1
       let levelLoss = 1
@@ -574,7 +575,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       else if (existing.rarity < 100) {
         existing.rarity += 1
       }
-      const before = existing.rarity
       existing.rarity = Math.min(existing.rarity, 100)
       if (before < 100 && existing.rarity === 100)
         audio.playSfx('rarity-100')
