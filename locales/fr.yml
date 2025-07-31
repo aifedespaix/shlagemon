@@ -48,12 +48,12 @@ components:
       locked: À débloquer
     BonusDetails:
       intro1: >-
-        Le bonus du Shlagedex correspond à votre **ShlagéDex potentiel**. Il
-        représente le bonus maximal que vous pourriez obtenir en capturant tous
-        les Shlagémon accessibles.
+        Le bonus du Shlagédex augmente les dégâts infligés par vos Shlagémon.
+        Il est plafonné par votre **Shlagédex potentiel**, c'est-à-dire tous les
+        Shlagémon capturables.
       intro2: >-
-        Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel
-        ainsi que sur le niveau moyen de votre équipe.
+        Sa valeur dépend du taux de complétion de ce Shlagédex potentiel et du
+        niveau moyen de votre équipe.
       formula: Bonus = niveau moyen × 2 × (taux de complétion / 100)
       completion: 'Complétion :'
       averageLevel: 'Niveau moyen :'

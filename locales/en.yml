@@ -47,11 +47,12 @@ components:
       locked: To unlock
     BonusDetails:
       intro1: >-
-        The Shlagedex bonus matches your **potential ShlagéDex**. It represents
-        the maximum bonus you could obtain by capturing all available Shlagémon.
+        The Shlagedex bonus increases the damage dealt by your Shlagémon.
+        Its upper limit equals your **potential Shlagedex**, meaning all
+        capturable Shlagémon.
       intro2: >-
-        It is based on the completion rate of this potential Shlagedex as well
-        as your team's average level.
+        The bonus depends on the completion rate of this potential Shlagedex and
+        on your team's average level.
       formula: Bonus = average level × 2 × (completion rate / 100)
       completion: 'Completion:'
       averageLevel: 'Average level:'
