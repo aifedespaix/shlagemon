@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { availableLocales } from '~/constants/locales'
 import { localizedRoutes } from './localizedRoutes'
 
@@ -45,7 +45,9 @@ export const routes: RouteRecordRaw[] = [
  * Application router instance.
  */
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: import.meta.env.SSR
+    ? createMemoryHistory(import.meta.env.BASE_URL)
+    : createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 
