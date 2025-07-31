@@ -19,6 +19,7 @@ const props = withDefaults(
     disabled?: boolean
     ariaLabel?: string
     iconSize?: string // Ajout d’une prop taille icône : ex "text-xl" ou "text-2xl"
+    circle?: boolean
   }>(),
   {
     type: 'default',
@@ -27,6 +28,7 @@ const props = withDefaults(
     disabled: false,
     ariaLabel: undefined,
     iconSize: '', // vide = auto
+    circle: false,
   },
 )
 
@@ -45,11 +47,17 @@ const sizeClass = computed(() => {
 
 // --- Styles UnoCSS fixés à la racine (jamais dynamiques dans le template)
 const baseClass
-  = 'inline-flex items-center justify-center font-semibold rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none'
+  = 'inline-flex items-center justify-center font-semibold outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none'
+
+const radiusClass = computed(() =>
+  props.circle || props.type === 'icon'
+    ? 'rounded-full aspect-square'
+    : 'rounded-xl',
+)
 
 const typeVariantClass = computed(() => {
   if (props.type === 'icon') {
-    return `rounded-full aspect-square ${sizeClass.value}
+    return `${sizeClass.value}
       bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200
       hover:bg-gray-200 dark:hover:bg-gray-700
       focus-visible:ring-2 focus-visible:ring-cyan-400`
@@ -104,7 +112,7 @@ function handleClick(e: MouseEvent) {
     :disabled="props.disabled"
     :aria-label="props.ariaLabel"
     :tabindex="props.disabled ? -1 : 0"
-    :class="[baseClass, typeVariantClass]"
+    :class="[baseClass, radiusClass, typeVariantClass]"
     @click="handleClick"
   >
     <span

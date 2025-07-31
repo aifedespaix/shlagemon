@@ -46,7 +46,8 @@ function startHold() {
 <template>
   <UiButton
     v-if="power && !potion.used"
-    class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 items-center justify-center rounded-full text-xs"
+    class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 items-center justify-center text-xs"
+    circle
     md="top-16 h-16 w-16"
     type="icon"
     @pointerdown="startHold"

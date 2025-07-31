@@ -97,7 +97,8 @@ defineExpose({ open })
 <template>
   <div>
     <UiButton
-      class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 rounded-full text-xs"
+      class="absolute right-50% top-12 aspect-square h-12 w-12 flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 text-xs"
+      circle
       :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
       :disabled="captureButtonDisabled"
       md="top-16 h-16 w-16"
