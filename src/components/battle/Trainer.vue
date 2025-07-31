@@ -41,10 +41,15 @@ const beforeDialogTree = computed<DialogNode[]>(() => {
     {
       id: 'start',
       text: t(trainer.value.dialogBefore),
-      responses: [
-        { label: t('components.battle.Trainer.startBattle'), type: 'primary', action: startFight },
-        { label: t('components.battle.Trainer.quit'), type: 'danger', action: cancelFight },
-      ],
+      responses: isZoneKing.value
+        ? [
+            { label: t('components.battle.Trainer.quit'), type: 'danger', action: cancelFight },
+            { label: t('components.battle.Trainer.startBattle'), type: 'primary', action: startFight },
+          ]
+        : [
+            { label: t('components.battle.Trainer.startBattle'), type: 'primary', action: startFight },
+            { label: t('components.battle.Trainer.quit'), type: 'danger', action: cancelFight },
+          ],
     },
   ]
 })
