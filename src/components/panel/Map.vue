@@ -8,6 +8,11 @@ const zone = useZoneStore()
 const { currentZoneId } = storeToRefs(zone)
 const mapRef = ref<InstanceType<typeof LeafletMap> | null>(null)
 
+function onSelect(id: ZoneId) {
+  if (id !== currentZoneId.value)
+    zone.setZone(id)
+}
+
 provide('selectZone', (id: ZoneId) => {
   mapRef.value?.selectZone(id)
 })
@@ -33,6 +38,6 @@ watch(currentZoneId, (id) => {
         class="mb-1 h-1"
       />
     </div>
-    <LeafletMap ref="mapRef" @select="zone.setZone" />
+    <LeafletMap ref="mapRef" @select="onSelect" />
   </div>
 </template>
