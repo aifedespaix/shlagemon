@@ -8,11 +8,11 @@ const seoHead = useSeoHead()
 
 const { t } = useI18n()
 useHead({
-  title: t('App.title'),
+  title: () => t('App.title'),
   meta: [
     {
       name: 'description',
-      content: t('App.description'),
+      content: () => t('App.description'),
     },
     {
       name: 'keywords',
@@ -20,7 +20,7 @@ useHead({
     },
     {
       name: 'author',
-      content: t('App.author'),
+      content: () => t('App.author'),
     },
     {
       name: 'theme-color',
@@ -28,11 +28,11 @@ useHead({
     },
     {
       property: 'og:title',
-      content: t('App.title'),
+      content: () => t('App.title'),
     },
     {
       property: 'og:description',
-      content: t('App.description'),
+      content: () => t('App.description'),
     },
     {
       property: 'og:type',
@@ -56,11 +56,11 @@ useHead({
     },
     {
       name: 'twitter:title',
-      content: t('App.title'),
+      content: () => t('App.title'),
     },
     {
       name: 'twitter:description',
-      content: t('App.description'),
+      content: () => t('App.description'),
     },
     {
       name: 'twitter:image',
