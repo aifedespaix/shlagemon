@@ -14,6 +14,7 @@ declare module 'vue' {
     ArenaEnemyStats: typeof import('./components/arena/EnemyStats.vue')['default']
     ArenaEnemyStatsCompact: typeof import('./components/arena/EnemyStatsCompact.vue')['default']
     ArenaPanel: typeof import('./components/arena/Panel.vue')['default']
+    ArenaSelectionModale: typeof import('./components/arena/SelectionModale.vue')['default']
     AudioSettingsModal: typeof import('./components/audio/SettingsModal.vue')['default']
     BallSelectionModal: typeof import('./components/ball/SelectionModal.vue')['default']
     BattleAttackCursor: typeof import('./components/battle/AttackCursor.vue')['default']
