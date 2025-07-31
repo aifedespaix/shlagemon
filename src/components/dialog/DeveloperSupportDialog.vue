@@ -17,7 +17,7 @@ const dialogTree = computed<DialogNode[]>(() => [
       {
         label: t('components.dialog.DeveloperSupportDialog.steps.start.responses.donate'),
         type: 'valid',
-        action: () => window.open('https://www.patreon.com/c/Aife_', '_blank'),
+        action: () => window.open('https://ko-fi.com/aifes', '_blank'),
         nextId: 'donateYes',
       },
       {

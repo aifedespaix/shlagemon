@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-function openPatreon() {
-  window.open('https://www.patreon.com/c/Aife_', '_blank')
+function openKofi() {
+  window.open('https://ko-fi.com/aifes', '_blank')
 }
 
 function openDiscord() {
@@ -16,7 +16,7 @@ function openDiscord() {
       <p class="text-sm">
         {{ t('components.settings.SupportTab.donateDesc') }}
       </p>
-      <UiButton class="flex items-center gap-1" @click="openPatreon">
+      <UiButton class="flex items-center gap-1" @click="openKofi">
         <div class="i-carbon-favorite" />
         {{ t('components.settings.SupportTab.donateLabel') }}
       </UiButton>
