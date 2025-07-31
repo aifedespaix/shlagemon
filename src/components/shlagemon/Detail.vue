@@ -145,7 +145,7 @@ const captureInfo = computed(() => {
             />
             <UiButton
               type="icon"
-              class="h-7 w-7"
+              size="xs"
               @click="wearableItemStore.removeHolder(heldItem.id)"
             >
               <div i-carbon-trash-can />
@@ -154,7 +154,7 @@ const captureInfo = computed(() => {
           <UiButton
             v-else
             type="icon"
-            class="h-7 w-7"
+              size="xs"
             :title="t('components.shlagemon.Detail.equipItemTitle')"
             @click="openEquip"
           >

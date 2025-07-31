@@ -13,7 +13,7 @@ const stats = computed(() => [
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
+  <div class="w-full flex flex-col items-center gap-2">
     <h3 class="text-lg font-bold">
       {{ props.mon.base.name }} - lvl {{ props.mon.lvl }}
     </h3>
@@ -28,6 +28,6 @@ const stats = computed(() => [
         open-on-click
       />
     </div>
-    <ShlagemonStats :stats="stats" />
+    <ShlagemonStats class="w-full" :stats="stats" />
   </div>
 </template>

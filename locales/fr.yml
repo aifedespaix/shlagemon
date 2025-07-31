@@ -229,7 +229,7 @@ components:
       smell: Puanteur
       evolveByLevel: Peut évoluer au niveau {level}
       evolveByItem: Peut évoluer grâce à l'objet {item}
-      rarityInfo: Plus un Pokémon est rare, plus son potentiel de puissance est élevé.
+      rarityInfo: Rareté
       sick: malade
     WearableEquipModal:
       title: Choisir un objet à équiper
@@ -261,6 +261,8 @@ components:
     SortControls:
       ascending: Tri ascendant
       descending: Tri descendant
+    LanguageToggle:
+      label: Changer de langue
   dialog:
     AnotherShlagemonDialog:
       steps:

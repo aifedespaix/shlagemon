@@ -15,7 +15,7 @@ fr:
   smell: Puanteur
   evolveByLevel: 'Peut évoluer au niveau {level}'
   evolveByItem: "Peut évoluer grâce à l'objet {item}"
-  rarityInfo: Plus un Pokémon est rare, plus son potentiel de puissance est élevé.
+  rarityInfo: Rareté
   sick: malade
 en:
   equipItemTitle: Equip an item
@@ -34,5 +34,5 @@ en:
   smell: Smell
   evolveByLevel: 'Can evolve at level {level}'
   evolveByItem: 'Can evolve with item {item}'
-  rarityInfo: The rarer a Shlagemon is, the higher its potential power.
+  rarityInfo: Rarity
   sick: sick

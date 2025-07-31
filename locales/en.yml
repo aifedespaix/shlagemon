@@ -221,7 +221,7 @@ components:
       smell: Smell
       evolveByLevel: Can evolve at level {level}
       evolveByItem: Can evolve with item {item}
-      rarityInfo: The rarer a Shlagemon is, the higher its potential power.
+      rarityInfo: Rarity
       sick: sick
     WearableEquipModal:
       title: Choose an item to equip
@@ -253,6 +253,8 @@ components:
     SortControls:
       ascending: Ascending sort
       descending: Descending sort
+    LanguageToggle:
+      label: Toggle language
   dialog:
     AnotherShlagemonDialog:
       steps:
