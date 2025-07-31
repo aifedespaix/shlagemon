@@ -199,6 +199,7 @@ declare global {
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDexDetailModalStore: typeof import('./stores/dexDetailModal')['useDexDetailModalStore']
   const useDexFilterStore: typeof import('./stores/dexFilter')['useDexFilterStore']
+  const useDexInfoModalStore: typeof import('./stores/dexInfoModal')['useDexInfoModalStore']
   const useDialogStore: typeof import('./stores/dialog')['useDialogStore']
   const useDiseaseStore: typeof import('./stores/disease')['useDiseaseStore']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
@@ -656,6 +657,7 @@ declare module 'vue' {
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDexDetailModalStore: UnwrapRef<typeof import('./stores/dexDetailModal')['useDexDetailModalStore']>
     readonly useDexFilterStore: UnwrapRef<typeof import('./stores/dexFilter')['useDexFilterStore']>
+    readonly useDexInfoModalStore: UnwrapRef<typeof import('./stores/dexInfoModal')['useDexInfoModalStore']>
     readonly useDialogStore: UnwrapRef<typeof import('./stores/dialog')['useDialogStore']>
     readonly useDiseaseStore: UnwrapRef<typeof import('./stores/disease')['useDiseaseStore']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
