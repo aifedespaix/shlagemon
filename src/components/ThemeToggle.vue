@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDark, useToggle } from '@vueuse/core'
 // Strictement typé, même si ce composant n'a pas de props ici
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 
 const isDark = useDark()
 const toggle = useToggle(isDark)

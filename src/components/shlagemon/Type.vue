@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { ShlagemonType } from '~/type'
+import { computed } from 'vue'
 
 // Props strictement typées
 const props = withDefaults(defineProps<{
@@ -33,9 +33,9 @@ const sizeStyle = computed(() => {
 // Calcul intelligent du texte : auto-contraste
 const textColor = computed(() => {
   const hex = props.value.color.replace('#', '')
-  const r = parseInt(hex.substring(0, 2), 16)
-  const g = parseInt(hex.substring(2, 4), 16)
-  const b = parseInt(hex.substring(4, 6), 16)
+  const r = Number.parseInt(hex.substring(0, 2), 16)
+  const g = Number.parseInt(hex.substring(2, 4), 16)
+  const b = Number.parseInt(hex.substring(4, 6), 16)
   // YIQ contrast
   const yiq = (r * 299 + g * 587 + b * 114) / 1000
   // Force le blanc ou le noir, pas d’ajustement couleur ici, pour la lisibilité stricte
@@ -50,23 +50,7 @@ function handleClick() {
 
 <template>
   <span
-    class="
-      inline-flex items-center justify-center
-      transition-all
-      shadow-sm
-      select-none
-      border border-black/5
-      font-semibold
-      outline-none
-      duration-150
-      relative
-      focus-visible:ring-2 focus-visible:ring-sky-400
-      hover:scale-105 active:scale-97
-      will-change-transform
-      transition-transform
-      cursor-pointer
-      user-select-none
-    "
+    class="user-select-none relative inline-flex cursor-pointer select-none items-center justify-center border border-black/5 font-semibold shadow-sm outline-none transition-all transition-transform duration-150 will-change-transform active:scale-97 hover:scale-105 focus-visible:ring-2 focus-visible:ring-sky-400"
     :tabindex="props.openOnClick ? 0 : undefined"
     :role="props.openOnClick ? 'button' : undefined"
     :aria-pressed="props.openOnClick ? 'false' : undefined"
@@ -75,12 +59,12 @@ function handleClick() {
     :style="{
       backgroundColor: props.value.color,
       color: textColor,
-      ...sizeStyle
+      ...sizeStyle,
     }"
     @click.stop="handleClick"
     @keydown.enter.space.prevent="handleClick"
   >
-    <span class="truncate w-full text-center leading-none pointer-events-none">
+    <span class="pointer-events-none w-full truncate text-center leading-none">
       {{ props.value.name }}
     </span>
   </span>

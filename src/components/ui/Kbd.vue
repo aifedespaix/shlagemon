@@ -1,8 +1,4 @@
 <script setup lang="ts">
-// Types stricts pour la taille (readonly tuple)
-const sizes = ['sm', 'md', 'lg', 'xl'] as const
-type Size = typeof sizes[number]
-
 const props = withDefaults(
   defineProps<{
     keyName: string
@@ -16,8 +12,11 @@ const props = withDefaults(
     waiting: false,
     clickable: false,
     ariaLabel: undefined,
-  }
+  },
 )
+// Types stricts pour la taille (readonly tuple)
+const sizes = ['sm', 'md', 'lg', 'xl'] as const
+type Size = typeof sizes[number]
 
 // Dictionnaire de labels humanisés pour les touches courantes
 const KEY_LABELS = Object.freeze({
@@ -40,30 +39,31 @@ const label = computed(() => KEY_LABELS[props.keyName as keyof typeof KEY_LABELS
 
 // UnoCSS responsive size map, mobile-first
 const sizeMap: Record<Size, string> = {
-  sm:  'text-xs px-1.5 py-0.5 min-w-[1.75em] min-h-[1.5em]',
-  md:  'text-sm px-2 py-0.5 min-w-[2em] min-h-[1.8em]',
-  lg:  'text-base px-3 py-1 min-w-[2.4em] min-h-[2.2em]',
-  xl:  'text-lg px-4 py-1.5 min-w-[2.7em] min-h-[2.5em]',
+  sm: 'text-xs px-1.5 py-0.5 min-w-[1.75em] min-h-[1.5em]',
+  md: 'text-sm px-2 py-0.5 min-w-[2em] min-h-[1.8em]',
+  lg: 'text-base px-3 py-1 min-w-[2.4em] min-h-[2.2em]',
+  xl: 'text-lg px-4 py-1.5 min-w-[2.7em] min-h-[2.5em]',
 } as const
 
 // Classes UnoCSS (éviter le SCSS @apply pour la purge)
-const baseClass =
-  'inline-flex items-center justify-center rounded select-none border border-gray-300 dark:border-gray-500 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-inner-sm transition-all duration-75 font-mono font-semibold outline-none'
+const baseClass
+  = 'inline-flex items-center justify-center rounded select-none border border-gray-300 dark:border-gray-500 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 shadow-inner-sm transition-all duration-75 font-mono font-semibold outline-none'
 
-const clickableClass =
-  'cursor-pointer active:scale-95 hover:bg-gray-200 dark:hover:bg-gray-600 focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-600'
+const clickableClass
+  = 'cursor-pointer active:scale-95 hover:bg-gray-200 dark:hover:bg-gray-600 focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-600'
 
 // Animation attente
-const waitingClass =
-  'animate-pulse opacity-70 pointer-events-none'
+const waitingClass
+  = 'animate-pulse opacity-70 pointer-events-none'
 
 // Focus ring pour accessibilité
-const focusClass =
-  'focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-600'
+const focusClass
+  = 'focus-visible:ring-2 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-600'
 
 // Keyboard accessibility: gestion du click clavier
 function onKeydown(e: KeyboardEvent) {
-  if (!props.clickable) return
+  if (!props.clickable)
+    return
   if (e.key === 'Enter' || e.key === ' ') {
     (e.target as HTMLElement).click()
     e.preventDefault()
@@ -84,14 +84,14 @@ function onKeydown(e: KeyboardEvent) {
       props.waiting ? waitingClass : '',
       focusClass,
     ]"
-    @keydown="onKeydown"
     :disabled="props.waiting"
+    @keydown="onKeydown"
   >
     <span class="pointer-events-none">{{ label }}</span>
     <!-- Petit spinner animé si waiting -->
     <span
       v-if="props.waiting"
-      class="ml-1 h-3 w-3 inline-block align-middle border-2 border-gray-400 dark:border-gray-400 border-t-transparent rounded-full animate-spin"
+      class="ml-1 inline-block h-3 w-3 animate-spin border-2 border-gray-400 border-t-transparent rounded-full align-middle dark:border-gray-400"
       aria-hidden="true"
     />
   </kbd>

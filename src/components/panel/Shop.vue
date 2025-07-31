@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const panel = useMainPanelStore()
 const { t } = useI18n()
 

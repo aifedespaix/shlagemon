@@ -2,7 +2,7 @@ fr:
   steps:
     step1:
       text: >-
-        Bravo ! Tu as un Shlagémon qui a atteint le niveau 25 ! 
+        Bravo ! Tu as un Shlagémon qui a atteint le niveau 25 !
         Tu dois te rendre compte que les combats deviennent de plus en plus difficiles. Surtout contre les rois et reines de zone !
       responses:
         next: Continuer
@@ -15,7 +15,7 @@ fr:
         next: Continuer
     step3:
       text: >-
-        Il existe une potion très rare aux couleurs d'arc-en-ciel. 
+        Il existe une potion très rare aux couleurs d'arc-en-ciel.
         Elle a un pouvoir d'une puissance rare !
         Elle peut asséner de lourds dégâts à un adversaire, ou même soigner ton compagnon !
       responses:
@@ -23,14 +23,14 @@ fr:
         next: Continuer
     step4:
       text: >-
-        J'en possède une, justement ! 
+        J'en possède une, justement !
         Cette potion ne peut être utilisée qu'une seule fois et uniquement face au roi ou la reine d'une zone.
       responses:
         back: Retour
         next: Continuer
     step5:
       text: >-
-        J'en ai une seule, mais je te la donne. 
+        J'en ai une seule, mais je te la donne.
         Prends-en grand soin, elle vaut extrêmement cher ! Choisis bien ton moment.
       responses:
         back: Retour

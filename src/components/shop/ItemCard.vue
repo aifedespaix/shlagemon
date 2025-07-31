@@ -19,6 +19,5 @@ const { t } = useI18n()
       <span class="text-xs">{{ t(props.item.description) }}</span>
     </div>
     <UiCurrencyAmount :amount="props.item.price ?? 0" :currency="props.item.currency ?? 'shlagidolar'" />
-
   </div>
 </template>

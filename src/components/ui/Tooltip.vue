@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { autoUpdate, computePosition, flip, offset, shift, type Placement } from '@floating-ui/dom'
-import { ref, onUnmounted, type PropType } from 'vue'
+import type { Placement } from '@floating-ui/dom'
+import type { PropType } from 'vue'
+import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
+import { onUnmounted, ref } from 'vue'
 
 const props = defineProps({
   text: { type: String, required: true },
   asButton: { type: Boolean, default: false },
-  placement: { type: String as PropType<Placement>, default: 'bottom' }
+  placement: { type: String as PropType<Placement>, default: 'bottom' },
 })
 
 const isTouch = useMediaQuery('(pointer: coarse)')
@@ -25,29 +27,33 @@ function show() {
 }
 function hide() {
   visible.value = false
-  if (timeout) clearTimeout(timeout)
-  if (cleanup) cleanup(), cleanup = undefined
+  if (timeout)
+    clearTimeout(timeout)
+  if (cleanup)
+    cleanup(), cleanup = undefined
 }
 function updatePosition() {
   const wrapperEl = wrapper.value
   const tooltipEl = tooltip.value
-  if (!wrapperEl || !tooltipEl) return
+  if (!wrapperEl || !tooltipEl)
+    return
   cleanup = autoUpdate(wrapperEl, tooltipEl, () => {
     computePosition(wrapperEl, tooltipEl, {
       placement: props.placement,
       middleware: [offset(8), flip(), shift({ padding: 8 })],
-      strategy: 'fixed'
+      strategy: 'fixed',
     }).then(({ x, y }) => {
       Object.assign(tooltipEl.style, {
         left: `${x}px`,
-        top: `${y}px`
+        top: `${y}px`,
       })
     })
   })
 }
 onUnmounted(hide)
 function onKeyDown(e: KeyboardEvent) {
-  if (e.key === 'Escape') hide()
+  if (e.key === 'Escape')
+    hide()
 }
 </script>
 
@@ -70,19 +76,10 @@ function onKeyDown(e: KeyboardEvent) {
     <Transition name="tooltip-fade">
       <span
         v-if="visible"
-        ref="tooltip"
         id="tooltip-content"
+        ref="tooltip"
         role="tooltip"
-        class="
-          pointer-events-none
-          fixed z-50 px-2 py-1 min-w-[2.5rem]
-          rounded-xl shadow-lg
-          bg-neutral-900/90 text-xs text-neutral-50
-          font-medium select-none
-          transition-all duration-150
-          will-change-transform opacity-0 scale-95 translate-y-2
-          data-[show=true]:opacity-100 data-[show=true]:scale-100 data-[show=true]:translate-y-0
-        "
+        class="pointer-events-none fixed z-50 min-w-[2.5rem] translate-y-2 scale-95 select-none rounded-xl bg-neutral-900/90 px-2 py-1 text-xs text-neutral-50 font-medium opacity-0 shadow-lg transition-all duration-150 will-change-transform data-[show=true]:translate-y-0 data-[show=true]:scale-100 data-[show=true]:opacity-100"
         :data-show="visible"
       >
         {{ props.text }}
@@ -94,7 +91,9 @@ function onKeyDown(e: KeyboardEvent) {
 <style scoped>
 .tooltip-fade-enter-active,
 .tooltip-fade-leave-active {
-  transition: opacity 0.15s cubic-bezier(.5,1.5,.6,1), transform 0.15s cubic-bezier(.5,1.5,.6,1);
+  transition:
+    opacity 0.15s cubic-bezier(0.5, 1.5, 0.6, 1),
+    transform 0.15s cubic-bezier(0.5, 1.5, 0.6, 1);
 }
 .tooltip-fade-enter-from,
 .tooltip-fade-leave-to {
