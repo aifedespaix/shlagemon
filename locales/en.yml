@@ -234,6 +234,12 @@ components:
       alreadyOwned: You already own this evolution
       'yes': 'Yes'
       'no': 'No'
+    DexInfo:
+      hp: HP
+      attack: Attack
+      defense: Defense
+      smell: Smell
+      title: Shlagemon Info
   LanguageSelector:
     label: Language
     en: English

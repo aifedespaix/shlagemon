@@ -121,6 +121,8 @@ declare module 'vue' {
     SettingsSupportTab: typeof import('./components/settings/SupportTab.vue')['default']
     ShlagemonDetail: typeof import('./components/shlagemon/Detail.vue')['default']
     ShlagemonDetailModal: typeof import('./components/shlagemon/DetailModal.vue')['default']
+    ShlagemonDexInfo: typeof import('./components/shlagemon/DexInfo.vue')['default']
+    ShlagemonDexInfoModal: typeof import('./components/shlagemon/DexInfoModal.vue')['default']
     ShlagemonEvolutionModal: typeof import('./components/shlagemon/EvolutionModal.vue')['default']
     ShlagemonImage: typeof import('./components/shlagemon/Image.vue')['default']
     ShlagemonList: typeof import('./components/shlagemon/List.vue')['default']

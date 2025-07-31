@@ -242,6 +242,12 @@ components:
       alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
       'yes': Oui
       'no': Non
+    DexInfo:
+      hp: PV
+      attack: Attaque
+      defense: Défense
+      smell: Puanteur
+      title: Informations Shlagémon
   LanguageSelector:
     label: Langue
     en: Anglais
