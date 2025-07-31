@@ -14,7 +14,12 @@ import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 import generateSitemap from 'vite-ssg-sitemap'
+import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
+
+function getAllLocalizedPaths(): string[] {
+  return localizedRoutes.flatMap(route => Object.values(route.paths))
+}
 
 export default defineConfig({
   resolve: {
@@ -146,9 +151,11 @@ export default defineConfig({
     beastiesOptions: {
       reduceInlineStyles: false,
     },
+    includedRoutes: getAllLocalizedPaths,
     onFinished() {
       generateSitemap({
-        basePath: 'https://shlagemon.aife.io',
+        hostname: 'https://shlagemon.aife.io',
+        dynamicRoutes: getAllLocalizedPaths(),
         i18n: {
           languages: ['fr', 'en'],
           defaultLanguage: 'fr',
