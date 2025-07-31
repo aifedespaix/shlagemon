@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 
-const props = defineProps({
+const _props = defineProps({
   mon: { type: Object as PropType<DexShlagemon>, required: true },
   isActive: { type: Boolean, default: false },
   isHighlighted: { type: Boolean, default: false },
@@ -15,12 +15,7 @@ const emit = defineEmits(['click', 'activate'])
 
 <template>
   <div
-    class="
-      relative flex items-center px-1.5 py-0.5 rounded-lg border shadow-sm
-      cursor-pointer transition-all duration-150 group select-none outline-none
-      min-h-11 gap-1
-      focus:ring-2 focus:ring-sky-400
-    "
+    class="group relative min-h-11 flex cursor-pointer select-none items-center gap-1 border rounded-lg px-1.5 py-0.5 shadow-sm outline-none transition-all duration-150 focus:ring-2 focus:ring-sky-400"
     :class="[
       isActive
         ? 'bg-sky-500/10 border-sky-500 ring-2 ring-sky-400'
@@ -42,24 +37,24 @@ const emit = defineEmits(['click', 'activate'])
     @keydown.enter.space.prevent="() => emit('click')"
   >
     <!-- Image Shlagemon, carré, prend toute la hauteur -->
-    <div class="relative flex items-center justify-center h-10 w-10 flex-shrink-0">
+    <div class="relative h-10 w-10 flex flex-shrink-0 items-center justify-center">
       <ShlagemonImage
         :id="mon.base.id"
         :alt="mon.base.name"
         :shiny="mon.isShiny"
-        class="h-full w-full object-contain rounded"
+        class="h-full w-full rounded object-contain"
       />
       <span
         v-if="mon.isShiny"
-        class="absolute top-0 left-0 text-yellow-400 text-xs animate-pulse select-none pointer-events-none"
+        class="pointer-events-none absolute left-0 top-0 animate-pulse select-none text-xs text-yellow-400"
         aria-label="Shiny"
       >
         <div class="i-carbon-star" />
       </span>
     </div>
     <!-- Infos principales (toujours 2 lignes) -->
-    <div class="flex flex-col min-w-0 flex-1 leading-tight gap-1">
-      <div class="flex items-center gap-0.5 font-semibold text-sm truncate">
+    <div class="min-w-0 flex flex-1 flex-col gap-1 leading-tight">
+      <div class="flex items-center gap-0.5 truncate text-sm font-semibold">
         {{ mon.base.name }}
         <span
           v-if="mon.rarity === 100"
@@ -70,18 +65,24 @@ const emit = defineEmits(['click', 'activate'])
         </span>
       </div>
       <div class="flex gap-0.5">
-        <ShlagemonType v-for="t in mon.base.types" :key="t.id" :value="t" size="xs" />
+        <ShlagemonType
+          v-for="t in mon.base.types"
+          :key="t.id"
+          :value="t"
+          size="xs"
+          open-on-click
+        />
       </div>
     </div>
     <!-- Colonne droite, compacte et alignée -->
-    <div class="flex flex-col items-end justify-between h-full min-w-7 gap-0.5">
-        <div class="flex-1">
-      <InventoryWearableItemIcon
-        v-if="item"
-        :item="item"
-        class="h-4 w-4"
-      />
-        </div>
+    <div class="h-full min-w-7 flex flex-col items-end justify-between gap-0.5">
+      <div class="flex-1">
+        <InventoryWearableItemIcon
+          v-if="item"
+          :item="item"
+          class="h-4 w-4"
+        />
+      </div>
       <UiCheckBox
         v-if="showCheckbox"
         class="scale-85"
@@ -90,7 +91,7 @@ const emit = defineEmits(['click', 'activate'])
         @update:model-value="() => emit('activate')"
         @click.stop
       />
-      <div class="text-[10px] text-gray-500 dark:text-gray-400 font-mono text-center leading-none flex-1">
+      <div class="flex-1 text-center text-[10px] text-gray-500 leading-none font-mono dark:text-gray-400">
         lvl <span class="font-bold">{{ mon.lvl }}</span>
       </div>
     </div>
