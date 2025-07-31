@@ -4,7 +4,6 @@ import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
 import { eggBox, fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
 import { ballHues } from '~/utils/ball'
-import ImageByBackground from '../ui/ImageByBackground.vue'
 
 const props = defineProps<{
   item: Item
@@ -61,8 +60,6 @@ function useFromModal() {
   emit('use')
 }
 function onCardClick() {
-  if (props.disabled)
-    return
   showInfo.value = true
   usage.markUsed(props.item.id)
 }
@@ -76,15 +73,13 @@ watch(showInfo, (val) => {
 
 <template>
   <article
-    class="focus-visible:ring-primary-400 relative min-h-16 w-full flex items-center gap-1 overflow-hidden border rounded-xl bg-white/95 p-1 shadow-sm outline-none transition-all duration-150 dark:bg-gray-900/90 focus-visible:ring-2"
+    class="hover:bg-primary-50/50 focus-visible:ring-primary-400 relative min-h-16 w-full flex items-center gap-1 overflow-hidden border rounded-xl bg-white/95 p-1 shadow-sm outline-none transition-all duration-150 active:scale-98 dark:bg-gray-900/90 hover:shadow-lg focus-visible:ring-2"
     :class="[
-      props.disabled ? 'opacity-40 pointer-events-none' : 'hover:shadow-lg hover:bg-primary-50/50 active:scale-98',
       isUnused ? 'animate-pulse-alt animate-count-infinite' : '',
       zoom ? 'open-zoom' : '',
     ]"
     tabindex="0"
     role="button"
-    :aria-disabled="props.disabled"
     @click="onCardClick"
   >
     <!-- 1. Icon/image  -->
