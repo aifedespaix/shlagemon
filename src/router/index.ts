@@ -23,6 +23,7 @@ export function buildLocalizedRoutes(): RouteRecordRaw[] {
         meta: {
           locale,
           i18nKey: route.i18nKey,
+          layout: route.layout,
         },
       })
     }
