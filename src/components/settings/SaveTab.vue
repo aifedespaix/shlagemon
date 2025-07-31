@@ -80,7 +80,7 @@ function loadFromFile(event: Event) {
       {{ t('components.settings.SaveTab.playtime', { minutes: playtime.minutes }) }}
     </p>
     <section class="flex flex-col items-center gap-2">
-      <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+      <p class="text-center text-sm text-gray-600 dark:text-gray-300">
         {{ t('components.settings.SaveTab.exportDesc') }}
       </p>
       <label v-if="exportCode" class="font-bold">
@@ -130,7 +130,7 @@ function loadFromFile(event: Event) {
     </section>
 
     <section class="flex flex-col items-center gap-2">
-      <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+      <p class="text-center text-sm text-gray-600 dark:text-gray-300">
         {{ t('components.settings.SaveTab.importDesc') }}
       </p>
       <label v-if="showImport" class="font-bold">
