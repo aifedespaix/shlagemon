@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
+import { allItems } from '~/data/items'
 import { useDexInfoModalStore } from '~/stores/dexInfoModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
@@ -75,6 +76,11 @@ function openInfo() {
 }
 
 const maxHp = computed(() => dex.maxHp(props.mon))
+
+const heldItem = computed(() => {
+  const id = props.mon.heldItemId
+  return id ? allItems.find(i => i.id === id) || null : null
+})
 </script>
 
 <template>
@@ -94,6 +100,11 @@ const maxHp = computed(() => dex.maxHp(props.mon))
       />
       <DiseaseBadge v-if="props.disease" :remaining="props.diseaseRemaining" />
     </div>
+    <InventoryWearableItemIcon
+      v-if="heldItem"
+      :item="heldItem"
+      class="absolute right-0 top-2 z-150 h-4 w-4"
+    />
     <ShlagemonImage
       :id="props.mon.base.id"
       :alt="props.mon.base.name"
