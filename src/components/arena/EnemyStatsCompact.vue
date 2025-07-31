@@ -14,11 +14,11 @@ const stats = computed(() => [
 
 <template>
   <div class="flex items-center gap-4 rounded-lg bg-white p-3 shadow dark:bg-gray-800">
-    <div class="flex-shrink-0">
+    <div class="h-16 w-16 flex-shrink-0">
       <ShlagemonImage
         :id="props.mon.base.id"
         :alt="props.mon.base.name"
-        class="h-16 w-16 rounded object-contain"
+        class="rounded object-contain"
       />
     </div>
 
