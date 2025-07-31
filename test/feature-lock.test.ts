@@ -43,6 +43,22 @@ describe('feature lock flags', () => {
     expect(checkbox.attributes('disabled')).not.toBeUndefined()
   })
 
+  it('keeps Shlagédex selection enabled when explicitly unlocked', async () => {
+    const pinia = createPinia()
+    setActivePinia(pinia)
+    const dex = useShlagedexStore()
+    dex.createShlagemon(carapouffe)
+    const featureLock = useFeatureLockStore()
+    featureLock.lockShlagedex()
+    const wrapper = mount(ShlagemonList, {
+      props: { mons: dex.shlagemons, showCheckbox: true, locked: false },
+      global: { plugins: [pinia] },
+    })
+    await wrapper.vm.$nextTick()
+    const checkbox = wrapper.find('input[type="checkbox"]')
+    expect(checkbox.attributes('disabled')).toBeUndefined()
+  })
+
   it('disables inventory actions when locked', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
