@@ -97,6 +97,7 @@ watch(showInfo, (val) => {
           :src="props.item.image"
           :alt="t(props.item.name)"
           class="h-full w-full"
+          :style="ballFilter"
         />
       </div>
     </div>
