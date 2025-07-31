@@ -213,8 +213,8 @@ components:
       main: Main
       confirmTitle: Release a Shlagemon?
       confirmText: Be careful, if you release it, it will shlage the whole land.
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       hp: HP
       attack: Attack
       defense: Defense
@@ -232,8 +232,8 @@ components:
         "{from}" wants to evolve into "{to}", will you allow it or stop the
         spread of shlaguitude?
       alreadyOwned: You already own this evolution
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
   LanguageSelector:
     label: Language
     en: English
@@ -2888,8 +2888,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Fancy a game of Connect Four?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Fire Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2898,8 +2898,8 @@ data:
       restart: Restart
     ShlagMind:
       startText: Fancy a game of ShlagMind?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2907,8 +2907,8 @@ data:
       restart: Restart
     Battleship:
       startText: How about a game of Battleship?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Victory! I give you a Water Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2916,8 +2916,8 @@ data:
       back: Back
     ShlagPairs:
       startText: Fancy a game of pairs?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2925,8 +2925,8 @@ data:
       back: Back
     ShlagTaquin:
       startText: Fancy a sliding puzzle game?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2934,8 +2934,8 @@ data:
       back: Back
     TicTacToe:
       startText: Fancy a game of tic tac toe?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Grass Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2943,8 +2943,8 @@ data:
       back: Back
     MasterMind:
       startText: Fancy a game of ShlagMind?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2952,8 +2952,8 @@ data:
       back: Back
     Pairs:
       startText: Fancy a game of pairs?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2961,8 +2961,8 @@ data:
       back: Back
     Taquin:
       startText: Fancy a sliding puzzle game?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -3152,6 +3152,18 @@ data:
           details: >-
             When worn, increases experience gained in battle by 33%. Can stack
             with XP potions.
+      preyAmulet:
+        preyAmulet:
+          name: Prey Amulet
+          description: Prevents the holder from finishing off enemies.
+          details: >-
+            When worn, the holder's attacks cannot reduce enemies below 1 HP and
+            deal no damage at that point. Ideal for capturing weakened foes.
+        name: Prey Amulet
+        description: Prevents the holder from finishing off enemies.
+        details: >-
+          When worn, the holder's attacks cannot reduce enemies below 1 HP and
+          deal no damage at that point. Ideal for capturing weakened foes.
     defensePotion:
       name: Defense Potion
       description: Temporarily increases defense.
