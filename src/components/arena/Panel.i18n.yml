@@ -4,11 +4,9 @@ fr:
   quit: Abandonner
   fight: Combattre
   autoSelect: Sélection automatique de l'équipe
-  choose: 'Choisir un Shlagémon contre {name}'
 en:
   selectSix: You must select 6 Shlagemon to fight in the arena
   autoBattleInfo: The battle is automatic and proceeds without clicks.
   quit: Give up
   fight: Fight
   autoSelect: Automatic team selection
-  choose: 'Choose a Shlagemon against {name}'
