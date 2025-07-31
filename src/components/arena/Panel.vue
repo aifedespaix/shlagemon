@@ -197,13 +197,16 @@ onUnmounted(() => {
           </div>
         </div>
         <UiModal v-model="showDex" footer-close>
-          <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
-            {{ t('components.arena.Panel.choose', { name: enemyTeam[activeSlot].name }) }}
-          </h3>
-          <ShlagemonQuickSelect
-            :selected="arena.selections.filter(Boolean) as string[]"
-            @select="onMonSelected"
-          />
+          <div class="h-full flex flex-col">
+            <h3 v-if="activeSlot !== null" class="mb-2 text-center text-lg font-bold">
+              {{ t('components.arena.Panel.choose', { name: enemyTeam[activeSlot].name }) }}
+            </h3>
+            <!-- <ArenaEnemyStatsCompact v-if="enemyTeam[activeSlot]" :mon="enemyTeam[activeSlot]" /> -->
+            <ShlagemonQuickSelect
+              :selected="arena.selections.filter(Boolean) as string[]"
+              @select="onMonSelected"
+            />
+          </div>
         </UiModal>
 
         <UiModal v-model="showEnemy" footer-close>

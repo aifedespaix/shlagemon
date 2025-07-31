@@ -114,7 +114,7 @@ function openPoulailler() {
       @click="onAction('minigame')"
     />
     <UiNavigationButton
-      v-if="hasArena && !arenaCompleted"
+      v-if="hasArena && (!arenaCompleted || useDeveloperStore().debug)"
       icon="i-mdi:sword-cross"
       :label="t('components.village.ZoneActions.arena')"
       class="bg-red-600 text-white dark:bg-red-700"

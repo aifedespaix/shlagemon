@@ -47,12 +47,11 @@ components:
       locked: To unlock
     BonusDetails:
       intro1: >-
-        The Shlagedex bonus increases the damage dealt by your Shlagémon.
-        Its upper limit equals your **potential Shlagedex**, meaning all
-        capturable Shlagémon.
+        The Shlagedex bonus matches your **potential ShlagéDex**. It represents
+        the maximum bonus you could obtain by capturing all available Shlagémon.
       intro2: >-
-        The bonus depends on the completion rate of this potential Shlagedex and
-        on your team's average level.
+        It is based on the completion rate of this potential Shlagedex as well
+        as your team's average level.
       formula: Bonus = average level × 2 × (completion rate / 100)
       completion: 'Completion:'
       averageLevel: 'Average level:'
@@ -214,8 +213,8 @@ components:
       main: Main
       confirmTitle: Release a Shlagemon?
       confirmText: Be careful, if you release it, it will shlage the whole land.
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       hp: HP
       attack: Attack
       defense: Defense
@@ -233,8 +232,8 @@ components:
         "{from}" wants to evolve into "{to}", will you allow it or stop the
         spread of shlaguitude?
       alreadyOwned: You already own this evolution
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
   LanguageSelector:
     label: Language
     en: English
@@ -272,10 +271,11 @@ components:
       steps:
         step1:
           text: >-
-            Welcome to the arena. You can capture Shlagemons up to level
-            {levelCap}. Battles are one-on-one with no potions or manual attacks
-            and potion bonuses are cancelled. Choose well-trained Shlagemons
-            effective against opposing types.
+            Welcome to the arena. If you manage to conquer it, you'll be able to
+            catch Shlagémons up to level {levelCap}. To succeed, you'll need to
+            win 6 consecutive one-on-one battles, without potions or manual
+            attacks, and your potion bonuses will be disabled. Choose trained
+            Shlagémons effective against opposing types.
           responses:
             start: Let's go!
             quit: Leave
@@ -2866,8 +2866,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Fancy a game of Connect Four?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Fire Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2876,8 +2876,8 @@ data:
       restart: Restart
     ShlagMind:
       startText: Fancy a game of ShlagMind?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2885,8 +2885,8 @@ data:
       restart: Restart
     Battleship:
       startText: How about a game of Battleship?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Victory! I give you a Water Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2894,8 +2894,8 @@ data:
       back: Back
     ShlagPairs:
       startText: Fancy a game of pairs?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2903,8 +2903,8 @@ data:
       back: Back
     ShlagTaquin:
       startText: Fancy a sliding puzzle game?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2912,8 +2912,8 @@ data:
       back: Back
     TicTacToe:
       startText: Fancy a game of tic tac toe?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Grass Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2921,8 +2921,8 @@ data:
       back: Back
     MasterMind:
       startText: Fancy a game of ShlagMind?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
@@ -2930,8 +2930,8 @@ data:
       back: Back
     Pairs:
       startText: Fancy a game of pairs?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! Well played! I give you a Psy Egg.
       super: Awesome!
       loseText: Too bad!
@@ -2939,8 +2939,8 @@ data:
       back: Back
     Taquin:
       startText: Fancy a sliding puzzle game?
-      yes: Yes
-      no: No
+      'yes': 'Yes'
+      'no': 'No'
       winText: Bravo! I give you a Thunder Egg.
       super: Awesome!
       loseText: Lost! Try again whenever you like.
