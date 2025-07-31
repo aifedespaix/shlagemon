@@ -103,7 +103,7 @@ const heldItem = computed(() => {
     <InventoryWearableItemIcon
       v-if="heldItem"
       :item="heldItem"
-      class="absolute right-0 top-2 z-150 h-4 w-4"
+      class="absolute bottom-9 left-0 z-150 h-6 w-6"
     />
     <ShlagemonImage
       :id="props.mon.base.id"
