@@ -16,6 +16,9 @@ const enemyTeam = computed(() => arena.lineup)
 const enemyDexTeam = computed(() => arena.lineupDex)
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
+const selectedEnemy = computed(() =>
+  activeSlot.value !== null ? enemyDexTeam.value[activeSlot.value] : undefined,
+)
 const showDuel = ref(false)
 const showEnemy = ref(false)
 const enemyDetail = ref<DexShlagemon | null>(null)
@@ -197,9 +200,9 @@ onUnmounted(() => {
           </div>
         </div>
         <ArenaSelectionModal
-          v-if="activeSlot"
+          v-if="selectedEnemy"
           v-model="showDex"
-          :enemy="enemyTeam[activeSlot]"
+          :enemy="selectedEnemy"
           :selected="arena.selections.filter(Boolean) as string[]"
           @select="onMonSelected"
         />
