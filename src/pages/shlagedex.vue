@@ -21,6 +21,8 @@ function open(mon: BaseShlagemon) {
     <UiModal v-model="showDetail" footer-close @close="showDetail = false">
       <DeckDetail :mon="selected" @open-mon="open" />
     </UiModal>
+    <!-- Provide the type chart modal for type badges -->
+    <ShlagemonTypeChartModal />
   </div>
 </template>
 
