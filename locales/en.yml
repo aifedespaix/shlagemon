@@ -300,6 +300,27 @@ components:
           responses:
             back: Back
             valid: Thanks!
+    PreyAmuletDialog:
+      steps:
+        step1:
+          text: Amazing, one of your Shlagemons reached level 75!
+          responses:
+            next: Continue
+        step2:
+          text: This amulet makes its wearer incapable of knocking out foes.
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: Attacks stop at 1 HP, then deal no damage.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: It's perfect to help you catch weakened Shlagemons. Here, take it!
+          responses:
+            back: Back
+            valid: Thanks Professor!
     Box: {}
     CapturePotionDialog:
       steps:

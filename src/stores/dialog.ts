@@ -18,6 +18,7 @@ import Level5Dialog from '~/components/dialog/Level5Dialog.vue'
 import NewZoneDialog from '~/components/dialog/NewZoneDialog.vue'
 import OdorElixirDialog from '~/components/dialog/OdorElixirDialog.vue'
 import PotionInfoDialog from '~/components/dialog/PotionInfoDialog.vue'
+import PreyAmuletDialog from '~/components/dialog/PreyAmuletDialog.vue'
 import RainbowPotionDialog from '~/components/dialog/RainbowPotionDialog.vue'
 import DialogStarter from '~/components/dialog/Starter.vue'
 import WearableItemDialog from '~/components/dialog/WearableItemDialog.vue'
@@ -206,6 +207,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'odorElixir',
       component: markRaw(OdorElixirDialog),
       condition: () => dex.highestLevel >= 50,
+    },
+    {
+      id: 'preyAmulet',
+      component: markRaw(PreyAmuletDialog),
+      condition: () => dex.highestLevel >= 75,
     },
     {
       id: 'potionInfo',

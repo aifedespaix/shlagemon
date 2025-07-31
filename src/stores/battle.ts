@@ -1,5 +1,6 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
+import { preyAmulet } from '~/data/items/wearables/preyAmulet'
 import { computeDamage } from '~/utils/combat'
 
 export interface AttackResult {
@@ -49,6 +50,14 @@ export const useBattleStore = defineStore('battle', () => {
     let finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
     if (disease.active && attacker.id === dex.activeShlagemon?.id)
       finalDamage = 10
+
+    if (attacker.heldItemId === preyAmulet.id) {
+      if (defender.hpCurrent <= 1)
+        finalDamage = 0
+      else
+        finalDamage = Math.min(finalDamage, defender.hpCurrent - 1)
+    }
+
     defender.hpCurrent = Math.max(0, defender.hpCurrent - finalDamage)
     return { ...result, damage: finalDamage }
   }

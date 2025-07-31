@@ -311,6 +311,27 @@ components:
           responses:
             back: Retour
             valid: Merci !
+    PreyAmuletDialog:
+      steps:
+        step1:
+          text: Incroyable, l'un de tes Shlagémons a atteint le niveau 75 !
+          responses:
+            next: Continuer
+        step2:
+          text: Cette amulette empêche son porteur de mettre K.O. ses adversaires.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Ses attaques s'arrêtent à 1 PV puis n'infligent plus aucun dégât.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Idéal pour capturer un Shlagémon affaibli. La voici pour toi !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
     Box: {}
     CapturePotionDialog:
       steps:
