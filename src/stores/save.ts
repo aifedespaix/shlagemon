@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { PERSISTED_STORE_KEYS } from '~/utils/save-code'
 
 export const useSaveStore = defineStore('save', () => {
   const dex = useShlagedexStore()
@@ -45,5 +46,13 @@ export const useSaveStore = defineStore('save', () => {
     egg.reset()
   }
 
-  return { reset }
+  /**
+   * Remove every persisted store value from localStorage.
+   */
+  function clearPersisted(): void {
+    for (const key of PERSISTED_STORE_KEYS)
+      window.localStorage.removeItem(key)
+  }
+
+  return { reset, clearPersisted }
 })
