@@ -78,7 +78,7 @@ const details = computed(() =>
       >
         <UiButton
           :disabled="qty >= maxQty"
-          class="text-sm"
+          size="xs"
           type="primary"
           @click="adjustQty(step)"
         >
@@ -87,7 +87,7 @@ const details = computed(() =>
         <UiButton
           :disabled="qty <= 1"
           type="danger"
-          class="text-xs"
+          size="xs"
           @click="adjustQty(-step)"
         >
           - {{ step.toLocaleString() }}

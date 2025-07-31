@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ShopItemCard from '../shop/ItemCard.vue'
-import UiButton from '../ui/Button.vue'
 
 const panel = useMainPanelStore()
 const { t } = useI18n()
@@ -48,17 +46,13 @@ function closeShop() {
         :item="item"
         class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
         @click="selectItem(item)"
-      >
-        <UiButton class="ml-auto text-xs" @click.stop="selectItem(item)">
-          {{ t('components.panel.Shop.details') }}
-        </UiButton>
-      </ShopItemCard>
+      />
     </div>
     <div v-if="selectedItem" class="tiny-scrollbar flex-1 overflow-auto">
       <ShopItemDetail v-model:qty="selectedQty" :item="selectedItem" />
     </div>
     <template #footer>
-      <div class="flex flex-wrap gap-2 bg-white dark:bg-gray-900" md="flex-nowrap justify-end">
+      <div class="flex flex-wrap gap-2 bg-white dark:bg-gray-900" md="flex-nowrap justify-end w-full">
         <UiButton
           v-if="selectedItem"
           :disabled="!canBuy"
@@ -72,16 +66,17 @@ function closeShop() {
         <div class="w-full flex gap-1" md="flex-col w-auto">
           <UiButton
             v-if="selectedItem"
-            class="w-full flex gap-2 text-xs"
+            class="w-full flex gap-2"
             variant="outline"
             type="danger"
+            size="sm"
             @click="selectedItem = null"
           >
             <div class="i-carbon:return" />
             {{ t('components.panel.Shop.back') }}
           </UiButton>
 
-          <UiButton type="danger" variant="outline" class="w-full flex gap-2 text-xs" @click="closeShop">
+          <UiButton type="danger" variant="outline" class="w-full flex gap-2" size="sm" @click="closeShop">
             <div class="i-carbon:exit" />
             {{ t('components.panel.Shop.exit') }}
           </UiButton>
