@@ -35,6 +35,7 @@ export const defensePotion: Item = {
   price: 50,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-blue-500 dark:text-blue-400',
 }
@@ -49,6 +50,7 @@ export const superDefensePotion: Item = {
   price: 500,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-blue-600 dark:text-blue-500',
 }
@@ -63,6 +65,7 @@ export const hyperDefensePotion: Item = {
   price: 55000,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-blue-700 dark:text-blue-600',
 }
@@ -77,6 +80,7 @@ export const attackPotion: Item = {
   price: 60,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-orange-500 dark:text-orange-400',
 }
@@ -91,6 +95,7 @@ export const superAttackPotion: Item = {
   price: 600,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-orange-600 dark:text-orange-500',
 }
@@ -105,6 +110,7 @@ export const hyperAttackPotion: Item = {
   price: 65000,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-orange-700 dark:text-orange-600',
 }
@@ -119,6 +125,7 @@ export const vitalityPotion: Item = {
   price: 70,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-violet-500 dark:text-violet-400',
 }
@@ -133,6 +140,7 @@ export const superVitalityPotion: Item = {
   price: 700,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-violet-600 dark:text-violet-500',
 }
@@ -147,6 +155,7 @@ export const hyperVitalityPotion: Item = {
   price: 75000,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-violet-700 dark:text-violet-600',
 }
@@ -161,6 +170,7 @@ export const xpPotion: Item = {
   price: 40,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-green-600 dark:text-green-400',
 }
@@ -175,6 +185,7 @@ export const superXpPotion: Item = {
   price: 400,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-green-700 dark:text-green-500',
 }
@@ -189,6 +200,7 @@ export const hyperXpPotion: Item = {
   price: 45000,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-green-800 dark:text-green-600',
 }
@@ -213,6 +225,7 @@ export const capturePotion: Item = {
   price: 40,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-teal-600 dark:text-teal-400',
 }
@@ -227,6 +240,7 @@ export const superCapturePotion: Item = {
   price: 400,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-teal-700 dark:text-teal-500',
 }
@@ -241,6 +255,7 @@ export const hyperCapturePotion: Item = {
   price: 45000,
   currency: 'shlagidolar',
   category: 'passif',
+  sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-teal-800 dark:text-teal-600',
 }
@@ -255,6 +270,7 @@ export const potion: Item = {
   price: 10,
   currency: 'shlagidolar',
   category: 'actif',
+  sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-red-600 dark:text-red-400',
 }
@@ -269,6 +285,7 @@ export const superPotion: Item = {
   price: 100,
   currency: 'shlagidolar',
   category: 'actif',
+  sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-violet-600 dark:text-violet-400',
 }
@@ -283,6 +300,7 @@ export const hyperPotion: Item = {
   price: 1000,
   currency: 'shlagidolar',
   category: 'actif',
+  sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-yellow-500 dark:text-yellow-300',
 }

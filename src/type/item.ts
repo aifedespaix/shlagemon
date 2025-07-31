@@ -31,6 +31,8 @@ export interface Item {
   unique?: boolean
   /** Whether this item can be equipped by a Shlagémon */
   wearable?: boolean
+  /** Identifier of the sound effect played when the item is used */
+  sfxId?: import('~/data/sfx').SfxId
 }
 
 export interface WearableItem extends Item {
