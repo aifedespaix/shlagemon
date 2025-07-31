@@ -279,10 +279,15 @@ components:
         step1:
           text: >-
             Bienvenue dans l'arène. Si tu en vient à bout, tu pourras capturer
-            des Shlagémons jusqu'au niveau {levelCap}. Pour y parvenir, tu
-            devras enchaîner 6 combats en un contre un, sans potion ni attaque
-            manuelle, et tes bonus de potions sont annulés. Choisis des
-            Shlagémons entraînés et efficaces contre les types opposés.
+            des Shlagémons jusqu'au niveau {levelCap}.
+          responses:
+            next: Suite
+        step2:
+          text: >-
+            Pour y parvenir, tu devras enchaîner 6 combats en un contre un, sans
+            potion ni attaque manuelle, et tes bonus de potions sont annulés.
+            Choisis des Shlagémons entraînés et efficaces contre les types
+            opposés.
           responses:
             start: C'est parti !
             quit: Quitter
@@ -3530,6 +3535,14 @@ data:
           details: >-
             Portée par un Shlagémon, elle augmente l'expérience gagnée en combat
             de 33%. Effet cumulable avec les potions d'expérience.
+      preyAmulet:
+        preyAmulet:
+          name: Amulette de la Proie
+          description: Empêche son porteur d'achever l'ennemi.
+          details: >-
+            Portée par un Shlagémon, ses attaques laissent toujours au moins 1
+            PV à l'adversaire et infligent ensuite 0 dégât. Parfait pour
+            capturer les adversaires affaiblis.
     defensePotion:
       name: Potion de Défense
       description: Augmente temporairement la défense.

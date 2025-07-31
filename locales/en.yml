@@ -272,10 +272,15 @@ components:
         step1:
           text: >-
             Welcome to the arena. If you manage to conquer it, you'll be able to
-            catch Shlagémons up to level {levelCap}. To succeed, you'll need to
-            win 6 consecutive one-on-one battles, without potions or manual
-            attacks, and your potion bonuses will be disabled. Choose trained
-            Shlagémons effective against opposing types.
+            catch Shlagémons up to level {levelCap}.
+          responses:
+            next: Next
+        step2:
+          text: >-
+            To succeed, you'll need to win 6 consecutive one-on-one battles,
+            without potions or manual attacks, and your potion bonuses will be
+            disabled. Choose trained Shlagémons effective against opposing
+            types.
           responses:
             start: Let's go!
             quit: Leave
@@ -3152,6 +3157,13 @@ data:
           details: >-
             When worn, increases experience gained in battle by 33%. Can stack
             with XP potions.
+      preyAmulet:
+        preyAmulet:
+          name: Prey Amulet
+          description: Prevents the holder from finishing off enemies.
+          details: >-
+            When worn, the holder's attacks cannot reduce enemies below 1 HP and
+            deal no damage at that point. Ideal for capturing weakened foes.
     defensePotion:
       name: Defense Potion
       description: Temporarily increases defense.

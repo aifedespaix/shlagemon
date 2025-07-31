@@ -54,6 +54,7 @@ declare module 'vue' {
     DialogNewZoneDialog: typeof import('./components/dialog/NewZoneDialog.vue')['default']
     DialogOdorElixirDialog: typeof import('./components/dialog/OdorElixirDialog.vue')['default']
     DialogPotionInfoDialog: typeof import('./components/dialog/PotionInfoDialog.vue')['default']
+    DialogPreyAmuletDialog: typeof import('./components/dialog/PreyAmuletDialog.vue')['default']
     DialogRainbowPotionDialog: typeof import('./components/dialog/RainbowPotionDialog.vue')['default']
     DialogStarter: typeof import('./components/dialog/Starter.vue')['default']
     DialogWearableItemDialog: typeof import('./components/dialog/WearableItemDialog.vue')['default']
