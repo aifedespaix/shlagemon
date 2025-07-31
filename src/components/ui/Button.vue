@@ -1,12 +1,12 @@
 <script setup lang="ts">
 // --- Types stricts pour Button
-export type ButtonType =
-  | 'primary'
-  | 'valid'
-  | 'danger'
-  | 'default'
-  | 'icon'
-  | 'menu'
+export type ButtonType
+  = | 'primary'
+    | 'valid'
+    | 'danger'
+    | 'default'
+    | 'icon'
+    | 'menu'
 
 export type ButtonVariant = 'solid' | 'outline'
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg'
@@ -18,6 +18,7 @@ const props = withDefaults(
     size?: ButtonSize
     disabled?: boolean
     ariaLabel?: string
+    iconSize?: string // Ajout d’une prop taille icône : ex "text-xl" ou "text-2xl"
   }>(),
   {
     type: 'default',
@@ -25,43 +26,39 @@ const props = withDefaults(
     size: 'md',
     disabled: false,
     ariaLabel: undefined,
-  }
+    iconSize: '', // vide = auto
+  },
 )
 
 const emit = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
 
-// --- Taille stricte
 const sizeClass = computed(() => {
   switch (props.size) {
-    case 'xs': return 'text-xs px-2 py-1 min-h-[1.75rem]'
-    case 'sm': return 'text-sm px-3 py-1.5 min-h-[2rem]'
-    case 'lg': return 'text-lg px-5 py-3 min-h-[3rem]'
-    default:   return 'text-base px-4 py-2 min-h-[2.5rem]'
+    case 'xs': return 'text-xs px-2 py-1 min-h-[1.75rem] min-w-[1.75rem]'
+    case 'sm': return 'text-sm px-3 py-1.5 min-h-[2rem] min-w-[2rem]'
+    case 'lg': return 'text-lg px-5 py-3 min-h-[3rem] min-w-[3rem]'
+    default: return 'text-base px-4 py-2 min-h-[2.5rem] min-w-[2.5rem]'
   }
 })
 
 // --- Styles UnoCSS fixés à la racine (jamais dynamiques dans le template)
-const baseClass =
-  'inline-flex items-center justify-center font-semibold rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none'
+const baseClass
+  = 'inline-flex items-center justify-center font-semibold rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none'
 
 const typeVariantClass = computed(() => {
-  // Icon : taille + couleur propre
   if (props.type === 'icon') {
     return `rounded-full aspect-square ${sizeClass.value}
       bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200
       hover:bg-gray-200 dark:hover:bg-gray-700
       focus-visible:ring-2 focus-visible:ring-cyan-400`
   }
-  // Menu : largeur fluide
   if (props.type === 'menu') {
     return `flex-1 ${sizeClass.value}
       bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200
       hover:bg-gray-100 dark:hover:bg-gray-800`
   }
-
-  // Map des styles pour chaque couple type/variant (jamais dynamique dans le template)
   const map: Record<
     Exclude<ButtonType, 'icon' | 'menu'>,
     Record<ButtonVariant, string>
@@ -94,7 +91,7 @@ const typeVariantClass = computed(() => {
   return `${sizeClass.value} ${map[props.type][props.variant]}`
 })
 
-// --- Gestion click (émission + focus visuel natif)
+// Gestion click (émission + focus visuel natif)
 function handleClick(e: MouseEvent) {
   if (!props.disabled)
     emit('click', e)
@@ -110,6 +107,22 @@ function handleClick(e: MouseEvent) {
     :class="[baseClass, typeVariantClass]"
     @click="handleClick"
   >
-    <slot />
+    <span
+      v-if="props.type === 'icon'"
+      class="h-full w-full flex items-center justify-center" :class="[
+        props.iconSize || {
+          xs: 'text-base',
+          sm: 'text-xl',
+          md: 'text-2xl',
+          lg: 'text-3xl',
+        }[props.size],
+      ]"
+      aria-hidden="true"
+    >
+      <slot />
+    </span>
+    <template v-else>
+      <slot />
+    </template>
   </button>
 </template>

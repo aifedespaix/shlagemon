@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const isFullscreen = ref(false)
+const { t } = useI18n()
 
 function toggle() {
   if (!isFullscreen.value) {
@@ -16,7 +17,11 @@ useEventListener(document, 'fullscreenchange', () => {
 </script>
 
 <template>
-  <UiButton type="icon" aria-label="Plein écran" @click="toggle">
+  <UiButton
+    type="icon" :aria-label="t('components.ui.FullscreenToggle.label')"
+    size="xs"
+    @click="toggle"
+  >
     <div :class="isFullscreen ? 'i-carbon-minimize' : 'i-carbon-maximize'" />
   </UiButton>
 </template>
