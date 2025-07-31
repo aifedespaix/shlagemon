@@ -149,6 +149,7 @@ declare module 'vue' {
     UiInputTipRange: typeof import('./components/ui/InputTipRange.vue')['default']
     UiKbd: typeof import('./components/ui/Kbd.vue')['default']
     UiKeyCapture: typeof import('./components/ui/KeyCapture.vue')['default']
+    UiLanguageToggle: typeof import('./components/ui/LanguageToggle.vue')['default']
     UiLoader: typeof import('./components/ui/Loader.vue')['default']
     UiModal: typeof import('./components/ui/Modal.vue')['default']
     UiNavigationButton: typeof import('./components/ui/NavigationButton.vue')['default']
