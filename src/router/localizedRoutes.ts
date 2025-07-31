@@ -17,6 +17,10 @@ export interface LocalizedRoute {
    * Optional i18n key used for the page title meta.
    */
   i18nKey?: string
+  /**
+   * Optional layout name to use for this route.
+   */
+  layout?: string
 }
 
 /**
@@ -31,6 +35,7 @@ export const localizedRoutes: LocalizedRoute[] = [
       en: '/en',
     },
     i18nKey: 'pages.index.title',
+    layout: 'home',
   },
   {
     name: 'shlagedex',
@@ -40,6 +45,7 @@ export const localizedRoutes: LocalizedRoute[] = [
       en: '/en/shlagedex',
     },
     i18nKey: 'pages.shlagedex.title',
+    layout: 'home',
   },
 ]
 export default localizedRoutes
