@@ -27,7 +27,7 @@ export const localizedRoutes: LocalizedRoute[] = [
     name: 'home',
     component: () => import('~/pages/index.vue'),
     paths: {
-      fr: '/',
+      fr: '/fr',
       en: '/en',
     },
     i18nKey: 'pages.index.title',
@@ -36,7 +36,7 @@ export const localizedRoutes: LocalizedRoute[] = [
     name: 'shlagedex',
     component: () => import('~/pages/shlagedex.vue'),
     paths: {
-      fr: '/shlagedex',
+      fr: '/fr/shlagedex',
       en: '/en/shlagedex',
     },
     i18nKey: 'pages.shlagedex.title',

@@ -1,9 +1,10 @@
 import type { ManifestOptions } from 'vite-plugin-pwa'
+import type { Locale } from '~/constants/locales'
 
 /**
  * Build localized PWA manifest for the given locale.
  */
-export function getPwaManifest(locale: 'fr' | 'en'): ManifestOptions {
+export function getPwaManifest(locale: Locale): ManifestOptions {
   const base: ManifestOptions = {
     short_name: 'Shlagémon',
     theme_color: '#1865ab',
@@ -34,8 +35,8 @@ export function getPwaManifest(locale: 'fr' | 'en'): ManifestOptions {
       lang: 'fr',
       name: 'Shlagémon - Ça sent très fort',
       description: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
-      start_url: '/',
-      scope: '/',
+      start_url: '/fr/',
+      scope: '/fr/',
     }
   }
 
@@ -44,7 +45,7 @@ export function getPwaManifest(locale: 'fr' | 'en'): ManifestOptions {
     lang: 'en',
     name: 'Shlagemon - It smells very strong',
     description: 'Catch all the Shlagemons before they rot the whole world.',
-    start_url: '/en',
+    start_url: '/en/',
     scope: '/en/',
   }
 }

@@ -8,7 +8,7 @@ describe('getPwaManifest', () => {
     it(`returns manifest for ${locale}`, () => {
       const manifest = getPwaManifest(locale)
       expect(manifest.lang).toBe(locale)
-      expect(manifest.start_url).toBe(locale === 'fr' ? '/' : '/en')
+      expect(manifest.start_url).toBe(`/${locale}/`)
     })
   }
 })

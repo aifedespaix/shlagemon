@@ -30,7 +30,7 @@ describe('useLangSwitch', () => {
     await router.isReady()
 
     const path = await wrapper.vm.switchLang('fr')
-    expect(path).toBe('/shlagedex')
+    expect(path).toBe('/fr/shlagedex')
     expect(useLocaleStore().locale).toBe('fr')
   })
 })
