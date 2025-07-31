@@ -68,6 +68,8 @@ Les fichiers prêts à être servis se trouvent dans le dossier `dist`.
 
 Depuis le jeu, rendez-vous au village **Sux-Mais-Bouls** et cliquez sur « Mini-jeu » pour lancer une partie de Tic Tac Toe.
 
+- Supprimer une sauvegarde vide le stockage local puis recharge automatiquement l'application.
+
 ### Générer le fichier d'évolutions
 
 Ce script parcourt les données de chaque Shlagémon pour générer un tableau ordonné par niveau. Le fichier `evolutions.csv` indique la tranche de niveau à laquelle on rencontre chaque monstre et, s'il existe, son niveau d'évolution.

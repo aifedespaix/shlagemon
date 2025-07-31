@@ -15,8 +15,9 @@ function close() {
 }
 
 function removeSave() {
+  save.clearPersisted()
   save.reset()
-  close()
+  window.location.reload()
 }
 
 const { isMobile } = storeToRefs(useUIStore())
