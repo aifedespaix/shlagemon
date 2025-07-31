@@ -4,6 +4,8 @@
 // they will be rendered correctly in the html results with vite-ssg
 import { useI18n } from 'vue-i18n'
 
+const seoHead = useSeoHead()
+
 const { t } = useI18n()
 useHead({
   title: t('App.title'),
@@ -38,7 +40,7 @@ useHead({
     },
     {
       property: 'og:url',
-      content: 'https://shlagemon.aife.io',
+      content: () => seoHead.canonicalUrl.value,
     },
     {
       property: 'og:image',
@@ -78,10 +80,6 @@ useHead({
       rel: 'icon',
       type: 'image/svg+xml',
       href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
-    },
-    {
-      rel: 'canonical',
-      href: 'https://shlagemon.aife.io',
     },
     {
       rel: 'image_src',
