@@ -54,7 +54,7 @@ components:
       intro2: >-
         Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel
         ainsi que sur le niveau moyen de votre équipe.
-      formula: Bonus = niveau moyen × 2 × (taux de complétion / 100)
+      formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10
       completion: 'Complétion :'
       averageLevel: 'Niveau moyen :'
       currentBonus: 'Bonus actuel :'

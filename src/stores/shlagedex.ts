@@ -82,8 +82,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       ? shlagemons.value.reduce((s, m) => s + m.lvl, 0) / shlagemons.value.length
       : 0,
   )
+  // Reduced global bonus by a factor of 10 for better balancing
   const bonusPercent = computed(
-    () => averageLevel.value * 2 * (potentialCompletionPercent.value / 100),
+    () => averageLevel.value * 2 * (potentialCompletionPercent.value / 100) / 10,
   )
   const bonusMultiplier = computed(() => 1 + bonusPercent.value / 100)
 
