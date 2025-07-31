@@ -2,6 +2,7 @@
 import { useTimeoutFn } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
+import { useAudioStore } from '~/stores/audio'
 
 const emit = defineEmits<{ (e: 'win'): void, (e: 'lose'): void }>()
 
@@ -15,6 +16,9 @@ const messages = computed(() => {
 const palette = allShlagemons.slice(0, 12)
 const comboLength = 6
 const maxAttempts = 5
+
+const audio = useAudioStore()
+const bounce = ref<boolean[][]>([])
 
 const solution = ref<string[]>([])
 const attempts = ref<string[][]>([])
@@ -44,6 +48,7 @@ function initGame() {
   }) as (string | null)[]
   attempts.value = []
   feedback.value = []
+  bounce.value = []
   guess.value = Array.from({ length: comboLength }).fill(null) as (string | null)[]
   selected.value = null
   showPicker.value = false
@@ -97,6 +102,22 @@ function validate() {
     }
   }
   feedback.value.push(res)
+  bounce.value.push(Array.from({ length: comboLength }).fill(false) as boolean[])
+  const attemptIndex = attempts.value.length - 1
+  res.forEach((r, idx) => {
+    useTimeoutFn(() => {
+      bounce.value[attemptIndex][idx] = true
+      const sfx = r === 'green'
+        ? 'mini-game-shlagmind-good'
+        : r === 'yellow'
+          ? 'mini-game-shlagmind-neutral'
+          : 'mini-game-shlagmind-bad'
+      audio.playSfx(sfx)
+      useTimeoutFn(() => {
+        bounce.value[attemptIndex][idx] = false
+      }, 500)
+    }, idx * 200)
+  })
   const win = res.every(r => r === 'green')
   if (win) {
     message.value = t('components.minigame.MasterMind.win')
@@ -142,6 +163,7 @@ initGame()
               <img
                 :src="`/shlagemons/${id}/${id}.png`"
                 class="h-8 w-8 cursor-pointer"
+                :class="bounce[i]?.[j] ? 'animate-bounce animate-count-1' : ''"
                 :alt="id"
                 @click="copyFromHistory(j, id)"
               >
@@ -152,11 +174,14 @@ initGame()
               v-for="(f, k) in feedback[i]"
               :key="k"
               class="h-3 w-3 rounded-full"
-              :class="{
-                'bg-green-500': f === 'green',
-                'bg-yellow-400': f === 'yellow',
-                'bg-gray-500': f === 'gray',
-              }"
+              :class="[
+                {
+                  'bg-green-500': f === 'green',
+                  'bg-yellow-400': f === 'yellow',
+                  'bg-gray-500': f === 'gray',
+                },
+                bounce[i]?.[k] ? 'animate-bounce animate-count-1' : '',
+              ]"
             />
           </div>
         </div>
