@@ -3,9 +3,13 @@ import type { DexShlagemon } from '~/type/shlagemon'
 
 interface Props {
   selected?: string[]
+  locked?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), { selected: () => [] })
+const props = withDefaults(defineProps<Props>(), {
+  selected: () => [],
+  locked: false,
+})
 const emit = defineEmits<{ (e: 'select', mon: DexShlagemon): void }>()
 const dex = useShlagedexStore()
 
@@ -21,5 +25,6 @@ function choose(mon: DexShlagemon) {
     :show-checkbox="false"
     :highlight-ids="props.selected"
     :on-item-click="choose"
+    :locked="props.locked"
   />
 </template>
