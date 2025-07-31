@@ -1,14 +1,14 @@
 fr:
   steps:
     step1:
-      text: "Bienvenue dans l'arène, cette arène te permet de capturer des Shlagémons jusqu'au niveau {levelCap}. Les combats se déroulent en un contre un sans potion ni attaque manuelle. Tous tes bonus de potions seront annulés en entrant. Choisis des Shlagémons entraînés et puissants contre les types opposés."
+      text: "Bienvenue dans l'arène. Tu pourras y capturer des Shlagémons jusqu'au niveau {levelCap}. Les combats sont en un contre un, sans potion ni attaque manuelle, et tes bonus de potions sont annulés. Choisis des Shlagémons entraînés, efficaces contre les types opposés."
       responses:
         start: C'est parti !
         quit: Quitter
 en:
   steps:
     step1:
-      text: 'Welcome to the arena. Here you can capture Shlagemons up to level {levelCap}. Battles are one-on-one without potions or manual attacks. All your potion bonuses are cancelled on entry. Choose well-trained Shlagemons strong against opposite types.'
+      text: 'Welcome to the arena. You can capture Shlagemons up to level {levelCap}. Battles are one-on-one with no potions or manual attacks and potion bonuses are cancelled. Choose well-trained Shlagemons effective against opposing types.'
       responses:
         start: Let's go!
         quit: Leave

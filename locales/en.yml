@@ -272,10 +272,10 @@ components:
       steps:
         step1:
           text: >-
-            Welcome to the arena. Here you can capture Shlagemons up to level
-            {levelCap}. Battles are one-on-one without potions or manual
-            attacks. All your potion bonuses are cancelled on entry. Choose
-            well-trained Shlagemons strong against opposite types.
+            Welcome to the arena. You can capture Shlagemons up to level
+            {levelCap}. Battles are one-on-one with no potions or manual attacks
+            and potion bonuses are cancelled. Choose well-trained Shlagemons
+            effective against opposing types.
           responses:
             start: Let's go!
             quit: Leave
