@@ -44,8 +44,6 @@ declare global {
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
-  const defineLoader: typeof import('vue-router/auto')['defineLoader']
-  const definePage: typeof import('unplugin-vue-router/runtime')['definePage']
   const drop: typeof import('./composables/useConnectFour')['drop']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
@@ -199,6 +197,7 @@ declare global {
   const useDevicesList: typeof import('@vueuse/core')['useDevicesList']
   const useDexDetailModalStore: typeof import('./stores/dexDetailModal')['useDexDetailModalStore']
   const useDexFilterStore: typeof import('./stores/dexFilter')['useDexFilterStore']
+  const useDexInfoModalStore: typeof import('./stores/dexInfoModal')['useDexInfoModalStore']
   const useDialogStore: typeof import('./stores/dialog')['useDialogStore']
   const useDiseaseStore: typeof import('./stores/disease')['useDiseaseStore']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
@@ -255,7 +254,7 @@ declare global {
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
   const useKingPotionStore: typeof import('./stores/kingPotion')['useKingPotionStore']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
-  const useLink: typeof import('vue-router/auto')['useLink']
+  const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLocaleStore: typeof import('./stores/locale')['useLocaleStore']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
@@ -656,6 +655,7 @@ declare module 'vue' {
     readonly useDevicesList: UnwrapRef<typeof import('@vueuse/core')['useDevicesList']>
     readonly useDexDetailModalStore: UnwrapRef<typeof import('./stores/dexDetailModal')['useDexDetailModalStore']>
     readonly useDexFilterStore: UnwrapRef<typeof import('./stores/dexFilter')['useDexFilterStore']>
+    readonly useDexInfoModalStore: UnwrapRef<typeof import('./stores/dexInfoModal')['useDexInfoModalStore']>
     readonly useDialogStore: UnwrapRef<typeof import('./stores/dialog')['useDialogStore']>
     readonly useDiseaseStore: UnwrapRef<typeof import('./stores/disease')['useDiseaseStore']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
@@ -710,7 +710,7 @@ declare module 'vue' {
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
     readonly useKingPotionStore: UnwrapRef<typeof import('./stores/kingPotion')['useKingPotionStore']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
-    readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>
+    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLocaleStore: UnwrapRef<typeof import('./stores/locale')['useLocaleStore']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
