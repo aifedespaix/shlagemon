@@ -52,7 +52,7 @@ components:
       intro2: >-
         It is based on the completion rate of this potential Shlagedex as well
         as your team's average level.
-      formula: Bonus = average level × 2 × (completion rate / 100)
+      formula: Bonus = average level × 2 × (completion rate / 100) / 10
       completion: 'Completion:'
       averageLevel: 'Average level:'
       currentBonus: 'Current bonus:'
