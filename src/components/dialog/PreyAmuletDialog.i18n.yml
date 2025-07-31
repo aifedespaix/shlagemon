@@ -1,0 +1,42 @@
+fr:
+  steps:
+    step1:
+      text: Incroyable, l'un de tes Shlagémons a atteint le niveau 75 !
+      responses:
+        next: Continuer
+    step2:
+      text: Cette amulette empêche son porteur de mettre K.O. ses adversaires.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Ses attaques s'arrêtent à 1 PV puis n'infligent plus aucun dégât.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Idéal pour capturer un Shlagémon affaibli. La voici pour toi !
+      responses:
+        back: Retour
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: Amazing, one of your Shlagemons reached level 75!
+      responses:
+        next: Continue
+    step2:
+      text: This amulet makes its wearer incapable of knocking out foes.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: Attacks stop at 1 HP, then deal no damage.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: It's perfect to help you catch weakened Shlagemons. Here, take it!
+      responses:
+        back: Back
+        valid: Thanks Professor!

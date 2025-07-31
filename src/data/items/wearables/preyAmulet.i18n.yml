@@ -1,0 +1,10 @@
+en:
+  preyAmulet:
+    name: Prey Amulet
+    description: Prevents the holder from finishing off enemies.
+    details: When worn, the holder's attacks cannot reduce enemies below 1 HP and deal no damage at that point. Ideal for capturing weakened foes.
+fr:
+  preyAmulet:
+    name: Amulette de la Proie
+    description: Empêche son porteur d'achever l'ennemi.
+    details: Portée par un Shlagémon, ses attaques laissent toujours au moins 1 PV à l'adversaire et infligent ensuite 0 dégât. Parfait pour capturer les adversaires affaiblis.
