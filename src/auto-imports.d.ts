@@ -253,6 +253,7 @@ declare global {
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
   const useKingPotionStore: typeof import('./stores/kingPotion')['useKingPotionStore']
+  const useLangSwitch: typeof import('./composables/useLangSwitch')['useLangSwitch']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
@@ -709,6 +710,7 @@ declare module 'vue' {
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
     readonly useKingPotionStore: UnwrapRef<typeof import('./stores/kingPotion')['useKingPotionStore']>
+    readonly useLangSwitch: UnwrapRef<typeof import('./composables/useLangSwitch')['useLangSwitch']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
