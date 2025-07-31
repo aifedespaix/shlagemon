@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createRouter, createWebHistory } from 'vue-router'
-import { availableLocales } from '~/modules/i18n'
+import { availableLocales } from '~/constants/locales'
 import { localizedRoutes } from './localizedRoutes'
 
 /**
@@ -31,7 +31,14 @@ export function buildLocalizedRoutes(): RouteRecordRaw[] {
   return setupLayouts(records)
 }
 
-export const routes: RouteRecordRaw[] = buildLocalizedRoutes()
+export const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'root',
+    component: () => import('~/pages/root.vue'),
+  },
+  ...buildLocalizedRoutes(),
+]
 
 /**
  * Application router instance.

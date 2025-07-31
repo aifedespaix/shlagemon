@@ -1,4 +1,4 @@
-import { availableLocales } from '~/modules/i18n'
+import { availableLocales } from '~/constants/locales'
 import { localizedRoutes } from '~/router/localizedRoutes'
 
 /**

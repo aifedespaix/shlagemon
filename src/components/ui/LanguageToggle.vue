@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { availableLocales } from '~/constants/locales'
+
 const { locale, t } = useI18n()
 const router = useRouter()
 const { switchLang } = useLangSwitch()
 
-const nextLocale = computed(() => (locale.value === 'fr' ? 'en' : 'fr'))
+const nextLocale = computed(() => {
+  const index = availableLocales.indexOf(locale.value as any)
+  const next = (index + 1) % availableLocales.length
+  return availableLocales[next]
+})
 
 async function toggle() {
   const path = await switchLang(nextLocale.value)

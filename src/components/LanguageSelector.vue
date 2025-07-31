@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Locale } from 'vue-i18n'
-import { availableLocales, loadLanguageAsync } from '~/modules/i18n'
+import { availableLocales } from '~/constants/locales'
+import { loadLanguageAsync } from '~/modules/i18n'
 
 const { locale, t } = useI18n()
 const store = useLocaleStore()
@@ -12,7 +13,7 @@ const options = computed(() => availableLocales.map(l => ({
 
 async function change(val: string | number) {
   const lang = val as Locale
-  store.setLocale(lang as 'en' | 'fr')
+  store.setLocale(lang as Locale)
   await loadLanguageAsync(lang)
 }
 </script>
