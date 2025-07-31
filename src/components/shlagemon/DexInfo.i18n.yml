@@ -1,0 +1,12 @@
+fr:
+  hp: PV
+  attack: Attaque
+  defense: Défense
+  smell: Puanteur
+  title: Informations Shlagémon
+en:
+  hp: HP
+  attack: Attack
+  defense: Defense
+  smell: Smell
+  title: Shlagemon Info
