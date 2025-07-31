@@ -2,6 +2,7 @@
  * Composable handling purchase logic in the shop panel.
  */
 import type { Item } from '~/type/item'
+import { toast } from 'vue3-toastify'
 
 export function useShopPurchase() {
   const game = useGameStore()
@@ -32,6 +33,11 @@ export function useShopPurchase() {
       selectedQty.value = maxQty.value
   })
 
+  /**
+   * Set the current item to purchase.
+   *
+   * @param item Item chosen by the user.
+   */
   function selectItem(item: Item) {
     selectedItem.value = item
   }
@@ -45,6 +51,10 @@ export function useShopPurchase() {
     return game.shlagidolar >= cost
   })
 
+  /**
+   * Attempt to purchase the currently selected item. Displays a success
+   * toast and resets the selection on completion.
+   */
   function buy() {
     if (!selectedItem.value)
       return
