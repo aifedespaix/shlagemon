@@ -286,6 +286,7 @@ export const useDialogStore = defineStore('dialog', () => {
     done.value.arenaWelcome = false
     done.value.arenaVictory = false
     done.value.arenaDefeat = false
+    // keep arenaWelcomeIntro to avoid repeating the full introduction
   }
 
   function reset() {
