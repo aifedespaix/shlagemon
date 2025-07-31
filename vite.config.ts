@@ -14,6 +14,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 import generateSitemap from 'vite-ssg-sitemap'
+import { getPwaManifest } from './src/pwa/manifest'
 import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
 
@@ -96,34 +97,12 @@ export default defineConfig({
     }),
 
     // https://github.com/antfu/vite-plugin-pwa
-    VitePWA({
+    ...(['fr', 'en'] as const).map(locale => VitePWA({
       registerType: 'prompt',
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
-      manifest: {
-        name: 'Shlagémon',
-        short_name: 'Shlagémon',
-        theme_color: '#1865ab',
-        background_color: '#1865ab',
-        icons: [
-          {
-            src: '/pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-        ],
-      },
-    }),
+      manifest: getPwaManifest(locale),
+      manifestFilename: `${locale}/manifest.webmanifest`,
+    })),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
     VueI18n({

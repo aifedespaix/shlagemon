@@ -34,6 +34,12 @@ function setI18nLanguage(lang: Locale) {
       htmlAttrs: {
         lang,
       },
+      link: [
+        {
+          rel: 'manifest',
+          href: `/${lang}/manifest.webmanifest`,
+        },
+      ],
     })
   }
   return lang
