@@ -85,7 +85,7 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'inventoryIntro',
       component: markRaw(InventoryIntroDialog),
-      condition: () => ui.isMobile.value && mobile.current === 'inventory',
+      condition: () => ui.isMobile && mobile.current === 'inventory',
     },
     {
       id: 'rarityIntro',
@@ -200,7 +200,7 @@ export const useDialogStore = defineStore('dialog', () => {
     {
       id: 'capturePotion',
       component: markRaw(CapturePotionDialog),
-      condition: () => dex.highestLevel >= 50,
+      condition: () => dex.highestLevel >= 35,
     },
     {
       id: 'odorElixir',
