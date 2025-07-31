@@ -12,7 +12,7 @@ const { t } = useI18n()
       <RouterLink to="/" class="hover:underline">
         {{ t('components.layout.HomeHeader.home') }}
       </RouterLink>
-      <RouterLink to="/schlagedex" class="hover:underline">
+      <RouterLink to="/shlagedex" class="hover:underline">
         {{ t('components.layout.HomeHeader.dex') }}
       </RouterLink>
     </nav>
