@@ -15,8 +15,8 @@ const props = withDefaults(
   },
 )
 // Types stricts pour la taille (readonly tuple)
-const sizes = ['sm', 'md', 'lg', 'xl'] as const
-type Size = typeof sizes[number]
+const _sizes = ['sm', 'md', 'lg', 'xl'] as const
+type Size = typeof _sizes[number]
 
 // Dictionnaire de labels humanisés pour les touches courantes
 const KEY_LABELS = Object.freeze({

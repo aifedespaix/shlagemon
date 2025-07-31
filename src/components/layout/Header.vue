@@ -18,7 +18,9 @@ const headerId = 'main-header'
 function onClick() {
   if (clickTimer.value)
     clickTimer.value.stop()
-  clickTimer.value = useTimeoutFn(() => { showAudio.value = true }, 200)
+  clickTimer.value = useTimeoutFn(() => {
+    showAudio.value = true
+  }, 200)
 }
 function onDoubleClick() {
   if (clickTimer.value)
@@ -45,9 +47,6 @@ const headerClass = [
   'z-50',
   'relative',
 ]
-const iconBtnSize = 'xl' // <--- NEW: boutons et icônes vraiment gros (iconBtnSize appliqué partout !)
-const iconBtnClass
-  = 'w-11 h-11 flex items-center justify-center rounded-full hover:bg-gray-200/80 dark:hover:bg-gray-700/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 transition-all active:scale-95'
 </script>
 
 <template>

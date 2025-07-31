@@ -29,8 +29,10 @@ function hide() {
   visible.value = false
   if (timeout)
     clearTimeout(timeout)
-  if (cleanup)
-    cleanup(), cleanup = undefined
+  if (cleanup) {
+    cleanup()
+    cleanup = undefined
+  }
 }
 function updatePosition() {
   const wrapperEl = wrapper.value
