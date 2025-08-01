@@ -25,18 +25,23 @@ function openEgg(id: EggItemId) {
         {{ t('components.egg.BoxModal.title') }}
       </h3>
       <div v-if="eggList.length" class="flex flex-col gap-1">
-        <div
+        <UiListItem
           v-for="id in eggList"
           :key="id"
-          class="flex cursor-pointer items-center justify-between border-b p-1"
+          as="div"
+          class="cursor-pointer items-center justify-between border-b p-1"
           @click="openEgg(id as EggItemId)"
         >
-          <div class="flex items-center gap-1">
-            <div v-if="getItem(id).icon" class="h-6 w-6" :class="[getItem(id).icon, getItem(id).iconClass]" />
-            <span class="text-sm">{{ t(getItem(id).name) }}</span>
-          </div>
-          <span class="text-xs font-bold">x{{ box.eggs[id] }}</span>
-        </div>
+          <template #left>
+            <div class="flex items-center gap-1">
+              <div v-if="getItem(id).icon" class="h-6 w-6" :class="[getItem(id).icon, getItem(id).iconClass]" />
+              <span class="text-sm">{{ t(getItem(id).name) }}</span>
+            </div>
+          </template>
+          <template #right>
+            <span class="text-xs font-bold">x{{ box.eggs[id] }}</span>
+          </template>
+        </UiListItem>
       </div>
       <span v-else class="text-center text-sm">{{ t('components.egg.BoxModal.empty') }}</span>
     </div>

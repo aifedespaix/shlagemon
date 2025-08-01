@@ -7,7 +7,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div class="flex items-center gap-2 border rounded bg-white p-1 dark:bg-gray-900">
+  <UiListItem as="div" class="items-center gap-2 bg-white p-1 dark:bg-gray-900">
     <div
       v-if="props.item.icon"
       class="h-8 w-8"
@@ -19,5 +19,5 @@ const { t } = useI18n()
       <span class="text-xs">{{ t(props.item.description) }}</span>
     </div>
     <UiCurrencyAmount :amount="props.item.price ?? 0" :currency="props.item.currency ?? 'shlagidolar'" />
-  </div>
+  </UiListItem>
 </template>

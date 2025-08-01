@@ -151,6 +151,7 @@ declare module 'vue' {
     UiKbd: typeof import('./components/ui/Kbd.vue')['default']
     UiKeyCapture: typeof import('./components/ui/KeyCapture.vue')['default']
     UiLanguageToggle: typeof import('./components/ui/LanguageToggle.vue')['default']
+    UiListItem: typeof import('./components/ui/ListItem.vue')['default']
     UiLoader: typeof import('./components/ui/Loader.vue')['default']
     UiModal: typeof import('./components/ui/Modal.vue')['default']
     UiNavigationButton: typeof import('./components/ui/NavigationButton.vue')['default']

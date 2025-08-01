@@ -33,7 +33,12 @@ function removeShortcut(index: number) {
 
 <template>
   <div class="flex flex-col gap-2">
-    <div v-for="(sc, idx) in store.shortcuts" :key="idx" class="flex items-center gap-2">
+    <UiListItem
+      v-for="(sc, idx) in store.shortcuts"
+      :key="idx"
+      as="div"
+      class="items-center gap-2"
+    >
       <UiKeyCapture
         class="w-12"
         :model-value="sc.key"
@@ -48,6 +53,6 @@ function removeShortcut(index: number) {
       <UiButton type="icon" class="h-7 w-7" @click="removeShortcut(idx)">
         <div i-carbon-close />
       </UiButton>
-    </div>
+    </UiListItem>
   </div>
 </template>
