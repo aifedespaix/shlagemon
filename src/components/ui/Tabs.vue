@@ -74,13 +74,14 @@ useSwipe(container, {
 const tabBtnBase = computed(() =>
   [
     'relative inline-flex items-center justify-center transition-all select-none',
-    'outline-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-sky-500',
+    'outline-none focus-visible:ring-2 focus-visible:ring-sky-500',
     props.isSmall ? 'text-sm py-1' : 'text-base py-2',
     'border-b-2 border-transparent cursor-pointer group',
     'px-3 whitespace-nowrap',
     'bg-transparent',
   ].join(' '),
 )
+
 function tabBtnActive(i: number) {
   return [
     active.value === i
@@ -98,7 +99,7 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
   <div class="h-full flex flex-col" v-bind="$attrs">
     <!-- Nav Tabs -->
     <nav
-      class="no-scrollbar flex overflow-x-auto whitespace-nowrap border-b border-gray-200 dark:border-gray-800"
+      class="no-scrollbar flex whitespace-nowrap border-b border-gray-200 dark:border-gray-800"
       aria-label="Navigation par onglets"
       tabindex="0"
       style="scrollbar-width: none;"
@@ -137,7 +138,6 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
         <UiBadge
           v-if="tab.badge && tab.badge > 0"
           size="xs"
-          class="z-10"
         >
           {{ tab.badge }}
         </UiBadge>
