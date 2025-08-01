@@ -24,7 +24,7 @@ function openEgg(id: EggItemId) {
       <h3 class="text-center text-lg font-bold">
         {{ t('components.egg.BoxModal.title') }}
       </h3>
-      <div v-if="eggList.length" class="flex flex-col gap-1">
+      <div v-if="eggList.length" class="flex flex-col gap-1 p-1">
         <UiListItem
           v-for="id in eggList"
           :key="id"

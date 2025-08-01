@@ -58,7 +58,7 @@ const ariaLabel = computed(() => props.label || 'Chargement')
     <span
       :class="spinnerClasses"
       aria-hidden="true"
-      tabindex="-1"
+      :tabindex="-1"
     />
     <!-- Slot texte optionnel -->
     <slot>

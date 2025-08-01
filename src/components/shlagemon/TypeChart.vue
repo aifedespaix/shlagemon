@@ -36,7 +36,6 @@ function getMultiplier(att: typeof types[number], def: typeof types[number]) {
   <div
     ref="tableContainer"
     class="tiny-scrollbar max-h-[70vh] max-w-full overflow-auto"
-    tabindex="0"
   >
     <table class="min-w-max w-full border-collapse text-center text-xs">
       <thead>

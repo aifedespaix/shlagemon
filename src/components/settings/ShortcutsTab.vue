@@ -33,26 +33,37 @@ function removeShortcut(index: number) {
 
 <template>
   <div class="flex flex-col gap-2">
-    <UiListItem
-      v-for="(sc, idx) in store.shortcuts"
-      :key="idx"
-      as="div"
-      class="items-center gap-2"
-    >
+  <UiListItem
+    v-for="(sc, idx) in store.shortcuts"
+    :key="idx"
+    class="py-1"
+    :aria-label="`Raccourci ${idx + 1}`"
+    role="listitem"
+  >
+    <!-- Slot gauche : capture de touche -->
+    <template #left>
       <UiKeyCapture
         class="w-12"
         :model-value="sc.key"
         @update:model-value="val => updateKey(idx, val)"
       />
-      <UiSelectOption
-        class="flex-1"
-        :model-value="sc.action.type === 'use-item' ? sc.action.itemId : ''"
-        :options="itemOptions"
-        @update:model-value="val => updateItem(idx, val as ItemId)"
-      />
-      <UiButton type="icon" class="h-7 w-7" @click="removeShortcut(idx)">
+    </template>
+
+    <!-- Slot par défaut : select d'item -->
+    <UiSelectOption
+      class="flex-1 min-w-0"
+      :model-value="sc.action.type === 'use-item' ? sc.action.itemId : ''"
+      :options="itemOptions"
+      @update:model-value="val => updateItem(idx, val as ItemId)"
+    />
+
+    <!-- Slot droite : bouton supprimer -->
+    <template #right>
+      <UiButton type="icon" size="xs"  @click="removeShortcut(idx)">
         <div i-carbon-close />
       </UiButton>
-    </UiListItem>
+    </template>
+  </UiListItem>
+
   </div>
 </template>

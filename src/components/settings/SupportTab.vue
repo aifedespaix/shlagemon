@@ -51,7 +51,6 @@ function openLink(url: string) {
           class="group flex items-center gap-2 rounded-xl px-5 py-2 text-white font-medium shadow-sm transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-inset"
           :class="link.color"
           :aria-label="link.label"
-          tabindex="0"
           @click="openLink(link.href)"
         >
           <span :class="`${link.icon} text-xl transition-transform group-hover:scale-110 group-active:scale-90`" aria-hidden="true" />

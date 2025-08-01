@@ -55,7 +55,7 @@ const headerClass = [
     :style="{ height: '44px', minHeight: '44px', maxHeight: '44px' }"
     :class="headerClass"
     role="banner"
-    tabindex="-1"
+    :tabindex="-1"
     aria-label="Header"
   >
     <div class="h-full min-w-0 flex items-center">

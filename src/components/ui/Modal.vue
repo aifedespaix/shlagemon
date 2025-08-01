@@ -66,7 +66,7 @@ function close() {
       v-bind="attrs"
       class="modal flex flex-col overflow-hidden"
       :autofocus="props.dialogAutofocus || undefined"
-      tabindex="-1"
+      :tabindex="-1"
       @click="onDialogClick"
       @close="emit('update:modelValue', false); emit('close')"
     >

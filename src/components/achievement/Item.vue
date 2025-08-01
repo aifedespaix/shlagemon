@@ -14,28 +14,23 @@ function toggle() {
 
 <template>
   <UiListItem
-    as="div"
-    class="flex-col p-2 text-sm"
-    :class="props.achievement.achieved
-      ? 'border-cyan-600 bg-cyan-50 text-gray-900 dark:border-cyan-500 dark:bg-cyan-950/40 dark:text-gray-100'
-      : 'border-gray-300 bg-white text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400'"
-    role="button"
-    tabindex="0"
+    :color="props.achievement.achieved ? 'success' : 'locked'"
     @click="toggle"
+    role="button"
+    :aria-label="props.achievement.title"
   >
-    <div class="flex cursor-pointer items-center justify-between" @click="toggle">
-      <div class="flex items-center gap-2">
-        <div :class="props.achievement.icon" class="inline-block text-lg" />
-        <span class="font-bold">{{ props.achievement.title }}</span>
-      </div>
-      <div class="i-carbon-chevron-down transition-transform" :class="props.opened ? '' : 'rotate-90'" />
+    <template #left>
+      <div :class="props.achievement.icon" class="inline-block text-lg" />
+    </template>
+
+    <div class="flex items-center justify-between min-w-0 w-full cursor-pointer">
+      <span class="font-bold truncate flex-1">{{ props.achievement.title }}</span>
+      <div class="i-carbon-chevron-down transition-transform ml-2" :class="props.opened ? '' : 'rotate-90'" />
     </div>
-    <div v-show="props.opened" class="mt-1 text-xs">
+
+    <div v-show="props.opened" class="mt-1 text-xs w-full">
       <p>{{ props.achievement.description }}</p>
-      <div
-        v-if="!props.achievement.achieved && progress"
-        class="mt-1"
-      >
+      <div v-if="!props.achievement.achieved && progress" class="mt-1">
         <div class="mb-1 text-center">
           {{ progress.value.toLocaleString() }} / {{ progress.max.toLocaleString() }}
         </div>

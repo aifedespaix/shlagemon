@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import type { Stoppable } from '@vueuse/shared'
 import type { DexShlagemon } from '~/type/shlagemon'
 
 const dex = useShlagedexStore()
-const featureLock = useFeatureLockStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
-const clickTimer = ref<Stoppable<[]> | null>(null)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {
@@ -17,24 +14,8 @@ function open(mon: DexShlagemon | null) {
   }
 }
 
-function changeActive(mon: DexShlagemon) {
-  if (featureLock.isShlagedexLocked)
-    return
-  dex.setActiveShlagemon(mon)
-}
-
 function onItemClick(mon: DexShlagemon) {
-  if (clickTimer.value) {
-    clickTimer.value.stop()
-    clickTimer.value = null
-    changeActive(mon)
-  }
-  else {
-    clickTimer.value = useTimeoutFn(() => {
-      open(mon)
-      clickTimer.value = null
-    }, 300)
-  }
+  open(mon)
 }
 </script>
 

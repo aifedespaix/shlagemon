@@ -71,7 +71,7 @@ function getTabComponent(category: ItemCategory | 'all') {
     setup() {
       const list = getList(category)
       return () => h('div', {
-        class: 'tiny-scrollbar flex flex-col gap-2 overflow-x-hidden overflow-y-auto py-1',
+        class: 'tiny-scrollbar flex flex-col gap-2 overflow-x-hidden overflow-y-auto p-1',
       }, list.value.map(entry =>
         h(InventoryItemCard, {
           item: entry.item,

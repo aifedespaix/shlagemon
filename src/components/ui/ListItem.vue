@@ -1,13 +1,7 @@
 <script setup lang="ts">
-/**
- * Generic list item component with optional left and right slots.
- * @prop active - highlights the item as selected
- * @prop disabled - disables interactions and visuals
- * @prop tabindex - tab index for focus navigation
- * @prop as - tag name for root element
- * @prop role - optional ARIA role
- * @prop ariaLabel - optional label for assistive technologies
- */
+type Colors = 'success' | 'info' | 'warning' | 'danger' | 'neutral' | 'locked'
+
+
 const props = withDefaults(defineProps<{
   active?: boolean
   disabled?: boolean
@@ -15,6 +9,7 @@ const props = withDefaults(defineProps<{
   as?: string
   role?: string
   ariaLabel?: string
+  color?: Colors
 }>(), {
   active: false,
   disabled: false,
@@ -22,20 +17,81 @@ const props = withDefaults(defineProps<{
   as: 'div',
   role: undefined,
   ariaLabel: undefined,
+  color: undefined,
 })
 
 const tag = computed(() => props.as)
 
-const classes = computed(() => [
-  'group relative w-full flex items-center gap-2 min-h-11 px-2 py-1 border rounded-lg bg-white/80 dark:bg-gray-900/70 shadow-sm outline-none transition-all duration-150',
-  'focus-visible:ring-2 focus-visible:ring-sky-400',
-  props.disabled
-    ? 'pointer-events-none opacity-50 saturate-0'
-    : 'hover:shadow-lg hover:scale-[1.01] active:scale-100',
-  props.active
-    ? 'bg-sky-500/10 border-sky-500 ring-2 ring-sky-400'
-    : 'border-gray-300 dark:border-gray-700',
-])
+const colorClassMap: Record<Colors, string[]> = {
+  success: [
+    'border-emerald-500',
+    'bg-emerald-50',
+    'text-emerald-900',
+    'dark:border-emerald-400',
+    'dark:bg-emerald-900/70',
+    'dark:text-emerald-50',
+  ],
+  info: [
+    'border-sky-500',
+    'bg-sky-50',
+    'text-sky-900',
+    'dark:border-sky-400',
+    'dark:bg-sky-900/70',
+    'dark:text-sky-50',
+  ],
+  warning: [
+    'border-amber-500',
+    'bg-amber-50',
+    'text-amber-900',
+    'dark:border-amber-400',
+    'dark:bg-amber-900/70',
+    'dark:text-amber-50',
+  ],
+  danger: [
+    'border-rose-500',
+    'bg-rose-50',
+    'text-rose-900',
+    'dark:border-rose-400',
+    'dark:bg-rose-900/70',
+    'dark:text-rose-50',
+  ],
+  neutral: [
+    'border-gray-300',
+    'bg-white',
+    'text-gray-700',
+    'dark:border-gray-700',
+    'dark:bg-gray-900/70',
+    'dark:text-gray-100',
+  ],
+  locked: [
+    'border-gray-400',
+    'bg-gray-100',
+    'text-gray-400',
+    'dark:border-gray-700',
+    'dark:bg-gray-800/80',
+    'dark:text-gray-600',
+    'opacity-70',
+    'saturate-0',
+    'pointer-events-none',
+    'select-none',
+  ],
+} as const
+
+const classes = computed(() => {
+  const classes: string[] = [
+    'relative w-full flex items-center gap-2 px-2 py-1 border rounded-lg shadow-sm outline-none transition-all duration-150',
+    'focus-visible:ring-2 focus-visible:ring-sky-400',
+    'hover:shadow-lg hover:scale-[1.01] active:scale-100',
+  ]
+
+  if (props.disabled) classes.push('pointer-events-none opacity-50 saturate-0')
+  if (props.active) classes.push('bg-sky-500/10 border-sky-500 ring-2 ring-sky-400')
+  // Color logic
+  if (props.color && colorClassMap[props.color])
+    classes.push(...colorClassMap[props.color])
+
+  return classes.join(' ')
+})
 </script>
 
 <template>
@@ -48,13 +104,13 @@ const classes = computed(() => [
     :aria-label="props.ariaLabel"
     :tabindex="props.disabled ? -1 : props.tabindex"
   >
-    <span v-if="$slots.left" class="mr-1 flex items-center">
+    <span v-if="$slots.left" class="flex items-center">
       <slot name="left" />
     </span>
     <div class="min-w-0 flex-1">
       <slot />
     </div>
-    <span v-if="$slots.right" class="ml-1 flex items-center">
+    <span v-if="$slots.right" class="flex items-center">
       <slot name="right" />
     </span>
   </component>

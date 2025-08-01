@@ -47,7 +47,7 @@ function onChange(event: Event) {
         :disabled="props.disabled"
         :aria-checked="props.modelValue"
         :aria-disabled="props.disabled"
-        tabindex="0"
+        :tabindex="0"
         @change="onChange"
       >
       <!-- Visuel du check (SVG) -->

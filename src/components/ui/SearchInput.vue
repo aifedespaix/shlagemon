@@ -43,7 +43,7 @@ function clear() {
           : 'h-6 w-6 text-lg',
       ]"
       aria-label="Effacer la recherche"
-      tabindex="0"
+      :tabindex="0"
       @click="clear"
     >
       <span class="i-carbon-close pointer-events-none" aria-hidden="true" />

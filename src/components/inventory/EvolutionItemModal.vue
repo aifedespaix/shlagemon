@@ -11,7 +11,7 @@ const itemName = computed(() => store.current ? t(store.current.name) : '')
       <h3 class="text-center text-lg font-bold">
         {{ store.current ? t('components.inventory.EvolutionItemModal.title', { name: itemName }) : '' }}
       </h3>
-      <div v-if="store.availableMons.length" class="flex flex-col gap-2">
+      <div v-if="store.availableMons.length" class="flex flex-col gap-2 p-1">
         <UiListItem
           v-for="mon in store.availableMons"
           :key="mon.id"

@@ -93,7 +93,7 @@ const positionClasses = computed(() => {
     ]"
     :aria-label="props.ariaLabel"
     role="status"
-    tabindex="-1"
+    :tabindex="-1"
   >
     <span v-if="props.icon" class="h-4 w-4 flex items-center justify-center" :class="props.icon" />
     <slot />

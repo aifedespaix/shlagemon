@@ -104,7 +104,7 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
     <nav
       class="no-scrollbar flex whitespace-nowrap border-b border-gray-200 dark:border-gray-800"
       aria-label="Navigation par onglets"
-      tabindex="0"
+      :tabindex="0"
       style="scrollbar-width: none;"
       @keydown.left.prevent="prev"
       @keydown.right.prevent="next"
@@ -151,7 +151,7 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
     <section
       ref="container"
       class="relative min-h-0 flex-1 overflow-x-hidden overflow-y-auto bg-white dark:bg-gray-900 focus:outline-none"
-      tabindex="-1"
+      :tabindex="-1"
     >
       <Transition :name="transitionName" mode="out-in">
         <component
