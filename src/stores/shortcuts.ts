@@ -78,6 +78,10 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
           useBallStore().equip(item.id as BallId)
           usage.markUsed(item.id)
         }
+        else if (item.category === 'activable') {
+          useKingPotionStore().equip(item.id)
+          usage.markUsed(item.id)
+        }
         else if (item.type === 'evolution') {
           useEvolutionItemStore().open(item)
         }
