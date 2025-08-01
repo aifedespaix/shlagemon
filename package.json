@@ -86,7 +86,8 @@
     "vite-ssg": "catalog:build",
     "vite-ssg-sitemap": "catalog:build",
     "vitest": "catalog:dev",
-    "vue-tsc": "catalog:dev"
+    "vue-tsc": "catalog:dev",
+    "yaml": "2.8.0"
   },
   "resolutions": {
     "unplugin": "catalog:build",

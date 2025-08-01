@@ -7,4 +7,10 @@ export default antfu(
     formatters: true,
     pnpm: true,
   },
+  {
+    files: ['package.json'],
+    rules: {
+      'pnpm/json-enforce-catalog': 'off',
+    },
+  },
 )
