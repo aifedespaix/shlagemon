@@ -70,10 +70,7 @@ const colorClassMap: Record<Colors, string[]> = {
     'text-gray-400',
     'dark:border-gray-700',
     'dark:bg-gray-800/80',
-    'dark:text-gray-600',
-    'opacity-70',
-    'saturate-0',
-    'select-none',
+    'dark:text-gray-300',
   ],
 } as const
 

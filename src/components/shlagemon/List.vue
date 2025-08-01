@@ -155,7 +155,7 @@ function changeActive(mon: DexShlagemon) {
     </template>
 
     <template #content>
-      <TransitionGroup name="fade-list" tag="div" class="grid grid-cols-1 gap-1 p-1">
+      <TransitionGroup name="fade-list" tag="div" class="grid grid-cols-1 gap-1">
         <ShlagemonListItem
           v-for="mon in displayedMons"
           :key="mon.id"
