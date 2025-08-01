@@ -72,14 +72,15 @@ watch(showInfo, (val) => {
 </script>
 
 <template>
-  <article
-    class="hover:bg-primary-50/50 focus-visible:ring-primary-400 relative min-h-16 w-full flex items-center gap-1 overflow-hidden border rounded-xl bg-white/95 p-1 shadow-sm outline-none transition-all duration-150 active:scale-98 dark:bg-gray-900/90 hover:shadow-lg focus-visible:ring-2"
+  <UiListItem
+    as="article"
+    class="hover:bg-primary-50/50 focus-visible:ring-primary-400 relative min-h-16 w-full items-center gap-1 overflow-hidden rounded-xl bg-white/95 p-1 active:scale-98 dark:bg-gray-900/90 hover:shadow-lg focus-visible:ring-2"
     :class="[
       isUnused ? 'animate-pulse-alt animate-count-infinite' : '',
       zoom ? 'open-zoom' : '',
     ]"
-    tabindex="0"
     role="button"
+    tabindex="0"
     @click="onCardClick"
   >
     <!-- 1. Icon/image  -->
@@ -173,7 +174,7 @@ watch(showInfo, (val) => {
         </UiButton>
       </div>
     </UiModal>
-  </article>
+  </UiListItem>
 </template>
 
 <style scoped>

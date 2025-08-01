@@ -12,19 +12,24 @@ const itemName = computed(() => store.current ? t(store.current.name) : '')
         {{ store.current ? t('components.inventory.EvolutionItemModal.title', { name: itemName }) : '' }}
       </h3>
       <div v-if="store.availableMons.length" class="flex flex-col gap-2">
-        <div
+        <UiListItem
           v-for="mon in store.availableMons"
           :key="mon.id"
-          class="flex items-center justify-between border rounded p-2"
+          as="div"
+          class="items-center justify-between border rounded p-2"
         >
-          <div class="flex items-center gap-2">
-            <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="aspect-1" />
-            <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
-          </div>
-          <UiButton class="text-xs" @click="store.useOn(mon)">
-            {{ t('components.inventory.EvolutionItemModal.evolve') }}
-          </UiButton>
-        </div>
+          <template #left>
+            <div class="flex items-center gap-2">
+              <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="aspect-1" />
+              <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
+            </div>
+          </template>
+          <template #right>
+            <UiButton class="text-xs" @click="store.useOn(mon)">
+              {{ t('components.inventory.EvolutionItemModal.evolve') }}
+            </UiButton>
+          </template>
+        </UiListItem>
       </div>
       <p v-else class="text-center text-sm">
         {{ t('components.inventory.EvolutionItemModal.noCompatible') }}
