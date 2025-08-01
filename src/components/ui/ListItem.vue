@@ -1,7 +1,6 @@
 <script setup lang="ts">
 type Colors = 'success' | 'info' | 'warning' | 'danger' | 'neutral' | 'locked'
 
-
 const props = withDefaults(defineProps<{
   active?: boolean
   disabled?: boolean
@@ -74,7 +73,6 @@ const colorClassMap: Record<Colors, string[]> = {
     'dark:text-gray-600',
     'opacity-70',
     'saturate-0',
-    'pointer-events-none',
     'select-none',
   ],
 } as const
@@ -86,7 +84,8 @@ const classes = computed(() => {
     'hover:shadow-lg hover:scale-[1.01] active:scale-100',
   ]
 
-  if (props.disabled) classes.push('pointer-events-none opacity-50 saturate-0')
+  if (props.disabled)
+    classes.push('pointer-events-none opacity-50 saturate-0')
   if (props.highlight)
     classes.push('animate-highlight bg-sky-900/20 dark:bg-sky-900/20')
   if (props.active)
