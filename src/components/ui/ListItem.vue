@@ -10,9 +10,11 @@ const props = withDefaults(defineProps<{
   role?: string
   ariaLabel?: string
   color?: Colors
+  highlight?: boolean
 }>(), {
   active: false,
   disabled: false,
+  highlight: false,
   tabindex: 0,
   as: 'div',
   role: undefined,
@@ -85,7 +87,11 @@ const classes = computed(() => {
   ]
 
   if (props.disabled) classes.push('pointer-events-none opacity-50 saturate-0')
-  if (props.active) classes.push('bg-sky-500/10 border-sky-500 ring-2 ring-sky-400')
+  if (props.highlight)
+    classes.push('animate-highlight bg-sky-900/20 dark:bg-sky-900/20')
+  if (props.active)
+    classes.push('bg-sky-100 border-sky-400 ring-2 ring-sky-300 dark:bg-sky-900/50 dark:border-sky-500 dark:ring-sky-700')
+
   // Color logic
   if (props.color && colorClassMap[props.color])
     classes.push(...colorClassMap[props.color])

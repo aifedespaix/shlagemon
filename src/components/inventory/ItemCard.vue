@@ -93,7 +93,8 @@ watch(showInfo, (val) => {
 
 <template>
   <UiListItem
-    :active="isUnused"
+    :active="showInfo"
+    :highlight="isUnused"
     role="button"
     :aria-label="t(props.item.name)"
     @click="onCardClick"
@@ -121,7 +122,7 @@ watch(showInfo, (val) => {
 
     <template #right>
       <div class="min-w-8 w-20 flex flex-col items-end justify-center gap-1">
-        <div class="w-full flex items-center justify-end gap-1">
+        <div class="w-full flex items-center justify-end gap-1" v-if="qty > 1 || !isMobile">
           <span
             v-if="qty > 1"
             class="flex-1 rounded bg-gray-100 px-1 py-0.5 text-center text-xs text-gray-700 font-bold dark:bg-gray-700 dark:text-gray-100"
