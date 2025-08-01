@@ -1,0 +1,12 @@
+en:
+  name: Cuck Ring
+  description: Each attack either deals double damage or heals the foe.
+  details: |
+    When worn, every attack has a 50% chance to deal double damage.
+    Otherwise, it heals the opponent for the same amount.
+fr:
+  name: Anneau du Cocu
+  description: Chaque attaque inflige soit le double de dégâts, soit soigne l'adversaire.
+  details: |
+    Porté par un Shlagémon, chaque attaque a 50% de chances
+    d'infliger le double de dégâts et 50% de chances de soigner l'ennemi du même montant.
