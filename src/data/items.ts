@@ -5,6 +5,7 @@ import {
   attackAmulet,
   attackRing,
 } from './items/wearables/attackRing'
+import { cuckRing } from './items/wearables/cuckRing'
 import {
   advancedDefenseRing,
   defenseAmulet,
@@ -532,6 +533,7 @@ export const allItems = [
   xpRing,
   advancedXpRing,
   xpAmulet,
+  cuckRing,
   preyAmulet,
   attackRing,
   advancedAttackRing,
