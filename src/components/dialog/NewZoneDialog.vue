@@ -5,7 +5,6 @@ import { xpPotion } from '~/data/items'
 
 const emit = defineEmits(['done'])
 const inventory = useInventoryStore()
-const visit = useZoneVisitStore()
 const mobile = useMobileTabStore()
 const { t } = useI18n()
 
@@ -43,7 +42,6 @@ const dialogTree = computed<DialogNode[]>(() => [
         type: 'valid',
         action: () => {
           inventory.add(xpPotion.id, 1)
-          visit.markAllAccessibleVisited()
           mobile.set('zones')
           emit('done', 'newZone')
         },
