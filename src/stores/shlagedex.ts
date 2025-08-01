@@ -158,6 +158,17 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     highestLevel.value = shlagemons.value.reduce((max, m) => Math.max(max, m.lvl), 0)
   }
 
+  /**
+   * Play the rarity 100 sound effect when a Shlagémon crosses the threshold.
+   *
+   * @param mon - The concerned Shlagémon.
+   * @param previous - Rarity value before the change.
+   */
+  function maybePlayRaritySfx(mon: DexShlagemon, previous: number) {
+    if (previous < 100 && mon.rarity >= 100)
+      audio.playSfx('rarity-100')
+  }
+
   function addShlagemon(mon: DexShlagemon) {
     shlagemons.value.push(mon)
     if (!activeShlagemon.value)
@@ -379,7 +390,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (mon.rarityFollowsLevel)
       return
     mon.rarityFollowsLevel = true
+    const before = mon.rarity
     mon.rarity = mon.lvl
+    maybePlayRaritySfx(mon, before)
     applyStats(mon)
     applyCurrentStats(mon)
   }
@@ -391,9 +404,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (existing) {
       existing.captureCount += 1
       if (existing.rarity < 100) {
+        const before = existing.rarity
         existing.rarity += 1
-        if (existing.rarity === 100)
-          audio.playSfx('rarity-100')
+        maybePlayRaritySfx(existing, before)
         toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
       }
       existing.lvl = 1
@@ -469,8 +482,11 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
       mon.lvl += 1
-      if (mon.rarityFollowsLevel)
+      if (mon.rarityFollowsLevel) {
+        const before = mon.rarity
         mon.rarity = mon.lvl
+        maybePlayRaritySfx(mon, before)
+      }
       audio.playSfx('lvl-up')
       const prevHp = mon.hpCurrent
       if (mon.rarityFollowsLevel)
@@ -526,8 +542,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         existing.rarity += 1
       }
       existing.rarity = Math.min(existing.rarity, 100)
-      if (before < 100 && existing.rarity === 100)
-        audio.playSfx('rarity-100')
+      maybePlayRaritySfx(existing, before)
       if (incoming.isShiny)
         existing.isShiny = true
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
@@ -550,8 +565,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     incoming.captureCount = 1
     addShlagemon(incoming)
     updateHighestLevel(incoming)
-    if (incoming.rarity === 100)
-      audio.playSfx('rarity-100')
+    maybePlayRaritySfx(incoming, 0)
     toast(`Tu as obtenu ${incoming.base.name} !`)
     return incoming
   }
@@ -576,8 +590,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         existing.rarity += 1
       }
       existing.rarity = Math.min(existing.rarity, 100)
-      if (before < 100 && existing.rarity === 100)
-        audio.playSfx('rarity-100')
+      maybePlayRaritySfx(existing, before)
       existing.isShiny ||= enemy.isShiny
       existing.lvl = Math.max(1, existing.lvl - levelLoss)
       existing.xp = 0
@@ -597,8 +610,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
     addShlagemon(captured)
     updateHighestLevel(captured)
-    if (captured.rarity === 100)
-      audio.playSfx('rarity-100')
+    maybePlayRaritySfx(captured, 0)
     toast(`Tu as obtenu ${captured.base.name} !`)
     return captured
   }
