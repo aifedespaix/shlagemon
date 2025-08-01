@@ -63,4 +63,10 @@ export interface DexShlagemon extends Stats {
    * Useful for the starter whose rarity scales with leveling.
    */
   rarityFollowsLevel?: boolean
+
+  /**
+   * Indicates that the player has not viewed or activated this Shlagémon yet.
+   * Used to display a "new" badge in the dex until acknowledged.
+   */
+  isNew?: boolean
 }

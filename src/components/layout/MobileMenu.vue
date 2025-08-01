@@ -14,8 +14,9 @@ const lockStore = useFeatureLockStore()
 const visit = useZoneVisitStore()
 
 // Etats calculés réactifs pour le highlight + désactivation
-const highlightMap = computed(() => visit.hasNewZone)
+const newZoneCount = computed(() => visit.newZoneCount)
 const highlightInventory = computed(() => usage.hasUnusedItem)
+const newDexCount = computed(() => shlagedex.newCount)
 
 const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 'arena')
 const zoneDisabled = menuDisabled
@@ -77,7 +78,16 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
       ]"
       @click="mobile.toggle('dex')"
     >
-      <IconShlagedex class="h-5 w-5" aria-hidden="true" />
+      <span class="relative flex items-center justify-center">
+        <IconShlagedex class="h-5 w-5" aria-hidden="true" />
+        <UiBadge
+          v-if="newDexCount > 0"
+          color="info"
+          size="xs"
+          class="-right-1.5 -top-1.5"
+          :inner="false"
+        >{{ newDexCount }}</UiBadge>
+      </span>
     </button>
 
     <!-- Inventory, avec badge animé si highlight -->
@@ -122,11 +132,13 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
     >
       <span class="relative flex items-center justify-center">
         <div class="i-carbon-map text-xl" aria-hidden="true" />
-        <span
-          v-if="highlightMap"
-          class="absolute h-3 w-3 animate-pulse rounded-full bg-pink-500 ring-2 ring-white -right-1.5 -top-1.5 dark:bg-pink-400 dark:ring-gray-900"
-          aria-hidden="true"
-        />
+        <UiBadge
+          v-if="newZoneCount > 0"
+          color="danger"
+          size="xs"
+          class="-right-1.5 -top-1.5"
+          :inner="false"
+        >{{ newZoneCount }}</UiBadge>
       </span>
     </button>
 

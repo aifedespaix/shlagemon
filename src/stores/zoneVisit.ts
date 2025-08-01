@@ -7,10 +7,10 @@ export const useZoneVisitStore = defineStore('zoneVisit', () => {
 
   const { accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
 
-  const hasNewZone = computed(
-    () => accessibleZones.value.length > 1
-      && accessibleZones.value.some(z => !visited.value[z.id]),
+  const newZoneCount = computed(() =>
+    accessibleZones.value.filter(z => !visited.value[z.id]).length,
   )
+  const hasNewZone = computed(() => newZoneCount.value > 0)
 
   function markVisited(id: string) {
     visited.value[id] = true
@@ -26,6 +26,7 @@ export const useZoneVisitStore = defineStore('zoneVisit', () => {
 
   return {
     visited,
+    newZoneCount,
     hasNewZone,
     markVisited,
     markAllAccessibleVisited,
