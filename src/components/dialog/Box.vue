@@ -71,7 +71,7 @@ function choose(r: DialogResponse) {
 
 <template>
   <div class="h-full w-full flex flex-col">
-    <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded" bg="light-100 dark:gray-800">
+    <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded">
       <div class="flex flex-col items-center justify-center">
         <UiImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
         <div class="p-1 text-center font-bold">
@@ -79,7 +79,7 @@ function choose(r: DialogResponse) {
         </div>
       </div>
 
-      <div class="col-span-2 h-full flex flex-col gap-2 bg-gray-100 p-2 dark:bg-gray-800">
+      <div class="col-span-2 h-full flex flex-col gap-2 ">
         <div class="flex flex-1 flex-col justify-center">
           <UiTypingText
             v-if="currentNode"
