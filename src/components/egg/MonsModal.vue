@@ -11,7 +11,7 @@ function owned(id: string) {
 <template>
   <UiModal v-model="modal.isVisible" footer-close>
     <UiPanelWrapper
-      :title="t('components.egg.MonsModal.title', { name: modal.item?.name })"
+      :title="t('components.egg.MonsModal.title', { name: modal.item ? t(modal.item.name) : '' })"
       is-inline
     >
       <template #icon>

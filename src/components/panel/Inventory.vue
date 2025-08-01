@@ -53,6 +53,15 @@ const availableCategories = computed(() =>
 const activeTab = ref(0)
 const categories = computed(() => availableCategories.value)
 
+const newItemCountByCategory = computed(() => {
+  const counts: Partial<Record<ItemCategory, number>> = {}
+  for (const { item } of inventory.list) {
+    if (!usage.used[item.id] && item.category)
+      counts[item.category] = (counts[item.category] || 0) + 1
+  }
+  return counts
+})
+
 const tabComponents = new Map<ItemCategory | 'all', Component>()
 function getTabComponent(category: ItemCategory | 'all') {
   if (tabComponents.has(category))
@@ -78,13 +87,15 @@ function getTabComponent(category: ItemCategory | 'all') {
 }
 
 const tabs = computed(() =>
-  categories.value.map(cat => ({
-    label: cat.label,
-    component: getTabComponent(cat.value),
-    highlight: inventory.list.some(entry =>
-      entry.item.category === cat.value && !usage.used[entry.item.id],
-    ),
-  })),
+  categories.value.map((cat) => {
+    const count = newItemCountByCategory.value[cat.value] || 0
+    return {
+      label: cat.label,
+      component: getTabComponent(cat.value),
+      highlight: count > 0,
+      badge: count,
+    }
+  }),
 )
 
 watch(() => filter.category, (val) => {

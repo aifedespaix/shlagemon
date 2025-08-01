@@ -7,6 +7,8 @@ interface Tab {
   'label': Label
   'component': any
   'highlight'?: boolean
+  /** Number of new items to display as a badge. */
+  'badge'?: number
   'disabled'?: boolean
   'aria-label'?: string
 }
@@ -132,6 +134,13 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
         >
           {{ tab.label.text }}
         </span>
+        <UiBadge
+          v-if="tab.badge && tab.badge > 0"
+          size="xs"
+          class="z-10"
+        >
+          {{ tab.badge }}
+        </UiBadge>
       </button>
     </nav>
 
