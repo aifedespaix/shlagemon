@@ -1,8 +1,9 @@
 import type { LatLngExpression, Map as LeafletMap, Marker } from 'leaflet'
 import type { Zone, ZoneId } from '~/type'
 import { DivIcon } from 'leaflet'
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import { useZoneCompletion } from '~/composables/useZoneCompletion'
+import { useZoneVisitStore } from '~/stores/zoneVisit'
 import { useLeafletMarker } from './useLeafletMarker'
 
 export function useMapMarkers(map: LeafletMap) {
@@ -52,12 +53,15 @@ export function useMapMarkers(map: LeafletMap) {
     inactive = false,
   ) {
     const { allCaptured, perfectZone, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
+    const visit = useZoneVisitStore()
+    const visited = computed(() => !!visit.visited[zone.id])
     let locked = inactive
     let clickHandler: (() => void) | null = null
 
     function buildHtml() {
       const size = 12
-      const icon = `<img src="${iconPath(zone)}" class="w-${size} h-${size} block" />`
+      const highlight = visited.value ? '' : 'animate-pulse-alt'
+      const icon = `<img src="${iconPath(zone)}" class="w-${size} h-${size} block ${highlight}" />`
       const ballClasses = allCaptured.value
         ? `h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}`
         : 'h-3 w-3 opacity-90 grayscale'
@@ -86,7 +90,7 @@ export function useMapMarkers(map: LeafletMap) {
       interactive: true,
     })
 
-    watch([allCaptured, perfectZone, kingDefeated, arenaCompleted], () => {
+    watch([allCaptured, perfectZone, kingDefeated, arenaCompleted, visited], () => {
       marker.setIcon(new DivIcon({ html: buildHtml(), iconSize: [60, 60], iconAnchor: [30, 48] }))
     })
 
