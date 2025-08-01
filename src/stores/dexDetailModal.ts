@@ -7,6 +7,8 @@ export const useDexDetailModalStore = defineStore('dexDetailModal', () => {
 
   function open(target: DexShlagemon) {
     mon.value = target
+    const dex = useShlagedexStore()
+    dex.markSeen(target)
     openModal()
   }
 

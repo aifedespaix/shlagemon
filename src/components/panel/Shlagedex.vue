@@ -11,6 +11,7 @@ const clickTimer = ref<Stoppable<[]> | null>(null)
 
 function open(mon: DexShlagemon | null) {
   if (mon) {
+    dex.markSeen(mon)
     detailMon.value = mon
     showDetail.value = true
   }

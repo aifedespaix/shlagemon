@@ -25,6 +25,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const disease = useDiseaseStore()
   const equipment = useEquipmentStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
+  const newCount = computed(() => shlagemons.value.filter(m => m.isNew).length)
   cleanupEffects()
   watchEffect(cleanupEffects)
   // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
@@ -170,16 +171,29 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function addShlagemon(mon: DexShlagemon) {
+    if (mon.isNew === undefined)
+      mon.isNew = true
     shlagemons.value.push(mon)
     if (!activeShlagemon.value)
       activeShlagemon.value = mon
     updateHighestLevel(mon)
   }
 
+  function markSeen(mon: DexShlagemon) {
+    mon.isNew = false
+  }
+
+  function markAllSeen() {
+    shlagemons.value.forEach((m) => {
+      m.isNew = false
+    })
+  }
+
   function setActiveShlagemon(mon: DexShlagemon) {
     if (disease.active)
       return
     activeShlagemon.value = mon
+    markSeen(mon)
   }
 
   function setShlagemons(mons: DexShlagemon[]) {
@@ -426,6 +440,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         shlagemons.value.splice(index, 1)
       if (activeShlagemon.value?.id === mon.id)
         activeShlagemon.value = existing
+      existing.isNew = true
       recomputeHighestLevel()
     }
     else {
@@ -435,6 +450,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.hpCurrent = maxHp(mon)
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
+      mon.isNew = true
       toast(`${mon.base.name} a évolué !`)
     }
   }
@@ -607,6 +623,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       hpCurrent: enemy.hp,
       captureDate: new Date().toISOString(),
       captureCount: 1,
+      isNew: true,
     }
     addShlagemon(captured)
     updateHighestLevel(captured)
@@ -638,6 +655,9 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     potentialCompletionPercent,
     bonusPercent,
     bonusMultiplier,
+    newCount,
+    markSeen,
+    markAllSeen,
     addShlagemon,
     setActiveShlagemon,
     setShlagemons,
@@ -678,6 +698,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         }
         if (typeof effect.timeout?.stop !== 'function')
           effect.timeout = useTimeoutFn(() => store.removeEffect(effect.id), effect.expiresAt - now)
+      })
+      store.shlagemons.forEach((m) => {
+        if (m.isNew === undefined)
+          m.isNew = false
       })
     },
   } as PersistedStateOptions,
