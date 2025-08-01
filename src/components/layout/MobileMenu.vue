@@ -68,7 +68,6 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
           color="info"
           size="xs"
           class="-right-1.5 -top-1.5"
-          :inner="false"
         />
       </span>
     </button>
@@ -95,7 +94,6 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
           color="info"
           size="xs"
           class="-right-1.5 -top-1.5"
-          :inner="false"
         >{{ newDexCount }}</UiBadge>
       </span>
     </button>
@@ -122,7 +120,6 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
           color="info"
           size="xs"
           class="-right-1.5 -top-1.5"
-          :inner="false"
         >{{ newItemCount }}</UiBadge>
       </span>
     </button>
@@ -149,7 +146,6 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
           color="danger"
           size="xs"
           class="-right-1.5 -top-1.5"
-          :inner="false"
         >{{ newZoneCount }}</UiBadge>
       </span>
     </button>

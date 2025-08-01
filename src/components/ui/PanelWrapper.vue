@@ -91,17 +91,18 @@ function clickPrevented(e: MouseEvent) {
     <div v-if="props.title" class="flex items-center justify-between p-2" :class="titleClasses" @click="toggle">
       <div class="flex items-center gap-1">
         <slot name="icon" />
-        <span class="font-bold">{{ props.title }}</span>
-      </div>
-      <div class="relative flex items-center">
+        <span class="font-bold relative pr-4">{{ props.title }}
         <UiBadge
           v-if="showBadge"
           :color="props.badgeColor || 'info'"
           size="xs"
+          class="-top-1 -right-1"
           inner
         >
           {{ props.badge }}
-        </UiBadge>
+        </UiBadge></span>
+      </div>
+      <div class="relative flex items-center">
         <div v-if="hidable" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
       </div>
     </div>
