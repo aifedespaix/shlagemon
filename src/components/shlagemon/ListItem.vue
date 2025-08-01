@@ -12,6 +12,9 @@ const _props = defineProps({
 })
 const emit = defineEmits(['click', 'activate'])
 
+// Highlight newly captured Shlagémon until acknowledged
+const shouldHighlight = computed(() => Boolean(_props.mon.isNew))
+
 const itemClass = computed(() => [
   _props.isActive
     ? 'bg-sky-500/10 border-sky-500 ring-2 ring-sky-400'
@@ -28,6 +31,7 @@ const itemClass = computed(() => [
     class="gap-1"
     :class="itemClass"
     :active="isActive"
+    :highlight="shouldHighlight"
     :disabled="locked || disabled"
     as="button"
     role="option"
