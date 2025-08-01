@@ -68,7 +68,7 @@ export function useShopPurchase() {
       const currencyName = cost > 1 ? `${currency}s` : currency
       toast.success(t('components.panel.Shop.bought', {
         qty: selectedQty.value,
-        item: selectedItem.value.name,
+        item: t(selectedItem.value.name),
         cost: cost.toLocaleString(),
         currency: currencyName,
       }))
