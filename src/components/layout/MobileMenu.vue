@@ -22,6 +22,7 @@ const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 
 const zoneDisabled = menuDisabled
 const dexDisabled = computed(() => menuDisabled.value || shlagedex.shlagemons.length === 0)
 const achievementsDisabled = computed(() => menuDisabled.value || !achievements.hasAny)
+const hasNewAchievements = computed(() => achievements.hasNewUnlocked)
 const inventoryDisabled = computed(() =>
   menuDisabled.value || inventory.list.length === 0 || arena.inBattle || lockStore.isInventoryLocked,
 )
@@ -60,7 +61,16 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
       ]"
       @click="mobile.toggle('achievements')"
     >
-      <div class="i-carbon-trophy text-xl" aria-hidden="true" />
+      <span class="relative flex items-center justify-center">
+        <div class="i-carbon-trophy text-xl" aria-hidden="true" />
+        <UiBadge
+          v-if="hasNewAchievements"
+          color="info"
+          size="xs"
+          class="-right-1.5 -top-1.5"
+          :inner="false"
+        />
+      </span>
     </button>
 
     <!-- Dex -->
