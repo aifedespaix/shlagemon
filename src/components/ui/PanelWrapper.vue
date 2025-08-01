@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { BadgeColor } from '~/type/badge'
 import { storeToRefs } from 'pinia'
 
-const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean }>()
+const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean, badge?: number, badgeColor?: BadgeColor }>()
 const opened = ref(true)
 const { isMobile } = storeToRefs(useUIStore())
 
@@ -74,6 +75,8 @@ const titleClasses = computed(() => {
   return classes.join(' ')
 })
 
+const showBadge = computed(() => (props.badge ?? 0) > 0)
+
 function clickPrevented(e: MouseEvent) {
   if (props.isLocked) {
     e.preventDefault()
@@ -90,7 +93,17 @@ function clickPrevented(e: MouseEvent) {
         <slot name="icon" />
         <span class="font-bold">{{ props.title }}</span>
       </div>
-      <div v-if="hidable" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
+      <div class="relative flex items-center">
+        <UiBadge
+          v-if="showBadge"
+          :color="props.badgeColor || 'info'"
+          size="xs"
+          inner
+        >
+          {{ props.badge }}
+        </UiBadge>
+        <div v-if="hidable" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
+      </div>
     </div>
     <Transition
       name="collapse"
