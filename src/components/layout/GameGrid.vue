@@ -100,6 +100,19 @@ const bottomBadgeColor = computed<BadgeColor>(() => {
       return 'info'
   }
 })
+
+const bottomBadgeHandler = computed(() => {
+  switch (activeTab.value) {
+    case 'inventory':
+      return usage.markAllUsed
+    case 'zones':
+      return visit.markAllAccessibleVisited
+    case 'dex':
+      return shlagedex.markAllSeen
+    default:
+      return undefined
+  }
+})
 </script>
 
 <template>
@@ -116,6 +129,7 @@ const bottomBadgeColor = computed<BadgeColor>(() => {
           :is-locked="lockStore.isInventoryLocked"
           :badge="newItemCount"
           badge-color="info"
+          :badge-click="usage.markAllUsed"
         >
           <template #icon>
             <div class="i-carbon-inventory-management" />
@@ -148,6 +162,7 @@ const bottomBadgeColor = computed<BadgeColor>(() => {
           :is-locked="lockStore.areZonesLocked"
           :badge="newZoneCount"
           badge-color="danger"
+          :badge-click="visit.markAllAccessibleVisited"
         >
           <template #icon>
             <div class="i-carbon-map" />
@@ -164,6 +179,7 @@ const bottomBadgeColor = computed<BadgeColor>(() => {
           :is-locked="lockStore.isShlagedexLocked"
           :badge="newDexCount"
           badge-color="info"
+          :badge-click="shlagedex.markAllSeen"
         >
           <template #icon>
             <IconShlagedex class="h-4 w-4" />
@@ -179,6 +195,7 @@ const bottomBadgeColor = computed<BadgeColor>(() => {
           :is-locked="bottomLocked"
           :badge="bottomBadge"
           :badge-color="bottomBadgeColor"
+          :badge-click="bottomBadgeHandler"
         >
           <template #icon>
             <div v-if="activeTab === 'achievements'" class="i-carbon-trophy" />

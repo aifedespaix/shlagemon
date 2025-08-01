@@ -2,7 +2,7 @@
 import type { BadgeColor } from '~/type/badge'
 import { storeToRefs } from 'pinia'
 
-const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean, badge?: number, badgeColor?: BadgeColor }>()
+const props = defineProps<{ title?: string, isInline?: boolean, isScrollable?: boolean, isMobileHidable?: boolean, isLocked?: boolean, badge?: number, badgeColor?: BadgeColor, badgeClick?: () => void }>()
 const opened = ref(true)
 const { isMobile } = storeToRefs(useUIStore())
 
@@ -77,6 +77,14 @@ const titleClasses = computed(() => {
 
 const showBadge = computed(() => (props.badge ?? 0) > 0)
 
+function onTitleClick(e: MouseEvent) {
+  if (showBadge.value && props.badgeClick) {
+    e.stopPropagation()
+    props.badgeClick()
+  }
+  toggle()
+}
+
 function clickPrevented(e: MouseEvent) {
   if (props.isLocked) {
     e.preventDefault()
@@ -88,19 +96,19 @@ function clickPrevented(e: MouseEvent) {
 
 <template>
   <div class="panel-wrapper" v-bind="$attrs" :class="wrapperClasses">
-    <div v-if="props.title" class="flex items-center justify-between p-2" :class="titleClasses" @click="toggle">
+    <div v-if="props.title" class="flex items-center justify-between p-2" :class="titleClasses" @click="onTitleClick">
       <div class="flex items-center gap-1">
         <slot name="icon" />
-        <span class="font-bold relative pr-4">{{ props.title }}
-        <UiBadge
-          v-if="showBadge"
-          :color="props.badgeColor || 'info'"
-          size="xs"
-          class="-top-1 -right-1"
-          inner
-        >
-          {{ props.badge }}
-        </UiBadge></span>
+        <span class="relative pr-4 font-bold">{{ props.title }}
+          <UiBadge
+            v-if="showBadge"
+            :color="props.badgeColor || 'info'"
+            size="xs"
+            class="-right-1 -top-1"
+            inner
+          >
+            {{ props.badge }}
+          </UiBadge></span>
       </div>
       <div class="relative flex items-center">
         <div v-if="hidable" class="i-carbon-chevron-down transition-transform" :class="opened ? '' : 'rotate-90'" />
