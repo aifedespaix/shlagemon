@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BadgeColor } from '~/type/badge'
 import { storeToRefs } from 'pinia'
 import PanelAchievements from '~/components/panel/Achievements.vue'
 import PanelInventory from '~/components/panel/Inventory.vue'
@@ -10,6 +11,8 @@ const lockStore = useFeatureLockStore()
 const shlagedex = useShlagedexStore()
 const uiStore = useUIStore()
 const mobileTab = useMobileTabStore()
+const usage = useItemUsageStore()
+const visit = useZoneVisitStore()
 
 const {
   isMobile,
@@ -69,6 +72,34 @@ const bottomLocked = computed(() => {
       return false
   }
 })
+
+const newItemCount = computed(() => usage.unusedItemCount)
+const newZoneCount = computed(() => visit.newZoneCount)
+const newDexCount = computed(() => shlagedex.newCount)
+
+const bottomBadge = computed(() => {
+  switch (activeTab.value) {
+    case 'inventory':
+      return newItemCount.value
+    case 'zones':
+      return newZoneCount.value
+    case 'dex':
+      return newDexCount.value
+    default:
+      return 0
+  }
+})
+
+const bottomBadgeColor = computed<BadgeColor>(() => {
+  switch (activeTab.value) {
+    case 'zones':
+      return 'danger'
+    case 'inventory':
+    case 'dex':
+    default:
+      return 'info'
+  }
+})
 </script>
 
 <template>
@@ -78,7 +109,14 @@ const bottomLocked = computed(() => {
       md="flex-row justify-between"
     >
       <div v-if="!isMobile && (displayInventory || displayAchievements || displayDex)" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4">
-        <UiPanelWrapper v-if="displayInventory" :title="t('components.layout.GameGrid.inventory')" class="overflow-hidden" :is-locked="lockStore.isInventoryLocked">
+        <UiPanelWrapper
+          v-if="displayInventory"
+          :title="t('components.layout.GameGrid.inventory')"
+          class="overflow-hidden"
+          :is-locked="lockStore.isInventoryLocked"
+          :badge="newItemCount"
+          badge-color="info"
+        >
           <template #icon>
             <div class="i-carbon-inventory-management" />
           </template>
@@ -102,7 +140,15 @@ const bottomLocked = computed(() => {
           <PanelMain class="flex-1" />
         </UiPanelWrapper>
 
-        <UiPanelWrapper v-if="displayZonePanel" :title="t('components.layout.GameGrid.zones')" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.areZonesLocked">
+        <UiPanelWrapper
+          v-if="displayZonePanel"
+          :title="t('components.layout.GameGrid.zones')"
+          class="overflow-hidden"
+          is-mobile-hidable
+          :is-locked="lockStore.areZonesLocked"
+          :badge="newZoneCount"
+          badge-color="danger"
+        >
           <template #icon>
             <div class="i-carbon-map" />
           </template>
@@ -111,7 +157,14 @@ const bottomLocked = computed(() => {
       </div>
 
       <div v-if="!isMobile && displayDex" class="panel-group flex-1 overflow-hidden" md="max-w-80 basis-1/4 flex-1 max-h-none">
-        <UiPanelWrapper :title="t('components.layout.GameGrid.dex')" class="overflow-hidden" is-mobile-hidable :is-locked="lockStore.isShlagedexLocked">
+        <UiPanelWrapper
+          :title="t('components.layout.GameGrid.dex')"
+          class="overflow-hidden"
+          is-mobile-hidable
+          :is-locked="lockStore.isShlagedexLocked"
+          :badge="newDexCount"
+          badge-color="info"
+        >
           <template #icon>
             <IconShlagedex class="h-4 w-4" />
           </template>
@@ -120,7 +173,13 @@ const bottomLocked = computed(() => {
       </div>
 
       <div v-if="isMobile && bottomComponent" class="panel-group max-h-40vh flex-1 overflow-hidden">
-        <UiPanelWrapper :title="bottomTitle" class="overflow-hidden" :is-locked="bottomLocked">
+        <UiPanelWrapper
+          :title="bottomTitle"
+          class="overflow-hidden"
+          :is-locked="bottomLocked"
+          :badge="bottomBadge"
+          :badge-color="bottomBadgeColor"
+        >
           <template #icon>
             <div v-if="activeTab === 'achievements'" class="i-carbon-trophy" />
             <div v-else-if="activeTab === 'zones'" class="i-carbon-map" />
