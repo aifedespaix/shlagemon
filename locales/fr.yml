@@ -228,8 +228,8 @@ components:
       main: Principal
       confirmTitle: Relâcher un Shlagémon ?
       confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       hp: PV
       attack: Attaque
       defense: Défense
@@ -247,8 +247,8 @@ components:
         « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou
         l'empêcher de répandre sa shlaguitude ?
       alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
     DexInfo:
       hp: PV
       attack: Attaque
@@ -3249,8 +3249,8 @@ data:
   Minigame:
     ConnectFour:
       startText: Une partie de Puissance 4 ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Feu.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3259,8 +3259,8 @@ data:
       restart: Recommencer
     ShlagMind:
       startText: Une partie de ShlagMind ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3268,8 +3268,8 @@ data:
       restart: Recommencer
     Battleship:
       startText: Une partie de bataille navale ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Victoire ! Je te donne un œuf Eau.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3277,8 +3277,8 @@ data:
       back: Retour
     ShlagPairs:
       startText: Une partie du jeu des paires ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Dommage !
@@ -3286,8 +3286,8 @@ data:
       back: Retour
     ShlagTaquin:
       startText: Une partie de taquin ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Je te donne un œuf Foudre.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3295,8 +3295,8 @@ data:
       back: Retour
     TicTacToe:
       startText: Envie d'une partie de morpion ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Bien joué ! Je te donne un Œuf Herbe.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3304,8 +3304,8 @@ data:
       back: Retour
     MasterMind:
       startText: Une partie de ShlagMind ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
@@ -3313,8 +3313,8 @@ data:
       back: Retour
     Pairs:
       startText: Une partie du jeu des paires ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
       super: Super !
       loseText: Dommage !
@@ -3322,8 +3322,8 @@ data:
       back: Retour
     Taquin:
       startText: Une partie de taquin ?
-      'yes': Oui
-      'no': Non
+      yes: Oui
+      no: Non
       winText: Bravo ! Je te donne un œuf Foudre.
       super: Super !
       loseText: Perdu ! Recommence quand tu veux.
