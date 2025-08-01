@@ -127,6 +127,9 @@ catalogs:
     vue-tsc:
       specifier: ^3.0.3
       version: 3.0.3
+    yaml:
+      specifier: ^2.8.0
+      version: 2.8.0
   frontend:
     '@floating-ui/dom':
       specifier: ^1.7.2
@@ -381,7 +384,7 @@ importers:
         specifier: catalog:dev
         version: 3.0.3(typescript@5.8.3)
       yaml:
-        specifier: 2.8.0
+        specifier: catalog:dev
         version: 2.8.0
 
 packages:
