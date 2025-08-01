@@ -84,6 +84,18 @@ const displayedMons = computed(() => {
   }
   if (!filter.sortAsc)
     mons.reverse()
+  // Place highlighted Shlagemons at the top while preserving sort order
+  if (props.highlightIds.length) {
+    const highlighted: DexShlagemon[] = []
+    const others: DexShlagemon[] = []
+    for (const m of mons) {
+      if (props.highlightIds.includes(m.id))
+        highlighted.push(m)
+      else
+        others.push(m)
+    }
+    mons = [...highlighted, ...others]
+  }
   return mons
 })
 
