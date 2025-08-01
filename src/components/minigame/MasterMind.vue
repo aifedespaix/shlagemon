@@ -47,9 +47,10 @@ function openPicker(i: number) {
 
 function initGame() {
   palette.value = sample(allShlagemons, PALETTE_SIZE)
-  solution.value = Array.from({ length: comboLength }, () => {
-    return palette.value[Math.floor(Math.random() * palette.value.length)].id
-  }) as (string | null)[]
+  solution.value = sample(
+    palette.value.map(p => p.id),
+    comboLength,
+  )
   attempts.value = []
   feedback.value = []
   bounce.value = []
@@ -63,6 +64,9 @@ function initGame() {
 function choose(id: string) {
   if (selected.value === null)
     return
+  const existing = guess.value.indexOf(id)
+  if (existing !== -1)
+    guess.value[existing] = null
   guess.value[selected.value] = id
   selected.value = null
   showPicker.value = false
@@ -75,6 +79,9 @@ function copyFromHistory(index: number, id: string) {
   ) {
     return
   }
+  const existing = guess.value.indexOf(id)
+  if (existing !== -1)
+    guess.value[existing] = null
   guess.value[index] = id
 }
 
