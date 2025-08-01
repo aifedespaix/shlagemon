@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { BaseShlagemon } from '~/type'
 import { useTimeoutFn } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
+import { sample } from '~/utils/random'
 
 const emit = defineEmits<{ (e: 'win'): void, (e: 'lose'): void }>()
 
@@ -13,7 +15,8 @@ const messages = computed(() => {
   return Array.isArray(list) ? list as string[] : []
 })
 
-const palette = allShlagemons.slice(0, 12)
+const PALETTE_SIZE = 12
+const palette = ref<BaseShlagemon[]>([])
 const comboLength = 6
 const maxAttempts = 5
 
@@ -43,8 +46,9 @@ function openPicker(i: number) {
 }
 
 function initGame() {
+  palette.value = sample(allShlagemons, PALETTE_SIZE)
   solution.value = Array.from({ length: comboLength }, () => {
-    return palette[Math.floor(Math.random() * palette.length)].id
+    return palette.value[Math.floor(Math.random() * palette.value.length)].id
   }) as (string | null)[]
   attempts.value = []
   feedback.value = []
