@@ -6,7 +6,10 @@ import SettingsShortcutsTab from './ShortcutsTab.vue'
 import SupportTab from './SupportTab.vue'
 
 const props = defineProps<{ modelValue: boolean }>()
+
 const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
+
+const { t } = useI18n()
 
 const save = useSaveStore()
 
@@ -25,7 +28,7 @@ const { isMobile } = storeToRefs(useUIStore())
 const tabs = computed(() => {
   const arr = [
     {
-      label: { text: 'Sauvegarde', icon: 'i-carbon-save' },
+      label: { text: t('components.settings.SettingsModal.tabs.save'), icon: 'i-carbon-save' },
       component: defineComponent({
         name: 'SettingsSaveTabWrapper',
         setup() {
@@ -33,18 +36,18 @@ const tabs = computed(() => {
         },
       }),
     },
-    { label: { text: 'Langue', icon: 'i-carbon-language' }, component: LanguageTab },
+    { label: { text: t('components.settings.SettingsModal.tabs.language'), icon: 'i-carbon-language' }, component: LanguageTab },
   ]
 
   if (!isMobile.value) {
     arr.splice(1, 0, {
-      label: { text: 'Raccourcis', icon: 'i-carbon-keyboard' },
+      label: { text: t('components.settings.SettingsModal.tabs.shortcuts'), icon: 'i-carbon-keyboard' },
       component: SettingsShortcutsTab,
     })
   }
 
   arr.push({
-    label: { text: 'Soutien', icon: 'i-carbon-favorite' },
+    label: { text: t('components.settings.SettingsModal.tabs.support'), icon: 'i-carbon-favorite' },
     component: SupportTab,
   })
   return arr
@@ -64,7 +67,7 @@ watch(tabs, (val) => {
     @close="close"
   >
     <h2 class="mb-2 text-center text-lg font-bold">
-      Paramètres
+      {{ t('components.settings.SettingsModal.title') }}
     </h2>
     <UiTabs v-model="activeTab" :tabs="tabs" is-small class="mb-4" />
     <!-- <LayoutScrollablePanel class="max-h-60vh">

@@ -203,6 +203,13 @@ components:
         a one-time or monthly contribution on Ko-fi.
       discordLabel: Join Discord
       discordDesc: To discuss the game and share your ideas, join the community on Discord.
+    SettingsModal:
+      title: Settings
+      tabs:
+        save: Save
+        language: Language
+        shortcuts: Shortcuts
+        support: Support
   shlagemon:
     Detail:
       equipItemTitle: Equip an item
