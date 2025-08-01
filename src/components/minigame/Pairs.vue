@@ -3,6 +3,7 @@ import { useElementSize, useTimeoutFn } from '@vueuse/core'
 import { useI18n } from 'vue-i18n'
 import { allShlagemons } from '~/data/shlagemons'
 import { useAudioStore } from '~/stores/audio'
+import { shuffle } from '~/utils/random'
 
 const emit = defineEmits(['win'])
 const audio = useAudioStore()
@@ -23,15 +24,6 @@ const size = computed(() => Math.min(width.value, height.value))
 const board = ref<Cell[]>([])
 const attempts = ref(0)
 const selected = ref<Cell[]>([])
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = arr.slice()
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
 
 function reset() {
   const mons = shuffle(allShlagemons).slice(0, (GRID_SIZE * GRID_SIZE) / 2)
