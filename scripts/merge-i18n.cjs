@@ -1,6 +1,6 @@
 const fs = require('node:fs')
 const path = require('node:path')
-const yaml = require('js-yaml')
+const YAML = require('yaml')
 
 const baseDirs = [
   path.join(__dirname, '../src'),
@@ -46,7 +46,7 @@ for (const dir of baseDirs) {
     continue
   const files = walk(dir)
   for (const file of files) {
-    const content = yaml.load(fs.readFileSync(file, 'utf8'))
+    const content = YAML.parse(fs.readFileSync(file, 'utf8'))
     if (!content)
       continue
     const relative = path.relative(path.join(__dirname, '../src'), file)
@@ -73,7 +73,7 @@ for (const file of fs.readdirSync(inputDir)) {
     fs.rmSync(path.join(inputDir, file))
     continue
   }
-  const base = yaml.load(fs.readFileSync(path.join(inputDir, file), 'utf8')) || {}
+  const base = YAML.parse(fs.readFileSync(path.join(inputDir, file), 'utf8')) || {}
   const merged = merge(base, translations[lang] || {})
-  fs.writeFileSync(path.join(outputDir, file), yaml.dump(merged, { lineWidth: 0 }))
+  fs.writeFileSync(path.join(outputDir, file), YAML.stringify(merged, { lineWidth: 0 }))
 }

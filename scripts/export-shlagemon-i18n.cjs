@@ -1,6 +1,6 @@
 const fs = require('node:fs')
 const path = require('node:path')
-const yaml = require('js-yaml')
+const YAML = require('yaml')
 
 const baseDir = path.join(__dirname, '../src/data/shlagemons')
 
@@ -44,7 +44,7 @@ for (const file of files) {
       },
     },
   }
-  const yml = yaml.dump(data, { lineWidth: 0 })
+  const yml = YAML.stringify(data, { lineWidth: 0 })
   fs.writeFileSync(ymlPath, yml)
   console.log(`Created ${ymlPath}`)
 }
