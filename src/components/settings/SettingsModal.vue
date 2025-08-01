@@ -69,11 +69,6 @@ watch(tabs, (val) => {
     <h2 class="mb-2 text-center text-lg font-bold">
       {{ t('components.settings.SettingsModal.title') }}
     </h2>
-    <UiTabs v-model="activeTab" :tabs="tabs" is-small class="mb-4" />
-    <LayoutScrollablePanel class="max-h-60vh">
-      <template #content>
-        <component :is="tabs[activeTab].component" />
-      </template>
-    </LayoutScrollablePanel>
+    <UiTabs v-model="activeTab" :tabs="tabs" is-small class="mb-4 flex-1" />
   </UiModal>
 </template>
