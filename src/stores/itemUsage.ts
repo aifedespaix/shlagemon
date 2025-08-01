@@ -17,11 +17,18 @@ export const useItemUsageStore = defineStore('itemUsage', () => {
     used.value[id] = true
   }
 
+  function markAllUsed() {
+    for (const [id, qty] of Object.entries(inventory.items)) {
+      if ((qty ?? 0) > 0)
+        used.value[id] = true
+    }
+  }
+
   function reset() {
     used.value = {}
   }
 
-  return { used, hasUnusedItem, unusedItemCount, markUsed, reset }
+  return { used, hasUnusedItem, unusedItemCount, markUsed, markAllUsed, reset }
 }, {
   persist: true,
 })
