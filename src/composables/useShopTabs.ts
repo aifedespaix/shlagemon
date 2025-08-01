@@ -76,7 +76,10 @@ export function useShopTabs(selectItem: (item: Item) => void) {
           const list = getList(cat.value)
           return () => h(
             'div',
-            { class: 'tiny-scrollbar grid xl:grid-cols-2 3xl:grid-cols-3 gap-2 overflow-auto p-1 auto-rows-min' },
+            {
+              class:
+                'tiny-scrollbar grid xl:grid-cols-2 3xl:grid-cols-3 gap-2 overflow-y-auto overflow-x-hidden p-1 auto-rows-min',
+            },
             list.value.map(item => h(
               ShopItemCard,
               {
