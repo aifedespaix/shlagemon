@@ -8,6 +8,11 @@ export const useItemUsageStore = defineStore('itemUsage', () => {
     Object.entries(inventory.items).some(([id, qty]) => (qty ?? 0) > 0 && !used.value[id]),
   )
 
+  const unusedItemCount = computed(() =>
+    Object.entries(inventory.items)
+      .reduce((acc, [id, qty]) => acc + ((qty ?? 0) > 0 && !used.value[id] ? 1 : 0), 0),
+  )
+
   function markUsed(id: string) {
     used.value[id] = true
   }
@@ -16,7 +21,7 @@ export const useItemUsageStore = defineStore('itemUsage', () => {
     used.value = {}
   }
 
-  return { used, hasUnusedItem, markUsed, reset }
+  return { used, hasUnusedItem, unusedItemCount, markUsed, reset }
 }, {
   persist: true,
 })

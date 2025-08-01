@@ -15,7 +15,7 @@ const visit = useZoneVisitStore()
 
 // Etats calculés réactifs pour le highlight + désactivation
 const newZoneCount = computed(() => visit.newZoneCount)
-const highlightInventory = computed(() => usage.hasUnusedItem)
+const newItemCount = computed(() => usage.unusedItemCount)
 const newDexCount = computed(() => shlagedex.newCount)
 
 const menuDisabled = computed(() => dialog.isDialogVisible || panel.current === 'arena')
@@ -107,11 +107,13 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
     >
       <span class="relative flex items-center justify-center">
         <div class="i-carbon-inventory-management text-xl" aria-hidden="true" />
-        <span
-          v-if="highlightInventory"
-          class="absolute h-3 w-3 animate-pulse rounded-full bg-sky-500 ring-2 ring-white -right-1.5 -top-1.5 dark:bg-sky-400 dark:ring-gray-900"
-          aria-hidden="true"
-        />
+        <UiBadge
+          v-if="newItemCount > 0"
+          color="info"
+          size="xs"
+          class="-right-1.5 -top-1.5"
+          :inner="false"
+        >{{ newItemCount }}</UiBadge>
       </span>
     </button>
 
