@@ -151,7 +151,6 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
       tabindex="-1"
     >
       <Transition :name="transitionName" mode="out-in">
-        
         <component
           :is="props.tabs[active]?.component"
           :key="active"
