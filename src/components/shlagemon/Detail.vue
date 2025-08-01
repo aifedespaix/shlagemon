@@ -58,7 +58,7 @@ const evolutionInfo = computed(() => {
   if (condition.type === 'lvl')
     return t('components.shlagemon.Detail.evolveByLevel', { level: condition.value })
   if (condition.type === 'item')
-    return t('components.shlagemon.Detail.evolveByItem', { item: condition.value.name })
+    return t('components.shlagemon.Detail.evolveByItem', { item: t(condition.value.name) })
   return null
 })
 
@@ -219,7 +219,7 @@ const captureInfo = computed(() => {
             {{ t('components.shlagemon.Detail.confirmText') }}
           </p>
           <div class="flex gap-2">
-            <UiButton type="valid" class="flex items-center gap-1" @click="confirmRelease">
+            <UiButton tyb="valid" class="flex items-center gap-1" @click="confirmRelease">
               <div i-carbon-checkmark />
               {{ t('components.shlagemon.Detail.yes') }}
             </UiButton>
