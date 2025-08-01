@@ -1,7 +1,7 @@
 fr:
   steps:
     step1:
-      text: Incroyable, l'un de tes Shlagémons a atteint le niveau 50 !
+      text: Incroyable, l'un de tes Shlagémons a atteint le niveau 35 !
       responses:
         next: Continuer
     step2:
@@ -27,7 +27,7 @@ fr:
 en:
   steps:
     step1:
-      text: 'Incredible, one of your Shlagemons reached level 50!'
+      text: 'Incredible, one of your Shlagemons reached level 35!'
       responses:
         next: Continue
     step2:
