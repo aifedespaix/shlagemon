@@ -1,10 +1,18 @@
 <script setup lang="ts">
-const props = defineProps<{ title: string, exitText: string }>()
+interface Props {
+  title: string
+  exitText: string
+  limitSize?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  limitSize: true,
+})
 const emit = defineEmits(['exit'])
 </script>
 
 <template>
-  <section class="h-full max-w-xl w-full w-full flex flex-col gap-1 overflow-hidden p-1" v-bind="$attrs">
+  <section class="h-full w-full flex flex-col gap-1 overflow-hidden p-1" v-bind="$attrs" :class="limitSize ? 'max-w-xl' : ''">
     <h2 class="text-center font-bold">
       {{ props.title }}
     </h2>

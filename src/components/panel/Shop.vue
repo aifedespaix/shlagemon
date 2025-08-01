@@ -27,6 +27,7 @@ function closeShop() {
     :title="t('components.panel.Shop.title')"
     :exit-text="t('components.panel.Shop.exit')"
     v-bind="$attrs"
+    :limit-size="false"
     @exit="closeShop"
   >
     <UiTabs
