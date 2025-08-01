@@ -211,6 +211,13 @@ components:
       discordDesc: >-
         Pour discuter du jeu et partager tes idées, rejoins la communauté sur
         Discord.
+    SettingsModal:
+      title: Paramètres
+      tabs:
+        save: Sauvegarde
+        language: Langue
+        shortcuts: Raccourcis
+        support: Soutien
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet
