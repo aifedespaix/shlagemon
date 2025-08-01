@@ -25,6 +25,9 @@ const filteredList = computed(() => {
   return list.value.filter(a => a.title.toLowerCase().includes(q))
 })
 
+onMounted(() => store.markAllSeen())
+watch(() => store.unlockedList.length, store.markAllSeen)
+
 function toggleItem(id: string) {
   openedId.value = openedId.value === id ? null : id
 }

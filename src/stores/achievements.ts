@@ -40,6 +40,11 @@ export const useAchievementsStore = defineStore('achievements', () => {
     {},
   )
 
+  const lastSeenCount = useLocalStorage(
+    'shlagemon_achievements_seen',
+    0,
+  )
+
   function reset() {
     counters.captures = 0
     counters.wins = 0
@@ -50,6 +55,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     counters.shiny = 0
     counters.minigameWins = 0
     unlocked.value = {}
+    lastSeenCount.value = 0
   }
 
   function unlock(id: string) {
@@ -283,6 +289,12 @@ export const useAchievementsStore = defineStore('achievements', () => {
   )
   const unlockedList = computed(() => list.value.filter(a => a.achieved))
   const hasAny = computed(() => unlockedList.value.length > 0)
+  const unlockedCount = computed(() => unlockedList.value.length)
+  const hasNewUnlocked = computed(() => unlockedCount.value > lastSeenCount.value)
+
+  function markAllSeen() {
+    lastSeenCount.value = unlockedCount.value
+  }
 
   function handleEvent(e: AchievementEvent) {
     switch (e.type) {
@@ -459,8 +471,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
     list,
     unlockedList,
     hasAny,
+    hasNewUnlocked,
     handleEvent,
     reset,
+    markAllSeen,
     getProgress,
     counters,
   }
