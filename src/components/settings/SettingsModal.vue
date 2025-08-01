@@ -65,6 +65,7 @@ watch(tabs, (val) => {
     :model-value="props.modelValue"
     @update:model-value="emit('update:modelValue', $event)"
     @close="close"
+    class="h-full"
   >
     <h2 class="mb-2 text-center text-lg font-bold">
       {{ t('components.settings.SettingsModal.title') }}
