@@ -39,7 +39,10 @@ function closeShop() {
       class="flex-1"
       :class="selectedItem ? 'pointer-events-none opacity-50' : ''"
     />
-    <div v-else class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-auto">
+    <div
+      v-else
+      class="tiny-scrollbar flex flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto"
+    >
       <ShopItemCard
         v-for="item in filteredShopItems"
         :key="item.id"
@@ -48,7 +51,10 @@ function closeShop() {
         @click="selectItem(item)"
       />
     </div>
-    <div v-if="selectedItem" class="tiny-scrollbar flex-1 overflow-auto">
+    <div
+      v-if="selectedItem"
+      class="tiny-scrollbar flex-1 overflow-x-hidden overflow-y-auto"
+    >
       <ShopItemDetail v-model:qty="selectedQty" :item="selectedItem" />
     </div>
     <template #footer>

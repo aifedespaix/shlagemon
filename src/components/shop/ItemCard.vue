@@ -12,20 +12,20 @@ const { t } = useI18n()
       <div class="h-8 w-8 flex items-center justify-center">
         <div
           v-if="props.item.icon"
-          :class="[props.item.iconClass, props.item.icon, 'w-full h-full']"
+          class="h-full w-full" :class="[props.item.iconClass, props.item.icon]"
         />
         <img
           v-else-if="props.item.image"
           :src="props.item.image"
           :alt="t(props.item.name)"
-          class="w-full h-full object-contain"
+          class="h-full w-full object-contain"
         >
       </div>
     </template>
 
-    <div class="flex flex-col text-left min-w-0">
-      <span class="font-bold truncate">{{ t(props.item.name) }}</span>
-      <span class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ t(props.item.description) }}</span>
+    <div class="min-w-0 flex flex-col text-left">
+      <span class="truncate font-bold">{{ t(props.item.name) }}</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">{{ t(props.item.description) }}</span>
     </div>
 
     <template #right>
