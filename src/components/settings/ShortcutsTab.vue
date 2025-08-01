@@ -26,21 +26,8 @@ function updateItem(index: number, itemId: ItemId) {
   store.update(index, entry)
 }
 
-function addShortcut() {
-  const firstItem = allItems[0]
-  const entry: ShortcutEntry = {
-    key: '',
-    action: { type: 'use-item', itemId: firstItem.id },
-  }
-  store.add(entry)
-}
-
 function removeShortcut(index: number) {
   store.remove(index)
-}
-
-function reset() {
-  store.reset()
 }
 </script>
 
@@ -60,14 +47,6 @@ function reset() {
       />
       <UiButton type="icon" class="h-7 w-7" @click="removeShortcut(idx)">
         <div i-carbon-close />
-      </UiButton>
-    </div>
-    <div class="mt-2 flex gap-2">
-      <UiButton class="flex-1" @click="addShortcut">
-        {{ t('components.settings.ShortcutsTab.add') }}
-      </UiButton>
-      <UiButton type="danger" class="flex-1" @click="reset">
-        {{ t('components.settings.ShortcutsTab.reset') }}
       </UiButton>
     </div>
   </div>

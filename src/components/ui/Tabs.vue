@@ -6,6 +6,7 @@ interface Label { text: string, icon?: string }
 interface Tab {
   'label': Label
   'component': any
+  'footer'?: any
   'highlight'?: boolean
   /** Number of new items to display as a badge. */
   'badge'?: number
@@ -42,6 +43,8 @@ watch(active, (v) => {
 
 const container = ref<HTMLElement>()
 const direction = ref<'left' | 'right'>('left')
+
+const currentFooter = computed(() => props.tabs[active.value]?.footer)
 
 function select(i: number) {
   if (i === active.value || props.tabs[i]?.disabled)
@@ -158,6 +161,12 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
         />
       </Transition>
     </section>
+    <div
+      v-if="currentFooter"
+      class="shrink-0 border-t border-gray-200 bg-white p-2 dark:border-gray-800 dark:bg-gray-900"
+    >
+      <component :is="currentFooter" />
+    </div>
   </div>
 </template>
 

@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import LanguageTab from './LanguageTab.vue'
 import SaveTab from './SaveTab.vue'
 import SettingsShortcutsTab from './ShortcutsTab.vue'
+import ShortcutsTabFooter from './ShortcutsTabFooter.vue'
 import SupportTab from './SupportTab.vue'
 
 const props = defineProps<{ modelValue: boolean }>()
@@ -43,6 +44,7 @@ const tabs = computed(() => {
     arr.splice(1, 0, {
       label: { text: t('components.settings.SettingsModal.tabs.shortcuts'), icon: 'i-carbon-keyboard' },
       component: SettingsShortcutsTab,
+      footer: ShortcutsTabFooter,
     })
   }
 
@@ -63,9 +65,9 @@ watch(tabs, (val) => {
 <template>
   <UiModal
     :model-value="props.modelValue"
+    class="h-full"
     @update:model-value="emit('update:modelValue', $event)"
     @close="close"
-    class="h-full"
   >
     <h2 class="mb-2 text-center text-lg font-bold">
       {{ t('components.settings.SettingsModal.title') }}
