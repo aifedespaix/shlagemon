@@ -2,6 +2,7 @@
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allItems } from '~/data/items'
+import { useDexDetailModalStore } from '~/stores/dexDetailModal'
 import { useDexInfoModalStore } from '~/stores/dexInfoModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
@@ -41,6 +42,7 @@ interface Props {
 const typeChart = useTypeChartModalStore()
 const dex = useShlagedexStore()
 const infoModal = useDexInfoModalStore()
+const detailModal = useDexDetailModalStore()
 
 const now = ref(Date.now())
 const { pause: stopTimer } = useIntervalFn(() => {
@@ -72,7 +74,10 @@ function showTypeChart() {
 }
 
 function openInfo() {
-  infoModal.open(props.mon)
+  if (props.owned)
+    detailModal.open(props.mon)
+  else
+    infoModal.open(props.mon)
 }
 
 const maxHp = computed(() => dex.maxHp(props.mon))
