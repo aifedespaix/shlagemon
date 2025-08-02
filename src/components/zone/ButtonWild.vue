@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { SavageZone } from '~/type/zone'
 import { useZoneCompletion } from '~/composables/useZoneCompletion'
+import { useZoneAccess } from '~/stores/zoneAccess'
 
 const props = defineProps<{ zone: SavageZone }>()
 const zoneStore = useZoneStore()
@@ -11,6 +12,7 @@ const dialog = useDialogStore()
 const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
 const { t } = useI18n()
+const { canAccess } = useZoneAccess(toRef(dex, 'highestLevel'))
 
 const zoneButtonsDisabled = computed(
   () =>
@@ -66,7 +68,11 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     :class="[
       classes(),
       buttonDisabled() ? 'opacity-50 cursor-not-allowed' : '',
-      props.zone.id !== zoneStore.current.id && !visit.visited[props.zone.id] ? highlightClasses : '',
+      props.zone.id !== zoneStore.current.id
+        && !visit.visited[props.zone.id]
+        && canAccess(props.zone)
+        ? highlightClasses
+        : '',
     ]"
     :disabled="buttonDisabled()"
     @click="selectZone"
