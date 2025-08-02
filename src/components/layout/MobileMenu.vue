@@ -37,6 +37,19 @@ function onZones() {
 
 // Pour focus-ring personnalisés UnoCSS only
 const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400 dark:focus-visible:ring-teal-300'
+
+/**
+ * Handles the context menu interaction on a navigation button.
+ * When the button displays a badge (meaning there are new elements),
+ * a right click should clear the badge without changing the current tab.
+ *
+ * @param hasBadge - Whether the button currently shows a badge.
+ * @param handler - Callback invoked to mark associated items as seen.
+ */
+function handleContextMenu(hasBadge: boolean, handler?: () => void) {
+  if (hasBadge && handler)
+    handler()
+}
 </script>
 
 <template>
@@ -60,6 +73,7 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
         achievementsDisabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
       ]"
       @click="mobile.toggle('achievements')"
+      @contextmenu.prevent="handleContextMenu(hasNewAchievements, achievements.markAllSeen)"
     >
       <span class="relative flex items-center justify-center">
         <div class="i-carbon-trophy text-xl" aria-hidden="true" />
@@ -86,6 +100,7 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
         dexDisabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
       ]"
       @click="mobile.toggle('dex')"
+      @contextmenu.prevent="handleContextMenu(newDexCount > 0, shlagedex.markAllSeen)"
     >
       <span class="relative flex items-center justify-center">
         <IconShlagedex class="h-5 w-5" aria-hidden="true" />
@@ -112,6 +127,7 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
         inventoryDisabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
       ]"
       @click="toggleInventory"
+      @contextmenu.prevent="handleContextMenu(newItemCount > 0, usage.markAllUsed)"
     >
       <span class="relative flex items-center justify-center">
         <div class="i-carbon-inventory-management text-xl" aria-hidden="true" />
@@ -138,6 +154,7 @@ const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400
         zoneDisabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer',
       ]"
       @click="onZones"
+      @contextmenu.prevent="handleContextMenu(newZoneCount > 0, visit.markAllAccessibleVisited)"
     >
       <span class="relative flex items-center justify-center">
         <div class="i-carbon-map text-xl" aria-hidden="true" />
