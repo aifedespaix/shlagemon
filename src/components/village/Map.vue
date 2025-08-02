@@ -66,7 +66,7 @@ onMounted(() => {
       render(vnode[0], container)
       return container.innerHTML
     }
-    return `<img src="/icons/village/${poi.id}.webp" alt="${poi.label}" class="h-8 w-8" />`
+    return `<img src="/icons/village/${poi.id}.webp" alt="${poi.label}" class="h-16 w-16" />`
   }
 
   watch(

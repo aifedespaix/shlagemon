@@ -5,7 +5,9 @@ import { storeToRefs } from 'pinia'
 import { onMounted, watch } from 'vue'
 
 const zone = useZoneStore()
+const mobileTab = useMobileTabStore()
 const { currentZoneId } = storeToRefs(zone)
+const { isMobile } = storeToRefs(useUIStore())
 const mapRef = ref<InstanceType<typeof LeafletMap> | null>(null)
 
 function onSelect(id: ZoneId) {
@@ -21,8 +23,10 @@ onMounted(() => {
   mapRef.value?.selectZone(currentZoneId.value)
 })
 
-watch(currentZoneId, (id) => {
+watch(currentZoneId, (id, oldId) => {
   mapRef.value?.selectZone(id)
+  if (isMobile.value && id !== oldId)
+    mobileTab.set('game')
 })
 </script>
 
