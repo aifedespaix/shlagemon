@@ -75,14 +75,15 @@ function closeShop() {
             class="w-full flex gap-2"
             variant="outline"
             type="danger"
-            size="sm"
+            size="xs"
             @click="selectedItem = null"
           >
             <div class="i-carbon:return" />
             {{ t('components.panel.Shop.back') }}
           </UiButton>
 
-          <UiButton type="danger" variant="outline" class="w-full flex gap-2" size="sm" @click="closeShop">
+          <UiButton 
+          type="danger" variant="outline" class="w-full flex gap-2" size="xs" @click="closeShop">
             <div class="i-carbon:exit" />
             {{ t('components.panel.Shop.exit') }}
           </UiButton>

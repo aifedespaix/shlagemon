@@ -89,7 +89,6 @@ declare module 'vue' {
     LayoutMobileMenu: typeof import('./components/layout/MobileMenu.vue')['default']
     LayoutScrollablePanel: typeof import('./components/layout/ScrollablePanel.vue')['default']
     LayoutTitledPanel: typeof import('./components/layout/TitledPanel.vue')['default']
-    LeafletCenterCurrentZoneButton: typeof import('./components/leaflet/CenterCurrentZoneButton.vue')['default']
     LeafletCenterMapButton: typeof import('./components/leaflet/CenterMapButton.vue')['default']
     LeafletMap: typeof import('./components/leaflet/map.vue')['default']
     MapArrowButton: typeof import('./components/map/ArrowButton.vue')['default']

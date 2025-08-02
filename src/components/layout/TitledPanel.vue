@@ -23,6 +23,7 @@ const emit = defineEmits(['exit'])
       <slot name="footer">
         <UiButton
           type="danger" variant="outline" class="flex gap-2 text-xs"
+          size="xs"
           @click="emit('exit')"
         >
           <div class="i-carbon:exit" />
