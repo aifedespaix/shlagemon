@@ -4,6 +4,7 @@ fr:
     save: Sauvegarde
     language: Langue
     shortcuts: Raccourcis
+    interface: Interface
     support: Soutien
 en:
   title: Settings
@@ -11,4 +12,5 @@ en:
     save: Save
     language: Language
     shortcuts: Shortcuts
+    interface: Interface
     support: Support
