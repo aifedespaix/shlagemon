@@ -16,7 +16,9 @@ const hasKing = computed(() =>
   zone.current.hasKing ?? zone.current.type === 'sauvage',
 )
 const hasArena = computed(() => !!zone.current.arena)
-const hasPoulailler = computed(() => !!zone.current.village?.poulailler)
+const shopPoi = computed(() => zone.current.pois.find(p => p.type === 'shop'))
+const miniGamePoi = computed(() => zone.current.pois.find(p => p.type === 'minigame'))
+const hasPoulailler = computed(() => zone.current.pois.some(p => p.type === 'poulailler'))
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentArenaData = computed(() => {
   const data = zone.current.arena?.arena
@@ -62,8 +64,8 @@ function onAction(id: string) {
     panel.showTrainerBattle()
   }
   else if (id === 'minigame') {
-    if (zone.current.miniGame)
-      mini.select(zone.current.miniGame)
+    if (miniGamePoi.value?.miniGame)
+      mini.select(miniGamePoi.value.miniGame)
     panel.showMiniGame()
     mobile.set('game')
   }
@@ -99,7 +101,7 @@ function openPoulailler() {
 <template>
   <div class="actions-grid grid w-full gap-2 p-1" md="gap-3 p-2">
     <UiNavigationButton
-      v-if="zone.current.village?.shop"
+      v-if="shopPoi"
       icon="i-carbon:shopping-bag"
       :label="t('components.village.ZoneActions.shop')"
       class="bg-green-600 text-white dark:bg-green-700"
@@ -118,7 +120,7 @@ function openPoulailler() {
       @click="onAction(action.id)"
     />
     <UiNavigationButton
-      v-if="zone.current.miniGame && !zone.current.actions.some(a => a.id === 'minigame')"
+      v-if="miniGamePoi && !zone.current.actions.some(a => a.id === 'minigame')"
       icon="i-carbon:game-console"
       :label="t('components.village.ZoneActions.minigame')"
       class="bg-violet-600 text-white dark:bg-violet-700"

@@ -22,6 +22,8 @@ const zones = props.zones ?? zonesData
 const zoneStore = useZoneStore()
 const { currentId } = storeToRefs(zoneStore)
 
+const getTarget = () => zoneStore.current.position
+
 function selectZone(id: ZoneId) {
   emit('select', id)
   const zone = zones.find(z => z.id === id)
@@ -107,7 +109,7 @@ onMounted(() => {
 
 <template>
   <div class="relative h-full w-full">
-    <LeafletCenterCurrentZoneButton v-bind="{ map: leafletMap }" />
+    <LeafletCenterMapButton :map="leafletMap" :get-target="getTarget" />
     <div ref="mapRef" class="h-full w-full" v-bind="$attrs" />
   </div>
 </template>

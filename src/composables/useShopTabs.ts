@@ -13,7 +13,10 @@ export function useShopTabs(selectItem: (item: Item) => void) {
   const filter = useShopFilterStore()
   const { t } = useI18n()
 
-  const shopItems = computed(() => zone.current.village?.shop?.items || [])
+  const shopItems = computed(() => {
+    const poi = zone.current.pois?.find(p => p.type === 'shop')
+    return poi?.items || []
+  })
 
   const categoryOptions = [
     { label: t('components.panel.Shop.category.battle'), value: 'battle', icon: 'i-carbon:crossroads' },

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type VillageMap from '../village/Map.vue'
 import type { SavageZoneId, VillagePOI, VillageZone } from '~/type'
 import { storeToRefs } from 'pinia'
 import ZoneActions from '../village/ZoneActions.vue'
@@ -17,6 +18,37 @@ const interfaceStore = useInterfaceStore()
 const { t } = useI18n()
 const { showVillagesOnMap } = storeToRefs(interfaceStore)
 
+const mapRef = ref<InstanceType<typeof VillageMap> | null>(null)
+const activePoiId = ref<string | null>(null)
+const pois = computed(() => (zone.current as VillageZone).pois)
+const currentIndex = computed(() => pois.value.findIndex(p => p.id === activePoiId.value))
+
+const prevDisabled = computed(() => currentIndex.value <= 0)
+const nextDisabled = computed(() =>
+  currentIndex.value !== -1 && currentIndex.value >= pois.value.length - 1,
+)
+
+function goPrev() {
+  if (prevDisabled.value)
+    return
+  activePoiId.value = pois.value[currentIndex.value - 1].id
+}
+
+function goNext() {
+  if (currentIndex.value === -1) {
+    if (pois.value.length)
+      activePoiId.value = pois.value[0].id
+    return
+  }
+  if (nextDisabled.value)
+    return
+  activePoiId.value = pois.value[currentIndex.value + 1].id
+}
+
+watch(() => zone.current.id, () => {
+  activePoiId.value = null
+})
+
 const currentKing = computed(() =>
   zone.current.hasKing ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
 )
@@ -31,13 +63,14 @@ const currentArenaData = computed(() => {
 function onPoi(poi: VillagePOI) {
   if (arena.inBattle)
     return
+  activePoiId.value = poi.id
   switch (poi.type) {
     case 'shop':
       panel.showShop()
       break
     case 'minigame':
-      if (zone.current.miniGame)
-        mini.select(zone.current.miniGame)
+      if (poi.miniGame)
+        mini.select(poi.miniGame)
       panel.showMiniGame()
       mobile.set('game')
       break
@@ -85,13 +118,21 @@ function leaveVillage() {
     :exit-text="t('components.panel.Village.exit')"
     @exit="leaveVillage"
   >
+    <div
+      v-if="showVillagesOnMap"
+      class="relative w-full flex-1 overflow-hidden"
+    >
+      <MapArrowButton direction="prev" :disabled="prevDisabled" class="h-12 w-12" @click="goPrev" />
+      <MapArrowButton direction="next" :disabled="nextDisabled" class="h-12 w-12" @click="goNext" />
       <VillageMap
-        v-if="showVillagesOnMap"
+        ref="mapRef"
         :village="zone.current as VillageZone"
+        :active-poi-id="activePoiId"
         class="w-full flex-1"
         @select="onPoi"
       />
-    <div v-else  class="flex flex-col items-center gap-2">
+    </div>
+    <div v-else class="flex flex-col items-center gap-2">
       <ZoneActions />
     </div>
   </LayoutTitledPanel>

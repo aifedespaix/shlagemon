@@ -1,0 +1,41 @@
+<script setup lang="ts">
+const props = defineProps<{ direction: 'prev' | 'next', disabled?: boolean }>()
+const emit = defineEmits<{ (e: 'click'): void }>()
+
+const positionClass = computed(() => props.direction === 'prev' ? 'left-1' : 'right-1')
+const iconClass = computed(() => props.direction === 'prev' ? 'i-carbon:chevron-left' : 'i-carbon:chevron-right')
+const translate = computed(() => props.direction === 'prev' ? '-100%' : '100%')
+</script>
+
+<template>
+  <Transition name="fade-slide">
+    <UiButton
+      v-if="!disabled"
+      type="icon"
+      class="absolute bottom-1 z-500" :class="[positionClass]"
+      :style="{ '--dir': translate }"
+      @click="emit('click')"
+    >
+      <div class="text-xl" :class="[iconClass]" />
+    </UiButton>
+  </Transition>
+</template>
+
+<style scoped>
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(var(--dir));
+}
+.fade-slide-enter-to,
+.fade-slide-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+</style>

@@ -22,33 +22,5 @@ function goPrev() {
 </script>
 
 <template>
-  <Transition name="fade-slide">
-    <UiButton
-      v-if="!disabled"
-      type="icon"
-      class="absolute bottom-1 left-1 z-500"
-      @click="goPrev"
-    >
-      <div class="i-carbon:chevron-left text-xl" />
-    </UiButton>
-  </Transition>
+  <MapArrowButton direction="prev" :disabled="disabled" @click="goPrev" />
 </template>
-
-<style scoped>
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-.fade-slide-enter-to,
-.fade-slide-leave-from {
-  opacity: 1;
-  transform: translateX(0);
-}
-</style>

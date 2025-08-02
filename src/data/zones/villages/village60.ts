@@ -46,29 +46,6 @@ export const village60: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -139.28524128945546, lng: 131.4337259890873 },
-      icon: 'i-carbon-money',
-    },
-    {
-      id: 'arena',
-      type: 'arena',
-      label: 'Arène du Village',
-      position: { lat: -189.51209405836568, lng: 169.24977339340174 },
-      icon: 'i-carbon-trophy',
-    },
-    {
-      id: 'minigame',
-      type: 'minigame',
-      label: 'Mini-jeu',
-      position: { lat: -96.4523891083971, lng: 134.07193303489305 },
-      icon: 'i-carbon-game-console',
-    },
-  ],
-  arena: {
-    get arena() { return arena60 },
-    completed: false,
-  },
-  village: {
-    shop: {
       items: [
         potion,
         superPotion,
@@ -91,6 +68,22 @@ export const village60: Zone = {
         mysteriousPotion,
       ],
     },
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène du Village',
+      position: { lat: -189.51209405836568, lng: 169.24977339340174 },
+    },
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -96.4523891083971, lng: 134.07193303489305 },
+      miniGame: 'connectfour',
+    },
+  ],
+  arena: {
+    get arena() { return arena60 },
+    completed: false,
   },
-  miniGame: 'connectfour',
 }

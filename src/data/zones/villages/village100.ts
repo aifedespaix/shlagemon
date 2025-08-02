@@ -50,25 +50,6 @@ export const village100: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -113.94875226940562, lng: 200.65575652378925 },
-      icon: 'i-carbon-money',
-    },
-    {
-      id: 'arena',
-      type: 'arena',
-      label: 'Arène du Village',
-      position: { lat: -173.0700852564047, lng: 54.829043706440956 },
-      icon: 'i-carbon-trophy',
-    },
-    {
-      id: 'minigame',
-      type: 'minigame',
-      label: 'Mini-jeu',
-      position: { lat: -103.04004672405347, lng: 73.65783750714516 },
-      icon: 'i-carbon-game-console',
-    },
-  ],
-  village: {
-    shop: {
       items: [
         potion,
         superPotion,
@@ -97,6 +78,18 @@ export const village100: Zone = {
         fabulousPotion,
       ],
     },
-  },
-  miniGame: 'shlagpairs',
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène du Village',
+      position: { lat: -173.0700852564047, lng: 54.829043706440956 },
+    },
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -103.04004672405347, lng: 73.65783750714516 },
+      miniGame: 'shlagpairs',
+    },
+  ],
 }

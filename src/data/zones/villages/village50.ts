@@ -43,25 +43,6 @@ export const village50: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -90.42928956259831, lng: 157.01426300421073 },
-      icon: 'i-carbon-money',
-    },
-    {
-      id: 'arena',
-      type: 'arena',
-      label: 'Arène des Flageolets',
-      position: { lat: -164.06202154659638, lng: 156.93085810742366 },
-      icon: 'i-carbon-trophy',
-    },
-    {
-      id: 'minigame',
-      type: 'minigame',
-      label: 'Mini-jeu',
-      position: { lat: -34.5505474676239, lng: 173.4937918691157 },
-      icon: 'i-carbon-game-console',
-    },
-  ],
-  village: {
-    shop: {
       items: [
         potion,
         superPotion,
@@ -84,9 +65,24 @@ export const village50: Zone = {
         defibrillator,
       ],
     },
-    poulailler: {
-      icon: 'i-game-icons:bird-house',
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène des Flageolets',
+      position: { lat: -164.06202154659638, lng: 156.93085810742366 },
     },
-  },
-  miniGame: 'taquin',
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -34.5505474676239, lng: 173.4937918691157 },
+      miniGame: 'taquin',
+    },
+    {
+      id: 'poulailler',
+      type: 'poulailler',
+      label: 'Poulailler',
+      position: { lat: -128.86990141619194, lng: 127.53694175172706 },
+    },
+  ],
 }

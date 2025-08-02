@@ -42,29 +42,6 @@ export const village40: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -114.23873372627645, lng: 141.84235428026966 },
-      icon: 'i-carbon-money',
-    },
-    {
-      id: 'arena',
-      type: 'arena',
-      label: 'Arène du Village',
-      position: { lat: -92.54040358702598, lng: 106.11098650533404 },
-      icon: 'i-carbon-trophy',
-    },
-    {
-      id: 'minigame',
-      type: 'minigame',
-      label: 'Mini-jeu',
-      position: { lat: -133.93798499659755, lng: 190.74887868514963 },
-      icon: 'i-carbon-game-console',
-    },
-  ],
-  arena: {
-    get arena() { return arena40 },
-    completed: false,
-  },
-  village: {
-    shop: {
       items: [
         thunderStone,
         potion,
@@ -85,6 +62,22 @@ export const village40: Zone = {
         mysteriousPotion,
       ],
     },
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène du Village',
+      position: { lat: -92.54040358702598, lng: 106.11098650533404 },
+    },
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -133.93798499659755, lng: 190.74887868514963 },
+      miniGame: 'battleship',
+    },
+  ],
+  arena: {
+    get arena() { return arena40 },
+    completed: false,
   },
-  miniGame: 'battleship',
 }
