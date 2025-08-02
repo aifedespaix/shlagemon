@@ -725,6 +725,12 @@ components:
           responses:
             back: Back
             valid: Thanks Professor!
+    BadgeBoxDialog:
+      steps:
+        step1:
+          text: Congratulations! You got your first badge. You can find all badge details in your badge box located in the inventory.
+          responses:
+            valid: Thanks!
   minigame:
     MasterMind:
       messages:
@@ -781,6 +787,11 @@ components:
   zone:
     MonsModal:
       title: "{zone} Shlagemons"
+  badge:
+    BoxModal:
+      title: Badge box
+      empty: No badge
+      level: Level cap {level}
 data:
   shlagemons:
     01-05:
@@ -1945,6 +1956,9 @@ data:
       name: Rainbow Potion
       description: Use at the end of a king battle for massive damage or strong healing.
       details: A unique rainbow-colored potion usable once per king fight.
+    badgeBox:
+      name: Badge Box
+      description: Stores all your badges.
   kings:
     plaine-kekette:
       dialogBefore: Hey, if you win I'll treat you to breakfast!

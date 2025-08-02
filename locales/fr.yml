@@ -725,6 +725,12 @@ components:
           responses:
             back: Retour
             valid: Merci Professeur !
+    BadgeBoxDialog:
+      steps:
+        step1:
+          text: Bravo, tu as obtenu ton premier badge ! Tu vas pouvoir retrouver les détails de ces badges dans ta boîte à badge qui se trouve dans ton inventaire.
+          responses:
+            valid: Merci !
   minigame:
     MasterMind:
       messages:
@@ -781,6 +787,11 @@ components:
   zone:
     MonsModal:
       title: Shlagémons de {zone}
+  badge:
+    BoxModal:
+      title: Boîte à badge
+      empty: Aucun badge
+      level: Niveau max {level}
 data:
   shlagemons:
     01-05:
@@ -1879,6 +1890,9 @@ data:
       name: Potion Arc-en-ciel
       description: A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un soin puissant.
       details: Potion unique aux couleurs d'arc-en-ciel. Elle ne peut être employée qu'une fois lors d'un combat de roi.
+    badgeBox:
+      name: Boîte à badge
+      description: Conserve tous tes badges.
   kings:
     plaine-kekette:
       dialogBefore: Coucou, si tu gagnes, je te paye le petit déjeuné !
