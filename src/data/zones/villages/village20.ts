@@ -20,6 +20,7 @@ export const village20: Zone = {
   type: 'village',
   villageType: 'basic',
   position: move.bottom(savage15.position, VILLAGE_OFFSET),
+  mapCenter: { lat: 0, lng: 0 },
   attachedTo: savage15.id as SavageZoneId,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },

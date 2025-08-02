@@ -35,6 +35,7 @@ export const village80: Zone = {
   type: 'village',
   villageType: 'hyper',
   position: move.right(savage75.position, VILLAGE_OFFSET),
+  mapCenter: { lat: 0, lng: 0 },
   attachedTo: savage75.id as SavageZoneId,
   actions: [],
   minLevel: 80,
