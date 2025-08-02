@@ -492,8 +492,13 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const bonus = wearableBonus(mon.heldItemId, 'xp')
     if (bonus)
       amount = Math.round(amount * (1 + bonus / 100))
-    if (zoneMaxLevel && mon.lvl >= zoneMaxLevel)
-      amount = Math.round(amount / 2)
+    if (zoneMaxLevel) {
+      // Severely reduce XP when the Shlagémon outlevels the zone
+      if (mon.lvl >= zoneMaxLevel + 5)
+        amount = Math.round(amount / 10)
+      else if (mon.lvl >= zoneMaxLevel)
+        amount = Math.round(amount / 2)
+    }
     mon.xp += amount
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
