@@ -42,7 +42,7 @@ const { mapRef, map, setTileLayer } = useLeafletMap({
     ? [props.village.mapCenter.lat, props.village.mapCenter.lng]
     : [0, 0],
   tileUrl: `/map/${props.village.id}/tiles/{z}/{x}/{y}.webp`,
-  zoom: 1,
+  zoom: 2,
 })
 const slots = useSlots()
 
