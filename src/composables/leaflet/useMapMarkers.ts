@@ -58,10 +58,13 @@ export function useMapMarkers(map: LeafletMap) {
     let locked = inactive
     let clickHandler: (() => void) | null = null
 
+    const iconClassSize = zone.type === 'village' ? 24 : 12
+    const markerSize = zone.type === 'village' ? 120 : 60
+    const anchorY = zone.type === 'village' ? 96 : 48
+
     function buildHtml() {
-      const size = 12
       const highlight = !visited.value && !locked ? 'animate-pulse-alt' : ''
-      const icon = `<img src="${iconPath(zone)}" class="w-${size} h-${size} block ${highlight}" />`
+      const icon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" />`
       const ballClasses = allCaptured.value
         ? `h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}`
         : 'h-3 w-3 opacity-90 grayscale'
@@ -85,18 +88,26 @@ export function useMapMarkers(map: LeafletMap) {
       map,
       position: [zone.position.lat, zone.position.lng] as LatLngExpression,
       html: buildHtml(),
-      size: 60,
-      anchorY: 48,
+      size: markerSize,
+      anchorY,
       interactive: true,
     })
 
     watch([allCaptured, perfectZone, kingDefeated, arenaCompleted, visited], () => {
-      marker.setIcon(new DivIcon({ html: buildHtml(), iconSize: [60, 60], iconAnchor: [30, 48] }))
+      marker.setIcon(new DivIcon({
+        html: buildHtml(),
+        iconSize: [markerSize, markerSize],
+        iconAnchor: [markerSize / 2, anchorY],
+      }))
     })
 
     function update(value: boolean) {
       locked = value
-      marker.setIcon(new DivIcon({ html: buildHtml(), iconSize: [60, 60], iconAnchor: [30, 48] }))
+      marker.setIcon(new DivIcon({
+        html: buildHtml(),
+        iconSize: [markerSize, markerSize],
+        iconAnchor: [markerSize / 2, anchorY],
+      }))
       if (!onSelect)
         return
       if (!locked && !clickHandler) {
