@@ -34,11 +34,11 @@ function choose(id: BallId) {
       >
         <img
           :src="ball.image"
-          :alt="ball.name"
+          :alt="t(ball.name)"
           class="h-8 w-8"
           :style="{ filter: `hue-rotate(${ballHues[ball.id]})` }"
         >
-        {{ ball.name }} (x{{ ball.qty }})
+        {{ t(ball.name) }} (x{{ ball.qty }})
       </UiButton>
     </div>
   </UiModal>
