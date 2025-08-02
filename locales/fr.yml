@@ -327,7 +327,7 @@ components:
     CapturePotionDialog:
       steps:
         step1:
-          text: Incroyable, l'un de tes Shlagémons a atteint le niveau 50 !
+          text: Incroyable, l'un de tes Shlagémons a atteint le niveau 35 !
           responses:
             next: Continuer
         step2:
@@ -687,6 +687,37 @@ components:
             next: Continuer
         step5:
           text: J'en ai une seule, mais je te la donne. Prends-en grand soin, elle vaut extrêmement cher ! Choisis bien ton moment.
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    CuckRingDialog:
+      steps:
+        step1:
+          text: Félicitations ! L'un de tes Shlagémons a atteint le niveau 60 !
+          responses:
+            next: Continuer
+        step2:
+          text: "Je vais te parler d'un objet mystérieux : l'Anneau du Cocu."
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Cet anneau appartenait autrefois à {name}, un dresseur pas comme les autres.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: "On raconte qu'il rend chaque attaque imprévisible : soit le double de dégâts, soit un soin pour l'adversaire."
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Personne ne sait pourquoi {name} l'a perdu, mais il pourrait te servir.
+          responses:
+            back: Retour
+            next: Continuer
+        step6:
+          text: Le voici, à toi de tenter ta chance !
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -1700,6 +1731,12 @@ data:
         name: Amulette de la Proie
         description: Empêche son porteur d'achever l'ennemi.
         details: Portée par un Shlagémon, ses attaques laissent toujours au moins 1 PV à l'adversaire et infligent ensuite 0 dégât. Parfait pour capturer les adversaires affaiblis.
+      cuckRing:
+        name: Anneau du Cocu
+        description: Chaque attaque inflige soit le double de dégâts, soit soigne l'adversaire.
+        details: |
+          Porté par un Shlagémon, chaque attaque a 50% de chances
+          d'infliger le double de dégâts et 50% de chances de soigner l'ennemi du même montant.
     defensePotion:
       name: Potion de Défense
       description: Augmente temporairement la défense.

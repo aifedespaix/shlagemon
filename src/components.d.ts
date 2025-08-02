@@ -42,6 +42,7 @@ declare module 'vue' {
     DialogAttackPotionDialog: typeof import('./components/dialog/AttackPotionDialog.vue')['default']
     DialogBox: typeof import('./components/dialog/Box.vue')['default']
     DialogCapturePotionDialog: typeof import('./components/dialog/CapturePotionDialog.vue')['default']
+    DialogCuckRingDialog: typeof import('./components/dialog/CuckRingDialog.vue')['default']
     DialogDeveloperSupportDialog: typeof import('./components/dialog/DeveloperSupportDialog.vue')['default']
     DialogDuplicateRarityDialog: typeof import('./components/dialog/DuplicateRarityDialog.vue')['default']
     DialogEggBoxDialog: typeof import('./components/dialog/EggBoxDialog.vue')['default']

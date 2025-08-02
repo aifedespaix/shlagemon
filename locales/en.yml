@@ -327,7 +327,7 @@ components:
     CapturePotionDialog:
       steps:
         step1:
-          text: Incredible, one of your Shlagemons reached level 50!
+          text: Incredible, one of your Shlagemons reached level 35!
           responses:
             next: Continue
         step2:
@@ -690,6 +690,37 @@ components:
           responses:
             back: Back
             valid: Thanks, Professor!
+    CuckRingDialog:
+      steps:
+        step1:
+          text: Congratulations! One of your Shlagemons reached level 60!
+          responses:
+            next: Continue
+        step2:
+          text: "Let me tell you about a curious item: the Cuck Ring."
+          responses:
+            back: Back
+            next: Continue
+        step3:
+          text: This ring once belonged to {name}, a rather unusual trainer.
+          responses:
+            back: Back
+            next: Continue
+        step4:
+          text: "It makes each attack unpredictable: double damage or healing the foe instead."
+          responses:
+            back: Back
+            next: Continue
+        step5:
+          text: No one knows why {name} lost it, but it might help you.
+          responses:
+            back: Back
+            next: Continue
+        step6:
+          text: Here it is, give it a try!
+          responses:
+            back: Back
+            valid: Thanks Professor!
   minigame:
     MasterMind:
       messages:
@@ -1766,6 +1797,12 @@ data:
         name: Prey Amulet
         description: Prevents the holder from finishing off enemies.
         details: When worn, the holder's attacks cannot reduce enemies below 1 HP and deal no damage at that point. Ideal for capturing weakened foes.
+      cuckRing:
+        name: Cuck Ring
+        description: Each attack either deals double damage or heals the foe.
+        details: |
+          When worn, every attack has a 50% chance to deal double damage.
+          Otherwise, it heals the opponent for the same amount.
     defensePotion:
       name: Defense Potion
       description: Temporarily increases defense.
