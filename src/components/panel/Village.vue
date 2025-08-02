@@ -85,20 +85,14 @@ function leaveVillage() {
     :exit-text="t('components.panel.Village.exit')"
     @exit="leaveVillage"
   >
-    <div class="flex flex-col items-center gap-2">
-      <UiImageByBackground
-        v-if="!showVillagesOnMap && zone.current.image"
-        :src="zone.current.image"
-        :alt="zone.current.name"
-        class="aspect-video h-full max-h-60 w-full object-contain md:max-h-80"
-      />
       <VillageMap
         v-if="showVillagesOnMap"
         :village="zone.current as VillageZone"
         class="w-full flex-1"
         @select="onPoi"
       />
-      <ZoneActions v-else />
+    <div v-else  class="flex flex-col items-center gap-2">
+      <ZoneActions />
     </div>
   </LayoutTitledPanel>
 </template>
