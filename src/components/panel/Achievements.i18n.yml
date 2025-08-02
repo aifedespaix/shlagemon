@@ -2,7 +2,15 @@ fr:
   all: Tous
   unlocked: Débloqués
   locked: À débloquer
+  sort:
+    name: Nom
+    date: Date
+    progress: Progression
 en:
   all: All
   unlocked: Unlocked
   locked: To unlock
+  sort:
+    name: Name
+    date: Date unlocked
+    progress: Progress
