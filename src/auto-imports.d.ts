@@ -163,6 +163,7 @@ declare global {
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBattleCore: typeof import('./composables/useBattleCore')['useBattleCore']
   const useBattleEffects: typeof import('./composables/battleEngine')['useBattleEffects']
+  const useBattleItemCooldownStore: typeof import('./stores/battleItemCooldown')['useBattleItemCooldownStore']
   const useBattleStatsStore: typeof import('./stores/battleStats')['useBattleStatsStore']
   const useBattleStore: typeof import('./stores/battle')['useBattleStore']
   const useBattleship: typeof import('./composables/useBattleship')['useBattleship']
@@ -628,6 +629,7 @@ declare module 'vue' {
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBattleCore: UnwrapRef<typeof import('./composables/useBattleCore')['useBattleCore']>
     readonly useBattleEffects: UnwrapRef<typeof import('./composables/battleEngine')['useBattleEffects']>
+    readonly useBattleItemCooldownStore: UnwrapRef<typeof import('./stores/battleItemCooldown')['useBattleItemCooldownStore']>
     readonly useBattleStatsStore: UnwrapRef<typeof import('./stores/battleStats')['useBattleStatsStore']>
     readonly useBattleStore: UnwrapRef<typeof import('./stores/battle')['useBattleStore']>
     readonly useBattleship: UnwrapRef<typeof import('./composables/useBattleship')['useBattleship']>

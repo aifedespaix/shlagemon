@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { Item } from '~/type/item'
+import { storeToRefs } from 'pinia'
 import UiButton from '~/components/ui/Button.vue'
 import UiImageByBackground from '~/components/ui/ImageByBackground.vue'
 import UiKbd from '~/components/ui/Kbd.vue'
 import UiListItem from '~/components/ui/ListItem.vue'
 import UiModal from '~/components/ui/Modal.vue'
-import type { Item } from '~/type/item'
-import { storeToRefs } from 'pinia'
 import { badgeBox, eggBox, fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
 import { ballHues } from '~/utils/ball'
 
@@ -25,6 +25,7 @@ const shortcutStore = useShortcutsStore()
 const shortcutModal = useItemShortcutModalStore()
 const { shortcuts } = storeToRefs(shortcutStore)
 const { isMobile } = storeToRefs(useUIStore())
+const battleCooldown = useBattleItemCooldownStore()
 
 // Animation / états
 const showInfo = ref(false)
@@ -36,6 +37,8 @@ const isEgg = computed(() => props.item.id.startsWith('oeuf-'))
 const isBox = computed(() => props.item.id === eggBox.id || props.item.id === badgeBox.id)
 const isKingPotion = computed(() => kingPotionIds.includes(props.item.id))
 const isUnused = computed(() => !usage.used[props.item.id])
+const isBattleItem = computed(() => props.item.category === 'battle')
+const showCooldown = computed(() => isBattleItem.value && battleCooldown.isActive)
 
 // Effet visuel si ball (teinte)
 const ballFilter = computed(() =>
@@ -97,20 +100,22 @@ watch(showInfo, (val) => {
     :highlight="isUnused"
     role="button"
     :aria-label="t(props.item.name)"
+    :color="showCooldown ? 'locked' : undefined"
+    :disabled="props.disabled || showCooldown"
     @click="onCardClick"
   >
     <template #left>
-      <div class="flex items-center justify-center h-7 w-7" sm="h-8 w-8">
-      <div
-        v-if="props.item.icon"
-        class="w-full h-full"
-        :class="[props.item.iconClass, props.item.icon]"
-      />
+      <div class="h-7 w-7 flex items-center justify-center" sm="h-8 w-8">
+        <div
+          v-if="props.item.icon"
+          class="h-full w-full"
+          :class="[props.item.iconClass, props.item.icon]"
+        />
         <UiImageByBackground
           v-else-if="props.item.image"
           :src="props.item.image"
           :alt="t(props.item.name)"
-          class="w-full h-full"
+          class="h-full w-full"
           :style="ballFilter"
         />
       </div>
@@ -123,7 +128,7 @@ watch(showInfo, (val) => {
 
     <template #right>
       <div class="min-w-8 w-20 flex flex-col items-end justify-center gap-1">
-        <div class="w-full flex items-center justify-end gap-1" v-if="qty > 1 || !isMobile">
+        <div v-if="qty > 1 || !isMobile" class="w-full flex items-center justify-end gap-1">
           <span
             v-if="qty > 1"
             class="flex-1 rounded bg-gray-100 px-1 py-0.5 text-center text-xs text-gray-700 font-bold dark:bg-gray-700 dark:text-gray-100"
@@ -183,5 +188,12 @@ watch(showInfo, (val) => {
         </UiButton>
       </div>
     </UiModal>
+    <div
+      v-if="showCooldown"
+      class="absolute inset-0 flex items-center justify-center text-lg font-bold"
+      aria-live="polite"
+    >
+      {{ battleCooldown.remaining }}s
+    </div>
   </UiListItem>
 </template>

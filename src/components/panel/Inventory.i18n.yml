@@ -8,6 +8,7 @@ fr:
     passive: Passif
     utility: Utilitaire
     activable: Activable
+    battle: Combat
   equip: 'Vous avez équipé la {item}'
 en:
   sort:
@@ -19,4 +20,5 @@ en:
     passive: Passive
     utility: Utility
     activable: Activable
+    battle: Battle
   equip: 'You equipped the {item}'

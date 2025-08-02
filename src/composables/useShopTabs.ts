@@ -16,6 +16,7 @@ export function useShopTabs(selectItem: (item: Item) => void) {
   const shopItems = computed(() => zone.current.village?.shop?.items || [])
 
   const categoryOptions = [
+    { label: t('components.panel.Shop.category.battle'), value: 'battle', icon: 'i-carbon:crossroads' },
     { label: t('components.panel.Shop.category.active'), value: 'actif', icon: 'i-carbon-flash' },
     { label: t('components.panel.Shop.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
     { label: t('components.panel.Shop.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },

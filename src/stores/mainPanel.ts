@@ -13,7 +13,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
 
   // Update the panel when the zone changes
   watch(
-    [() => zone.current.type, () => zone.current.id],
+    [() => zone.current?.type, () => zone.current?.id],
     ([type]) => {
       current.value = type === 'village' ? 'village' : 'battle'
     },

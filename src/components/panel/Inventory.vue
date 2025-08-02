@@ -27,6 +27,8 @@ const odorElixirStore = useOdorElixirStore()
 const filter = useInventoryFilterStore()
 const featureLock = useFeatureLockStore()
 const usage = useItemUsageStore()
+const panel = useMainPanelStore()
+const battleCooldown = useBattleItemCooldownStore()
 const { t } = useI18n()
 const sortOptions = [
   { label: t('components.panel.Inventory.sort.type'), value: 'type' },
@@ -34,22 +36,28 @@ const sortOptions = [
   { label: t('components.panel.Inventory.sort.price'), value: 'price' },
 ]
 const categoryOptions = [
+  { label: t('components.panel.Inventory.category.battle'), value: 'battle', icon: 'i-carbon:crossroads' },
   { label: t('components.panel.Inventory.category.active'), value: 'actif', icon: 'i-carbon-flash' },
   { label: t('components.panel.Inventory.category.passive'), value: 'passif', icon: 'i-carbon-timer' },
   { label: t('components.panel.Inventory.category.utility'), value: 'utilitaire', icon: 'i-carbon-tool-box' },
   { label: t('components.panel.Inventory.category.activable'), value: 'activable', icon: 'i-carbon:touch-1-filled' },
 ] as const
 
+const isTrainerBattle = computed(() => panel.current === 'trainerBattle')
+
 const availableCategories = computed(() =>
-  categoryOptions.filter(opt =>
-    inventory.list.some(entry => entry.item.category === opt.value),
-  ).map(opt => ({
-    label: {
-      text: opt.label,
-      icon: opt.icon,
-    },
-    value: opt.value,
-  })),
+  categoryOptions
+    .filter(opt => isTrainerBattle.value
+      ? opt.value === 'battle' || inventory.list.some(entry => entry.item.category === opt.value)
+      : inventory.list.some(entry => entry.item.category === opt.value))
+    .map(opt => ({
+      label: {
+        text: opt.label,
+        icon: opt.icon,
+      },
+      value: opt.value,
+      disabled: isTrainerBattle.value && opt.value !== 'battle',
+    })),
 )
 
 const activeTab = ref(0)
@@ -96,6 +104,7 @@ const tabs = computed(() =>
       component: getTabComponent(cat.value),
       highlight: count > 0,
       badge: count,
+      disabled: cat.disabled,
     }
   }),
 )
@@ -116,7 +125,12 @@ watch(availableCategories, (cats) => {
   if (!cats.length)
     filter.category = 'all'
   else if (!cats.some(c => c.value === filter.category))
-    filter.category = cats[0].value
+    filter.category = cats.find(c => !c.disabled)?.value ?? cats[0].value
+}, { immediate: true })
+
+watch(isTrainerBattle, (val) => {
+  if (val)
+    filter.category = 'battle'
 }, { immediate: true })
 
 function getList(category: ItemCategory | 'all') {
@@ -124,6 +138,8 @@ function getList(category: ItemCategory | 'all') {
     let list = inventory.list.slice()
     if (category !== 'all')
       list = list.filter(e => e.item.category === category)
+    else if (isTrainerBattle.value)
+      list = list.filter(e => e.item.category === 'battle')
     const q = filter.search.toLowerCase().trim()
     if (q) {
       list = list.filter(entry =>
@@ -157,6 +173,10 @@ const filteredList = getList('all')
 
 function isDisabled(item: Item) {
   if (featureLock.isInventoryLocked)
+    return true
+  if (isTrainerBattle.value && item.category !== 'battle')
+    return true
+  if (item.category === 'battle' && battleCooldown.isActive)
     return true
   if ('catchBonus' in item)
     return ballStore.current === item.id

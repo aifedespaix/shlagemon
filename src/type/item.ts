@@ -2,9 +2,9 @@ import type { I18nKey } from './i18n'
 
 export type ItemCurrency = 'shlagidolar' | 'shlagidiamond'
 
-export type ItemCategory = 'actif' | 'passif' | 'utilitaire' | 'activable'
+export type ItemCategory = 'actif' | 'passif' | 'utilitaire' | 'activable' | 'battle'
 
-export interface Item {
+interface ItemBase {
   id: string
   name: I18nKey
   description: I18nKey
@@ -16,8 +16,6 @@ export interface Item {
   price?: number
   /** Currency used to buy this item. Defaults to shlagidolar. */
   currency?: ItemCurrency
-  /** Sub-category used to filter items in the UI */
-  category?: ItemCategory
   /** Category of the item (consumable, ball, evolution...). */
   type?: string
   /** Numeric value describing the item's power. */
@@ -35,7 +33,19 @@ export interface Item {
   sfxId?: import('~/data/sfx').SfxId
 }
 
-export interface WearableItem extends Item {
+export interface ItemBattle extends ItemBase {
+  category: 'battle'
+  /** Cooldown in seconds shared with all battle items. */
+  battleCooldown: number
+}
+
+export interface ItemStandard extends ItemBase {
+  category?: Exclude<ItemCategory, 'battle'>
+}
+
+export type Item = ItemStandard | ItemBattle
+
+export interface WearableItem extends ItemStandard {
   effectType: 'attack' | 'defense' | 'vitality' | 'xp'
   percent: number
 }
