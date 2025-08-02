@@ -3,6 +3,12 @@
 Toutes les modifications importantes de ce projet seront documentées dans ce fichier.
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.9] - 2025-08-02
+
+### Modifié
+
+- Réduction des bonus de spécialité selon le stade d'évolution : 0 % pour les formes de base avec évolution, 5 % pour les évolutions, 10 % pour les évolutions de niveau 2 et 10 % pour les formes sans prédécesseur ni évolution.
+
 ## [0.3.5] - 2025-07-17
 
 ### Modifié
