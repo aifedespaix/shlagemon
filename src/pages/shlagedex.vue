@@ -5,7 +5,7 @@ import { allShlagemons } from '~/data/shlagemons'
 const showDetail = ref(false)
 const selected = ref<BaseShlagemon | null>(null)
 const { t } = useI18n()
-useHead({
+usePageHead({
   title: () => t('pages.shlagedex.title'),
 })
 

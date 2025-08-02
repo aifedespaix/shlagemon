@@ -1,10 +1,8 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHead({
+usePageHead({
   title: () => t('pages.index.title'),
-  meta: [
-    { name: 'description', content: t('pages.index.description') },
-  ],
+  description: () => t('pages.index.description'),
 })
 const app = useAppStore()
 </script>
