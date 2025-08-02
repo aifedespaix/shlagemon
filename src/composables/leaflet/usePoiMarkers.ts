@@ -19,8 +19,8 @@ export function usePoiMarkers(map: LeafletMap) {
       map,
       position: [poi.position.lat, poi.position.lng],
       html,
-      size: 48,
-      anchorY: 48,
+      size: 96,
+      anchorY: 96,
       interactive: true,
       title: poi.label,
     })
