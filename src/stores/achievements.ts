@@ -35,7 +35,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     minigameWins: 0,
   })
 
-  const unlocked = useLocalStorage<Record<string, boolean>>(
+  const unlocked = useLocalStorage<Record<string, number>>(
     'shlagemon_achievements',
     {},
   )
@@ -60,7 +60,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
 
   function unlock(id: string) {
     if (!unlocked.value[id]) {
-      unlocked.value[id] = true
+      unlocked.value[id] = Date.now()
       const def = defMap[id]
       if (def)
         toast.success(`Succès déverrouillé : ${def.title}`, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
@@ -285,7 +285,13 @@ export const useAchievementsStore = defineStore('achievements', () => {
   defMap[fullDexDef.id] = fullDexDef
 
   const list = computed(() =>
-    defs.map(d => ({ ...d, achieved: !!unlocked.value[d.id] })),
+    defs.map(d => ({
+      ...d,
+      achieved: !!unlocked.value[d.id],
+      unlockedAt: typeof unlocked.value[d.id] === 'number'
+        ? unlocked.value[d.id]
+        : null,
+    })),
   )
   const unlockedList = computed(() => list.value.filter(a => a.achieved))
   const hasAny = computed(() => unlockedList.value.length > 0)

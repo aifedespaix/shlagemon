@@ -10,6 +10,11 @@ const statusOptions = [
   { label: t('components.panel.Achievements.unlocked'), value: 'unlocked' },
   { label: t('components.panel.Achievements.locked'), value: 'locked' },
 ]
+const sortOptions = [
+  { label: t('components.panel.Achievements.sort.name'), value: 'name' },
+  { label: t('components.panel.Achievements.sort.date'), value: 'date' },
+  { label: t('components.panel.Achievements.sort.progress'), value: 'progress' },
+] as const
 
 const list = computed(() => {
   if (filter.status === 'all')
@@ -18,11 +23,34 @@ const list = computed(() => {
     return store.unlockedList
   return store.list.filter(a => !a.achieved)
 })
-const filteredList = computed(() => {
+const searchedList = computed(() => {
   if (!filter.search.trim())
     return list.value
   const q = filter.search.toLowerCase()
   return list.value.filter(a => a.title.toLowerCase().includes(q))
+})
+const sortedList = computed(() => {
+  const arr = searchedList.value.slice()
+  switch (filter.sortBy) {
+    case 'name':
+      arr.sort((a, b) => a.title.localeCompare(b.title))
+      break
+    case 'date':
+      arr.sort((a, b) => (a.unlockedAt || 0) - (b.unlockedAt || 0))
+      break
+    case 'progress':
+      arr.sort((a, b) => {
+        const pa = store.getProgress(a.id)
+        const pb = store.getProgress(b.id)
+        const va = pa ? pa.value / pa.max : 0
+        const vb = pb ? pb.value / pb.max : 0
+        return va - vb
+      })
+      break
+  }
+  if (!filter.sortAsc)
+    arr.reverse()
+  return arr
 })
 
 onMounted(() => store.markAllSeen())
@@ -43,13 +71,18 @@ function toggleItem(id: string) {
             :options="statusOptions"
           />
         </div>
+        <UiSortControls
+          v-model:sort-by="filter.sortBy"
+          v-model:sort-asc="filter.sortAsc"
+          :options="sortOptions"
+        />
         <UiSearchInput v-model="filter.search" class="min-w-22 flex-1" />
       </div>
     </template>
 
     <template #content>
       <AchievementItem
-        v-for="a in filteredList"
+        v-for="a in sortedList"
         :key="a.id"
         :achievement="a"
         :opened="openedId === a.id"
