@@ -30,13 +30,39 @@ export const village60: Zone = {
   type: 'village',
   villageType: 'hyper',
   position: move.top(savage55.position, VILLAGE_OFFSET),
-  mapCenter: { lat: 0, lng: 0 },
+  map: {
+    center: { lat: -161.77487856491092, lng: 148.44469099948034 },
+    min: { lat: -85.45745914222587, lng: 41.59566010649884 },
+    max: { lat: -243.90579690735706, lng: 231.3421777614858 },
+  },
   attachedTo: savage55.id as SavageZoneId,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],
   minLevel: 60,
-  pois: [],
+  pois: [
+    {
+      id: 'shop',
+      type: 'shop',
+      label: 'Shop du Village',
+      position: { lat: -139.28524128945546, lng: 131.4337259890873 },
+      icon: 'i-carbon-shop',
+    },
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène du Village',
+      position: { lat: -189.51209405836568, lng: 169.24977339340174 },
+      icon: 'i-carbon-trophy',
+    },
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -96.4523891083971, lng: 134.07193303489305 },
+      icon: 'i-carbon-game-console',
+    },
+  ],
   arena: {
     get arena() { return arena60 },
     completed: false,

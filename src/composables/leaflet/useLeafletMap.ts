@@ -11,6 +11,11 @@ export interface UseLeafletMapOptions {
    * Defaults to {@code 2} which is the base zoom for the world map. Villages typically use {@code 1}.
    */
   zoom?: number
+  /** Optional bounds restricting the area navigable in the map. */
+  bounds?: {
+    min: LatLngExpression
+    max: LatLngExpression
+  }
 }
 
 export function useLeafletMap(options: UseLeafletMapOptions = {}) {
@@ -26,11 +31,8 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
     map.value?.invalidateSize()
   })
 
-  const minLat = 45
-  const minLng = -90
-
-  const maxLat = -300
-  const maxLng = 280
+  const minLatLng = options.bounds?.min ?? [45, -90]
+  const maxLatLng = options.bounds?.max ?? [-300, 280]
 
   onMounted(() => {
     const lockedZoom = options.zoom ?? 2
@@ -44,8 +46,8 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
       zoomControl: false,
       attributionControl: false,
       maxBounds: [
-        [minLat, minLng],
-        [maxLat, maxLng],
+        minLatLng,
+        maxLatLng,
       ],
     })
 

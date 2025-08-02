@@ -34,13 +34,39 @@ export const village100: Zone = {
   type: 'village',
   villageType: 'hyper',
   position: move.right(savage95.position, VILLAGE_OFFSET),
-  mapCenter: { lat: 0, lng: 0 },
+  map: {
+    center: { lat: -73.71729384514228, lng: 129.9018137274562 },
+    min: { lat: -5.123701081858272, lng: 6.026137991486877 },
+    max: { lat: -223.10677529843554, lng: 233.05161551563538 },
+  },
   attachedTo: savage95.id as SavageZoneId,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
   ],
   minLevel: 100,
-  pois: [],
+  pois: [
+    {
+      id: 'shop',
+      type: 'shop',
+      label: 'Shop du Village',
+      position: { lat: -113.94875226940562, lng: 200.65575652378925 },
+      icon: 'i-carbon-shop',
+    },
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène du Village',
+      position: { lat: -173.0700852564047, lng: 54.829043706440956 },
+      icon: 'i-carbon-trophy',
+    },
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -103.04004672405347, lng: 73.65783750714516 },
+      icon: 'i-carbon-game-console',
+    },
+  ],
   village: {
     shop: {
       items: [
