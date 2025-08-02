@@ -31,12 +31,6 @@ export const village10: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -146.07951922399792, lng: 120.74474410140175 },
-      icon: 'i-carbon-money',
-    },
-  ],
-  actions: [],
-  village: {
-    shop: {
       items: [
         potion,
         defensePotion,
@@ -47,5 +41,6 @@ export const village10: Zone = {
         shlageball,
       ],
     },
-  },
+  ],
+  actions: [],
 }

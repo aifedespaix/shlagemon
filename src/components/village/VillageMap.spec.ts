@@ -22,7 +22,7 @@ const baseVillage: VillageZone = {
       type: 'shop',
       label: 'Shop',
       position: { lat: 0, lng: 0 },
-      icon: 'i-carbon-money',
+      items: [],
     },
   ],
 }

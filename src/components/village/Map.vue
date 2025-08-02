@@ -30,13 +30,16 @@ import { usePoiMarkers } from '~/composables/leaflet/usePoiMarkers'
  *       type: 'shop',
  *       label: 'Shop du Village',
  *       position: { lat: 0, lng: 0 },
- *       icon: 'i-carbon-money',
+ *       items: [],
  *     },
  *   ],
  * }
  * ```
  */
-const props = defineProps<{ readonly village: VillageZone }>()
+const props = defineProps<{
+  readonly village: VillageZone
+  readonly activePoiId?: string | null
+}>()
 const emit = defineEmits<{
   (e: 'select', poi: VillagePOI): void
 }>()
@@ -63,9 +66,7 @@ onMounted(() => {
       render(vnode[0], container)
       return container.innerHTML
     }
-    if (poi.icon.startsWith('i-'))
-      return `<div class="${poi.icon} h-8 w-8"></div>`
-    return `<img src="${poi.icon}" alt="${poi.label}" class="h-8 w-8" />`
+    return `<img src="/icons/village/${poi.id}.webp" alt="${poi.label}" class="h-8 w-8" />`
   }
 
   watch(
@@ -79,14 +80,41 @@ onMounted(() => {
         [village.map.max.lat, village.map.max.lng],
       ])
       village.pois.forEach(poi => markers.add(poi, buildHtml(poi), p => emit('select', p)))
+      markers.highlight(props.activePoiId ?? undefined)
     },
     { immediate: true, deep: true },
   )
+
+  watch(
+    () => props.activePoiId,
+    (id) => {
+      markers.highlight(id ?? undefined)
+      if (id) {
+        const poi = props.village.pois.find(p => p.id === id)
+        if (poi)
+          map.value?.panTo([poi.position.lat, poi.position.lng])
+      }
+      else {
+        map.value?.panTo([props.village.map.center.lat, props.village.map.center.lng])
+      }
+    },
+    { immediate: true },
+  )
 })
+
+function getTarget() {
+  if (props.activePoiId) {
+    const poi = props.village.pois.find(p => p.id === props.activePoiId)
+    if (poi)
+      return poi.position
+  }
+  return props.village.map.center
+}
 </script>
 
 <template>
   <div class="relative h-full w-full animate-fade-in animate-duration-300">
+    <LeafletCenterMapButton :map="map" :get-target="getTarget" />
     <div ref="mapRef" class="h-full w-full" aria-label="Village map" />
   </div>
 </template>

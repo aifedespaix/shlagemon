@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import type { Map as LeafletMap } from 'leaflet'
-import { storeToRefs } from 'pinia'
-import { useZoneStore } from '~/stores/zone'
+import type { Position } from '~/type'
 
-const props = defineProps<{ map?: LeafletMap | null }>()
+const props = defineProps<{ map?: LeafletMap | null, getTarget: () => Position }>()
 
-const zone = useZoneStore()
-const { currentId } = storeToRefs(zone)
 const visible = ref(false)
 
 function isCentered(map: LeafletMap): boolean {
-  const pos = zone.current.position
+  const pos = props.getTarget()
   const center = map.getCenter()
   const threshold = 2
   return Math.abs(center.lat - pos.lat) < threshold && Math.abs(center.lng - pos.lng) < threshold
@@ -40,7 +37,8 @@ watch(
   { immediate: true },
 )
 
-watch(currentId, () => {
+watchEffect(() => {
+  props.getTarget()
   update()
 })
 
@@ -48,7 +46,7 @@ function center() {
   const map = props.map
   if (!map)
     return
-  const pos = zone.current.position
+  const pos = props.getTarget()
   map.panTo([pos.lat, pos.lng])
 }
 </script>
@@ -58,8 +56,8 @@ function center() {
     <UiButton
       v-if="visible"
       type="icon"
-      class="absolute -bottom-1 pb-1 left-1/2 z-500 rounded-b-0 opacity-75 -translate-x-1/2"
-      aria-label="Center on zone"
+      class="absolute left-1/2 z-500 rounded-b-0 pb-1 opacity-75 -bottom-1 -translate-x-1/2"
+      aria-label="Center map"
       @click="center"
     >
       <div class="i-carbon-location text-xl" />

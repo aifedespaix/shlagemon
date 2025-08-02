@@ -36,29 +36,6 @@ export const village20: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -123.0286330525291, lng: 94.55584198442665 },
-      icon: 'i-carbon-money',
-    },
-    {
-      id: 'arena',
-      type: 'arena',
-      label: 'Arène du Village',
-      position: { lat: -95.74953852889057, lng: 154.42777039911124 },
-      icon: 'i-carbon-trophy',
-    },
-    {
-      id: 'minigame',
-      type: 'minigame',
-      label: 'Mini-jeu',
-      position: { lat: -113.82454584408723, lng: 69.16446745959803 },
-      icon: 'i-carbon-game-console',
-    },
-  ],
-  arena: {
-    get arena() { return arena20 },
-    completed: false,
-  },
-  village: {
-    shop: {
       items: [
         potion,
         defensePotion,
@@ -70,6 +47,22 @@ export const village20: Zone = {
         specialPotion,
       ],
     },
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène du Village',
+      position: { lat: -95.74953852889057, lng: 154.42777039911124 },
+    },
+    {
+      id: 'minigame',
+      type: 'minigame',
+      label: 'Mini-jeu',
+      position: { lat: -113.82454584408723, lng: 69.16446745959803 },
+      miniGame: 'tictactoe',
+    },
+  ],
+  arena: {
+    get arena() { return arena20 },
+    completed: false,
   },
-  miniGame: 'tictactoe',
 }

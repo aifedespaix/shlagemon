@@ -1,4 +1,3 @@
-import type { Component } from 'vue'
 import type { Arena } from './arena'
 import type { Item } from './item'
 import type { MiniGameId } from './minigame'
@@ -27,16 +26,13 @@ export interface Position {
 
 export interface VillagePOI {
   readonly id: string
-  readonly type: 'shop' | 'arena' | 'minigame' | string
+  readonly type: 'shop' | 'arena' | 'minigame' | 'poulailler' | string
   readonly label: string
   readonly position: Position
-  /**
-   * Icon representing the point of interest.
-   * May be an UnoCSS icon class or an image URL.
-   */
-  readonly icon: string | Component
-  /** Optional reference to domain data (shop, arena, etc.). */
-  readonly data?: unknown
+  /** Items available in the shop when the POI type is `shop`. */
+  readonly items?: Item[]
+  /** Identifier of the mini-game associated with the POI. */
+  readonly miniGame?: MiniGameId
 }
 
 interface BaseZone {
@@ -51,15 +47,6 @@ interface BaseZone {
   hasKing?: boolean
   completionAchievement?: string
   arena?: ZoneArena
-  miniGame?: MiniGameId
-  village?: {
-    shop?: {
-      items: Item[]
-    }
-    poulailler?: {
-      icon: string
-    }
-  }
 }
 
 export interface ZoneMap {
