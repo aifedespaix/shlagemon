@@ -43,6 +43,10 @@ components:
       all: All
       unlocked: Unlocked
       locked: To unlock
+      sort:
+        name: Name
+        date: Date unlocked
+        progress: Progress
     BonusDetails:
       intro1: The Shlagedex bonus matches your **potential ShlagéDex**. It represents the maximum bonus you could obtain by capturing all available Shlagémon.
       intro2: It is based on the completion rate of this potential Shlagedex as well as your team's average level.
@@ -2024,7 +2028,7 @@ data:
       dialogDefeat: I'm passing a law to ban losers like you from roaming these pastures!
 pages:
   index:
-    title: Shlagemon
+    title: Shlagemon - It smells very strong
     description: Shlagemons don't smell very good.
     welcome: Welcome to Shlagemon
   shlagedex:

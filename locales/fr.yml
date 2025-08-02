@@ -43,6 +43,10 @@ components:
       all: Tous
       unlocked: Débloqués
       locked: À débloquer
+      sort:
+        name: Nom
+        date: Date
+        progress: Progression
     BonusDetails:
       intro1: Le bonus du Shlagedex correspond à votre **ShlagéDex potentiel**. Il représente le bonus maximal que vous pourriez obtenir en capturant tous les Shlagémon accessibles.
       intro2: Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel ainsi que sur le niveau moyen de votre équipe.
@@ -1958,7 +1962,7 @@ data:
       dialogDefeat: Je vais imposer une loi pour interdire les losers comme toi de se balader dans les pâturages !
 pages:
   index:
-    title: Shlagémon
+    title: Shlagémon - Ça sent très fort
     description: Les Shlagémons ne sentent pas très bon.
     welcome: Bienvenue dans Shlagémon
   shlagedex:

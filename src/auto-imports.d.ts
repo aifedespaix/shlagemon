@@ -414,9 +414,6 @@ declare global {
   export type { Cell } from './composables/useBattleship'
   import('./composables/useBattleship')
   // @ts-ignore
-  export type { PageHeadOptions } from './composables/usePageHead'
-  import('./composables/usePageHead')
-  // @ts-ignore
   export type { SlidingPuzzle, PuzzleDirection } from './composables/useSlidingPuzzle'
   import('./composables/useSlidingPuzzle')
   // @ts-ignore
@@ -743,7 +740,6 @@ declare module 'vue' {
     readonly useOdorElixirStore: UnwrapRef<typeof import('./stores/odorElixir')['useOdorElixirStore']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
-    readonly usePageHead: UnwrapRef<typeof import('./composables/usePageHead')['default']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
