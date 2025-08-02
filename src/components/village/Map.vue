@@ -17,6 +17,7 @@ import { usePoiMarkers } from '~/composables/leaflet/usePoiMarkers'
  *   type: 'village',
  *   villageType: 'basic',
  *   position: { lat: 0, lng: 0 },
+ *   mapCenter: { lat: 0, lng: 0 },
  *   actions: [],
  *   minLevel: 1,
  *   pois: [
@@ -37,8 +38,11 @@ const emit = defineEmits<{
 }>()
 
 const { mapRef, map, setTileLayer } = useLeafletMap({
-  center: [0, 0],
+  center: props.village.mapCenter
+    ? [props.village.mapCenter.lat, props.village.mapCenter.lng]
+    : [0, 0],
   tileUrl: `/map/${props.village.id}/tiles/{z}/{x}/{y}.webp`,
+  zoom: 1,
 })
 const slots = useSlots()
 

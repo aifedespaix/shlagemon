@@ -81,6 +81,8 @@ export interface VillageZone extends BaseNonSavageZone {
   villageType: VillageType
   /** Points of interest displayed on the village map. */
   readonly pois: readonly VillagePOI[]
+  /** Optional center used when initialising the Leaflet map for this village. */
+  readonly mapCenter?: Position
 }
 
 interface NonVillageZone extends BaseNonSavageZone {

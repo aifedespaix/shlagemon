@@ -30,6 +30,7 @@ export const village60: Zone = {
   type: 'village',
   villageType: 'hyper',
   position: move.top(savage55.position, VILLAGE_OFFSET),
+  mapCenter: { lat: 0, lng: 0 },
   attachedTo: savage55.id as SavageZoneId,
   actions: [
     { id: 'minigame', label: 'Mini-jeu' },
