@@ -3,6 +3,16 @@ import { useDark, useToggle } from '@vueuse/core'
 // Strictement typé, même si ce composant n'a pas de props ici
 import { ref } from 'vue'
 
+/**
+ * Focus event that optionally includes source capability information.
+ * This is used to determine the device that triggered the focus event.
+ */
+interface FocusEventWithCapabilities extends FocusEvent {
+  sourceCapabilities?: {
+    firesTouchEvents?: boolean
+  }
+}
+
 const isDark = useDark()
 const toggle = useToggle(isDark)
 const { t } = useI18n()
@@ -10,9 +20,9 @@ const { t } = useI18n()
 // Pour accessibilité : focus visible
 const buttonRef = ref<HTMLButtonElement | null>(null)
 const isFocusVisible = ref(false)
-function handleFocus(e: FocusEvent) {
+function handleFocus(e: FocusEventWithCapabilities) {
   // Focus clavier uniquement
-  if ((e as any).sourceCapabilities?.firesTouchEvents === false || e.detail === 0) {
+  if (e.sourceCapabilities?.firesTouchEvents === false || e.detail === 0) {
     isFocusVisible.value = true
   }
 }
