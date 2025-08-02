@@ -19,6 +19,7 @@ const game = useGameStore()
 const mobile = useMobileTabStore()
 const wildLevel = useWildLevelStore()
 const kingPotion = useKingPotionStore()
+const battleCooldown = useBattleItemCooldownStore()
 const { t } = useI18n()
 
 const trainer = computed(() => trainerStore.current)
@@ -222,7 +223,12 @@ function cancelFight() {
   panel.showBattle()
 }
 
-onMounted(featureLock.lockAll)
+onMounted(() => {
+  featureLock.lockShlagedex()
+  featureLock.lockZones()
+  featureLock.lockAchievements()
+  battleCooldown.reset()
+})
 onUnmounted(featureLock.unlockAll)
 </script>
 

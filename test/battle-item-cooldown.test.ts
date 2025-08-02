@@ -1,0 +1,28 @@
+import { createPinia, setActivePinia } from 'pinia'
+import { describe, expect, it, vi } from 'vitest'
+import { potion, superPotion } from '../src/data/items'
+import { useBattleItemCooldownStore } from '../src/stores/battleItemCooldown'
+import { useInventoryStore } from '../src/stores/inventory'
+import { useMainPanelStore } from '../src/stores/mainPanel'
+
+describe('battle item cooldown', () => {
+  it('prevents using multiple battle items during cooldown', () => {
+    vi.useFakeTimers()
+    setActivePinia(createPinia())
+    const inventory = useInventoryStore()
+    const panel = useMainPanelStore()
+    const cooldown = useBattleItemCooldownStore()
+
+    panel.current = 'trainerBattle'
+    inventory.add(potion.id, 1)
+    inventory.add(superPotion.id, 1)
+
+    expect(inventory.useItem(potion.id)).toBe(true)
+    expect(cooldown.isActive).toBe(true)
+    expect(inventory.useItem(superPotion.id)).toBe(false)
+    vi.advanceTimersByTime(3000)
+    expect(cooldown.isActive).toBe(false)
+    expect(inventory.useItem(superPotion.id)).toBe(true)
+    vi.useRealTimers()
+  })
+})

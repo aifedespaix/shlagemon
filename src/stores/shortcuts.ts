@@ -67,6 +67,8 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
 
     const inventory = useInventoryStore()
     const usage = useItemUsageStore()
+    const panel = useMainPanelStore()
+    const battleCooldown = useBattleItemCooldownStore()
 
     for (const entry of entries) {
       if (entry.action.type === 'use-item') {
@@ -74,6 +76,10 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
         if (!item)
           continue
 
+        if (panel.current === 'trainerBattle') {
+          if (item.category !== 'battle' || battleCooldown.isActive)
+            continue
+        }
         if ('catchBonus' in item) {
           useBallStore().equip(item.id as BallId)
           usage.markUsed(item.id)

@@ -24,6 +24,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const badgeBox = useBadgeBoxStore()
   const odorElixirStore = useOdorElixirStore()
   const audio = useAudioStore()
+  const battleCooldown = useBattleItemCooldownStore()
 
   interface ListedItem {
     item: Item
@@ -97,6 +98,11 @@ export const useInventoryStore = defineStore('inventory', () => {
     const item = allItems.find(i => i.id === id)
     if (!item)
       return false
+    const panel = useMainPanelStore()
+    if (panel.current === 'trainerBattle') {
+      if (item.category !== 'battle' || battleCooldown.isActive)
+        return false
+    }
     const { icon, iconClass } = item
 
     const capture = () => {
@@ -174,6 +180,8 @@ export const useInventoryStore = defineStore('inventory', () => {
         audio.playSfx(item.sfxId)
       if (['defense', 'attack', 'vitality', 'xp', 'capture'].includes(item.type ?? ''))
         usePotionInfoStore().trigger()
+      if (item.category === 'battle')
+        battleCooldown.start(item.battleCooldown)
     }
     return result
   }

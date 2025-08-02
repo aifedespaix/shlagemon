@@ -41,6 +41,17 @@ watch(active, (v) => {
   emit('change', v)
 })
 
+watch(
+  () => props.tabs.map(t => t.disabled),
+  () => {
+    if (props.tabs[active.value]?.disabled) {
+      const idx = props.tabs.findIndex(t => !t.disabled)
+      active.value = idx === -1 ? 0 : idx
+    }
+  },
+  { immediate: true },
+)
+
 const container = ref<HTMLElement>()
 const direction = ref<'left' | 'right'>('left')
 
