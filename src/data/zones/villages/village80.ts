@@ -49,7 +49,7 @@ export const village80: Zone = {
       type: 'shop',
       label: 'Shop du Village',
       position: { lat: -89.88510007885726, lng: 109.16202237680349 },
-      icon: 'i-carbon-shop',
+      icon: 'i-carbon-money',
     },
     {
       id: 'arena',

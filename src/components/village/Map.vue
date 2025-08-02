@@ -30,7 +30,7 @@ import { usePoiMarkers } from '~/composables/leaflet/usePoiMarkers'
  *       type: 'shop',
  *       label: 'Shop du Village',
  *       position: { lat: 0, lng: 0 },
- *       icon: 'i-carbon-shop',
+ *       icon: 'i-carbon-money',
  *     },
  *   ],
  * }

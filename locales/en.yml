@@ -1,7 +1,7 @@
 components:
   deck:
     DeckDetail:
-      evolution: 'Evolution:'
+      evolution: "Evolution:"
       level: lvl {n}
     DeckList:
       search: Search
@@ -9,7 +9,7 @@ components:
         name: Name
         type: Type
     Detail:
-      evolution: 'Evolution:'
+      evolution: "Evolution:"
       level: lvl {n}
     List:
       search: Search
@@ -51,9 +51,9 @@ components:
       intro1: The Shlagedex bonus matches your **potential ShlagéDex**. It represents the maximum bonus you could obtain by capturing all available Shlagémon.
       intro2: It is based on the completion rate of this potential Shlagedex as well as your team's average level.
       formula: Bonus = average level × 2 × (completion rate / 100) / 10
-      completion: 'Completion:'
-      averageLevel: 'Average level:'
-      currentBonus: 'Current bonus:'
+      completion: "Completion:"
+      averageLevel: "Average level:"
+      currentBonus: "Current bonus:"
     Inventory:
       sort:
         type: Type
@@ -67,7 +67,7 @@ components:
         battle: Battle
       equip: You equipped the {item}
     PlayerInfos:
-      sick: 'Sick: {n} battles left'
+      sick: "Sick: {n} battles left"
       dex: ShlageDex
       averageLevel: Average level
       bonus: Bonus
@@ -129,7 +129,7 @@ components:
       defeat: Defeat...
       queen: queen
       king: king
-      zoneKingChallenge: '{label} zone challenge'
+      zoneKingChallenge: "{label} zone challenge"
       reward: +{amount} Shlagidiamonds
       retry: Retry
     CaptureLimitModal:
@@ -206,11 +206,14 @@ components:
         language: Language
         shortcuts: Shortcuts
         support: Support
+        interface: Interface
+    InterfaceTab:
+      villagesOnMap: Show villages on the map
   shlagemon:
     Detail:
       equipItemTitle: Equip an item
       allowEvolution: Allow this Shlagemon to evolve?
-      firstCatch: 'First capture: {date}'
+      firstCatch: "First capture: {date}"
       obtainedTimes: Obtained {count} times
       release: Release
       main: Main
@@ -230,7 +233,7 @@ components:
       title: Choose an item to equip
       noAvailable: No item available.
     EvolutionModal:
-      evolveTitle: '{name} is evolving'
+      evolveTitle: "{name} is evolving"
       question: '"{from}" wants to evolve into "{to}", will you allow it or stop the spread of shlaguitude?'
       alreadyOwned: You already own this evolution
       yes: Yes
@@ -406,7 +409,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: 'As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP.'
+          text: "As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP."
           responses:
             back: Back
             next: Continue
@@ -530,7 +533,7 @@ components:
         step1:
           text: Impressive! You've captured at least {count} Shlagemons.
         step2:
-          text: 'Here is a unique item: {name}.'
+          text: "Here is a unique item: {name}."
         step3:
           text: It increases the holder's {stat} by {percent}%.
         step4:
@@ -703,7 +706,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: 'Let me tell you about a curious item: the Cuck Ring.'
+          text: "Let me tell you about a curious item: the Cuck Ring."
           responses:
             back: Back
             next: Continue
@@ -713,7 +716,7 @@ components:
             back: Back
             next: Continue
         step4:
-          text: 'It makes each attack unpredictable: double damage or healing the foe instead.'
+          text: "It makes each attack unpredictable: double damage or healing the foe instead."
           responses:
             back: Back
             next: Continue
@@ -743,11 +746,11 @@ components:
         - You're one step away from a brain fart.
         - Rarely seen someone so pathetic.
       validate: Validate
-      attemptsLeft: '{n} attempts left'
+      attemptsLeft: "{n} attempts left"
       win: You've cracked a Shlag's mind!
       lose: Even a Grimer would have done it
     Pairs:
-      attempts: '{n} attempt | {n} attempts'
+      attempts: "{n} attempt | {n} attempts"
     masterMind:
       SelectionModal:
         title: Choose a Shlagemon
@@ -785,10 +788,10 @@ components:
       arena: Arena
       henhouse: Henhouse
       fightKing: Challenge the {label} of the zone
-      kingDefeated: '{label} defeated!'
+      kingDefeated: "{label} defeated!"
   zone:
     MonsModal:
-      title: '{zone} Shlagemons'
+      title: "{zone} Shlagemons"
   badge:
     BoxModal:
       title: Badge box
@@ -810,7 +813,7 @@ data:
       rouxPasCool:
         description: Roux not Cool was once cool. Roux not Cool spent too much time scratching minor chords at the edge of an extinct volcano. From now on, Cool's not cool wanders with a guitar too big for his wings, freckles crying, and a check shirt that smells wet grass and regrets. His plumage took on a sad rust colour, and his red wick hides a remorseful look, as if he constantly realized that he could have evolved into a legendary raptor, but preferred to release an independent EP. It's always a little cold around him, even in the summer. Its signature capacity, Refrain Getting into trouble, inflicts a deep discomfort on all the arena, reducing the accuracy of enemy attacks as long as they turn their eyes away. He's very good at driving wild Pokémons away… and dating.
       sacdepates:
-        description: 'Pasta bag is a living ball of entangled spaghetti, whose long strands form a moving labyrinth. With two piercing eyes in the middle of his pasta, he intimidates anyone who crosses his infernal gaze. His red feet, smooth and glossy, allow him to ride at all speed on his opponents, whom he crushes without mercy in an acute and diabolical laughter. He spends his days painting himself thoroughly with a fine comb, hoping one day to unravel the infinite knot that he has become. It is said that the more tangled his spaghetti, the more formidable he becomes. Talent: Fatal Node — When Sacdepates undergoes a physical attack, he can wrap around the enemy to trap and immobilize.'
+        description: "Pasta bag is a living ball of entangled spaghetti, whose long strands form a moving labyrinth. With two piercing eyes in the middle of his pasta, he intimidates anyone who crosses his infernal gaze. His red feet, smooth and glossy, allow him to ride at all speed on his opponents, whom he crushes without mercy in an acute and diabolical laughter. He spends his days painting himself thoroughly with a fine comb, hoping one day to unravel the infinite knot that he has become. It is said that the more tangled his spaghetti, the more formidable he becomes. Talent: Fatal Node — When Sacdepates undergoes a physical attack, he can wrap around the enemy to trap and immobilize."
     05-10:
       aspigros:
         description: |-
@@ -834,7 +837,7 @@ data:
       metamorve:
         description: A mass of foul mud that drags slowly. Where he passes, nothing grows because of his toxicity. It is made of a toxic mud. He pollutes everything he touches, even the ground becomes sterile. He stinks so much that people vanish just by crossing him. His body is a concentrate of toxins.
       ptitocard:
-        description: 'Ptitocard is as fragile as a wet and expressive bellboat as an existential crisis in full crisis. His empty, humid and terribly plaintive gaze melts the most hardened hearts - or annoys them deeply, as desired. It flows more than it swim, and its ventral spiral only runs when it has an anxiety attack. He constantly drools, but not in the mouth: it is his whole body that sweats distress. We think it is sad of birth, but some specialists evoke a simple allergy to life. His special capacity, *infinite tear *, causes fatal boredom in the enemy. An opponent who looks at Ptitocard for more than 10 seconds can fall into a coma of deep indifference. Ptitocard dreams of becoming a big champion ... but does nothing for. It is often found floating on the surface of the puddles, wondering if it really deserves to evolve. Spoiler: not sure.'
+        description: "Ptitocard is as fragile as a wet and expressive bellboat as an existential crisis in full crisis. His empty, humid and terribly plaintive gaze melts the most hardened hearts - or annoys them deeply, as desired. It flows more than it swim, and its ventral spiral only runs when it has an anxiety attack. He constantly drools, but not in the mouth: it is his whole body that sweats distress. We think it is sad of birth, but some specialists evoke a simple allergy to life. His special capacity, *infinite tear *, causes fatal boredom in the enemy. An opponent who looks at Ptitocard for more than 10 seconds can fall into a coma of deep indifference. Ptitocard dreams of becoming a big champion ... but does nothing for. It is often found floating on the surface of the puddles, wondering if it really deserves to evolve. Spoiler: not sure."
     10-15:
       abraquemar:
         description: Abraquemar is a follower of transcendental nap and passive-aggressive flight. At the slightest social interaction, it disappears in a cloud of dust by mumbling "I do not feel, I shoot". His leakage rate is 100%, unless he hears a discussion on chakras or promotions on ethnic carpets. He is often seated in a suit, eyes in mid-open, between two posters from the universe stuck with chewing gum. He always wears a too large hood and a badly knotted scarf, and claims to be "between two stellar alignment planes". Its special capacity, *teleportation of discomfort *, allows you to exchange space with a nearby trash can. He also has the attack *forced serenity *, which lowers the enemy attack by energy guilt. Abraquemar evolves only when he stops saying "I don't want Fight, I am more in the vibe."
@@ -1072,7 +1075,7 @@ data:
       languedepute:
         description: Its endless language is dragging everywhere and is mainly used to slander. He likes to criticize his opponents until they abandon by weariness.
       lecocu:
-        description: 'Lecocu always has a sad look: his wife deceives him with all the local trainers. Despite his unlucky love, he cared for others with a disconcerting kindness.'
+        description: "Lecocu always has a sad look: his wife deceives him with all the local trainers. Despite his unlucky love, he cared for others with a disconcerting kindness."
       rhinofaringite:
         description: This sneezed rhinoceros sneezed from the rocks on its enemies. Its nose runs permanently, which makes it as slippery as it is unpredictable.
       smongol:
@@ -2055,17 +2058,17 @@ App:
   author: Shlagemon Team
 stores:
   achievements:
-    unlocked: 'Achievement unlocked: {title}'
+    unlocked: "Achievement unlocked: {title}"
   disease:
     sick: Your Shlagemon is sick! It will be back to normal after winning {n} battles.
     cured: Your Shlagemon is no longer sick!
   shlagedex:
-    rarityReached: '{name} reached rarity {rarity}!'
-    evolved: '{name} evolved!'
+    rarityReached: "{name} reached rarity {rarity}!"
+    evolved: "{name} evolved!"
     obtained: You obtained {name}!
     alreadyMax: You already have this Shlagemon at max rarity
-    rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
-    released: '{name} was released!'
+    rarityChanged: "{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!"
+    released: "{name} was released!"
 layouts:
   NotFound:
     not-found: Page not found
