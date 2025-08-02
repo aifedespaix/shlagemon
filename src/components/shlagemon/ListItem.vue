@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { WearableItem } from '~/type/item'
 import type { DexShlagemon } from '~/type/shlagemon'
 
 const _props = defineProps({
@@ -7,7 +8,7 @@ const _props = defineProps({
   isHighlighted: { type: Boolean, default: false },
   locked: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
-  item: { type: Object as PropType<any>, default: null },
+  item: { type: Object as PropType<WearableItem | null>, default: null },
   showCheckbox: { type: Boolean, default: false },
 })
 const emit = defineEmits(['click', 'activate'])
@@ -85,7 +86,7 @@ const itemClass = computed(() => [
         <div class="flex-1">
           <InventoryWearableItemIcon
             v-if="item"
-            :item="item"
+            :item="item!"
             class="h-4 w-4"
           />
         </div>
