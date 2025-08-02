@@ -4,6 +4,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 export interface UseLeafletMapOptions {
   center?: LatLngExpression
+  tileUrl?: string
 }
 
 export function useLeafletMap(options: UseLeafletMapOptions = {}) {
@@ -49,14 +50,7 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
 
     mapRef.value!.style.background = '#508ed7'
 
-    tileLayer.value = new TileLayer('/map/main/tiles/{z}/{x}/{y}.webp', {
-      tileSize: 256,
-      minZoom: 0,
-      maxZoom: 4,
-      noWrap: true,
-    })
-
-    tileLayer.value.addTo(map.value!)
+    setTileLayer(options.tileUrl ?? '/map/main/tiles/{z}/{x}/{y}.webp')
 
     onUnmounted(() => {
       map.value?.remove()
@@ -64,5 +58,16 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
     })
   })
 
-  return { mapRef, map }
+  function setTileLayer(url: string) {
+    tileLayer.value?.remove()
+    tileLayer.value = new TileLayer(url, {
+      tileSize: 256,
+      minZoom: 0,
+      maxZoom: 4,
+      noWrap: true,
+    })
+    tileLayer.value.addTo(map.value!)
+  }
+
+  return { mapRef, map, setTileLayer }
 }

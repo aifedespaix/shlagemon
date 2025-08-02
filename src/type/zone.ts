@@ -1,3 +1,4 @@
+import type { Component } from 'vue'
 import type { Arena } from './arena'
 import type { Item } from './item'
 import type { MiniGameId } from './minigame'
@@ -22,6 +23,20 @@ export interface ZoneArena {
 export interface Position {
   lat: number
   lng: number
+}
+
+export interface VillagePOI {
+  readonly id: string
+  readonly type: 'shop' | 'arena' | 'minigame' | string
+  readonly label: string
+  readonly position: Position
+  /**
+   * Icon representing the point of interest.
+   * May be an UnoCSS icon class or an image URL.
+   */
+  readonly icon: string | Component
+  /** Optional reference to domain data (shop, arena, etc.). */
+  readonly data?: unknown
 }
 
 interface BaseZone {
@@ -64,6 +79,8 @@ interface BaseNonSavageZone extends BaseZone {
 export interface VillageZone extends BaseNonSavageZone {
   type: 'village'
   villageType: VillageType
+  /** Points of interest displayed on the village map. */
+  readonly pois: readonly VillagePOI[]
 }
 
 interface NonVillageZone extends BaseNonSavageZone {
