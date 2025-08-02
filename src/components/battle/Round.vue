@@ -39,10 +39,6 @@ const panel = useMainPanelStore()
 const showOwnedBall = computed(() =>
   zone.current.type === 'sauvage' && panel.current === 'battle',
 )
-const enemyOwned = computed(() => {
-  const id = displayedEnemy.value?.base.id
-  return id ? dex.capturedBaseIds.has(id) : false
-})
 
 const {
   playerHp,
@@ -211,6 +207,7 @@ function onClick(_e: MouseEvent) {
           :effects="props.showEffects ? dex.effects : []"
           :disease="disease.active"
           :disease-remaining="disease.remaining"
+          owned
           @faint-end="onPlayerFaintEnd"
         >
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
@@ -235,7 +232,6 @@ function onClick(_e: MouseEvent) {
             :fainted="enemyFainted"
             :flash="flashEnemy"
             :show-ball="showOwnedBall"
-            :owned="enemyOwned"
             @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />

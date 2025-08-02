@@ -6,6 +6,7 @@ import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
+import CuckRingDialog from '~/components/dialog/CuckRingDialog.vue'
 import DeveloperSupportDialog from '~/components/dialog/DeveloperSupportDialog.vue'
 import DuplicateRarityDialog from '~/components/dialog/DuplicateRarityDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
@@ -207,6 +208,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'odorElixir',
       component: markRaw(OdorElixirDialog),
       condition: () => dex.highestLevel >= 50,
+    },
+    {
+      id: 'cuckRing',
+      component: markRaw(CuckRingDialog),
+      condition: () => dex.highestLevel >= 60,
     },
     {
       id: 'preyAmulet',
