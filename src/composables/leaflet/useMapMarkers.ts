@@ -60,7 +60,7 @@ export function useMapMarkers(map: LeafletMap) {
 
     function buildHtml() {
       const size = 12
-      const highlight = visited.value ? '' : 'animate-pulse-alt'
+      const highlight = !visited.value && !locked ? 'animate-pulse-alt' : ''
       const icon = `<img src="${iconPath(zone)}" class="w-${size} h-${size} block ${highlight}" />`
       const ballClasses = allCaptured.value
         ? `h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}`

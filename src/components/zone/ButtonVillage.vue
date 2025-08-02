@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Zone } from '~/type/zone'
 import { useZoneCompletion } from '~/composables/useZoneCompletion'
+import { useZoneAccess } from '~/stores/zoneAccess'
 
 const props = defineProps<{ zone: Zone }>()
 const zoneStore = useZoneStore()
@@ -10,6 +11,8 @@ const dialog = useDialogStore()
 const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
 const { arenaCompleted } = useZoneCompletion(props.zone)
+const dex = useShlagedexStore()
+const { canAccess } = useZoneAccess(toRef(dex, 'highestLevel'))
 
 const zoneButtonsDisabled = computed(
   () =>
@@ -49,7 +52,11 @@ function classes() {
     :class="[
       classes(),
       buttonDisabled() ? 'opacity-50 cursor-not-allowed' : '',
-      props.zone.id !== zoneStore.current.id && !visit.visited[props.zone.id] ? 'animate-pulse-alt  animate-count-infinite' : '',
+      props.zone.id !== zoneStore.current.id
+        && !visit.visited[props.zone.id]
+        && canAccess(props.zone)
+        ? 'animate-pulse-alt  animate-count-infinite'
+        : '',
     ]"
     :disabled="buttonDisabled()"
     @click="selectZone"
