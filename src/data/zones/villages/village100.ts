@@ -39,6 +39,7 @@ export const village100: Zone = {
     { id: 'minigame', label: 'Mini-jeu' },
   ],
   minLevel: 100,
+  pois: [],
   village: {
     shop: {
       items: [

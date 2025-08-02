@@ -25,6 +25,7 @@ export const village20: Zone = {
     { id: 'minigame', label: 'Mini-jeu' },
   ],
   minLevel: 20,
+  pois: [],
   arena: {
     get arena() { return arena20 },
     completed: false,

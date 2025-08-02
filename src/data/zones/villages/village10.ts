@@ -20,6 +20,7 @@ export const village10: Zone = {
   position: move.top(savage05.position, VILLAGE_OFFSET),
   attachedTo: savage05.id as SavageZoneId,
   minLevel: 10,
+  pois: [],
   actions: [],
   village: {
     shop: {

@@ -31,6 +31,7 @@ export const village40: Zone = {
   attachedTo: savage35.id as SavageZoneId,
   actions: [],
   minLevel: 40,
+  pois: [],
   arena: {
     get arena() { return arena40 },
     completed: false,

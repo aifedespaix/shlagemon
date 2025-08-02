@@ -10,6 +10,7 @@ export function useLeafletMarker(options: {
   anchorY?: number
   className?: string
   interactive?: boolean
+  title?: string
 }): Marker {
   const { map, position, iconUrl, html, className } = options
   const size = options.size || 48
@@ -32,6 +33,7 @@ export function useLeafletMarker(options: {
   const marker = new Marker(position, {
     interactive: options.interactive ?? true,
     icon,
+    title: options.title,
   })
 
   marker.addTo(map)
