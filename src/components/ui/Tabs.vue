@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
 import { useSwipe } from '@vueuse/core'
 import { computed, defineEmits, defineProps, ref, useAttrs, watch } from 'vue'
 
 interface Label { text: string, icon?: string }
 interface Tab {
   'label': Label
-  'component': any
-  'footer'?: any
+  'component': Component
+  'footer'?: Component
   'highlight'?: boolean
   /** Number of new items to display as a badge. */
   'badge'?: number
@@ -55,7 +56,7 @@ watch(
 const container = ref<HTMLElement>()
 const direction = ref<'left' | 'right'>('left')
 
-const currentFooter = computed(() => props.tabs[active.value]?.footer)
+const currentFooter = computed<Component | undefined>(() => props.tabs[active.value]?.footer)
 
 function select(i: number) {
   if (i === active.value || props.tabs[i]?.disabled)
