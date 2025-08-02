@@ -58,9 +58,9 @@ export function useMapMarkers(map: LeafletMap) {
     let locked = inactive
     let clickHandler: (() => void) | null = null
 
-    const iconClassSize = zone.type === 'village' ? 24 : 12
-    const markerSize = zone.type === 'village' ? 120 : 60
-    const anchorY = zone.type === 'village' ? 96 : 48
+    const iconClassSize = 12
+    const markerSize = 60
+    const anchorY = 48
 
     function buildHtml() {
       const highlight = !visited.value && !locked ? 'animate-pulse-alt' : ''
