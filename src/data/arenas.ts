@@ -38,6 +38,7 @@ interface ArenaConfig {
   level: number
   badge: Arena['badge']
   zoneId: string
+  requiredBadgeId?: string
 }
 
 function createArena(config: ArenaConfig): Arena {
@@ -46,6 +47,7 @@ function createArena(config: ArenaConfig): Arena {
     character: config.character,
     level: config.level,
     badge: config.badge,
+    requiredBadgeId: config.requiredBadgeId,
     get lineup() {
       return generateArenaLineup(config.zoneId)
     },
@@ -76,6 +78,7 @@ export const arena40: Arena = createArena({
     levelCap: 59,
     image: '',
   },
+  requiredBadgeId: 'arena20',
 })
 
 export const arena60: Arena = createArena({
@@ -89,6 +92,7 @@ export const arena60: Arena = createArena({
     levelCap: 79,
     image: '',
   },
+  requiredBadgeId: 'arena40',
 })
 
 export const arena80: Arena = createArena({
@@ -102,6 +106,7 @@ export const arena80: Arena = createArena({
     levelCap: 99,
     image: '',
   },
+  requiredBadgeId: 'arena60',
 })
 
 export const arenas: Arena[] = [

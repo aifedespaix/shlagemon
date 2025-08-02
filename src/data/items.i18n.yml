@@ -99,6 +99,9 @@ en:
     name: Defibrillator
     description: Jolt your Shlagémon back to shocking life.
     details: Needed for Emboli to evolve into Tuberculi.
+  badgeBox:
+    name: Badge Box
+    description: Stores all your badges.
   eggBox:
     name: Egg Box
     description: >-
@@ -239,6 +242,9 @@ fr:
     name: Défibrillateur
     description: Un coup de jus pour repartir de travers.
     details: "Nécessaire pour qu'Emboli évolue en Tuberculi."
+  badgeBox:
+    name: Boîte à badge
+    description: Conserve tous tes badges.
   eggBox:
     name: Boîte à œufs
     description: >-

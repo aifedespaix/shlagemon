@@ -3,6 +3,7 @@ import type { Item } from '~/type/item'
 import { defineStore } from 'pinia'
 import {
   allItems,
+  badgeBox as badgeBoxItem,
   eggBox as eggBoxItem,
   odorElixir,
 } from '~/data/items'
@@ -20,6 +21,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const captureLimitModal = useCaptureLimitModalStore()
   const itemUsage = useItemUsageStore()
   const eggBox = useEggBoxStore()
+  const badgeBox = useBadgeBoxStore()
   const odorElixirStore = useOdorElixirStore()
   const audio = useAudioStore()
 
@@ -111,6 +113,10 @@ export const useInventoryStore = defineStore('inventory', () => {
     }
 
     const handlers: Record<ItemId, () => boolean> = {
+      [badgeBoxItem.id]: () => {
+        badgeBox.open()
+        return true
+      },
       [eggBoxItem.id]: () => {
         eggBox.open()
         return true

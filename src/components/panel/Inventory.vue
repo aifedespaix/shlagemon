@@ -5,6 +5,7 @@ import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
 import { toast } from 'vue3-toastify'
 import {
+  badgeBox as badgeBoxItem,
   eggBox as eggBoxItem,
   fabulousPotion,
   mysteriousPotion,
@@ -16,6 +17,7 @@ import InventoryItemCard from '../inventory/ItemCard.vue'
 
 const inventory = useInventoryStore()
 const eggBox = useEggBoxStore()
+const badgeBox = useBadgeBoxStore()
 const ballStore = useBallStore()
 const evoItemStore = useEvolutionItemStore()
 const wearableStore = useWearableItemStore()
@@ -189,6 +191,10 @@ function onUse(item: Item) {
     eggBox.open()
     usage.markUsed(item.id)
   }
+  else if (item.id === badgeBoxItem.id) {
+    badgeBox.open()
+    usage.markUsed(item.id)
+  }
   else {
     if (inventory.useItem(item.id))
       usage.markUsed(item.id)
@@ -234,4 +240,5 @@ function onUse(item: Item) {
   <InventoryOdorElixirModal />
   <InventoryItemShortcutModal />
   <EggBoxModal />
+  <BadgeBoxModal />
 </template>

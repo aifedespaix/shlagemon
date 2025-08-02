@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import UiListItem from '~/components/ui/ListItem.vue'
 import UiButton from '~/components/ui/Button.vue'
-import UiKbd from '~/components/ui/Kbd.vue'
 import UiImageByBackground from '~/components/ui/ImageByBackground.vue'
+import UiKbd from '~/components/ui/Kbd.vue'
+import UiListItem from '~/components/ui/ListItem.vue'
 import UiModal from '~/components/ui/Modal.vue'
 import type { Item } from '~/type/item'
 import { storeToRefs } from 'pinia'
-import { eggBox, fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
+import { badgeBox, eggBox, fabulousPotion, mysteriousPotion, specialPotion } from '~/data/items'
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{
@@ -33,7 +33,7 @@ const zoom = ref(false)
 // Types / catégories spéciales
 const kingPotionIds = [fabulousPotion.id, mysteriousPotion.id, specialPotion.id] as const
 const isEgg = computed(() => props.item.id.startsWith('oeuf-'))
-const isEggBox = computed(() => props.item.id === eggBox.id)
+const isBox = computed(() => props.item.id === eggBox.id || props.item.id === badgeBox.id)
 const isKingPotion = computed(() => kingPotionIds.includes(props.item.id))
 const isUnused = computed(() => !usage.used[props.item.id])
 
@@ -49,7 +49,7 @@ const details = computed(() =>
 
 // Libellé du bouton d'action selon le type d'item
 const actionLabel = computed(() => {
-  if (isEggBox.value)
+  if (isBox.value)
     return t('components.inventory.ItemCard.action.open')
   if ('catchBonus' in props.item || props.item.wearable || isKingPotion.value) {
     return props.disabled
@@ -101,10 +101,11 @@ watch(showInfo, (val) => {
   >
     <template #left>
       <div class="flex items-center justify-center h-7 w-7" sm="h-8 w-8">
-        <div
-          v-if="props.item.icon"
-          :class="[props.item.iconClass, props.item.icon, 'w-full h-full']"
-        />
+      <div
+        v-if="props.item.icon"
+        class="w-full h-full"
+        :class="[props.item.iconClass, props.item.icon]"
+      />
         <UiImageByBackground
           v-else-if="props.item.image"
           :src="props.item.image"

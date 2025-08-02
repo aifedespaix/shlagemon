@@ -1,0 +1,8 @@
+fr:
+  title: Boîte à badge
+  empty: Aucun badge
+  level: Niveau max {level}
+en:
+  title: Badge box
+  empty: No badge
+  level: Level cap {level}

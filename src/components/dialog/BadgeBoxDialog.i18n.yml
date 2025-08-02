@@ -1,0 +1,12 @@
+fr:
+  steps:
+    step1:
+      text: Bravo, tu as obtenu ton premier badge ! Tu vas pouvoir retrouver les détails de ces badges dans ta boîte à badge qui se trouve dans ton inventaire.
+      responses:
+        valid: Merci !
+en:
+  steps:
+    step1:
+      text: Congratulations! You got your first badge. You can find all badge details in your badge box located in the inventory.
+      responses:
+        valid: Thanks!

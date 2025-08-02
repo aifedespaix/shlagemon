@@ -10,6 +10,7 @@ const player = usePlayerStore()
 const panel = useMainPanelStore()
 const progress = useZoneProgressStore()
 const zone = useZoneStore()
+const badgeBox = useBadgeBoxStore()
 const preparationMusic = getArenaTrack('preparation') ?? '/audio/musics/arenas/preparation.ogg'
 const exitTrack = ref(preparationMusic)
 const { t } = useI18n()
@@ -18,6 +19,7 @@ function collectBadge() {
   if (!arena.arenaData)
     return
   player.earnBadge(arena.arenaData.id)
+  badgeBox.addBadge(arena.arenaData.badge)
   progress.completeArena(zone.current.id)
   zone.completeArena(zone.current.id)
   toast.success(`Badge ${arena.arenaData.badge.name} obtenu !`)
