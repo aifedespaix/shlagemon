@@ -35,7 +35,8 @@ describe('shlagedex sort item', () => {
 
     const items = wrapper.findAll('div.relative')
     expect(items.length).toBe(2)
-    expect(items[0].text()).toContain(withItem.base.name)
-    expect(items[1].text()).toContain(withoutItem.base.name)
+    // Active Shlagemon should remain first regardless of sort
+    expect(items[0].text()).toContain(withoutItem.base.name)
+    expect(items[1].text()).toContain(withItem.base.name)
   })
 })
