@@ -32,6 +32,29 @@ export const village50: Zone = {
   attachedTo: savage45.id as SavageZoneId,
   actions: [],
   minLevel: 50,
+  pois: [
+    {
+      id: 'shop',
+      type: 'shop',
+      label: 'Shop du Village',
+      position: { lat: 0, lng: 0 },
+      icon: 'i-carbon-shop',
+    },
+    {
+      id: 'arena',
+      type: 'arena',
+      label: 'Arène des Flageolets',
+      position: { lat: 10, lng: 5 },
+      icon: 'i-carbon-trophy',
+    },
+    {
+      id: 'minigame-xxx',
+      type: 'minigame',
+      label: 'Mini-jeu xxx',
+      position: { lat: -10, lng: -5 },
+      icon: 'i-carbon-game-console',
+    },
+  ],
   village: {
     shop: {
       items: [
