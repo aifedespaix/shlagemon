@@ -170,7 +170,7 @@ declare module 'vue' {
     UiTooltip: typeof import('./components/ui/Tooltip.vue')['default']
     UiTypingText: typeof import('./components/ui/TypingText.vue')['default']
     UpdateSnackbar: typeof import('./components/UpdateSnackbar.vue')['default']
-    VillageVillageMap: typeof import('./components/village/VillageMap.vue')['default']
+    VillageMap: typeof import('./components/village/Map.vue')['default']
     VillageZoneActions: typeof import('./components/village/ZoneActions.vue')['default']
     ZoneButtonVillage: typeof import('./components/zone/ButtonVillage.vue')['default']
     ZoneButtonWild: typeof import('./components/zone/ButtonWild.vue')['default']
