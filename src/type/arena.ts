@@ -16,4 +16,5 @@ export interface Arena {
   character: Character
   readonly lineup: BaseShlagemon[] | LineupFactory
   level: number
+  requiredBadgeId?: string
 }

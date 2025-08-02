@@ -9,6 +9,7 @@ const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
 const dialog = useDialogStore()
+const player = usePlayerStore()
 const { t } = useI18n()
 
 const hasKing = computed(() =>
@@ -17,6 +18,20 @@ const hasKing = computed(() =>
 const hasArena = computed(() => !!zone.current.arena)
 const hasPoulailler = computed(() => !!zone.current.village?.poulailler)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
+const currentArenaData = computed(() => {
+  const data = zone.current.arena?.arena
+  if (!data)
+    return undefined
+  return typeof data === 'function' ? data() : data
+})
+const canOpenArena = computed(() => {
+  if (!currentArenaData.value)
+    return false
+  if (arenaCompleted.value && !useDeveloperStore().debug)
+    return false
+  const required = currentArenaData.value.requiredBadgeId
+  return !required || player.hasBadge(required)
+})
 const currentKing = computed(() =>
   hasKing.value ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
 )
@@ -55,13 +70,11 @@ function onAction(id: string) {
 }
 
 function openArena() {
-  if (arena.inBattle)
+  if (arena.inBattle || !currentArenaData.value)
     return
-  const data = zone.current.arena?.arena
-  if (typeof data === 'function')
-    arena.setArena(data())
-  else if (data)
-    arena.setArena(data)
+  if (currentArenaData.value.requiredBadgeId && !player.hasBadge(currentArenaData.value.requiredBadgeId))
+    return
+  arena.setArena(currentArenaData.value)
   dialog.resetArenaDialogs()
   panel.showArena()
 }
@@ -114,7 +127,7 @@ function openPoulailler() {
       @click="onAction('minigame')"
     />
     <UiNavigationButton
-      v-if="hasArena && (!arenaCompleted || useDeveloperStore().debug)"
+      v-if="hasArena && canOpenArena"
       icon="i-mdi:sword-cross"
       :label="t('components.village.ZoneActions.arena')"
       class="bg-red-600 text-white dark:bg-red-700"

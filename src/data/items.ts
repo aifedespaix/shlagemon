@@ -398,6 +398,16 @@ export const defibrillator: Item = {
   iconClass: 'text-green-600 dark:text-green-400',
 }
 
+export const badgeBox: Item = {
+  id: 'badge-box',
+  name: 'data.items.badgeBox.name',
+  description: 'data.items.badgeBox.description',
+  category: 'utilitaire',
+  unique: true,
+  icon: 'i-carbon:badge',
+  iconClass: 'text-amber-600 dark:text-amber-500',
+}
+
 export const eggBox: Item = {
   id: 'egg-box',
   name: 'data.items.eggBox.name',
@@ -547,6 +557,7 @@ export const allItems = [
   lighter,
   pissBottle,
   defibrillator,
+  badgeBox,
   eggBox,
   fireEgg,
   waterEgg,

@@ -56,6 +56,7 @@ export const usePlayerStore = defineStore('player', () => {
     gender,
     character,
     arenaBadges,
+    badgeCount,
     levelCap,
     captureLevelCap,
     setPlayer,

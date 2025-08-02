@@ -5,6 +5,7 @@ import ArenaDefeatDialog from '~/components/dialog/ArenaDefeatDialog.vue'
 import ArenaVictoryDialog from '~/components/dialog/ArenaVictoryDialog.vue'
 import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
+import BadgeBoxDialog from '~/components/dialog/BadgeBoxDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
 import CuckRingDialog from '~/components/dialog/CuckRingDialog.vue'
 import DeveloperSupportDialog from '~/components/dialog/DeveloperSupportDialog.vue'
@@ -70,6 +71,8 @@ export const useDialogStore = defineStore('dialog', () => {
   const visit = useZoneVisitStore()
   const inventory = useInventoryStore()
   const box = useEggBoxStore()
+  const badgeBox = useBadgeBoxStore()
+  const player = usePlayerStore()
   const ui: ReturnType<typeof useUIStore> = useUIStore()
   const mobile = useMobileTabStore()
   const potionInfo = usePotionInfoStore()
@@ -198,6 +201,11 @@ export const useDialogStore = defineStore('dialog', () => {
         !box.unlocked
         && ['oeuf-feu', 'oeuf-eau', 'oeuf-herbe', 'oeuf-foudre'].some(id => inventory.items[id])
         && panel.current !== 'miniGame',
+    },
+    {
+      id: 'badgeBox',
+      component: markRaw(BadgeBoxDialog),
+      condition: () => !badgeBox.unlocked && player.badgeCount > 0 && panel.current !== 'miniGame',
     },
     {
       id: 'capturePotion',

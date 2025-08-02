@@ -157,6 +157,7 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useAudioStore: typeof import('./stores/audio')['useAudioStore']
   const useAutoEquip: typeof import('./stores/helpers')['useAutoEquip']
+  const useBadgeBoxStore: typeof import('./stores/badgeBox')['useBadgeBoxStore']
   const useBallStore: typeof import('./stores/ball')['useBallStore']
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
@@ -617,6 +618,7 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAudioStore: UnwrapRef<typeof import('./stores/audio')['useAudioStore']>
     readonly useAutoEquip: UnwrapRef<typeof import('./stores/helpers')['useAutoEquip']>
+    readonly useBadgeBoxStore: UnwrapRef<typeof import('./stores/badgeBox')['useBadgeBoxStore']>
     readonly useBallStore: UnwrapRef<typeof import('./stores/ball')['useBallStore']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
