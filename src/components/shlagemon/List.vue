@@ -40,63 +40,74 @@ const sortOptions = [
   { label: 'Proche d\'évoluer', value: 'evolution' },
 ] as const
 
-// Tri et recherche filtrée
+// Filter, sort and order Shlagemons efficiently.
+// Selected mon comes first, followed by new or highlighted ones.
 const displayedMons = computed(() => {
-  let mons = [...props.mons]
-  if (filter.search.trim()) {
-    const q = filter.search.toLowerCase()
-    mons = mons.filter(m => m.base.name.toLowerCase().includes(q))
+  const query = filter.search.trim().toLowerCase()
+  const filtered: DexShlagemon[] = []
+  for (const mon of props.mons) {
+    if (query && !mon.base.name.toLowerCase().includes(query))
+      continue
+    filtered.push(mon)
   }
   switch (filter.sortBy) {
     case 'level':
-      mons.sort((a, b) => a.lvl - b.lvl)
+      filtered.sort((a, b) => a.lvl - b.lvl)
       break
     case 'rarity':
-      mons.sort((a, b) => a.rarity - b.rarity)
+      filtered.sort((a, b) => a.rarity - b.rarity)
       break
     case 'shiny':
-      mons.sort((a, b) => Number(a.isShiny) - Number(b.isShiny))
+      filtered.sort((a, b) => Number(a.isShiny) - Number(b.isShiny))
       break
     case 'item':
-      mons.sort((a, b) => Number(Boolean(a.heldItemId)) - Number(Boolean(b.heldItemId)))
+      filtered.sort((a, b) => Number(Boolean(a.heldItemId)) - Number(Boolean(b.heldItemId)))
       break
     case 'attack':
-      mons.sort((a, b) => a.attack - b.attack)
+      filtered.sort((a, b) => a.attack - b.attack)
       break
     case 'defense':
-      mons.sort((a, b) => a.defense - b.defense)
+      filtered.sort((a, b) => a.defense - b.defense)
       break
     case 'count':
-      mons.sort((a, b) => a.captureCount - b.captureCount)
+      filtered.sort((a, b) => a.captureCount - b.captureCount)
       break
     case 'date':
-      mons.sort((a, b) => new Date(a.captureDate).getTime() - new Date(b.captureDate).getTime())
+      filtered.sort((a, b) => new Date(a.captureDate).getTime() - new Date(b.captureDate).getTime())
       break
     case 'name':
-      mons.sort((a, b) => a.base.name.localeCompare(b.base.name))
+      filtered.sort((a, b) => a.base.name.localeCompare(b.base.name))
       break
     case 'type':
-      mons.sort((a, b) => (a.base.types[0]?.name || '').localeCompare(b.base.types[0]?.name || ''))
+      filtered.sort((a, b) => (a.base.types[0]?.name || '').localeCompare(b.base.types[0]?.name || ''))
       break
     case 'evolution':
-      mons.sort((a, b) => evolutionDistance(a) - evolutionDistance(b))
+      filtered.sort((a, b) => evolutionDistance(a) - evolutionDistance(b))
       break
   }
   if (!filter.sortAsc)
-    mons.reverse()
-  // Place highlighted Shlagemons at the top while preserving sort order
-  if (props.highlightIds.length) {
-    const highlighted: DexShlagemon[] = []
-    const others: DexShlagemon[] = []
-    for (const m of mons) {
-      if (props.highlightIds.includes(m.id))
-        highlighted.push(m)
-      else
-        others.push(m)
+    filtered.reverse()
+
+  const activeId = dex.activeShlagemon?.id
+  const highlightSet = new Set(props.highlightIds)
+
+  const active: DexShlagemon[] = []
+  const highlights: DexShlagemon[] = []
+  const others: DexShlagemon[] = []
+
+  for (const mon of filtered) {
+    if (mon.id === activeId) {
+      active.push(mon)
     }
-    mons = [...highlighted, ...others]
+    else if (highlightSet.has(mon.id) || mon.isNew) {
+      highlights.push(mon)
+    }
+    else {
+      others.push(mon)
+    }
   }
-  return mons
+
+  return [...active, ...highlights, ...others]
 })
 
 // Fonction de tri évolution
@@ -127,7 +138,7 @@ function isActive(mon: DexShlagemon) {
   return dex.activeShlagemon?.id === mon.id
 }
 function isHighlighted(mon: DexShlagemon) {
-  return props.highlightIds.includes(mon.id)
+  return props.highlightIds.includes(mon.id) || Boolean(mon.isNew)
 }
 function changeActive(mon: DexShlagemon) {
   if (isLocked.value)
