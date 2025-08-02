@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.9] - 2025-08-02
+
+### Changed
+
+- Reduced evolution speciality bonuses: base forms with evolutions remain at 0%, first evolutions now receive a 5% boost, second evolutions 10%, and standalone forms without predecessors keep a 10% boost.
+
 ## [0.3.8] - 2025-07-18
 
 ### Added
