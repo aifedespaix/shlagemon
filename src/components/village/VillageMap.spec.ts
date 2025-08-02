@@ -9,7 +9,11 @@ const baseVillage: VillageZone = {
   type: 'village',
   villageType: 'basic',
   position: { lat: 0, lng: 0 },
-  mapCenter: { lat: 0, lng: 0 },
+  map: {
+    center: { lat: 0, lng: 0 },
+    min: { lat: -10, lng: -10 },
+    max: { lat: 10, lng: 10 },
+  },
   actions: [],
   minLevel: 1,
   pois: [

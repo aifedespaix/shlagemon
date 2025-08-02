@@ -62,6 +62,15 @@ interface BaseZone {
   }
 }
 
+export interface ZoneMap {
+  /** Center of the map, used to initialize the viewport. */
+  readonly center: Position
+  /** Minimum latitude/longitude accessible on the map. */
+  readonly min: Position
+  /** Maximum latitude/longitude accessible on the map. */
+  readonly max: Position
+}
+
 // Variante spécifique pour les zones sauvages
 export interface SavageZone extends BaseZone {
   type: 'sauvage'
@@ -81,8 +90,8 @@ export interface VillageZone extends BaseNonSavageZone {
   villageType: VillageType
   /** Points of interest displayed on the village map. */
   readonly pois: readonly VillagePOI[]
-  /** Optional center used when initialising the Leaflet map for this village. */
-  readonly mapCenter?: Position
+  /** Map configuration including center and bounds. */
+  readonly map: ZoneMap
 }
 
 interface NonVillageZone extends BaseNonSavageZone {

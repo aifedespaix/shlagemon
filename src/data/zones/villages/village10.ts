@@ -18,10 +18,22 @@ export const village10: Zone = {
   type: 'village',
   villageType: 'basic',
   position: move.top(savage05.position, VILLAGE_OFFSET),
-  mapCenter: { lat: 0, lng: 0 },
+  map: {
+    center: { lat: -128.3159249148255, lng: 127.4328236465197 },
+    min: { lat: -68.58182967755516, lng: 12.569215081433299 },
+    max: { lat: -223.8693257092728, lng: 230.550003014107 },
+  },
   attachedTo: savage05.id as SavageZoneId,
   minLevel: 10,
-  pois: [],
+  pois: [
+    {
+      id: 'shop',
+      type: 'shop',
+      label: 'Shop du Village',
+      position: { lat: -146.07951922399792, lng: 120.74474410140175 },
+      icon: 'i-carbon-shop',
+    },
+  ],
   actions: [],
   village: {
     shop: {
