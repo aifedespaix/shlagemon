@@ -73,9 +73,28 @@ export const useBattleStore = defineStore('battle', () => {
     return { ...result, damage: finalDamage }
   }
 
-  function clickAttack(attacker: DexShlagemon, defender: DexShlagemon) {
+  /**
+   * Executes a manual player click attack.
+   *
+   * The attack always inflicts a fixed amount of 10 damage, ignoring
+   * resistances, weaknesses, potions, and held item effects. Damage is capped
+   * by the defender's remaining hit points.
+   *
+   * @param attacker - The player's attacking shlagemon.
+   * @param defender - The defending shlagemon.
+   * @returns The resulting damage information.
+   */
+  function clickAttack(attacker: DexShlagemon, defender: DexShlagemon): AttackResult {
     manualAttack.registerClick()
-    return attack(attacker, defender, false, false, true)
+
+    const damage = Math.min(10, defender.hpCurrent)
+    defender.hpCurrent -= damage
+
+    return {
+      damage,
+      effect: 'normal',
+      crit: 'normal',
+    }
   }
 
   function duel(player: DexShlagemon, enemy: DexShlagemon) {
