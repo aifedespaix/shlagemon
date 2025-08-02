@@ -49,7 +49,7 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
 
     mapRef.value!.style.background = '#508ed7'
 
-    tileLayer.value = new TileLayer('/map/tiles/{z}/{x}/{y}.webp', {
+    tileLayer.value = new TileLayer('/map/main/tiles/{z}/{x}/{y}.webp', {
       tileSize: 256,
       minZoom: 0,
       maxZoom: 4,

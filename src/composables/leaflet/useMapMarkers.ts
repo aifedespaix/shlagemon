@@ -43,8 +43,8 @@ export function useMapMarkers(map: LeafletMap) {
   }
   function iconPath(zone: Zone): string {
     return zone.type === 'village'
-      ? `/map/icons/village-${zone.villageType}.webp`
-      : `/map/icons/${zone.id}.webp`
+      ? `/map/main/icons/village-${zone.villageType}.webp`
+      : `/map/main/icons/${zone.id}.webp`
   }
 
   function addMarker(
