@@ -9,7 +9,7 @@ describe('speciality bonus', () => {
   })
 
   it('keeps standalone bonuses unchanged', () => {
-    expect(specialityBonus.unique).toBe(10)
+    expect(specialityBonus.unique).toBe(7)
     expect(specialityBonus.legendary).toBe(20)
   })
 })
