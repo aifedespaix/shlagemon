@@ -37,6 +37,8 @@ const captureChance = computed(() => {
 })
 
 const captureAnimationClass = computed(() => {
+  if (currentBallCount.value <= 0)
+    return ''
   if (captureChance.value > 80)
     return 'animate-pulse-special'
   return ''
@@ -191,7 +193,6 @@ defineExpose({ open })
     transform: scale3d(1, 1, 1);
   }
 }
-
 
 @keyframes capture {
   to {
