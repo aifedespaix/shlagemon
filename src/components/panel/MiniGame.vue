@@ -48,6 +48,7 @@ const failure = computed(() => gameDef.value?.createFailure(leaveGame))
     v-if="gameDef"
     :title="gameDef.label"
     :exit-text="t('components.panel.MiniGame.exit')"
+    :show-footer="mini.phase === 'game'"
     @exit="leaveGame"
   >
     <div class="tiny-scrollbar flex flex-1 flex-col overflow-auto">
