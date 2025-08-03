@@ -121,8 +121,8 @@ onMounted(reset)
         :hover="isCenterCell(i) ? 'bg-gray-300 dark:bg-gray-600' : undefined"
         @click="play(i)"
       >
-        <span v-if="board[i] === 'player'" class="text-blue-600">⭕</span>
-        <span v-else-if="board[i] === 'ai'" class="text-red-600">❌</span>
+        <span v-if="board[i] === 'player'" class="i-carbon:circle-outline text-blue-600" />
+        <span v-else-if="board[i] === 'ai'" class="i-carbon:close text-red-600" />
       </button>
     </div>
   </div>
