@@ -2,6 +2,7 @@
 import type VillageMap from '../village/Map.vue'
 import type { SavageZoneId, VillagePOI, VillageZone } from '~/type'
 import { storeToRefs } from 'pinia'
+import { getArenaByZoneId } from '~/data/arenas'
 import ZoneActions from '../village/ZoneActions.vue'
 
 const mobile = useMobileTabStore()
@@ -20,7 +21,7 @@ const { showVillagesOnMap } = storeToRefs(interfaceStore)
 
 const mapRef = ref<InstanceType<typeof VillageMap> | null>(null)
 const activePoiId = ref<string | null>(null)
-const pois = computed(() => (zone.current as VillageZone).pois)
+const pois = computed(() => Object.values((zone.current as VillageZone).pois))
 const currentIndex = computed(() => pois.value.findIndex(p => p.id === activePoiId.value))
 
 const prevDisabled = computed(() => currentIndex.value <= 0)
@@ -50,21 +51,15 @@ watch(() => zone.current.id, () => {
 })
 
 const kingPoi = computed(() =>
-  (zone.current as VillageZone).pois.find(p => p.type === 'king'),
+  (zone.current as VillageZone).pois.king,
 )
 const currentKing = computed(() =>
   kingPoi.value ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
 )
-const arenaPoi = computed(() =>
-  (zone.current as VillageZone).pois.find(p => p.type === 'arena'),
-)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
-const currentArenaData = computed(() => {
-  const data = arenaPoi.value?.arena?.arena
-  if (!data)
-    return undefined
-  return typeof data === 'function' ? data() : data
-})
+const currentArenaData = computed(() =>
+  zone.current.type === 'village' ? getArenaByZoneId(zone.current.id) : undefined,
+)
 
 function onPoi(poi: VillagePOI) {
   if (arena.inBattle)

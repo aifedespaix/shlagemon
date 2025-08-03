@@ -72,7 +72,7 @@ function classes() {
       <div
         v-else-if="
           props.zone.type === 'village'
-            && props.zone.pois.some(p => p.type === 'arena')
+            && 'arena' in props.zone.pois
         "
         class="i-mdi:sword-cross h-4 w-4 opacity-50 grayscale"
       />

@@ -14,8 +14,9 @@ export function useShopTabs(selectItem: (item: Item) => void) {
   const { t } = useI18n()
 
   const shopItems = computed(() => {
-    const poi = zone.current.pois?.find(p => p.type === 'shop')
-    return poi?.items || []
+    if (zone.current.type !== 'village')
+      return []
+    return zone.current.pois.shop?.items || []
   })
 
   const categoryOptions = [

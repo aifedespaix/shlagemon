@@ -44,7 +44,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
 
   const accessibleShopLevel = computed(() =>
     accessibleZones.value
-      .filter(z => z.type === 'village' && z.pois.some(p => p.type === 'shop'))
+      .filter(z => z.type === 'village' && 'shop' in z.pois)
       .reduce((m, z) => Math.max(m, z.minLevel), 0),
   )
 

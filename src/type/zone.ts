@@ -62,7 +62,8 @@ export interface VillageZone extends BaseZoneCommon {
   readonly type: 'village'
   readonly villageType: VillageType
   readonly map: ZoneMap
-  readonly pois: readonly VillagePOI[]
+  /** Points of interest indexed by their identifier. */
+  readonly pois: POIsById
   /** Attached savage zone identifier, when applicable. */
   readonly attachedTo?: SavageZoneId
 }

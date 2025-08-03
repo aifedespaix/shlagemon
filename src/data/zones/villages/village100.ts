@@ -41,8 +41,8 @@ export const village100: Zone = {
   },
   attachedTo: savage95.id as SavageZoneId,
   minLevel: 100,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -75,18 +75,18 @@ export const village100: Zone = {
         fabulousPotion,
       ],
     },
-    {
+    arena: {
       id: 'arena',
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -173.0700852564047, lng: 54.829043706440956 },
     },
-    {
+    minigame: {
       id: 'minigame',
       type: 'minigame',
       label: 'Mini-jeu',
       position: { lat: -103.04004672405347, lng: 73.65783750714516 },
       miniGame: 'shlagpairs',
     },
-  ],
+  },
 }
