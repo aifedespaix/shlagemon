@@ -15,20 +15,20 @@ function toggle() {
 <template>
   <UiListItem
     :color="props.achievement.achieved ? 'success' : 'locked'"
-    @click="toggle"
     role="button"
     :aria-label="props.achievement.title"
+    @click="toggle"
   >
     <template #left>
       <div :class="props.achievement.icon" class="inline-block text-lg" />
     </template>
 
-    <div class="flex items-center justify-between min-w-0 w-full cursor-pointer">
-      <span class="font-bold truncate flex-1">{{ props.achievement.title }}</span>
-      <div class="i-carbon-chevron-down transition-transform ml-2" :class="props.opened ? '' : 'rotate-90'" />
+    <div class="min-w-0 w-full flex cursor-pointer items-center justify-between">
+      <span class="flex-1 truncate font-bold">{{ props.achievement.title }}</span>
+      <div class="i-carbon-chevron-down ml-2 transition-transform" :class="props.opened ? '' : 'rotate-90'" />
     </div>
 
-    <div v-show="props.opened" class="mt-1 text-xs w-full">
+    <div v-show="props.opened" class="mt-1 w-full text-xs">
       <p>{{ props.achievement.description }}</p>
       <div v-if="!props.achievement.achieved && progress" class="mt-1">
         <div class="mb-1 text-center">

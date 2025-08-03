@@ -33,37 +33,36 @@ function removeShortcut(index: number) {
 
 <template>
   <div class="flex flex-col gap-2">
-  <UiListItem
-    v-for="(sc, idx) in store.shortcuts"
-    :key="idx"
-    class="py-1"
-    :aria-label="`Raccourci ${idx + 1}`"
-    role="listitem"
-  >
-    <!-- Slot gauche : capture de touche -->
-    <template #left>
-      <UiKeyCapture
-        class="w-12"
-        :model-value="sc.key"
-        @update:model-value="val => updateKey(idx, val)"
+    <UiListItem
+      v-for="(sc, idx) in store.shortcuts"
+      :key="idx"
+      class="py-1"
+      :aria-label="`Raccourci ${idx + 1}`"
+      role="listitem"
+    >
+      <!-- Slot gauche : capture de touche -->
+      <template #left>
+        <UiKeyCapture
+          class="w-12"
+          :model-value="sc.key"
+          @update:model-value="val => updateKey(idx, val)"
+        />
+      </template>
+
+      <!-- Slot par défaut : select d'item -->
+      <UiSelectOption
+        class="min-w-0 flex-1"
+        :model-value="sc.action.type === 'use-item' ? sc.action.itemId : ''"
+        :options="itemOptions"
+        @update:model-value="val => updateItem(idx, val as ItemId)"
       />
-    </template>
 
-    <!-- Slot par défaut : select d'item -->
-    <UiSelectOption
-      class="flex-1 min-w-0"
-      :model-value="sc.action.type === 'use-item' ? sc.action.itemId : ''"
-      :options="itemOptions"
-      @update:model-value="val => updateItem(idx, val as ItemId)"
-    />
-
-    <!-- Slot droite : bouton supprimer -->
-    <template #right>
-      <UiButton type="icon" size="xs"  @click="removeShortcut(idx)">
-        <div i-carbon-close />
-      </UiButton>
-    </template>
-  </UiListItem>
-
+      <!-- Slot droite : bouton supprimer -->
+      <template #right>
+        <UiButton type="icon" size="xs" @click="removeShortcut(idx)">
+          <div i-carbon-close />
+        </UiButton>
+      </template>
+    </UiListItem>
   </div>
 </template>

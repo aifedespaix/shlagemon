@@ -5,7 +5,6 @@ const dex = useShlagedexStore()
 const showDetail = ref(false)
 const detailMon = ref<DexShlagemon | null>(dex.activeShlagemon)
 
-
 function open(mon: DexShlagemon | null) {
   if (mon) {
     dex.markSeen(mon)

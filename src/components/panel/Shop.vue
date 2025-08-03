@@ -82,8 +82,9 @@ function closeShop() {
             {{ t('components.panel.Shop.back') }}
           </UiButton>
 
-          <UiButton 
-          type="danger" variant="outline" class="w-full flex gap-2" size="xs" @click="closeShop">
+          <UiButton
+            type="danger" variant="outline" class="w-full flex gap-2" size="xs" @click="closeShop"
+          >
             <div class="i-carbon:exit" />
             {{ t('components.panel.Shop.exit') }}
           </UiButton>

@@ -79,7 +79,7 @@ function choose(r: DialogResponse) {
         </div>
       </div>
 
-      <div class="col-span-2 h-full flex flex-col gap-2 ">
+      <div class="col-span-2 h-full flex flex-col gap-2">
         <div class="flex flex-1 flex-col justify-center">
           <UiTypingText
             v-if="currentNode"
