@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
-import { useSwipe } from '@vueuse/core'
-import { computed, defineEmits, defineProps, ref, useAttrs, watch } from 'vue'
-
 interface Label { text: string, icon?: string }
 interface Tab {
   'label': Label

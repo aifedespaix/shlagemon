@@ -37,12 +37,8 @@ const captureChance = computed(() => {
 })
 
 const captureAnimationClass = computed(() => {
-  if (captureChance.value <= 0)
-    return 'opacity-50 discourage'
   if (captureChance.value > 80)
-    return 'animate-pulse-alt'
-  if (captureChance.value > 50)
-    return 'animate-bounce'
+    return 'animate-pulse-special'
   return ''
 })
 
@@ -179,6 +175,24 @@ defineExpose({ open })
 .to-ball {
   animation: capture 0.5s forwards;
 }
+.animate-pulse-special {
+  animation: pulse-special 0.75s infinite;
+}
+@keyframes pulse-special {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.1, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
 @keyframes capture {
   to {
     transform: translate(-50%, -50%) scale(0);
@@ -207,19 +221,6 @@ defineExpose({ open })
   }
   75% {
     transform: translateX(-4px);
-  }
-}
-
-.discourage {
-  animation: discourage 1s ease-in-out infinite;
-}
-@keyframes discourage {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(4px);
   }
 }
 </style>
