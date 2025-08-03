@@ -22,17 +22,16 @@ import { usePoiMarkers } from '~/composables/leaflet/usePoiMarkers'
  *     min: { lat: -10, lng: -10 },
  *     max: { lat: 10, lng: 10 },
  *   },
- *   actions: [],
  *   minLevel: 1,
- *   pois: [
- *     {
+ *   pois: {
+ *     shop: {
  *       id: 'shop',
  *       type: 'shop',
  *       label: 'Shop du Village',
  *       position: { lat: 0, lng: 0 },
  *       items: [],
  *     },
- *   ],
+ *   },
  * }
  * ```
  */
@@ -79,7 +78,7 @@ onMounted(() => {
         [village.map.min.lat, village.map.min.lng],
         [village.map.max.lat, village.map.max.lng],
       ])
-      village.pois.forEach(poi => markers.add(poi, buildHtml(poi), p => emit('select', p)))
+      Object.values(village.pois).forEach(poi => markers.add(poi, buildHtml(poi), p => emit('select', p)))
       markers.highlight(props.activePoiId ?? undefined)
     },
     { immediate: true, deep: true },
@@ -90,7 +89,7 @@ onMounted(() => {
     (id) => {
       markers.highlight(id ?? undefined)
       if (id) {
-        const poi = props.village.pois.find(p => p.id === id)
+        const poi = props.village.pois[id]
         if (poi)
           map.value?.panTo([poi.position.lat, poi.position.lng])
       }
@@ -104,7 +103,7 @@ onMounted(() => {
 
 function getTarget() {
   if (props.activePoiId) {
-    const poi = props.village.pois.find(p => p.id === props.activePoiId)
+    const poi = props.village.pois[props.activePoiId]
     if (poi)
       return poi.position
   }

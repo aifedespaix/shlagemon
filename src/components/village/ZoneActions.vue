@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SavageZoneId } from '~/type'
+import { getArenaByZoneId } from '~/data/arenas'
 
 const zone = useZoneStore()
 const panel = useMainPanelStore()
@@ -14,35 +15,32 @@ const { t } = useI18n()
 
 const hasKing = computed(() =>
   zone.current.type === 'sauvage'
-  || (zone.current.type === 'village' && zone.current.pois.some(p => p.type === 'king')),
+  || (zone.current.type === 'village' && 'king' in zone.current.pois),
 )
 const arenaPoi = computed(() =>
   zone.current.type === 'village'
-    ? zone.current.pois.find(p => p.type === 'arena')
+    ? zone.current.pois.arena
     : undefined,
 )
 const hasArena = computed(() => !!arenaPoi.value)
 const shopPoi = computed(() =>
   zone.current.type === 'village'
-    ? zone.current.pois.find(p => p.type === 'shop')
+    ? zone.current.pois.shop
     : undefined,
 )
 const miniGamePoi = computed(() =>
   zone.current.type === 'village'
-    ? zone.current.pois.find(p => p.type === 'minigame')
+    ? zone.current.pois.minigame
     : undefined,
 )
 const hasPoulailler = computed(() =>
   zone.current.type === 'village'
-  && zone.current.pois.some(p => p.type === 'poulailler'),
+  && 'poulailler' in zone.current.pois,
 )
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
-const currentArenaData = computed(() => {
-  const data = arenaPoi.value?.arena?.arena
-  if (!data)
-    return undefined
-  return typeof data === 'function' ? data() : data
-})
+const currentArenaData = computed(() =>
+  zone.current.type === 'village' ? getArenaByZoneId(zone.current.id) : undefined,
+)
 const canOpenArena = computed(() => {
   if (!currentArenaData.value)
     return false

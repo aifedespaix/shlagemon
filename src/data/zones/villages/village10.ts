@@ -25,8 +25,8 @@ export const village10: Zone = {
   },
   attachedTo: savage05.id as SavageZoneId,
   minLevel: 10,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -41,5 +41,5 @@ export const village10: Zone = {
         shlageball,
       ],
     },
-  ],
+  },
 }
