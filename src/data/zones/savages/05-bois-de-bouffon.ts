@@ -6,7 +6,6 @@ export const savage05: Zone = {
   type: 'sauvage',
   position: { lat: -42.49047583148054, lng: 103.92369727047145 },
   completionAchievement: 'Bûcheron du Bois de Bouffon',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/05-10/*.ts',
     { eager: true },

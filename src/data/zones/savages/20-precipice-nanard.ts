@@ -6,7 +6,6 @@ export const savage20: Zone = {
   type: 'sauvage',
   position: { lat: -71.23399488840516, lng: 119.66588089330025 },
   completionAchievement: 'Dénicheur du Vieux Nanard',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/20-25/*.ts',
     { eager: true },

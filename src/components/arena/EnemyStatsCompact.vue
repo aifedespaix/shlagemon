@@ -23,9 +23,12 @@ const stats = computed(() => [
     </div>
 
     <div class="flex flex-grow flex-col overflow-hidden">
-      <h3 class="truncate text-base font-bold">
-        {{ props.mon.base.name }}
-      </h3>
+      <div class="flex items-center justify-between">
+        <h3 class="truncate text-base font-bold">
+          {{ props.mon.base.name }}
+        </h3>
+        <ShlagemonRarityInfo :rarity="props.mon.rarity" class="ml-2 flex-shrink-0" />
+      </div>
 
       <div class="mt-1 flex gap-1">
         <ShlagemonType

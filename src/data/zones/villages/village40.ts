@@ -19,7 +19,6 @@ import {
 } from '~/data/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
-import { arena40 } from '../../arenas'
 import { savage35 } from '../savages/35-route-du-nawak'
 
 export const village40: Zone = {
@@ -34,10 +33,9 @@ export const village40: Zone = {
     max: { lat: -180.3130616319912, lng: 218.6204041725481 },
   },
   attachedTo: savage35.id as SavageZoneId,
-  actions: [],
   minLevel: 40,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -62,22 +60,18 @@ export const village40: Zone = {
         mysteriousPotion,
       ],
     },
-    {
+    arena: {
       id: 'arena',
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -92.54040358702598, lng: 106.11098650533404 },
     },
-    {
+    minigame: {
       id: 'minigame',
       type: 'minigame',
       label: 'Mini-jeu',
       position: { lat: -133.93798499659755, lng: 190.74887868514963 },
       miniGame: 'battleship',
     },
-  ],
-  arena: {
-    get arena() { return arena40 },
-    completed: false,
   },
 }

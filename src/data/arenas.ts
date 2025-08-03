@@ -83,7 +83,7 @@ export const arena40: Arena = createArena({
 
 export const arena60: Arena = createArena({
   id: 'arena60',
-  zoneId: 'village-paume',
+  zoneId: 'village-cassos-land',
   character: profMerdant,
   level: 61,
   badge: {
@@ -97,7 +97,7 @@ export const arena60: Arena = createArena({
 
 export const arena80: Arena = createArena({
   id: 'arena80',
-  zoneId: 'village-paume',
+  zoneId: 'village-clitoland',
   character: profMerdant,
   level: 81,
   badge: {
@@ -118,4 +118,17 @@ export const arenas: Arena[] = [
 
 export function getArena(id: string): Arena | undefined {
   return arenas.find(a => a.id === id)
+}
+
+/** Mapping of arena zones by their associated village identifier. */
+const arenaByZoneId: Record<string, Arena> = {
+  'village-boule': arena20,
+  'village-paume': arena40,
+  'village-cassos-land': arena60,
+  'village-clitoland': arena80,
+}
+
+/** Retrieve an arena configuration using a village zone identifier. */
+export function getArenaByZoneId(zoneId: string): Arena | undefined {
+  return arenaByZoneId[zoneId]
 }

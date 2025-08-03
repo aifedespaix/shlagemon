@@ -3,6 +3,7 @@ import type { SavageZoneId, Zone, ZoneId } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
+import { useZoneProgressStore } from './zoneProgress'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
@@ -43,9 +44,8 @@ export const useZoneStore = defineStore('zone', () => {
   }
 
   function completeArena(id: string) {
-    const z = zones.value.find(z => z.id === id)
-    if (z?.arena)
-      z.arena.completed = true
+    const progress = useZoneProgressStore()
+    progress.completeArena(id)
   }
 
   const rewardMultiplier = computed(() => {

@@ -74,7 +74,7 @@ export function useMapMarkers(map: LeafletMap) {
       const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
       const arena = arenaCompleted.value
         ? '<div class="i-mdi:sword-cross h-3 w-3"></div>'
-        : zone.arena
+        : zone.type === 'village' && 'arena' in zone.pois
           ? '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
           : ''
       const icons = [ball, crown, arena].filter(Boolean).join('')

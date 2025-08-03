@@ -9,26 +9,21 @@ export interface EventMap {
   'battle:end': void
 }
 
-export type EventCallback<T = unknown> = (payload: T) => void
+export type EventCallback<T = unknown> = (payload?: T) => void
 
 export const useEventStore = defineStore('event', () => {
-  const listeners = new Map<
-    keyof EventMap,
-    Set<EventCallback<EventMap[keyof EventMap]>>
-  >()
+  const listeners: { [K in keyof EventMap]?: Set<EventCallback<EventMap[K]>> } = {}
 
   function on<K extends keyof EventMap>(event: K, cb: EventCallback<EventMap[K]>) {
-    if (!listeners.has(event))
-      listeners.set(event, new Set())
-    listeners.get(event)!.add(cb as EventCallback<EventMap[keyof EventMap]>)
+    (listeners[event] ||= new Set()).add(cb)
   }
 
   function off<K extends keyof EventMap>(event: K, cb: EventCallback<EventMap[K]>) {
-    listeners.get(event)?.delete(cb as EventCallback<EventMap[keyof EventMap]>)
+    listeners[event]?.delete(cb)
   }
 
   function emit<K extends keyof EventMap>(event: K, payload?: EventMap[K]) {
-    listeners.get(event)?.forEach(cb => cb(payload as EventMap[K]))
+    listeners[event]?.forEach(cb => cb(payload))
   }
 
   return { on, off, emit }

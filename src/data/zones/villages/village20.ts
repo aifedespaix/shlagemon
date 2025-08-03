@@ -11,7 +11,6 @@ import {
 } from '~/data/items'
 import { shlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
-import { arena20 } from '../../arenas'
 import { savage15 } from '../savages/15-ravin-fesse-molle'
 
 export const village20: Zone = {
@@ -26,12 +25,9 @@ export const village20: Zone = {
     max: { lat: -165.3373077053635, lng: 219.9377655671633 },
   },
   attachedTo: savage15.id as SavageZoneId,
-  actions: [
-    { id: 'minigame', label: 'Mini-jeu' },
-  ],
   minLevel: 20,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -47,22 +43,18 @@ export const village20: Zone = {
         specialPotion,
       ],
     },
-    {
+    arena: {
       id: 'arena',
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -95.74953852889057, lng: 154.42777039911124 },
     },
-    {
+    minigame: {
       id: 'minigame',
       type: 'minigame',
       label: 'Mini-jeu',
       position: { lat: -113.82454584408723, lng: 69.16446745959803 },
       miniGame: 'tictactoe',
     },
-  ],
-  arena: {
-    get arena() { return arena20 },
-    completed: false,
   },
 }

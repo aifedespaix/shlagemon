@@ -5,7 +5,6 @@ export const savage55: Zone = {
   name: 'Vallée des Chieurs',
   type: 'sauvage',
   position: { lat: -109.72531606028684, lng: 92.67928039702232 },
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/55-60/*.ts',
     { eager: true },

@@ -69,7 +69,13 @@ function classes() {
     </div>
     <div class="h-4 flex items-center justify-center gap-2">
       <div v-if="arenaCompleted" class="i-mdi:sword-cross h-4 w-4" />
-      <div v-else-if="props.zone.arena" class="i-mdi:sword-cross h-4 w-4 opacity-50 grayscale" />
+      <div
+        v-else-if="
+          props.zone.type === 'village'
+            && 'arena' in props.zone.pois
+        "
+        class="i-mdi:sword-cross h-4 w-4 opacity-50 grayscale"
+      />
     </div>
   </button>
 </template>

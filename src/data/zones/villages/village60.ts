@@ -21,7 +21,6 @@ import {
 } from '~/data/items'
 import { shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
-import { arena60 } from '../../arenas'
 import { savage55 } from '../savages/55-vallee-des-chieurs'
 
 export const village60: Zone = {
@@ -36,12 +35,9 @@ export const village60: Zone = {
     max: { lat: -243.90579690735706, lng: 231.3421777614858 },
   },
   attachedTo: savage55.id as SavageZoneId,
-  actions: [
-    { id: 'minigame', label: 'Mini-jeu' },
-  ],
   minLevel: 60,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -68,22 +64,18 @@ export const village60: Zone = {
         mysteriousPotion,
       ],
     },
-    {
+    arena: {
       id: 'arena',
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -189.51209405836568, lng: 169.24977339340174 },
     },
-    {
+    minigame: {
       id: 'minigame',
       type: 'minigame',
       label: 'Mini-jeu',
       position: { lat: -96.4523891083971, lng: 134.07193303489305 },
       miniGame: 'connectfour',
     },
-  ],
-  arena: {
-    get arena() { return arena60 },
-    completed: false,
   },
 }

@@ -1,6 +1,5 @@
 import type { SavageZoneId, Zone } from '~/type'
 import { VILLAGE_OFFSET } from '~/constants/zone'
-import { arena80 } from '~/data/arenas'
 import {
   attackPotion,
   capturePotion,
@@ -41,10 +40,9 @@ export const village80: Zone = {
     max: { lat: -234.85861756057682, lng: 219.55322801716375 },
   },
   attachedTo: savage75.id as SavageZoneId,
-  actions: [],
   minLevel: 80,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -77,22 +75,18 @@ export const village80: Zone = {
         fabulousPotion,
       ],
     },
-    {
+    arena: {
       id: 'arena',
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -153.48079278373268, lng: 194.17516406616386 },
     },
-    {
+    minigame: {
       id: 'minigame',
       type: 'minigame',
       label: 'Mini-jeu',
       position: { lat: -199.50125361005428, lng: 142.2667046594498 },
       miniGame: 'shlagmind',
     },
-  ],
-  arena: {
-    get arena() { return arena80 },
-    completed: false,
   },
 }

@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`component RarityInfo.vue > renders rarity value with tooltip 1`] = `"<span data-v-d88abfd1="" class="relative inline-flex items-center outline-none"><div data-v-c07c8769="" class="text-grey-900 dark:text-grey-300 bg-blue-300 dark:bg-blue-800 aspect-square h-10 w-10 flex items-center justify-center rounded-full px-2 py-1">42</div><transition-stub data-v-d88abfd1="" name="tooltip-fade" appear="false" persisted="false" css="true"><!--v-if--></transition-stub></span>"`;

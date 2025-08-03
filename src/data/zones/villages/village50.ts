@@ -35,10 +35,9 @@ export const village50: Zone = {
     max: { lat: -240.1074661467385, lng: 227.54806801227295 },
   },
   attachedTo: savage45.id as SavageZoneId,
-  actions: [],
   minLevel: 50,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop du Village',
@@ -65,24 +64,24 @@ export const village50: Zone = {
         defibrillator,
       ],
     },
-    {
+    arena: {
       id: 'arena',
       type: 'arena',
       label: 'Arène des Flageolets',
       position: { lat: -164.06202154659638, lng: 156.93085810742366 },
     },
-    {
+    minigame: {
       id: 'minigame',
       type: 'minigame',
       label: 'Mini-jeu',
       position: { lat: -34.5505474676239, lng: 173.4937918691157 },
       miniGame: 'taquin',
     },
-    {
+    poulailler: {
       id: 'poulailler',
       type: 'poulailler',
       label: 'Poulailler',
       position: { lat: -128.86990141619194, lng: 127.53694175172706 },
     },
-  ],
+  },
 }
