@@ -95,6 +95,7 @@ const bottomBadgeColor = computed<BadgeColor>(() => {
     case 'zones':
       return 'danger'
     case 'inventory':
+      return 'primary'
     case 'dex':
     default:
       return 'info'
@@ -128,7 +129,7 @@ const bottomBadgeHandler = computed(() => {
           class="overflow-hidden"
           :is-locked="lockStore.isInventoryLocked"
           :badge="newItemCount"
-          badge-color="info"
+          badge-color="primary"
           :badge-click="usage.markAllUsed"
         >
           <template #icon>
