@@ -54,6 +54,7 @@ interface BaseZoneCommon {
 export interface SavageZone extends BaseZoneCommon {
   readonly type: 'sauvage'
   readonly maxLevel: number
+  /** Whether this savage zone features a king battle. Defaults to true. */
   readonly hasKing?: boolean
 }
 

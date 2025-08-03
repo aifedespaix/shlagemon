@@ -50,11 +50,13 @@ watch(() => zone.current.id, () => {
   activePoiId.value = null
 })
 
-const kingPoi = computed(() =>
-  (zone.current as VillageZone).pois.king,
+const hasKing = computed(() =>
+  zone.current.type === 'sauvage'
+    ? zone.current.hasKing !== false
+    : !!(zone.current as VillageZone).pois.king,
 )
 const currentKing = computed(() =>
-  kingPoi.value ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
+  hasKing.value ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
 )
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentArenaData = computed(() =>

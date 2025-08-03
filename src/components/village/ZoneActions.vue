@@ -13,14 +13,10 @@ const dialog = useDialogStore()
 const player = usePlayerStore()
 const { t } = useI18n()
 
-const kingPoi = computed(() =>
-  zone.current.type === 'village'
-    ? zone.current.pois.king
-    : undefined,
-)
 const hasKing = computed(() =>
   zone.current.type === 'sauvage'
-  || !!kingPoi.value,
+    ? zone.current.hasKing !== false
+    : !!zone.current.pois.king,
 )
 const arenaPoi = computed(() =>
   zone.current.type === 'village'

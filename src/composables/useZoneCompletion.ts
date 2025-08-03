@@ -27,7 +27,8 @@ export function useZoneCompletion(zone: Zone) {
   const kingDefeated = computed(() => {
     const hasKing
         = zone.type === 'sauvage'
-          || (zone.type === 'village' && zone.pois.king)
+          ? zone.hasKing !== false
+          : !!zone.pois.king
     return hasKing && progress.isKingDefeated(zone.id)
   })
 
