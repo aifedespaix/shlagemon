@@ -22,7 +22,7 @@ describe('zone store', () => {
 })
 
 describe('zone panel', () => {
-  it('renders actions', () => {
+  it('renders POIs', () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const zone = useZoneStore()
