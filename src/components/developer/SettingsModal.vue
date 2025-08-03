@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { getArenaByZoneId } from '~/data/arenas'
 import { allShlagemons } from '~/data/shlagemons'
 import { applyCurrentStats, applyStats, xpForLevel } from '~/utils/dexFactory'
 
@@ -89,10 +88,6 @@ function resetLevel() {
 }
 
 function completeArena(id: string) {
-  const arena = getArenaByZoneId(id)
-  if (!arena)
-    return
-  player.earnBadge(arena.id)
   progress.completeArena(id)
 }
 

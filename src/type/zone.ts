@@ -13,7 +13,6 @@ export type ArenaFactory = () => Arena
 
 export interface ZoneArena {
   readonly arena: Arena | ArenaFactory
-  completed: boolean
 }
 
 export interface Position {
