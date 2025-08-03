@@ -77,12 +77,17 @@ const titleClasses = computed(() => {
 
 const showBadge = computed(() => (props.badge ?? 0) > 0)
 
-function onTitleClick(e: MouseEvent) {
-  if (showBadge.value && props.badgeClick) {
-    e.stopPropagation()
-    props.badgeClick()
-  }
+function onTitleClick() {
   toggle()
+}
+
+/**
+ * Marks all panel content as seen when right-clicking the title.
+ * Uses context menu event to avoid toggling panel state.
+ */
+function onTitleContextMenu() {
+  if (showBadge.value)
+    props.badgeClick?.()
 }
 
 function clickPrevented(e: MouseEvent) {
@@ -96,7 +101,13 @@ function clickPrevented(e: MouseEvent) {
 
 <template>
   <div class="panel-wrapper" v-bind="$attrs" :class="wrapperClasses">
-    <div v-if="props.title" class="flex items-center justify-between p-2" :class="titleClasses" @click="onTitleClick">
+    <div
+      v-if="props.title"
+      class="flex items-center justify-between p-2"
+      :class="titleClasses"
+      @click="onTitleClick"
+      @contextmenu.prevent="onTitleContextMenu"
+    >
       <div class="flex items-center gap-1">
         <slot name="icon" />
         <span class="relative pr-4 font-bold">{{ props.title }}
