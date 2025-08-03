@@ -18,18 +18,22 @@ interface AlternateLink {
 export function useSeoHead() {
   const route = useRoute()
 
-  const canonicalUrl = computed(() => `${SITE_URL}${route.path}`)
+  const locale = computed(() => String(route.meta.locale))
+  const baseName = computed(() => String(route.name).replace(`${locale.value}-`, ''))
+  const entry = computed(() => localizedRoutes.find(r => r.name === baseName.value))
+
+  const canonicalUrl = computed(() => {
+    const path = entry.value?.paths[locale.value] ?? route.path
+    return `${SITE_URL}${path}`
+  })
 
   const alternateLinks = computed<AlternateLink[]>(() => {
-    const locale = String(route.meta.locale)
-    const baseName = String(route.name).replace(`${locale}-`, '')
-    const entry = localizedRoutes.find(r => r.name === baseName)
-    if (!entry)
+    if (!entry.value)
       return []
 
     return availableLocales
       .map((loc) => {
-        const path = entry.paths[loc]
+        const path = entry.value!.paths[loc]
         if (!path)
           return null
         return {

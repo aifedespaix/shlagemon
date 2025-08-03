@@ -19,7 +19,7 @@ import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
 
 function getAllLocalizedPaths(): string[] {
-  return localizedRoutes.flatMap(route => Object.values(route.paths))
+  return ['/', ...localizedRoutes.flatMap(route => Object.values(route.paths))]
 }
 
 export default defineConfig({
