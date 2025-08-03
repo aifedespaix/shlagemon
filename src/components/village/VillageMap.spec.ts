@@ -16,15 +16,15 @@ const baseVillage: VillageZone = {
   },
   actions: [],
   minLevel: 1,
-  pois: [
-    {
+  pois: {
+    shop: {
       id: 'shop',
       type: 'shop',
       label: 'Shop',
       position: { lat: 0, lng: 0 },
       items: [],
     },
-  ],
+  },
 }
 
 describe('village map', () => {
@@ -45,7 +45,7 @@ describe('village map', () => {
 
   it('updates markers when village changes', async () => {
     const wrapper = mount(VillageMap, { props: { village: baseVillage } })
-    const newVillage: VillageZone = { ...baseVillage, id: 'v2', pois: [] }
+    const newVillage: VillageZone = { ...baseVillage, id: 'v2', pois: {} }
     await wrapper.setProps({ village: newVillage })
     const markers = wrapper.element.querySelectorAll('.leaflet-marker-icon')
     expect(markers.length).toBe(0)

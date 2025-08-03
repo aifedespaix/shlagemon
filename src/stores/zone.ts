@@ -3,7 +3,6 @@ import type { SavageZoneId, Zone, ZoneId } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
-import { useZoneProgressStore } from './zoneProgress'
 
 export const useZoneStore = defineStore('zone', () => {
   const zones = ref<Zone[]>(zonesData)
@@ -41,11 +40,6 @@ export const useZoneStore = defineStore('zone', () => {
   function getZoneForLevel(level: number): Zone | undefined {
     const candidates = xpZones.value.filter(z => level >= z.minLevel)
     return candidates[candidates.length - 1]
-  }
-
-  function completeArena(id: string) {
-    const progress = useZoneProgressStore()
-    progress.completeArena(id)
   }
 
   const rewardMultiplier = computed(() => {
@@ -88,7 +82,6 @@ export const useZoneStore = defineStore('zone', () => {
     getKing,
     getZoneRank,
     getZoneForLevel,
-    completeArena,
     reset,
   }
 }, {

@@ -15,7 +15,6 @@ const dev = useDeveloperStore()
 const game = useGameStore()
 const dex = useShlagedexStore()
 const player = usePlayerStore()
-const zone = useZoneStore()
 const progress = useZoneProgressStore()
 
 function addMoney() {
@@ -94,7 +93,7 @@ function completeArena(id: string) {
   if (!arena)
     return
   player.earnBadge(arena.id)
-  zone.completeArena(id)
+  progress.completeArena(id)
 }
 
 function resetArenas() {
