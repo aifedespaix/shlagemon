@@ -20,7 +20,7 @@ function collectBadge() {
   player.earnBadge(arena.arenaData.id)
   badgeBox.addBadge(arena.arenaData.badge)
   useZoneProgressStore().completeArena(zone.current.id)
-  toast.success(`Badge ${arena.arenaData.badge.name} obtenu !`)
+  toast.success(t('components.dialog.ArenaVictoryDialog.toast', { name: t(arena.arenaData.badge.name) }))
   arena.reset()
   panel.showVillage()
   exitTrack.value = getZoneTrack(zone.current.id, zone.current.type) ?? preparationMusic

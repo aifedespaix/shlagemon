@@ -7,6 +7,23 @@ export const useBadgeBoxStore = defineStore('badgeBox', () => {
   const badges = ref<ArenaBadge[]>([])
   const isModalOpen = ref(false)
 
+  const LEGACY_BADGE_IDS: Record<string, ArenaBadge['id']> = {
+    'badge-merdant': 'couillasse',
+    'badge-sock': 'sock',
+    'badge-mystic-onion': 'mystic-onion',
+    'badge-buttered-toast': 'buttered-toast',
+  }
+
+  function normalizeBadges(): void {
+    badges.value = badges.value.map(b => ({
+      id: LEGACY_BADGE_IDS[b.id] ?? b.id,
+      name: b.name,
+      levelCap: b.levelCap,
+    }))
+  }
+
+  normalizeBadges()
+
   function open() {
     isModalOpen.value = true
   }

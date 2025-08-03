@@ -1,10 +1,12 @@
 fr:
+  toast: '{name} obtenu !'
   steps:
     step1:
       text: Félicitations ! Tu as triomphé de l'arène.
       responses:
         collect: Récupérer le badge
 en:
+  toast: '{name} obtained!'
   steps:
     step1:
       text: Congratulations! You triumphed at the arena.

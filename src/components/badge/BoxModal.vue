@@ -18,10 +18,14 @@ const { t } = useI18n()
         >
           <template #left>
             <div class="flex items-center gap-1">
-              <div v-if="badge.image" class="h-6 w-6">
-                <img :src="badge.image" :alt="badge.name" class="h-full w-full object-contain">
+              <div class="h-6 w-6">
+                <img
+                  :src="`/icons/badges/${badge.id}.webp`"
+                  :alt="t(badge.name)"
+                  class="h-full w-full object-contain"
+                >
               </div>
-              <span class="text-sm">{{ badge.name }}</span>
+              <span class="text-sm">{{ t(badge.name) }}</span>
             </div>
           </template>
           <template #right>
