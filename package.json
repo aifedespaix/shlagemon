@@ -24,11 +24,11 @@
     "sfx": "py scripts/clean-meta.py"
   },
   "dependencies": {
-    "@floating-ui/dom": "catalog:frontend",
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
     "crypto-js": "catalog:frontend",
+    "floating-vue": "catalog:frontend",
     "howler": "catalog:frontend",
     "leaflet": "catalog:frontend",
     "lz-string": "catalog:frontend",

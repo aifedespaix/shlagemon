@@ -50,11 +50,11 @@ catalogs:
     yaml: ^2.8.0
 
   frontend:
-    '@floating-ui/dom': ^1.7.2
     '@unhead/vue': ^2.0.12
     '@unocss/reset': ^66.3.3
     '@vueuse/core': ^13.5.0
     crypto-js: ^4.2.0
+    floating-vue: ^5.2.2
     howler: ^2.2.4
     leaflet: ^2.0.0-alpha
     lz-string: ^1.5.0
