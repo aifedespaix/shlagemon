@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is inspired by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.10] - 2025-08-03
+
+### Fixed
+
+- Inventory panel badge color now matches inventory tab badge.
+
 ## [0.3.9] - 2025-08-02
 
 ### Changed
