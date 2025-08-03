@@ -1,20 +1,37 @@
 import type { Ball, DexShlagemon } from '~/type'
 
-export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
+/**
+ * Computes the capture chance for a given enemy and ball without applying randomness.
+ *
+ * @param enemy - The enemy to try to capture.
+ * @param ball - The ball used for the capture attempt.
+ * @returns The capture probability expressed as a percentage between 0 and 100.
+ */
+export function getCaptureChance(enemy: DexShlagemon, ball: Ball): number {
   const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
   const levelBonus = ballLevelMultiplier(ball, enemy.lvl)
   if (levelBonus <= 0)
-    return false
+    return 0
   const rarityMod = rarityModifier(enemy.rarity)
   const levelPenalty = levelDifficultyMultiplier(enemy.lvl)
   const dex = useShlagedexStore()
   const captureMod = 1 + dex.captureBonusPercent / 100
-  const chance = Math.min(
+  return Math.min(
     100,
     hpChance * levelBonus * rarityMod * captureMod * levelPenalty,
   )
+}
+
+export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
+  const chance = getCaptureChance(enemy, ball)
   const dev = useDeveloperStore()
   if (dev.debug) {
+    const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
+    const levelBonus = ballLevelMultiplier(ball, enemy.lvl)
+    const rarityMod = rarityModifier(enemy.rarity)
+    const levelPenalty = levelDifficultyMultiplier(enemy.lvl)
+    const dex = useShlagedexStore()
+    const captureMod = 1 + dex.captureBonusPercent / 100
     console.warn(
       `Capture chance: ${chance.toFixed(2)}%`,
       { level: enemy.lvl, hpChance, levelBonus, rarityMod, captureMod, levelPenalty },

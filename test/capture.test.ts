@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { balls } from '../src/data/items/shlageball'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
-import { captureChanceFromHp, tryCapture } from '../src/utils/capture'
+import { captureChanceFromHp, getCaptureChance, tryCapture } from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 
 describe('capture mechanics', () => {
@@ -37,11 +37,30 @@ describe('capture mechanics', () => {
     expect(tryCapture(mon, balls[2])).toBe(false)
   })
 
-  it('level 33 halves capture chance', () => {
-    const mon = createDexShlagemon(carapouffe, false, 33)
+  it('higher levels reduce capture chance', () => {
+    const low = createDexShlagemon(carapouffe, false, 10)
+    const high = createDexShlagemon(carapouffe, false, 80)
+    low.hp = high.hp = 100
+    low.hpCurrent = high.hpCurrent = 50
+    const chanceLow = getCaptureChance(low, balls[0])
+    const chanceHigh = getCaptureChance(high, balls[0])
+    expect(chanceHigh).toBeLessThan(chanceLow)
+  })
+
+  it('computes zero capture chance when ball cannot capture', () => {
+    const mon = createDexShlagemon(carapouffe, false, 80)
     mon.hp = 100
     mon.hpCurrent = 1
-    vi.spyOn(Math, 'random').mockReturnValue(0.6)
-    expect(tryCapture(mon, balls[2])).toBe(false)
+    expect(getCaptureChance(mon, balls[0])).toBe(0)
+  })
+
+  it('stronger balls increase capture chance', () => {
+    const mon = createDexShlagemon(carapouffe, false, 20)
+    mon.hp = 100
+    mon.hpCurrent = 70
+    const chanceSuper = getCaptureChance(mon, balls[1])
+    const chanceHyper = getCaptureChance(mon, balls[2])
+    expect(chanceSuper).toBeGreaterThan(0)
+    expect(chanceHyper).toBeGreaterThan(chanceSuper)
   })
 })
