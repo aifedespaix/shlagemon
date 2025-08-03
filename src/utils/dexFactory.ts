@@ -2,6 +2,7 @@ import type { Stats } from '~/type'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { specialityBonus } from '~/constants/speciality'
 import marginal from '~/data/shlagemons/50-55/marginal'
+import { generateUuid } from './uuid'
 
 export const baseStats: Stats = {
   hp: 250,
@@ -63,7 +64,7 @@ export function createDexShlagemon(
     rarityFollowsLevel = true
   }
   const mon: DexShlagemon = {
-    id: crypto.randomUUID(),
+    id: generateUuid(),
     base,
     baseStats: {
       hp: statWithRarity(baseStats.hp, rarity),
