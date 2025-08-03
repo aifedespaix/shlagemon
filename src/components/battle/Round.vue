@@ -35,10 +35,7 @@ const nextPlayer = ref<DexShlagemon | null>(null)
 const displayedEnemy = ref(props.enemy)
 const nextEnemy = ref<DexShlagemon | null>(null)
 
-const panel = useMainPanelStore()
-const showOwnedBall = computed(() =>
-  zone.current.type === 'sauvage' && panel.current === 'battle',
-)
+const showOwnedBall = computed(() => zone.current.type === 'sauvage')
 
 const enemyOwned = computed<boolean>(() =>
   displayedEnemy.value ? dex.capturedBaseIds.has(displayedEnemy.value.base.id) : false,
