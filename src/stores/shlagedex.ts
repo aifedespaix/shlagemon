@@ -15,6 +15,7 @@ import {
   xpRewardForLevel,
 } from '~/utils/dexFactory'
 import { shlagedexSerializer } from '~/utils/shlagedex-serialize'
+import { generateUuid } from '~/utils/uuid'
 
 export const useShlagedexStore = defineStore('shlagedex', () => {
   const shlagemons = ref<DexShlagemon[]>([])
@@ -624,7 +625,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
     const captured: DexShlagemon = {
       ...enemy,
-      id: crypto.randomUUID(),
+      id: generateUuid(),
       hpCurrent: enemy.hp,
       captureDate: new Date().toISOString(),
       captureCount: 1,
