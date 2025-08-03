@@ -13,9 +13,14 @@ const dialog = useDialogStore()
 const player = usePlayerStore()
 const { t } = useI18n()
 
+const kingPoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.king
+    : undefined,
+)
 const hasKing = computed(() =>
   zone.current.type === 'sauvage'
-  || (zone.current.type === 'village' && 'king' in zone.current.pois),
+  || !!kingPoi.value,
 )
 const arenaPoi = computed(() =>
   zone.current.type === 'village'
@@ -33,10 +38,12 @@ const miniGamePoi = computed(() =>
     ? zone.current.pois.minigame
     : undefined,
 )
-const hasPoulailler = computed(() =>
+const poulaillerPoi = computed(() =>
   zone.current.type === 'village'
-  && 'poulailler' in zone.current.pois,
+    ? zone.current.pois.poulailler
+    : undefined,
 )
+const hasPoulailler = computed(() => !!poulaillerPoi.value)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentArenaData = computed(() =>
   zone.current.type === 'village' ? getArenaByZoneId(zone.current.id) : undefined,
