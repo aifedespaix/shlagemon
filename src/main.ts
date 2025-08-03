@@ -9,6 +9,7 @@ import './styles/main.css'
 import './styles/battle.css'
 import 'uno.css'
 import 'vue3-toastify/dist/index.css'
+import 'floating-vue/dist/style.css'
 
 // https://github.com/antfu/vite-ssg
 export const createApp = ViteSSG(
