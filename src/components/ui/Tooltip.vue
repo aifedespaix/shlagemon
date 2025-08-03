@@ -27,11 +27,7 @@ const props = defineProps({
       <slot />
     </span>
     <template #popper>
-      <span
-        class="pointer-events-none z-50 rounded-xl bg-neutral-900/90 px-2 py-1 text-xs text-neutral-50 font-medium shadow-lg dark:bg-neutral-50 dark:text-neutral-900"
-      >
-        {{ props.text }}
-      </span>
+      {{ props.text }}
     </template>
   </FloatingTooltip>
 </template>

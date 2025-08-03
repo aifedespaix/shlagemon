@@ -24,6 +24,7 @@
     "sfx": "py scripts/clean-meta.py"
   },
   "dependencies": {
+    "@headlessui/vue": "catalog:frontend",
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",

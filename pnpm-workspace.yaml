@@ -50,6 +50,7 @@ catalogs:
     yaml: ^2.8.0
 
   frontend:
+    '@headlessui/vue': ^1.7.23
     '@unhead/vue': ^2.0.12
     '@unocss/reset': ^66.3.3
     '@vueuse/core': ^13.5.0
