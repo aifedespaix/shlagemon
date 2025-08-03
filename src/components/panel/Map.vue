@@ -6,8 +6,9 @@ import { onMounted, watch } from 'vue'
 
 const zone = useZoneStore()
 const mobileTab = useMobileTabStore()
-const { currentZoneId } = storeToRefs(zone)
+const { currentZoneId, current } = storeToRefs(zone)
 const { isMobile } = storeToRefs(useUIStore())
+const { showVillagesOnMap } = storeToRefs(useInterfaceStore())
 const mapRef = ref<InstanceType<typeof LeafletMap> | null>(null)
 
 function onSelect(id: ZoneId) {
@@ -25,8 +26,14 @@ onMounted(() => {
 
 watch(currentZoneId, (id, oldId) => {
   mapRef.value?.selectZone(id)
-  if (isMobile.value && id !== oldId)
+  if (
+    isMobile.value
+    && id !== oldId
+    && showVillagesOnMap.value
+    && current.value.type === 'village'
+  ) {
     mobileTab.set('game')
+  }
 })
 </script>
 
