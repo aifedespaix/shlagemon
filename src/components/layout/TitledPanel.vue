@@ -26,7 +26,7 @@ const emit = defineEmits(['exit'])
     <div class="flex flex-1 flex-col gap-2 overflow-hidden">
       <slot />
     </div>
-    <div v-if="showFooter" class="flex flex-wrap justify-end gap-2 bg-white dark:bg-gray-900">
+    <div v-if="showFooter" class="flex flex-wrap justify-end gap-1 bg-white dark:bg-gray-900">
       <slot name="footer">
         <UiButton
           type="danger" variant="outline" class="flex gap-2 text-xs"

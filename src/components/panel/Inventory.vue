@@ -223,7 +223,7 @@ function onUse(item: Item) {
 </script>
 
 <template>
-  <section v-if="inventory.list.length" class="h-full w-full flex flex-col gap-2 overflow-hidden">
+  <section v-if="inventory.list.length" class="h-full w-full flex flex-col gap-1 overflow-hidden">
     <div class="flex flex-wrap gap-1 px-2 pt-1">
       <UiSortControls
         v-model:sort-by="filter.sortBy"

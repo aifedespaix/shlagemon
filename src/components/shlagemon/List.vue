@@ -151,7 +151,7 @@ function changeActive(mon: DexShlagemon) {
   <LayoutScrollablePanel>
     <template #header>
       <div class="sticky top-0 z-10 w-full flex flex-col gap-1 bg-white/70 backdrop-blur-lg dark:bg-gray-900/70">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1">
           <UiSortControls
             v-model:sort-by="filter.sortBy"
             v-model:sort-asc="filter.sortAsc"
@@ -167,6 +167,14 @@ function changeActive(mon: DexShlagemon) {
 
     <template #content>
       <TransitionGroup name="fade-list" tag="div" class="grid grid-cols-1 gap-1">
+        <div class="mb-1">
+          <UiInfo
+            color="info"
+            class="col-span-2 row-start-3"
+          >
+            Vous avez xxx nouveaux Shlagémons
+          </UiInfo>
+        </div>
         <ShlagemonListItem
           v-for="mon in displayedMons"
           :key="mon.id"
