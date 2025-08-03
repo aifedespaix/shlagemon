@@ -18,7 +18,8 @@ describe('battle round enemy owned indicator', () => {
     const zone = useZoneStore()
     const panel = useMainPanelStore()
     zone.setZone('plaine-kekette')
-    panel.current = 'battle'
+    await nextTick()
+    panel.current = 'trainerBattle'
     const captured = dex.createShlagemon(carapouffe)
     dex.addShlagemon(captured)
     const player = dex.createShlagemon(carapouffe)
