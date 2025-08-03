@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import type { InfoColor } from '~/type/info'
 
-const props = withDefaults(defineProps<{ color?: InfoColor }>(), { color: 'info' })
+const props = withDefaults(
+  defineProps<{ color?: InfoColor, okButton?: boolean }>(),
+  { color: 'info', okButton: false },
+)
+
+const emit = defineEmits<{ (e: 'ok'): void }>()
+
+const { t } = useI18n()
 
 const colorClasses = computed(() => {
   const map: Record<InfoColor, string> = {
@@ -17,6 +24,15 @@ const colorClasses = computed(() => {
 
 <template>
   <div class="border rounded p-2 text-sm" :class="colorClasses">
-    <slot />
+    <div class="flex items-center justify-between gap-2">
+      <slot />
+      <UiButton
+        v-if="props.okButton"
+        size="sm"
+        @click="emit('ok')"
+      >
+        {{ t('components.ui.Info.ok') }}
+      </UiButton>
+    </div>
   </div>
 </template>

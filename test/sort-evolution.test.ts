@@ -46,7 +46,7 @@ describe('shlagedex sort evolution', () => {
       },
     })
 
-    const items = wrapper.findAll('div.relative')
+    const items = wrapper.findAll('button.relative')
     expect(items.length).toBe(4)
     expect(items[0].text()).toContain('Pikachiant')
     expect(items[1].text()).toContain('Carapouffe')
