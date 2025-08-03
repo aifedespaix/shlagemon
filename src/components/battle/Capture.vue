@@ -114,24 +114,28 @@ defineExpose({ open })
 
 <template>
   <div>
-    <UiTooltip
-      :text="captureButtonTooltip"
-      is-button
-      class="absolute right-50% top-15 flex flex-col translate-x-1/2 items-center gap-2 text-xs"
-      :class="captureButtonDisabled ? 'cursor-not-allowed saturate-0 pointer-events-none' : 'cursor-pointer'"
+    <div
+      class="absolute right-50% top-15 translate-x-1/2"
       sm="top-13"
-      @click="!captureButtonDisabled && open()"
-      @keydown.enter.prevent="!captureButtonDisabled && open()"
-      @keydown.space.prevent="!captureButtonDisabled && open()"
     >
-      <UiImageByBackground
-        src="/items/shlageball/shlageball.webp"
-        alt="capture"
-        class="h-8 w-8 md:h-10 md:w-10"
-        :class="captureAnimationClass"
-        :style="{ filter: `hue-rotate(${currentBallHue})` }"
-      />
-    </UiTooltip>
+      <UiTooltip
+        :text="captureButtonTooltip"
+        as-button
+        class="flex flex-col items-center gap-2 text-xs"
+        :class="captureButtonDisabled ? 'cursor-not-allowed saturate-0 pointer-events-none' : 'cursor-pointer'"
+        @click="!captureButtonDisabled && open()"
+        @keydown.enter.prevent="!captureButtonDisabled && open()"
+        @keydown.space.prevent="!captureButtonDisabled && open()"
+      >
+        <UiImageByBackground
+          src="/items/shlageball/shlageball.webp"
+          alt="capture"
+          class="h-8 w-8 md:h-10 md:w-10"
+          :class="captureAnimationClass"
+          :style="{ filter: `hue-rotate(${currentBallHue})` }"
+        />
+      </UiTooltip>
+    </div>
     <div
       v-if="showCapture && enemy"
       class="absolute inset-0 z-20 flex items-center justify-center bg-black/50 dark:bg-black/70"
