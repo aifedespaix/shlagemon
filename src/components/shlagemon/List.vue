@@ -26,6 +26,7 @@ const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 const { t } = useI18n()
 const newCount = computed(() => dex.newCount)
+const panelRef = ref<{ scrollToTop: () => void } | null>(null)
 
 // Options de tri
 const sortOptions = [
@@ -147,10 +148,17 @@ function changeActive(mon: DexShlagemon) {
     return
   dex.setActiveShlagemon(mon)
 }
+
+watch(
+  () => dex.activeShlagemon?.id,
+  () => {
+    nextTick(() => panelRef.value?.scrollToTop())
+  },
+)
 </script>
 
 <template>
-  <LayoutScrollablePanel>
+  <LayoutScrollablePanel ref="panelRef">
     <template #header>
       <div class="sticky top-0 z-10 w-full flex flex-col gap-1 bg-white/70 backdrop-blur-lg dark:bg-gray-900/70">
         <div class="flex items-center gap-1">
