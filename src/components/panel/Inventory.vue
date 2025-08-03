@@ -250,7 +250,7 @@ function onUse(item: Item) {
       v-model="activeTab"
       is-small
       :tabs="tabs"
-      class="flex-1"
+      class="mt-2 flex-1"
       icons-only
     />
     <div
