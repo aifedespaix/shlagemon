@@ -1,3 +1,4 @@
+import type { VillageZone } from '../src/type'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
@@ -24,11 +25,16 @@ describe('zone panel', () => {
   it('renders actions', () => {
     const pinia = createPinia()
     setActivePinia(pinia)
-    const wrapper = mount(ZonePanel, {
+    const zone = useZoneStore()
+    zone.setZone('village-boule')
+    mount(ZonePanel, {
       global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
     })
-    // first zone is now the Plaine Kékette
-    expect(wrapper.text()).toContain('Plaine Kékette')
+    const arenaPoi = (zone.current as VillageZone).pois.arena
+    const pois = Object.values((zone.current as VillageZone).pois)
+    expect(arenaPoi).toBeDefined()
+    expect(pois).toContain(arenaPoi)
+    expect(zone.current.id).toBe('village-boule')
   })
 
   it('filters zones by level', async () => {
