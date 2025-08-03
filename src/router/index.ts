@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
-import { availableLocales } from '~/constants/locales'
+import { availableLocales, defaultLocale } from '~/constants/locales'
 import { localizedRoutes } from './localizedRoutes'
 
 /**
@@ -16,7 +16,7 @@ export function buildLocalizedRoutes(): RouteRecordRaw[] {
       const path = route.paths[locale]
       if (!path)
         continue
-      records.push({
+      const record: RouteRecordRaw = {
         path,
         name: `${locale}-${route.name}`,
         component: route.component,
@@ -25,7 +25,10 @@ export function buildLocalizedRoutes(): RouteRecordRaw[] {
           i18nKey: route.i18nKey,
           layout: route.layout,
         },
-      })
+      }
+      if (import.meta.env.SSG && locale === defaultLocale && route.name === 'home')
+        record.alias = '/'
+      records.push(record)
     }
   }
 
@@ -33,11 +36,15 @@ export function buildLocalizedRoutes(): RouteRecordRaw[] {
 }
 
 export const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'root',
-    component: () => import('~/pages/root.vue'),
-  },
+  ...(!import.meta.env.SSG
+    ? [
+        {
+          path: '/',
+          name: 'root',
+          component: () => import('~/pages/root.vue'),
+        },
+      ]
+    : []),
   ...buildLocalizedRoutes(),
 ]
 
