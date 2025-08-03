@@ -5,7 +5,7 @@
   "scripts": {
     "build": "vite-ssg build",
     "i18n": "node scripts/merge-i18n.cjs",
-    "dev": "vite --port 3333 --open",
+    "dev": "vite --port 3333 --open --host",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",
