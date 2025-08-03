@@ -3,6 +3,12 @@
 Toutes les modifications importantes de ce projet seront documentées dans ce fichier.
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+## [0.3.10] - 2025-08-03
+
+### Corrigé
+
+- La couleur du badge du panneau d'inventaire correspond désormais à celle des onglets de l'inventaire.
+
 ## [0.3.9] - 2025-08-02
 
 ### Modifié
