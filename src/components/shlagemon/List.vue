@@ -24,6 +24,8 @@ const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()
 const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
+const { t } = useI18n()
+const newCount = computed(() => dex.newCount)
 
 // Options de tri
 const sortOptions = [
@@ -167,12 +169,14 @@ function changeActive(mon: DexShlagemon) {
 
     <template #content>
       <TransitionGroup name="fade-list" tag="div" class="grid grid-cols-1 gap-1">
-        <div class="mb-1">
+        <div v-if="newCount > 0" class="mb-1">
           <UiInfo
             color="info"
             class="col-span-2 row-start-3"
+            ok-button
+            @ok="dex.markAllSeen"
           >
-            Vous avez xxx nouveaux Shlagémons
+            {{ t('components.shlagemon.List.new', newCount) }}
           </UiInfo>
         </div>
         <ShlagemonListItem

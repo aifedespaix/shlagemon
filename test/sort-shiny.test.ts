@@ -31,7 +31,7 @@ describe('shlagedex sort', () => {
       },
     })
 
-    const items = wrapper.findAll('div.relative')
+    const items = wrapper.findAll('button.relative')
     expect(items.length).toBe(2)
     // The first item is the active Shlagemon
     expect(items[1].text()).toContain('Sac de Pâtes')
