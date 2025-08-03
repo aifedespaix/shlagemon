@@ -60,10 +60,9 @@ export const arena20: Arena = createArena({
   character: profMerdant,
   level: 21,
   badge: {
-    id: 'badge-merdant',
-    name: 'Badge Couillasse',
+    id: 'couillasse',
+    name: 'data.arenas.arena20.badge.name',
     levelCap: 39,
-    image: '',
   },
 })
 
@@ -73,10 +72,9 @@ export const arena40: Arena = createArena({
   character: profMerdant,
   level: 41,
   badge: {
-    id: 'badge-sock',
-    name: 'Badge Chaussette',
+    id: 'sock',
+    name: 'data.arenas.arena40.badge.name',
     levelCap: 59,
-    image: '',
   },
   requiredBadgeId: 'arena20',
 })
@@ -87,10 +85,9 @@ export const arena60: Arena = createArena({
   character: profMerdant,
   level: 61,
   badge: {
-    id: 'badge-mystic-onion',
-    name: 'Badge Oignon Mystique',
+    id: 'mystic-onion',
+    name: 'data.arenas.arena60.badge.name',
     levelCap: 79,
-    image: '',
   },
   requiredBadgeId: 'arena40',
 })
@@ -101,10 +98,9 @@ export const arena80: Arena = createArena({
   character: profMerdant,
   level: 81,
   badge: {
-    id: 'badge-buttered-toast',
-    name: 'Badge Tartine Beurrée',
+    id: 'buttered-toast',
+    name: 'data.arenas.arena80.badge.name',
     levelCap: 99,
-    image: '',
   },
   requiredBadgeId: 'arena60',
 })

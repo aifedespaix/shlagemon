@@ -1,0 +1,26 @@
+fr:
+  arena20:
+    badge:
+      name: Badge Couillasse
+  arena40:
+    badge:
+      name: Badge Chaussette
+  arena60:
+    badge:
+      name: Badge Oignon Mystique
+  arena80:
+    badge:
+      name: Badge Tartine Beurrée
+en:
+  arena20:
+    badge:
+      name: Couillasse Badge
+  arena40:
+    badge:
+      name: Sock Badge
+  arena60:
+    badge:
+      name: Mystic Onion Badge
+  arena80:
+    badge:
+      name: Buttered Toast Badge
