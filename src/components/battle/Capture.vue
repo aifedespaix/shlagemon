@@ -2,7 +2,7 @@
 import type { DexShlagemon } from '~/type'
 import { balls } from '~/data/items/shlageball'
 import { ballHues } from '~/utils/ball'
-import { tryCapture } from '~/utils/capture'
+import { getCaptureChance, tryCapture } from '~/utils/capture'
 
 const props = defineProps<{ enemy: DexShlagemon | null, enemyHp: number, playerHp: number, stopBattle: () => void }>()
 const emit = defineEmits<{ (e: 'finished', success: boolean): void }>()
@@ -25,6 +25,24 @@ const captureCooldown = ref(false)
 
 const currentBallHue = computed(() => ballStore.current ? ballHues[ballStore.current] : '0deg')
 const currentBallCount = computed(() => ballStore.current ? inventory.items[ballStore.current] ?? 0 : 0)
+
+const captureChance = computed(() => {
+  const id = ballStore.current
+  if (!props.enemy || !id)
+    return 0
+  const ball = balls.find(b => b.id === id)
+  if (!ball)
+    return 0
+  return getCaptureChance(props.enemy, ball)
+})
+
+const captureAnimationClass = computed(() => {
+  if (captureChance.value <= 0)
+    return 'opacity-50 discourage'
+  if (captureChance.value > 50)
+    return 'animate-bounce'
+  return ''
+})
 
 const captureButtonDisabled = computed(() =>
   captureCooldown.value
@@ -96,25 +114,24 @@ defineExpose({ open })
 
 <template>
   <div>
-    <UiButton
-      class="absolute right-50% top-15 h-16 w-16 aspect-square flex flex-col translate-x-1/2 cursor-pointer items-center gap-2 text-xs"
-      circle
-      variant="outline"
-      :class="{ ' cursor-not-allowed saturate-0': captureButtonDisabled }"
-      :disabled="captureButtonDisabled"
-      @click="open"
-      sm="top-13 h-20 w-20"
+    <UiTooltip
+      :text="captureButtonTooltip"
+      is-button
+      class="absolute right-50% top-15 flex flex-col translate-x-1/2 items-center gap-2 text-xs"
+      :class="captureButtonDisabled ? 'cursor-not-allowed saturate-0 pointer-events-none' : 'cursor-pointer'"
+      sm="top-13"
+      @click="!captureButtonDisabled && open()"
+      @keydown.enter.prevent="!captureButtonDisabled && open()"
+      @keydown.space.prevent="!captureButtonDisabled && open()"
     >
-      <UiTooltip :text="captureButtonTooltip" is-button>
-        <UiImageByBackground
-          src="/items/shlageball/shlageball.webp"
-          alt="capture"
-          class="h-8 w-8"
-          :style="{ filter: `hue-rotate(${currentBallHue})` }"
-          md="h-10 w-10"
-        />
-      </UiTooltip>
-    </UiButton>
+      <UiImageByBackground
+        src="/items/shlageball/shlageball.webp"
+        alt="capture"
+        class="h-8 w-8 md:h-10 md:w-10"
+        :class="captureAnimationClass"
+        :style="{ filter: `hue-rotate(${currentBallHue})` }"
+      />
+    </UiTooltip>
     <div
       v-if="showCapture && enemy"
       class="absolute inset-0 z-20 flex items-center justify-center bg-black/50 dark:bg-black/70"
@@ -173,6 +190,19 @@ defineExpose({ open })
   }
   75% {
     transform: translateX(-4px);
+  }
+}
+
+.discourage {
+  animation: discourage 1s ease-in-out infinite;
+}
+@keyframes discourage {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
   }
 }
 </style>
