@@ -42,5 +42,4 @@ export const village10: Zone = {
       ],
     },
   ],
-  actions: [],
 }

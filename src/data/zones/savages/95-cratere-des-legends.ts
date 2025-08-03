@@ -5,7 +5,6 @@ export const savage95: Zone = {
   name: 'Cratère des Légends',
   type: 'sauvage',
   position: { lat: -209.1195616434194, lng: 87.64014121687441 },
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/95-99/*.ts',
     { eager: true },

@@ -3,14 +3,11 @@ import type { Item } from './item'
 import type { MiniGameId } from './minigame'
 import type { BaseShlagemon } from './shlagemon'
 
-export type ZoneType = 'village' | 'grotte' | 'sauvage'
+export const ZONE_TYPES = ['village', 'sauvage'] as const
+export type ZoneType = typeof ZONE_TYPES[number]
 
-export type VillageType = 'basic' | 'super' | 'hyper'
-
-export interface ZoneAction {
-  id: string
-  label: string
-}
+export const VILLAGE_TYPES = ['basic', 'super', 'hyper'] as const
+export type VillageType = typeof VILLAGE_TYPES[number]
 
 export type ArenaFactory = () => Arena
 
@@ -33,20 +30,41 @@ export interface VillagePOI {
   readonly items?: Item[]
   /** Identifier of the mini-game associated with the POI. */
   readonly miniGame?: MiniGameId
+  /** Arena data when the POI type is `arena`. */
+  readonly arena?: ZoneArena
 }
 
-interface BaseZone {
-  id: ZoneId
-  position: Position
-  name: string
-  type: ZoneType
-  actions: ZoneAction[]
-  minLevel: number
-  shlagemons?: BaseShlagemon[]
-  image?: string
-  hasKing?: boolean
-  completionAchievement?: string
-  arena?: ZoneArena
+export type POIsById = Record<string, VillagePOI>
+export type POIsByType = Record<string, VillagePOI[]>
+
+/**
+ * Base properties shared by every zone.
+ */
+interface BaseZoneCommon {
+  readonly id: ZoneId
+  readonly position: Position
+  readonly name: string
+  readonly type: ZoneType
+  readonly minLevel: number
+  readonly shlagemons?: BaseShlagemon[]
+  readonly completionAchievement?: string
+}
+
+/** Zone configuration for savage areas. */
+export interface SavageZone extends BaseZoneCommon {
+  readonly type: 'sauvage'
+  readonly maxLevel: number
+  readonly hasKing?: boolean
+}
+
+/** Zone configuration for villages. */
+export interface VillageZone extends BaseZoneCommon {
+  readonly type: 'village'
+  readonly villageType: VillageType
+  readonly map: ZoneMap
+  readonly pois: readonly VillagePOI[]
+  /** Attached savage zone identifier, when applicable. */
+  readonly attachedTo?: SavageZoneId
 }
 
 export interface ZoneMap {
@@ -58,37 +76,8 @@ export interface ZoneMap {
   readonly max: Position
 }
 
-// Variante spécifique pour les zones sauvages
-export interface SavageZone extends BaseZone {
-  type: 'sauvage'
-  maxLevel: number // requis
-}
-
-// Variante générique pour toutes les autres zones
-interface BaseNonSavageZone extends BaseZone {
-  type: Exclude<ZoneType, 'sauvage'>
-  maxLevel?: undefined // interdit explicitement (ou facultatif si tu préfères)
-  /** Zone sauvage à laquelle cette zone est reliée */
-  attachedTo?: SavageZoneId
-}
-
-export interface VillageZone extends BaseNonSavageZone {
-  type: 'village'
-  villageType: VillageType
-  /** Points of interest displayed on the village map. */
-  readonly pois: readonly VillagePOI[]
-  /** Map configuration including center and bounds. */
-  readonly map: ZoneMap
-}
-
-interface NonVillageZone extends BaseNonSavageZone {
-  type: Exclude<ZoneType, 'sauvage' | 'village'>
-}
-
-type NonSavageZone = VillageZone | NonVillageZone
-
-// Union finale
-export type Zone = SavageZone | NonSavageZone
+/** Union of all zone variants. */
+export type Zone = SavageZone | VillageZone
 
 export type ZoneId = SavageZoneId | VillageZoneId
 

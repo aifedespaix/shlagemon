@@ -34,7 +34,6 @@ export const village40: Zone = {
     max: { lat: -180.3130616319912, lng: 218.6204041725481 },
   },
   attachedTo: savage35.id as SavageZoneId,
-  actions: [],
   minLevel: 40,
   pois: [
     {
@@ -67,6 +66,10 @@ export const village40: Zone = {
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -92.54040358702598, lng: 106.11098650533404 },
+      arena: {
+        get arena() { return arena40 },
+        completed: false,
+      },
     },
     {
       id: 'minigame',
@@ -76,8 +79,4 @@ export const village40: Zone = {
       miniGame: 'battleship',
     },
   ],
-  arena: {
-    get arena() { return arena40 },
-    completed: false,
-  },
 }

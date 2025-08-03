@@ -44,8 +44,11 @@ export const useZoneStore = defineStore('zone', () => {
 
   function completeArena(id: string) {
     const z = zones.value.find(z => z.id === id)
-    if (z?.arena)
-      z.arena.completed = true
+    if (z?.type === 'village') {
+      const poi = z.pois.find(p => p.type === 'arena')
+      if (poi?.arena)
+        poi.arena.completed = true
+    }
   }
 
   const rewardMultiplier = computed(() => {

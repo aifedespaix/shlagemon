@@ -102,8 +102,11 @@ function resetArenas() {
   player.reset()
   progress.reset()
   zone.zones.forEach((z) => {
-    if (z.arena)
-      z.arena.completed = false
+    if (z.type === 'village') {
+      const poi = z.pois.find(p => p.type === 'arena')
+      if (poi?.arena)
+        poi.arena.completed = false
+    }
   })
 }
 </script>

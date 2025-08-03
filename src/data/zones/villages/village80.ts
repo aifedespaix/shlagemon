@@ -41,7 +41,6 @@ export const village80: Zone = {
     max: { lat: -234.85861756057682, lng: 219.55322801716375 },
   },
   attachedTo: savage75.id as SavageZoneId,
-  actions: [],
   minLevel: 80,
   pois: [
     {
@@ -82,6 +81,10 @@ export const village80: Zone = {
       type: 'arena',
       label: 'Arène du Village',
       position: { lat: -153.48079278373268, lng: 194.17516406616386 },
+      arena: {
+        get arena() { return arena80 },
+        completed: false,
+      },
     },
     {
       id: 'minigame',
@@ -91,8 +94,4 @@ export const village80: Zone = {
       miniGame: 'shlagmind',
     },
   ],
-  arena: {
-    get arena() { return arena80 },
-    completed: false,
-  },
 }

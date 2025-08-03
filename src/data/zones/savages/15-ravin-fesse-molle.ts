@@ -6,7 +6,6 @@ export const savage15: Zone = {
   type: 'sauvage',
   position: { lat: -66.48506565291328, lng: 175.63808933002483 },
   completionAchievement: 'Sauveur du Ravin de la Fesse Molle',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/15-20/*.ts',
     { eager: true },

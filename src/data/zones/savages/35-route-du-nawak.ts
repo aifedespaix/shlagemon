@@ -6,7 +6,6 @@ export const savage35: Zone = {
   type: 'sauvage',
   position: { lat: -80.23196607144244, lng: 61.694665012406944 },
   completionAchievement: 'Voyageur de la Route du Nawak',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/35-40/*.ts',
     { eager: true },
