@@ -31,6 +31,12 @@ import { usePoiMarkers } from '~/composables/leaflet/usePoiMarkers'
  *       position: { lat: 0, lng: 0 },
  *       items: [],
  *     },
+ *     arena: {
+ *       id: 'arena',
+ *       type: 'arena',
+ *       label: 'Arène du Village',
+ *       position: { lat: 1, lng: 1 },
+ *     },
  *   },
  * }
  * ```

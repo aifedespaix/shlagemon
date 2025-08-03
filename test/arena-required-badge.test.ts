@@ -1,3 +1,4 @@
+import type { VillageZone } from '../src/type'
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
@@ -14,6 +15,8 @@ describe('arena access requires previous badge', () => {
     const arena = useArenaStore()
     const player = usePlayerStore()
     zone.setZone('village-paume')
+    const arenaPoi = (zone.current as VillageZone).pois.arena
+    expect(arenaPoi).toBeDefined()
     const wrapper = mount(ZoneActions, { global: { plugins: [pinia] } })
     wrapper.vm.openArena()
     expect(arena.arenaData).toBeNull()

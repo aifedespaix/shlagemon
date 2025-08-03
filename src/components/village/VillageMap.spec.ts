@@ -14,7 +14,6 @@ const baseVillage: VillageZone = {
     min: { lat: -10, lng: -10 },
     max: { lat: 10, lng: 10 },
   },
-  actions: [],
   minLevel: 1,
   pois: {
     shop: {
