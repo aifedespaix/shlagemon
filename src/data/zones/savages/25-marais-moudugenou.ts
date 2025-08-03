@@ -6,7 +6,6 @@ export const savage25: Zone = {
   type: 'sauvage',
   position: { lat: -54.98765803014342, lng: 77.18697270471463 },
   completionAchievement: 'Épurateur du Marais Moudugenou',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/25-30/*.ts',
     { eager: true },

@@ -5,7 +5,6 @@ export const savage90: Zone = {
   name: 'Canyon à la Derp',
   type: 'sauvage',
   position: { lat: -191.42375029581757, lng: 84.11421646610381 },
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/90-95/*.ts',
     { eager: true },

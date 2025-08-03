@@ -5,7 +5,6 @@ export const savage60: Zone = {
   name: 'Trou du Bide',
   type: 'sauvage',
   position: { lat: -118.72328724332411, lng: 48.45124069478908 },
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/60-65/*.ts',
     { eager: true },

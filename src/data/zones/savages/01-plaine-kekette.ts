@@ -6,7 +6,6 @@ export const savage01: Zone = {
   type: 'sauvage',
   position: { lat: -24.24453346540599, lng: 130.0249991878924 },
   completionAchievement: 'Fendeur de la Plaine Kékette',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/01-05/*.ts',
     { eager: true },

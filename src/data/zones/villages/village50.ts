@@ -35,7 +35,6 @@ export const village50: Zone = {
     max: { lat: -240.1074661467385, lng: 227.54806801227295 },
   },
   attachedTo: savage45.id as SavageZoneId,
-  actions: [],
   minLevel: 50,
   pois: [
     {

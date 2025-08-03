@@ -13,15 +13,32 @@ const player = usePlayerStore()
 const { t } = useI18n()
 
 const hasKing = computed(() =>
-  zone.current.hasKing ?? zone.current.type === 'sauvage',
+  zone.current.type === 'sauvage'
+  || (zone.current.type === 'village' && zone.current.pois.some(p => p.type === 'king')),
 )
-const hasArena = computed(() => !!zone.current.arena)
-const shopPoi = computed(() => zone.current.pois.find(p => p.type === 'shop'))
-const miniGamePoi = computed(() => zone.current.pois.find(p => p.type === 'minigame'))
-const hasPoulailler = computed(() => zone.current.pois.some(p => p.type === 'poulailler'))
+const arenaPoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.find(p => p.type === 'arena')
+    : undefined,
+)
+const hasArena = computed(() => !!arenaPoi.value)
+const shopPoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.find(p => p.type === 'shop')
+    : undefined,
+)
+const miniGamePoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.find(p => p.type === 'minigame')
+    : undefined,
+)
+const hasPoulailler = computed(() =>
+  zone.current.type === 'village'
+  && zone.current.pois.some(p => p.type === 'poulailler'),
+)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentArenaData = computed(() => {
-  const data = zone.current.arena?.arena
+  const data = arenaPoi.value?.arena?.arena
   if (!data)
     return undefined
   return typeof data === 'function' ? data() : data
@@ -41,34 +58,13 @@ const kingLabel = computed(() =>
   currentKing.value?.character.gender === 'female' ? 'reine' : 'roi',
 )
 
-function actionIcon(id: string) {
-  switch (id) {
-    case 'shop':
-      return 'i-carbon:shopping-bag'
-    case 'explore':
-      return 'i-mdi:compass'
-    case 'minigame':
-      return 'i-carbon:game-console'
-    default:
-      return ''
-  }
-}
-
-function onAction(id: string) {
+function openMinigame() {
   if (arena.inBattle)
     return
-  if (id === 'shop') {
-    panel.showShop()
-  }
-  else if (id === 'explore') {
-    panel.showTrainerBattle()
-  }
-  else if (id === 'minigame') {
-    if (miniGamePoi.value?.miniGame)
-      mini.select(miniGamePoi.value.miniGame)
-    panel.showMiniGame()
-    mobile.set('game')
-  }
+  if (miniGamePoi.value?.miniGame)
+    mini.select(miniGamePoi.value.miniGame)
+  panel.showMiniGame()
+  mobile.set('game')
 }
 
 function openArena() {
@@ -110,23 +106,13 @@ function openPoulailler() {
       @click="panel.showShop()"
     />
     <UiNavigationButton
-      v-for="action in zone.current.actions"
-      :key="action.id"
-      :icon="actionIcon(action.id)"
-      :label="action.label"
-      :class="action.id === 'minigame' ? 'bg-violet-600 text-white dark:bg-violet-700' : ''"
-      :hover="action.id === 'minigame' ? 'bg-violet-700 dark:bg-violet-800' : undefined"
-      :disabled="arena.inBattle"
-      @click="onAction(action.id)"
-    />
-    <UiNavigationButton
-      v-if="miniGamePoi && !zone.current.actions.some(a => a.id === 'minigame')"
+      v-if="miniGamePoi"
       icon="i-carbon:game-console"
       :label="t('components.village.ZoneActions.minigame')"
       class="bg-violet-600 text-white dark:bg-violet-700"
       hover="bg-violet-700 dark:bg-violet-800"
       :disabled="arena.inBattle"
-      @click="onAction('minigame')"
+      @click="openMinigame"
     />
     <UiNavigationButton
       v-if="hasArena && canOpenArena"

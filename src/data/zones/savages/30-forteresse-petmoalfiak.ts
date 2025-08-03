@@ -6,7 +6,6 @@ export const savage30: Zone = {
   type: 'sauvage',
   position: { lat: -68.98450209264584, lng: 99.18995037220844 },
   completionAchievement: 'Conquérant de la Forteresse Pètmoalfiak',
-  actions: [],
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/30-35/*.ts',
     { eager: true },

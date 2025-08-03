@@ -40,9 +40,6 @@ export const village100: Zone = {
     max: { lat: -223.10677529843554, lng: 233.05161551563538 },
   },
   attachedTo: savage95.id as SavageZoneId,
-  actions: [
-    { id: 'minigame', label: 'Mini-jeu' },
-  ],
   minLevel: 100,
   pois: [
     {

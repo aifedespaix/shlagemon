@@ -49,12 +49,18 @@ watch(() => zone.current.id, () => {
   activePoiId.value = null
 })
 
+const kingPoi = computed(() =>
+  (zone.current as VillageZone).pois.find(p => p.type === 'king'),
+)
 const currentKing = computed(() =>
-  zone.current.hasKing ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
+  kingPoi.value ? zone.getKing(zone.current.id as SavageZoneId) : undefined,
+)
+const arenaPoi = computed(() =>
+  (zone.current as VillageZone).pois.find(p => p.type === 'arena'),
 )
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentArenaData = computed(() => {
-  const data = zone.current.arena?.arena
+  const data = arenaPoi.value?.arena?.arena
   if (!data)
     return undefined
   return typeof data === 'function' ? data() : data
