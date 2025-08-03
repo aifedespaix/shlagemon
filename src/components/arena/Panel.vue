@@ -20,8 +20,7 @@ const selectedEnemy = computed(() =>
   activeSlot.value !== null ? enemyDexTeam.value[activeSlot.value] : undefined,
 )
 const showDuel = ref(false)
-const showEnemy = ref(false)
-const enemyDetail = ref<DexShlagemon | null>(null)
+const infoModal = useDexInfoModalStore()
 let nextTimer: Stoppable<[]> | undefined
 
 async function autoSelect() {
@@ -46,8 +45,7 @@ function openDex(i: number) {
 }
 
 function openEnemy(index: number) {
-  enemyDetail.value = enemyDexTeam.value[index]
-  showEnemy.value = true
+  infoModal.open(enemyDexTeam.value[index])
 }
 
 function onMonSelected(mon: DexShlagemon) {
@@ -201,10 +199,6 @@ onUnmounted(() => {
         </div>
         <UiModal v-model="showDex" footer-close @select="onMonSelected">
           <ArenaSelectionModal v-if="selectedEnemy" :mon="selectedEnemy" :selected="arena.selections.filter(Boolean) as string[]" />
-        </UiModal>
-
-        <UiModal v-model="showEnemy" footer-close>
-          <ArenaEnemyStats v-if="enemyDetail" :mon="enemyDetail" />
         </UiModal>
       </div>
     </div>

@@ -14,8 +14,9 @@ const stats = computed(() => [
 
 <template>
   <div class="flex flex-col items-center gap-2">
-    <h3 class="text-center text-lg font-bold">
-      {{ props.mon.base.name }}
+    <h3 class="w-full flex items-center justify-between text-lg font-bold">
+      <span class="flex-1 text-center">{{ props.mon.base.name }}</span>
+      <ShlagemonRarityInfo :rarity="props.mon.rarity" />
     </h3>
     <div class="h-24 w-24">
       <ShlagemonImage :id="props.mon.base.id" :alt="props.mon.base.name" class="object-contain" />
