@@ -7,6 +7,8 @@ interface Tab {
   'highlight'?: boolean
   /** Number of new items to display as a badge. */
   'badge'?: number
+  /** Marks all tab content as seen when the badge is cleared. */
+  'markAllSeen'?: () => void
   'disabled'?: boolean
   'aria-label'?: string
 }
@@ -53,6 +55,15 @@ const container = ref<HTMLElement>()
 const direction = ref<'left' | 'right'>('left')
 
 const currentFooter = computed<Component | undefined>(() => props.tabs[active.value]?.footer)
+
+/**
+ * Clears the badge of a tab without selecting it.
+ * Triggered on right click to mark all tab content as seen.
+ */
+function onContextMenu(tab: Tab) {
+  if (tab.badge && tab.badge > 0)
+    tab.markAllSeen?.()
+}
 
 function select(i: number) {
   if (i === active.value || props.tabs[i]?.disabled)
@@ -128,6 +139,7 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
         :disabled="tab.disabled"
         style="flex: 0 0 auto;"
         @click="select(i)"
+        @contextmenu.prevent="onContextMenu(tab)"
         @keydown.enter.space.prevent="select(i)"
       >
         <!-- Icone -->

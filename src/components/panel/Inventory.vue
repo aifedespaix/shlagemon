@@ -96,6 +96,18 @@ function getTabComponent(category: ItemCategory | 'all') {
   return comp
 }
 
+/**
+ * Marks all items of a given category as used to clear its badge.
+ *
+ * @param category - Target item category.
+ */
+function markCategoryUsed(category: ItemCategory) {
+  for (const { item } of inventory.list) {
+    if (item.category === category)
+      usage.markUsed(item.id)
+  }
+}
+
 const tabs = computed(() =>
   categories.value.map((cat) => {
     const count = newItemCountByCategory.value[cat.value] || 0
@@ -104,6 +116,7 @@ const tabs = computed(() =>
       component: getTabComponent(cat.value),
       highlight: count > 0,
       badge: count,
+      markAllSeen: () => markCategoryUsed(cat.value),
       disabled: cat.disabled,
     }
   }),
