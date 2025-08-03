@@ -39,6 +39,8 @@ const captureChance = computed(() => {
 const captureAnimationClass = computed(() => {
   if (captureChance.value <= 0)
     return 'opacity-50 discourage'
+  if (captureChance.value > 80)
+    return 'animate-pulse-alt'
   if (captureChance.value > 50)
     return 'animate-bounce'
   return ''
@@ -50,6 +52,13 @@ const captureButtonDisabled = computed(() =>
   || props.enemyHp <= 0
   || props.playerHp <= 0,
 )
+
+const captureButtonFilter = computed(() => {
+  const saturation = captureButtonDisabled.value
+    ? 0
+    : Math.min(captureChance.value / 50, 1)
+  return `hue-rotate(${currentBallHue.value}) saturate(${saturation})`
+})
 
 const captureButtonTooltip = computed(() => {
   if (captureCooldown.value)
@@ -120,20 +129,24 @@ defineExpose({ open })
     >
       <UiTooltip
         :text="captureButtonTooltip"
-        as-button
-        class="flex flex-col items-center gap-2 text-xs"
-        :class="captureButtonDisabled ? 'cursor-not-allowed saturate-0 pointer-events-none' : 'cursor-pointer'"
-        @click="!captureButtonDisabled && open()"
-        @keydown.enter.prevent="!captureButtonDisabled && open()"
-        @keydown.space.prevent="!captureButtonDisabled && open()"
+        :class="captureButtonDisabled ? 'pointer-events-none' : ''"
       >
-        <UiImageByBackground
-          src="/items/shlageball/shlageball.webp"
-          alt="capture"
-          class="h-8 w-8 md:h-10 md:w-10"
-          :class="captureAnimationClass"
-          :style="{ filter: `hue-rotate(${currentBallHue})` }"
-        />
+        <UiButton
+          variant="outline"
+          circle
+          class="flex flex-col items-center gap-2 text-xs"
+          :aria-label="captureButtonTooltip"
+          :disabled="captureButtonDisabled"
+          @click="open"
+        >
+          <UiImageByBackground
+            src="/items/shlageball/shlageball.webp"
+            alt="capture"
+            class="h-8 w-8 md:h-10 md:w-10"
+            :class="captureAnimationClass"
+            :style="{ filter: captureButtonFilter }"
+          />
+        </UiButton>
       </UiTooltip>
     </div>
     <div
