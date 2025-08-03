@@ -150,7 +150,7 @@ const bottomBadgeHandler = computed(() => {
           <PanelPlayerInfos />
         </UiPanelWrapper>
 
-        <UiPanelWrapper v-if="displayGamePanel" class="overflow-hidden">
+        <UiPanelWrapper v-if="displayGamePanel" class="max-w-6xl w-full self-center overflow-hidden">
           <PanelMain class="flex-1" />
         </UiPanelWrapper>
 

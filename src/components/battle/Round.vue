@@ -191,7 +191,7 @@ function onClick(_e: MouseEvent) {
 <template>
   <div class="w-full flex flex-1 flex-col items-center gap-2">
     <slot name="header" />
-    <div class="relative max-w-160 w-full flex flex-1 items-center justify-center gap-4">
+    <div class="relative w-full flex flex-1 items-center justify-center gap-4">
       <div v-if="showConfetti" class="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div class="confetti">
           🎉
