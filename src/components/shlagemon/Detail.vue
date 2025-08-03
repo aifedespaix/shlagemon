@@ -118,9 +118,7 @@ const captureInfo = computed(() => {
           <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
           - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> ({{ t('components.shlagemon.Detail.sick') }})</span>
         </div>
-        <UiTooltip :text="t('components.shlagemon.Detail.rarityInfo')">
-          <ShlagemonRarity :rarity="mon.rarity" class="rounded-tr-0" />
-        </UiTooltip>
+        <ShlagemonRarityInfo :rarity="mon.rarity" class="rounded-tr-0" />
       </h2>
       <div class="relative h-40 w-full">
         <div class="absolute flex gap-2">

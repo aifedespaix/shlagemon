@@ -15,7 +15,6 @@ fr:
   smell: Puanteur
   evolveByLevel: 'Peut évoluer au niveau {level}'
   evolveByItem: "Peut évoluer grâce à l'objet {item}"
-  rarityInfo: Rareté
   sick: malade
 en:
   equipItemTitle: Equip an item
@@ -34,5 +33,4 @@ en:
   smell: Smell
   evolveByLevel: 'Can evolve at level {level}'
   evolveByItem: 'Can evolve with item {item}'
-  rarityInfo: Rarity
   sick: sick
