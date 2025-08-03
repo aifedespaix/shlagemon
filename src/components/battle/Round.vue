@@ -40,6 +40,10 @@ const showOwnedBall = computed(() =>
   zone.current.type === 'sauvage' && panel.current === 'battle',
 )
 
+const enemyOwned = computed<boolean>(() =>
+  displayedEnemy.value ? dex.capturedBaseIds.has(displayedEnemy.value.base.id) : false,
+)
+
 const {
   playerHp,
   enemyHp,
@@ -232,6 +236,7 @@ function onClick(_e: MouseEvent) {
             :fainted="enemyFainted"
             :flash="flashEnemy"
             :show-ball="showOwnedBall"
+            :owned="enemyOwned"
             @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
