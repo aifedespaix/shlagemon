@@ -60,7 +60,7 @@ export const useBattleStore = defineStore('battle', () => {
         finalDamage = Math.min(finalDamage, defender.hpCurrent - 1)
     }
 
-    if (attacker.heldItemId === frogKing.id && attacker.isShiny) {
+    if (attacker.heldItemId === frogKing.id && defender.isShiny) {
       if (defender.hpCurrent <= 1)
         finalDamage = 0
       else
