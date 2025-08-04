@@ -2,11 +2,21 @@ import type { Trainer } from '~/types'
 import { defineStore } from 'pinia'
 import { trainers as trainersData } from '~/data/trainers'
 
+/**
+ * Percentage of missing health restored when a shlagemon levels up.
+ */
+const DEFAULT_LEVEL_UP_HEAL_PERCENT = 15
+
+/**
+ * Percentage of missing health restored after defeating a trainer.
+ */
+const DEFAULT_WIN_HEAL_PERCENT = 15
+
 export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   const queue = ref<Trainer[]>([])
   const currentIndex = ref(0)
-  const levelUpHealPercent = ref(15)
-  const winHealPercent = ref(15)
+  const levelUpHealPercent = ref(DEFAULT_LEVEL_UP_HEAL_PERCENT)
+  const winHealPercent = ref(DEFAULT_WIN_HEAL_PERCENT)
 
   function setQueue(list: Trainer[]) {
     queue.value = list
