@@ -1,0 +1,8 @@
+fr:
+  autoHide:
+    label: Masquer automatiquement les infobulles
+    description: Les infobulles se ferment automatiquement après un court délai. Désactivez cette option pour les garder visibles jusqu'à ce que vous cliquiez ailleurs.
+en:
+  autoHide:
+    label: Automatically hide tooltips
+    description: Tooltips close automatically after a short delay. Disable this option to keep them visible until you click elsewhere.
