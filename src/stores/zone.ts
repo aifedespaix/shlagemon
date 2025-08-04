@@ -68,7 +68,8 @@ export const useZoneStore = defineStore('zone', () => {
       if (dex.activeShlagemon && !same)
         dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
       const visit = useZoneVisitStore()
-      visit.markVisited(id)
+      if (typeof visit.markVisited === 'function')
+        visit.markVisited(id)
     }
   }
 
