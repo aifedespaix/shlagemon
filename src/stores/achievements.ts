@@ -381,7 +381,14 @@ export const useAchievementsStore = defineStore('achievements', () => {
     })
   }
 
-  watch(() => dex.shlagemons.length, () => checkZoneCompletion(), { immediate: true })
+  // Track the set of captured Shlagémon IDs instead of only the array length.
+  // Watching the length alone misses cases where a different species replaces
+  // an existing one without changing the overall count.
+  const capturedIds = computed(() =>
+    dex.shlagemons.map(m => m.base.id).sort().join(','),
+  )
+
+  watch(capturedIds, () => checkZoneCompletion(), { immediate: true })
   watch(progress.wins, (val) => {
     zonesData.forEach((z) => {
       if (z.type === 'village')
