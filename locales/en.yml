@@ -228,6 +228,7 @@ components:
       evolveByLevel: Can evolve at level {level}
       evolveByItem: Can evolve with item {item}
       sick: sick
+      unequipItemTooltip: Unequip this item
     WearableEquipModal:
       title: Choose an item to equip
       noAvailable: No item available.
@@ -264,6 +265,8 @@ components:
       label: Toggle language
     Info:
       ok: Ok
+    SelectOption:
+      placeholder: Select…
   dialog:
     AnotherShlagemonDialog:
       steps:

@@ -120,8 +120,14 @@ const captureInfo = computed(() => {
         </div>
         <ShlagemonRarityInfo :rarity="mon.rarity" class="rounded-tr-0" />
       </h2>
-      <div class="relative h-40 w-full">
-        <div class="absolute flex gap-2">
+      <div class="relative h-40 w-full flex justify-center">
+        <ShlagemonImage
+          :id="mon.base.id"
+          :alt="mon.base.name"
+          :shiny="mon.isShiny"
+          class="w-full object-contain"
+        />
+        <div class="absolute left-0 top-0 flex gap-2">
           <ShlagemonType
             v-for="type in mon.base.types"
             :key="type.id"
@@ -129,25 +135,21 @@ const captureInfo = computed(() => {
             open-on-click
           />
         </div>
-        <ShlagemonImage
-          :id="mon.base.id"
-          :alt="mon.base.name"
-          :shiny="mon.isShiny"
-          class="w-full object-contain"
-        />
         <div class="absolute right-0 top-0 flex items-center gap-1">
           <template v-if="heldItem">
             <WearableItemIcon
               :item="heldItem"
               class="h-5 w-5"
             />
-            <UiButton
-              type="icon"
-              size="xs"
-              @click="wearableItemStore.removeHolder(heldItem.id)"
-            >
-              <div i-carbon-trash-can />
-            </UiButton>
+            <UiTooltip :text="t('components.shlagemon.Detail.unequipItemTooltip')">
+              <UiButton
+                type="icon"
+                size="xs"
+                @click="wearableItemStore.removeHolder(heldItem.id)"
+              >
+                <div i-carbon-trash-can />
+              </UiButton>
+            </UiTooltip>
           </template>
           <UiButton
             v-else

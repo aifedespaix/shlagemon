@@ -80,7 +80,7 @@ function close() {
           class="absolute right-2 top-2 h-6 w-6 flex items-center justify-center rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           @click.stop="close()"
         >
-          &times;
+          <div i-carbon-close />
         </button>
         <div class="flex flex-1 flex-col overflow-hidden">
           <slot />
@@ -101,7 +101,6 @@ function close() {
   border: none;
   padding: 0;
   background: transparent;
-  z-index: 1000;
   animation: fade-in 0.2s ease forwards;
   @apply w-full max-w-xl min-h-xl;
 }
