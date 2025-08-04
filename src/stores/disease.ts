@@ -35,7 +35,14 @@ export const useDiseaseStore = defineStore('disease', () => {
     }
   }
 
+  // Ensure the listener is not registered multiple times
+  events.off('battle:end', onBattleEnd)
   events.on('battle:end', onBattleEnd)
+
+  // Remove the listener when the store is disposed
+  onScopeDispose(() => {
+    events.off('battle:end', onBattleEnd)
+  })
 
   return { active, remaining, start, reset }
 }, {
