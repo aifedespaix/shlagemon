@@ -111,11 +111,7 @@ watch(
     if (id === oldId)
       return
     const val = props.enemy
-    if (!oldId) {
-      displayedEnemy.value = val
-      startBattle()
-      return
-    }
+    stopBattle()
     displayedEnemy.value = val
     startBattle()
   },
@@ -126,6 +122,7 @@ watch(
   () => props.player,
   (val, old) => {
     if (!old) {
+      stopBattle()
       displayedPlayer.value = val
       startBattle()
       return
@@ -134,6 +131,7 @@ watch(
       nextPlayer.value = val
     }
     else {
+      stopBattle()
       displayedPlayer.value = val
       startBattle()
     }
