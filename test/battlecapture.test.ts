@@ -11,7 +11,7 @@ import { useShlagedexStore } from '../src/stores/shlagedex'
 import * as captureUtils from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 
-describe.skip('battleCapture', () => {
+describe('battleCapture', () => {
   it('updates store on successful capture', async () => {
     vi.useFakeTimers()
     const pinia = createPinia()
@@ -30,7 +30,12 @@ describe.skip('battleCapture', () => {
     vi.spyOn(captureUtils, 'tryCapture').mockReturnValue(true)
 
     const wrapper = mount(BattleCapture, {
-      props: { enemy, enemyHp: enemy.hp, stopBattle: vi.fn() },
+      props: {
+        enemy,
+        enemyHp: enemy.hp,
+        playerHp: 100,
+        stopBattle: vi.fn(),
+      },
       global: {
         plugins: [pinia],
         stubs: ['ImageByBackground', 'ShlagemonImage'],
