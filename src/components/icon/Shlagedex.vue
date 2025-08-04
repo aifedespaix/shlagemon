@@ -1,21 +1,15 @@
 <template>
-  <svg viewBox="0 0 100 120" width="100" height="120">
-    <!-- Corps du Pokédex -->
-    <rect x="10" y="10" width="80" height="100" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="3" />
-
-    <!-- Écran -->
-    <rect x="25" y="25" width="50" height="30" rx="4" ry="4" fill="none" stroke="currentColor" stroke-width="2" />
-
-    <!-- ? dans l'écran -->
-    <text x="50" y="47" text-anchor="middle" font-size="16" fill="currentColor">?</text>
-
-    <!-- Boutons ronds -->
-    <circle cx="35" cy="75" r="4" fill="none" stroke="currentColor" stroke-width="2" />
-    <circle cx="50" cy="75" r="4" fill="none" stroke="currentColor" stroke-width="2" />
-    <circle cx="65" cy="75" r="4" fill="none" stroke="currentColor" stroke-width="2" />
-
-    <!-- Antenne -->
-    <line x1="80" y1="10" x2="90" y2="0" stroke="currentColor" stroke-width="2" />
-    <circle cx="90" cy="0" r="2" fill="currentColor" />
+  <svg viewBox="0 0 32 32" width="32" height="32">
+    <rect x="6" y="4" width="20" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+    <rect x="10" y="8" width="12" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="2" />
+    <g transform="translate(10 5) scale(0.4)">
+      <path fill="currentColor" d="M17 8h-1.5a4.49 4.49 0 0 0-4.5 4.5v.5h2v-.5a2.5 2.5 0 0 1 2.5-2.5H17a2.5 2.5 0 0 1 0 5h-2v4.5h2V17a4.5 4.5 0 0 0 0-9" />
+      <circle cx="16" cy="23.5" r="1.5" fill="currentColor" />
+    </g>
+    <circle cx="12" cy="22" r="1" fill="none" stroke="currentColor" stroke-width="2" />
+    <circle cx="16" cy="22" r="1" fill="none" stroke="currentColor" stroke-width="2" />
+    <circle cx="20" cy="22" r="1" fill="none" stroke="currentColor" stroke-width="2" />
+    <line x1="24" y1="4" x2="28" y2="0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    <circle cx="28" cy="0" r="1" fill="currentColor" />
   </svg>
 </template>
