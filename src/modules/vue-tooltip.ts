@@ -1,5 +1,6 @@
 import type { UserModule } from '~/types'
 import FloatingVue from 'floating-vue'
+import { observeTooltipAccessibility } from '~/utils/tooltipAccessibility'
 
 export const install: UserModule = ({ app }) => {
   app.use(FloatingVue, {
@@ -102,4 +103,7 @@ export const install: UserModule = ({ app }) => {
     () => [accessibility.autoHideTooltips, ui.isMobile],
     updateOptions,
   )
+
+  if (typeof window !== 'undefined')
+    observeTooltipAccessibility()
 }
