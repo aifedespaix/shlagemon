@@ -1,19 +1,10 @@
 <script setup lang="ts">
-const isFullscreen = ref(false)
+import { useFullscreen } from '@vueuse/core'
+
 const { t } = useI18n()
 
-function toggle() {
-  if (!isFullscreen.value) {
-    document.documentElement.requestFullscreen?.()
-  }
-  else {
-    document.exitFullscreen?.()
-  }
-}
-
-useEventListener(document, 'fullscreenchange', () => {
-  isFullscreen.value = !!document.fullscreenElement
-})
+const target = typeof document !== 'undefined' ? document.documentElement : null
+const { isFullscreen, toggle } = useFullscreen(target)
 </script>
 
 <template>
