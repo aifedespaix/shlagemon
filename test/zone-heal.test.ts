@@ -8,7 +8,7 @@ import { useZoneStore } from '../src/stores/zone'
 
 // Ensure selected Shlagémon heals when zone changes and battle restarts
 
-describe.skip('zone change healing', () => {
+describe('zone change healing', () => {
   it('heals active shlagemon on zone change', async () => {
     vi.useFakeTimers()
     const pinia = createPinia()
@@ -36,7 +36,6 @@ describe.skip('zone change healing', () => {
     // change zone, triggering new battle
     zone.setZone('bois-de-bouffon')
     await Promise.resolve()
-    vi.runOnlyPendingTimers()
 
     expect(mon.hpCurrent).toBe(mon.hp)
     wrapper.unmount()
