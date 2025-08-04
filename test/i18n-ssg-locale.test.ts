@@ -17,4 +17,15 @@ describe('i18n ssg locale', () => {
     await loadLanguageAsync(useLocaleStore().locale)
     expect(i18n.global.locale.value).toBe('fr')
   })
+
+  it('falls back gracefully when no route is provided', async () => {
+    const pinia = createPinia()
+    setActivePinia(pinia)
+    expect(() =>
+      installI18n({
+        app: { use: () => {} } as any,
+        isClient: false,
+      } as any),
+    ).not.toThrow()
+  })
 })
