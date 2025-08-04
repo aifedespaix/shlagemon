@@ -26,6 +26,33 @@ export function getPwaManifest(locale: Locale): ManifestOptions {
         purpose: 'any maskable',
       },
     ],
+    screenshots: [
+      {
+        src: '/screenshots/battle.jpg',
+        sizes: '1200x800',
+        type: 'image/jpeg',
+      },
+      {
+        src: '/screenshots/detail.jpg',
+        sizes: '1200x800',
+        type: 'image/jpeg',
+      },
+      {
+        src: '/screenshots/dialog.jpg',
+        sizes: '1200x800',
+        type: 'image/jpeg',
+      },
+      {
+        src: '/screenshots/shop.jpg',
+        sizes: '1200x800',
+        type: 'image/jpeg',
+      },
+      {
+        src: '/screenshots/with-map.jpg',
+        sizes: '1200x800',
+        type: 'image/jpeg',
+      },
+    ],
   }
 
   if (locale === 'fr') {
