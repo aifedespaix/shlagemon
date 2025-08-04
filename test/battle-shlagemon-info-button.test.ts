@@ -11,7 +11,7 @@ import { useShlagedexStore } from '../src/stores/shlagedex'
 const messages = { en: { components: { battle: { Shlagemon: { infoTooltip: 'info' } } } } }
 
 describe('battle shlagemon info button', () => {
-  it('opens detail modal when shlagemon is owned', async () => {
+  it('opens detail modal when shlagemon belongs to player', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const dex = useShlagedexStore()
@@ -22,7 +22,7 @@ describe('battle shlagemon info button', () => {
     const i18n = createI18n({ legacy: false, locale: 'en', messages })
 
     const wrapper = mount(BattleShlagemon, {
-      props: { mon, hp: 10, owned: true },
+      props: { mon, hp: 10, belongsToPlayer: true },
       global: {
         plugins: [pinia, i18n],
         stubs: {
@@ -40,7 +40,7 @@ describe('battle shlagemon info button', () => {
     expect(spy).toHaveBeenCalledWith(mon)
   })
 
-  it('opens info modal when shlagemon is not owned', async () => {
+  it('opens info modal for enemy shlagemon', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     const dex = useShlagedexStore()
@@ -51,7 +51,7 @@ describe('battle shlagemon info button', () => {
     const i18n = createI18n({ legacy: false, locale: 'en', messages })
 
     const wrapper = mount(BattleShlagemon, {
-      props: { mon, hp: 10 },
+      props: { mon, hp: 10, owned: true },
       global: {
         plugins: [pinia, i18n],
         stubs: {
