@@ -108,5 +108,5 @@ export const install: UserModule = ({ app, isClient }) => {
     updateOptions,
   )
 
-  observeTooltipAccessibility()
+  // observeTooltipAccessibility()
 }
