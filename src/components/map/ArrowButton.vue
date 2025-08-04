@@ -5,13 +5,17 @@ const emit = defineEmits<{ (e: 'click'): void }>()
 const positionClass = computed(() => props.direction === 'prev' ? 'left-1' : 'right-1')
 const iconClass = computed(() => props.direction === 'prev' ? 'i-carbon:chevron-left' : 'i-carbon:chevron-right')
 const translate = computed(() => props.direction === 'prev' ? '-100%' : '100%')
+const { t } = useI18n()
+const label = computed(() => t(`components.map.ArrowButton.${props.direction}`))
 </script>
 
 <template>
   <Transition name="fade-slide">
     <UiButton
       v-if="!disabled"
+      v-tooltip="label"
       type="icon"
+      :aria-label="label"
       class="absolute bottom-1 z-500" :class="[positionClass]"
       :style="{ '--dir': translate }"
       @click="emit('click')"
