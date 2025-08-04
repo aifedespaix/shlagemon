@@ -141,15 +141,14 @@ const captureInfo = computed(() => {
               :item="heldItem"
               class="h-5 w-5"
             />
-            <UiTooltip :text="t('components.shlagemon.Detail.unequipItemTooltip')">
-              <UiButton
-                type="icon"
-                size="xs"
-                @click="wearableItemStore.removeHolder(heldItem.id)"
-              >
-                <div i-carbon-trash-can />
-              </UiButton>
-            </UiTooltip>
+            <UiButton
+              v-tooltip="t('components.shlagemon.Detail.unequipItemTooltip')"
+              type="icon"
+              size="xs"
+              @click="wearableItemStore.removeHolder(heldItem.id)"
+            >
+              <div i-carbon-trash-can />
+            </UiButton>
           </template>
           <UiButton
             v-else

@@ -6,18 +6,18 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <UiTooltip :text="t(props.item.name)">
-    <div
-      v-if="props.item.icon"
-      v-bind="$attrs"
-      :class="[props.item.icon, props.item.iconClass]"
-    />
-    <img
-      v-else-if="props.item.image"
-      v-bind="$attrs"
-      :src="props.item.image"
-      :alt="props.item.name"
-      class="object-contain"
-    >
-  </UiTooltip>
+  <div
+    v-if="props.item.icon"
+    v-tooltip="t(props.item.name)"
+    v-bind="$attrs"
+    :class="[props.item.icon, props.item.iconClass]"
+  />
+  <img
+    v-else-if="props.item.image"
+    v-tooltip="t(props.item.name)"
+    v-bind="$attrs"
+    :src="props.item.image"
+    :alt="props.item.name"
+    class="object-contain"
+  >
 </template>
