@@ -137,7 +137,10 @@ export default defineConfig({
         dynamicRoutes: getAllLocalizedPaths(),
         i18n: {
           languages: ['fr', 'en'],
-          defaultLanguage: 'fr',
+          // The root path `/` must always reflect the English locale.
+          // Default sitemap language is therefore set to English
+          // to match the SSG output and avoid cross-locale content.
+          defaultLanguage: 'en',
         },
       })
     },
