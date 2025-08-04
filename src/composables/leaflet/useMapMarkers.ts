@@ -91,6 +91,7 @@ export function useMapMarkers(map: LeafletMap) {
       size: markerSize,
       anchorY,
       interactive: true,
+      title: zone.name,
     })
 
     watch([allCaptured, perfectZone, kingDefeated, arenaCompleted, visited], () => {
