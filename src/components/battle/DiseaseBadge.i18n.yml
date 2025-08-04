@@ -1,0 +1,4 @@
+fr:
+  tooltip: 'Malade : {n} combats restants'
+en:
+  tooltip: 'Sick: {n} battles remaining'

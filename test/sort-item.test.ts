@@ -30,6 +30,7 @@ describe('shlagedex sort item', () => {
           'CheckBox',
           'MultiExpIcon',
         ],
+        directives: { tooltip: () => {} },
       },
     })
 

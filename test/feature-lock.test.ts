@@ -17,7 +17,11 @@ describe('feature lock flags', () => {
     const featureLock = useFeatureLockStore()
     featureLock.lockZones()
     const wrapper = mount(ZonePanel, {
-      global: { plugins: [pinia], provide: { selectZone: vi.fn() } },
+      global: {
+        plugins: [pinia],
+        provide: { selectZone: vi.fn() },
+        directives: { tooltip: () => {} },
+      },
     })
     await wrapper.vm.$nextTick()
     const savageButtons = wrapper.findAll('#savages button')
@@ -36,7 +40,7 @@ describe('feature lock flags', () => {
     featureLock.lockShlagedex()
     const wrapper = mount(ShlagemonList, {
       props: { mons: dex.shlagemons, showCheckbox: true },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia], directives: { tooltip: () => {} } },
     })
     await wrapper.vm.$nextTick()
     const checkbox = wrapper.find('input[type="checkbox"]')
@@ -52,7 +56,7 @@ describe('feature lock flags', () => {
     featureLock.lockShlagedex()
     const wrapper = mount(ShlagemonList, {
       props: { mons: dex.shlagemons, showCheckbox: true, locked: false },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia], directives: { tooltip: () => {} } },
     })
     await wrapper.vm.$nextTick()
     const checkbox = wrapper.find('input[type="checkbox"]')
@@ -66,7 +70,7 @@ describe('feature lock flags', () => {
     inventory.add(potion.id)
     const featureLock = useFeatureLockStore()
     featureLock.lockInventory()
-    const wrapper = mount(InventoryPanel, { global: { plugins: [pinia] } })
+    const wrapper = mount(InventoryPanel, { global: { plugins: [pinia], directives: { tooltip: () => {} } } })
     await wrapper.vm.$nextTick()
     const button = wrapper.find('button[disabled]')
     expect(button.exists()).toBe(true)

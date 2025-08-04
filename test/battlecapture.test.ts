@@ -31,7 +31,11 @@ describe.skip('battleCapture', () => {
 
     const wrapper = mount(BattleCapture, {
       props: { enemy, enemyHp: enemy.hp, stopBattle: vi.fn() },
-      global: { plugins: [pinia], stubs: ['Tooltip', 'ImageByBackground', 'ShlagemonImage'] },
+      global: {
+        plugins: [pinia],
+        stubs: ['ImageByBackground', 'ShlagemonImage'],
+        directives: { tooltip: () => {} },
+      },
     })
 
     await wrapper.get('button').trigger('click')

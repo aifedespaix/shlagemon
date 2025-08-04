@@ -12,7 +12,7 @@ describe('uiTabs context menu', () => {
     ])
     const wrapper = mount(UiTabs, {
       props: { tabs: tabs.value },
-      global: { stubs: { UiTooltip: { template: '<div><slot /></div>' } } },
+      global: { directives: { tooltip: () => {} } },
     })
     const buttons = wrapper.findAll('button')
     await buttons[1].trigger('contextmenu')

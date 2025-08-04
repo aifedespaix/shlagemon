@@ -11,7 +11,7 @@ describe('uiTabs disabled behaviour', () => {
     ])
     const wrapper = mount(UiTabs, {
       props: { tabs: tabs.value },
-      global: { stubs: { UiTooltip: { template: '<div><slot /></div>' } } },
+      global: { directives: { tooltip: () => {} } },
     })
     tabs.value = [
       { ...tabs.value[0], disabled: true },

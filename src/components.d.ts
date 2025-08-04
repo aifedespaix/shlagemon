@@ -170,7 +170,6 @@ declare module 'vue' {
     UiSortControls: typeof import('./components/ui/SortControls.vue')['default']
     UiTabBar: typeof import('./components/ui/TabBar.vue')['default']
     UiTabs: typeof import('./components/ui/Tabs.vue')['default']
-    UiTooltip: typeof import('./components/ui/Tooltip.vue')['default']
     UiTypingText: typeof import('./components/ui/TypingText.vue')['default']
     UpdateSnackbar: typeof import('./components/UpdateSnackbar.vue')['default']
     VillageMap: typeof import('./components/village/Map.vue')['default']

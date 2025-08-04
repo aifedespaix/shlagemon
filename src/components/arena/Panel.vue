@@ -186,15 +186,14 @@ onUnmounted(() => {
             >
               {{ t('components.arena.Panel.fight') }}
             </UiButton>
-            <UiTooltip :text="t('components.arena.Panel.autoSelect')" is-button>
-              <UiButton
-                type="icon"
-                class="bottom-0 left-0 z-10 rounded-full"
-                @click="autoSelect"
-              >
-                <div i-carbon-magic-wand />
-              </UiButton>
-            </UiTooltip>
+            <UiButton
+              v-tooltip="t('components.arena.Panel.autoSelect')"
+              type="icon"
+              class="bottom-0 left-0 z-10 rounded-full"
+              @click="autoSelect"
+            >
+              <div i-carbon-magic-wand />
+            </UiButton>
           </div>
         </div>
         <UiModal v-model="showDex" footer-close @select="onMonSelected">

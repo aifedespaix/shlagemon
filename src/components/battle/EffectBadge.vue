@@ -7,22 +7,10 @@ const emit = defineEmits<{ (e: 'click'): void }>()
 
 const remaining = computed(() => formatDuration(props.effect.expiresAt - props.now))
 
-const tooltipText = computed(() => {
-  switch (props.effect.type) {
-    case 'attack':
-      return `Votre attaque est boostée pour encore ${remaining.value}`
-    case 'defense':
-      return `Votre défense est boostée pour encore ${remaining.value}`
-    case 'xp':
-      return `Vos gains d'XP sont augmentés pour encore ${remaining.value}`
-    case 'vitality':
-      return `Votre vitalité est augmentée pour encore ${remaining.value}`
-    case 'capture':
-      return `Vos chances de capture sont accrues pour encore ${remaining.value}`
-    default:
-      return ''
-  }
-})
+const { t } = useI18n()
+const tooltipText = computed(() =>
+  t(`components.battle.EffectBadge.${props.effect.type}`, { remaining: remaining.value }),
+)
 
 const colorClasses = computed(() => {
   switch (props.effect.type) {
@@ -43,14 +31,13 @@ const colorClasses = computed(() => {
 </script>
 
 <template>
-  <UiTooltip :text="tooltipText">
-    <div
-      class="flex items-center gap-1 rounded px-1 text-xs font-mono"
-      :class="colorClasses"
-      @click="emit('click')"
-    >
-      <div class="h-4 w-4" :class="[`${props.effect.icon}`, props.effect.iconClass]" />
-      <span>{{ remaining }}</span>
-    </div>
-  </UiTooltip>
+  <div
+    v-tooltip="tooltipText"
+    class="flex items-center gap-1 rounded px-1 text-xs font-mono"
+    :class="colorClasses"
+    @click="emit('click')"
+  >
+    <div class="h-4 w-4" :class="[`${props.effect.icon}`, props.effect.iconClass]" />
+    <span>{{ remaining }}</span>
+  </div>
 </template>

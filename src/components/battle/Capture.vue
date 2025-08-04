@@ -125,27 +125,23 @@ defineExpose({ open })
       class="absolute right-50% top-15 translate-x-1/2"
       sm="top-13"
     >
-      <UiTooltip
-        :text="captureButtonTooltip"
-        :class="captureButtonDisabled ? 'pointer-events-none' : ''"
+      <UiButton
+        v-tooltip="captureButtonTooltip"
+        variant="outline"
+        circle
+        class="flex flex-col items-center gap-2 text-xs"
+        :aria-label="captureButtonTooltip"
+        :disabled="captureButtonDisabled"
+        @click="open"
       >
-        <UiButton
-          variant="outline"
-          circle
-          class="flex flex-col items-center gap-2 text-xs"
-          :aria-label="captureButtonTooltip"
-          :disabled="captureButtonDisabled"
-          @click="open"
-        >
-          <UiImageByBackground
-            src="/items/shlageball/shlageball.webp"
-            alt="capture"
-            class="h-8 w-8 md:h-10 md:w-10"
-            :class="captureAnimationClass"
-            :style="{ filter: captureButtonFilter }"
-          />
-        </UiButton>
-      </UiTooltip>
+        <UiImageByBackground
+          src="/items/shlageball/shlageball.webp"
+          alt="capture"
+          class="h-8 w-8 md:h-10 md:w-10"
+          :class="captureAnimationClass"
+          :style="{ filter: captureButtonFilter }"
+        />
+      </UiButton>
     </div>
     <div
       v-if="showCapture && enemy"

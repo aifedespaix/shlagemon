@@ -166,19 +166,16 @@ initGame()
           class="flex items-center justify-between"
         >
           <div class="flex gap-1">
-            <UiTooltip
+            <img
               v-for="(id, j) in att"
               :key="j"
-              :text="palette.find((p) => p.id === id)?.name || ''"
+              v-tooltip="palette.find((p) => p.id === id)?.name || ''"
+              :src="`/shlagemons/${id}/${id}.png`"
+              class="h-8 w-8 cursor-pointer"
+              :class="bounce[i]?.[j] ? 'animate-bounce animate-count-1' : ''"
+              :alt="id"
+              @click="copyFromHistory(j, id)"
             >
-              <img
-                :src="`/shlagemons/${id}/${id}.png`"
-                class="h-8 w-8 cursor-pointer"
-                :class="bounce[i]?.[j] ? 'animate-bounce animate-count-1' : ''"
-                :alt="id"
-                @click="copyFromHistory(j, id)"
-              >
-            </UiTooltip>
           </div>
           <div class="flex gap-1">
             <span
