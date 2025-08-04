@@ -14,8 +14,7 @@ export function getCaptureChance(enemy: DexShlagemon, ball: Ball): number {
     return 0
   const rarityMod = rarityModifier(enemy.rarity)
   const levelPenalty = levelDifficultyMultiplier(enemy.lvl)
-  const dex = useShlagedexStore()
-  const captureMod = 1 + dex.captureBonusPercent / 100
+  const captureMod = captureBonusMultiplier()
   return Math.min(
     100,
     hpChance * levelBonus * rarityMod * captureMod * levelPenalty,
@@ -30,14 +29,26 @@ export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
     const levelBonus = ballLevelMultiplier(ball, enemy.lvl)
     const rarityMod = rarityModifier(enemy.rarity)
     const levelPenalty = levelDifficultyMultiplier(enemy.lvl)
-    const dex = useShlagedexStore()
-    const captureMod = 1 + dex.captureBonusPercent / 100
+    const captureMod = captureBonusMultiplier()
     console.warn(
       `Capture chance: ${chance.toFixed(2)}%`,
       { level: enemy.lvl, hpChance, levelBonus, rarityMod, captureMod, levelPenalty },
     )
   }
   return Math.random() * 100 < chance
+}
+
+/**
+ * Returns the multiplicative capture bonus provided by the Shlagedex store.
+ *
+ * The store exposes a percentage that should increase capture chances but
+ * never penalize them. Any negative value is clamped to zero to avoid
+ * unintentionally reducing the probability.
+ */
+function captureBonusMultiplier(): number {
+  const dex = useShlagedexStore()
+  const bonus = Math.max(0, dex.captureBonusPercent)
+  return 1 + bonus / 100
 }
 
 function ballLevelMultiplier(ball: Ball, level: number): number {

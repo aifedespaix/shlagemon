@@ -4,7 +4,14 @@ import { toast } from 'vue3-toastify'
 import { sacdepates } from '../src/data/shlagemons/01-05/sacdepates'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useShlagedexStore } from '../src/stores/shlagedex'
-import { applyCurrentStats, applyStats, createDexShlagemon, xpForLevel } from '../src/utils/dexFactory'
+import {
+  applyCurrentStats,
+  applyStats,
+  baseStats,
+  createDexShlagemon,
+  statWithRarity,
+  xpForLevel,
+} from '../src/utils/dexFactory'
 
 vi.mock('vue3-toastify', () => ({ toast: vi.fn() }))
 
@@ -187,6 +194,26 @@ describe('duplicate capture at max rarity with both methods', () => {
     expect(toastMock).toHaveBeenCalledWith(
       'Vous avez déjà ce Shlagémon au maximum de sa rareté',
     )
+  })
+})
+
+describe('rarity 100 coefficient update', () => {
+  it('updates stats when rarity hits 100', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 99
+    applyStats(mon)
+    applyCurrentStats(mon)
+    const enemy = createDexShlagemon(carapouffe, false, 1)
+    enemy.rarity = 100
+    applyStats(enemy)
+    applyCurrentStats(enemy)
+    dex.captureEnemy(enemy)
+    expect(mon.rarity).toBe(100)
+    const expected = statWithRarity(baseStats.defense, 100)
+    expect(mon.baseStats.defense).toBe(expected)
+    expect(mon.defense).toBe(expected)
   })
 })
 

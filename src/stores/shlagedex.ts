@@ -133,10 +133,16 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return Math.round(mon.attack * (1 + bonus / 100))
   }
 
+  /**
+   * Compute the current defense value for a shlagemon.
+   *
+   * Bonuses from active potions and equipped items are applied and the
+   * result is floored to avoid inflating the statistic.
+   */
   function effectiveDefense(mon: DexShlagemon): number {
     const bonus = defenseBonusPercent.value
       + wearableBonus(mon.heldItemId, 'defense')
-    return Math.round(mon.defense * (1 + bonus / 100))
+    return Math.floor(mon.defense * (1 + bonus / 100))
   }
 
   function maxHp(mon: DexShlagemon): number {
@@ -523,12 +529,23 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.xp = 0
   }
 
+  /**
+   * Create and register a new Shlagémon in the player's Shlagédex.
+   *
+   * The function also notifies the achievements system so that capture and
+   * zone-completion achievements are evaluated immediately.
+   *
+   * @param base - Base data of the Shlagémon to create.
+   * @param shiny - Whether the created Shlagémon is shiny.
+   * @returns The created DexShlagémon instance.
+   */
   function createShlagemon(base: BaseShlagemon, shiny = false) {
     const mon = createDexShlagemon(base, shiny, 1, wildLevel.highestWildLevel)
     mon.captureDate = new Date().toISOString()
     mon.captureCount = 1
     addShlagemon(mon)
     updateHighestLevel(mon)
+    notifyAchievement({ type: 'capture', shiny })
     toast(`Tu as obtenu ${base.name} !`)
     return mon
   }

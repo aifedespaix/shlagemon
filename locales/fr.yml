@@ -215,8 +215,13 @@ components:
         shortcuts: Raccourcis
         support: Soutien
         interface: Interface
+        accessibility: Accessibilité
     InterfaceTab:
       villagesOnMap: Afficher les villages sur la carte
+    AccessibilityTab:
+      autoHide:
+        label: Masquer automatiquement les infobulles
+        description: Les infobulles se ferment automatiquement après un court délai. Désactivez cette option pour les garder visibles jusqu'à ce que vous cliquiez ailleurs.
   shlagemon:
     Detail:
       equipItemTitle: Équiper un objet
@@ -2068,6 +2073,13 @@ stores:
     alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
     rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
     released: '{name} a été relâché !'
+  game:
+    toast:
+      shlagidolar: Tu reçois {amount} Shlagédollars !
+      shlagidiamond: Tu reçois {amount} Shlagédiamants !
+  inventory:
+    toast:
+      item: Tu obtiens {qty} {item} ({category}) !
 layouts:
   NotFound:
     not-found: Page introuvable

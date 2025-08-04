@@ -308,6 +308,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
         counters.captures += 1
         if (e.shiny)
           counters.shiny += 1
+        // Ensure zone-related achievements are evaluated for each capture
+        // to immediately unlock completion rewards when the last required
+        // Shlagémon of a zone is obtained.
+        checkZoneCompletion()
         break
       case 'battle-win':
         counters.wins += 1

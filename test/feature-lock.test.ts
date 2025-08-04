@@ -18,6 +18,8 @@ describe('feature lock flags', () => {
   it('disables zone buttons when zones are locked', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
+    const dex = useShlagedexStore()
+    dex.createShlagemon(carapouffe)
     const featureLock = useFeatureLockStore()
     featureLock.lockZones()
     const wrapper = mount(ZonePanel, {

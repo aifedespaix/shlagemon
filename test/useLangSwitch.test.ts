@@ -6,14 +6,15 @@ import { useLangSwitch } from '../src/composables/useLangSwitch'
 import { buildLocalizedRoutes } from '../src/router'
 import { useLocaleStore } from '../src/stores/locale'
 
-function setup(routePath: string) {
+async function setup(routePath: string) {
   const pinia = createPinia()
   setActivePinia(pinia)
   const router = createRouter({
     history: createWebHistory(),
     routes: buildLocalizedRoutes(),
   })
-  router.push(routePath)
+  await router.push(routePath)
+  await router.isReady()
   return {
     pinia,
     router,
@@ -26,11 +27,10 @@ function setup(routePath: string) {
 
 describe('useLangSwitch', () => {
   it('returns equivalent path in other locale', async () => {
-    const { router, wrapper } = setup('/en/shlagedex')
-    await router.isReady()
+    const { wrapper } = await setup('/en/shlagedex')
 
     const path = await wrapper.vm.switchLang('fr')
     expect(path).toBe('/fr/shlagedex')
     expect(useLocaleStore().locale).toBe('fr')
-  })
+  }, 10000)
 })

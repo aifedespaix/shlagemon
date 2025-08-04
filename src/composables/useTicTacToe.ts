@@ -81,7 +81,8 @@ export function findBestMove(state: Cell[]): number {
       bestIdx = idx
     }
   }
-  return bestIdx
+  // fallback to first available cell if no move was selected
+  return bestIdx === -1 ? empty[0] : bestIdx
 }
 
 export function useTicTacToe() {
@@ -109,6 +110,8 @@ export function useTicTacToe() {
     if (!possible.length)
       return end(false)
     const idx = findBestMove(board.value)
+    if (idx < 0)
+      return end(false)
     board.value[idx] = 'ai'
     if (check(board.value, 'ai'))
       return end(false)

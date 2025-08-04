@@ -115,6 +115,7 @@ declare module 'vue' {
     PanelZone: typeof import('./components/panel/Zone.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SettingsAccessibilityTab: typeof import('./components/settings/AccessibilityTab.vue')['default']
     SettingsInterfaceTab: typeof import('./components/settings/InterfaceTab.vue')['default']
     SettingsLanguageTab: typeof import('./components/settings/LanguageTab.vue')['default']
     SettingsSaveTab: typeof import('./components/settings/SaveTab.vue')['default']

@@ -56,13 +56,20 @@ export const useZoneStore = defineStore('zone', () => {
       return
     if (zones.value.some(z => z.id === id)) {
       const same = currentId.value === id
+      if (!same) {
+        // Stop any ongoing battle loop to prevent pending enemy attacks from
+        // damaging the player's Shlagémon after the zone switch.
+        const battle = useBattleStore()
+        battle.stopLoop()
+      }
       currentId.value = id
       selectedAt.value = Date.now()
       const dex = useShlagedexStore()
       if (dex.activeShlagemon && !same)
         dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
       const visit = useZoneVisitStore()
-      visit.markVisited(id)
+      if (typeof visit.markVisited === 'function')
+        visit.markVisited(id)
     }
   }
 

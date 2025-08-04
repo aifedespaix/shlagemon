@@ -44,7 +44,9 @@ export const shlagedexSerializer: Serializer = {
     return JSON.stringify({
       ...data,
       effects: (data.effects || []).map(({ timeout, ...e }) => e),
-      shlagemons: data.shlagemons.map((mon) => {
+      // `data.shlagemons` may be absent when serializing legacy saves or
+      // during tests. Default to an empty array to avoid runtime errors.
+      shlagemons: (data.shlagemons || []).map((mon) => {
         const { base, heldItemId, ...rest } = mon
         const stored: StoredDexMon = {
           ...rest,

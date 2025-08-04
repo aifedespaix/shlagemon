@@ -215,8 +215,13 @@ components:
         shortcuts: Shortcuts
         support: Support
         interface: Interface
+        accessibility: Accessibility
     InterfaceTab:
       villagesOnMap: Show villages on the map
+    AccessibilityTab:
+      autoHide:
+        label: Automatically hide tooltips
+        description: Tooltips close automatically after a short delay. Disable this option to keep them visible until you click elsewhere.
   shlagemon:
     Detail:
       equipItemTitle: Equip an item
@@ -2134,6 +2139,13 @@ stores:
     alreadyMax: You already have this Shlagemon at max rarity
     rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
     released: '{name} was released!'
+  game:
+    toast:
+      shlagidolar: You receive {amount} Shlagidollars!
+      shlagidiamond: You receive {amount} Shlagidiamonds!
+  inventory:
+    toast:
+      item: You obtained {qty} {item} ({category})!
 layouts:
   NotFound:
     not-found: Page not found
