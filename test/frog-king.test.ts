@@ -6,21 +6,7 @@ import { useBattleStore } from '../src/stores/battle'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 
 describe('frog king effect', () => {
-  it('leaves enemies at 1 hp when holder is shiny', () => {
-    setActivePinia(createPinia())
-    const dex = useShlagedexStore()
-    const battle = useBattleStore()
-    const player = dex.createShlagemon(carapouffe)
-    const enemy = dex.createShlagemon(carapouffe)
-    player.attack = 1000
-    player.isShiny = true
-    player.heldItemId = frogKing.id
-    enemy.hpCurrent = 50
-    battle.attack(player, enemy, true, false)
-    expect(enemy.hpCurrent).toBe(1)
-  })
-
-  it('has no effect for non-shiny holders', () => {
+  it('leaves shiny enemies at 1 hp', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
     const battle = useBattleStore()
@@ -30,6 +16,22 @@ describe('frog king effect', () => {
     player.isShiny = false
     player.heldItemId = frogKing.id
     enemy.hpCurrent = 50
+    enemy.isShiny = true
+    battle.attack(player, enemy, true, false)
+    expect(enemy.hpCurrent).toBe(1)
+  })
+
+  it('has no effect against non-shiny enemies', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const battle = useBattleStore()
+    const player = dex.createShlagemon(carapouffe)
+    const enemy = dex.createShlagemon(carapouffe)
+    player.attack = 1000
+    player.isShiny = true
+    player.heldItemId = frogKing.id
+    enemy.hpCurrent = 50
+    enemy.isShiny = false
     battle.attack(player, enemy, true, false)
     expect(enemy.hpCurrent).toBe(0)
   })

@@ -11,7 +11,7 @@ fr:
         back: Retour
         next: Continuer
     step3:
-      text: Porté par un Shlagémon shiny, il empêche de mettre K.O. l'adversaire en le laissant à 1 PV.
+      text: Il épargne les Shlagémons shiny en les laissant à 1 PV au lieu de les mettre K.O. Les autres ne sont pas affectés.
       responses:
         back: Retour
         next: Continuer
@@ -38,7 +38,7 @@ en:
         back: Back
         next: Continue
     step3:
-      text: When worn by a shiny Shlagemon, it keeps foes at 1 HP instead of knocking them out.
+      text: It spares shiny foes by leaving them at 1 HP instead of knocking them out. Normal enemies are unaffected.
       responses:
         back: Back
         next: Continue

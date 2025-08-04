@@ -1,8 +1,8 @@
 en:
   name: Frog King
-  description: Prevents a shiny holder from finishing off foes.
-  details: When worn by a shiny Shlagemon, attacks leave enemies at 1 HP and then deal no damage. Has no effect on non-shiny holders.
+  description: Prevents finishing shiny foes.
+  details: Attacks against shiny Shlagemons leave them at 1 HP instead of knocking them out. No effect against normal foes.
 fr:
   name: Roi Crapeau
-  description: Empêche un porteur chromatique d'achever l'ennemi.
-  details: Porté par un Shlagémon shiny, ses attaques laissent toujours au moins 1 PV à l'adversaire puis n'infligent plus aucun dégât. Sans effet pour les non-shiny.
+  description: Empêche d'achever les Shlagémons shiny.
+  details: Les attaques contre un Shlagémon shiny le laissent toujours à 1 PV au lieu de le mettre K.O. Sans effet sur les ennemis non shiny.
