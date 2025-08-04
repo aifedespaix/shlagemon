@@ -4,6 +4,10 @@ import { describe, expect, it, vi } from 'vitest'
 import InventoryPanel from '../src/components/panel/Inventory.vue'
 import ZonePanel from '../src/components/panel/Zone.vue'
 import ShlagemonList from '../src/components/shlagemon/List.vue'
+// Zone button components must be registered explicitly in tests because
+// automatic component registration is not available in the unit test environment.
+import ZoneButtonVillage from '../src/components/zone/ButtonVillage.vue'
+import ZoneButtonWild from '../src/components/zone/ButtonWild.vue'
 import { potion } from '../src/data/items'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useFeatureLockStore } from '../src/stores/featureLock'
@@ -21,6 +25,7 @@ describe('feature lock flags', () => {
         plugins: [pinia],
         provide: { selectZone: vi.fn() },
         directives: { tooltip: () => {} },
+        components: { ZoneButtonWild, ZoneButtonVillage },
       },
     })
     await wrapper.vm.$nextTick()
