@@ -1,6 +1,5 @@
 import type { PersistedStateOptions } from 'pinia-plugin-persistedstate'
-import type { TypeName } from '~/data/shlagemons-type'
-import type { BaseShlagemon } from '~/type'
+import type { BaseShlagemon, TypeName } from '~/type'
 import { defineStore } from 'pinia'
 import { baseShlagemons } from '~/data/shlagemons'
 import { generateRarity } from '~/utils/dexFactory'
