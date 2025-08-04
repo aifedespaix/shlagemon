@@ -12,6 +12,7 @@ import DeveloperSupportDialog from '~/components/dialog/DeveloperSupportDialog.v
 import DuplicateRarityDialog from '~/components/dialog/DuplicateRarityDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
+import FrogKingDialog from '~/components/dialog/FrogKingDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import InventoryIntroDialog from '~/components/dialog/InventoryIntroDialog.vue'
 import KingLossDialog from '~/components/dialog/KingLossDialog.vue'
@@ -226,6 +227,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'preyAmulet',
       component: markRaw(PreyAmuletDialog),
       condition: () => dex.highestLevel >= 75,
+    },
+    {
+      id: 'frogKing',
+      component: markRaw(FrogKingDialog),
+      condition: () => dex.highestLevel >= 100,
     },
     {
       id: 'potionInfo',
