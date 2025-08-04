@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import AccessibilityTab from './AccessibilityTab.vue'
 import InterfaceTab from './InterfaceTab.vue'
 import LanguageTab from './LanguageTab.vue'
 import SaveTab from './SaveTab.vue'
@@ -40,6 +41,7 @@ const tabs = computed(() => {
     },
     { label: { text: t('components.settings.SettingsModal.tabs.language'), icon: 'i-carbon-language' }, component: LanguageTab },
     { label: { text: t('components.settings.SettingsModal.tabs.interface'), icon: 'i-carbon-display' }, component: InterfaceTab },
+    { label: { text: t('components.settings.SettingsModal.tabs.accessibility'), icon: 'i-carbon-accessibility' }, component: AccessibilityTab },
   ]
 
   if (!isMobile.value) {

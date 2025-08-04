@@ -81,4 +81,22 @@ export const install: UserModule = ({ app }) => {
       },
     },
   })
+
+  const accessibility = useAccessibilityStore()
+  const ui = useUIStore()
+
+  function updateOptions() {
+    FloatingVue.options.autoHideOnMousedown = !accessibility.autoHideTooltips
+    FloatingVue.options.themes.tooltip.autoHide = accessibility.autoHideTooltips
+    FloatingVue.options.themes.tooltip.hideTriggers = accessibility.autoHideTooltips
+      ? (events: string[]) => [...events, 'click']
+      : () => []
+    FloatingVue.options.themes.tooltip.delay = {
+      show: 200,
+      hide: ui.isMobile && accessibility.autoHideTooltips ? 2250 : 0,
+    }
+  }
+
+  updateOptions()
+  watch([accessibility.autoHideTooltips, ui.isMobile], updateOptions)
 }
