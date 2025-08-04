@@ -1,0 +1,12 @@
+fr:
+  attack: 'Votre attaque est boostée pour encore {remaining}'
+  defense: 'Votre défense est boostée pour encore {remaining}'
+  xp: "Vos gains d'XP sont augmentés pour encore {remaining}"
+  vitality: 'Votre vitalité est augmentée pour encore {remaining}'
+  capture: 'Vos chances de capture sont accrues pour encore {remaining}'
+en:
+  attack: 'Your attack is boosted for {remaining} more'
+  defense: 'Your defense is boosted for {remaining} more'
+  xp: 'Your XP gains are increased for {remaining} more'
+  vitality: 'Your vitality is increased for {remaining} more'
+  capture: 'Your capture chances are improved for {remaining} more'

@@ -18,10 +18,8 @@ const icon = computed(() => props.currency === 'shlagidiamond' ? IconShlagidiamo
 </script>
 
 <template>
-  <UiTooltip :text="currencyName">
-    <span class="inline-flex items-center gap-1">
-      <component :is="icon" class="h-4 w-4" />
-      <AnimatedNumber class="font-bold" :value="amount" />
-    </span>
-  </UiTooltip>
+  <span v-tooltip="currencyName" class="inline-flex items-center gap-1">
+    <component :is="icon" class="h-4 w-4" />
+    <AnimatedNumber class="font-bold" :value="amount" />
+  </span>
 </template>

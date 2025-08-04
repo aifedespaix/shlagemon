@@ -13,7 +13,9 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <UiTooltip :text="t('components.shlagemon.RarityInfo.tooltip')">
-    <ShlagemonRarity :rarity="props.rarity" v-bind="attrs" />
-  </UiTooltip>
+  <ShlagemonRarity
+    v-tooltip="t('components.shlagemon.RarityInfo.tooltip')"
+    :rarity="props.rarity"
+    v-bind="attrs"
+  />
 </template>

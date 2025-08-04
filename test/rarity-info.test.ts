@@ -13,7 +13,7 @@ describe('component RarityInfo.vue', () => {
 
     const wrapper = mount(RarityInfo, {
       props: { rarity: 42 },
-      global: { plugins: [i18n] },
+      global: { plugins: [i18n], directives: { tooltip: () => {} } },
     })
 
     expect(wrapper.text()).toContain('42')

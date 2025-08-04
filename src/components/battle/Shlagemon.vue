@@ -126,14 +126,13 @@ const heldItem = computed(() => {
       lvl {{ props.mon.lvl }}
     </div>
     <div class="mt-1 flex items-center gap-1">
-      <UiTooltip :text="t('components.battle.Shlagemon.ownedTooltip')">
-        <img
-          v-if="props.showBall && props.owned"
-          src="/items/shlageball/shlageball.webp"
-          alt="ball"
-          class="h-4 w-4"
-        >
-      </UiTooltip>
+      <img
+        v-if="props.showBall && props.owned"
+        v-tooltip="t('components.battle.Shlagemon.ownedTooltip')"
+        src="/items/shlageball/shlageball.webp"
+        alt="ball"
+        class="h-4 w-4"
+      >
       <span class="font-bold">{{ props.mon.base.name }}</span>
     </div>
     <UiProgressBar

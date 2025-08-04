@@ -37,9 +37,9 @@ describe('battle round enemy owned indicator', () => {
           DiseaseBadge: true,
           InventoryWearableItemIcon: true,
           ShlagemonImage: true,
-          UiTooltip: { template: '<div><slot /></div>' },
           UiProgressBar: true,
         },
+        directives: { tooltip: () => {} },
       },
     })
     await nextTick()

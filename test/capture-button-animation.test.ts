@@ -32,9 +32,9 @@ describe('capture button animation', () => {
       global: {
         plugins: [pinia, i18n],
         stubs: {
-          Tooltip: { template: '<div><slot /></div>' },
           ImageByBackground: { template: '<div v-bind="$attrs" />' },
         },
+        directives: { tooltip: () => {} },
       },
     })
 
