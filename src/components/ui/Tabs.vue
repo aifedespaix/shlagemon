@@ -11,6 +11,8 @@ interface Tab {
   'markAllSeen'?: () => void
   'disabled'?: boolean
   'aria-label'?: string
+  /** Optional tooltip displayed on hover. */
+  'tooltip'?: string
 }
 
 defineOptions({ inheritAttrs: false })
@@ -128,43 +130,81 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
       @keydown.left.prevent="prev"
       @keydown.right.prevent="next"
     >
-      <button
-        v-for="(tab, i) in props.tabs"
-        :key="i"
-        type="button"
-        :tabindex="active === i ? 0 : -1"
-        :aria-selected="active === i"
-        :aria-label="tab['aria-label'] || tab.label.text"
-        :class="[tabBtnBase, tabBtnActive(i)]"
-        :disabled="tab.disabled"
-        style="flex: 0 0 auto;"
-        @click="select(i)"
-        @contextmenu.prevent="onContextMenu(tab)"
-        @keydown.enter.space.prevent="select(i)"
-      >
-        <!-- Icone -->
-        <div
-          v-if="tab.label.icon"
-          class="flex shrink-0 items-center justify-center transition-all" :class="[
-            props.iconsOnly ? (props.isSmall ? 'text-xl' : 'text-2xl') : 'text-xl',
-            tab.label.icon,
-          ]"
-          aria-hidden="true"
-        />
-        <!-- Label -->
-        <span
-          v-if="!props.iconsOnly"
-          class="ml-1 transition-all duration-150"
+      <template v-for="(tab, i) in props.tabs" :key="i">
+        <UiTooltip v-if="tab.tooltip" :text="tab.tooltip" style="flex: 0 0 auto;">
+          <button
+            type="button"
+            :tabindex="active === i ? 0 : -1"
+            :aria-selected="active === i"
+            :aria-label="tab['aria-label'] || tab.label.text"
+            :class="[tabBtnBase, tabBtnActive(i)]"
+            :disabled="tab.disabled"
+            style="flex: 0 0 auto;"
+            @click="select(i)"
+            @contextmenu.prevent="onContextMenu(tab)"
+            @keydown.enter.space.prevent="select(i)"
+          >
+            <!-- Icone -->
+            <div
+              v-if="tab.label.icon"
+              class="flex shrink-0 items-center justify-center transition-all" :class="[
+                props.iconsOnly ? (props.isSmall ? 'text-xl' : 'text-2xl') : 'text-xl',
+                tab.label.icon,
+              ]"
+              aria-hidden="true"
+            />
+            <!-- Label -->
+            <span
+              v-if="!props.iconsOnly"
+              class="ml-1 transition-all duration-150"
+            >
+              {{ tab.label.text }}
+            </span>
+            <UiBadge
+              v-if="tab.badge && tab.badge > 0"
+              size="xs"
+            >
+              {{ tab.badge }}
+            </UiBadge>
+          </button>
+        </UiTooltip>
+        <button
+          v-else
+          type="button"
+          :tabindex="active === i ? 0 : -1"
+          :aria-selected="active === i"
+          :aria-label="tab['aria-label'] || tab.label.text"
+          :class="[tabBtnBase, tabBtnActive(i)]"
+          :disabled="tab.disabled"
+          style="flex: 0 0 auto;"
+          @click="select(i)"
+          @contextmenu.prevent="onContextMenu(tab)"
+          @keydown.enter.space.prevent="select(i)"
         >
-          {{ tab.label.text }}
-        </span>
-        <UiBadge
-          v-if="tab.badge && tab.badge > 0"
-          size="xs"
-        >
-          {{ tab.badge }}
-        </UiBadge>
-      </button>
+          <!-- Icone -->
+          <div
+            v-if="tab.label.icon"
+            class="flex shrink-0 items-center justify-center transition-all" :class="[
+              props.iconsOnly ? (props.isSmall ? 'text-xl' : 'text-2xl') : 'text-xl',
+              tab.label.icon,
+            ]"
+            aria-hidden="true"
+          />
+          <!-- Label -->
+          <span
+            v-if="!props.iconsOnly"
+            class="ml-1 transition-all duration-150"
+          >
+            {{ tab.label.text }}
+          </span>
+          <UiBadge
+            v-if="tab.badge && tab.badge > 0"
+            size="xs"
+          >
+            {{ tab.badge }}
+          </UiBadge>
+        </button>
+      </template>
     </nav>
 
     <!-- Tab content avec transitions -->

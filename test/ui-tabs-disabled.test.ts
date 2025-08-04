@@ -9,7 +9,10 @@ describe('uiTabs disabled behaviour', () => {
       { label: { text: 'A' }, component: defineComponent({ render: () => h('div') }) },
       { label: { text: 'B' }, component: defineComponent({ render: () => h('div') }) },
     ])
-    const wrapper = mount(UiTabs, { props: { tabs: tabs.value } })
+    const wrapper = mount(UiTabs, {
+      props: { tabs: tabs.value },
+      global: { stubs: { UiTooltip: { template: '<div><slot /></div>' } } },
+    })
     tabs.value = [
       { ...tabs.value[0], disabled: true },
       { ...tabs.value[1] },
