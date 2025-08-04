@@ -15,6 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
   levelPosition: 'bottom',
   showBall: false,
   owned: false,
+  belongsToPlayer: false,
   effects: () => [],
   disease: false,
   diseaseRemaining: 0,
@@ -34,6 +35,11 @@ interface Props {
   levelPosition?: 'top' | 'bottom'
   showBall?: boolean
   owned?: boolean
+  /**
+   * Indicates if the Shlagemon is controlled by the player.
+   * When true, opening the info will show the detailed modal instead of the dex info.
+   */
+  belongsToPlayer?: boolean
   effects?: ActiveEffect[]
   disease?: boolean
   diseaseRemaining?: number
@@ -89,7 +95,7 @@ function showTypeChart() {
 }
 
 function openInfo() {
-  if (props.owned)
+  if (props.belongsToPlayer)
     detailModal.open(props.mon)
   else
     infoModal.open(props.mon)

@@ -37,7 +37,7 @@ const nextEnemy = ref<DexShlagemon | null>(null)
 
 const showOwnedBall = computed(() => zone.current.type === 'sauvage')
 
-const enemyOwned = computed<boolean>(() =>
+const enemyCaptured = computed<boolean>(() =>
   displayedEnemy.value ? dex.capturedBaseIds.has(displayedEnemy.value.base.id) : false,
 )
 
@@ -228,6 +228,7 @@ function onClick(_e: MouseEvent) {
           :disease="disease.active"
           :disease-remaining="disease.remaining"
           owned
+          belongs-to-player
           @faint-end="onPlayerFaintEnd"
         >
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
@@ -252,7 +253,7 @@ function onClick(_e: MouseEvent) {
             :fainted="enemyFainted"
             :flash="flashEnemy"
             :show-ball="showOwnedBall"
-            :owned="enemyOwned"
+            :owned="enemyCaptured"
             @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
