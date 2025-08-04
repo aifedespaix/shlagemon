@@ -69,4 +69,13 @@ describe('tic tac toe ai', () => {
       expect(result).not.toBe('player')
     }
   })
+
+  it('selects a valid move when options remain', () => {
+    const board = Array.from({ length: SIZE * SIZE }).fill(null) as (null | 'player' | 'ai')[]
+    board[12] = 'player'
+    const idx = findBestMove(board)
+    expect(idx).toBeGreaterThanOrEqual(0)
+    expect(CENTER_CELLS).toContain(idx)
+    expect(board[idx]).toBeNull()
+  })
 })
