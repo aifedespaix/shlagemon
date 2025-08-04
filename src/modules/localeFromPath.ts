@@ -14,21 +14,24 @@ export const install: UserModule = ({ router, isClient, head }) => {
 
   router.beforeEach(async (to) => {
     const target = to.meta.locale as Locale | undefined
-    if (target && target !== store.locale) {
-      store.setLocale(target)
-      await loadLanguageAsync(target)
+    if (!target)
+      return true
 
-      if (!isClient) {
-        head?.push({
-          htmlAttrs: { lang: target },
-          link: [
-            {
-              rel: 'manifest',
-              href: `/${target}/manifest.webmanifest`,
-            },
-          ],
-        })
-      }
+    if (store.locale !== target)
+      store.setLocale(target)
+
+    await loadLanguageAsync(target)
+
+    if (!isClient) {
+      head?.push({
+        htmlAttrs: { lang: target },
+        link: [
+          {
+            rel: 'manifest',
+            href: `/${target}/manifest.webmanifest`,
+          },
+        ],
+      })
     }
     return true
   })
