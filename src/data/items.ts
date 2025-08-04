@@ -24,7 +24,8 @@ import {
   xpRing,
 } from './items/wearables/xpRing'
 
-export { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
+// Explicitly re-export shlageballs to ensure proper availability in all environments
+export { hyperShlageball, shlageball, superShlageball }
 
 // @unocss-include
 export const defensePotion: Item = {
