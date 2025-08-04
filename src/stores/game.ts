@@ -1,15 +1,25 @@
 import { defineStore } from 'pinia'
+import { toast } from 'vue3-toastify'
+import { i18n } from '~/modules/i18n'
 
 export const useGameStore = defineStore('game', () => {
   const shlagidolar = ref(0)
   const shlagidiamond = ref(0)
 
-  function addShlagidolar(amount: number) {
-    shlagidolar.value = Math.ceil(shlagidolar.value + amount)
+  interface CurrencyOptions {
+    toast?: boolean
   }
 
-  function addShlagidiamond(amount: number) {
+  function addShlagidolar(amount: number, options: CurrencyOptions = {}) {
+    shlagidolar.value = Math.ceil(shlagidolar.value + amount)
+    if (amount > 0 && options.toast)
+      toast.success(i18n.global.t('stores.game.toast.shlagidolar', { amount }))
+  }
+
+  function addShlagidiamond(amount: number, options: CurrencyOptions = {}) {
     shlagidiamond.value += amount
+    if (amount > 0 && options.toast)
+      toast.success(i18n.global.t('stores.game.toast.shlagidiamond', { amount }))
   }
 
   function reset() {

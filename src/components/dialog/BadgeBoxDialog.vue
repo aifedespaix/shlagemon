@@ -18,7 +18,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         type: 'valid',
         action: () => {
           badgeBox.unlock()
-          inventory.add(badgeBoxItem.id)
+          inventory.add(badgeBoxItem.id, 1, { toast: true })
           emit('done', 'badgeBox')
         },
       },

@@ -44,7 +44,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.FirstLossDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(potion.id, 10)
+          inventory.add(potion.id, 10, { toast: true })
           emit('done', 'firstLoss')
         },
       },

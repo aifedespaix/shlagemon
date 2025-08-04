@@ -48,7 +48,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.KingUnlockDialog.steps.step6.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(defensePotion.id, 1)
+          inventory.add(defensePotion.id, 1, { toast: true })
           emit('done', 'kingUnlock')
         },
       },

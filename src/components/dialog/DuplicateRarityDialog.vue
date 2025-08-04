@@ -66,7 +66,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.DuplicateRarityDialog.steps.step6.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(superShlageball.id, 1)
+          inventory.add(superShlageball.id, 1, { toast: true })
           emit('done', 'rarityIntro')
         },
       },

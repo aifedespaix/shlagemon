@@ -48,7 +48,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.FrogKingDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(frogKing.id, 1)
+          inventory.add(frogKing.id, 1, { toast: true })
           emit('done', 'frogKing')
         },
       },

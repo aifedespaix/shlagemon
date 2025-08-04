@@ -40,7 +40,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.HalfDexDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(multiExp.id, 1)
+          inventory.add(multiExp.id, 1, { toast: true })
           emit('done', 'halfDex')
         },
       },
