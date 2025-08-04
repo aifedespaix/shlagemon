@@ -35,8 +35,8 @@ export const useBattleStore = defineStore('battle', () => {
     isPlayerDefender = false,
     reduced = false,
   ): AttackResult {
-    const atkType = attacker.base.types[0]
-    const defTypes = defender.base.types
+    const atkType = attacker.base.types[0].id
+    const defTypes = defender.base.types.map(t => t.id)
     const atkBonus = isPlayerAttacker ? 1 + dex.bonusPercent / 100 : 1
     const musicBonus = audio.isMusicEnabled ? 1.1 : 1
     const shinyBonus = attacker.isShiny ? 1.15 : 1

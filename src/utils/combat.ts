@@ -1,17 +1,20 @@
-import type { ShlagemonType } from '~/type'
+import type { TypeName } from '~/type'
+import { shlagemonTypes } from '~/data/shlagemons-type'
 
 /**
  * Retourne le multiplicateur de dégâts et l'effet visuel associé
  */
 export function getTypeMultiplier(
-  attackType: ShlagemonType,
-  targetType: ShlagemonType,
+  attackType: TypeName,
+  targetType: TypeName,
 ): { multiplier: number, effect: 'super' | 'not' | 'normal' } {
+  const atk = shlagemonTypes[attackType]
+  const def = shlagemonTypes[targetType]
   let base = 1
 
-  if (targetType.weakness.some(w => w.id === attackType.id))
+  if (def.weakness.includes(atk.id))
     base = 1.5 // La cible est faible contre ce type
-  else if (targetType.resistance.some(r => r.id === attackType.id))
+  else if (def.resistance.includes(atk.id))
     base = 0.5 // La cible résiste à ce type
 
   const effect: 'super' | 'not' | 'normal'
@@ -25,8 +28,8 @@ export function getTypeMultiplier(
  */
 export function computeDamage(
   base: number,
-  attackType: ShlagemonType,
-  targetTypes: ShlagemonType | ShlagemonType[],
+  attackType: TypeName,
+  targetTypes: TypeName | TypeName[],
 ): { damage: number, effect: 'super' | 'not' | 'normal', crit: 'critical' | 'weak' | 'normal' } {
   const types = Array.isArray(targetTypes) ? targetTypes : [targetTypes]
   const typeMultiplier = types

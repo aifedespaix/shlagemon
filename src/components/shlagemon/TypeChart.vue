@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { TypeName } from '~/type'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
 const props = defineProps<{ highlight?: string | null }>()
 
-const types = Object.values(shlagemonTypes)
+const typeIds = Object.keys(shlagemonTypes) as TypeName[]
 
 // --- Scroll horizontal à la molette
 const tableContainer = ref<HTMLDivElement | null>(null)
@@ -23,10 +24,12 @@ onBeforeUnmount(() => {
 })
 
 // --- Table logique
-function getMultiplier(att: typeof types[number], def: typeof types[number]) {
-  if (def.weakness.some(w => w.id === att.id))
+function getMultiplier(att: TypeName, def: TypeName) {
+  const attack = shlagemonTypes[att]
+  const defend = shlagemonTypes[def]
+  if (defend.weakness.includes(attack.id))
     return 1.5
-  if (def.resistance.some(r => r.id === att.id))
+  if (defend.resistance.includes(attack.id))
     return 0.5
   return 1
 }
@@ -52,30 +55,30 @@ function getMultiplier(att: typeof types[number], def: typeof types[number]) {
             </div>
           </th>
           <th
-            v-for="t in types"
-            :key="t.id"
+            v-for="t in typeIds"
+            :key="t"
             class="sticky top-0 z-20 bg-white p-1 dark:bg-gray-900"
             style="box-shadow: 0 2px 0 0 rgba(0,0,0,0.03);"
           >
-            <ShlagemonType :value="t" />
+            <ShlagemonType :value="shlagemonTypes[t]" />
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="atk in types" :key="atk.id">
+        <tr v-for="atk in typeIds" :key="atk">
           <th
             class="sticky left-0 z-10 bg-white p-1 text-right dark:bg-gray-900"
             style="box-shadow: 2px 0 0 0 rgba(0,0,0,0.03);"
           >
-            <ShlagemonType :value="atk" />
+            <ShlagemonType :value="shlagemonTypes[atk]" />
           </th>
           <td
-            v-for="def in types"
-            :key="def.id"
+            v-for="def in typeIds"
+            :key="def"
             class="border border-gray-200 p-1 dark:border-gray-700"
             :class="{
-              'bg-blue-200 dark:bg-blue-800': props.highlight === atk.id || props.highlight === def.id,
-              'font-bold': props.highlight === atk.id && props.highlight === def.id,
+              'bg-blue-200 dark:bg-blue-800': props.highlight === atk || props.highlight === def,
+              'font-bold': props.highlight === atk && props.highlight === def,
             }"
           >
             {{ getMultiplier(atk, def) }}
