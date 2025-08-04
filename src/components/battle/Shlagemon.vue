@@ -125,6 +125,16 @@ const heldItem = computed(() => {
       :item="heldItem"
       class="absolute bottom-9 left-0 z-150 h-6 w-6"
     />
+    <UiButton
+      v-tooltip="t('components.battle.Shlagemon.infoTooltip')"
+      type="icon"
+      size="xs"
+      class="absolute bottom-9 right-0 z-150"
+      :aria-label="t('components.battle.Shlagemon.infoTooltip')"
+      @click="openInfo"
+    >
+      <div i-carbon-information />
+    </UiButton>
     <ShlagemonImage
       :id="props.mon.base.id"
       :alt="props.mon.base.name"
