@@ -1,0 +1,6 @@
+fr:
+  toast:
+    item: 'Tu obtiens {qty} {item} ({category}) !'
+en:
+  toast:
+    item: 'You obtained {qty} {item} ({category})!'

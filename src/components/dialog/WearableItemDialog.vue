@@ -31,7 +31,7 @@ const dialogTree = computed(() =>
     t('components.dialog.WearableItemDialog.steps.step5.text'),
     t('components.dialog.WearableItemDialog.steps.step6.text'),
   ], () => {
-    inventory.add(props.item.id, 1)
+    inventory.add(props.item.id, 1, { toast: true })
     emit('done', props.finishId)
   }),
 )

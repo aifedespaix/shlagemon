@@ -43,7 +43,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         action: () => {
           box.unlock()
           box.importFromInventory(inventory.items)
-          inventory.add(eggBox.id)
+          inventory.add(eggBox.id, 1, { toast: true })
           emit('done', 'eggBox')
         },
       },

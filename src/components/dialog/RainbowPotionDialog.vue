@@ -48,7 +48,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.RainbowPotionDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(specialPotion.id, 1)
+          inventory.add(specialPotion.id, 1, { toast: true })
           emit('done', 'rainbowPotion')
         },
       },

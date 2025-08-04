@@ -1,6 +1,7 @@
 import type { ItemId } from '~/data/items'
-import type { Item } from '~/type/item'
+import type { Item, ItemCategory } from '~/type/item'
 import { defineStore } from 'pinia'
+import { toast } from 'vue3-toastify'
 import {
   allItems,
   badgeBox as badgeBoxItem,
@@ -9,6 +10,7 @@ import {
 } from '~/data/items'
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
+import { i18n } from '~/modules/i18n'
 import { useAudioStore } from './audio'
 import { useOdorElixirStore } from './odorElixir'
 
@@ -26,6 +28,14 @@ export const useInventoryStore = defineStore('inventory', () => {
   const audio = useAudioStore()
   const battleCooldown = useBattleItemCooldownStore()
 
+  const categoryTranslationKeys: Record<ItemCategory, string> = {
+    actif: 'components.panel.Inventory.category.active',
+    passif: 'components.panel.Inventory.category.passive',
+    utilitaire: 'components.panel.Inventory.category.utility',
+    activable: 'components.panel.Inventory.category.activable',
+    battle: 'components.panel.Inventory.category.battle',
+  }
+
   interface ListedItem {
     item: Item
     qty: number
@@ -40,12 +50,27 @@ export const useInventoryStore = defineStore('inventory', () => {
     }, []),
   )
 
-  function add(id: ItemId, qty = 1) {
+  interface AddOptions {
+    toast?: boolean
+  }
+
+  function add(id: ItemId, qty = 1, options: AddOptions = {}) {
     if (eggBox.unlocked && id.startsWith('oeuf-')) {
       eggBox.addEgg(id as EggItemId, qty)
       return
     }
     items.value[id] = (items.value[id] || 0) + qty
+    if (options.toast) {
+      const item = allItems.find(i => i.id === id)
+      if (item?.category) {
+        const categoryKey = categoryTranslationKeys[item.category as ItemCategory]
+        toast.success(i18n.global.t('stores.inventory.toast.item', {
+          qty,
+          item: i18n.global.t(item.name),
+          category: i18n.global.t(categoryKey),
+        }))
+      }
+    }
   }
 
   function remove(id: ItemId, qty = 1) {

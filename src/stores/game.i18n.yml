@@ -1,0 +1,8 @@
+fr:
+  toast:
+    shlagidolar: 'Tu reçois {amount} Shlagédollars !'
+    shlagidiamond: 'Tu reçois {amount} Shlagédiamants !'
+en:
+  toast:
+    shlagidolar: 'You receive {amount} Shlagidollars!'
+    shlagidiamond: 'You receive {amount} Shlagidiamonds!'

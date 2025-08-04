@@ -57,7 +57,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.CuckRingDialog.steps.step6.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(cuckRing.id, 1)
+          inventory.add(cuckRing.id, 1, { toast: true })
           emit('done', 'cuckRing')
         },
       },

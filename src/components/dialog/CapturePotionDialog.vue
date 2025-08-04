@@ -48,7 +48,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.CapturePotionDialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(capturePotion.id, 1)
+          inventory.add(capturePotion.id, 1, { toast: true })
           emit('done', 'capturePotion')
         },
       },

@@ -41,7 +41,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.NewZoneDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(xpPotion.id, 1)
+          inventory.add(xpPotion.id, 1, { toast: true })
           mobile.set('zones')
           emit('done', 'newZone')
         },

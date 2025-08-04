@@ -40,7 +40,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.PreyAmuletDialog.steps.step4.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(preyAmulet.id, 1)
+          inventory.add(preyAmulet.id, 1, { toast: true })
           emit('done', 'preyAmulet')
         },
       },

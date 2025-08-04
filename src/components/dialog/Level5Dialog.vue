@@ -48,7 +48,7 @@ const dialogTree = computed<DialogNode[]>(() => [
         label: t('components.dialog.Level5Dialog.steps.step5.responses.valid'),
         type: 'valid',
         action: () => {
-          inventory.add(shlageball.id, 10)
+          inventory.add(shlageball.id, 10, { toast: true })
           emit('done', 'level5')
         },
       },
