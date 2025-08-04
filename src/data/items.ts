@@ -11,6 +11,7 @@ import {
   defenseAmulet,
   defenseRing,
 } from './items/wearables/defenseRing'
+import { frogKing } from './items/wearables/frogKing'
 import { preyAmulet } from './items/wearables/preyAmulet'
 import {
   advancedVitalityRing,
@@ -547,6 +548,7 @@ export const allItems = [
   advancedXpRing,
   xpAmulet,
   cuckRing,
+  frogKing,
   preyAmulet,
   attackRing,
   advancedAttackRing,
