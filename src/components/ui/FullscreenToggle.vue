@@ -18,7 +18,9 @@ useEventListener(document, 'fullscreenchange', () => {
 
 <template>
   <UiButton
-    type="icon" :aria-label="t('components.ui.FullscreenToggle.label')"
+    v-tooltip.bottom="t('components.ui.FullscreenToggle.label')"
+    type="icon"
+    :aria-label="t('components.ui.FullscreenToggle.label')"
     size="xs"
     @click="toggle"
   >
