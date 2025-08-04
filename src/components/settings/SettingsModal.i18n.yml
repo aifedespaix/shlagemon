@@ -5,6 +5,7 @@ fr:
     language: Langue
     shortcuts: Raccourcis
     interface: Interface
+    accessibility: Accessibilité
     support: Soutien
 en:
   title: Settings
@@ -13,4 +14,5 @@ en:
     language: Language
     shortcuts: Shortcuts
     interface: Interface
+    accessibility: Accessibility
     support: Support

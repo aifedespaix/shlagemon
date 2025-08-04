@@ -134,6 +134,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const useAccessibilityStore: typeof import('./stores/accessibility')['useAccessibilityStore']
   const useAchievementsFilterStore: typeof import('./stores/achievementsFilter')['useAchievementsFilterStore']
   const useAchievementsStore: typeof import('./stores/achievements')['useAchievementsStore']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
@@ -600,6 +601,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly useAccessibilityStore: UnwrapRef<typeof import('./stores/accessibility')['useAccessibilityStore']>
     readonly useAchievementsFilterStore: UnwrapRef<typeof import('./stores/achievementsFilter')['useAchievementsFilterStore']>
     readonly useAchievementsStore: UnwrapRef<typeof import('./stores/achievements')['useAchievementsStore']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
