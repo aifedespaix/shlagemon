@@ -1,3 +1,4 @@
+import type { ArenaBadge } from '../src/type'
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { getArena } from '../src/data/arenas'
@@ -33,5 +34,17 @@ describe('badge box sync', () => {
     badgeBox.syncWithPlayerBadges()
 
     expect(badgeBox.badges).toHaveLength(1)
+  })
+
+  it('removes badges with unknown identifiers', () => {
+    setActivePinia(createPinia())
+    const badgeBox = useBadgeBoxStore()
+
+    badgeBox.badges.push({ id: 'does-not-exist', name: 'unknown', levelCap: 0 } as ArenaBadge)
+    expect(badgeBox.badges).toHaveLength(1)
+
+    badgeBox.syncWithPlayerBadges()
+
+    expect(badgeBox.badges).toHaveLength(0)
   })
 })

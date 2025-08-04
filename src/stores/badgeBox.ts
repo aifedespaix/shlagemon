@@ -14,15 +14,26 @@ export const useBadgeBoxStore = defineStore('badgeBox', () => {
     'badge-buttered-toast': 'buttered-toast',
   }
 
+  /**
+   * Migrates badge identifiers from legacy values to the current identifiers.
+   */
   function normalizeBadges(): void {
-    badges.value = badges.value.map(b => ({
-      id: LEGACY_BADGE_IDS[b.id] ?? b.id,
-      name: b.name,
-      levelCap: b.levelCap,
+    badges.value = badges.value.map(badge => ({
+      id: LEGACY_BADGE_IDS[badge.id] ?? badge.id,
+      name: badge.name,
+      levelCap: badge.levelCap,
     }))
   }
 
+  /**
+   * Removes badges whose identifiers do not match any existing arena.
+   */
+  function removeUnknownBadges(): void {
+    badges.value = badges.value.filter(badge => Boolean(getArena(badge.id)))
+  }
+
   normalizeBadges()
+  removeUnknownBadges()
 
   function open() {
     isModalOpen.value = true
@@ -49,6 +60,9 @@ export const useBadgeBoxStore = defineStore('badgeBox', () => {
    * they are added here.
    */
   function syncWithPlayerBadges(): void {
+    normalizeBadges()
+    removeUnknownBadges()
+
     const player = usePlayerStore()
     for (const [arenaId, hasBadge] of Object.entries(player.arenaBadges)) {
       if (!hasBadge)
