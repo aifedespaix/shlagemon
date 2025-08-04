@@ -814,6 +814,10 @@ components:
       title: Badge box
       empty: No badge
       level: Level cap {level}
+  map:
+    ArrowButton:
+      prev: Previous
+      next: Next
 data:
   shlagemons:
     01-05:
