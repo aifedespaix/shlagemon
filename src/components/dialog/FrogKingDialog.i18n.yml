@@ -1,0 +1,54 @@
+fr:
+  steps:
+    step1:
+      text: Félicitations, l'un de tes Shlagémons a atteint le niveau 100 !
+      responses:
+        next: Continuer
+    step2:
+      text: >
+        Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Crapeau.
+      responses:
+        back: Retour
+        next: Continuer
+    step3:
+      text: Porté par un Shlagémon shiny, il empêche de mettre K.O. l'adversaire en le laissant à 1 PV.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: On raconte qu'il appartenait jadis à un prince grenouille doré, gardien des marécages sacrés.
+      responses:
+        back: Retour
+        next: Continuer
+    step5:
+      text: Tu en es digne, prends-le et qu'il t'aide dans tes captures !
+      responses:
+        back: Retour
+        valid: Merci Professeur !
+en:
+  steps:
+    step1:
+      text: Congratulations, one of your Shlagemons reached level 100!
+      responses:
+        next: Continue
+    step2:
+      text: >
+        To celebrate, I'd like to give you a very rare item: the Frog King.
+      responses:
+        back: Back
+        next: Continue
+    step3:
+      text: When worn by a shiny Shlagemon, it keeps foes at 1 HP instead of knocking them out.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Legends say it belonged to a golden frog prince, guardian of sacred marshes.
+      responses:
+        back: Back
+        next: Continue
+    step5:
+      text: You are worthy of it. Take it and may it aid your captures!
+      responses:
+        back: Back
+        valid: Thanks Professor!

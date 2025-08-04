@@ -49,6 +49,7 @@ declare module 'vue' {
     DialogDuplicateRarityDialog: typeof import('./components/dialog/DuplicateRarityDialog.vue')['default']
     DialogEggBoxDialog: typeof import('./components/dialog/EggBoxDialog.vue')['default']
     DialogFirstLossDialog: typeof import('./components/dialog/FirstLossDialog.vue')['default']
+    DialogFrogKingDialog: typeof import('./components/dialog/FrogKingDialog.vue')['default']
     DialogHalfDexDialog: typeof import('./components/dialog/HalfDexDialog.vue')['default']
     DialogInventoryIntroDialog: typeof import('./components/dialog/InventoryIntroDialog.vue')['default']
     DialogKingLossDialog: typeof import('./components/dialog/KingLossDialog.vue')['default']
