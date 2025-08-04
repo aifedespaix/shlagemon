@@ -6,7 +6,6 @@ import type { Locale } from '~/constants/locales'
  */
 export function getPwaManifest(locale: Locale): ManifestOptions {
   const base: ManifestOptions = {
-    short_name: 'Shlagémon',
     theme_color: '#1865ab',
     background_color: '#1865ab',
     icons: [
@@ -33,6 +32,7 @@ export function getPwaManifest(locale: Locale): ManifestOptions {
     return {
       ...base,
       lang: 'fr',
+      short_name: 'Shlagémon',
       name: 'Shlagémon - Ça sent très fort',
       description: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
       start_url: '/fr/',
@@ -43,6 +43,7 @@ export function getPwaManifest(locale: Locale): ManifestOptions {
   return {
     ...base,
     lang: 'en',
+    short_name: 'Shlagemon',
     name: 'Shlagemon - It smells very strong',
     description: 'Catch all the Shlagemons before they rot the whole world.',
     start_url: '/en/',
