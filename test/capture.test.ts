@@ -63,4 +63,13 @@ describe('capture mechanics', () => {
     expect(chanceSuper).toBeGreaterThan(0)
     expect(chanceHyper).toBeGreaterThan(chanceSuper)
   })
+
+  it('hyper ball versus strong foe gives around 25% chance', () => {
+    const mon = createDexShlagemon(carapouffe, false, 80)
+    mon.hp = 100
+    mon.hpCurrent = 62
+    mon.rarity = 1
+    const chance = getCaptureChance(mon, balls[2])
+    expect(chance).toBeCloseTo(26.6, 1)
+  })
 })
