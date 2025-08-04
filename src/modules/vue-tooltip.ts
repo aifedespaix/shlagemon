@@ -2,7 +2,11 @@ import type { UserModule } from '~/types'
 import FloatingVue from 'floating-vue'
 import { observeTooltipAccessibility } from '~/utils/tooltipAccessibility'
 
-export const install: UserModule = ({ app }) => {
+export const install: UserModule = ({ app, isClient }) => {
+  // FloatingVue depends on browser APIs; bail out during SSR to avoid runtime freezes
+  if (!isClient)
+    return
+
   app.use(FloatingVue, {
     // Disable popper components
     disabled: false,
@@ -104,6 +108,5 @@ export const install: UserModule = ({ app }) => {
     updateOptions,
   )
 
-  if (typeof window !== 'undefined')
-    observeTooltipAccessibility()
+  observeTooltipAccessibility()
 }
