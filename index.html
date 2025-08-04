@@ -7,6 +7,16 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1865ab" />
     <meta name="msapplication-TileColor" content="#1865ab" />
     <meta name="theme-color" content="#1865ab" />
+    <link id="pwa-manifest" rel="manifest" href="/en/manifest.webmanifest" />
+    <script>
+      ;(function () {
+        const supported = ['fr', 'en']
+        const pathLocale = location.pathname.split('/')[1]
+        const locale = supported.includes(pathLocale) ? pathLocale : 'en'
+        const manifestLink = document.getElementById('pwa-manifest')
+        if (manifestLink) manifestLink.setAttribute('href', `/${locale}/manifest.webmanifest`)
+      })()
+    </script>
     <script>
       ;(function () {
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
