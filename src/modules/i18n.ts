@@ -62,7 +62,7 @@ export const install: UserModule = ({ app, isClient, route }) => {
   const localeStore = useLocaleStore()
 
   if (!isClient) {
-    const routeLocale = route.meta.locale as Locale | undefined
+    const routeLocale = route?.meta?.locale as Locale | undefined
     if (routeLocale)
       localeStore.setLocale(routeLocale)
   }
