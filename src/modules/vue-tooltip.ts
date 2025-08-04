@@ -98,5 +98,8 @@ export const install: UserModule = ({ app }) => {
   }
 
   updateOptions()
-  watch([accessibility.autoHideTooltips, ui.isMobile], updateOptions)
+  watch(
+    () => [accessibility.autoHideTooltips, ui.isMobile],
+    updateOptions,
+  )
 }
