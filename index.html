@@ -10,15 +10,6 @@
     <link id="pwa-manifest" rel="manifest" href="/en/manifest.webmanifest" />
     <script>
       ;(function () {
-        const supported = ['fr', 'en']
-        const pathLocale = location.pathname.split('/')[1]
-        const locale = supported.includes(pathLocale) ? pathLocale : 'en'
-        const manifestLink = document.getElementById('pwa-manifest')
-        if (manifestLink) manifestLink.setAttribute('href', `/${locale}/manifest.webmanifest`)
-      })()
-    </script>
-    <script>
-      ;(function () {
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
         if (setting === 'dark' || (prefersDark && setting !== 'light'))
