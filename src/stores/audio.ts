@@ -8,6 +8,12 @@ function getTrackSrc(howl: Howl): string | undefined {
   return (howl as unknown as { _src?: string })._src
 }
 
+/**
+ * Audio store handling music and sound effects playback.
+ *
+ * When running on the server, audio assets are not loaded and any attempt to
+ * play sounds becomes a no-op so the store remains fully serializable.
+ */
 export const useAudioStore = defineStore('audio', () => {
   const settings = reactive<AudioSettings>({
     musicVolume: 0.5,
@@ -16,8 +22,9 @@ export const useAudioStore = defineStore('audio', () => {
     isSfxEnabled: true,
   })
   const { musicVolume, sfxVolume, isMusicEnabled, isSfxEnabled } = toRefs(settings)
+  const isServer = import.meta.env.SSR
   const currentMusic = ref<Howl | null>(null)
-  const sfxMap = preloadSfx()
+  const sfxMap: Record<SfxId, Howl> = isServer ? ({} as Record<SfxId, Howl>) : preloadSfx()
 
   const tracks = {
     battle: [
@@ -62,7 +69,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function createMusic(src: string) {
-    if (import.meta.env.VITEST) {
+    if (import.meta.env.VITEST || isServer) {
       const stub = {
         _src: src,
         play: () => {},
@@ -87,6 +94,8 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function playMusic(track: string) {
+    if (isServer)
+      return
     stopMusic()
     // Vite auto import path public
     track = track.replace('/public', '')
@@ -99,6 +108,8 @@ export const useAudioStore = defineStore('audio', () => {
   let fadingOut: Howl | null = null
 
   function fadeToMusic(track: string) {
+    if (isServer)
+      return
     if (!currentMusic.value) {
       playMusic(track)
       return
@@ -149,15 +160,19 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function playRandomMusic(category: keyof typeof tracks) {
+    if (isServer)
+      return
     playMusic(randomTrack(category))
   }
 
   function fadeToRandomMusic(category: keyof typeof tracks) {
+    if (isServer)
+      return
     fadeToMusic(randomTrack(category))
   }
 
   function stopMusic() {
-    if (!currentMusic.value)
+    if (isServer || !currentMusic.value)
       return
     currentMusic.value.stop()
     currentMusic.value.unload()
@@ -169,7 +184,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function playSfx(id: SfxId, options: { loop?: boolean } = {}) {
-    if (import.meta.env.VITEST || !isSfxEnabled.value)
+    if (isServer || import.meta.env.VITEST || !isSfxEnabled.value)
       return undefined
     const sound = sfxMap[id]
     if (!sound)
@@ -182,6 +197,8 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function stopSfx(id: SfxId, soundId?: number) {
+    if (isServer)
+      return
     const sound = sfxMap[id]
     if (!sound)
       return
@@ -236,7 +253,7 @@ export const useAudioStore = defineStore('audio', () => {
     sfxVolume,
     isMusicEnabled,
     isSfxEnabled,
-    currentMusic: import.meta.env.SSR ? skipHydrate(currentMusic) : currentMusic,
+    currentMusic: isServer ? skipHydrate(currentMusic) : currentMusic,
     playMusic,
     fadeToMusic,
     playRandomMusic,

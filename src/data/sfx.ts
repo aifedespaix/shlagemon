@@ -16,10 +16,16 @@ export const sfxUrls = Object.fromEntries(
 
 export type SfxId = keyof typeof sfxUrls
 
+/**
+ * Preload every registered sound effect.
+ *
+ * In test and SSR environments, lightweight stubs are returned instead of
+ * actual `Howl` instances to avoid accessing audio APIs.
+ */
 export function preloadSfx(): Record<SfxId, Howl> {
   const map = {} as Record<SfxId, Howl>
   for (const [id, url] of Object.entries(sfxUrls) as [SfxId, string][]) {
-    const howl = import.meta.env.VITEST
+    const howl = import.meta.env.VITEST || import.meta.env.SSR
       ? ({
           _src: url,
           play: () => {},
