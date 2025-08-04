@@ -145,7 +145,11 @@ function attack() {
   coreAttack()
 }
 
+const { start: startEnemyFaintFallback, stop: stopEnemyFaintFallback } = useTimeoutFn(onEnemyFaintEnd, 600, { immediate: false })
+const { start: startPlayerFaintFallback, stop: stopPlayerFaintFallback } = useTimeoutFn(onPlayerFaintEnd, 600, { immediate: false })
+
 function onEnemyFaintEnd() {
+  stopEnemyFaintFallback()
   if (enemyFainted.value)
     handleEnd()
   if (nextEnemy.value) {
@@ -155,6 +159,7 @@ function onEnemyFaintEnd() {
 }
 
 async function onPlayerFaintEnd() {
+  stopPlayerFaintFallback()
   if (playerFainted.value)
     handleEnd()
   await nextTick()
@@ -164,6 +169,20 @@ async function onPlayerFaintEnd() {
     startBattle()
   }
 }
+
+watch(enemyFainted, (val) => {
+  if (val)
+    startEnemyFaintFallback()
+  else
+    stopEnemyFaintFallback()
+})
+
+watch(playerFainted, (val) => {
+  if (val)
+    startPlayerFaintFallback()
+  else
+    stopPlayerFaintFallback()
+})
 
 function onMouseMove(e: MouseEvent) {
   cursorX.value = e.clientX
