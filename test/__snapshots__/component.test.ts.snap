@@ -1,21 +1,29 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`component Header.vue > should render 1`] = `
-"<header class="h-12 flex items-center justify-between bg-gray-100 p-4 dark:bg-gray-800">
-  <div class="flex items-center gap-2"><img src="/logo.png" alt="Logo Shlagémon" class="h-20 select-none -my-4"></div>
-  <div class="flex items-center gap-2"><button aria-label="Changer de thème" class="relative h-6 w-12 rounded-full bg-gray-200 transition-colors dark:bg-gray-700" type="button"><span class="absolute left-0.5 top-0.5 h-5 w-5 flex items-center justify-center rounded-full bg-white text-yellow-500 transition-all dark:bg-gray-900 dark:text-yellow-300"><div class="i-carbon-sun"></div></span></button><button class="inline-flex items-center justify-center shadow transition-transform duration-150 ease-out active:translate-y-[1px] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 hover:-translate-y-[1px] rounded-full p-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600" aria-label="Audio">
-      <div class="i-carbon-volume-up"></div>
-    </button>
+"<header data-v-243d8871="" id="main-header" style="height: 44px; min-height: 44px; max-height: 44px;" class="flex items-center justify-between bg-gray-50/80 dark:bg-gray-900/90 px-2 sm:px-3 backdrop-blur shadow-xs transition-colors select-none z-50 relative" role="banner" tabindex="-1" aria-label="Header">
+  <div data-v-243d8871="" class="h-full min-w-0 flex items-center"><img data-v-243d8871="" src="/logo.png" alt="Logo Shlagémon" class="block h-full w-auto select-none transition-transform duration-200 hover:scale-105" draggable="false" style="max-height: 44px; min-height: 44px;"></div>
+  <nav data-v-243d8871="" class="h-full flex items-center gap-1" aria-label="Header actions"><button data-v-243d8871="" type="button" aria-label="Changer de thème" aria-pressed="false" class="group shadow-input relative h-8 w-16 inline-flex select-none items-center rounded-full bg-gray-200 p-1 outline-none transition-colors duration-300 dark:bg-gray-800 bg-gray-200 dark:bg-gray-800" tabindex="0">
+      <!-- Barre de fond animée --><span class="pointer-events-none absolute inset-0 rounded-full transition-colors duration-300 bg-gradient-to-r from-yellow-200 via-yellow-50 to-white opacity-60"></span><!-- Pastille / Thumb --><span class="ring-primary relative z-10 h-6 w-6 flex items-center justify-center rounded-full bg-white shadow-md ring-offset-2 transition-transform duration-300 dark:bg-gray-900 group-focus-visible:ring-2 translate-x-0"><div class="text-lg transition-colors duration-200 i-carbon-sun text-yellow-500"></div></span><!-- Bordure focus accessible -->
+      <!--v-if-->
+      <!-- Optionnel : label pour accessibilité screen-reader --><span class="sr-only">Changer de thème</span>
+    </button><button data-v-243d8871="" type="button" aria-label="Audio" tabindex="0" class="inline-flex items-center justify-center font-semibold outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none rounded-full aspect-square text-xs px-2 py-1 min-h-[1.75rem] min-w-[1.75rem]
+      bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200
+      hover:bg-gray-200 dark:hover:bg-gray-700
+      focus-visible:ring-2 focus-visible:ring-cyan-400"><span class="h-full w-full flex items-center justify-center text-base" aria-hidden="true"><div data-v-243d8871="" class="i-carbon-volume-up text-green-500 dark:text-green-400 transition-colors duration-150" aria-live="polite"></div></span></button>
     <!--teleport start-->
-    <!--teleport end--><button class="inline-flex items-center justify-center shadow transition-transform duration-150 ease-out active:translate-y-[1px] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 hover:-translate-y-[1px] rounded-full p-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600" aria-label="Paramètres">
-      <div class="i-carbon-settings"></div>
-    </button>
+    <!--teleport end--><button data-v-243d8871="" type="button" aria-label="Paramètres" tabindex="0" class="inline-flex items-center justify-center font-semibold outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none rounded-full aspect-square text-xs px-2 py-1 min-h-[1.75rem] min-w-[1.75rem]
+      bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200
+      hover:bg-gray-200 dark:hover:bg-gray-700
+      focus-visible:ring-2 focus-visible:ring-cyan-400"><span class="h-full w-full flex items-center justify-center text-base" aria-hidden="true"><div data-v-243d8871="" class="i-carbon-settings"></div></span></button>
     <!--teleport start-->
     <!--teleport end-->
-    <!--v-if--><button class="inline-flex items-center justify-center shadow transition-transform duration-150 ease-out active:translate-y-[1px] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 hover:-translate-y-[1px] rounded-full p-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600" aria-label="Plein écran">
-      <div class="i-carbon-maximize"></div>
-    </button>
     <!--v-if-->
-  </div>
+    <!--v-if-->
+    <!-- Plein écran : même hauteur/largeur/visuel que les autres ! --><button data-v-243d8871="" type="button" aria-label="Plein écran" tabindex="0" class="inline-flex items-center justify-center font-semibold outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 transition-all duration-150 ease-out shadow-sm active:translate-y-[1px] active:scale-[0.98] hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none select-none rounded-full aspect-square text-xs px-2 py-1 min-h-[1.75rem] min-w-[1.75rem]
+      bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200
+      hover:bg-gray-200 dark:hover:bg-gray-700
+      focus-visible:ring-2 focus-visible:ring-cyan-400"><span class="h-full w-full flex items-center justify-center text-base" aria-hidden="true"><div class="i-carbon-maximize"></div></span></button>
+  </nav>
 </header>"
 `;
