@@ -71,6 +71,7 @@ const headerClass = [
       <ThemeToggle />
 
       <UiButton
+        v-tooltip.bottom="t('components.layout.Header.audio')"
         type="icon"
         :aria-label="t('components.layout.Header.audio')"
         :tabindex="0"
@@ -84,6 +85,7 @@ const headerClass = [
       <AudioSettingsModal v-model="showAudio" />
 
       <UiButton
+        v-tooltip.bottom="t('components.layout.Header.settings')"
         type="icon"
         :aria-label="t('components.layout.Header.settings')"
         :tabindex="0"
@@ -96,6 +98,7 @@ const headerClass = [
 
       <UiButton
         v-if="showDevButton"
+        v-tooltip.bottom="t('components.layout.Header.developer')"
         type="icon"
         :aria-label="t('components.layout.Header.developer')"
         :tabindex="0"

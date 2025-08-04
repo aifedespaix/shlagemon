@@ -34,6 +34,7 @@ function handleBlur() {
 <template>
   <button
     ref="buttonRef"
+    v-tooltip.bottom="t('components.ThemeToggle.toggle')"
     type="button"
     :aria-label="t('components.ThemeToggle.toggle')"
     :aria-pressed="isDark"
