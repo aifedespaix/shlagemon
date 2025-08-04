@@ -108,7 +108,7 @@ export function generateRarity(max = 99, min = 1): number {
 }
 
 export function statWithRarity(base: number, rarity: number): number {
-  const rarityBoost = 1 + 0.5 * (rarity - 1) / 99 // 1.0 → 1.5
+  const rarityBoost = 1 + (rarity - 1) / 99 // 1.0 → 2.0
   const finalValue = base * rarityBoost
   return Math.floor(finalValue / 5) * 5 // arrondi au multiple de 5 inférieur
 }

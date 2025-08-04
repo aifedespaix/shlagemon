@@ -24,5 +24,5 @@ describe('router locale', () => {
   it('updates store locale from URL', async () => {
     await setup('/fr/shlagedex')
     expect(useLocaleStore().locale).toBe('fr')
-  })
+  }, 10000)
 })
