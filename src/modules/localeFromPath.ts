@@ -9,10 +9,7 @@ import { loadLanguageAsync } from './i18n'
  * The URL locale always takes precedence over any stored locale. Only the root
  * path `/` relies on the stored or browser locale to redirect accordingly.
  */
-export const install: UserModule = ({ router, isClient }) => {
-  if (!isClient)
-    return
-
+export const install: UserModule = ({ router, isClient, head }) => {
   const store = useLocaleStore()
 
   router.beforeEach(async (to) => {
@@ -20,6 +17,18 @@ export const install: UserModule = ({ router, isClient }) => {
     if (target && target !== store.locale) {
       store.setLocale(target)
       await loadLanguageAsync(target)
+
+      if (!isClient) {
+        head?.push({
+          htmlAttrs: { lang: target },
+          link: [
+            {
+              rel: 'manifest',
+              href: `/${target}/manifest.webmanifest`,
+            },
+          ],
+        })
+      }
     }
     return true
   })
