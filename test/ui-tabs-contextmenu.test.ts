@@ -10,7 +10,10 @@ describe('uiTabs context menu', () => {
       { label: { text: 'A' }, component: defineComponent({ render: () => h('div') }) },
       { label: { text: 'B' }, component: defineComponent({ render: () => h('div') }), badge: 2, markAllSeen },
     ])
-    const wrapper = mount(UiTabs, { props: { tabs: tabs.value } })
+    const wrapper = mount(UiTabs, {
+      props: { tabs: tabs.value },
+      global: { stubs: { UiTooltip: { template: '<div><slot /></div>' } } },
+    })
     const buttons = wrapper.findAll('button')
     await buttons[1].trigger('contextmenu')
     expect(markAllSeen).toHaveBeenCalledTimes(1)

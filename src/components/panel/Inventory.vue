@@ -86,7 +86,8 @@ function getTabComponent(category: ItemCategory | 'all') {
         h(InventoryItemCard, {
           item: entry.item,
           qty: entry.qty,
-          disabled: isDisabled(entry.item),
+          disabled: isCardDisabled(entry.item),
+          actionDisabled: isActionDisabled(entry.item),
           onUse: () => onUse(entry.item),
           onSell: () => inventory.sell(entry.item.id),
         })))
@@ -118,6 +119,7 @@ const tabs = computed(() =>
       badge: count,
       markAllSeen: () => markCategoryUsed(cat.value),
       disabled: cat.disabled,
+      tooltip: cat.label.text,
     }
   }),
 )
@@ -184,18 +186,26 @@ function getList(category: ItemCategory | 'all') {
 }
 const filteredList = getList('all')
 
-function isDisabled(item: Item) {
+function isCardDisabled(item: Item) {
   if (featureLock.isInventoryLocked)
     return true
   if (isTrainerBattle.value && item.category !== 'battle')
     return true
   if (item.category === 'battle' && battleCooldown.isActive)
     return true
+  if (item.type === 'evolution' && !evoItemStore.canUse(item))
+    return true
+  return false
+}
+
+function isActionDisabled(item: Item) {
+  if (isCardDisabled(item))
+    return true
   if ('catchBonus' in item)
     return ballStore.current === item.id
   if (kingPotionIds.includes(item.id))
     return kingPotion.current === item.id
-  return item.type === 'evolution' && !evoItemStore.canUse(item)
+  return false
 }
 
 function onUse(item: Item) {
@@ -262,7 +272,8 @@ function onUse(item: Item) {
         :key="entry.item.id"
         :item="entry.item"
         :qty="entry.qty"
-        :disabled="isDisabled(entry.item)"
+        :disabled="isCardDisabled(entry.item)"
+        :action-disabled="isActionDisabled(entry.item)"
         @use="onUse(entry.item)"
         @sell="inventory.sell(entry.item.id)"
       />
