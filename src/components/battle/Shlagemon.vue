@@ -62,6 +62,21 @@ watch(
   },
 )
 
+const documentVisibility = useDocumentVisibility()
+
+watch(
+  () => props.fainted,
+  (fainted) => {
+    if (fainted && documentVisibility.value === 'hidden')
+      emit('faintEnd')
+  },
+)
+
+watch(documentVisibility, (state) => {
+  if (state === 'hidden' && props.fainted)
+    emit('faintEnd')
+})
+
 function onAnimationEnd() {
   if (props.fainted)
     emit('faintEnd')
