@@ -143,7 +143,7 @@ watch(showInfo, (val) => {
             clickable
             size="sm"
             :key-name="shortcutKey"
-            :title="t('components.inventory.ItemCard.shortcutTooltip')"
+            v-tooltip="t('components.inventory.ItemCard.shortcutTooltip')"
             @click.stop="openShortcutModal"
           />
         </div>
