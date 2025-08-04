@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" width="100" height="120">
+  <svg viewBox="0 0 100 120" width="100" height="120">
     <!-- Corps du Pokédex -->
     <rect x="10" y="10" width="80" height="100" rx="10" ry="10" fill="none" stroke="currentColor" stroke-width="3" />
 
