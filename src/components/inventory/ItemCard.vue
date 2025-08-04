@@ -140,10 +140,10 @@ watch(showInfo, (val) => {
           >x {{ qty }}</span>
           <UiKbd
             v-if="!isMobile"
+            v-tooltip="t('components.inventory.ItemCard.shortcutTooltip')"
             clickable
             size="sm"
             :key-name="shortcutKey"
-            :title="t('components.inventory.ItemCard.shortcutTooltip')"
             @click.stop="openShortcutModal"
           />
         </div>

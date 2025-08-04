@@ -26,7 +26,7 @@ export function usePageHead(options: PageHeadOptions = {}) {
   const seoHead = useSeoHead()
 
   const DEFAULT_IMAGE
-    = 'https://placehold.co/1200x630/png?text=Shlag%C3%A9mon'
+    = '/thumbnail.jpg'
 
   useHead(() => {
     const title = unref(options.title) ?? t('App.title')
