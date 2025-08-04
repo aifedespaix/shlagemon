@@ -1,29 +1,11 @@
 <script setup lang="ts">
-import type { Zone } from '~/type'
-
 const zone = useZoneStore()
 const dex = useShlagedexStore()
-const progress = useZoneProgressStore()
-
-const xpZones = computed(() =>
-  zone.zones.filter(z => (z.maxLevel ?? 0) > 0),
-)
+const { canAccess } = useZoneAccess(toRef(dex, 'highestLevel'))
 
 const accessibleZones = computed(() => zone.zones.filter(z => canAccess(z)))
 const accessibleSavages = computed(() => accessibleZones.value.filter(z => z.type === 'sauvage'))
 const accessibleVillages = computed(() => accessibleZones.value.filter(z => z.type === 'village'))
-
-function canAccess(z: Zone): boolean {
-  if (z.type === 'village') {
-    const attached = zone.zones.find(zz => zz.id === z.attachedTo)
-    return z.minLevel <= dex.highestLevel && (!!attached && canAccess(attached))
-  }
-  const idx = xpZones.value.findIndex(x => x.id === z.id)
-  if (idx === 0)
-    return true
-  const prev = xpZones.value[idx - 1]
-  return progress.isKingDefeated(prev.id)
-}
 
 function onVillageWheel(e: WheelEvent) {
   const el = e.currentTarget as HTMLElement
