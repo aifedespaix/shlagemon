@@ -10,9 +10,14 @@ import { badgeBox, eggBox, fabulousPotion, mysteriousPotion, specialPotion } fro
 import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{
+  /** Item to display. */
   item: Item
+  /** Quantity owned for this item. */
   qty: number
+  /** Whether the entire card is disabled. */
   disabled?: boolean
+  /** Whether the action button is disabled. */
+  actionDisabled?: boolean
 }>()
 const emit = defineEmits<{
   (e: 'use'): void
@@ -55,7 +60,7 @@ const actionLabel = computed(() => {
   if (isBox.value)
     return t('components.inventory.ItemCard.action.open')
   if ('catchBonus' in props.item || props.item.wearable || isKingPotion.value) {
-    return props.disabled
+    return props.actionDisabled
       ? t('components.inventory.ItemCard.action.equipped')
       : t('components.inventory.ItemCard.action.equip')
   }
@@ -144,7 +149,7 @@ watch(showInfo, (val) => {
         </div>
         <UiButton
           v-if="!isEgg"
-          :disabled="props.disabled"
+          :disabled="props.actionDisabled || showCooldown"
           size="xs"
           class="flex items-center justify-center gap-1 !w-full"
           :aria-label="actionLabel"
@@ -179,7 +184,7 @@ watch(showInfo, (val) => {
         <UiButton
           v-if="!isEgg"
           class="flex items-center gap-1 text-xs"
-          :disabled="props.disabled"
+          :disabled="props.actionDisabled || showCooldown"
           size="sm"
           @click.stop="useFromModal"
         >
