@@ -12,7 +12,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  limitSize: true,
+  limitSize: false,
   showFooter: true,
 })
 const emit = defineEmits(['exit'])

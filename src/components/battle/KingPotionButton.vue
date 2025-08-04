@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
 import { useAudioStore } from '~/stores/audio'
 import { useKingPotionStore } from '~/stores/kingPotion'
 

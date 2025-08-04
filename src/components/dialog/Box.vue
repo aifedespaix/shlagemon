@@ -70,7 +70,7 @@ function choose(r: DialogResponse) {
 </script>
 
 <template>
-  <div class="h-full w-full flex flex-col">
+  <div class="h-full max-w-xl w-full flex flex-col">
     <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded">
       <div class="flex flex-col items-center justify-center">
         <UiImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />

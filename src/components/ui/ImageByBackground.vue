@@ -18,5 +18,5 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div class="animate-fade bg-center bg-no-repeat" :class="classes" :style="imgByBackground(props.src)" />
+  <div class="animate-fade-in bg-center bg-no-repeat" :class="classes" :style="imgByBackground(props.src)" />
 </template>
