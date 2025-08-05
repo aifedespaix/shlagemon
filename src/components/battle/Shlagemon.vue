@@ -164,7 +164,7 @@ const heldItem = computed(() => {
         alt="ball"
         class="h-4 w-4"
       >
-      <span class="font-bold">{{ props.mon.base.name }}</span>
+      <span class="font-bold" :class="{ 'shiny-text': props.mon.isShiny }">{{ props.mon.base.name }}</span>
     </div>
     <UiProgressBar
       :value="props.hp"
