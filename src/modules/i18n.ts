@@ -17,10 +17,10 @@ export const i18n = createI18n({
   messages: {},
 })
 
-const localesMap = Object.fromEntries(
-  Object.entries(import.meta.glob('../../locales/*.yml', { eager: true, import: 'default' }))
-    .map(([path, messages]) => [path.match(/([\w-]*)\.yml$/)?.[1], messages]),
-) as Record<Locale, Record<string, string>>
+const localeLoaders = Object.fromEntries(
+  Object.entries(import.meta.glob('../../locales/*.yml', { eager: false, import: 'default' }))
+    .map(([path, loader]) => [path.match(/([\w-]*)\.yml$/)?.[1], loader]),
+) as Record<Locale, () => Promise<Record<string, string>>>
 
 // availableLocales constant is defined in ~/constants/locales and
 // should match the set of translation files present in `/locales`.
@@ -49,10 +49,12 @@ function setI18nLanguage(lang: Locale) {
 
 export async function loadLanguageAsync(lang: Locale): Promise<Locale> {
   if (!loadedLanguages.includes(lang)) {
-    const messages = localesMap[lang]
-    if (messages)
+    const loader = localeLoaders[lang]
+    if (loader) {
+      const messages = await loader()
       i18n.global.setLocaleMessage(lang, messages)
-    loadedLanguages.push(lang)
+      loadedLanguages.push(lang)
+    }
   }
   return setI18nLanguage(lang)
 }
