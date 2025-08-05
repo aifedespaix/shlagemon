@@ -13,7 +13,7 @@ const stats = computed(() => [
 </script>
 
 <template>
-  <div class="flex items-center gap-4 rounded-lg bg-white p-3 shadow dark:bg-gray-800">
+  <div class="flex items-center gap-4 rounded-lg bg-white p-1 shadow dark:bg-gray-800">
     <div class="h-16 w-16 flex-shrink-0">
       <ShlagemonImage
         :id="props.mon.base.id"
@@ -30,29 +30,23 @@ const stats = computed(() => [
             {{ t('components.arena.EnemyStats.level', { n: props.mon.lvl }) }}
           </span>
         </h3>
-        <ShlagemonRarityInfo :rarity="props.mon.rarity" class="ml-2 flex-shrink-0" />
-      </div>
-
-      <div class="mt-1 flex gap-1">
+        <div class="flex gap-1">
         <ShlagemonType
           v-for="typeItem in props.mon.base.types"
           :key="typeItem.id"
           :value="typeItem"
-          size="sm"
+          size="xs"
           open-on-click
         />
+
+        </div>
+        <ShlagemonRarityInfo :rarity="props.mon.rarity" class="ml-2 flex-shrink-0" />
       </div>
 
-      <div class="grid grid-cols-2 mt-2 gap-1 text-xs">
-        <div
-          v-for="stat in stats"
-          :key="stat.label"
-          class="flex justify-between"
-        >
-          <span class="text-gray-600 dark:text-gray-400">{{ stat.label }}</span>
-          <span class="font-medium">{{ stat.value }}</span>
-        </div>
+      <div class="mt-1 flex gap-1">
       </div>
+
+    <ShlagemonStats :stats="stats" compact />
     </div>
   </div>
 </template>
