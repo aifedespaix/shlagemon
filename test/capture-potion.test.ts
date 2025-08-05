@@ -12,10 +12,12 @@ describe('capture potion', () => {
     const mon = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
 
-    dex.boostCapture(50)
     const ball = { id: 'test', name: 't', description: '', price: 0, catchBonus: 1, animation: '' }
     mon.hpCurrent = 0
-    vi.spyOn(Math, 'random').mockReturnValue(0.49)
+    mon.rarity = 99
+    vi.spyOn(Math, 'random').mockReturnValue(0.1)
+    expect(tryCapture(mon, ball)).toBe(false)
+    dex.boostCapture(50)
     expect(tryCapture(mon, ball)).toBe(true)
     vi.useRealTimers()
   })
