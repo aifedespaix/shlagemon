@@ -15,10 +15,14 @@ export function getCaptureChance(enemy: DexShlagemon, ball: Ball): number {
   const rarityMod = rarityModifier(enemy.rarity)
   const levelPenalty = levelDifficultyMultiplier(enemy.lvl)
   const captureMod = captureBonusMultiplier()
-  return Math.min(
+  const chance = Math.min(
     100,
     hpChance * levelBonus * rarityMod * captureMod * levelPenalty,
   )
+  // The capture sequence performs up to three attempts. Dividing the
+  // probability by three keeps the overall success rate aligned with the
+  // computed chance value.
+  return chance / 3
 }
 
 export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {
