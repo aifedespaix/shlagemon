@@ -26,6 +26,9 @@ const stats = computed(() => [
       <div class="flex items-center justify-between">
         <h3 class="truncate text-base font-bold">
           {{ props.mon.base.name }}
+          <span class="ml-1 text-sm text-gray-600 font-medium dark:text-gray-400">
+            {{ t('components.arena.EnemyStats.level', { n: props.mon.lvl }) }}
+          </span>
         </h3>
         <ShlagemonRarityInfo :rarity="props.mon.rarity" class="ml-2 flex-shrink-0" />
       </div>

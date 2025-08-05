@@ -1,4 +1,6 @@
 fr:
   title: Choisir un Shlagémon contre {name}
+  confirm: Valider
 en:
   title: Choose a Shlagemon against {name}
+  confirm: Confirm
