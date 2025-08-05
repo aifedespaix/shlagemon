@@ -1,9 +1,15 @@
 <script lang="ts" setup>
-const props = defineProps<{ rarity: number }>()
+const props = defineProps<{ rarity: number, small?: boolean }>()
 
 const classes = computed(() => {
   const unocss: string[] = []
   unocss.push('text-grey-900 dark:text-grey-300')
+  if(props.small) {
+
+    unocss.push('text-xs w-6 h-6')
+  } else {
+    unocss.push('w-10 h-10')
+  }
   if (props.rarity < 10) {
     unocss.push('bg-grey-300 bg-dark:grey-800')
   }
@@ -27,7 +33,7 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div :class="classes" class="aspect-square h-10 w-10 flex items-center justify-center rounded-full px-2 py-1">
+  <div :class="classes" class="aspect-square flex items-center justify-center rounded-full px-2 py-1">
     {{ rarity }}
   </div>
 </template>

@@ -40,7 +40,7 @@ const stats = computed(() => [
         />
 
         </div>
-        <ShlagemonRarityInfo :rarity="props.mon.rarity" class="ml-2 flex-shrink-0" />
+        <ShlagemonRarityInfo :rarity="props.mon.rarity" small class="ml-2 flex-shrink-0" />
       </div>
 
       <div class="mt-1 flex gap-1">
