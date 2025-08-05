@@ -1,4 +1,5 @@
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
+import type { Locale } from '~/constants/locales'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import { availableLocales } from '~/constants/locales'
@@ -33,6 +34,33 @@ export function buildLocalizedRoutes(): RouteRecordRaw[] {
   return setupLayouts(records)
 }
 
+/**
+ * Resolve a locale-aware redirect for unmatched routes.
+ *
+ * When executed in the browser, the user's preferred language is inferred
+ * from {@link navigator.language}. If no matching locale can be determined or
+ * when running in a non-browser environment, {@link defaultLocale} is used.
+ *
+ * @param to - Destination route that failed to match.
+ * @returns Absolute path prefixed with the resolved locale.
+ */
+export function redirect(to: RouteLocationNormalized): string {
+  const allParam = Array.isArray(to.params.all)
+    ? to.params.all.join('/')
+    : (to.params.all as string | undefined) ?? ''
+
+  const navigatorLocale
+    = typeof navigator !== 'undefined' && typeof navigator.language === 'string'
+      ? navigator.language.split('-')[0]
+      : undefined
+
+  const locale: Locale = availableLocales.includes(navigatorLocale as Locale)
+    ? (navigatorLocale as Locale)
+    : defaultLocale
+
+  return allParam ? `/${locale}/${allParam}` : `/${locale}`
+}
+
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -40,6 +68,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('~/pages/root.vue'),
   },
   ...buildLocalizedRoutes(),
+  { path: '/:all(.*)', redirect },
 ]
 
 /**
