@@ -189,8 +189,13 @@ onUnmounted(() => {
             </UiButton>
           </div>
         </div>
-        <UiModal v-model="showDex" @select="onMonSelected">
-          <ArenaSelectionModal v-if="selectedEnemy" :mon="selectedEnemy" :selected="arena.selections.filter(Boolean) as string[]" />
+        <UiModal v-model="showDex">
+          <ArenaSelectionModal
+            v-if="selectedEnemy"
+            :mon="selectedEnemy"
+            :selected="arena.selections.filter(Boolean) as string[]"
+            @select="onMonSelected"
+          />
         </UiModal>
       </div>
     </div>
