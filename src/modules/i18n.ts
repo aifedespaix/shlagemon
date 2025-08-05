@@ -57,12 +57,12 @@ export async function loadLanguageAsync(lang: Locale): Promise<Locale> {
   return setI18nLanguage(lang)
 }
 
-export const install: UserModule = ({ app, isClient, route }) => {
+export const install: UserModule = ({ app, isClient, routePath }) => {
   app.use(i18n)
   const localeStore = useLocaleStore()
 
   if (!isClient) {
-    const routeLocale = route?.meta?.locale as Locale | undefined
+    const routeLocale = routePath?.split('/')[1] as Locale | undefined
     if (routeLocale)
       localeStore.setLocale(routeLocale)
   }
@@ -72,5 +72,6 @@ export const install: UserModule = ({ app, isClient, route }) => {
     localeStore.setLocale(fallback)
   }
 
+  console.log('locale : ', localeStore.locale)
   loadLanguageAsync(localeStore.locale)
 }
