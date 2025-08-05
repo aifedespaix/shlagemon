@@ -68,21 +68,30 @@ export function useMapMarkers(map: LeafletMap) {
       const ballStyle = !allCaptured.value
         ? 'filter: grayscale(1) opacity(0.9);'
         : perfectZone.value
-          ? 'filter: hue-rotate(60deg) brightness(1.1) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 6px #facc15);'
+          ? 'filter: brightness(1.1) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
           : ''
       const ball = zone.type !== 'village'
         ? `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3" style="${ballStyle}" />`
         : ''
       const shiny = allShiny.value
-        ? '<div class="i-mdi:star h-3 w-3 mask-rainbow"></div>'
+        ? '<div class="i-mdi:star h-2 w-2 mask-rainbow absolute -top-1 -right-1"></div>'
         : ''
+      let fullBall
+      if (allShiny) {
+        fullBall = `<div class="relative">${ball} ${shiny}</div>`
+      }
+      else {
+        fullBall = ball
+      }
       const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
       const arena = arenaCompleted.value
         ? '<div class="i-mdi:sword-cross h-3 w-3"></div>'
         : zone.type === 'village' && zone.pois.arena
           ? '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
           : ''
-      const icons = [ball, shiny, crown, arena].filter(Boolean).join('')
+
+      const icons = [fullBall, crown, arena].filter(Boolean).join('')
+      console.log(icons)
       return `<div class="flex flex-col items-center ${locked ? 'grayscale opacity-50' : ''}">
         ${icon}
         <div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>
