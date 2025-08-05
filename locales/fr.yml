@@ -1883,12 +1883,12 @@ data:
       details: Redonne 50 points de vie à votre Shlagémon actif pendant le combat.
     superPotion:
       name: Super Potion
-      description: Soigne 100 HP de votre Shlagémon.
-      details: Redonne 100 points de vie à votre Shlagémon actif pendant le combat.
+      description: Soigne 250 HP de votre Shlagémon.
+      details: Redonne 250 points de vie à votre Shlagémon actif pendant le combat.
     hyperPotion:
       name: Hyper Potion
-      description: Soigne 200 HP de votre Shlagémon.
-      details: Redonne 200 points de vie à votre Shlagémon actif pendant le combat.
+      description: Soigne 1000 HP de votre Shlagémon.
+      details: Redonne 1000 points de vie à votre Shlagémon actif pendant le combat.
     multiExp:
       name: Multi-EXP
       description: Partage l'XP avec un Shlagémon.

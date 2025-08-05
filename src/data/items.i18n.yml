@@ -65,12 +65,12 @@ en:
     details: Restores 50 HP to your active Shlagémon during battle.
   superPotion:
     name: Super Potion
-    description: Heals 100 HP of your Shlagémon.
-    details: Restores 100 HP to your active Shlagémon during battle.
+    description: Heals 250 HP of your Shlagémon.
+    details: Restores 250 HP to your active Shlagémon during battle.
   hyperPotion:
     name: Hyper Potion
-    description: Heals 200 HP of your Shlagémon.
-    details: Restores 200 HP to your active Shlagémon during battle.
+    description: Heals 1000 HP of your Shlagémon.
+    details: Restores 1000 HP to your active Shlagémon during battle.
   multiExp:
     name: Multi-EXP
     description: Shares XP with a Shlagémon.
@@ -208,12 +208,12 @@ fr:
     details: Redonne 50 points de vie à votre Shlagémon actif pendant le combat.
   superPotion:
     name: Super Potion
-    description: Soigne 100 HP de votre Shlagémon.
-    details: Redonne 100 points de vie à votre Shlagémon actif pendant le combat.
+    description: Soigne 250 HP de votre Shlagémon.
+    details: Redonne 250 points de vie à votre Shlagémon actif pendant le combat.
   hyperPotion:
     name: Hyper Potion
-    description: Soigne 200 HP de votre Shlagémon.
-    details: Redonne 200 points de vie à votre Shlagémon actif pendant le combat.
+    description: Soigne 1000 HP de votre Shlagémon.
+    details: Redonne 1000 points de vie à votre Shlagémon actif pendant le combat.
   multiExp:
     name: Multi-EXP
     description: Partage l'XP avec un Shlagémon.

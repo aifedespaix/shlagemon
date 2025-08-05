@@ -37,7 +37,7 @@ function confirm() {
     <h3 class="mb-2 text-center text-lg font-bold">
       {{ t('components.arena.SelectionModal.title', { name: props.mon.base.name }) }}
     </h3>
-    <ArenaEnemyStatsCompact :mon="props.mon" />
+    <ArenaEnemyStatsCompact :mon="props.mon" enemy />
       <ShlagemonQuickSelect class="flex-1" :selected="props.selected" @select="onSelect" />
     <ArenaEnemyStatsCompact v-if="candidate" :mon="candidate" />
     <UiButton v-if="candidate" class="mt-2" type="primary" @click="confirm">
