@@ -52,7 +52,7 @@ export function useMapMarkers(map: LeafletMap) {
     onSelect?: (id: ZoneId) => void,
     inactive = false,
   ) {
-    const { allCaptured, perfectZone, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
+    const { allCaptured, perfectZone, allShiny, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
     const visit = useZoneVisitStore()
     const visited = computed(() => !!visit.visited[zone.id])
     let locked = inactive
@@ -65,11 +65,16 @@ export function useMapMarkers(map: LeafletMap) {
     function buildHtml() {
       const highlight = !visited.value && !locked ? 'animate-pulse-alt' : ''
       const icon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" />`
-      const ballClasses = allCaptured.value
-        ? `h-3 w-3${perfectZone.value ? ' filter-[hue-rotate(60deg)_brightness(1.1)]' : ''}`
-        : 'h-3 w-3 opacity-90 grayscale'
+      const ballStyle = !allCaptured.value
+        ? 'filter: grayscale(1) opacity(0.9);'
+        : perfectZone.value
+          ? 'filter: hue-rotate(60deg) brightness(1.1) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 6px #facc15);'
+          : ''
       const ball = zone.type !== 'village'
-        ? `<img src="/items/shlageball/shlageball.webp" class="${ballClasses}" />`
+        ? `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3" style="${ballStyle}" />`
+        : ''
+      const shiny = allShiny.value
+        ? '<div class="i-mdi:star h-3 w-3 mask-rainbow"></div>'
         : ''
       const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
       const arena = arenaCompleted.value
@@ -77,7 +82,7 @@ export function useMapMarkers(map: LeafletMap) {
         : zone.type === 'village' && zone.pois.arena
           ? '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
           : ''
-      const icons = [ball, crown, arena].filter(Boolean).join('')
+      const icons = [ball, shiny, crown, arena].filter(Boolean).join('')
       return `<div class="flex flex-col items-center ${locked ? 'grayscale opacity-50' : ''}">
         ${icon}
         <div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>
@@ -94,7 +99,7 @@ export function useMapMarkers(map: LeafletMap) {
       title: zone.name,
     })
 
-    watch([allCaptured, perfectZone, kingDefeated, arenaCompleted, visited], () => {
+    watch([allCaptured, perfectZone, allShiny, kingDefeated, arenaCompleted, visited], () => {
       marker.setIcon(new DivIcon({
         html: buildHtml(),
         iconSize: [markerSize, markerSize],
