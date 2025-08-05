@@ -13,7 +13,6 @@ function imgByBackground(background: string) {
 
 const classes = computed(() => {
   const uno: string[] = []
-  console.log(props.noAnimation, 'jjj')
   if(!props.noAnimation)
     uno.push('animate-fade-in')
   if (props.isCover)
