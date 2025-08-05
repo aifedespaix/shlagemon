@@ -118,26 +118,30 @@ onUnmounted(() => {
 <template>
   <div class="tiny-scrollbar relative h-full w-full flex flex-col items-center overflow-auto">
     <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-2">
-      <button
+      <UiButton
         v-for="(enemy, i) in enemyTeam"
         :key="enemy.id"
-        class="aspect-square border-red-600 rounded-full bg-red-500/40"
+        type="danger"
+        class="w-18 aspect-square p-0!"
+        circle
         @click="openEnemy(i)"
       >
         <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
-      </button>
+      </UiButton>
       <div v-for="enemy in enemyTeam" :key="enemy.id" class="flex-center flex-col gap-1 color-red-600">
-        <div class="i-game-icons:crossed-sabres text-2xl" />
+        <div class="i-game-icons:battle-axe text-xl animate-pulse-alt" />
         <div class="text-sm">
           VS
         </div>
-        <div class="i-carbon:chevron-down text-xl" />
+        <div class="i-carbon:chevron-down text-xs animate-bounce" />
       </div>
 
-      <button
+      <UiButton
         v-for="(_, i) in enemyTeam"
         :key="i"
-        class="aspect-square border-blue-600 rounded-full bg-blue-500/30"
+        :variant="playerSelection[i] ? 'outline' : undefined"
+        class="w-18 aspect-square p-0!"
+        circle
         @click="openDex(i)"
       >
         <template v-if="playerSelection[i]">
@@ -145,7 +149,7 @@ onUnmounted(() => {
             :id="playerSelection[i]!.base.id"
             :alt="playerSelection[i]!.base.name"
             :shiny="playerSelection[i]!.isShiny"
-            class="h-full w-full object-contain"
+            class="h-full w-full"
           />
         </template>
         <template v-else>
@@ -153,7 +157,7 @@ onUnmounted(() => {
             <div class="i-carbon:touch-1 text-3xl color-blue-600 dark:color-blue-300" />
           </div>
         </template>
-      </button>
+      </UiButton>
 
       <div class="col-span-6 flex flex-col gap-2">
         <UiInfo v-if="playerSelection.some(m => !m)" color="danger" class="text-center text-xs">
@@ -183,6 +187,7 @@ onUnmounted(() => {
             </UiButton>
             <UiButton
               v-tooltip="t('components.arena.Panel.autoSelect')"
+              size="xs"
               type="icon"
               class="bottom-0 left-0 z-10 rounded-full"
               @click="autoSelect"
