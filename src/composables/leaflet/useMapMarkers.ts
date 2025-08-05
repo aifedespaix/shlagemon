@@ -91,7 +91,6 @@ export function useMapMarkers(map: LeafletMap) {
           : ''
 
       const icons = [fullBall, crown, arena].filter(Boolean).join('')
-      console.log(icons)
       return `<div class="flex flex-col items-center ${locked ? 'grayscale opacity-50' : ''}">
         ${icon}
         <div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>

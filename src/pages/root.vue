@@ -2,23 +2,49 @@
 import type { Locale } from '~/constants/locales'
 import { availableLocales, defaultLocale } from '~/constants/locales'
 import { useLocaleStore } from '~/stores/locale'
+import { useRouter } from 'vue-router'
+import { useHead } from '@unhead/vue'
 
 const router = useRouter()
 const store = useLocaleStore()
+const isRedirecting = ref(true) // Pour l'affichage du loader
 
 /**
- * Check whether a given value is a supported locale.
+ * Teste si une chaîne est une locale supportée.
  */
 function isLocale(value: string | null): value is Locale {
   return value !== null && availableLocales.includes(value as Locale)
 }
 
-onMounted(() => {
-  const stored = store.locale || localStorage.getItem('locale')
-  const nav = navigator.language.toLowerCase()
-  const fallback = nav.startsWith('fr') ? 'fr' : defaultLocale
-  const target = isLocale(stored) ? stored : fallback
-  router.replace({ path: `/${target}` })
+onMounted(async () => {
+  let targetLocale: Locale | undefined
+
+  // 1. Locale stockée explicitement par l'utilisateur (préférence forte)
+  const stored = localStorage.getItem('locale')
+  if (isLocale(stored)) {
+    targetLocale = stored
+  }
+
+  // 2. Store Pinia, utile en SSR/hydratation ou session restaurée
+  if (!targetLocale && isLocale(store.locale) && store.locale !== defaultLocale) {
+    targetLocale = store.locale
+  }
+
+  // 3. Détection navigateur (au premier accès)
+  if (!targetLocale) {
+    const nav = navigator.language.toLowerCase()
+    targetLocale = nav.startsWith('fr') ? 'fr' : defaultLocale
+  }
+
+  // On enregistre la locale dans le store pour consistance globale
+  if (targetLocale !== store.locale)
+    store.setLocale(targetLocale)
+
+  // On redirige (petit délai pour l’UX, au cas où)
+  setTimeout(async () => {
+    await router.replace({ path: `/${targetLocale}` })
+    isRedirecting.value = false
+  }, 200) // 200ms pour que le loader s’affiche même sur les réseaux rapides
 })
 
 useHead({
@@ -31,5 +57,21 @@ useHead({
 </script>
 
 <template>
-  <div />
+  <div
+    v-if="isRedirecting"
+    class="h-screen w-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-100 to-white dark:from-gray-950 dark:to-gray-900"
+  >
+    <div class="flex items-center gap-3">
+      <span
+        class="inline-block w-6 h-6 rounded-full animate-pulse bg-sky-500/80"
+        aria-hidden="true"
+      />
+      <span class="text-lg font-medium text-gray-600 dark:text-gray-200">Redirection…</span>
+    </div>
+    <div class="mt-3 text-sm text-gray-400 dark:text-gray-500 italic">
+      Veuillez patienter, nous adaptons la langue du site.<br>
+      Si la redirection est longue, <a class="underline hover:text-sky-700" href="/en">cliquez ici pour l’anglais</a> ou <a class="underline hover:text-sky-700" href="/fr">ici pour le français</a>.
+    </div>
+  </div>
+  <div v-else />
 </template>
