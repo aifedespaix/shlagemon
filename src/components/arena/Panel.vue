@@ -166,6 +166,7 @@ onUnmounted(() => {
           <div class="flex gap-2">
             <UiButton
               type="danger"
+              size="xs"
               variant="outline"
               @click="quit"
             >
@@ -173,6 +174,7 @@ onUnmounted(() => {
             </UiButton>
             <UiButton
               type="primary"
+              size="xs"
               class="flex-1"
               :disabled="playerSelection.some(m => !m)"
               @click="startBattle"
