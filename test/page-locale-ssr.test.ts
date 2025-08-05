@@ -27,7 +27,7 @@ async function setup(path: string) {
   return router
 }
 
-describe('SSR locale pages', () => {
+describe('sSR locale pages', () => {
   it('renders /fr/** in French', async () => {
     const router = await setup('/fr')
     expect(i18n.global.locale.value).toBe('fr')

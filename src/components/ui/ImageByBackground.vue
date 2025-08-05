@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const props = defineProps<{ src: string, isCover?: boolean }>()
+const props = defineProps<{ 
+  src: string, 
+  isCover?: boolean,
+  noAnimation?: boolean
+}>()
 
 function imgByBackground(background: string) {
   return {
@@ -9,6 +13,9 @@ function imgByBackground(background: string) {
 
 const classes = computed(() => {
   const uno: string[] = []
+  console.log(props.noAnimation, 'jjj')
+  if(!props.noAnimation)
+    uno.push('animate-fade-in')
   if (props.isCover)
     uno.push('bg-cover')
   else
@@ -18,5 +25,5 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <div class="animate-fade-in bg-center bg-no-repeat" :class="classes" :style="imgByBackground(props.src)" />
+  <div class="bg-center bg-no-repeat" :class="classes" :style="imgByBackground(props.src)" />
 </template>

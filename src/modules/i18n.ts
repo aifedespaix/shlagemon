@@ -83,8 +83,8 @@ export const install: UserModule = async ({ app, isClient, routePath, router }) 
   else if (routePath)
     pathLocale = routePath.split('/')[1] as Locale
 
-  let locale: Locale =
-    (pathLocale && availableLocales.includes(pathLocale)) ? pathLocale : defaultLocale
+  const locale: Locale
+    = (pathLocale && availableLocales.includes(pathLocale)) ? pathLocale : defaultLocale
 
   localeStore.setLocale(locale)
   await loadLanguageAsync(locale)
@@ -100,7 +100,7 @@ export const install: UserModule = async ({ app, isClient, routePath, router }) 
           localeStore.setLocale(lang)
         }
       },
-      { immediate: false }
+      { immediate: false },
     )
   }
 }

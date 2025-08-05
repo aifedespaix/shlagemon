@@ -163,6 +163,7 @@ defineExpose({ open })
           class="absolute left-1/2 top-1/2 h-12 w-12 object-contain -translate-x-1/2 -translate-y-1/2"
           :class="{ 'to-ball': shake > 0 }"
           md="h-16 w-16"
+          no-animation
         />
       </div>
     </div>
@@ -171,7 +172,7 @@ defineExpose({ open })
 
 <style scoped>
 .to-ball {
-  animation: capture 0.5s forwards;
+  animation: capture 0.75s forwards ease-in;
 }
 .animate-pulse-special {
   animation: pulse-special 0.75s infinite;
@@ -191,9 +192,11 @@ defineExpose({ open })
 }
 
 @keyframes capture {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
   to {
     transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
   }
 }
 .shake-1 {

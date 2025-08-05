@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Locale } from '~/constants/locales'
+import { useHead } from '@unhead/vue'
+import { useRouter } from 'vue-router'
 import { availableLocales, defaultLocale } from '~/constants/locales'
 import { useLocaleStore } from '~/stores/locale'
-import { useRouter } from 'vue-router'
-import { useHead } from '@unhead/vue'
 
 const router = useRouter()
 const store = useLocaleStore()
@@ -59,16 +59,16 @@ useHead({
 <template>
   <div
     v-if="isRedirecting"
-    class="h-screen w-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-100 to-white dark:from-gray-950 dark:to-gray-900"
+    class="h-screen w-screen flex flex-col items-center justify-center from-gray-100 to-white bg-gradient-to-b dark:from-gray-950 dark:to-gray-900"
   >
     <div class="flex items-center gap-3">
       <span
-        class="inline-block w-6 h-6 rounded-full animate-pulse bg-sky-500/80"
+        class="inline-block h-6 w-6 animate-pulse rounded-full bg-sky-500/80"
         aria-hidden="true"
       />
-      <span class="text-lg font-medium text-gray-600 dark:text-gray-200">Redirection…</span>
+      <span class="text-lg text-gray-600 font-medium dark:text-gray-200">Redirection…</span>
     </div>
-    <div class="mt-3 text-sm text-gray-400 dark:text-gray-500 italic">
+    <div class="mt-3 text-sm text-gray-400 italic dark:text-gray-500">
       Veuillez patienter, nous adaptons la langue du site.<br>
       Si la redirection est longue, <a class="underline hover:text-sky-700" href="/en">cliquez ici pour l’anglais</a> ou <a class="underline hover:text-sky-700" href="/fr">ici pour le français</a>.
     </div>

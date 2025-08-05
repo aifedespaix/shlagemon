@@ -54,8 +54,8 @@ export function usePageHead(options: PageHeadOptions = {}) {
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: description },
         { name: 'twitter:image', content: image },
-        { name: 'twitter:site', content: '@shlagemon' },
-        { name: 'twitter:creator', content: '@shlagemon' },
+        { name: 'twitter:site', content: '@AifeTV' },
+        { name: 'twitter:creator', content: '@AifeTV' },
       ],
       link: [
         {

@@ -102,6 +102,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: getPwaManifest(locale),
       manifestFilename: `${locale}/manifest.webmanifest`,
+
     })),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n

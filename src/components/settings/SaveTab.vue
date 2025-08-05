@@ -39,7 +39,7 @@ function downloadExport() {
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
-  link.download = 'shlagemon-save.txt'
+  link.download = 'shlagemon-save.shlag'
   link.click()
   URL.revokeObjectURL(url)
 }
