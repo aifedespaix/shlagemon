@@ -14,12 +14,20 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
+const candidate = ref<DexShlagemon | null>(null)
+
 function close() {
   emit('update:modelValue', false)
 }
 
 function onSelect(mon: DexShlagemon) {
-  emit('select', mon)
+  candidate.value = mon
+}
+
+function confirm() {
+  if (!candidate.value)
+    return
+  emit('select', candidate.value)
   close()
 }
 </script>
@@ -30,10 +38,12 @@ function onSelect(mon: DexShlagemon) {
       {{ t('components.arena.SelectionModal.title', { name: props.mon.base.name }) }}
     </h3>
     <ArenaEnemyStatsCompact :mon="props.mon" />
-    <div class="flex flex-1 overflow-hidden">
-      <div class="w-full">
-        <ShlagemonQuickSelect :selected="props.selected" @select="onSelect" />
-      </div>
+    <div class="flex-1 overflow-hidden">
+      <ShlagemonQuickSelect :selected="props.selected" @select="onSelect" />
     </div>
+    <ArenaEnemyStatsCompact v-if="candidate" :mon="candidate" />
+    <UiButton v-if="candidate" class="mt-2" type="primary" @click="confirm">
+      {{ t('components.arena.SelectionModal.confirm') }}
+    </UiButton>
   </div>
 </template>

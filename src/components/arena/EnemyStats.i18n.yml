@@ -3,8 +3,10 @@ fr:
   attack: Attaque
   defense: Défense
   smell: Puanteur
+  level: lvl {n}
 en:
   hp: HP
   attack: Attack
   defense: Defense
   smell: Smell
+  level: lvl {n}

@@ -55,13 +55,6 @@ function onMonSelected(mon: DexShlagemon) {
   showDex.value = false
 }
 
-watch(() => dex.activeShlagemon, (mon) => {
-  if (!showDex.value || activeSlot.value === null || !mon)
-    return
-  arena.selectPlayer(activeSlot.value, mon.id)
-  showDex.value = false
-})
-
 function quit() {
   arena.reset()
   panel.showVillage()
