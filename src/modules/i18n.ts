@@ -3,7 +3,7 @@ import type { UserModule } from '~/types'
 import { useHead } from '@unhead/vue'
 import { getCurrentInstance } from 'vue'
 import { createI18n } from 'vue-i18n'
-import { defaultLocale } from '~/constants/locales'
+import { availableLocales, defaultLocale } from '~/constants/locales'
 import { useLocaleStore } from '~/stores/locale'
 
 // Import i18n resources
@@ -62,16 +62,20 @@ export const install: UserModule = ({ app, isClient, routePath }) => {
   const localeStore = useLocaleStore()
 
   if (!isClient) {
-    const routeLocale = routePath?.split('/')[1] as Locale | undefined
-    if (routeLocale)
-      localeStore.setLocale(routeLocale)
+    const pathLocale = routePath?.split('/')[1] as Locale | undefined
+    const locale = availableLocales.includes(pathLocale as Locale)
+      ? (pathLocale as Locale)
+      : defaultLocale
+    localeStore.setLocale(locale)
+    loadLanguageAsync(localeStore.locale)
+    return
   }
-  else if (!localStorage.getItem('locale')) {
+
+  if (!localStorage.getItem('locale')) {
     const navigatorLanguage = navigator.language.toLowerCase()
     const fallback = navigatorLanguage.startsWith('fr') ? 'fr' : defaultLocale
     localeStore.setLocale(fallback)
   }
 
-  console.log('locale : ', localeStore.locale)
   loadLanguageAsync(localeStore.locale)
 }
