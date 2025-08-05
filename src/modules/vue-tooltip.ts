@@ -1,11 +1,22 @@
 import type { UserModule } from '~/types'
 import FloatingVue from 'floating-vue'
-import { observeTooltipAccessibility } from '~/utils/tooltipAccessibility'
 
 export const install: UserModule = ({ app, isClient }) => {
-  // FloatingVue depends on browser APIs; bail out during SSR to avoid runtime freezes
-  if (!isClient)
+  // FloatingVue depends on browser APIs. During SSR we still need the
+  // `v-tooltip` directive to be registered so the renderer can resolve it
+  // without throwing. Register a no-op directive when `isClient` is false
+  // and let the real plugin take over on the client.
+  if (!isClient) {
+    app.directive('tooltip', {
+      /**
+       * Vue's server renderer expects directives to expose `getSSRProps`.
+       * Returning an empty object avoids runtime errors while rendering the
+       * static markup.
+       */
+      getSSRProps: () => ({}),
+    })
     return
+  }
 
   app.use(FloatingVue, {
     // Disable popper components
