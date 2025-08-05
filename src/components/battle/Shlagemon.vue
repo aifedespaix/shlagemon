@@ -137,7 +137,7 @@ const heldItem = computed(() => {
       size="xs"
       class="absolute bottom-9 right-0 z-150"
       :aria-label="t('components.battle.Shlagemon.infoTooltip')"
-      @click="openInfo"
+      @click.stop="openInfo"
     >
       <div i-carbon-information />
     </UiButton>
