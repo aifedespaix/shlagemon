@@ -135,7 +135,7 @@ const heldItem = computed(() => {
       v-tooltip="t('components.battle.Shlagemon.infoTooltip')"
       type="icon"
       size="xs"
-      class="absolute bottom-9 right-0 z-150"
+      class="absolute bottom-12 right-0 z-150"
       :aria-label="t('components.battle.Shlagemon.infoTooltip')"
       @click.stop="openInfo"
     >
