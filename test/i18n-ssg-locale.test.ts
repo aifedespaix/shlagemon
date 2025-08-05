@@ -4,13 +4,13 @@ import { i18n, install as installI18n, loadLanguageAsync } from '../src/modules/
 import { useLocaleStore } from '../src/stores/locale'
 
 describe('i18n ssg locale', () => {
-  it('uses route meta locale during generation', async () => {
+  it('derives locale from route path during generation', async () => {
     const pinia = createPinia()
     setActivePinia(pinia)
     installI18n({
       app: { use: () => {} } as any,
       isClient: false,
-      route: { meta: { locale: 'fr' } },
+      routePath: '/fr/about',
     } as any)
 
     expect(useLocaleStore().locale).toBe('fr')
