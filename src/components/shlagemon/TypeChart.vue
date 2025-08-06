@@ -2,8 +2,20 @@
 import type { TypeName } from '~/type'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
+/**
+ * Props for {@link ShlagemonTypeChart}.
+ */
+const props = defineProps<{ highlight: TypeName | null }>()
+
+/**
+ * Emits for {@link ShlagemonTypeChart}.
+ */
+const emit = defineEmits<{ (e: 'update:highlight', value: TypeName | null): void }>()
+
 const { t } = useI18n()
-const modal = useTypeChartModalStore()
+
+// Reactive reference to the highlighted type.
+const highlight = useVModel(props, 'highlight', emit)
 
 const typeIds = Object.keys(shlagemonTypes) as TypeName[]
 
@@ -35,8 +47,13 @@ function getMultiplier(att: TypeName, def: TypeName) {
   return 1
 }
 
+/**
+ * Toggles the highlighted type. Clicking again clears the selection.
+ *
+ * @param typeId - Type identifier to toggle.
+ */
 function toggleHighlight(typeId: TypeName) {
-  modal.highlight = modal.highlight === typeId ? null : typeId
+  highlight.value = highlight.value === typeId ? null : typeId
 }
 </script>
 
@@ -64,7 +81,7 @@ function toggleHighlight(typeId: TypeName) {
             :key="typeId"
             class="sticky top-0 z-20 bg-white p-1 dark:bg-gray-900"
             style="box-shadow: 0 2px 0 0 rgba(0,0,0,0.03);"
-            :class="{ 'bg-blue-200 dark:bg-blue-800': modal.highlight === typeId }"
+            :class="{ 'bg-blue-200 dark:bg-blue-800': highlight === typeId }"
           >
             <button
               type="button"
@@ -81,7 +98,7 @@ function toggleHighlight(typeId: TypeName) {
           <th
             class="sticky left-0 z-10 bg-white p-1 text-right dark:bg-gray-900"
             style="box-shadow: 2px 0 0 0 rgba(0,0,0,0.03);"
-            :class="{ 'bg-blue-200 dark:bg-blue-800': modal.highlight === atk }"
+            :class="{ 'bg-blue-200 dark:bg-blue-800': highlight === atk }"
           >
             <button
               type="button"
@@ -96,8 +113,8 @@ function toggleHighlight(typeId: TypeName) {
             :key="def"
             class="border border-gray-200 p-1 dark:border-gray-700"
             :class="{
-              'bg-blue-200 dark:bg-blue-800': modal.highlight === atk || modal.highlight === def,
-              'font-bold': modal.highlight === atk && modal.highlight === def,
+              'bg-blue-200 dark:bg-blue-800': highlight === atk || highlight === def,
+              'font-bold': highlight === atk && highlight === def,
             }"
           >
             {{ getMultiplier(atk, def) }}
