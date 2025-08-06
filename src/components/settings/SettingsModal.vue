@@ -40,7 +40,7 @@ const tabs = computed(() => {
       }),
     },
     { label: { text: t('components.settings.SettingsModal.tabs.language'), icon: 'i-carbon-language' }, component: LanguageTab },
-    { label: { text: t('components.settings.SettingsModal.tabs.interface'), icon: 'i-carbon-display' }, component: InterfaceTab },
+    { label: { text: t('components.settings.SettingsModal.tabs.interface'), icon: 'i-carbon:3d-cursor' }, component: InterfaceTab },
     { label: { text: t('components.settings.SettingsModal.tabs.accessibility'), icon: 'i-carbon-accessibility' }, component: AccessibilityTab },
   ]
 
