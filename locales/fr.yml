@@ -208,6 +208,8 @@ components:
       donateDesc: Si tu apprécies Shlagémon et que tu souhaites soutenir son développement, tu peux contribuer avec un donc ponctuel ou mensuel sur Ko-fi.
       discordLabel: Rejoindre le Discord
       discordDesc: Pour discuter du jeu et partager tes idées, rejoins la communauté sur Discord.
+      youtubeLabel: Playlist musiques
+      youtubeDesc: Retrouvez toutes les musiques originales du jeu sur YouTube.
     SettingsModal:
       title: Paramètres
       tabs:

@@ -208,6 +208,8 @@ components:
       donateDesc: If you enjoy Shlagémon and want to support its development, you can make a one-time or monthly contribution on Ko-fi.
       discordLabel: Join Discord
       discordDesc: To discuss the game and share your ideas, join the community on Discord.
+      youtubeLabel: Music playlist
+      youtubeDesc: Find all the original music from the game on YouTube.
     SettingsModal:
       title: Settings
       tabs:

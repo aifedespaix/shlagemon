@@ -6,6 +6,9 @@ fr:
   discordLabel: Rejoindre le Discord
   discordDesc: >-
     Pour discuter du jeu et partager tes idées, rejoins la communauté sur Discord.
+  youtubeLabel: Playlist musiques
+  youtubeDesc: Retrouvez toutes les musiques originales du jeu sur YouTube.
+
 en:
   donateLabel: Donate
   donateDesc: >-
@@ -14,3 +17,5 @@ en:
   discordLabel: Join Discord
   discordDesc: >-
     To discuss the game and share your ideas, join the community on Discord.
+  youtubeLabel: Music playlist
+  youtubeDesc: Find all the original music from the game on YouTube.
