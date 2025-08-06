@@ -32,7 +32,10 @@ function removeShortcut(index: number) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-4">
+    <h3 class="text-center text-lg font-bold">
+      {{ t('components.settings.SettingsModal.tabs.shortcuts') }}
+    </h3>
     <UiListItem
       v-for="(sc, idx) in store.shortcuts"
       :key="idx"

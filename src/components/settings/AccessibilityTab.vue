@@ -7,7 +7,10 @@ const { autoHideTooltips } = storeToRefs(accessibility)
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-4">
+    <h3 class="text-center text-lg font-bold">
+      {{ t('components.settings.SettingsModal.tabs.accessibility') }}
+    </h3>
     <UiCheckBox v-model="autoHideTooltips">
       {{ t('components.settings.AccessibilityTab.autoHide.label') }}
     </UiCheckBox>

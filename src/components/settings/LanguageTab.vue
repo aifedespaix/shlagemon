@@ -3,7 +3,10 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
+  <div class="flex flex-col items-center gap-4">
+    <h3 class="text-center text-lg font-bold">
+      {{ t('components.settings.SettingsModal.tabs.language') }}
+    </h3>
     <label class="text-sm font-bold">
       {{ t('components.settings.LanguageTab.label') }}
     </label>

@@ -76,6 +76,9 @@ function loadFromFile(event: Event) {
 
 <template>
   <div class="flex flex-col gap-6">
+    <h3 class="text-center text-lg font-bold">
+      {{ t('components.settings.SettingsModal.tabs.save') }}
+    </h3>
     <p class="text-center">
       {{ t('components.settings.SaveTab.playtime', { minutes: playtime.minutes }) }}
     </p>

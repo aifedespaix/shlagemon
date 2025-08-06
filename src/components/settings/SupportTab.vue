@@ -34,9 +34,9 @@ function openLink(url: string) {
     class="mx-auto max-w-sm w-full flex flex-col items-center gap-8 py-4"
     aria-labelledby="support-title"
   >
-    <h2 id="support-title" class="sr-only">
-      Support
-    </h2>
+    <h3 id="support-title" class="text-center text-lg font-bold">
+      {{ t('components.settings.SettingsModal.tabs.support') }}
+    </h3>
     <ul class="w-full flex flex-col gap-6">
       <li
         v-for="link in SUPPORT_LINKS"
