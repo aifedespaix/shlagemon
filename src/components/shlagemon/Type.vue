@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<{
 
 // Store modal typé (à adapter selon ton architecture)
 const typeChart = useTypeChartModalStore()
+const { t } = useI18n()
 
 // Taillez responsive : clampé pour éviter des extrêmes
 const sizeStyle = computed(() => {
@@ -42,6 +43,8 @@ const textColor = computed(() => {
   return yiq >= 160 ? '#1a1a1a' : '#fff'
 })
 
+const typeName = computed(() => t(props.value.name))
+
 function handleClick() {
   if (props.openOnClick)
     typeChart.open(props.value.id)
@@ -54,8 +57,8 @@ function handleClick() {
     :tabindex="props.openOnClick ? 0 : undefined"
     :role="props.openOnClick ? 'button' : undefined"
     :aria-pressed="props.openOnClick ? 'false' : undefined"
-    :aria-label="`Type ${props.value.name}`"
-    :name="props.value.name"
+    :aria-label="typeName"
+    :name="typeName"
     :style="{
       backgroundColor: props.value.color,
       color: textColor,
@@ -65,7 +68,7 @@ function handleClick() {
     @keydown.enter.space.prevent="handleClick"
   >
     <span class="pointer-events-none w-full truncate text-center leading-none">
-      {{ props.value.name }}
+      {{ typeName }}
     </span>
   </span>
 </template>

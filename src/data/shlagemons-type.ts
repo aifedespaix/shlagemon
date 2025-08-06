@@ -2,8 +2,8 @@ import type { ShlagemonType, TypeName } from '../type'
 
 export const normal: ShlagemonType = {
   id: 'normal',
-  name: 'Normy',
-  description: 'Type complètement inintéressant et trop pourri.',
+  name: 'data.shlagemons-type.normal.name',
+  description: 'data.shlagemons-type.normal.description',
   color: '#A8A878',
   resistance: [],
   weakness: ['combat'],
@@ -13,8 +13,8 @@ export const normal: ShlagemonType = {
 
 export const feu: ShlagemonType = {
   id: 'feu',
-  name: 'Cramé',
-  description: 'Type brûlant qui réduit tout en cendres.',
+  name: 'data.shlagemons-type.feu.name',
+  description: 'data.shlagemons-type.feu.description',
   color: '#e25822',
   resistance: ['plante', 'metal', 'fee'],
   weakness: ['eau', 'sol'],
@@ -24,8 +24,8 @@ export const feu: ShlagemonType = {
 
 export const eau: ShlagemonType = {
   id: 'eau',
-  name: 'Mouillé',
-  description: 'Type humide qui éteint facilement les ardeurs.',
+  name: 'data.shlagemons-type.eau.name',
+  description: 'data.shlagemons-type.eau.description',
   color: '#3b83bd',
   resistance: ['feu', 'roche', 'eau'],
   weakness: ['plante', 'electrique'],
@@ -35,8 +35,8 @@ export const eau: ShlagemonType = {
 
 export const plante: ShlagemonType = {
   id: 'plante',
-  name: 'Moisi',
-  description: 'Type végétal en décomposition.',
+  name: 'data.shlagemons-type.plante.name',
+  description: 'data.shlagemons-type.plante.description',
   color: '#769958',
   resistance: ['sol', 'electrique', 'eau'],
   weakness: ['feu', 'plante', 'poison', 'vol'],
@@ -46,8 +46,8 @@ export const plante: ShlagemonType = {
 
 export const electrique: ShlagemonType = {
   id: 'electrique',
-  name: 'Électrochiasse',
-  description: 'Type chargé d\'électricité statique.',
+  name: 'data.shlagemons-type.electrique.name',
+  description: 'data.shlagemons-type.electrique.description',
   color: '#f9e743',
   resistance: ['vol', 'electrique', 'eau'],
   weakness: ['sol'],
@@ -57,8 +57,8 @@ export const electrique: ShlagemonType = {
 
 export const roche: ShlagemonType = {
   id: 'roche',
-  name: 'Caillasse',
-  description: 'Type roc très coriace.',
+  name: 'data.shlagemons-type.roche.name',
+  description: 'data.shlagemons-type.roche.description',
   color: '#a79f94',
   resistance: ['feu', 'vol', 'poison', 'fee'],
   weakness: ['combat', 'eau', 'plante', 'sol', 'metal'],
@@ -68,8 +68,8 @@ export const roche: ShlagemonType = {
 
 export const vol: ShlagemonType = {
   id: 'vol',
-  name: 'AirEction',
-  description: 'Type aérien mais qui sent la teub.',
+  name: 'data.shlagemons-type.vol.name',
+  description: 'data.shlagemons-type.vol.description',
   color: '#A4C2F4',
   resistance: ['combat', 'plante', 'eau'],
   weakness: ['roche', 'electrique', 'plante'],
@@ -79,8 +79,8 @@ export const vol: ShlagemonType = {
 
 export const combat: ShlagemonType = {
   id: 'combat',
-  name: 'Castagne',
-  description: 'Type bagarreur qui tape sans réfléchir.',
+  name: 'data.shlagemons-type.combat.name',
+  description: 'data.shlagemons-type.combat.description',
   color: '#C03028',
   resistance: ['roche', 'darksasuke', 'poison'],
   weakness: ['vol', 'psy', 'fee'],
@@ -90,8 +90,8 @@ export const combat: ShlagemonType = {
 
 export const spectre: ShlagemonType = {
   id: 'spectre',
-  name: 'Spectranus',
-  description: 'Type chelou qui fout les jetons.',
+  name: 'data.shlagemons-type.spectre.name',
+  description: 'data.shlagemons-type.spectre.description',
   color: '#705898',
   resistance: ['poison', 'combat'],
   weakness: ['darksasuke', 'spectre'],
@@ -101,8 +101,8 @@ export const spectre: ShlagemonType = {
 
 export const darksasuke: ShlagemonType = {
   id: 'darksasuke',
-  name: 'DarkSasuke',
-  description: 'Type victime, gothique et émo qui cours avec les bras en arrière.',
+  name: 'data.shlagemons-type.darksasuke.name',
+  description: 'data.shlagemons-type.darksasuke.description',
   color: '#4D4D4D',
   resistance: ['spectre', 'psy', 'plante'],
   weakness: ['combat', 'fee'],
@@ -112,8 +112,8 @@ export const darksasuke: ShlagemonType = {
 
 export const psy: ShlagemonType = {
   id: 'psy',
-  name: 'Psytrance',
-  description: `Un fan de musique de merde, il ne sait pas s'amuser sans prendre de drogue.`,
+  name: 'data.shlagemons-type.psy.name',
+  description: 'data.shlagemons-type.psy.description',
   color: '#FF66CC',
   resistance: ['combat', 'fee'],
   weakness: ['darksasuke', 'spectre', 'poison'],
@@ -123,8 +123,8 @@ export const psy: ShlagemonType = {
 
 export const poison: ShlagemonType = {
   id: 'poison',
-  name: 'Poisonet',
-  description: 'Type toxique qui t’envoie des mails louches.',
+  name: 'data.shlagemons-type.poison.name',
+  description: 'data.shlagemons-type.poison.description',
   color: '#A040A0',
   resistance: ['plante', 'combat', 'fee'],
   weakness: ['sol', 'psy'],
@@ -134,8 +134,8 @@ export const poison: ShlagemonType = {
 
 export const metal: ShlagemonType = {
   id: 'metal',
-  name: 'Ferraille',
-  description: 'Type blindé mais rouillé qui couine à chaque pas.',
+  name: 'data.shlagemons-type.metal.name',
+  description: 'data.shlagemons-type.metal.description',
   color: '#B8B8D0',
   resistance: ['poison', 'eau', 'electrique', 'plante', 'psy', 'roche', 'fee', 'vol'],
   weakness: ['combat', 'feu', 'sol'],
@@ -145,8 +145,8 @@ export const metal: ShlagemonType = {
 
 export const sol: ShlagemonType = {
   id: 'sol',
-  name: 'Cradouze',
-  description: 'Type terreux qui gratte les pieds.',
+  name: 'data.shlagemons-type.sol.name',
+  description: 'data.shlagemons-type.sol.description',
   color: '#E0C068',
   resistance: ['electrique', 'poison', 'feu', 'roche'],
   weakness: ['plante', 'eau'],
@@ -156,8 +156,8 @@ export const sol: ShlagemonType = {
 
 export const fee: ShlagemonType = {
   id: 'fee',
-  name: 'FéeLation',
-  description: 'Type sucré en apparence, mais colle aux doigts.',
+  name: 'data.shlagemons-type.fee.name',
+  description: 'data.shlagemons-type.fee.description',
   color: '#EE99AC',
   resistance: [],
   weakness: ['poison', 'metal'],
@@ -167,8 +167,8 @@ export const fee: ShlagemonType = {
 
 export const dragon: ShlagemonType = {
   id: 'dragon',
-  name: 'DragonDorf',
-  description: 'Type majestueux mais trop sûr de lui, qui finit toujours battu à la fin.',
+  name: 'data.shlagemons-type.dragon.name',
+  description: 'data.shlagemons-type.dragon.description',
   color: '#7038F8', // couleur violette proche du type Dragon
   resistance: ['feu', 'eau', 'electrique', 'plante'],
   weakness: ['dragon', 'glace', 'fee'],
@@ -178,8 +178,8 @@ export const dragon: ShlagemonType = {
 
 export const glace: ShlagemonType = {
   id: 'glace',
-  name: 'Glaconasse',
-  description: 'Type froid comme ton ex, glissant et imprévisible.',
+  name: 'data.shlagemons-type.glace.name',
+  description: 'data.shlagemons-type.glace.description',
   color: '#98d8d8',
   resistance: ['glace'],
   weakness: ['feu', 'roche', 'combat', 'metal'],
@@ -189,8 +189,8 @@ export const glace: ShlagemonType = {
 
 export const insecte: ShlagemonType = {
   id: 'insecte',
-  name: 'Mouchtik',
-  description: 'Type grouillant, souvent poilu, toujours dérangeant. Il gratte la nuit et te juge en silence.',
+  name: 'data.shlagemons-type.insecte.name',
+  description: 'data.shlagemons-type.insecte.description',
   color: '#a8b820',
   resistance: ['combat', 'plante', 'sol'],
   weakness: ['feu', 'poison', 'vol', 'roche'],
