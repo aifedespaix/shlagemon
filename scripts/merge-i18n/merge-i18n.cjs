@@ -3,7 +3,7 @@ const path = require('node:path')
 const YAML = require('yaml')
 
 const baseDirs = [
-  path.join(__dirname, '../src'),
+  path.join(__dirname, '../../src'),
 ]
 
 function walk(dir, files = []) {
@@ -49,7 +49,7 @@ for (const dir of baseDirs) {
     const content = YAML.parse(fs.readFileSync(file, 'utf8'))
     if (!content)
       continue
-    const relative = path.relative(path.join(__dirname, '../src'), file)
+    const relative = path.relative(path.join(__dirname, '../../src'), file)
       .replace(/\.i18n\.yml$/, '')
     const segments = relative.split(path.sep)
     for (const lang of Object.keys(content)) {
@@ -62,7 +62,7 @@ for (const dir of baseDirs) {
   }
 }
 
-const inputDir = path.join(__dirname, '../locales')
+const inputDir = path.join(__dirname, '../../locales')
 const outputDir = inputDir
 
 for (const file of fs.readdirSync(inputDir)) {

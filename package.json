@@ -4,7 +4,7 @@
   "packageManager": "pnpm@10.13.1",
   "scripts": {
     "build": "vite-ssg build",
-    "i18n": "node scripts/merge-i18n.cjs",
+    "i18n": "node scripts/merge-i18n/merge-i18n.cjs",
     "dev": "vite --port 3333 --open --host",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -18,11 +18,11 @@
     "sizecheck": "npx vite-bundle-visualizer",
     "deploy": "firebase deploy",
     "bd": "pnpm run build && pnpm run deploy",
-    "csv": "node scripts/generate-evolutions-csv.cjs",
-    "mons": "py scripts/convert-webp.py",
-    "music": "node scripts/generate-music-json.cjs",
-    "names": "node scripts/generate-names-json.cjs",
-    "sfx": "py scripts/clean-meta.py"
+    "csv": "node scripts/generate-evolutions-csv/generate-evolutions-csv.cjs",
+    "mons": "py scripts/convert-webp/convert-webp.py",
+    "music-data": "node scripts/music-data/music-data.cjs",
+    "names": "node scripts/names/names.cjs",
+    "sfx": "py scripts/clean-meta/clean-meta.py"
   },
   "dependencies": {
     "@headlessui/vue": "catalog:frontend",

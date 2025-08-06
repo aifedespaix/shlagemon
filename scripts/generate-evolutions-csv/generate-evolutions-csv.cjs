@@ -43,7 +43,7 @@ async function parseFile(file) {
 }
 
 async function main() {
-  const baseDir = path.join(__dirname, '../src/data/shlagemons')
+  const baseDir = path.join(__dirname, '../../src/data/shlagemons')
   const files = await getFiles(baseDir)
   const rows = []
   for (const file of files) {
@@ -54,7 +54,7 @@ async function main() {
   rows.sort((a, b) => a.spawn.sort - b.spawn.sort)
   const header = 'Index,Name,Level,EvolutionLevel'
   const csv = `${header}\n${rows.map((r, i) => `${i + 1},${r.name},${r.spawn.range},${r.evoLevel}`).join('\n')}\n`
-  await fs.promises.writeFile(path.join(__dirname, '../evolutions.csv'), csv)
+  await fs.promises.writeFile(path.join(__dirname, '../../evolutions.csv'), csv)
 }
 
 main().catch((err) => {

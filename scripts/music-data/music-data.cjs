@@ -2,7 +2,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 function findImage(dir, id) {
-  const base = path.join(__dirname, '..', 'public', dir, id)
+  const base = path.join(__dirname, '..', '..', 'public', dir, id)
   for (const ext of ['png', 'webp']) {
     const file = path.join(base, `${id}.${ext}`)
     if (fs.existsSync(file))
@@ -30,10 +30,10 @@ const trackDirs = [
   'public/audio/musics/arenas',
 ]
 
-const tracks = trackDirs.reduce((acc, dir) => Object.assign(acc, readTracks(path.join(__dirname, '..', dir))), {})
+const tracks = trackDirs.reduce((acc, dir) => Object.assign(acc, readTracks(path.join(__dirname, '..', '..', dir))), {})
 
 function parseVillages() {
-  const dir = path.join(__dirname, '../src/data/zones/villages')
+  const dir = path.join(__dirname, '../../src/data/zones/villages')
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.ts'))
   return files.map((f) => {
     const content = fs.readFileSync(path.join(dir, f), 'utf8')
@@ -52,7 +52,7 @@ function parseVillages() {
 }
 
 function parseSavageZones() {
-  const dir = path.join(__dirname, '../src/data/zones/savages')
+  const dir = path.join(__dirname, '../../src/data/zones/savages')
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.ts'))
   return files.map((f) => {
     const content = fs.readFileSync(path.join(dir, f), 'utf8')
@@ -71,7 +71,7 @@ function parseSavageZones() {
 }
 
 function parseCharacters() {
-  const dir = path.join(__dirname, '../src/data/characters')
+  const dir = path.join(__dirname, '../../src/data/characters')
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.ts'))
   const alias = { 'vladimir-putain': 'poutine' }
   return files.map((f) => {
@@ -92,7 +92,7 @@ function parseCharacters() {
 }
 
 function parseArenas() {
-  const file = path.join(__dirname, '../src/data/arenas.ts')
+  const file = path.join(__dirname, '../../src/data/arenas.ts')
   const content = fs.readFileSync(file, 'utf8')
   const regex = /export const (arena\d+):/g
   const arenas = []
@@ -118,6 +118,6 @@ const data = [
   ...parseArenas(),
 ]
 
-const output = path.join(__dirname, '../public/music-data.json')
+const output = path.join(__dirname, 'music-data.json')
 fs.writeFileSync(output, JSON.stringify(data, null, 2).replaceAll('\\\\', '/'), 'utf8')
 console.log(`Generated ${output} with ${data.length} entries`)

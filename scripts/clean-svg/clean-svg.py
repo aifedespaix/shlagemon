@@ -1,6 +1,8 @@
 from svgpathtools import svg2paths, wsvg
 import os
 
+BASE_DIR = os.path.dirname(__file__)
+
 def clean_svg(input_svg, output_svg, min_length=20):
     paths, attributes = svg2paths(input_svg)
     cleaned_paths = []
@@ -17,5 +19,5 @@ def clean_svg(input_svg, output_svg, min_length=20):
 
 # Exemple d'utilisation sur un dossier
 import glob
-for svgfile in glob.glob('./stylised-shlagemons/*.svg'):
+for svgfile in glob.glob(os.path.join(BASE_DIR, 'stylised-shlagemons', '*.svg')):
     clean_svg(svgfile, svgfile)
