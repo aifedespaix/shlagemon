@@ -2,7 +2,7 @@
 const props = defineProps<{ direction: 'prev' | 'next', disabled?: boolean }>()
 const emit = defineEmits<{ (e: 'click'): void }>()
 
-const positionClass = computed(() => props.direction === 'prev' ? 'left-1' : 'right-1')
+const positionClass = computed(() => props.direction === 'prev' ? 'left-0 rounded-bl-0!' : 'right-0 rounded-br-0!')
 const iconClass = computed(() => props.direction === 'prev' ? 'i-carbon:chevron-left' : 'i-carbon:chevron-right')
 const translate = computed(() => props.direction === 'prev' ? '-100%' : '100%')
 const { t } = useI18n()
@@ -16,7 +16,7 @@ const label = computed(() => t(`components.map.ArrowButton.${props.direction}`))
       v-tooltip="label"
       type="icon"
       :aria-label="label"
-      class="absolute bottom-1 z-500" :class="[positionClass]"
+      class="absolute -bottom-1 z-501 h-25 w-20 opacity-75 hover:opacity-100" :class="[positionClass]"
       :style="{ '--dir': translate }"
       @click="emit('click')"
     >

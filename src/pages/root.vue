@@ -57,21 +57,5 @@ useHead({
 </script>
 
 <template>
-  <div
-    v-if="isRedirecting"
-    class="h-screen w-screen flex flex-col items-center justify-center from-gray-100 to-white bg-gradient-to-b dark:from-gray-950 dark:to-gray-900"
-  >
-    <div class="flex items-center gap-3">
-      <span
-        class="inline-block h-6 w-6 animate-pulse rounded-full bg-sky-500/80"
-        aria-hidden="true"
-      />
-      <span class="text-lg text-gray-600 font-medium dark:text-gray-200">Redirection…</span>
-    </div>
-    <div class="mt-3 text-sm text-gray-400 italic dark:text-gray-500">
-      Veuillez patienter, nous adaptons la langue du site.<br>
-      Si la redirection est longue, <a class="underline hover:text-sky-700" href="/en">cliquez ici pour l’anglais</a> ou <a class="underline hover:text-sky-700" href="/fr">ici pour le français</a>.
-    </div>
-  </div>
-  <div v-else />
+  <Loader/>
 </template>

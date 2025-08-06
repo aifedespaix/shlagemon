@@ -1852,55 +1852,55 @@ data:
     vitalityPotion:
       name: Potion de Vitalité
       description: Augmente temporairement les PV.
-      details: Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.
+      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
     superVitalityPotion:
       name: Super Potion de Vitalité
       description: Augmente beaucoup les PV.
-      details: Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.
+      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
     hyperVitalityPotion:
       name: Hyper Potion de Vitalité
       description: Maximise temporairement les PV.
-      details: Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.
+      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
     xpPotion:
       name: Potion d'Expérience
       description: Augmente temporairement les gains d'XP.
-      details: Améliore l'XP gagnée de 10% pendant quelques minutes.
+      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
     superXpPotion:
       name: Super Potion d'Expérience
       description: Augmente beaucoup les gains d'XP.
-      details: Améliore l'XP gagnée de 25% pendant quelques minutes.
+      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
     hyperXpPotion:
       name: Hyper Potion d'Expérience
       description: Maximise temporairement les gains d'XP.
-      details: Améliore l'XP gagnée de 50% pendant quelques minutes.
+      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
     capturePotion:
       name: Potion de Capture
       description: Augmente légèrement les chances de capture.
-      details: Améliore la probabilité de capture de 10% pendant quelques minutes.
+      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
     superCapturePotion:
       name: Super Potion de Capture
       description: Augmente beaucoup les chances de capture.
-      details: Améliore la probabilité de capture de 25% pendant quelques minutes.
+      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
     hyperCapturePotion:
       name: Hyper Potion de Capture
       description: Maximise les chances de capture.
-      details: Améliore la probabilité de capture de 50% pendant quelques minutes.
+      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
     potion:
       name: Potion Dégueulasse
-      description: Soigne 50 HP de votre Shlagémon.
-      details: Redonne 50 points de vie à votre Shlagémon actif pendant le combat.
+      description: Soigne {hp} HP de votre Shlagémon.
+      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
     superPotion:
       name: Super Potion
-      description: Soigne 250 HP de votre Shlagémon.
-      details: Redonne 250 points de vie à votre Shlagémon actif pendant le combat.
+      description: Soigne {hp} HP de votre Shlagémon.
+      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
     hyperPotion:
       name: Hyper Potion
-      description: Soigne 1000 HP de votre Shlagémon.
-      details: Redonne 1000 points de vie à votre Shlagémon actif pendant le combat.
+      description: Soigne {hp} HP de votre Shlagémon.
+      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
     multiExp:
       name: Multi-EXP
       description: Partage l'XP avec un Shlagémon.
-      details: Permet de partager 50% de l'XP gagnée en combat avec le Shlagémon porteur.
+      details: Permet de partager {percent}% de l'XP gagnée en combat avec le Shlagémon porteur.
     thunderStone:
       name: Pierre Foutre
       description: Permet certaines évolutions de type électrique.
@@ -1908,11 +1908,11 @@ data:
     steroids:
       name: Stéroïdes
       description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
-      details: Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.
+      details: Fait évoluer {from} en {to}, à condition qu’il ait passé au moins {hours}h à la salle, sans jambes, évidemment.
     ultraSteroid:
       name: Ultra-Stéroïde
-      description: Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.
-      details: Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
+      description: Une substance interdite dans {countries} pays, {dimensions} dimensions et au moins {timelines} timeline.
+      details: Fait évoluer {from} en {to}, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
     eggBox:
       name: Boîte à œufs
       description: Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y avoir à l'intérieur.
@@ -1934,15 +1934,15 @@ data:
     lighter:
       name: Briquet
       description: Fait briller la pyromanie chez certains Shlagémons.
-      details: Permet à Emboli de se changer en Pyrolise pour tout cramer.
+      details: Permet à {from} de se changer en {to} pour tout cramer.
     pissBottle:
       name: Bouteille de Pisse
       description: Ça pue, mais c'est bourré de bactéries bien juteuses.
-      details: Transforme Emboli en Salmoneli après une bonne rasade.
+      details: Transforme {from} en {to} après une bonne rasade.
     defibrillator:
       name: Défibrillateur
       description: Un coup de jus pour repartir de travers.
-      details: Nécessaire pour qu'Emboli évolue en Tuberculi.
+      details: Nécessaire pour que {from} évolue en {to}.
     specialPotion:
       name: Potion Spéciale
       description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.

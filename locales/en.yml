@@ -1918,67 +1918,67 @@ data:
     vitalityPotion:
       name: Vitality Potion
       description: Temporarily increases HP.
-      details: Increases your active Shlagémon's HP by 10% for a few minutes.
+      details: Increases your active Shlagémon's HP by {percent}% for a few minutes.
     superVitalityPotion:
       name: Super Vitality Potion
       description: Greatly increases HP.
-      details: Increases your active Shlagémon's HP by 25% for a few minutes.
+      details: Increases your active Shlagémon's HP by {percent}% for a few minutes.
     hyperVitalityPotion:
       name: Hyper Vitality Potion
       description: Maximizes HP temporarily.
-      details: Increases your active Shlagémon's HP by 50% for a few minutes.
+      details: Increases your active Shlagémon's HP by {percent}% for a few minutes.
     xpPotion:
       name: Experience Potion
       description: Temporarily increases XP gains.
-      details: Improves XP gained by 10% for a few minutes.
+      details: Improves XP gained by {percent}% for a few minutes.
     superXpPotion:
       name: Super Experience Potion
       description: Greatly increases XP gains.
-      details: Improves XP gained by 25% for a few minutes.
+      details: Improves XP gained by {percent}% for a few minutes.
     hyperXpPotion:
       name: Hyper Experience Potion
       description: Maximizes XP gains temporarily.
-      details: Improves XP gained by 50% for a few minutes.
+      details: Improves XP gained by {percent}% for a few minutes.
     capturePotion:
       name: Capture Potion
       description: Slightly increases capture chance.
-      details: Improves capture chance by 10% for a few minutes.
+      details: Improves capture chance by {percent}% for a few minutes.
     superCapturePotion:
       name: Super Capture Potion
       description: Greatly increases capture chance.
-      details: Improves capture chance by 25% for a few minutes.
+      details: Improves capture chance by {percent}% for a few minutes.
     hyperCapturePotion:
       name: Hyper Capture Potion
       description: Maximizes capture chance.
-      details: Improves capture chance by 50% for a few minutes.
+      details: Improves capture chance by {percent}% for a few minutes.
     potion:
       name: Gross Potion
-      description: Heals 50 HP of your Shlagémon.
-      details: Restores 50 HP to your active Shlagémon during battle.
+      description: Heals {hp} HP of your Shlagémon.
+      details: Restores {hp} HP to your active Shlagémon during battle.
     superPotion:
       name: Super Potion
-      description: Heals 250 HP of your Shlagémon.
-      details: Restores 250 HP to your active Shlagémon during battle.
+      description: Heals {hp} HP of your Shlagémon.
+      details: Restores {hp} HP to your active Shlagémon during battle.
     hyperPotion:
       name: Hyper Potion
-      description: Heals 1000 HP of your Shlagémon.
-      details: Restores 1000 HP to your active Shlagémon during battle.
+      description: Heals {hp} HP of your Shlagémon.
+      details: Restores {hp} HP to your active Shlagémon during battle.
     multiExp:
       name: Multi-EXP
       description: Shares XP with a Shlagémon.
-      details: Shares 50% of the XP earned in battle with the holder.
+      details: Shares {percent}% of the XP earned in battle with the holder.
     thunderStone:
       name: Thunder Stone
       description: Allows certain electric evolutions.
-      details: Evolves Pikachiant into Raïchiotte.
+      details: Evolves {from} into {to}.
     steroids:
       name: Steroids
       description: Enables certain "toxic bodybuilder" evolutions.
-      details: Evolves Macho into Masschopeur if he spent at least 3h at the gym.
+      details: Evolves {from} into {to} if he spent at least {hours}h at the gym.
     ultraSteroid:
       name: Ultra-Steroid
-      description: A substance banned in 97 countries.
-      details: Evolves Masschopeur into Macintosh, an irreversible hypertrophy.
+      description: A substance banned in {countries} countries.
+      details: Evolves {from} into {to}, an irreversible hypertrophy.
     eggBox:
       name: Egg Box
       description: Stores all your eggs without cluttering the inventory. Great for collecting eggs, but you have no idea what might be inside.
@@ -2000,15 +2000,15 @@ data:
     lighter:
       name: Lighter
       description: Makes some Shlagémons love fire.
-      details: Lets Emboli turn into Pyrolise, because arson is fun.
+      details: Lets {from} turn into {to}, because arson is fun.
     pissBottle:
       name: Piss Bottle
       description: Smells awful but triggers aquatic diseases.
-      details: Lets Emboli mutate into Salmoneli after a good shower.
+      details: Lets {from} mutate into {to} after a good shower.
     defibrillator:
       name: Defibrillator
       description: Jolt your Shlagémon back to shocking life.
-      details: Needed for Emboli to evolve into Tuberculi.
+      details: Needed for {from} to evolve into {to}.
     specialPotion:
       name: Special Potion
       description: Works only during king battles. Hold to unleash its effect.

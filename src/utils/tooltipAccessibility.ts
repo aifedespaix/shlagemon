@@ -23,17 +23,26 @@ export function observeTooltipAccessibility(
    * Applies `tabindex` and `inert` attributes based on the current
    * `aria-hidden` state of the popper.
    */
-  function applyAttributes(popper: HTMLElement) {
+function applyAttributes(popper: HTMLElement) {
+  // Ne modifie tabindex que si besoin
+  if (popper.getAttribute('tabindex') !== '-1') {
     popper.setAttribute('tabindex', '-1')
-    if (popper.getAttribute('aria-hidden') === 'true') {
-      if (popper.contains(doc.activeElement))
-        (doc.activeElement as HTMLElement | null)?.blur()
+  }
+
+  if (popper.getAttribute('aria-hidden') === 'true') {
+    if (popper.contains(doc.activeElement))
+      (doc.activeElement as HTMLElement | null)?.blur()
+    if (!popper.hasAttribute('inert')) {
       popper.setAttribute('inert', '')
     }
-    else {
+  }
+  else {
+    if (popper.hasAttribute('inert')) {
       popper.removeAttribute('inert')
     }
   }
+}
+
 
   /**
    * Observe a single popper for attribute changes so the accessibility
