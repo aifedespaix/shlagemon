@@ -807,6 +807,10 @@ components:
       attemptsLeft: "{n} attempts left"
       win: You've cracked a Shlag's mind!
       lose: Even a Grimer would have done it
+      legend:
+        correct: Correct position
+        misplaced: Present, wrong position
+        absent: Not in the combination
     Pairs:
       attempts: "{n} attempt | {n} attempts"
     masterMind:

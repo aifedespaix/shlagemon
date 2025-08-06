@@ -807,6 +807,10 @@ components:
       attemptsLeft: "{n} tentatives restantes"
       win: T'as percé le cerveau d'un Shlag !
       lose: Même un Petmorv y serait arrivé
+      legend:
+        correct: Bon emplacement
+        misplaced: Présent, mauvaise place
+        absent: Absent de la combinaison
     Pairs:
       attempts: "{n} tentative | {n} tentatives"
     masterMind:

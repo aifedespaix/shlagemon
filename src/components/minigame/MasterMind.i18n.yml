@@ -10,6 +10,10 @@ fr:
   attemptsLeft: '{n} tentatives restantes'
   win: "T'as percé le cerveau d'un Shlag !"
   lose: Même un Petmorv y serait arrivé
+  legend:
+    correct: "Bon emplacement"
+    misplaced: "Présent, mauvaise place"
+    absent: "Absent de la combinaison"
 en:
   messages:
     - You're getting closer… or not.
@@ -22,3 +26,7 @@ en:
   attemptsLeft: '{n} attempts left'
   win: "You've cracked a Shlag's mind!"
   lose: Even a Grimer would have done it
+  legend:
+    correct: "Correct position"
+    misplaced: "Present, wrong position"
+    absent: "Not in the combination"

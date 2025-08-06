@@ -151,29 +151,40 @@ function validate() {
 }
 
 initGame()
+function getFeedbackBg(fb: 'green' | 'yellow' | 'gray' | undefined) {
+  if (fb === 'green') return 'bg-green-500/80 dark:bg-green-600/70';
+  if (fb === 'yellow') return 'bg-yellow-400/80 dark:bg-yellow-500/70';
+  if (fb === 'gray') return 'bg-gray-400/80 dark:bg-gray-600/70';
+  return 'bg-gradient-to-br from-neutral-900/70 to-neutral-800/70 dark:from-neutral-800 dark:to-neutral-950';
+}
 </script>
 
 <template>
   <div class="relative aspect-video h-full w-full flex flex-col items-center gap-2">
-    <div class="text-sm font-bold mb-1">
+    <div class="text-xs font-bold">
       {{ t('components.minigame.MasterMind.attemptsLeft', { n: attemptsLeft }) }}
     </div>
-    <div class="w-full flex-1 overflow-y-auto flex flex-col gap-2">
+    <div class="w-full flex-1 overflow-y-auto flex flex-col gap-1 tiny-scrollbar">
       <TransitionGroup name="line">
-        <!-- Historique -->
+        <!-- Chaque ligne (historique ou active), TOUJOURS 7 colonnes -->
         <div
           v-for="(att, i) in attempts"
           :key="`att-${i}`"
           class="grid grid-cols-7 gap-1 items-center w-full"
         >
-          <!-- 6 shlagemons réponses -->
+          <!-- 6 cases réponse -->
           <div
             v-for="(id, j) in att"
             :key="`his-case-${j}`"
-            class="h-14 md:h-16 w-full flex-center rounded-xl border-2 bg-gradient-to-br from-neutral-900/70 to-neutral-800/70 dark:from-neutral-800 dark:to-neutral-950 shadow-xl relative overflow-hidden group transition"
+            class="h-14 md:h-16 w-full flex-center rounded-xl border border-white/10 dark:border-white/10
+              shadow-xl relative overflow-hidden group transition backdrop-blur"
             :class="[
+              getFeedbackBg(feedback[i]?.[j]),
               bounce[i]?.[j] ? 'animate-bounce animate-count-1' : '',
-              'focus:(ring-2 ring-sky-500)', // Glow focus
+              feedback[i]?.[j] === 'green' ? 'glow-green' : '',
+              feedback[i]?.[j] === 'yellow' ? 'glow-yellow' : '',
+              feedback[i]?.[j] === 'gray' ? 'glow-gray' : '',
+              'focus:(ring-2 ring-sky-500)'
             ]"
             tabindex="0"
             role="button"
@@ -187,39 +198,23 @@ initGame()
               draggable="false"
             />
           </div>
-          <!-- Feedback colonne 7 -->
-          <div class="flex gap-1 justify-center items-center h-14 md:h-16">
-            <span
-              v-for="(f, k) in feedback[i]"
-              :key="`his-fb-${k}`"
-              class="h-4 w-4 md:h-5 md:w-5 rounded-full border border-white shadow
-                transition"
-              :class="[
-                f === 'green' ? 'bg-green-500 glow-green' : '',
-                f === 'yellow' ? 'bg-yellow-400 glow-yellow' : '',
-                f === 'gray' ? 'bg-gray-400' : '',
-                bounce[i]?.[k] ? 'animate-bounce animate-count-1' : '',
-              ]"
-            />
-          </div>
+          <!-- Colonne 7 (historique : vide) -->
+          <div />
         </div>
       </TransitionGroup>
 
-      <!-- Ligne active (toujours 7 colonnes) -->
+      <!-- Ligne active, TOUJOURS 7 colonnes -->
       <div
         v-if="attemptsLeft > 0 && message !== t('components.minigame.MasterMind.win')"
         class="grid grid-cols-7 gap-1 items-center w-full"
       >
-        <!-- 6 cases guess -->
         <button
           v-for="(_, i) in guess"
           :key="`active-case-${i}`"
           type="button"
-          class="h-14 md:h-16 w-full flex-center border-2 rounded-xl
-            bg-gradient-to-br from-sky-900/60 to-slate-900/70 dark:from-sky-800 dark:to-slate-950
-            shadow-2xl outline-none
-            transition-all group
-            focus:(ring-2 ring-sky-400)"
+          class="h-14 md:h-16 w-full flex-center border border-white/10 dark:border-white/10
+            rounded-xl bg-gradient-to-br from-sky-900/60 to-slate-900/70 dark:from-sky-800 dark:to-slate-950
+            shadow-2xl outline-none transition-all group backdrop-blur"
           :class="[
             selected === i ? 'glow-active scale-105 ring-2 ring-sky-300 z-10' : '',
             guess[i] ? 'hover:scale-105' : '',
@@ -240,20 +235,40 @@ initGame()
         <div class="flex justify-center items-center h-14 md:h-16">
           <button
             type="button"
+            :disabled="guess.some((v) => !v)"
             class="w-12 h-12 md:w-14 md:h-14 rounded-full flex-center border-2 border-sky-400
               bg-gradient-to-tr from-sky-600/80 to-blue-700/90 text-white font-bold shadow-xl
-              outline-none select-none
-              glow-validate transition-all
-              focus:(ring-2 ring-sky-300)
-              active:scale-95"
-            :disabled="guess.some((v) => !v)"
+              outline-none select-none transition-all
+              focus:(ring-2 ring-sky-300) active:scale-95"
+            :class="{
+              'glow-validate': !guess.some((v) => !v),
+              'opacity-40 grayscale cursor-not-allowed !glow-validate': guess.some((v) => !v),
+              'hover:scale-105': !guess.some((v) => !v)
+            }"
             :aria-label="t('components.minigame.MasterMind.validate')"
             @click="validate"
+            tabindex="0"
           >
             <span class="i-carbon-checkmark text-2xl md:text-3xl" aria-hidden="true" />
           </button>
         </div>
       </div>
+    </div>
+
+    <!-- Légende couleurs -->
+    <div class="flex justify-center gap-2 text-xs opacity-80 select-none">
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-4 h-4 rounded-full bg-green-500/80 border border-white/30 mr-1"></span>
+        <span>{{ t('components.minigame.MasterMind.legend.correct') }}</span>
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-4 h-4 rounded-full bg-yellow-400/80 border border-white/30 mr-1"></span>
+        <span>{{ t('components.minigame.MasterMind.legend.misplaced') }}</span>
+      </span>
+      <span class="flex items-center gap-1">
+        <span class="inline-block w-4 h-4 rounded-full bg-gray-400/80 border border-white/30 mr-1"></span>
+        <span>{{ t('components.minigame.MasterMind.legend.absent') }}</span>
+      </span>
     </div>
 
     <!-- Sélecteur de shlagemons -->
@@ -264,52 +279,10 @@ initGame()
     />
 
     <!-- Confetti -->
-    <div v-if="showConfetti" class="pointer-events-none absolute inset-0 flex items-center justify-center z-10">
-      <div class="confetti">
+    <div v-if="showConfetti || true" class="pointer-events-none absolute inset-0 flex items-center justify-center z-10">
+      <div class="font-size-22 animate-zoom-in animate-duration-0.5s">
         🎉
       </div>
     </div>
-    <div class="text-center text-xs mt-2 min-h-5">
-      {{ message }}
-    </div>
   </div>
 </template>
-
-<style scoped>
-/* Glow feedback pastille */
-.glow-green {
-  box-shadow: 0 0 10px 2px #22c55e99, 0 0 20px 4px #22c55e55;
-}
-.glow-yellow {
-  box-shadow: 0 0 10px 2px #fde04799, 0 0 20px 4px #fde04755;
-}
-
-/* Glow selection/valider */
-.glow-active {
-  box-shadow: 0 0 16px 4px #0ea5e9bb, 0 0 32px 8px #7dd3fc55;
-}
-.glow-validate {
-  box-shadow: 0 0 24px 4px #38bdf8cc, 0 0 48px 8px #60a5fa55;
-  animation: glow-breath 2s infinite alternate;
-}
-
-@keyframes glow-breath {
-  0%   { box-shadow: 0 0 24px 4px #38bdf8cc, 0 0 48px 8px #60a5fa33; }
-  100% { box-shadow: 0 0 36px 6px #38bdf8ff, 0 0 60px 14px #38bdf899; }
-}
-
-/* Transition de ligne douce */
-.line-enter-from { opacity: 0; transform: translateY(10%); }
-.line-enter-active { transition: opacity 0.3s, transform 0.3s; }
-.line-enter-to { opacity: 1; transform: translateY(0); }
-
-.confetti {
-  animation: confetti-pop 0.8s ease forwards;
-  font-size: 3rem;
-}
-@keyframes confetti-pop {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(1); opacity: 0; }
-}
-</style>
