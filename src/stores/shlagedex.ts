@@ -462,21 +462,21 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     }
   }
 
-  async function checkEvolution(mon: DexShlagemon) {
-    const evolutions = mon.base.evolutions ?? (mon.base.evolution ? [mon.base.evolution] : [])
+  async function checkEvolution(mon: DexShlagemon): Promise<boolean> {
+    const evolutions = (mon.base.evolutions ?? (mon.base.evolution ? [mon.base.evolution] : []))
+      .filter(e => e.base.id !== mon.base.id)
     const evo = evolutions.find(e => e.condition.type === 'lvl' && mon.lvl >= e.condition.value)
-    if (!evo)
-      return
-    if (!mon.allowEvolution)
-      return
+    if (!evo || !mon.allowEvolution)
+      return false
     const accepted = await evolutionStore.requestEvolution(mon, evo.base)
-    if (!accepted)
-      return
-    applyEvolution(mon, evo.base)
+    if (accepted)
+      applyEvolution(mon, evo.base)
+    return true
   }
 
   async function evolveWithItem(mon: DexShlagemon, item: Item) {
-    const evolutions = mon.base.evolutions ?? (mon.base.evolution ? [mon.base.evolution] : [])
+    const evolutions = (mon.base.evolutions ?? (mon.base.evolution ? [mon.base.evolution] : []))
+      .filter(e => e.base.id !== mon.base.id)
     const evo = evolutions.find(e => e.condition.type === 'item' && e.condition.value.id === item.id)
     if (!evo)
       return false
@@ -507,6 +507,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         amount = Math.round(amount / 2)
     }
     mon.xp += amount
+    let evolutionRequested = false
     while (mon.lvl < maxLevel && mon.xp >= xpForLevel(mon.lvl)) {
       mon.xp -= xpForLevel(mon.lvl)
       mon.lvl += 1
@@ -523,7 +524,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       const healAmount = Math.round((mon.hp * healPercent) / 100)
       mon.hpCurrent = Math.min(mon.hp, prevHp + healAmount)
       updateHighestLevel(mon)
-      await checkEvolution(mon)
+      if (!evolutionRequested)
+        evolutionRequested = await checkEvolution(mon)
     }
     if (mon.lvl >= maxLevel)
       mon.xp = 0
