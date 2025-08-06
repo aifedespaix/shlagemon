@@ -1,0 +1,922 @@
+{
+  "shlagemons": [
+    {
+      "id": "fantomanus",
+      "name": "Fantomanus"
+    },
+    {
+      "id": "jeunebelette",
+      "name": "Jeunebelette"
+    },
+    {
+      "id": "roux-pas-cool",
+      "name": "Roux pas Cool"
+    },
+    {
+      "id": "sacdepates",
+      "name": "Sac de Pâtes"
+    },
+    {
+      "id": "aspigros",
+      "name": "Aspigros"
+    },
+    {
+      "id": "chenipaon",
+      "name": "Chenipaon"
+    },
+    {
+      "id": "metamorve",
+      "name": "Metamorve"
+    },
+    {
+      "id": "ptitocard",
+      "name": "Ptitocard"
+    },
+    {
+      "id": "abraquemar",
+      "name": "Abraquemar"
+    },
+    {
+      "id": "amoche",
+      "name": "Amoche"
+    },
+    {
+      "id": "emboli",
+      "name": "Emboli"
+    },
+    {
+      "id": "nosferailleur",
+      "name": "Nosferailleur"
+    },
+    {
+      "id": "goubite",
+      "name": "Goubite"
+    },
+    {
+      "id": "nanmeouesh",
+      "name": "Nanméouesh"
+    },
+    {
+      "id": "pikachiant",
+      "name": "Pikachiant"
+    },
+    {
+      "id": "qulbudrogue",
+      "name": "Qulbudrogué"
+    },
+    {
+      "id": "cacanus",
+      "name": "Cacanus"
+    },
+    {
+      "id": "mystouffe",
+      "name": "Mystouffe"
+    },
+    {
+      "id": "plegique",
+      "name": "Plégique"
+    },
+    {
+      "id": "ratonton",
+      "name": "Ratonton"
+    },
+    {
+      "id": "grosmitoss",
+      "name": "GrosMitoss"
+    },
+    {
+      "id": "piafsansbec",
+      "name": "Piafsansbec"
+    },
+    {
+      "id": "taupicouze",
+      "name": "Taupicouze"
+    },
+    {
+      "id": "waouff",
+      "name": "Waouff"
+    },
+    {
+      "id": "canarchicon",
+      "name": "Canarchicon"
+    },
+    {
+      "id": "melofoutre",
+      "name": "Mélofoutre"
+    },
+    {
+      "id": "nidononbinaire-f",
+      "name": "Nidononbinaire♀"
+    },
+    {
+      "id": "nidononbinaire-m",
+      "name": "Nidononbinaire♂"
+    },
+    {
+      "id": "ferosang",
+      "name": "Férosang"
+    },
+    {
+      "id": "macho",
+      "name": "Macho"
+    },
+    {
+      "id": "psykonaute",
+      "name": "Psykonaute"
+    },
+    {
+      "id": "rondonichon",
+      "name": "Rondonichon"
+    },
+    {
+      "id": "chetibranle",
+      "name": "Chétibranle"
+    },
+    {
+      "id": "raboloss",
+      "name": "Raboloss"
+    },
+    {
+      "id": "racaillou",
+      "name": "Racaillou"
+    },
+    {
+      "id": "tatacool",
+      "name": "Tatacool"
+    },
+    {
+      "id": "dosolo",
+      "name": "Dosolo"
+    },
+    {
+      "id": "magnubellule",
+      "name": "Magnubellule"
+    },
+    {
+      "id": "otamere",
+      "name": "Otamère"
+    },
+    {
+      "id": "pouleyta",
+      "name": "Pouleyta"
+    },
+    {
+      "id": "cookieyas",
+      "name": "Cookieyas"
+    },
+    {
+      "id": "marginal",
+      "name": "Marginal"
+    },
+    {
+      "id": "tadsperm",
+      "name": "Tadsperm"
+    },
+    {
+      "id": "amonichiasse",
+      "name": "Amonichiasse"
+    },
+    {
+      "id": "kraputo",
+      "name": "Kraputo"
+    },
+    {
+      "id": "pauvreetcon",
+      "name": "Pauvreetcon"
+    },
+    {
+      "id": "ptitrat",
+      "name": "Ptitrat"
+    },
+    {
+      "id": "carreflex",
+      "name": "Carréflex"
+    },
+    {
+      "id": "coksale",
+      "name": "Coksale"
+    },
+    {
+      "id": "houlard",
+      "name": "Houlard"
+    },
+    {
+      "id": "kaiminable",
+      "name": "Kaiminable"
+    },
+    {
+      "id": "glandignon",
+      "name": "Glandignon"
+    },
+    {
+      "id": "hericouille",
+      "name": "Héricouille"
+    },
+    {
+      "id": "minidrapcon",
+      "name": "Minidrapcon"
+    },
+    {
+      "id": "qwiflash",
+      "name": "Qwiflash"
+    },
+    {
+      "id": "krabbyjaccob",
+      "name": "Krabbyjaccob"
+    },
+    {
+      "id": "onixtamere",
+      "name": "Onixtamere"
+    },
+    {
+      "id": "soporifiak",
+      "name": "Soporifiak"
+    },
+    {
+      "id": "voltamere",
+      "name": "Voltamère"
+    },
+    {
+      "id": "chignon",
+      "name": "Chignon"
+    },
+    {
+      "id": "dentlait",
+      "name": "Dentlait"
+    },
+    {
+      "id": "huithuit",
+      "name": "Huithuit"
+    },
+    {
+      "id": "kistlee",
+      "name": "Kistlee"
+    },
+    {
+      "id": "languedepute",
+      "name": "Languedepute"
+    },
+    {
+      "id": "lecocu",
+      "name": "Lecocu"
+    },
+    {
+      "id": "rhinofaringite",
+      "name": "Rhinofaringite"
+    },
+    {
+      "id": "smongol",
+      "name": "Smongol"
+    },
+    {
+      "id": "hypotrompe",
+      "name": "Hypotrompe"
+    },
+    {
+      "id": "kandurex",
+      "name": "Kandurex"
+    },
+    {
+      "id": "poissaucisse",
+      "name": "Poissaucisse"
+    },
+    {
+      "id": "strabisme",
+      "name": "Strabisme"
+    },
+    {
+      "id": "elektektonik",
+      "name": "Elektektonik"
+    },
+    {
+      "id": "insinerateur",
+      "name": "Insinérateur"
+    },
+    {
+      "id": "lipposucsion",
+      "name": "Lipposucsion"
+    },
+    {
+      "id": "m-ventriloque",
+      "name": "M. Ventriloque"
+    },
+    {
+      "id": "lokhlash",
+      "name": "Lokhlash"
+    },
+    {
+      "id": "magmaretfred",
+      "name": "Magmar&Fred"
+    },
+    {
+      "id": "scarapute",
+      "name": "Scarapute"
+    },
+    {
+      "id": "taurus",
+      "name": "Taurus"
+    },
+    {
+      "id": "artichaud",
+      "name": "Artichaud"
+    },
+    {
+      "id": "bulgrosboule",
+      "name": "Bulgrosboule"
+    },
+    {
+      "id": "carapouffe",
+      "name": "Carapouffe"
+    },
+    {
+      "id": "electhordu",
+      "name": "Électhordu"
+    },
+    {
+      "id": "accrocrack",
+      "name": "Accrocrack"
+    },
+    {
+      "id": "aerobite",
+      "name": "Aérobite"
+    },
+    {
+      "id": "alakalbar",
+      "name": "Alakalbar"
+    },
+    {
+      "id": "alligastro",
+      "name": "Alligastro"
+    },
+    {
+      "id": "amonitrace",
+      "name": "Amonitrace"
+    },
+    {
+      "id": "barbe-bizarre",
+      "name": "Barbebizarre"
+    },
+    {
+      "id": "barbok",
+      "name": "Barbok"
+    },
+    {
+      "id": "beuleef",
+      "name": "Beuleef"
+    },
+    {
+      "id": "boustiflemme",
+      "name": "Boustiflemme"
+    },
+    {
+      "id": "carabifle",
+      "name": "Carabifle"
+    },
+    {
+      "id": "chrysachier",
+      "name": "Chrysachier"
+    },
+    {
+      "id": "coconnul",
+      "name": "Coconnul"
+    },
+    {
+      "id": "coksnif",
+      "name": "Coksnif"
+    },
+    {
+      "id": "coloscopie",
+      "name": "Coloscopie"
+    },
+    {
+      "id": "coxymort",
+      "name": "Coxymort"
+    },
+    {
+      "id": "croconaze",
+      "name": "Croconaze"
+    },
+    {
+      "id": "crustabridou",
+      "name": "Crustabridou"
+    },
+    {
+      "id": "dartagnan",
+      "name": "D'Art Tagnan"
+    },
+    {
+      "id": "dopluspersonne",
+      "name": "Dopluspersonne"
+    },
+    {
+      "id": "draco-con",
+      "name": "Draco Con"
+    },
+    {
+      "id": "drapcoloscopie",
+      "name": "Drapcoloscopie"
+    },
+    {
+      "id": "drapcon",
+      "name": "DrapCon"
+    },
+    {
+      "id": "ectroudbal",
+      "name": "Ectroudbal"
+    },
+    {
+      "id": "electrobeauf",
+      "name": "Électrobeauf"
+    },
+    {
+      "id": "empifouette",
+      "name": "Empifouette"
+    },
+    {
+      "id": "feunouille",
+      "name": "Feunouille"
+    },
+    {
+      "id": "flaclodoss",
+      "name": "Flaclodoss"
+    },
+    {
+      "id": "floripute",
+      "name": "Floripute"
+    },
+    {
+      "id": "galopard",
+      "name": "Galopard"
+    },
+    {
+      "id": "gravaglaire",
+      "name": "Gravaglaire"
+    },
+    {
+      "id": "grochichon",
+      "name": "Grochichon"
+    },
+    {
+      "id": "grosseflemme",
+      "name": "Grosseflemme"
+    },
+    {
+      "id": "grossetarte",
+      "name": "Grossetarte"
+    },
+    {
+      "id": "grostadsperm",
+      "name": "Grostadsperm"
+    },
+    {
+      "id": "heriplouf",
+      "name": "Hériplouf"
+    },
+    {
+      "id": "heristrash",
+      "name": "Héristrash"
+    },
+    {
+      "id": "hosoltueur",
+      "name": "Hosoltueur"
+    },
+    {
+      "id": "hyporuisseau",
+      "name": "Hyporuisseau"
+    },
+    {
+      "id": "hypsedentaire",
+      "name": "Hypsedentaire"
+    },
+    {
+      "id": "kadavrebras",
+      "name": "Kadavrebras"
+    },
+    {
+      "id": "kaputrak",
+      "name": "Kaputrak"
+    },
+    {
+      "id": "krabbolosse",
+      "name": "Krabbolosse"
+    },
+    {
+      "id": "lamantinedu38",
+      "name": "Lamantinedu38"
+    },
+    {
+      "id": "leviaraison",
+      "name": "Léviaraison"
+    },
+    {
+      "id": "macintosh",
+      "name": "Macintosh"
+    },
+    {
+      "id": "magnementon",
+      "name": "Magnementon"
+    },
+    {
+      "id": "masschopeur",
+      "name": "Masschopeur"
+    },
+    {
+      "id": "meladolphe",
+      "name": "Méladolphe"
+    },
+    {
+      "id": "moisanium",
+      "name": "Moisanium"
+    },
+    {
+      "id": "nidodragqueen",
+      "name": "Nidodragqueen"
+    },
+    {
+      "id": "nidoqueer",
+      "name": "Nidoqueer"
+    },
+    {
+      "id": "nidoschneck",
+      "name": "Nidoschneck"
+    },
+    {
+      "id": "nidoteub",
+      "name": "Nidoteub"
+    },
+    {
+      "id": "noadcajou",
+      "name": "Noadcajou"
+    },
+    {
+      "id": "noctedard",
+      "name": "Noctédard"
+    },
+    {
+      "id": "nosferasta",
+      "name": "Nosferasta"
+    },
+    {
+      "id": "orchibre",
+      "name": "Orchibre"
+    },
+    {
+      "id": "papysucon",
+      "name": "Papi Suçon"
+    },
+    {
+      "id": "parasecte",
+      "name": "Parasecte"
+    },
+    {
+      "id": "perchiste",
+      "name": "Perchiste"
+    },
+    {
+      "id": "poissomerguez",
+      "name": "Poissomerguez"
+    },
+    {
+      "id": "pyrolise",
+      "name": "Pyrolise"
+    },
+    {
+      "id": "qwiflouch",
+      "name": "Qwiflouch"
+    },
+    {
+      "id": "rafflamby",
+      "name": "Rafflamby"
+    },
+    {
+      "id": "raichiotte",
+      "name": "Raïchiotte"
+    },
+    {
+      "id": "rapasdepisse",
+      "name": "Rapasdepisse"
+    },
+    {
+      "id": "raptorincel",
+      "name": "Raptor Incel"
+    },
+    {
+      "id": "ratartine",
+      "name": "Ratartine"
+    },
+    {
+      "id": "rhinoplastie",
+      "name": "Rhinoplastie"
+    },
+    {
+      "id": "ricardnin",
+      "name": "Ricardnin"
+    },
+    {
+      "id": "roux-pignolage",
+      "name": "Roux Pignolage"
+    },
+    {
+      "id": "roux-scoop",
+      "name": "Roux Scoop"
+    },
+    {
+      "id": "salmoneli",
+      "name": "Salmoneli"
+    },
+    {
+      "id": "smongogol",
+      "name": "Smongogol"
+    },
+    {
+      "id": "sperectum",
+      "name": "Sperectum"
+    },
+    {
+      "id": "stabiscarosse",
+      "name": "Stabiscarosse"
+    },
+    {
+      "id": "tatacruelle",
+      "name": "Tatacruelle"
+    },
+    {
+      "id": "tord-turc",
+      "name": "Tord Turc"
+    },
+    {
+      "id": "triopikouze",
+      "name": "Triopikouze"
+    },
+    {
+      "id": "tuberculi",
+      "name": "Tuberculi"
+    },
+    {
+      "id": "vieux-blaireau",
+      "name": "Vieux Blaireau"
+    },
+    {
+      "id": "mairiousse",
+      "name": "Mairiousse"
+    },
+    {
+      "id": "mewteub",
+      "name": "Mewteub"
+    },
+    {
+      "id": "salamiches",
+      "name": "Salamiches"
+    },
+    {
+      "id": "sulfusouris",
+      "name": "Sulfusouris"
+    },
+    {
+      "id": "wem",
+      "name": "Wem"
+    },
+    {
+      "id": "zebrapoisbleu",
+      "name": "ZebraPoisBleu"
+    }
+  ],
+  "zones": [
+    {
+      "id": "plaine-kekette",
+      "name": "Plaine Kékette",
+      "type": "sauvage"
+    },
+    {
+      "id": "bois-de-bouffon",
+      "name": "Bois des Bouffons",
+      "type": "sauvage"
+    },
+    {
+      "id": "chemin-du-slip",
+      "name": "Chemin du Slip",
+      "type": "sauvage"
+    },
+    {
+      "id": "ravin-fesse-molle",
+      "name": "Ravin de la Fesse Molle",
+      "type": "sauvage"
+    },
+    {
+      "id": "precipice-nanard",
+      "name": "Précipice du Vieux Nanard",
+      "type": "sauvage"
+    },
+    {
+      "id": "marais-moudugenou",
+      "name": "Marais Moudugenou",
+      "type": "sauvage"
+    },
+    {
+      "id": "forteresse-petmoalfiak",
+      "name": "Forteresse Pètmoalfiak",
+      "type": "sauvage"
+    },
+    {
+      "id": "route-du-nawak",
+      "name": "Route du Nawak",
+      "type": "sauvage"
+    },
+    {
+      "id": "mont-dracatombe",
+      "name": "Mont Cul",
+      "type": "sauvage"
+    },
+    {
+      "id": "catacombes-merdifientes",
+      "name": "Catacombes Merdifientes",
+      "type": "sauvage"
+    },
+    {
+      "id": "route-aguicheuse",
+      "name": "Route Aguicheuse",
+      "type": "sauvage"
+    },
+    {
+      "id": "vallee-des-chieurs",
+      "name": "Vallée des Chieurs",
+      "type": "sauvage"
+    },
+    {
+      "id": "trou-du-bide",
+      "name": "Trou du Bide",
+      "type": "sauvage"
+    },
+    {
+      "id": "lac-aux-relous",
+      "name": "Lac aux Relous",
+      "type": "sauvage"
+    },
+    {
+      "id": "zone-giga-zob",
+      "name": "Aire du Giga Zob",
+      "type": "sauvage"
+    },
+    {
+      "id": "mont-kouillasse",
+      "name": "Mont Kouillasse",
+      "type": "sauvage"
+    },
+    {
+      "id": "paturage-crado",
+      "name": "Pâturage Crado",
+      "type": "sauvage"
+    },
+    {
+      "id": "canyon-a-la-derp",
+      "name": "Canyon à la Derp",
+      "type": "sauvage"
+    },
+    {
+      "id": "cratere-des-legends",
+      "name": "Cratère des Légends",
+      "type": "sauvage"
+    },
+    {
+      "id": "village-veaux-du-gland",
+      "name": "Veaux du Gland sur Marne",
+      "type": "village"
+    },
+    {
+      "id": "village-giga-schlag",
+      "name": "Citadelle Giga-Schlag",
+      "type": "village"
+    },
+    {
+      "id": "village-boule",
+      "name": "Village Sux-Mais-Bouls",
+      "type": "village"
+    },
+    {
+      "id": "village-paume",
+      "name": "Village Paumé du cul",
+      "type": "village"
+    },
+    {
+      "id": "village-caca-boudin",
+      "name": "Village Fiente-sur-Mer",
+      "type": "village"
+    },
+    {
+      "id": "village-cassos-land",
+      "name": "Village des Cassos",
+      "type": "village"
+    },
+    {
+      "id": "village-clitoland",
+      "name": "Clito Land",
+      "type": "village"
+    }
+  ],
+  "characters": [
+    {
+      "id": "afida-tourments",
+      "name": "Afida Tourments"
+    },
+    {
+      "id": "aife",
+      "name": "Aife"
+    },
+    {
+      "id": "alice-cordonbleu",
+      "name": "Alice Cordonbleu"
+    },
+    {
+      "id": "bouba",
+      "name": "Bouba"
+    },
+    {
+      "id": "caillou",
+      "name": "Caillou"
+    },
+    {
+      "id": "charles-manoir",
+      "name": "Charles Manoir"
+    },
+    {
+      "id": "donald-trompe",
+      "name": "Donald Trompe"
+    },
+    {
+      "id": "elisabeth-borgne",
+      "name": "Élisabeth Borgne"
+    },
+    {
+      "id": "elizabeth-homeless",
+      "name": "Elizabeth Homeless"
+    },
+    {
+      "id": "emilie-louise",
+      "name": "Émilie Louise"
+    },
+    {
+      "id": "etron-muscle",
+      "name": "Étron Muscle"
+    },
+    {
+      "id": "glandhi",
+      "name": "Glandhi"
+    },
+    {
+      "id": "jk-ralwing",
+      "name": "J.K. Râlwing"
+    },
+    {
+      "id": "labbe-biere",
+      "name": "L'Abbé Bière"
+    },
+    {
+      "id": "magalie-bredouille",
+      "name": "Magalie Bredouille"
+    },
+    {
+      "id": "marcon",
+      "name": "Emmanuel Marcon"
+    },
+    {
+      "id": "marine-lahaine",
+      "name": "Marine Lahaine"
+    },
+    {
+      "id": "monique-cerisier",
+      "name": "Monique Cerisier"
+    },
+    {
+      "id": "norman",
+      "name": "Norman le babysiter"
+    },
+    {
+      "id": "ondejeune",
+      "name": "Ondéjeune"
+    },
+    {
+      "id": "picassos",
+      "name": "Picassos"
+    },
+    {
+      "id": "prof-merdant",
+      "name": "Professeur Merdant"
+    },
+    {
+      "id": "sachatte",
+      "name": "Sachatte"
+    },
+    {
+      "id": "siphanus",
+      "name": "Siphanus"
+    },
+    {
+      "id": "thais-descufion",
+      "name": "Thaïs d'Escufion"
+    },
+    {
+      "id": "vladimir-putain",
+      "name": "Vladimir Putain"
+    }
+  ]
+}
