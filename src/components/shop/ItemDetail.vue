@@ -47,7 +47,10 @@ function setMax() {
 }
 
 const details = computed(() =>
-  t(props.item.details ?? props.item.description),
+  t(
+    props.item.details ?? props.item.description,
+    props.item.details ? props.item.detailsParams : props.item.descriptionParams,
+  ),
 )
 </script>
 
