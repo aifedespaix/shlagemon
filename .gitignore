@@ -17,3 +17,5 @@ vitest-report.json
 scripts/musique/*.mp4
 scripts/musique/_uploaded
 scripts/musique/source
+android/*
+!android/*.zip
