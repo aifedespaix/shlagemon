@@ -13,7 +13,20 @@ export const useEvolutionStore = defineStore('evolution', () => {
   const isVisible = computed(() => pending.value !== null)
   const audio = useAudioStore()
 
+  /**
+   * Queue an evolution request for the given Shlagémon.
+   *
+   * Duplicate requests for the same target are ignored to prevent multiple
+   * prompts in a single sequence.
+   *
+   * @param mon - The Shlagémon that might evolve.
+   * @param to - The target base form after evolution.
+   * @returns Promise resolving to `true` when the evolution was accepted by the
+   * user, `false` otherwise.
+   */
   function requestEvolution(mon: DexShlagemon, to: BaseShlagemon) {
+    if (queue.value.some(req => req.mon.id === mon.id && req.to.id === to.id))
+      return Promise.resolve(false)
     return new Promise<boolean>((resolve) => {
       queue.value.push({ mon, to, resolve })
       if (queue.value.length === 1)
