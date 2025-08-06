@@ -130,6 +130,7 @@ export const vitalityPotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-violet-500 dark:text-violet-400',
+  detailsParams: { percent: 10 },
 }
 
 export const superVitalityPotion: Item = {
@@ -145,6 +146,7 @@ export const superVitalityPotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-violet-600 dark:text-violet-500',
+  detailsParams: { percent: 25 },
 }
 
 export const hyperVitalityPotion: Item = {
@@ -160,6 +162,7 @@ export const hyperVitalityPotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-violet-700 dark:text-violet-600',
+  detailsParams: { percent: 50 },
 }
 
 export const xpPotion: Item = {
@@ -175,6 +178,7 @@ export const xpPotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-green-600 dark:text-green-400',
+  detailsParams: { percent: 10 },
 }
 
 export const superXpPotion: Item = {
@@ -190,6 +194,7 @@ export const superXpPotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-green-700 dark:text-green-500',
+  detailsParams: { percent: 25 },
 }
 
 export const hyperXpPotion: Item = {
@@ -205,6 +210,7 @@ export const hyperXpPotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-green-800 dark:text-green-600',
+  detailsParams: { percent: 50 },
 }
 
 export const odorElixir: Item = {
@@ -230,6 +236,7 @@ export const capturePotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:magic-potion',
   iconClass: 'text-teal-600 dark:text-teal-400',
+  detailsParams: { percent: 10 },
 }
 
 export const superCapturePotion: Item = {
@@ -245,6 +252,7 @@ export const superCapturePotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:round-potion',
   iconClass: 'text-teal-700 dark:text-teal-500',
+  detailsParams: { percent: 25 },
 }
 
 export const hyperCapturePotion: Item = {
@@ -260,6 +268,7 @@ export const hyperCapturePotion: Item = {
   sfxId: 'items-passive-potion',
   icon: 'i-game-icons:standing-potion',
   iconClass: 'text-teal-800 dark:text-teal-600',
+  detailsParams: { percent: 50 },
 }
 
 export const potion: Item = {
@@ -276,6 +285,8 @@ export const potion: Item = {
   sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-red-600 dark:text-red-400',
+  descriptionParams: { hp: 50 },
+  detailsParams: { hp: 50 },
 }
 
 export const superPotion: Item = {
@@ -284,14 +295,16 @@ export const superPotion: Item = {
   description: 'data.items.superPotion.description',
   details: 'data.items.superPotion.details',
   type: 'heal',
-  power: potion.power*5,
-  price: potion.price*10,
+  power: potion.power * 5,
+  price: potion.price * 10,
   currency: 'shlagidolar',
   category: 'battle',
-  battleCooldown: potion.battleCooldown*2,
+  battleCooldown: potion.battleCooldown * 2,
   sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-violet-600 dark:text-violet-400',
+  descriptionParams: { hp: potion.power * 5 },
+  detailsParams: { hp: potion.power * 5 },
 }
 
 export const hyperPotion: Item = {
@@ -300,14 +313,16 @@ export const hyperPotion: Item = {
   description: 'data.items.hyperPotion.description',
   details: 'data.items.hyperPotion.details',
   type: 'heal',
-  power: superPotion.power*4,
-  price: superPotion.power*10,
+  power: superPotion.power * 4,
+  price: superPotion.power * 10,
   currency: 'shlagidolar',
   category: 'battle',
-  battleCooldown: superPotion.battleCooldown*2,
+  battleCooldown: superPotion.battleCooldown * 2,
   sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-yellow-500 dark:text-yellow-300',
+  descriptionParams: { hp: superPotion.power * 4 },
+  detailsParams: { hp: superPotion.power * 4 },
 }
 
 export const multiExp: Item = {
@@ -322,6 +337,7 @@ export const multiExp: Item = {
   iconClass: 'text-orange-500 dark:text-orange-300',
   unique: true,
   wearable: true,
+  detailsParams: { percent: 50 },
 }
 
 export const thunderStone: Item = {
@@ -335,6 +351,7 @@ export const thunderStone: Item = {
   type: 'evolution',
   icon: 'i-carbon:flash-filled',
   iconClass: 'text-yellow-500 dark:text-yellow-300',
+  detailsParams: { from: 'Pikachiant', to: 'Raïchiotte' },
 }
 
 export const steroids: Item = {
@@ -348,6 +365,7 @@ export const steroids: Item = {
   type: 'evolution',
   icon: 'i-iconoir:potion',
   iconClass: 'text-orange-500 dark:text-orange-300',
+  detailsParams: { from: 'Macho', to: 'Masschopeur', hours: 3 },
 }
 
 export const ultraSteroid: Item = {
@@ -361,6 +379,8 @@ export const ultraSteroid: Item = {
   type: 'evolution',
   icon: 'i-iconoir:potion',
   iconClass: 'text-purple-500 dark:text-purple-300',
+  descriptionParams: { countries: 97, dimensions: 2, timelines: 1 },
+  detailsParams: { from: 'Masschopeur', to: 'Macintosh' },
 }
 
 export const lighter: Item = {
@@ -374,6 +394,7 @@ export const lighter: Item = {
   type: 'evolution',
   icon: 'i-game-icons:lighter',
   iconClass: 'text-red-500 dark:text-red-400',
+  detailsParams: { from: 'Emboli', to: 'Pyrolise' },
 }
 
 export const pissBottle: Item = {
@@ -387,6 +408,7 @@ export const pissBottle: Item = {
   type: 'evolution',
   icon: 'i-game-icons:soda-bottle',
   iconClass: 'text-yellow-700 dark:text-yellow-500',
+  detailsParams: { from: 'Emboli', to: 'Salmoneli' },
 }
 
 export const defibrillator: Item = {
@@ -400,6 +422,7 @@ export const defibrillator: Item = {
   type: 'evolution',
   icon: 'i-game-icons:tesla-coil',
   iconClass: 'text-green-600 dark:text-green-400',
+  detailsParams: { from: 'Emboli', to: 'Tuberculi' },
 }
 
 export const badgeBox: Item = {
