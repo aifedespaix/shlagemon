@@ -33,15 +33,15 @@ function extractEntries(dir) {
   return entries
 }
 
-const shlagemons = extractEntries(path.join(__dirname, '../src/data/shlagemons'))
-const characters = extractEntries(path.join(__dirname, '../src/data/characters'))
+const shlagemons = extractEntries(path.join(__dirname, '../../src/data/shlagemons'))
+const characters = extractEntries(path.join(__dirname, '../../src/data/characters'))
 const zones = [
-  ...extractEntries(path.join(__dirname, '../src/data/zones/savages')).map(z => ({ ...z, type: 'sauvage' })),
-  ...extractEntries(path.join(__dirname, '../src/data/zones/villages')).map(z => ({ ...z, type: 'village' })),
+  ...extractEntries(path.join(__dirname, '../../src/data/zones/savages')).map(z => ({ ...z, type: 'sauvage' })),
+  ...extractEntries(path.join(__dirname, '../../src/data/zones/villages')).map(z => ({ ...z, type: 'village' })),
 ]
 
 const data = { shlagemons, zones, characters }
 
-const output = path.join(__dirname, '../public/names.json')
+const output = path.join(__dirname, 'names.json')
 fs.writeFileSync(output, JSON.stringify(data, null, 2), 'utf8')
 console.log(`Generated ${output} with ${shlagemons.length} shlagemons, ${zones.length} zones and ${characters.length} characters`)

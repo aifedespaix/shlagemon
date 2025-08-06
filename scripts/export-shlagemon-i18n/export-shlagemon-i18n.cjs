@@ -2,7 +2,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 const YAML = require('yaml')
 
-const baseDir = path.join(__dirname, '../src/data/shlagemons')
+const baseDir = path.join(__dirname, '../../src/data/shlagemons')
 
 function walk(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true })

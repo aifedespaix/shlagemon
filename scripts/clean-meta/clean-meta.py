@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # Dossier contenant les .ogg
-sfx_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../public/audio/sfx'))
+sfx_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../public/audio/sfx'))
 
 # Parcourt tous les fichiers dans le dossier
 for filename in os.listdir(sfx_dir):

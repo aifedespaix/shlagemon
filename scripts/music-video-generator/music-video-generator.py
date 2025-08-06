@@ -17,15 +17,16 @@ from moviepy import (
 from moviepy.audio.fx import AudioFadeOut
 
 # --- CONFIG ---
-MUSIC_DATA_PATH = '../public/music-data.json'
-BASE_AUDIO_PATH = '../public'
-CENTER_IMG_PATH = '../public/items/shlageball/shlageball.png'
-BG_IMG_DIR = './clip'
-LOGO_PATH = '../public/logo.png'
-TITLE_FONT_PATH = './clip/LilitaOne-Regular.ttf'
+SCRIPT_DIR = os.path.dirname(__file__)
+MUSIC_DATA_PATH = os.path.join(SCRIPT_DIR, '..', 'music-data', 'music-data.json')
+BASE_AUDIO_PATH = os.path.join(SCRIPT_DIR, '..', '..', 'public')
+CENTER_IMG_PATH = os.path.join(BASE_AUDIO_PATH, 'items', 'shlageball', 'shlageball.png')
+BG_IMG_DIR = os.path.join(SCRIPT_DIR, 'clip')
+LOGO_PATH = os.path.join(BASE_AUDIO_PATH, 'logo.png')
+TITLE_FONT_PATH = os.path.join(BG_IMG_DIR, 'LilitaOne-Regular.ttf')
 TITLE_COLOR = '#fafafa'
 TITLE_STROKE_COLOR = '#010101'
-OUTPUT_DIR = './musique'
+OUTPUT_DIR = os.path.join(SCRIPT_DIR, 'musique')
 TMP_DIR = os.path.join(OUTPUT_DIR, '_tmp')
 BASE_COLOR = (22, 101, 170)
 W, H = 1920, 1080
@@ -43,7 +44,7 @@ def get_audio_wav_path(music):
     import glob
     base = os.path.basename(music['url'])
     name, _ = os.path.splitext(base)
-    pattern = os.path.join('musique', 'source', '**', f"{name}.wav")
+    pattern = os.path.join(OUTPUT_DIR, 'source', '**', f"{name}.wav")
     results = glob.glob(pattern, recursive=True)
     if results:
         return results[0]
@@ -56,7 +57,7 @@ def get_audio_wav_path(music):
     rel = music['url'].lstrip('/')
     if rel.startswith('audio/musics/'):
         rel = rel[len('audio/musics/') :]
-    target_dir = os.path.join('musique', 'source', os.path.dirname(rel))
+    target_dir = os.path.join(OUTPUT_DIR, 'source', os.path.dirname(rel))
     os.makedirs(target_dir, exist_ok=True)
     wav_path = os.path.join(target_dir, f"{name}.wav")
     cmd = ['ffmpeg', '-y', '-i', ogg_path, '-ar', '48000', wav_path]
@@ -70,7 +71,7 @@ def get_audio_wav_path(music):
 
 def get_public_full_path(url):
     """Return the absolute path for a file located in the public directory."""
-    return os.path.join('../public', url.strip('/'))
+    return os.path.join(BASE_AUDIO_PATH, url.strip('/'))
 
 def decide_loops(audio_path):
     y, sr = librosa.load(audio_path, sr=None)

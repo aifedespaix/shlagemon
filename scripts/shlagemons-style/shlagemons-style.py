@@ -7,8 +7,9 @@ import cv2
 from sklearn.cluster import KMeans
 from scipy.ndimage import binary_dilation
 
-IN_ROOT = '../public/shlagemons'
-OUT_ROOT = './stylised-shlagemons'
+SCRIPT_DIR = os.path.dirname(__file__)
+IN_ROOT = os.path.join(SCRIPT_DIR, '..', '..', 'public', 'shlagemons')
+OUT_ROOT = os.path.join(SCRIPT_DIR, 'stylised-shlagemons')
 OUTLINE_WIDTH = 10
 INNER_WIDTH = 3
 CANNY_MIN = 40
