@@ -119,12 +119,12 @@ onUnmounted(() => {
 
 <template>
   <div class="tiny-scrollbar relative h-full w-full flex flex-col items-center overflow-auto">
-    <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-2">
+    <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-1">
       <UiButton
         v-for="(enemy, i) in enemyTeam"
         :key="enemy.id"
         type="danger"
-        class="aspect-square w-18 p-0!"
+        class="aspect-square p-0!"
         circle
         @click="openEnemy(i)"
       >
@@ -142,7 +142,7 @@ onUnmounted(() => {
         v-for="(_, i) in enemyTeam"
         :key="i"
         :variant="playerSelection[i] ? 'outline' : undefined"
-        class="aspect-square w-18 p-0!"
+        class="aspect-square p-0!"
         circle
         @click="openDex(i)"
       >

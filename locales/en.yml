@@ -2118,6 +2118,61 @@ data:
     arena80:
       badge:
         name: Buttered Toast Badge
+  shlagemons-type:
+    normal:
+      name: Normy
+      description: A completely uninteresting and pathetic type.
+    feu:
+      name: Crispy
+      description: A blazing type that reduces everything to ashes.
+    eau:
+      name: Soggy
+      description: A wet type that easily dampens any enthusiasm.
+    plante:
+      name: Moldy
+      description: A decaying plant-based type.
+    electrique:
+      name: Electropoop
+      description: A type charged with static electricity.
+    roche:
+      name: Pebble
+      description: A tough rock-like type.
+    vol:
+      name: AirEction
+      description: A flying type that reeks of musk.
+    combat:
+      name: Brawler
+      description: A brutish type that punches before thinking.
+    spectre:
+      name: Spectranus
+      description: A creepy type that gives you the chills.
+    darksasuke:
+      name: DarkSasuke
+      description: An emo goth victim running with arms behind.
+    psy:
+      name: Psytrance
+      description: A music addict who cannot have fun without drugs.
+    poison:
+      name: Poisonet
+      description: A toxic type that sends sketchy emails.
+    metal:
+      name: Scrapmetal
+      description: A heavy type, rusted and squeaky with every step.
+    sol:
+      name: Filth
+      description: An earthy type that scratches your feet.
+    fee:
+      name: FairyLick
+      description: Sweet at first glance, but sticks to your fingers.
+    dragon:
+      name: DragonDorf
+      description: A majestic yet overconfident type that always loses in the end.
+    glace:
+      name: Frostbite
+      description: As cold as your ex, slippery and unpredictable.
+    insecte:
+      name: Bugger
+      description: Crawling, hairy and always annoying. It scratches at night and judges in silence.
 pages:
   index:
     title: Shlagemon - It smells very strong

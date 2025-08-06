@@ -2052,6 +2052,61 @@ data:
     arena80:
       badge:
         name: Badge Tartine Beurrée
+  shlagemons-type:
+    normal:
+      name: Normy
+      description: Type complètement inintéressant et trop pourri.
+    feu:
+      name: Cramé
+      description: Type brûlant qui réduit tout en cendres.
+    eau:
+      name: Mouillé
+      description: Type humide qui éteint facilement les ardeurs.
+    plante:
+      name: Moisi
+      description: Type végétal en décomposition.
+    electrique:
+      name: Électrochiasse
+      description: Type chargé d'électricité statique.
+    roche:
+      name: Caillasse
+      description: Type roc très coriace.
+    vol:
+      name: AirEction
+      description: Type aérien mais qui sent la teub.
+    combat:
+      name: Castagne
+      description: Type bagarreur qui tape sans réfléchir.
+    spectre:
+      name: Spectranus
+      description: Type chelou qui fout les jetons.
+    darksasuke:
+      name: DarkSasuke
+      description: Type victime, gothique et émo qui cours avec les bras en arrière.
+    psy:
+      name: Psytrance
+      description: Un fan de musique de merde, il ne sait pas s'amuser sans prendre de drogue.
+    poison:
+      name: Poisonet
+      description: Type toxique qui t’envoie des mails louches.
+    metal:
+      name: Ferraille
+      description: Type blindé mais rouillé qui couine à chaque pas.
+    sol:
+      name: Cradouze
+      description: Type terreux qui gratte les pieds.
+    fee:
+      name: FéeLation
+      description: Type sucré en apparence, mais colle aux doigts.
+    dragon:
+      name: DragonDorf
+      description: Type majestueux mais trop sûr de lui, qui finit toujours battu à la fin.
+    glace:
+      name: Glaconasse
+      description: Type froid comme ton ex, glissant et imprévisible.
+    insecte:
+      name: Mouchtik
+      description: Type grouillant, souvent poilu, toujours dérangeant. Il gratte la nuit et te juge en silence.
 pages:
   index:
     title: Shlagémon - Ça sent très fort
