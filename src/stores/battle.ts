@@ -1,3 +1,4 @@
+import type { TypeName } from '~/type'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { cuckRing } from '~/data/items/wearables/cuckRing'
@@ -17,6 +18,11 @@ export const useBattleStore = defineStore('battle', () => {
   const disease = useDiseaseStore()
   const manualAttack = useManualAttackStatsStore()
 
+  /**
+   * Tracks the next elemental type index to use for each attacking Shlagémon.
+   */
+  const typeCycleIndex = new Map<string, number>()
+
   let loop: ReturnType<typeof useIntervalFn> | undefined
 
   function startLoop(handler: () => void, delay = 1000) {
@@ -28,6 +34,13 @@ export const useBattleStore = defineStore('battle', () => {
     loop?.pause()
     loop = undefined
   }
+  /**
+   * Calculates the damage inflicted by an attacker onto a defender.
+   *
+   * When the attacker has multiple types, each call cycles to the next type,
+   * looping back to the first after the last one. This ensures attacks rotate
+   * through all available types.
+   */
   function attack(
     attacker: DexShlagemon,
     defender: DexShlagemon,
@@ -35,7 +48,13 @@ export const useBattleStore = defineStore('battle', () => {
     isPlayerDefender = false,
     reduced = false,
   ): AttackResult {
-    const atkType = attacker.base.types[0].id
+    const attackerTypes = attacker.base.types.map(t => t.id) as TypeName[]
+    const currentIndex = typeCycleIndex.get(attacker.id) ?? 0
+    const atkType = attackerTypes[currentIndex]
+    typeCycleIndex.set(
+      attacker.id,
+      attackerTypes.length > 1 ? (currentIndex + 1) % attackerTypes.length : 0,
+    )
     const defTypes = defender.base.types.map(t => t.id)
     const atkBonus = isPlayerAttacker ? 1 + dex.bonusPercent / 100 : 1
     const musicBonus = audio.isMusicEnabled ? 1.1 : 1
