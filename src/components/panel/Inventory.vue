@@ -3,7 +3,6 @@ import type { Component } from 'vue'
 import type { BallId } from '~/data/items/shlageball'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineComponent, h } from 'vue'
-import { toast } from 'vue3-toastify'
 import {
   badgeBox as badgeBoxItem,
   eggBox as eggBoxItem,
@@ -12,6 +11,7 @@ import {
   odorElixir,
   specialPotion,
 } from '~/data/items'
+import { toast } from '~/modules/toast'
 import { useKingPotionStore } from '~/stores/kingPotion'
 import InventoryItemCard from '../inventory/ItemCard.vue'
 
