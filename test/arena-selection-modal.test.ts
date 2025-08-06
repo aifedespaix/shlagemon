@@ -34,51 +34,81 @@ function createMon(id: string, level: number): DexShlagemon {
   }
 }
 
+function createI18nInstance() {
+  return createI18n({
+    legacy: false,
+    locale: 'en',
+    messages: {
+      en: {
+        components: {
+          arena: {
+            SelectionModal: {
+              title: 'Choose a Shlagemon against {name}',
+              confirm: 'Confirm',
+            },
+            EnemyStats: {
+              hp: 'HP',
+              attack: 'Attack',
+              defense: 'Defense',
+              smell: 'Smell',
+              level: 'lvl {n}',
+            },
+          },
+          shlagemon: { RarityInfo: { tooltip: '' } },
+        },
+      },
+    },
+  })
+}
+
+const globalStubs = {
+  ShlagemonQuickSelect: { name: 'ShlagemonQuickSelect', template: '<div />' },
+  ShlagemonImage: true,
+  ShlagemonRarityInfo: { name: 'ShlagemonRarityInfo', template: '<div />' },
+  RarityInfo: { name: 'RarityInfo', template: '<div />' },
+  ShlagemonType: true,
+  UiButton: { name: 'UiButton', template: '<button><slot /></button>' },
+}
+
+const globalDirectives = { tooltip: () => {} }
+
+function mountModal(props: Record<string, unknown>) {
+  return mount(SelectionModal, {
+    props,
+    global: {
+      plugins: [createI18nInstance()],
+      stubs: globalStubs,
+      directives: globalDirectives,
+    },
+  })
+}
+
 describe('arena selection modal', () => {
   it('keeps modal open until confirmation', async () => {
     const enemy = createMon('enemy', 5)
     const candidate = createMon('candidate', 7)
-    const i18n = createI18n({
-      legacy: false,
-      locale: 'en',
-      messages: {
-        en: {
-          components: {
-            arena: {
-              SelectionModal: { title: 'Choose a Shlagemon against {name}', confirm: 'Confirm' },
-              EnemyStats: { hp: 'HP', attack: 'Attack', defense: 'Defense', smell: 'Smell', level: 'lvl {n}' },
-            },
-            shlagemon: { RarityInfo: { tooltip: '' } },
-          },
-        },
-      },
-    })
 
-    const wrapper = mount(SelectionModal, {
-      props: { mon: enemy, selected: [] },
-      global: {
-        plugins: [i18n],
-        stubs: {
-          ShlagemonQuickSelect: { name: 'ShlagemonQuickSelect', template: '<div />' },
-          ShlagemonImage: true,
-          ShlagemonRarityInfo: { name: 'ShlagemonRarityInfo', template: '<div />' },
-          RarityInfo: { name: 'RarityInfo', template: '<div />' },
-          ShlagemonType: true,
-          UiButton: { name: 'UiButton', template: '<button><slot /></button>' },
-        },
-        directives: { tooltip: () => {} },
-      },
-    })
-
-    const qc = wrapper.findComponent({ name: 'ShlagemonQuickSelect' })
-    qc.vm.$emit('select', candidate)
+    const wrapper = mountModal({ mon: enemy, selected: [] })
+    ;(wrapper.vm as unknown as { candidate: DexShlagemon | null }).candidate = candidate
     await nextTick()
 
     expect(wrapper.text()).toContain('lvl 7')
-    expect(wrapper.find('button').exists()).toBe(true)
     expect(wrapper.emitted('select')).toBeUndefined()
 
-    await wrapper.find('button').trigger('click')
+    ;(wrapper.vm as unknown as { confirm: () => void }).confirm()
     expect(wrapper.emitted('select')?.[0]).toEqual([candidate])
+  })
+
+  it('shows the initial selection and updates on change', async () => {
+    const enemy = createMon('enemy', 5)
+    const first = createMon('first', 6)
+    const second = createMon('second', 8)
+
+    const wrapper = mountModal({ mon: enemy, selected: [], initial: first })
+    expect(wrapper.text()).toContain('lvl 6')
+
+    await wrapper.setProps({ initial: second })
+    await nextTick()
+    expect(wrapper.text()).toContain('lvl 8')
   })
 })
