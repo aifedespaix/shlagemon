@@ -1,3 +1,4 @@
+# eslint-disable yaml/quotes
 components:
   deck:
     DeckDetail:
@@ -341,7 +342,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: This amulet makes its wearer incapable of knocking out foes.
+          text: Meet Mister Croak, a mysterious amulet that keeps its bearer from knocking foes out.
           responses:
             back: Back
             next: Continue
@@ -351,7 +352,7 @@ components:
             back: Back
             next: Continue
         step4:
-          text: It's perfect to help you catch weakened Shlagemons. Here, take it!
+          text: They say its sacred croak echoes with strange magic when a Shlagemon falters. Here, take it!
           responses:
             back: Back
             valid: Thanks Professor!
@@ -759,7 +760,7 @@ components:
           text: Congratulations! You got your first badge. You can find all badge details in your badge box located in the inventory.
           responses:
             valid: Thanks!
-    FrogKingDialog:
+    CroakKingDialog:
       steps:
         step1:
           text: Congratulations, one of your Shlagemons reached level 100!
@@ -767,7 +768,7 @@ components:
             next: Continue
         step2:
           text: |
-            To celebrate, I'd like to give you a very rare item: the Frog King.
+            To celebrate, I'd like to give you a very rare item: the Croak King.
           responses:
             back: Back
             next: Continue
@@ -777,12 +778,12 @@ components:
             back: Back
             next: Continue
         step4:
-          text: Legends say it belonged to a golden frog prince, guardian of sacred marshes.
+          text: Legends say this royal talisman echoes with an eternal croak to shield sparkling creatures.
           responses:
             back: Back
             next: Continue
         step5:
-          text: You are worthy of it. Take it and may it aid your captures!
+          text: You are worthy of it. Take it and let its magic aid your captures!
           responses:
             back: Back
             valid: Thanks Professor!
@@ -1870,7 +1871,7 @@ data:
           description: Greatly increases the wearer's XP.
           details: When worn, increases experience gained in battle by 33%. Can stack with XP potions.
       preyAmulet:
-        name: Sir Croak
+        name: Mister Croak
         description: Prevents the holder from finishing off enemies.
         details: When worn, the holder's attacks cannot reduce enemies below 1 HP and deal no damage at that point. Ideal for capturing weakened foes.
       cuckRing:
@@ -1879,8 +1880,8 @@ data:
         details: |
           When worn, every attack has a 50% chance to deal double damage.
           Otherwise, it heals the opponent for the same amount.
-      frogKing:
-        name: Frog King
+      croakKing:
+        name: Croak King
         description: Prevents finishing shiny foes.
         details: Attacks against shiny Shlagemons leave them at 1 HP instead of knocking them out. No effect against normal foes.
     defensePotion:

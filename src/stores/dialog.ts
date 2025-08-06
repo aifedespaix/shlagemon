@@ -7,12 +7,12 @@ import ArenaWelcomeDialog from '~/components/dialog/ArenaWelcomeDialog.vue'
 import AttackPotionDialog from '~/components/dialog/AttackPotionDialog.vue'
 import BadgeBoxDialog from '~/components/dialog/BadgeBoxDialog.vue'
 import CapturePotionDialog from '~/components/dialog/CapturePotionDialog.vue'
+import CroakKingDialog from '~/components/dialog/CroakKingDialog.vue'
 import CuckRingDialog from '~/components/dialog/CuckRingDialog.vue'
 import DeveloperSupportDialog from '~/components/dialog/DeveloperSupportDialog.vue'
 import DuplicateRarityDialog from '~/components/dialog/DuplicateRarityDialog.vue'
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
-import FrogKingDialog from '~/components/dialog/FrogKingDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import InventoryIntroDialog from '~/components/dialog/InventoryIntroDialog.vue'
 import KingLossDialog from '~/components/dialog/KingLossDialog.vue'
@@ -229,8 +229,8 @@ export const useDialogStore = defineStore('dialog', () => {
       condition: () => dex.highestLevel >= 75,
     },
     {
-      id: 'frogKing',
-      component: markRaw(FrogKingDialog),
+      id: 'croakKing',
+      component: markRaw(CroakKingDialog),
       condition: () => dex.highestLevel >= 100,
     },
     {

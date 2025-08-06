@@ -6,7 +6,7 @@ fr:
         next: Continuer
     step2:
       text: >
-        Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Crapeau.
+        Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Croa.
       responses:
         back: Retour
         next: Continuer
@@ -16,12 +16,12 @@ fr:
         back: Retour
         next: Continuer
     step4:
-      text: On raconte qu'il appartenait jadis à un prince grenouille doré, gardien des marécages sacrés.
+      text: On raconte que ce talisman royal résonne d'un croa éternel pour protéger les créatures scintillantes.
       responses:
         back: Retour
         next: Continuer
     step5:
-      text: Tu en es digne, prends-le et qu'il t'aide dans tes captures !
+      text: Tu en es digne, prends-le et que sa magie t'aide dans tes captures !
       responses:
         back: Retour
         valid: Merci Professeur !
@@ -33,7 +33,7 @@ en:
         next: Continue
     step2:
       text: >
-        To celebrate, I'd like to give you a very rare item: the Frog King.
+        To celebrate, I'd like to give you a very rare item: the Croak King.
       responses:
         back: Back
         next: Continue
@@ -43,12 +43,12 @@ en:
         back: Back
         next: Continue
     step4:
-      text: Legends say it belonged to a golden frog prince, guardian of sacred marshes.
+      text: Legends say this royal talisman echoes with an eternal croak to shield sparkling creatures.
       responses:
         back: Back
         next: Continue
     step5:
-      text: You are worthy of it. Take it and may it aid your captures!
+      text: You are worthy of it. Take it and let its magic aid your captures!
       responses:
         back: Back
         valid: Thanks Professor!

@@ -1,11 +1,11 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
-import { frogKing } from '../src/data/items/wearables/frogKing'
+import { croakKing } from '../src/data/items/wearables/croakKing'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { useBattleStore } from '../src/stores/battle'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 
-describe('frog king effect', () => {
+describe('croak king effect', () => {
   it('leaves shiny enemies at 1 hp', () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()
@@ -14,7 +14,7 @@ describe('frog king effect', () => {
     const enemy = dex.createShlagemon(carapouffe)
     player.attack = 1000
     player.isShiny = false
-    player.heldItemId = frogKing.id
+    player.heldItemId = croakKing.id
     enemy.hpCurrent = 50
     enemy.isShiny = true
     battle.attack(player, enemy, true, false)
@@ -29,7 +29,7 @@ describe('frog king effect', () => {
     const enemy = dex.createShlagemon(carapouffe)
     player.attack = 1000
     player.isShiny = true
-    player.heldItemId = frogKing.id
+    player.heldItemId = croakKing.id
     enemy.hpCurrent = 50
     enemy.isShiny = false
     battle.attack(player, enemy, true, false)

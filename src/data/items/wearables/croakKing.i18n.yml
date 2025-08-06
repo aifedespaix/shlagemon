@@ -1,8 +1,8 @@
 en:
-  name: Frog King
+  name: Croak King
   description: Prevents finishing shiny foes.
   details: Attacks against shiny Shlagemons leave them at 1 HP instead of knocking them out. No effect against normal foes.
 fr:
-  name: Roi Crapeau
+  name: Roi Croa
   description: Empêche d'achever les Shlagémons shiny.
   details: Les attaques contre un Shlagémon shiny le laissent toujours à 1 PV au lieu de le mettre K.O. Sans effet sur les ennemis non shiny.
