@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import type { Locale } from '~/constants/locales'
+import { useRoute } from 'vue-router'
+
 const { t } = useI18n()
+const route = useRoute()
+const locale = computed(() => route.meta.locale as Locale)
+const policyLink = computed(() =>
+  locale.value === 'fr' ? '/fr/politique-de-confidentialite' : '/en/privacy-policy',
+)
 </script>
 
 <template>
@@ -12,6 +20,14 @@ const { t } = useI18n()
     </div>
     <div class="">
       {{ t('components.layout.HomeFooter.imageDisclaimer') }}
+    </div>
+    <div>
+      <RouterLink
+        :to="policyLink"
+        class="underline hover:text-sky-700"
+      >
+        {{ t('components.layout.HomeFooter.privacyPolicy') }}
+      </RouterLink>
     </div>
   </footer>
 </template>

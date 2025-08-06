@@ -1,0 +1,48 @@
+fr:
+  title: Politique de Confidentialité – Shlagémon
+  lastUpdated: 'Dernière mise à jour : 06/08/2025'
+  sections:
+    data:
+      title: 1. Données collectées
+      content: |
+        Nous ne collectons aucune donnée personnelle lors de l'utilisation de Shlagémon.
+        Toutes vos informations de progression et de jeu sont enregistrées uniquement sur votre appareil via le local storage de votre navigateur.
+        Aucun cookie, aucune transmission vers nos serveurs, aucune analyse tierce ne sont effectués.
+    hosting:
+      title: 2. Hébergement
+      content: |
+        Le site Shlagémon est hébergé via Firebase, un service fourni par Google.
+        L'accès au jeu peut générer des journaux techniques anonymes nécessaires au fonctionnement du service (ex : logs d'accès, sécurité), conformément à la politique de confidentialité de Firebase.
+    rights:
+      title: 3. Vos droits
+      content: |
+        Conformément au RGPD et autres lois internationales, vous disposez de droits sur vos données personnelles.
+        Cependant, comme nous ne collectons aucune donnée, nous ne sommes pas en mesure de les transmettre, modifier ou supprimer.
+        Vous pouvez à tout moment effacer votre progression depuis les paramètres du jeu ou en vidant le stockage local de votre navigateur.
+    contact:
+      title: 4. Contact
+      content: 'Pour toute question : aife.contacts@gmail.com'
+en:
+  title: Privacy Policy – Shlagémon
+  lastUpdated: 'Last updated: 06/08/2025'
+  sections:
+    data:
+      title: 1. Data collected
+      content: |
+        We do not collect any personal data when you use Shlagémon.
+        All your game progress and settings are stored only on your own device via your browser's local storage.
+        No cookies, no data is sent to our servers, and no third-party analytics are used.
+    hosting:
+      title: 2. Hosting
+      content: |
+        Shlagémon is hosted using Firebase, a service provided by Google.
+        Accessing the game may generate anonymous technical logs required for the service to operate (e.g., access logs, security), as outlined in Firebase's privacy policy.
+    rights:
+      title: 3. Your rights
+      content: |
+        In accordance with GDPR and other international laws, you have rights regarding your personal data.
+        However, since we do not collect any data, we cannot provide, modify, or delete any user information.
+        You can erase your game progress at any time from the game's settings or by clearing your browser's local storage.
+    contact:
+      title: 4. Contact
+      content: 'For any questions: aife.contacts@gmail.com'
