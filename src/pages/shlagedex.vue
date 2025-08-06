@@ -16,7 +16,7 @@ function open(mon: BaseShlagemon) {
 </script>
 
 <template>
-  <div class="mx-auto max-w-160 w-full p-4">
+  <div class="mx-auto max-w-160 w-full p-4 h-full">
     <DeckList
       :mons="allShlagemons"
       :on-item-click="open"
@@ -25,7 +25,6 @@ function open(mon: BaseShlagemon) {
     <UiModal v-model="showDetail" footer-close @close="showDetail = false">
       <DeckDetail :mon="selected" @open-mon="open" />
     </UiModal>
-    <!-- Provide the type chart modal for type badges -->
     <ShlagemonTypeChartModal />
   </div>
 </template>

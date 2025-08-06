@@ -21,7 +21,7 @@ fr:
         Vous pouvez à tout moment effacer votre progression depuis les paramètres du jeu ou en vidant le stockage local de votre navigateur.
     contact:
       title: 4. Contact
-      content: 'Pour toute question : aife.contacts@gmail.com'
+      content: "Pour toute question : aife.contacts{'@'}gmail.com"
 en:
   title: Privacy Policy – Shlagémon
   lastUpdated: 'Last updated: 06/08/2025'
@@ -45,4 +45,4 @@ en:
         You can erase your game progress at any time from the game's settings or by clearing your browser's local storage.
     contact:
       title: 4. Contact
-      content: 'For any questions: aife.contacts@gmail.com'
+      content: "For any questions: aife.contacts{'@'}gmail.com"
