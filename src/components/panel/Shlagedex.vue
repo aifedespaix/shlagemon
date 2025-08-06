@@ -22,6 +22,7 @@ function onItemClick(mon: DexShlagemon) {
   <ShlagemonList
     :mons="dex.shlagemons"
     show-checkbox
+    is-main-shlagedex
     :on-item-click="onItemClick"
   />
   <UiModal

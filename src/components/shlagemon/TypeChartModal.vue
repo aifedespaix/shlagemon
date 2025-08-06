@@ -5,12 +5,14 @@ const modal = useTypeChartModalStore()
 </script>
 
 <template>
-  <UiModal v-model="modal.isVisible" footer-close>
-    <UiPanelWrapper title="Table des types">
-      <template #icon>
+  <UiModal v-model="modal.isVisible">
+      <h3 class="text-lg font-bold flex items-center gap-2">
         <div class="i-carbon-data-table" />
-      </template>
+        <div>
+
+          Table des types
+        </div>
+      </h3>
       <TypeChart :highlight="modal.highlight" />
-    </UiPanelWrapper>
   </UiModal>
 </template>

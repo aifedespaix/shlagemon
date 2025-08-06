@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
-import { allItems } from '~/data/items'
+import { allItems, multiExp } from '~/data/items'
 
 // Typage strict des props
 interface Props {
   mons: readonly DexShlagemon[]
   showCheckbox?: boolean
+  isMainShlagedex?: boolean
   disabledIds?: readonly string[]
   highlightIds?: readonly string[]
   locked?: boolean
@@ -13,6 +14,7 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   showCheckbox: false,
+  isMainShlagedex: false,
   disabledIds: () => [],
   highlightIds: () => [],
   locked: undefined,
@@ -171,7 +173,12 @@ watch(
             {{ displayedMons.length }} / {{ props.mons.length }}
           </span>
         </div>
-        <UiSearchInput v-model="filter.search" />
+        <div v-if="isMainShlagedex && false" class="flex gap-1">
+          <UiSearchInput v-model="filter.search" />
+          <UiButton icon size="xs" variant="outline">
+            <span :class="multiExp.icon"></span>
+          </UiButton>
+        </div>
       </div>
     </template>
 

@@ -22,7 +22,6 @@ function choose(mon: DexShlagemon) {
 <template>
   <ShlagemonList
     :mons="dex.shlagemons"
-    :show-checkbox="false"
     :highlight-ids="props.selected"
     :on-item-click="choose"
     :locked="props.locked"
