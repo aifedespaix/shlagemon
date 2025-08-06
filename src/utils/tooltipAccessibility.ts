@@ -17,6 +17,7 @@ export function observeTooltipAccessibility(
   root: Document | HTMLElement = document,
 ): MutationObserver {
   const container = root instanceof Document ? root.body : root
+  const doc = root instanceof Document ? root : root.ownerDocument ?? document
 
   /**
    * Applies `tabindex` and `inert` attributes based on the current
@@ -24,10 +25,14 @@ export function observeTooltipAccessibility(
    */
   function applyAttributes(popper: HTMLElement) {
     popper.setAttribute('tabindex', '-1')
-    if (popper.getAttribute('aria-hidden') === 'true')
+    if (popper.getAttribute('aria-hidden') === 'true') {
+      if (popper.contains(doc.activeElement))
+        (doc.activeElement as HTMLElement | null)?.blur()
       popper.setAttribute('inert', '')
-    else
+    }
+    else {
       popper.removeAttribute('inert')
+    }
   }
 
   /**

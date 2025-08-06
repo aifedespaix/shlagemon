@@ -27,4 +27,26 @@ describe('observeTooltipAccessibility', () => {
 
     observer.disconnect()
   })
+
+  it('blurs focused elements when a popper is hidden', async () => {
+    const observer = observeTooltipAccessibility()
+
+    const popper = document.createElement('div')
+    popper.className = 'v-popper__popper'
+    popper.setAttribute('aria-hidden', 'false')
+
+    const button = document.createElement('button')
+    popper.appendChild(button)
+    document.body.appendChild(popper)
+
+    button.focus()
+    expect(document.activeElement).toBe(button)
+
+    popper.setAttribute('aria-hidden', 'true')
+    await flush()
+    expect(document.activeElement).toBe(document.body)
+
+    popper.remove()
+    observer.disconnect()
+  })
 })
