@@ -193,7 +193,7 @@ watch(
         </div>
         <div v-if="isMainShlagedex && multiExpHolder" class="flex gap-1">
           <UiSearchInput v-model="filter.search" />
-          <UiButton icon size="xs" variant="outline" @click="openMultiExpHolder">
+          <UiButton icon size="xs" variant="outline" type="primary" @click="openMultiExpHolder" v-tooltip="t(multiExp.name)">
             <span :class="multiExp.icon" />
           </UiButton>
         </div>
