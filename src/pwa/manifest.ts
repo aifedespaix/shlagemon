@@ -25,11 +25,11 @@ const base: Partial<ManifestOptions> = {
     { src: '/screenshots/shop.jpg', sizes: '1200x800', type: 'image/jpeg' },
     { src: '/screenshots/with-map.jpg', sizes: '1200x800', type: 'image/jpeg' },
   ],
-  handle_links: "preferred",
+  handle_links: 'preferred',
   file_handlers: [],
   protocol_handlers: [],
-  categories: ["games", "idle", "strategy"],
-  "dir": "ltr"
+  categories: ['games', 'idle', 'strategy'],
+  dir: 'ltr',
 
 }
 
@@ -40,7 +40,7 @@ export function getPwaManifest(locale: Locale): ManifestOptions {
         id: '/fr/',
         name: 'Shlagémon - Ça sent très fort',
         short_name: 'Shlagémon',
-        description: "Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre entière.",
+        description: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
         lang: 'fr',
         start_url: '/fr/',
         scope: '/fr/',
