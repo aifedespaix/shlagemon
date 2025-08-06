@@ -24,11 +24,29 @@ const props = withDefaults(defineProps<Props>(), {
 const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()
+const equipment = useEquipmentStore()
+const dexDetailModal = useDexDetailModalStore()
 const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 const { t } = useI18n()
 const newCount = computed(() => dex.newCount)
 const panelRef = ref<{ scrollToTop: () => void } | null>(null)
+
+/**
+ * Shlagémon currently holding the Multi Exp, if any.
+ */
+const multiExpHolder = computed(() => {
+  const holderId = equipment.getHolder(multiExp.id)
+  return holderId ? dex.shlagemons.find(m => m.id === holderId) || null : null
+})
+
+/**
+ * Open the detail modal for the Shlagémon holding the Multi Exp.
+ */
+function openMultiExpHolder() {
+  if (multiExpHolder.value)
+    dexDetailModal.open(multiExpHolder.value)
+}
 
 // Options de tri
 const sortOptions = [
@@ -173,10 +191,10 @@ watch(
             {{ displayedMons.length }} / {{ props.mons.length }}
           </span>
         </div>
-        <div v-if="isMainShlagedex && false" class="flex gap-1">
+        <div v-if="isMainShlagedex && multiExpHolder" class="flex gap-1">
           <UiSearchInput v-model="filter.search" />
-          <UiButton icon size="xs" variant="outline">
-            <span :class="multiExp.icon"></span>
+          <UiButton icon size="xs" variant="outline" @click="openMultiExpHolder">
+            <span :class="multiExp.icon" />
           </UiButton>
         </div>
       </div>
