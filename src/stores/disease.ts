@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { toast } from 'vue3-toastify'
+import { toast } from '~/modules/toast'
 
 export const useDiseaseStore = defineStore('disease', () => {
   const active = ref(false)

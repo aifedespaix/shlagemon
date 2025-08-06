@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
-import { toast } from 'vue3-toastify'
 import { getArenaTrack, getZoneTrack } from '~/data/music'
+import { toast } from '~/modules/toast'
 
 const emit = defineEmits(['done'])
 

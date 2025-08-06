@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toast } from 'vue3-toastify'
+import { toast } from '~/modules/toast'
 import { applySave, collectSave, exportSave, importSave } from '~/utils/save-code'
 
 const emit = defineEmits<{ (e: 'remove'): void }>()

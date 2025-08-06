@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { toast } from 'vue3-toastify'
 import { i18n } from '~/modules/i18n'
+import { toast } from '~/modules/toast'
 
 export const useGameStore = defineStore('game', () => {
   const shlagidolar = ref(0)

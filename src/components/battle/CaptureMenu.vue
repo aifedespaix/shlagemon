@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ball, DexShlagemon } from '~/type'
-import { toast } from 'vue3-toastify'
 import { balls as ballData } from '~/data/items/shlageball'
+import { toast } from '~/modules/toast'
 import { tryCapture } from '~/utils/capture'
 
 const props = defineProps<{ enemy: DexShlagemon | null }>()

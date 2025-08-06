@@ -2,7 +2,7 @@
  * Composable handling purchase logic in the shop panel.
  */
 import type { Item } from '~/type/item'
-import { toast } from 'vue3-toastify'
+import { toast } from '~/modules/toast'
 
 export function useShopPurchase() {
   const game = useGameStore()

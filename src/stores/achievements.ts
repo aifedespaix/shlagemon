@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { toast } from 'vue3-toastify'
 import { zonesData } from '~/data/zones'
+import { toast } from '~/modules/toast'
 
 export interface Achievement {
   id: string

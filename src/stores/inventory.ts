@@ -1,7 +1,6 @@
 import type { ItemId } from '~/data/items'
 import type { Item, ItemCategory } from '~/type/item'
 import { defineStore } from 'pinia'
-import { toast } from 'vue3-toastify'
 import {
   allItems,
   badgeBox as badgeBoxItem,
@@ -11,6 +10,7 @@ import {
 import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { i18n } from '~/modules/i18n'
+import { toast } from '~/modules/toast'
 import { useAudioStore } from './audio'
 import { useOdorElixirStore } from './odorElixir'
 
