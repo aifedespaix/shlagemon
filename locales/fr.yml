@@ -1,3 +1,4 @@
+# eslint-disable yaml/quotes
 components:
   deck:
     DeckDetail:
@@ -341,7 +342,7 @@ components:
           responses:
             next: Continuer
         step2:
-          text: Cette amulette empêche son porteur de mettre K.O. ses adversaires.
+          text: Voici Monsieur Croa, une amulette mystérieuse qui empêche son porteur de mettre K.O. ses adversaires.
           responses:
             back: Retour
             next: Continuer
@@ -351,7 +352,7 @@ components:
             back: Retour
             next: Continuer
         step4:
-          text: Idéal pour capturer un Shlagémon affaibli. La voici pour toi !
+          text: On dit que son croa sacré résonne d'une magie étrange quand un Shlagémon vacille. La voici pour toi !
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -759,7 +760,7 @@ components:
           text: Bravo, tu as obtenu ton premier badge ! Tu vas pouvoir retrouver les détails de ces badges dans ta boîte à badge qui se trouve dans ton inventaire.
           responses:
             valid: Merci !
-    FrogKingDialog:
+    CroakKingDialog:
       steps:
         step1:
           text: Félicitations, l'un de tes Shlagémons a atteint le niveau 100 !
@@ -767,7 +768,7 @@ components:
             next: Continuer
         step2:
           text: |
-            Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Crapeau.
+            Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Croa.
           responses:
             back: Retour
             next: Continuer
@@ -777,12 +778,12 @@ components:
             back: Retour
             next: Continuer
         step4:
-          text: On raconte qu'il appartenait jadis à un prince grenouille doré, gardien des marécages sacrés.
+          text: On raconte que ce talisman royal résonne d'un croa éternel pour protéger les créatures scintillantes.
           responses:
             back: Retour
             next: Continuer
         step5:
-          text: Tu en es digne, prends-le et qu'il t'aide dans tes captures !
+          text: Tu en es digne, prends-le et que sa magie t'aide dans tes captures !
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -1804,7 +1805,7 @@ data:
           description: Augmente grandement l'XP du porteur.
           details: Portée par un Shlagémon, elle augmente l'expérience gagnée en combat de 33%. Effet cumulable avec les potions d'expérience.
       preyAmulet:
-        name: Crapeau Croa
+        name: Monsieur Croa
         description: Empêche son porteur d'achever l'ennemi.
         details: Portée par un Shlagémon, ses attaques laissent toujours au moins 1 PV à l'adversaire et infligent ensuite 0 dégât. Parfait pour capturer les adversaires affaiblis.
       cuckRing:
@@ -1813,8 +1814,8 @@ data:
         details: |
           Porté par un Shlagémon, chaque attaque a 50% de chances
           d'infliger le double de dégâts et 50% de chances de soigner l'ennemi du même montant.
-      frogKing:
-        name: Roi Crapeau
+      croakKing:
+        name: Roi Croa
         description: Empêche d'achever les Shlagémons shiny.
         details: Les attaques contre un Shlagémon shiny le laissent toujours à 1 PV au lieu de le mettre K.O. Sans effet sur les ennemis non shiny.
     defensePotion:

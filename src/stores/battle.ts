@@ -1,7 +1,7 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
+import { croakKing } from '~/data/items/wearables/croakKing'
 import { cuckRing } from '~/data/items/wearables/cuckRing'
-import { frogKing } from '~/data/items/wearables/frogKing'
 import { preyAmulet } from '~/data/items/wearables/preyAmulet'
 import { computeDamage } from '~/utils/combat'
 
@@ -60,7 +60,7 @@ export const useBattleStore = defineStore('battle', () => {
         finalDamage = Math.min(finalDamage, defender.hpCurrent - 1)
     }
 
-    if (attacker.heldItemId === frogKing.id && defender.isShiny) {
+    if (attacker.heldItemId === croakKing.id && defender.isShiny) {
       if (defender.hpCurrent <= 1)
         finalDamage = 0
       else

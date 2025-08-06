@@ -5,7 +5,7 @@ fr:
       responses:
         next: Continuer
     step2:
-      text: Cette amulette empêche son porteur de mettre K.O. ses adversaires.
+      text: Voici Monsieur Croa, une amulette mystérieuse qui empêche son porteur de mettre K.O. ses adversaires.
       responses:
         back: Retour
         next: Continuer
@@ -15,7 +15,7 @@ fr:
         back: Retour
         next: Continuer
     step4:
-      text: Idéal pour capturer un Shlagémon affaibli. La voici pour toi !
+      text: On dit que son croa sacré résonne d'une magie étrange quand un Shlagémon vacille. La voici pour toi !
       responses:
         back: Retour
         valid: Merci Professeur !
@@ -26,7 +26,7 @@ en:
       responses:
         next: Continue
     step2:
-      text: This amulet makes its wearer incapable of knocking out foes.
+      text: Meet Mister Croak, a mysterious amulet that keeps its bearer from knocking foes out.
       responses:
         back: Back
         next: Continue
@@ -36,7 +36,7 @@ en:
         back: Back
         next: Continue
     step4:
-      text: It's perfect to help you catch weakened Shlagemons. Here, take it!
+      text: They say its sacred croak echoes with strange magic when a Shlagemon falters. Here, take it!
       responses:
         back: Back
         valid: Thanks Professor!

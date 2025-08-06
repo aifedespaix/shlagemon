@@ -1,5 +1,8 @@
 import type { Item } from '~/type/item'
 
+/**
+ * Mister Croak prevents its bearer from knocking out foes.
+ */
 export const preyAmulet: Item = {
   id: 'prey-amulet',
   name: 'data.items.wearables.preyAmulet.name',
@@ -9,7 +12,7 @@ export const preyAmulet: Item = {
   currency: 'shlagidiamond',
   category: 'utilitaire',
   icon: 'i-game-icons:frog',
-  iconClass: 'text-violet-600 dark:text-violet-500',
+  iconClass: 'text-green-600 dark:text-green-500',
   unique: true,
   wearable: true,
 }
