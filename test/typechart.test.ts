@@ -23,4 +23,31 @@ describe('type chart', () => {
     const electricCells = electricRow.findAll('td')
     expect(electricCells[solColIndex].text()).toBe('0.5')
   })
+
+  it('highlights row and column on header click', async () => {
+    const wrapper = mount(TypeChart, {
+      global: {
+        stubs: {
+          ShlagemonType: { template: '<div />' },
+        },
+      },
+    })
+    const ids = Object.keys(shlagemonTypes)
+
+    // Highlight a row
+    const poisonIndex = ids.indexOf('poison')
+    await wrapper.findAll('tbody tr')[poisonIndex].find('th button').trigger('click')
+    wrapper
+      .findAll('tbody tr')[poisonIndex]
+      .findAll('td')
+      .forEach(cell => expect(cell.classes()).toContain('bg-blue-200'))
+
+    // Highlight a column
+    const feeIndex = ids.indexOf('fee')
+    await wrapper.findAll('thead tr th')[feeIndex + 1].find('button').trigger('click')
+    wrapper.findAll('tbody tr').forEach((row) => {
+      const cell = row.findAll('td')[feeIndex]
+      expect(cell.classes()).toContain('bg-blue-200')
+    })
+  })
 })

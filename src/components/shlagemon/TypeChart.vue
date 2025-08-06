@@ -2,7 +2,8 @@
 import type { TypeName } from '~/type'
 import { shlagemonTypes } from '~/data/shlagemons-type'
 
-const props = defineProps<{ highlight?: string | null }>()
+const { t } = useI18n()
+const modal = useTypeChartModalStore()
 
 const typeIds = Object.keys(shlagemonTypes) as TypeName[]
 
@@ -33,6 +34,10 @@ function getMultiplier(att: TypeName, def: TypeName) {
     return 0.5
   return 1
 }
+
+function toggleHighlight(typeId: TypeName) {
+  modal.highlight = modal.highlight === typeId ? null : typeId
+}
 </script>
 
 <template>
@@ -48,19 +53,26 @@ function getMultiplier(att: TypeName, def: TypeName) {
             style="box-shadow: 2px 2px 0 0 rgba(0,0,0,0.05); min-width: 70px;"
           >
             <div class="mb-1 flex justify-between gap-1 rounded bg-red-200 p-1 text-red-800">
-              Défense <div class="i-carbon:arrow-right" />
+              {{ t('components.shlagemon.TypeChart.defense') }} <div class="i-carbon:arrow-right" />
             </div>
             <div class="mt-1 flex justify-between gap-1 rounded bg-blue-200 p-1 text-blue-800">
-              Attaque <div class="i-carbon:arrow-down" />
+              {{ t('components.shlagemon.TypeChart.attack') }} <div class="i-carbon:arrow-down" />
             </div>
           </th>
           <th
-            v-for="t in typeIds"
-            :key="t"
+            v-for="typeId in typeIds"
+            :key="typeId"
             class="sticky top-0 z-20 bg-white p-1 dark:bg-gray-900"
             style="box-shadow: 0 2px 0 0 rgba(0,0,0,0.03);"
+            :class="{ 'bg-blue-200 dark:bg-blue-800': modal.highlight === typeId }"
           >
-            <ShlagemonType :value="shlagemonTypes[t]" />
+            <button
+              type="button"
+              class="w-full"
+              @click="toggleHighlight(typeId)"
+            >
+              <ShlagemonType :value="shlagemonTypes[typeId]" />
+            </button>
           </th>
         </tr>
       </thead>
@@ -69,16 +81,23 @@ function getMultiplier(att: TypeName, def: TypeName) {
           <th
             class="sticky left-0 z-10 bg-white p-1 text-right dark:bg-gray-900"
             style="box-shadow: 2px 0 0 0 rgba(0,0,0,0.03);"
+            :class="{ 'bg-blue-200 dark:bg-blue-800': modal.highlight === atk }"
           >
-            <ShlagemonType :value="shlagemonTypes[atk]" />
+            <button
+              type="button"
+              class="w-full text-right"
+              @click="toggleHighlight(atk)"
+            >
+              <ShlagemonType :value="shlagemonTypes[atk]" />
+            </button>
           </th>
           <td
             v-for="def in typeIds"
             :key="def"
             class="border border-gray-200 p-1 dark:border-gray-700"
             :class="{
-              'bg-blue-200 dark:bg-blue-800': props.highlight === atk || props.highlight === def,
-              'font-bold': props.highlight === atk && props.highlight === def,
+              'bg-blue-200 dark:bg-blue-800': modal.highlight === atk || modal.highlight === def,
+              'font-bold': modal.highlight === atk && modal.highlight === def,
             }"
           >
             {{ getMultiplier(atk, def) }}
