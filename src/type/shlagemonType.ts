@@ -1,3 +1,5 @@
+import type { I18nKey } from './i18n'
+
 /**
  * Union of all valid Shlagémon type identifiers.
  */
@@ -27,10 +29,10 @@ export type TypeName
 export interface ShlagemonType {
   /** Unique identifier of the type. */
   id: TypeName
-  /** Display name used in UI. */
-  name: string
-  /** i18n key describing the type. */
-  description: string
+  /** Translation key for the display name. */
+  name: I18nKey
+  /** Translation key describing the type. */
+  description: I18nKey
   /** Hex color associated with the type. */
   color: string
   /**
