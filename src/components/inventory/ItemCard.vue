@@ -52,7 +52,10 @@ const ballFilter = computed(() =>
 
 // Infos pour la modale détaillée
 const details = computed(() =>
-  t(props.item.details ?? props.item.description),
+  t(
+    props.item.details ?? props.item.description,
+    props.item.details ? props.item.detailsParams : props.item.descriptionParams,
+  ),
 )
 
 // Libellé du bouton d'action selon le type d'item

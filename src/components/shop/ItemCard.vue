@@ -25,7 +25,7 @@ const { t } = useI18n()
 
     <div class="min-w-0 flex flex-col text-left">
       <span class="truncate font-bold">{{ t(props.item.name) }}</span>
-      <span class="text-xs text-gray-500 dark:text-gray-400">{{ t(props.item.description) }}</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">{{ t(props.item.description, props.item.descriptionParams) }}</span>
     </div>
 
     <template #right>

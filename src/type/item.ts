@@ -13,6 +13,10 @@ interface ItemBase {
    * When not provided, `description` will be used instead.
    */
   details?: I18nKey
+  /** Parameters for the `description` i18n key. */
+  descriptionParams?: Record<string, unknown>
+  /** Parameters for the `details` i18n key. */
+  detailsParams?: Record<string, unknown>
   price?: number
   /** Currency used to buy this item. Defaults to shlagidolar. */
   currency?: ItemCurrency

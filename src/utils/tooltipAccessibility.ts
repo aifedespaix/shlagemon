@@ -52,12 +52,12 @@ export function observeTooltipAccessibility(
 
   // Watch for new poppers being added to the DOM
   const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      for (const node of mutation.addedNodes) {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
         if (node instanceof HTMLElement && node.classList.contains('v-popper__popper'))
           watchPopper(node)
-      }
-    }
+      })
+    })
   })
 
   observer.observe(container, { childList: true, subtree: true })
