@@ -47,5 +47,15 @@ export const localizedRoutes: LocalizedRoute[] = [
     i18nKey: 'pages.shlagedex.title',
     layout: 'default',
   },
+  {
+    name: 'privacy-policy',
+    component: () => import('~/pages/privacy-policy.vue'),
+    paths: {
+      fr: '/fr/politique-de-confidentialite',
+      en: '/en/privacy-policy',
+    },
+    i18nKey: 'pages.privacy-policy.title',
+    layout: 'default',
+  },
 ]
 export default localizedRoutes

@@ -99,12 +99,20 @@ function resetArenas() {
 
 <template>
   <UiModal v-model="show" footer-close>
+  <LayoutScrollablePanel>
+    <template #header>
+      <div>
     <h3 class="mb-2 text-center text-lg font-bold">
       Paramètres développeur
     </h3>
     <UiCheckBox v-model="dev.debug" class="flex items-center justify-between">
       <span>Mode debug</span>
     </UiCheckBox>
+
+      </div>
+    </template>
+    
+    <template #content>
     <div class="mt-4 flex flex-col gap-2">
       <UiButton @click="addMoney">
         +100000 Shlagédolar
@@ -155,5 +163,7 @@ function resetArenas() {
         Reset arènes
       </UiButton>
     </div>
+    </template>
+  </LayoutScrollablePanel>
   </UiModal>
 </template>

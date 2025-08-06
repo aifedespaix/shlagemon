@@ -6,12 +6,11 @@ const modal = useTypeChartModalStore()
 </script>
 
 <template>
-  <UiModal v-model="modal.isVisible" footer-close>
-    <UiPanelWrapper :title="t('components.shlagemon.TypeChartModal.title')">
-      <template #icon>
+  <UiModal v-model="modal.isVisible">
+      <h3 class="text-lg font-bold flex items-center gap-2">
         <div class="i-carbon-data-table" />
-      </template>
-      <TypeChart />
-    </UiPanelWrapper>
+        <div>t('components.shlagemon.TypeChartModal.title')</div>
+      </h3>
+      <TypeChart :highlight="modal.highlight" />
   </UiModal>
 </template>
