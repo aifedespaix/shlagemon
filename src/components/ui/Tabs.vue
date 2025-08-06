@@ -132,7 +132,7 @@ const transitionName = computed(() => direction.value === 'left' ? 'slide-left' 
     >
       <template v-for="(tab, i) in props.tabs" :key="i">
         <button
-          v-tooltip="tab.tooltip"
+          v-tooltip="props.iconsOnly ? tab.tooltip || tab.label.text : tab.tooltip"
           type="button"
           :tabindex="active === i ? 0 : -1"
           :aria-selected="active === i"

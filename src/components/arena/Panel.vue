@@ -16,6 +16,7 @@ const enemyTeam = computed(() => arena.lineup)
 const enemyDexTeam = computed(() => arena.lineupDex)
 const showDex = ref(false)
 const activeSlot = ref<number | null>(null)
+const currentSelection = ref<DexShlagemon | null>(null)
 const selectedEnemy = computed(() =>
   activeSlot.value !== null ? enemyDexTeam.value[activeSlot.value] : undefined,
 )
@@ -41,6 +42,7 @@ const playerSelection = computed(() =>
 
 function openDex(i: number) {
   activeSlot.value = i
+  currentSelection.value = playerSelection.value[i] ?? null
   showDex.value = true
 }
 
@@ -122,25 +124,25 @@ onUnmounted(() => {
         v-for="(enemy, i) in enemyTeam"
         :key="enemy.id"
         type="danger"
-        class="w-18 aspect-square p-0!"
+        class="aspect-square w-18 p-0!"
         circle
         @click="openEnemy(i)"
       >
         <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
       </UiButton>
       <div v-for="enemy in enemyTeam" :key="enemy.id" class="flex-center flex-col gap-1 color-red-600">
-        <div class="i-game-icons:battle-axe text-xl animate-pulse-alt" />
+        <div class="i-game-icons:battle-axe animate-pulse-alt text-xl" />
         <div class="text-sm">
           VS
         </div>
-        <div class="i-carbon:chevron-down text-xs animate-bounce" />
+        <div class="i-carbon:chevron-down animate-bounce text-xs" />
       </div>
 
       <UiButton
         v-for="(_, i) in enemyTeam"
         :key="i"
         :variant="playerSelection[i] ? 'outline' : undefined"
-        class="w-18 aspect-square p-0!"
+        class="aspect-square w-18 p-0!"
         circle
         @click="openDex(i)"
       >
@@ -201,6 +203,7 @@ onUnmounted(() => {
             v-if="selectedEnemy"
             :mon="selectedEnemy"
             :selected="arena.selections.filter(Boolean) as string[]"
+            :initial="currentSelection"
             @select="onMonSelected"
           />
         </UiModal>

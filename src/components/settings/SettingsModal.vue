@@ -76,6 +76,6 @@ watch(tabs, (val) => {
     <h2 class="mb-2 text-center text-lg font-bold">
       {{ t('components.settings.SettingsModal.title') }}
     </h2>
-    <UiTabs v-model="activeTab" :tabs="tabs" is-small class="mb-4 flex-1" />
+    <UiTabs v-model="activeTab" :tabs="tabs" is-small icons-only class="mb-4 flex-1" />
   </UiModal>
 </template>

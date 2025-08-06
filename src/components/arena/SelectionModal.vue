@@ -4,9 +4,15 @@ import type { DexShlagemon } from '~/type/shlagemon'
 interface Props {
   mon: DexShlagemon
   selected: string[]
+  /**
+   * Currently selected Shlagemon for the opened slot.
+   */
+  initial?: DexShlagemon | null
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  initial: null,
+})
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
   (e: 'select', mon: DexShlagemon): void
@@ -14,7 +20,14 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const candidate = ref<DexShlagemon | null>(null)
+const candidate = ref<DexShlagemon | null>(props.initial)
+
+watch(
+  () => props.initial,
+  (val) => {
+    candidate.value = val
+  },
+)
 
 function close() {
   emit('update:modelValue', false)
@@ -38,7 +51,7 @@ function confirm() {
       {{ t('components.arena.SelectionModal.title', { name: props.mon.base.name }) }}
     </h3>
     <ArenaEnemyStatsCompact :mon="props.mon" enemy />
-      <ShlagemonQuickSelect class="flex-1" :selected="props.selected" @select="onSelect" />
+    <ShlagemonQuickSelect class="flex-1" :selected="props.selected" @select="onSelect" />
     <ArenaEnemyStatsCompact v-if="candidate" :mon="candidate" />
     <UiButton v-if="candidate" class="mt-2" type="primary" @click="confirm">
       {{ t('components.arena.SelectionModal.confirm') }}
