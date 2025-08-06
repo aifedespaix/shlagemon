@@ -1,5 +1,6 @@
 import type { UserModule } from '~/types'
 import FloatingVue from 'floating-vue'
+import { observeTooltipAccessibility } from '~/utils/tooltipAccessibility'
 
 export const install: UserModule = ({ app, isClient }) => {
   // FloatingVue depends on browser APIs. During SSR we still need the
@@ -118,6 +119,6 @@ export const install: UserModule = ({ app, isClient }) => {
     () => [accessibility.autoHideTooltips, ui.isMobile],
     updateOptions,
   )
-
-  // observeTooltipAccessibility()
+  // Ensure tooltip poppers remain accessible when their visibility changes.
+  observeTooltipAccessibility()
 }
