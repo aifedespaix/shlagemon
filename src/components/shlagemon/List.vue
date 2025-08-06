@@ -191,9 +191,11 @@ watch(
             {{ displayedMons.length }} / {{ props.mons.length }}
           </span>
         </div>
-        <div v-if="isMainShlagedex && multiExpHolder" class="flex gap-1">
+        <div class="flex gap-1">
           <UiSearchInput v-model="filter.search" />
-          <UiButton icon size="xs" variant="outline" type="primary" @click="openMultiExpHolder" v-tooltip="t(multiExp.name)">
+          <UiButton 
+           v-if="isMainShlagedex && multiExpHolder" 
+          icon size="xs" variant="outline" type="primary" @click="openMultiExpHolder" v-tooltip="t(multiExp.name)">
             <span :class="multiExp.icon" />
           </UiButton>
         </div>
