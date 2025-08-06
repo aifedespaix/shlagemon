@@ -6,7 +6,7 @@ usePageHead({
 </script>
 
 <template>
-  <article class="mx-auto max-w-160 w-full p-4 prose dark:prose-invert">
+  <article class="w-full p-4 prose dark:prose-invert">
     <h1>{{ t('pages.privacy-policy.title') }}</h1>
     <p class="text-sm">
       {{ t('pages.privacy-policy.lastUpdated') }}
