@@ -21,6 +21,7 @@
     "csv": "node scripts/generate-evolutions-csv.cjs",
     "mons": "py scripts/convert-webp.py",
     "music": "node scripts/generate-music-json.cjs",
+    "names": "node scripts/generate-names-json.cjs",
     "sfx": "py scripts/clean-meta.py"
   },
   "dependencies": {
