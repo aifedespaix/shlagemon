@@ -1,7 +1,7 @@
 components:
   deck:
     DeckDetail:
-      evolution: 'Evolution:'
+      evolution: "Evolution:"
       level: lvl {n}
     DeckList:
       search: Search
@@ -9,7 +9,7 @@ components:
         name: Name
         type: Type
     Detail:
-      evolution: 'Evolution:'
+      evolution: "Evolution:"
       level: lvl {n}
     List:
       search: Search
@@ -52,9 +52,9 @@ components:
       intro1: The Shlagedex bonus matches your **potential ShlagéDex**. It represents the maximum bonus you could obtain by capturing all available Shlagémon.
       intro2: It is based on the completion rate of this potential Shlagedex as well as your team's average level.
       formula: Bonus = average level × 2 × (completion rate / 100) / 10
-      completion: 'Completion:'
-      averageLevel: 'Average level:'
-      currentBonus: 'Current bonus:'
+      completion: "Completion:"
+      averageLevel: "Average level:"
+      currentBonus: "Current bonus:"
     Inventory:
       sort:
         type: Type
@@ -68,7 +68,7 @@ components:
         battle: Battle
       equip: You equipped the {item}
     PlayerInfos:
-      sick: 'Sick: {n} battles left'
+      sick: "Sick: {n} battles left"
       dex: ShlageDex
       averageLevel: Average level
       bonus: Bonus
@@ -130,7 +130,7 @@ components:
       defeat: Defeat...
       queen: queen
       king: king
-      zoneKingChallenge: '{label} zone challenge'
+      zoneKingChallenge: "{label} zone challenge"
       reward: +{amount} Shlagidiamonds
       retry: Retry
     CaptureLimitModal:
@@ -145,7 +145,7 @@ components:
       ownedTooltip: You already own this Shlagemon
       infoTooltip: View details
     DiseaseBadge:
-      tooltip: 'Sick: {n} battles remaining'
+      tooltip: "Sick: {n} battles remaining"
     EffectBadge:
       attack: Your attack is boosted for {remaining} more
       defense: Your defense is boosted for {remaining} more
@@ -230,7 +230,7 @@ components:
     Detail:
       equipItemTitle: Equip an item
       allowEvolution: Allow this Shlagemon to evolve?
-      firstCatch: 'First capture: {date}'
+      firstCatch: "First capture: {date}"
       obtainedTimes: Obtained {count} times
       release: Release
       main: Main
@@ -250,7 +250,7 @@ components:
       title: Choose an item to equip
       noAvailable: No item available.
     EvolutionModal:
-      evolveTitle: '{name} is evolving'
+      evolveTitle: "{name} is evolving"
       question: '"{from}" wants to evolve into "{to}", will you allow it or stop the spread of shlaguitude?'
       alreadyOwned: You already own this evolution
       yes: Yes
@@ -309,7 +309,7 @@ components:
           text: Congratulations! You triumphed at the arena.
           responses:
             collect: Collect the badge
-      toast: '{name} obtained!'
+      toast: "{name} obtained!"
     ArenaWelcomeDialog:
       steps:
         step1:
@@ -440,7 +440,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: 'As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP.'
+          text: "As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP."
           responses:
             back: Back
             next: Continue
@@ -564,7 +564,7 @@ components:
         step1:
           text: Impressive! You've captured at least {count} Shlagemons.
         step2:
-          text: 'Here is a unique item: {name}.'
+          text: "Here is a unique item: {name}."
         step3:
           text: It increases the holder's {stat} by {percent}%.
         step4:
@@ -737,7 +737,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: 'Let me tell you about a curious item: the Cuck Ring.'
+          text: "Let me tell you about a curious item: the Cuck Ring."
           responses:
             back: Back
             next: Continue
@@ -747,7 +747,7 @@ components:
             back: Back
             next: Continue
         step4:
-          text: 'It makes each attack unpredictable: double damage or healing the foe instead.'
+          text: "It makes each attack unpredictable: double damage or healing the foe instead."
           responses:
             back: Back
             next: Continue
@@ -804,7 +804,7 @@ components:
         - You're one step away from a brain fart.
         - Rarely seen someone so pathetic.
       validate: Validate
-      attemptsLeft: '{n} attempts left'
+      attemptsLeft: "{n} attempts left"
       win: You've cracked a Shlag's mind!
       lose: Even a Grimer would have done it
       legend:
@@ -813,7 +813,7 @@ components:
         absent: Not in the combination
       selectSlot: Select a slot
     Pairs:
-      attempts: '{n} attempt | {n} attempts'
+      attempts: "{n} attempt | {n} attempts"
     masterMind:
       SelectionModal:
         title: Choose a Shlagemon
@@ -853,10 +853,10 @@ components:
       arena: Arena
       henhouse: Henhouse
       fightKing: Challenge the {label} of the zone
-      kingDefeated: '{label} defeated!'
+      kingDefeated: "{label} defeated!"
   zone:
     MonsModal:
-      title: '{zone} Shlagemons'
+      title: "{zone} Shlagemons"
   badge:
     BoxModal:
       title: Badge box
@@ -877,16 +877,16 @@ data:
         name: Anusstly
       jeunebelette:
         description: |-
-          Jeunebelette spends her days jogging in the open fields, half buried, earphones planted in the ears without music. Its yellow coat is rough and sticky, like a poorly washed synthetic jacket. He digs, but without real purpose, just to spend time.
-          He rarely attacks unless he feels that "it speaks badly". Its special capacity *Banal Cape* inflicts medium damage but has a chance to cause the state **Deep Flemme**. In general, Jeunebelette hangs around the other Shalagemons to "see what's going on", without really participating. He's here.
+          Kidshrew spends her days jogging in the open fields, half buried, earphones planted in the ears without music. Its yellow coat is rough and sticky, like a poorly washed synthetic jacket. He digs, but without real purpose, just to spend time.
+          He rarely attacks unless he feels that "it speaks badly". Its special capacity *Banal Cape* inflicts medium damage but has a chance to cause the state **Deep Flemme**. In general, Kidshrew hangs around the other Shalagemons to "see what's going on", without really participating. He's here.
           They say he could evolve if he finally found a real motivation. But it's not for now.
-        name: Jeunebelettehrew
+        name: Kidshrew
       rouxPasCool:
-        description: Roux not Cool was once cool. Roux not Cool spent too much time scratching minor chords at the edge of an extinct volcano. From now on, Cool's not cool wanders with a guitar too big for his wings, freckles crying, and a check shirt that smells wet grass and regrets. His plumage took on a sad rust colour, and his red wick hides a remorseful look, as if he constantly realized that he could have evolved into a legendary raptor, but preferred to release an independent EP. It's always a little cold around him, even in the summer. Its signature capacity, Refrain Getting into trouble, inflicts a deep discomfort on all the arena, reducing the accuracy of enemy attacks as long as they turn their eyes away. He's very good at driving wild Pokémons away… and dating.
-        name: Roux pas Cool
+        description: Cringeon was once cool. Cringeon spent too much time scratching minor chords at the edge of an extinct volcano. From now on, Cool's not cool wanders with a guitar too big for his wings, freckles crying, and a check shirt that smells wet grass and regrets. His plumage took on a sad rust colour, and his red wick hides a remorseful look, as if he constantly realized that he could have evolved into a legendary raptor, but preferred to release an independent EP. It's always a little cold around him, even in the summer. Its signature capacity, Refrain Getting into trouble, inflicts a deep discomfort on all the arena, reducing the accuracy of enemy attacks as long as they turn their eyes away. He's very good at driving wild Pokémons away… and dating.
+        name: Cringeon
       sacdepates:
-        description: 'Pasta bag is a living ball of entangled spaghetti, whose long strands form a moving labyrinth. With two piercing eyes in the middle of his pasta, he intimidates anyone who crosses his infernal gaze. His red feet, smooth and glossy, allow him to ride at all speed on his opponents, whom he crushes without mercy in an acute and diabolical laughter. He spends his days painting himself thoroughly with a fine comb, hoping one day to unravel the infinite knot that he has become. It is said that the more tangled his spaghetti, the more formidable he becomes. Talent: Fatal Node — When Sacdepates undergoes a physical attack, he can wrap around the enemy to trap and immobilize.'
-        name: Sac de Pâtes
+        description: "Pasta bag is a living ball of entangled spaghetti, whose long strands form a moving labyrinth. With two piercing eyes in the middle of his pasta, he intimidates anyone who crosses his infernal gaze. His red feet, smooth and glossy, allow him to ride at all speed on his opponents, whom he crushes without mercy in an acute and diabolical laughter. He spends his days painting himself thoroughly with a fine comb, hoping one day to unravel the infinite knot that he has become. It is said that the more tangled his spaghetti, the more formidable he becomes. Talent: Fatal Node — When Pastafreak undergoes a physical attack, he can wrap around the enemy to trap and immobilize."
+        name: Pastafreak
     05-10:
       aspigros:
         description: |-
@@ -897,9 +897,9 @@ data:
           We recognize him by his spherical form, his eyes always half-closed of satiety, and his motto engraved on his belly: "If it comes in, it's good."
         name: Fatedle
       chenipaon:
-        description: "Chenipaon is a flamboyant larva, an unlikely fruit of a miteuser and a peacock far too narcissistic. He moves slowly, dragging behind him a train of multicolored feathers which he himself stuck with saliva on his soft back. These feathers are useless, except to make \"dramatic tapping\" when it turns suddenly.
+        description: "Caterpeacock is a flamboyant larva, an unlikely fruit of a miteuser and a peacock far too narcissistic. He moves slowly, dragging behind him a train of multicolored feathers which he himself stuck with saliva on his soft back. These feathers are useless, except to make \"dramatic tapping\" when it turns suddenly.
 
-          His nuptial parade is a choreographic disaster where he turns on himself by screaming \"Graaaaaaah-Paon\", which has the effect of scaring 90% of living things nearby, including stones. The rare opponents who remain are hypnotized by the fascinating ugliness of his dance, which gives Chenipaon a short strategic advantage.
+          His nuptial parade is a choreographic disaster where he turns on himself by screaming \"Graaaaaaah-Paon\", which has the effect of scaring 90% of living things nearby, including stones. The rare opponents who remain are hypnotized by the fascinating ugliness of his dance, which gives Caterpeacock a short strategic advantage.
 
           His official cry is recorded in databases like *\"Krrr-Paitius\" Krrr-Païïïïïïïïïïire *, but each specimen seems to invent his on the moment, generally accompanied by a sound effect of disordered flute and a humid sneezing.
 
@@ -908,12 +908,12 @@ data:
           578\r
 
           eld. He can also use *false charisma *, which briefly increases his criticism according to the number of dismayed looks he receives."
-        name: Chenipaon
+        name: Caterpeacock
       metamorve:
         description: A mass of foul mud that drags slowly. Where he passes, nothing grows because of his toxicity. It is made of a toxic mud. He pollutes everything he touches, even the ground becomes sterile. He stinks so much that people vanish just by crossing him. His body is a concentrate of toxins.
-        name: Metamorve
+        name: Snotto
       ptitocard:
-        description: 'Ptitocard is as fragile as a wet and expressive bellboat as an existential crisis in full crisis. His empty, humid and terribly plaintive gaze melts the most hardened hearts - or annoys them deeply, as desired. It flows more than it swim, and its ventral spiral only runs when it has an anxiety attack. He constantly drools, but not in the mouth: it is his whole body that sweats distress. We think it is sad of birth, but some specialists evoke a simple allergy to life. His special capacity, *infinite tear *, causes fatal boredom in the enemy. An opponent who looks at Ptitocard for more than 10 seconds can fall into a coma of deep indifference. Ptitocard dreams of becoming a big champion ... but does nothing for. It is often found floating on the surface of the puddles, wondering if it really deserves to evolve. Spoiler: not sure.'
+        description: "Ptitocard is as fragile as a wet and expressive bellboat as an existential crisis in full crisis. His empty, humid and terribly plaintive gaze melts the most hardened hearts - or annoys them deeply, as desired. It flows more than it swim, and its ventral spiral only runs when it has an anxiety attack. He constantly drools, but not in the mouth: it is his whole body that sweats distress. We think it is sad of birth, but some specialists evoke a simple allergy to life. His special capacity, *infinite tear *, causes fatal boredom in the enemy. An opponent who looks at Ptitocard for more than 10 seconds can fall into a coma of deep indifference. Ptitocard dreams of becoming a big champion ... but does nothing for. It is often found floating on the surface of the puddles, wondering if it really deserves to evolve. Spoiler: not sure."
         name: Lamewag
     10-15:
       abraquemar:
@@ -927,11 +927,11 @@ data:
         name: Embolievee
       nosferailleur:
         description: |-
-          Nosferailleur lurks between the carcasses of washing machines and the charred pallets, hovering over recycling centers like a vulture under methamphetamines. It is an unlikely hybrid between an epileptic bat and an old Soviet toaster.
+          Zublazed lurks between the carcasses of washing machines and the charred pallets, hovering over recycling centers like a vulture under methamphetamines. It is an unlikely hybrid between an epileptic bat and an old Soviet toaster.
           His skin is studded with rusty pieces of scrap that he "borrowed" on abandoned scooters, and his wings creak with each beat, producing such a strident sound that he can tear off the plots. It fits into burnt copper smoke and devours electric cables like spaghetti.
           Its attack * discharge wind * sends a lukewarm gust loaded with metallic particles, causing paralysis, migraines, and sorting center flashbacks. He is also suspected of having siphoned several EDF transformers.
           He nests in fiberociment roofs and collects bolts like treasures. Some trainers say that it can appear in an old fridge if it is left for too long connected to a squat.
-        name: Zubscrap
+        name: Zublazed
     15-20:
       goubite:
         description: Goubite is difficult to look at ... and even more difficult to forget. With a long and pinkish body, slightly curved on the top, it is often the victim of anatomical misunderstandings in the schools of trainers. However, he assumes himself. Proud, right, and always a little moist. His head is encircled with a flaccid beard, dripping with lukewarm sweat, which he sometimes shakes to mark his territory. He permanently smiles, with a satisfied air that makes everyone uncomfortable, even the blind. Its feet are crushed, velocated, and smell the forgotten shrimp in a damp sock. It moves slowly by producing a small soft and repetitive noise, comparable to a kiss that we do not want. Its signature capacity, *viscous squirt *, inflicts moderate damage but imposes a permanent mental penalty to those who witness it. Some claim that he can also throw *Emotive Beard *, an attack that sticks and smells the damp muscular room. Not to be confused with a sexual object. Unless we really are in a hurry to consult.
@@ -950,12 +950,12 @@ data:
     20-25:
       cacanus:
         description: |-
-          Cacanus is a flamboyant little dog whose obsession revolves around one and only cardinal point: the anus.
+          Growlshit is a flamboyant little dog whose obsession revolves around one and only cardinal point: the anus.
           Born in an alley next to a composting centre, he grew up developing a strange passion for strong smells, suspicious friction, and everything that comes out from behind. His nose is so thin that he can guess what an enemy ate three days ago, just by flirting an empty chair.
           He rarely attacks face to face: his combat style is centered on fecal diversion. His attack *Jet de Glandes Anales* inflicted damage over time and drastically reduced the dignity of the opponent. He can also dig a small burrow called *Ass Tunnel*, in which he hides to prepare low blows (literally).
           It is said that when he is happy, he does not stir his tail: he offers you as a gift, very dirty, very hot. He is the canine incarnation of dubious humour and shameful pleasures.
           His flair is legendary, but his mental hygiene is much less.
-        name: Cacanus
+        name: Growlshit
       mystouffe:
         description: |-
           Mystuff is a Shlagémon covered with a tuft so vast, so dense, so tufted, that we no longer really know where it starts or where it ends. Its hairiness seems endowed with a clean life, shivering at the slightest air current, and sometimes emitting plastic bag sounds.
@@ -974,26 +974,26 @@ data:
         name: Paralyz
       ratonton:
         description: |-
-          Ratonton is an old uncle in the shape of an ill -shaved rat, expert in bad faith and in iron shot. He does not run, he trotted, moaning, the flop in front, his gray mustache trembling to the rhythm of his sneers. He lives in campsites year -round and thinks that pétanque is an ancestral martial art.
+          Ratoncle is an old uncle in the shape of an ill -shaved rat, expert in bad faith and in iron shot. He does not run, he trotted, moaning, the flop in front, his gray mustache trembling to the rhythm of his sneers. He lives in campsites year -round and thinks that pétanque is an ancestral martial art.
           Always armed with a built -in ball and a glass of lukewarm pastis, he attacks with *launch of random ball *, which has 50% chance of missing the target but 100% chance of demolishing an innocent ice cream. Its breath is classified *toxic *in certain countries, and its passive capacity, *glass in the nose *, reduces its precision but increases its attack with each toast.
-          Ratonton speaks loudly, always says "you saw it is technical eh" after a failure, and only fights if he lost to belote. He can also use *uncle *, a confused attack which consists in explaining rules invented from pétanque while thoroughly jostling you.
+          Ratoncle speaks loudly, always says "you saw it is technical eh" after a failure, and only fights if he lost to belote. He can also use *uncle *, a confused attack which consists in explaining rules invented from pétanque while thoroughly jostling you.
           He loves shadow corners, lidl parasols, and annoying anecdotes. If he is told about retirement or diet, he starts snoring with anger. However, despite everything, he is faithful. And he feels the Ricard at 8 a.m.
-        name: Tontontata
+        name: Ratoncle
     25-30:
       grosmitoss:
         description: |-
-          Grosmitoss is a concentrate of hair, bad faith and fabulation. His spherical and plush body hides a brain saturated with Bobards: he claims to have beaten a nidodragqueen with a salad leaf, known Mewteub in primary school, and participated in the creation of Shlagémon - just that.
+          Fattroll is a concentrate of hair, bad faith and fabulation. His spherical and plush body hides a brain saturated with Bobards: he claims to have beaten a nidodragqueen with a salad leaf, known Mewteub in primary school, and participated in the creation of Shlagémon - just that.
           He speaks constantly, even when nobody listens to him, and each sentence begins with "it's true, I swear!". The other shlagémons flee, not for his attacks, but for his ability to distort reality with each word.
           His special competence, *Mythobluff *, confuses the opponent by making him doubt everything - including his own attacks. He can also use *blowing breath *, a nauseating wind that smells of bad excuse and cold cigarette.
-        name: fattroll
+        name: Fattroll
       piafsansbec:
         description: |-
-          Piafsansbec is a cursed shlagémon, born with a Piaf potential ... but without the main accessory: its beak. The story tells that he would have tried to exchange him for a candy in a flea market, or that he simply lost it while trying to open a can of soda too sparkling.
+          Beakless is a cursed shlagémon, born with a Piaf potential ... but without the main accessory: its beak. The story tells that he would have tried to exchange him for a candy in a flea market, or that he simply lost it while trying to open a can of soda too sparkling.
           Since then, he has lived in a form of nasal denial: his nose holes compensate as best they can, but each attempt at song ends with a fluuuiiii * humid and a great solitude. He communicates with frantic wing, sad eyes, and ground drawings with his filthy legs.
           He can neither eat properly, nor pecking nor scareing other birds - he even got his seed stitching by a papi afterwards. His signature attack, *snack *, consists in violently vibrating his trachea to create a disturbing sound wave. He also has an embarrassing look *, which inflicts a morale penalty on the enemy.
           His passive capacity, *Silence heavy *, lowers the initiative of adversaries by making them uncomfortable.
-          Piafsansbec is often seen by the roads, trying to whistle the wind or nibble on crumbs which he ends up pushing from the forehead, optional dignity. But in his gaze shines a rare thing ... No, in fact, no. Nothing shines. It's just wet.
-        name: Oiseau sans becarow
+          Beakless is often seen by the roads, trying to whistle the wind or nibble on crumbs which he ends up pushing from the forehead, optional dignity. But in his gaze shines a rare thing ... No, in fact, no. Nothing shines. It's just wet.
+        name: Beakless
       taupicouze:
         description: |-
           Taupicouze improvised a neighborhood nurse after a 3 -week internship not validated in a detox center. Armed with dubious syringes and a stethoscope that smells the cellar, it arises without warning to "make a small bite", often without asking for consent.
@@ -1012,10 +1012,10 @@ data:
         name: Dumbch’d
       melofoutre:
         description: |-
-          Mélofoutre is a viscous little being with falsely candid appearance. Born in an uncontected love test tube between a shooting star and a forgotten sock under a teenager bed, he shines with a doubtful brilliance, oscillating between the pearl and the gluant.
+          Spaffairy is a viscous little being with falsely candid appearance. Born in an uncontected love test tube between a shooting star and a forgotten sock under a teenager bed, he shines with a doubtful brilliance, oscillating between the pearl and the gluant.
           His flute voice vibrates the air like an old prohibited film VHS, and its signature capacity, *wet lullaby *, puts the enemy under a flood of annoying sighs. It can also throw *cosmic spa *, a magic attack with unpredictable trajectory, which leaves indelible stains on self -esteem.
-          Mélofoutre does not seek the fight, but is often there by accident ... or by drive. Always sticky, never touching, he is the anti-hero of the lullabies.
-        name: Foutreairy
+          Spaffairy does not seek the fight, but is often there by accident ... or by drive. Always sticky, never touching, he is the anti-hero of the lullabies.
+        name: Spaffairy
       nidononbinaire-f:
         description: |-
           Nidononbinary♀ has soft horns, a fixed look, and a passion for plastic plants. It is not really there to fight, but he will come anyway, with his cards, his tote bag and a strange vibe.
@@ -1043,10 +1043,10 @@ data:
         name: Sexchop
       psykonaute:
         description: |-
-          Psykonaut is the deviant evolution of Psychoquack, after he discovered the virtues of cheap shit and dubious herbs found under a bench in Lavanville. Since then, he spends his days avoided on an old sofa, empty eye and ajar, staring at a screen that no longer captures any chain.
+          After he discovered the virtues of cheap shit and dubious herbs found under a bench in Lavanusville. Since then, he spends his days avoided on an old sofa, empty eye and ajar, staring at a screen that no longer captures any chain.
           He sports a faded bob flocked "420", interdimensional dark circles and a lighter which he calls "his starter". It is said that his psychiatric powers are still there, but that he only uses them to make his cones levitate when he is lazy to catch them.
           His signature attack, *Cosmic chichon *, envelops the arena with a dense and sweet cloud, drastically reducing the speed of all opponents. He can also launch *Telecantapé *, which prevents him from moving for 5 laps but returns his whole mental life (or almost).
-        name: weed
+        name: Psykonaut
       rondonichon:
         description: |-
           Rondonichon is a unsightly and self-satisfied ball of hair, stuck somewhere between a canteen hamster and a defective sex toy. He rebounds constantly on his two large nipples, which he uses as springs, and leaves behind a trail of drool and discomfort.
@@ -1077,11 +1077,11 @@ data:
         name: Geothug
       tatacool:
         description: |-
-          Tatacool drags in the puddles of crunum water behind industrial areas, dreaming of his youth where he wandered in the municipal swimming pool. His gelatinous body turned to a faded gray-blue, constelled with rust spots and glued seaweed. Its two emblematic "jewels" are now split, tarnished naphthalin balls, which sometimes come out of questionable bubbles.
+          Auntacool drags in the puddles of crunum water behind industrial areas, dreaming of his youth where he wandered in the municipal swimming pool. His gelatinous body turned to a faded gray-blue, constelled with rust spots and glued seaweed. Its two emblematic "jewels" are now split, tarnished naphthalin balls, which sometimes come out of questionable bubbles.
           His tentacles are all soft, as if he had spent three weeks dip in the dishwater. He has purple dark circles under his haggard little eyes, and his gaze alternates between total emptiness and inexplicable suspicion. He is half -walled, as if he had just slid on a mold.
           Its signature attack, aquatic morve jet *, asparagus the opponent of a viscous mixture of dirty water and green morve, which sticks for hours. Some say that he can also make "piss bubble" on special occasions, but no one wants to check.
-          It is said that Tatacool collects beer caps and old bus tickets stranded in its water, convinced that it carries luck.
-        name: Tatacool
+          It is said that Auntacool collects beer caps and old bus tickets stranded in its water, convinced that it carries luck.
+        name: Auntacool
     45-50:
       dosolo:
         description: |-
@@ -1143,8 +1143,8 @@ data:
         description: Pooretcon is a heap of wobbly polygons from a computer bug. He clumsily floats by looking for his Wi-Fi connection and displays a blue screen from time to time as a cry.
         name: pooranddumb
       ptitrat:
-        description: Former reign fossil with a pointed muzzle, Ptitrat takes himself for a flying rodent. Its grayish skin crumbles a little more with each wing beat.
-        name: tinyrat
+        description: Former reign fossil with a pointed muzzle, Tinyrat takes himself for a flying rodent. Its grayish skin crumbles a little more with each wing beat.
+        name: Tinyrat
     60-65:
       carreflex:
         description: Carreflex is a blocky giant that often sleeps in the middle of the road. Its cubic shape can block even trucks.
@@ -1176,11 +1176,11 @@ data:
         name: Qwiflash
       hericouille:
         description: Small gray hedgehog, the flames no longer light up. He constantly coughs, he has burns with buttocks.
-        name: Héricouille
+        name: Cyndaballs
     70-75:
       krabbyjaccob:
         description: This crustacean has a little kippah and dances constantly as in the old film of which he is a fan. Between two dubious jokes, he pinches everything lying around to check if it's Cashèr.
-        name: dancingrabbi
+        name: Krabbyjaccob
       onixtamere:
         description: Onixtamere is a gigantic stone serpent who takes himself for the King of the Fiens. He parades in the middle of the canyons by praising his conquests of mothers as others collect the stones. His segmented body resonates with each movement, just to announce his arrival long before he opens his mouth.
         name: Momonix
@@ -1206,9 +1206,9 @@ data:
     80-85:
       languedepute:
         description: Its endless language is dragging everywhere and is mainly used to slander. He likes to criticize his opponents until they abandon by weariness.
-        name: gossipbitch
+        name: Gossipbitch
       lecocu:
-        description: 'Lecocu always has a sad look: his wife deceives him with all the local trainers. Despite his unlucky love, he cared for others with a disconcerting kindness.'
+        description: "Lecocu always has a sad look: his wife deceives him with all the local trainers. Despite his unlucky love, he cared for others with a disconcerting kindness."
         name: cheated
       rhinofaringite:
         description: This sneezed rhinoceros sneezed from the rocks on its enemies. Its nose runs permanently, which makes it as slippery as it is unpredictable.
@@ -1229,8 +1229,8 @@ data:
         description: His eyes each leave in a different direction, which destabilizes his opponents. He shines with an aquatic glow when talking to him about vacation by the sea.
         name: Strabisme
       poissaucisse:
-        description: Poissaucissus feeds exclusively with sausages. Its charcutière smell attracts hungry dogs and trainers, which paradoxically makes it difficult to fish.
-        name: Poissaucisse
+        description: Sausageen feeds exclusively with sausages. Its charcutière smell attracts hungry dogs and trainers, which paradoxically makes it difficult to fish.
+        name: Sausageen
     90-95:
       elektektonik:
         description: Still dancing tecktonik, he electrifies the air around him. His jerky movements trigger small discharges that blow up the lead wherever he goes.
@@ -1255,17 +1255,17 @@ data:
         description: Taurus est littéralement un taureau géométrique. Ses angles parfaits le rendent difficile à approcher sans se prendre une arrête dans les côtes.
     artichaud:
       description: |-
-        Artichaud is a legendary Shlagémon that symbolizes the ultimate paradox: being cold by sweating. Born of a thermal shock between a broken cooler and a forgotten fryer, it wanders in industrial wasteland, covered with frost and sweat drops at the same time. His wings in freezer feathers diffuse a glacial mist, but he always wears a tempered Marcel and a bologna hat.
+        Artichoko is a legendary Shlagémon that symbolizes the ultimate paradox: being cold by sweating. Born of a thermal shock between a broken cooler and a forgotten fryer, it wanders in industrial wasteland, covered with frost and sweat drops at the same time. His wings in freezer feathers diffuse a glacial mist, but he always wears a tempered Marcel and a bologna hat.
         It is said that he is able to trigger lukewarm snowstorms, and that he melts as soon as he gets angry — before refiling within the next minute. Witnesses would have seen him warming up next to a fire… which he himself iced. He speaks by blowing hot water, and leaves behind him a trail of wet stains and smells of warm soup.
         Formerly venerated as the Guardian of the Sacred Microwave, he would have been banished from the kingdom of noble Shalagemons for trying to cook frozen ravioli… without removing the metallic operculum.
-        Today, Artichaud watches over areas of climate law, where he imposes his moist and refrigerated reign, between two smoking sneezes and frostbite.
-      name: Artichaud
+        Today, Artichoko watches over areas of climate law, where he imposes his moist and refrigerated reign, between two smoking sneezes and frostbite.
+      name: Artichoko
     bulgrosboule:
       description: "Bulgrosboule is known for its titanic buttocks able to overshadow the sunset. It moves backwards, more out of pride than out of strategy, letting escape perfumed bubbles of an area that trainers prefer not to mention. His cry looks like a foaming bath under pressure, and his signature capacity, *Fessal eruption*, propels his enemies into a warm and sticky mist. Equipped with a bouncing skin like an inflatable brocante pool, he loves to bounce back on the spot, which disorients most opponents. Bulgrosboule is very affectionate, especially with those who massage him. Note however: if he starts to tremble, it is too late. He's gonna bubble."
       name: Bulbasaassaur
     carapouffe:
-      description: Carapuffe plunged into her own soft shell, moving only slowly, leaving behind a trail of glitter and molten gloss. Her make-up constantly degulfs, forming an impenetrable protective layer — scientists call it "dark armor". Equipped with a half-believing, half-comatious look, she hypnotizes her adversaries by throwing flabby eyeslades, accompanied by a sigh of cosmic fatigue. She spends her days recoiling without moving her head, thanks to a complex system of brushes hidden in her bun. His voice is raucous, his perfume is toxic, and his main attack, "Mossing Crushing", is to collapse violently on his enemy by slamming his false nails.
-      name: Squimbo
+      description: Squirtuff plunged into her own soft shell, moving only slowly, leaving behind a trail of glitter and molten gloss. Her make-up constantly degulfs, forming an impenetrable protective layer — scientists call it "dark armor". Equipped with a half-believing, half-comatious look, she hypnotizes her adversaries by throwing flabby eyeslades, accompanied by a sigh of cosmic fatigue. She spends her days recoiling without moving her head, thanks to a complex system of brushes hidden in her bun. His voice is raucous, his perfume is toxic, and his main attack, "Mossing Crushing", is to collapse violently on his enemy by slamming his false nails.
+      name: Squirtuff
     electhordu:
       description: |-
         Electhordu is a legendary Shalagemon born of a transformer broken during a wild rave in the rain. Struck by lightning 347 times (volunteerly), it came out shaken as never, with the beak of cross, the feathers hedged for life, and a look that never fixes in the same direction.
@@ -1276,13 +1276,13 @@ data:
       name: Électhordu
     mewteub:
       description: |-
-        Mewteub is born from a genetic bug between an HDMI socket and an anxiolytic cosmic entity. It is murmured that it would have been cloned from an old peritel cable fallen into a basin of Monster Energy. It floats constantly, but without elegance — rather like a sock in a jacuzzi. Its translucent body suggests a venous network that flashes at the rhythm of a 56k modem. It emits telepathic sounds, all more embarrassing than each other: sighs, questionable "hmm" and sometimes extracts from MSN discussions of 2003. He communicates mainly by vibration of psychic dick, which greatly disturbs other Shalagemons — and unaccompanied children. Its special capacity, *Onde Malaise*, freezes the opponent in an abyssal discomfort for several laps. It's said to be flashbacks of awkward evenings in a provincial club.
-        Mewteub is rare. Too rare. And frankly, it might be better that way.
-      name: Mewteub
+        Mewdong is born from a genetic bug between an HDMI socket and an anxiolytic cosmic entity. It is murmured that it would have been cloned from an old peritel cable fallen into a basin of Monster Energy. It floats constantly, but without elegance — rather like a sock in a jacuzzi. Its translucent body suggests a venous network that flashes at the rhythm of a 56k modem. It emits telepathic sounds, all more embarrassing than each other: sighs, questionable "hmm" and sometimes extracts from MSN discussions of 2003. He communicates mainly by vibration of psychic dick, which greatly disturbs other Shalagemons — and unaccompanied children. Its special capacity, *Onde Malaise*, freezes the opponent in an abyssal discomfort for several laps. It's said to be flashbacks of awkward evenings in a provincial club.
+        Mewdong is rare. Too rare. And frankly, it might be better that way.
+      name: Mewdong
     salamiches:
-      name: Chabooba
+      name: Chaboobs
       description: |
-        Salamiches burns with the weak flame of an empty lighter. Always shirtless, he records himself spitting sparks on trash cans. His special ability, *Ego Fire*, boosts his power whenever people boo him. Loyal unless offered a free kebab or a sale at the auto shop.
+        Chaboobs burns with the weak flame of an empty lighter. Always shirtless, he records himself spitting sparks on trash cans. His special ability, *Ego Fire*, boosts his power whenever people boo him. Loyal unless offered a free kebab or a sale at the auto shop.
     sulfusouris:
       description: |-
         Sulfumouse is a legendary Shalagemon born of a short circuit in an abandoned microwave oven. According to legend, a colony of mice tried to build a nest in a toaster, and only one of them would have survived… charred, but awakened to a fiery power. It has risen in flames, more determined than ever to burn everything that moves — especially electrical cables.
@@ -1341,11 +1341,11 @@ data:
         name: Lazybell
       carabifle:
         description: |-
-          Carabifle is the logical evolution - but not necessarily desirable - of Carapouffe. Its soft shell has become a throne of fluorescent pink plastic inlaid with broken mirrors and fossilized make -up brushes. She no longer rolls, she * slides * with a doubtful grace, leaving a sticky trail perfume grapefruit-suédois.
+          Wangturle is the logical evolution - but not necessarily desirable - of Squirtuff. Its soft shell has become a throne of fluorescent pink plastic inlaid with broken mirrors and fossilized make -up brushes. She no longer rolls, she * slides * with a doubtful grace, leaving a sticky trail perfume grapefruit-suédois.
           Her voice is now permanently self -contained, and his new signature attack, *Glossy *cataclysm, spreads a layer of gloss so thick that it blocks enemy movements for 3 laps. His bun is now alive, and attacks alone as soon as the word "natural" is pronounced.
-          Carabifle also has an acrylic range which allows him to expand violently while judging the others. Its fine mustache drawn in a waterproof pencil is formidable and increases its charisma by +12 against the males in rut.
+          Wangturle also has an acrylic range which allows him to expand violently while judging the others. Its fine mustache drawn in a waterproof pencil is formidable and increases its charisma by +12 against the males in rut.
           It is said that if you look at your glitter eyelashes for too long, you become well-being influencer without realizing it.
-        name: Carabifle
+        name: Wangturle
       chrysachier:
         description: |-
           Chrysachier is stuck between the majesty of a peacock and the despair of a poorly digested larva. Supposed to be a royal butterfly or a sacred bird, he missed his cocoon because of an excess of vinegar crisps and a sleep cycle disturbed by his own flatulence.
@@ -1378,21 +1378,14 @@ data:
         description: He wears a moldy leather jacket, made the boss in the car parks, but has plastic teeth.
         name: Croconaze
       crustabridou:
-        description: "Crustabidou, evolution of Cookieyas, looks like a Crustabri who would have spent too much time hanging out in the bottom of the family fridge. His shell, formerly proud and solid, is now covered with traces of fat, crumbs and forgotten dry sausage filaments. The periphery of his shell sports a mysterious red and white string, a vestige of an old saiflard never finished.
-
+        description: |-
+          Crustuddle, evolution of Cookieyas, looks like a Crustabri who would have spent too much time hanging out in the bottom of the family fridge. His shell, formerly proud and solid, is now covered with traces of fat, crumbs and forgotten dry sausage filaments. The periphery of his shell sports a mysterious red and white string, a vestige of an old saiflard never finished.
           Its interior is just a doubtful mixture between flowing cheese, sausage slices and moldy cookies. His gaze is even more hallucinated than before, with dark circles in the shape of sausage and a mouth full of crumbs and pepper grains.
-
-          Attitude: Crustabre is convinced that he is the star of all aperitifs, when in real life, everyone avoids him because of his cellar smell. His signature attack, *Jet de Graillon *, consists in expelling an oily and sticky porridge that makes even the most courageous Pokémon flee.
-
-          \r
-
-          578\r
-
-          Anecdote: It is said that Crustabidou secretly dreams of becoming a sausage ambassador, but he always confuses cheese sets with the Pokémon arenas."
-        name: drysausage
+          Attitude: Crustabre is convinced that he is the star of all aperitifs, when in real life, everyone avoids him because of his cellar smell. His signature attack, *Jet de Graillon *, consists in expelling an oily and sticky porridge that makes even the most courageous Pokémon flee. Anecdote: It is said that Crustuddle secretly dreams of becoming a sausage ambassador, but he always confuses cheese sets with the Pokémon arenas.
+        name: Crustuddle
       dartagnan:
-        description: D \ Art Tagnan is a combative panache type mousquépic. Always ready to perish before stinging, it arises from a cloud of dramatic dust, shouting "in guard, manant!" ", As no one looked at him. With his raw's darts and his antennas carved in curllets, he continues the reels in the void just for the style. His mustache does not exist, but he regularly twists it with the end of the claws, convinced that it makes him irresistible. His feather hat has been grafted directly on his skull since his birth - according to legend, he would have come out of his cocoon, shouting "At the attack for honor and waffles!" He defies the wild Pokémon to pups of poetry, flies to the aid of the bays who fell on the ground, and melts in tears if his cape is damaged. His signature technique, a gallant touring, is to prick his opponent after having turned on himself at least eight times, while quoting theater. His flair for the drama is such that some researchers think that he is actually half-insect, half-actor missed.
-        name: D\
+        description: Buzzquetor is a combative panache type mousquépic. Always ready to perish before stinging, it arises from a cloud of dramatic dust, shouting "in guard, manant!" ", As no one looked at him. With his raw's darts and his antennas carved in curllets, he continues the reels in the void just for the style. His mustache does not exist, but he regularly twists it with the end of the claws, convinced that it makes him irresistible. His feather hat has been grafted directly on his skull since his birth - according to legend, he would have come out of his cocoon, shouting "At the attack for honor and waffles!" He defies the wild Pokémon to pups of poetry, flies to the aid of the bays who fell on the ground, and melts in tears if his cape is damaged. His signature technique, a gallant touring, is to prick his opponent after having turned on himself at least eight times, while quoting theater. His flair for the drama is such that some researchers think that he is actually half-insect, half-actor missed.
+        name: Buzzquetor
       dopluspersonne:
         description: |-
           Doplusperson is the ultimate evolution of loneliness. Even he himself was fed up with him: there is only a large, disillusioned, headless ostrich body that wanders in circles like a ghost of the desert.
@@ -1487,22 +1480,17 @@ data:
         name: Boobspuff
       grosseflemme:
         description: |-
-          Grosseflemme is the ultimate incarnation of the degradation shlagémonesque. Its rocky shell, formerly robust, is now covered with moisture, mousse and old chewing gum spots. He is so heavy and window that he merged with the abandoned sofa on which he has been dragging on for years. His arms and legs seem almost atrophied, but he still manages to reach out to catch a packet of chips or relieve a cigarette.
+          Glozem is the ultimate incarnation of the degradation shlagemonesk. Its rocky shell, formerly robust, is now covered with moisture, mousse and old chewing gum spots. He is so heavy and window that he merged with the abandoned sofa on which he has been dragging on for years. His arms and legs seem almost atrophied, but he still manages to reach out to catch a packet of chips or relieve a cigarette.
           His face displays a mixture of lassitude and bitterness, half-closed eyes, surrounded in the extreme. Remains of pizza and empty cans litter the ground around it. The only thing that motivates him is to complain about other shlagemons, while sighing loudly.
-          ** Signature attack: ***Fetid breath* - Grosseflemme baille towards the opponent, releasing a breath of dealed breath capable of sleeping even the most motivated.
+          ** Signature attack: ***Fetid breath* - Glozem baille towards the opponent, releasing a breath of dealed breath capable of sleeping even the most motivated.
           It is said that nobody has ever seen a bigflem of getting up from their sofa, except once, to reach a remote control that has fallen too far. Even there, he preferred to launch a slipper rather than making the effort to move.
-        name: fat
+        name: Glozem
       grossetarte:
-        description: "Grossetarte is the regrettable evolution of Ptitocard, obtained after an overdose of industrial sugar and bad ideas. Self -proclaimed \"Master Tartnier\", he spends his days cooking, throwing and ... take away pies. The problem ? His creations are infamous. Collanted, crunchy, often alive, they cause more oral damage than all the sidewalks combined.
-
+        description: |-
+          Fistcake is the regrettable evolution of Ptitocard, obtained after an overdose of industrial sugar and bad ideas. Self -proclaimed "Master Tartnier", he spends his days cooking, throwing and ... take away pies. The problem ? His creations are infamous. Collanted, crunchy, often alive, they cause more oral damage than all the sidewalks combined.
           He does not fight: he *serves *. Repeatedly. His attack * Service three parts * invokes a volley of pastry projectiles, each having a more unpredictable texture than the previous one. It also has *brutal crust *, a physical attack which explodes in crumbs of sweet granite, inflicting internal injuries and a durable culinary shame.
-
-          Some shlagémons avoid it not out of fear, but out of taste. It is said that a single fragment of its ultimate pie \r
-
-          578\r
-
-          can block a jaw for 3 days."
-        name: fattart
+          Some shlagémons avoid it not out of fear, but out of taste. It is said that a single fragment of its ultimate can block a jaw for 3 days.
+        name: Fistcake
       grostadsperm:
         description: |-
           More massive, more flaccid, GrandaSsperm looks like a mountain of dull slime, dotted with doubtful lumps and viscous streaks. Its smell is… indescribable, oscillating between cold sweat and old laundry. Her face displays a shame, the distant gaze, his mus arms always busy fiddling without embarrassment.
@@ -1511,10 +1499,10 @@ data:
         name: Thickspermmuk
       heriplouf:
         description: Has buckets of water hung on the legs to "turn off your crises". In reality, he piss in the puddles.
-        name: Hériplouf
+        name: Driplava
       heristrash:
         description: Looks like a charred raccoon. The flames are green and feel the rotten egg.
-        name: Héristrash
+        name: Tyfloosy
       hosoltueur:
         description: Armed with a gigantic bone, Hosletueur settles his accounts in a single strike. However, he keeps a melancholy air thinking about his lost childhood.
         name: Killowak
@@ -1571,10 +1559,10 @@ data:
         name: Flirtoke
       meladolphe:
         description: |-
-          Méladolphe is the disputed evolution of melofoutre, the fruit of a hearing mutation after too many karaoke evenings between authoritarian beautiful. He swapped his sticky sweetness against an overly ironed costume, a well -traced line, and a suspicious passion for annoying speeches.
+          Clefadolphe is the disputed evolution of Spaffairy, the fruit of a hearing mutation after too many karaoke evenings between authoritarian beautiful. He swapped his sticky sweetness against an overly ironed costume, a well -traced line, and a suspicious passion for annoying speeches.
           He sings false but strong, with dubious words that scare away other shlagemons. His signature attack, *fascina -song song *, forces his enemies to line up in Indian file and to walk in step until exhaustion. It can also trigger *microphone of propaganda *, a strident cry which inflicts psychological damage even through the walls.
           His authoritarian aura and his naphthalin scent earned him to be banished from several regions. Despite everything, some trainers find it "charismatic", but they often have funny ideas behind their heads.
-        name: Méladolphe
+        name: Clefadolphe
       moisanium:
         description: Giant decrepit plant, spotted with mold, with hallucinogenic spores. She laughs alone in the fields.
         name: Moisanium
@@ -1592,16 +1580,16 @@ data:
         name: Queerueen
       nidoschneck:
         description: |-
-          Nidoschneck is a shlagémon with overflowing energy ... but always badly channeled. Iel speaks loudly, laughs in capital letters and punctuates all his sentences by "You see what I mean or not?" His passion? The Foufounes. His, those of others, linked concepts, approximate tattoos on the lower abdomen. He collects blurred selfies and unnecessary stories, always against the light.
+          Nidovaj is a shlagémon with overflowing energy ... but always badly channeled. Iel speaks loudly, laughs in capital letters and punctuates all his sentences by "You see what I mean or not?" His passion? The Foufounes. His, those of others, linked concepts, approximate tattoos on the lower abdomen. He collects blurred selfies and unnecessary stories, always against the light.
           Her signature * Schnek * attack attack is less powerful than he looks, but she always has a little effect in wild areas. In combat, Iel likes to provoke his opponents with*annoying cries*, which inflicts the state ** deep discomfort ** to everyone around, allies included.
           He often surrounds himself with nidononbinary♀ or other influenced shlagemons, which he calls his "sisters of the teucha". You never know if it is serious or if it is trolle. Probably both.
-        name: Nidoschneck
+        name: Nidovaj
       nidoteub:
         description: |-
-          Nidoteub is the natural (and yet late) evolution of Nidononbinaire♂. His body has swollen, his peaks are more rigid than his arguments, and his voice carries far, even when he says anything. It spends its time scrolling female shlagémon profiles and screaming "tchoooooleee" as soon as a silhouette passes within a radius of 50 meters.
-          Iel dedicates a strange cult to an entity called “Chibrax”, of which Iel carries a medallion around the neck in golden plastic. No one knows who is, or what it means, but Nidoteub believes in it very hard. Iel mainly uses the attack *Massive DM *, which almost never touches, but which contains far too much fire.
+          Nidodick is the natural (and yet late) evolution of Nidononbinaire♂. His body has swollen, his peaks are more rigid than his arguments, and his voice carries far, even when he says anything. It spends its time scrolling female shlagémon profiles and screaming "tchoooooleee" as soon as a silhouette passes within a radius of 50 meters.
+          Iel dedicates a strange cult to an entity called “Chibrax”, of which Iel carries a medallion around the neck in golden plastic. No one knows who is, or what it means, but Nidodick believes in it very hard. Iel mainly uses the attack *Massive DM *, which almost never touches, but which contains far too much fire.
           It is noisy, ineffective, and convinced that it is "too stylish". His teeth are always in PLS and her breath is classified as a passive toxic capacity.
-        name: Nidoteub
+        name: Nidodick
       noadcajou:
         description: This shaft on legs produces grilled cashew nuts with each attack. He prefers the tropical climate and makes fun of the diets of his opponents.
         name: Exeggashewnut
@@ -1610,10 +1598,10 @@ data:
         name: Noctédard
       nosferasta:
         description: |-
-          Nosferasta is the ultimate spiritual awakening of nosferailleur. As it grows, its wings are adorned with braided dreadlocks in the wool of a mystical ponchian, and a sweet aura green permanently.
+          Bluntbat is the ultimate spiritual awakening of nosferailleur. As it grows, its wings are adorned with braided dreadlocks in the wool of a mystical ponchian, and a sweet aura green permanently.
           Influenced by the Rastafaris writings and the worn vinyl of Koffeekeeur and Marlée bombed, he preaches a philosophy of life based on non-violence, the connection with nature, and a very generous consumption of medicinal plants. He speaks in confused parables, sometimes interspersed with nervous laughter or approximate quotes from sacred texts which he has never really read.
           His signature attack * JAH song * Stuns all enemies in a large department, accompanied by a light reggae fade and a suspicious hint. It is said that even steel Pokémon relax in contact.
-        name: weed
+        name: Bluntbat
       orchibre:
         description: |-
           Orchibre is the majestic evolution - but no less grotesque - of the chibre. Its central stem, thick and fleshy, proudly rises from an orchid corolla in garish colors, radiant like a fireworks in a poorly maintained greenhouse.
@@ -1638,19 +1626,14 @@ data:
           Parasect does not seek victory. He is looking for *universal humidity *. And you, are you ready to hear the Call of the Total Champi?
         name: cultleader
       perchiste:
-        description: "Perchist has left the great banditry of the alleys of Kanto to convert to the cinema of author ... but not the good. Armed with his micro kept pole with chatterton and an old Crew t-shirt, he haunts the shabby filming sets, always ready to capture the breaths, the silences, and sometimes ... his own depression sighs.
-
-          He takes his role very at heart, even if it means interrupting a scene to crop an angle of his or insulting a light intern. Its pads amortize the footsteps, but its \r
-
-          af0\r
-
-          tuft of hair on the ear captures all the bad vibes.
-
-          His signature attack, *Grils of despair *, inflicts a static noise on the enemy for 3 laps, while *Silence Plateau! *Makes it temporarily from the fight, for a long unnecessary fixed plan."
-        name: soundtech
+        description: |-
+          Micshian has left the great banditry of the alleys of Kanto to convert to the cinema of author ... but not the good. Armed with his micro kept pole with chatterton and an old Crew t-shirt, he haunts the shabby filming sets, always ready to capture the breaths, the silences, and sometimes ... his own depression sighs.
+          He takes his role very at heart, even if it means interrupting a scene to crop an angle of his or insulting a light intern. Its pads amortize the footsteps, but its captures all the bad vibes.
+          His signature attack, *Grils of despair *, inflicts a static noise on the enemy for 3 laps, while *Silence Plateau! *Makes it temporarily from the fight, for a long unnecessary fixed plan.
+        name: Micshian
       poissomerguez:
-        description: Poissomerguez gives off a strong barbecue smell. He frys the water around him and causes uncontrollable cravings among his opponents.
-        name: Merguezking
+        description: Flamesea gives off a strong barbecue smell. He frys the water around him and causes uncontrollable cravings among his opponents.
+        name: Flamesea
       pyrolise:
         description: Always surrounded by dubious smoke, pyrolise loves to burn everything he touches and feel the toxic vapors.
         name: Fatreon
@@ -1671,44 +1654,33 @@ data:
           Even the charging stations refuse to connect it. He is considered a living bug of the Pokédex, and certain trainers flee, not for his power ... but for his conversation.
         name: Raïchiotte
       rapasdepisse:
-        description: "Rapasdepisse is the tragically humid evolution of Piafsansbec. He finally recovered a little plumage, a more imposing build, and even a cry (acute, useless, trembling). But all of this is ruined by a detail ... he pee. All the time. By small drops. Without warning.
-
-          He has no control. Each wings beaten: *Plitch *. Each cry: *pshht *. Each victory: *Floc *. He sometimes wears a kind of improvised foam, but it overflows. Always. His passage leaves behind suspect puddles and flagships of humiliation. Its spawn area is officially declared \"slippery\".
-
+        description: |-
+          Peerow is the tragically humid evolution of Beakless. He finally recovered a little plumage, a more imposing build, and even a cry (acute, useless, trembling). But all of this is ruined by a detail ... he pee. All the time. By small drops. Without warning.
+          He has no control. Each wings beaten: *Plitch *. Each cry: *pshht *. Each victory: *Floc *. He sometimes wears a kind of improvised foam, but it overflows. Always. His passage leaves behind suspect puddles and flagships of humiliation. Its spawn area is officially declared "slippery".
           His signing attack, *shameful jet *, inflicts a defense penalty on the enemy (and respect for himself). It also has *uncontrolled leak *, a passive attack which inflicts minor damage on each turn ... On the ground only. He can also learn *doubled downpour *, which replaces the weather effects with something much more personal.
-
-          Rapasdepisse does not really fly. He makes nervous and humid jumps. His cry resemble\r
-
-          af0\r
-
-          s a \"prrrffffft!\" Followed by a long embarrassing silence. It avoids airy areas and too clean trainers.
-
-          We keep it by compassion, or by mistake. But even if he is a little pity, some say he is sweet, affectionate ... and always warm."
-        name: Oiseau pipiarow
+          Peerow does not really fly. He makes nervous and humid jumps. His cry seems like "prrrffffft!" Followed by a long embarrassing silence. It avoids airy areas and too clean trainers.
+          We keep it by compassion, or by mistake. But even if he is a little pity, some say he is sweet, affectionate ... and always warm.
+        name: Peerow
       raptorincel:
         description: |-
-          Raptor Incel is the naturally toxic evolution of salamiches. Larger, more angular, but still as fragile internally, it spits lukewarm flames while debit passive-aggressive speeches on "real trainers" and "females who like Tortanks".
+          RaptorIncel is the naturally toxic evolution of salamiches. Larger, more angular, but still as fragile internally, it spits lukewarm flames while debit passive-aggressive speeches on "real trainers" and "females who like Tortanks".
           His integrated hooded hoodie is now merged with her skin, and his flame is powered only by the Twitter debates in which no one participates. He moves in dry leaps, as if he had things to prove at each step, which makes his approach as ridiculous as it is hostile.
           He has a special attack: *frustrated flame *, which explodes if the opponent is a female shlagémon. He can also use *evolutionary monologue *, an ability that makes enemies flee by explaining to them why they are wrong to exist.
           It is often found in dark caves, type on invisible keyboards while training in the art of contemptuous gaze. His dream? Become the alpha shlagémon ... and especially that someone deigns to answer him one day.
-        name: Raptorleon
+        name: RaptorIncel
       ratartine:
         description: |-
-          Ratartine is the spread of Ratonton. After taking too long in the sun with pâté in the pockets, his body merged with a huge slice of moldy crumb bread. Its fur is now golden on the edges, and its back permanently sports a layer of rillettes, jam, or sometimes unknown sauce (depending on the weather and its digestive mood).
+          Toastrat is the spread of Ratoncle. After taking too long in the sun with pâté in the pockets, his body merged with a huge slice of moldy crumb bread. Its fur is now golden on the edges, and its back permanently sports a layer of rillettes, jam, or sometimes unknown sauce (depending on the weather and its digestive mood).
           It moves slowly, emitting crust noises that rubs on the tiles. It is obsessed with sandwiches, to the point of trying to spread everything that passes: walls, enemies, allies, soil, air. His signature attack, *crushed buttered *, inflicts sticky damage and slows down the target by projecting a fatty and lukewarm layer.
-          Ratartine lives in the cupboards, sleeps in the abandoned toaster, and dreams of being toaster out of love. He thinks that fat rounds on the tablecloth are magic portals. His passive capacity, *lost *, allows him to regain PV when he is close to a picnic.
+          Toastrat lives in the cupboards, sleeps in the abandoned toaster, and dreams of being toaster out of love. He thinks that fat rounds on the tablecloth are magic portals. His passive capacity, *lost *, allows him to regain PV when he is close to a picnic.
           It is said that he tried to evolve as a "crunched", but that he melted too much before the last step.
-        name: Tartine confiturecate
+        name: Toastrat
       rhinoplastie:
         description: After failed cosmetic surgery, rhinoplasty has the entirely reshaped face. He scares everyone but is beautiful.
         name: Rhydonplastic
       ricardnin:
-        description: "Ricardnin only appears during prolonged family barbecues. It is recognized by his faded cap with the suspicious smell and the sacred vial which he keeps pendant, which he calls his tactical reserve. He barks as soon as he hears the words \"pétanque\", \"sausage\" or \"who took my chair there?\". His breath inflicts damage over time, especially if he has eaten aioli. Its signature attack, anise breath, fluff the terrain in a yellowish clo\r
-
-          af0\r
-
-          ud which reduces the precision of all the opposing Pokémon. He can also launch provoked, who forces trainers to take a break and take out the chips."
-        name: Ricardninnine
+        description: Ricardnine only appears during prolonged family barbecues. It is recognized by his faded cap with the suspicious smell and the sacred vial which he keeps pendant, which he calls his tactical reserve. He barks as soon as he hears the words "pétanque", "sausage" or "who took my chair there?". His breath inflicts damage over time, especially if he has eaten aioli. Its signature attack, anise breath, fluff the terrain in a yellowish which reduces the precision of all the opposing Pokémon. He can also launch provoked, who forces trainers to take a break and take out the chips.
+        name: Ricardnine
       roux-pignolage:
         description: "Red Redshot is the final and tragic evolution of Roux not cool. He swapped his guitar for a greasy keyboard, and his passion for the indie has become a fixette on the \"uncon censored\" archives of the Shlagépédia forums. He saw curled up in a shell of bad faith, crumbs of chips, and deep social regrets.
 
@@ -1739,18 +1711,18 @@ data:
         name: Beacharmie
       tatacruelle:
         description: |-
-          Tatacruelle is the terror of the cupboard funds, the living legend that all the young shlagemons fear. His aquatic body, worn and swollen, looks like an old plastic tablecloth covered with indelible fat stains. On his head, his twenty "Bigoudis" turned into pink pq rolls, ready to suffocate with a bad look.
+          Wrinklash is the terror of the cupboard funds, the living legend that all the young shlagemons fear. His aquatic body, worn and swollen, looks like an old plastic tablecloth covered with indelible fat stains. On his head, his twenty "Bigoudis" turned into pink pq rolls, ready to suffocate with a bad look.
           His face, pleated and pulled down, inspires dread and respect, with pinched lips and eyes injected with venom. Two huge tentacles covered with knocking rings and used elastics are agitated at each suspicious noise, ready to slam on anyone who dares to walk on his tiles.
-          TatacRuelle loves to moralize by throwing vinegar everywhere, stinging the cookies of others and locking the jams in a secret code cabinet. His signature attack, *Aqueous admonition *, send you a wave of cold water and scathing insults, leaving you bent with shame and remorse.
+          Wrinklash loves to moralize by throwing vinegar everywhere, stinging the cookies of others and locking the jams in a secret code cabinet. His signature attack, *Aqueous admonition *, send you a wave of cold water and scathing insults, leaving you bent with shame and remorse.
           It is said that she haunts the kitchens after 10 p.m., ready to punish those who dare to open the fridge. His dream? Be immortalized in portrait on each pot of pickles in the area. Even the most reckless do not dare to hang out near her when night falls.
-        name: Tataruel
+        name: Wrinklash
       tord-turc:
         description: |-
-          Turkish Tord is the ultimate evolution of the Carapouffe line. He no longer moves: he slides laterally, slowly, while twisting the space around him. Its simple presence crumps the furniture, folds the walls and curls opinions.
+          Turkish Tord is the ultimate evolution of the Squirtuff line. He no longer moves: he slides laterally, slowly, while twisting the space around him. Its simple presence crumps the furniture, folds the walls and curls opinions.
           Armed with two arms with screwed corrupts, he can literally twist enemy attacks to send them back to the sender, accompanied by a condescending sigh. He speaks little, but when he does, is it to ask "who is this fragile?" Or announce that he has "twisted the universe to find a shade of unprecedented gloss".
           His back has become a spiral throne, encrusted with concave mirrors which refer to their opponents a distorted and depressing version of themselves. His ultimate technique, charismatic torsion *, folds enemy statistics until they abandon themselves in despair.
           It is said that even the legendary avoid crossing it: not for fear of defeat, but for fear of being judged in silence.
-        name: Turcoise
+        name: Blasturk
       triopikouze:
         description: |-
           Triopikouze is what is called in the jargon an "itinerant incident". Radacked by the order of doctors for obvious reasons (and numerous), he has found a new playground: Crades evenings and rave parties in the basement. Where others bring good humor, bring it ... surprised bites.
@@ -1765,7 +1737,7 @@ data:
           Old badger is this kind of shlagémon that has been dragging in the same corners for thirty years, without anyone really remembering when it happened. His coat is dull, his joints crack when he drops, and he often speaks "before", even when no one asked.
           He doesn’t really have a technique, but a lot of experience: his attack * Fossil admonition * has a chance to stun the opponent with a speech on "real life". He can also use *dressing jet *, a modest care capacity that he keeps for him, of course.
           It is said that he once won an Interzonier tournament, but the legend remains unclear. Today, he groans, he growls, and sometimes he sleeps in full fight. But beware: under the layer of rheumatism, it remains dangerous ... especially for the nerves.
-        name: Vieux Blaireau
+        name: Grampslash
     mairiousse:
       description: |-
         Mairiousse is a huge white dog with fur yellowed by age, always wrapped in a grimy tricolor scarf hanging crooked along his flank. His chest sticks out as if he's shaken fifty municipal hands, but his legs sag from too many standing meetings. Dirty glasses fog half his face, perched on a constantly drooling snout.
@@ -1786,8 +1758,8 @@ data:
         description: Lokhlash loves to participate in improvised rap battles on his back. He navigates from stage to stage, dropping freezing punchlines that make the audience shiver.
         name: Laprap
       magmaretfred:
-        description: Magmar&Fred imagines battling alongside a missing partner, spewing flames while telling questionable jokes. He heats things up but usually ends up alone on stage.
-        name: Magmar&Fred
+        description: Mar&Lars imagines battling alongside a missing partner, spewing flames while telling questionable jokes. He heats things up but usually ends up alone on stage.
+        name: Mar&Lars
       scarapute:
         description: Cet insecte adore sucer le sang des voyageurs imprudents. On le voit souvent roder près des campings à la recherche d'un mollet juteux.
         name: Pinsislut
@@ -2359,6 +2331,61 @@ data:
     bob:
       dialogBefore: Get ready to eat dust!
       dialogAfter: No way... you beat me!
+  zones:
+    savages:
+      01-plaine-kekette:
+        name: Plaine Kékette
+      05-bois-de-bouffon:
+        name: Bois des Bouffons
+      10-chemin-du-slip:
+        name: Chemin du Slip
+      15-ravin-fesse-molle:
+        name: Ravin de la Fesse Molle
+      20-precipice-nanard:
+        name: Précipice du Vieux Nanard
+      25-marais-moudugenou:
+        name: Marais Moudugenou
+      30-forteresse-petmoalfiak:
+        name: Forteresse Pètmoalfiak
+      35-route-du-nawak:
+        name: Route du Nawak
+      40-mont-dracatombe:
+        name: Mont Cul
+      45-catacombes-merdifientes:
+        name: Catacombes Merdifientes
+      50-route-aguicheuse:
+        name: Route Aguicheuse
+      55-vallee-des-chieurs:
+        name: Vallée des Chieurs
+      60-trou-du-bide:
+        name: Trou du Bide
+      65-lac-aux-relous:
+        name: Lac aux Relous
+      70-zone-giga-zob:
+        name: Aire du Giga Zob
+      80-mont-kouillasse:
+        name: Mont Kouillasse
+      85-paturage-crado:
+        name: Pâturage Crado
+      90-canyon-a-la-derp:
+        name: Canyon à la Derp
+      95-cratere-des-legends:
+        name: Cratère des Légends
+    villages:
+      village10:
+        name: Veaux du Gland sur Marne
+      village100:
+        name: Citadelle Giga-Schlag
+      village20:
+        name: Village Sux-Mais-Bouls
+      village40:
+        name: Village Paumé du cul
+      village50:
+        name: Village Fiente-sur-Mer
+      village60:
+        name: Village des Cassos
+      village80:
+        name: Clito Land
 pages:
   index:
     title: Shlagemon - It smells very strong
@@ -2368,7 +2395,7 @@ pages:
     title: Shlagedex
   privacy-policy:
     title: Privacy Policy – Shlagémon
-    lastUpdated: 'Last updated: 06/08/2025'
+    lastUpdated: "Last updated: 06/08/2025"
     sections:
       data:
         title: 1. Data collected
@@ -2396,17 +2423,17 @@ App:
   author: Shlagemon Team
 stores:
   achievements:
-    unlocked: 'Achievement unlocked: {title}'
+    unlocked: "Achievement unlocked: {title}"
   disease:
     sick: Your Shlagemon is sick! It will be back to normal after winning {n} battles.
     cured: Your Shlagemon is no longer sick!
   shlagedex:
-    rarityReached: '{name} reached rarity {rarity}!'
-    evolved: '{name} evolved!'
+    rarityReached: "{name} reached rarity {rarity}!"
+    evolved: "{name} evolved!"
     obtained: You obtained {name}!
     alreadyMax: You already have this Shlagemon at max rarity
-    rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
-    released: '{name} was released!'
+    rarityChanged: "{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!"
+    released: "{name} was released!"
   game:
     toast:
       shlagidolar: You receive {amount} Shlagidollars!
