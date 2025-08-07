@@ -2,7 +2,7 @@ import type { BaseShlagemon, Zone } from '~/type'
 
 export const savage05: Zone = {
   id: 'bois-de-bouffon',
-  name: 'Bois des Bouffons',
+  name: 'data.zones.savages.05-bois-de-bouffon.name',
   type: 'sauvage',
   position: { lat: -42.49047583148054, lng: 103.92369727047145 },
   completionAchievement: 'Bûcheron du Bois de Bouffon',

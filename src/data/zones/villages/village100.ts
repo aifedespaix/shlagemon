@@ -30,7 +30,7 @@ import { savage95 } from '../savages/95-cratere-des-legends'
 
 export const village100: Zone = {
   id: 'village-giga-schlag',
-  name: 'Citadelle Giga-Schlag',
+  name: 'data.zones.villages.village100.name',
   type: 'village',
   villageType: 'hyper',
   position: move.right(savage95.position, VILLAGE_OFFSET),

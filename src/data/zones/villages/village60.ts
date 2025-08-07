@@ -25,7 +25,7 @@ import { savage55 } from '../savages/55-vallee-des-chieurs'
 
 export const village60: Zone = {
   id: 'village-cassos-land',
-  name: 'Village des Cassos',
+  name: 'data.zones.villages.village60.name',
   type: 'village',
   villageType: 'hyper',
   position: move.top(savage55.position, VILLAGE_OFFSET),

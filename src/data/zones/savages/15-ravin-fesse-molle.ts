@@ -2,7 +2,7 @@ import type { BaseShlagemon, Zone } from '~/type'
 
 export const savage15: Zone = {
   id: 'ravin-fesse-molle',
-  name: 'Ravin de la Fesse Molle',
+  name: 'data.zones.savages.15-ravin-fesse-molle.name',
   type: 'sauvage',
   position: { lat: -66.48506565291328, lng: 175.63808933002483 },
   completionAchievement: 'Sauveur du Ravin de la Fesse Molle',

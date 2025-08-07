@@ -2,7 +2,7 @@ import type { BaseShlagemon, Zone } from '~/type'
 
 export const savage35: Zone = {
   id: 'route-du-nawak',
-  name: 'Route du Nawak',
+  name: 'data.zones.savages.35-route-du-nawak.name',
   type: 'sauvage',
   position: { lat: -80.23196607144244, lng: 61.694665012406944 },
   completionAchievement: 'Voyageur de la Route du Nawak',

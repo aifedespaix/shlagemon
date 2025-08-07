@@ -15,7 +15,7 @@ import { savage15 } from '../savages/15-ravin-fesse-molle'
 
 export const village20: Zone = {
   id: 'village-boule',
-  name: 'Village Sux-Mais-Bouls',
+  name: 'data.zones.villages.village20.name',
   type: 'village',
   villageType: 'basic',
   position: move.bottom(savage15.position, VILLAGE_OFFSET),
