@@ -2,6 +2,7 @@
 import type { WearableItem } from '~/type/item'
 import type { DexShlagemon } from '~/type/shlagemon'
 
+const { t } = useI18n()
 const _props = defineProps({
   mon: { type: Object as PropType<DexShlagemon>, required: true },
   isActive: { type: Boolean, default: false },

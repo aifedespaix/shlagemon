@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const arena = useArenaStore()
+const { t } = useI18n()
 </script>
 
 <template>

@@ -2,6 +2,8 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allItems, multiExp } from '~/data/items'
 
+
+const { t } = useI18n()
 // Typage strict des props
 interface Props {
   mons: readonly DexShlagemon[]
@@ -30,7 +32,6 @@ const inventory = useInventoryStore()
 const wearableItem = useWearableItemStore()
 const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
-const { t } = useI18n()
 const newCount = computed(() => dex.newCount)
 const panelRef = ref<{ scrollToTop: () => void } | null>(null)
 
