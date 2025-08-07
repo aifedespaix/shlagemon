@@ -12,6 +12,7 @@ const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
 const { arenaCompleted } = useZoneCompletion(props.zone)
 const dex = useShlagedexStore()
+const { t } = useI18n()
 const { canAccess } = useZoneAccess(toRef(dex, 'highestLevel'))
 
 const zoneButtonsDisabled = computed(
@@ -65,7 +66,7 @@ function classes() {
       <div class="i-game-icons:village h-6 w-6" />
     </div>
     <div class="text-btn flex-center">
-      <span>{{ props.zone.name }}</span>
+      <span>{{ t(props.zone.name) }}</span>
     </div>
     <div class="h-4 flex items-center justify-center gap-2">
       <div v-if="arenaCompleted" class="i-mdi:sword-cross h-4 w-4" />

@@ -23,7 +23,7 @@ import { savage35 } from '../savages/35-route-du-nawak'
 
 export const village40: Zone = {
   id: 'village-paume',
-  name: 'Village Paumé du cul',
+  name: 'data.zones.villages.village40.name',
   type: 'village',
   villageType: 'super',
   position: move.top(savage35.position, VILLAGE_OFFSET),

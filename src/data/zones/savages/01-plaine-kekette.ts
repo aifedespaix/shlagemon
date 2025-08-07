@@ -2,7 +2,7 @@ import type { BaseShlagemon, Zone } from '~/type'
 
 export const savage01: Zone = {
   id: 'plaine-kekette',
-  name: 'Plaine Kékette',
+  name: 'data.zones.savages.01-plaine-kekette.name',
   type: 'sauvage',
   position: { lat: -24.24453346540599, lng: 130.0249991878924 },
   completionAchievement: 'Fendeur de la Plaine Kékette',

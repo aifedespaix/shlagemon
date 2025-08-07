@@ -25,7 +25,7 @@ import { savage45 } from '../savages/45-catacombes-merdifientes'
 
 export const village50: Zone = {
   id: 'village-caca-boudin',
-  name: 'Village Fiente-sur-Mer',
+  name: 'data.zones.villages.village50.name',
   type: 'village',
   villageType: 'super',
   position: move.top(savage45.position, VILLAGE_OFFSET),

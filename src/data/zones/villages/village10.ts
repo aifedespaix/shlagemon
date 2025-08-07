@@ -14,7 +14,7 @@ import { savage05 } from '../savages/05-bois-de-bouffon'
 
 export const village10: Zone = {
   id: 'village-veaux-du-gland',
-  name: 'Veaux du Gland sur Marne',
+  name: 'data.zones.villages.village10.name',
   type: 'village',
   villageType: 'basic',
   position: move.top(savage05.position, VILLAGE_OFFSET),

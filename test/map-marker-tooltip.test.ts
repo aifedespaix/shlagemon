@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
 import { useLeafletMarker } from '../src/composables/leaflet/useLeafletMarker'
 import { useMapMarkers } from '../src/composables/leaflet/useMapMarkers'
+import { i18n } from '../src/modules/i18n'
 
 const { useLeafletMarkerMock, useZoneCompletionMock } = vi.hoisted(() => ({
   useLeafletMarkerMock: vi.fn(() => ({
@@ -30,7 +31,7 @@ vi.mock('../src/stores/zoneVisit', () => ({
 describe('useMapMarkers', () => {
   const zone: Zone = {
     id: 'test-zone',
-    name: 'Test Zone',
+    name: 'test.zone.name',
     type: 'sauvage',
     position: { lat: 0, lng: 0 },
     minLevel: 1,
@@ -53,7 +54,7 @@ describe('useMapMarkers', () => {
     const { addMarker } = useMapMarkers(dummyMap)
     addMarker(zone)
     expect(useLeafletMarker).toHaveBeenCalledWith(
-      expect.objectContaining({ title: zone.name }),
+      expect.objectContaining({ title: i18n.global.t(zone.name) }),
     )
   })
 

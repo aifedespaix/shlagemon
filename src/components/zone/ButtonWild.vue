@@ -83,7 +83,7 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
       <div class="i-game-icons:forest h-6 w-6" />
     </div>
     <div class="flex-center">
-      <span class="text-2xs">{{ props.zone.name }}</span>
+      <span class="text-2xs">{{ t(props.zone.name) }}</span>
     </div>
     <div class="flex items-center justify-center gap-2">
       <img

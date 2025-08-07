@@ -30,7 +30,7 @@ import { savage75 } from '../savages/75-route-so-dom'
 
 export const village80: Zone = {
   id: 'village-clitoland',
-  name: 'Clito Land',
+  name: 'data.zones.villages.village80.name',
   type: 'village',
   villageType: 'hyper',
   position: move.right(savage75.position, VILLAGE_OFFSET),

@@ -3,6 +3,7 @@ import type { Zone, ZoneId } from '~/type'
 import { DivIcon } from 'leaflet'
 import { computed, watch } from 'vue'
 import { useZoneCompletion } from '~/composables/useZoneCompletion'
+import { i18n } from '~/modules/i18n'
 import { useZoneVisitStore } from '~/stores/zoneVisit'
 import { useLeafletMarker } from './useLeafletMarker'
 
@@ -104,7 +105,7 @@ export function useMapMarkers(map: LeafletMap) {
       size: markerSize,
       anchorY,
       interactive: true,
-      title: zone.name,
+      title: i18n.global.t(zone.name),
     })
 
     watch([allCaptured, perfectZone, allShiny, kingDefeated, arenaCompleted, visited], () => {

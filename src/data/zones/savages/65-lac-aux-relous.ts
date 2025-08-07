@@ -2,7 +2,7 @@ import type { BaseShlagemon, Zone } from '~/type'
 
 export const savage65: Zone = {
   id: 'lac-aux-relous',
-  name: 'Lac aux Relous',
+  name: 'data.zones.savages.65-lac-aux-relous.name',
   type: 'sauvage',
   position: { lat: -140.96827155694405, lng: 36.45719602977667 },
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
