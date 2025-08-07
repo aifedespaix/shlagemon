@@ -116,7 +116,7 @@ function leaveVillage() {
 
 <template>
   <LayoutTitledPanel
-    :title="zone.current.name"
+    :title="t(zone.current.name)"
     :exit-text="t('components.panel.Village.exit')"
     @exit="leaveVillage"
   >
