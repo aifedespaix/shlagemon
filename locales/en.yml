@@ -897,17 +897,14 @@ data:
           We recognize him by his spherical form, his eyes always half-closed of satiety, and his motto engraved on his belly: "If it comes in, it's good."
         name: Fatedle
       chenipaon:
-        description: "Caterpeacock is a flamboyant larva, an unlikely fruit of a miteuser and a peacock far too narcissistic. He moves slowly, dragging behind him a train of multicolored feathers which he himself stuck with saliva on his soft back. These feathers are useless, except to make \"dramatic tapping\" when it turns suddenly.
+        description: |-
+          Caterpeacock is a flamboyant larva, an unlikely offspring of a shabby caterpillar and a peacock far too narcissistic. It moves slowly, dragging a train of multicolored feathers that it glued to its soft back with saliva. These feathers are useless, except to make "dramatic tapping" when it turns suddenly.
 
-          His nuptial parade is a choreographic disaster where he turns on himself by screaming \"Graaaaaaah-Paon\", which has the effect of scaring 90% of living things nearby, including stones. The rare opponents who remain are hypnotized by the fascinating ugliness of his dance, which gives Caterpeacock a short strategic advantage.
+          Its nuptial parade is a choreographic disaster where it spins around screaming "Graaaaaaah-Paon", scaring 90% of nearby life, including stones. The rare opponents who remain are hypnotized by the fascinating ugliness of its dance, which gives Caterpeacock a brief strategic advantage.
 
-          His official cry is recorded in databases like *\"Krrr-Paitius\" Krrr-Païïïïïïïïïïire *, but each specimen seems to invent his on the moment, generally accompanied by a sound effect of disordered flute and a humid sneezing.
+          Its official cry is recorded in databases as *"Krrr-Paitius Krrr-Païïïïïïïïïïïre"*, but each specimen invents its own on the spot, generally accompanied by a dissonant flute sound and a wet sneeze.
 
-          It has the special attack *rolls on colored soil *, which inflicts random damage and leaves toxic feathers on the battlefi\r
-
-          578\r
-
-          eld. He can also use *false charisma *, which briefly increases his criticism according to the number of dismayed looks he receives."
+          It has the special attack *Rolls on Colored Soil*, which inflicts random damage and leaves toxic feathers on the battlefield. It can also use *False Charisma*, briefly increasing its critical rate according to the number of dismayed looks it receives.
         name: Caterpeacock
       metamorve:
         description: A mass of foul mud that drags slowly. Where he passes, nothing grows because of his toxicity. It is made of a toxic mud. He pollutes everything he touches, even the ground becomes sterile. He stinks so much that people vanish just by crossing him. His body is a concentrate of toxins.
@@ -937,8 +934,8 @@ data:
         description: Goubite is difficult to look at ... and even more difficult to forget. With a long and pinkish body, slightly curved on the top, it is often the victim of anatomical misunderstandings in the schools of trainers. However, he assumes himself. Proud, right, and always a little moist. His head is encircled with a flaccid beard, dripping with lukewarm sweat, which he sometimes shakes to mark his territory. He permanently smiles, with a satisfied air that makes everyone uncomfortable, even the blind. Its feet are crushed, velocated, and smell the forgotten shrimp in a damp sock. It moves slowly by producing a small soft and repetitive noise, comparable to a kiss that we do not want. Its signature capacity, *viscous squirt *, inflicts moderate damage but imposes a permanent mental penalty to those who witness it. Some claim that he can also throw *Emotive Beard *, an attack that sticks and smells the damp muscular room. Not to be confused with a sexual object. Unless we really are in a hurry to consult.
         name: Vulpdick
       nameouesh:
-        description: Nanmeouesh spends his days zoning in front of the pharmacy by giving diagnoses aloud, without being asked. He claims to have a "university of street" diploma and held herself mainly with uncle syrup. He communicates only in "wesh", "you captured" and "worries you have nothing". Despite his nonchalant pace and his glasses too stylish for the rest of his body, he feels the emotional sores better than any psy-style. His signature attack, Relou check-up, forces all enemies to listen to a 3-minute consultation with full balance sheet, which can cause sleep or confusion.
-        name: Nanméouesh
+        description: Nawdino spends his days zoning in front of the pharmacy by giving diagnoses aloud, without being asked. He claims to have a "university of street" diploma and held herself mainly with uncle syrup. He communicates only in "wesh", "you captured" and "worries you have nothing". Despite his nonchalant pace and his glasses too stylish for the rest of his body, he feels the emotional sores better than any psy-style. His signature attack, Relou check-up, forces all enemies to listen to a 3-minute consultation with full balance sheet, which can cause sleep or confusion.
+        name: Nawdino
       pikachiant:
         description: |-
           Pikachiant is able to get drunk before you even launch an attack. Its tail looks like a twisted TNT antenna, and it emits strident beeps as soon as it is upset. It is constantly discharged (especially in the presence of valuable electronic devices), and its signature attack, *social load *, causes electrical discomfort in a whole radius of 3 meters.
@@ -1043,9 +1040,9 @@ data:
         name: Sexchop
       psykonaute:
         description: |-
-          After he discovered the virtues of cheap shit and dubious herbs found under a bench in Lavanusville. Since then, he spends his days avoided on an old sofa, empty eye and ajar, staring at a screen that no longer captures any chain.
-          He sports a faded bob flocked "420", interdimensional dark circles and a lighter which he calls "his starter". It is said that his psychiatric powers are still there, but that he only uses them to make his cones levitate when he is lazy to catch them.
-          His signature attack, *Cosmic chichon *, envelops the arena with a dense and sweet cloud, drastically reducing the speed of all opponents. He can also launch *Telecantapé *, which prevents him from moving for 5 laps but returns his whole mental life (or almost).
+          Psykonaut is the deviant evolution of PsychoQuack (PsychoQuack). After discovering the virtues of cheap weed and dubious herbs found under a bench in Lavanusville, he now spends his days slumped on an old sofa, eyes half-open, staring at a screen that no longer captures any channel.
+          He sports a faded bob marked "420", interdimensional dark circles, and a lighter he calls "his starter." Rumor has it his psychic powers remain, but he only uses them to levitate his joints when he's too lazy to grab them.
+          His signature attack, *Cosmic Chichon*, envelops the arena in a dense, sweet cloud that drastically reduces the speed of all opponents. He can also launch *Telecouch*, which prevents him from moving for five turns but restores nearly all his mental life.
         name: Psykonaut
       rondonichon:
         description: |-
@@ -1130,11 +1127,10 @@ data:
         name: Spermeimer
     55-60:
       amonichiasse:
-        description: "Amonichiasses is a fossilized mollusk that stinks of aquatic diarrhea. Its sticky shell is covered with brownish spots, as if it had been used as a rescue bucket in a collective gastro. Two small globular eyes are softly exceeding his mucus, constantly fogged by the lukewarm steam which he releases. He advances slowly, leaving behind a suspicious and viscous trail. Some trainers say that he emits noise of intestinal gurgling when shaking him t\r
+        description: |-
+          Amonichiasses is a fossilized mollusk that stinks of aquatic diarrhea. Its sticky shell is covered with brownish spots, as if it had been used as a rescue bucket in a collective gastro. Two small globular eyes softly emerge from its mucus, constantly fogged by the lukewarm steam it releases.
 
-          ac4\r
-
-          oo hard."
+          It advances slowly, leaving behind a suspicious and viscous trail. Some trainers say it emits noises of intestinal gurgling when shaken too hard.
         name: Omapoop
       kraputo:
         description: This scratched crab hides under a broken helmet and offers its pliers to the most offender. It loves glass funds and rusty parts.
@@ -1306,7 +1302,7 @@ data:
         name: Crackduck
       aerobite:
         description: |-
-          Aerobite is the shamefully assumed evolution of largemitoss. A winged creature that hovers in the air ... with impunity. He swapped his coat for a selective hair: the torso shaved closely, but the bottom ... how to say ... *ventilated *. And that doesn't bother him, quite the contrary - he claims "total bodily freedom".
+          Aerobite is the shamefully assumed evolution of GrosMitoss (Fattroll). A winged creature that hovers in the air ... with impunity. He swapped his coat for a selective hair: the torso shaved closely, but the bottom ... how to say ... *ventilated*. And that doesn't bother him, quite the contrary – he claims "total bodily freedom".
           With a flawless immodesty, Aérobite loves to arise without warning in public places, triggering discomfort and fleeting glances. He claims loudly that "the body is natural", while deploying his glitter wings like an exhibition of fair.
           Its signature attack * Claqueburnes * inflicts sound and psychological damage, while * freezing wind * often leaves the paralyzed adversaries - not because of the cold, but the visual trauma. It is said that no trainer is never really ready to see him stolen in slow motion ... legs apart.
         name: Dickmoth
@@ -1394,19 +1390,16 @@ data:
           It is said that sometimes, a small breeze turns doplusperson on itself, but no one knows if it is shame, boredom or just the wind.
         name: Dopluspersonne
       draco-con:
-        description: "Draco-Con is the last form of the old Salamiches line. Apparently, it’s a colossal dragon, with motorcycle-tuning wings, arch-in-noise flames and muscles that cry out \"anabolized. But behind this volcanic facade hides an abysmal stupidity.
+        description: |-
+          Draco-Con is the last form of the old Salamiches (Chaboobs) line. Apparently, it is a colossal dragon with motorcycle-tuning wings, manure-colored flames, and muscles that scream "anabolized." But behind this volcanic façade hides abysmal stupidity.
 
-          He often confuses his own attacks with those of the opponent, and can literally self-clam while trying a *fiery jet towards the wind *. His war cry is a mixture of raucous ba\r
+          He often confuses his own attacks with those of the opponent and can literally burn himself while trying a *Fiery Jet to the Wind*. His war cry is a mixture of raucous barking and poorly digested belch, and he does not understand why others flee when he talks strategy.
 
-          af0\r
+          Draco-Con loves to stream in the middle of an arena to say "yo la team" to his three imaginary subscribers. He thinks his scales shine because he is rare, when in reality it's just embedded kebab grease.
 
-          rking and poorly digested rot, and he does not understand why others flee when he speaks strategy.
+          It has the ability *Kéké Combo*, which mixes all its attacks into a single incoherent but noisy move. Result: enemies are more confused than hurt, and sometimes they simply fall from boredom.
 
-          Draco-Con loves to make lives in full arena to say \"Yo la Team\" to his 3 imaginary subscribers. He thinks that his scales shine because he is rare, when in reality, it's just inlaid kebab fat.
-
-          It has the capacity *Kéké *combo, which mixes all its attacks in a single incoherent, but noisy movement. Result: enemies are more confused than injured, and sometimes they simply fall from boredom.
-
-          It is said that even Professor Merdant stopped trying to study it: \"Too stupid for science\", according to his notes."
+          It is said that even Professor Merdant stopped trying to study it: "Too stupid for science," according to his notes.
         name: Dumbzard
       drapcoloscopie:
         description: Final form of the sheet, this giant sheet takes itself for a doctor from the dark and searches everything that goes within his reach.
@@ -1433,23 +1426,17 @@ data:
         name: Stinkybel
       feunouille:
         description: |-
-          Feunouille is a casting error in the evolution of Goupichiant. Convinced to be a legendary Pokémon, he parades with his nine badly hung synthetic tails, bought on Vinted in a private sale of fallen furies.
+          Feunouille is a casting error in the evolution of Goubite (Vulpdick). Convinced to be a legendary Pokémon, he parades with his nine badly hung synthetic tails, bought on Vinted in a private sale of fallen furies.
           His coat is burnt in places because of his own failed attacks, and he wears a bright piercing in the muzzle that flashes in rhythm with his ego attacks. He uses * self -tanning flame * to give himself a fire complexion, but often ends up orange carrot.
           Feunouille rarely attacks, unless you criticize its style or that you say that NineTales is "better designed". In this case, he continues *tail-Slap tiktok *and *breath of smoky theory *, a combination that disorients all normal shlagemons.
           He is convinced to be the elected representative of a prophecy invented by himself. No other shlagémon validates.
         name: Ninoodles
       flaclodoss:
-        description: "Flaclodoss wanders along the gutters, dragging its shell that has become a shabby sleeping bag, constelled with suspicious tasks and crushed chewing gum. Formerly promised to a good evolution, he was rejuvenated to all the arenas and ended up electing home under a bus shelter, where the rain puddles become his makeshift mirror.
-
-          His fur turned to dirty gray, his gaze floats vague as if he was looking for the bus that will never come. On its back, there is an old rusty canned box or a deflated tire, a ves\r
-
-          af0\r
-
-          tige of its urban galleys. His jogging has become coverage, his mismatched socks hold miraculously thanks to three staples and an elastic recovered from an expired metro ticket.
-
-          His signature attack, *cloud of misery *, gives off an aura of fatigue and old sandwiches, plunging his opponents into an intense demotivation state.
-
-          It is said that Flaclodoss has the secret to open all the garbage cans with one finger, and that it often meditates on life by fixing the pigeons. His philosophy? \"As long as there is a bench, there is hope ...\""
+        description: |-
+          Flaclodoss wanders along the gutters, dragging its shell that has become a shabby sleeping bag speckled with suspicious stains and crushed chewing gum. Once promised a bright evolution, it was rejected by every arena and finally made its home under a bus shelter, where rain puddles serve as a makeshift mirror.
+          Its fur has turned dirty gray, its gaze floating vaguely as if searching for a bus that will never come. On its back you might find an old rusty tin can or a deflated tire, vestiges of its urban hardships. Its tracksuit has become a blanket, and its mismatched socks hold together thanks to three staples and an elastic salvaged from an expired metro ticket.
+          Its signature attack, *Cloud of Misery*, emits an aura of fatigue and old sandwiches, plunging opponents into intense demotivation.
+          Rumor has it that Flaclodoss knows how to open any trash can with a single finger and often meditates on life while staring at pigeons. Its philosophy? "As long as there is a bench, there is hope..."
         name: Flaclodoss
       floripute:
         description: |-
@@ -1559,7 +1546,7 @@ data:
         name: Flirtoke
       meladolphe:
         description: |-
-          Clefadolphe is the disputed evolution of Spaffairy, the fruit of a hearing mutation after too many karaoke evenings between authoritarian beautiful. He swapped his sticky sweetness against an overly ironed costume, a well -traced line, and a suspicious passion for annoying speeches.
+          Clefadolphe is the disputed evolution of Mélofoutre (Spaffairy), the fruit of a hearing mutation after too many karaoke evenings between authoritarian beaux. He swapped his sticky sweetness for an overly ironed suit, a well-traced part, and a suspicious passion for embarrassing speeches.
           He sings false but strong, with dubious words that scare away other shlagemons. His signature attack, *fascina -song song *, forces his enemies to line up in Indian file and to walk in step until exhaustion. It can also trigger *microphone of propaganda *, a strident cry which inflicts psychological damage even through the walls.
           His authoritarian aura and his naphthalin scent earned him to be banished from several regions. Despite everything, some trainers find it "charismatic", but they often have funny ideas behind their heads.
         name: Clefadolphe
@@ -1649,7 +1636,7 @@ data:
         name: Flanlume
       raichiotte:
         description: |-
-          Raïchiotte is the tragic culmination of Pikachiant's evolution. He absorbed so much negative waves and counterfeit cables that he has literally become unstable: each movement triggers involuntary sparks and a slight flush noise. He permanently carries a fluorescent banana where he puts his powerbanks, his unpaid fines and a few stolen scooters.
+          Raïchiotte is the tragic culmination of Pikachiant (Pikannoying)'s evolution. He absorbed so much negative waves and counterfeit cables that he has literally become unstable: each movement triggers involuntary sparks and a slight flush noise. He permanently carries a fluorescent banana where he puts his powerbanks, his unpaid fines and a few stolen scooters.
           Its tail has become an inverted lightning rod that attracts problems, and its laughing laughs like a saturated speaker. He attacks with *verbal juice *, an electric insult that paralyzes you with embarrassment. It is easily recognized thanks to its empty look, its burnt screen breath, and its ability to hack an intercom with a straw.
           Even the charging stations refuse to connect it. He is considered a living bug of the Pokédex, and certain trainers flee, not for his power ... but for his conversation.
         name: Raïchiotte
@@ -1682,17 +1669,11 @@ data:
         description: Ricardnine only appears during prolonged family barbecues. It is recognized by his faded cap with the suspicious smell and the sacred vial which he keeps pendant, which he calls his tactical reserve. He barks as soon as he hears the words "pétanque", "sausage" or "who took my chair there?". His breath inflicts damage over time, especially if he has eaten aioli. Its signature attack, anise breath, fluff the terrain in a yellowish which reduces the precision of all the opposing Pokémon. He can also launch provoked, who forces trainers to take a break and take out the chips.
         name: Ricardnine
       roux-pignolage:
-        description: "Red Redshot is the final and tragic evolution of Roux not cool. He swapped his guitar for a greasy keyboard, and his passion for the indie has become a fixette on the \"uncon censored\" archives of the Shlagépédia forums. He saw curled up in a shell of bad faith, crumbs of chips, and deep social regrets.
-
-          Its feathers are dull, glued by suspicious fluids and expired hair gel. He speaks little, but when he does it,\r
-
-          578\r
-
-          \ it is to swing confused monologues on freedom of expression, the planted cameras, and \"what people do not want to hear\". He is pignool. A lot. Too much. He calls it \"energy refocusing\". The others call it an offense.
-
-          Its signature capacity, *solitary stimulation *, heals it slightly on each turn ... but inflicts a morale penalty on the whole allied team. He also uses Moite *, a contact type attack that is 30% chance of driving the enemy directly by visceral discomfort.
-
-          We rarely come across it in public, except in blurred videos comments or at 3 a.m. in free Wi-Fi areas. He claims to be misunderstood, but in truth, everyone understands it very well ... And that's the problem."
+        description: |-
+          Pignolagegeot is the final and tragic evolution of Roux pas Cool (Cringeon). He swapped his guitar for a greasy keyboard, and his passion for indie music has become an obsession with the "uncensored" archives of the Shlagépédia forums. He curls up in a shell of bad faith, chip crumbs, and deep social regrets.
+          Its feathers are dull, glued by suspicious fluids and expired hair gel. He speaks little, but when he does, it's to deliver confused monologues about freedom of expression, hidden cameras, and "what people don't want to hear." He pignols. A lot. Too much. He calls it "energy refocusing." Others call it a crime.
+          His signature ability, *Solitary Stimulation*, heals him slightly each turn but inflicts a morale penalty on the entire allied team. He also uses *Moist Hand*, a contact attack that has a 30% chance to make the enemy flee out of visceral embarrassment.
+          He is rarely seen in public, except in blurry video comments or at 3 a.m. in free Wi-Fi zones. He claims to be misunderstood, but in truth, everyone understands him perfectly... and that's the problem.
         name: Pignolagegeot
       roux-scoop:
         description: 'Roux Scoop swapped his guitar and illusions against an old refistolé camera based on chewing gum and sparadrap. He twirls in the heavens in search of shabby scoops: arguments between Pokémon, panties flight, or the suspicious form of a cloud. With his too large "pressed" stamped cap, he takes himself for the king of investigative journalism, even if he is only spamming fuzzy clichés and non -verified rumors on the Pokécomplot forums. He speaks quickly, sniffs hard, and punctuates his sentences with "I have my sources". His signature attack, *Flash infamous *, blinds all adversaries, but he often forgets to remove the cache from the lens. Despite his ambitions, he remains desperately in search of a real subject ... or a little respect.'

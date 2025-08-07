@@ -899,8 +899,11 @@ data:
       chenipaon:
         description: |-
           Chenipaon est une larve flamboyante, fruit improbable d’une chenille miteuse et d’un paon beaucoup trop narcissique. Il se déplace lentement, en traînant derrière lui une traîne de plumes multicolores qu’il a lui-même collées à la salive sur son dos mou. Ces plumes ne servent à rien, sauf à faire des "claquettes dramatiques" quand il se retourne brusquement.
+
           Sa parade nuptiale est un désastre chorégraphique où il tourne sur lui-même en hurlant "GRAAAAAAAH-PAOON", ce qui a pour effet de faire fuir 90% des êtres vivants à proximité, y compris les pierres. Les rares adversaires qui restent sont hypnotisés par la laideur fascinante de sa danse, ce qui donne à Chenipaon un court avantage stratégique.
+
           Son cri officiel est enregistré dans les bases de données comme *"KRRRR-païïïïïïïïïïïïïïïïïn"*, mais chaque spécimen semble inventer le sien sur le moment, généralement accompagné d’un effet sonore de flûte désaccordée et d’un éternuement humide.
+
           Il possède l’attaque spéciale *Roule Par Terre Coloré*, qui inflige des dégâts aléatoires et laisse des plumes toxiques sur le champ de bataille. Il peut également utiliser *Faux Charisme*, qui augmente brièvement son taux de critique en fonction du nombre de regards consternés qu’il reçoit.
         name: Chenipaon
       metamorve:
@@ -931,7 +934,7 @@ data:
         description: Goubite est difficile à regarder… et encore plus difficile à oublier. Doté d’un corps long et rosâtre, légèrement bombé sur le haut, il est souvent victime de malentendus anatomiques dans les écoles de dresseurs. Pourtant, lui, il s’assume. Fier, droit, et toujours un peu moite. Sa tête est cerclée d’une barbe flasque, dégoulinante de sueur tiède, qu’il secoue parfois pour marquer son territoire. Il sourit en permanence, d’un air satisfait qui met tout le monde mal à l’aise, même les aveugles. Ses pieds sont fripés, velus, et sentent la crevette oubliée dans une chaussette humide. Il se déplace lentement en produisant un petit bruit mou et répétitif, comparable à un bisou dont on ne veut pas. Sa capacité signature, *Giclée Visqueuse*, inflige des dégâts modérés mais impose un malus mental permanent à ceux qui en sont témoins. Certains affirment qu’il peut aussi lancer *Barbe Emotive*, une attaque qui colle et qui sent la salle de muscu humide. À ne pas confondre avec un objet sexuel. Sauf si vraiment on est pressé de consulter.
         name: Goubite
       nameouesh:
-        description: Nanmeouesh passe ses journées à zoner devant la pharmacie en donnant des diagnostics à voix haute, sans qu’on lui demande. Il prétend avoir un diplôme "d’université de la street" et soigne surtout avec du sirop de tonton. Il communique uniquement en "wesh", "t'as capté" et "t’inquiète t’as rien". Malgré son allure nonchalante et ses lunettes trop stylées pour le reste de son corps, il ressent les bobos émotionnels mieux que n’importe quel Psy-type. Son attaque signature, Check-up Relou, oblige tous les ennemis à écouter une consultation de 3 minutes avec bilan complet, ce qui peut causer Sommeil ou Confusion.
+        description: Nanméouesh passe ses journées à zoner devant la pharmacie en donnant des diagnostics à voix haute, sans qu’on lui demande. Il prétend avoir un diplôme "d’université de la street" et soigne surtout avec du sirop de tonton. Il communique uniquement en "wesh", "t'as capté" et "t’inquiète t’as rien". Malgré son allure nonchalante et ses lunettes trop stylées pour le reste de son corps, il ressent les bobos émotionnels mieux que n’importe quel Psy-type. Son attaque signature, Check-up Relou, oblige tous les ennemis à écouter une consultation de 3 minutes avec bilan complet, ce qui peut causer Sommeil ou Confusion.
         name: Nanméouesh
       pikachiant:
         description: |-
@@ -1124,7 +1127,10 @@ data:
         name: Tadsperm
     55-60:
       amonichiasse:
-        description: Amonichiasse est un mollusque fossilisé qui pue la diarrhée aquatique. Sa coquille gluante est couverte de taches brunâtres, comme si elle avait été utilisée comme seau de secours dans une gastro collective. Deux petits yeux globuleux dépassent mollement de son mucus, constamment embués par la vapeur tiède qu’il dégage. Il avance lentement, en laissant derrière lui une traînée suspecte et visqueuse. Certains dresseurs affirment qu’il émet des bruits de gargouillis intestinaux quand on le secoue trop fort.
+        description: |-
+          Amonichiasse est un mollusque fossilisé qui pue la diarrhée aquatique. Sa coquille gluante est couverte de taches brunâtres, comme si elle avait été utilisée comme seau de secours dans une gastro collective. Deux petits yeux globuleux dépassent mollement de son mucus, constamment embués par la vapeur tiède qu’il dégage.
+
+          Il avance lentement, en laissant derrière lui une traînée suspecte et visqueuse. Certains dresseurs affirment qu’il émet des bruits de gargouillis intestinaux quand on le secoue trop fort.
         name: Amonichiasse
       kraputo:
         description: Ce crabe éraflé se cache sous un casque cassé et offre ses pinces au plus offrant. Il raffole des fonds de verre et des pièces rouillées.
@@ -1290,7 +1296,7 @@ data:
         name: Accrocrack
       aerobite:
         description: |-
-          Aérobite est l’évolution honteusement assumée de GrosMitoss. Une créature ailée qui plane dans les airs… en toute impunité. Il a troqué son pelage pour une pilosité sélective : le torse rasé de près, mais le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au contraire — il revendique une "liberté corporelle totale".
+          Aérobite est l’évolution honteusement assumée de GrosMitoss (Fattroll). Une créature ailée qui plane dans les airs… en toute impunité. Il a troqué son pelage pour une pilosité sélective : le torse rasé de près, mais le bas… comment dire… *aéré*. Et ça ne le dérange pas, bien au contraire — il revendique une "liberté corporelle totale".
           D’une impudeur sans faille, Aérobite adore surgir sans prévenir dans des lieux publics, déclenchant malaise et regards fuyants. Il clame haut et fort que “le corps, c’est naturel”, tout en déployant ses ailes à paillettes façon exhibition de foire.
           Son attaque signature *Claqueburnes* inflige des dégâts sonores et psychologiques, tandis que *Vent Glacial* laisse souvent les adversaires tétanisés — pas à cause du froid, mais du traumatisme visuel. On dit qu’aucun dresseur n’est jamais vraiment prêt à le voir voler au ralenti… jambes écartées.
         name: Aérobite
@@ -1380,7 +1386,7 @@ data:
         name: Dopluspersonne
       draco-con:
         description: |-
-          Draco-con est la dernière forme de l’ancienne lignée des Salamiches. En apparence, c’est un dragon colossal, avec des ailes de moto-tuning, des flammes arc-en-bouse et des muscles qui crient "anabolisés". Mais derrière cette façade volcanique se cache une stupidité abyssale.
+          Draco-con est la dernière forme de l’ancienne lignée des Salamiches (Chaboobs). En apparence, c’est un dragon colossal, avec des ailes de moto-tuning, des flammes arc-en-bouse et des muscles qui crient "anabolisés". Mais derrière cette façade volcanique se cache une stupidité abyssale.
           Il confond souvent ses propres attaques avec celles de l’adversaire, et peut littéralement s’auto-cramer en tentant un *Jet d’Feu Vers le Vent*. Son cri de guerre est un mélange d’aboiement rauque et de rot mal digéré, et il ne comprend pas pourquoi les autres fuient quand il parle stratégie.
           Draco-con adore faire des lives en pleine arène pour dire "yo la team" à ses 3 abonnés imaginaires. Il pense que ses écailles brillent parce qu’il est rare, alors qu’en réalité, c’est juste de la graisse de kebab incrustée.
           Il possède la capacité *Combo Kéké*, qui mélange toutes ses attaques en un seul mouvement incohérent, mais bruyant. Résultat : les ennemis sont plus confus que blessés, et parfois, ils tombent simplement d’ennui.
@@ -1411,7 +1417,7 @@ data:
         name: Empifouette
       feunouille:
         description: |-
-          Feunouille est une erreur de casting dans l’évolution de Goupichiant. Persuadé d’être un Pokémon légendaire, il parade avec ses neuf queues en synthétique mal accrochées, achetées sur Vinted dans une vente privée de furries déchus.
+          Feunouille est une erreur de casting dans l’évolution de Goubite (Vulpdick). Persuadé d’être un Pokémon légendaire, il parade avec ses neuf queues en synthétique mal accrochées, achetées sur Vinted dans une vente privée de furries déchus.
           Son pelage est cramé par endroits à cause de ses propres attaques ratées, et il porte un piercing lumineux au museau qui clignote en rythme avec ses crises d’égo. Il utilise *Flamme AutoBronzante* pour se donner un teint de feu, mais finit souvent orange carotte.
           Feunouille attaque rarement, sauf si on critique son style ou qu’on dit que Ninetales est "mieux designé". Dans ce cas, il enchaîne *Queue-Slap TikTok* et *Souffle de Théorie Fumeuse*, une combinaison qui désoriente tous les Shlagémons normaux.
           Il est persuadé d’être l’élu d’une prophétie inventée par lui-même. Aucun autre Shlagémon ne valide.
@@ -1531,7 +1537,7 @@ data:
         name: Masschopeur
       meladolphe:
         description: |-
-          Méladolphe est l’évolution contestée de Mélofoutre, fruit d’une mutation auditive après trop de soirées karaoké entre beaufs autoritaires. Il a troqué sa douceur poisseuse contre un costume trop repassé, une raie bien tracée, et une passion suspecte pour les discours gênants.
+          Méladolphe est l’évolution contestée de Mélofoutre (Spaffairy), fruit d’une mutation auditive après trop de soirées karaoké entre beaufs autoritaires. Il a troqué sa douceur poisseuse contre un costume trop repassé, une raie bien tracée, et une passion suspecte pour les discours gênants.
           Il chante faux mais fort, avec des paroles douteuses qui font fuir les autres Shlagémons. Son attaque signature, *Chant Fascinazif*, oblige ses ennemis à se ranger en file indienne et à marcher au pas jusqu'à l'épuisement. Il peut aussi déclencher *Micro de Propagande*, un cri strident qui inflige des dégâts psychologiques même à travers les murs.
           Son aura autoritaire et son parfum de naphtaline lui valent d’être banni de plusieurs régions. Malgré tout, certains dresseurs le trouvent “charismatique”, mais ils ont souvent de drôles d’idées derrière la tête.
         name: Méladolphe
@@ -1621,7 +1627,7 @@ data:
         name: Rafflamby
       raichiotte:
         description: |-
-          Raïchiotte est l’aboutissement tragique de l’évolution de Pikachiant. Il a absorbé tellement d’ondes négatives et de câbles de contrefaçon qu’il est devenu littéralement instable : chaque mouvement déclenche des étincelles involontaires et un léger bruit de chasse d’eau. Il porte en permanence une banane fluo où il range ses powerbanks, ses amendes impayées et quelques trottinettes volées.
+          Raïchiotte est l’aboutissement tragique de l’évolution de Pikachiant (Pikannoying). Il a absorbé tellement d’ondes négatives et de câbles de contrefaçon qu’il est devenu littéralement instable : chaque mouvement déclenche des étincelles involontaires et un léger bruit de chasse d’eau. Il porte en permanence une banane fluo où il range ses powerbanks, ses amendes impayées et quelques trottinettes volées.
           Sa queue est devenue un paratonnerre inversé qui attire les problèmes, et son rire grésille comme un haut-parleur saturé. Il attaque avec *Coup de Jus Verbal*, une insulte électrique qui te paralyse de gêne. On le reconnaît facilement grâce à son regard vide, son haleine d’écran brûlé, et sa capacité à pirater un interphone avec une paille.
           Même les bornes de recharge refusent de le connecter. Il est considéré comme un bug vivant du Pokédex, et certains dresseurs le fuient, non pas pour sa puissance… mais pour sa conversation.
         name: Raïchiotte
@@ -1655,8 +1661,8 @@ data:
         name: Ricardnin
       roux-pignolage:
         description: |-
-          Roux Pignolage est l’évolution finale et tragique de Roux pas Cool. Il a troqué sa guitare pour un clavier graisseux, et sa passion pour l’indé est devenue une fixette sur les archives "non censurées" des forums Shlagépédia. Il vit recroquevillé dans une carapace de mauvaise foi, de miettes de chips, et de regrets sociaux profonds.
-          Ses plumes sont ternes, collées par des fluides suspects et du gel pour cheveux périmé. Il parle peu, mais quand il le fait, c’est pour balancer des monologues confus sur la liberté d’expression, les caméras planquées, et "ce que les gens veulent pas entendre". Il se pignole. Beaucoup. Trop. Il appelle ça du "recentrage énergétique". Les autres appellent ça un délit.
+          Roux Pignolage est l’évolution finale et tragique de Roux pas Cool (Cringeon). Il a troqué sa guitare pour un clavier graisseux, et sa passion pour l’indé est devenue une fixette sur les archives "non censurées" des forums Shlagépédia. Il vit recroquevillé dans une carapace de mauvaise foi, de miettes de chips et de regrets sociaux profonds.
+          Ses plumes sont ternes, collées par des fluides suspects et du gel pour cheveux périmé. Il parle peu, mais quand il le fait, c’est pour balancer des monologues confus sur la liberté d’expression, les caméras planquées et "ce que les gens veulent pas entendre". Il se pignole. Beaucoup. Trop. Il appelle ça du "recentrage énergétique". Les autres appellent ça un délit.
           Sa capacité signature, *Stimulation Solitaire*, le soigne légèrement à chaque tour… mais inflige un malus de moral à toute l’équipe alliée. Il utilise aussi *Main Moite*, une attaque de type contact qui a 30% de chance de faire fuir directement l’ennemi par gêne viscérale.
           On le croise rarement en public, sauf dans des commentaires de vidéos floues ou à 3h du matin dans des zones Wi-Fi libres. Il prétend être incompris, mais en vérité, tout le monde le comprend très bien… et c’est ça le problème.
         name: Roux Pignolage
