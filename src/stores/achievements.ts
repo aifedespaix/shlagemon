@@ -210,8 +210,11 @@ export const useAchievementsStore = defineStore('achievements', () => {
     if (z.completionAchievement) {
       const def = {
         id: `zone-${z.id}-complete`,
-        title: z.completionAchievement,
-        description: `Capturer tous les Shlagémon de ${zoneName}.`,
+        title: i18n.global.t(z.completionAchievement),
+        description: i18n.global.t(
+          'stores.achievements.zoneCompleteDescription',
+          { zone: zoneName },
+        ),
         icon: 'mdi:map-marker-check',
       }
       defs.push(def)
@@ -236,10 +239,17 @@ export const useAchievementsStore = defineStore('achievements', () => {
       defs.push(rarityDef)
       defMap[rarityDef.id] = rarityDef
       zoneWinThresholds.forEach((n) => {
+        const count = n.toLocaleString()
         const def = {
           id: `zone-${z.id}-win-${n}`,
-          title: `${n.toLocaleString()} victoires - ${zoneName}`,
-          description: `Vaincre ${n.toLocaleString()} Shlagémon dans ${zoneName}.`,
+          title: i18n.global.t(
+            'stores.achievements.zoneWinTitle',
+            { n: count, zone: zoneName },
+          ),
+          description: i18n.global.t(
+            'stores.achievements.zoneWinDescription',
+            { n: count, zone: zoneName },
+          ),
           icon: 'carbon:sword',
         }
         defs.push(def)

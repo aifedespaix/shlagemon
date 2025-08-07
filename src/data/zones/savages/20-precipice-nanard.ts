@@ -5,7 +5,7 @@ export const savage20: Zone = {
   name: 'data.zones.savages.20-precipice-nanard.name',
   type: 'sauvage',
   position: { lat: -71.23399488840516, lng: 119.66588089330025 },
-  completionAchievement: 'Dénicheur du Vieux Nanard',
+  completionAchievement: 'data.zones.savages.20-precipice-nanard.completionAchievement',
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/20-25/*.ts',
     { eager: true },
