@@ -35,6 +35,20 @@ function onZones() {
   mobile.toggle('zones')
 }
 
+function onGame() {
+  mobile.toggleGame((tab) => {
+    if (tab === 'dex')
+      return !dexDisabled.value
+    if (tab === 'inventory')
+      return !inventoryDisabled.value
+    if (tab === 'zones')
+      return !zoneDisabled.value
+    if (tab === 'achievements')
+      return !achievementsDisabled.value
+    return true
+  })
+}
+
 // Pour focus-ring personnalisés UnoCSS only
 const focusRing = 'outline-none focus-visible:ring-2 focus-visible:ring-teal-400 dark:focus-visible:ring-teal-300'
 
@@ -181,7 +195,7 @@ function handleContextMenu(hasBadge: boolean, handler?: () => void) {
         menuDisabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
       ]"
       style="box-shadow: 0 2px 12px -2px #14b8a6a9, 0 0px 0px #0000"
-      @click="mobile.set('game')"
+      @click="onGame"
     >
       <div class="i-carbon-game-console text-2xl" aria-hidden="true" />
     </button>
