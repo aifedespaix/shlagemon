@@ -1,0 +1,8 @@
+fr:
+  bob:
+    dialogBefore: Prépare-toi à manger la poussière !
+    dialogAfter: "Pas possible... tu m'as battu !"
+en:
+  bob:
+    dialogBefore: Get ready to eat dust!
+    dialogAfter: No way... you beat me!
