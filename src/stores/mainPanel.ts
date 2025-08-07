@@ -47,6 +47,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     if (dex.activeShlagemon)
       dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
     current.value = 'trainerBattle'
+    if (ui.isMobile)
+      mobile.set('inventory')
   }
 
   function showMiniGame() {
