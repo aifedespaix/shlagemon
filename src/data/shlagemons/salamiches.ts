@@ -4,7 +4,7 @@ import raptorincel from './evolutions/raptorincel'
 
 export const salamiches: BaseShlagemon = {
   id: 'salamiches',
-  name: 'Salamiches',
+  name: 'data.shlagemons.salamiches.name',
   description: 'data.shlagemons.salamiches.description',
   types: [shlagemonTypes.feu],
   evolution: { base: raptorincel, condition: { type: 'lvl', value: 16 } },

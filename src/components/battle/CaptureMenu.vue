@@ -30,7 +30,7 @@ function useBall(ball: Ball) {
     dex.captureEnemy(props.enemy)
     emit('capture', true)
     audio.playSfx('capture-success')
-    toast(t('components.battle.CaptureMenu.captured', { name: props.enemy.base.name }))
+    toast(t('components.battle.CaptureMenu.captured', { name: t(props.enemy.base.name) }))
   }
   else {
     emit('capture', false)

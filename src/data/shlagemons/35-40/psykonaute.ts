@@ -4,7 +4,7 @@ import accrocrack from '../evolutions/accrocrack'
 
 export const psykonaute: BaseShlagemon = {
   id: 'psykonaute',
-  name: 'Psykonaute',
+  name: 'data.shlagemons.35-40.psykonaute.name',
   description: 'data.shlagemons.35-40.psykonaute.description',
   types: [shlagemonTypes.eau],
   evolution: {

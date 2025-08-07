@@ -4,7 +4,7 @@ import dracoCon from './draco-con'
 
 export const raptorincel: BaseShlagemon = {
   id: 'raptorincel',
-  name: 'Raptor Incel',
+  name: 'data.shlagemons.evolutions.raptorincel.name',
   description: 'data.shlagemons.evolutions.raptorincel.description',
   types: [shlagemonTypes.feu],
   evolution: { base: dracoCon, condition: { type: 'lvl', value: 36 } },

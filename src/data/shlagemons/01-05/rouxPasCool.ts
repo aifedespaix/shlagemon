@@ -4,7 +4,7 @@ import rouxScoop from '../evolutions/roux-scoop'
 
 export const rouxPasCool: BaseShlagemon = {
   id: 'roux-pas-cool',
-  name: 'Roux pas Cool',
+  name: 'data.shlagemons.01-05.rouxPasCool.name',
   description: 'data.shlagemons.01-05.rouxPasCool.description',
   types: [shlagemonTypes.vol],
   evolution: { base: rouxScoop, condition: { type: 'lvl', value: 18 } },

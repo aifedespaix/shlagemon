@@ -45,7 +45,7 @@ const itemClass = computed(() => [
       <div class="relative h-10 w-10 flex flex-shrink-0 items-center justify-center">
         <ShlagemonImage
           :id="mon.base.id"
-          :alt="mon.base.name"
+          :alt="t(mon.base.name)"
           :shiny="mon.isShiny"
           class="h-full w-full rounded object-contain"
         />
@@ -61,7 +61,7 @@ const itemClass = computed(() => [
     <!-- Infos principales (toujours 2 lignes) -->
     <div class="min-w-0 flex flex-1 flex-col gap-1 leading-tight">
       <div class="flex items-center gap-0.5 truncate text-sm font-semibold">
-        {{ mon.base.name }}
+        {{ t(mon.base.name) }}
         <span
           v-if="mon.rarity === 100"
           class="ml-0.5 text-amber-400"

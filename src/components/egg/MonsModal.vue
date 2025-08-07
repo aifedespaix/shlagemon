@@ -25,11 +25,11 @@ function owned(id: string) {
         >
           <ShlagemonImage
             :id="mon.id"
-            :alt="mon.name"
+            :alt="t(mon.name)"
             class="min-h-16 min-w-16 object-contain"
             :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
           />
-          <span>{{ mon.name }}</span>
+          <span>{{ t(mon.name) }}</span>
         </div>
       </div>
     </UiPanelWrapper>

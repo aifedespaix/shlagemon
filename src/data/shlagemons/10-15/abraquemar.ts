@@ -4,7 +4,7 @@ import kadavrebras from '../evolutions/kadavrebras'
 
 export const abraquemar: BaseShlagemon = {
   id: 'abraquemar',
-  name: 'Abraquemar',
+  name: 'data.shlagemons.10-15.abraquemar.name',
   evolution: {
     base: kadavrebras,
     condition: {

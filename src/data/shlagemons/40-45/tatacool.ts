@@ -4,7 +4,7 @@ import tatacruelle from '../evolutions/tatacruelle'
 
 export const tatacool: BaseShlagemon = {
   id: 'tatacool',
-  name: 'Tatacool',
+  name: 'data.shlagemons.40-45.tatacool.name',
   description: 'data.shlagemons.40-45.tatacool.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   evolution: {

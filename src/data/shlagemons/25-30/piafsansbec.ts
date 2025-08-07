@@ -4,7 +4,7 @@ import { rapasdepisse } from '../evolutions/rapasdepisse'
 
 export const piafsansbec: BaseShlagemon = {
   id: 'piafsansbec',
-  name: 'Piafsansbec',
+  name: 'data.shlagemons.25-30.piafsansbec.name',
   description: 'data.shlagemons.25-30.piafsansbec.description',
   types: [shlagemonTypes.vol],
   evolution: { base: rapasdepisse, condition: { type: 'lvl', value: 50 } },

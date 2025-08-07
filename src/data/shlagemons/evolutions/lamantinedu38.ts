@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const lamantinedu38: BaseShlagemon = {
   id: 'lamantinedu38',
-  name: 'Lamantinedu38',
+  name: 'data.shlagemons.evolutions.lamantinedu38.name',
   description: 'data.shlagemons.evolutions.lamantinedu38.description',
   types: [shlagemonTypes.eau, shlagemonTypes.glace],
   speciality: 'evolution1',

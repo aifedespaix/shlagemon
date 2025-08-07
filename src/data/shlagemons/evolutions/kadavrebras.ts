@@ -4,7 +4,7 @@ import alakalbar from './alakalbar'
 
 export const kadavrebras: BaseShlagemon = {
   id: 'kadavrebras',
-  name: 'Kadavrebras',
+  name: 'data.shlagemons.evolutions.kadavrebras.name',
   description: 'data.shlagemons.evolutions.kadavrebras.description',
   types: [shlagemonTypes.psy],
   evolution: {

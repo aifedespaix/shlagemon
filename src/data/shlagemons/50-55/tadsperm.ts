@@ -4,7 +4,7 @@ import grostadsperm from '../evolutions/grostadsperm'
 
 export const tadsperm: BaseShlagemon = {
   id: 'tadsperm',
-  name: 'Tadsperm',
+  name: 'data.shlagemons.50-55.tadsperm.name',
   description: 'data.shlagemons.50-55.tadsperm.description',
   types: [shlagemonTypes.poison],
   evolution: {

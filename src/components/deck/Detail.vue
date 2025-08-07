@@ -11,10 +11,10 @@ const { t } = useI18n()
 <template>
   <div v-if="props.mon" class="max-w-xl w-full flex flex-col gap-2">
     <h2 class="text-center text-lg font-bold">
-      {{ props.mon.name }}
+      {{ t(props.mon.name) }}
     </h2>
     <div class="mx-auto h-40 w-full">
-      <ShlagemonImage :id="props.mon.id" :alt="props.mon.name" class="h-full w-full object-contain" />
+      <ShlagemonImage :id="props.mon.id" :alt="t(props.mon.name)" class="h-full w-full object-contain" />
     </div>
     <div class="flex justify-center gap-1">
       <ShlagemonType
@@ -31,13 +31,13 @@ const { t } = useI18n()
       <span>{{ t('components.deck.DeckDetail.evolution') }}</span>
       <div class="mt-1 flex items-center gap-1">
         <UiButton variant="outline" @click="emit('openMon', props.mon.evolution.base)">
-          {{ props.mon.evolution.base.name }}
+          {{ t(props.mon.evolution.base.name) }}
         </UiButton>
         <span v-if="props.mon.evolution.condition.type === 'lvl'">
           - {{ t('components.deck.DeckDetail.level', { n: props.mon.evolution.condition.value }) }}
         </span>
         <span v-else>
-          - {{ props.mon.evolution.condition.value.name }}
+          - {{ t(props.mon.evolution.condition.value.name) }}
         </span>
       </div>
     </div>

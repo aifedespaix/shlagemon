@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const moisanium: BaseShlagemon = {
   id: 'moisanium',
-  name: 'Moisanium',
+  name: 'data.shlagemons.evolutions.moisanium.name',
   description: 'data.shlagemons.evolutions.moisanium.description',
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   speciality: 'evolution2',

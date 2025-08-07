@@ -4,7 +4,7 @@ import nidoqueer from './nidoqueer'
 
 export const nidoschneck: BaseShlagemon = {
   id: 'nidoschneck',
-  name: 'Nidoschneck',
+  name: 'data.shlagemons.evolutions.nidoschneck.name',
   description: 'data.shlagemons.evolutions.nidoschneck.description',
   types: [shlagemonTypes.poison],
 

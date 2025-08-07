@@ -4,7 +4,7 @@ import { papysucon } from './papi-sucon'
 
 export const chrysachier: BaseShlagemon = {
   id: 'chrysachier',
-  name: 'Chrysachier',
+  name: 'data.shlagemons.evolutions.chrysachier.name',
   evolution: {
     base: papysucon,
     condition: {

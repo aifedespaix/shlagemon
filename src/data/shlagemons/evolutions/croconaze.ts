@@ -4,7 +4,7 @@ import alligastro from './alligastro'
 
 export const croconaze: BaseShlagemon = {
   id: 'croconaze',
-  name: 'Croconaze',
+  name: 'data.shlagemons.evolutions.croconaze.name',
   description: 'data.shlagemons.evolutions.croconaze.description',
   types: [shlagemonTypes.eau, shlagemonTypes.combat],
   evolution: {

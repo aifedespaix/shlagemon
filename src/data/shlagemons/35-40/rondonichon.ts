@@ -4,7 +4,7 @@ import grochichon from '../evolutions/grochichon'
 
 export const rondonichon: BaseShlagemon = {
   id: 'rondonichon',
-  name: 'Rondonichon',
+  name: 'data.shlagemons.35-40.rondonichon.name',
   description: 'data.shlagemons.35-40.rondonichon.description',
 
   types: [shlagemonTypes.normal],

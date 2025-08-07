@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const aerobite: BaseShlagemon = {
   id: 'aerobite',
-  name: 'Aérobite',
+  name: 'data.shlagemons.evolutions.aerobite.name',
   description: 'data.shlagemons.evolutions.aerobite.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   speciality: 'evolution1',

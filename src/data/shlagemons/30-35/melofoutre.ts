@@ -4,7 +4,7 @@ import meladolphe from '../evolutions/meladolphe'
 
 export const melofoutre: BaseShlagemon = {
   id: 'melofoutre',
-  name: 'Mélofoutre',
+  name: 'data.shlagemons.30-35.melofoutre.name',
   description: 'data.shlagemons.30-35.melofoutre.description',
 
   types: [shlagemonTypes.fee, shlagemonTypes.normal],

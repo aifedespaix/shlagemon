@@ -4,7 +4,7 @@ import nosferasta from '../evolutions/nosferasta'
 
 export const nosferailleur: BaseShlagemon = {
   id: 'nosferailleur',
-  name: 'Nosferailleur',
+  name: 'data.shlagemons.10-15.nosferailleur.name',
   description: 'data.shlagemons.10-15.nosferailleur.description',
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],

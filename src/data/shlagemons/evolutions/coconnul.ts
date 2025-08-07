@@ -4,7 +4,7 @@ import dartagnan from './dartagnan'
 
 export const coconnul: BaseShlagemon = {
   id: 'coconnul',
-  name: 'Coconnul',
+  name: 'data.shlagemons.evolutions.coconnul.name',
   evolution: {
     base: dartagnan,
     condition: {

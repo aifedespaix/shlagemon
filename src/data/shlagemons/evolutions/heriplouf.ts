@@ -4,7 +4,7 @@ import heristrash from './heristrash'
 
 export const heriplouf: BaseShlagemon = {
   id: 'heriplouf',
-  name: 'Hériplouf',
+  name: 'data.shlagemons.evolutions.heriplouf.name',
   description: 'data.shlagemons.evolutions.heriplouf.description',
   types: [shlagemonTypes.feu, shlagemonTypes.eau],
   evolution: {

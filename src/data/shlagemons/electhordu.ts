@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../shlagemons-type'
 
 export const electhordu: BaseShlagemon = {
   id: 'electhordu',
-  name: 'Électhordu',
+  name: 'data.shlagemons.electhordu.name',
   description: 'data.shlagemons.electhordu.description',
 
   types: [shlagemonTypes.electrique, shlagemonTypes.vol],

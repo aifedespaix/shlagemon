@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const grosseflemme: BaseShlagemon = {
   id: 'grosseflemme',
-  name: 'Grosseflemme',
+  name: 'data.shlagemons.evolutions.grosseflemme.name',
   description: 'data.shlagemons.evolutions.grosseflemme.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
   speciality: 'evolution2',

@@ -4,7 +4,7 @@ import coksnif from '../evolutions/coksnif'
 
 export const coksale: BaseShlagemon = {
   id: 'coksale',
-  name: 'Coksale',
+  name: 'data.shlagemons.60-65.coksale.name',
   description: 'data.shlagemons.60-65.coksale.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   evolution: {

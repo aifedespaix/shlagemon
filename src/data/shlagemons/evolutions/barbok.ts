@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const barbok: BaseShlagemon = {
   id: 'barbok',
-  name: 'Barbok',
+  name: 'data.shlagemons.evolutions.barbok.name',
   description: 'data.shlagemons.evolutions.barbok.description',
   types: [shlagemonTypes.poison],
   speciality: 'evolution1',

@@ -82,7 +82,7 @@ const displayedMons = computed(() => {
   const query = filter.search.trim().toLowerCase()
   const filtered: DexShlagemon[] = []
   for (const mon of props.mons) {
-    if (query && !mon.base.name.toLowerCase().includes(query))
+    if (query && !t(mon.base.name).toLowerCase().includes(query))
       continue
     filtered.push(mon)
   }
@@ -112,7 +112,7 @@ const displayedMons = computed(() => {
       filtered.sort((a, b) => new Date(a.captureDate).getTime() - new Date(b.captureDate).getTime())
       break
     case 'name':
-      filtered.sort((a, b) => a.base.name.localeCompare(b.base.name))
+      filtered.sort((a, b) => t(a.base.name).localeCompare(t(b.base.name)))
       break
     case 'type':
       filtered.sort((a, b) => (a.base.types[0]?.name || '').localeCompare(b.base.types[0]?.name || ''))

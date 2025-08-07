@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const meladolphe: BaseShlagemon = {
   id: 'meladolphe',
-  name: 'Méladolphe',
+  name: 'data.shlagemons.evolutions.meladolphe.name',
   description: 'data.shlagemons.evolutions.meladolphe.description',
 
   types: [shlagemonTypes.fee],

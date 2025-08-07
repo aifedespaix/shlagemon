@@ -4,7 +4,7 @@ import kaputrak from '../evolutions/kaputrak'
 
 export const kraputo: BaseShlagemon = {
   id: 'kraputo',
-  name: 'Kraputo',
+  name: 'data.shlagemons.55-60.kraputo.name',
   description: 'data.shlagemons.55-60.kraputo.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
   evolution: {

@@ -4,7 +4,7 @@ import boustiflemme from '../evolutions/boustiflemme'
 
 export const chetibranle: BaseShlagemon = {
   id: 'chetibranle',
-  name: 'Chétibranle',
+  name: 'data.shlagemons.40-45.chetibranle.name',
   description: 'data.shlagemons.40-45.chetibranle.description',
   types: [shlagemonTypes.plante, shlagemonTypes.poison],
   evolution: {

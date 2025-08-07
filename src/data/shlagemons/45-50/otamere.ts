@@ -4,7 +4,7 @@ import lamantinedu38 from '../evolutions/lamantinedu38'
 
 export const otamere: BaseShlagemon = {
   id: 'otamere',
-  name: 'Otamère',
+  name: 'data.shlagemons.45-50.otamere.name',
   description: 'data.shlagemons.45-50.otamere.description',
   types: [shlagemonTypes.eau],
 

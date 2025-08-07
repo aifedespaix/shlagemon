@@ -4,7 +4,7 @@ import croconaze from '../evolutions/croconaze'
 
 export const kaiminable: BaseShlagemon = {
   id: 'kaiminable',
-  name: 'Kaiminable',
+  name: 'data.shlagemons.60-65.kaiminable.name',
   description: 'data.shlagemons.60-65.kaiminable.description',
   types: [shlagemonTypes.eau],
   evolution: {

@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const magmaretfred: BaseShlagemon = {
   id: 'magmaretfred',
-  name: 'Magmar&Fred',
+  name: 'data.shlagemons.95-99.magmaretfred.name',
   description: 'data.shlagemons.95-99.magmaretfred.description',
   types: [shlagemonTypes.feu],
   speciality: 'unique',

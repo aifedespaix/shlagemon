@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const mVentriloque: BaseShlagemon = {
   id: 'm-ventriloque',
-  name: 'M. Ventriloque',
+  name: 'data.shlagemons.90-95.m-ventriloque.name',
   description: 'data.shlagemons.90-95.m-ventriloque.description',
   types: [shlagemonTypes.psy],
   speciality: 'unique',

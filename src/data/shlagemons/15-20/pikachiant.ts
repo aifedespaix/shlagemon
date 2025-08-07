@@ -5,7 +5,7 @@ import raichiotte from '../evolutions/raichiotte'
 
 export const pikachiant: BaseShlagemon = {
   id: 'pikachiant',
-  name: 'Pikachiant',
+  name: 'data.shlagemons.15-20.pikachiant.name',
   description: 'data.shlagemons.15-20.pikachiant.description',
   types: [shlagemonTypes.electrique],
   evolution: {

@@ -4,7 +4,7 @@ import nidoteub from '../evolutions/nidoteub'
 
 export const nidononbinaireM: BaseShlagemon = {
   id: 'nidononbinaire-m',
-  name: 'Nidononbinaire♂',
+  name: 'data.shlagemons.30-35.nidononbinaire-m.name',
   description: 'data.shlagemons.30-35.nidononbinaire-m.description',
   types: [shlagemonTypes.poison],
   evolution: {

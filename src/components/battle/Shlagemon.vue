@@ -143,7 +143,7 @@ const heldItem = computed(() => {
     </UiButton>
     <ShlagemonImage
       :id="props.mon.base.id"
-      :alt="props.mon.base.name"
+      :alt="t(props.mon.base.name)"
       :shiny="props.mon.isShiny"
       class="min-h-25 flex-1"
       :class="[props.flipped ? '-scale-x-100' : '', { faint: props.fainted }]"
@@ -164,7 +164,7 @@ const heldItem = computed(() => {
         alt="ball"
         class="h-4 w-4"
       >
-      <span class="font-bold" :class="{ 'shiny-text': props.mon.isShiny }">{{ props.mon.base.name }}</span>
+      <span class="font-bold" :class="{ 'shiny-text': props.mon.isShiny }">{{ t(props.mon.base.name) }}</span>
     </div>
     <UiProgressBar
       :value="props.hp"

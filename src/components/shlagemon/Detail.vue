@@ -115,7 +115,7 @@ const captureInfo = computed(() => {
     >
       <h2 class="flex items-center justify-between text-lg font-bold">
         <div class="flex items-center gap-1">
-          <span :class="mon.isShiny ? 'shiny-text' : ''">{{ mon.base.name }}</span>
+          <span :class="mon.isShiny ? 'shiny-text' : ''">{{ t(mon.base.name) }}</span>
           - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> ({{ t('components.shlagemon.Detail.sick') }})</span>
         </div>
         <ShlagemonRarityInfo :rarity="mon.rarity" class="rounded-tr-0" />
@@ -123,7 +123,7 @@ const captureInfo = computed(() => {
       <div class="relative h-40 w-full flex justify-center">
         <ShlagemonImage
           :id="mon.base.id"
-          :alt="mon.base.name"
+          :alt="t(mon.base.name)"
           :shiny="mon.isShiny"
           class="w-full object-contain"
         />

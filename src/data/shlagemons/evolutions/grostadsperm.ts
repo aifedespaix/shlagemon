@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const grostadsperm: BaseShlagemon = {
   id: 'grostadsperm',
-  name: 'Grostadsperm',
+  name: 'data.shlagemons.evolutions.grostadsperm.name',
   description: 'data.shlagemons.evolutions.grostadsperm.description',
   types: [shlagemonTypes.poison],
   speciality: 'evolution1',

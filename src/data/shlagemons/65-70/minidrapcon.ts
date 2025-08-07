@@ -4,7 +4,7 @@ import drapcon from '../evolutions/drapcon'
 
 export const minidrapcon: BaseShlagemon = {
   id: 'minidrapcon',
-  name: 'Minidrapcon',
+  name: 'data.shlagemons.65-70.minidrapcon.name',
   description: 'data.shlagemons.65-70.minidrapcon.description',
   types: [shlagemonTypes.dragon],
   evolution: {

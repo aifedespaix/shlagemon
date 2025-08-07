@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const kandurex: BaseShlagemon = {
   id: 'kandurex',
-  name: 'Kandurex',
+  name: 'data.shlagemons.85-90.kandurex.name',
   description: 'data.shlagemons.85-90.kandurex.description',
   types: [shlagemonTypes.normal],
   speciality: 'unique',

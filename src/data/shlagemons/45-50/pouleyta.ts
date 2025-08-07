@@ -4,7 +4,7 @@ import galopard from '../evolutions/galopard'
 
 export const pouleyta: BaseShlagemon = {
   id: 'pouleyta',
-  name: 'Pouleyta',
+  name: 'data.shlagemons.45-50.pouleyta.name',
   description: 'data.shlagemons.45-50.pouleyta.description',
   types: [shlagemonTypes.feu],
   evolution: {

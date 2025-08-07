@@ -128,7 +128,7 @@ onUnmounted(() => {
         circle
         @click="openEnemy(i)"
       >
-        <ShlagemonImage :id="enemy.id" :alt="enemy.name" class="h-full w-full object-contain" />
+        <ShlagemonImage :id="enemy.id" :alt="t(enemy.name)" class="h-full w-full object-contain" />
       </UiButton>
       <div v-for="enemy in enemyTeam" :key="enemy.id" class="flex-center flex-col gap-1 color-red-600">
         <div class="i-game-icons:battle-axe animate-pulse-alt text-xl" />
@@ -149,7 +149,7 @@ onUnmounted(() => {
         <template v-if="playerSelection[i]">
           <ShlagemonImage
             :id="playerSelection[i]!.base.id"
-            :alt="playerSelection[i]!.base.name"
+            :alt="t(playerSelection[i]!.base.name)"
             :shiny="playerSelection[i]!.isShiny"
             class="h-full w-full"
           />

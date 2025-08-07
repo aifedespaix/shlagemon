@@ -26,7 +26,7 @@ const dialogTree = computed<DialogNode[]>(() => [
   },
   {
     id: 'step3',
-    text: t('components.dialog.CuckRingDialog.steps.step3.text', { name: etronMuscle.name }),
+    text: t('components.dialog.CuckRingDialog.steps.step3.text', { name: t(etronMuscle.name) }),
     responses: [
       { label: t('components.dialog.CuckRingDialog.steps.step3.responses.back'), nextId: 'step2', type: 'danger' },
       { label: t('components.dialog.CuckRingDialog.steps.step3.responses.next'), nextId: 'step4', type: 'primary' },
@@ -42,7 +42,7 @@ const dialogTree = computed<DialogNode[]>(() => [
   },
   {
     id: 'step5',
-    text: t('components.dialog.CuckRingDialog.steps.step5.text', { name: etronMuscle.name }),
+    text: t('components.dialog.CuckRingDialog.steps.step5.text', { name: t(etronMuscle.name) }),
     responses: [
       { label: t('components.dialog.CuckRingDialog.steps.step5.responses.back'), nextId: 'step4', type: 'danger' },
       { label: t('components.dialog.CuckRingDialog.steps.step5.responses.next'), nextId: 'step6', type: 'primary' },

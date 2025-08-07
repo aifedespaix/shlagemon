@@ -4,7 +4,7 @@ import noadcajou from '../evolutions/noadcajou'
 
 export const huithuit: BaseShlagemon = {
   id: 'huithuit',
-  name: 'Huithuit',
+  name: 'data.shlagemons.75-80.huithuit.name',
   description: 'data.shlagemons.75-80.huithuit.description',
   types: [shlagemonTypes.plante, shlagemonTypes.psy],
   evolution: {

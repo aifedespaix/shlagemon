@@ -4,7 +4,7 @@ import empifouette from './empifouette'
 
 export const boustiflemme: BaseShlagemon = {
   id: 'boustiflemme',
-  name: 'Boustiflemme',
+  name: 'data.shlagemons.evolutions.boustiflemme.name',
   description: 'data.shlagemons.evolutions.boustiflemme.description',
   types: [shlagemonTypes.normal],
   evolution: {

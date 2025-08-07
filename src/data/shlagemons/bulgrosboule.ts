@@ -4,7 +4,7 @@ import { barbeBizarre } from './evolutions/barbe-bizarre'
 
 export const bulgrosboule: BaseShlagemon = {
   id: 'bulgrosboule',
-  name: 'Bulgrosboule',
+  name: 'data.shlagemons.bulgrosboule.name',
   description: 'data.shlagemons.bulgrosboule.description',
   types: [shlagemonTypes.plante],
   evolution: { base: barbeBizarre, condition: { type: 'lvl', value: 16 } },

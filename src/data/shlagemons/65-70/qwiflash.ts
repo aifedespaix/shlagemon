@@ -4,7 +4,7 @@ import qwiflouch from '../evolutions/qwiflouch'
 
 export const qwiflash: BaseShlagemon = {
   id: 'qwiflash',
-  name: 'Qwiflash',
+  name: 'data.shlagemons.65-70.qwiflash.name',
   description: 'data.shlagemons.65-70.qwiflash.description',
   types: [shlagemonTypes.eau, shlagemonTypes.poison],
   evolution: {

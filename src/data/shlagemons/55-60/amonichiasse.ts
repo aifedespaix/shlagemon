@@ -4,7 +4,7 @@ import amonitrace from '../evolutions/amonitrace'
 
 export const amonichiasse: BaseShlagemon = {
   id: 'amonichiasse',
-  name: 'Amonichiasse',
+  name: 'data.shlagemons.55-60.amonichiasse.name',
   description: 'data.shlagemons.55-60.amonichiasse.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
   evolution: {

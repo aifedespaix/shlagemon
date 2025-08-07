@@ -4,7 +4,7 @@ import orchibre from '../evolutions/orchibre'
 
 export const mystouffe: BaseShlagemon = {
   id: 'mystouffe',
-  name: 'Mystouffe',
+  name: 'data.shlagemons.20-25.mystouffe.name',
   description: 'data.shlagemons.20-25.mystouffe.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],

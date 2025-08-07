@@ -4,7 +4,7 @@ import noctedard from '../evolutions/noctedard'
 
 export const houlard: BaseShlagemon = {
   id: 'houlard',
-  name: 'Houlard',
+  name: 'data.shlagemons.60-65.houlard.name',
   description: 'data.shlagemons.60-65.houlard.description',
   types: [shlagemonTypes.vol, shlagemonTypes.psy],
   evolution: {

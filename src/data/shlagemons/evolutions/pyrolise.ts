@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const pyrolise: BaseShlagemon = {
   id: 'pyrolise',
-  name: 'Pyrolise',
+  name: 'data.shlagemons.evolutions.pyrolise.name',
   description: 'data.shlagemons.evolutions.pyrolise.description',
   types: [shlagemonTypes.feu],
   speciality: 'evolution1',

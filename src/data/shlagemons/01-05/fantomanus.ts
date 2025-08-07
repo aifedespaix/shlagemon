@@ -4,7 +4,7 @@ import sperectum from '../evolutions/sperectum'
 
 export const fantomanus: BaseShlagemon = {
   id: 'fantomanus',
-  name: 'Fantomanus',
+  name: 'data.shlagemons.01-05.fantomanus.name',
   description: 'data.shlagemons.01-05.fantomanus.description',
   types: [shlagemonTypes.spectre, shlagemonTypes.poison],
   evolution: {

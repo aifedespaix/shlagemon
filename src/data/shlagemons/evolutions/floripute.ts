@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const floripute: BaseShlagemon = {
   id: 'floripute',
-  name: 'Floripute',
+  name: 'data.shlagemons.evolutions.floripute.name',
   description: 'data.shlagemons.evolutions.floripute.description',
   types: [shlagemonTypes.plante],
   speciality: 'evolution1',

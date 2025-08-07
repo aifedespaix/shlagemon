@@ -4,7 +4,7 @@ import flaclodoss from '../evolutions/flaclodoss'
 
 export const raboloss: BaseShlagemon = {
   id: 'raboloss',
-  name: 'Raboloss',
+  name: 'data.shlagemons.40-45.raboloss.name',
   description: 'data.shlagemons.40-45.raboloss.description',
   types: [shlagemonTypes.eau, shlagemonTypes.psy],
   evolution: {

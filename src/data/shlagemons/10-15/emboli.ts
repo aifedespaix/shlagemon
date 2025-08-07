@@ -7,7 +7,7 @@ import tuberculi from '../evolutions/tuberculi'
 
 export const emboli: BaseShlagemon = {
   id: 'emboli',
-  name: 'Emboli',
+  name: 'data.shlagemons.10-15.emboli.name',
   description: 'data.shlagemons.10-15.emboli.description',
   types: [shlagemonTypes.poison],
   evolutions: [

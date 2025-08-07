@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const feunouille: BaseShlagemon = {
   id: 'feunouille',
-  name: 'Feunouille',
+  name: 'data.shlagemons.evolutions.feunouille.name',
   description: 'data.shlagemons.evolutions.feunouille.description',
 
   types: [shlagemonTypes.feu],

@@ -4,7 +4,7 @@ import feunouille from '../evolutions/feunouille'
 
 export const goubite: BaseShlagemon = {
   id: 'goubite',
-  name: 'Goubite',
+  name: 'data.shlagemons.15-20.goubite.name',
   description: 'data.shlagemons.15-20.goubite.description',
   types: [shlagemonTypes.feu],
   evolution: {

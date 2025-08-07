@@ -17,7 +17,7 @@ const arena = useArenaStore()
       >
         <ShlagemonImage
           :id="mon.base.id"
-          :alt="mon.base.name"
+          :alt="t(mon.base.name)"
           class="h-full w-full object-contain"
           :class="{ 'saturate-0': i < arena.currentIndex }"
         />

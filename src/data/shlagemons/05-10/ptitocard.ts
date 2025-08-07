@@ -4,7 +4,7 @@ import grossetarte from '../evolutions/grossetarte'
 
 export const ptitocard: BaseShlagemon = {
   id: 'ptitocard',
-  name: 'Ptitocard',
+  name: 'data.shlagemons.05-10.ptitocard.name',
   description: 'data.shlagemons.05-10.ptitocard.description',
   types: [shlagemonTypes.eau],
   evolution: {

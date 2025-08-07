@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../shlagemons-type'
 
 export const mairiousse: BaseShlagemon = {
   id: 'mairiousse',
-  name: 'Mairiousse',
+  name: 'data.shlagemons.mairiousse.name',
   description: 'data.shlagemons.mairiousse.description',
 
   types: [shlagemonTypes.sol, shlagemonTypes.eau],

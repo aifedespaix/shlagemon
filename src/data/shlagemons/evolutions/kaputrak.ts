@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const kaputrak: BaseShlagemon = {
   id: 'kaputrak',
-  name: 'Kaputrak',
+  name: 'data.shlagemons.evolutions.kaputrak.name',
   description: 'data.shlagemons.evolutions.kaputrak.description',
   types: [shlagemonTypes.roche, shlagemonTypes.eau],
   speciality: 'evolution1',

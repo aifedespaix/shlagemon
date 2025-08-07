@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const sacdepates: BaseShlagemon = {
   id: 'sacdepates',
-  name: 'Sac de Pâtes',
+  name: 'data.shlagemons.01-05.sacdepates.name',
   description: 'data.shlagemons.01-05.sacdepates.description',
   types: [shlagemonTypes.plante],
   speciality: 'unique',

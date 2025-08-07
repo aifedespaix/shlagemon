@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const onixtamere: BaseShlagemon = {
   id: 'onixtamere',
-  name: 'Onixtamere',
+  name: 'data.shlagemons.70-75.onixtamere.name',
   description: 'data.shlagemons.70-75.onixtamere.description',
   types: [shlagemonTypes.sol, shlagemonTypes.roche],
   speciality: 'unique',

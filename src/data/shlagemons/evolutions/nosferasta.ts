@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const nosferasta: BaseShlagemon = {
   id: 'nosferasta',
-  name: 'Nosferasta',
+  name: 'data.shlagemons.evolutions.nosferasta.name',
   description: 'data.shlagemons.evolutions.nosferasta.description',
 
   types: [shlagemonTypes.poison, shlagemonTypes.vol],

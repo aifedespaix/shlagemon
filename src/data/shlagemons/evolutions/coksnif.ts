@@ -4,7 +4,7 @@ import coxymort from './coxymort'
 
 export const coksnif: BaseShlagemon = {
   id: 'coksnif',
-  name: 'Coksnif',
+  name: 'data.shlagemons.evolutions.coksnif.name',
   description: 'data.shlagemons.evolutions.coksnif.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   evolution: {

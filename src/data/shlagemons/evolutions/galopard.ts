@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const galopard: BaseShlagemon = {
   id: 'galopard',
-  name: 'Galopard',
+  name: 'data.shlagemons.evolutions.galopard.name',
   description: 'data.shlagemons.evolutions.galopard.description',
   types: [shlagemonTypes.feu],
   speciality: 'evolution1',

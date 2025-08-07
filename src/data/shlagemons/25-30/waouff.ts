@@ -4,7 +4,7 @@ import perchiste from '../evolutions/perchiste'
 
 export const waouff: BaseShlagemon = {
   id: 'waouff',
-  name: 'Waouff',
+  name: 'data.shlagemons.25-30.waouff.name',
   description: 'data.shlagemons.25-30.waouff.description',
   types: [shlagemonTypes.normal],
   evolution: {

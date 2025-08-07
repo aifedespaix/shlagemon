@@ -4,7 +4,7 @@ import { floripute } from './floripute'
 
 export const barbeBizarre: BaseShlagemon = {
   id: 'barbe-bizarre',
-  name: 'Barbebizarre',
+  name: 'data.shlagemons.evolutions.barbe-bizarre.name',
   description: 'data.shlagemons.evolutions.barbe-bizarre.description',
 
   types: [shlagemonTypes.plante],
