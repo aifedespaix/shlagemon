@@ -158,7 +158,7 @@ function onCapture() {
       @capture="onCapture"
     >
       <template #header>
-        <BattleHeader :zone-name="zone.current.name" />
+        <BattleHeader :zone-name="t(zone.current.name)" />
       </template>
     </BattleRound>
     <ZoneMonsModal />
