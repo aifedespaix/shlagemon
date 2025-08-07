@@ -5,7 +5,7 @@ export const savage35: Zone = {
   name: 'data.zones.savages.35-route-du-nawak.name',
   type: 'sauvage',
   position: { lat: -80.23196607144244, lng: 61.694665012406944 },
-  completionAchievement: 'Voyageur de la Route du Nawak',
+  completionAchievement: 'data.zones.savages.35-route-du-nawak.completionAchievement',
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
     '../../shlagemons/35-40/*.ts',
     { eager: true },
