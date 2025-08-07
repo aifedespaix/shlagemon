@@ -40,4 +40,18 @@ describe('achievements', () => {
     await nextTick()
     expect(achievements.unlockedList.some(a => a.id === 'zone-plaine-kekette-win-10')).toBe(true)
   })
+
+  it('unlocks zone shiny and rarity achievements', async () => {
+    setActivePinia(createPinia())
+    const achievements = useAchievementsStore()
+    const dex = useShlagedexStore()
+
+    const mons = [sacdepates, rouxPasCool, fantomanus, jeunebelette]
+    const created = mons.map(base => dex.createShlagemon(base, true))
+    created.forEach(mon => mon.rarity = 100)
+    await nextTick()
+
+    expect(achievements.unlockedList.some(a => a.id === 'zone-plaine-kekette-shiny')).toBe(true)
+    expect(achievements.unlockedList.some(a => a.id === 'zone-plaine-kekette-rarity-100')).toBe(true)
+  })
 })

@@ -63,8 +63,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
     if (!unlocked.value[id]) {
       unlocked.value[id] = Date.now()
       const def = defMap[id]
-      if (def)
-        toast.success(`Succès déverrouillé : ${def.title}`, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+      if (def) {
+        const message = i18n.global.t('stores.achievements.unlocked', { title: def.title })
+        toast.success(message, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+      }
     }
   }
 
@@ -215,8 +217,24 @@ export const useAchievementsStore = defineStore('achievements', () => {
       defs.push(def)
       defMap[def.id] = def
     }
+    if (z.type === 'sauvage') {
+      const shinyDef = {
+        id: `zone-${z.id}-shiny`,
+        title: i18n.global.t('stores.achievements.zoneShinyTitle', { zone: i18n.global.t(z.name) }),
+        description: i18n.global.t('stores.achievements.zoneShinyDescription', { zone: i18n.global.t(z.name) }),
+        icon: 'mdi:star-shooting-outline',
+      }
+      defs.push(shinyDef)
+      defMap[shinyDef.id] = shinyDef
 
-    if (z.type !== 'village') {
+      const rarityDef = {
+        id: `zone-${z.id}-rarity-100`,
+        title: i18n.global.t('stores.achievements.zoneRarityTitle', { zone: i18n.global.t(z.name) }),
+        description: i18n.global.t('stores.achievements.zoneRarityDescription', { zone: i18n.global.t(z.name) }),
+        icon: 'mdi:diamond',
+      }
+      defs.push(rarityDef)
+      defMap[rarityDef.id] = rarityDef
       zoneWinThresholds.forEach((n) => {
         const def = {
           id: `zone-${z.id}-win-${n}`,
@@ -315,7 +333,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
         // Ensure zone-related achievements are evaluated for each capture
         // to immediately unlock completion rewards when the last required
         // Shlagémon of a zone is obtained.
-        checkZoneCompletion()
+        checkZoneAchievements()
         break
       case 'battle-win':
         counters.wins += 1
@@ -377,15 +395,32 @@ export const useAchievementsStore = defineStore('achievements', () => {
     })
   }, { immediate: true })
 
-  function checkZoneCompletion() {
+  function checkZoneAchievements() {
     zonesData.forEach((z) => {
-      if (!z.shlagemons?.length || !z.completionAchievement)
+      if (!z.shlagemons?.length)
         return
-      const all = z.shlagemons.every(base =>
-        dex.shlagemons.some(m => m.base.id === base.id),
-      )
-      if (all)
-        unlock(`zone-${z.id}-complete`)
+
+      if (z.completionAchievement) {
+        const capturedAll = z.shlagemons.every(base =>
+          dex.shlagemons.some(m => m.base.id === base.id),
+        )
+        if (capturedAll)
+          unlock(`zone-${z.id}-complete`)
+      }
+
+      if (z.type === 'sauvage') {
+        const shinyAll = z.shlagemons.every(base =>
+          dex.shlagemons.some(m => m.base.id === base.id && m.isShiny),
+        )
+        if (shinyAll)
+          unlock(`zone-${z.id}-shiny`)
+
+        const rarityAll = z.shlagemons.every(base =>
+          dex.shlagemons.some(m => m.base.id === base.id && m.rarity >= 100),
+        )
+        if (rarityAll)
+          unlock(`zone-${z.id}-rarity-100`)
+      }
     })
   }
 
@@ -395,8 +430,16 @@ export const useAchievementsStore = defineStore('achievements', () => {
   const capturedIds = computed(() =>
     dex.shlagemons.map(m => m.base.id).sort().join(','),
   )
+  const shinyIds = computed(() =>
+    dex.shlagemons.filter(m => m.isShiny).map(m => m.base.id).sort().join(','),
+  )
+  const rarityIds = computed(() =>
+    dex.shlagemons.filter(m => m.rarity >= 100).map(m => m.base.id).sort().join(','),
+  )
 
-  watch(capturedIds, () => checkZoneCompletion(), { immediate: true })
+  watch(capturedIds, () => checkZoneAchievements(), { immediate: true })
+  watch(shinyIds, () => checkZoneAchievements(), { immediate: true })
+  watch(rarityIds, () => checkZoneAchievements(), { immediate: true })
   watch(progress.wins, (val) => {
     zonesData.forEach((z) => {
       if (z.type === 'village')
@@ -471,6 +514,30 @@ export const useAchievementsStore = defineStore('achievements', () => {
       const zoneWin = prefix.match(/^zone-(.*)-win$/)
       if (zoneWin)
         return { value: progress.wins[zoneWin[1]] || 0, max }
+    }
+
+    const zoneShiny = id.match(/^zone-(.*)-shiny$/)
+    if (zoneShiny) {
+      const zoneId = zoneShiny[1]
+      const zone = zonesData.find(z => z.id === zoneId)
+      if (zone && zone.shlagemons?.length) {
+        const shiny = zone.shlagemons.filter(base =>
+          dex.shlagemons.some(m => m.base.id === base.id && m.isShiny),
+        ).length
+        return { value: shiny, max: zone.shlagemons.length }
+      }
+    }
+
+    const zoneRarity = id.match(/^zone-(.*)-rarity-100$/)
+    if (zoneRarity) {
+      const zoneId = zoneRarity[1]
+      const zone = zonesData.find(z => z.id === zoneId)
+      if (zone && zone.shlagemons?.length) {
+        const rare = zone.shlagemons.filter(base =>
+          dex.shlagemons.some(m => m.base.id === base.id && m.rarity >= 100),
+        ).length
+        return { value: rare, max: zone.shlagemons.length }
+      }
     }
 
     const zoneComplete = id.match(/^zone-(.*)-complete$/)

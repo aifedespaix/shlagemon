@@ -1,4 +1,12 @@
 fr:
   unlocked: 'Succès déverrouillé : {title}'
+  zoneShinyTitle: "{zone} : Chasseur d'arc-en-ciel"
+  zoneShinyDescription: 'Capturer tous les Shlagémon de {zone} en version shiny.'
+  zoneRarityTitle: '{zone} : Perfectionniste'
+  zoneRarityDescription: 'Amener tous les Shlagémon de {zone} à la rareté 100.'
 en:
   unlocked: 'Achievement unlocked: {title}'
+  zoneShinyTitle: '{zone}: Rainbow Hunter'
+  zoneShinyDescription: 'Capture every Shlagémon in {zone} in shiny form.'
+  zoneRarityTitle: '{zone}: Perfectionist'
+  zoneRarityDescription: 'Raise every Shlagémon in {zone} to rarity 100.'
