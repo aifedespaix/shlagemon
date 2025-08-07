@@ -1,9 +1,6 @@
 fr:
-  description: >-
-    Armé d'un os gigantesque, Hosoltueur règle ses comptes en une seule frappe.
-    Il garde pourtant un air mélancolique en pensant à son enfance perdue.
+  description: Armé d'un os gigantesque, Hosoltueur règle ses comptes en une seule frappe. Il garde pourtant un air mélancolique en pensant à son enfance perdue.
+  name: Hosoltueur
 en:
-  description: >-
-    Armed with a gigantic bone, Hosletueur settles his accounts in a single
-    strike. However, he keeps a melancholy air thinking about his lost
-    childhood.
+  description: Armed with a gigantic bone, Hosletueur settles his accounts in a single strike. However, he keeps a melancholy air thinking about his lost childhood.
+  name: Killowak

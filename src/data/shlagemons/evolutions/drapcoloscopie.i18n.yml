@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Forme finale du DrapCon, ce drap géant se prend pour un médecin de l’obscur
-    et fouille tout ce qui passe à sa portée.
+  description: Forme finale du DrapCon, ce drap géant se prend pour un médecin de l’obscur et fouille tout ce qui passe à sa portée.
+  name: Drapcoloscopie
 en:
-  description: >-
-    Final form of the sheet, this giant sheet takes itself for a doctor from the
-    dark and searches everything that goes within his reach.
+  description: Final form of the sheet, this giant sheet takes itself for a doctor from the dark and searches everything that goes within his reach.
+  name: Drapcoloscopie

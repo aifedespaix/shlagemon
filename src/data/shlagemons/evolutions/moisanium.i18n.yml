@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Géante plante décrépite, tachetée de moisissure, avec des spores
-    hallucinogènes. Elle rigole toute seule dans les champs.
+  description: Géante plante décrépite, tachetée de moisissure, avec des spores hallucinogènes. Elle rigole toute seule dans les champs.
+  name: Moisanium
 en:
-  description: >-
-    Giant decrepit plant, spotted with mold, with hallucinogenic spores. She
-    laughs alone in the fields.
+  description: Giant decrepit plant, spotted with mold, with hallucinogenic spores. She laughs alone in the fields.
+  name: Moisanium

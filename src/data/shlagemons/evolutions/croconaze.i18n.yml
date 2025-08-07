@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Il porte une veste en cuir moisi, fait le caïd dans les parkings, mais a des
-    dents en plastique.
+  description: Il porte une veste en cuir moisi, fait le caïd dans les parkings, mais a des dents en plastique.
+  name: Croconaze
 en:
-  description: >-
-    He wears a moldy leather jacket, made the boss in the car parks, but has
-    plastic teeth.
+  description: He wears a moldy leather jacket, made the boss in the car parks, but has plastic teeth.
+  name: Croconaze

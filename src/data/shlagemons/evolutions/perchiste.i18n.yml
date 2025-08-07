@@ -1,18 +1,17 @@
 fr:
-  description: >-
-    Perchiste a quitté le grand banditisme des ruelles de Kanto pour se
-    reconvertir dans le cinéma d’auteur… mais pas le bon. Armé de sa perche
-    micro rafistolée avec du chatterton et un vieux t-shirt de crew, il hante
-    les plateaux de tournage miteux, toujours prêt à capter les souffles, les
-    silences, et parfois… ses propres soupirs de dépression.
-
-    Il prend très à cœur son rôle, quitte à interrompre une scène pour recadrer
-    un angle de son ou insulter un stagiaire lumière. Ses coussinets amortissent
-    les bruits de pas, mais sa touffe de poils sur l’oreille capte toutes les
-    mauvaises vibes.
-
-    Son attaque signature, *Grésil du Désespoir*, inflige un bruit statique à
-    l’ennemi pendant 3 tours, tandis que *Silence Plateau !* le fait disparaître
-    temporairement du combat, le temps d’un long plan fixe inutile.
+  description: |-
+    Perchiste a quitté le grand banditisme des ruelles de Kanto pour se reconvertir dans le cinéma d’auteur… mais pas le bon. Armé de sa perche micro rafistolée avec du chatterton et un vieux t-shirt de crew, il hante les plateaux de tournage miteux, toujours prêt à capter les souffles, les silences, et parfois… ses propres soupirs de dépression.
+    Il prend très à cœur son rôle, quitte à interrompre une scène pour recadrer un angle de son ou insulter un stagiaire lumière. Ses coussinets amortissent les bruits de pas, mais sa touffe de poils sur l’oreille capte toutes les mauvaises vibes.
+    Son attaque signature, *Grésil du Désespoir*, inflige un bruit statique à l’ennemi pendant 3 tours, tandis que *Silence Plateau !* le fait disparaître temporairement du combat, le temps d’un long plan fixe inutile.
+  name: Perchiste
 en:
-  description: "Perchist has left the great banditry of the alleys of Kanto to convert to the cinema of author ... but not the good. Armed with his micro kept pole with chatterton and an old Crew t-shirt, he haunts the shabby filming sets, always ready to capture the breaths, the silences, and sometimes ... his own depression sighs.\nHe takes his role very at heart, even if it means interrupting a scene to crop an angle of his or insulting a light intern. Its pads amortize the footsteps, but its \r\naf0\r\ntuft of hair on the ear captures all the bad vibes.\nHis signature attack, *Grils of despair *, inflicts a static noise on the enemy for 3 laps, while *Silence Plateau! *Makes it temporarily from the fight, for a long unnecessary fixed plan."
+  description: "Perchist has left the great banditry of the alleys of Kanto to convert to the cinema of author ... but not the good. Armed with his micro kept pole with chatterton and an old Crew t-shirt, he haunts the shabby filming sets, always ready to capture the breaths, the silences, and sometimes ... his own depression sighs.
+
+    He takes his role very at heart, even if it means interrupting a scene to crop an angle of his or insulting a light intern. Its pads amortize the footsteps, but its \r
+
+    af0\r
+
+    tuft of hair on the ear captures all the bad vibes.
+
+    His signature attack, *Grils of despair *, inflicts a static noise on the enemy for 3 laps, while *Silence Plateau! *Makes it temporarily from the fight, for a long unnecessary fixed plan."
+  name: soundtech

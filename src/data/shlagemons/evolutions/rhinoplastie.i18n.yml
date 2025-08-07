@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Après une chirurgie esthétique ratée, Rhinoplastie a la face entièrement
-    remodelée. Il fait peur à tout le monde mais se trouve magnifique.
+  description: Après une chirurgie esthétique ratée, Rhinoplastie a la face entièrement remodelée. Il fait peur à tout le monde mais se trouve magnifique.
+  name: Rhinoplastie
 en:
-  description: >-
-    After failed cosmetic surgery, rhinoplasty has the entirely reshaped face.
-    He scares everyone but is beautiful.
+  description: After failed cosmetic surgery, rhinoplasty has the entirely reshaped face. He scares everyone but is beautiful.
+  name: Rhydonplastic

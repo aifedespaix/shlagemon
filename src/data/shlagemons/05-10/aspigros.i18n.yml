@@ -1,44 +1,16 @@
 en:
-  description: >-
-    Aspigros is plump, slow, and proud of his beads which he affectionately
-    calls his "pawnrings". His dart disappeared under a layer of dubious fat,
-    replaced by a fork planted there "convenience".
-
-    He is constantly chewing something: a sheet, a packaging, a pebble, or
-    sometimes one of his own segments. When he attacks, he rolls towards the
-    enemy groaning with pleasure, hoping that a snack is on the way.
-
-    His signature attack, *Miam-Massacre *, inflicts damage proportional to the
-    number of snacks he has ingested in the last 5 minutes. It can also use
-    *eructo-defensive *, a sound attack based on sweet rots which repel the weak
-    stomach enemies.
-
-    He does not speak, but does 100% time of chewing time. He loves picnics,
-    wedding buffets and plastic bags that make noise. On the other hand, he
-    flees to the simple mention of the word "diet", "proteins" or "detox cure".
-
-    We recognize him by his spherical form, his eyes always half-closed of
-    satiety, and his motto engraved on his belly: "If it comes in, it's good."
+  description: |-
+    Aspigros is plump, slow, and proud of his beads which he affectionately calls his "pawnrings". His dart disappeared under a layer of dubious fat, replaced by a fork planted there "convenience".
+    He is constantly chewing something: a sheet, a packaging, a pebble, or sometimes one of his own segments. When he attacks, he rolls towards the enemy groaning with pleasure, hoping that a snack is on the way.
+    His signature attack, *Miam-Massacre *, inflicts damage proportional to the number of snacks he has ingested in the last 5 minutes. It can also use *eructo-defensive *, a sound attack based on sweet rots which repel the weak stomach enemies.
+    He does not speak, but does 100% time of chewing time. He loves picnics, wedding buffets and plastic bags that make noise. On the other hand, he flees to the simple mention of the word "diet", "proteins" or "detox cure".
+    We recognize him by his spherical form, his eyes always half-closed of satiety, and his motto engraved on his belly: "If it comes in, it's good."
+  name: Fatedle
 fr:
-  description: >-
-    Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle
-    affectueusement ses "paniers-repas". Son dard a disparu sous une couche de
-    gras douteux, remplacé par une fourchette plantée là "par commodité".
-
-    Il est constamment en train de mâchouiller quelque chose : une feuille, un
-    emballage, un caillou, ou parfois un de ses propres segments. Lorsqu’il
-    attaque, il roule vers l’ennemi en gémissant de plaisir, espérant qu’un
-    snack se trouve en chemin.
-
-    Son attaque signature, *Miam-Massacre*, inflige des dégâts proportionnels au
-    nombre de snacks qu’il a ingérés dans les 5 dernières minutes. Il peut aussi
-    utiliser *Éructo-Défensif*, une attaque sonore à base de rots sucrés qui
-    repoussent les ennemis faibles d’estomac.
-
-    Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il adore
-    les pique-niques, les buffets de mariage et les sacs plastiques qui font du
-    bruit. En revanche, il fuit à la simple mention du mot "diète", "protéines"
-    ou "cure détox".
-
-    On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de satiété,
-    et à sa devise gravée sur son ventre : "Si ça rentre, c’est que c’est bon."
+  description: |-
+    Aspigros est dodu, lent, et fier de ses bourrelets qu’il appelle affectueusement ses "paniers-repas". Son dard a disparu sous une couche de gras douteux, remplacé par une fourchette plantée là "par commodité".
+    Il est constamment en train de mâchouiller quelque chose : une feuille, un emballage, un caillou, ou parfois un de ses propres segments. Lorsqu’il attaque, il roule vers l’ennemi en gémissant de plaisir, espérant qu’un snack se trouve en chemin.
+    Son attaque signature, *Miam-Massacre*, inflige des dégâts proportionnels au nombre de snacks qu’il a ingérés dans les 5 dernières minutes. Il peut aussi utiliser *Éructo-Défensif*, une attaque sonore à base de rots sucrés qui repoussent les ennemis faibles d’estomac.
+    Il ne parle pas, mais fait des bruits de mastication 100% du temps. Il adore les pique-niques, les buffets de mariage et les sacs plastiques qui font du bruit. En revanche, il fuit à la simple mention du mot "diète", "protéines" ou "cure détox".
+    On le reconnaît à sa forme sphérique, ses yeux toujours mi-clos de satiété, et à sa devise gravée sur son ventre : "Si ça rentre, c’est que c’est bon."
+  name: Aspigros

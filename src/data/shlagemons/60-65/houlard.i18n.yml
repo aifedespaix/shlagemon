@@ -1,6 +1,6 @@
 en:
-  description: >-
-    A spaced-out little owl with a single swiveling red eye. It perches on power poles, dropping phosphorescent droppings.
+  description: A spaced-out little owl with a single swiveling red eye. It perches on power poles, dropping phosphorescent droppings.
+  name: Houlard
 fr:
-  description: >-
-    Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des poteaux EDF, lâche des fientes phosphorescentes.
+  description: Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des poteaux EDF, lâche des fientes phosphorescentes.
+  name: Houlard

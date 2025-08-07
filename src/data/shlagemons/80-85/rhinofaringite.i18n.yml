@@ -1,8 +1,6 @@
 en:
-  description: >-
-    This sneezed rhinoceros sneezed from the rocks on its enemies. Its nose runs
-    permanently, which makes it as slippery as it is unpredictable.
+  description: This sneezed rhinoceros sneezed from the rocks on its enemies. Its nose runs permanently, which makes it as slippery as it is unpredictable.
+  name: Rhyhosick
 fr:
-  description: >-
-    Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en
-    permanence, ce qui le rend aussi glissant qu'imprévisible.
+  description: Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en permanence, ce qui le rend aussi glissant qu'imprévisible.
+  name: Rhinofaringite

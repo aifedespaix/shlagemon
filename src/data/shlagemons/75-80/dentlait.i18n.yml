@@ -1,9 +1,6 @@
 en:
-  description: >-
-    Dentlait has a single tooth that could fall out at any time. It guards it
-    jealously and bites everything to prove it's still there.
+  description: Dentlait has a single tooth that could fall out at any time. It guards it jealously and bites everything to prove it's still there.
+  name: Babone
 fr:
-  description: >-
-    Dentlait n'a qu'une seule dent qui menace de tomber à tout moment. Il la
-    protège jalousement et mord tout ce qui passe pour prouver qu'elle tient
-    encore en place.
+  description: Dentlait n'a qu'une seule dent qui menace de tomber à tout moment. Il la protège jalousement et mord tout ce qui passe pour prouver qu'elle tient encore en place.
+  name: Dentlait

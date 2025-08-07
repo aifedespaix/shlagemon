@@ -1,28 +1,12 @@
 fr:
-  description: >-
-    Galopard était autrefois un fier destrier, mais aujourd’hui il traîne sa
-    carcasse devant les PMU, recouvert d’un vieux tapis à la place de sa
-    crinière flamboyante. Ses sabots sont couverts de chewing-gums et il porte
-    souvent un gilet jaune taché, trouvé lors d’une manif. Sa flamme ne brûle
-    plus vraiment, elle fume comme une clope mal éteinte.
-
-    Son attaque signature, *Jet de Binouze*, consiste à asperger ses adversaires
-    de bière tiède, ce qui réduit leur motivation à se battre. On dit qu’il
-    passe ses journées à râler contre “les jeunes” et à raconter qu’à son
-    époque, il courait bien plus vite.
-
+  description: |-
+    Galopard était autrefois un fier destrier, mais aujourd’hui il traîne sa carcasse devant les PMU, recouvert d’un vieux tapis à la place de sa crinière flamboyante. Ses sabots sont couverts de chewing-gums et il porte souvent un gilet jaune taché, trouvé lors d’une manif. Sa flamme ne brûle plus vraiment, elle fume comme une clope mal éteinte.
+    Son attaque signature, *Jet de Binouze*, consiste à asperger ses adversaires de bière tiède, ce qui réduit leur motivation à se battre. On dit qu’il passe ses journées à râler contre “les jeunes” et à raconter qu’à son époque, il courait bien plus vite.
     Il n’aime qu’une seule chose : quand la France gagne au tiercé.
+  name: Galopard
 en:
-  description: >-
-    Galopard was once a proud steed, but today he hangs out his carcass in front
-    of the PMUs, covered with an old carpet in place of his flamboyant mane. His
-    hooves are covered with chewing gum and he often wears a stained yellow
-    vest, found during a demonstration. Her flame no longer really burns, she
-    smokes like a badly extinct cigarette.
-
-    His signature attack, *Binouze *jet, consists in spraying his opponents of
-    lukewarm beer, which reduces their motivation to fight. It is said that he
-    spends his days moaning against "young people" and telling that in his time,
-    he ran much faster.
-
+  description: |-
+    Galopard was once a proud steed, but today he hangs out his carcass in front of the PMUs, covered with an old carpet in place of his flamboyant mane. His hooves are covered with chewing gum and he often wears a stained yellow vest, found during a demonstration. Her flame no longer really burns, she smokes like a badly extinct cigarette.
+    His signature attack, *Binouze *jet, consists in spraying his opponents of lukewarm beer, which reduces their motivation to fight. It is said that he spends his days moaning against "young people" and telling that in his time, he ran much faster.
     He likes only one thing: when France wins the third.
+  name: Bastardash

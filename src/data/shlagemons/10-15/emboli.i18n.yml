@@ -1,19 +1,6 @@
 en:
-  description: >-
-    Emboli occurred after a long stay in a badly ventilated cellar. Its coat
-    smells of cold tobacco and weariness, and it constantly emits small grayish
-    scrolls, for no apparent reason. He almost never fights. He blows. Heavily.
-    If he attacks, it is generally by accident, or because he was asked too
-    hard. His signature attack, toxic sigh, inflicts progressive damage to the
-    opponent and can cause the demotivation state. In combat, he prefers to sit
-    down and watch others fight. He is especially there "for the atmosphere".
+  description: Emboli occurred after a long stay in a badly ventilated cellar. Its coat smells of cold tobacco and weariness, and it constantly emits small grayish scrolls, for no apparent reason. He almost never fights. He blows. Heavily. If he attacks, it is generally by accident, or because he was asked too hard. His signature attack, toxic sigh, inflicts progressive damage to the opponent and can cause the demotivation state. In combat, he prefers to sit down and watch others fight. He is especially there "for the atmosphere".
+  name: Embolievee
 fr:
-  description: >-
-    Emboli est survenue après un long séjour dans une cave mal ventilée. Son
-    pelage sent le tabac froid et la lassitude, et il émet en permanence de
-    petites volutes grisâtres, sans raison apparente. Il ne se bat presque
-    jamais. Il souffle. Lourdement. S’il attaque, c’est généralement par
-    accident, ou parce qu’on lui a demandé trop fort. Son attaque signature,
-    Soupir Toxique, inflige des dégâts progressifs à l’adversaire et peut
-    provoquer l’état Démotivation. En combat, il préfère s’asseoir et regarder
-    les autres se battre. Il est surtout là "pour l’ambiance".
+  description: Emboli est survenue après un long séjour dans une cave mal ventilée. Son pelage sent le tabac froid et la lassitude, et il émet en permanence de petites volutes grisâtres, sans raison apparente. Il ne se bat presque jamais. Il souffle. Lourdement. S’il attaque, c’est généralement par accident, ou parce qu’on lui a demandé trop fort. Son attaque signature, Soupir Toxique, inflige des dégâts progressifs à l’adversaire et peut provoquer l’état Démotivation. En combat, il préfère s’asseoir et regarder les autres se battre. Il est surtout là "pour l’ambiance".
+  name: Emboli
