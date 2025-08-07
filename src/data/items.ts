@@ -314,7 +314,7 @@ export const hyperPotion: Item = {
   details: 'data.items.hyperPotion.details',
   type: 'heal',
   power: superPotion.power * 4,
-  price: superPotion.power * 10,
+  price: superPotion.price * 10,
   currency: 'shlagidolar',
   category: 'battle',
   battleCooldown: superPotion.battleCooldown * 2,

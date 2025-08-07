@@ -22,7 +22,8 @@
     "mons": "py scripts/convert-webp/convert-webp.py",
     "music-data": "node scripts/music-data/music-data.cjs",
     "names": "node scripts/names/names.cjs",
-    "sfx": "py scripts/clean-meta/clean-meta.py"
+    "sfx": "py scripts/clean-meta/clean-meta.py",
+    "generate-pwa-assets": "pwa-assets-generator"
   },
   "dependencies": {
     "@headlessui/vue": "catalog:frontend",
@@ -67,6 +68,7 @@
     "eslint-plugin-format": "catalog:dev",
     "https-localhost": "catalog:dev",
     "lint-staged": "catalog:dev",
+    "@vite-pwa/assets-generator": "catalog:build",
     "markdown-it-link-attributes": "catalog:build",
     "rollup": "catalog:build",
     "shiki": "catalog:build",
