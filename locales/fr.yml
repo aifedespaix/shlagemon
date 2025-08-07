@@ -1,7 +1,7 @@
 components:
   deck:
     DeckDetail:
-      evolution: 'Évolution :'
+      evolution: "Évolution :"
       level: lvl {n}
     DeckList:
       search: Rechercher
@@ -9,7 +9,7 @@ components:
         name: Nom
         type: Type
     Detail:
-      evolution: 'Évolution :'
+      evolution: "Évolution :"
       level: lvl {n}
     List:
       search: Rechercher
@@ -52,9 +52,9 @@ components:
       intro1: Le bonus du Shlagedex correspond à votre **ShlagéDex potentiel**. Il représente le bonus maximal que vous pourriez obtenir en capturant tous les Shlagémon accessibles.
       intro2: Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel ainsi que sur le niveau moyen de votre équipe.
       formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10
-      completion: 'Complétion :'
-      averageLevel: 'Niveau moyen :'
-      currentBonus: 'Bonus actuel :'
+      completion: "Complétion :"
+      averageLevel: "Niveau moyen :"
+      currentBonus: "Bonus actuel :"
     Inventory:
       sort:
         type: Type
@@ -68,7 +68,7 @@ components:
         battle: Combat
       equip: Vous avez équipé la {item}
     PlayerInfos:
-      sick: 'Malade : {n} combats restants'
+      sick: "Malade : {n} combats restants"
       dex: ShlagéDex
       averageLevel: Niveau moyen
       bonus: Bonus
@@ -145,7 +145,7 @@ components:
       ownedTooltip: Vous possédez déjà ce Shlagémon
       infoTooltip: Voir les détails
     DiseaseBadge:
-      tooltip: 'Malade : {n} combats restants'
+      tooltip: "Malade : {n} combats restants"
     EffectBadge:
       attack: Votre attaque est boostée pour encore {remaining}
       defense: Votre défense est boostée pour encore {remaining}
@@ -230,7 +230,7 @@ components:
     Detail:
       equipItemTitle: Équiper un objet
       allowEvolution: Autoriser ce Shlagémon à évoluer ?
-      firstCatch: 'Première capture : {date}'
+      firstCatch: "Première capture : {date}"
       obtainedTimes: Obtenu {count} fois
       release: Relâcher
       main: Principal
@@ -250,7 +250,7 @@ components:
       title: Choisir un objet à équiper
       noAvailable: Aucun objet disponible.
     EvolutionModal:
-      evolveTitle: '{name} évolue'
+      evolveTitle: "{name} évolue"
       question: « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?
       alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
       yes: Oui
@@ -322,7 +322,7 @@ components:
           text: Félicitations ! Tu as triomphé de l'arène.
           responses:
             collect: Récupérer le badge
-      toast: '{name} obtenu !'
+      toast: "{name} obtenu !"
     ArenaWelcomeDialog:
       steps:
         step1:
@@ -577,7 +577,7 @@ components:
         step1:
           text: Impressionnant ! Tu as capturé au moins {count} Shlagémons.
         step2:
-          text: 'Voici un objet unique : {name}.'
+          text: "Voici un objet unique : {name}."
         step3:
           text: Il augmente {stat} du porteur de {percent}%.
         step4:
@@ -817,7 +817,7 @@ components:
         - T'es à deux doigts de faire un pet cérébral.
         - Rarement vu quelqu'un aussi merdique.
       validate: Valider
-      attemptsLeft: '{n} tentatives restantes'
+      attemptsLeft: "{n} tentatives restantes"
       win: T'as percé le cerveau d'un Shlag !
       lose: Même un Petmorv y serait arrivé
       legend:
@@ -826,7 +826,7 @@ components:
         absent: Absent de la combinaison
       selectSlot: Sélectionne une case
     Pairs:
-      attempts: '{n} tentative | {n} tentatives'
+      attempts: "{n} tentative | {n} tentatives"
     masterMind:
       SelectionModal:
         title: Choisis un Shlagémon
@@ -866,7 +866,7 @@ components:
       arena: Arène
       henhouse: Poulailler
       fightKing: Défier la {label} de la zone
-      kingDefeated: '{label} vaincu{suffix} !'
+      kingDefeated: "{label} vaincu{suffix} !"
   zone:
     MonsModal:
       title: Shlagémons de {zone}
@@ -898,7 +898,7 @@ data:
         description: Roux pas Cool était anciennement cool. Roux pas Cool a passé trop de temps à gratter des accords mineurs au bord d’un volcan éteint. Désormais, Roux pas Cool erre avec une guitare trop grande pour ses ailes, des taches de rousseur qui pleurent, et une chemise à carreaux qui sent l’herbe humide et les regrets. Son plumage a pris une teinte rouille triste, et sa mèche rousse cache un regard empli de remords, comme s’il réalisait constamment qu’il aurait pu évoluer en rapace légendaire, mais a préféré sortir un EP en indépendant. Il fait toujours un peu froid autour de lui, même en plein été. Sa capacité signature, Refrain Gênant, inflige un malaise profond à toute l’arène, réduisant la précision des attaques ennemies tant qu’ils détournent le regard. Il est très doué pour faire fuir les Pokémon sauvages… et les rendez-vous galants.
         name: Roux pas Cool
       sacdepates:
-        description: 'Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser.'
+        description: "Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser."
         name: Sac de Pâtes
     05-10:
       aspigros:
@@ -923,7 +923,7 @@ data:
         description: Une masse de boue nauséabonde qui se traîne lentement. Là où il passe, plus rien ne pousse à cause de sa toxicité. Il est fait d'une boue toxique. Il pollue tout ce qu’il touche, même le sol devient stérile. Il pue tellement que des gens s’évanouissent rien qu’en le croisant. Son corps est un concentré de toxines.
         name: Metamorve
       ptitocard:
-        description: 'Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion… mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.'
+        description: "Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion… mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr."
         name: Ptitocard
     10-15:
       abraquemar:
@@ -1211,7 +1211,7 @@ data:
         description: Sa langue interminable traîne partout et sert principalement à médire. Il aime critiquer ses adversaires jusqu'à ce qu'ils abandonnent par lassitude.
         name: Languedepute
       lecocu:
-        description: 'Lecocu porte toujours un air triste : sa femme le trompe avec tous les dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec une gentillesse déconcertante.'
+        description: "Lecocu porte toujours un air triste : sa femme le trompe avec tous les dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec une gentillesse déconcertante."
         name: Lecocu
       rhinofaringite:
         description: Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en permanence, ce qui le rend aussi glissant qu'imprévisible.
@@ -1264,7 +1264,7 @@ data:
         Aujourd’hui, Artichaud veille sur les zones de non-droit climatiques, où il impose son règne moite et frigorifié, entre deux éternuements fumants et des engelures de l’aisselle.
       name: Artichaud
     bulgrosboule:
-      description: 'Bulgrosboule est connu pour ses fesses titanesques capables d’éclipser le soleil couchant. Il avance à reculons, plus par fierté que par stratégie, laissant échapper des bulles parfumées d’une zone que les dresseurs préfèrent ne pas mentionner. Son cri ressemble à un bain moussant sous pression, et sa capacité signature, *Éruption Fessale*, propulse ses ennemis dans une brume tiède et collante. Doté d’une peau rebondie comme une piscine gonflable de brocante, il adore rebondir sur place en gloussant, ce qui désoriente la plupart des adversaires. Bulgrosboule est très affectueux, surtout avec ceux qui le massent. Attention toutefois : s’il se met à trembler des miches, c’est trop tard. Il va buller.'
+      description: "Bulgrosboule est connu pour ses fesses titanesques capables d’éclipser le soleil couchant. Il avance à reculons, plus par fierté que par stratégie, laissant échapper des bulles parfumées d’une zone que les dresseurs préfèrent ne pas mentionner. Son cri ressemble à un bain moussant sous pression, et sa capacité signature, *Éruption Fessale*, propulse ses ennemis dans une brume tiède et collante. Doté d’une peau rebondie comme une piscine gonflable de brocante, il adore rebondir sur place en gloussant, ce qui désoriente la plupart des adversaires. Bulgrosboule est très affectueux, surtout avec ceux qui le massent. Attention toutefois : s’il se met à trembler des miches, c’est trop tard. Il va buller."
       name: Bulgrosboule
     carapouffe:
       description: Carapouffe s'est enfoncée dans sa propre carapace moelleuse, elle ne se déplace qu’en roulant lentement, laissant derrière elle une traînée de paillettes et de gloss fondu. Son maquillage dégouline en permanence, formant une couche protectrice impénétrable — les scientifiques appellent ça le « fard d’armure ». Dotée d’un regard mi-séduisant, mi-comateux, elle hypnotise ses adversaires en leur lançant des œillades flasques, accompagnées d’un soupir de lassitude cosmique. Elle passe ses journées à se recoiffer sans bouger la tête, grâce à un système complexe de brosses dissimulées dans son chignon. Sa voix est rauque, son parfum est toxique, et sa principale attaque, "Écrasement Moussant", consiste à s’écrouler violemment sur son ennemi en faisant claquer ses faux ongles.
@@ -2316,20 +2316,28 @@ data:
     savages:
       01-plaine-kekette:
         name: Plaine Kékette
+        completionAchievement: Fendeur de la Plaine Kékette
       05-bois-de-bouffon:
         name: Bois des Bouffons
+        completionAchievement: Bûcheron du Bois de Bouffon
       10-chemin-du-slip:
         name: Chemin du Slip
+        completionAchievement: Explorateur de la Grotte du Slip
       15-ravin-fesse-molle:
         name: Ravin de la Fesse Molle
+        completionAchievement: Sauveur du Ravin de la Fesse Molle
       20-precipice-nanard:
         name: Précipice du Vieux Nanard
+        completionAchievement: Dénicheur du Vieux Nanard
       25-marais-moudugenou:
         name: Marais Moudugenou
+        completionAchievement: Épurateur du Marais Moudugenou
       30-forteresse-petmoalfiak:
         name: Forteresse Pètmoalfiak
+        completionAchievement: Conquérant de la Forteresse Pètmoalfiak
       35-route-du-nawak:
         name: Route du Nawak
+        completionAchievement: Voyageur de la Route du Nawak
       40-mont-dracatombe:
         name: Mont Cul
       45-catacombes-merdifientes:
@@ -2378,7 +2386,7 @@ pages:
     title: Shlagédex
   privacy-policy:
     title: Politique de Confidentialité – Shlagémon
-    lastUpdated: 'Dernière mise à jour : 06/08/2025'
+    lastUpdated: "Dernière mise à jour : 06/08/2025"
     sections:
       data:
         title: 1. Données collectées
@@ -2406,17 +2414,24 @@ App:
   author: Shlagémon Team
 stores:
   achievements:
-    unlocked: 'Succès déverrouillé : {title}'
+    unlocked: "Succès déverrouillé : {title}"
+    zoneShinyTitle: "{zone} : Chasseur d'arc-en-ciel"
+    zoneShinyDescription: Capturer tous les Shlagémon de {zone} en version shiny.
+    zoneRarityTitle: "{zone} : Perfectionniste"
+    zoneRarityDescription: Amener tous les Shlagémon de {zone} à la rareté 100.
+    zoneCompleteDescription: Capturer tous les Shlagémon de {zone}.
+    zoneWinTitle: "{n} victoires - {zone}"
+    zoneWinDescription: Vaincre {n} Shlagémon dans {zone}.
   disease:
     sick: Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné {n} combats.
     cured: Votre Shlagémon n'est plus malade !
   shlagedex:
-    rarityReached: '{name} atteint la rareté {rarity} !'
-    evolved: '{name} a évolué !'
+    rarityReached: "{name} atteint la rareté {rarity} !"
+    evolved: "{name} a évolué !"
     obtained: Tu as obtenu {name} !
     alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
-    rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
-    released: '{name} a été relâché'
+    rarityChanged: "{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !"
+    released: "{name} a été relâché !"
     point: point | points
     level: niveau | niveaux
   game:
