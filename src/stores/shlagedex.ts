@@ -35,8 +35,8 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   useIntervalFn(cleanupEffects, 1000)
 
   function rarityToastMessage(name: I18nKey, rarityGain: number, levelLoss: number) {
-    const point = rarityGain > 1 ? 'points' : 'point'
-    const level = levelLoss > 1 ? 'niveaux' : 'niveau'
+    const point = i18n.global.t('stores.shlagedex.point', rarityGain)
+    const level = i18n.global.t('stores.shlagedex.level', levelLoss)
     return i18n.global.t('stores.shlagedex.rarityChanged', {
       name: i18n.global.t(name),
       rarityGain,

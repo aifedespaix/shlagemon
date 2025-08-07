@@ -2430,6 +2430,8 @@ stores:
     alreadyMax: You already have this Shlagemon at max rarity
     rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
     released: '{name} was released!'
+    point: point | points
+    level: level | levels
   game:
     toast:
       shlagidolar: You receive {amount} Shlagidollars!
