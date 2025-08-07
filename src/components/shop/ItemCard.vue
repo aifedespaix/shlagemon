@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
+import { ballHues } from '~/utils/ball'
 
 const props = defineProps<{ item: Item }>()
 
 const { t } = useI18n()
+
+// Visual effect if item is a capture ball
+const ballFilter = computed(() =>
+  'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
+)
 </script>
 
 <template>
@@ -19,6 +25,7 @@ const { t } = useI18n()
           :src="props.item.image"
           :alt="t(props.item.name)"
           class="h-full w-full object-contain"
+          :style="ballFilter"
         >
       </div>
     </template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Item } from '~/type/item'
+import { ballHues } from '~/utils/ball'
 
 const props = withDefaults(defineProps<{ item: Item, qty?: number }>(), { qty: 1 })
 
@@ -9,6 +10,11 @@ const { t } = useI18n()
 
 const game = useGameStore()
 const qty = ref(props.qty)
+
+// Visual effect if item is a capture ball
+const ballFilter = computed(() =>
+  'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
+)
 
 const playerMoney = computed(() =>
   props.item.currency === 'shlagidiamond'
@@ -62,7 +68,13 @@ const details = computed(() =>
         class="h-10 w-10"
         :class="[props.item.iconClass, props.item.icon]"
       />
-      <img v-else-if="props.item.image" :src="props.item.image" :alt="t(props.item.name)" class="h-10 w-10 object-contain">
+      <img
+        v-else-if="props.item.image"
+        :src="props.item.image"
+        :alt="t(props.item.name)"
+        class="h-10 w-10 object-contain"
+        :style="ballFilter"
+      >
       <h3 class="text-lg font-bold">
         {{ t(props.item.name) }}
       </h3>
