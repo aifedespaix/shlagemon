@@ -5,7 +5,6 @@ import { getArenaByZoneId } from '~/data/arenas'
 const zone = useZoneStore()
 const panel = useMainPanelStore()
 const mini = useMiniGameStore()
-const mobile = useMobileTabStore()
 const progress = useZoneProgressStore()
 const trainerBattle = useTrainerBattleStore()
 const arena = useArenaStore()
@@ -65,7 +64,6 @@ function openMinigame() {
   if (miniGamePoi.value?.miniGame)
     mini.select(miniGamePoi.value.miniGame)
   panel.showMiniGame()
-  mobile.set('game')
 }
 
 function openArena() {

@@ -75,7 +75,6 @@ function onPoi(poi: VillagePOI) {
       if (poi.miniGame)
         mini.select(poi.miniGame)
       panel.showMiniGame()
-      mobile.set('game')
       break
     case 'arena': {
       const data = currentArenaData.value

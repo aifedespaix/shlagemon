@@ -7,6 +7,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   const dex = useShlagedexStore()
   const battle = useBattleStore()
   const arena = useArenaStore()
+  const ui = useUIStore()
+  const mobile = useMobileTabStore()
   const current = ref<MainPanel>('village')
 
   const isBattle = computed(() => current.value === 'battle' || current.value === 'trainerBattle')
@@ -51,6 +53,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     if (arena.inBattle)
       return
     current.value = 'miniGame'
+    if (ui.isMobile)
+      mobile.set('game')
   }
 
   function showPoulailler() {
@@ -63,6 +67,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     if (arena.inBattle)
       return
     current.value = 'arena'
+    if (ui.isMobile)
+      mobile.set('game')
   }
 
   function showVillage() {
