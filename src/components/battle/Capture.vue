@@ -39,7 +39,7 @@ const captureChance = computed(() => {
 const captureAnimationClass = computed(() => {
   if (currentBallCount.value <= 0)
     return ''
-  if (captureChance.value > 80)
+  if (captureChance.value > (80 / 3))
     return 'animate-pulse-special'
   return ''
 })
@@ -54,7 +54,7 @@ const captureButtonDisabled = computed(() =>
 const captureButtonFilter = computed(() => {
   const saturation = captureButtonDisabled.value
     ? 0
-    : Math.min(captureChance.value / 50, 1)
+    : Math.min(captureChance.value / (50 / 3), 1)
   return `hue-rotate(${currentBallHue.value}) saturate(${saturation})`
 })
 

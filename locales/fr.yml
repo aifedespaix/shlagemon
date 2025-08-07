@@ -2349,9 +2349,11 @@ data:
       85-paturage-crado:
         name: Pâturage Crado
       90-canyon-a-la-derp:
-        name: Canyon à la Derp
+        name: Canyon de la nusse
       95-cratere-des-legends:
         name: Cratère des Légends
+      75-route-so-dom:
+        name: Route So'Dom
     villages:
       village10:
         name: Veaux du Gland sur Marne

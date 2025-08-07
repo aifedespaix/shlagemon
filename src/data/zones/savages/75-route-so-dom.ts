@@ -2,7 +2,7 @@ import type { BaseShlagemon, Zone } from '~/type'
 
 export const savage75: Zone = {
   id: 'route-so-dom',
-  name: `Route So'Dom`,
+  name: 'data.zones.savages.75-route-so-dom.name',
   type: 'sauvage',
   position: { lat: -125.22182198662881, lng: 82.18449131513648 },
   shlagemons: Object.entries(import.meta.glob<{ default: BaseShlagemon }>(
