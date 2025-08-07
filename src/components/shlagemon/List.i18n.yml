@@ -1,4 +1,30 @@
 fr:
+  search: Rechercher
+  sort:
+    level: Niveau
+    rarity: Rareté
+    shiny: Shiny
+    item: Objet équipé
+    name: Nom
+    type: Type
+    attack: Attaque
+    defense: Défense
+    count: Nb obtentions
+    date: Première capture
+    evolution: Proche d'évoluer
   new: 'Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons'
 en:
+  search: Search
+  sort:
+    level: Level
+    rarity: Rarity
+    shiny: Shiny
+    item: Held item
+    name: Name
+    type: Type
+    attack: Attack
+    defense: Defense
+    count: Catch count
+    date: First capture
+    evolution: Ready to evolve
   new: 'You have {n} new Shlagemon | You have {n} new Shlagemons'
