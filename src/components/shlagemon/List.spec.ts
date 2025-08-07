@@ -21,6 +21,12 @@ const holders = ref<Record<string, string | null>>({})
 const equipmentStore = { holders, getHolder: (id: string) => holders.value[id] || null }
 vi.mock('~/stores/equipment', () => ({ useEquipmentStore: () => equipmentStore }))
 
+const inventoryStore = { items: {} as Record<string, number> }
+vi.mock('~/stores/inventory', () => ({ useInventoryStore: () => inventoryStore }))
+
+const wearableOpenSpy = vi.fn()
+vi.mock('~/stores/wearableItem', () => ({ useWearableItemStore: () => ({ open: wearableOpenSpy }) }))
+
 const openSpy = vi.fn()
 vi.mock('~/stores/dexDetailModal', () => ({ useDexDetailModalStore: () => ({ open: openSpy }) }))
 
@@ -62,12 +68,15 @@ describe('shlagemon List Multi Exp button', () => {
     shlagemons.value = []
     holders.value = {}
     openSpy.mockClear()
+    wearableOpenSpy.mockClear()
+    inventoryStore.items = {}
   })
 
   it('renders the multi exp button when equipped', () => {
     const mon = createMon(multiExp.id)
     shlagemons.value.push(mon)
     holders.value[multiExp.id] = mon.id
+    inventoryStore.items[multiExp.id] = 1
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
     expect(wrapper.find('button').exists()).toBe(true)
   })
@@ -76,12 +85,30 @@ describe('shlagemon List Multi Exp button', () => {
     const mon = createMon(multiExp.id)
     shlagemons.value.push(mon)
     holders.value[multiExp.id] = mon.id
+    inventoryStore.items[multiExp.id] = 1
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
     await wrapper.find('button').trigger('click')
     expect(openSpy).toHaveBeenCalledWith(mon)
   })
 
-  it('hides the multi exp button when not equipped', () => {
+  it('renders the multi exp button when owned but not equipped', () => {
+    const mon = createMon()
+    shlagemons.value.push(mon)
+    inventoryStore.items[multiExp.id] = 1
+    const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
+    expect(wrapper.find('button').exists()).toBe(true)
+  })
+
+  it('opens the equip modal when not equipped', async () => {
+    const mon = createMon()
+    shlagemons.value.push(mon)
+    inventoryStore.items[multiExp.id] = 1
+    const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
+    await wrapper.find('button').trigger('click')
+    expect(wearableOpenSpy).toHaveBeenCalledWith(multiExp)
+  })
+
+  it('hides the multi exp button when item not owned', () => {
     const mon = createMon()
     shlagemons.value.push(mon)
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
