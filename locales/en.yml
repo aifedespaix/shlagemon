@@ -265,6 +265,19 @@ components:
       tooltip: Rarity
     List:
       new: You have {n} new Shlagemon | You have {n} new Shlagemons
+      search: Search
+      sort:
+        level: Level
+        rarity: Rarity
+        shiny: Shiny
+        item: Held item
+        name: Name
+        type: Type
+        attack: Attack
+        defense: Defense
+        count: Catch count
+        date: First capture
+        evolution: Ready to evolve
     TypeChart:
       defense: Defense
       attack: Attack
@@ -2315,43 +2328,45 @@ data:
   zones:
     savages:
       01-plaine-kekette:
-        name: Plaine Kékette
+        name: Weenie Plains
       05-bois-de-bouffon:
-        name: Bois des Bouffons
+        name: Jester Woods
       10-chemin-du-slip:
-        name: Chemin du Slip
+        name: Underwear Trail
       15-ravin-fesse-molle:
-        name: Ravin de la Fesse Molle
+        name: Soft Buttock Ravine
       20-precipice-nanard:
-        name: Précipice du Vieux Nanard
+        name: Geezer Cliff
       25-marais-moudugenou:
-        name: Marais Moudugenou
+        name: Swamp of Knee-Soup
       30-forteresse-petmoalfiak:
-        name: Forteresse Pètmoalfiak
+        name: Fockmyass Fortress
       35-route-du-nawak:
-        name: Route du Nawak
+        name: Nonsense Road
       40-mont-dracatombe:
-        name: Mont Cul
+        name: Mount Butt
       45-catacombes-merdifientes:
-        name: Catacombes Merdifientes
+        name: Stinkriddled Catacombs
       50-route-aguicheuse:
-        name: Route Aguicheuse
+        name: Teasy Road
       55-vallee-des-chieurs:
-        name: Vallée des Chieurs
+        name: Valley of the Whiners
       60-trou-du-bide:
-        name: Trou du Bide
+        name: Gut Hole
       65-lac-aux-relous:
-        name: Lac aux Relous
+        name: Lake of the Pain-in-the-Necks
       70-zone-giga-zob:
-        name: Aire du Giga Zob
+        name: Giga Schlong Zone
       80-mont-kouillasse:
-        name: Mont Kouillasse
+        name: Mount Ballsack
       85-paturage-crado:
-        name: Pâturage Crado
+        name: Filthy Pasture
       90-canyon-a-la-derp:
-        name: Canyon à la Derp
+        name: Buttcrack Canyon
       95-cratere-des-legends:
-        name: Cratère des Légends
+        name: Crater of Legends
+      75-route-so-dom:
+        name: So'Dom Road
     villages:
       village10:
         name: Veaux du Gland sur Marne

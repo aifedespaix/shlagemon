@@ -2,6 +2,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import { sacdepates } from '../src/data/shlagemons/01-05/sacdepates'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
+import { i18n } from '../src/modules/i18n'
 import { toast } from '../src/modules/toast'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import {
@@ -38,7 +39,7 @@ describe('shlagedex capture', () => {
     expect(mon.rarity).toBe(5)
     expect(mon.lvl).toBe(6)
     expect(toastMock).toHaveBeenCalledWith(
-      `${mon.base.name} gagne 4 points de rareté et perd 4 niveaux !`,
+      `${i18n.global.t(mon.base.name)} gagne 4 points de rareté et perd 4 niveaux !`,
     )
   })
 
@@ -57,7 +58,7 @@ describe('shlagedex capture', () => {
     expect(mon.rarity).toBe(2)
     expect(mon.lvl).toBe(4)
     expect(toastMock).toHaveBeenCalledWith(
-      `${mon.base.name} gagne 1 point de rareté et perd 1 niveau !`,
+      `${i18n.global.t(mon.base.name)} gagne 1 point de rareté et perd 1 niveau !`,
     )
   })
 

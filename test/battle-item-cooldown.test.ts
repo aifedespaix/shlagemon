@@ -6,7 +6,7 @@ import { useInventoryStore } from '../src/stores/inventory'
 import { useMainPanelStore } from '../src/stores/mainPanel'
 
 describe('battle item cooldown', () => {
-  it('prevents using multiple battle items during cooldown', () => {
+  it('prevents using multiple battle items during cooldown', async () => {
     vi.useFakeTimers()
     setActivePinia(createPinia())
     const inventory = useInventoryStore()
@@ -20,7 +20,7 @@ describe('battle item cooldown', () => {
     expect(inventory.useItem(potion.id)).toBe(true)
     expect(cooldown.isActive).toBe(true)
     expect(inventory.useItem(superPotion.id)).toBe(false)
-    vi.advanceTimersByTime(3000)
+    await vi.advanceTimersByTimeAsync(3000)
     expect(cooldown.isActive).toBe(false)
     expect(inventory.useItem(superPotion.id)).toBe(true)
     cooldown.reset()

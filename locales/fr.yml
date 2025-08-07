@@ -265,6 +265,19 @@ components:
       tooltip: Rareté
     List:
       new: Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons
+      search: Rechercher
+      sort:
+        level: Niveau
+        rarity: Rareté
+        shiny: Shiny
+        item: Objet équipé
+        name: Nom
+        type: Type
+        attack: Attaque
+        defense: Défense
+        count: Nb obtentions
+        date: Première capture
+        evolution: Proche d'évoluer
     TypeChart:
       defense: Défense
       attack: Attaque
@@ -2336,9 +2349,11 @@ data:
       85-paturage-crado:
         name: Pâturage Crado
       90-canyon-a-la-derp:
-        name: Canyon à la Derp
+        name: Canyon de la nusse
       95-cratere-des-legends:
         name: Cratère des Légends
+      75-route-so-dom:
+        name: Route So'Dom
     villages:
       village10:
         name: Veaux du Gland sur Marne
@@ -2401,7 +2416,7 @@ stores:
     obtained: Tu as obtenu {name} !
     alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
     rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
-    released: '{name} a été relâché !'
+    released: '{name} a été relâché 
     point: point | points
     level: niveau | niveaux
   game:
