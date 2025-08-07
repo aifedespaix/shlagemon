@@ -26,6 +26,8 @@ const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()
 const equipment = useEquipmentStore()
 const dexDetailModal = useDexDetailModalStore()
+const inventory = useInventoryStore()
+const wearableItem = useWearableItemStore()
 const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 const { t } = useI18n()
@@ -41,11 +43,22 @@ const multiExpHolder = computed(() => {
 })
 
 /**
+ * Whether the player owns the Multi Exp.
+ */
+const hasMultiExp = computed(() => (inventory.items[multiExp.id] || 0) > 0)
+
+/**
  * Open the detail modal for the Shlagémon holding the Multi Exp.
  */
-function openMultiExpHolder() {
+/**
+ * Handle click on the Multi Exp button.
+ * If equipped, opens the detail modal of the holder; otherwise, opens the equip modal.
+ */
+function handleMultiExpClick() {
   if (multiExpHolder.value)
     dexDetailModal.open(multiExpHolder.value)
+  else
+    wearableItem.open(multiExp)
 }
 
 // Options de tri
@@ -194,8 +207,8 @@ watch(
         <div class="flex gap-1">
           <UiSearchInput v-model="filter.search" />
           <UiButton
-            v-if="isMainShlagedex && multiExpHolder"
-            v-tooltip="t(multiExp.name)" icon size="xs" variant="outline" type="primary" @click="openMultiExpHolder"
+            v-if="isMainShlagedex && hasMultiExp"
+            v-tooltip="t(multiExp.name)" icon size="xs" variant="outline" type="primary" @click="handleMultiExpClick"
           >
             <span :class="[multiExp.icon, multiExp.iconClass]" />
           </UiButton>
