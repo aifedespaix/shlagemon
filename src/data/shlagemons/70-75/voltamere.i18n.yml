@@ -1,10 +1,6 @@
 en:
-  description: >-
-    Voltamère looks like an old daronne disguised as a ball. He flies everything
-    that shines to stack him in his imaginary handbag. Beware of static
-    discharge when it searches your pockets!
+  description: Voltamère looks like an old daronne disguised as a ball. He flies everything that shines to stack him in his imaginary handbag. Beware of static discharge when it searches your pockets!
+  name: Mumtorb
 fr:
-  description: >-
-    Voltamère ressemble à une vieille daronne déguisée en boule. Il vole tout ce
-    qui brille pour l'empiler dans son sac à main imaginaire. Gare à la décharge
-    statique quand il te fouille les poches !
+  description: Voltamère ressemble à une vieille daronne déguisée en boule. Il vole tout ce qui brille pour l'empiler dans son sac à main imaginaire. Gare à la décharge statique quand il te fouille les poches !
+  name: Voltamère

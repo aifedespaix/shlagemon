@@ -1,19 +1,6 @@
 en:
-  description: >-
-    Fouting is a failed snake attempt. His body is irregular, boxed, and his
-    muzzle seems to have been drawn to the marker by a sad child. His dull skin
-    evokes the melted plastic, and he leaves behind a slightly sticky drag whose
-    origin remains unclear. Fouting is not aware of its own ugly, but the other
-    shlagemons feel it physically, which gives it a passive toxic presence. His
-    attack * distorting * has a chance to inflict the malaise state. He doesn't
-    crawl, he hangs out. He doesn’t scare, he hinders.
+  description: Fouting is a failed snake attempt. His body is irregular, boxed, and his muzzle seems to have been drawn to the marker by a sad child. His dull skin evokes the melted plastic, and he leaves behind a slightly sticky drag whose origin remains unclear. Fouting is not aware of its own ugly, but the other shlagemons feel it physically, which gives it a passive toxic presence. His attack * distorting * has a chance to inflict the malaise state. He doesn't crawl, he hangs out. He doesn’t scare, he hinders.
+  name: Uglykans
 fr:
-  description: >-
-    Amoche est une tentative ratée de serpent. Son corps est irrégulier,
-    cabossé, et son museau semble avoir été dessiné au marqueur par un enfant
-    triste. Sa peau terne évoque le plastique fondu, et il laisse derrière lui
-    une traînée légèrement gluante dont l’origine reste floue. Amoche n’a pas
-    conscience de sa propre mocheté, mais les autres Shlagémons la ressentent
-    physiquement, ce qui lui confère une présence toxique passive. Son attaque
-    *Regard Déformant* a une chance d’infliger l’état Malaise. Il ne rampe pas,
-    il traîne. Il n’effraie pas, il gêne.
+  description: Amoche est une tentative ratée de serpent. Son corps est irrégulier, cabossé, et son museau semble avoir été dessiné au marqueur par un enfant triste. Sa peau terne évoque le plastique fondu, et il laisse derrière lui une traînée légèrement gluante dont l’origine reste floue. Amoche n’a pas conscience de sa propre mocheté, mais les autres Shlagémons la ressentent physiquement, ce qui lui confère une présence toxique passive. Son attaque *Regard Déformant* a une chance d’infliger l’état Malaise. Il ne rampe pas, il traîne. Il n’effraie pas, il gêne.
+  name: Amoche

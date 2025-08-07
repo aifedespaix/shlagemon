@@ -1,10 +1,6 @@
 fr:
-  description: >-
-    Hypsedentaire a développé un pouvoir hypnotique tellement fort qu'il préfère
-    rester affalé chez lui. Il endort ses ennemis à distance pour ne jamais
-    avoir à se lever.
+  description: Hypsedentaire a développé un pouvoir hypnotique tellement fort qu'il préfère rester affalé chez lui. Il endort ses ennemis à distance pour ne jamais avoir à se lever.
+  name: Hypsedentaire
 en:
-  description: >-
-    Hypsedentary has developed such a strong hypnotic power that he prefers to
-    stay away from him. He puts his enemies from a distance so that he never has
-    to get up.
+  description: Hypsedentary has developed such a strong hypnotic power that he prefers to stay away from him. He puts his enemies from a distance so that he never has to get up.
+  name: Couchpotypno

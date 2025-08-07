@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Ce poisson aux couleurs ternes traîne des germes partout où il passe et
-    préfère l’eau croupie.
+  description: Ce poisson aux couleurs ternes traîne des germes partout où il passe et préfère l’eau croupie.
+  name: Salmoneli
 en:
-  description: >-
-    This fish with dull colors hangs out germs wherever it passes and prefers
-    rump water.
+  description: This fish with dull colors hangs out germs wherever it passes and prefers rump water.
+  name: Salmonelireon

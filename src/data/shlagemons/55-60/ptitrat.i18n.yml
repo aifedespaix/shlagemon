@@ -1,8 +1,6 @@
 en:
-  description: >-
-    Former reign fossil with a pointed muzzle, Ptitrat takes himself for a
-    flying rodent. Its grayish skin crumbles a little more with each wing beat.
+  description: Former reign fossil with a pointed muzzle, Ptitrat takes himself for a flying rodent. Its grayish skin crumbles a little more with each wing beat.
+  name: tinyrat
 fr:
-  description: >-
-    Ancien régne fossile au museau pointu, Ptitrat se prend pour un rongeur
-    volant. Sa peau grisâtre s’effrite un peu plus à chaque battement d’aile.
+  description: Ancien régne fossile au museau pointu, Ptitrat se prend pour un rongeur volant. Sa peau grisâtre s’effrite un peu plus à chaque battement d’aile.
+  name: Ptitrat

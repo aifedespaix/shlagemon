@@ -1,20 +1,17 @@
 fr:
-  description: >-
-    Grossetarte est l’évolution regrettable de Ptitocard, obtenue après une
-    overdose de sucre industriel et de mauvaises idées. Autoproclamé "Maître
-    Tartenier", il passe ses journées à cuisiner, lancer et… recuire des tartes.
-    Le problème ? Ses créations sont infâmes. Collantes, croquantes, souvent
-    vivantes, elles causent plus de dégâts buccaux que toutes les chutes de
-    trottoirs réunies.
-
-    Il ne se bat pas : il *sert*. À répétition. Son attaque *Service Trois
-    Parts* invoque une volée de projectiles pâtissiers, chacun ayant une texture
-    plus imprévisible que le précédent. Il dispose aussi de *Croûte Brutale*,
-    une attaque physique qui explose en miettes de granite sucré, infligeant des
-    blessures internes et une honte culinaire durable.
-
-    Certains Shlagémons l’évitent non pas par peur, mais par goût. On raconte
-    qu’un seul fragment de sa Tarte Ultime peut bloquer une mâchoire pendant 3
-    jours.
+  description: |-
+    Grossetarte est l’évolution regrettable de Ptitocard, obtenue après une overdose de sucre industriel et de mauvaises idées. Autoproclamé "Maître Tartenier", il passe ses journées à cuisiner, lancer et… recuire des tartes. Le problème ? Ses créations sont infâmes. Collantes, croquantes, souvent vivantes, elles causent plus de dégâts buccaux que toutes les chutes de trottoirs réunies.
+    Il ne se bat pas : il *sert*. À répétition. Son attaque *Service Trois Parts* invoque une volée de projectiles pâtissiers, chacun ayant une texture plus imprévisible que le précédent. Il dispose aussi de *Croûte Brutale*, une attaque physique qui explose en miettes de granite sucré, infligeant des blessures internes et une honte culinaire durable.
+    Certains Shlagémons l’évitent non pas par peur, mais par goût. On raconte qu’un seul fragment de sa Tarte Ultime peut bloquer une mâchoire pendant 3 jours.
+  name: Grossetarte
 en:
-  description: "Grossetarte is the regrettable evolution of Ptitocard, obtained after an overdose of industrial sugar and bad ideas. Self -proclaimed \"Master Tartnier\", he spends his days cooking, throwing and ... take away pies. The problem ? His creations are infamous. Collanted, crunchy, often alive, they cause more oral damage than all the sidewalks combined.\nHe does not fight: he *serves *. Repeatedly. His attack * Service three parts * invokes a volley of pastry projectiles, each having a more unpredictable texture than the previous one. It also has *brutal crust *, a physical attack which explodes in crumbs of sweet granite, inflicting internal injuries and a durable culinary shame.\nSome shlagémons avoid it not out of fear, but out of taste. It is said that a single fragment of its ultimate pie \r\n578\r\ncan block a jaw for 3 days."
+  description: "Grossetarte is the regrettable evolution of Ptitocard, obtained after an overdose of industrial sugar and bad ideas. Self -proclaimed \"Master Tartnier\", he spends his days cooking, throwing and ... take away pies. The problem ? His creations are infamous. Collanted, crunchy, often alive, they cause more oral damage than all the sidewalks combined.
+
+    He does not fight: he *serves *. Repeatedly. His attack * Service three parts * invokes a volley of pastry projectiles, each having a more unpredictable texture than the previous one. It also has *brutal crust *, a physical attack which explodes in crumbs of sweet granite, inflicting internal injuries and a durable culinary shame.
+
+    Some shlagémons avoid it not out of fear, but out of taste. It is said that a single fragment of its ultimate pie \r
+
+    578\r
+
+    can block a jaw for 3 days."
+  name: fattart

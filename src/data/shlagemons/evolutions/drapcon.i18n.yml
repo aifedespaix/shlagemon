@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Cette étape intermédiaire se prend pour un grand drap majestueux mais reste
-    aussi stupide que sa version minuscule.
+  description: Cette étape intermédiaire se prend pour un grand drap majestueux mais reste aussi stupide que sa version minuscule.
+  name: DrapCon
 en:
-  description: >-
-    This intermediate step is taken for a large majestic sheet but remains as
-    stupid as its tiny version.
+  description: This intermediate step is taken for a large majestic sheet but remains as stupid as its tiny version.
+  name: DrapCon

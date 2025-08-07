@@ -1,8 +1,6 @@
 fr:
-  description: >-
-    Toujours entouré d’une fumée douteuse, Pyrolise adore brûler tout ce qu’il
-    touche et sentir les vapeurs toxiques.
+  description: Toujours entouré d’une fumée douteuse, Pyrolise adore brûler tout ce qu’il touche et sentir les vapeurs toxiques.
+  name: Pyrolise
 en:
-  description: >-
-    Always surrounded by dubious smoke, pyrolise loves to burn everything he
-    touches and feel the toxic vapors.
+  description: Always surrounded by dubious smoke, pyrolise loves to burn everything he touches and feel the toxic vapors.
+  name: Fatreon
