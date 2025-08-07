@@ -265,6 +265,19 @@ components:
       tooltip: Rareté
     List:
       new: Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons
+      search: Rechercher
+      sort:
+        level: Niveau
+        rarity: Rareté
+        shiny: Shiny
+        item: Objet équipé
+        name: Nom
+        type: Type
+        attack: Attaque
+        defense: Défense
+        count: Nb obtentions
+        date: Première capture
+        evolution: Proche d'évoluer
     TypeChart:
       defense: Défense
       attack: Attaque
@@ -2394,10 +2407,6 @@ App:
 stores:
   achievements:
     unlocked: 'Succès déverrouillé : {title}'
-    zoneShinyTitle: "{zone} : Chasseur d'arc-en-ciel"
-    zoneShinyDescription: Capturer tous les Shlagémon de {zone} en version shiny.
-    zoneRarityTitle: '{zone} : Perfectionniste'
-    zoneRarityDescription: Amener tous les Shlagémon de {zone} à la rareté 100.
   disease:
     sick: Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné {n} combats.
     cured: Votre Shlagémon n'est plus malade !

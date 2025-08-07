@@ -2,8 +2,6 @@
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allItems, multiExp } from '~/data/items'
 
-
-const { t } = useI18n()
 // Typage strict des props
 interface Props {
   mons: readonly DexShlagemon[]
@@ -21,6 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
   highlightIds: () => [],
   locked: undefined,
 })
+
+const { t } = useI18n()
 
 // Stores externes (Pinia)
 const filter = useDexFilterStore()
@@ -64,17 +64,17 @@ function handleMultiExpClick() {
 
 // Options de tri
 const sortOptions = [
-  { label: 'Niveau', value: 'level' },
-  { label: 'Rareté', value: 'rarity' },
-  { label: 'Shiny', value: 'shiny' },
-  { label: 'Objet équipé', value: 'item' },
-  { label: 'Nom', value: 'name' },
-  { label: 'Type', value: 'type' },
-  { label: 'Attaque', value: 'attack' },
-  { label: 'Défense', value: 'defense' },
-  { label: 'Nb obtentions', value: 'count' },
-  { label: 'Première capture', value: 'date' },
-  { label: 'Proche d\'évoluer', value: 'evolution' },
+  { label: t('components.shlagemon.List.sort.level'), value: 'level' },
+  { label: t('components.shlagemon.List.sort.rarity'), value: 'rarity' },
+  { label: t('components.shlagemon.List.sort.shiny'), value: 'shiny' },
+  { label: t('components.shlagemon.List.sort.item'), value: 'item' },
+  { label: t('components.shlagemon.List.sort.name'), value: 'name' },
+  { label: t('components.shlagemon.List.sort.type'), value: 'type' },
+  { label: t('components.shlagemon.List.sort.attack'), value: 'attack' },
+  { label: t('components.shlagemon.List.sort.defense'), value: 'defense' },
+  { label: t('components.shlagemon.List.sort.count'), value: 'count' },
+  { label: t('components.shlagemon.List.sort.date'), value: 'date' },
+  { label: t('components.shlagemon.List.sort.evolution'), value: 'evolution' },
 ] as const
 
 // Filter, sort and order Shlagemons efficiently.
@@ -206,7 +206,10 @@ watch(
           </span>
         </div>
         <div class="flex gap-1">
-          <UiSearchInput v-model="filter.search" />
+          <UiSearchInput
+            v-model="filter.search"
+            :placeholder="t('components.shlagemon.List.search')"
+          />
           <UiButton
             v-if="isMainShlagedex && hasMultiExp"
             v-tooltip="t(multiExp.name)" icon size="xs" variant="outline" type="primary" @click="handleMultiExpClick"

@@ -265,6 +265,19 @@ components:
       tooltip: Rarity
     List:
       new: You have {n} new Shlagemon | You have {n} new Shlagemons
+      search: Search
+      sort:
+        level: Level
+        rarity: Rarity
+        shiny: Shiny
+        item: Held item
+        name: Name
+        type: Type
+        attack: Attack
+        defense: Defense
+        count: Catch count
+        date: First capture
+        evolution: Ready to evolve
     TypeChart:
       defense: Defense
       attack: Attack
@@ -2407,10 +2420,6 @@ App:
 stores:
   achievements:
     unlocked: 'Achievement unlocked: {title}'
-    zoneShinyTitle: '{zone}: Rainbow Hunter'
-    zoneShinyDescription: Capture every Shlagémon in {zone} in shiny form.
-    zoneRarityTitle: '{zone}: Perfectionist'
-    zoneRarityDescription: Raise every Shlagémon in {zone} to rarity 100.
   disease:
     sick: Your Shlagemon is sick! It will be back to normal after winning {n} battles.
     cured: Your Shlagemon is no longer sick!
