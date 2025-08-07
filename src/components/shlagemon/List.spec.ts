@@ -72,11 +72,10 @@ describe('shlagemon List Multi Exp button', () => {
     inventoryStore.items = {}
   })
 
-  it('renders the multi exp button when equipped', () => {
+  it('renders the multi exp button when equipped even if not in inventory', () => {
     const mon = createMon(multiExp.id)
     shlagemons.value.push(mon)
     holders.value[multiExp.id] = mon.id
-    inventoryStore.items[multiExp.id] = 1
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
     expect(wrapper.find('button').exists()).toBe(true)
   })
@@ -85,7 +84,6 @@ describe('shlagemon List Multi Exp button', () => {
     const mon = createMon(multiExp.id)
     shlagemons.value.push(mon)
     holders.value[multiExp.id] = mon.id
-    inventoryStore.items[multiExp.id] = 1
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
     await wrapper.find('button').trigger('click')
     expect(openSpy).toHaveBeenCalledWith(mon)

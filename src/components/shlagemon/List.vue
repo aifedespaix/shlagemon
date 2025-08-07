@@ -44,13 +44,12 @@ const multiExpHolder = computed(() => {
 })
 
 /**
- * Whether the player owns the Multi Exp.
+ * Whether the player owns the Multi Exp, either in inventory or equipped.
  */
-const hasMultiExp = computed(() => (inventory.items[multiExp.id] || 0) > 0)
+const ownsMultiExp = computed(() => {
+  return (inventory.items[multiExp.id] || 0) > 0 || Boolean(multiExpHolder.value)
+})
 
-/**
- * Open the detail modal for the Shlagémon holding the Multi Exp.
- */
 /**
  * Handle click on the Multi Exp button.
  * If equipped, opens the detail modal of the holder; otherwise, opens the equip modal.
@@ -211,7 +210,7 @@ watch(
             :placeholder="t('components.shlagemon.List.search')"
           />
           <UiButton
-            v-if="isMainShlagedex && hasMultiExp"
+            v-if="isMainShlagedex && ownsMultiExp"
             v-tooltip="t(multiExp.name)" icon size="xs" variant="outline" type="primary" @click="handleMultiExpClick"
           >
             <span :class="[multiExp.icon, multiExp.iconClass]" />
