@@ -279,7 +279,7 @@ function getFeedbackBg(fb: 'green' | 'yellow' | 'gray' | undefined) {
     />
 
     <!-- Confetti -->
-    <div v-if="showConfetti || true" class="pointer-events-none absolute inset-0 flex items-center justify-center z-10">
+    <div v-if="showConfetti" class="pointer-events-none absolute inset-0 flex items-center justify-center z-10">
       <div class="font-size-22 animate-zoom-in animate-duration-0.5s">
         🎉
       </div>
