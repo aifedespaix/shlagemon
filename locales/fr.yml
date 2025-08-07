@@ -2120,6 +2120,10 @@ data:
     insecte:
       name: Mouchtik
       description: Type grouillant, souvent poilu, toujours dérangeant. Il gratte la nuit et te juge en silence.
+  trainers:
+    bob:
+      dialogBefore: Prépare-toi à manger la poussière !
+      dialogAfter: "Pas possible... tu m'as battu !"
 pages:
   index:
     title: Shlagémon - Ça sent très fort

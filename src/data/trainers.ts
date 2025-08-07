@@ -13,8 +13,8 @@ export const trainers: Trainer[] = [
   {
     id: 'bob',
     character: bobCharacter,
-    dialogBefore: 'Prépare-toi à manger la poussière !',
-    dialogAfter: 'Pas possible... tu m\'as battu !',
+    dialogBefore: 'data.trainers.bob.dialogBefore',
+    dialogAfter: 'data.trainers.bob.dialogAfter',
     reward: 3,
     shlagemons: [
       { baseId: carapouffe.id, level: 3 },

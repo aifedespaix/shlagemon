@@ -2186,6 +2186,10 @@ data:
     insecte:
       name: Bugger
       description: Crawling, hairy and always annoying. It scratches at night and judges in silence.
+  trainers:
+    bob:
+      dialogBefore: Get ready to eat dust!
+      dialogAfter: No way... you beat me!
 pages:
   index:
     title: Shlagemon - It smells very strong
