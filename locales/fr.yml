@@ -2416,7 +2416,7 @@ stores:
     obtained: Tu as obtenu {name} !
     alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
     rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
-    released: '{name} a été relâché 
+    released: '{name} a été relâché'
     point: point | points
     level: niveau | niveaux
   game:
