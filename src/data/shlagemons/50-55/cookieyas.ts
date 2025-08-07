@@ -4,7 +4,7 @@ import crustabridou from '../evolutions/crustabridou'
 
 export const cookieyas: BaseShlagemon = {
   id: 'cookieyas',
-  name: 'Cookieyas',
+  name: 'data.shlagemons.50-55.cookieyas.name',
   description: 'data.shlagemons.50-55.cookieyas.description',
   types: [shlagemonTypes.eau],
 

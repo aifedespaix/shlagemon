@@ -4,7 +4,7 @@ import dopluspersonne from '../evolutions/dopluspersonne'
 
 export const dosolo: BaseShlagemon = {
   id: 'dosolo',
-  name: 'Dosolo',
+  name: 'data.shlagemons.45-50.dosolo.name',
   description: 'data.shlagemons.45-50.dosolo.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
 

@@ -4,7 +4,7 @@ import coloscopie from '../evolutions/coloscopie'
 
 export const ferosang: BaseShlagemon = {
   id: 'ferosang',
-  name: 'Férosang',
+  name: 'data.shlagemons.35-40.ferosang.name',
   description: 'data.shlagemons.35-40.ferosang.description',
   types: [shlagemonTypes.combat],
   evolution: {

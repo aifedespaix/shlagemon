@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const qulbudrogue: BaseShlagemon = {
   id: 'qulbudrogue',
-  name: 'Qulbudrogué',
+  name: 'data.shlagemons.15-20.qulbudrogue.name',
   description: 'data.shlagemons.15-20.qulbudrogue.description',
   types: [shlagemonTypes.psy],
   speciality: 'unique',

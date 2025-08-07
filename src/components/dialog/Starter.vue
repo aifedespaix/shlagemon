@@ -42,7 +42,7 @@ const dialogTree = computed((): DialogNode[] => [
     id: 'choice',
     text: t('components.dialog.Starter.steps.choice.text'),
     responses: starters.map(s => ({
-      label: s.name,
+      label: t(s.name),
       nextId: nextId(s.id),
       imageUrl: '/items/shlageball/shlageball.png',
       type: 'primary' as ButtonType,

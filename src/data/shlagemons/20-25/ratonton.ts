@@ -4,7 +4,7 @@ import ratartine from '../evolutions/ratartine'
 
 export const ratonton: BaseShlagemon = {
   id: 'ratonton',
-  name: 'Ratonton',
+  name: 'data.shlagemons.20-25.ratonton.name',
   description: 'data.shlagemons.20-25.ratonton.description',
   types: [shlagemonTypes.normal],
   evolution: { base: ratartine, condition: { type: 'lvl', value: 45 } },

@@ -10,6 +10,7 @@ export const allShlagemons: BaseShlagemon[] = Object.entries(modules)
       .replace('./shlagemons/', '')
       .replace(/\.ts$/, '')
     const key = rel.replace(/\//g, '.')
+    base.name = `data.shlagemons.${key}.name`
     base.description = `data.shlagemons.${key}.description`
     return base
   })

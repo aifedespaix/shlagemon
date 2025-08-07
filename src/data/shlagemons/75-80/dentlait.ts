@@ -4,7 +4,7 @@ import hosoltueur from '../evolutions/hosoltueur'
 
 export const dentlait: BaseShlagemon = {
   id: 'dentlait',
-  name: 'Dentlait',
+  name: 'data.shlagemons.75-80.dentlait.name',
   description: 'data.shlagemons.75-80.dentlait.description',
   types: [shlagemonTypes.sol],
   evolution: {

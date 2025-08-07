@@ -4,7 +4,7 @@ import krabbolosse from '../evolutions/krabbolosse'
 
 export const krabbyjaccob: BaseShlagemon = {
   id: 'krabbyjaccob',
-  name: 'Krabbyjaccob',
+  name: 'data.shlagemons.70-75.krabbyjaccob.name',
   description: 'data.shlagemons.70-75.krabbyjaccob.description',
   types: [shlagemonTypes.eau],
   evolution: {

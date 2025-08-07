@@ -4,7 +4,7 @@ import beuleef from '../evolutions/beuleef'
 
 export const glandignon: BaseShlagemon = {
   id: 'glandignon',
-  name: 'Glandignon',
+  name: 'data.shlagemons.65-70.glandignon.name',
   description: 'data.shlagemons.65-70.glandignon.description',
   types: [shlagemonTypes.plante],
   evolution: {

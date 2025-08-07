@@ -21,10 +21,13 @@ const hasEvolution = computed(() => {
   >
     <div class="flex flex-col items-center gap-4">
       <h3 class="text-center text-lg font-bold">
-        {{ t('components.shlagemon.EvolutionModal.evolveTitle', { name: store.pending?.mon.base.name }) }}
+        {{ t('components.shlagemon.EvolutionModal.evolveTitle', { name: store.pending ? t(store.pending.mon.base.name) : '' }) }}
       </h3>
       <p class="text-center">
-        {{ t('components.shlagemon.EvolutionModal.question', { from: store.pending?.mon.base.name, to: store.pending?.to.name }) }}
+        {{ t('components.shlagemon.EvolutionModal.question', {
+          from: store.pending ? t(store.pending.mon.base.name) : '',
+          to: store.pending ? t(store.pending.to.name) : '',
+        }) }}
       </p>
       <p
         v-if="hasEvolution"

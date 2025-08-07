@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const dopluspersonne: BaseShlagemon = {
   id: 'dopluspersonne',
-  name: 'Dopluspersonne',
+  name: 'data.shlagemons.evolutions.dopluspersonne.name',
   description: 'data.shlagemons.evolutions.dopluspersonne.description',
   types: [shlagemonTypes.normal, shlagemonTypes.vol],
   speciality: 'evolution1',

@@ -14,7 +14,7 @@ const starterName = computed(() => {
   if (!id)
     return ''
   const mon = dex.shlagemons.find(m => m.base.id === id)
-  return mon?.base.name ?? ''
+  return mon ? t(mon.base.name) : ''
 })
 
 const dialogTree = computed<DialogNode[]>(() => [

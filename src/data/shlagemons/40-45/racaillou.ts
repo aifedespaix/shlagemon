@@ -4,7 +4,7 @@ import gravaglaire from '../evolutions/gravaglaire'
 
 export const racaillou: BaseShlagemon = {
   id: 'racaillou',
-  name: 'Racaillou',
+  name: 'data.shlagemons.40-45.racaillou.name',
   description: 'data.shlagemons.40-45.racaillou.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
   evolution: {

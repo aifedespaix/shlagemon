@@ -4,7 +4,7 @@ import hyporuisseau from '../evolutions/hyporuisseau'
 
 export const hypotrompe: BaseShlagemon = {
   id: 'hypotrompe',
-  name: 'Hypotrompe',
+  name: 'data.shlagemons.85-90.hypotrompe.name',
   description: 'data.shlagemons.85-90.hypotrompe.description',
   types: [shlagemonTypes.eau],
   evolution: {

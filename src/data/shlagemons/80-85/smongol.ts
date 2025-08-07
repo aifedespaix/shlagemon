@@ -4,7 +4,7 @@ import smongogol from '../evolutions/smongogol'
 
 export const smongol: BaseShlagemon = {
   id: 'smongol',
-  name: 'Smongol',
+  name: 'data.shlagemons.80-85.smongol.name',
   description: 'data.shlagemons.80-85.smongol.description',
   types: [shlagemonTypes.poison],
   evolution: {

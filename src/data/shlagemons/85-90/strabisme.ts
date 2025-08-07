@@ -5,7 +5,7 @@ import stabiscarosse from '../evolutions/stabiscarosse'
 
 export const strabisme: BaseShlagemon = {
   id: 'strabisme',
-  name: 'Strabisme',
+  name: 'data.shlagemons.85-90.strabisme.name',
   description: 'data.shlagemons.85-90.strabisme.description',
   types: [shlagemonTypes.eau],
   evolution: {

@@ -4,7 +4,7 @@ import chrysachier from '../evolutions/chrysachier'
 
 export const chenipaon: BaseShlagemon = {
   id: 'chenipaon',
-  name: 'Chenipaon',
+  name: 'data.shlagemons.05-10.chenipaon.name',
   evolution: {
     base: chrysachier,
     condition: {

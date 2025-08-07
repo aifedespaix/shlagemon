@@ -4,7 +4,7 @@ import tordturc from './tord-turc'
 
 export const carabifle: BaseShlagemon = {
   id: 'carabifle',
-  name: 'Carabifle',
+  name: 'data.shlagemons.evolutions.carabifle.name',
   description: 'data.shlagemons.evolutions.carabifle.description',
   types: [shlagemonTypes.eau],
   evolution: { base: tordturc, condition: { type: 'lvl', value: 36 } },

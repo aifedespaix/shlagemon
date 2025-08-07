@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const noadcajou: BaseShlagemon = {
   id: 'noadcajou',
-  name: 'Noadcajou',
+  name: 'data.shlagemons.evolutions.noadcajou.name',
   description: 'data.shlagemons.evolutions.noadcajou.description',
   types: [shlagemonTypes.plante, shlagemonTypes.psy],
   speciality: 'evolution1',

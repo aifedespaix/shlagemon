@@ -20,8 +20,8 @@ const itemName = computed(() => store.current ? t(store.current.name) : '')
         >
           <template #left>
             <div class="flex items-center gap-2">
-              <ShlagemonImage :id="mon.base.id" :alt="mon.base.name" class="aspect-1" />
-              <span>{{ mon.base.name }} (lvl {{ mon.lvl }})</span>
+              <ShlagemonImage :id="mon.base.id" :alt="t(mon.base.name)" class="aspect-1" />
+              <span>{{ t(mon.base.name) }} (lvl {{ mon.lvl }})</span>
             </div>
           </template>
           <template #right>

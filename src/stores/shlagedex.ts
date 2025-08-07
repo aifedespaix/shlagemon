@@ -1,10 +1,12 @@
 import type { PersistedStateOptions } from 'pinia-plugin-persistedstate'
+import type { I18nKey } from '~/type'
 import type { ActiveEffect } from '~/type/effect'
 import type { Item, WearableItem } from '~/type/item'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { allItems } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
+import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
 import { useWildLevelStore } from '~/stores/wildLevel'
 import {
@@ -32,10 +34,16 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   // Vérifie chaque seconde si les effets ont expiré pour retirer icône et bonus
   useIntervalFn(cleanupEffects, 1000)
 
-  function rarityToastMessage(name: string, rarityGain: number, levelLoss: number) {
+  function rarityToastMessage(name: I18nKey, rarityGain: number, levelLoss: number) {
     const point = rarityGain > 1 ? 'points' : 'point'
     const level = levelLoss > 1 ? 'niveaux' : 'niveau'
-    return `${name} gagne ${rarityGain} ${point} de rareté et perd ${levelLoss} ${level} !`
+    return i18n.global.t('stores.shlagedex.rarityChanged', {
+      name: i18n.global.t(name),
+      rarityGain,
+      levelLoss,
+      point,
+      level,
+    })
   }
 
   const {
@@ -428,7 +436,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         const before = existing.rarity
         existing.rarity += 1
         maybePlayRaritySfx(existing, before)
-        toast(`${existing.base.name} atteint la rareté ${existing.rarity} !`)
+        toast(i18n.global.t('stores.shlagedex.rarityReached', {
+          name: i18n.global.t(existing.base.name),
+          rarity: existing.rarity,
+        }))
       }
       existing.lvl = 1
       existing.xp = 0
@@ -458,7 +469,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       mon.captureDate = new Date().toISOString()
       mon.captureCount = 1
       mon.isNew = true
-      toast(`${mon.base.name} a évolué !`)
+      toast(i18n.global.t('stores.shlagedex.evolved', { name: i18n.global.t(mon.base.name) }))
     }
   }
 
@@ -548,7 +559,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     addShlagemon(mon)
     updateHighestLevel(mon)
     notifyAchievement({ type: 'capture', shiny })
-    toast(`Tu as obtenu ${base.name} !`)
+    toast(i18n.global.t('stores.shlagedex.obtained', { name: i18n.global.t(base.name) }))
     return mon
   }
 
@@ -560,7 +571,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
     if (existing) {
       if (existing.rarity >= 100) {
-        toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
+        toast(i18n.global.t('stores.shlagedex.alreadyMax'))
         return existing
       }
       const before = existing.rarity
@@ -607,7 +618,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     addShlagemon(incoming)
     updateHighestLevel(incoming)
     maybePlayRaritySfx(incoming, 0)
-    toast(`Tu as obtenu ${incoming.base.name} !`)
+    toast(i18n.global.t('stores.shlagedex.obtained', { name: i18n.global.t(incoming.base.name) }))
     return incoming
   }
 
@@ -615,7 +626,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
     if (existing) {
       if (existing.rarity >= 100) {
-        toast('Vous avez déjà ce Shlagémon au maximum de sa rareté')
+        toast(i18n.global.t('stores.shlagedex.alreadyMax'))
         return existing
       }
       const before = existing.rarity
@@ -653,7 +664,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     addShlagemon(captured)
     updateHighestLevel(captured)
     maybePlayRaritySfx(captured, 0)
-    toast(`Tu as obtenu ${captured.base.name} !`)
+    toast(i18n.global.t('stores.shlagedex.obtained', { name: i18n.global.t(captured.base.name) }))
     return captured
   }
 
@@ -666,7 +677,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     if (activeShlagemon.value?.id === mon.id)
       activeShlagemon.value = shlagemons.value[0] || null
     recomputeHighestLevel()
-    toast(`${mon.base.name} a été relâché !`)
+    toast(i18n.global.t('stores.shlagedex.released', { name: i18n.global.t(mon.base.name) }))
   }
 
   return {

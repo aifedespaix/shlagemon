@@ -4,7 +4,7 @@ import grosseflemme from './grosseflemme'
 
 export const gravaglaire: BaseShlagemon = {
   id: 'gravaglaire',
-  name: 'Gravaglaire',
+  name: 'data.shlagemons.evolutions.gravaglaire.name',
   description: 'data.shlagemons.evolutions.gravaglaire.description',
   types: [shlagemonTypes.roche, shlagemonTypes.sol],
   evolution: {

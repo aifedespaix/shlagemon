@@ -4,7 +4,7 @@ import rafflamby from './rafflamby'
 
 export const orchibre: BaseShlagemon = {
   id: 'orchibre',
-  name: 'Orchibre',
+  name: 'data.shlagemons.evolutions.orchibre.name',
   description: 'data.shlagemons.evolutions.orchibre.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],

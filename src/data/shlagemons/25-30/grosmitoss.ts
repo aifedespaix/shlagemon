@@ -4,7 +4,7 @@ import aerobite from '../evolutions/aerobite'
 
 export const grosmitoss: BaseShlagemon = {
   id: 'grosmitoss',
-  name: 'GrosMitoss',
+  name: 'data.shlagemons.25-30.grosmitoss.name',
   description: 'data.shlagemons.25-30.grosmitoss.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   evolution: {

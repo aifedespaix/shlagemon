@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../shlagemons-type'
 
 export const zebrapoisbleu: BaseShlagemon = {
   id: 'zebrapoisbleu',
-  name: 'ZebraPoisBleu',
+  name: 'data.shlagemons.zebrapoisbleu.name',
   description: 'data.shlagemons.electhordu.description',
 
   types: [shlagemonTypes.psy, shlagemonTypes.vol],

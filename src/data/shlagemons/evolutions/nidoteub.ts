@@ -4,7 +4,7 @@ import nidodragqueen from './nidodragqueen'
 
 export const nidoteub: BaseShlagemon = {
   id: 'nidoteub',
-  name: 'Nidoteub',
+  name: 'data.shlagemons.evolutions.nidoteub.name',
   description: 'data.shlagemons.evolutions.nidoteub.description',
   types: [shlagemonTypes.poison],
 

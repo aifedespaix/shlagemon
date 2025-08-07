@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const drapcoloscopie: BaseShlagemon = {
   id: 'drapcoloscopie',
-  name: 'Drapcoloscopie',
+  name: 'data.shlagemons.evolutions.drapcoloscopie.name',
   description: 'data.shlagemons.evolutions.drapcoloscopie.description',
   types: [shlagemonTypes.dragon, shlagemonTypes.vol],
   speciality: 'evolution2',

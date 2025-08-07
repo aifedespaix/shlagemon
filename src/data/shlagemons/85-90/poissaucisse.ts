@@ -4,7 +4,7 @@ import poissomerguez from '../evolutions/poissomerguez'
 
 export const poissaucisse: BaseShlagemon = {
   id: 'poissaucisse',
-  name: 'Poissaucisse',
+  name: 'data.shlagemons.85-90.poissaucisse.name',
   description: 'data.shlagemons.85-90.poissaucisse.description',
   types: [shlagemonTypes.eau],
   evolution: {

@@ -4,7 +4,7 @@ import coconnul from '../evolutions/coconnul'
 
 export const aspigros: BaseShlagemon = {
   id: 'aspigros',
-  name: 'Aspigros',
+  name: 'data.shlagemons.05-10.aspigros.name',
   evolution: {
     base: coconnul,
     condition: {

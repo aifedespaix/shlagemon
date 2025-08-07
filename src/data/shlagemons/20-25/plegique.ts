@@ -4,7 +4,7 @@ import parasecte from '../evolutions/parasecte'
 
 export const plegique: BaseShlagemon = {
   id: 'plegique',
-  name: 'Plégique',
+  name: 'data.shlagemons.20-25.plegique.name',
   description: 'data.shlagemons.20-25.plegique.description',
   types: [shlagemonTypes.insecte, shlagemonTypes.poison],
   evolution: {

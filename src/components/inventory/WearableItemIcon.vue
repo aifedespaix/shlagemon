@@ -17,7 +17,7 @@ const { t } = useI18n()
     v-tooltip="t(props.item.name)"
     v-bind="$attrs"
     :src="props.item.image"
-    :alt="props.item.name"
+    :alt="t(props.item.name)"
     class="object-contain"
   >
 </template>

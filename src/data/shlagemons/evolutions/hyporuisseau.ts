@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const hyporuisseau: BaseShlagemon = {
   id: 'hyporuisseau',
-  name: 'Hyporuisseau',
+  name: 'data.shlagemons.evolutions.hyporuisseau.name',
   description: 'data.shlagemons.evolutions.hyporuisseau.description',
   types: [shlagemonTypes.eau],
   speciality: 'evolution1',

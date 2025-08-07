@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const perchiste: BaseShlagemon = {
   id: 'perchiste',
-  name: 'Perchiste',
+  name: 'data.shlagemons.evolutions.perchiste.name',
   description: 'data.shlagemons.evolutions.perchiste.description',
   types: [shlagemonTypes.normal],
   speciality: 'evolution1',

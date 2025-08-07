@@ -4,7 +4,7 @@ import { carabifle } from './evolutions/carabifle'
 
 export const carapouffe: BaseShlagemon = {
   id: 'carapouffe',
-  name: 'Carapouffe',
+  name: 'data.shlagemons.carapouffe.name',
   description: 'data.shlagemons.carapouffe.description',
   types: [shlagemonTypes.eau],
   evolution: { base: carabifle, condition: { type: 'lvl', value: 16 } },

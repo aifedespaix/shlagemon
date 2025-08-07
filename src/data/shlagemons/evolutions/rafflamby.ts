@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const rafflamby: BaseShlagemon = {
   id: 'rafflamby',
-  name: 'Rafflamby',
+  name: 'data.shlagemons.evolutions.rafflamby.name',
   description: 'data.shlagemons.evolutions.rafflamby.description',
 
   types: [shlagemonTypes.plante, shlagemonTypes.poison],

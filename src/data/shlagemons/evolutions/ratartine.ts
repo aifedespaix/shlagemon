@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const ratartine: BaseShlagemon = {
   id: 'ratartine',
-  name: 'Ratartine',
+  name: 'data.shlagemons.evolutions.ratartine.name',
   description: 'data.shlagemons.evolutions.ratartine.description',
   types: [shlagemonTypes.normal],
   speciality: 'evolution1',

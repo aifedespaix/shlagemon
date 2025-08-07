@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const languedepute: BaseShlagemon = {
   id: 'languedepute',
-  name: 'Languedepute',
+  name: 'data.shlagemons.80-85.languedepute.name',
   description: 'data.shlagemons.80-85.languedepute.description',
   types: [shlagemonTypes.normal],
   speciality: 'unique',

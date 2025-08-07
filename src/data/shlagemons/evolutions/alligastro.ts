@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const alligastro: BaseShlagemon = {
   id: 'alligastro',
-  name: 'Alligastro',
+  name: 'data.shlagemons.evolutions.alligastro.name',
   description: 'data.shlagemons.evolutions.alligastro.description',
   types: [shlagemonTypes.eau],
   speciality: 'evolution2',

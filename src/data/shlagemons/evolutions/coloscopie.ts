@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const coloscopie: BaseShlagemon = {
   id: 'coloscopie',
-  name: 'Coloscopie',
+  name: 'data.shlagemons.evolutions.coloscopie.name',
   description: 'data.shlagemons.evolutions.coloscopie.description',
   types: [shlagemonTypes.combat],
   speciality: 'evolution1',

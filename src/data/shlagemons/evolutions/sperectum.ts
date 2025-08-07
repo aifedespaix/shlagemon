@@ -4,7 +4,7 @@ import ectroudbal from './ectroudbal'
 
 export const sperectum: BaseShlagemon = {
   id: 'sperectum',
-  name: 'Sperectum',
+  name: 'data.shlagemons.evolutions.sperectum.name',
   description: 'data.shlagemons.evolutions.sperectum.description',
   types: [shlagemonTypes.spectre],
   evolution: {

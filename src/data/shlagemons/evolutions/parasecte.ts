@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const parasecte: BaseShlagemon = {
   id: 'parasecte',
-  name: 'Parasecte',
+  name: 'data.shlagemons.evolutions.parasecte.name',
   description: 'data.shlagemons.evolutions.parasecte.description',
   types: [shlagemonTypes.poison, shlagemonTypes.spectre],
   speciality: 'evolution1',

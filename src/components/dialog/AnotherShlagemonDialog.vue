@@ -15,7 +15,7 @@ function imageUrl(id: string) {
 const dialogTree = computed<DialogNode[]>(() => [
   {
     id: 'start',
-    text: t('components.dialog.AnotherShlagemonDialog.steps.step1.text', { name: mon.name }),
+    text: t('components.dialog.AnotherShlagemonDialog.steps.step1.text', { name: t(mon.name) }),
     imageUrl: imageUrl(mon.id),
     responses: [
       {

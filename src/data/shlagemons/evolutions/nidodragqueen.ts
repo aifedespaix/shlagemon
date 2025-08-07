@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const nidodragqueen: BaseShlagemon = {
   id: 'nidodragqueen',
-  name: 'Nidodragqueen',
+  name: 'data.shlagemons.evolutions.nidodragqueen.name',
   description: 'data.shlagemons.evolutions.nidodragqueen.description',
   types: [shlagemonTypes.poison],
   speciality: 'evolution2',

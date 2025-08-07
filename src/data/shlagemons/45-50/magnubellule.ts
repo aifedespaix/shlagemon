@@ -4,7 +4,7 @@ import magnementon from '../evolutions/magnementon'
 
 export const magnubellule: BaseShlagemon = {
   id: 'magnubellule',
-  name: 'Magnubellule',
+  name: 'data.shlagemons.45-50.magnubellule.name',
   description: 'data.shlagemons.45-50.magnubellule.description',
   types: [shlagemonTypes.electrique, shlagemonTypes.insecte],
 

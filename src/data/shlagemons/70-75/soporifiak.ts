@@ -4,7 +4,7 @@ import hypsedentaire from '../evolutions/hypsedentaire'
 
 export const soporifiak: BaseShlagemon = {
   id: 'soporifiak',
-  name: 'Soporifiak',
+  name: 'data.shlagemons.70-75.soporifiak.name',
   description: 'data.shlagemons.70-75.soporifiak.description',
   types: [shlagemonTypes.psy],
   evolution: {

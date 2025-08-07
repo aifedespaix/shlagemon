@@ -1,4 +1,5 @@
 import type { BaseShlagemon } from '~/type'
+import { i18n } from '~/modules/i18n'
 
 /**
  * Pick a random Shlagemon from the list preserving the
@@ -19,7 +20,7 @@ export function pickByAlphabet<T extends BaseShlagemon>(
   list: T[],
   counter: number,
 ): T {
-  const sorted = [...list].sort((a, b) => a.name.localeCompare(b.name))
+  const sorted = [...list].sort((a, b) => i18n.global.t(a.name).localeCompare(i18n.global.t(b.name)))
   if (sorted.length <= 1)
     return sorted[0]
 

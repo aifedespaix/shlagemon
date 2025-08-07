@@ -5,7 +5,7 @@ import macintosh from './macintosh'
 
 export const masschopeur: BaseShlagemon = {
   id: 'masschopeur',
-  name: 'Masschopeur',
+  name: 'data.shlagemons.evolutions.masschopeur.name',
   description: 'data.shlagemons.evolutions.masschopeur.description',
   types: [shlagemonTypes.combat],
   evolution: {

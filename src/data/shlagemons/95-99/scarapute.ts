@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const scarapute: BaseShlagemon = {
   id: 'scarapute',
-  name: 'Scarapute',
+  name: 'data.shlagemons.95-99.scarapute.name',
   description: 'data.shlagemons.95-99.scarapute.description',
   types: [shlagemonTypes.insecte],
   speciality: 'unique',

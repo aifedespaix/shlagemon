@@ -4,7 +4,7 @@ import ricardnin from '../evolutions/ricardnin'
 
 export const cacanus: BaseShlagemon = {
   id: 'cacanus',
-  name: 'Cacanus',
+  name: 'data.shlagemons.20-25.cacanus.name',
   description: 'data.shlagemons.20-25.cacanus.description',
   types: [shlagemonTypes.feu, shlagemonTypes.poison],
   evolution: {

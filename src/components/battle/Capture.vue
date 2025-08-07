@@ -158,7 +158,7 @@ defineExpose({ open })
         >
         <ShlagemonImage
           :id="enemy.base.id"
-          :alt="enemy.base.name"
+          :alt="t(enemy.base.name)"
           :shiny="enemy.isShiny"
           class="absolute left-1/2 top-1/2 h-12 w-12 object-contain -translate-x-1/2 -translate-y-1/2"
           :class="{ 'to-ball': shake > 0 }"

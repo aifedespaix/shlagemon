@@ -5,7 +5,7 @@ import masschopeur from '../evolutions/masschopeur'
 
 export const macho: BaseShlagemon = {
   id: 'macho',
-  name: 'Macho',
+  name: 'data.shlagemons.35-40.macho.name',
   description: 'data.shlagemons.35-40.macho.description',
   types: [shlagemonTypes.combat],
   evolution: {

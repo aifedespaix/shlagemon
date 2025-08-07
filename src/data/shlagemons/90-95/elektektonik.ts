@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const elektektonik: BaseShlagemon = {
   id: 'elektektonik',
-  name: 'Elektektonik',
+  name: 'data.shlagemons.90-95.elektektonik.name',
   description: 'data.shlagemons.90-95.elektektonik.description',
   types: [shlagemonTypes.electrique],
   speciality: 'unique',

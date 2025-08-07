@@ -17,13 +17,15 @@ const sortOptions = [
 
 const displayed = computed(() => {
   const q = filter.search.trim().toLowerCase()
-  const result = props.mons.filter(m => m.name.toLowerCase().includes(q))
+  const result = props.mons.filter(m => t(m.name).toLowerCase().includes(q))
   switch (filter.sortBy) {
     case 'type':
-      result.sort((a, b) => (a.types[0]?.name || '').localeCompare(b.types[0]?.name || ''))
+      result.sort((a, b) => {
+        return t(a.types[0]?.name || '').localeCompare(t(b.types[0]?.name || ''))
+      })
       break
     default:
-      result.sort((a, b) => a.name.localeCompare(b.name))
+      result.sort((a, b) => t(a.name).localeCompare(t(b.name)))
   }
   if (!filter.sortAsc)
     result.reverse()
@@ -63,10 +65,10 @@ const displayed = computed(() => {
         @click="props.onItemClick?.(mon)"
       >
         <div class="h-12 w-12">
-          <ShlagemonImage :id="mon.id" :alt="mon.name" />
+          <ShlagemonImage :id="mon.id" :alt="t(mon.name)" />
         </div>
         <div class="flex flex-col overflow-hidden">
-          <span class="font-semibold">{{ mon.name }}</span>
+          <span class="font-semibold">{{ t(mon.name) }}</span>
           <div class="flex gap-1">
             <ShlagemonType
               v-for="typeItem in mon.types"

@@ -4,7 +4,7 @@ import vieuxBlaireau from '../evolutions/vieuxblaireau'
 
 export const jeunebelette: BaseShlagemon = {
   id: 'jeunebelette',
-  name: 'Jeunebelette',
+  name: 'data.shlagemons.01-05.jeunebelette.name',
   description: 'data.shlagemons.01-05.jeunebelette.description',
   types: [shlagemonTypes.sol],
   evolution: {

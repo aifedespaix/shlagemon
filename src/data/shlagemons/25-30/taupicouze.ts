@@ -4,7 +4,7 @@ import triopikouze from '../evolutions/triopikouze'
 
 export const taupicouze: BaseShlagemon = {
   id: 'taupicouze',
-  name: 'Taupicouze',
+  name: 'data.shlagemons.25-30.taupicouze.name',
   description: 'data.shlagemons.25-30.taupicouze.description',
   types: [shlagemonTypes.sol],
   evolution: {

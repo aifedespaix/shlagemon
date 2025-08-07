@@ -3,7 +3,7 @@ import { shlagemonTypes } from '../../shlagemons-type'
 
 export const electrobeauf: BaseShlagemon = {
   id: 'electrobeauf',
-  name: 'Électrobeauf',
+  name: 'data.shlagemons.evolutions.electrobeauf.name',
   description: 'data.shlagemons.evolutions.electrobeauf.description',
   types: [shlagemonTypes.electrique],
   speciality: 'evolution1',

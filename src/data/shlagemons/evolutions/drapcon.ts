@@ -4,7 +4,7 @@ import drapcoloscopie from './drapcoloscopie'
 
 export const drapcon: BaseShlagemon = {
   id: 'drapcon',
-  name: 'DrapCon',
+  name: 'data.shlagemons.evolutions.drapcon.name',
   description: 'data.shlagemons.evolutions.drapcon.description',
   types: [shlagemonTypes.dragon],
   evolution: {

@@ -5,7 +5,7 @@ import electrobeauf from '../evolutions/electrobeauf'
 
 export const voltamere: BaseShlagemon = {
   id: 'voltamere',
-  name: 'Voltamère',
+  name: 'data.shlagemons.70-75.voltamere.name',
   description: 'data.shlagemons.70-75.voltamere.description',
   types: [shlagemonTypes.electrique],
   evolution: {

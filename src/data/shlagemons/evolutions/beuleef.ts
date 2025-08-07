@@ -4,7 +4,7 @@ import moisanium from './moisanium'
 
 export const beuleef: BaseShlagemon = {
   id: 'beuleef',
-  name: 'Beuleef',
+  name: 'data.shlagemons.evolutions.beuleef.name',
   description: 'data.shlagemons.evolutions.beuleef.description',
   types: [shlagemonTypes.plante],
   evolution: {

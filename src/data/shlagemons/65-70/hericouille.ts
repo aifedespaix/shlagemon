@@ -4,7 +4,7 @@ import heriplouf from '../evolutions/heriplouf'
 
 export const hericouille: BaseShlagemon = {
   id: 'hericouille',
-  name: 'Héricouille',
+  name: 'data.shlagemons.65-70.hericouille.name',
   description: 'data.shlagemons.65-70.hericouille.description',
   types: [shlagemonTypes.feu],
   evolution: {
