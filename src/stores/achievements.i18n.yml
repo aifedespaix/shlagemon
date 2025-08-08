@@ -7,6 +7,19 @@ fr:
   zoneCompleteDescription: 'Capturer tous les Shlagémon de {zone}.'
   zoneWinTitle: '{n} victoires - {zone}'
   zoneWinDescription: 'Vaincre {n} Shlagémon dans {zone}.'
+  shinyTitles:
+    1: Shiny!
+    10: 10 shinies
+    100: 100 shinies
+    1000: Légende vivante
+  shinyDescription: 'Capturer {n} Shlagémon shiny extrêmement rares.'
+  itemTitles:
+    firstPurchase: Premier craquage
+    serialBuyer: Acheteur en série
+    shopaholic: Shopaholic confirmé
+    bankruptcy: Banqueroute imminente
+    highRoller: Flambeur intersidéral
+  itemDescription: 'Utiliser {n} objet{s} pendant vos combats ou explorations.'
 en:
   unlocked: 'Achievement unlocked: {title}'
   zoneShinyTitle: '{zone}: Rainbow Hunter'
@@ -16,3 +29,16 @@ en:
   zoneCompleteDescription: 'Capture every Shlagémon in {zone}.'
   zoneWinTitle: '{n} victories - {zone}'
   zoneWinDescription: 'Defeat {n} Shlagémon in {zone}.'
+  shinyTitles:
+    1: Shiny!
+    10: 10 shinies
+    100: 100 shinies
+    1000: Living Legend
+  shinyDescription: 'Capture {n} extremely rare shiny Shlagémon.'
+  itemTitles:
+    firstPurchase: First Purchase
+    serialBuyer: Serial Buyer
+    shopaholic: Confirmed Shopaholic
+    bankruptcy: Impending Bankruptcy
+    highRoller: Interstellar High Roller
+  itemDescription: 'Use {n} item{s} during your battles or explorations.'

@@ -253,7 +253,11 @@ function onUse(item: Item) {
         v-model:sort-asc="filter.sortAsc"
         :options="sortOptions"
       />
-      <UiSearchInput v-model="filter.search" class="min-w-22 flex-1" />
+      <UiSearchInput
+        v-model="filter.search"
+        class="min-w-22 flex-1"
+        :placeholder="t('components.panel.Inventory.search')"
+      />
     </div>
     <UiTabs
       v-if="availableCategories.length > 0"
