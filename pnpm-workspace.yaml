@@ -77,3 +77,6 @@ onlyBuiltDependencies:
   - cypress
   - esbuild
   - simple-git-hooks
+catalog:
+  '@bubblewrap/cli': ^1.23.0
+  '@types/bun': latest
