@@ -280,7 +280,6 @@ function onUse(item: Item) {
     </div>
   </section>
   <InventoryEvolutionItemModal />
-  <InventoryWearableItemModal />
   <InventoryOdorElixirModal />
   <InventoryItemShortcutModal />
   <EggBoxModal />
