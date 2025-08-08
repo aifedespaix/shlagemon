@@ -5,13 +5,12 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
   isCompact?: boolean
 }>(), {
-  placeholder: 'Recherche',
   modelValue: '',
   disabled: false,
   isCompact: true,
 })
 const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
-
+const { t } = useI18n()
 function onInput(e: Event) {
   emit('update:modelValue', (e.target as HTMLInputElement).value)
 }
@@ -25,7 +24,7 @@ function clear() {
     <input
       :value="props.modelValue"
       type="text"
-      :placeholder="props.placeholder"
+      :placeholder="props.placeholder ?? t('placeholder')"
       :disabled="props.disabled"
       class="w-full border-2 border-slate-400 rounded-lg bg-white pr-10 text-sm text-slate-800 shadow-sm transition-all dark:border-slate-600 dark:bg-slate-800 dark:text-slate-100 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-sky-500" :class="[
         props.isCompact
@@ -42,7 +41,7 @@ function clear() {
           ? 'h-5 w-5 text-base'
           : 'h-6 w-6 text-lg',
       ]"
-      aria-label="Effacer la recherche"
+      :aria-label="t('clear')"
       :tabindex="0"
       @click="clear"
     >

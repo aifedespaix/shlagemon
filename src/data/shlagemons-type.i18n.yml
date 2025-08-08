@@ -18,7 +18,7 @@ fr:
     name: Caillasse
     description: Type roc très coriace.
   vol:
-    name: AirEction
+    name: Flyass
     description: Type aérien mais qui sent la teub.
   combat:
     name: Castagne
@@ -73,7 +73,7 @@ en:
     name: Pebble
     description: A tough rock-like type.
   vol:
-    name: AirEction
+    name: Flyass
     description: A flying type that reeks of musk.
   combat:
     name: Brawler
