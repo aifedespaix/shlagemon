@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { nextTick } from 'vue'
 import { zonesData } from '~/data/zones'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
@@ -7,6 +8,8 @@ export interface Achievement {
   id: string
   title: string
   description: string
+  titleParams?: Record<string, unknown>
+  descriptionParams?: Record<string, unknown>
   icon: string
 }
 
@@ -24,6 +27,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
   const progress = useZoneProgressStore()
 
   const defMap: Record<string, Achievement> = {}
+  const recentlyUnlocked: Achievement[] = []
 
   const counters = reactive({
     captures: 0,
@@ -63,11 +67,15 @@ export const useAchievementsStore = defineStore('achievements', () => {
     if (!unlocked.value[id]) {
       unlocked.value[id] = Date.now()
       const def = defMap[id]
-      if (def) {
-        const message = i18n.global.t('stores.achievements.unlocked', { title: def.title })
-        toast.success(message, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
-      }
+      if (def)
+        recentlyUnlocked.push(def)
     }
+  }
+
+  function consumeUnlocked(): Achievement[] {
+    const list = recentlyUnlocked.slice()
+    recentlyUnlocked.length = 0
+    return list
   }
 
   const defs: Achievement[] = []
@@ -205,16 +213,14 @@ export const useAchievementsStore = defineStore('achievements', () => {
 
   const zoneWinThresholds = [10, 100, 1000]
   zonesData.forEach((z) => {
-    const zoneName = i18n.global.te(z.name) ? i18n.global.t(z.name) : z.name
+    const zoneName = z.name
 
     if (z.completionAchievement) {
       const def = {
         id: `zone-${z.id}-complete`,
-        title: i18n.global.t(z.completionAchievement),
-        description: i18n.global.t(
-          'stores.achievements.zoneCompleteDescription',
-          { zone: zoneName },
-        ),
+        title: z.completionAchievement,
+        description: 'stores.achievements.zoneCompleteDescription',
+        descriptionParams: { zone: zoneName },
         icon: 'mdi:map-marker-check',
       }
       defs.push(def)
@@ -223,8 +229,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
     if (z.type === 'sauvage') {
       const shinyDef = {
         id: `zone-${z.id}-shiny`,
-        title: i18n.global.t('stores.achievements.zoneShinyTitle', { zone: i18n.global.t(z.name) }),
-        description: i18n.global.t('stores.achievements.zoneShinyDescription', { zone: i18n.global.t(z.name) }),
+        title: 'stores.achievements.zoneShinyTitle',
+        titleParams: { zone: z.name },
+        description: 'stores.achievements.zoneShinyDescription',
+        descriptionParams: { zone: z.name },
         icon: 'mdi:star-shooting-outline',
       }
       defs.push(shinyDef)
@@ -232,8 +240,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
 
       const rarityDef = {
         id: `zone-${z.id}-rarity-100`,
-        title: i18n.global.t('stores.achievements.zoneRarityTitle', { zone: i18n.global.t(z.name) }),
-        description: i18n.global.t('stores.achievements.zoneRarityDescription', { zone: i18n.global.t(z.name) }),
+        title: 'stores.achievements.zoneRarityTitle',
+        titleParams: { zone: z.name },
+        description: 'stores.achievements.zoneRarityDescription',
+        descriptionParams: { zone: z.name },
         icon: 'mdi:diamond',
       }
       defs.push(rarityDef)
@@ -242,14 +252,10 @@ export const useAchievementsStore = defineStore('achievements', () => {
         const count = n.toLocaleString()
         const def = {
           id: `zone-${z.id}-win-${n}`,
-          title: i18n.global.t(
-            'stores.achievements.zoneWinTitle',
-            { n: count, zone: zoneName },
-          ),
-          description: i18n.global.t(
-            'stores.achievements.zoneWinDescription',
-            { n: count, zone: zoneName },
-          ),
+          title: 'stores.achievements.zoneWinTitle',
+          titleParams: { n: count, zone: zoneName },
+          description: 'stores.achievements.zoneWinDescription',
+          descriptionParams: { n: count, zone: zoneName },
           icon: 'carbon:sword',
         }
         defs.push(def)
@@ -575,6 +581,7 @@ export const useAchievementsStore = defineStore('achievements', () => {
     markAllSeen,
     getProgress,
     counters,
+    consumeUnlocked,
   }
 }, {
   persist: {
@@ -582,7 +589,23 @@ export const useAchievementsStore = defineStore('achievements', () => {
   },
 })
 
-export function notifyAchievement(event: AchievementEvent) {
+function translate(key: string, params?: Record<string, unknown>): string {
+  const resolved: Record<string, unknown> = {}
+  if (params) {
+    for (const [name, value] of Object.entries(params))
+      resolved[name] = typeof value === 'string' && i18n.global.te(value) ? i18n.global.t(value) : value
+  }
+  return i18n.global.te(key) ? i18n.global.t(key, resolved) : key
+}
+
+export async function notifyAchievement(event: AchievementEvent) {
   const store = useAchievementsStore()
   store.handleEvent(event)
+  await nextTick()
+  const unlocked = store.consumeUnlocked()
+  unlocked.forEach((def) => {
+    const title = translate(def.title, def.titleParams)
+    const message = i18n.global.t('stores.achievements.unlocked', { title })
+    toast.success(message, { position: toast.POSITION.TOP_CENTER, autoClose: 3000 })
+  })
 }
