@@ -210,6 +210,7 @@ const bottomBadgeHandler = computed(() => {
         </UiPanelWrapper>
       </div>
 
+      <InventoryWearableItemModal />
       <ShlagemonEvolutionModal />
       <ShlagemonTypeChartModal />
       <ShlagemonWearableEquipModal />
