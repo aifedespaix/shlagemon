@@ -32,6 +32,8 @@ function merge(target, source) {
 function ensurePath(obj, segments) {
   let curr = obj
   for (const seg of segments) {
+    if (!seg)
+      continue
     curr[seg] = curr[seg] || {}
     curr = curr[seg]
   }
@@ -65,15 +67,21 @@ for (const dir of baseDirs) {
 const inputDir = path.join(__dirname, '../../locales')
 const outputDir = inputDir
 
+// Remove locale files that are not supported
 for (const file of fs.readdirSync(inputDir)) {
   if (!file.endsWith('.yml'))
     continue
   const lang = path.basename(file, '.yml')
-  if (!supportedLangs.includes(lang)) {
+  if (!supportedLangs.includes(lang))
     fs.rmSync(path.join(inputDir, file))
-    continue
-  }
-  const base = YAML.parse(fs.readFileSync(path.join(inputDir, file), 'utf8')) || {}
+}
+
+// Ensure a locale file exists for each supported language and merge translations
+for (const lang of supportedLangs) {
+  const filePath = path.join(outputDir, `${lang}.yml`)
+  const base = fs.existsSync(filePath)
+    ? YAML.parse(fs.readFileSync(filePath, 'utf8')) || {}
+    : {}
   const merged = merge(base, translations[lang] || {})
-  fs.writeFileSync(path.join(outputDir, file), YAML.stringify(merged, { lineWidth: 0 }))
+  fs.writeFileSync(filePath, YAML.stringify(merged, { lineWidth: 0 }))
 }
