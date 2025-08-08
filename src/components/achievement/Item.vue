@@ -7,6 +7,8 @@ const emit = defineEmits(['toggle'])
 const store = useAchievementsStore()
 const progress = computed(() => store.getProgress(props.achievement.id))
 
+const { translate } = useTranslate()
+
 function toggle() {
   emit('toggle')
 }
@@ -16,7 +18,7 @@ function toggle() {
   <UiListItem
     :color="props.achievement.achieved ? 'success' : 'locked'"
     role="button"
-    :aria-label="props.achievement.title"
+    :aria-label="translate(props.achievement.title, props.achievement.titleParams)"
     @click="toggle"
   >
     <template #left>
@@ -24,12 +26,12 @@ function toggle() {
     </template>
 
     <div class="min-w-0 w-full flex cursor-pointer items-center justify-between">
-      <span class="flex-1 truncate font-bold">{{ props.achievement.title }}</span>
+      <span class="flex-1 truncate font-bold">{{ translate(props.achievement.title, props.achievement.titleParams) }}</span>
       <div class="i-carbon-chevron-down ml-2 transition-transform" :class="props.opened ? '' : 'rotate-90'" />
     </div>
 
     <div v-show="props.opened" class="mt-1 w-full text-xs">
-      <p>{{ props.achievement.description }}</p>
+      <p>{{ translate(props.achievement.description, props.achievement.descriptionParams) }}</p>
       <div v-if="!props.achievement.achieved && progress" class="mt-1">
         <div class="mb-1 text-center">
           {{ progress.value.toLocaleString() }} / {{ progress.max.toLocaleString() }}

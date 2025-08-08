@@ -362,6 +362,7 @@ declare global {
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTrainerBattleStore: typeof import('./stores/trainerBattle')['useTrainerBattleStore']
   const useTransition: typeof import('@vueuse/core')['useTransition']
+  const useTranslate: typeof import('./composables/useTranslate')['useTranslate']
   const useTypeChartModalStore: typeof import('./stores/typeChartModal')['useTypeChartModalStore']
   const useUIStore: typeof import('./stores/ui')['useUIStore']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
@@ -422,6 +423,9 @@ declare global {
   // @ts-ignore
   export type { SlidingPuzzle, PuzzleDirection } from './composables/useSlidingPuzzle'
   import('./composables/useSlidingPuzzle')
+  // @ts-ignore
+  export type { TranslateFn } from './composables/useTranslate'
+  import('./composables/useTranslate')
   // @ts-ignore
   export type { Achievement, AchievementEvent } from './stores/achievements'
   import('./stores/achievements')
@@ -826,6 +830,7 @@ declare module 'vue' {
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTrainerBattleStore: UnwrapRef<typeof import('./stores/trainerBattle')['useTrainerBattleStore']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
+    readonly useTranslate: UnwrapRef<typeof import('./composables/useTranslate')['useTranslate']>
     readonly useTypeChartModalStore: UnwrapRef<typeof import('./stores/typeChartModal')['useTypeChartModalStore']>
     readonly useUIStore: UnwrapRef<typeof import('./stores/ui')['useUIStore']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>

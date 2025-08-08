@@ -5,6 +5,7 @@ const store = useAchievementsStore()
 const filter = useAchievementsFilterStore()
 
 const { t } = useI18n()
+const { translate } = useTranslate()
 const statusOptions = [
   { label: t('components.panel.Achievements.all'), value: 'all' },
   { label: t('components.panel.Achievements.unlocked'), value: 'unlocked' },
@@ -27,13 +28,18 @@ const searchedList = computed(() => {
   if (!filter.search.trim())
     return list.value
   const q = filter.search.toLowerCase()
-  return list.value.filter(a => a.title.toLowerCase().includes(q))
+  return list.value.filter((a) => {
+    const title = translate(a.title, a.titleParams).toLowerCase()
+    return title.includes(q)
+  })
 })
 const sortedList = computed(() => {
   const arr = searchedList.value.slice()
   switch (filter.sortBy) {
     case 'name':
-      arr.sort((a, b) => a.title.localeCompare(b.title))
+      arr.sort((a, b) =>
+        translate(a.title, a.titleParams).localeCompare(translate(b.title, b.titleParams)),
+      )
       break
     case 'date':
       arr.sort((a, b) => (a.unlockedAt || 0) - (b.unlockedAt || 0))
