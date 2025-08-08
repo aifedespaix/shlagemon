@@ -11,6 +11,8 @@ const emit = defineEmits<{
   (e: 'update:sortAsc', value: boolean): void
 }>()
 
+const { t } = useI18n()
+
 function updateSortBy(value: string | number) {
   emit('update:sortBy', value)
 }
@@ -29,7 +31,7 @@ function toggleAsc() {
     />
     <button
       class="icon-btn ml-1 text-lg"
-      :aria-label="props.sortAsc ? 'Tri ascendant' : 'Tri descendant'"
+      :aria-label="props.sortAsc ? t('components.ui.SortControls.ascending') : t('components.ui.SortControls.descending')"
       @click="toggleAsc"
     >
       <div :class="props.sortAsc ? 'i-carbon-sort-ascending' : 'i-carbon-sort-descending'" />

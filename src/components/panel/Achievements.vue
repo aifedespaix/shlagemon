@@ -82,7 +82,11 @@ function toggleItem(id: string) {
           v-model:sort-asc="filter.sortAsc"
           :options="sortOptions"
         />
-        <UiSearchInput v-model="filter.search" class="min-w-22 flex-1" />
+        <UiSearchInput
+          v-model="filter.search"
+          class="min-w-22 flex-1"
+          :placeholder="t('components.panel.Achievements.search')"
+        />
       </div>
     </template>
 

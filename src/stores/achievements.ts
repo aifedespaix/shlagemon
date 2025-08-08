@@ -160,8 +160,9 @@ export const useAchievementsStore = defineStore('achievements', () => {
   shinyThresholds.forEach((n) => {
     const def = {
       id: `shiny-${n}`,
-      title: n === 1 ? 'Shiny!' : `${n.toLocaleString()} shiny`,
-      description: `Capturer ${n.toLocaleString()} Shlagémon shiny extrêmement rares.`,
+      title: `stores.achievements.shinyTitles.${n}`,
+      description: 'stores.achievements.shinyDescription',
+      descriptionParams: { n: n.toLocaleString() },
       icon: 'carbon:star',
     }
     defs.push(def)
@@ -169,18 +170,19 @@ export const useAchievementsStore = defineStore('achievements', () => {
   })
 
   const itemThresholds = [1, 10, 100, 1000, 10000]
-  const itemTitles: Record<number, string> = {
-    1: 'Premier craquage',
-    10: 'Acheteur en série',
-    100: 'Shopaholic confirmé',
-    1000: 'Banqueroute imminente',
-    10000: 'Flambeur intersidéral',
+  const itemTitleKeys: Record<number, string> = {
+    1: 'firstPurchase',
+    10: 'serialBuyer',
+    100: 'shopaholic',
+    1000: 'bankruptcy',
+    10000: 'highRoller',
   }
   itemThresholds.forEach((n) => {
     const def = {
       id: `item-${n}`,
-      title: itemTitles[n],
-      description: `Utiliser ${n.toLocaleString()} objet${n > 1 ? 's' : ''} pendant vos combats ou explorations.`,
+      title: `stores.achievements.itemTitles.${itemTitleKeys[n]}`,
+      description: 'stores.achievements.itemDescription',
+      descriptionParams: { n: n.toLocaleString(), s: n > 1 ? 's' : '' },
       icon: 'carbon:shopping-bag',
     }
     defs.push(def)
