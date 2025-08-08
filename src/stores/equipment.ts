@@ -11,6 +11,13 @@ export const useEquipmentStore = defineStore('equipment', () => {
     return vitalityIds.includes(id)
   }
 
+  /**
+   * Equip an item to a Shlagémon.
+   *
+   * The equipped Shlagémon becomes the active one unless the item is the
+   * Multi Exp, which is a passive team item and should not change the active
+   * selection.
+   */
   function equip(monId: string, itemId: string) {
     const mon = dex.shlagemons.find(m => m.id === monId)
     if (!mon)
@@ -41,7 +48,9 @@ export const useEquipmentStore = defineStore('equipment', () => {
     inventory.remove(itemId)
     if (isVitalityItem(itemId))
       mon.hpCurrent = dex.maxHp(mon)
-    if (itemId !== multiExp.id)
+
+    const shouldSelectActive = itemId !== multiExp.id
+    if (shouldSelectActive)
       dex.setActiveShlagemon(mon)
   }
 
