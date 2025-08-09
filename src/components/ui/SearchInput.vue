@@ -41,7 +41,8 @@ function clear() {
           ? 'h-5 w-5 text-base'
           : 'h-6 w-6 text-lg',
       ]"
-      :aria-label="t('clear')"
+      :aria-label="t('components.ui.SearchInput.clear')"
+      v-tooltip="t('components.ui.SearchInput.clear')"
       :tabindex="0"
       @click="clear"
     >

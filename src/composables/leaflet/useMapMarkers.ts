@@ -90,7 +90,6 @@ export function useMapMarkers(map: LeafletMap) {
         badges = [crown, arena].filter(Boolean).join('')
       }
       else {
-        // --- Ball statut de capture (uniquement non-village) ---
         const ballStyle = !allCaptured.value
           ? 'filter: grayscale(1) opacity(0.9);'
           : perfectZone.value
@@ -98,17 +97,20 @@ export function useMapMarkers(map: LeafletMap) {
             : ''
         const ball = `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3" style="${ballStyle}" />`
 
-        // badges superposés sur la ball
         const shinyBadge = allShiny.value
           ? '<div class="i-mdi:star h-2 w-2 mask-rainbow absolute -top-1 -right-1"></div>'
           : ''
 
-        const ballWithBadges
-      = shinyBadge
-        ? `<div class="relative">${ball}${shinyBadge}</div>`
-        : ball
+        const ballWithBadges = shinyBadge
+          ? `<div class="relative">${ball}${shinyBadge}</div>`
+          : ball
 
-        badges = ballWithBadges
+        const crownStyle = !kingDefeated.value
+          ? 'filter: grayscale(1) opacity(0.9);'
+          : 'filter: brightness(1.08) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
+        const queenCrown = `<div class="i-game-icons:queen-crown h-3 w-3" style="${crownStyle}"></div>`
+
+        badges = `<div class="flex items-center gap-0.5">${ballWithBadges}${queenCrown}</div>`
       }
 
       const hasBadges = Boolean(badges)
