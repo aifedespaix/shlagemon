@@ -80,14 +80,17 @@ export function useMapMarkers(map: LeafletMap) {
       let badges = ''
 
       if (zone.type === 'village') {
-        const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
-        let arena = ''
-        if (arenaCompleted.value)
-          arena = '<div class="i-mdi:sword-cross h-3 w-3"></div>'
-        else if (zone.pois?.arena)
-          arena = '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
+        const hasArena = Boolean(zone.pois?.arena) // n'affiche rien si pas d'arène
 
-        badges = [crown, arena].filter(Boolean).join('')
+        let arena = ''
+        if (hasArena && arenaCompleted.value) {
+          arena = '<div class="i-mdi:sword-cross h-3 w-3"></div>'
+        }
+        else if (hasArena && !arenaCompleted.value) {
+          arena = '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
+        }
+
+        badges = [arena].filter(Boolean).join('')
       }
       else {
         const ballStyle = !allCaptured.value
