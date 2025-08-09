@@ -48,6 +48,7 @@ describe('useMapMarkers', () => {
       allCaptured: ref(true),
       perfectZone: ref(false),
       allShiny: ref(false),
+      hasKing: ref(true),
       kingDefeated: ref(false),
       arenaCompleted: ref(false),
     })
@@ -59,11 +60,12 @@ describe('useMapMarkers', () => {
     )
   })
 
-  it('omits icon container for non-village zones', () => {
+  it('renders badge container for non-village zones', () => {
     useZoneCompletionMock.mockReturnValue({
       allCaptured: ref(true),
       perfectZone: ref(false),
       allShiny: ref(false),
+      hasKing: ref(true),
       kingDefeated: ref(true),
       arenaCompleted: ref(false),
     })
@@ -71,7 +73,7 @@ describe('useMapMarkers', () => {
     const { addMarker } = useMapMarkers(dummyMap)
     addMarker(zone)
     const html = useLeafletMarkerMock.mock.calls[0][0].html as string
-    expect(html).not.toContain('bg-dark/75')
+    expect(html).toContain('bg-dark/75')
   })
 
   it('does not render grey arena icon when village lacks an arena', () => {
@@ -79,6 +81,7 @@ describe('useMapMarkers', () => {
       allCaptured: ref(true),
       perfectZone: ref(false),
       allShiny: ref(false),
+      hasKing: ref(false),
       kingDefeated: ref(false),
       arenaCompleted: ref(false),
     })
@@ -103,6 +106,7 @@ describe('useMapMarkers', () => {
       allCaptured: ref(false),
       perfectZone: ref(false),
       allShiny: ref(false),
+      hasKing: ref(true),
       kingDefeated: ref(false),
       arenaCompleted: ref(false),
     })
@@ -118,6 +122,7 @@ describe('useMapMarkers', () => {
       allCaptured: ref(true),
       perfectZone: ref(true),
       allShiny: ref(true),
+      hasKing: ref(true),
       kingDefeated: ref(false),
       arenaCompleted: ref(false),
     })
@@ -126,6 +131,22 @@ describe('useMapMarkers', () => {
     addMarker(zone)
     const html = useLeafletMarkerMock.mock.calls[0][0].html as string
     expect(html).toContain('mask-rainbow')
-    expect(html).toContain('drop-shadow(0 0 2px #facc15)')
+    expect(html).not.toContain('drop-shadow(0 0 2px #facc15)')
+  })
+
+  it('hides crown when zone has no king', () => {
+    useZoneCompletionMock.mockReturnValue({
+      allCaptured: ref(true),
+      perfectZone: ref(false),
+      allShiny: ref(false),
+      hasKing: ref(false),
+      kingDefeated: ref(false),
+      arenaCompleted: ref(false),
+    })
+    const dummyMap = {} as LeafletMap
+    const { addMarker } = useMapMarkers(dummyMap)
+    addMarker(zone)
+    const html = useLeafletMarkerMock.mock.calls[0][0].html as string
+    expect(html).not.toContain('queen-crown')
   })
 })

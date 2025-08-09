@@ -6,6 +6,8 @@
  * - Accessible (role="button", tabindex, aria-*)
  */
 
+import { GOLD_FILTER, GREY_FILTER } from '~/utils/iconStyles'
+
 type ZoneType = 'village' | 'zone'
 interface Props {
   /** Type de la zone (affecte l’icône et les badges) */
@@ -21,6 +23,7 @@ interface Props {
   allCaptured: boolean
   perfectZone: boolean
   allShiny: boolean
+  hasKing: boolean
   kingDefeated: boolean
   arenaCompleted: boolean
   hasArenaPoi: boolean
@@ -35,16 +38,53 @@ interface Props {
 
 const props = defineProps<Props>()
 
+type CaptureState = 'missing' | 'complete' | 'perfect' | 'shiny'
+const captureState = computed<CaptureState>(() => {
+  if (!props.allCaptured)
+    return 'missing'
+  if (props.allShiny)
+    return 'shiny'
+  if (props.perfectZone)
+    return 'perfect'
+  return 'complete'
+})
+
+type KingState = 'none' | 'undefeated' | 'defeated'
+const kingState = computed<KingState>(() => {
+  if (!props.hasKing)
+    return 'none'
+  return props.kingDefeated ? 'defeated' : 'undefeated'
+})
+
 /** Styles calculés pour l'icône principale (cas non-village) */
 const zoneIconFilter = computed<string>(() => {
   if (props.zoneType === 'village')
     return ''
-  if (!props.allCaptured)
-    return 'filter:grayscale(1) opacity(0.9);'
-  if (props.perfectZone)
-    return 'filter:brightness(1.08) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
+  if (captureState.value === 'missing')
+    return GREY_FILTER
+  if (captureState.value === 'perfect')
+    return GOLD_FILTER
   return ''
 })
+
+const ballStyle = computed<string>(() => {
+  switch (captureState.value) {
+    case 'missing':
+      return GREY_FILTER
+    case 'perfect':
+      return GOLD_FILTER
+    default:
+      return ''
+  }
+})
+
+const arenaStyle = computed(() =>
+  props.arenaCompleted ? GOLD_FILTER : GREY_FILTER,
+)
+
+const crownStyle = computed(() =>
+  kingState.value === 'defeated' ? GOLD_FILTER : GREY_FILTER,
+)
 
 /** Highlight doux pour zones non visitées et non vérouillées */
 const pulseClass = computed(() =>
@@ -53,7 +93,8 @@ const pulseClass = computed(() =>
 
 /** Gestion clavier (accessibilité) */
 function onKeydown(e: KeyboardEvent) {
-  if (props.locked) return
+  if (props.locked)
+    return
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault()
     props.onSelect?.()
@@ -67,7 +108,7 @@ function onKeydown(e: KeyboardEvent) {
     Ici côté Vue on se concentre sur le contenu et les états.
   -->
   <div
-    class="flex flex-col items-center select-none"
+    class="flex flex-col select-none items-center"
     :class="locked ? 'grayscale opacity-50' : ''"
     role="button"
     :aria-label="title"
@@ -80,47 +121,46 @@ function onKeydown(e: KeyboardEvent) {
     <img
       :src="zoneIconSrc"
       :alt="title"
-      class="block"
-      :class="[`w-12 h-12`, pulseClass]"
+      class="block h-12 w-12"
+      :class="pulseClass"
       :style="zoneIconFilter"
       draggable="false"
-    />
+    >
 
     <!-- Badges -->
-    <div
-      v-if="zoneType === 'village' || true /* conditionnera plus bas */"
-      class="flex gap-0.5 -mt-1 items-center"
-    >
-      <!-- Village : couronne + arène -->
+    <div v-if="zoneType === 'village' ? hasArenaPoi : true" class="flex items-center gap-0.5 -mt-1">
+      <!-- Village : arène -->
       <template v-if="zoneType === 'village'">
-        <div v-if="kingDefeated" class="i-game-icons:crown h-3 w-3" aria-label="King defeated" />
         <div
-          v-if="arenaCompleted || hasArenaPoi"
-          :class="['i-mdi:sword-cross h-3 w-3', arenaCompleted ? '' : 'opacity-50 grayscale']"
+          v-if="hasArenaPoi"
+          class="i-mdi:sword-cross h-3 w-3"
+          :style="arenaStyle"
           :aria-label="arenaCompleted ? 'Arena completed' : 'Arena available'"
         />
       </template>
 
-      <!-- Non-village : balle + shiny -->
+      <!-- Zones sauvages : capture + roi -->
       <template v-else>
         <div class="relative">
           <img
             src="/items/shlageball/shlageball.webp"
             alt=""
             class="h-3 w-3"
-            :style="!allCaptured
-              ? 'filter:grayscale(1) opacity(0.9);'
-              : (perfectZone
-                ? 'filter:brightness(1.08) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
-                : '')"
+            :style="ballStyle"
             draggable="false"
-          />
+          >
           <div
-            v-if="allShiny"
-            class="i-mdi:star h-2 w-2 mask-rainbow absolute -top-1 -right-1"
+            v-if="captureState === 'shiny'"
+            class="mask-rainbow i-mdi:star absolute h-2 w-2 -right-1 -top-1"
             aria-label="All shiny"
           />
         </div>
+        <div
+          v-if="kingState !== 'none'"
+          class="i-game-icons:queen-crown h-3 w-3"
+          :style="crownStyle"
+          :aria-label="kingState === 'defeated' ? 'King defeated' : 'King available'"
+        />
       </template>
     </div>
   </div>
