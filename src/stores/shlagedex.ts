@@ -432,16 +432,17 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const existing = shlagemons.value.find(m => m.base.id === to.id && m.id !== mon.id)
     if (existing) {
       existing.captureCount += 1
-      // Merge attributes with existing evolution, keeping the best stats.
-      if (mon.rarity > existing.rarity && existing.rarity < 100) {
-        const before = existing.rarity
-        existing.rarity = mon.rarity
-        maybePlayRaritySfx(existing, before)
+      const previousRarity = existing.rarity
+      existing.isShiny ||= mon.isShiny
+      existing.rarity = Math.max(existing.rarity, mon.rarity)
+      if (existing.rarity !== previousRarity) {
+        maybePlayRaritySfx(existing, previousRarity)
         toast(i18n.global.t('stores.shlagedex.rarityReached', {
           name: i18n.global.t(existing.base.name),
           rarity: existing.rarity,
         }))
       }
+      applyStats(existing)
       if (mon.lvl > existing.lvl) {
         existing.lvl = mon.lvl
         existing.xp = mon.xp
@@ -449,7 +450,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       else if (mon.lvl === existing.lvl) {
         existing.xp = Math.max(existing.xp, mon.xp)
       }
-      applyStats(existing)
       applyCurrentStats(existing)
       existing.hpCurrent = maxHp(existing)
       if (mon.heldItemId) {
@@ -457,8 +457,6 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
         equipment.unequip(mon.id)
         equipment.equip(existing.id, itemId)
       }
-      if (mon.isShiny)
-        existing.isShiny = true
       const index = shlagemons.value.findIndex(m => m.id === mon.id)
       if (index !== -1)
         shlagemons.value.splice(index, 1)
