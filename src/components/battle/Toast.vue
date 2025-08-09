@@ -3,9 +3,9 @@ const { message, variant } = defineProps<{ message: string, variant?: 'high' | '
 const variantClasses = computed(() => {
   switch (variant) {
     case 'high':
-      return 'bg-red-500 text-white border-yellow-300 shadow-lg dark:bg-red-600'
+      return 'text-red-200 bg-red-800/25'
     case 'low':
-      return 'bg-blue-200 text-blue-800 border-blue-300 shadow-inner dark:bg-blue-900/80 dark:text-blue-200'
+      return 'text-blue-200 bg-blue-800/25'
     default:
       return 'bg-white/90 dark:bg-gray-800/90'
   }
@@ -15,10 +15,10 @@ const rotation = (Math.random() * 5 + 15) * (Math.random() > 0.5 ? 1 : -1)
 
 <template>
   <div
-    class="battle-toast pointer-events-none absolute bottom-16 left-1/2 z-100 -translate-x-1/2"
+    class="battle-toast pointer-events-none absolute bottom-20 left-1/2 z-100 -translate-x-1/2"
     :style="{ transform: `translateX(-50%) rotate(${rotation}deg)` }"
   >
-    <div class="border rounded px-2 py-1 text-xs font-bold" :class="variantClasses">
+    <div class="battle-toast-text rounded px-2 py-1 text-xs font-bold" :class="variantClasses">
       {{ message }}
     </div>
   </div>
@@ -26,7 +26,10 @@ const rotation = (Math.random() * 5 + 15) * (Math.random() > 0.5 ? 1 : -1)
 
 <style scoped>
 .battle-toast {
-  animation: toast-pop 1s ease forwards;
+  animation: toast-pop 1.2s ease forwards;
+}
+.battle-toast-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 @keyframes toast-pop {
   0% {
