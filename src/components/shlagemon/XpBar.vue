@@ -11,7 +11,7 @@ const isMaxLevel = computed(() => props.mon.lvl >= 100)
 <template>
   <div class="flex flex-col">
     <div v-if="!isMaxLevel" class="mb-1 text-center text-xs">
-      Expérience : {{ props.mon.xp.toLocaleString() }} / {{ maxXp.toLocaleString() }}
+      Expérience : <UiAnimatedNumber :value="props.mon.xp" /> / <UiAnimatedNumber :value="maxXp" />
     </div>
     <UiProgressBar
       :value="isMaxLevel ? 1 : props.mon.xp"

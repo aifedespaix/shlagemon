@@ -174,7 +174,7 @@ const heldItem = computed(() => {
       :class="{ flash: props.flash }"
     />
     <div class="w-full text-right text-sm">
-      {{ props.hp.toLocaleString() }} / {{ maxHp.toLocaleString() }}
+      <UiAnimatedNumber :value="props.hp" /> / {{ maxHp.toLocaleString() }}
     </div>
   </div>
 </template>
