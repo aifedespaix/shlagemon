@@ -154,6 +154,8 @@ components:
       xp: Vos gains d'XP sont augmentés pour encore {remaining}
       vitality: Votre vitalité est augmentée pour encore {remaining}
       capture: Vos chances de capture sont accrues pour encore {remaining}
+    damageTaken: Subit {amount} dégâts
+    healedFor: Soigné de {amount} PV
   egg:
     BoxModal:
       title: Boîte à œufs

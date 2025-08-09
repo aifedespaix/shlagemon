@@ -154,6 +154,8 @@ components:
       xp: Your XP gains are increased for {remaining} more
       vitality: Your vitality is increased for {remaining} more
       capture: Your capture chances are improved for {remaining} more
+    damageTaken: Took {amount} damage
+    healedFor: Healed for {amount} HP
   egg:
     BoxModal:
       title: Egg box
