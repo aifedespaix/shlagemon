@@ -22,15 +22,23 @@ Un mini-jeu de réflexion « Tic Tac Toe » permet aussi de récolter quelques S
 
 ## Fonctionnalités clés
 
+### Stack technique
+
 - **Vue&nbsp;3 + Vite + TypeScript** pour un développement moderne et rapide.
-- **Pinia** pour la gestion d'état, organisée en plusieurs stores pour une meilleure maintenabilité.
-- **UnoCSS** comme moteur de styles, avec la syntaxe _attributify_ (par ex. `md="px-4"`) pour un design mobile first et un responsive clair.
+- **Pinia** et **pinia-plugin-persistedstate** pour une gestion d'état fiable avec persistance.
+- **UnoCSS** en mode _attributify_ pour un design mobile first et réactif sans feuilles de style dédiées.
+- **Auto-imports** des composants, stores et composables pour un code concis.
+- Routing **basé sur les fichiers** et génération statique grâce à `vite-ssg`.
+- Prêt pour le **PWA** (service worker, manifest, mode hors-ligne) et l'**internationalisation** via **Vue I18n**.
+- Tests unitaires (Vitest) et end‑to‑end (Cypress) intégrés.
+
+### Gameplay et interface
+
+- Système de combat et de capture avec gestion du _Shlagedex_ et des _Shlagidolar_.
 - Thèmes **clair** et **sombre** via les classes `dark:` (ex. `dark:bg-gray-800`).
-- Composants découpés en unités réutilisables (boutons, cartes, panneaux...).
-- Routing basé sur les fichiers et génération statique grâce à `vite-ssg`.
-- Prêt pour le _PWA_ et l'internationalisation.
-- Mini-jeu « Tic Tac Toe » accessible depuis le village Sux-Mais-Bouls.
-- IA du Tic Tac Toe renforcée avec un algorithme minimax pour éviter toute défaite.
+- **Carte interactive** construite avec **Leaflet** pour explorer le monde.
+- Composants découpés en unités réutilisables pour une interface accessible.
+- Mini-jeux : **Tic Tac Toe** (IA minimax), **Bataille navale**, **Puissance 4**, **Mastermind**, **Memory** et **Taquin**.
 - Chances de capture basées sur la vie restante et le niveau de l'ennemi.
 - Les œufs existent déjà dans le jeu mais ne sont pas encore obtenables.
 
