@@ -48,14 +48,22 @@ const detailModal = useDexDetailModalStore()
 
 /** === Timers ============================================================ */
 const now = ref(Date.now())
-const { pause: stopTimer } = useIntervalFn(() => { now.value = Date.now() }, 1000)
+const { pause: stopTimer } = useIntervalFn(
+  () => {
+    now.value = Date.now()
+  },
+  1000,
+)
 onUnmounted(stopTimer)
 
 /** === Anim "level up" =================================================== */
 const lvlUp = ref(false)
 const { start: hideLvlUp } = useTimeoutFn(() => (lvlUp.value = false), 600, { immediate: false })
 watch(() => props.mon.lvl, (val, old) => {
-  if (val > old) { lvlUp.value = true; hideLvlUp() }
+  if (val > old) {
+    lvlUp.value = true
+    hideLvlUp()
+  }
 })
 
 /** === Visibilité document -> fin d’anim faint =========================== */
@@ -132,14 +140,28 @@ function scheduleFlush() {
   })
 }
 function buildBurstEntries(batch: PendingDelta[]): FloatingNumber[] {
-  const n = batch.length
   const results: FloatingNumber[] = []
+  const usedDx: number[] = []
 
-  // Utilitaire: interpolation linéaire
-  const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+  /**
+   * Retourne une position horizontale pseudo-aléatoire en évitant les recouvrements.
+   * Les positions sont bornées à [-maxHoriz, +maxHoriz].
+   */
+  function randomDx(width: number, maxHoriz: number): number {
+    const minGap = width
+    for (let attempt = 0; attempt < 8; attempt++) {
+      const candidate = Math.round((Math.random() * 2 - 1) * maxHoriz)
+      if (usedDx.every(prev => Math.abs(prev - candidate) > minGap)) {
+        usedDx.push(candidate)
+        return candidate
+      }
+    }
+    const fallback = Math.round((Math.random() * 2 - 1) * maxHoriz)
+    usedDx.push(fallback)
+    return fallback
+  }
 
-  for (let i = 0; i < n; i++) {
-    const delta = batch[i].delta
+  for (const { delta } of batch) {
     if (delta === 0)
       continue
 
@@ -150,14 +172,9 @@ function buildBurstEntries(batch: PendingDelta[]): FloatingNumber[] {
     // (rapide et suffisant : ~8px par chiffre + signe)
     const charCount = String(amount).length + 1 // +1 pour +/-
     const w = Math.max(14, charCount * 8) // largeur mini pour éviter 0
-    const maxHoriz = w * 3 // <-- 3x la largeur du texte demandé
+    const maxHoriz = w * 3 // 3x la largeur du texte demandé
 
-    // Distribution uniforme sur [-maxHoriz, +maxHoriz]
-    const t = n === 1 ? 0.5 : i / (n - 1) // [0..1]
-    let dx = lerp(-maxHoriz, maxHoriz, t)
-
-    // Léger jitter pour éviter l’alignement trop parfait
-    dx += (Math.random() * w - w / 2) * 0.35
+    const dx = randomDx(w, maxHoriz)
 
     // Hauteur : plus l’élément est centré, plus il monte (beau “arc”)
     const centerFactor = 1 - Math.abs(dx) / maxHoriz // 1 au centre, 0 aux bords
@@ -165,13 +182,15 @@ function buildBurstEntries(batch: PendingDelta[]): FloatingNumber[] {
     const extraRise = 18 * centerFactor
     const dy = -(baseRise + extraRise + Math.random() * 10)
 
-    const rotation = Math.round((dx / maxHoriz) * 10 + (Math.random() * 6 - 3)) // signe lié à la direction
+    // Rotation dépend de la position horizontale : droite -> sens horaire, gauche -> anti-horaire
+    const magnitude = 4 + Math.random() * 6
+    const rotation = Math.round(magnitude * Math.sign(dx))
 
     results.push({
       id: ++floatId,
       amount,
       kind,
-      dx: Math.round(dx),
+      dx,
       dy: Math.round(dy),
       rotation,
     })
