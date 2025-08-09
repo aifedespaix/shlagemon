@@ -1,8 +1,8 @@
-# Shlagémon
-
 <p align="center">
-  <img src="public/logo.png" alt="Logo" width="180" />
+  <img src="public/logo.png" alt="Logo" width="240" />
 </p>
+
+# Shlagémon
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S61IX3R2)
 
@@ -10,7 +10,8 @@ Plongez dans un univers délirant peuplé de Shlagémons totalement barrés. Cap
 
 <p align="center">
   <img src="public/shlagemons/carapouffe/carapouffe.png" alt="Carapouffe" width="160" />
-  <img src="public/characters/sachatte/sachatte.png" alt="Sachatte" width="160" />
+  <img src="public/shlagemons/salamiches/salamiches.png" alt="Salamiches" width="160" />
+  <img src="public/shlagemons/bulgrosboule/bulgrosboule.png" alt="Bulgrosboule" width="160" />
   <img src="public/characters/prof-merdant/prof-merdant.png" alt="Prof Merdant" width="160" />
 </p>
 
