@@ -65,36 +65,39 @@ export function useMapMarkers(map: LeafletMap) {
 
     function buildHtml() {
       const highlight = !visited.value && !locked ? 'animate-pulse-alt' : ''
-      const icon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" />`
-      const ballStyle = !allCaptured.value
-        ? 'filter: grayscale(1) opacity(0.9);'
-        : perfectZone.value
-          ? 'filter: brightness(1.1) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
-          : ''
-      const ball = zone.type !== 'village'
-        ? `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3" style="${ballStyle}" />`
-        : ''
-      const shiny = allShiny.value
+
+      let iconStyle = ''
+      if (zone.type !== 'village') {
+        iconStyle = !allCaptured.value
+          ? 'filter: grayscale(1) opacity(0.9);'
+          : perfectZone.value
+            ? 'filter: brightness(1.1) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
+            : ''
+      }
+      const baseIcon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" style="${iconStyle}" />`
+      const shiny = zone.type !== 'village' && allShiny.value
         ? '<div class="i-mdi:star h-2 w-2 mask-rainbow absolute -top-1 -right-1"></div>'
         : ''
-      let fullBall
-      if (allShiny) {
-        fullBall = `<div class="relative">${ball} ${shiny}</div>`
-      }
-      else {
-        fullBall = ball
-      }
-      const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
-      const arena = arenaCompleted.value
-        ? '<div class="i-mdi:sword-cross h-3 w-3"></div>'
-        : zone.type === 'village' && zone.pois.arena
-          ? '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
-          : ''
+      const icon = shiny ? `<div class="relative">${baseIcon}${shiny}</div>` : baseIcon
 
-      const icons = [fullBall, crown, arena].filter(Boolean).join('')
+      let icons = ''
+      if (zone.type === 'village') {
+        const crown = kingDefeated.value ? '<div class="i-game-icons:crown h-3 w-3"></div>' : ''
+        let arena = ''
+        if (arenaCompleted.value)
+          arena = '<div class="i-mdi:sword-cross h-3 w-3"></div>'
+        else if (zone.pois?.arena)
+          arena = '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
+        icons = [crown, arena].filter(Boolean).join('')
+      }
+
+      const iconsContainer = icons
+        ? `<div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>`
+        : ''
+
       return `<div class="flex flex-col items-center ${locked ? 'grayscale opacity-50' : ''}">
         ${icon}
-        <div class="flex gap-0.5 -mt-1 bg-dark/75 px-2 py-1 rounded-full">${icons}</div>
+        ${iconsContainer}
       </div>`
     }
 
