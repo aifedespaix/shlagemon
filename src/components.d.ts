@@ -88,6 +88,7 @@ declare module 'vue' {
     LayoutTitledPanel: typeof import('./components/layout/TitledPanel.vue')['default']
     LeafletCenterMapButton: typeof import('./components/leaflet/CenterMapButton.vue')['default']
     LeafletMap: typeof import('./components/leaflet/map.vue')['default']
+    LeafletMarkerIcon: typeof import('./components/leaflet/MarkerIcon.vue')['default']
     Loader: typeof import('./components/Loader.vue')['default']
     MapArrowButton: typeof import('./components/map/ArrowButton.vue')['default']
     MinigameBattleship: typeof import('./components/minigame/Battleship.vue')['default']

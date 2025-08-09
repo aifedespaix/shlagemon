@@ -40,6 +40,6 @@ function fightKing() {
   >
     <div>{{ t('components.battle.FightKingButton.challenge', { label: kingLabel }) }}</div>
 
-    <div class="i-mdi:sword" />
+    <div class="i-game-icons:queen-crown" />
   </UiButton>
 </template>
