@@ -40,11 +40,12 @@ describe('useMapMarkers', () => {
 
   beforeEach(() => {
     useLeafletMarkerMock.mockClear()
+    useZoneCompletionMock.mockReset()
   })
 
   it('assigns zone name as marker title', () => {
     useZoneCompletionMock.mockReturnValue({
-      allCaptured: ref(false),
+      allCaptured: ref(true),
       perfectZone: ref(false),
       allShiny: ref(false),
       kingDefeated: ref(false),
@@ -58,10 +59,64 @@ describe('useMapMarkers', () => {
     )
   })
 
-  it('renders shiny star when all mons are shiny', () => {
+  it('omits icon container for non-village zones', () => {
     useZoneCompletionMock.mockReturnValue({
       allCaptured: ref(true),
       perfectZone: ref(false),
+      allShiny: ref(false),
+      kingDefeated: ref(true),
+      arenaCompleted: ref(false),
+    })
+    const dummyMap = {} as LeafletMap
+    const { addMarker } = useMapMarkers(dummyMap)
+    addMarker(zone)
+    const html = useLeafletMarkerMock.mock.calls[0][0].html as string
+    expect(html).not.toContain('bg-dark/75')
+  })
+
+  it('does not render grey arena icon when village lacks an arena', () => {
+    useZoneCompletionMock.mockReturnValue({
+      allCaptured: ref(true),
+      perfectZone: ref(false),
+      allShiny: ref(false),
+      kingDefeated: ref(false),
+      arenaCompleted: ref(false),
+    })
+    const dummyMap = {} as LeafletMap
+    const { addMarker } = useMapMarkers(dummyMap)
+    const village: Zone = {
+      id: 'test-village',
+      name: 'test.village.name',
+      type: 'village',
+      villageType: 'basic',
+      position: { lat: 0, lng: 0 },
+      minLevel: 1,
+      pois: {},
+    }
+    addMarker(village)
+    const html = useLeafletMarkerMock.mock.calls[0][0].html as string
+    expect(html).not.toContain('i-mdi:sword-cross')
+  })
+
+  it('applies grayscale style when zone not fully captured', () => {
+    useZoneCompletionMock.mockReturnValue({
+      allCaptured: ref(false),
+      perfectZone: ref(false),
+      allShiny: ref(false),
+      kingDefeated: ref(false),
+      arenaCompleted: ref(false),
+    })
+    const dummyMap = {} as LeafletMap
+    const { addMarker } = useMapMarkers(dummyMap)
+    addMarker(zone)
+    const html = useLeafletMarkerMock.mock.calls[0][0].html as string
+    expect(html).toContain('grayscale(1)')
+  })
+
+  it('adds shiny star and perfect zone effects when applicable', () => {
+    useZoneCompletionMock.mockReturnValue({
+      allCaptured: ref(true),
+      perfectZone: ref(true),
       allShiny: ref(true),
       kingDefeated: ref(false),
       arenaCompleted: ref(false),
@@ -71,20 +126,6 @@ describe('useMapMarkers', () => {
     addMarker(zone)
     const html = useLeafletMarkerMock.mock.calls[0][0].html as string
     expect(html).toContain('mask-rainbow')
-  })
-
-  it('adds golden aura to ball when zone is perfect', () => {
-    useZoneCompletionMock.mockReturnValue({
-      allCaptured: ref(true),
-      perfectZone: ref(true),
-      allShiny: ref(false),
-      kingDefeated: ref(false),
-      arenaCompleted: ref(false),
-    })
-    const dummyMap = {} as LeafletMap
-    const { addMarker } = useMapMarkers(dummyMap)
-    addMarker(zone)
-    const html = useLeafletMarkerMock.mock.calls[0][0].html as string
     expect(html).toContain('drop-shadow(0 0 2px #facc15)')
   })
 })
