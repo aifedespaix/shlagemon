@@ -40,15 +40,13 @@ export function useZoneCompletion(zone: Zone) {
     })
   })
 
-  const kingDefeated = computed(() => {
-    const hasKing
-        = zone.type === 'sauvage'
-          ? zone.hasKing !== false
-          : !!zone.pois.king
-    return hasKing && progress.isKingDefeated(zone.id)
-  })
+  const hasKing = computed(() => (zone.type === 'sauvage'
+    ? zone.hasKing !== false
+    : !!zone.pois.king))
+
+  const kingDefeated = computed(() => hasKing.value && progress.isKingDefeated(zone.id))
 
   const arenaCompleted = computed(() => progress.isArenaCompleted(zone.id))
 
-  return { allCaptured, perfectZone, allShiny, kingDefeated, arenaCompleted }
+  return { allCaptured, perfectZone, allShiny, hasKing, kingDefeated, arenaCompleted }
 }

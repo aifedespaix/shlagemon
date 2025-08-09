@@ -5,6 +5,7 @@ import { computed, watch } from 'vue'
 import { useZoneCompletion } from '~/composables/useZoneCompletion'
 import { i18n } from '~/modules/i18n'
 import { useZoneVisitStore } from '~/stores/zoneVisit'
+import { GOLD_FILTER, GREY_FILTER } from '~/utils/iconStyles'
 import { useLeafletMarker } from './useLeafletMarker'
 
 export function useMapMarkers(map: LeafletMap) {
@@ -53,11 +54,29 @@ export function useMapMarkers(map: LeafletMap) {
     onSelect?: (id: ZoneId) => void,
     inactive = false,
   ) {
-    const { allCaptured, perfectZone, allShiny, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
+    const { allCaptured, perfectZone, allShiny, hasKing, kingDefeated, arenaCompleted } = useZoneCompletion(zone)
     const visit = useZoneVisitStore()
     const visited = computed(() => !!visit.visited[zone.id])
     let locked = inactive
     let clickHandler: (() => void) | null = null
+
+    type CaptureState = 'missing' | 'complete' | 'perfect' | 'shiny'
+    const captureState = computed<CaptureState>(() => {
+      if (!allCaptured.value)
+        return 'missing'
+      if (allShiny.value)
+        return 'shiny'
+      if (perfectZone.value)
+        return 'perfect'
+      return 'complete'
+    })
+
+    type KingState = 'none' | 'undefeated' | 'defeated'
+    const kingState = computed<KingState>(() => {
+      if (!hasKing.value)
+        return 'none'
+      return kingDefeated.value ? 'defeated' : 'undefeated'
+    })
 
     const iconClassSize = 12
     const markerSize = 60
@@ -68,10 +87,10 @@ export function useMapMarkers(map: LeafletMap) {
       // --- Icône principale (zone) ---
       const zoneIconStyle
     = zone.type !== 'village'
-      ? (!allCaptured.value
-          ? 'filter: grayscale(1) opacity(0.9);'
-          : perfectZone.value
-            ? 'filter: brightness(1.08) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
+      ? (captureState.value === 'missing'
+          ? GREY_FILTER
+          : captureState.value === 'perfect'
+            ? GOLD_FILTER
             : '')
       : ''
       const baseIcon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" style="${zoneIconStyle}" />`
@@ -80,40 +99,37 @@ export function useMapMarkers(map: LeafletMap) {
       let badges = ''
 
       if (zone.type === 'village') {
-        const hasArena = Boolean(zone.pois?.arena) // n'affiche rien si pas d'arène
-
+        const hasArena = Boolean(zone.pois?.arena)
         let arena = ''
-        if (hasArena && arenaCompleted.value) {
-          arena = '<div class="i-mdi:sword-cross h-3 w-3"></div>'
-        }
-        else if (hasArena && !arenaCompleted.value) {
-          arena = '<div class="i-mdi:sword-cross h-3 w-3 opacity-50 grayscale"></div>'
-        }
+        if (hasArena)
+          arena = `<div class="i-mdi:sword-cross h-3 w-3" style="${arenaCompleted.value ? GOLD_FILTER : GREY_FILTER}"></div>`
 
-        badges = [arena].filter(Boolean).join('')
+        badges = arena
       }
       else {
-        const ballStyle = !allCaptured.value
-          ? 'filter: grayscale(1) opacity(0.9);'
-          : perfectZone.value
-            ? 'filter: brightness(1.08) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
-            : ''
+        const ballStyle = {
+          missing: GREY_FILTER,
+          complete: '',
+          perfect: GOLD_FILTER,
+          shiny: '',
+        }[captureState.value]
         const ball = `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3" style="${ballStyle}" />`
 
-        const shinyBadge = allShiny.value
+        const shinyBadge = captureState.value === 'shiny'
           ? '<div class="i-mdi:star h-2 w-2 mask-rainbow absolute -top-1 -right-1"></div>'
           : ''
-
-        const ballWithBadges = shinyBadge
+        const ballWithBadge = shinyBadge
           ? `<div class="relative">${ball}${shinyBadge}</div>`
           : ball
 
-        const crownStyle = !kingDefeated.value
-          ? 'filter: grayscale(1) opacity(0.9);'
-          : 'filter: brightness(1.08) drop-shadow(0 0 2px #facc15) drop-shadow(0 0 4px #facc15) drop-shadow(0 0 6px #facc15);'
-        const queenCrown = `<div class="i-game-icons:queen-crown h-3 w-3" style="${crownStyle}"></div>`
+        let crown = ''
+        if (kingState.value !== 'none') {
+          const style = kingState.value === 'defeated' ? GOLD_FILTER : GREY_FILTER
+          crown = `<div class="i-game-icons:queen-crown h-3 w-3" style="${style}"></div>`
+        }
 
-        badges = `<div class="flex items-center gap-0.5">${ballWithBadges}${queenCrown}</div>`
+        const items = [ballWithBadge, crown].filter(Boolean).join('')
+        badges = `<div class="flex items-center gap-0.5">${items}</div>`
       }
 
       const hasBadges = Boolean(badges)
@@ -137,7 +153,7 @@ export function useMapMarkers(map: LeafletMap) {
       title: i18n.global.t(zone.name),
     })
 
-    watch([allCaptured, perfectZone, allShiny, kingDefeated, arenaCompleted, visited], () => {
+    watch([captureState, kingState, arenaCompleted, visited], () => {
       marker.setIcon(new DivIcon({
         html: buildHtml(),
         iconSize: [markerSize, markerSize],
