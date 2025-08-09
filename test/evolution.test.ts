@@ -65,6 +65,25 @@ describe('evolution', () => {
     expect(existing.isShiny).toBe(true)
   })
 
+  it('keeps highest rarity and level when evolution already owned', async () => {
+    setActivePinia(createPinia())
+    const zone = useZoneStore()
+    const dex = useShlagedexStore()
+    const evo = useEvolutionStore()
+    vi.spyOn(evo, 'requestEvolution').mockResolvedValue(true)
+    zone.setZone('plaine-kekette')
+    const existing = dex.createShlagemon(kadavrebras)
+    existing.rarity = 5
+    existing.lvl = 10
+    const mon = dex.createShlagemon(abraquemar)
+    mon.rarity = 20
+    mon.lvl = 45
+    await dex.gainXp(mon, xpForLevel(mon.lvl))
+    expect(dex.shlagemons.length).toBe(1)
+    expect(existing.rarity).toBe(20)
+    expect(existing.lvl).toBe(46)
+  })
+
   it('processes only the first evolution when multiple levels are gained', async () => {
     setActivePinia(createPinia())
     const dex = useShlagedexStore()

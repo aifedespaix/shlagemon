@@ -432,17 +432,23 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const existing = shlagemons.value.find(m => m.base.id === to.id && m.id !== mon.id)
     if (existing) {
       existing.captureCount += 1
-      if (existing.rarity < 100) {
+      // Merge attributes with existing evolution, keeping the best stats.
+      if (mon.rarity > existing.rarity && existing.rarity < 100) {
         const before = existing.rarity
-        existing.rarity += 1
+        existing.rarity = mon.rarity
         maybePlayRaritySfx(existing, before)
         toast(i18n.global.t('stores.shlagedex.rarityReached', {
           name: i18n.global.t(existing.base.name),
           rarity: existing.rarity,
         }))
       }
-      existing.lvl = 1
-      existing.xp = 0
+      if (mon.lvl > existing.lvl) {
+        existing.lvl = mon.lvl
+        existing.xp = mon.xp
+      }
+      else if (mon.lvl === existing.lvl) {
+        existing.xp = Math.max(existing.xp, mon.xp)
+      }
       applyStats(existing)
       applyCurrentStats(existing)
       existing.hpCurrent = maxHp(existing)
