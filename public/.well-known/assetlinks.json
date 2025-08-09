@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.aife.shlagemon.twa",
+        "sha256_cert_fingerprints": ["C4:EA:83:32:F4:44:00:49:5B:22:EA:03:34:8D:86:A4:0E:A5:6F:32:77:5D:1B:FA:00:D9:17:A8:B6:64:C1:94"]
+      }
+    }]
