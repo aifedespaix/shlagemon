@@ -1,0 +1,6 @@
+fr:
+  damageTaken: 'Subit {amount} dégâts'
+  healedFor: 'Soigné de {amount} PV'
+en:
+  damageTaken: 'Took {amount} damage'
+  healedFor: 'Healed for {amount} HP'
