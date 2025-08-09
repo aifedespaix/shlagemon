@@ -177,7 +177,7 @@ function loadFromFile(event: Event) {
       <input
         ref="fileInput"
         type="file"
-        accept=".txt"
+        accept=".shlag"
         class="hidden"
         :aria-label="t('components.settings.SaveTab.loadFile')"
         @change="loadFromFile"
