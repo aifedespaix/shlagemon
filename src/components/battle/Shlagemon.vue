@@ -120,25 +120,40 @@ let floatId = 0
 interface PendingDelta { delta: number }
 const pending: PendingDelta[] = []
 let flushScheduled = false
+// === Visibilité document ==================================================
+const isHidden = computed(() => documentVisibility.value === 'hidden')
 
+// Quand l'onglet passe en hidden: on purge tout ce qui pourrait animer
+watch(isHidden, (hidden) => {
+  if (hidden) {
+    pending.splice(0, pending.length) // vide la batch
+    floats.value = [] // supprime les chips en cours
+  }
+})
+
+// Dans ton scheduler: ne programme RIEN si l’onglet est caché
 function scheduleFlush() {
-  if (flushScheduled)
+  if (flushScheduled || isHidden.value)
     return
+
   flushScheduled = true
-  // Une frame suffit pour agréger les variations "simultanées"
   requestAnimationFrame(() => {
     flushScheduled = false
     if (pending.length === 0)
       return
-    // On convertit chaque delta en une entrée indépendante
+
     const entries = buildBurstEntries(pending.splice(0))
     for (const e of entries) floats.value.push(e)
-    // File de sécurité au cas où animationend ne se déclenche pas
-    window.setTimeout(() => {
-      for (const e of entries) removeFloat(e.id)
-    }, 1200)
+
+    // Sécurité temporisée uniquement si visible (sinon inutile)
+    if (!isHidden.value) {
+      window.setTimeout(() => {
+        for (const e of entries) removeFloat(e.id)
+      }, 1200)
+    }
   })
 }
+
 function buildBurstEntries(batch: PendingDelta[]): FloatingNumber[] {
   const results: FloatingNumber[] = []
   const usedDx: number[] = []
@@ -289,7 +304,13 @@ watch(() => props.hp, (next) => {
 
       <!-- Conteneur ancré au pseudo -->
       <div class="pointer-events-none absolute left-1/2 z-160 h-0 w-0 -top-4 -translate-x-1/2">
-        <TransitionGroup name="float-dmg" tag="div" class="relative" aria-live="polite">
+        <TransitionGroup
+          name="float-dmg"
+          tag="div"
+          class="relative"
+          aria-live="polite"
+          :css="!isHidden"
+        >
           <div
             v-for="f in floats"
             :key="f.id"
@@ -437,5 +458,11 @@ watch(() => props.hp, (next) => {
       transform: translate(0, -8px);
     }
   }
+}
+
+.no-anim,
+.no-anim * {
+  animation: none !important;
+  transition: none !important;
 }
 </style>

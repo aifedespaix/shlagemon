@@ -102,7 +102,50 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: getPwaManifest(locale),
       manifestFilename: `${locale}/manifest.webmanifest`,
+      workbox: {
+        // Précache : ajoute webp/avif/ogg
+        globPatterns: ['**/*.{js,css,html,ico,svg,webp,avif,ogg}'],
 
+        // Les sons sont souvent > 2Mo → on augmente la limite de précache
+        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15 Mo
+
+        // Runtime caching : images + audio
+        runtimeCaching: [
+          {
+            // IMAGES (webp/avif/png/jpg/svg…)
+            urlPattern: ({ request }) => request.destination === 'image',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images',
+              expiration: {
+                maxEntries: 400,
+                maxAgeSeconds: 60 * 60 * 24 * 60, // 60 jours
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // AUDIO (ogg, mp3 si tu en ajoutes plus tard)
+            urlPattern: ({ request }) => request.destination === 'audio',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'audio',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 60, // 60 jours
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // Assets Vite sur le même origin → SWR pour les MAJ silencieuses
+            urlPattern: ({ url }) =>
+              url.origin === globalThis.location.origin, // && url.pathname.startsWith('/assets/'),
+            handler: 'StaleWhileRevalidate',
+            options: { cacheName: 'static-assets' },
+          },
+        ],
+      },
     })),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n

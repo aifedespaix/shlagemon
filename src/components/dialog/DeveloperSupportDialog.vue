@@ -56,7 +56,7 @@ const dialogTree = computed<DialogNode[]>(() => [
       {
         label: t('components.dialog.DeveloperSupportDialog.steps.discord.responses.join'),
         type: 'valid',
-        action: () => window.open('https://discord.gg/TnKdgfxf', '_blank'),
+        action: () => window.open('https://discord.gg/EB4BB3RTUY', '_blank'),
         nextId: 'discordYes',
       },
       {

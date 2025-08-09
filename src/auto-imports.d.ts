@@ -44,6 +44,7 @@ declare global {
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const describeEvolutionMerge: typeof import('./stores/shlagedex.spec')['describeEvolutionMerge']
   const drop: typeof import('./composables/useConnectFour')['drop']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
@@ -516,6 +517,7 @@ declare module 'vue' {
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly describeEvolutionMerge: UnwrapRef<typeof import('./stores/shlagedex.spec')['describeEvolutionMerge']>
     readonly drop: UnwrapRef<typeof import('./composables/useConnectFour')['drop']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
