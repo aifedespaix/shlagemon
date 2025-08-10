@@ -5,7 +5,7 @@ export const install: UserModule = ({ isClient }) => {
     return
   const store = useShortcutsStore()
   const capture = useKeyboardCaptureStore()
-  window.addEventListener('keydown', (event) => {
+  useEventListener(window, 'keydown', (event) => {
     const target = event.target as HTMLElement | null
     if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable))
       return

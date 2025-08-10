@@ -29,12 +29,7 @@ function onWheel(e: WheelEvent) {
     tableContainer.value.scrollLeft += e.deltaY
   }
 }
-onMounted(() => {
-  tableContainer.value?.addEventListener('wheel', onWheel, { passive: true })
-})
-onBeforeUnmount(() => {
-  tableContainer.value?.removeEventListener('wheel', onWheel)
-})
+useEventListener(tableContainer, 'wheel', onWheel, { passive: true })
 
 // --- Table logique
 function getMultiplier(att: TypeName, def: TypeName) {
