@@ -217,6 +217,10 @@ function removeFloat(id: number) {
 /** Observe hp et pousse des deltas dans la batch courante */
 let lastHp = props.hp
 watch(() => props.hp, (next) => {
+  if (isHidden.value) { // pas d’anim hors écran
+    lastHp = next
+    return
+  }
   const delta = next - lastHp
   lastHp = next
   if (delta === 0)
