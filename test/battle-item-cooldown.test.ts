@@ -20,7 +20,7 @@ describe('battle item cooldown', () => {
     expect(inventory.useItem(potion.id)).toBe(true)
     expect(cooldown.isActive).toBe(true)
     expect(inventory.useItem(superPotion.id)).toBe(false)
-    await vi.advanceTimersByTimeAsync(3000)
+    await vi.advanceTimersByTimeAsync(potion.battleCooldown * 1000)
     expect(cooldown.isActive).toBe(false)
     expect(inventory.useItem(superPotion.id)).toBe(true)
     cooldown.reset()
