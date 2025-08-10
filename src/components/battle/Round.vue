@@ -64,6 +64,9 @@ const {
   tickDelay: props.tickDelay,
 })
 
+// Throttle manual click attacks to prevent UI freeze during rapid input
+const throttledAttack = useThrottleFn(attack, 50, false, true)
+
 const showConfetti = ref(false)
 
 function startBattle() {
@@ -197,7 +200,7 @@ function onClick(_e: MouseEvent) {
   cursorClicked.value = true
   useTimeoutFn(() => (cursorClicked.value = false), 150)
   if (props.clickAttack)
-    attack()
+    throttledAttack()
 }
 </script>
 
