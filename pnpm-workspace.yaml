@@ -1,5 +1,7 @@
 packages: []
 
+catalog:
+  '@types/crypto-js': ^4.2.2
 catalogs:
   build:
     '@intlify/unplugin-vue-i18n': ^6.0.8
