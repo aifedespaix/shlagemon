@@ -20,8 +20,11 @@ export const useBattleStore = defineStore('battle', () => {
 
   /**
    * Tracks the next elemental type index to use for each attacking Shlagémon.
+   *
+   * WeakMap is used so entries are automatically garbage collected when the
+   * attacker is no longer referenced elsewhere.
    */
-  const typeCycleIndex = new Map<string, number>()
+  let typeCycleIndex: WeakMap<DexShlagemon, number> = new WeakMap()
 
   let loop: ReturnType<typeof useIntervalFn> | undefined
 
@@ -33,6 +36,14 @@ export const useBattleStore = defineStore('battle', () => {
   function stopLoop() {
     loop?.pause()
     loop = undefined
+  }
+
+  /**
+   * Stops any ongoing battle loop and resets internal type cycle tracking.
+   */
+  function stopBattle() {
+    stopLoop()
+    typeCycleIndex = new WeakMap()
   }
   /**
    * Calculates the damage inflicted by an attacker onto a defender.
@@ -49,10 +60,10 @@ export const useBattleStore = defineStore('battle', () => {
     reduced = false,
   ): AttackResult {
     const attackerTypes = attacker.base.types.map(t => t.id) as TypeName[]
-    const currentIndex = typeCycleIndex.get(attacker.id) ?? 0
+    const currentIndex = typeCycleIndex.get(attacker) ?? 0
     const atkType = attackerTypes[currentIndex]
     typeCycleIndex.set(
-      attacker.id,
+      attacker,
       attackerTypes.length > 1 ? (currentIndex + 1) % attackerTypes.length : 0,
     )
     const defTypes = defender.base.types.map(t => t.id)
@@ -132,5 +143,5 @@ export const useBattleStore = defineStore('battle', () => {
     return { player: playerResult, enemy: enemyResult }
   }
 
-  return { attack, clickAttack, duel, startLoop, stopLoop }
+  return { attack, clickAttack, duel, startLoop, stopLoop, stopBattle }
 })

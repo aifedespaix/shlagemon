@@ -38,7 +38,7 @@ export function useBattleCore(options: BattleCoreOptions) {
   }
 
   function stopInterval() {
-    battle.stopLoop()
+    battle.stopBattle()
   }
 
   function stopBattle() {
