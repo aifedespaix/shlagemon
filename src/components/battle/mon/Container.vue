@@ -3,7 +3,6 @@ import type { Ref } from 'vue'
 import type { FloatingEntry } from '~/composables/useFloatingNumbers'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
-// ⟵ VueUse
 
 interface Props {
   mon: DexShlagemon
