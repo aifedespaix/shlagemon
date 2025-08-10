@@ -21,6 +21,8 @@ describe('battle round enemy owned indicator', () => {
     await nextTick()
     panel.current = 'trainerBattle'
     const captured = dex.createShlagemon(carapouffe)
+    captured.rarity = 100
+    captured.isShiny = true
     dex.addShlagemon(captured)
     const player = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(player)
@@ -47,6 +49,8 @@ describe('battle round enemy owned indicator', () => {
     const enemyComp = shlagemons.at(1)!
     expect(enemyComp.props('owned')).toBe(true)
     expect(enemyComp.props('showBall')).toBe(true)
+    expect(enemyComp.props('ownsRarity100')).toBe(true)
+    expect(enemyComp.props('ownsShiny')).toBe(true)
     wrapper.unmount()
     vi.useRealTimers()
   })

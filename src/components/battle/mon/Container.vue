@@ -13,6 +13,10 @@ interface Props {
   levelPosition?: 'top' | 'bottom'
   showBall?: boolean
   owned?: boolean
+  /** Player owns this Shlagemon with rarity 100 or more. */
+  ownsRarity100?: boolean
+  /** Player owns a shiny variant of this Shlagemon. */
+  ownsShiny?: boolean
   belongsToPlayer?: boolean
   effects?: ActiveEffect[]
   disease?: boolean
@@ -27,6 +31,8 @@ const props = withDefaults(defineProps<Props>(), {
   levelPosition: 'bottom',
   showBall: false,
   owned: false,
+  ownsRarity100: false,
+  ownsShiny: false,
   belongsToPlayer: false,
   effects: () => [],
   disease: false,
@@ -106,7 +112,12 @@ const maxHp = computed(() => dex.maxHp(props.mon))
       :owned="props.owned"
       :show-ball="props.showBall"
       :shiny="props.mon.isShiny"
-      :tooltip-owned="t('components.battle.Shlagemon.ownedTooltip')"
+      :owns-rarity-100="props.ownsRarity100"
+      :owns-shiny="props.ownsShiny"
+      :tooltip-owned="props.ownsRarity100
+        ? t('components.battle.Shlagemon.ownedRarity100Tooltip')
+        : t('components.battle.Shlagemon.ownedTooltip')"
+      :shiny-label="t('components.battle.Shlagemon.ownedShinyLabel')"
     >
       <template #anchor>
         <BattleMonFloatingNumbers :entries="entries" @end="remove" />

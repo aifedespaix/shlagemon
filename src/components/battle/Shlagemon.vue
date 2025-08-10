@@ -12,6 +12,8 @@ interface Props {
   levelPosition?: 'top' | 'bottom'
   showBall?: boolean
   owned?: boolean
+  ownsRarity100?: boolean
+  ownsShiny?: boolean
   belongsToPlayer?: boolean
   effects?: ActiveEffect[]
   disease?: boolean

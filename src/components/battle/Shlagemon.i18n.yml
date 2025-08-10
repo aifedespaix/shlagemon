@@ -1,6 +1,10 @@
 fr:
   ownedTooltip: Vous possédez déjà ce Shlagémon
+  ownedRarity100Tooltip: Vous possédez ce Shlagémon en rareté 100
+  ownedShinyLabel: Shiny possédé
   infoTooltip: Voir les détails
 en:
   ownedTooltip: You already own this Shlagemon
+  ownedRarity100Tooltip: You own this Shlagemon at rarity 100
+  ownedShinyLabel: Owned shiny
   infoTooltip: View details

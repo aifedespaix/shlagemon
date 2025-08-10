@@ -146,6 +146,8 @@ components:
     Shlagemon:
       ownedTooltip: Vous possédez déjà ce Shlagémon
       infoTooltip: Voir les détails
+      ownedRarity100Tooltip: Vous possédez ce Shlagémon en rareté 100
+      ownedShinyLabel: Shiny possédé
     DiseaseBadge:
       tooltip: 'Malade : {n} combats restants'
     EffectBadge:
