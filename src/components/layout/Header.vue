@@ -60,7 +60,7 @@ const headerClass = [
   >
     <div class="h-full min-w-0 flex items-center">
       <img
-        src="/logo.png"
+        src="/logo.webp"
         :alt="t('components.layout.Header.logoAlt')"
         class="block h-full w-auto select-none transition-transform duration-200 hover:scale-105"
         draggable="false"
