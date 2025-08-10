@@ -40,11 +40,20 @@ const { t } = useI18n()
 const documentVisibility = useDocumentVisibility()
 const visible = computed(() => documentVisibility.value === 'visible')
 
-const { entries, remove } = useFloatingNumbers(toRef(props, 'hp'), visible)
-const animatedHp = useTransition(toRef(props, 'hp'), { duration: 100 })
-watch(visible, (v) => {
+const hp = toRef(props, 'hp')
+const { entries, remove } = useFloatingNumbers(hp, visible)
+
+// Display value mirrors the real HP and updates immediately so the bar and
+// number reflect rapid damage in real time when spam-clicking attacks.
+const displayHp = ref(hp.value)
+
+watch(hp, (val: number) => {
+  displayHp.value = val
+})
+
+watch(visible, (v: boolean) => {
   if (!v)
-    animatedHp.value = props.hp
+    displayHp.value = hp.value
 })
 const { pulsing } = useLevelUpAnimation(computed(() => props.mon.lvl))
 const { onAnimationEnd, onFaintEnd } = useFaintAutoEmit(toRef(props, 'fainted'))
@@ -124,7 +133,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
     </BattleMonNameRow>
 
     <BattleMonHPPanel
-      :value="animatedHp"
+      :value="displayHp"
       :max="maxHp"
       :color="props.color"
       :flash="props.flash"
