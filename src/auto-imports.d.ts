@@ -225,11 +225,13 @@ declare global {
   const useEvolutionItemStore: typeof import('./stores/evolutionItem')['useEvolutionItemStore']
   const useEvolutionStore: typeof import('./stores/evolution')['useEvolutionStore']
   const useEyeDropper: typeof import('@vueuse/core')['useEyeDropper']
+  const useFaintAutoEmit: typeof import('./composables/useFaintAutoEmit')['useFaintAutoEmit']
   const useFavicon: typeof import('@vueuse/core')['useFavicon']
   const useFeatureLockStore: typeof import('./stores/featureLock')['useFeatureLockStore']
   const useFetch: typeof import('@vueuse/core')['useFetch']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
+  const useFloatingNumbers: typeof import('./composables/useFloatingNumbers')['useFloatingNumbers']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
   const useFps: typeof import('@vueuse/core')['useFps']
@@ -240,11 +242,13 @@ declare global {
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
   const useHead: typeof import('@unhead/vue')['useHead']
   const useHeadSafe: typeof import('@unhead/vue')['useHeadSafe']
+  const useHeldItem: typeof import('./composables/useHeldItem')['useHeldItem']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useId: typeof import('vue')['useId']
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
+  const useInfoAction: typeof import('./composables/useInfoAction')['useInfoAction']
   const useInterfaceStore: typeof import('./stores/interface')['useInterfaceStore']
   const useIntersectionObserver: typeof import('@vueuse/core')['useIntersectionObserver']
   const useInterval: typeof import('@vueuse/core')['useInterval']
@@ -259,6 +263,7 @@ declare global {
   const useKingPotionStore: typeof import('./stores/kingPotion')['useKingPotionStore']
   const useLangSwitch: typeof import('./composables/useLangSwitch')['useLangSwitch']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
+  const useLevelUpAnimation: typeof import('./composables/useLevelUpAnimation')['useLevelUpAnimation']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLocaleStore: typeof import('./stores/locale')['useLocaleStore']
@@ -364,6 +369,7 @@ declare global {
   const useTrainerBattleStore: typeof import('./stores/trainerBattle')['useTrainerBattleStore']
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useTranslate: typeof import('./composables/useTranslate')['useTranslate']
+  const useTypeChartAction: typeof import('./composables/useTypeChartAction')['useTypeChartAction']
   const useTypeChartModalStore: typeof import('./stores/typeChartModal')['useTypeChartModalStore']
   const useUIStore: typeof import('./stores/ui')['useUIStore']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
@@ -418,6 +424,12 @@ declare global {
   // @ts-ignore
   export type { Cell } from './composables/useBattleship'
   import('./composables/useBattleship')
+  // @ts-ignore
+  export type { FaintAutoEmitResult } from './composables/useFaintAutoEmit'
+  import('./composables/useFaintAutoEmit')
+  // @ts-ignore
+  export type { FloatingKind, FloatingEntry } from './composables/useFloatingNumbers'
+  import('./composables/useFloatingNumbers')
   // @ts-ignore
   export type { PageHeadOptions } from './composables/usePageHead'
   import('./composables/usePageHead')
@@ -697,11 +709,13 @@ declare module 'vue' {
     readonly useEvolutionItemStore: UnwrapRef<typeof import('./stores/evolutionItem')['useEvolutionItemStore']>
     readonly useEvolutionStore: UnwrapRef<typeof import('./stores/evolution')['useEvolutionStore']>
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
+    readonly useFaintAutoEmit: UnwrapRef<typeof import('./composables/useFaintAutoEmit')['useFaintAutoEmit']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
     readonly useFeatureLockStore: UnwrapRef<typeof import('./stores/featureLock')['useFeatureLockStore']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFloatingNumbers: UnwrapRef<typeof import('./composables/useFloatingNumbers')['useFloatingNumbers']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
@@ -712,11 +726,13 @@ declare module 'vue' {
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
     readonly useHead: UnwrapRef<typeof import('@unhead/vue')['useHead']>
     readonly useHeadSafe: UnwrapRef<typeof import('@unhead/vue')['useHeadSafe']>
+    readonly useHeldItem: UnwrapRef<typeof import('./composables/useHeldItem')['useHeldItem']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
+    readonly useInfoAction: UnwrapRef<typeof import('./composables/useInfoAction')['useInfoAction']>
     readonly useInterfaceStore: UnwrapRef<typeof import('./stores/interface')['useInterfaceStore']>
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
@@ -730,6 +746,7 @@ declare module 'vue' {
     readonly useKingPotionStore: UnwrapRef<typeof import('./stores/kingPotion')['useKingPotionStore']>
     readonly useLangSwitch: UnwrapRef<typeof import('./composables/useLangSwitch')['useLangSwitch']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
+    readonly useLevelUpAnimation: UnwrapRef<typeof import('./composables/useLevelUpAnimation')['useLevelUpAnimation']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLocaleStore: UnwrapRef<typeof import('./stores/locale')['useLocaleStore']>
@@ -833,6 +850,7 @@ declare module 'vue' {
     readonly useTrainerBattleStore: UnwrapRef<typeof import('./stores/trainerBattle')['useTrainerBattleStore']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useTranslate: UnwrapRef<typeof import('./composables/useTranslate')['useTranslate']>
+    readonly useTypeChartAction: UnwrapRef<typeof import('./composables/useTypeChartAction')['useTypeChartAction']>
     readonly useTypeChartModalStore: UnwrapRef<typeof import('./stores/typeChartModal')['useTypeChartModalStore']>
     readonly useUIStore: UnwrapRef<typeof import('./stores/ui')['useUIStore']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
