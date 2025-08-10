@@ -20,13 +20,13 @@ function onAnimationEnd() {
 </script>
 
 <template>
-  <div class="relative h-full w-full overflow-hidden">
+  <div class="relative h-full w-full overflow-hidden" :class="props.flipped ? '-scale-x-100' : ''">
     <ShlagemonImage
       :id="props.id"
       :alt="props.alt"
       :shiny="props.shiny"
       class="min-h-25"
-      :class="[props.flipped ? '-scale-x-100' : '', { faint: props.fainted }]"
+      :class="{ faint: props.fainted }"
       @animationend="onAnimationEnd"
     />
     <div class="dust" :class="{ active: props.fainted }" />
