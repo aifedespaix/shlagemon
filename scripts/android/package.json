@@ -10,9 +10,5 @@
   },
   "peerDependencies": {
     "typescript": "^5"
-  },
-  "devDependencies": {
-    "@bubblewrap/cli": "catalog:",
-    "@types/bun": "catalog:"
   }
 }

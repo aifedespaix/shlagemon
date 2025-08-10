@@ -72,9 +72,9 @@ const itemClass = computed(() => [
       </div>
       <div class="flex gap-0.5">
         <ShlagemonType
-          v-for="t in mon.base.types"
-          :key="t.id"
-          :value="t"
+          v-for="type in mon.base.types"
+          :key="type.id"
+          :value="type"
           size="xs"
           open-on-click
         />

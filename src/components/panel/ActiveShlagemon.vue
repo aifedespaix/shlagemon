@@ -22,9 +22,9 @@ const { t } = useI18n()
       <div class="flex-1" />
       <div class="flex gap-1">
         <ShlagemonType
-          v-for="t in dex.activeShlagemon.base.types"
-          :key="t.id"
-          :value="t"
+          v-for="type in dex.activeShlagemon.base.types"
+          :key="type.id"
+          :value="type"
           size="xs"
         />
       </div>
