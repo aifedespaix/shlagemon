@@ -41,6 +41,11 @@ const documentVisibility = useDocumentVisibility()
 const visible = computed(() => documentVisibility.value === 'visible')
 
 const { entries, remove } = useFloatingNumbers(toRef(props, 'hp'), visible)
+const animatedHp = useTransition(toRef(props, 'hp'), { duration: 100 })
+watch(visible, (v) => {
+  if (!v)
+    animatedHp.value = props.hp
+})
 const { pulsing } = useLevelUpAnimation(computed(() => props.mon.lvl))
 const { onAnimationEnd, onFaintEnd } = useFaintAutoEmit(toRef(props, 'fainted'))
 onFaintEnd(() => emit('faintEnd'))
@@ -119,7 +124,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
     </BattleMonNameRow>
 
     <BattleMonHPPanel
-      :value="props.hp"
+      :value="animatedHp"
       :max="maxHp"
       :color="props.color"
       :flash="props.flash"
