@@ -58,7 +58,7 @@ const {
   enemyVariant,
   startBattle: coreStartBattle,
   stopBattle,
-  attack: coreAttack,
+  attack,
 } = useBattleCore({
   createEnemy: () => props.enemy,
   tickDelay: props.tickDelay,
@@ -138,10 +138,6 @@ watch(
   },
   { immediate: true },
 )
-
-function attack() {
-  coreAttack()
-}
 
 const { start: startEnemyFaintFallback, stop: stopEnemyFaintFallback } = useTimeoutFn(onEnemyFaintEnd, 600, { immediate: false })
 const { start: startPlayerFaintFallback, stop: stopPlayerFaintFallback } = useTimeoutFn(onPlayerFaintEnd, 600, { immediate: false })
