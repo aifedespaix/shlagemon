@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import NumberAnimation from 'vue-number-animation'
 
 type EasingName = 'linear' | 'easeInOutCubic' | 'easeOutCubic' | 'easeInCubic'
 
 interface Props {
   value: number
-  duration?: number          // en ms côté wrapper (on convertit en s pour le lib)
+  duration?: number // en ms côté wrapper (on convertit en s pour le lib)
   precision?: number
   locale?: string | readonly string[]
-  useGrouping?: boolean      // <-- manquait !
+  useGrouping?: boolean // <-- manquait !
   easing?: EasingName
   autoplay?: boolean
 }
@@ -24,6 +23,19 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{ (e: 'finished', finalValue: number): void }>()
+
+/**
+ * `vue-number-animation` relies on browser-specific globals and breaks during
+ * server-side rendering. The component is therefore loaded dynamically only on
+ * the client. When rendered on the server a formatted static number is
+ * displayed instead of an animation.
+ */
+let NumberAnimationComponent:
+  | (typeof import('vue-number-animation')['default'])
+  | null = null
+
+if (!import.meta.env.SSR)
+  NumberAnimationComponent = (await import('vue-number-animation')).default
 
 // const prefersReduced = usePreferredReducedMotion()
 
@@ -45,7 +57,7 @@ const toVal = ref<number>(props.value)
 const runKey = ref(0)
 
 const durationSec = computed(() =>
- Math.max(0, props.duration) / 1000,
+  Math.max(0, props.duration) / 1000,
 )
 
 watch(
@@ -65,7 +77,9 @@ function onFinished(finalValue: number) {
 </script>
 
 <template>
-  <NumberAnimation
+  <component
+    :is="NumberAnimationComponent"
+    v-if="NumberAnimationComponent"
     :key="runKey"
     :from="fromVal"
     :to="toVal"
@@ -75,4 +89,5 @@ function onFinished(finalValue: number) {
     :easing="props.easing"
     @finished="onFinished"
   />
+  <span v-else>{{ formatFn(toVal) }}</span>
 </template>
