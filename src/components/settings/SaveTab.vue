@@ -8,7 +8,7 @@ const playtime = usePlaytimeStore()
 const exportCode = ref('')
 const importCode = ref('')
 const showImport = ref(false)
-const copied = ref(false)
+const { copy, copied } = useClipboard({ copiedDuring: 1500 })
 const fileInput = ref<HTMLInputElement>()
 const generating = ref(false)
 const loading = ref(false)
@@ -24,12 +24,8 @@ async function generateExport() {
 async function copyExport() {
   if (!exportCode.value)
     await generateExport()
-  navigator.clipboard.writeText(exportCode.value)
-  copied.value = true
+  await copy(exportCode.value)
   toast.success(t('components.settings.SaveTab.copied'))
-  setTimeout(() => {
-    copied.value = false
-  }, 1500)
 }
 
 function downloadExport() {
