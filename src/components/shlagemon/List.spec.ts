@@ -57,7 +57,7 @@ const stubs = {
   LayoutScrollablePanel: { template: '<div><slot name="header"></slot><slot name="content"></slot></div>' },
   UiSortControls: { template: '<div></div>' },
   UiSearchInput: { template: '<input />' },
-  UiButton: { template: '<button><slot /></button>' },
+  UiButton: { template: '<button v-bind="$attrs"><slot /></button>' },
   UiInfo: { template: '<div><slot /></div>' },
   ShlagemonListItem: { template: '<div></div>' },
   TransitionGroup: { template: '<div><slot /></div>' },
@@ -77,7 +77,9 @@ describe('shlagemon List Multi Exp button', () => {
     shlagemons.value.push(mon)
     holders.value[multiExp.id] = mon.id
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
-    expect(wrapper.find('button').exists()).toBe(true)
+    const button = wrapper.find('button')
+    expect(button.exists()).toBe(true)
+    expect(button.classes()).not.toContain('saturate-0')
   })
 
   it('opens the holder modal on click', async () => {
@@ -94,7 +96,9 @@ describe('shlagemon List Multi Exp button', () => {
     shlagemons.value.push(mon)
     inventoryStore.items[multiExp.id] = 1
     const wrapper = mount(List, { props: { mons: [mon], isMainShlagedex: true }, global: { stubs } })
-    expect(wrapper.find('button').exists()).toBe(true)
+    const button = wrapper.find('button')
+    expect(button.exists()).toBe(true)
+    expect(button.classes()).toContain('saturate-0')
   })
 
   it('opens the equip modal when not equipped', async () => {

@@ -211,7 +211,13 @@ watch(
           />
           <UiButton
             v-if="isMainShlagedex && ownsMultiExp"
-            v-tooltip="t(multiExp.name)" icon size="xs" variant="outline" type="primary" @click="handleMultiExpClick"
+            v-tooltip="t(multiExp.name)"
+            :class="{ 'saturate-0': !multiExpHolder }"
+            icon
+            size="xs"
+            variant="outline"
+            type="primary"
+            @click="handleMultiExpClick"
           >
             <span :class="[multiExp.icon, multiExp.iconClass]" />
           </UiButton>
