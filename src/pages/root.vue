@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { Locale } from '~/constants/locales'
 import { useHead } from '@unhead/vue'
+import { usePreferredLanguages } from '@vueuse/core'
 import { useRouter } from 'vue-router'
 import { availableLocales, defaultLocale } from '~/constants/locales'
 import { useLocaleStore } from '~/stores/locale'
 
 const router = useRouter()
 const store = useLocaleStore()
+const preferredLanguages = usePreferredLanguages()
 const isRedirecting = ref(true) // Pour l'affichage du loader
 
 /**
@@ -32,8 +34,8 @@ onMounted(async () => {
 
   // 3. Détection navigateur (au premier accès)
   if (!targetLocale) {
-    const nav = navigator.language.toLowerCase()
-    targetLocale = nav.startsWith('fr') ? 'fr' : defaultLocale
+    const navLanguages = preferredLanguages.value.map(language => language.toLowerCase())
+    targetLocale = navLanguages.some(language => language.startsWith('fr')) ? 'fr' : defaultLocale
   }
 
   // On enregistre la locale dans le store pour consistance globale
