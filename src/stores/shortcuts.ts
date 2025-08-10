@@ -76,10 +76,10 @@ export const useShortcutsStore = defineStore('shortcuts', () => {
         if (!item)
           continue
 
-        if (panel.current === 'trainerBattle') {
-          if (item.category !== 'battle' || battleCooldown.isActive)
-            continue
-        }
+        if (item.category === 'battle' && battleCooldown.isActive)
+          continue
+        if (panel.current === 'trainerBattle' && item.category !== 'battle')
+          continue
         if ('catchBonus' in item) {
           useBallStore().equip(item.id as BallId)
           usage.markUsed(item.id)

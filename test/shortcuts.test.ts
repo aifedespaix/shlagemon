@@ -1,7 +1,8 @@
 import { createPinia, setActivePinia } from 'pinia'
-import { describe, expect, it } from 'vitest'
-import { potion, specialPotion, superPotion } from '../src/data/items'
+import { describe, expect, it, vi } from 'vitest'
+import { potion, specialPotion } from '../src/data/items'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
+import { useBattleItemCooldownStore } from '../src/stores/battleItemCooldown'
 import { useInventoryStore } from '../src/stores/inventory'
 import { useKingPotionStore } from '../src/stores/kingPotion'
 import { useShlagedexStore } from '../src/stores/shlagedex'
@@ -15,18 +16,19 @@ describe('shortcuts', () => {
     const dex = useShlagedexStore()
     const inventory = useInventoryStore()
     const shortcuts = useShortcutsStore()
+    const kingPotion = useKingPotionStore()
     // need an active shlagemon for potions to work
     const mon = dex.createShlagemon(carapouffe)
     dex.setActiveShlagemon(mon)
     inventory.add(potion.id)
-    inventory.add(superPotion.id)
+    inventory.add(specialPotion.id)
     shortcuts.shortcuts = [
+      { key: 'a', action: { type: 'use-item', itemId: specialPotion.id } },
       { key: 'a', action: { type: 'use-item', itemId: potion.id } },
-      { key: 'a', action: { type: 'use-item', itemId: superPotion.id } },
     ]
     shortcuts.handleKeydown(new KeyboardEvent('keydown', { key: 'a' }))
+    expect(kingPotion.current).toBe(specialPotion.id)
     expect(inventory.items[potion.id]).toBeUndefined()
-    expect(inventory.items[superPotion.id]).toBeUndefined()
   })
 
   it('equips activable items without consuming them', () => {
@@ -50,5 +52,31 @@ describe('shortcuts', () => {
 
     expect(inventory.items[specialPotion.id]).toBe(1)
     expect(kingPotion.current).toBe(specialPotion.id)
+  })
+
+  it('prevents using battle items during cooldown', () => {
+    vi.useFakeTimers()
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const inventory = useInventoryStore()
+    const shortcuts = useShortcutsStore()
+    const cooldown = useBattleItemCooldownStore()
+
+    const mon = dex.createShlagemon(carapouffe)
+    dex.setActiveShlagemon(mon)
+
+    inventory.add(potion.id, 2)
+
+    shortcuts.shortcuts = [
+      { key: 'a', action: { type: 'use-item', itemId: potion.id } },
+    ]
+
+    const event = new KeyboardEvent('keydown', { key: 'a' })
+    shortcuts.handleKeydown(event)
+    expect(inventory.items[potion.id]).toBe(1)
+    expect(cooldown.isActive).toBe(true)
+    shortcuts.handleKeydown(event)
+    expect(inventory.items[potion.id]).toBe(1)
+    vi.useRealTimers()
   })
 })
