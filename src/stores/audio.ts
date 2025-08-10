@@ -104,7 +104,7 @@ export const useAudioStore = defineStore('audio', () => {
       currentMusic.value.play()
   }
 
-  let fadeTimer: ReturnType<typeof setTimeout> | null = null
+  let fadeTimer: ReturnType<typeof useTimeoutFn> | null = null
   let fadingOut: Howl | null = null
 
   function fadeToMusic(track: string) {
@@ -119,7 +119,7 @@ export const useAudioStore = defineStore('audio', () => {
       return
 
     if (fadeTimer) {
-      clearTimeout(fadeTimer)
+      fadeTimer.stop()
       if (fadingOut) {
         fadingOut.stop()
         fadingOut.unload()
@@ -144,7 +144,7 @@ export const useAudioStore = defineStore('audio', () => {
       next.fade(0, musicVolume.value, 1000)
       old.fade(old.volume(), 0, 1000)
       fadingOut = old
-      fadeTimer = setTimeout(() => {
+      fadeTimer = useTimeoutFn(() => {
         fadingOut?.stop()
         fadingOut?.unload()
         fadingOut = null
@@ -178,7 +178,7 @@ export const useAudioStore = defineStore('audio', () => {
     currentMusic.value.unload()
     currentMusic.value = null
     if (fadeTimer) {
-      clearTimeout(fadeTimer)
+      fadeTimer.stop()
       fadeTimer = null
     }
   }

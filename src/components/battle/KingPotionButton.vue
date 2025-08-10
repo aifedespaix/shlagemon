@@ -11,12 +11,12 @@ const { power } = storeToRefs(potion)
 const audio = useAudioStore()
 
 const holding = ref(false)
-let timer: ReturnType<typeof setTimeout> | null = null
+let timer: ReturnType<typeof useTimeoutFn> | null = null
 let soundId: number | undefined
 
 function cancelHold() {
   if (timer) {
-    clearTimeout(timer)
+    timer.stop()
     timer = null
   }
   if (soundId !== undefined) {
@@ -31,7 +31,7 @@ function startHold() {
     return
   holding.value = true
   soundId = audio.playSfx('items-KingPotion', { loop: true })
-  timer = setTimeout(() => {
+  timer = useTimeoutFn(() => {
     potion.activate(props.enemy ?? undefined)
     holding.value = false
     if (soundId !== undefined) {
