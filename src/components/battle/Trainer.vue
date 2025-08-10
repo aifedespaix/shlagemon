@@ -117,7 +117,7 @@ function createEnemy(): DexShlagemon | null {
     return null
   const max = wildLevel.highestWildLevel
   const min = isZoneKing.value ? Math.max(1, max - 20) : 1
-  const zoneMax = zone.current.maxLevel ?? 1
+  const zoneMax = zone.current.type === 'sauvage' ? zone.current.maxLevel : 1
 
   let level
   if (zoneMax === 99) {

@@ -1,5 +1,5 @@
 import type { Trainer } from '~/type/trainer'
-import type { SavageZoneId, Zone, ZoneId } from '~/type/zone'
+import type { SavageZone, SavageZoneId, Zone, ZoneId } from '~/type/zone'
 import { defineStore } from 'pinia'
 import { kings as kingsData } from '~/data/kings'
 import { zonesData } from '~/data/zones'
@@ -17,7 +17,9 @@ export const useZoneStore = defineStore('zone', () => {
     return zone ?? zones.value[0]
   })
   const xpZones = computed(() =>
-    zones.value.filter(z => (z.maxLevel ?? 0) > 0),
+    zones.value.filter(
+      (z): z is SavageZone => z.type === 'sauvage' && z.maxLevel > 0,
+    ),
   )
 
   const wildCooldownRemaining = computed(() => {
@@ -44,9 +46,9 @@ export const useZoneStore = defineStore('zone', () => {
 
   const rewardMultiplier = computed(() => {
     const zone = current.value
-    const maxLevel = zone.maxLevel ?? 0
-    if (!maxLevel)
+    if (zone.type !== 'sauvage')
       return 1
+    const { maxLevel } = zone
     const rank = maxLevel / 5
     return rank >= 0 ? 2 ** rank : 1
   })
