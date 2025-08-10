@@ -31,7 +31,7 @@ const barClass = computed(() => {
 <template>
   <div class="h-2 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700">
     <div
-      class="h-full transition-all duration-300"
+      class="h-full transition-width duration-300"
       :class="[barClass, gainAnim ? 'xp-gain' : '']"
       :style="{ width: `${percent}%` }"
     />

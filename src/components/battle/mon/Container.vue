@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { FloatingEntry } from '~/composables/useFloatingNumbers'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
@@ -43,28 +42,6 @@ const visible = computed(() => documentVisibility.value === 'visible')
 const hp = toRef(props, 'hp')
 const { entries, remove } = useFloatingNumbers(hp, visible)
 
-/**
- * Keep the displayed HP perfectly in sync with the actual HP.
- * Every change to the `hp` prop is mirrored immediately, ensuring
- * the bar and number reflect rapid updates without delay.
- */
-function useDisplayedHp(current: Ref<number>, isVisible: Ref<boolean>) {
-  const displayed = ref(current.value)
-
-  const sync = () => {
-    displayed.value = current.value
-  }
-
-  watch(current, sync, { immediate: true, flush: 'sync' })
-  watch(isVisible, (v) => {
-    if (!v)
-      sync()
-  })
-
-  return readonly(displayed)
-}
-
-const displayHp = useDisplayedHp(hp, visible)
 const { pulsing } = useLevelUpAnimation(computed(() => props.mon.lvl))
 const { onAnimationEnd, onFaintEnd } = useFaintAutoEmit(toRef(props, 'fainted'))
 onFaintEnd(() => emit('faintEnd'))
@@ -142,7 +119,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
     </BattleMonNameRow>
 
     <BattleMonHPPanel
-      :value="displayHp"
+      :value="hp"
       :max="maxHp"
       :color="props.color"
       :flash="props.flash"

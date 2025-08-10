@@ -39,6 +39,7 @@
     "pinia": "catalog:frontend",
     "pinia-plugin-persistedstate": "catalog:frontend",
     "vue": "catalog:frontend",
+    "vue-number-animation": "catalog:frontend",
     "vue-i18n": "catalog:frontend",
     "vue-router": "catalog:frontend",
     "vue3-select-component": "catalog:frontend",
