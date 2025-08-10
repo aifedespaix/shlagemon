@@ -51,7 +51,7 @@ export const useSaveStore = defineStore('save', () => {
    */
   function clearPersisted(): void {
     for (const key of PERSISTED_STORE_KEYS)
-      window.localStorage.removeItem(key)
+      useStorage(key, null, undefined, { flush: 'sync' }).value = null
   }
 
   return { reset, clearPersisted }

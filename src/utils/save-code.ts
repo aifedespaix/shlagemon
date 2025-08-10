@@ -1,3 +1,4 @@
+import { StorageSerializers } from '@vueuse/core'
 import CryptoJS from 'crypto-js'
 import lzString from 'lz-string'
 
@@ -105,7 +106,11 @@ function wordArrayToUint8Array(wordArray: CryptoJS.lib.WordArray): Uint8Array {
 export function collectSave(): GameSave {
   const save: GameSave = {}
   for (const key of PERSISTED_STORE_KEYS) {
-    const raw = localStorage.getItem(key)
+    const stored = useStorage<string | null>(key, null, undefined, {
+      serializer: StorageSerializers.string,
+      writeDefaults: false,
+    })
+    const raw = stored.value
     if (raw !== null) {
       try {
         save[key] = JSON.parse(raw)
@@ -120,7 +125,9 @@ export function collectSave(): GameSave {
 
 export function applySave(save: GameSave): void {
   for (const [key, value] of Object.entries(save) as [PersistedStoreId, unknown][]) {
-    localStorage.setItem(key, JSON.stringify(value))
+    useStorage<string | null>(key, null, undefined, {
+      serializer: StorageSerializers.string,
+    }).value = JSON.stringify(value)
   }
 }
 
