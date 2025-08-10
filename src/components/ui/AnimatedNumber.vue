@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, shallowRef, watch } from 'vue'
 
 type EasingName = 'linear' | 'easeInOutCubic' | 'easeOutCubic' | 'easeInCubic'
 
@@ -30,12 +30,15 @@ const emit = defineEmits<{ (e: 'finished', finalValue: number): void }>()
  * the client. When rendered on the server a formatted static number is
  * displayed instead of an animation.
  */
-let NumberAnimationComponent:
-  | (typeof import('vue-number-animation')['default'])
-  | null = null
+const NumberAnimationComponent = shallowRef<
+  null | typeof import('vue-number-animation')['default']
+    >(null)
 
-if (!import.meta.env.SSR)
-  NumberAnimationComponent = (await import('vue-number-animation')).default
+if (!import.meta.env.SSR) {
+  import('vue-number-animation').then((mod) => {
+    NumberAnimationComponent.value = mod.default
+  })
+}
 
 // const prefersReduced = usePreferredReducedMotion()
 
