@@ -11,6 +11,7 @@ export interface FloatingEntry {
   readonly dx: number
   readonly dy: number
   readonly rotation: number
+  readonly scale: number
 }
 
 interface PendingDelta {
@@ -27,10 +28,14 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
   const pending: PendingDelta[] = []
   let flushScheduled = false
   let idCounter = 0
+  let totalDamage = 0
+  let damageCount = 0
 
   function clear(): void {
     pending.splice(0, pending.length)
     entries.value = []
+    totalDamage = 0
+    damageCount = 0
   }
 
   watch(visible, (v) => {
@@ -107,16 +112,30 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
         continue
       const kind: FloatingKind = delta < 0 ? 'damage' : 'heal'
       const amount = Math.abs(delta)
-      const charCount = String(amount).length + 1
-      const w = Math.max(14, charCount * 8)
-      const maxHoriz = w * 3
-      const dx = randomDx(w, maxHoriz)
-      const centerFactor = 1 - Math.abs(dx) / maxHoriz
-      const baseRise = kind === 'heal' ? 54 : 46
-      const extraRise = 18 * centerFactor
-      const dy = -(baseRise + extraRise + Math.random() * 10)
-      const magnitude = 4 + Math.random() * 6
-      const rotation = Math.round(magnitude * Math.sign(dx))
+      let dx = 0
+      let dy = 0
+      let rotation = 0
+      let scale = 1
+      if (kind === 'damage') {
+        const charCount = String(amount).length + 1
+        const w = Math.max(14, charCount * 8)
+        const maxHoriz = w * 3
+        dx = randomDx(w, maxHoriz)
+        const centerFactor = 1 - Math.abs(dx) / maxHoriz
+        const baseRise = 46
+        const extraRise = 18 * centerFactor
+        dy = -(baseRise + extraRise + Math.random() * 10)
+        const magnitude = 4 + Math.random() * 6
+        rotation = Math.round(magnitude * Math.sign(dx))
+        const average = damageCount > 0 ? totalDamage / damageCount : amount
+        const ratio = amount / average
+        scale = ratio < 1 ? 1 : Math.min(ratio, 3)
+        totalDamage += amount
+        damageCount++
+      }
+      else {
+        dy = 46 + Math.random() * 10
+      }
       results.push({
         id: ++idCounter,
         amount,
@@ -124,6 +143,7 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
         dx,
         dy: Math.round(dy),
         rotation,
+        scale,
       })
     }
     return results

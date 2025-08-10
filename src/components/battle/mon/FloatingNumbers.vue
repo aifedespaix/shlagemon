@@ -1,12 +1,6 @@
 <script setup lang="ts">
-interface FloatingEntry {
-  id: number
-  amount: number
-  kind: 'damage' | 'heal'
-  dx: number
-  dy: number
-  rotation: number
-}
+import type { FloatingEntry } from '~/composables/useFloatingNumbers'
+
 interface Props {
   entries: readonly FloatingEntry[]
   reduceMotion?: boolean
@@ -20,7 +14,7 @@ function onEnd(id: number) {
 
 <template>
   <TransitionGroup
-    name="float-dmg"
+    name="float"
     tag="div"
     class="pointer-events-none relative"
     :css="!props.reduceMotion"
@@ -29,8 +23,8 @@ function onEnd(id: number) {
       v-for="f in props.entries"
       :key="f.id"
       class="float-chip select-none text-center text-sm font-extrabold drop-shadow"
-      :class="[f.kind === 'damage' ? 'text-red-500' : 'text-green-500']"
-      :style="{ '--dx': `${f.dx}px`, '--dy': `${f.dy}px`, '--rot': `${f.rotation}deg` }"
+      :class="[f.kind === 'damage' ? 'text-red-500 damage' : 'text-green-500 heal']"
+      :style="{ '--dx': `${f.dx}px`, '--dy': `${f.dy}px`, '--rot': `${f.rotation}deg`, '--scale': f.scale.toString() }"
       @animationend="onEnd(f.id)"
     >
       {{ f.kind === 'damage' ? '-' : '+' }}{{ f.amount.toLocaleString() }}
@@ -45,49 +39,74 @@ function onEnd(id: number) {
   top: 0;
   filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.25));
   white-space: nowrap;
-  transform: translate(0, 0) rotate(var(--rot, 0deg));
+  transform: translate(0, 0) scale(var(--scale, 1)) rotate(var(--rot, 0deg));
 }
-.float-dmg-enter-active {
-  animation: floatRise 0.9s cubic-bezier(0.22, 0.8, 0.22, 0.99) both;
+.float-enter-active {
+  animation: floatDamage 0.9s cubic-bezier(0.22, 0.8, 0.22, 0.99) both;
 }
-.float-dmg-leave-active,
-.float-dmg-leave-from,
-.float-dmg-leave-to {
+.float-chip.heal.float-enter-active {
+  animation-name: floatHeal;
+}
+.float-leave-active,
+.float-leave-from,
+.float-leave-to {
   animation: none !important;
   transition: none !important;
   opacity: 0 !important;
 }
-.float-dmg-enter-from {
+.float-enter-from {
   opacity: 0;
 }
-@keyframes floatRise {
+@keyframes floatDamage {
   0% {
     opacity: 0;
-    transform: translate(0, 0) scale(0.95) rotate(var(--rot, 0deg));
+    transform: translate(0, 0) scale(0) rotate(0deg);
     filter: blur(0.3px);
   }
   20% {
     opacity: 1;
-    transform: translate(calc(var(--dx) * 0.2), calc(var(--dy) * 0.2)) scale(1) rotate(var(--rot, 0deg));
     filter: blur(0);
   }
   100% {
     opacity: 0;
-    transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--rot, 0deg));
+    transform: translate(var(--dx), var(--dy)) scale(var(--scale)) rotate(var(--rot));
+  }
+}
+@keyframes floatHeal {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.95);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .float-dmg-enter-active {
+  .float-enter-active {
     animation-duration: 0.3s;
   }
-  @keyframes floatRise {
+  @keyframes floatDamage {
     0% {
       opacity: 0;
-      transform: translate(0, 0);
+      transform: translate(0, 0) scale(1) rotate(0deg);
     }
     100% {
       opacity: 1;
-      transform: translate(0, -8px);
+      transform: translate(0, -8px) scale(1) rotate(0deg);
+    }
+  }
+  @keyframes floatHeal {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 8px) scale(1);
     }
   }
 }
