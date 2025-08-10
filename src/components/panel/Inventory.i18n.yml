@@ -1,5 +1,5 @@
 fr:
-  search: Rechercher un objet
+  search: Rechercher
   sort:
     type: Type
     name: Nom
@@ -12,7 +12,7 @@ fr:
     battle: Combat
   equip: 'Vous avez équipé la {item}'
 en:
-  search: Search an item
+  search: Search
   sort:
     type: Type
     name: Name

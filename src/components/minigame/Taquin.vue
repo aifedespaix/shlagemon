@@ -81,7 +81,7 @@ const shuffling = computed(() => puzzle.shuffling.value)
 </script>
 
 <template>
-  <div ref="wrapper" class="flex flex-1 items-center justify-center">
+  <div ref="wrapper" class="w-full flex flex-1 items-center justify-center">
     <div
       class="relative flex flex-col items-center justify-center"
       :style="{ width: `${squareSize}px`, height: `${squareSize}px`, overflow: 'hidden' }"

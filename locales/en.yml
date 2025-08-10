@@ -68,7 +68,7 @@ components:
         activable: Activable
         battle: Battle
       equip: You equipped the {item}
-      search: Search an item
+      search: Search
     PlayerInfos:
       sick: "Sick: {n} battles left"
       dex: ShlageDex
@@ -837,6 +837,8 @@ components:
     masterMind:
       SelectionModal:
         title: Choose a Shlagemon
+    Battleship:
+      player: Your board
   arena:
     SelectionModal:
       title: Choose a Shlagemon against {name}

@@ -54,7 +54,7 @@ onMounted(reset)
 </script>
 
 <template>
-  <div ref="wrapper" class="flex flex-1 items-center justify-center">
+  <div ref="wrapper" class="flex flex-1 items-center justify-center w-full">
     <div
       class="grid gap-1 p-2 md:gap-2 md:p-3"
       :style="{
