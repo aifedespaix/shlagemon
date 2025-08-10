@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import type { FloatingEntry } from '~/composables/useFloatingNumbers'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
@@ -43,18 +44,28 @@ const visible = computed(() => documentVisibility.value === 'visible')
 const hp = toRef(props, 'hp')
 const { entries, remove } = useFloatingNumbers(hp, visible)
 
-// Display value mirrors the real HP and updates immediately so the bar and
-// number reflect rapid damage in real time when spam-clicking attacks.
-const displayHp = ref(hp.value)
+/**
+ * Keep the displayed HP perfectly in sync with the actual HP.
+ * Every change to the `hp` prop is mirrored immediately, ensuring
+ * the bar and number reflect rapid updates without delay.
+ */
+function useDisplayedHp(current: Ref<number>, isVisible: Ref<boolean>) {
+  const displayed = ref(current.value)
 
-watch(hp, (val: number) => {
-  displayHp.value = val
-})
+  const sync = () => {
+    displayed.value = current.value
+  }
 
-watch(visible, (v: boolean) => {
-  if (!v)
-    displayHp.value = hp.value
-})
+  watch(current, sync, { immediate: true, flush: 'sync' })
+  watch(isVisible, (v) => {
+    if (!v)
+      sync()
+  })
+
+  return readonly(displayed)
+}
+
+const displayHp = useDisplayedHp(hp, visible)
 const { pulsing } = useLevelUpAnimation(computed(() => props.mon.lvl))
 const { onAnimationEnd, onFaintEnd } = useFaintAutoEmit(toRef(props, 'fainted'))
 onFaintEnd(() => emit('faintEnd'))
