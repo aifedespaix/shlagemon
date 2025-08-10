@@ -53,6 +53,7 @@
     "@iconify-json/mdi": "catalog:dev",
     "@intlify/unplugin-vue-i18n": "catalog:build",
     "@shikijs/markdown-it": "catalog:build",
+    "@types/crypto-js": "catalog:",
     "@types/howler": "catalog:build",
     "@types/leaflet": "catalog:types",
     "@types/markdown-it-link-attributes": "catalog:types",
