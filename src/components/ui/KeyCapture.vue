@@ -29,10 +29,8 @@ function onKeydown(e: KeyboardEvent) {
   stopCapture()
   emit('update:modelValue', e.key)
 }
-
-onMounted(() => window.addEventListener('keydown', onKeydown))
+useEventListener(window, 'keydown', onKeydown)
 onBeforeUnmount(() => {
-  window.removeEventListener('keydown', onKeydown)
   stopCapture()
 })
 onMounted(() => {

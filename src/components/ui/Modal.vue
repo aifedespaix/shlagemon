@@ -52,7 +52,7 @@ function close() {
   if (!dialog || dialog.classList.contains('closing'))
     return
   dialog.classList.add('closing')
-  dialog.addEventListener('animationend', () => {
+  useEventListener(dialog, 'animationend', () => {
     dialog.classList.remove('closing')
     dialog.close()
   }, { once: true })

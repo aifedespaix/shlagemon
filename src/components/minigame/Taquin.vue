@@ -32,19 +32,8 @@ useSwipe(wrapper, {
       puzzle.move(dir)
   },
 })
-
-onMounted(() => {
-  const el = wrapper.value
-  if (!el)
-    return
-
-  const preventScroll = (e: TouchEvent) => e.preventDefault()
-  el.addEventListener('touchmove', preventScroll, { passive: false })
-
-  onUnmounted(() => {
-    el.removeEventListener('touchmove', preventScroll)
-  })
-})
+const preventScroll = (e: TouchEvent) => e.preventDefault()
+useEventListener(wrapper, 'touchmove', preventScroll, { passive: false })
 
 useEventListener('keydown', (e: KeyboardEvent) => {
   if (puzzle.solved.value || puzzle.shuffling.value)
