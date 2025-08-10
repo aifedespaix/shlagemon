@@ -9,8 +9,10 @@ from typing import Dict, List, Optional, Tuple
 from PIL import Image, ImageOps
 
 ALLOWED_DIRS = [
-    "shlagemons",
-    "characters",
+    # "shlagemons",
+    "items",
+    "icons",
+    # "characters",
 ]
 
 # Optionnel : AVIF si pillow-avif-plugin est installé
