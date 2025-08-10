@@ -1,3 +1,4 @@
+import type { StateTree } from 'pinia'
 import type { Serializer } from 'pinia-plugin-persistedstate'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
@@ -40,16 +41,23 @@ interface StoredDex extends Omit<SerializedDex, 'shlagemons' | 'activeShlagemon'
  * readable even if the schema evolves.
  */
 export const shlagedexSerializer: Serializer = {
-  serialize(data: SerializedDex): string {
+  serialize(data: StateTree): string {
+    const {
+      shlagemons = [],
+      activeShlagemon,
+      effects = [],
+      ...rest
+    } = data as SerializedDex
+
     return JSON.stringify({
-      ...data,
-      effects: (data.effects || []).map(({ timeout, ...e }) => e),
-      // `data.shlagemons` may be absent when serializing legacy saves or
+      ...rest,
+      effects: effects.map(({ timeout, ...e }) => e),
+      // `shlagemons` may be absent when serializing legacy saves or
       // during tests. Default to an empty array to avoid runtime errors.
-      shlagemons: (data.shlagemons || []).map((mon) => {
-        const { base, heldItemId, ...rest } = mon
+      shlagemons: shlagemons.map((mon) => {
+        const { base, heldItemId, ...monRest } = mon
         const stored: StoredDexMon = {
-          ...rest,
+          ...monRest,
           // Persist baseId to support older saves that rely on this field
           baseId: base.id,
           heldItemId: heldItemId ?? null,
@@ -57,11 +65,11 @@ export const shlagedexSerializer: Serializer = {
         }
         return stored
       }),
-      activeShlagemon: data.activeShlagemon
+      activeShlagemon: activeShlagemon
         ? (() => {
-            const { base, heldItemId, ...rest } = data.activeShlagemon
+            const { base, heldItemId, ...monRest } = activeShlagemon
             const stored: StoredDexMon = {
-              ...rest,
+              ...monRest,
               // Persist baseId for backward compatibility
               baseId: base.id,
               heldItemId: heldItemId ?? null,
@@ -73,7 +81,7 @@ export const shlagedexSerializer: Serializer = {
     })
   },
 
-  deserialize(raw: string): SerializedDex {
+  deserialize(raw: string): StateTree {
     const parsed = JSON.parse(raw) as StoredDex
 
     const baseMap = getBaseMap()
@@ -149,6 +157,6 @@ export const shlagedexSerializer: Serializer = {
       shlagemons,
       activeShlagemon: active ?? null,
       effects,
-    }
+    } as StateTree
   },
 } as const

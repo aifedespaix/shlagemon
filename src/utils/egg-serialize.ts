@@ -1,3 +1,4 @@
+import type { StateTree } from 'pinia'
 import type { Serializer } from 'pinia-plugin-persistedstate'
 import type { Egg } from '~/stores/egg'
 import { allShlagemons } from '~/data/shlagemons'
@@ -16,8 +17,9 @@ interface StoredEgg {
  * `id`, `type`, `baseId`, `rarity`, `startedAt`, and `hatchesAt`.
  */
 export const eggSerializer: Serializer = {
-  serialize(data: { incubator: Egg[] }): string {
-    const eggs = data.incubator || []
+  serialize(data: StateTree): string {
+    const { incubator } = data as { incubator: Egg[] }
+    const eggs = incubator || []
     const list: StoredEgg[] = eggs.map(e => ({
       id: e.id,
       type: e.type,
@@ -28,9 +30,9 @@ export const eggSerializer: Serializer = {
     }))
     return JSON.stringify(list)
   },
-  deserialize(raw: string): { incubator: Egg[] } {
+  deserialize(raw: string): StateTree {
     if (!raw)
-      return { incubator: [] }
+      return { incubator: [] } as StateTree
     const list = JSON.parse(raw) as StoredEgg[]
     const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
     const incubator = list.map(e => ({
@@ -41,6 +43,6 @@ export const eggSerializer: Serializer = {
       startedAt: e.startedAt,
       hatchesAt: e.hatchesAt,
     })).filter(e => e.base)
-    return { incubator }
+    return { incubator } as StateTree
   },
 } as const
