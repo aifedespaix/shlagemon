@@ -10,7 +10,7 @@ function owned(id: string) {
 
 <template>
   <UiModal v-model="modal.isVisible" footer-close>
-    <div class="flex items-center">
+    <div class="flex items-center gap-1">
       <div v-if="modal.item?.icon" class="h-6 w-6" :class="[modal.item.icon, modal.item.iconClass]" />
       {{ t('components.egg.MonsModal.title', { name: modal.item ? t(modal.item.name) : '' }) }}
     </div>
