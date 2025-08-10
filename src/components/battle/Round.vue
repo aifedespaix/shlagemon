@@ -41,6 +41,16 @@ const enemyCaptured = computed<boolean>(() =>
   displayedEnemy.value ? dex.capturedBaseIds.has(displayedEnemy.value.base.id) : false,
 )
 
+const enemyRarity100Owned = computed<boolean>(() => {
+  const enemy = displayedEnemy.value
+  return enemy ? dex.shlagemons.some(m => m.base.id === enemy.base.id && m.rarity >= 100) : false
+})
+
+const enemyShinyOwned = computed<boolean>(() => {
+  const enemy = displayedEnemy.value
+  return enemy ? dex.shlagemons.some(m => m.base.id === enemy.base.id && m.isShiny) : false
+})
+
 const {
   playerHp,
   enemyHp,
@@ -264,6 +274,8 @@ function onClick(_e: MouseEvent) {
             :flash="flashEnemy"
             :show-ball="showOwnedBall"
             :owned="enemyCaptured"
+            :owns-rarity-100="enemyRarity100Owned"
+            :owns-shiny="enemyShinyOwned"
             @faint-end="onEnemyFaintEnd"
           >
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />

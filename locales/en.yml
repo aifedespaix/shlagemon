@@ -146,6 +146,8 @@ components:
     Shlagemon:
       ownedTooltip: You already own this Shlagemon
       infoTooltip: View details
+      ownedRarity100Tooltip: You own this Shlagemon at rarity 100
+      ownedShinyLabel: Owned shiny
     DiseaseBadge:
       tooltip: 'Sick: {n} battles remaining'
     EffectBadge:
