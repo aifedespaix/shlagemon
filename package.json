@@ -57,6 +57,7 @@
     "@types/leaflet": "catalog:types",
     "@types/markdown-it-link-attributes": "catalog:types",
     "@types/nprogress": "catalog:types",
+    "@types/crypto-js": "catalog:types",
     "@unocss/eslint-config": "catalog:build",
     "@vite-pwa/assets-generator": "catalog:build",
     "@vitejs/plugin-vue": "catalog:build",
