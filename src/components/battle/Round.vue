@@ -69,6 +69,15 @@ const throttledAttack = useThrottleFn(attack, 200, false, true)
 
 const showConfetti = ref(false)
 
+const canClickAttack = computed(() =>
+  props.clickAttack && playerHp.value > 0 && enemyHp.value > 0,
+)
+
+watch(canClickAttack, (val) => {
+  if (!val)
+    showAttackCursor.value = false
+})
+
 function startBattle() {
   dex.setActiveShlagemon(displayedPlayer.value)
   coreStartBattle(displayedEnemy.value)
@@ -182,25 +191,29 @@ watch(playerFainted, (val) => {
 })
 
 function onMouseMove(e: MouseEvent) {
+  if (!canClickAttack.value)
+    return
   cursorX.value = e.clientX
   cursorY.value = e.clientY
 }
 
 function onMouseEnter() {
-  if (props.clickAttack)
+  if (canClickAttack.value)
     showAttackCursor.value = true
 }
 
 function onMouseLeave() {
-  if (props.clickAttack)
-    showAttackCursor.value = false
+  if (!canClickAttack.value)
+    return
+  showAttackCursor.value = false
 }
 
 function onClick(_e: MouseEvent) {
+  if (!canClickAttack.value)
+    return
   cursorClicked.value = true
   // useTimeoutFn(() => (cursorClicked.value = false), 150)
-  if (props.clickAttack)
-    throttledAttack()
+  throttledAttack()
 }
 </script>
 
@@ -257,7 +270,7 @@ function onClick(_e: MouseEvent) {
           </BattleShlagemon>
         </Transition>
         <BattleAttackCursor
-          v-if="props.clickAttack && showAttackCursor"
+          v-if="canClickAttack && showAttackCursor"
           :x="cursorX"
           :y="cursorY"
           :clicked="cursorClicked"
