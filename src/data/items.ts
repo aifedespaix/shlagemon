@@ -1,4 +1,4 @@
-import type { Item } from '~/type/item'
+import type { Item, ItemBattle } from '~/type/item'
 import { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
 import {
   advancedAttackRing,
@@ -25,6 +25,11 @@ import {
 } from './items/wearables/xpRing'
 
 export { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
+
+/**
+ * Battle items with mandatory power, price, and cooldown.
+ */
+type BattlePotion = ItemBattle & Required<Pick<ItemBattle, 'power' | 'price' | 'battleCooldown'>>
 
 // @unocss-include
 export const defensePotion: Item = {
@@ -271,7 +276,7 @@ export const hyperCapturePotion: Item = {
   detailsParams: { percent: 50 },
 }
 
-export const potion: Item = {
+export const potion: BattlePotion = {
   id: 'potion',
   name: 'data.items.potion.name',
   description: 'data.items.potion.description',
@@ -289,7 +294,7 @@ export const potion: Item = {
   detailsParams: { hp: 50 },
 }
 
-export const superPotion: Item = {
+export const superPotion: BattlePotion = {
   id: 'super-potion',
   name: 'data.items.superPotion.name',
   description: 'data.items.superPotion.description',
@@ -307,7 +312,7 @@ export const superPotion: Item = {
   detailsParams: { hp: potion.power * 5 },
 }
 
-export const hyperPotion: Item = {
+export const hyperPotion: BattlePotion = {
   id: 'hyper-potion',
   name: 'data.items.hyperPotion.name',
   description: 'data.items.hyperPotion.description',
