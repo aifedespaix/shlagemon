@@ -1,4 +1,4 @@
-import type { DefineComponent } from 'vue'
+import type { AsyncComponentLoader } from 'vue'
 
 export interface LocalizedRoute {
   /**
@@ -7,8 +7,13 @@ export interface LocalizedRoute {
   name: string
   /**
    * Lazy-loaded component for the route.
+   *
+   * The function should return a Promise resolving to a Vue component. Using
+   * {@link AsyncComponentLoader} aligns the type with Vue Router's expectations
+   * and ensures dynamic imports such as `import('~/pages/index.vue')` compile
+   * without type errors.
    */
-  component: () => Promise<DefineComponent>
+  component: AsyncComponentLoader
   /**
    * Path mapping per locale. Must contain an entry for each available locale.
    */
