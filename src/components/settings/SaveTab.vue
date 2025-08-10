@@ -13,10 +13,14 @@ const fileInput = ref<HTMLInputElement>()
 const generating = ref(false)
 const loading = ref(false)
 
+const resetCopyTimer = useTimeoutFn(() => {
+  copied.value = false
+}, 1500, { immediate: false })
+
 async function generateExport() {
   generating.value = true
   await nextTick()
-  await new Promise(resolve => setTimeout(resolve))
+  await new Promise<void>(resolve => useTimeoutFn(resolve, 0))
   exportCode.value = exportSave(collectSave())
   generating.value = false
 }
@@ -27,9 +31,8 @@ async function copyExport() {
   navigator.clipboard.writeText(exportCode.value)
   copied.value = true
   toast.success(t('components.settings.SaveTab.copied'))
-  setTimeout(() => {
-    copied.value = false
-  }, 1500)
+  resetCopyTimer.stop()
+  resetCopyTimer.start()
 }
 
 function downloadExport() {
@@ -47,7 +50,7 @@ function downloadExport() {
 async function loadImport() {
   loading.value = true
   await nextTick()
-  await new Promise(resolve => setTimeout(resolve))
+  await new Promise<void>(resolve => useTimeoutFn(resolve, 0))
   const data = importSave(importCode.value)
   if (!data) {
     toast.error(t('components.settings.SaveTab.invalid'))
@@ -72,6 +75,8 @@ function loadFromFile(event: Event) {
     showImport.value = true
   })
 }
+
+onUnmounted(() => resetCopyTimer.stop())
 </script>
 
 <template>

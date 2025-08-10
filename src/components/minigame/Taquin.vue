@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { PuzzleDirection } from '~/composables/useSlidingPuzzle'
-import { useElementSize, useEventListener, useSwipe, useTimeoutFn } from '@vueuse/core'
 import { useSlidingPuzzle } from '~/composables/useSlidingPuzzle'
 
 const props = withDefaults(defineProps<{ difficulty?: 'easy' | 'hard' }>(), {
@@ -21,6 +20,9 @@ const tilePercent = computed(() => 100 / size.value)
 const wrapper = ref<HTMLElement | null>(null)
 const { width, height } = useElementSize(wrapper)
 const squareSize = computed(() => Math.min(width.value, height.value))
+
+let shuffleTimer: ReturnType<typeof useTimeoutFn> | null = null
+const { start: startWinTimer, stop: stopWinTimer } = useTimeoutFn(() => emit('win'), 2000, { immediate: false })
 
 useSwipe(wrapper, {
   onSwipeEnd(_: Event, dir: PuzzleDirection | 'none') {
@@ -59,25 +61,36 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 
 onMounted(async () => {
   await nextTick()
-  setTimeout(async () => {
+  shuffleTimer?.stop()
+  shuffleTimer = useTimeoutFn(async () => {
     await puzzle.shuffleBoard(50, 80)
+    shuffleTimer = null
   }, 500)
 })
 
 watch(size, async () => {
   puzzle.reset()
   await nextTick()
-  setTimeout(async () => {
+  shuffleTimer?.stop()
+  shuffleTimer = useTimeoutFn(async () => {
     await puzzle.shuffleBoard(50, 80)
+    shuffleTimer = null
   }, 500)
 })
 
 watch(puzzle.solved, (v) => {
   if (v)
-    useTimeoutFn(() => emit('win'), 2000)
+    startWinTimer()
+  else
+    stopWinTimer()
 })
 
 const shuffling = computed(() => puzzle.shuffling.value)
+
+onUnmounted(() => {
+  shuffleTimer?.stop()
+  stopWinTimer()
+})
 </script>
 
 <template>
