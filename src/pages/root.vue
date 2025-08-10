@@ -10,6 +10,7 @@ const router = useRouter()
 const store = useLocaleStore()
 const preferredLanguages = usePreferredLanguages()
 const isRedirecting = ref(true) // Pour l'affichage du loader
+const storedLocale = useLocalStorage<Locale | null>('locale', null, { writeDefaults: false })
 
 /**
  * Teste si une chaîne est une locale supportée.
@@ -22,10 +23,9 @@ onMounted(async () => {
   let targetLocale: Locale | undefined
 
   // 1. Locale stockée explicitement par l'utilisateur (préférence forte)
-  const stored = localStorage.getItem('locale')
-  if (isLocale(stored)) {
+  const stored = storedLocale.value
+  if (isLocale(stored))
     targetLocale = stored
-  }
 
   // 2. Store Pinia, utile en SSR/hydratation ou session restaurée
   if (!targetLocale && isLocale(store.locale) && store.locale !== defaultLocale) {
