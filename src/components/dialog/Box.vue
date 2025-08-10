@@ -23,7 +23,6 @@ const { dialogTree, character, orientation, exitTrack, keepMusicOnExit }
     keepMusicOnExit: false,
   })
 
-const avatarUrl = computed(() => `/characters/${character.id}/${character.id}.webp`)
 const buttonClass = computed(() =>
   orientation === 'col'
     ? 'flex w-full flex-col items-center justify-center text-xs'

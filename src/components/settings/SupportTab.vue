@@ -5,13 +5,15 @@ import { computed } from 'vue'
 const { t } = useI18n()
 
 /**
- * Enum des types de support
+ * Supported link identifiers.
  */
-const enum SupportLinkKey {
-  Donate = 'donate',
-  Discord = 'discord',
-  Youtube = 'youtube',
-}
+const SUPPORT_LINK_KEY = {
+  Donate: 'donate',
+  Discord: 'discord',
+  Youtube: 'youtube',
+} as const
+
+type SupportLinkKey = typeof SUPPORT_LINK_KEY[keyof typeof SUPPORT_LINK_KEY]
 
 interface SupportLink {
   readonly key: SupportLinkKey
@@ -24,7 +26,7 @@ interface SupportLink {
 
 const SUPPORT_LINKS = [
   {
-    key: SupportLinkKey.Donate,
+    key: SUPPORT_LINK_KEY.Donate,
     icon: 'i-carbon-favorite',
     label: computed(() => t('components.settings.SupportTab.donateLabel')),
     desc: computed(() => t('components.settings.SupportTab.donateDesc')),
@@ -32,7 +34,7 @@ const SUPPORT_LINKS = [
     color: 'bg-orange-500 hover:bg-orange-600 focus-visible:ring-orange-400',
   },
   {
-    key: SupportLinkKey.Discord,
+    key: SUPPORT_LINK_KEY.Discord,
     icon: 'i-mdi-discord',
     label: computed(() => t('components.settings.SupportTab.discordLabel')),
     desc: computed(() => t('components.settings.SupportTab.discordDesc')),
@@ -40,7 +42,7 @@ const SUPPORT_LINKS = [
     color: 'bg-[#5865F2] hover:bg-[#4854c0] focus-visible:ring-[#5865F2]',
   },
   {
-    key: SupportLinkKey.Youtube,
+    key: SUPPORT_LINK_KEY.Youtube,
     icon: 'i-mdi-youtube',
     label: computed(() => t('components.settings.SupportTab.youtubeLabel')),
     desc: computed(() => t('components.settings.SupportTab.youtubeDesc')),
