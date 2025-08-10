@@ -2,7 +2,6 @@
 import type { WearableItem } from '~/type/item'
 import type { DexShlagemon } from '~/type/shlagemon'
 
-const { t } = useI18n()
 const _props = defineProps({
   mon: { type: Object as PropType<DexShlagemon>, required: true },
   isActive: { type: Boolean, default: false },
@@ -13,7 +12,7 @@ const _props = defineProps({
   showCheckbox: { type: Boolean, default: false },
 })
 const emit = defineEmits(['click', 'activate'])
-
+const { t } = useI18n()
 // Highlight newly captured Shlagémon until acknowledged
 const shouldHighlight = computed(() => Boolean(_props.mon.isNew))
 

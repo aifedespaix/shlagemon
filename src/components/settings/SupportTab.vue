@@ -71,7 +71,7 @@ function openLink(url: string) {
         :key="link.key"
         class="flex flex-col items-center gap-3 rounded-2xl bg-white/5 p-4 shadow-lg transition-all dark:bg-black/10"
       >
-        <p class="text-sm text-gray-700 dark:text-gray-300 text-center">
+        <p class="text-center text-sm text-gray-700 dark:text-gray-300">
           {{ link.desc }}
         </p>
         <button

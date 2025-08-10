@@ -23,19 +23,18 @@ const statColors = [
     <div
       v-for="(stat, i) in props.stats"
       :key="stat.label"
-      :class="[
-        'flex items-center rounded transition-colors text-gray-900 dark:text-white cursor-pointer select-none',
+      class="flex cursor-pointer select-none items-center rounded text-gray-900 transition-colors dark:text-white" :class="[
         props.compact
           ? `px-2 py-1 min-h-[28px] text-xs font-medium ${statColors[i % statColors.length]}`
-          : `flex-col items-center p-2 text-sm font-semibold ${statColors[i % statColors.length]}`
+          : `flex-col items-center p-2 text-sm font-semibold ${statColors[i % statColors.length]}`,
       ]"
       hover="opacity-80"
       tabindex="0"
       role="button"
       aria-label="Voir la statistique"
     >
-      <span class="truncate flex-1 text-left">{{ stat.label }}</span>
-      <span class="ml-2 tabular-nums font-bold">{{ stat.value.toLocaleString() }}</span>
+      <span class="flex-1 truncate text-left">{{ stat.label }}</span>
+      <span class="ml-2 font-bold tabular-nums">{{ stat.value.toLocaleString() }}</span>
     </div>
   </div>
 </template>

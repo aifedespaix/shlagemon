@@ -4,5 +4,5 @@ export default defineConfig({
   preset,
   images: [
     'public/logo.svg',
-  ]
+  ],
 })

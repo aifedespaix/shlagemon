@@ -8,11 +8,11 @@ const app = useAppStore()
 </script>
 
 <template>
-  <div class="relative h-full flex flex-col select-none overflow-hidden animate-fade-in">
+  <div class="relative h-full flex flex-col animate-fade-in select-none overflow-hidden">
     <LayoutHeader />
     <LayoutGameGrid class="flex-1" />
     <LayoutMobileMenu />
     <UpdateSnackbar />
-    <Loader v-if="!app.isReady"/>
+    <Loader v-if="!app.isReady" />
   </div>
 </template>

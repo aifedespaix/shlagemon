@@ -1,5 +1,8 @@
 packages: []
 
+catalog:
+  '@bubblewrap/cli': ^1.23.0
+  '@types/bun': latest
 catalogs:
   build:
     '@intlify/unplugin-vue-i18n': ^6.0.8
@@ -77,6 +80,3 @@ onlyBuiltDependencies:
   - cypress
   - esbuild
   - simple-git-hooks
-catalog:
-  '@bubblewrap/cli': ^1.23.0
-  '@types/bun': latest

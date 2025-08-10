@@ -16,7 +16,7 @@ const label = computed(() => t(`components.map.ArrowButton.${props.direction}`))
       v-tooltip="label"
       type="icon"
       :aria-label="label"
-      class="absolute -bottom-1 z-501 h-25 w-20 opacity-75 hover:opacity-100" :class="[positionClass]"
+      class="absolute z-501 h-25 w-20 opacity-75 -bottom-1 hover:opacity-100" :class="[positionClass]"
       :style="{ '--dir': translate }"
       @click="emit('click')"
     >

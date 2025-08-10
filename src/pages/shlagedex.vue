@@ -16,7 +16,7 @@ function open(mon: BaseShlagemon) {
 </script>
 
 <template>
-  <div class="mx-auto max-w-160 w-full p-4 h-full">
+  <div class="mx-auto h-full max-w-160 w-full p-4">
     <DeckList
       :mons="allShlagemons"
       :on-item-click="open"

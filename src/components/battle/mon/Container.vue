@@ -2,6 +2,7 @@
 import type { FloatingEntry } from '~/composables/useFloatingNumbers'
 import type { ActiveEffect } from '~/type/effect'
 import type { DexShlagemon } from '~/type/shlagemon'
+import { useTransition, TransitionPresets } from '@vueuse/core' // ⟵ VueUse
 
 interface Props {
   mon: DexShlagemon
@@ -34,7 +35,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{ (e: 'faintEnd'): void }>()
-
 const { t } = useI18n()
 
 const documentVisibility = useDocumentVisibility()
@@ -43,24 +43,11 @@ const visible = computed(() => documentVisibility.value === 'visible')
 const hp = toRef(props, 'hp')
 const { entries, remove } = useFloatingNumbers(hp, visible)
 
-// Display value mirrors the real HP and updates immediately so the bar and
-// number reflect rapid damage in real time when spam-clicking attacks.
-const displayHp = ref(hp.value)
-
-watch(hp, (val: number) => {
-  displayHp.value = val
-})
-
-watch(visible, (v: boolean) => {
-  if (!v)
-    displayHp.value = hp.value
-})
 const { pulsing } = useLevelUpAnimation(computed(() => props.mon.lvl))
 const { onAnimationEnd, onFaintEnd } = useFaintAutoEmit(toRef(props, 'fainted'))
 onFaintEnd(() => emit('faintEnd'))
 
 const heldItem = useHeldItem(toRef(props, 'mon'))
-
 const openTypeChart = useTypeChartAction(toRef(props, 'mon'))
 const openInfo = useInfoAction(toRef(props, 'mon'), toRef(props, 'belongsToPlayer'))
 
@@ -72,6 +59,32 @@ const srMessages = computed(() => entries.value.map((f: FloatingEntry) =>
 
 const dex = useShlagedexStore()
 const maxHp = computed(() => dex.maxHp(props.mon))
+
+/**
+ * === HP animé avec VueUse ===
+ * - on clampe la cible (évite toute valeur “qui part en vrille”)
+ * - useTransition lisse les updates fréquents (spam click)
+ */
+const clampedHp = computed(() => {
+  const m = maxHp.value ?? 0
+  const v = hp.value ?? 0
+  return Math.min(Math.max(v, 0), m)
+})
+
+const displayHp = useTransition(clampedHp, {
+  duration: 250,
+  transition: TransitionPresets.easeOutCubic,
+})
+
+// si onglet caché → resync instant
+watch(visible, (v) => {
+  if (!v) displayHp.value = clampedHp.value
+})
+
+// si jamais maxHp change (level up, etc.), resync pour éviter un ratio faux
+watch(maxHp, () => {
+  displayHp.value = clampedHp.value
+})
 </script>
 
 <template>

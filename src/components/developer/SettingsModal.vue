@@ -99,71 +99,70 @@ function resetArenas() {
 
 <template>
   <UiModal v-model="show" footer-close>
-  <LayoutScrollablePanel>
-    <template #header>
-      <div>
-    <h3 class="mb-2 text-center text-lg font-bold">
-      Paramètres développeur
-    </h3>
-    <UiCheckBox v-model="dev.debug" class="flex items-center justify-between">
-      <span>Mode debug</span>
-    </UiCheckBox>
+    <LayoutScrollablePanel>
+      <template #header>
+        <div>
+          <h3 class="mb-2 text-center text-lg font-bold">
+            Paramètres développeur
+          </h3>
+          <UiCheckBox v-model="dev.debug" class="flex items-center justify-between">
+            <span>Mode debug</span>
+          </UiCheckBox>
+        </div>
+      </template>
 
-      </div>
-    </template>
-    
-    <template #content>
-    <div class="mt-4 flex flex-col gap-2">
-      <UiButton @click="addMoney">
-        +100000 Shlagédolar
-      </UiButton>
-      <UiButton @click="addDiamonds">
-        +1000 Shlagédiamant
-      </UiButton>
-      <UiButton type="danger" variant="outline" @click="resetMoney">
-        Réinitialiser l'argent
-      </UiButton>
+      <template #content>
+        <div class="mt-4 flex flex-col gap-2">
+          <UiButton @click="addMoney">
+            +100000 Shlagédolar
+          </UiButton>
+          <UiButton @click="addDiamonds">
+            +1000 Shlagédiamant
+          </UiButton>
+          <UiButton type="danger" variant="outline" @click="resetMoney">
+            Réinitialiser l'argent
+          </UiButton>
 
-      <UiButton :disabled="!dex.activeShlagemon" @click="setRarity(99)">
-        Rareté 99
-      </UiButton>
-      <UiButton :disabled="!dex.activeShlagemon" @click="setRarity(100)">
-        Rareté 100
-      </UiButton>
-      <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="setRarity(1)">
-        Reset Rareté
-      </UiButton>
+          <UiButton :disabled="!dex.activeShlagemon" @click="setRarity(99)">
+            Rareté 99
+          </UiButton>
+          <UiButton :disabled="!dex.activeShlagemon" @click="setRarity(100)">
+            Rareté 100
+          </UiButton>
+          <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="setRarity(1)">
+            Reset Rareté
+          </UiButton>
 
-      <UiButton @click="captureRandom">
-        Capturer un nouveau Shlagémon
-      </UiButton>
-      <UiButton :disabled="!dex.activeShlagemon" @click="boostStats">
-        Booster stats
-      </UiButton>
-      <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="resetStats">
-        Reset stats
-      </UiButton>
-      <UiButton :disabled="!dex.activeShlagemon" @click="levelUp10">
-        +10 niveaux
-      </UiButton>
-      <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="resetLevel">
-        Reset niveau
-      </UiButton>
+          <UiButton @click="captureRandom">
+            Capturer un nouveau Shlagémon
+          </UiButton>
+          <UiButton :disabled="!dex.activeShlagemon" @click="boostStats">
+            Booster stats
+          </UiButton>
+          <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="resetStats">
+            Reset stats
+          </UiButton>
+          <UiButton :disabled="!dex.activeShlagemon" @click="levelUp10">
+            +10 niveaux
+          </UiButton>
+          <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="resetLevel">
+            Reset niveau
+          </UiButton>
 
-      <UiButton @click="completeArena('village-boule')">
-        Valider arène 1
-      </UiButton>
-      <UiButton @click="completeArena('village-paume')">
-        Valider arène 2
-      </UiButton>
-      <UiButton @click="completeArena('village-cassos-land')">
-        Valider arène 3
-      </UiButton>
-      <UiButton type="danger" variant="outline" @click="resetArenas">
-        Reset arènes
-      </UiButton>
-    </div>
-    </template>
-  </LayoutScrollablePanel>
+          <UiButton @click="completeArena('village-boule')">
+            Valider arène 1
+          </UiButton>
+          <UiButton @click="completeArena('village-paume')">
+            Valider arène 2
+          </UiButton>
+          <UiButton @click="completeArena('village-cassos-land')">
+            Valider arène 3
+          </UiButton>
+          <UiButton type="danger" variant="outline" @click="resetArenas">
+            Reset arènes
+          </UiButton>
+        </div>
+      </template>
+    </LayoutScrollablePanel>
   </UiModal>
 </template>

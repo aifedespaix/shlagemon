@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{ 
-  src: string, 
-  isCover?: boolean,
+const props = defineProps<{
+  src: string
+  isCover?: boolean
   noAnimation?: boolean
 }>()
 
@@ -13,7 +13,7 @@ function imgByBackground(background: string) {
 
 const classes = computed(() => {
   const uno: string[] = []
-  if(!props.noAnimation)
+  if (!props.noAnimation)
     uno.push('animate-fade-in')
   if (props.isCover)
     uno.push('bg-cover')

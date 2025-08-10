@@ -4,10 +4,10 @@ const props = defineProps<{ rarity: number, small?: boolean }>()
 const classes = computed(() => {
   const unocss: string[] = []
   unocss.push('text-grey-900 dark:text-grey-300')
-  if(props.small) {
-
+  if (props.small) {
     unocss.push('text-xs w-6 h-6')
-  } else {
+  }
+  else {
     unocss.push('w-10 h-10')
   }
   if (props.rarity < 10) {

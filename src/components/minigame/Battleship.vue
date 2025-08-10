@@ -11,7 +11,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
   <div class="w-full flex flex-1 flex-col items-center justify-center gap-2" md="flex-row gap-4">
     <div class="flex flex-1 flex-col">
       <div class="text-center text-blue-900 dark:text-blue-200">
-        {{t('components.minigame.Battleship.player')}}
+        {{ t('components.minigame.Battleship.player') }}
       </div>
       <div class="grid flex-1 gap-1" md="gap-2" :style="{ gridTemplateColumns: `repeat(${BOARD_SIZE},1fr)` }">
         <div
