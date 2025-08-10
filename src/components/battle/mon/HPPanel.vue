@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
       :class="{ flash: props.flash }"
     />
     <div class="w-full text-right text-sm">
-      <UiAnimatedNumber :value="props.value" /> / {{ props.max.toLocaleString() }}
+      <UiAnimatedNumber :value="props.value" :duration="0" /> / {{ props.max.toLocaleString() }}
     </div>
   </div>
 </template>
