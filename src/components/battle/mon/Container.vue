@@ -62,7 +62,7 @@ const maxHp = computed(() => dex.maxHp(props.mon))
 
 <template>
   <div
-    class="relative h-full flex flex-1 flex-col items-center"
+    class="relative h-full flex flex-1 flex-col items-center overflow-hidden"
     :class="[{ 'saturate-10 contrast-200': props.disease }, { flash: props.flash }]"
     @contextmenu.prevent="openInfo"
   >

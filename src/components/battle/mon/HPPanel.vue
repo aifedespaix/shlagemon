@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="flex flex-col items-end">
+  <div class="w-full flex flex-col items-end">
     <UiProgressBar
       :value="props.value"
       :max="props.max"

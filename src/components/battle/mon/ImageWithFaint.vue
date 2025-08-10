@@ -20,7 +20,7 @@ function onAnimationEnd() {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative h-full w-full overflow-hidden">
     <ShlagemonImage
       :id="props.id"
       :alt="props.alt"
