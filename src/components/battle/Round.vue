@@ -28,6 +28,9 @@ const { t } = useI18n()
 const dex = useShlagedexStore()
 const disease = useDiseaseStore()
 const zone = useZoneStore()
+const zoneMaxLevel = computed(() =>
+  zone.current.type === 'sauvage' ? zone.current.maxLevel : undefined,
+)
 const wearableItemStore = useWearableItemStore()
 
 const displayedPlayer = ref(props.player)
@@ -103,10 +106,10 @@ async function onCaptureEnd(success: boolean) {
     notifyAchievement({ type: 'capture', shiny: props.enemy.isShiny })
     if (dex.activeShlagemon) {
       const xp = dex.xpGainForLevel(props.enemy.lvl)
-      await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zone.current.maxLevel)
+      await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zoneMaxLevel.value)
       const holder = wearableItemStore.getHolder(multiExp.id)
       if (holder)
-        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zone.current.maxLevel)
+        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zoneMaxLevel.value)
     }
     emit('capture')
     showConfetti.value = true

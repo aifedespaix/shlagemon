@@ -9,6 +9,9 @@ import { pickByAlphabet } from '~/utils/spawn'
 
 const dex = useShlagedexStore()
 const zone = useZoneStore()
+const zoneMaxLevel = computed(() =>
+  zone.current.type === 'sauvage' ? zone.current.maxLevel : undefined,
+)
 const { selectedAt } = storeToRefs(zone)
 const progress = useZoneProgressStore()
 const wearableItemStore = useWearableItemStore()
@@ -35,7 +38,7 @@ function createEnemy(): DexShlagemon | null {
   const base = pickByAlphabet(pool, count)
   progress.registerEncounter(zone.current.id, base.id)
   const min = Number(zone.current.minLevel ?? 1)
-  const zoneMax = Number(zone.current.maxLevel ?? (min + 1))
+  const zoneMax = zoneMaxLevel.value ?? (min + 1)
   const max = Math.max(zoneMax - 1, min)
   const lvl = Math.floor(Math.random() * (max - min + 1)) + min
   const created = createDexShlagemon(base, false, lvl, wildLevel.highestWildLevel)
@@ -110,10 +113,10 @@ async function handleEnd(result: 'win' | 'lose' | 'draw') {
     notifyAchievement({ type: 'battle-win', stronger })
     if (dex.activeShlagemon) {
       const xp = dex.xpGainForLevel(defeated.lvl)
-      await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zone.current.maxLevel)
+      await dex.gainXp(dex.activeShlagemon, xp, undefined, undefined, zoneMaxLevel.value)
       const holder = wearableItemStore.getHolder(multiExp.id)
       if (holder)
-        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zone.current.maxLevel)
+        await dex.gainXp(holder, Math.round(xp * 0.5), undefined, undefined, zoneMaxLevel.value)
     }
   }
   else if (result === 'lose') {

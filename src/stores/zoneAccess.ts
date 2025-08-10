@@ -1,11 +1,11 @@
-import type { Zone } from '~/type/zone'
+import type { SavageZone, Zone } from '~/type/zone'
 import { zonesData } from '~/data/zones'
 
 export function useZoneAccess(highestLevel: Ref<number>) {
   const progress = useZoneProgressStore()
   const zones = zonesData
   const xpZones = computed(() =>
-    zones.filter(z => (z.maxLevel ?? 0) > 0),
+    zones.filter((z): z is SavageZone => z.type === 'sauvage' && z.maxLevel > 0),
   )
 
   function canAccess(z: Zone): boolean {
@@ -23,7 +23,9 @@ export function useZoneAccess(highestLevel: Ref<number>) {
 
   const accessibleZones = computed(() => zones.filter(z => canAccess(z)))
   const accessibleXpZones = computed(() =>
-    accessibleZones.value.filter(z => (z.maxLevel ?? 0) > 0),
+    accessibleZones.value.filter(
+      (z): z is SavageZone => z.type === 'sauvage' && z.maxLevel > 0,
+    ),
   )
 
   return {

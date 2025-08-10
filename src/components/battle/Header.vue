@@ -13,7 +13,7 @@ const zone = useZoneStore()
         <div class="w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="props.zoneName">
           {{ props.zoneName }}
         </div>
-        <div v-if="zone.current.maxLevel" class="whitespace-nowrap text-xs">
+        <div v-if="zone.current.type === 'sauvage'" class="whitespace-nowrap text-xs">
           {{ zone.current.minLevel }} - {{ zone.current.maxLevel }}
         </div>
       </div>

@@ -109,6 +109,15 @@ import vieuxBlaireau from './shlagemons/evolutions/vieuxblaireau'
 import sulfusouris from './shlagemons/sulfusouris'
 import { zonesData } from './zones'
 
+/**
+ * Return the maximum level allowed in the specified savage zone.
+ * Falls back to `1` when the zone is not found or not savage.
+ */
+function getZoneMaxLevel(zoneId: SavageZoneId): number {
+  const zone = zonesData.find(z => z.id === zoneId)
+  return zone && zone.type === 'sauvage' ? zone.maxLevel : 1
+}
+
 function _createKing(
   zoneId: SavageZoneId,
   character: Character,
@@ -118,11 +127,11 @@ function _createKing(
   dialogDefeat: I18nKey,
 ): Trainer {
   const zone = zonesData.find(z => z.id === zoneId)
-  if (!zone) {
+  if (!zone || zone.type !== 'sauvage')
     throw new Error(`Zone ${zoneId} not found`)
-  }
+
   // Gather base shlagemons and their first evolution stage
-  const available = zone.shlagemons!
+  const available = (zone.shlagemons ?? [])
     .flatMap(b => b.evolution?.base ? [b, b.evolution.base] : [b])
     // Remove potential duplicates by id
     .reduce<Record<string, BaseShlagemon>>((acc, mon) => {
@@ -149,7 +158,7 @@ function _createKing(
     dialogBefore,
     dialogAfter,
     dialogDefeat,
-    reward: zone.maxLevel || 1,
+    reward: zone.maxLevel,
     shlagemons,
   }
 }
@@ -164,7 +173,7 @@ export const kings: Kings = {
   'plaine-kekette': {
     id: 'king-plaine-kekette',
     character: ondejeune,
-    reward: zonesData.find(z => z.id === 'plaine-kekette')?.maxLevel || 1,
+    reward: getZoneMaxLevel('plaine-kekette'),
     dialogBefore: 'data.kings.plaine-kekette.dialogBefore',
     dialogAfter: 'data.kings.plaine-kekette.dialogAfter',
     dialogDefeat: 'data.kings.plaine-kekette.dialogDefeat',
@@ -179,7 +188,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.bois-de-bouffon.dialogBefore',
     dialogAfter: 'data.kings.bois-de-bouffon.dialogAfter',
     dialogDefeat: 'data.kings.bois-de-bouffon.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'bois-de-bouffon')?.maxLevel || 1,
+    reward: getZoneMaxLevel('bois-de-bouffon'),
     shlagemons: [
       racaillou.id,
       onixtamere.id,
@@ -192,7 +201,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.chemin-du-slip.dialogBefore',
     dialogAfter: 'data.kings.chemin-du-slip.dialogAfter',
     dialogDefeat: 'data.kings.chemin-du-slip.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'chemin-du-slip')?.maxLevel || 1,
+    reward: getZoneMaxLevel('chemin-du-slip'),
     shlagemons: [
       melofoutre.id,
       huithuit.id,
@@ -205,7 +214,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.ravin-fesse-molle.dialogBefore',
     dialogAfter: 'data.kings.ravin-fesse-molle.dialogAfter',
     dialogDefeat: 'data.kings.ravin-fesse-molle.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'ravin-fesse-molle')?.maxLevel || 1,
+    reward: getZoneMaxLevel('ravin-fesse-molle'),
     shlagemons: [
       houlard.id,
       rafflamby.id,
@@ -218,7 +227,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.precipice-nanard.dialogBefore',
     dialogAfter: 'data.kings.precipice-nanard.dialogAfter',
     dialogDefeat: 'data.kings.precipice-nanard.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'precipice-nanard')?.maxLevel || 1,
+    reward: getZoneMaxLevel('precipice-nanard'),
     shlagemons: [
       goubite.id,
       vieuxBlaireau.id,
@@ -232,7 +241,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.marais-moudugenou.dialogBefore',
     dialogAfter: 'data.kings.marais-moudugenou.dialogAfter',
     dialogDefeat: 'data.kings.marais-moudugenou.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'marais-moudugenou')?.maxLevel || 1,
+    reward: getZoneMaxLevel('marais-moudugenou'),
     shlagemons: [
       orchibre.id,
       barbeBizarre.id,
@@ -242,7 +251,7 @@ export const kings: Kings = {
   },
   'forteresse-petmoalfiak': {
     id: 'king-forteresse-petmoalfiak',
-    reward: zonesData.find(z => z.id === 'forteresse-petmoalfiak')?.maxLevel || 1,
+    reward: getZoneMaxLevel('forteresse-petmoalfiak'),
     character: charlesManoir,
     dialogBefore: 'data.kings.forteresse-petmoalfiak.dialogBefore',
     dialogAfter: 'data.kings.forteresse-petmoalfiak.dialogAfter',
@@ -260,7 +269,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.route-du-nawak.dialogBefore',
     dialogAfter: 'data.kings.route-du-nawak.dialogAfter',
     dialogDefeat: 'data.kings.route-du-nawak.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'route-du-nawak')?.maxLevel || 1,
+    reward: getZoneMaxLevel('route-du-nawak'),
     shlagemons: [
       pyrolise.id,
       cacanus.id,
@@ -274,7 +283,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.mont-dracatombe.dialogBefore',
     dialogAfter: 'data.kings.mont-dracatombe.dialogAfter',
     dialogDefeat: 'data.kings.mont-dracatombe.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'mont-dracatombe')?.maxLevel || 1,
+    reward: getZoneMaxLevel('mont-dracatombe'),
     shlagemons: [
       piafsansbec.id,
       hericouille.id,
@@ -289,7 +298,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.catacombes-merdifientes.dialogBefore',
     dialogAfter: 'data.kings.catacombes-merdifientes.dialogAfter',
     dialogDefeat: 'data.kings.catacombes-merdifientes.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'catacombes-merdifientes')?.maxLevel || 1,
+    reward: getZoneMaxLevel('catacombes-merdifientes'),
     shlagemons: [
       amonichiasse.id,
       dentlait.id,
@@ -304,7 +313,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.route-aguicheuse.dialogBefore',
     dialogAfter: 'data.kings.route-aguicheuse.dialogAfter',
     dialogDefeat: 'data.kings.route-aguicheuse.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'route-aguicheuse')?.maxLevel || 1,
+    reward: getZoneMaxLevel('route-aguicheuse'),
     shlagemons: [
       coksale.id,
       aerobite.id,
@@ -319,7 +328,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.vallee-des-chieurs.dialogBefore',
     dialogAfter: 'data.kings.vallee-des-chieurs.dialogAfter',
     dialogDefeat: 'data.kings.vallee-des-chieurs.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'vallee-des-chieurs')?.maxLevel || 1,
+    reward: getZoneMaxLevel('vallee-des-chieurs'),
     shlagemons: [
       nidononbinaireF.id,
       nidononbinaireM.id,
@@ -334,7 +343,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.trou-du-bide.dialogBefore',
     dialogAfter: 'data.kings.trou-du-bide.dialogAfter',
     dialogDefeat: 'data.kings.trou-du-bide.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'trou-du-bide')?.maxLevel || 1,
+    reward: getZoneMaxLevel('trou-du-bide'),
     shlagemons: [
       fantomanus.id,
       qulbudrogue.id,
@@ -349,7 +358,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.zone-giga-zob.dialogBefore',
     dialogAfter: 'data.kings.zone-giga-zob.dialogAfter',
     dialogDefeat: 'data.kings.zone-giga-zob.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'zone-giga-zob')?.maxLevel || 1,
+    reward: getZoneMaxLevel('zone-giga-zob'),
     shlagemons: [
       marginal.id,
       marginal.id,
@@ -364,7 +373,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.route-so-dom.dialogBefore',
     dialogAfter: 'data.kings.route-so-dom.dialogAfter',
     dialogDefeat: 'data.kings.route-so-dom.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'route-so-dom')?.maxLevel || 1,
+    reward: getZoneMaxLevel('route-so-dom'),
     shlagemons: [
       krabbolosse.id,
       grossetarte.id,
@@ -379,7 +388,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.lac-aux-relous.dialogBefore',
     dialogAfter: 'data.kings.lac-aux-relous.dialogAfter',
     dialogDefeat: 'data.kings.lac-aux-relous.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'lac-aux-relous')?.maxLevel || 1,
+    reward: getZoneMaxLevel('lac-aux-relous'),
     shlagemons: [
       metamorve.id,
       ratonton.id,
@@ -395,7 +404,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.canyon-a-la-derp.dialogBefore',
     dialogAfter: 'data.kings.canyon-a-la-derp.dialogAfter',
     dialogDefeat: 'data.kings.canyon-a-la-derp.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'canyon-a-la-derp')?.maxLevel || 1,
+    reward: getZoneMaxLevel('canyon-a-la-derp'),
     shlagemons: [
       pauvreetcon.id,
       kandurex.id,
@@ -411,7 +420,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.cratere-des-legends.dialogBefore',
     dialogAfter: 'data.kings.cratere-des-legends.dialogAfter',
     dialogDefeat: 'data.kings.cratere-des-legends.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'cratere-des-legends')?.maxLevel || 1,
+    reward: getZoneMaxLevel('cratere-des-legends'),
     shlagemons: [
       minidrapcon.id,
       voltamere.id,
@@ -427,7 +436,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.mont-kouillasse.dialogBefore',
     dialogAfter: 'data.kings.mont-kouillasse.dialogAfter',
     dialogDefeat: 'data.kings.mont-kouillasse.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'mont-kouillasse')?.maxLevel || 1,
+    reward: getZoneMaxLevel('mont-kouillasse'),
     shlagemons: [
       lecocu.id,
       meladolphe.id,
@@ -443,7 +452,7 @@ export const kings: Kings = {
     dialogBefore: 'data.kings.paturage-crado.dialogBefore',
     dialogAfter: 'data.kings.paturage-crado.dialogAfter',
     dialogDefeat: 'data.kings.paturage-crado.dialogDefeat',
-    reward: zonesData.find(z => z.id === 'paturage-crado')?.maxLevel || 1,
+    reward: getZoneMaxLevel('paturage-crado'),
     shlagemons: [
       floripute.id,
       dracoCon.id,
