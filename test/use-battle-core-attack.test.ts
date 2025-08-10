@@ -1,16 +1,16 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 
+import { useBattleCore } from '../src/composables/useBattleCore'
+import { carapouffe } from '../src/data/shlagemons/carapouffe'
+import { useShlagedexStore } from '../src/stores/shlagedex'
+
 vi.mock('../src/stores/audio', () => ({
   useAudioStore: () => ({
     playSfx: vi.fn(),
     isMusicEnabled: false,
   }),
 }))
-
-import { useBattleCore } from '../src/composables/useBattleCore'
-import { carapouffe } from '../src/data/shlagemons/carapouffe'
-import { useShlagedexStore } from '../src/stores/shlagedex'
 
 describe('useBattleCore.attack', () => {
   it('synchronizes reactive hp values after a manual attack', () => {
