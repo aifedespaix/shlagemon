@@ -3,10 +3,18 @@ const props = defineProps<{
   id: string
   alt: string
 }>()
+
+const src = `/characters/${props.id}/${props.id}.webp`
 </script>
 
 <template>
-  <div class="aspect-square">
-    <UiImageByBackground :src="`/characters/${props.id}/${props.id}.webp`" :alt="props.alt" class="h-full w-full object-contain" v-bind="$attrs" />
-  </div>
+    <UiSmartPicture
+      :src="src"
+      :alt="props.alt"
+      :widths="[512, 1024]"
+      sizes="(max-width: 640px) 100vw, 256px"
+      fit="contain"
+      class="h-full w-full"
+      v-bind="$attrs"
+    />
 </template>

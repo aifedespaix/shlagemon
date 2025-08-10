@@ -206,9 +206,9 @@ function onClick(_e: MouseEvent) {
 </script>
 
 <template>
-  <div class="w-full flex flex-1 flex-col items-center gap-2">
+  <div class="w-full flex flex-1 flex-col items-center gap-2 overflow-hidden">
     <slot name="header" />
-    <div class="relative w-full flex flex-1 items-center justify-center gap-4">
+    <div class="relative w-full flex flex-1 items-center justify-center gap-2 overflow-hidden">
       <div v-if="showConfetti" class="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div class="confetti">
           🎉

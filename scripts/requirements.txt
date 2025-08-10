@@ -3,6 +3,7 @@ librosa
 soundfile
 matplotlib
 pillow
+pillow-avif-plugin
 opencv-python
 numpy
 scikit-learn

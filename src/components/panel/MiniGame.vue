@@ -51,7 +51,7 @@ const failure = computed(() => gameDef.value?.createFailure(leaveGame))
     :show-footer="mini.phase === 'game'"
     @exit="leaveGame"
   >
-    <div class="tiny-scrollbar flex flex-1 flex-col overflow-auto">
+    <div class="tiny-scrollbar flex flex-1 flex-col overflow-auto items-center">
       <DialogBox
         v-if="mini.phase === 'intro'"
         :character="gameDef.character"

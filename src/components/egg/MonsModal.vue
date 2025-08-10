@@ -10,28 +10,25 @@ function owned(id: string) {
 
 <template>
   <UiModal v-model="modal.isVisible" footer-close>
-    <UiPanelWrapper
-      :title="t('components.egg.MonsModal.title', { name: modal.item ? t(modal.item.name) : '' })"
-      is-inline
-    >
-      <template #icon>
-        <div v-if="modal.item?.icon" class="h-4 w-4" :class="[modal.item.icon, modal.item.iconClass]" />
-      </template>
-      <div class="flex flex-wrap justify-center gap-2 p-2">
-        <div
-          v-for="mon in modal.mons"
-          :key="mon.id"
-          class="flex flex-col items-center text-xs"
-        >
-          <ShlagemonImage
-            :id="mon.id"
-            :alt="t(mon.name)"
-            class="min-h-16 min-w-16 object-contain"
-            :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
-          />
-          <span>{{ t(mon.name) }}</span>
-        </div>
+    <div class="flex items-center">
+      <div v-if="modal.item?.icon" class="h-6 w-6" :class="[modal.item.icon, modal.item.iconClass]" />
+      {{ t('components.egg.MonsModal.title', { name: modal.item ? t(modal.item.name) : '' }) }}
+    </div>
+
+    <div class="tiny-scrollbar grid grid-cols-2 flex-1 gap-2 overflow-auto p-2" sm="grid-cols-3">
+      <div
+        v-for="mon in modal.mons"
+        :key="mon.id"
+        class="flex flex-col items-center"
+      >
+        <ShlagemonImage
+          :id="mon.id"
+          :alt="t(mon.name)"
+          class="max-w-24 min-h-16 min-w-16 object-contain"
+          :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
+        />
+        <span>{{ t(mon.name) }}</span>
       </div>
-    </UiPanelWrapper>
+    </div>
   </UiModal>
 </template>

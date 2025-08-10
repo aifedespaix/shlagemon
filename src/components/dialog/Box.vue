@@ -70,17 +70,19 @@ function choose(r: DialogResponse) {
 </script>
 
 <template>
-  <div class="h-full max-w-xl w-full flex flex-col">
-    <div class="grid grid-cols-3 h-full max-h-50vh flex-1 gap-2 rounded">
-      <div class="flex flex-col items-center justify-center">
-        <UiImageByBackground :src="avatarUrl" alt="avatar" class="w-full flex-1 object-contain" />
+  <div class="h-full max-w-xl w-full flex flex-1 flex-col justify-center overflow-hidden">
+    <div class="grid grid-cols-3 max-h-80 flex-1 justify-center gap-2 rounded" md=" ">
+      <div class="flex flex-1 flex-col justify-center gap-1">
+        <div class="flex-1 basis-0 overflow-hidden">
+          <CharacterImage :id="character.id" alt="avatar" class="object-contain" />
+        </div>
         <div class="p-1 text-center font-bold">
           {{ character.name }}
         </div>
       </div>
 
-      <div class="col-span-2 h-full flex flex-col gap-2">
-        <div class="flex flex-1 flex-col justify-center">
+      <div class="col-span-2 flex flex-col justify-center gap-2">
+        <div class="min-h-20 flex flex-col justify-center rounded-md bg-black/20 p-2">
           <UiTypingText
             v-if="currentNode"
             :text="currentNode.text"
@@ -91,11 +93,12 @@ function choose(r: DialogResponse) {
             v-if="currentNode?.imageUrl"
             :src="currentNode.imageUrl"
             alt="illustration"
-            class="flex-1"
+            class="min-h-40 flex-1"
           />
         </div>
       </div>
     </div>
+
     <div class="flex justify-center gap-1 overflow-hidden p-2">
       <UiButton
         v-for="r in currentNode?.responses"

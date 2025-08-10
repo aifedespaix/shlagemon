@@ -847,6 +847,7 @@ components:
       quit: Give up
       fight: Fight
       autoSelect: Automatic team selection
+      title: Arena
     EnemyStats:
       hp: HP
       attack: Attack

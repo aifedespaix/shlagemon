@@ -167,6 +167,7 @@ declare module 'vue' {
     UiProgressBar: typeof import('./components/ui/ProgressBar.vue')['default']
     UiSearchInput: typeof import('./components/ui/SearchInput.vue')['default']
     UiSelectOption: typeof import('./components/ui/SelectOption.vue')['default']
+    UiSmartPicture: typeof import('./components/ui/SmartPicture.vue')['default']
     UiSortControls: typeof import('./components/ui/SortControls.vue')['default']
     UiTabBar: typeof import('./components/ui/TabBar.vue')['default']
     UiTabs: typeof import('./components/ui/Tabs.vue')['default']

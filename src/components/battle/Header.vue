@@ -10,7 +10,7 @@ const zone = useZoneStore()
   <div class="w-full flex items-center gap-2 overflow-hidden font-bold" :class="props.trainer ? 'justify-end' : 'justify-center'">
     <template v-if="props.zoneName">
       <div class="flex flex-col items-center justify-center p-x-20">
-        <div class="overflow-ellipsis w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="props.zoneName">
+        <div class="w-full overflow-hidden text-ellipsis whitespace-nowrap text-center" :title="props.zoneName">
           {{ props.zoneName }}
         </div>
         <div v-if="zone.current.maxLevel" class="whitespace-nowrap text-xs">
@@ -20,8 +20,8 @@ const zone = useZoneStore()
     </template>
 
     <template v-else-if="props.trainer">
-      <div class="flex items-center gap-2">
-        <div class="h-full flex flex-col items-end">
+      <div class="flex items-stretch gap-2">
+        <div class="flex flex-col items-end justify-between">
           <div>{{ props.trainer.character.name }}</div>
           <div class="flex gap-2">
             <UiImageByBackground
@@ -33,7 +33,15 @@ const zone = useZoneStore()
             />
           </div>
         </div>
-        <CharacterImage :id="props.trainer.character.id" :alt="props.trainer.character.name" class="h-full" />
+
+        <!-- Le point clé : [contain:size] + stretch -->
+        <div class="[contain:size] w-8 flex shrink-0 items-center self-stretch justify-center overflow-hidden">
+          <CharacterImage
+            :id="props.trainer.character.id"
+            :alt="props.trainer.character.name"
+            class="max-h-full max-w-full object-contain"
+          />
+        </div>
       </div>
     </template>
   </div>

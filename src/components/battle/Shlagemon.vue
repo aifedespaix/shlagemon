@@ -7,7 +7,6 @@ import { useDexInfoModalStore } from '~/stores/dexInfoModal'
 import DiseaseBadge from './DiseaseBadge.vue'
 import EffectBadge from './EffectBadge.vue'
 
-/** === Props/Emits ======================================================= */
 interface Props {
   mon: DexShlagemon
   hp: number
@@ -116,14 +115,11 @@ interface FloatingNumber {
 const floats = ref<FloatingNumber[]>([])
 let floatId = 0
 
-/** -------- Batching raf pour regrouper les variations simultanées ------- */
 interface PendingDelta { delta: number }
 const pending: PendingDelta[] = []
 let flushScheduled = false
-// === Visibilité document ==================================================
 const isHidden = computed(() => documentVisibility.value === 'hidden')
 
-// Quand l'onglet passe en hidden: on purge tout ce qui pourrait animer
 watch(isHidden, (hidden) => {
   if (hidden) {
     pending.splice(0, pending.length) // vide la batch
@@ -131,7 +127,6 @@ watch(isHidden, (hidden) => {
   }
 })
 
-// Dans ton scheduler: ne programme RIEN si l’onglet est caché
 function scheduleFlush() {
   if (flushScheduled || isHidden.value)
     return

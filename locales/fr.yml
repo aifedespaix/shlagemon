@@ -847,6 +847,7 @@ components:
       quit: Abandonner
       fight: Combattre
       autoSelect: Sélection automatique de l'équipe
+      title: Arène
     EnemyStats:
       hp: PV
       attack: Attaque

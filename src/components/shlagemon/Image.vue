@@ -1,19 +1,33 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   id: string
-  alt: string
+  alt?: string
   shiny?: boolean
+  widths?: number[]
+  formats?: Array<'avif' | 'webp' | 'png'>
 }>(), {
-  shiny: false,
+  alt: '',
+  widths: () => [512, 1024],
+  formats: () => ['avif', 'webp'],
 })
+
+const src = computed(() => `/shlagemons/${props.id}/${props.id}.webp`)
 </script>
 
 <template>
-  <UiImageByBackground
-    :src="`/shlagemons/${props.id}/${props.id}.webp`"
+  <UiSmartPicture
+    :src="src"
     :alt="props.alt"
+    :widths="props.widths"
+    :formats="props.formats"
+    sizes="(max-width:640px) 100vw, 384px"
     class="h-full max-w-sm w-full"
-    :style="props.shiny ? { filter: 'hue-rotate(180deg)' } : {}"
-    v-bind="$attrs"
+    :class="{ 'is-shiny': props.shiny }"
   />
 </template>
+
+<style scoped>
+.is-shiny :deep(img) {
+  filter: hue-rotate(180deg);
+}
+</style>
