@@ -47,6 +47,8 @@ const headerClass = [
   'z-50',
   'relative',
 ]
+
+const pwaEnv = usePwaEnvironmentStore()
 </script>
 
 <template>
@@ -110,7 +112,7 @@ const headerClass = [
       <DeveloperSettingsModal v-if="showDevButton" v-model="showDeveloper" />
 
       <!-- Plein écran : même hauteur/largeur/visuel que les autres ! -->
-      <UiFullscreenToggle />
+      <UiFullscreenToggle v-if="!pwaEnv.isTwa" />
     </nav>
   </header>
 </template>
