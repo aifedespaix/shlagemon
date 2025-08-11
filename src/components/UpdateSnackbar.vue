@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, ref, watch, computed, onMounted, onBeforeUnmount } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 interface PwaUpdateStore {
   needRefresh: boolean
@@ -21,7 +21,8 @@ watch(
     if (val) {
       await nextTick()
       reloadBtnRef.value?.focus()
-    } else {
+    }
+    else {
       isUpdating.value = false
       hasError.value = null
     }
@@ -40,16 +41,19 @@ const statusMessage = computed(() => {
 
 /** Reload principal (async) */
 async function handleReload() {
-  if (isUpdating.value) return
+  if (isUpdating.value)
+    return
   isUpdating.value = true
   hasError.value = null
   try {
     await store.reload()
     // Si le reload n’est pas immédiat (rare), on évite un flash d’état.
     setTimeout(() => {
-      if (isUpdating.value) isUpdating.value = false
+      if (isUpdating.value)
+        isUpdating.value = false
     }, 1200)
-  } catch (e) {
+  }
+  catch (e) {
     hasError.value = e instanceof Error ? e : new Error('Update failed')
     isUpdating.value = false
   }
@@ -63,7 +67,8 @@ function handleRetry() {
 
 /** Raccourci clavier Enter pour valider rapidement (accessibilité + UX) */
 function onKeydown(e: KeyboardEvent) {
-  if (!store.needRefresh) return
+  if (!store.needRefresh)
+    return
   if (e.key === 'Enter' && !isUpdating.value && !hasError.value) {
     e.preventDefault()
     void handleReload()
@@ -81,7 +86,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
       md="pb-[calc(env(safe-area-inset-bottom,0)+1.25rem)]"
     >
       <section
-        class="pointer-events-auto w-full max-w-xl rounded-2xl bg-white/85 backdrop-blur-md shadow-xl ring-1 ring-black/5 dark:bg-gray-900/80 dark:ring-white/10"
+        class="pointer-events-auto max-w-xl w-full rounded-2xl bg-white/85 shadow-xl ring-1 ring-black/5 backdrop-blur-md dark:bg-gray-900/80 dark:ring-white/10"
         role="status"
         :aria-busy="isUpdating"
         aria-live="polite"
@@ -89,10 +94,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
         <!-- Contenu -->
         <div class="flex items-center gap-3 px-4 py-3">
           <!-- Icône / Loader -->
-          <div class="flex h-7 w-7 items-center justify-center">
-            <UiLoader minimal v-if="isUpdating" aria-hidden="true" />
+          <div class="h-7 w-7 flex items-center justify-center">
+            <UiLoader v-if="isUpdating" minimal aria-hidden="true" />
             <span v-else-if="hasError" class="i-carbon:warning-alt text-xl text-red-500 dark:text-red-400" aria-hidden="true" />
-            <span v-else class="i-carbon:upgrade text-xl text-primary-600 dark:text-primary-300" aria-hidden="true" />
+            <span v-else class="text-primary-600 i-carbon:upgrade dark:text-primary-300 text-xl" aria-hidden="true" />
           </div>
 
           <!-- Texte -->
@@ -116,8 +121,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
               v-if="hasError"
               type="secondary"
               variant="soft"
+              data-state="error"
               @click="handleRetry"
-              :data-state="'error'"
             >
               {{ t('components.UpdateSnackbar.retry', 'Réessayer') }}
             </UiButton>
@@ -130,8 +135,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
               :disabled="isUpdating"
               :aria-disabled="isUpdating"
               :data-state="isUpdating ? 'loading' : 'idle'"
-              @click="handleReload"
               class="min-w-28"
+              @click="handleReload"
             >
               <template v-if="isUpdating">
                 {{ t('components.UpdateSnackbar.reloading', 'Rechargement…') }}
@@ -145,8 +150,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 
         <!-- Barre de progression indéterminée (affichée uniquement pendant l’update) -->
         <div v-if="isUpdating" class="relative h-1 overflow-hidden rounded-b-2xl">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-600/20 via-primary-600/40 to-primary-600/20 dark:from-primary-400/20 dark:via-primary-400/40 dark:to-primary-400/20" />
-          <div class="indeterminate-bar absolute top-0 h-full w-1/3 bg-primary-600/80 dark:bg-primary-400/80" />
+          <div class="from-primary-600/20 via-primary-600/40 to-primary-600/20 dark:from-primary-400/20 dark:via-primary-400/40 dark:to-primary-400/20 absolute inset-0 bg-gradient-to-r" />
+          <div class="bg-primary-600/80 indeterminate-bar dark:bg-primary-400/80 absolute top-0 h-full w-1/3" />
         </div>
       </section>
     </div>
@@ -157,7 +162,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 /* Transition douce depuis le bas, sans mouvements agressifs */
 .snack-slide-enter-active,
 .snack-slide-leave-active {
-  transition: opacity .22s ease, transform .22s ease;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
 }
 .snack-slide-enter-from,
 .snack-slide-leave-to {
@@ -167,9 +174,15 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 
 /* Barre de progression indéterminée */
 @keyframes indeterminate {
-  0%   { transform: translateX(-120%); }
-  60%  { transform: translateX(180%); }
-  100% { transform: translateX(180%); }
+  0% {
+    transform: translateX(-120%);
+  }
+  60% {
+    transform: translateX(180%);
+  }
+  100% {
+    transform: translateX(180%);
+  }
 }
 .indeterminate-bar {
   animation: indeterminate 1.2s ease-in-out infinite;
@@ -179,7 +192,9 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 @media (prefers-reduced-motion: reduce) {
   .snack-slide-enter-active,
   .snack-slide-leave-active {
-    transition: opacity .15s linear, transform .15s linear;
+    transition:
+      opacity 0.15s linear,
+      transform 0.15s linear;
   }
   .indeterminate-bar {
     animation-duration: 2s;

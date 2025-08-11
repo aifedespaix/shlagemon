@@ -15,7 +15,7 @@ function owned(id: string) {
       {{ t('components.egg.MonsModal.title', { name: modal.item ? t(modal.item.name) : '' }) }}
     </div>
 
-    <div class="flex flex-wrap justify-center gap-2 p-2 overflow-auto tiny-scrollbar">
+    <div class="tiny-scrollbar flex flex-wrap justify-center gap-2 overflow-auto p-2">
       <div
         v-for="mon in modal.mons"
         :key="mon.id"
@@ -24,7 +24,7 @@ function owned(id: string) {
         <ShlagemonImage
           :id="mon.id"
           :alt="t(mon.name)"
-          class="max-w-24! min-h-16 min-w-16 object-contain"
+          class="min-h-16 min-w-16 object-contain max-w-24!"
           :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
         />
         <span>{{ t(mon.name) }}</span>

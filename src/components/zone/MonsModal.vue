@@ -25,7 +25,7 @@ function owned(id: string) {
         <ShlagemonImage
           :id="mon.id"
           :alt="t(mon.name)"
-          class="min-h-16 min-w-16 max-w-24! object-contain"
+          class="min-h-16 min-w-16 object-contain max-w-24!"
           :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
         />
         <span>{{ t(mon.name) }}</span>

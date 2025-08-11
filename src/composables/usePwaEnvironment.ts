@@ -54,7 +54,13 @@ export function usePwaEnvironment(): PwaEnvironment {
         'history',
         { removeNullishValues: true },
       )
-  const ua = useUserAgent()
+  const ua = ref(
+    typeof navigator !== 'undefined' ? navigator.userAgent : '',
+  ) // Client: reactive UA
+
+  const uaLooksAndroidChrome = computed(() =>
+    /Android/i.test(ua.value) && /Chrome\/\d+/i.test(ua.value),
+  )
 
   // Explicit signal ?twa=1 or ?source=twa etc.
   const twaSignalParam = computed(() =>
@@ -64,10 +70,6 @@ export function usePwaEnvironment(): PwaEnvironment {
     }),
   )
 
-  // Conservative heuristic: standalone Android Chrome
-  const uaLooksAndroidChrome = computed(() =>
-    /Android/i.test(ua.value) && /Chrome\/\d+/i.test(ua.value),
-  )
   const isTwa = computed(() =>
     twaSignalParam.value || (isStandalone.value && uaLooksAndroidChrome.value),
   )

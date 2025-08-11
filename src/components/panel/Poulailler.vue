@@ -37,12 +37,15 @@ const colorMap: Record<EggType, string> = {
 
 /** === Time tick (1s) ==================================================== */
 const now = ref<number>(Date.now())
-useIntervalFn(() => { now.value = Date.now() }, 1000)
+useIntervalFn(
+  () => { now.value = Date.now() },
+  1000,
+)
 
 /** === Computeds ========================================================= */
 const inventoryEggs = computed<InventoryEntry[]>(() => {
   return eggIds
-    .map((id) => ({
+    .map(id => ({
       id,
       item: allItems.find(i => i.id === id)!,
       qty: box.eggs[id] ?? 0,
@@ -53,7 +56,7 @@ const inventoryEggs = computed<InventoryEntry[]>(() => {
 const incubatorSlots = computed(() => {
   // always 4 slots; fill with null placeholders
   const filled = eggs.incubator.slice(0, INCUBATOR_SLOTS)
-  return [...filled, ...Array(Math.max(0, INCUBATOR_SLOTS - filled.length)).fill(null)]
+  return [...filled, ...Array.from({ length: Math.max(0, INCUBATOR_SLOTS - filled.length) }).fill(null)]
 })
 
 /** === Helpers =========================================================== */
@@ -74,7 +77,8 @@ function fmtSec(total: number): string {
 /** === Actions =========================================================== */
 /** Démarre l’incubation si slot libre */
 function startIncubation(id: EggItemId): void {
-  if (eggs.incubator.length >= INCUBATOR_SLOTS) return
+  if (eggs.incubator.length >= INCUBATOR_SLOTS)
+    return
   if (eggs.startIncubation(eggTypeMap[id])) {
     box.removeEgg(id)
   }
@@ -82,7 +86,8 @@ function startIncubation(id: EggItemId): void {
 
 function hatch(id: number): void {
   const mon = eggs.hatchEgg(id)
-  if (mon) hatchModal.open(mon)
+  if (mon)
+    hatchModal.open(mon)
 }
 
 function showEggMons(id: EggItemId): void {
@@ -91,11 +96,13 @@ function showEggMons(id: EggItemId): void {
 }
 
 /** Accessibilité: aria-labels */
-const incubateLabel = (name: string) =>
-  t('components.panel.Poulailler.a11y.incubateEgg', { name }) as string
+function incubateLabel(name: string) {
+  return t('components.panel.Poulailler.a11y.incubateEgg', { name }) as string
+}
 
-const eggReadyLabel = (type: EggType) =>
-  t('components.panel.Poulailler.a11y.eggReady', { type }) as string
+function eggReadyLabel(type: EggType) {
+  return t('components.panel.Poulailler.a11y.eggReady', { type }) as string
+}
 </script>
 
 <template>
@@ -104,9 +111,9 @@ const eggReadyLabel = (type: EggType) =>
     :exit-text="t('components.panel.Poulailler.exit')"
     @exit="panel.showVillage()"
   >
-    <div class="grid flex-1 gap-2 grid-cols-2 overflow-hidden">
+    <div class="grid grid-cols-2 flex-1 gap-2 overflow-hidden">
       <section
-        class="flex min-h-0 flex-col rounded-lg border bg-white/60 dark:bg-gray-900/40"
+        class="min-h-0 flex flex-col border rounded-lg bg-white/60 dark:bg-gray-900/40"
         aria-labelledby="eggs-inventory-title"
       >
         <header class="sticky top-0 z-1 rounded-t-lg bg-[inherit] p-2">
@@ -125,7 +132,7 @@ const eggReadyLabel = (type: EggType) =>
             v-for="entry in inventoryEggs"
             :key="entry.id"
             role="listitem"
-            class="group flex items-center justify-between gap-2 border-b p-2 last:border-b-0 hover:bg-gray/5 transition-colors"
+            class="group flex items-center justify-between gap-2 border-b p-2 transition-colors last:border-b-0 hover:bg-gray/5"
           >
             <button
               type="button"
@@ -146,7 +153,7 @@ const eggReadyLabel = (type: EggType) =>
 
             <!-- Qté + CTA incubate -->
             <div class="flex items-center gap-2">
-              <span class="shrink-0 text-xs font-semibold text-gray-700 dark:text-gray-200">
+              <span class="shrink-0 text-xs text-gray-700 font-semibold dark:text-gray-200">
                 ×{{ entry.qty }}
               </span>
               <UiButton
@@ -172,10 +179,10 @@ const eggReadyLabel = (type: EggType) =>
 
       <!-- === Colonne droite : Grille 2x2 incubateur ============================= -->
       <section
-        class="flex min-h-0 flex-col rounded-lg border bg-white/60 p-3 dark:bg-gray-900/40"
+        class="min-h-0 flex flex-col border rounded-lg bg-white/60 p-3 dark:bg-gray-900/40"
         aria-labelledby="incubator-title"
       >
-        <header class="sticky top-0 z-1 -m-3 mb-2 rounded-t-lg bg-[inherit] p-3">
+        <header class="sticky top-0 z-1 mb-2 rounded-t-lg bg-[inherit] p-3 -m-3">
           <h4 id="incubator-title" class="text-base font-semibold">
             {{ t('components.panel.Poulailler.incubator') }}
           </h4>
@@ -192,13 +199,13 @@ const eggReadyLabel = (type: EggType) =>
             v-for="(slot, idx) in incubatorSlots"
             :key="slot?.id ?? `empty-${idx}`"
             role="gridcell"
-            class="flex aspect-square items-center justify-center rounded-lg border bg-white/50 p-2 shadow-sm transition-all hover:shadow-md dark:bg-gray-950/40"
+            class="aspect-square flex items-center justify-center border rounded-lg bg-white/50 p-2 shadow-sm transition-all dark:bg-gray-950/40 hover:shadow-md"
           >
             <!-- Slot rempli -->
             <template v-if="slot">
               <button
                 type="button"
-                class="group flex w-full flex-col items-center gap-1 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-primary"
+                class="group ring-primary w-full flex flex-col items-center gap-1 outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 :aria-label="eggs.isReady(slot) ? eggReadyLabel(slot.type) : t('components.panel.Poulailler.a11y.eggProgress')"
                 :title="eggs.isReady(slot) ? (t('components.panel.Poulailler.tapToHatch') as string) : undefined"
                 @click="eggs.isReady(slot) && hatch(slot.id)"
@@ -215,21 +222,20 @@ const eggReadyLabel = (type: EggType) =>
                 />
                 <span
                   v-if="!eggs.isReady(slot)"
-                  class="text-xs tabular-nums text-gray-700 dark:text-gray-200"
-                  :aria-live="'polite'"
+                  class="text-xs text-gray-700 tabular-nums dark:text-gray-200"
+                  aria-live="polite"
                 >
                   {{ fmtSec(remaining(slot)) }}
                 </span>
                 <span
                   v-else
-                  class="rounded px-2 py-0.5 text-xs font-semibold text-primary-600 dark:text-primary-400"
+                  class="text-primary-600 dark:text-primary-400 rounded px-2 py-0.5 text-xs font-semibold"
                 >
                   {{ t('components.panel.Poulailler.ready') }}
                 </span>
               </button>
             </template>
 
-            <!-- Placeholder (slot vide) -->
             <template v-else>
               <div class="flex flex-col items-center gap-2 opacity-70">
                 <div class="i-ph:egg-light h-10 w-10" aria-hidden="true" />

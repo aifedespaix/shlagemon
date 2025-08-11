@@ -1,19 +1,18 @@
 fr:
-  updateAvailable: "Une mise à jour est disponible."
-  explain: "Clique sur “Recharger” pour appliquer la nouvelle version."
-  reload: "Recharger"
-  updating: "Mise à jour en cours… cela peut prendre quelques secondes."
-  explainUpdating: "Ne ferme pas l’application pendant la mise à jour."
-  reloading: "Rechargement…"
-  error: "La mise à jour a échoué. Réessaie."
-  retry: "Réessayer"
+  updateAvailable: Une mise à jour est disponible.
+  explain: Clique sur “Recharger” pour appliquer la nouvelle version.
+  reload: Recharger
+  updating: Mise à jour en cours… cela peut prendre quelques secondes.
+  explainUpdating: Ne ferme pas l’application pendant la mise à jour.
+  reloading: Rechargement…
+  error: La mise à jour a échoué. Réessaie.
+  retry: Réessayer
 en:
-  updateAvailable: "An update is available."
-  explain: "Click “Reload” to apply the new version."
-  reload: "Reload"
-  updating: "Updating… this may take a few seconds."
-  explainUpdating: "Do not close the application during the update."
-  reloading: "Reloading…"
-  error: "The update failed. Please try again."
-  retry: "Retry"
-
+  updateAvailable: An update is available.
+  explain: Click “Reload” to apply the new version.
+  reload: Reload
+  updating: Updating… this may take a few seconds.
+  explainUpdating: Do not close the application during the update.
+  reloading: Reloading…
+  error: The update failed. Please try again.
+  retry: Retry
