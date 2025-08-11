@@ -225,7 +225,6 @@ function onClick(_e: MouseEvent) {
   if (!canClickAttack.value)
     return
   cursorClicked.value = true
-  // useTimeoutFn(() => (cursorClicked.value = false), 150)
   throttledAttack()
 }
 </script>
@@ -239,8 +238,9 @@ function onClick(_e: MouseEvent) {
           🎉
         </div>
       </div>
+      <div class="h-full w-full flex-1">
       <Transition name="fade-scale" mode="out-in">
-        <div :key="displayedPlayer?.id" class="relative flex flex-1">
+        <div :key="displayedPlayer?.id" class="relative h-full w-full">
           <BattleShlagemon
             :mon="displayedPlayer"
             :hp="playerHp"
@@ -257,7 +257,7 @@ function onClick(_e: MouseEvent) {
           />
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
         </div>
-      </Transition>
+      </Transition></div>
       <div class="vs font-bold">
         {{ t('components.battle.Round.vs') }}
       </div>
