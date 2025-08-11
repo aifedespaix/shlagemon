@@ -240,22 +240,23 @@ function onClick(_e: MouseEvent) {
         </div>
       </div>
       <Transition name="fade-scale" mode="out-in">
-        <BattleShlagemon
-          :key="displayedPlayer?.id"
-          :mon="displayedPlayer"
-          :hp="playerHp"
-          :fainted="playerFainted"
-          :flash="flashPlayer"
-          flipped
-          :effects="props.showEffects ? dex.effects : []"
-          :disease="disease.active"
-          :disease-remaining="disease.remaining"
-          owned
-          belongs-to-player
-          @faint-end="onPlayerFaintEnd"
-        >
+        <div :key="displayedPlayer?.id" class="relative flex flex-1">
+          <BattleShlagemon
+            :mon="displayedPlayer"
+            :hp="playerHp"
+            :fainted="playerFainted"
+            :flash="flashPlayer"
+            flipped
+            :effects="props.showEffects ? dex.effects : []"
+            :disease="disease.active"
+            :disease-remaining="disease.remaining"
+            owned
+            belongs-to-player
+            class="flex-1"
+            @faint-end="onPlayerFaintEnd"
+          />
           <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-        </BattleShlagemon>
+        </div>
       </Transition>
       <div class="vs font-bold">
         {{ t('components.battle.Round.vs') }}
@@ -268,21 +269,22 @@ function onClick(_e: MouseEvent) {
         @mouseleave="onMouseLeave"
       >
         <Transition name="fade-scale" mode="out-in">
-          <BattleShlagemon
-            :key="displayedEnemy?.id"
-            :mon="displayedEnemy"
-            :hp="enemyHp"
-            color="bg-red-500"
-            :fainted="enemyFainted"
-            :flash="flashEnemy"
-            :show-ball="showOwnedBall"
-            :owned="enemyCaptured"
-            :owns-rarity-100="enemyRarity100Owned"
-            :owns-shiny="enemyShinyOwned"
-            @faint-end="onEnemyFaintEnd"
-          >
+          <div :key="displayedEnemy?.id" class="relative h-full w-full">
+            <BattleShlagemon
+              :mon="displayedEnemy"
+              :hp="enemyHp"
+              color="bg-red-500"
+              :fainted="enemyFainted"
+              :flash="flashEnemy"
+              :show-ball="showOwnedBall"
+              :owned="enemyCaptured"
+              :owns-rarity-100="enemyRarity100Owned"
+              :owns-shiny="enemyShinyOwned"
+              class="h-full w-full"
+              @faint-end="onEnemyFaintEnd"
+            />
             <BattleToast v-if="enemyEffect" :message="enemyEffect" :variant="enemyVariant" />
-          </BattleShlagemon>
+          </div>
         </Transition>
         <BattleAttackCursor
           v-if="canClickAttack && showAttackCursor"
