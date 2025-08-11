@@ -13,6 +13,7 @@ const featureLock = useFeatureLockStore()
 const visit = useZoneVisitStore()
 const { t } = useI18n()
 const { canAccess } = useZoneAccess(toRef(dex, 'highestLevel'))
+const info = useZoneInfoStore()
 
 const zoneButtonsDisabled = computed(
   () =>
@@ -77,8 +78,8 @@ const highlightClasses = 'animate-pulse-alt  animate-count-infinite'
     :disabled="buttonDisabled()"
     @click="selectZone"
   >
-    <span class="text-2xs absolute left-1 top-0.5">{{ props.zone.minLevel }}</span>
-    <span class="text-2xs absolute right-1 top-0.5">{{ props.zone.maxLevel }}</span>
+    <span v-if="info.showZoneLevels" class="text-2xs absolute left-1 top-0.5">{{ props.zone.minLevel }}</span>
+    <span v-if="info.showZoneLevels" class="text-2xs absolute right-1 top-0.5">{{ props.zone.maxLevel }}</span>
     <div class="flex-center">
       <div class="i-game-icons:forest h-6 w-6" />
     </div>

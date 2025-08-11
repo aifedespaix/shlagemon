@@ -24,6 +24,8 @@ const wildLevel = useWildLevelStore()
 
 const enemy = ref(null as DexShlagemon | null)
 const { t } = useI18n()
+const info = useZoneInfoStore()
+const zoneName = computed(() => info.hasMultipleZones ? t(zone.current.name) : undefined)
 
 function createEnemy(): DexShlagemon | null {
   const available = zone.current.shlagemons?.length ? zone.current.shlagemons : allShlagemons
@@ -161,7 +163,7 @@ function onCapture() {
       @capture="onCapture"
     >
       <template #header>
-        <BattleHeader :zone-name="t(zone.current.name)" />
+        <BattleHeader :zone-name="zoneName" />
       </template>
     </BattleRound>
     <ZoneMonsModal />
