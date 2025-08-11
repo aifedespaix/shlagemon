@@ -6,6 +6,18 @@ fr:
   yourEggs: Vos œufs
   incubate: Incuber
   noEggBox: Aucun œuf dans la boîte
+  emptySlot: Emplacement vide
+  tapToHatch: Appuyez pour faire éclore
+  ready: Prêt
+  legend:
+    bouncing: En incubation
+    pulsing: Prêt à éclore
+  a11y:
+    showSpecies: Voir les espèces pour {name}
+    incubateEgg: Incuber l’œuf {name}
+    eggReady: Œuf {type} prêt
+    eggProgress: Progression de l’œuf
+
 en:
   title: Henhouse
   exit: Exit
@@ -14,3 +26,14 @@ en:
   yourEggs: Your eggs
   incubate: Incubate
   noEggBox: No egg in the box
+  emptySlot: Empty slot
+  tapToHatch: Tap to hatch
+  ready: Ready
+  legend:
+    bouncing: Incubating
+    pulsing: Ready to hatch
+  a11y:
+    showSpecies: Show species for {name}
+    incubateEgg: Incubate the {name} egg
+    eggReady: '{type} egg ready'
+    eggProgress: Egg progress

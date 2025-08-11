@@ -240,19 +240,6 @@ const eggReadyLabel = (type: EggType) =>
             </template>
           </div>
         </div>
-
-        <!-- Aide / Légende -->
-        <footer class="mt-3 text-center text-xs text-gray-600 dark:text-gray-300">
-          <span class="inline-flex items-center gap-1">
-            <i class="i-game-icons:egg-eye h-4 w-4 animate-bounce" aria-hidden="true" />
-            {{ t('components.panel.Poulailler.legend.bouncing') }}
-          </span>
-          ·
-          <span class="inline-flex items-center gap-1">
-            <i class="i-game-icons:egg-eye h-4 w-4 animate-pulse-alt" aria-hidden="true" />
-            {{ t('components.panel.Poulailler.legend.pulsing') }}
-          </span>
-        </footer>
       </section>
     </div>
 
