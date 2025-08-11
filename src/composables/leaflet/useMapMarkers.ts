@@ -86,13 +86,13 @@ export function useMapMarkers(map: LeafletMap) {
 
       // --- Icône principale (zone) ---
       const zoneIconStyle
-    = zone.type !== 'village'
-      ? (captureState.value === 'missing'
-          ? GREY_FILTER
-          : captureState.value === 'perfect'
-            ? GOLD_FILTER
-            : '')
-      : ''
+        = zone.type !== 'village'
+          ? (!allCaptured.value
+              ? GREY_FILTER
+              : perfectZone.value
+                ? GOLD_FILTER
+                : '')
+          : ''
       const baseIcon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" style="${zoneIconStyle}" />`
 
       // --- Badges / chip sous l'icône ---
@@ -107,15 +107,14 @@ export function useMapMarkers(map: LeafletMap) {
         badges = arena
       }
       else {
-        const ballStyle = {
-          missing: GREY_FILTER,
-          complete: '',
-          perfect: GOLD_FILTER,
-          shiny: '',
-        }[captureState.value]
+        const ballStyle = captureState.value === 'missing'
+          ? GREY_FILTER
+          : perfectZone.value
+            ? GOLD_FILTER
+            : ''
         const ball = `<img src="/items/shlageball/shlageball.webp" class="h-3 w-3" style="${ballStyle}" />`
 
-        const shinyBadge = captureState.value === 'shiny'
+        const shinyBadge = allShiny.value
           ? '<div class="i-mdi:star h-2 w-2 mask-rainbow absolute -top-1 -right-1"></div>'
           : ''
         const ballWithBadge = shinyBadge
@@ -153,7 +152,7 @@ export function useMapMarkers(map: LeafletMap) {
       title: i18n.global.t(zone.name),
     })
 
-    watch([captureState, kingState, arenaCompleted, visited], () => {
+    watch([captureState, perfectZone, allShiny, kingState, arenaCompleted, visited], () => {
       marker.setIcon(new DivIcon({
         html: buildHtml(),
         iconSize: [markerSize, markerSize],

@@ -1,0 +1,16 @@
+fr:
+  year: '{count} an | {count} ans'
+  month: '{count} mois'
+  day: '{count} jour | {count} jours'
+  hour: '{count} heure | {count} heures'
+  minute: '{count} minute | {count} minutes'
+  second: '{count} seconde | {count} secondes'
+  and: et
+en:
+  year: '{count} year | {count} years'
+  month: '{count} month | {count} months'
+  day: '{count} day | {count} days'
+  hour: '{count} hour | {count} hours'
+  minute: '{count} minute | {count} minutes'
+  second: '{count} second | {count} seconds'
+  and: and

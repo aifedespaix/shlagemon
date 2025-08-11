@@ -201,7 +201,7 @@ components:
       invalid: Invalid code
       loaded: Save loaded
       copied: Copied
-      playtime: You have played for {minutes} minutes.
+      playtime: You have played for {time}.
       generate: Generate
       loadFile: Load from file
       exportDesc: Generate a code to export your progress.
@@ -891,6 +891,15 @@ components:
     ArrowButton:
       prev: Previous
       next: Next
+composables:
+  useFormatDuration:
+    year: '{count} year | {count} years'
+    month: '{count} month | {count} months'
+    day: '{count} day | {count} days'
+    hour: '{count} hour | {count} hours'
+    minute: '{count} minute | {count} minutes'
+    second: '{count} second | {count} seconds'
+    and: and
 data:
   shlagemons:
     01-05:
