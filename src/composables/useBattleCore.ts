@@ -66,8 +66,8 @@ export function useBattleCore(options: BattleCoreOptions) {
   function attack() {
     if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
       return false
-    const { effect, crit } = battle.clickAttack(dex.activeShlagemon, enemy.value)
-    showEffect('enemy', effect, crit)
+    // Manual click attacks intentionally bypass effectiveness toasts.
+    battle.clickAttack(dex.activeShlagemon, enemy.value)
     enemyHp.value = enemy.value.hpCurrent
     flashEnemy.value = true
     hideFlashEnemy()
