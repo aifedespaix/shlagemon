@@ -9,9 +9,9 @@ from typing import Dict, List, Optional, Tuple
 from PIL import Image, ImageOps
 
 ALLOWED_DIRS = [
-    # "shlagemons",
-    "items",
-    "icons",
+    "shlagemons",
+    # "items",
+    # "icons",
     # "characters",
 ]
 
