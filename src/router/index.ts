@@ -40,6 +40,11 @@ export const routes: RouteRecordRaw[] = [
       : () => import('~/pages/root.vue'), // Client only : redirection pour i18n paths
   },
   ...buildLocalizedRoutes(),
+  {
+    path: '/save/import',
+    name: 'save-import',
+    component: () => import('~/pages/save/ImportPage.vue'),
+  },
   { path: '/:all(.*)', name: 'not-found', component: () => import('~/pages/404.vue') },
 ]
 
