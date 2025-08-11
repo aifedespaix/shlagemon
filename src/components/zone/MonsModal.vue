@@ -13,10 +13,10 @@ function owned(id: string) {
 <template>
   <UiModal v-model="modal.isVisible" footer-close>
     <div class="flex items-center gap-1">
-      <img src="/items/shlageball/shlageball.webp" alt="ball" class="h-4 w-4" />
+      <img src="/items/shlageball/shlageball.webp" alt="ball" class="h-4 w-4">
       {{ t('components.zone.MonsModal.title', { zone: t(zone.current.name) }) }}
     </div>
-    <div class="grid cols-2 gap-2 p-2">
+    <div class="flex flex-wrap justify-center gap-2 p-2">
       <div
         v-for="mon in mons"
         :key="mon.id"
@@ -25,7 +25,7 @@ function owned(id: string) {
         <ShlagemonImage
           :id="mon.id"
           :alt="t(mon.name)"
-          class="min-h-16 min-w-16 object-contain"
+          class="min-h-16 min-w-16 max-w-24! object-contain"
           :class="owned(mon.id) ? '' : 'grayscale opacity-50'"
         />
         <span>{{ t(mon.name) }}</span>
