@@ -19,6 +19,10 @@ const isVitest = !!process.env.VITEST
 export default defineConfig({
   shortcuts: [
     ['flex-center', 'flex justify-center items-center'],
+    // Dynamic viewport height with safe area handling
+    ['h-screen-dvh', 'min-h-[100vh] min-h-[100dvh]'],
+    ['safe-top', 'pt-[env(safe-area-inset-top)]'],
+    ['safe-bottom', 'pb-[env(safe-area-inset-bottom)]'],
   ],
   presets: [
     presetWind3(),
