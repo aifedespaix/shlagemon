@@ -31,9 +31,9 @@ const barClass = computed(() => {
 <template>
   <div class="h-2 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700">
     <div
-      class="h-full transition-width duration-300"
+      class="h-full transition-transform duration-300"
       :class="[barClass, gainAnim ? 'xp-gain' : '']"
-      :style="{ width: `${percent}%` }"
+      :style="{ '--progress-scale': percent / 100, 'transform': 'scaleX(var(--progress-scale))', 'transform-origin': 'left', 'will-change': 'transform' }"
     />
   </div>
 </template>
@@ -78,15 +78,15 @@ const barClass = computed(() => {
 
 @keyframes xp-gain {
   0% {
-    transform: scaleY(1);
+    transform: scaleX(var(--progress-scale)) scaleY(1);
     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
   }
   50% {
-    transform: scaleY(1.2);
+    transform: scaleX(var(--progress-scale)) scaleY(1.2);
     box-shadow: 0 0 6px 2px rgba(250, 204, 21, 0.7);
   }
   100% {
-    transform: scaleY(1);
+    transform: scaleX(var(--progress-scale)) scaleY(1);
     box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
   }
 }
