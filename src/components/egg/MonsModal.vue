@@ -15,7 +15,7 @@ function owned(id: string) {
       {{ t('components.egg.MonsModal.title', { name: modal.item ? t(modal.item.name) : '' }) }}
     </div>
 
-    <div class="tiny-scrollbar grid grid-cols-2 flex-1 gap-2 overflow-auto p-2" sm="grid-cols-3">
+    <div class="flex flex-wrap justify-center gap-2 p-2 overflow-auto tiny-scrollbar">
       <div
         v-for="mon in modal.mons"
         :key="mon.id"
