@@ -5,6 +5,7 @@ import { applySave, collectSave, exportSave, importSave } from '~/utils/save-cod
 const emit = defineEmits<{ (e: 'remove'): void }>()
 const { t } = useI18n()
 const playtime = usePlaytimeStore()
+const { formatDuration } = useFormatDuration()
 const exportCode = ref('')
 const importCode = ref('')
 const showImport = ref(false)
@@ -84,7 +85,7 @@ onUnmounted(() => resetCopyTimer.stop())
       {{ t('components.settings.SettingsModal.tabs.save') }}
     </h3>
     <p class="text-center">
-      {{ t('components.settings.SaveTab.playtime', { minutes: playtime.minutes }) }}
+      {{ t('components.settings.SaveTab.playtime', { time: formatDuration(playtime.seconds) }) }}
     </p>
     <section class="flex flex-col items-center gap-2">
       <p class="text-center text-sm text-gray-600 dark:text-gray-300">

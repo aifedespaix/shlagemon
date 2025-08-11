@@ -46,6 +46,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const describeEvolutionMerge: typeof import('./stores/shlagedex.spec')['describeEvolutionMerge']
   const drop: typeof import('./composables/useConnectFour')['drop']
+  const durationParts: typeof import('./composables/useFormatDuration')['durationParts']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const eggIds: typeof import('./stores/eggBox')['eggIds']
@@ -234,6 +235,7 @@ declare global {
   const useFloatingNumbers: typeof import('./composables/useFloatingNumbers')['useFloatingNumbers']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
+  const useFormatDuration: typeof import('./composables/useFormatDuration')['useFormatDuration']
   const useFps: typeof import('@vueuse/core')['useFps']
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGameStateStore: typeof import('./stores/gameState')['useGameStateStore']
@@ -431,6 +433,9 @@ declare global {
   export type { FloatingKind, FloatingEntry } from './composables/useFloatingNumbers'
   import('./composables/useFloatingNumbers')
   // @ts-ignore
+  export type { DurationUnit, DurationPart } from './composables/useFormatDuration'
+  import('./composables/useFormatDuration')
+  // @ts-ignore
   export type { PageHeadOptions } from './composables/usePageHead'
   import('./composables/usePageHead')
   // @ts-ignore
@@ -531,6 +536,7 @@ declare module 'vue' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly describeEvolutionMerge: UnwrapRef<typeof import('./stores/shlagedex.spec')['describeEvolutionMerge']>
     readonly drop: UnwrapRef<typeof import('./composables/useConnectFour')['drop']>
+    readonly durationParts: UnwrapRef<typeof import('./composables/useFormatDuration')['durationParts']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly eggIds: UnwrapRef<typeof import('./stores/eggBox')['eggIds']>
@@ -718,6 +724,7 @@ declare module 'vue' {
     readonly useFloatingNumbers: UnwrapRef<typeof import('./composables/useFloatingNumbers')['useFloatingNumbers']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
+    readonly useFormatDuration: UnwrapRef<typeof import('./composables/useFormatDuration')['useFormatDuration']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGameStateStore: UnwrapRef<typeof import('./stores/gameState')['useGameStateStore']>
