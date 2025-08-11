@@ -47,11 +47,6 @@ async function handleReload() {
   hasError.value = null
   try {
     await store.reload()
-    // Si le reload n’est pas immédiat (rare), on évite un flash d’état.
-    setTimeout(() => {
-      if (isUpdating.value)
-        isUpdating.value = false
-    }, 1200)
   }
   catch (e) {
     hasError.value = e instanceof Error ? e : new Error('Update failed')
