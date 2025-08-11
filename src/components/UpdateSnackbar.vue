@@ -1,29 +1,188 @@
 <script setup lang="ts">
-const store = usePwaUpdateStore()
+import { nextTick, ref, watch, computed, onMounted, onBeforeUnmount } from 'vue'
+
+interface PwaUpdateStore {
+  needRefresh: boolean
+  reload: () => Promise<void>
+}
+
+const store = usePwaUpdateStore() as unknown as PwaUpdateStore
 const { t } = useI18n()
+
+/** === UI State ========================================================= */
+const isUpdating = ref(false)
+const hasError = ref<Error | null>(null)
+
+/** Focus sur l’action principale dès l’apparition */
+const reloadBtnRef = ref<HTMLButtonElement | null>(null)
+watch(
+  () => store.needRefresh,
+  async (val) => {
+    if (val) {
+      await nextTick()
+      reloadBtnRef.value?.focus()
+    } else {
+      isUpdating.value = false
+      hasError.value = null
+    }
+  },
+  { immediate: true },
+)
+
+/** Message statuts */
+const statusMessage = computed(() => {
+  if (hasError.value)
+    return t('components.UpdateSnackbar.error', 'La mise à jour a échoué. Réessaie.')
+  if (isUpdating.value)
+    return t('components.UpdateSnackbar.updating', 'Mise à jour en cours… cela peut prendre quelques secondes.')
+  return t('components.UpdateSnackbar.updateAvailable', 'Une mise à jour est disponible.')
+})
+
+/** Reload principal (async) */
+async function handleReload() {
+  if (isUpdating.value) return
+  isUpdating.value = true
+  hasError.value = null
+  try {
+    await store.reload()
+    // Si le reload n’est pas immédiat (rare), on évite un flash d’état.
+    setTimeout(() => {
+      if (isUpdating.value) isUpdating.value = false
+    }, 1200)
+  } catch (e) {
+    hasError.value = e instanceof Error ? e : new Error('Update failed')
+    isUpdating.value = false
+  }
+}
+
+/** Retry si erreur */
+function handleRetry() {
+  hasError.value = null
+  void handleReload()
+}
+
+/** Raccourci clavier Enter pour valider rapidement (accessibilité + UX) */
+function onKeydown(e: KeyboardEvent) {
+  if (!store.needRefresh) return
+  if (e.key === 'Enter' && !isUpdating.value && !hasError.value) {
+    e.preventDefault()
+    void handleReload()
+  }
+}
+onMounted(() => window.addEventListener('keydown', onKeydown))
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 </script>
 
 <template>
-  <Transition name="slide-fade">
-    <div v-if="store.needRefresh" class="pointer-events-none absolute fixed inset-x-0 bottom-4 z-100 z-20000 flex justify-center p-1" md="p-2">
-      <div class="pointer-events-auto flex items-center gap-2 rounded bg-gray-200 px-4 py-2 text-gray-800 shadow" dark="bg-gray-800 text-white">
-        <span>{{ t('components.UpdateSnackbar.updateAvailable') }}</span>
-        <UiButton type="primary" variant="solid" @click="store.reload">
-          {{ t('components.UpdateSnackbar.reload') }}
-        </UiButton>
-      </div>
+  <Transition name="snack-slide">
+    <div
+      v-if="store.needRefresh"
+      class="pointer-events-none fixed inset-x-0 bottom-0 z-20000 flex justify-center px-3 pb-[calc(env(safe-area-inset-bottom,0)+1rem)]"
+      md="pb-[calc(env(safe-area-inset-bottom,0)+1.25rem)]"
+    >
+      <section
+        class="pointer-events-auto w-full max-w-xl rounded-2xl bg-white/85 backdrop-blur-md shadow-xl ring-1 ring-black/5 dark:bg-gray-900/80 dark:ring-white/10"
+        role="status"
+        :aria-busy="isUpdating"
+        aria-live="polite"
+      >
+        <!-- Contenu -->
+        <div class="flex items-center gap-3 px-4 py-3">
+          <!-- Icône / Loader -->
+          <div class="flex h-7 w-7 items-center justify-center">
+            <UiLoader minimal v-if="isUpdating" aria-hidden="true" />
+            <span v-else-if="hasError" class="i-carbon:warning-alt text-xl text-red-500 dark:text-red-400" aria-hidden="true" />
+            <span v-else class="i-carbon:upgrade text-xl text-primary-600 dark:text-primary-300" aria-hidden="true" />
+          </div>
+
+          <!-- Texte -->
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-medium">
+              {{ statusMessage }}
+            </p>
+
+            <p v-if="!isUpdating && !hasError" class="mt-0.5 text-xs text-gray-600 dark:text-gray-300">
+              {{ t('components.UpdateSnackbar.explain', 'Clique sur “Recharger” pour appliquer la nouvelle version.') }}
+            </p>
+
+            <p v-else-if="isUpdating" class="mt-0.5 text-xs text-gray-600 dark:text-gray-300">
+              {{ t('components.UpdateSnackbar.explainUpdating', 'Ne ferme pas l’application pendant la mise à jour.') }}
+            </p>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2">
+            <UiButton
+              v-if="hasError"
+              type="secondary"
+              variant="soft"
+              @click="handleRetry"
+              :data-state="'error'"
+            >
+              {{ t('components.UpdateSnackbar.retry', 'Réessayer') }}
+            </UiButton>
+
+            <UiButton
+              v-else
+              ref="reloadBtnRef"
+              type="primary"
+              variant="solid"
+              :disabled="isUpdating"
+              :aria-disabled="isUpdating"
+              :data-state="isUpdating ? 'loading' : 'idle'"
+              @click="handleReload"
+              class="min-w-28"
+            >
+              <template v-if="isUpdating">
+                {{ t('components.UpdateSnackbar.reloading', 'Rechargement…') }}
+              </template>
+              <template v-else>
+                {{ t('components.UpdateSnackbar.reload', 'Recharger') }}
+              </template>
+            </UiButton>
+          </div>
+        </div>
+
+        <!-- Barre de progression indéterminée (affichée uniquement pendant l’update) -->
+        <div v-if="isUpdating" class="relative h-1 overflow-hidden rounded-b-2xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-primary-600/20 via-primary-600/40 to-primary-600/20 dark:from-primary-400/20 dark:via-primary-400/40 dark:to-primary-400/20" />
+          <div class="indeterminate-bar absolute top-0 h-full w-1/3 bg-primary-600/80 dark:bg-primary-400/80" />
+        </div>
+      </section>
     </div>
   </Transition>
 </template>
 
 <style scoped>
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.3s ease;
+/* Transition douce depuis le bas, sans mouvements agressifs */
+.snack-slide-enter-active,
+.snack-slide-leave-active {
+  transition: opacity .22s ease, transform .22s ease;
 }
-.slide-fade-enter-from,
-.slide-fade-leave-to {
+.snack-slide-enter-from,
+.snack-slide-leave-to {
   opacity: 0;
   transform: translateY(10px);
+}
+
+/* Barre de progression indéterminée */
+@keyframes indeterminate {
+  0%   { transform: translateX(-120%); }
+  60%  { transform: translateX(180%); }
+  100% { transform: translateX(180%); }
+}
+.indeterminate-bar {
+  animation: indeterminate 1.2s ease-in-out infinite;
+}
+
+/* Respect du prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .snack-slide-enter-active,
+  .snack-slide-leave-active {
+    transition: opacity .15s linear, transform .15s linear;
+  }
+  .indeterminate-bar {
+    animation-duration: 2s;
+  }
 }
 </style>

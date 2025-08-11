@@ -117,8 +117,14 @@ components:
   ThemeToggle:
     toggle: Switch theme
   UpdateSnackbar:
-    updateAvailable: Update available
+    updateAvailable: An update is available.
     reload: Reload
+    explain: Click “Reload” to apply the new version.
+    updating: Updating… this may take a few seconds.
+    explainUpdating: Do not close the application during the update.
+    reloading: Reloading…
+    error: The update failed. Please try again.
+    retry: Retry
   battle:
     Capture:
       cooldown: Wait before capturing again

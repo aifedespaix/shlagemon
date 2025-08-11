@@ -8,10 +8,12 @@ const props = withDefaults(defineProps<{
   animated?: boolean
   /** Texte alternatif pour l'accessibilité (aria-label) */
   label?: string
+  minimal?: boolean
 }>(), {
   size: 'md',
   color: 'primary',
   animated: true,
+  minimal: false,
   label: 'Chargement en cours...',
 })
 // =======================
@@ -61,7 +63,7 @@ const ariaLabel = computed(() => props.label || 'Chargement')
       :tabindex="-1"
     />
     <!-- Slot texte optionnel -->
-    <slot>
+    <slot v-if="!minimal">
       <span class="sr-only mt-1 text-xs text-gray-500 md:not-sr-only dark:text-gray-400" aria-hidden="false">
         {{ ariaLabel }}
       </span>
