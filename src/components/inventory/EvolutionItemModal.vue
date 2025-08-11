@@ -7,11 +7,11 @@ const itemName = computed(() => store.current ? t(store.current.name) : '')
 
 <template>
   <UiModal v-model="store.isVisible" footer-close>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 overflow-hidden">
       <h3 class="text-center text-lg font-bold">
         {{ store.current ? t('components.inventory.EvolutionItemModal.title', { name: itemName }) : '' }}
       </h3>
-      <div v-if="store.availableMons.length" class="flex flex-col gap-2 p-1">
+      <div v-if="store.availableMons.length" class="flex flex-col flex-1 gap-2 p-1 overflow-auto tiny-scrollbar">
         <UiListItem
           v-for="mon in store.availableMons"
           :key="mon.id"
@@ -20,7 +20,7 @@ const itemName = computed(() => store.current ? t(store.current.name) : '')
         >
           <template #left>
             <div class="flex items-center gap-2">
-              <ShlagemonImage :id="mon.base.id" :alt="t(mon.base.name)" class="aspect-1" />
+              <ShlagemonImage :id="mon.base.id" :alt="t(mon.base.name)" class="aspect-1 max-w-24!" />
               <span>{{ t(mon.base.name) }} (lvl {{ mon.lvl }})</span>
             </div>
           </template>
