@@ -1,5 +1,5 @@
-import type { LatLngExpression, Map as LeafletMap } from 'leaflet'
-import { CRS, Map, TileLayer } from 'leaflet'
+import type { LatLngExpression, LatLngTuple } from 'leaflet'
+import * as L from 'leaflet'
 import { storeToRefs } from 'pinia'
 import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -13,15 +13,17 @@ export interface UseLeafletMapOptions {
   zoom?: number
   /** Optional bounds restricting the area navigable in the map. */
   bounds?: {
-    min: LatLngExpression
-    max: LatLngExpression
+    /** Minimum latitude/longitude tuple of bounds. */
+    min: LatLngTuple
+    /** Maximum latitude/longitude tuple of bounds. */
+    max: LatLngTuple
   }
 }
 
 export function useLeafletMap(options: UseLeafletMapOptions = {}) {
   const mapRef = ref<HTMLElement | null>(null)
-  const map = ref<LeafletMap | null>(null)
-  const tileLayer = ref<TileLayer | null>(null)
+  const map = ref<L.Map | null>(null)
+  const tileLayer = ref<L.TileLayer | null>(null)
   const { debug } = storeToRefs(useDeveloperStore())
 
   useResizeObserver(mapRef, () => {
@@ -31,18 +33,18 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
     map.value?.invalidateSize()
   })
 
-  const minLatLng = options.bounds?.min ?? [45, -90]
-  const maxLatLng = options.bounds?.max ?? [-300, 280]
+  const minLatLng: LatLngTuple = options.bounds?.min ?? [45, -90]
+  const maxLatLng: LatLngTuple = options.bounds?.max ?? [-300, 280]
 
   onMounted(() => {
     const lockedZoom = options.zoom ?? 2
 
-    map.value = new Map(mapRef.value!, {
+    map.value = L.map(mapRef.value!, {
       center: options.center ?? [80, -10],
       zoom: lockedZoom,
       minZoom: lockedZoom,
       maxZoom: lockedZoom,
-      crs: CRS.Simple,
+      crs: L.CRS.Simple,
       zoomControl: false,
       attributionControl: false,
       maxBounds: [
@@ -70,7 +72,7 @@ export function useLeafletMap(options: UseLeafletMapOptions = {}) {
 
   function setTileLayer(url: string) {
     tileLayer.value?.remove()
-    tileLayer.value = new TileLayer(url, {
+    tileLayer.value = L.tileLayer(url, {
       tileSize: 256,
       minZoom: 0,
       maxZoom: 4,
