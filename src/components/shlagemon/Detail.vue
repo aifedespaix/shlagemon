@@ -170,6 +170,11 @@ const captureInfo = computed(() => {
           @click="openOwnedEvolution"
         >
           {{ evolutionInfo }}
+          <img
+            src="/items/shlageball/shlageball.webp"
+            alt=""
+            class="ml-1 inline-block h-4 w-4"
+          >
         </button>
         <div
           v-else
