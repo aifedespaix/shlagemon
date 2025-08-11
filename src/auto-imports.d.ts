@@ -396,6 +396,7 @@ declare global {
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const useZoneAccess: typeof import('./stores/zoneAccess')['useZoneAccess']
   const useZoneCompletion: typeof import('./composables/useZoneCompletion')['useZoneCompletion']
+  const useZoneInfoStore: typeof import('./stores/zoneInfo')['useZoneInfoStore']
   const useZoneMonsModalStore: typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']
   const useZoneProgressStore: typeof import('./stores/zoneProgress')['useZoneProgressStore']
   const useZoneStore: typeof import('./stores/zone')['useZoneStore']
@@ -886,6 +887,7 @@ declare module 'vue' {
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly useZoneAccess: UnwrapRef<typeof import('./stores/zoneAccess')['useZoneAccess']>
     readonly useZoneCompletion: UnwrapRef<typeof import('./composables/useZoneCompletion')['useZoneCompletion']>
+    readonly useZoneInfoStore: UnwrapRef<typeof import('./stores/zoneInfo')['useZoneInfoStore']>
     readonly useZoneMonsModalStore: UnwrapRef<typeof import('./stores/zoneMonsModal')['useZoneMonsModalStore']>
     readonly useZoneProgressStore: UnwrapRef<typeof import('./stores/zoneProgress')['useZoneProgressStore']>
     readonly useZoneStore: UnwrapRef<typeof import('./stores/zone')['useZoneStore']>

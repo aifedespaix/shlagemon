@@ -18,6 +18,7 @@ const player = usePlayerStore()
 const interfaceStore = useInterfaceStore()
 const { t } = useI18n()
 const { showVillagesOnMap } = storeToRefs(interfaceStore)
+const info = useZoneInfoStore()
 
 const mapRef = ref<InstanceType<typeof VillageMap> | null>(null)
 const activePoiId = ref<string | null>(null)
@@ -116,7 +117,7 @@ function leaveVillage() {
 
 <template>
   <LayoutTitledPanel
-    :title="t(zone.current.name)"
+    :title="info.hasMultipleZones ? t(zone.current.name) : ''"
     :exit-text="t('components.panel.Village.exit')"
     @exit="leaveVillage"
   >
