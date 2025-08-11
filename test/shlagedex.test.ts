@@ -138,6 +138,32 @@ describe('shlagedex capture', () => {
       'Vous avez déjà ce Shlagémon au maximum de sa rareté',
     )
   })
+
+  it('turns rarity 100 mon shiny via captureShlagemon when capturing shiny duplicate', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 100
+    mon.isShiny = false
+    const result = dex.captureShlagemon(carapouffe, true)
+    expect(result.id).toBe(mon.id)
+    expect(mon.isShiny).toBe(true)
+  })
+
+  it('turns rarity 100 mon shiny via captureEnemy when capturing shiny enemy', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(carapouffe)
+    mon.rarity = 100
+    mon.isShiny = false
+    const enemy = createDexShlagemon(carapouffe, true, 20)
+    enemy.rarity = 100
+    applyStats(enemy)
+    applyCurrentStats(enemy)
+    const result = dex.captureEnemy(enemy)
+    expect(result.id).toBe(mon.id)
+    expect(mon.isShiny).toBe(true)
+  })
 })
 
 describe('shlagedex highest level', () => {
