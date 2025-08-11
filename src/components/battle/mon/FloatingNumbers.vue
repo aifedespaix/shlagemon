@@ -42,7 +42,7 @@ function onEnd(id: number) {
   transform: translate(0, 0) scale(var(--scale, 1)) rotate(var(--rot, 0deg));
 }
 .float-enter-active {
-  animation: floatDamage 0.9s cubic-bezier(0.22, 0.8, 0.22, 0.99) both;
+  animation: floatDamage 1.2s cubic-bezier(0.22, 0.8, 0.22, 0.99) both;
 }
 .float-chip.heal.float-enter-active {
   animation-name: floatHeal;
@@ -87,7 +87,7 @@ function onEnd(id: number) {
 }
 @media (prefers-reduced-motion: reduce) {
   .float-enter-active {
-    animation-duration: 0.3s;
+    animation-duration: 0.4s;
   }
   @keyframes floatDamage {
     0% {
@@ -96,7 +96,7 @@ function onEnd(id: number) {
     }
     100% {
       opacity: 1;
-      transform: translate(0, -8px) scale(1) rotate(0deg);
+      transform: translate(0, -4px) scale(1) rotate(0deg);
     }
   }
   @keyframes floatHeal {
@@ -106,7 +106,7 @@ function onEnd(id: number) {
     }
     100% {
       opacity: 1;
-      transform: translate(0, 8px) scale(1);
+      transform: translate(0, 4px) scale(1);
     }
   }
 }

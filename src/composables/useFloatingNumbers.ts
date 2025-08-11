@@ -113,12 +113,12 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
       if (kind === 'damage') {
         const charCount = String(amount).length + 1
         const w = Math.max(14, charCount * 8)
-        const maxHoriz = w * 3
+        const maxHoriz = w * 1.5
         dx = randomDx(w, maxHoriz)
         const centerFactor = 1 - Math.abs(dx) / maxHoriz
         const baseRise = 46
         const extraRise = 18 * centerFactor
-        dy = -(baseRise + extraRise + Math.random() * 10)
+        dy = -((baseRise + extraRise + Math.random() * 10) * 0.5)
         const magnitude = 4 + Math.random() * 6
         rotation = Math.round(magnitude * Math.sign(dx))
         const average = damageCount > 0 ? totalDamage / damageCount : amount
@@ -128,7 +128,7 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
         damageCount++
       }
       else {
-        dy = 46 + Math.random() * 10
+        dy = (46 + Math.random() * 10) * 0.5
       }
       results.push({
         id: ++idCounter,
