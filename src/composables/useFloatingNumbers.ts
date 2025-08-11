@@ -30,20 +30,12 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
   let idCounter = 0
   let totalDamage = 0
   let damageCount = 0
-  const removalTimers = new Set<ReturnType<typeof setTimeout>>()
-
-  function clearRemovalTimers(): void {
-    for (const timer of removalTimers)
-      clearTimeout(timer)
-    removalTimers.clear()
-  }
 
   function clear(): void {
     pending.splice(0, pending.length)
     entries.value = []
     totalDamage = 0
     damageCount = 0
-    clearRemovalTimers()
   }
 
   watch(visible, (v) => {
@@ -72,14 +64,6 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
       const built = buildEntries(batch)
       for (const e of built)
         entries.value.push(e)
-      if (typeof setTimeout !== 'undefined') {
-        const timeoutId = setTimeout(() => {
-          for (const e of built)
-            remove(e.id)
-          removalTimers.delete(timeoutId)
-        }, 1200)
-        removalTimers.add(timeoutId)
-      }
     })
   }
 
@@ -159,7 +143,9 @@ export function useFloatingNumbers(hp: Ref<number>, visible: Ref<boolean>) {
     return results
   }
 
-  onUnmounted(clearRemovalTimers)
+  onUnmounted(() => {
+    entries.value = []
+  })
 
   return {
     entries: readonly(entries),
