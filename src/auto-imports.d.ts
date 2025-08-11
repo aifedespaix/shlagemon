@@ -313,6 +313,8 @@ declare global {
   const usePreferredReducedMotion: typeof import('@vueuse/core')['usePreferredReducedMotion']
   const usePreferredReducedTransparency: typeof import('@vueuse/core')['usePreferredReducedTransparency']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
+  const usePwaEnvironment: typeof import('./composables/usePwaEnvironment')['usePwaEnvironment']
+  const usePwaEnvironmentStore: typeof import('./stores/pwaEnvironment')['usePwaEnvironmentStore']
   const usePwaUpdateStore: typeof import('./stores/pwaUpdate')['usePwaUpdateStore']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
@@ -438,6 +440,9 @@ declare global {
   // @ts-ignore
   export type { PageHeadOptions } from './composables/usePageHead'
   import('./composables/usePageHead')
+  // @ts-ignore
+  export type { PwaEnvironment } from './composables/usePwaEnvironment'
+  import('./composables/usePwaEnvironment')
   // @ts-ignore
   export type { SlidingPuzzle, PuzzleDirection } from './composables/useSlidingPuzzle'
   import('./composables/useSlidingPuzzle')
@@ -799,6 +804,8 @@ declare module 'vue' {
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly usePreferredReducedTransparency: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedTransparency']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
+    readonly usePwaEnvironment: UnwrapRef<typeof import('./composables/usePwaEnvironment')['usePwaEnvironment']>
+    readonly usePwaEnvironmentStore: UnwrapRef<typeof import('./stores/pwaEnvironment')['usePwaEnvironmentStore']>
     readonly usePwaUpdateStore: UnwrapRef<typeof import('./stores/pwaUpdate')['usePwaUpdateStore']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
