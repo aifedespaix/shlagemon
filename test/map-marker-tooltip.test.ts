@@ -131,7 +131,7 @@ describe('useMapMarkers', () => {
     addMarker(zone)
     const html = useLeafletMarkerMock.mock.calls[0][0].html as string
     expect(html).toContain('mask-rainbow')
-    expect(html).not.toContain('drop-shadow(0 0 2px #facc15)')
+    expect(html).toContain('drop-shadow(0 0 2px #facc15)')
   })
 
   it('hides crown when zone has no king', () => {
