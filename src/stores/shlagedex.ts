@@ -575,7 +575,14 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const existing = shlagemons.value.find(mon => mon.base.id === base.id)
     if (existing) {
       if (existing.rarity >= 100) {
-        toast(i18n.global.t('stores.shlagedex.alreadyMax'))
+        if (shiny && !existing.isShiny) {
+          existing.captureCount += 1
+          existing.isShiny = true
+          toast(i18n.global.t('stores.shlagedex.obtained', { name: i18n.global.t(existing.base.name) }))
+        }
+        else {
+          toast(i18n.global.t('stores.shlagedex.alreadyMax'))
+        }
         return existing
       }
       const before = existing.rarity
@@ -630,7 +637,14 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
     if (existing) {
       if (existing.rarity >= 100) {
-        toast(i18n.global.t('stores.shlagedex.alreadyMax'))
+        if (enemy.isShiny && !existing.isShiny) {
+          existing.captureCount += 1
+          existing.isShiny = true
+          toast(i18n.global.t('stores.shlagedex.obtained', { name: i18n.global.t(existing.base.name) }))
+        }
+        else {
+          toast(i18n.global.t('stores.shlagedex.alreadyMax'))
+        }
         return existing
       }
       const before = existing.rarity
