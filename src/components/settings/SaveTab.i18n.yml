@@ -9,7 +9,7 @@ fr:
   invalid: Code invalide
   loaded: Sauvegarde chargée
   copied: Copié
-  playtime: Tu as joué pendant {minutes} minutes.
+  playtime: Tu as joué pendant {time}.
   loadFile: Charger depuis un fichier
   exportDesc: Générez un code pour exporter votre progression.
   importDesc: Chargez une sauvegarde en collant un code ou en sélectionnant un fichier.
@@ -24,7 +24,7 @@ en:
   invalid: Invalid code
   loaded: Save loaded
   copied: Copied
-  playtime: You have played for {minutes} minutes.
+  playtime: You have played for {time}.
   loadFile: Load from file
   exportDesc: Generate a code to export your progress.
   importDesc: Load a save by pasting a code or selecting a file.
