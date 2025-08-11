@@ -8,3 +8,5 @@ opencv-python
 numpy
 scikit-learn
 svgpathtools
+pillow>=11.3.0
+pillow-avif-plugin

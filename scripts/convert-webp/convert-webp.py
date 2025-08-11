@@ -5,8 +5,16 @@ import argparse
 from io import BytesIO
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-
 from PIL import Image, ImageOps
+
+# Optionnel : AVIF si pillow-avif-plugin est installé
+import pillow_avif  # noqa: F401
+AVIF_AVAILABLE = True
+# try:
+#     AVIF_AVAILABLE = True
+# except Exception:
+#     AVIF_AVAILABLE = False
+# print(f"AVIF support: {'oui' if AVIF_AVAILABLE else 'non'}")
 
 ALLOWED_DIRS = [
     "shlagemons",
@@ -15,13 +23,7 @@ ALLOWED_DIRS = [
     # "characters",
 ]
 
-# Optionnel : AVIF si pillow-avif-plugin est installé
-try:
-    import pillow_avif  # noqa: F401
-    AVIF_AVAILABLE = True
-except Exception:
-    AVIF_AVAILABLE = False
-
+    
 
 def save_to_bytes(img: Image.Image, fmt: str, **kwargs) -> bytes:
     buf = BytesIO()
