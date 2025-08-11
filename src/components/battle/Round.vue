@@ -240,7 +240,7 @@ function onClick(_e: MouseEvent) {
       </div>
       <div class="h-full w-full flex-1">
       <Transition name="fade-scale" mode="out-in">
-        <div :key="displayedPlayer?.id" class="relative h-full w-full">
+        <div :key="displayedPlayer?.id" class="relative h-full w-full flex justify-center">
           <BattleShlagemon
             :mon="displayedPlayer"
             :hp="playerHp"
@@ -269,7 +269,7 @@ function onClick(_e: MouseEvent) {
         @mouseleave="onMouseLeave"
       >
         <Transition name="fade-scale" mode="out-in">
-          <div :key="displayedEnemy?.id" class="relative h-full w-full">
+          <div :key="displayedEnemy?.id" class="relative h-full w-full flex justify-center">
             <BattleShlagemon
               :mon="displayedEnemy"
               :hp="enemyHp"

@@ -85,15 +85,15 @@ export function useMapMarkers(map: LeafletMap) {
       const highlight = !visited.value && !locked ? 'animate-pulse-alt' : ''
 
       // --- Icône principale (zone) ---
-      const zoneIconStyle
-        = zone.type !== 'village'
-          ? (!allCaptured.value
-              ? GREY_FILTER
-              : perfectZone.value
-                ? GOLD_FILTER
-                : '')
-          : ''
-      const baseIcon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" style="${zoneIconStyle}" />`
+      // const zoneIconStyle
+      //   = zone.type !== 'village'
+      //     ? (!allCaptured.value
+      //         ? GREY_FILTER
+      //         : perfectZone.value
+      //           ? GOLD_FILTER
+      //           : '')
+      //     : ''
+      const baseIcon = `<img src="${iconPath(zone)}" class="w-${iconClassSize} h-${iconClassSize} block ${highlight}" />`
 
       // --- Badges / chip sous l'icône ---
       let badges = ''

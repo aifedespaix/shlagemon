@@ -25,5 +25,5 @@ const emit = defineEmits<{ (e: 'faintEnd'): void }>()
 </script>
 
 <template>
-  <BattleMonContainer v-bind="props" @faint-end="emit('faintEnd')" />
+  <BattleMonContainer class="max-w-sm" v-bind="props" @faint-end="emit('faintEnd')" />
 </template>
