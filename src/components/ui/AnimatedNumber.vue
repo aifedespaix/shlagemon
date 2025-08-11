@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed, ref, shallowRef, watch } from 'vue'
-
 type EasingName = 'linear' | 'easeInOutCubic' | 'easeOutCubic' | 'easeInCubic'
 
 interface Props {
@@ -58,17 +56,34 @@ const fromVal = ref<number>(props.value)
 const toVal = ref<number>(props.value)
 
 const runKey = ref(0)
+const currentDuration = ref(props.duration)
+const lastStart = ref(0)
 
-const durationSec = computed(() =>
-  Math.max(0, props.duration) / 1000,
-)
+/**
+ * Avoid overlapping animations by skipping when updates occur faster than the
+ * configured duration.
+ */
+
+const durationSec = computed(() => Math.max(0, currentDuration.value) / 1000)
 
 watch(
   () => props.value,
   (next) => {
+    const now = Date.now()
+    if (now - lastStart.value < props.duration) {
+      fromVal.value = next
+      toVal.value = next
+      lastTo.value = next
+      currentDuration.value = 0
+      runKey.value++
+      return
+    }
+
     fromVal.value = lastTo.value
     toVal.value = next
     lastTo.value = next
+    currentDuration.value = props.duration
+    lastStart.value = now
     runKey.value++
   },
   { immediate: true },
