@@ -37,6 +37,7 @@ function fightKing() {
     hover="animate-none"
     type="danger"
     @click="fightKing"
+    @contextmenu.prevent
   >
     <div>{{ t('components.battle.FightKingButton.challenge', { label: kingLabel }) }}</div>
 
