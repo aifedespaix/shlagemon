@@ -12,12 +12,21 @@ import { availableLocales, defaultLocale } from '~/constants/locales'
  * The resolved locale is written back to the store for global consistency
  * before performing a client-side redirect to `/${locale}${targetPath}`.
  *
- * @param targetPath - Path to append after the locale prefix (must start with '/').
+ * @param target - Either a single path to append after the locale prefix, or a map
+ * of locale-specific paths. All paths must start with '/'.
  * @returns Object containing a `isRedirecting` flag for optional UI feedback.
  */
-export function useLocaleRedirect(targetPath: string) {
-  if (!targetPath.startsWith('/'))
-    throw new Error('targetPath must start with "/"')
+export function useLocaleRedirect(target: string | Record<Locale, string>) {
+  if (typeof target === 'string') {
+    if (!target.startsWith('/'))
+      throw new Error('targetPath must start with "/"')
+  }
+  else {
+    for (const path of Object.values(target)) {
+      if (!path.startsWith('/'))
+        throw new Error('targetPath must start with "/"')
+    }
+  }
 
   const router = useRouter()
   const store = useLocaleStore()
@@ -48,6 +57,7 @@ export function useLocaleRedirect(targetPath: string) {
       store.setLocale(targetLocale)
 
     setTimeout(async () => {
+      const targetPath = typeof target === 'string' ? target : (target[targetLocale] ?? target[defaultLocale] ?? '/')
       const path = targetPath === '/' ? '' : targetPath
       await router.replace({ path: `/${targetLocale}${path}` })
       isRedirecting.value = false
