@@ -1,39 +1,37 @@
 fr:
-  saveImport:
-    title: Importer une sauvegarde
-    drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
-    select: Sélectionner un fichier
-    warning: L'import remplacera votre sauvegarde actuelle. Assurez-vous d'avoir une copie.
-    import: Importer
-    confirmTitle: Confirmer l''import
-    confirmMessage: Cette action écrasera votre progression actuelle. Continuer ?
-    confirm: Oui, importer
-    cancel: Annuler
-    summary:
-      title: Récapitulatif
-      mons: 'Shlagémons : {count}'
-      shlagidolar: 'Shlagidolars : {amount}'
-      shlagidiamond: 'Shlagidiamonds : {amount}'
-      playtime: 'Temps de jeu : {time}'
-    errorInvalid: Fichier de sauvegarde invalide.
-    errorApply: L''import a échoué.
+  title: Importer une sauvegarde
+  drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
+  select: Sélectionner un fichier
+  warning: L'import remplacera votre sauvegarde actuelle. Assurez-vous d'avoir une copie.
+  import: Importer
+  confirmTitle: "Confirmer l'import"
+  confirmMessage: Cette action écrasera votre progression actuelle. Continuer ?
+  confirm: Oui, importer
+  cancel: Annuler
+  summary:
+    title: Récapitulatif
+    mons: 'Shlagémons : {count}'
+    shlagidolar: 'Shlagidolars : {amount}'
+    shlagidiamond: 'Shlagidiamonds : {amount}'
+    playtime: 'Temps de jeu : {time}'
+  errorInvalid: Fichier de sauvegarde invalide.
+  errorApply: "L'import a échoué."
 
 en:
-  saveImport:
-    title: Import Save
-    drop: Drop your .shlag file here or click to select
-    select: Select a file
-    warning: Importing will overwrite your current save. Make sure you have a backup.
-    import: Import
-    confirmTitle: Confirm Import
-    confirmMessage: This will replace your current progress. Continue?
-    confirm: Yes, import
-    cancel: Cancel
-    summary:
-      title: Summary
-      mons: 'Shlagemons: {count}'
-      shlagidolar: 'Shlagidollars: {amount}'
-      shlagidiamond: 'Shlagidiamonds: {amount}'
-      playtime: 'Playtime: {time}'
-    errorInvalid: Invalid save file.
-    errorApply: Import failed.
+  title: Import Save
+  drop: Drop your .shlag file here or click to select
+  select: Select a file
+  warning: Importing will overwrite your current save. Make sure you have a backup.
+  import: Import
+  confirmTitle: Confirm Import
+  confirmMessage: This will replace your current progress. Continue?
+  confirm: Yes, import
+  cancel: Cancel
+  summary:
+    title: Summary
+    mons: 'Shlagemons: {count}'
+    shlagidolar: 'Shlagidollars: {amount}'
+    shlagidiamond: 'Shlagidiamonds: {amount}'
+    playtime: 'Playtime: {time}'
+  errorInvalid: Invalid save file.
+  errorApply: Import failed.
