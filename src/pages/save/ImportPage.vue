@@ -1,8 +1,3 @@
-<route lang="yaml">
-meta:
-  layout: empty
-</route>
-
 <script setup lang="ts">
 /**
  * Page allowing the user to import a saved game from a `.shlag` file.
