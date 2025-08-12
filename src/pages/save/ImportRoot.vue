@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useLocaleRedirect('/save/import')
+useLocaleRedirect({ en: '/save/import', fr: '/sauvegarde/importer' })
 </script>
 
 <template>
