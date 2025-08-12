@@ -52,6 +52,7 @@
     "@iconify-json/iconoir": "catalog:dev",
     "@iconify-json/mdi": "catalog:dev",
     "@intlify/unplugin-vue-i18n": "catalog:build",
+    "@playwright/test": "catalog:dev",
     "@shikijs/markdown-it": "catalog:build",
     "@types/crypto-js": "catalog:types",
     "@types/howler": "catalog:build",

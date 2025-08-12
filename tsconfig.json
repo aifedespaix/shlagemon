@@ -34,5 +34,5 @@
       "@vue-macros/volar/define-slots"
     ]
   },
-  "exclude": ["dist", "node_modules", "cypress", "_angular", "test"]
+  "exclude": ["dist", "node_modules", "cypress", "_angular", "test", "tests"]
 }
