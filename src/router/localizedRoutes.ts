@@ -62,5 +62,14 @@ export const localizedRoutes: LocalizedRoute[] = [
     i18nKey: 'pages.privacy-policy.title',
     layout: 'default',
   },
+  {
+    name: 'save-import',
+    component: () => import('~/pages/save/ImportPage.vue'),
+    paths: {
+      fr: '/fr/sauvegarde/importer',
+      en: '/en/save/import',
+    },
+    layout: 'empty',
+  },
 ]
 export default localizedRoutes

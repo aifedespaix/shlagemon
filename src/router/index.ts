@@ -39,15 +39,15 @@ export const routes: RouteRecordRaw[] = [
       ? () => import('~/pages/index.vue') // SSG/SSR : contenu réel de l'index
       : () => import('~/pages/root.vue'), // Client only : redirection pour i18n paths
   },
-  ...buildLocalizedRoutes(),
   {
     path: '/save/import',
-    name: 'save-import',
-    component: () => import('~/pages/save/ImportPage.vue'),
-    meta: {
-      layout: 'empty',
-    },
+    name: 'save-import-root',
+    component: isSSR
+      ? () => import('~/pages/save/ImportPage.vue')
+      : () => import('~/pages/save/ImportRoot.vue'),
+    meta: { layout: 'empty' },
   },
+  ...buildLocalizedRoutes(),
   { path: '/:all(.*)', name: 'not-found', component: () => import('~/pages/404.vue') },
 ]
 
