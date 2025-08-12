@@ -50,7 +50,7 @@ components:
         progress: Progress
       search: Search an achievement
     BonusDetails:
-      intro1: The Shlagedex bonus matches your **potential ShlagéDex**. It represents the maximum bonus you could obtain by capturing all available Shlagémon.
+      intro1: The Shlagedex bonus increases the final damage of all your Shlagémons! It represents the maximum bonus you could get by capturing all accessible Shlagémons.
       intro2: It is based on the completion rate of this potential Shlagedex as well as your team's average level.
       formula: Bonus = average level × 2 × (completion rate / 100) / 10
       completion: "Completion:"
@@ -2459,6 +2459,26 @@ pages:
       contact:
         title: 4. Contact
         content: "For any questions: aife.contacts{'@'}gmail.com"
+  save:
+    ImportPage:
+      saveImport:
+        title: Import Save
+        drop: Drop your .shlag file here or click to select
+        select: Select a file
+        warning: Importing will overwrite your current save. Make sure you have a backup.
+        import: Import
+        confirmTitle: Confirm Import
+        confirmMessage: This will replace your current progress. Continue?
+        confirm: Yes, import
+        cancel: Cancel
+        summary:
+          title: Summary
+          mons: "Shlagemons: {count}"
+          shlagidolar: "Shlagidollars: {amount}"
+          shlagidiamond: "Shlagidiamonds: {amount}"
+          playtime: "Playtime: {time}"
+        errorInvalid: Invalid save file.
+        errorApply: Import failed.
 App:
   title: Shlagemon - It smells very strong
   description: Catch all the Shlagemons before they rot the whole world.

@@ -50,8 +50,8 @@ components:
         progress: Progression
       search: Rechercher un succès
     BonusDetails:
-      intro1: Le bonus du Shlagedex correspond à votre **ShlagéDex potentiel**. Il représente le bonus maximal que vous pourriez obtenir en capturant tous les Shlagémon accessibles.
-      intro2: Il se base sur le pourcentage de complétion de ce ShlagéDex potentiel ainsi que sur le niveau moyen de votre équipe.
+      intro1: Le bonus du Shlagedex augmente les dégâts finaux de tous vos Shlagémons ! Il représente le bonus maximal que vous pouvez obtenir en capturant tous les Shlagémons accessibles.
+      intro2: Il se base sur le pourcentage de complétion de ce Shlagédex potentiel ainsi que sur le niveau moyen de votre équipe.
       formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10
       completion: "Complétion :"
       averageLevel: "Niveau moyen :"
@@ -2446,6 +2446,26 @@ pages:
       contact:
         title: 4. Contact
         content: "Pour toute question : aife.contacts{'@'}gmail.com"
+  save:
+    ImportPage:
+      saveImport:
+        title: Importer une sauvegarde
+        drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
+        select: Sélectionner un fichier
+        warning: L'import remplacera votre sauvegarde actuelle. Assurez-vous d'avoir une copie.
+        import: Importer
+        confirmTitle: Confirmer l''import
+        confirmMessage: Cette action écrasera votre progression actuelle. Continuer ?
+        confirm: Oui, importer
+        cancel: Annuler
+        summary:
+          title: Récapitulatif
+          mons: "Shlagémons : {count}"
+          shlagidolar: "Shlagidolars : {amount}"
+          shlagidiamond: "Shlagidiamonds : {amount}"
+          playtime: "Temps de jeu : {time}"
+        errorInvalid: Fichier de sauvegarde invalide.
+        errorApply: L''import a échoué.
 App:
   title: Shlagémon - Ça sent très fort
   description: Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre entière.
