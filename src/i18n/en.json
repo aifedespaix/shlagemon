@@ -1,0 +1,45 @@
+{
+  "saveImport": {
+    "title": "Import Save",
+    "subtitle": "Load a saved game file to continue your adventure.",
+    "dropzone": {
+      "title": "Drop file here",
+      "hint": "Drag and drop a .shlag save file or browse to select one."
+    },
+    "button": {
+      "chooseFile": "Choose File"
+    },
+    "summary": {
+      "title": "Summary",
+      "version": "Version: {version}",
+      "playtime": "Playtime: {time}",
+      "createdAt": "Created: {date}",
+      "player": "Player: {name}",
+      "progress": "Progress: {progress}%"
+    },
+    "warning": {
+      "overwrite": "Importing will overwrite the current save."
+    },
+    "confirm": {
+      "title": "Confirm Import",
+      "description": "This action will replace your existing save. Do you want to continue?"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "import": "Import"
+    },
+    "state": {
+      "parsing": "Parsing file...",
+      "validating": "Validating data...",
+      "importing": "Importing save...",
+      "done": "Import complete."
+    },
+    "error": {
+      "invalidFile": "Invalid save file.",
+      "incompatibleVersion": "Save file version is incompatible.",
+      "parseFailed": "Failed to parse the save file.",
+      "checksum": "Checksum verification failed.",
+      "storage": "Unable to write save to storage."
+    }
+  }
+}

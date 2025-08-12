@@ -1,0 +1,45 @@
+{
+  "saveImport": {
+    "title": "Importer une sauvegarde",
+    "subtitle": "Chargez un fichier de sauvegarde pour poursuivre votre aventure.",
+    "dropzone": {
+      "title": "Déposez le fichier ici",
+      "hint": "Glissez-déposez un fichier de sauvegarde .shlag ou parcourez pour en sélectionner un."
+    },
+    "button": {
+      "chooseFile": "Choisir un fichier"
+    },
+    "summary": {
+      "title": "Récapitulatif",
+      "version": "Version : {version}",
+      "playtime": "Temps de jeu : {time}",
+      "createdAt": "Créée le : {date}",
+      "player": "Joueur : {name}",
+      "progress": "Progression : {progress} %"
+    },
+    "warning": {
+      "overwrite": "L'import écrasera la sauvegarde actuelle."
+    },
+    "confirm": {
+      "title": "Confirmer l'import",
+      "description": "Cette action remplacera votre sauvegarde existante. Souhaitez-vous continuer ?"
+    },
+    "action": {
+      "cancel": "Annuler",
+      "import": "Importer"
+    },
+    "state": {
+      "parsing": "Analyse du fichier…",
+      "validating": "Validation des données…",
+      "importing": "Import de la sauvegarde…",
+      "done": "Import terminé."
+    },
+    "error": {
+      "invalidFile": "Fichier de sauvegarde invalide.",
+      "incompatibleVersion": "Version de sauvegarde incompatible.",
+      "parseFailed": "Échec de l'analyse du fichier de sauvegarde.",
+      "checksum": "La vérification de l'empreinte a échoué.",
+      "storage": "Impossible d'enregistrer la sauvegarde."
+    }
+  }
+}
