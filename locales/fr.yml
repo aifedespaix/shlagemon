@@ -1,333 +1,117 @@
+App:
+  title: Shlagémon - Ça sent très fort
+  description: Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre entière.
+  author: Shlagémon Team
 components:
-  deck:
-    DeckDetail:
-      evolution: "Évolution :"
-      level: lvl {n}
-    DeckList:
-      search: Rechercher
-      sort:
-        name: Nom
-        type: Type
-    Detail:
-      evolution: "Évolution :"
-      level: lvl {n}
-    List:
-      search: Rechercher
-      sort:
-        name: Nom
-        type: Type
-  layout:
-    Header:
-      title: Shlagémon - Ça sent très fort
-      language: Langue
-      locale: Locale
-      audio: Audio
-      settings: Paramètres
-      developer: Développeur
-      logoAlt: Logo Shlagémon
-    HomeFooter:
-      rights: Sûrement quelques droits réservés.
-      imageDisclaimer: La plupart des images sont générés par des IA qui volent le travail des artistes, désolé c'est parce-que je ne sais pas dessiner et que j'ai pas les moyen d'acheter des dessins.
-      privacyPolicy: Politique de confidentialité
-    HomeHeader:
-      logoAlt: Logo Shlagémon
-      title: Shlagémon
-      home: Accueil
-      dex: Shlagédex
-    GameGrid:
-      inventory: Inventaire
-      achievements: Succès
-      zones: Zones
-      dex: Shlagédex
-  panel:
-    Achievements:
-      all: Tous
-      unlocked: Débloqués
-      locked: À débloquer
-      sort:
-        name: Nom
-        date: Date
-        progress: Progression
-      search: Rechercher un succès
-    BonusDetails:
-      intro1: Le bonus du Shlagedex augmente les dégâts finaux de tous vos Shlagémons ! Il représente le bonus maximal que vous pouvez obtenir en capturant tous les Shlagémons accessibles.
-      intro2: Il se base sur le pourcentage de complétion de ce Shlagédex potentiel ainsi que sur le niveau moyen de votre équipe.
-      formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10
-      completion: "Complétion :"
-      averageLevel: "Niveau moyen :"
-      currentBonus: "Bonus actuel :"
-    Inventory:
-      sort:
-        type: Type
-        name: Nom
-        price: Prix
-      category:
-        active: Actif
-        passive: Passif
-        utility: Utilitaire
-        activable: Activable
-        battle: Combat
-      equip: Vous avez équipé la {item}
-      search: Rechercher
-    PlayerInfos:
-      sick: "Malade : {n} combats restants"
-      dex: ShlagéDex
-      averageLevel: Niveau moyen
-      bonus: Bonus
-      balls: ShlagéBalls
-      ballAlt: ball
-    Poulailler:
-      title: Poulailler
-      exit: Quitter
-      incubator: Incubateur
-      noEgg: Aucun œuf
-      yourEggs: Vos œufs
-      incubate: Incuber
-      noEggBox: Aucun œuf dans la boîte
-      emptySlot: Emplacement vide
-      tapToHatch: Appuyez pour faire éclore
-      ready: Prêt
-      legend:
-        bouncing: En incubation
-        pulsing: Prêt à éclore
-      a11y:
-        showSpecies: Voir les espèces pour {name}
-        incubateEgg: Incuber l’œuf {name}
-        eggReady: Œuf {type} prêt
-        eggProgress: Progression de l’œuf
-    Shop:
-      title: Boutique
-      details: Détails
-      buy: Acheter x{qty} pour
-      back: Retour dans le rayon
-      exit: Quitter la boutique
-      bought: Vous avez acheté {qty} × {item} pour {cost} {currency}
-      category:
-        active: Actif
-        passive: Passif
-        utility: Utilitaire
-        activable: Activable
-        battle: Combat
-    Zone:
-      capturedAlt: capturé
-    MiniGame:
-      exit: Quitter
-    Village:
-      exit: Quitter le Village
+  LanguageSelector:
+    label: Langue
+    en: Anglais
+    fr: Français
   ThemeToggle:
     toggle: Changer de thème
   UpdateSnackbar:
     updateAvailable: Une mise à jour est disponible.
-    reload: Recharger
     explain: Clique sur “Recharger” pour appliquer la nouvelle version.
+    reload: Recharger
     updating: Mise à jour en cours… cela peut prendre quelques secondes.
     explainUpdating: Ne ferme pas l’application pendant la mise à jour.
     reloading: Rechargement…
     error: La mise à jour a échoué. Réessaie.
     retry: Réessayer
+  arena:
+    EnemyStats:
+      hp: PV
+      attack: Attaque
+      defense: Défense
+      smell: Puanteur
+      level: lvl {n}
+    Panel:
+      selectSix: Vous devez sélectionner 6 Shlagémons pour combattre dans l'arène
+      autoBattleInfo: Le combat est automatique et se déroule sans clics.
+      quit: Abandonner
+      fight: Combattre
+      title: Arène
+      autoSelect: Sélection automatique de l'équipe
+    SelectionModal:
+      title: Choisir un Shlagémon contre {name}
+      confirm: Valider
+  audio:
+    SettingsModal:
+      title: Paramètres audio
+      musicLabel: Musique
+      musicDisabledInfo: Désactiver la musique réduit les dégâts de vos Shlagémons de 10%.
+      musicDisabledNote: (Ba oui, je me suis pas cassé le cul à faire une bande-son pour rien !)
+      sfxLabel: Effets sonores
+      sfxDisabledInfo: Attention, certains feedbacks sonores seront absents.
+      sfxDisabledNote: (Notamment les sons liés au Shiny, ça serait dommage d'en rater un, sale connasse !)
+  badge:
+    BoxModal:
+      title: Boîte à badge
+      empty: Aucun badge
+      level: Niveau max {level}
+  ball:
+    SelectionModal:
+      title: Choix de la Shlagéball
+      info: La Super et l'Hyper Shlagéball améliorent vos chances de capture (x1.5 et x2).
   battle:
     Capture:
       cooldown: Patientez avant de capturer à nouveau
       noBall: Pas de Shlagéball, capture impossible
       ko: Impossible de capturer un Shlagémon K.O.
+      playerKo: Impossible de capturer avec un Shlagémon K.O.
       needBadge: Un badge est nécessaire pour capturer ce niveau
       capture: Capturer le Shlagémon
-      playerKo: Impossible de capturer avec un Shlagémon K.O.
-    Main:
-      captureTooltip:
-        all: Vous avez capturé tous les Shlagémon de la zone
-        missing: Vous n'avez pas capturé tous les Shlagémon de la zone
-      winTooltip: Vous avez vaincu {n} Shlagémon dans cette zone
-      zoneMons: Shlagémons de la zone
+    CaptureLimitModal:
+      text: Pour pouvoir attraper ce Shlagémon de niveau {level}, il vous faut un badge. Rendez-vous dans le village pour défier l'arène et remporter ce droit.
     CaptureMenu:
       captured: Vous avez capturé {name} !
       fail: Raté !
-    Trainer:
-      startBattle: Démarrer le combat
-      quit: Abandonner
-      continue: Continuer
-      defeat: Défaite...
-      queen: reine
-      king: roi
-      zoneKingChallenge: Défi du {label} de la zone
-      reward: +{amount} Shlagédiamonds
-      retry: Recommencer
-    CaptureLimitModal:
-      text: Pour pouvoir attraper ce Shlagémon de niveau {level}, il vous faut un badge. Rendez-vous dans le village pour défier l'arène et remporter ce droit.
-    FightKingButton:
-      challenge: Défier {label}
-      male: le roi
-      female: la reine
-    Round:
-      vs: VS
-    Shlagemon:
-      ownedTooltip: Vous possédez déjà ce Shlagémon
-      infoTooltip: Voir les détails
-      ownedRarity100Tooltip: Vous possédez ce Shlagémon en rareté 100
-      ownedShinyLabel: Shiny possédé
     DiseaseBadge:
-      tooltip: "Malade : {n} combats restants"
+      tooltip: 'Malade : {n} combats restants'
     EffectBadge:
       attack: Votre attaque est boostée pour encore {remaining}
       defense: Votre défense est boostée pour encore {remaining}
       xp: Vos gains d'XP sont augmentés pour encore {remaining}
       vitality: Votre vitalité est augmentée pour encore {remaining}
       capture: Vos chances de capture sont accrues pour encore {remaining}
+    FightKingButton:
+      challenge: Défier {label}
+      male: le roi
+      female: la reine
+    Main:
+      captureTooltip:
+        all: Vous avez capturé tous les Shlagémon de la zone
+        missing: Vous n'avez pas capturé tous les Shlagémon de la zone
+      winTooltip: Vous avez vaincu {n} Shlagémon dans cette zone
+      zoneMons: Shlagémons de la zone
+    Round:
+      vs: VS
+    Shlagemon:
+      ownedTooltip: Vous possédez déjà ce Shlagémon
+      ownedRarity100Tooltip: Vous possédez ce Shlagémon en rareté 100
+      ownedShinyLabel: Shiny possédé
+      infoTooltip: Voir les détails
+    Trainer:
+      startBattle: Démarrer le combat
+      quit: Abandonner
+      retry: Recommencer
+      continue: Continuer
+      defeat: Défaite...
+      queen: reine
+      king: roi
+      zoneKingChallenge: Défi du {label} de la zone
+      reward: +{amount} Shlagédiamonds
     damageTaken: Subit {amount} dégâts
     healedFor: Soigné de {amount} PV
-  egg:
-    BoxModal:
-      title: Boîte à œufs
-      empty: Aucun œuf
-    MonsModal:
-      title: Shlagémons de {name}
-    HatchModal:
-      message: Vous avez obtenu {name} !
-  inventory:
-    EvolutionItemModal:
-      title: Utiliser {name}
-      evolve: Évoluer
-      noCompatible: Aucun Shlagémon compatible.
-    ItemCard:
-      action:
-        open: Ouvrir
-        equipped: Équipé
-        equip: Équiper
-        use: Utiliser
-      shortcutTooltip: Définir un raccourci clavier pour cet objet.
-    ItemShortcutModal:
-      title: Assigner un raccourci clavier pour cet objet
-      pressKey: Appuyez sur une touche pour assigner le raccourci clavier
-    WearableItemModal:
-      title: Choisir le porteur de {name}
-      noAvailable: Aucun Shlagémon disponible.
-    OdorElixirModal:
-      title: Choisir le bénéficiaire de {name}
-      noAvailable: Aucun Shlagémon n'a besoin de cet élixir.
-  settings:
-    ShortcutsTab:
-      add: Ajouter un raccourci
-      reset: Réinitialiser
-    SaveTab:
-      exportLabel: Code de sauvegarde
-      copy: Copier
-      download: Télécharger
-      importLabel: Importer une sauvegarde
-      load: Charger
-      remove: Supprimer
-      invalid: Code invalide
-      loaded: Sauvegarde chargée
-      copied: Copié
-      playtime: Tu as joué pendant {time}.
-      generate: Générer
-      loadFile: Charger depuis un fichier
-      exportDesc: Générez un code pour exporter votre progression.
-      importDesc: Chargez une sauvegarde en collant un code ou en sélectionnant un fichier.
-    LanguageTab:
-      label: Langue
-      description: L'application est disponible en français et en anglais.
-      loadFile: Charger depuis un fichier
-    SupportTab:
-      donateLabel: Faire un don
-      donateDesc: Si tu apprécies Shlagémon et que tu souhaites soutenir son développement, tu peux contribuer avec un donc ponctuel ou mensuel sur Ko-fi.
-      discordLabel: Rejoindre le Discord
-      discordDesc: Pour discuter du jeu et partager tes idées, rejoins la communauté sur Discord.
-      youtubeLabel: Playlist musiques
-      youtubeDesc: Retrouvez toutes les musiques originales du jeu sur YouTube.
-    SettingsModal:
-      title: Paramètres
-      tabs:
-        save: Sauvegarde
-        language: Langue
-        shortcuts: Raccourcis
-        support: Soutien
-        interface: Interface
-        accessibility: Accessibilité
-    InterfaceTab:
-      villagesOnMap: Afficher les villages sur la carte
-    AccessibilityTab:
-      autoHide:
-        label: Masquer automatiquement les infobulles
-        description: Les infobulles se ferment automatiquement après un court délai. Désactivez cette option pour les garder visibles jusqu'à ce que vous cliquiez ailleurs.
-  shlagemon:
+  deck:
     Detail:
-      equipItemTitle: Équiper un objet
-      allowEvolution: Autoriser ce Shlagémon à évoluer ?
-      firstCatch: "Première capture : {date}"
-      obtainedTimes: Obtenu {count} fois
-      release: Relâcher
-      main: Principal
-      confirmTitle: Relâcher un Shlagémon ?
-      confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
-      yes: Oui
-      no: Non
-      hp: PV
-      attack: Attaque
-      defense: Défense
-      smell: Puanteur
-      evolveByLevel: Peut évoluer au niveau {level}
-      evolveByItem: Peut évoluer grâce à l'objet {item}
-      sick: malade
-      unequipItemTooltip: Déséquiper cet objet
-    WearableEquipModal:
-      title: Choisir un objet à équiper
-      noAvailable: Aucun objet disponible.
-    EvolutionModal:
-      evolveTitle: "{name} évolue"
-      question: « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?
-      alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
-      yes: Oui
-      no: Non
-    DexInfo:
-      hp: PV
-      attack: Attaque
-      defense: Défense
-      smell: Puanteur
-      title: Informations Shlagémon
-    RarityInfo:
-      tooltip: Rareté
+      evolution: 'Évolution :'
+      level: lvl {n}
     List:
-      new: Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons
       search: Rechercher
       sort:
-        level: Niveau
-        rarity: Rareté
-        shiny: Shiny
-        item: Objet équipé
         name: Nom
         type: Type
-        attack: Attaque
-        defense: Défense
-        count: Nb obtentions
-        date: Première capture
-        evolution: Proche d'évoluer
-    TypeChart:
-      defense: Défense
-      attack: Attaque
-    TypeChartModal:
-      title: Table des types
-  LanguageSelector:
-    label: Langue
-    en: Anglais
-    fr: Français
-  ui:
-    CurrencyAmount:
-      shlagidiamond: Shlagédiamant
-      shlagidolar: Shlagédollar
-    FullscreenToggle:
-      label: Plein écran
-    SortControls:
-      ascending: Tri ascendant
-      descending: Tri descendant
-    LanguageToggle:
-      label: Changer de langue
-    Info:
-      ok: Ok
-    SelectOption:
-      placeholder: Sélectionner…
-    SearchInput:
-      placeholder: Rechercher
-      clear: Effacer la recherche
   dialog:
     AnotherShlagemonDialog:
       steps:
@@ -343,12 +127,12 @@ components:
             retry: Réessayer
             quit: Quitter
     ArenaVictoryDialog:
+      toast: '{name} obtenu !'
       steps:
         step1:
           text: Félicitations ! Tu as triomphé de l'arène.
           responses:
             collect: Récupérer le badge
-      toast: "{name} obtenu !"
     ArenaWelcomeDialog:
       steps:
         step1:
@@ -381,27 +165,12 @@ components:
           responses:
             back: Retour
             valid: Merci !
-    PreyAmuletDialog:
+    BadgeBoxDialog:
       steps:
         step1:
-          text: Incroyable, l'un de tes Shlagémons a atteint le niveau 75 !
+          text: Bravo, tu as obtenu ton premier badge ! Tu vas pouvoir retrouver les détails de ces badges dans ta boîte à badge qui se trouve dans ton inventaire.
           responses:
-            next: Continuer
-        step2:
-          text: Voici Monsieur Croa, une amulette mystérieuse qui empêche son porteur de mettre K.O. ses adversaires.
-          responses:
-            back: Retour
-            next: Continuer
-        step3:
-          text: Ses attaques s'arrêtent à 1 PV puis n'infligent plus aucun dégât.
-          responses:
-            back: Retour
-            next: Continuer
-        step4:
-          text: On dit que son croa sacré résonne d'une magie étrange quand un Shlagémon vacille. La voici pour toi !
-          responses:
-            back: Retour
-            valid: Merci Professeur !
+            valid: Merci !
     Box: {}
     CapturePotionDialog:
       steps:
@@ -426,6 +195,123 @@ components:
             next: Continuer
         step5:
           text: Tiens, voici la première. Fais-en bon usage !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    CroakKingDialog:
+      steps:
+        step1:
+          text: Félicitations, l'un de tes Shlagémons a atteint le niveau 100 !
+          responses:
+            next: Continuer
+        step2:
+          text: |
+            Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Croa.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Il épargne les Shlagémons shiny en les laissant à 1 PV au lieu de les mettre K.O. Les autres ne sont pas affectés.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: On raconte que ce talisman royal résonne d'un croa éternel pour protéger les créatures scintillantes.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Tu en es digne, prends-le et que sa magie t'aide dans tes captures !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    CuckRingDialog:
+      steps:
+        step1:
+          text: Félicitations ! L'un de tes Shlagémons a atteint le niveau 60 !
+          responses:
+            next: Continuer
+        step2:
+          text: "Je vais te parler d'un objet mystérieux : l'Anneau du Cocu."
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Cet anneau appartenait autrefois à {name}, un dresseur pas comme les autres.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: "On raconte qu'il rend chaque attaque imprévisible : soit le double de dégâts, soit un soin pour l'adversaire."
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Personne ne sait pourquoi {name} l'a perdu, mais il pourrait te servir.
+          responses:
+            back: Retour
+            next: Continuer
+        step6:
+          text: Le voici, à toi de tenter ta chance !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    DeveloperSupportDialog:
+      steps:
+        start:
+          text: Salut, moi c'est Aife, le développeur de ce jeu. Si tu apprécies Shlagémon et que tu souhaites me soutenir dans le développement du jeu, et pourquoi pas d'autres projets, tu peux contribuer financièrement à mon travail.
+          responses:
+            donate: Faire un don
+            refuse: Refuser
+        donateYes:
+          text: Merci beaucoup pour ton soutien !
+          responses:
+            next: Suite
+        donateNo:
+          text: Pas cool, sale pauvre. Bon, tant pis, le jeu est gratuit après tout.
+          responses:
+            next: Suite
+        discord:
+          text: Tu peux aussi rejoindre la communauté sur Discord. Pour discuter du jeu, partager tes idées, les bugs potentiels, ou juste pour le fun.
+          responses:
+            join: Rejoindre
+            skip: Refuser
+        discordYes:
+          text: Merci ! À bientôt sur le serveur. Bon jeu !
+          responses:
+            finish: Fermer
+        discordNo:
+          text: T'es vraiment dégueulasse. Mais bon... amuse-toi bien quand même, tête de bite.
+          responses:
+            finish: Fermer
+    DuplicateRarityDialog:
+      steps:
+        step1:
+          text: Tiens, tu as capturé un Shlagémon que tu possèdes déjà.
+          responses:
+            next: Continuer
+        step2:
+          text: Sache que la rareté définit le véritable potentiel d'un Shlagémon.
+          responses:
+            back: Retour
+            next: Suite
+        step3:
+          text: Plus tu avanceras, plus tu rencontreras de Shlagémons rares.
+          responses:
+            back: Retour
+            next: Suite
+        step4:
+          text: Capturer un doublon permet d'échanger des niveaux contre de la rareté.
+          responses:
+            back: Retour
+            next: Suite
+        step5:
+          text: Si celui que tu attrapes est très rare, ton Shlagémon en héritera. Sinon il ne gagnera qu'un point de rareté et perdra un niveau.
+          responses:
+            back: Retour
+            next: Suite
+        step6:
+          text: Certains Shlagémons ont la faculté de relier leur rareté à leur niveau. C'est une capacité rare que peuvent avoir certains Shlagémons comme ton {starter} ! En attendant, prends donc cette Super Shlagéball !
           responses:
             back: Retour
             valid: Merci Professeur !
@@ -493,6 +379,42 @@ components:
           responses:
             back: Retour
             valid: Merci !
+    InventoryIntroDialog:
+      steps:
+        step1:
+          text: Bienvenue dans ton inventaire ! Tu y retrouveras tous les objets que tu ramasses.
+          responses:
+            next: Continuer
+        step2:
+          text: Les objets sont classés par catégorie dans différents onglets. Navigue entre eux pour tout voir.
+          responses:
+            back: Retour
+            next: Suite
+        step3:
+          text: N'hésite pas à utiliser les objets pour découvrir leur effet. Certains s'utilisent, d'autres s'équipent.
+          responses:
+            back: Retour
+            valid: J'ai compris !
+    KingLossDialog:
+      steps:
+        step1:
+          text: Ouch… Ce roi t'a mis une sacrée raclée ! Ces monarques de zone sont bien plus coriaces que les dresseurs lambda.
+          responses:
+            next: Continuer
+        step2:
+          text: Rappelle-toi que chaque Shlagémon possède un type. Clique dessus pour ouvrir la table des types.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Cette table indique les faiblesses et résistances de chaque type. Choisis le bon Shlagémon pour frapper plus fort et subir moins de dégâts.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Utilise ce savoir pour humilier le roi la prochaine fois et faire honneur au Professeur Merdant !
+          responses:
+            valid: Merci Prof !
     KingUnlockDialog:
       steps:
         step1:
@@ -511,11 +433,6 @@ components:
             next: Continuer
         step4:
           text: Je t'offre une Potion de Défense. Elle s'utilise dans ton inventaire et booste toute ton équipe.
-          responses:
-            back: Retour
-            next: Continuer
-        step5:
-          text: Attention, son effet dure 10 minutes et ne fonctionne qu'une seule fois, quel que soit ton Shlagémon actif.
           responses:
             back: Retour
             next: Continuer
@@ -571,6 +488,85 @@ components:
           responses:
             back: Retour
             valid: Merci Professeur !
+    OdorElixirDialog:
+      steps:
+        step1:
+          text: Nom d'un slip, ton Shlagémon a atteint le niveau 50 !
+          responses:
+            next: Continuer
+        step2:
+          text: Voilà l'Élixir d'Odeur, une mixture que même ma mère voudrait sniffer.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Verse ça sur ton chouchou et sa rareté collera à son niveau.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: Plus il progressera, plus il fera baver les autres d'envie.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: Tiens, j'te file la fiole. Gâche-la pas sur un tocard.
+          responses:
+            back: Retour
+            valid: Merci vieux !
+    PotionInfoDialog:
+      steps:
+        step1:
+          text: Les effets de cette potion durent 10 minutes et s'appliquent à toute ton équipe. Elles sont compatibles avec les objets portés et très utiles lors des combats contre les dresseurs.
+          responses:
+            valid: Merci Professeur !
+    PreyAmuletDialog:
+      steps:
+        step1:
+          text: Incroyable, l'un de tes Shlagémons a atteint le niveau 75 !
+          responses:
+            next: Continuer
+        step2:
+          text: Voici Monsieur Croa, une amulette mystérieuse qui empêche son porteur de mettre K.O. ses adversaires.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Ses attaques s'arrêtent à 1 PV puis n'infligent plus aucun dégât.
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: On dit que son croa sacré résonne d'une magie étrange quand un Shlagémon vacille. La voici pour toi !
+          responses:
+            back: Retour
+            valid: Merci Professeur !
+    RainbowPotionDialog:
+      steps:
+        step1:
+          text: Bravo ! Tu as un Shlagémon qui a atteint le niveau 25 ! Tu dois te rendre compte que les combats deviennent de plus en plus difficiles. Surtout contre les rois et reines de zone !
+          responses:
+            next: Continuer
+        step2:
+          text: Plus tu progresses, plus tu croisera des adversaires coriaces ! Prépare-toi à des affrontements plus stratégiques.
+          responses:
+            back: Retour
+            next: Continuer
+        step3:
+          text: Il existe une potion très rare aux couleurs d'arc-en-ciel. Elle a un pouvoir d'une puissance rare ! Elle peut asséner de lourds dégâts à un adversaire, ou même soigner ton compagnon !
+          responses:
+            back: Retour
+            next: Continuer
+        step4:
+          text: J'en possède une, justement ! Cette potion ne peut être utilisée qu'une seule fois et uniquement face au roi ou la reine d'une zone.
+          responses:
+            back: Retour
+            next: Continuer
+        step5:
+          text: J'en ai une seule, mais je te la donne. Prends-en grand soin, elle vaut extrêmement cher ! Choisis bien ton moment.
+          responses:
+            back: Retour
+            valid: Merci Professeur !
     Starter:
       steps:
         start:
@@ -603,7 +599,7 @@ components:
         step1:
           text: Impressionnant ! Tu as capturé au moins {count} Shlagémons.
         step2:
-          text: "Voici un objet unique : {name}."
+          text: 'Voici un objet unique : {name}.'
         step3:
           text: Il augmente {stat} du porteur de {percent}%.
         step4:
@@ -612,228 +608,65 @@ components:
           text: Équipe-le sur le Shlagémon de ton choix.
         step6:
           text: Bonne chance pour la suite !
-    InventoryIntroDialog:
-      steps:
-        step1:
-          text: Bienvenue dans ton inventaire ! Tu y retrouveras tous les objets que tu ramasses.
-          responses:
-            next: Continuer
-        step2:
-          text: Les objets sont classés par catégorie dans différents onglets. Navigue entre eux pour tout voir.
-          responses:
-            back: Retour
-            next: Suite
-        step3:
-          text: N'hésite pas à utiliser les objets pour découvrir leur effet. Certains s'utilisent, d'autres s'équipent.
-          responses:
-            back: Retour
-            valid: J'ai compris !
-    PotionInfoDialog:
-      steps:
-        step1:
-          text: Les effets de cette potion durent 10 minutes et s'appliquent à toute ton équipe. Elles sont compatibles avec les objets portés et très utiles lors des combats contre les dresseurs.
-          responses:
-            valid: Merci Professeur !
-    KingLossDialog:
-      steps:
-        step1:
-          text: Ouch… Ce roi t'a mis une sacrée raclée ! Ces monarques de zone sont bien plus coriaces que les dresseurs lambda.
-          responses:
-            next: Continuer
-        step2:
-          text: Rappelle-toi que chaque Shlagémon possède un type. Clique dessus pour ouvrir la table des types.
-          responses:
-            back: Retour
-            next: Continuer
-        step3:
-          text: Cette table indique les faiblesses et résistances de chaque type. Choisis le bon Shlagémon pour frapper plus fort et subir moins de dégâts.
-          responses:
-            back: Retour
-            next: Continuer
-        step4:
-          text: Utilise ce savoir pour humilier le roi la prochaine fois et faire honneur au Professeur Merdant !
-          responses:
-            valid: Merci Prof !
-    OdorElixirDialog:
-      steps:
-        step1:
-          text: Nom d'un slip, ton Shlagémon a atteint le niveau 50 !
-          responses:
-            next: Continuer
-        step2:
-          text: Voilà l'Élixir d'Odeur, une mixture que même ma mère voudrait sniffer.
-          responses:
-            back: Retour
-            next: Continuer
-        step3:
-          text: Verse ça sur ton chouchou et sa rareté collera à son niveau.
-          responses:
-            back: Retour
-            next: Continuer
-        step4:
-          text: Plus il progressera, plus il fera baver les autres d'envie.
-          responses:
-            back: Retour
-            next: Continuer
-        step5:
-          text: Tiens, j'te file la fiole. Gâche-la pas sur un tocard.
-          responses:
-            back: Retour
-            valid: Merci vieux !
-    DeveloperSupportDialog:
-      steps:
-        start:
-          text: Salut, moi c'est Aife, le développeur de ce jeu. Si tu apprécies Shlagémon et que tu souhaites me soutenir dans le développement du jeu, et pourquoi pas d'autres projets, tu peux contribuer financièrement à mon travail.
-          responses:
-            donate: Faire un don
-            refuse: Refuser
-        donateYes:
-          text: Merci beaucoup pour ton soutien !
-          responses:
-            next: Suite
-        donateNo:
-          text: Pas cool, sale pauvre. Bon, tant pis, le jeu est gratuit après tout.
-          responses:
-            next: Suite
-        discord:
-          text: Tu peux aussi rejoindre la communauté sur Discord. Pour discuter du jeu, partager tes idées, les bugs potentiels, ou juste pour le fun.
-          responses:
-            join: Rejoindre
-            skip: Refuser
-        discordYes:
-          text: Merci ! À bientôt sur le serveur. Bon jeu !
-          responses:
-            finish: Fermer
-        discordNo:
-          text: T'es vraiment dégueulasse. Mais bon... amuse-toi bien quand même, tête de bite.
-          responses:
-            finish: Fermer
-    DuplicateRarityDialog:
-      steps:
-        step1:
-          text: Tiens, tu as capturé un Shlagémon que tu possèdes déjà.
-          responses:
-            next: Continuer
-        step2:
-          text: Sache que la rareté définit le véritable potentiel d'un Shlagémon.
-          responses:
-            back: Retour
-            next: Suite
-        step3:
-          text: Plus tu avanceras, plus tu rencontreras de Shlagémons rares.
-          responses:
-            back: Retour
-            next: Suite
-        step4:
-          text: Capturer un doublon permet d'échanger des niveaux contre de la rareté.
-          responses:
-            back: Retour
-            next: Suite
-        step5:
-          text: Si celui que tu attrapes est très rare, ton Shlagémon en héritera. Sinon il ne gagnera qu'un point de rareté et perdra un niveau.
-          responses:
-            back: Retour
-            next: Suite
-        step6:
-          text: Certains Shlagémons ont la faculté de relier leur rareté à leur niveau. C'est une capacité rare que peuvent avoir certains Shlagémons comme ton {starter} ! En attendant, prends donc cette Super Shlagéball !
-          responses:
-            back: Retour
-            valid: Merci Professeur !
-        discordNo:
-          text: T'es vraiment dégueulasse. Mais bon... amuse-toi bien quand même, tête de bite.
-          responses:
-            finish: Fermer
-    RainbowPotionDialog:
-      steps:
-        step1:
-          text: Bravo ! Tu as un Shlagémon qui a atteint le niveau 25 ! Tu dois te rendre compte que les combats deviennent de plus en plus difficiles. Surtout contre les rois et reines de zone !
-          responses:
-            next: Continuer
-        step2:
-          text: Plus tu progresses, plus tu croisera des adversaires coriaces ! Prépare-toi à des affrontements plus stratégiques.
-          responses:
-            back: Retour
-            next: Continuer
-        step3:
-          text: Il existe une potion très rare aux couleurs d'arc-en-ciel. Elle a un pouvoir d'une puissance rare ! Elle peut asséner de lourds dégâts à un adversaire, ou même soigner ton compagnon !
-          responses:
-            back: Retour
-            next: Continuer
-        step4:
-          text: J'en possède une, justement ! Cette potion ne peut être utilisée qu'une seule fois et uniquement face au roi ou la reine d'une zone.
-          responses:
-            back: Retour
-            next: Continuer
-        step5:
-          text: J'en ai une seule, mais je te la donne. Prends-en grand soin, elle vaut extrêmement cher ! Choisis bien ton moment.
-          responses:
-            back: Retour
-            valid: Merci Professeur !
-    CuckRingDialog:
-      steps:
-        step1:
-          text: Félicitations ! L'un de tes Shlagémons a atteint le niveau 60 !
-          responses:
-            next: Continuer
-        step2:
-          text: "Je vais te parler d'un objet mystérieux : l'Anneau du Cocu."
-          responses:
-            back: Retour
-            next: Continuer
-        step3:
-          text: Cet anneau appartenait autrefois à {name}, un dresseur pas comme les autres.
-          responses:
-            back: Retour
-            next: Continuer
-        step4:
-          text: "On raconte qu'il rend chaque attaque imprévisible : soit le double de dégâts, soit un soin pour l'adversaire."
-          responses:
-            back: Retour
-            next: Continuer
-        step5:
-          text: Personne ne sait pourquoi {name} l'a perdu, mais il pourrait te servir.
-          responses:
-            back: Retour
-            next: Continuer
-        step6:
-          text: Le voici, à toi de tenter ta chance !
-          responses:
-            back: Retour
-            valid: Merci Professeur !
-    BadgeBoxDialog:
-      steps:
-        step1:
-          text: Bravo, tu as obtenu ton premier badge ! Tu vas pouvoir retrouver les détails de ces badges dans ta boîte à badge qui se trouve dans ton inventaire.
-          responses:
-            valid: Merci !
-    CroakKingDialog:
-      steps:
-        step1:
-          text: Félicitations, l'un de tes Shlagémons a atteint le niveau 100 !
-          responses:
-            next: Continuer
-        step2:
-          text: |
-            Pour fêter ça, je souhaite t'offrir un objet très rare : le Roi Croa.
-          responses:
-            back: Retour
-            next: Continuer
-        step3:
-          text: Il épargne les Shlagémons shiny en les laissant à 1 PV au lieu de les mettre K.O. Les autres ne sont pas affectés.
-          responses:
-            back: Retour
-            next: Continuer
-        step4:
-          text: On raconte que ce talisman royal résonne d'un croa éternel pour protéger les créatures scintillantes.
-          responses:
-            back: Retour
-            next: Continuer
-        step5:
-          text: Tu en es digne, prends-le et que sa magie t'aide dans tes captures !
-          responses:
-            back: Retour
-            valid: Merci Professeur !
+  egg:
+    BoxModal:
+      title: Boîte à œufs
+      empty: Aucun œuf
+    HatchModal:
+      message: Vous avez obtenu {name} !
+    MonsModal:
+      title: Shlagémons de {name}
+  inventory:
+    EvolutionItemModal:
+      title: Utiliser {name}
+      evolve: Évoluer
+      noCompatible: Aucun Shlagémon compatible.
+    ItemCard:
+      action:
+        open: Ouvrir
+        equipped: Équipé
+        equip: Équiper
+        use: Utiliser
+      shortcutTooltip: Définir un raccourci clavier pour cet objet.
+    ItemShortcutModal:
+      title: Assigner un raccourci clavier pour cet objet
+      pressKey: Appuyez sur une touche pour assigner le raccourci clavier
+    OdorElixirModal:
+      title: Choisir le bénéficiaire de {name}
+      noAvailable: Aucun Shlagémon n'a besoin de cet élixir.
+    WearableItemModal:
+      title: Choisir le porteur de {name}
+      noAvailable: Aucun Shlagémon disponible.
+  layout:
+    GameGrid:
+      inventory: Inventaire
+      achievements: Succès
+      zones: Zones
+      dex: Shlagédex
+    Header:
+      title: Shlagémon - Ça sent très fort
+      language: Langue
+      locale: Locale
+      audio: Audio
+      settings: Paramètres
+      developer: Développeur
+      logoAlt: Logo Shlagémon
+    HomeFooter:
+      rights: Sûrement quelques droits réservés.
+      imageDisclaimer: La plupart des images sont générés par des IA qui volent le travail des artistes, désolé c'est parce-que je ne sais pas dessiner et que j'ai pas les moyen d'acheter des dessins.
+      privacyPolicy: Politique de confidentialité
+    HomeHeader:
+      logoAlt: Logo Shlagémon
+      title: Shlagémon
+      home: Accueil
+      dex: Shlagédex
+  map:
+    ArrowButton:
+      prev: Précédent
+      next: Suivant
   minigame:
+    Battleship:
+      player: Ton plateau
     MasterMind:
       messages:
         - Tu te rapproches… ou pas.
@@ -843,7 +676,7 @@ components:
         - T'es à deux doigts de faire un pet cérébral.
         - Rarement vu quelqu'un aussi merdique.
       validate: Valider
-      attemptsLeft: "{n} tentatives restantes"
+      attemptsLeft: '{n} tentatives restantes'
       win: T'as percé le cerveau d'un Shlag !
       lose: Même un Petmorv y serait arrivé
       legend:
@@ -852,42 +685,204 @@ components:
         absent: Absent de la combinaison
       selectSlot: Sélectionne une case
     Pairs:
-      attempts: "{n} tentative | {n} tentatives"
+      attempts: '{n} tentative | {n} tentatives'
     masterMind:
       SelectionModal:
         title: Choisis un Shlagémon
-    Battleship:
-      player: Ton plateau
-  arena:
-    SelectionModal:
-      title: Choisir un Shlagémon contre {name}
-      confirm: Valider
-    Panel:
-      selectSix: Vous devez sélectionner 6 Shlagémons pour combattre dans l'arène
-      autoBattleInfo: Le combat est automatique et se déroule sans clics.
-      quit: Abandonner
-      fight: Combattre
-      autoSelect: Sélection automatique de l'équipe
-      title: Arène
-    EnemyStats:
+  panel:
+    Achievements:
+      all: Tous
+      unlocked: Débloqués
+      locked: À débloquer
+      search: Rechercher un succès
+      sort:
+        name: Nom
+        date: Date
+        progress: Progression
+    BonusDetails:
+      intro1: Le bonus du Shlagedex augmente les dégâts finaux de tous vos Shlagémons ! Il représente le bonus maximal que vous pouvez obtenir en capturant tous les Shlagémons accessibles.
+      intro2: Il se base sur le pourcentage de complétion de ce Shlagédex potentiel ainsi que sur le niveau moyen de votre équipe.
+      formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10
+      completion: 'Complétion :'
+      averageLevel: 'Niveau moyen :'
+      currentBonus: 'Bonus actuel :'
+    Inventory:
+      search: Rechercher
+      sort:
+        type: Type
+        name: Nom
+        price: Prix
+      category:
+        active: Actif
+        passive: Passif
+        utility: Utilitaire
+        activable: Activable
+        battle: Combat
+      equip: Vous avez équipé la {item}
+    MiniGame:
+      exit: Quitter
+    PlayerInfos:
+      sick: 'Malade : {n} combats restants'
+      dex: ShlagéDex
+      averageLevel: Niveau moyen
+      bonus: Bonus
+      balls: ShlagéBalls
+      ballAlt: ball
+    Poulailler:
+      title: Poulailler
+      exit: Quitter
+      incubator: Incubateur
+      noEgg: Aucun œuf
+      yourEggs: Vos œufs
+      incubate: Incuber
+      noEggBox: Aucun œuf dans la boîte
+      emptySlot: Emplacement vide
+      tapToHatch: Appuyez pour faire éclore
+      ready: Prêt
+      legend:
+        bouncing: En incubation
+        pulsing: Prêt à éclore
+      a11y:
+        showSpecies: Voir les espèces pour {name}
+        incubateEgg: Incuber l’œuf {name}
+        eggReady: Œuf {type} prêt
+        eggProgress: Progression de l’œuf
+    Shop:
+      title: Boutique
+      details: Détails
+      buy: Acheter x{qty} pour
+      back: Retour dans le rayon
+      exit: Quitter la boutique
+      bought: Vous avez acheté {qty} × {item} pour {cost} {currency}
+      category:
+        active: Actif
+        passive: Passif
+        utility: Utilitaire
+        activable: Activable
+        battle: Combat
+    Village:
+      exit: Quitter le Village
+    Zone:
+      capturedAlt: capturé
+  settings:
+    AccessibilityTab:
+      autoHide:
+        label: Masquer automatiquement les infobulles
+        description: Les infobulles se ferment automatiquement après un court délai. Désactivez cette option pour les garder visibles jusqu'à ce que vous cliquiez ailleurs.
+    InterfaceTab:
+      villagesOnMap: Afficher les villages sur la carte
+    LanguageTab:
+      label: Langue
+      description: L'application est disponible en français et en anglais.
+    SaveTab:
+      exportLabel: Code de sauvegarde
+      generate: Générer
+      copy: Copier
+      download: Télécharger
+      importLabel: Importer une sauvegarde
+      load: Charger
+      remove: Supprimer
+      invalid: Code invalide
+      loaded: Sauvegarde chargée
+      copied: Copié
+      playtime: Tu as joué pendant {time}.
+      loadFile: Charger depuis un fichier
+      exportDesc: Générez un code pour exporter votre progression.
+      importDesc: Chargez une sauvegarde en collant un code ou en sélectionnant un fichier.
+    SettingsModal:
+      title: Paramètres
+      tabs:
+        save: Sauvegarde
+        language: Langue
+        shortcuts: Raccourcis
+        interface: Interface
+        accessibility: Accessibilité
+        support: Soutien
+    ShortcutsTab:
+      add: Ajouter un raccourci
+      reset: Réinitialiser
+    SupportTab:
+      donateLabel: Faire un don
+      donateDesc: Si tu apprécies Shlagémon et que tu souhaites soutenir son développement, tu peux contribuer avec un donc ponctuel ou mensuel sur Ko-fi.
+      discordLabel: Rejoindre le Discord
+      discordDesc: Pour discuter du jeu et partager tes idées, rejoins la communauté sur Discord.
+      youtubeLabel: Playlist musiques
+      youtubeDesc: Retrouvez toutes les musiques originales du jeu sur YouTube.
+  shlagemon:
+    Detail:
+      equipItemTitle: Équiper un objet
+      allowEvolution: Autoriser ce Shlagémon à évoluer ?
+      firstCatch: 'Première capture : {date}'
+      obtainedTimes: Obtenu {count} fois
+      release: Relâcher
+      main: Principal
+      confirmTitle: Relâcher un Shlagémon ?
+      confirmText: Attention, si vous le relâchez, il ira shlagiser tout le territoire.
+      yes: Oui
+      no: Non
       hp: PV
       attack: Attaque
       defense: Défense
       smell: Puanteur
-      level: lvl {n}
-  audio:
-    SettingsModal:
-      title: Paramètres audio
-      musicLabel: Musique
-      musicDisabledInfo: Désactiver la musique réduit les dégâts de vos Shlagémons de 10%.
-      musicDisabledNote: (Ba oui, je me suis pas cassé le cul à faire une bande-son pour rien !)
-      sfxLabel: Effets sonores
-      sfxDisabledInfo: Attention, certains feedbacks sonores seront absents.
-      sfxDisabledNote: (Notamment les sons liés au Shiny, ça serait dommage d'en rater un, sale connasse !)
-  ball:
-    SelectionModal:
-      title: Choix de la Shlagéball
-      info: La Super et l'Hyper Shlagéball améliorent vos chances de capture (x1.5 et x2).
+      evolveByLevel: Peut évoluer au niveau {level}
+      evolveByItem: Peut évoluer grâce à l'objet {item}
+      sick: malade
+      unequipItemTooltip: Déséquiper cet objet
+    DexInfo:
+      hp: PV
+      attack: Attaque
+      defense: Défense
+      smell: Puanteur
+      title: Informations Shlagémon
+    EvolutionModal:
+      evolveTitle: '{name} évolue'
+      question: « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?
+      alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
+      yes: Oui
+      no: Non
+    List:
+      search: Rechercher
+      sort:
+        level: Niveau
+        rarity: Rareté
+        shiny: Shiny
+        item: Objet équipé
+        name: Nom
+        type: Type
+        attack: Attaque
+        defense: Défense
+        count: Nb obtentions
+        date: Première capture
+        evolution: Proche d'évoluer
+      new: Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons
+    RarityInfo:
+      tooltip: Rareté
+    TypeChart:
+      defense: Défense
+      attack: Attaque
+    TypeChartModal:
+      title: Table des types
+    WearableEquipModal:
+      title: Choisir un objet à équiper
+      noAvailable: Aucun objet disponible.
+  ui:
+    CurrencyAmount:
+      shlagidiamond: Shlagédiamant
+      shlagidolar: Shlagédollar
+    FullscreenToggle:
+      label: Plein écran
+    Info:
+      ok: Ok
+    LanguageToggle:
+      label: Changer de langue
+    SearchInput:
+      placeholder: Rechercher
+      clear: Effacer la recherche
+    SelectOption:
+      placeholder: Sélectionner…
+    SortControls:
+      ascending: Tri ascendant
+      descending: Tri descendant
   village:
     ZoneActions:
       shop: Magasin
@@ -895,29 +890,392 @@ components:
       arena: Arène
       henhouse: Poulailler
       fightKing: Défier la {label} de la zone
-      kingDefeated: "{label} vaincu{suffix} !"
+      kingDefeated: '{label} vaincu{suffix} !'
   zone:
     MonsModal:
       title: Shlagémons de {zone}
-  badge:
-    BoxModal:
-      title: Boîte à badge
-      empty: Aucun badge
-      level: Niveau max {level}
-  map:
-    ArrowButton:
-      prev: Précédent
-      next: Suivant
 composables:
   useFormatDuration:
-    year: "{count} an | {count} ans"
-    month: "{count} mois"
-    day: "{count} jour | {count} jours"
-    hour: "{count} heure | {count} heures"
-    minute: "{count} minute | {count} minutes"
-    second: "{count} seconde | {count} secondes"
+    year: '{count} an | {count} ans'
+    month: '{count} mois'
+    day: '{count} jour | {count} jours'
+    hour: '{count} heure | {count} heures'
+    minute: '{count} minute | {count} minutes'
+    second: '{count} seconde | {count} secondes'
     and: et
 data:
+  Minigame:
+    Battleship:
+      startText: Une partie de bataille navale ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Victoire ! Je te donne un œuf Eau.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    ConnectFour:
+      startText: Une partie de Puissance 4 ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Bien joué ! Je te donne un œuf Feu.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      drawText: Match nul ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    MasterMind:
+      startText: Une partie de ShlagMind ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    Pairs:
+      startText: Une partie du jeu des paires ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
+      super: Super !
+      loseText: Dommage !
+      restart: Recommencer
+      back: Retour
+    Taquin:
+      startText: Une partie de taquin ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Je te donne un œuf Foudre.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+    TicTacToe:
+      startText: Envie d'une partie de morpion ?
+      yes: Oui
+      no: Non
+      winText: Bravo ! Bien joué ! Je te donne un Œuf Herbe.
+      super: Super !
+      loseText: Perdu ! Recommence quand tu veux.
+      restart: Recommencer
+      back: Retour
+  arenas:
+    arena20:
+      badge:
+        name: Badge Couillasse
+    arena40:
+      badge:
+        name: Badge Chaussette
+    arena60:
+      badge:
+        name: Badge Oignon Mystique
+    arena80:
+      badge:
+        name: Badge Tartine Beurrée
+  items:
+    shlageball:
+      shlageball:
+        name: Shlagéball
+        description: Permet de capturer des Shlagémons sauvages.
+        details: Permet de capturer le Shlagémon actuellement en combat. Moins il a de points de vie, plus la chance de capture augmente.
+      superShlageball:
+        name: Super Shlagéball
+        description: Améliore les chances de capture.
+        details: Capture des Shlagémons plus récalcitrants avec un léger bonus de chance.
+      hyperShlageball:
+        name: Hyper Shlagéball
+        description: Offre de très hautes chances de capture.
+        details: Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.
+    wearables:
+      attackRing:
+        attackRing:
+          name: Bague d'attaque
+          description: Augmente l'attaque du porteur.
+          details: Portée par un Shlagémon, elle augmente son attaque de 15%. Effet cumulable avec les potions d'attaque.
+        advancedAttackRing:
+          name: Bague d'attaque avancée
+          description: Augmente fortement l'attaque du porteur.
+          details: Portée par un Shlagémon, elle augmente son attaque de 25%. Effet cumulable avec les potions d'attaque.
+        attackAmulet:
+          name: Amulette d'attaque
+          description: Augmente grandement l'attaque du porteur.
+          details: Portée par un Shlagémon, elle augmente son attaque de 33%. Effet cumulable avec les potions d'attaque.
+      croakKing:
+        name: Roi Croa
+        description: Empêche d'achever les Shlagémons shiny.
+        details: Les attaques contre un Shlagémon shiny le laissent toujours à 1 PV au lieu de le mettre K.O. Sans effet sur les ennemis non shiny.
+      cuckRing:
+        name: Anneau du Cocu
+        description: Chaque attaque inflige soit le double de dégâts, soit soigne l'adversaire.
+        details: |
+          Porté par un Shlagémon, chaque attaque a 50% de chances
+          d'infliger le double de dégâts et 50% de chances de soigner l'ennemi du même montant.
+      defenseRing:
+        defenseRing:
+          name: Bague de défense
+          description: Augmente la défense du porteur.
+          details: Portée par un Shlagémon, elle augmente sa défense de 15%. Effet cumulable avec les potions de défense.
+        advancedDefenseRing:
+          name: Bague de défense avancée
+          description: Augmente fortement la défense du porteur.
+          details: Portée par un Shlagémon, elle augmente sa défense de 25%. Effet cumulable avec les potions de défense.
+        defenseAmulet:
+          name: Amulette de défense
+          description: Augmente grandement la défense du porteur.
+          details: Portée par un Shlagémon, elle augmente sa défense de 33%. Effet cumulable avec les potions de défense.
+      preyAmulet:
+        name: Monsieur Croa
+        description: Empêche son porteur d'achever l'ennemi.
+        details: Portée par un Shlagémon, ses attaques laissent toujours au moins 1 PV à l'adversaire et infligent ensuite 0 dégât. Parfait pour capturer les adversaires affaiblis.
+      vitalityRing:
+        vitalityRing:
+          name: Bague Vitalesque
+          description: Augmente les PV max du porteur.
+          details: Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.
+        advancedVitalityRing:
+          name: Bague Vitalesque avancée
+          description: Augmente fortement les PV max du porteur.
+          details: Portée par un Shlagémon, elle augmente ses PV maximum de 25%. Effet cumulable avec les potions de vitalité.
+        vitalityAmulet:
+          name: Amulette Vitalesque
+          description: Augmente grandement les PV max du porteur.
+          details: Portée par un Shlagémon, elle augmente ses PV maximum de 33%. Effet cumulable avec les potions de vitalité.
+      xpRing:
+        xpRing:
+          name: Anneau d'expérience
+          description: Augmente l'XP du porteur.
+          details: Porté par un Shlagémon, il augmente l'expérience gagnée en combat de 15%. Effet cumulable avec les potions d'expérience.
+        advancedXpRing:
+          name: Anneau d'expérience avancé
+          description: Augmente fortement l'XP du porteur.
+          details: Porté par un Shlagémon, il augmente l'expérience gagnée en combat de 25%. Effet cumulable avec les potions d'expérience.
+        xpAmulet:
+          name: Amulette d'expérience
+          description: Augmente grandement l'XP du porteur.
+          details: Portée par un Shlagémon, elle augmente l'expérience gagnée en combat de 33%. Effet cumulable avec les potions d'expérience.
+    defensePotion:
+      name: Potion de Défense
+      description: Augmente temporairement la défense.
+      details: Renforce brièvement la défense de votre Shlagémon actif.
+    superDefensePotion:
+      name: Super Potion de Défense
+      description: Augmente beaucoup la défense.
+      details: Renforce considérablement la défense de votre Shlagémon actif.
+    hyperDefensePotion:
+      name: Hyper Potion de Défense
+      description: Maximise temporairement la défense.
+      details: Booste énormément la défense de votre Shlagémon actif.
+    attackPotion:
+      name: Potion d'Attaque
+      description: Augmente temporairement l'attaque.
+      details: Renforce brièvement l'attaque de votre Shlagémon actif.
+    superAttackPotion:
+      name: Super Potion d'Attaque
+      description: Augmente beaucoup l'attaque.
+      details: Renforce considérablement l'attaque de votre Shlagémon actif.
+    hyperAttackPotion:
+      name: Hyper Potion d'Attaque
+      description: Maximise temporairement l'attaque.
+      details: Booste énormément l'attaque de votre Shlagémon actif.
+    vitalityPotion:
+      name: Potion de Vitalité
+      description: Augmente temporairement les PV.
+      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
+    superVitalityPotion:
+      name: Super Potion de Vitalité
+      description: Augmente beaucoup les PV.
+      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
+    hyperVitalityPotion:
+      name: Hyper Potion de Vitalité
+      description: Maximise temporairement les PV.
+      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
+    xpPotion:
+      name: Potion d'Expérience
+      description: Augmente temporairement les gains d'XP.
+      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
+    superXpPotion:
+      name: Super Potion d'Expérience
+      description: Augmente beaucoup les gains d'XP.
+      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
+    hyperXpPotion:
+      name: Hyper Potion d'Expérience
+      description: Maximise temporairement les gains d'XP.
+      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
+    capturePotion:
+      name: Potion de Capture
+      description: Augmente légèrement les chances de capture.
+      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
+    superCapturePotion:
+      name: Super Potion de Capture
+      description: Augmente beaucoup les chances de capture.
+      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
+    hyperCapturePotion:
+      name: Hyper Potion de Capture
+      description: Maximise les chances de capture.
+      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
+    potion:
+      name: Potion Dégueulasse
+      description: Soigne {hp} HP de votre Shlagémon.
+      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
+    superPotion:
+      name: Super Potion
+      description: Soigne {hp} HP de votre Shlagémon.
+      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
+    hyperPotion:
+      name: Hyper Potion
+      description: Soigne {hp} HP de votre Shlagémon.
+      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
+    multiExp:
+      name: Multi-EXP
+      description: Partage l'XP avec un Shlagémon.
+      details: Permet de partager {percent}% de l'XP gagnée en combat avec le Shlagémon porteur.
+    thunderStone:
+      name: Pierre Foutre
+      description: Permet certaines évolutions de type électrique.
+      details: À des effets foutrement intéressants.
+    steroids:
+      name: Stéroïdes
+      description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
+      details: Fait évoluer {from} en {to}, à condition qu’il ait passé au moins {hours}h à la salle, sans jambes, évidemment.
+    ultraSteroid:
+      name: Ultra-Stéroïde
+      description: Une substance interdite dans {countries} pays, {dimensions} dimensions et au moins {timelines} timeline.
+      details: Fait évoluer {from} en {to}, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
+    lighter:
+      name: Briquet
+      description: Fait briller la pyromanie chez certains Shlagémons.
+      details: Permet à {from} de se changer en {to} pour tout cramer.
+    pissBottle:
+      name: Bouteille de Pisse
+      description: Ça pue, mais c'est bourré de bactéries bien juteuses.
+      details: Transforme {from} en {to} après une bonne rasade.
+    defibrillator:
+      name: Défibrillateur
+      description: Un coup de jus pour repartir de travers.
+      details: Nécessaire pour que {from} évolue en {to}.
+    badgeBox:
+      name: Boîte à badge
+      description: Conserve tous tes badges.
+    eggBox:
+      name: Boîte à œufs
+      description: Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y avoir à l'intérieur.
+    fireEgg:
+      name: Œuf Feu
+      description: Un œuf chaud bouillant.
+    waterEgg:
+      name: Œuf Eau
+      description: Un œuf qui ruisselle.
+    grassEgg:
+      name: Œuf Herbe
+      description: Un œuf qui sent la pelouse.
+    psyEgg:
+      name: Œuf Psy
+      description: Un œuf qui te fixe intensément.
+    thunderEgg:
+      name: Œuf Foudre
+      description: Un œuf parcouru d'étincelles.
+    specialPotion:
+      name: Potion Spéciale
+      description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
+      details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action spéciale.
+    mysteriousPotion:
+      name: Potion Mystérieuse
+      description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
+      details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action mystérieuse.
+    fabulousPotion:
+      name: Potion Fabuleuse
+      description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
+      details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action fabuleuse.
+    rainbowPotion:
+      name: Potion Arc-en-ciel
+      description: A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un soin puissant.
+      details: Potion unique aux couleurs d'arc-en-ciel. Elle ne peut être employée qu'une fois lors d'un combat de roi.
+    odorElixir:
+      name: Élixir d'Odeur
+      description: Un élixir très rare à offrir à un Shlagémon qu'on adore.
+      details: Utilisé sur un Shlagémon, sa rareté suivra désormais son niveau.
+  kings:
+    plaine-kekette:
+      dialogBefore: Coucou, si tu gagnes, je te paye le petit déjeuné !
+      dialogAfter: Ok, ok, tu as gagné, je vais t'inviter pour ce petit déj !
+      dialogDefeat: Mais quel grosse merde, tu vas me payer un petit déj' de ouf !
+    bois-de-bouffon:
+      dialogBefore: Ici, c'est ma street, et tu as trop de cheveux pour pouvoir continuer ton chemin.
+      dialogAfter: Tu m'as bien déglingué, bravo ! Je vais aller me faire un shampoing et je reviendrai bien plus fort !
+      dialogDefeat: Je vais te faire bouffer tes cheveux espèce de sous merde !
+    chemin-du-slip:
+      dialogBefore: Entres dans ma grotte si tu l'oses.
+      dialogAfter: Ta victoire ne sera que temporaire, je retourne en garde à vue.
+      dialogDefeat: Tu pues la lose, file te laver !
+    ravin-fesse-molle:
+      dialogBefore: Yo, j'suis raciste.
+      dialogAfter: Incroyable... tu as gagné. Je vais donc arrêter d'être raciste. Merci de m'avoir ouvert les yeux !
+      dialogDefeat: Dégage ! Retourne dans ton pays !
+    precipice-nanard:
+      dialogBefore: Je suis prêt à te mettre une sacrée rouste espèce de cassos ! Je déteste les pauvres comme toi, sale bâtard !
+      dialogAfter: Tu m'as explosé le fiak, je vais te foutre une grosse loi dans ta gueule, ça va te calmer.
+      dialogDefeat: T'es une merde, t'as toujours été une merde, tu resteras une merde toute ta vie.
+    marais-moudugenou:
+      dialogBefore: J'ai des infos sur la sortie de la prochaine Switch !
+      dialogAfter: Tu t'extirpes du marais victorieux, tu ne sauras donc jamais quand la prochaine Switch va sortir...
+      dialogDefeat: Je t'éclabousse de ma boue, retourne barboter ailleurs.
+    forteresse-petmoalfiak:
+      dialogBefore: Tu entends cette petite voix dans ta tête ? Elle te dit de perdre... C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !
+      dialogAfter: Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…
+      dialogDefeat: Wow… tu pues la loose ! Attention, les vraies hallucinations commencent à la prochaine pleine lune…
+    route-du-nawak:
+      dialogBefore: Je n'aime ni la couleur de tes cheveux, ni la forme de ton nez, ni la taille de tes pieds. Prépare toi à perdre tes couilles !
+      dialogAfter: Tu t'en sors, pour l'instant.
+      dialogDefeat: Je suis obligée de quitter le territoire, mais je reviendrai pour te bouffer le cul, enculé de ta race !
+    mont-dracatombe:
+      dialogBefore: Salut, j'aime beaucoup les couleurs mais également tabasser des meufs.
+      dialogAfter: Tu as réussi à me vaincre, je te peindrait tout de même en looser.
+      dialogDefeat: Tu pues la merde, je te nique tes morts !
+    catacombes-merdifientes:
+      dialogBefore: Peux tu m'aider à descendre ce sac dans ma cave, s'il te plaît ?
+      dialogAfter: Je sombre dans l'ombre des catacombes avec mon terrible secret.
+      dialogDefeat: Remonte donc à la surface, larve.
+    route-aguicheuse:
+      dialogBefore: Moi j'aide les pauvre mais je les baises aussi. Avec ou sans consentement.
+      dialogAfter: Bien joué, voyageur, tu m'as bien enculé.
+      dialogDefeat: Et je te baise toi aussi, espèce de trou de balle informe !
+    vallee-des-chieurs:
+      dialogBefore: Tu es plutôt un garçon ou une fille ? Décide toi car je ne veux pas perdre mon temps avec les indécis.
+      dialogAfter: "Tu m'as ovuert les yeux, je vais t'accepter comme tu es : un vagin à tête de gland."
+      dialogDefeat: Je t'ai violenté aussi fort qu'un expéliermus, tu es un vrai loser.
+    trou-du-bide:
+      dialogBefore: Bienvenue dans mon trou, il est imprenable, j'y ai construit un mur titanesque !
+      dialogAfter: Tu as brisé mon trou... je vais te niquer ton père et construire un mur tout autour !
+      dialogDefeat: Boum ! Mon trou t'écrase, petit looser de mort ! J'te baise !
+    zone-giga-zob:
+      dialogBefore: Je suis paix, je suis amour, tu n'as qu'à m'écouter et tu seras sauvé !
+      dialogAfter: Je te hais, toi et tes idées de merde !
+      dialogDefeat: Je suis ta haine, je suis ta colère, je suis ton désespoir !
+    route-so-dom:
+      dialogBefore: Les meufs, c'est toutes des putes, alors que moi j'adoooorrrreee faire la vaiselle !
+      dialogAfter: Tu me l'as mise bien profonde, mais je reviendrai plus forte !
+      dialogDefeat: T'es ma pute, je fais ce que je veux de toi !
+    lac-aux-relous:
+      dialogBefore: Я люблю хорошие ясли из кулей
+      dialogAfter: Я люблю тебя, хочешь pойти со мной на свидание?
+      dialogDefeat: Я засунул свой палец тебе в задницу
+    canyon-a-la-derp:
+      dialogBefore: Bienvenue au Canyon-a-la-derp™, le seul endroit où une simple goutte de sueur suffit à prouver ta grandeur... enfin, en théorie.
+      dialogAfter: Incroyable, tu as survécu à ma technologie révolutionnaire 100% inefficace. Tu mériterais presque un brevet.
+      dialogDefeat: Échec critique détecté. Mais t’inquiète, avec un bon PowerPoint, tu pourrais faire croire que t'as gagné.
+    cratere-des-legends:
+      dialogBefore: Wesh fdp.
+      dialogAfter: Je vais retourner a Los Angeles, et je serai beaucoup plus fort enculé !
+      dialogDefeat: Tu es un perdant, tu ne mérites pas de traverser ce cratère ! Baise ton frère.
+    mont-kouillasse:
+      dialogBefore: Bonjour, en tant que Roi du Mont Kouillasse, j'ai une liberté d'expression TOTALE ! Je peux dire ce que je veux et sucer des petits moustachus Allemands sans aucune censure !
+      dialogAfter: Vas te faire foutre, je t'enverrai dans une fusée pour que t'ailles sucer des couilles sur Mars !
+      dialogDefeat: T'es aussi con que ta mère, tu ne mérites pas de traverser le Mont Kouillasse !
+    paturage-crado:
+      dialogBefore: Je vais te faire bouffer ton petit cul !
+      dialogAfter: Alors là bravo, tu as réussi à me battre. Je vais aller me faire un petit café pour me remettre de cette défaite.
+      dialogDefeat: Je vais imposer une loi pour interdire les losers comme toi de se balader dans les pâturages !
   shlagemons:
     01-05:
       fantomanus:
@@ -936,7 +1294,7 @@ data:
         description: Roux pas Cool était anciennement cool. Roux pas Cool a passé trop de temps à gratter des accords mineurs au bord d’un volcan éteint. Désormais, Roux pas Cool erre avec une guitare trop grande pour ses ailes, des taches de rousseur qui pleurent, et une chemise à carreaux qui sent l’herbe humide et les regrets. Son plumage a pris une teinte rouille triste, et sa mèche rousse cache un regard empli de remords, comme s’il réalisait constamment qu’il aurait pu évoluer en rapace légendaire, mais a préféré sortir un EP en indépendant. Il fait toujours un peu froid autour de lui, même en plein été. Sa capacité signature, Refrain Gênant, inflige un malaise profond à toute l’arène, réduisant la précision des attaques ennemies tant qu’ils détournent le regard. Il est très doué pour faire fuir les Pokémon sauvages… et les rendez-vous galants.
         name: Roux pas Cool
       sacdepates:
-        description: "Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser."
+        description: 'Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser.'
         name: Sac de Pâtes
     05-10:
       aspigros:
@@ -961,7 +1319,7 @@ data:
         description: Une masse de boue nauséabonde qui se traîne lentement. Là où il passe, plus rien ne pousse à cause de sa toxicité. Il est fait d'une boue toxique. Il pollue tout ce qu’il touche, même le sol devient stérile. Il pue tellement que des gens s’évanouissent rien qu’en le croisant. Son corps est un concentré de toxines.
         name: Metamorve
       ptitocard:
-        description: "Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion… mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr."
+        description: 'Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion… mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.'
         name: Ptitocard
     10-15:
       abraquemar:
@@ -1199,25 +1557,25 @@ data:
       coksale:
         description: Une coccinelle de cité, toujours perchée sur un mégot. Deux yeux globuleux et des ailes qui puent le tabac froid.
         name: Coksale
-      kaiminable:
-        description: Petit croco tout bouffi, baveux, qui mord ses propres doigts. A déjà une canette vide accrochée à la queue.
-        name: Kaiminable
       houlard:
         description: Petit hibou shooté, avec un seul œil rouge qui tourne. Pose sur des poteaux EDF, lâche des fientes phosphorescentes.
         name: Houlard
+      kaiminable:
+        description: Petit croco tout bouffi, baveux, qui mord ses propres doigts. A déjà une canette vide accrochée à la queue.
+        name: Kaiminable
     65-70:
-      minidrapcon:
-        description: Petit serpent drapé et un peu demeuré, il se prend souvent les crochets dans ses propres replis.
-        name: Minidrapcon
       glandignon:
         description: Bébé plante molle et poisseuse. Le bulbe sur sa tête suinte. Odeur de chaussette trempée.
         name: Glandignon
-      qwiflash:
-        description: Poisson gonflé, mais tout mollasson, flotte à moitié crevé dans les caniveaux. Tire la langue, sans raison.
-        name: Qwiflash
       hericouille:
         description: Petit hérisson gris, les flammes ne s’allument plus. Il tousse en permanence, il a des brûlures aux fesses.
         name: Héricouille
+      minidrapcon:
+        description: Petit serpent drapé et un peu demeuré, il se prend souvent les crochets dans ses propres replis.
+        name: Minidrapcon
+      qwiflash:
+        description: Poisson gonflé, mais tout mollasson, flotte à moitié crevé dans les caniveaux. Tire la langue, sans raison.
+        name: Qwiflash
     70-75:
       krabbyjaccob:
         description: Ce crustacé porte une petite kippa et danse sans arrêt comme dans le vieux film dont il est fan. Entre deux blagues douteuses, il pince tout ce qui traîne pour vérifier si c'est cashèr.
@@ -1249,7 +1607,7 @@ data:
         description: Sa langue interminable traîne partout et sert principalement à médire. Il aime critiquer ses adversaires jusqu'à ce qu'ils abandonnent par lassitude.
         name: Languedepute
       lecocu:
-        description: "Lecocu porte toujours un air triste : sa femme le trompe avec tous les dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec une gentillesse déconcertante."
+        description: 'Lecocu porte toujours un air triste : sa femme le trompe avec tous les dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec une gentillesse déconcertante.'
         name: Lecocu
       rhinofaringite:
         description: Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en permanence, ce qui le rend aussi glissant qu'imprévisible.
@@ -1264,14 +1622,12 @@ data:
       kandurex:
         description: Toujours équipé de préservatifs fluo, Kandurex vante ses prouesses au lit à qui veut l'entendre. Il distribue des conseils douteux sur la reproduction entre deux uppercuts.
         name: Kandurex
-      poissocisse:
-        description: Poissocisse se nourrit exclusivement de saucisses. Son odeur charcutière attire chiens et dresseurs affamés, ce qui le rend paradoxalement difficile à pêcher.
-      strabisme:
-        description: Ses yeux partent chacun dans une direction différente, ce qui déstabilise ses adversaires. Il brille d'une lueur aquatique quand on lui parle de vacances au bord de la mer.
-        name: Strabisme
       poissaucisse:
         description: Poissaucisse se nourrit exclusivement de saucisses. Son odeur charcutière attire chiens et dresseurs affamés, ce qui le rend paradoxalement difficile à pêcher.
         name: Poissaucisse
+      strabisme:
+        description: Ses yeux partent chacun dans une direction différente, ce qui déstabilise ses adversaires. Il brille d'une lueur aquatique quand on lui parle de vacances au bord de la mer.
+        name: Strabisme
     90-95:
       elektektonik:
         description: Toujours en train de danser la tecktonik, il électrise l'air autour de lui. Ses mouvements saccadés déclenchent de petites décharges qui font sauter les plombs partout où il passe.
@@ -1285,15 +1641,19 @@ data:
       m-ventriloque:
         description: C'est le sosie raté d'un célèbre humoriste et il passe son temps à discuter avec sa propre main. Ses tours de ventriloquie mettent mal à l'aise plus qu'ils ne font rire.
         name: M. Ventriloque
-    95-100:
+    95-99:
       lokhlash:
         description: Lokhlash adore participer à des battles de rap improvisées sur son dos. Il navigue de scène en scène, lâchant des punchlines glaciales qui font frissonner l'auditoire.
+        name: Lokhlash
       magmaretfred:
         description: Toujours en duo imaginaire avec son compère absent, Magmar&Fred crache des flammes en récitant des blagues douteuses. Il chauffe l'ambiance mais finit souvent seul sur scène.
+        name: Magmar&Fred
       scarapute:
         description: Cet insecte adore "sucer" le sang des voyageurs imprudents. On le voit souvent roder près des campings à la recherche d'un mollet juteux.
+        name: Scarapute
       taurus:
         description: Taurus est littéralement un taureau géométrique. Ses angles parfaits le rendent difficile à approcher sans se prendre une arrête dans les côtes.
+        name: Taurus
     artichaud:
       description: |-
         Artichaud est un Shlagémon légendaire qui symbolise le paradoxe ultime : avoir froid en transpirant. Né d’un choc thermique entre une glacière éventrée et une friteuse oubliée, il erre dans les friches industrielles, couvert de givre et de gouttes de sueur en même temps. Ses ailes en plumes de congélateur diffusent une brume glaciale, mais il porte toujours un Marcel trempé et un bonnet en laine boulochée.
@@ -1302,7 +1662,7 @@ data:
         Aujourd’hui, Artichaud veille sur les zones de non-droit climatiques, où il impose son règne moite et frigorifié, entre deux éternuements fumants et des engelures de l’aisselle.
       name: Artichaud
     bulgrosboule:
-      description: "Bulgrosboule est connu pour ses fesses titanesques capables d’éclipser le soleil couchant. Il avance à reculons, plus par fierté que par stratégie, laissant échapper des bulles parfumées d’une zone que les dresseurs préfèrent ne pas mentionner. Son cri ressemble à un bain moussant sous pression, et sa capacité signature, *Éruption Fessale*, propulse ses ennemis dans une brume tiède et collante. Doté d’une peau rebondie comme une piscine gonflable de brocante, il adore rebondir sur place en gloussant, ce qui désoriente la plupart des adversaires. Bulgrosboule est très affectueux, surtout avec ceux qui le massent. Attention toutefois : s’il se met à trembler des miches, c’est trop tard. Il va buller."
+      description: 'Bulgrosboule est connu pour ses fesses titanesques capables d’éclipser le soleil couchant. Il avance à reculons, plus par fierté que par stratégie, laissant échapper des bulles parfumées d’une zone que les dresseurs préfèrent ne pas mentionner. Son cri ressemble à un bain moussant sous pression, et sa capacité signature, *Éruption Fessale*, propulse ses ennemis dans une brume tiède et collante. Doté d’une peau rebondie comme une piscine gonflable de brocante, il adore rebondir sur place en gloussant, ce qui désoriente la plupart des adversaires. Bulgrosboule est très affectueux, surtout avec ceux qui le massent. Attention toutefois : s’il se met à trembler des miches, c’est trop tard. Il va buller.'
       name: Bulgrosboule
     carapouffe:
       description: Carapouffe s'est enfoncée dans sa propre carapace moelleuse, elle ne se déplace qu’en roulant lentement, laissant derrière elle une traînée de paillettes et de gloss fondu. Son maquillage dégouline en permanence, formant une couche protectrice impénétrable — les scientifiques appellent ça le « fard d’armure ». Dotée d’un regard mi-séduisant, mi-comateux, elle hypnotise ses adversaires en leur lançant des œillades flasques, accompagnées d’un soupir de lassitude cosmique. Elle passe ses journées à se recoiffer sans bouger la tête, grâce à un système complexe de brosses dissimulées dans son chignon. Sa voix est rauque, son parfum est toxique, et sa principale attaque, "Écrasement Moussant", consiste à s’écrouler violemment sur son ennemi en faisant claquer ses faux ongles.
@@ -1315,29 +1675,6 @@ data:
         Selon les shlagémonologues, Électhordu était jadis le gardien du “Courant Originel”, une énergie sacrée qui devait équilibrer le monde… mais il a confondu le disjoncteur sacré avec une friteuse et a tout cramé.
         Aujourd’hui, il erre, tordu du bec au voltage, parlant seul dans les fils électriques, et semant le chaos statique dans son sillage. Il est à la fois craint, moqué, et branché sur du 12 000 volts en permanence.
       name: Électhordu
-    mewteub:
-      description: |-
-        Mewteub est un né d’un bug génétique entre une prise HDMI et une entité cosmique sous anxiolytiques. On murmure qu’il aurait été cloné à partir d’un vieux câble péritel tombé dans une bassine de Monster Energy. Il flotte constamment, mais sans élégance — plutôt comme une chaussette dans un jacuzzi. Son corps translucide laisse entrevoir un réseau veineux qui clignote au rythme d’un modem 56k. Il émet des sons télépathiques, tous plus gênants les uns que les autres : soupirs, "hmm" douteux et parfois des extraits de discussions MSN de 2003. Il communique principalement par vibration de teub psychique, ce qui perturbe fortement les autres Shlagémons — et les enfants non accompagnés. Sa capacité spéciale, *Onde Malaise*, fige l’adversaire dans une gêne abyssale pendant plusieurs tours. On dit que croiser son regard provoque des flashbacks de soirées gênantes en boîte de province.
-        Mewteub est rare. Trop rare. Et franchement, c’est peut-être mieux ainsi.
-      name: Mewteub
-    salamiches:
-      name: Salamiches
-      description: |
-        Salamiches brûle, mais pas de feu noble, non, plutôt de feu de briquet BIC vide qu’on rallume à la 27ᵉ tentative. Toujours torse nu, même en hiver, il arbore une crête en feu mal fixée et des lunettes de soleil qui fondent partiellement à chaque attaque. Il se nourrit exclusivement de chips au paprika, de whisky bon marché, et d’approbation sociale. On le trouve souvent en train de se filmer en selfie pendant qu’il crache des étincelles sur des poubelles. Sa capacité spéciale, *Feu d’ego*, augmente sa puissance chaque fois qu’il se fait huer. Il envoie des punchlines nulles entre deux jets de flamme molle, et rêve de devenir influenceur muscu alors qu’il n’a que deux abdos (et encore, en ombrage). C’est un être loyal, sauf si on lui propose un kebab gratuit ou une promotion chez Feu Vert.
-    sulfusouris:
-      description: |-
-        Sulfusouris est un Shlagémon légendaire né d’un court-circuit dans un four à micro-ondes abandonné. Selon la légende, une colonie de souris aurait tenté de construire un nid dans un grille-pain, et seule l’une d’entre elles aurait survécu… carbonisée, mais éveillée à une puissance ardente. Elle s’est relevée dans les flammes, plus déterminée que jamais à griller tout ce qui bouge — surtout les câbles électriques.
-        Avec son pelage en poils roussis, ses ailes faites de tranches de pain de mie calcinées et sa queue qui crache des étincelles, Sulfusouris est la terreur des parkings souterrains et des compteurs Linky. Il émet un grincement aigu quand il vole, comme un cri de modem mourant. Son odeur évoque un mélange de plastique fondu et de fromage râpé oublié dans une voiture en plein été.
-        Certains shlagémonologues affirment qu’il est capable de déclencher des incendies spontanés juste en éternuant, et qu’il s’abreuve exclusivement de Red Bull tiède pour alimenter ses flammes internes. D'autres disent qu’il aurait essayé de rejoindre le ciel comme un phénix… mais s’est arrêté à mi-hauteur pour fumer une clope sur un lampadaire.
-        Vénéré par une secte de rats crasseux, Sulfusouris est considéré comme le “Dieu du Barbecue Éternel”. Il apparaît parfois lors des canicules extrêmes, planant en sueur au-dessus des toits, et beuglant des prophéties incompréhensibles en clignotant comme une veilleuse cassée.
-      name: Sulfusouris
-    wem:
-      description: |-
-        Wem est terne, pataud, et délibérément inutile. On raconte qu’il a été créé par erreur lors d’un téléchargement corrompu d’un clone sur une imprimante 3D alimentée par une bouilloire.
-        Il ne vole pas, il ne flotte pas, il rampe doucement en couinant comme une chaussure mouillée. Chaque cellule de son corps transpire la médiocrité : ses attaques échouent à 60% du temps, ses pouvoirs sont incompatibles avec tous les systèmes connus, et même sa présence fait buguer les enceintes Bluetooth.
-        Son attaque signature, *Raté Critique*, inflige 0 dégâts mais provoque un inconfort durable chez l’adversaire. Wem a le pouvoir unique d’annuler l’enthousiasme autour de lui, et certains dresseurs le transportent uniquement pour neutraliser les encouragements du public adverse.
-        On ne le trouve pas : c’est lui qui reste, par erreur, au fond d’un sac. Son rêve ? Être ignoré parfaitement, comme un ticket de caisse mouillé.
-      name: Wem
     evolutions:
       accrocrack:
         description: |-
@@ -1764,6 +2101,29 @@ data:
     mairiousse:
       description: "Mairiousse est un énorme chien blanc au poil jauni par l’usure, toujours affublé d’une écharpe tricolore crado, mal ajustée, qui pendouille de travers sur son flanc. Son torse est bombé comme s’il venait de serrer une cinquantième main municipale, mais ses pattes sont molles et déformées par trop de réunions debout. Il porte des lunettes de vue sales, à moitié embuées, calées sur un museau humide qui bave en permanence. Son regard est épuisé mais autoritaire, avec un sourcil levé de travers et l’autre tombant comme un panneau d'interdiction arraché. Il traîne derrière lui un petit nuage d’odeur de vieux bureau moisi, et des miettes de galette des rois restent coincées dans ses babines depuis janvier. L’un de ses crocs dépasse légèrement, usé comme un stylo Bic mâchonné en conseil communal. Il tient debout dans une posture ridicule mais solennelle, un peu penché, une patte sur un vieux micro cassé et l’autre tremblante sur un registre municipal couvert de poils. Parfois, il lève la patte par réflexe… sur une urne électorale. On dit que Mairiousse n’aboie pas : il fait des discours interminables qui endorment les Shlagémons ennemis d’ennui profond."
       name: Mairiousse
+    mewteub:
+      description: |-
+        Mewteub est un né d’un bug génétique entre une prise HDMI et une entité cosmique sous anxiolytiques. On murmure qu’il aurait été cloné à partir d’un vieux câble péritel tombé dans une bassine de Monster Energy. Il flotte constamment, mais sans élégance — plutôt comme une chaussette dans un jacuzzi. Son corps translucide laisse entrevoir un réseau veineux qui clignote au rythme d’un modem 56k. Il émet des sons télépathiques, tous plus gênants les uns que les autres : soupirs, "hmm" douteux et parfois des extraits de discussions MSN de 2003. Il communique principalement par vibration de teub psychique, ce qui perturbe fortement les autres Shlagémons — et les enfants non accompagnés. Sa capacité spéciale, *Onde Malaise*, fige l’adversaire dans une gêne abyssale pendant plusieurs tours. On dit que croiser son regard provoque des flashbacks de soirées gênantes en boîte de province.
+        Mewteub est rare. Trop rare. Et franchement, c’est peut-être mieux ainsi.
+      name: Mewteub
+    salamiches:
+      name: Salamiches
+      description: |
+        Salamiches brûle, mais pas de feu noble, non, plutôt de feu de briquet BIC vide qu’on rallume à la 27ᵉ tentative. Toujours torse nu, même en hiver, il arbore une crête en feu mal fixée et des lunettes de soleil qui fondent partiellement à chaque attaque. Il se nourrit exclusivement de chips au paprika, de whisky bon marché, et d’approbation sociale. On le trouve souvent en train de se filmer en selfie pendant qu’il crache des étincelles sur des poubelles. Sa capacité spéciale, *Feu d’ego*, augmente sa puissance chaque fois qu’il se fait huer. Il envoie des punchlines nulles entre deux jets de flamme molle, et rêve de devenir influenceur muscu alors qu’il n’a que deux abdos (et encore, en ombrage). C’est un être loyal, sauf si on lui propose un kebab gratuit ou une promotion chez Feu Vert.
+    sulfusouris:
+      description: |-
+        Sulfusouris est un Shlagémon légendaire né d’un court-circuit dans un four à micro-ondes abandonné. Selon la légende, une colonie de souris aurait tenté de construire un nid dans un grille-pain, et seule l’une d’entre elles aurait survécu… carbonisée, mais éveillée à une puissance ardente. Elle s’est relevée dans les flammes, plus déterminée que jamais à griller tout ce qui bouge — surtout les câbles électriques.
+        Avec son pelage en poils roussis, ses ailes faites de tranches de pain de mie calcinées et sa queue qui crache des étincelles, Sulfusouris est la terreur des parkings souterrains et des compteurs Linky. Il émet un grincement aigu quand il vole, comme un cri de modem mourant. Son odeur évoque un mélange de plastique fondu et de fromage râpé oublié dans une voiture en plein été.
+        Certains shlagémonologues affirment qu’il est capable de déclencher des incendies spontanés juste en éternuant, et qu’il s’abreuve exclusivement de Red Bull tiède pour alimenter ses flammes internes. D'autres disent qu’il aurait essayé de rejoindre le ciel comme un phénix… mais s’est arrêté à mi-hauteur pour fumer une clope sur un lampadaire.
+        Vénéré par une secte de rats crasseux, Sulfusouris est considéré comme le “Dieu du Barbecue Éternel”. Il apparaît parfois lors des canicules extrêmes, planant en sueur au-dessus des toits, et beuglant des prophéties incompréhensibles en clignotant comme une veilleuse cassée.
+      name: Sulfusouris
+    wem:
+      description: |-
+        Wem est terne, pataud, et délibérément inutile. On raconte qu’il a été créé par erreur lors d’un téléchargement corrompu d’un clone sur une imprimante 3D alimentée par une bouilloire.
+        Il ne vole pas, il ne flotte pas, il rampe doucement en couinant comme une chaussure mouillée. Chaque cellule de son corps transpire la médiocrité : ses attaques échouent à 60% du temps, ses pouvoirs sont incompatibles avec tous les systèmes connus, et même sa présence fait buguer les enceintes Bluetooth.
+        Son attaque signature, *Raté Critique*, inflige 0 dégâts mais provoque un inconfort durable chez l’adversaire. Wem a le pouvoir unique d’annuler l’enthousiasme autour de lui, et certains dresseurs le transportent uniquement pour neutraliser les encouragements du public adverse.
+        On ne le trouve pas : c’est lui qui reste, par erreur, au fond d’un sac. Son rêve ? Être ignoré parfaitement, comme un ticket de caisse mouillé.
+      name: Wem
     zebrapoisbleu:
       description: |-
         ZebraPoisBleu est un Shlagémon ultra rare, aperçu seulement au lever de la rosée, lové contre un buisson de pois bleus luminescents. Il a l’apparence d’un petit zèbre dodu, tout doux et pastel, assis en position de méditation foireuse, le regard serein et l’odeur envoûtante.
@@ -1772,525 +2132,6 @@ data:
         Expression faciale : un sourire béat, yeux clos, genre "je plane à 3 cm du sol, et c’est très bien comme ça." Détail absurde : des petits pétales bleus lui sortent parfois des oreilles quand il éternue. Aura : un halo féerique vaporeux, avec des particules bleutées, un peu comme un encens cosmique.
         Ce Shlagémon n’attaque jamais directement. Il infuse le terrain d’une paix surnaturelle qui rend confus tous les Shlagémons agressifs. Sauf s’ils ont le type Métal Brutal, là ça les énerve encore plus.
       name: ZebraPoisBleu
-    95-99:
-      lokhlash:
-        description: Lokhlash adore participer à des battles de rap improvisées sur son dos. Il navigue de scène en scène, lâchant des punchlines glaciales qui font frissonner l'auditoire.
-        name: Lokhlash
-      magmaretfred:
-        description: Toujours en duo imaginaire avec son compère absent, Magmar&Fred crache des flammes en récitant des blagues douteuses. Il chauffe l'ambiance mais finit souvent seul sur scène.
-        name: Magmar&Fred
-      scarapute:
-        description: Cet insecte adore "sucer" le sang des voyageurs imprudents. On le voit souvent roder près des campings à la recherche d'un mollet juteux.
-        name: Scarapute
-      taurus:
-        description: Taurus est littéralement un taureau géométrique. Ses angles parfaits le rendent difficile à approcher sans se prendre une arrête dans les côtes.
-        name: Taurus
-  Minigame:
-    ConnectFour:
-      startText: Une partie de Puissance 4 ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Bien joué ! Je te donne un œuf Feu.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      drawText: Match nul ! Recommence quand tu veux.
-      back: Retour
-      restart: Recommencer
-    ShlagMind:
-      startText: Une partie de ShlagMind ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      back: Retour
-      restart: Recommencer
-    Battleship:
-      startText: Une partie de bataille navale ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Victoire ! Je te donne un œuf Eau.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      restart: Recommencer
-      back: Retour
-    ShlagPairs:
-      startText: Une partie du jeu des paires ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
-      super: Super !
-      loseText: Dommage !
-      restart: Recommencer
-      back: Retour
-    ShlagTaquin:
-      startText: Une partie de taquin ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Je te donne un œuf Foudre.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      restart: Recommencer
-      back: Retour
-    TicTacToe:
-      startText: Envie d'une partie de morpion ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Bien joué ! Je te donne un Œuf Herbe.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      restart: Recommencer
-      back: Retour
-    MasterMind:
-      startText: Une partie de ShlagMind ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      restart: Recommencer
-      back: Retour
-    Pairs:
-      startText: Une partie du jeu des paires ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Bien joué ! Je te donne un œuf Psy.
-      super: Super !
-      loseText: Dommage !
-      restart: Recommencer
-      back: Retour
-    Taquin:
-      startText: Une partie de taquin ?
-      yes: Oui
-      no: Non
-      winText: Bravo ! Je te donne un œuf Foudre.
-      super: Super !
-      loseText: Perdu ! Recommence quand tu veux.
-      restart: Recommencer
-      back: Retour
-  items:
-    items:
-      defensePotion:
-        name: Potion de Défense
-        description: Augmente temporairement la défense.
-        details: Renforce brièvement la défense de votre Shlagémon actif.
-      superDefensePotion:
-        name: Super Potion de Défense
-        description: Augmente beaucoup la défense.
-        details: Renforce considérablement la défense de votre Shlagémon actif.
-      hyperDefensePotion:
-        name: Hyper Potion de Défense
-        description: Maximise temporairement la défense.
-        details: Booste énormément la défense de votre Shlagémon actif.
-      attackPotion:
-        name: Potion d'Attaque
-        description: Augmente temporairement l'attaque.
-        details: Renforce brièvement l'attaque de votre Shlagémon actif.
-      superAttackPotion:
-        name: Super Potion d'Attaque
-        description: Augmente beaucoup l'attaque.
-        details: Renforce considérablement l'attaque de votre Shlagémon actif.
-      hyperAttackPotion:
-        name: Hyper Potion d'Attaque
-        description: Maximise temporairement l'attaque.
-        details: Booste énormément l'attaque de votre Shlagémon actif.
-      vitalityPotion:
-        name: Potion de Vitalité
-        description: Augmente temporairement les PV.
-        details: Augmente les PV de votre Shlagémon actif de 10% pendant quelques minutes.
-      superVitalityPotion:
-        name: Super Potion de Vitalité
-        description: Augmente beaucoup les PV.
-        details: Augmente les PV de votre Shlagémon actif de 25% pendant quelques minutes.
-      hyperVitalityPotion:
-        name: Hyper Potion de Vitalité
-        description: Maximise temporairement les PV.
-        details: Augmente les PV de votre Shlagémon actif de 50% pendant quelques minutes.
-      xpPotion:
-        name: Potion d'Expérience
-        description: Augmente temporairement les gains d'XP.
-        details: Améliore l'XP gagnée de 10% pendant quelques minutes.
-      superXpPotion:
-        name: Super Potion d'Expérience
-        description: Augmente beaucoup les gains d'XP.
-        details: Améliore l'XP gagnée de 25% pendant quelques minutes.
-      hyperXpPotion:
-        name: Hyper Potion d'Expérience
-        description: Maximise temporairement les gains d'XP.
-        details: Améliore l'XP gagnée de 50% pendant quelques minutes.
-      capturePotion:
-        name: Potion de Capture
-        description: Augmente légèrement les chances de capture.
-        details: Améliore la probabilité de capture de 10% pendant quelques minutes.
-      superCapturePotion:
-        name: Super Potion de Capture
-        description: Augmente beaucoup les chances de capture.
-        details: Améliore la probabilité de capture de 25% pendant quelques minutes.
-      hyperCapturePotion:
-        name: Hyper Potion de Capture
-        description: Maximise les chances de capture.
-        details: Améliore la probabilité de capture de 50% pendant quelques minutes.
-      potion:
-        name: Potion Dégueulasse
-        description: Soigne 50 HP de votre Shlagémon.
-        details: Redonne 50 points de vie à votre Shlagémon actif pendant le combat.
-      superPotion:
-        name: Super Potion
-        description: Soigne 100 HP de votre Shlagémon.
-        details: Redonne 100 points de vie à votre Shlagémon actif pendant le combat.
-      hyperPotion:
-        name: Hyper Potion
-        description: Soigne 200 HP de votre Shlagémon.
-        details: Redonne 200 points de vie à votre Shlagémon actif pendant le combat.
-      multiExp:
-        name: Multi-EXP
-        description: Partage l'XP avec un Shlagémon.
-        details: Permet de partager 50% de l'XP gagnée en combat avec le Shlagémon porteur.
-      thunderStone:
-        name: Pierre Foutre
-        description: Permet certaines évolutions de type électrique.
-        details: À des effets foutrement intéressants.
-      steroids:
-        name: Stéroïdes
-        description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
-        details: Fait évoluer Macho en Masschopeur, à condition qu’il ait passé au moins 3h à la salle, sans jambes, évidemment.
-      ultraSteroid:
-        name: Ultra-Stéroïde
-        description: Une substance interdite dans 97 pays, 2 dimensions et au moins une timeline.
-        details: Fait évoluer Masschopeur en Macintosh, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
-      eggBox:
-        name: Boîte à œufs
-        description: Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y avoir à l'intérieur.
-      fireEgg:
-        name: Œuf Feu
-        description: Un œuf chaud bouillant.
-      waterEgg:
-        name: Œuf Eau
-        description: Un œuf qui ruisselle.
-      grassEgg:
-        name: Œuf Herbe
-        description: Un œuf qui sent la pelouse.
-      psyEgg:
-        name: Œuf Psy
-        description: Un œuf qui te fixe intensément.
-      thunderEgg:
-        name: Œuf Foudre
-        description: Un œuf parcouru d'étincelles.
-    shlageball:
-      shlageball:
-        name: Shlagéball
-        description: Permet de capturer des Shlagémons sauvages.
-        details: Permet de capturer le Shlagémon actuellement en combat. Moins il a de points de vie, plus la chance de capture augmente.
-      superShlageball:
-        name: Super Shlagéball
-        description: Améliore les chances de capture.
-        details: Capture des Shlagémons plus récalcitrants avec un léger bonus de chance.
-      hyperShlageball:
-        name: Hyper Shlagéball
-        description: Offre de très hautes chances de capture.
-        details: Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.
-    wearables:
-      attackRing:
-        attackRing:
-          name: Bague d'attaque
-          description: Augmente l'attaque du porteur.
-          details: Portée par un Shlagémon, elle augmente son attaque de 15%. Effet cumulable avec les potions d'attaque.
-        advancedAttackRing:
-          name: Bague d'attaque avancée
-          description: Augmente fortement l'attaque du porteur.
-          details: Portée par un Shlagémon, elle augmente son attaque de 25%. Effet cumulable avec les potions d'attaque.
-        attackAmulet:
-          name: Amulette d'attaque
-          description: Augmente grandement l'attaque du porteur.
-          details: Portée par un Shlagémon, elle augmente son attaque de 33%. Effet cumulable avec les potions d'attaque.
-      defenseRing:
-        defenseRing:
-          name: Bague de défense
-          description: Augmente la défense du porteur.
-          details: Portée par un Shlagémon, elle augmente sa défense de 15%. Effet cumulable avec les potions de défense.
-        advancedDefenseRing:
-          name: Bague de défense avancée
-          description: Augmente fortement la défense du porteur.
-          details: Portée par un Shlagémon, elle augmente sa défense de 25%. Effet cumulable avec les potions de défense.
-        defenseAmulet:
-          name: Amulette de défense
-          description: Augmente grandement la défense du porteur.
-          details: Portée par un Shlagémon, elle augmente sa défense de 33%. Effet cumulable avec les potions de défense.
-      vitalityRing:
-        vitalityRing:
-          name: Bague Vitalesque
-          description: Augmente les PV max du porteur.
-          details: Portée par un Shlagémon, elle augmente ses PV maximum de 15%. Effet cumulable avec les potions de vitalité.
-        advancedVitalityRing:
-          name: Bague Vitalesque avancée
-          description: Augmente fortement les PV max du porteur.
-          details: Portée par un Shlagémon, elle augmente ses PV maximum de 25%. Effet cumulable avec les potions de vitalité.
-        vitalityAmulet:
-          name: Amulette Vitalesque
-          description: Augmente grandement les PV max du porteur.
-          details: Portée par un Shlagémon, elle augmente ses PV maximum de 33%. Effet cumulable avec les potions de vitalité.
-      xpRing:
-        xpRing:
-          name: Anneau d'expérience
-          description: Augmente l'XP du porteur.
-          details: Porté par un Shlagémon, il augmente l'expérience gagnée en combat de 15%. Effet cumulable avec les potions d'expérience.
-        advancedXpRing:
-          name: Anneau d'expérience avancé
-          description: Augmente fortement l'XP du porteur.
-          details: Porté par un Shlagémon, il augmente l'expérience gagnée en combat de 25%. Effet cumulable avec les potions d'expérience.
-        xpAmulet:
-          name: Amulette d'expérience
-          description: Augmente grandement l'XP du porteur.
-          details: Portée par un Shlagémon, elle augmente l'expérience gagnée en combat de 33%. Effet cumulable avec les potions d'expérience.
-      preyAmulet:
-        name: Monsieur Croa
-        description: Empêche son porteur d'achever l'ennemi.
-        details: Portée par un Shlagémon, ses attaques laissent toujours au moins 1 PV à l'adversaire et infligent ensuite 0 dégât. Parfait pour capturer les adversaires affaiblis.
-      cuckRing:
-        name: Anneau du Cocu
-        description: Chaque attaque inflige soit le double de dégâts, soit soigne l'adversaire.
-        details: |
-          Porté par un Shlagémon, chaque attaque a 50% de chances
-          d'infliger le double de dégâts et 50% de chances de soigner l'ennemi du même montant.
-      croakKing:
-        name: Roi Croa
-        description: Empêche d'achever les Shlagémons shiny.
-        details: Les attaques contre un Shlagémon shiny le laissent toujours à 1 PV au lieu de le mettre K.O. Sans effet sur les ennemis non shiny.
-    defensePotion:
-      name: Potion de Défense
-      description: Augmente temporairement la défense.
-      details: Renforce brièvement la défense de votre Shlagémon actif.
-    superDefensePotion:
-      name: Super Potion de Défense
-      description: Augmente beaucoup la défense.
-      details: Renforce considérablement la défense de votre Shlagémon actif.
-    hyperDefensePotion:
-      name: Hyper Potion de Défense
-      description: Maximise temporairement la défense.
-      details: Booste énormément la défense de votre Shlagémon actif.
-    attackPotion:
-      name: Potion d'Attaque
-      description: Augmente temporairement l'attaque.
-      details: Renforce brièvement l'attaque de votre Shlagémon actif.
-    superAttackPotion:
-      name: Super Potion d'Attaque
-      description: Augmente beaucoup l'attaque.
-      details: Renforce considérablement l'attaque de votre Shlagémon actif.
-    hyperAttackPotion:
-      name: Hyper Potion d'Attaque
-      description: Maximise temporairement l'attaque.
-      details: Booste énormément l'attaque de votre Shlagémon actif.
-    vitalityPotion:
-      name: Potion de Vitalité
-      description: Augmente temporairement les PV.
-      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
-    superVitalityPotion:
-      name: Super Potion de Vitalité
-      description: Augmente beaucoup les PV.
-      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
-    hyperVitalityPotion:
-      name: Hyper Potion de Vitalité
-      description: Maximise temporairement les PV.
-      details: Augmente les PV de votre Shlagémon actif de {percent}% pendant quelques minutes.
-    xpPotion:
-      name: Potion d'Expérience
-      description: Augmente temporairement les gains d'XP.
-      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
-    superXpPotion:
-      name: Super Potion d'Expérience
-      description: Augmente beaucoup les gains d'XP.
-      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
-    hyperXpPotion:
-      name: Hyper Potion d'Expérience
-      description: Maximise temporairement les gains d'XP.
-      details: Améliore l'XP gagnée de {percent}% pendant quelques minutes.
-    capturePotion:
-      name: Potion de Capture
-      description: Augmente légèrement les chances de capture.
-      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
-    superCapturePotion:
-      name: Super Potion de Capture
-      description: Augmente beaucoup les chances de capture.
-      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
-    hyperCapturePotion:
-      name: Hyper Potion de Capture
-      description: Maximise les chances de capture.
-      details: Améliore la probabilité de capture de {percent}% pendant quelques minutes.
-    potion:
-      name: Potion Dégueulasse
-      description: Soigne {hp} HP de votre Shlagémon.
-      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
-    superPotion:
-      name: Super Potion
-      description: Soigne {hp} HP de votre Shlagémon.
-      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
-    hyperPotion:
-      name: Hyper Potion
-      description: Soigne {hp} HP de votre Shlagémon.
-      details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
-    multiExp:
-      name: Multi-EXP
-      description: Partage l'XP avec un Shlagémon.
-      details: Permet de partager {percent}% de l'XP gagnée en combat avec le Shlagémon porteur.
-    thunderStone:
-      name: Pierre Foutre
-      description: Permet certaines évolutions de type électrique.
-      details: À des effets foutrement intéressants.
-    steroids:
-      name: Stéroïdes
-      description: Permet certaines évolutions de type "gros beauf bodybuildé toxique".
-      details: Fait évoluer {from} en {to}, à condition qu’il ait passé au moins {hours}h à la salle, sans jambes, évidemment.
-    ultraSteroid:
-      name: Ultra-Stéroïde
-      description: Une substance interdite dans {countries} pays, {dimensions} dimensions et au moins {timelines} timeline.
-      details: Fait évoluer {from} en {to}, une forme d’hypertrophie critique atteignant le point de non-retour. À manipuler avec des gants, une perche, et un avocat.
-    eggBox:
-      name: Boîte à œufs
-      description: Permet de stocker tous tes œufs sans encombrer l'inventaire. C'est super pour collectionner les œufs, mais tu n'as aucune idée de ce qu'il peut y avoir à l'intérieur.
-    fireEgg:
-      name: Œuf Feu
-      description: Un œuf chaud bouillant.
-    waterEgg:
-      name: Œuf Eau
-      description: Un œuf qui ruisselle.
-    grassEgg:
-      name: Œuf Herbe
-      description: Un œuf qui sent la pelouse.
-    psyEgg:
-      name: Œuf Psy
-      description: Un œuf qui te fixe intensément.
-    thunderEgg:
-      name: Œuf Foudre
-      description: Un œuf parcouru d'étincelles.
-    lighter:
-      name: Briquet
-      description: Fait briller la pyromanie chez certains Shlagémons.
-      details: Permet à {from} de se changer en {to} pour tout cramer.
-    pissBottle:
-      name: Bouteille de Pisse
-      description: Ça pue, mais c'est bourré de bactéries bien juteuses.
-      details: Transforme {from} en {to} après une bonne rasade.
-    defibrillator:
-      name: Défibrillateur
-      description: Un coup de jus pour repartir de travers.
-      details: Nécessaire pour que {from} évolue en {to}.
-    specialPotion:
-      name: Potion Spéciale
-      description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
-      details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action spéciale.
-    mysteriousPotion:
-      name: Potion Mystérieuse
-      description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
-      details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action mystérieuse.
-    fabulousPotion:
-      name: Potion Fabuleuse
-      description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
-      details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action fabuleuse.
-    odorElixir:
-      name: Élixir d'Odeur
-      description: Un élixir très rare à offrir à un Shlagémon qu'on adore.
-      details: Utilisé sur un Shlagémon, sa rareté suivra désormais son niveau.
-    rainbowPotion:
-      name: Potion Arc-en-ciel
-      description: A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un soin puissant.
-      details: Potion unique aux couleurs d'arc-en-ciel. Elle ne peut être employée qu'une fois lors d'un combat de roi.
-    badgeBox:
-      name: Boîte à badge
-      description: Conserve tous tes badges.
-  kings:
-    plaine-kekette:
-      dialogBefore: Coucou, si tu gagnes, je te paye le petit déjeuné !
-      dialogAfter: Ok, ok, tu as gagné, je vais t'inviter pour ce petit déj !
-      dialogDefeat: Mais quel grosse merde, tu vas me payer un petit déj' de ouf !
-    bois-de-bouffon:
-      dialogBefore: Ici, c'est ma street, et tu as trop de cheveux pour pouvoir continuer ton chemin.
-      dialogAfter: Tu m'as bien déglingué, bravo ! Je vais aller me faire un shampoing et je reviendrai bien plus fort !
-      dialogDefeat: Je vais te faire bouffer tes cheveux espèce de sous merde !
-    chemin-du-slip:
-      dialogBefore: Entres dans ma grotte si tu l'oses.
-      dialogAfter: Ta victoire ne sera que temporaire, je retourne en garde à vue.
-      dialogDefeat: Tu pues la lose, file te laver !
-    ravin-fesse-molle:
-      dialogBefore: Yo, j'suis raciste.
-      dialogAfter: Incroyable... tu as gagné. Je vais donc arrêter d'être raciste. Merci de m'avoir ouvert les yeux !
-      dialogDefeat: Dégage ! Retourne dans ton pays !
-    precipice-nanard:
-      dialogBefore: Je suis prêt à te mettre une sacrée rouste espèce de cassos ! Je déteste les pauvres comme toi, sale bâtard !
-      dialogAfter: Tu m'as explosé le fiak, je vais te foutre une grosse loi dans ta gueule, ça va te calmer.
-      dialogDefeat: T'es une merde, t'as toujours été une merde, tu resteras une merde toute ta vie.
-    marais-moudugenou:
-      dialogBefore: J'ai des infos sur la sortie de la prochaine Switch !
-      dialogAfter: Tu t'extirpes du marais victorieux, tu ne sauras donc jamais quand la prochaine Switch va sortir...
-      dialogDefeat: Je t'éclabousse de ma boue, retourne barboter ailleurs.
-    forteresse-petmoalfiak:
-      dialogBefore: Tu entends cette petite voix dans ta tête ? Elle te dit de perdre... C’est moi. Bienvenue dans mon trip, tu ne t’en sortiras pas indemne !
-      dialogAfter: Quoi ?! Même mes discours tordus ne t’ont pas fait perdre pied ? Tu dois être vraiment perché, toi aussi…
-      dialogDefeat: Wow… tu pues la loose ! Attention, les vraies hallucinations commencent à la prochaine pleine lune…
-    route-du-nawak:
-      dialogBefore: Je n'aime ni la couleur de tes cheveux, ni la forme de ton nez, ni la taille de tes pieds. Prépare toi à perdre tes couilles !
-      dialogAfter: Tu t'en sors, pour l'instant.
-      dialogDefeat: Je suis obligée de quitter le territoire, mais je reviendrai pour te bouffer le cul, enculé de ta race !
-    mont-dracatombe:
-      dialogBefore: Salut, j'aime beaucoup les couleurs mais également tabasser des meufs.
-      dialogAfter: Tu as réussi à me vaincre, je te peindrait tout de même en looser.
-      dialogDefeat: Tu pues la merde, je te nique tes morts !
-    catacombes-merdifientes:
-      dialogBefore: Peux tu m'aider à descendre ce sac dans ma cave, s'il te plaît ?
-      dialogAfter: Je sombre dans l'ombre des catacombes avec mon terrible secret.
-      dialogDefeat: Remonte donc à la surface, larve.
-    route-aguicheuse:
-      dialogBefore: Moi j'aide les pauvre mais je les baises aussi. Avec ou sans consentement.
-      dialogAfter: Bien joué, voyageur, tu m'as bien enculé.
-      dialogDefeat: Et je te baise toi aussi, espèce de trou de balle informe !
-    vallee-des-chieurs:
-      dialogBefore: Tu es plutôt un garçon ou une fille ? Décide toi car je ne veux pas perdre mon temps avec les indécis.
-      dialogAfter: "Tu m'as ovuert les yeux, je vais t'accepter comme tu es : un vagin à tête de gland."
-      dialogDefeat: Je t'ai violenté aussi fort qu'un expéliermus, tu es un vrai loser.
-    trou-du-bide:
-      dialogBefore: Bienvenue dans mon trou, il est imprenable, j'y ai construit un mur titanesque !
-      dialogAfter: Tu as brisé mon trou... je vais te niquer ton père et construire un mur tout autour !
-      dialogDefeat: Boum ! Mon trou t'écrase, petit looser de mort ! J'te baise !
-    zone-giga-zob:
-      dialogBefore: Je suis paix, je suis amour, tu n'as qu'à m'écouter et tu seras sauvé !
-      dialogAfter: Je te hais, toi et tes idées de merde !
-      dialogDefeat: Je suis ta haine, je suis ta colère, je suis ton désespoir !
-    route-so-dom:
-      dialogBefore: Les meufs, c'est toutes des putes, alors que moi j'adoooorrrreee faire la vaiselle !
-      dialogAfter: Tu me l'as mise bien profonde, mais je reviendrai plus forte !
-      dialogDefeat: T'es ma pute, je fais ce que je veux de toi !
-    lac-aux-relous:
-      dialogBefore: Я люблю хорошие ясли из кулей
-      dialogAfter: Я люблю тебя, хочешь pойти со мной на свидание?
-      dialogDefeat: Я засунул свой палец тебе в задницу
-    canyon-a-la-derp:
-      dialogBefore: Bienvenue au Canyon-a-la-derp™, le seul endroit où une simple goutte de sueur suffit à prouver ta grandeur... enfin, en théorie.
-      dialogAfter: Incroyable, tu as survécu à ma technologie révolutionnaire 100% inefficace. Tu mériterais presque un brevet.
-      dialogDefeat: Échec critique détecté. Mais t’inquiète, avec un bon PowerPoint, tu pourrais faire croire que t'as gagné.
-    cratere-des-legends:
-      dialogBefore: Wesh fdp.
-      dialogAfter: Je vais retourner a Los Angeles, et je serai beaucoup plus fort enculé !
-      dialogDefeat: Tu es un perdant, tu ne mérites pas de traverser ce cratère ! Baise ton frère.
-    mont-kouillasse:
-      dialogBefore: Bonjour, en tant que Roi du Mont Kouillasse, j'ai une liberté d'expression TOTALE ! Je peux dire ce que je veux et sucer des petits moustachus Allemands sans aucune censure !
-      dialogAfter: Vas te faire foutre, je t'enverrai dans une fusée pour que t'ailles sucer des couilles sur Mars !
-      dialogDefeat: T'es aussi con que ta mère, tu ne mérites pas de traverser le Mont Kouillasse !
-    paturage-crado:
-      dialogBefore: Je vais te faire bouffer ton petit cul !
-      dialogAfter: Alors là bravo, tu as réussi à me battre. Je vais aller me faire un petit café pour me remettre de cette défaite.
-      dialogDefeat: Je vais imposer une loi pour interdire les losers comme toi de se balader dans les pâturages !
-  arenas:
-    arena20:
-      badge:
-        name: Badge Couillasse
-    arena40:
-      badge:
-        name: Badge Chaussette
-    arena60:
-      badge:
-        name: Badge Oignon Mystique
-    arena80:
-      badge:
-        name: Badge Tartine Beurrée
   shlagemons-type:
     normal:
       name: Normy
@@ -2390,6 +2231,8 @@ data:
         name: Lac aux Relous
       70-zone-giga-zob:
         name: Aire du Giga Zob
+      75-route-so-dom:
+        name: Route So'Dom
       80-mont-kouillasse:
         name: Mont Kouillasse
       85-paturage-crado:
@@ -2398,8 +2241,6 @@ data:
         name: Canyon de la nusse
       95-cratere-des-legends:
         name: Cratère des Légends
-      75-route-so-dom:
-        name: Route So'Dom
     villages:
       village10:
         name: Veaux du Gland sur Marne
@@ -2415,16 +2256,17 @@ data:
         name: Village des Cassos
       village80:
         name: Clito Land
+layouts:
+  NotFound:
+    not-found: Page introuvable
 pages:
   index:
     title: Shlagémon - Ça sent très fort
     description: Les Shlagémons ne sentent pas très bon.
     welcome: Bienvenue dans Shlagémon
-  shlagedex:
-    title: Shlagédex
   privacy-policy:
     title: Politique de Confidentialité – Shlagémon
-    lastUpdated: "Dernière mise à jour : 06/08/2025"
+    lastUpdated: 'Dernière mise à jour : 06/08/2025'
     sections:
       data:
         title: 1. Données collectées
@@ -2448,43 +2290,40 @@ pages:
         content: "Pour toute question : aife.contacts{'@'}gmail.com"
   save:
     ImportPage:
-      saveImport:
-        title: Importer une sauvegarde
-        drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
-        select: Sélectionner un fichier
-        warning: L'import remplacera votre sauvegarde actuelle. Assurez-vous d'avoir une copie.
-        import: Importer
-        confirmTitle: Confirmer l''import
-        confirmMessage: Cette action écrasera votre progression actuelle. Continuer ?
-        confirm: Oui, importer
-        cancel: Annuler
-        summary:
-          title: Récapitulatif
-          mons: "Shlagémons : {count}"
-          shlagidolar: "Shlagidolars : {amount}"
-          shlagidiamond: "Shlagidiamonds : {amount}"
-          playtime: "Temps de jeu : {time}"
-        errorInvalid: Fichier de sauvegarde invalide.
-        errorApply: L''import a échoué.
-App:
-  title: Shlagémon - Ça sent très fort
-  description: Attrape tous les Shlagémons pour éviter qu'ils ne pourrissent la terre entière.
-  author: Shlagémon Team
+      title: Importer une sauvegarde
+      drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
+      select: Sélectionner un fichier
+      warning: L'import remplacera votre sauvegarde actuelle. Assurez-vous d'avoir une copie.
+      import: Importer
+      confirmTitle: Confirmer l'import
+      confirmMessage: Cette action écrasera votre progression actuelle. Continuer ?
+      confirm: Oui, importer
+      cancel: Annuler
+      summary:
+        title: Récapitulatif
+        mons: 'Shlagémons : {count}'
+        shlagidolar: 'Shlagidolars : {amount}'
+        shlagidiamond: 'Shlagidiamonds : {amount}'
+        playtime: 'Temps de jeu : {time}'
+      errorInvalid: Fichier de sauvegarde invalide.
+      errorApply: L'import a échoué.
+  shlagedex:
+    title: Shlagédex
 stores:
   achievements:
-    unlocked: "Succès déverrouillé : {title}"
+    unlocked: 'Succès déverrouillé : {title}'
     zoneShinyTitle: "{zone} : Chasseur d'arc-en-ciel"
     zoneShinyDescription: Capturer tous les Shlagémon de {zone} en version shiny.
-    zoneRarityTitle: "{zone} : Perfectionniste"
+    zoneRarityTitle: '{zone} : Perfectionniste'
     zoneRarityDescription: Amener tous les Shlagémon de {zone} à la rareté 100.
     zoneCompleteDescription: Capturer tous les Shlagémon de {zone}.
-    zoneWinTitle: "{n} victoires - {zone}"
+    zoneWinTitle: '{n} victoires - {zone}'
     zoneWinDescription: Vaincre {n} Shlagémon dans {zone}.
     shinyTitles:
-      "1": Shiny!
-      "10": 10 shinies
-      "100": 100 shinies
-      "1000": Légende vivante
+      '1': Shiny!
+      '10': 10 shinies
+      '100': 100 shinies
+      '1000': Légende vivante
     shinyDescription: Capturer {n} Shlagémon shiny extrêmement rares.
     itemTitles:
       firstPurchase: Premier craquage
@@ -2496,15 +2335,6 @@ stores:
   disease:
     sick: Votre Shlagémon est malade ! Il reviendra à la normal après avoir gagné {n} combats.
     cured: Votre Shlagémon n'est plus malade !
-  shlagedex:
-    rarityReached: "{name} atteint la rareté {rarity} !"
-    evolved: "{name} a évolué !"
-    obtained: Tu as obtenu {name} !
-    alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
-    rarityChanged: "{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !"
-    released: "{name} a été relâché !"
-    point: point | points
-    level: niveau | niveaux
   game:
     toast:
       shlagidolar: Tu reçois {amount} Shlagédollars !
@@ -2512,6 +2342,12 @@ stores:
   inventory:
     toast:
       item: Tu obtiens {qty} {item} ({category}) !
-layouts:
-  NotFound:
-    not-found: Page introuvable
+  shlagedex:
+    rarityReached: '{name} atteint la rareté {rarity} !'
+    evolved: '{name} a évolué !'
+    obtained: Tu as obtenu {name} !
+    alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
+    point: point | points
+    level: niveau | niveaux
+    rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
+    released: '{name} a été relâché !'
