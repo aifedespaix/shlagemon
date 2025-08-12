@@ -44,6 +44,9 @@ export const routes: RouteRecordRaw[] = [
     path: '/save/import',
     name: 'save-import',
     component: () => import('~/pages/save/ImportPage.vue'),
+    meta: {
+      layout: 'empty',
+    },
   },
   { path: '/:all(.*)', name: 'not-found', component: () => import('~/pages/404.vue') },
 ]
