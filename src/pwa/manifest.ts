@@ -12,7 +12,14 @@ const base: Partial<ManifestOptions> = {
   theme_color: '#1865ab',
   background_color: '#1865ab',
   edge_side_panel: { preferred_width: 400 },
-
+  file_handlers: [
+    {
+      action: '/save/import',
+      accept: {
+        'application/x-shlag': ['.shlag'],
+      }
+    }
+  ],
   icons: [
     { src: '/pwa-64x64.png', sizes: '64x64', type: 'image/png', purpose: 'any' },
     { src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
@@ -27,8 +34,7 @@ const base: Partial<ManifestOptions> = {
     { src: '/screenshots/shop.jpg', sizes: '1200x800', type: 'image/jpeg' },
     { src: '/screenshots/with-map.jpg', sizes: '1200x800', type: 'image/jpeg' },
   ],
-  handle_links: 'preferred',
-  file_handlers: [],
+  handle_links: 'auto',
   protocol_handlers: [],
   categories: ['games', 'idle', 'strategy'],
   dir: 'ltr',
