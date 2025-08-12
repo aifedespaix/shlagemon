@@ -53,7 +53,6 @@ const { onAnimationEnd, onFaintEnd } = useFaintAutoEmit(toRef(props, 'fainted'))
 onFaintEnd(() => emit('faintEnd'))
 
 const heldItem = useHeldItem(toRef(props, 'mon'))
-const openTypeChart = useTypeChartAction(toRef(props, 'mon'))
 const openInfo = useInfoAction(toRef(props, 'mon'), toRef(props, 'belongsToPlayer'))
 
 const srMessages = computed(() => entries.value.map((f: FloatingEntry) =>
@@ -76,7 +75,6 @@ const maxHp = computed(() => dex.maxHp(props.mon))
       :effects="props.effects"
       :disease="props.disease"
       :disease-remaining="props.diseaseRemaining"
-      @show-type-chart="openTypeChart"
     />
 
     <BattleMonHeldItemIcon

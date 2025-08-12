@@ -13,8 +13,6 @@ const props = withDefaults(defineProps<Props>(), {
   diseaseRemaining: 0,
 })
 
-const emit = defineEmits<{ (e: 'showTypeChart', effect: ActiveEffect): void }>()
-
 const now = ref(Date.now())
 const { pause } = useIntervalFn(() => (now.value = Date.now()), 1000)
 onUnmounted(pause)
@@ -27,7 +25,6 @@ onUnmounted(pause)
       :key="e.id"
       :effect="e"
       :now="now"
-      @click="emit('showTypeChart', e)"
     />
     <BattleDiseaseBadge v-if="props.disease" :remaining="props.diseaseRemaining" />
   </div>
