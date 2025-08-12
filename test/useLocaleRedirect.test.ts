@@ -10,7 +10,7 @@ interface SetupOptions {
   storedLocale?: string | null
   storeLocale?: string
   navigatorLanguages?: string[]
-  targetPath?: string
+  target?: string | Record<string, string>
 }
 
 async function setup(options: SetupOptions = {}) {
@@ -18,7 +18,7 @@ async function setup(options: SetupOptions = {}) {
     storedLocale = null,
     storeLocale,
     navigatorLanguages,
-    targetPath = '/foo',
+    target = '/foo',
   } = options
 
   localStorage.clear()
@@ -42,7 +42,7 @@ async function setup(options: SetupOptions = {}) {
 
   mount({
     template: '<div></div>',
-    setup: () => useLocaleRedirect(targetPath),
+    setup: () => useLocaleRedirect(target as any),
   }, {
     global: { plugins: [router, pinia] },
   })
@@ -90,5 +90,10 @@ describe('useLocaleRedirect', () => {
   it('falls back to default locale', async () => {
     const { replaceSpy } = await setup({ navigatorLanguages: ['es-ES'] })
     expect(replaceSpy).toHaveBeenCalledWith({ path: `/${defaultLocale}/foo` })
+  })
+
+  it('handles locale-specific paths', async () => {
+    const { replaceSpy } = await setup({ storedLocale: 'fr', target: { en: '/save/import', fr: '/sauvegarde/importer' } })
+    expect(replaceSpy).toHaveBeenCalledWith({ path: '/fr/sauvegarde/importer' })
   })
 })

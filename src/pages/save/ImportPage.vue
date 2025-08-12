@@ -9,8 +9,8 @@
  * - Robust focus management & ARIA live regions
  */
 import type { GameSave } from '~/utils/save-code'
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { applySave, importSave } from '~/utils/save-code'
-import { onMounted, ref, reactive, computed, watch, nextTick } from 'vue'
 
 /** === Composables & i18n ============================================== */
 const { t } = useI18n()
@@ -35,7 +35,7 @@ const previouslyFocused = ref<HTMLElement | null>(null)
 const loading = ref(false)
 const error = ref<string | null>(null)
 const info = ref<string | null>(null) // non-blocking feedback
-const fileMeta = reactive<{ name: string | null; size: number; mtime: number | null }>({
+const fileMeta = reactive<{ name: string | null, size: number, mtime: number | null }>({
   name: null,
   size: 0,
   mtime: null,
@@ -66,7 +66,8 @@ const canConfirmImport = computed(() => !!saveData.value && acknowledgeOverwrite
 
 /** === Drop Zone (vueuse) ============================================== */
 const { isOverDropZone } = useDropZone(dropZoneRef, (files) => {
-  if (files?.length) void handleFile(files[0])
+  if (files?.length)
+    void handleFile(files[0])
 }, { dataTypes: ['*/*'] })
 
 /** === Lifecycle ======================================================== */
@@ -77,13 +78,15 @@ onMounted(() => {
 
 /** === Handlers ========================================================= */
 function openFilePicker() {
-  if (!loading.value) fileInputRef.value?.click()
+  if (!loading.value)
+    fileInputRef.value?.click()
 }
 
 async function onFileChange(e: Event) {
   const input = e.target as HTMLInputElement
   const file = input.files?.[0]
-  if (file) await handleFile(file)
+  if (file)
+    await handleFile(file)
   // allow selecting same file again
   input.value = ''
 }
@@ -109,7 +112,8 @@ function isShlagFile(file: File): boolean {
 }
 
 async function handleFile(file: File) {
-  if (loading.value) return
+  if (loading.value)
+    return
   error.value = null
   info.value = null
 
@@ -135,7 +139,7 @@ async function handleFile(file: File) {
 
     // Extract summary safely
     const rawDex = (data as unknown as { shlagedex?: { shlagemons?: unknown[] } }).shlagedex
-    const rawGame = (data as unknown as { game?: { shlagidolar?: number; shlagidiamond?: number } }).game
+    const rawGame = (data as unknown as { game?: { shlagidolar?: number, shlagidiamond?: number } }).game
     const rawPlay = (data as unknown as { playtime?: { seconds?: number } }).playtime
 
     summary.mons = Array.isArray(rawDex?.shlagemons) ? rawDex!.shlagemons!.length : 0
@@ -144,10 +148,12 @@ async function handleFile(file: File) {
     summary.playtime = Number.isFinite(rawPlay?.seconds) ? (rawPlay!.seconds as number) : 0
 
     info.value = t('pages.save.ImportPage.fileReady') // add this key in i18n
-  } catch (e) {
+  }
+  catch {
     error.value = t('pages.save.ImportPage.errorInvalid')
     resetSelection()
-  } finally {
+  }
+  finally {
     loading.value = false
   }
 }
@@ -156,21 +162,24 @@ watch(showConfirm, (open) => {
   if (open) {
     previouslyFocused.value = document.activeElement as HTMLElement | null
     nextTick(() => confirmButtonRef.value?.focus())
-  } else {
+  }
+  else {
     acknowledgeOverwrite.value = false
     previouslyFocused.value?.focus()
   }
 })
 
 async function confirmImport() {
-  if (!saveData.value || !canConfirmImport.value) return
+  if (!saveData.value || !canConfirmImport.value)
+    return
   loading.value = true
   showConfirm.value = false
   try {
     applySave(saveData.value)
-    // Hard reload to ensure a clean state (service worker + stores)
-    window.location.reload()
-  } catch {
+    // Redirect to root to ensure a clean state (service worker + stores)
+    window.location.replace('/')
+  }
+  catch {
     error.value = t('pages.save.ImportPage.errorApply')
     loading.value = false
   }
@@ -191,15 +200,15 @@ function onDropzoneKeydown(e: KeyboardEvent) {
     <header class="flex flex-col items-center gap-4">
       <img
         src="/logo.webp"
-        class="w-full max-w-56 md:max-w-72 select-none"
+        class="max-w-56 w-full select-none md:max-w-72"
         alt=""
         aria-hidden="true"
         draggable="false"
-      />
+      >
       <h1
         ref="titleRef"
         tabindex="-1"
-        class="text-center text-2xl sm:text-3xl font-800 leading-tight focus:outline-none"
+        class="text-center text-2xl font-800 leading-tight sm:text-3xl focus:outline-none"
       >
         {{ t('pages.save.ImportPage.title') }}
       </h1>
@@ -215,7 +224,7 @@ function onDropzoneKeydown(e: KeyboardEvent) {
     </div>
     <p
       v-if="error"
-      class="mt-4 rounded-md border border-red-500/30 bg-red-50 dark:bg-red-900/20 px-3 py-2 text-red-700 dark:text-red-300 text-sm"
+      class="mt-4 border border-red-500/30 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-300"
       role="alert"
     >
       {{ error }}
@@ -234,10 +243,7 @@ function onDropzoneKeydown(e: KeyboardEvent) {
     <section class="mt-6">
       <div
         ref="dropZoneRef"
-        class="group relative w-full cursor-pointer rounded-xl border-2 border-dashed p-6 sm:p-8 text-center transition-all
-               bg-white/60 dark:bg-gray-900/40
-               hover:shadow-lg hover:border-blue-500/60 focus-within:(outline-none ring-2 ring-blue-500/50)
-               data-[over=true]:(border-blue-500 bg-blue-50/80 dark:bg-blue-900/25)"
+        class="group relative w-full cursor-pointer border-2 rounded-xl border-dashed bg-white/60 p-6 text-center transition-all data-[over=true]:(border-blue-500 bg-blue-50/80 dark:bg-blue-900/25) hover:border-blue-500/60 dark:bg-gray-900/40 sm:p-8 hover:shadow-lg focus-within:(outline-none ring-2 ring-blue-500/50)"
         :data-over="isOverDropZone"
         role="button"
         :aria-label="t('pages.save.ImportPage.drop')"
@@ -246,9 +252,7 @@ function onDropzoneKeydown(e: KeyboardEvent) {
         @keydown="onDropzoneKeydown"
       >
         <div
-          class="mx-auto h-14 w-14 rounded-full grid place-items-center
-                 border border-gray-300/60 dark:border-gray-700/60
-                 transition-all group-hover:(scale-105) data-[over=true]:(border-blue-400)"
+          class="grid mx-auto h-14 w-14 place-items-center border border-gray-300/60 rounded-full transition-all group-hover:(scale-105) dark:border-gray-700/60 data-[over=true]:(border-blue-400)"
           :data-over="isOverDropZone"
           aria-hidden="true"
         >
@@ -276,15 +280,15 @@ function onDropzoneKeydown(e: KeyboardEvent) {
         class="hidden"
         :aria-label="t('pages.save.ImportPage.select')"
         @change="onFileChange"
-      />
+      >
     </section>
 
     <!-- Preview + Summary -->
     <Transition name="fade-slide">
-      <section v-if="hasPreview" class="mt-6 grid gap-4">
+      <section v-if="hasPreview" class="grid mt-6 gap-4">
         <!-- Warning -->
         <div
-          class="rounded-lg border border-amber-400/30 bg-amber-50 dark:bg-amber-900/20 px-4 py-3 text-amber-900 dark:text-amber-100 text-sm flex items-start gap-3"
+          class="flex items-start gap-3 border border-amber-400/30 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:bg-amber-900/20 dark:text-amber-100"
           role="alert"
         >
           <div i-carbon-warning class="mt-0.5 shrink-0" aria-hidden="true" />
@@ -299,14 +303,16 @@ function onDropzoneKeydown(e: KeyboardEvent) {
         </div>
 
         <!-- File card -->
-        <div class="rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-4">
+        <div class="border border-gray-300 rounded-lg bg-white px-4 py-4 dark:border-gray-700 dark:bg-gray-800">
           <div class="flex flex-wrap items-center justify-between gap-3">
-            <div class="flex min-w-0 items-center gap-3">
+            <div class="min-w-0 flex items-center gap-3">
               <div class="grid h-10 w-10 place-items-center rounded-md bg-gray-100 dark:bg-gray-700">
                 <div i-carbon-document class="text-lg" aria-hidden="true" />
               </div>
               <div class="min-w-0">
-                <p class="truncate font-700">{{ fileMeta.name }}</p>
+                <p class="truncate font-700">
+                  {{ fileMeta.name }}
+                </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">
                   <span v-if="fileSizePretty">{{ fileSizePretty }}</span>
                   <span v-if="fileDatePretty"> • {{ fileDatePretty }}</span>
@@ -327,27 +333,43 @@ function onDropzoneKeydown(e: KeyboardEvent) {
         </div>
 
         <!-- Summary card -->
-        <div class="rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-4">
+        <div class="border border-gray-300 rounded-lg bg-white px-4 py-4 dark:border-gray-700 dark:bg-gray-800">
           <h2 class="mb-3 text-lg font-800">
             {{ t('pages.save.ImportPage.summary.title') }}
           </h2>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div class="rounded-md border border-gray-200 dark:border-gray-700 p-3">
-              <p class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.monsLabel') /* add key */ }}</p>
-              <p class="text-xl font-800">{{ summary.mons }}</p>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ t('pages.save.ImportPage.summary.monsLabel') /* add key */ }}
+              </p>
+              <p class="text-xl font-800">
+                {{ summary.mons }}
+              </p>
             </div>
-            <div class="rounded-md border border-gray-200 dark:border-gray-700 p-3">
-              <p class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.shlagidolarLabel') /* add key */ }}</p>
-              <p class="text-xl font-800">{{ summary.shlagidolar }}</p>
+            <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ t('pages.save.ImportPage.summary.shlagidolarLabel') /* add key */ }}
+              </p>
+              <p class="text-xl font-800">
+                {{ summary.shlagidolar }}
+              </p>
             </div>
-            <div class="rounded-md border border-gray-200 dark:border-gray-700 p-3">
-              <p class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.shlagidiamondLabel') /* add key */ }}</p>
-              <p class="text-xl font-800">{{ summary.shlagidiamond }}</p>
+            <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ t('pages.save.ImportPage.summary.shlagidiamondLabel') /* add key */ }}
+              </p>
+              <p class="text-xl font-800">
+                {{ summary.shlagidiamond }}
+              </p>
             </div>
-            <div class="rounded-md border border-gray-200 dark:border-gray-700 p-3">
-              <p class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.playtimeLabel') /* add key */ }}</p>
-              <p class="text-xl font-800">{{ formatDuration(summary.playtime) }}</p>
+            <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ t('pages.save.ImportPage.summary.playtimeLabel') /* add key */ }}
+              </p>
+              <p class="text-xl font-800">
+                {{ formatDuration(summary.playtime) }}
+              </p>
             </div>
           </div>
         </div>
@@ -355,36 +377,54 @@ function onDropzoneKeydown(e: KeyboardEvent) {
     </Transition>
 
     <!-- Loader (centered) -->
-    <div v-if="loading" class="mt-8 grid place-items-center">
+    <div v-if="loading" class="grid mt-8 place-items-center">
       <UiLoader size="lg" />
-      <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">{{ t('common.pleaseWait') }}</p>
+      <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+        {{ t('common.pleaseWait') }}
+      </p>
     </div>
   </div>
 
   <!-- Confirm Modal -->
-  <UiModal v-model="showConfirm" @close="showConfirm = false" aria-labelledby="confirmTitle">
+  <UiModal v-model="showConfirm" aria-labelledby="confirmTitle" @close="showConfirm = false">
     <div class="flex flex-col gap-4">
       <h2 id="confirmTitle" class="text-lg font-800">
         {{ t('pages.save.ImportPage.confirmTitle') }}
       </h2>
 
       <!-- Recap list in a11y-friendly format -->
-      <dl class="grid grid-cols-1 sm:grid-cols-2 gap-3 rounded-md bg-gray-50 dark:bg-gray-900/40 p-3">
+      <dl class="grid grid-cols-1 gap-3 rounded-md bg-gray-50 p-3 sm:grid-cols-2 dark:bg-gray-900/40">
         <div>
-          <dt class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.monsLabel') }}</dt>
-          <dd class="font-700">{{ summary.mons }}</dd>
+          <dt class="text-xs text-gray-500 dark:text-gray-400">
+            {{ t('pages.save.ImportPage.summary.monsLabel') }}
+          </dt>
+          <dd class="font-700">
+            {{ summary.mons }}
+          </dd>
         </div>
         <div>
-          <dt class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.playtimeLabel') }}</dt>
-          <dd class="font-700">{{ formatDuration(summary.playtime) }}</dd>
+          <dt class="text-xs text-gray-500 dark:text-gray-400">
+            {{ t('pages.save.ImportPage.summary.playtimeLabel') }}
+          </dt>
+          <dd class="font-700">
+            {{ formatDuration(summary.playtime) }}
+          </dd>
         </div>
         <div>
-          <dt class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.shlagidolarLabel') }}</dt>
-          <dd class="font-700">{{ summary.shlagidolar }}</dd>
+          <dt class="text-xs text-gray-500 dark:text-gray-400">
+            {{ t('pages.save.ImportPage.summary.shlagidolarLabel') }}
+          </dt>
+          <dd class="font-700">
+            {{ summary.shlagidolar }}
+          </dd>
         </div>
         <div>
-          <dt class="text-xs text-gray-500 dark:text-gray-400">{{ t('pages.save.ImportPage.summary.shlagidiamondLabel') }}</dt>
-          <dd class="font-700">{{ summary.shlagidiamond }}</dd>
+          <dt class="text-xs text-gray-500 dark:text-gray-400">
+            {{ t('pages.save.ImportPage.summary.shlagidiamondLabel') }}
+          </dt>
+          <dd class="font-700">
+            {{ summary.shlagidiamond }}
+          </dd>
         </div>
       </dl>
 
@@ -393,9 +433,9 @@ function onDropzoneKeydown(e: KeyboardEvent) {
         <input
           v-model="acknowledgeOverwrite"
           type="checkbox"
-          class="mt-0.5 h-4 w-4 rounded border-gray-300 dark:border-gray-600"
-          :aria-describedby="'confirmTitle'"
-        />
+          class="mt-0.5 h-4 w-4 border-gray-300 rounded dark:border-gray-600"
+          aria-describedby="confirmTitle"
+        >
         <span>
           {{ t('pages.save.ImportPage.acknowledge') /* add: "Je comprends que cette action remplace TOUTES mes données locales." */ }}
         </span>
@@ -423,7 +463,9 @@ function onDropzoneKeydown(e: KeyboardEvent) {
 /* === Subtle entrance for preview blocks ================================== */
 .fade-slide-enter-active,
 .fade-slide-leave-active {
-  transition: opacity .18s ease, transform .18s ease;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 .fade-slide-enter-from,
 .fade-slide-leave-to {
