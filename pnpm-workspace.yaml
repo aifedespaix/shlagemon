@@ -33,6 +33,7 @@ catalogs:
     '@iconify-json/game-icons': ^1.2.3
     '@iconify-json/iconoir': ^1.2.7
     '@iconify-json/mdi': ^1.2.3
+    '@playwright/test': ^1.54.2
     '@vue-macros/volar': ^3.0.0-beta.17
     '@vue/test-utils': ^2.4.6
     cypress: ^14.5.2
