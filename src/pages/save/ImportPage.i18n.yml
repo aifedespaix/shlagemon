@@ -1,8 +1,12 @@
 fr:
   title: Importer une sauvegarde
+  subtitle: Importez une sauvegarde .shlag pour remplacer vos données locales.
   drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
   select: Sélectionner un fichier
+  hint: Cliquez ou glissez-déposez un fichier {ext}
+  warningTitle: 'Attention : import destructif'
   warning: L'import remplacera votre sauvegarde actuelle. Assurez-vous d'avoir une copie.
+  fileReady: Fichier prêt. Vérifiez les détails ci-dessous.
   import: Importer
   confirmTitle: "Confirmer l'import"
   confirmMessage: Cette action écrasera votre progression actuelle. Continuer ?
@@ -14,14 +18,23 @@ fr:
     shlagidolar: 'Shlagidolars : {amount}'
     shlagidiamond: 'Shlagidiamonds : {amount}'
     playtime: 'Temps de jeu : {time}'
+    monsLabel: Shlagémons
+    shlagidolarLabel: Shlagidolars
+    shlagidiamondLabel: Shlagidiamonds
+    playtimeLabel: Temps de jeu
+  acknowledge: Je comprends que cette action remplace TOUTES mes données locales.
   errorInvalid: Fichier de sauvegarde invalide.
   errorApply: "L'import a échoué."
 
 en:
   title: Import Save
+  subtitle: Import a .shlag save file to replace your local data.
   drop: Drop your .shlag file here or click to select
   select: Select a file
+  hint: Click or drag-and-drop a {ext} file
+  warningTitle: 'Warning: destructive import'
   warning: Importing will overwrite your current save. Make sure you have a backup.
+  fileReady: File ready. Review details below.
   import: Import
   confirmTitle: Confirm Import
   confirmMessage: This will replace your current progress. Continue?
@@ -33,5 +46,10 @@ en:
     shlagidolar: 'Shlagidollars: {amount}'
     shlagidiamond: 'Shlagidiamonds: {amount}'
     playtime: 'Playtime: {time}'
+    monsLabel: Shlagemons
+    shlagidolarLabel: Shlagidollars
+    shlagidiamondLabel: Shlagidiamonds
+    playtimeLabel: Playtime
+  acknowledge: I understand this action replaces ALL my local data.
   errorInvalid: Invalid save file.
   errorApply: Import failed.

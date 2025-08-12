@@ -5,6 +5,7 @@ export type ButtonType
     | 'valid'
     | 'danger'
     | 'default'
+    | 'ghost'
     | 'icon'
     | 'menu'
 
@@ -94,6 +95,12 @@ const typeVariantClass = computed(() => {
         'bg-cyan-600 dark:bg-cyan-700 text-white hover:bg-cyan-700 dark:hover:bg-cyan-800',
       outline:
         'border border-cyan-600 dark:border-cyan-700 text-cyan-700 dark:text-cyan-200 bg-transparent hover:bg-cyan-50 dark:hover:bg-cyan-800/30',
+    },
+    ghost: {
+      solid:
+        'bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+      outline:
+        'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-700/40',
     },
   }
   return `${sizeClass.value} ${map[props.type][props.variant]}`

@@ -2312,8 +2312,17 @@ pages:
         shlagidolar: 'Shlagidollars: {amount}'
         shlagidiamond: 'Shlagidiamonds: {amount}'
         playtime: 'Playtime: {time}'
+        monsLabel: Shlagemons
+        shlagidolarLabel: Shlagidollars
+        shlagidiamondLabel: Shlagidiamonds
+        playtimeLabel: Playtime
       errorInvalid: Invalid save file.
       errorApply: Import failed.
+      subtitle: Import a .shlag save file to replace your local data.
+      hint: Click or drag-and-drop a {ext} file
+      warningTitle: 'Warning: destructive import'
+      fileReady: File ready. Review details below.
+      acknowledge: I understand this action replaces ALL my local data.
   shlagedex:
     title: Shlagedex
 stores:
@@ -2358,3 +2367,8 @@ stores:
     level: level | levels
     rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
     released: '{name} was released!'
+common:
+  loading: Loading…
+  pleaseWait: Please wait
+  copy: Copy
+  remove: Remove
