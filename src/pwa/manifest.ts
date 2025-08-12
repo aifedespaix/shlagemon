@@ -7,7 +7,7 @@ const base: Partial<ManifestOptions> = {
   id: '/', // sera surchargé par locale plus bas
   launch_handler: { client_mode: 'navigate-existing' },
   orientation: 'any',
-  display: 'fullscreen',
+  display: 'standalone',
   display_override: ['window-controls-overlay', 'standalone'],
   theme_color: '#1865ab',
   background_color: '#1865ab',
