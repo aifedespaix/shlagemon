@@ -2305,8 +2305,17 @@ pages:
         shlagidolar: 'Shlagidolars : {amount}'
         shlagidiamond: 'Shlagidiamonds : {amount}'
         playtime: 'Temps de jeu : {time}'
+        monsLabel: Shlagémons
+        shlagidolarLabel: Shlagidolars
+        shlagidiamondLabel: Shlagidiamonds
+        playtimeLabel: Temps de jeu
       errorInvalid: Fichier de sauvegarde invalide.
       errorApply: L'import a échoué.
+      subtitle: Importez une sauvegarde .shlag pour remplacer vos données locales.
+      hint: Cliquez ou glissez-déposez un fichier {ext}
+      warningTitle: 'Attention : import destructif'
+      fileReady: Fichier prêt. Vérifiez les détails ci-dessous.
+      acknowledge: Je comprends que cette action remplace TOUTES mes données locales.
   shlagedex:
     title: Shlagédex
 stores:
@@ -2351,3 +2360,8 @@ stores:
     level: niveau | niveaux
     rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
     released: '{name} a été relâché !'
+common:
+  loading: Chargement…
+  pleaseWait: Veuillez patienter
+  copy: Copier
+  remove: Supprimer
