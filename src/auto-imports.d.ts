@@ -268,6 +268,7 @@ declare global {
   const useLevelUpAnimation: typeof import('./composables/useLevelUpAnimation')['useLevelUpAnimation']
   const useLink: typeof import('vue-router')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
+  const useLocaleRedirect: typeof import('./composables/useLocaleRedirect')['useLocaleRedirect']
   const useLocaleStore: typeof import('./stores/locale')['useLocaleStore']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useMainPanelStore: typeof import('./stores/mainPanel')['useMainPanelStore']
@@ -763,6 +764,7 @@ declare module 'vue' {
     readonly useLevelUpAnimation: UnwrapRef<typeof import('./composables/useLevelUpAnimation')['useLevelUpAnimation']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
+    readonly useLocaleRedirect: UnwrapRef<typeof import('./composables/useLocaleRedirect')['useLocaleRedirect']>
     readonly useLocaleStore: UnwrapRef<typeof import('./stores/locale')['useLocaleStore']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
     readonly useMainPanelStore: UnwrapRef<typeof import('./stores/mainPanel')['useMainPanelStore']>
@@ -815,6 +817,7 @@ declare module 'vue' {
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSSRWidth: UnwrapRef<typeof import('@vueuse/core')['useSSRWidth']>
+    readonly useSaveImport: UnwrapRef<typeof import('./composables/useSaveImport')['useSaveImport']>
     readonly useSaveStore: UnwrapRef<typeof import('./stores/save')['useSaveStore']>
     readonly useScreenOrientation: UnwrapRef<typeof import('@vueuse/core')['useScreenOrientation']>
     readonly useScreenSafeArea: UnwrapRef<typeof import('@vueuse/core')['useScreenSafeArea']>
