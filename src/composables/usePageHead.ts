@@ -62,8 +62,16 @@ export function usePageHead(options: PageHeadOptions = {}) {
           rel: 'icon',
           type: 'image/svg+xml',
           href: preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
+          key: 'favicon-svg',
         },
-        { rel: 'image_src', href: image },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '48x48',
+          href: '/favicon.png',
+          key: 'favicon-png',
+        },
+        { rel: 'image_src', href: image, key: 'image-src' },
       ],
     }
   })

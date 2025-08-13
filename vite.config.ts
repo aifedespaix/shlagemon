@@ -99,7 +99,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-pwa
     ...(['fr', 'en'] as const).map(locale => VitePWA({
       registerType: 'prompt',
-      includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
+      includeAssets: ['favicon.svg', 'favicon.png', 'safari-pinned-tab.svg'],
       manifest: getPwaManifest(locale),
       manifestFilename: `${locale}/manifest.webmanifest`,
       workbox: {
