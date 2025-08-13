@@ -100,7 +100,7 @@ onMounted(() => {
 
     <section class="flex flex-col gap-3">
       <UiButton
-        type="secondary"
+        type="default"
         class="flex items-center self-start gap-1"
         :aria-label="t('components.panel.Breeding.a11y.openSelector')"
         @click="openSelector"
