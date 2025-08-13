@@ -40,7 +40,12 @@ export const useMobileTabStore = defineStore('mobileTab', () => {
     }
   }
 
-  return { current, last, set, toggle, toggleGame }
+  function reset() {
+    current.value = 'game'
+    last.value = null
+  }
+
+  return { current, last, set, toggle, toggleGame, reset }
 }, {
   persist: true,
 })

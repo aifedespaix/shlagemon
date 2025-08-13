@@ -41,7 +41,13 @@ export const useMiniGameStore = defineStore('miniGame', () => {
     phase.value = 'intro'
   }
 
-  return { currentId, phase, wins, select, play, finish, quit }
+  function reset() {
+    currentId.value = null
+    phase.value = 'intro'
+    wins.value = 0
+  }
+
+  return { currentId, phase, wins, select, play, finish, quit, reset }
 }, {
   persist: { pick: ['wins'] },
 })
