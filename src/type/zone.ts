@@ -22,7 +22,12 @@ export interface Position {
 
 export interface VillagePOI {
   readonly id: string
-  readonly type: 'shop' | 'arena' | 'minigame' | 'poulailler' | 'dojo' | string
+  /**
+   * Type of point of interest. Specific strings enable custom interactions
+   * in the village panel and actions menu. Unknown types fallback to the
+   * default trainer battle behavior.
+   */
+  readonly type: 'shop' | 'arena' | 'minigame' | 'poulailler' | 'dojo' | 'breeding' | string
   readonly label: string
   readonly position: Position
   /** Items available in the shop when the POI type is `shop`. */

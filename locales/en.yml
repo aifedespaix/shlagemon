@@ -916,6 +916,7 @@ components:
       minigame: Minigame
       arena: Arena
       henhouse: Henhouse
+      breeding: Breeding
       fightKing: Challenge the {label} of the zone
       kingDefeated: '{label} defeated!'
       dojo: Dojo

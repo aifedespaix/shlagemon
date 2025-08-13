@@ -916,6 +916,7 @@ components:
       minigame: Mini-jeu
       arena: Arène
       henhouse: Poulailler
+      breeding: Élevage
       fightKing: Défier la {label} de la zone
       kingDefeated: '{label} vaincu{suffix} !'
       dojo: Dojo
