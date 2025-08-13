@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { DojoTrainingJob } from '~/stores/dojo'
 import type { DexShlagemon } from '~/type/shlagemon'
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { toast } from '~/modules/toast'
 import { dojoTrainingCost, useDojoStore } from '~/stores/dojo'
 
@@ -8,6 +9,7 @@ import { dojoTrainingCost, useDojoStore } from '~/stores/dojo'
 const panel = useMainPanelStore()
 const dojo = useDojoStore()
 const game = useGameStore()
+const dex = useShlagedexStore()
 const { t } = useI18n()
 
 /** === State ============================================================= */
@@ -17,7 +19,12 @@ const points = ref<number>(1)
 const now = ref<number>(Date.now())
 
 /** Tick 1s pour refresh remaining/progress (pause au unmount) */
-const { pause: pauseTick } = useIntervalFn(() => { now.value = Date.now() }, 1000)
+const { pause: pauseTick } = useIntervalFn(
+  () => {
+    now.value = Date.now()
+  },
+  1000,
+)
 onBeforeUnmount(pauseTick)
 
 /** === Utils ============================================================= */
@@ -36,8 +43,14 @@ watch(selected, () => {
 const cost = computed<number>(() => (selected.value ? dojoTrainingCost(selected.value.rarity, clamp(points.value, 1, safeMax.value)) : 0))
 const durationMin = computed<number>(() => clamp(points.value, 1, safeMax.value))
 
-const remaining = computed<number>(() => (job.value ? Math.max(0, Math.ceil(dojo.remainingMs(job.value.monId) / 1000)) : 0))
-const progress = computed<number>(() => (job.value ? Math.min(100, Math.max(0, dojo.progressRatio(job.value.monId) * 100)) : 0))
+const remaining = computed<number>(() => {
+  void now.value
+  return job.value ? Math.max(0, Math.ceil(dojo.remainingMs(job.value.monId) / 1000)) : 0
+})
+const progress = computed<number>(() => {
+  void now.value
+  return job.value ? Math.min(100, Math.max(0, dojo.progressRatio(job.value.monId) * 100)) : 0
+})
 
 /** Formatage court (mm:ss) pour remaining */
 const remainingLabel = computed<string>(() => {
@@ -57,8 +70,21 @@ watch(now, () => {
   }
 })
 
+/** Auto-select l'entraînement en cours à l'entrée dans le dojo */
+onMounted(() => {
+  if (selected.value)
+    return
+  const job = Object.values(dojo.byMonId).find(Boolean) as DojoTrainingJob | undefined
+  if (job) {
+    const mon = dex.shlagemons.find(m => m.id === job.monId) ?? null
+    selected.value = mon
+  }
+})
+
 /** === Actions =========================================================== */
-function openSelector() { selectorOpen.value = true }
+function openSelector() {
+  selectorOpen.value = true
+}
 function selectMon(mon: DexShlagemon) {
   selected.value = mon
   selectorOpen.value = false
@@ -106,7 +132,7 @@ const ids = {
     <div class="min-h-0 flex-1">
       <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
         <!-- CTA sélection -->
-        <UiButton v-if="!selected" type="primary" class="w-24 aspect-square" @click="openSelector">
+        <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
           {{ t('components.panel.Dojo.selectMon') }}
         </UiButton>
 
