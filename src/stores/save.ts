@@ -1,65 +1,58 @@
+import type { PersistedStoreId } from '~/utils/save-code'
 import { defineStore } from 'pinia'
 import { PERSISTED_STORE_KEYS } from '~/utils/save-code'
 
-export const useSaveStore = defineStore('save', () => {
-  const dex = useShlagedexStore()
-  const gameState = useGameStateStore()
-  const game = useGameStore()
-  const battleStats = useBattleStatsStore()
-  const inventory = useInventoryStore()
-  const dialog = useDialogStore()
-  const disease = useDiseaseStore()
-  const zone = useZoneStore()
-  const zoneProgress = useZoneProgressStore()
-  const zoneVisit = useZoneVisitStore()
-  const achievements = useAchievementsStore()
-  const achievementsFilter = useAchievementsFilterStore()
-  const ball = useBallStore()
-  const dexFilter = useDexFilterStore()
-  const mainPanel = useMainPanelStore()
-  const player = usePlayerStore()
-  const itemUsage = useItemUsageStore()
-  const equipment = useEquipmentStore()
-  const miniGame = useMiniGameStore()
-  const eggBox = useEggBoxStore()
-  const egg = useEggStore()
-  const playtime = usePlaytimeStore()
-  const deckFilter = useDeckFilterStore()
-  const inventoryFilter = useInventoryFilterStore()
-  const shopFilter = useShopFilterStore()
-  const potionInfo = usePotionInfoStore()
-  const kingPotion = useKingPotionStore()
-  const shortcuts = useShortcutsStore()
+interface ResettableStore { reset?: () => void }
 
-  function reset() {
-    dex.reset()
-    gameState.reset()
-    game.reset()
-    dialog.reset()
-    disease.reset()
-    inventory.reset()
-    zone.reset()
-    zoneVisit.reset()
-    zoneProgress.reset()
-    achievements.reset()
-    achievementsFilter.reset()
-    battleStats.reset()
-    ball.reset()
-    dexFilter.reset()
-    mainPanel.reset()
-    player.reset()
-    itemUsage.reset()
-    equipment.reset()
-    miniGame.reset()
-    eggBox.reset()
-    egg.reset()
-    playtime.reset()
-    deckFilter.reset()
-    inventoryFilter.reset()
-    shopFilter.reset()
-    potionInfo.reset()
-    kingPotion.reset()
-    shortcuts.reset()
+/**
+ * Map each persisted store key to its corresponding Pinia store.
+ * The `satisfies` clause makes the mapping exhaustive: adding a key to
+ * `PERSISTED_STORE_KEYS` requires adding its getter here, otherwise
+ * TypeScript raises a compilation error. This prevents silently skipping
+ * a store reset when new persisted stores are introduced.
+ */
+const PERSISTED_STORE_GETTERS = {
+  achievements: useAchievementsStore,
+  achievementsFilter: useAchievementsFilterStore,
+  ball: useBallStore,
+  battleStats: useBattleStatsStore,
+  deckFilter: useDeckFilterStore,
+  dexFilter: useDexFilterStore,
+  dialog: useDialogStore,
+  disease: useDiseaseStore,
+  egg: useEggStore,
+  eggBox: useEggBoxStore,
+  equipment: useEquipmentStore,
+  game: useGameStore,
+  gameState: useGameStateStore,
+  inventory: useInventoryStore,
+  inventoryFilter: useInventoryFilterStore,
+  itemUsage: useItemUsageStore,
+  kingPotion: useKingPotionStore,
+  mainPanel: useMainPanelStore,
+  miniGame: useMiniGameStore,
+  player: usePlayerStore,
+  playtime: usePlaytimeStore,
+  potionInfo: usePotionInfoStore,
+  shlagedex: useShlagedexStore,
+  shopFilter: useShopFilterStore,
+  shortcuts: useShortcutsStore,
+  zone: useZoneStore,
+  zoneProgress: useZoneProgressStore,
+  zoneVisit: useZoneVisitStore,
+} satisfies Record<PersistedStoreId, () => ResettableStore>
+
+export const useSaveStore = defineStore('save', () => {
+  /**
+   * Reset every Pinia store that persists its state.
+   * Iterates over the list of persisted keys, ensuring that future additions
+   * are automatically handled.
+   */
+  function reset(): void {
+    for (const key of PERSISTED_STORE_KEYS) {
+      const store = PERSISTED_STORE_GETTERS[key]()
+      store.reset?.()
+    }
   }
 
   /**
