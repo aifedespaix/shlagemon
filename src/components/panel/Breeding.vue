@@ -1,42 +1,49 @@
 <script setup lang="ts">
 import type { EggType } from '~/stores/egg'
-import type { Character } from '~/type/character'
 import type { DexShlagemon } from '~/type/shlagemon'
-import DialogBox from '~/components/dialog/Box.vue'
 
-import { norman } from '~/data/characters/norman'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 
+/** === Stores / i18n ===================================================== */
 const { t } = useI18n()
-const dialog = useDialogStore()
 const breeding = useBreedingStore()
 const game = useGameStore()
 const panel = useMainPanelStore()
 
-const currentPartner = ref<Character>(norman)
+/** === State ============================================================= */
 const selected = ref<DexShlagemon | null>(null)
 const selectorOpen = ref(false)
-const now = ref(Date.now())
+const now = ref<number>(Date.now())
 const justCompleted = ref(false)
 
+/** === Derived =========================================================== */
 const eggType = computed<EggType | null>(() =>
   selected.value ? selected.value.base.types[0] as EggType : null,
 )
 const job = computed(() => (eggType.value ? breeding.getJob(eggType.value) : null))
-const cost = computed(() => selected.value ? breedingCost(selected.value.rarity) : 0)
+const isRunning = computed<boolean>(() => (eggType.value ? breeding.isRunning(eggType.value) : false))
+const cost = computed<number>(() => (selected.value ? breedingCost(selected.value.rarity) : 0))
 const durationMin = Math.round(BREEDING_DURATION_MS / 60000)
-const remaining = computed(() => eggType.value ? breeding.remainingMs(eggType.value) : 0)
-const progress = computed(() => eggType.value ? breeding.progress(eggType.value) : 0)
-const remainingLabel = computed(() => {
+const remaining = computed<number>(() => {
+  void now.value
+  return eggType.value ? breeding.remainingMs(eggType.value) : 0
+})
+const progress = computed<number>(() => {
+  void now.value
+  return eggType.value ? breeding.progress(eggType.value) * 100 : 0
+})
+const remainingLabel = computed<string>(() => {
   const total = Math.ceil(remaining.value / 1000)
   const m = Math.floor(total / 60)
   const s = total % 60
   return `${m}:${String(s).padStart(2, '0')}`
 })
-const endsAtLabel = computed(() => job.value ? useDateFormat(job.value.endsAt, 'HH:mm').value : '')
 
+/** === Actions =========================================================== */
 function openSelector() {
+  if (isRunning.value)
+    return
   selectorOpen.value = true
 }
 function selectMon(mon: DexShlagemon) {
@@ -55,6 +62,7 @@ function goToEgg() {
   panel.showPoulailler()
 }
 
+/** === Tick ============================================================== */
 const { pause: pauseTick } = useIntervalFn(() => {
   now.value = Date.now()
   if (eggType.value && breeding.completeIfDue(eggType.value)) {
@@ -63,116 +71,99 @@ const { pause: pauseTick } = useIntervalFn(() => {
   }
 }, 1000)
 onBeforeUnmount(pauseTick)
-
-onMounted(() => {
-  if (!dialog.dialogs.some(d => d.id === 'breedingIntro')) {
-    dialog.dialogs.unshift({
-      id: 'breedingIntro',
-      component: markRaw(DialogBox),
-      condition: () => !dialog.isDone('breedingIntro'),
-      props: {
-        character: currentPartner.value,
-        dialogTree: [
-          {
-            id: 'start',
-            text: t('components.panel.Breeding.introDialog'),
-            responses: [
-              {
-                label: t('components.panel.Breeding.introOk'),
-                type: 'valid',
-                action: () => dialog.markDone('breedingIntro'),
-              },
-            ],
-          },
-        ],
-      },
-    })
-  }
-})
 </script>
 
 <template>
-  <div class="mx-auto max-w-160 w-full flex flex-col gap-4 p-4">
-    <header class="flex items-center gap-2">
-      <h1 class="flex-1 text-xl font-bold">
-        {{ t('components.panel.Breeding.name') }}
-      </h1>
-      <CharacterImage :id="currentPartner.id" :alt="currentPartner.name" class="max-h-12 w-12" />
-    </header>
+  <LayoutTitledPanel
+    :title="t('components.panel.Breeding.title')"
+    :exit-text="t('components.panel.Breeding.exit')"
+    @exit="panel.showVillage()"
+  >
+    <div class="min-h-0 flex-1">
+      <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
+        <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
+          {{ t('components.panel.Breeding.selectMon') }}
+        </UiButton>
 
-    <section class="flex flex-col gap-3">
-      <UiButton
-        type="default"
-        class="flex items-center self-start gap-1"
-        :aria-label="t('components.panel.Breeding.a11y.openSelector')"
-        @click="openSelector"
-      >
-        <div class="i-carbon:add-alt" aria-hidden="true" />
-        {{ selected ? t('components.panel.Breeding.selected') : t('components.panel.Breeding.selectMon') }}
-      </UiButton>
-
-      <div v-if="selected" class="flex items-center gap-3">
-        <ShlagemonImage
-          :id="selected.base.id"
-          :alt="t(selected.base.name)"
-          :shiny="selected.isShiny"
-          class="h-16 w-16 object-contain"
-        />
-        <div class="text-sm">
-          <div>{{ t('components.panel.Breeding.rarity') }}: <span class="tabular-nums">{{ selected.rarity }}</span></div>
-          <div class="flex items-center gap-1">
-            {{ t('components.panel.Breeding.cost') }}:
-            <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+        <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
+          <div class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800">
+            <div class="relative h-full w-full flex items-center justify-center">
+              <ShlagemonImage
+                :id="selected.base.id"
+                :alt="t(selected.base.name)"
+                :shiny="selected.isShiny"
+                class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
+              />
+              <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
+                <span
+                  class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
+                  aria-label="{{ t('components.panel.Breeding.rarity') }}"
+                >
+                  {{ t('components.panel.Breeding.rarity') }}: {{ selected.rarity }}
+                </span>
+                <span
+                  class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
+                  aria-label="{{ t('components.panel.Breeding.eggType') }}"
+                >
+                  {{ t('components.panel.Breeding.eggType') }}: {{ eggType }}
+                </span>
+              </div>
+            </div>
           </div>
-          <div>
-            {{ t('components.panel.Breeding.duration') }}: {{ durationMin }} {{ t('components.panel.Breeding.minutes') }}
+
+          <div class="min-w-0 flex flex-1 flex-col gap-3">
+            <div v-if="!isRunning" class="w-full flex flex-col items-center gap-2">
+              <div class="flex items-center gap-1 text-sm">
+                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
+                <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+              </div>
+              <div class="text-sm">
+                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.duration') }}:</span>
+                <span class="ml-1">{{ durationMin }}</span>
+                <span class="ml-1">{{ t('components.panel.Breeding.minutes') }}</span>
+              </div>
+            </div>
+
+            <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+              <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
+                <span class="tabular-nums">{{ remainingLabel }}</span>
+              </div>
+              <div
+                class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
+                role="progressbar"
+                :aria-label="t('components.panel.Breeding.progress')"
+                :aria-valuemin="0"
+                :aria-valuemax="100"
+                :aria-valuenow="Math.round(progress)"
+              >
+                <div
+                  class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
+                  :style="{ width: `${progress}%` }"
+                />
+              </div>
+
+              <div class="mt-2 flex items-center justify-between text-sm">
+                <p class="text-gray-600 dark:text-gray-300">
+                  {{ t('components.panel.Breeding.remaining') }}:
+                  <span class="tabular-nums">{{ remainingLabel }}</span>
+                </p>
+                <p class="text-gray-500 dark:text-gray-400">
+                  {{ Math.round(progress) }}%
+                </p>
+              </div>
+
+              <span aria-live="polite" class="sr-only">
+                {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
+                {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
+              </span>
+            </div>
           </div>
-        </div>
+        </UiAdaptiveDisplayer>
       </div>
-    </section>
+    </div>
 
-    <section v-if="job" class="flex flex-col gap-2 border rounded-lg bg-white/60 p-4 dark:bg-gray-900/40">
-      <UiProgressBar
-        :value="progress"
-        :max="1"
-        class="h-2 w-full transition-[width] duration-300 motion-reduce:transition-none"
-        :aria-label="t('components.panel.Breeding.progress')"
-      />
-      <div class="flex justify-between text-sm">
-        <span>{{ t('components.panel.Breeding.remaining') }}: <span class="tabular-nums">{{ remainingLabel }}</span></span>
-        <span>{{ t('components.panel.Breeding.endsAt', { time: endsAtLabel }) }}</span>
-      </div>
-    </section>
-
-    <UiButton
-      v-if="selected"
-      :disabled="cost > game.shlagidolar || breeding.isRunning(eggType!)"
-      type="primary"
-      class="flex items-center self-start gap-2"
-      :aria-label="t('components.panel.Breeding.a11y.startBreeding')"
-      @click="start"
-    >
-      {{ t('components.panel.Breeding.cta.payAndStart') }}
-      <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
-    </UiButton>
-
-    <UiButton
-      v-if="justCompleted"
-      type="primary"
-      variant="outline"
-      class="self-start"
-      :aria-label="t('components.panel.Breeding.a11y.goToEgg')"
-      @click="goToEgg"
-    >
-      {{ t('components.panel.Breeding.cta.seeEgg') }}
-    </UiButton>
-
-    <UiModal
-      v-model="selectorOpen"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="breeding-select-title"
-    >
+    <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="breeding-select-title">
       <div class="max-w-160 flex flex-col gap-2">
         <h3 id="breeding-select-title" class="text-center text-lg font-bold">
           {{ t('components.panel.Breeding.selectMon') }}
@@ -182,5 +173,41 @@ onMounted(() => {
         </div>
       </div>
     </UiModal>
-  </div>
+
+    <template #footer>
+      <div class="w-full flex flex-wrap gap-2 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
+        <UiButton
+          v-if="selected && !isRunning"
+          :disabled="cost > game.shlagidolar"
+          type="primary"
+          class="flex flex-1 flex-wrap items-center gap-1"
+          @click="start"
+        >
+          {{ t('components.panel.Breeding.cta.payAndStart') }}
+          <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+        </UiButton>
+
+        <UiButton
+          v-if="justCompleted"
+          type="primary"
+          variant="outline"
+          class="w-full md:w-auto"
+          @click="goToEgg"
+        >
+          {{ t('components.panel.Breeding.cta.seeEgg') }}
+        </UiButton>
+
+        <UiButton
+          type="danger"
+          variant="outline"
+          class="w-full md:w-auto"
+          size="xs"
+          @click="panel.showVillage()"
+        >
+          <div class="i-carbon:exit" />
+          {{ t('components.panel.Breeding.exit') }}
+        </UiButton>
+      </div>
+    </template>
+  </LayoutTitledPanel>
 </template>

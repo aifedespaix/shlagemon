@@ -20,6 +20,8 @@ fr:
     remaining: Temps restant
     endsAt: Se termine à {time}
   progress: Progression
+  status:
+    running: Entraînement en cours
   cta:
     payAndStart: Payer & lancer
     trainingRunning: Entraînement en cours
@@ -48,6 +50,8 @@ en:
     remaining: Remaining time
     endsAt: Ends at {time}
   progress: Progress
+  status:
+    running: Training in progress
   cta:
     payAndStart: Pay & start
     trainingRunning: Training in progress
