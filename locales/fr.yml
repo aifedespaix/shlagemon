@@ -791,6 +791,30 @@ components:
         started: Entraînement lancé !
         finished: Entraînement terminé ! Rareté améliorée.
       progress: Progression
+    Breeding:
+      name: Élevage
+      introDialog: Bienvenue au centre d'élevage. Choisis le Shlagémon à reproduire.
+      introOk: C'est parti !
+      selectMon: Choisir un Shlagémon
+      selected: Shlagémon sélectionné
+      partner: Partenaire
+      rarity: Rareté
+      cost: Coût
+      duration: Durée
+      minutes: minutes
+      progress: Progression
+      remaining: Temps restant
+      endsAt: Se termine à {time}
+      cta:
+        payAndStart: Payer & lancer
+        seeEgg: Voir l'œuf
+      toast:
+        started: Élevage lancé !
+        finished: Œuf obtenu !
+      a11y:
+        openSelector: Choisir le parent
+        startBreeding: Lancer l'élevage
+        goToEgg: Aller à l'œuf
   settings:
     AccessibilityTab:
       autoHide:
@@ -2348,11 +2372,8 @@ pages:
   shlagedex:
     title: Shlagédex
   breeding:
-<<<<<<< HEAD
     title: Élevage
-=======
     name: Élevage
->>>>>>> 1297e8f0acd933d4e851c4eda7acac024d20b343
     introDialog: Bienvenue au centre d'élevage. Choisis le Shlagémon à reproduire.
     introOk: C'est parti !
     selectMon: Choisir un Shlagémon
