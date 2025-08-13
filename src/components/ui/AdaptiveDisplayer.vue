@@ -1,6 +1,6 @@
 <template>
   <div class="area overflow-hidden">
-    <div class="area-flex flex gap-2 overflow-hidden">
+    <div class="area-flex h-full flex gap-2 overflow-hidden">
       <slot />
     </div>
   </div>
@@ -14,14 +14,14 @@
 }
 
 @container area (aspect-ratio > 1) {
-  .area-grid {
-    flex-direction: column;
+  .area-flex {
+    flex-direction: row;
   }
 }
 
 @container area (aspect-ratio < 1) {
-  .area-grid {
-    flex-direction: raw;
+  .area-flex {
+    flex-direction: column;
   }
 }
 </style>

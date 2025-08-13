@@ -16,68 +16,65 @@ const selectorOpen = ref(false)
 const points = ref<number>(1)
 const now = ref<number>(Date.now())
 
-/** Tick d'une seconde pour rafraîchir le “remaining” + progress */
-const { pause: pauseTick } = useIntervalFn(() => {
-  now.value = Date.now()
-}, 1000)
+/** Tick 1s pour refresh remaining/progress (pause au unmount) */
+const { pause: pauseTick } = useIntervalFn(() => { now.value = Date.now() }, 1000)
+onBeforeUnmount(pauseTick)
 
-onBeforeUnmount(() => {
-  pauseTick()
-})
+/** === Utils ============================================================= */
+const clamp = (val: number, min: number, max: number): number => Math.min(max, Math.max(min, val))
+const safeMax = computed<number>(() => (selected.value ? Math.max(1, 100 - selected.value.rarity) : 1))
 
 /** === Derived =========================================================== */
 const job = computed(() => (selected.value ? dojo.getJob(selected.value.id) : null))
 
-/** Nombre max de points achetables (1..(100 - rarity)) */
-const maxPoints = computed<number>(() => (selected.value ? Math.max(0, 100 - selected.value.rarity) : 0))
-
-/** Clamp utilitaire et garde-fous */
-function clamp(val: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, val))
-}
-
 /** Recalibre les points à chaque changement de mon */
 watch(selected, () => {
-  points.value = clamp(1, 1, Math.max(1, maxPoints.value))
+  points.value = 1
 })
 
-/** Coût, durée, progression */
-const cost = computed<number>(() =>
-  selected.value ? dojoTrainingCost(selected.value.rarity, clamp(points.value, 1, Math.max(1, maxPoints.value))) : 0,
-)
-
-const durationMin = computed<number>(() => clamp(points.value, 1, Math.max(1, maxPoints.value)))
+/** Coût, durée (en minutes), progress & remaining (en s) */
+const cost = computed<number>(() => (selected.value ? dojoTrainingCost(selected.value.rarity, clamp(points.value, 1, safeMax.value)) : 0))
+const durationMin = computed<number>(() => clamp(points.value, 1, safeMax.value))
 
 const remaining = computed<number>(() => (job.value ? Math.max(0, Math.ceil(dojo.remainingMs(job.value.monId) / 1000)) : 0))
+const progress = computed<number>(() => (job.value ? Math.min(100, Math.max(0, dojo.progressRatio(job.value.monId) * 100)) : 0))
 
-const progress = computed<number>(() => (job.value ? dojo.progressRatio(job.value.monId) * 100 : 0))
+/** Formatage court (mm:ss) pour remaining */
+const remainingLabel = computed<string>(() => {
+  const s = remaining.value
+  const m = Math.floor(s / 60)
+  const r = s % 60
+  return `${m}:${String(r).padStart(2, '0')}`
+})
 
 /** Auto-complete si terminé */
 watch(now, () => {
   const mon = selected.value
   if (!mon)
     return
-  if (dojo.completeIfDue(mon.id))
+  if (dojo.completeIfDue(mon.id)) {
     toast.success(t('components.panel.Dojo.toast.finished'))
+  }
 })
 
 /** === Actions =========================================================== */
-function openSelector() {
-  selectorOpen.value = true
-}
-
+function openSelector() { selectorOpen.value = true }
 function selectMon(mon: DexShlagemon) {
   selected.value = mon
   selectorOpen.value = false
 }
 
 function setPointsFromSlider(val: number) {
-  points.value = clamp(Math.round(val), 1, Math.max(1, maxPoints.value))
+  points.value = clamp(Math.round(val), 1, safeMax.value)
 }
-
 function setPointsFromNumber(val: number | string) {
   const n = typeof val === 'string' ? Number(val) : val
-  points.value = clamp(Number.isFinite(n) ? Math.trunc(n) : 1, 1, Math.max(1, maxPoints.value))
+  points.value = clamp(Number.isFinite(n) ? Math.trunc(n) : 1, 1, safeMax.value)
+}
+
+/** Raccourcis +/- via clavier pour affiner rapidement */
+function nudge(delta: number) {
+  points.value = clamp(points.value + delta, 1, safeMax.value)
 }
 
 function start() {
@@ -105,90 +102,114 @@ const ids = {
     :exit-text="t('components.panel.Dojo.exit')"
     @exit="panel.showVillage()"
   >
-    <!-- Conteneur scrollable dans la hauteur dispo du parent -->
-    <div class="flex-1">
-      <div class="h-full flex flex-1 gap-4 overflow-y-auto px-2 py-3 sm:px-3">
-        <!-- CTA sélection si aucun mon -->
-        <UiButton v-if="!selected" type="primary" class="mx-auto" @click="openSelector">
+    <!-- Conteneur qui respecte la hauteur du parent (no vh/vw) -->
+    <div class="min-h-0 flex-1">
+      <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
+        <!-- CTA sélection -->
+        <UiButton v-if="!selected" type="primary" class="w-24 aspect-square" @click="openSelector">
           {{ t('components.panel.Dojo.selectMon') }}
         </UiButton>
 
         <!-- Contenu principal -->
-        <UiAdaptiveDisplayer v-else class="h-full w-full">
-          <ShlagemonImage
-            :id="selected.base.id"
-            :alt="t(selected.base.name)"
-            class="h-32 w-32"
-          />
-
-          <div class="flex flex-1 flex-col gap-2">
-            <!-- Rareté actuelle et ciblée -->
-            <div class="flex items-center gap-1 text-sm">
-              <span>
-                {{ t('components.panel.Dojo.rarity.current') }}: {{ selected.rarity }}
-              </span>
-              <span>→</span>
-              <span>
-                {{ t('components.panel.Dojo.rarity.after') }}: {{ Math.min(100, selected.rarity + points) }}
-              </span>
+        <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
+          <div class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800">
+            <div class="relative h-full w-full flex items-center justify-center">
+              <ShlagemonImage
+                :id="selected.base.id"
+                :alt="t(selected.base.name)"
+                class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
+              />
+              <!-- Badges d’info -->
+              <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
+                <span
+                  class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
+                  aria-label="Rareté actuelle"
+                >
+                  {{ t('components.panel.Dojo.rarity.current') }}: {{ selected.rarity }}
+                </span>
+                <span
+                  class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
+                  aria-label="Rareté après entraînement"
+                >
+                  {{ t('components.panel.Dojo.rarity.after') }}: {{ Math.min(100, selected.rarity + points) }}
+                </span>
+              </div>
             </div>
+          </div>
 
-            <!-- Contrôle Points: Slider + Number input synchronisés -->
-            <div class="w-full flex flex-col gap-2">
-              <div class="flex items-center justify-between">
+          <!-- CONTROLES -->
+          <div class="min-w-0 flex flex-1 flex-col gap-3">
+            <!-- Titre secondaire -->
+            <h3 :id="ids.title" class="text-base font-semibold">
+              {{ t('components.panel.Dojo.controls') }}
+            </h3>
+
+            <!-- Points: Slider + input -->
+            <div class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+              <div class="flex flex-col items-center justify-between">
                 <label :for="ids.slider" class="text-sm font-medium">
                   {{ t('components.panel.Dojo.rarity.points') }}
                 </label>
                 <span class="text-xs text-gray-500">
-                  {{ t('common.min') }} 1 · {{ t('common.max') }} {{ maxPoints }}
+                  {{ t('common.min') }} 1 · {{ t('common.max') }} {{ safeMax }}
                 </span>
               </div>
 
-              <!-- Slider -->
-              <input
-                :id="ids.slider"
-                type="range"
-                class="dojo-slider w-full"
-                :min="1"
-                :max="Math.max(1, maxPoints)"
-                :step="1"
-                :value="clamp(points, 1, Math.max(1, maxPoints))"
-                :aria-valuemin="1"
-                :aria-valuemax="Math.max(1, maxPoints)"
-                :aria-valuenow="clamp(points, 1, Math.max(1, maxPoints))"
-                :aria-describedby="`${ids.cost} ${ids.duration}`"
-                @input="setPointsFromSlider(($event.target as HTMLInputElement).valueAsNumber)"
-              >
-
-              <!-- Number input (UiNumberInput existant), compact -->
-              <div class="w-28 self-end">
-                <UiNumberInput
-                  :id="ids.number"
-                  v-model="points"
+              <div class="flex flex-col items-center gap-3">
+                <!-- Slider -->
+                <input
+                  :id="ids.slider"
+                  type="range"
+                  class="dojo-slider w-full"
                   :min="1"
-                  :max="Math.max(1, maxPoints)"
+                  :max="safeMax"
                   :step="1"
-                  density="compact"
-                  @update:model-value="setPointsFromNumber"
-                />
+                  :value="clamp(points, 1, safeMax)"
+                  :aria-valuemin="1"
+                  :aria-valuemax="safeMax"
+                  :aria-valuenow="clamp(points, 1, safeMax)"
+                  :aria-labelledby="ids.title"
+                  :aria-describedby="`${ids.cost} ${ids.duration}`"
+                  @input="setPointsFromSlider(($event.target as HTMLInputElement).valueAsNumber)"
+                  @keydown.left.prevent="nudge(-1)"
+                  @keydown.right.prevent="nudge(1)"
+                  @keydown.page-down.prevent="nudge(-5)"
+                  @keydown.page-up.prevent="nudge(5)"
+                  @keydown.home.prevent="points = 1"
+                  @keydown.end.prevent="points = safeMax"
+                >
+
+                <!-- Number input compact -->
+                <div class="w-28">
+                  <UiNumberInput
+                    :id="ids.number"
+                    v-model="points"
+                    :min="1"
+                    :max="safeMax"
+                    :step="1"
+                    density="compact"
+                    inputmode="numeric"
+                    @update:model-value="setPointsFromNumber"
+                  />
+                </div>
               </div>
             </div>
 
             <!-- Coût & durée -->
-            <div class="grid grid-cols-1 w-full gap-2 sm:grid-cols-2">
-              <div :id="ids.cost" class="text-sm">
-                {{ t('components.panel.Dojo.cost.label') }}:
+            <div class="w-full flex flex-col items-center gap-2">
+              <div :id="ids.cost" class="flex items-center gap-1 text-sm">
+                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Dojo.cost.label') }}:</span>
                 <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
               </div>
               <div :id="ids.duration" class="text-sm">
-                {{ t('components.panel.Dojo.duration.label') }}:
-                {{ durationMin }}
-                {{ durationMin === 1 ? t('components.panel.Dojo.duration.minute') : t('components.panel.Dojo.duration.minutes') }}
+                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Dojo.duration.label') }}:</span>
+                <span class="ml-1">{{ durationMin }}</span>
+                <span class="ml-1">{{ durationMin === 1 ? t('components.panel.Dojo.duration.minute') : t('components.panel.Dojo.duration.minutes') }}</span>
               </div>
             </div>
 
-            <!-- Suivi progression -->
-            <div v-if="job" class="w-full flex flex-col gap-2">
+            <!-- Progression -->
+            <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
               <div
                 :id="ids.progress"
                 class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
@@ -199,19 +220,24 @@ const ids = {
                 :aria-valuenow="Math.round(progress)"
               >
                 <div
-                  class="will-change-[width] h-full rounded bg-green-500 transition-all duration-300"
+                  class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
                   :style="{ width: `${progress}%` }"
                 />
               </div>
-              <p class="text-center text-sm">
-                {{ t('components.panel.Dojo.duration.remaining') }}:
-                {{ Math.ceil(remaining / 60) }}
-                {{ t('components.panel.Dojo.duration.minutes') }}
-              </p>
 
-              <!-- Live-update discret pour lecteurs d'écran -->
+              <div class="mt-2 flex items-center justify-between text-sm">
+                <p class="text-gray-600 dark:text-gray-300">
+                  {{ t('components.panel.Dojo.duration.remaining') }}:
+                  <span class="tabular-nums">{{ remainingLabel }}</span>
+                </p>
+                <p class="text-gray-500 dark:text-gray-400">
+                  {{ Math.round(progress) }}%
+                </p>
+              </div>
+
+              <!-- Live region pour lecteurs d’écran -->
               <span aria-live="polite" class="sr-only">
-                {{ t('components.panel.Dojo.progress') }}: {{ Math.round(progress) }}%
+                {{ t('components.panel.Dojo.progress') }}: {{ Math.round(progress) }}%, {{ t('components.panel.Dojo.duration.remaining') }} {{ remainingLabel }}
               </span>
             </div>
           </div>
@@ -219,13 +245,12 @@ const ids = {
       </div>
     </div>
 
-    <!-- Sélecteur de mon -->
+    <!-- Sélecteur -->
     <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">
       <div class="max-w-160 flex flex-col gap-2">
         <h3 id="dojo-select-title" class="text-center text-lg font-bold">
           {{ t('components.panel.Dojo.selectMon') }}
         </h3>
-        <!-- Conteneur scrollable sans dépendre du viewport -->
         <div class="max-h-80 min-h-0 overflow-y-auto">
           <ShlagemonQuickSelect @select="selectMon" />
         </div>
@@ -233,10 +258,10 @@ const ids = {
     </UiModal>
 
     <template #footer>
-      <div class="flex flex-wrap gap-2 bg-white dark:bg-gray-900" md="flex-nowrap justify-end w-full">
+      <div class="w-full flex flex-wrap gap-2 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
         <UiButton
           v-if="selected && !job"
-          :disabled="cost > game.shlagidolar || points < 1 || maxPoints === 0"
+          :disabled="cost > game.shlagidolar || points < 1 || safeMax === 1 && points === 1"
           type="primary"
           class="flex flex-1 flex-wrap items-center gap-1"
           @click="start"
@@ -245,25 +270,23 @@ const ids = {
           <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
         </UiButton>
 
-        <div class="w-full flex gap-1" md="flex-col w-auto">
-          <UiButton
-            type="danger"
-            variant="outline"
-            class="w-full flex gap-2"
-            size="xs"
-            @click="panel.showVillage()"
-          >
-            <div class="i-carbon:exit" />
-            {{ t('components.panel.Dojo.exit') }}
-          </UiButton>
-        </div>
+        <UiButton
+          type="danger"
+          variant="outline"
+          class="w-full md:w-auto"
+          size="xs"
+          @click="panel.showVillage()"
+        >
+          <div class="i-carbon:exit" />
+          {{ t('components.panel.Dojo.exit') }}
+        </UiButton>
       </div>
     </template>
   </LayoutTitledPanel>
 </template>
 
 <style scoped>
-/* Slider moderne accessible, UnoCSS-friendly (on garde les utilitaires pour layout) */
+/* Slider moderne — reste purgeable côté UnoCSS grâce aux utilitaires utilisés ailleurs */
 .dojo-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -272,40 +295,16 @@ const ids = {
   background: linear-gradient(90deg, rgba(34, 197, 94, 0.9), rgba(34, 197, 94, 0.5));
   outline: none;
 }
-
-/* Track */
-.dojo-slider::-webkit-slider-runnable-track {
-  height: 0.5rem;
-  border-radius: 9999px;
-  background: transparent;
-}
+.dojo-slider::-webkit-slider-runnable-track,
 .dojo-slider::-moz-range-track {
   height: 0.5rem;
   border-radius: 9999px;
   background: transparent;
 }
-
-/* Thumb */
-.dojo-slider::-webkit-slider-thumb {
+.dojo-slider::-webkit-slider-thumb,
+.dojo-slider::-moz-range-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 9999px;
-  background: white;
-  border: 2px solid rgb(34 197 94); /* green-500 */
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
-  cursor: pointer;
-  transition:
-    transform 0.12s ease,
-    box-shadow 0.2s ease;
-}
-.dojo-slider::-webkit-slider-thumb:focus,
-.dojo-slider::-webkit-slider-thumb:active {
-  transform: scale(1.05);
-  box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
-}
-.dojo-slider::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
   border-radius: 9999px;
@@ -317,8 +316,14 @@ const ids = {
     transform 0.12s ease,
     box-shadow 0.2s ease;
 }
-
-/* Dark mode support pour le track */
+.dojo-slider::-webkit-slider-thumb:focus,
+.dojo-slider::-webkit-slider-thumb:active,
+.dojo-slider::-moz-range-thumb:focus,
+.dojo-slider::-moz-range-thumb:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+}
+/* Dark */
 :where(html.dark) .dojo-slider {
   background: linear-gradient(90deg, rgba(34, 197, 94, 0.8), rgba(34, 197, 94, 0.35));
 }
