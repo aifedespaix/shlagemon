@@ -102,7 +102,7 @@ const ids = {
 <template>
   <LayoutTitledPanel
     :title="t('components.panel.Dojo.title')"
-    :exit-text="t('components.panel.Dojo.cta.selectFirst')"
+    :exit-text="t('components.panel.Dojo.exit')"
     @exit="panel.showVillage()"
   >
     <!-- Conteneur scrollable dans la hauteur dispo du parent -->
@@ -122,17 +122,22 @@ const ids = {
           />
 
           <div class="flex flex-1 flex-col gap-2">
-            <!-- Rareté actuelle → ciblée -->
-            <div class="text-sm">
-              {{ t('components.panel.Dojo.rarity.current') }}:
-              {{ selected.rarity }} → {{ Math.min(100, selected.rarity + points) }}
+            <!-- Rareté actuelle et ciblée -->
+            <div class="flex items-center gap-1 text-sm">
+              <span>
+                {{ t('components.panel.Dojo.rarity.current') }}: {{ selected.rarity }}
+              </span>
+              <span>→</span>
+              <span>
+                {{ t('components.panel.Dojo.rarity.after') }}: {{ Math.min(100, selected.rarity + points) }}
+              </span>
             </div>
 
             <!-- Contrôle Points: Slider + Number input synchronisés -->
             <div class="w-full flex flex-col gap-2">
               <div class="flex items-center justify-between">
                 <label :for="ids.slider" class="text-sm font-medium">
-                  {{ t('components.panel.Dojo.points') }}
+                  {{ t('components.panel.Dojo.rarity.points') }}
                 </label>
                 <span class="text-xs text-gray-500">
                   {{ t('common.min') }} 1 · {{ t('common.max') }} {{ maxPoints }}
@@ -182,18 +187,8 @@ const ids = {
               </div>
             </div>
 
-            <!-- CTA démarrer / Suivi progression -->
-            <UiButton
-              v-if="!job"
-              :disabled="cost > game.shlagidolar || points < 1 || maxPoints === 0"
-              type="primary"
-              class="w-full sm:w-auto"
-              @click="start"
-            >
-              {{ t('components.panel.Dojo.cta.payAndStart') }}
-            </UiButton>
-
-            <div v-else class="w-full flex flex-col gap-2">
+            <!-- Suivi progression -->
+            <div v-if="job" class="w-full flex flex-col gap-2">
               <div
                 :id="ids.progress"
                 class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
@@ -236,6 +231,34 @@ const ids = {
         </div>
       </div>
     </UiModal>
+
+    <template #footer>
+      <div class="flex flex-wrap gap-2 bg-white dark:bg-gray-900" md="flex-nowrap justify-end w-full">
+        <UiButton
+          v-if="selected && !job"
+          :disabled="cost > game.shlagidolar || points < 1 || maxPoints === 0"
+          type="primary"
+          class="flex flex-1 flex-wrap items-center gap-1"
+          @click="start"
+        >
+          {{ t('components.panel.Dojo.cta.payAndStart') }}
+          <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+        </UiButton>
+
+        <div class="w-full flex gap-1" md="flex-col w-auto">
+          <UiButton
+            type="danger"
+            variant="outline"
+            class="w-full flex gap-2"
+            size="xs"
+            @click="panel.showVillage()"
+          >
+            <div class="i-carbon:exit" />
+            {{ t('components.panel.Dojo.exit') }}
+          </UiButton>
+        </div>
+      </div>
+    </template>
   </LayoutTitledPanel>
 </template>
 
