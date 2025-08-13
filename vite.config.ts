@@ -13,7 +13,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
-import generateSitemap from 'vite-ssg-sitemap'
+import generateSitemap from './scripts/generate-sitemap/generate-sitemap'
 import { getPwaManifest } from './src/pwa/manifest'
 import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
@@ -177,15 +177,8 @@ export default defineConfig({
     includedRoutes: getAllLocalizedPaths,
     onFinished() {
       generateSitemap({
+        outDir: 'dist',
         hostname: 'https://shlagemon.aife.io',
-        dynamicRoutes: getAllLocalizedPaths(),
-        i18n: {
-          languages: ['fr', 'en'],
-          // The root path `/` must always reflect the English locale.
-          // Default sitemap language is therefore set to English
-          // to match the SSG output and avoid cross-locale content.
-          defaultLanguage: 'en',
-        },
       })
     },
   },
