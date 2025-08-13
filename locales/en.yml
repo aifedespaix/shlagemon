@@ -2354,6 +2354,30 @@ pages:
       acknowledge: I understand this action replaces ALL my local data.
   shlagedex:
     title: Shlagedex
+  breeding:
+    name: Breeding
+    introDialog: Welcome to the breeding center. Pick the parent to breed.
+    introOk: Let's go!
+    selectMon: Choose a Shlagémon
+    selected: Selected Shlagémon
+    partner: Partner
+    rarity: Rarity
+    cost: Cost
+    duration: Duration
+    minutes: minutes
+    progress: Progress
+    remaining: Remaining time
+    endsAt: Ends at {time}
+    cta:
+      payAndStart: Pay & start
+      seeEgg: View egg
+    toast:
+      started: Breeding started!
+      finished: Egg obtained!
+    a11y:
+      openSelector: Choose parent
+      startBreeding: Start breeding
+      goToEgg: Go to egg
 stores:
   achievements:
     unlocked: 'Achievement unlocked: {title}'
