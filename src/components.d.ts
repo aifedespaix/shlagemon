@@ -112,6 +112,7 @@ declare module 'vue' {
     PanelActiveShlagemon: typeof import('./components/panel/ActiveShlagemon.vue')['default']
     PanelArena: typeof import('./components/panel/Arena.vue')['default']
     PanelBonusDetails: typeof import('./components/panel/BonusDetails.vue')['default']
+    PanelBreeding: typeof import('./components/panel/Breeding.vue')['default']
     PanelDialog: typeof import('./components/panel/Dialog.vue')['default']
     PanelDojo: typeof import('./components/panel/Dojo.vue')['default']
     PanelInventory: typeof import('./components/panel/Inventory.vue')['default']

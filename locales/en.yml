@@ -2355,7 +2355,11 @@ pages:
   shlagedex:
     title: Shlagedex
   breeding:
+<<<<<<< HEAD
     title: Breeding
+=======
+    name: Breeding
+>>>>>>> 1297e8f0acd933d4e851c4eda7acac024d20b343
     introDialog: Welcome to the breeding center. Pick the parent to breed.
     introOk: Let's go!
     selectMon: Choose a Shlagémon

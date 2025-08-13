@@ -19,7 +19,6 @@ const interfaceStore = useInterfaceStore()
 const { t } = useI18n()
 const { showVillagesOnMap } = storeToRefs(interfaceStore)
 const info = useZoneInfoStore()
-const router = useRouter()
 
 const mapRef = ref<InstanceType<typeof VillageMap> | null>(null)
 const activePoiId = ref<string | null>(null)
@@ -96,7 +95,7 @@ function onPoi(poi: VillagePOI) {
       panel.showPoulailler()
       break
     case 'breeding':
-      router.push('/breeding')
+      panel.showBreeding()
       break
     case 'king': {
       const trainer = currentKing.value

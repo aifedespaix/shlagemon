@@ -45,7 +45,7 @@ function start() {
   if (!eggType.value || !selected.value)
     return
   if (breeding.start(eggType.value, selected.value.rarity)) {
-    toast.success(t('pages.breeding.toast.started'))
+    toast.success(t('components.panel.Breeding.toast.started'))
     justCompleted.value = false
   }
 }
@@ -56,7 +56,7 @@ function goToEgg() {
 const { pause: pauseTick } = useIntervalFn(() => {
   now.value = Date.now()
   if (eggType.value && breeding.completeIfDue(eggType.value)) {
-    toast.success(t('pages.breeding.toast.finished'))
+    toast.success(t('components.panel.Breeding.toast.finished'))
     justCompleted.value = true
   }
 }, 1000)
@@ -73,10 +73,10 @@ onMounted(() => {
         dialogTree: [
           {
             id: 'start',
-            text: t('pages.breeding.introDialog'),
+            text: t('components.panel.Breeding.introDialog'),
             responses: [
               {
-                label: t('pages.breeding.introOk'),
+                label: t('components.panel.Breeding.introOk'),
                 type: 'valid',
                 action: () => dialog.markDone('breedingIntro'),
               },
@@ -93,7 +93,7 @@ onMounted(() => {
   <div class="mx-auto max-w-160 w-full flex flex-col gap-4 p-4">
     <header class="flex items-center gap-2">
       <h1 class="flex-1 text-xl font-bold">
-        {{ t('pages.breeding.title') }}
+        {{ t('components.panel.Breeding.name') }}
       </h1>
       <CharacterImage :id="currentPartner.id" :alt="currentPartner.name" class="h-12 w-12" />
     </header>
@@ -102,11 +102,11 @@ onMounted(() => {
       <UiButton
         type="secondary"
         class="flex items-center self-start gap-1"
-        :aria-label="t('pages.breeding.a11y.openSelector')"
+        :aria-label="t('components.panel.Breeding.a11y.openSelector')"
         @click="openSelector"
       >
         <div class="i-carbon:add-alt" aria-hidden="true" />
-        {{ selected ? t('pages.breeding.selected') : t('pages.breeding.selectMon') }}
+        {{ selected ? t('components.panel.Breeding.selected') : t('components.panel.Breeding.selectMon') }}
       </UiButton>
 
       <div v-if="selected" class="flex items-center gap-3">
@@ -117,13 +117,13 @@ onMounted(() => {
           class="h-16 w-16 object-contain"
         />
         <div class="text-sm">
-          <div>{{ t('pages.breeding.rarity') }}: <span class="tabular-nums">{{ selected.rarity }}</span></div>
+          <div>{{ t('components.panel.Breeding.rarity') }}: <span class="tabular-nums">{{ selected.rarity }}</span></div>
           <div class="flex items-center gap-1">
-            {{ t('pages.breeding.cost') }}:
+            {{ t('components.panel.Breeding.cost') }}:
             <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
           </div>
           <div>
-            {{ t('pages.breeding.duration') }}: {{ durationMin }} {{ t('pages.breeding.minutes') }}
+            {{ t('components.panel.Breeding.duration') }}: {{ durationMin }} {{ t('components.panel.Breeding.minutes') }}
           </div>
         </div>
       </div>
@@ -134,11 +134,11 @@ onMounted(() => {
         :value="progress"
         :max="1"
         class="h-2 w-full transition-[width] duration-300 motion-reduce:transition-none"
-        :aria-label="t('pages.breeding.progress')"
+        :aria-label="t('components.panel.Breeding.progress')"
       />
       <div class="flex justify-between text-sm">
-        <span>{{ t('pages.breeding.remaining') }}: <span class="tabular-nums">{{ remainingLabel }}</span></span>
-        <span>{{ t('pages.breeding.endsAt', { time: endsAtLabel }) }}</span>
+        <span>{{ t('components.panel.Breeding.remaining') }}: <span class="tabular-nums">{{ remainingLabel }}</span></span>
+        <span>{{ t('components.panel.Breeding.endsAt', { time: endsAtLabel }) }}</span>
       </div>
     </section>
 
@@ -147,10 +147,10 @@ onMounted(() => {
       :disabled="cost > game.shlagidolar || breeding.isRunning(eggType!)"
       type="primary"
       class="flex items-center self-start gap-2"
-      :aria-label="t('pages.breeding.a11y.startBreeding')"
+      :aria-label="t('components.panel.Breeding.a11y.startBreeding')"
       @click="start"
     >
-      {{ t('pages.breeding.cta.payAndStart') }}
+      {{ t('components.panel.Breeding.cta.payAndStart') }}
       <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
     </UiButton>
 
@@ -159,10 +159,10 @@ onMounted(() => {
       type="primary"
       variant="outline"
       class="self-start"
-      :aria-label="t('pages.breeding.a11y.goToEgg')"
+      :aria-label="t('components.panel.Breeding.a11y.goToEgg')"
       @click="goToEgg"
     >
-      {{ t('pages.breeding.cta.seeEgg') }}
+      {{ t('components.panel.Breeding.cta.seeEgg') }}
     </UiButton>
 
     <UiModal
@@ -173,7 +173,7 @@ onMounted(() => {
     >
       <div class="max-w-160 flex flex-col gap-2">
         <h3 id="breeding-select-title" class="text-center text-lg font-bold">
-          {{ t('pages.breeding.selectMon') }}
+          {{ t('components.panel.Breeding.selectMon') }}
         </h3>
         <div class="max-h-80 min-h-0 overflow-y-auto">
           <ShlagemonQuickSelect @select="selectMon" />

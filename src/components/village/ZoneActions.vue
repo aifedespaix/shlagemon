@@ -11,7 +11,6 @@ const arena = useArenaStore()
 const dialog = useDialogStore()
 const player = usePlayerStore()
 const { t } = useI18n()
-const router = useRouter()
 
 const hasKing = computed(() =>
   zone.current.type === 'sauvage'
@@ -116,7 +115,7 @@ function openDojo() {
 function openBreeding() {
   if (arena.inBattle)
     return
-  router.push('/breeding')
+  panel.showBreeding()
 }
 </script>
 
