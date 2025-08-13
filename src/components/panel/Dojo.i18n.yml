@@ -18,9 +18,9 @@ fr:
     minutes: minutes
     remaining: Temps restant
     endsAt: Se termine à {time}
+  progress: Progression
   cta:
     payAndStart: Payer & lancer
-    selectFirst: Sélectionne un Shlagémon
     trainingRunning: Entraînement en cours
   toast:
     started: Entraînement lancé !
@@ -45,9 +45,9 @@ en:
     minutes: minutes
     remaining: Remaining time
     endsAt: Ends at {time}
+  progress: Progress
   cta:
     payAndStart: Pay & start
-    selectFirst: Select a Shlagémon
     trainingRunning: Training in progress
   toast:
     started: Training started!

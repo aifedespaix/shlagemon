@@ -28,6 +28,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     shop: { enter: 'shop-enter', leave: 'shop-leave' },
     miniGame: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
     arena: { enter: 'arena-enter', leave: 'arena-leave' },
+    dojo: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
   } as const satisfies Partial<Record<MainPanel, { enter: SfxId, leave: SfxId }>>
 
   watch(current, (value, oldValue) => {
