@@ -27,6 +27,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   const transitionSfx = {
     shop: { enter: 'shop-enter', leave: 'shop-leave' },
     miniGame: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
+    poulailler: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
     arena: { enter: 'arena-enter', leave: 'arena-leave' },
     dojo: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
   } as const satisfies Partial<Record<MainPanel, { enter: SfxId, leave: SfxId }>>
