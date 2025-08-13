@@ -33,6 +33,14 @@ const safeMax = computed<number>(() => (selected.value ? Math.max(1, 100 - selec
 
 /** === Derived =========================================================== */
 const job = computed(() => (selected.value ? dojo.getJob(selected.value.id) : null))
+const isRunning = computed<boolean>(() => !!job.value) // ⟵ NEW
+
+/** Empêche d'ouvrir le sélecteur pendant un entraînement */
+function openSelector() {
+  if (isRunning.value)
+    return
+  selectorOpen.value = true
+}
 
 /** Recalibre les points à chaque changement de mon */
 watch(selected, () => {
@@ -81,10 +89,6 @@ onMounted(() => {
   }
 })
 
-/** === Actions =========================================================== */
-function openSelector() {
-  selectorOpen.value = true
-}
 function selectMon(mon: DexShlagemon) {
   selected.value = mon
   selectorOpen.value = false
@@ -164,9 +168,8 @@ const ids = {
           </div>
 
           <div class="min-w-0 flex flex-1 flex-col gap-3">
-
             <!-- Points: Slider + input -->
-            <div class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+            <div v-if="!isRunning" class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
               <div class="flex flex-col items-center justify-between">
                 <label :for="ids.slider" class="text-sm font-medium">
                   {{ t('components.panel.Dojo.rarity.points') }}
@@ -217,7 +220,7 @@ const ids = {
             </div>
 
             <!-- Coût & durée -->
-            <div class="w-full flex flex-col items-center gap-2">
+            <div v-if="!isRunning" class="w-full flex flex-col items-center gap-2">
               <div :id="ids.cost" class="flex items-center gap-1 text-sm">
                 <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Dojo.cost.label') }}:</span>
                 <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
@@ -231,6 +234,10 @@ const ids = {
 
             <!-- Progression -->
             <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+              <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                {{ t('components.panel.Dojo.status.running') }} — {{ t('components.panel.Dojo.duration.remaining') }}:
+                <span class="tabular-nums">{{ remainingLabel }}</span>
+              </div>
               <div
                 :id="ids.progress"
                 class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
@@ -281,8 +288,8 @@ const ids = {
     <template #footer>
       <div class="w-full flex flex-wrap gap-2 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
         <UiButton
-          v-if="selected && !job"
-          :disabled="cost > game.shlagidolar || points < 1 || safeMax === 1 && points === 1"
+          v-if="selected && !isRunning"
+          :disabled="cost > game.shlagidolar || points < 1 || (safeMax === 1 && points === 1)"
           type="primary"
           class="flex flex-1 flex-wrap items-center gap-1"
           @click="start"

@@ -2,6 +2,8 @@
 import type { EggType } from '~/stores/egg'
 import type { Character } from '~/type/character'
 import type { DexShlagemon } from '~/type/shlagemon'
+import DialogBox from '~/components/dialog/Box.vue'
+
 import { norman } from '~/data/characters/norman'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
@@ -95,7 +97,7 @@ onMounted(() => {
       <h1 class="flex-1 text-xl font-bold">
         {{ t('components.panel.Breeding.name') }}
       </h1>
-      <CharacterImage :id="currentPartner.id" :alt="currentPartner.name" class="h-12 w-12" />
+      <CharacterImage :id="currentPartner.id" :alt="currentPartner.name" class="max-h-12 w-12" />
     </header>
 
     <section class="flex flex-col gap-3">
