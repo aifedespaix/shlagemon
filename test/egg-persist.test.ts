@@ -42,4 +42,35 @@ describe('egg persistence', () => {
     expect(egg.forcedMonId).toBe(allShlagemons[0].id)
     expect(egg.forcedRarity).toBe(100)
   })
+
+  it('restores legacy incubator without breeding metadata', () => {
+    const pinia = createPinia()
+    pinia.use(piniaPluginPersistedstate)
+    const app = createApp({})
+    app.use(pinia)
+    setActivePinia(pinia)
+
+    const legacy = JSON.stringify([
+      {
+        id: 1,
+        type: 'feu',
+        baseId: allShlagemons[0].id,
+        rarity: 42,
+        startedAt: 1000,
+        hatchesAt: 2000,
+      },
+    ])
+    window.localStorage.setItem('egg', legacy)
+
+    const eggs = useEggStore()
+    expect(eggs.incubator.length).toBe(1)
+    const egg = eggs.incubator[0]
+    expect(egg.startedAt).toBe(1000)
+    expect(egg.hatchesAt).toBe(2000)
+    expect(egg.rarity).toBe(42)
+    expect(egg.base.id).toBe(allShlagemons[0].id)
+    expect(egg.isBreeding).toBeUndefined()
+    expect(egg.forcedMonId).toBeUndefined()
+    expect(egg.forcedRarity).toBeUndefined()
+  })
 })
