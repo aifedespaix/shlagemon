@@ -1,0 +1,48 @@
+fr:
+  title: Élevage
+  introDialog: Bienvenue au centre d'élevage. Choisis le Shlagémon à reproduire.
+  introOk: C'est parti !
+  selectMon: Choisir un Shlagémon
+  selected: Shlagémon sélectionné
+  partner: Partenaire
+  rarity: Rareté
+  cost: Coût
+  duration: Durée
+  minutes: minutes
+  progress: Progression
+  remaining: Temps restant
+  endsAt: Se termine à {time}
+  cta:
+    payAndStart: Payer & lancer
+    seeEgg: Voir l'œuf
+  toast:
+    started: Élevage lancé !
+    finished: Œuf obtenu !
+  a11y:
+    openSelector: Choisir le parent
+    startBreeding: Lancer l'élevage
+    goToEgg: Aller à l'œuf
+en:
+  title: Breeding
+  introDialog: Welcome to the breeding center. Pick the parent to breed.
+  introOk: Let's go!
+  selectMon: Choose a Shlagémon
+  selected: Selected Shlagémon
+  partner: Partner
+  rarity: Rarity
+  cost: Cost
+  duration: Duration
+  minutes: minutes
+  progress: Progress
+  remaining: Remaining time
+  endsAt: Ends at {time}
+  cta:
+    payAndStart: Pay & start
+    seeEgg: View egg
+  toast:
+    started: Breeding started!
+    finished: Egg obtained!
+  a11y:
+    openSelector: Choose parent
+    startBreeding: Start breeding
+    goToEgg: Go to egg
