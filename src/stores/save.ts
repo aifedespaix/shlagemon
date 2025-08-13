@@ -20,6 +20,7 @@ export const useSaveStore = defineStore('save', () => {
   const player = usePlayerStore()
   const itemUsage = useItemUsageStore()
   const equipment = useEquipmentStore()
+  const miniGame = useMiniGameStore()
   const eggBox = useEggBoxStore()
   const egg = useEggStore()
 
@@ -42,6 +43,7 @@ export const useSaveStore = defineStore('save', () => {
     player.reset()
     itemUsage.reset()
     equipment.reset()
+    miniGame.reset()
     eggBox.reset()
     egg.reset()
   }

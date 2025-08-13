@@ -9,9 +9,14 @@ export const useLocaleStore = defineStore('locale', () => {
     locale.value = value
   }
 
+  function reset() {
+    locale.value = defaultLocale
+  }
+
   return {
     locale,
     setLocale,
+    reset,
   }
 }, {
   persist: true,

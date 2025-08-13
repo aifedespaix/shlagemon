@@ -225,6 +225,13 @@ export const useAudioStore = defineStore('audio', () => {
     playSfx(typingSfx[index])
   }
 
+  function reset() {
+    musicVolume.value = 0.5
+    sfxVolume.value = 0.7
+    isMusicEnabled.value = true
+    isSfxEnabled.value = true
+  }
+
   watch(musicVolume, (v) => {
     if (currentMusic.value)
       currentMusic.value.volume(v)
@@ -263,6 +270,7 @@ export const useAudioStore = defineStore('audio', () => {
     stopSfx,
     playBuySfx,
     playTypingSfx,
+    reset,
   }
 }, {
   persist: {
