@@ -12,14 +12,6 @@ const base: Partial<ManifestOptions> = {
   theme_color: '#1865ab',
   background_color: '#1865ab',
   edge_side_panel: { preferred_width: 400 },
-  file_handlers: [
-    {
-      action: '/save/import',
-      accept: {
-        'application/x-shlag': ['.shlag'],
-      }
-    }
-  ],
   icons: [
     { src: '/pwa-64x64.png', sizes: '64x64', type: 'image/png', purpose: 'any' },
     { src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
@@ -52,6 +44,14 @@ export function getPwaManifest(locale: Locale): ManifestOptions {
         lang: 'fr',
         start_url: '/fr/',
         scope: '/fr/',
+        file_handlers: [
+          {
+            action: '/fr/sauvegarde/importer',
+            accept: {
+              'application/x-shlag': ['.shlag'],
+            },
+          },
+        ],
       }
     : {
         id: '/en/',
@@ -61,6 +61,14 @@ export function getPwaManifest(locale: Locale): ManifestOptions {
         lang: 'en',
         start_url: '/en/',
         scope: '/en/',
+        file_handlers: [
+          {
+            action: '/en/save/import',
+            accept: {
+              'application/x-shlag': ['.shlag'],
+            },
+          },
+        ],
       }
 
   // On merge proprement, puis on caste la sortie pour garantir le contrat strict PWA
