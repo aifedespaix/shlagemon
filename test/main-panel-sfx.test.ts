@@ -9,6 +9,7 @@ describe('main panel sound effects', () => {
   it.each([
     ['showShop', 'shop-enter', 'shop-leave'],
     ['showMiniGame', 'mini-game-enter', 'mini-game-leave'],
+    ['showPoulailler', 'mini-game-enter', 'mini-game-leave'],
     ['showArena', 'arena-enter', 'arena-leave'],
   ] as const)(
     'plays %s sounds',
