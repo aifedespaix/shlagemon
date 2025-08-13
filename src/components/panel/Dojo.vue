@@ -163,12 +163,7 @@ const ids = {
             </div>
           </div>
 
-          <!-- CONTROLES -->
           <div class="min-w-0 flex flex-1 flex-col gap-3">
-            <!-- Titre secondaire -->
-            <h3 :id="ids.title" class="text-base font-semibold">
-              {{ t('components.panel.Dojo.controls') }}
-            </h3>
 
             <!-- Points: Slider + input -->
             <div class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
