@@ -1,9 +1,9 @@
 fr:
   title: Dojo
   exit: Quitter le dojo
-  introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes schlages.
-  selectMon: Entraîner un Schlagémon
-  selected: Schlagémon sélectionné
+  introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes S hlagémons.
+  selectMon: Entraîner un Shlagémon
+  selected: Shlagémon sélectionné
   rarity:
     current: Rareté actuelle
     after: Rareté après
@@ -17,10 +17,10 @@ fr:
     minute: minute
     minutes: minutes
     remaining: Temps restant
-    endsAt: Se termine à {{time}}
+    endsAt: Se termine à {time}
   cta:
     payAndStart: Payer & lancer
-    selectFirst: Sélectionne un Schlagémon
+    selectFirst: Sélectionne un Shlagémon
     trainingRunning: Entraînement en cours
   toast:
     started: Entraînement lancé !
@@ -28,9 +28,9 @@ fr:
 en:
   title: Dojo
   exit: Leave the dojo
-  introDialog: Welcome to the dojo. Here you can train your schlages.
-  selectMon: Train a Schlagémon
-  selected: Selected Schlagémon
+  introDialog: Welcome to the dojo. Here you can train your shlaguemons.
+  selectMon: Train a Shlagémon
+  selected: Selected Shlagémon
   rarity:
     current: Current rarity
     after: Rarity after
@@ -44,10 +44,10 @@ en:
     minute: minute
     minutes: minutes
     remaining: Remaining time
-    endsAt: Ends at {{time}}
+    endsAt: Ends at {time}
   cta:
     payAndStart: Pay & start
-    selectFirst: Select a Schlagémon
+    selectFirst: Select a Shlagémon
     trainingRunning: Training in progress
   toast:
     started: Training started!

@@ -427,7 +427,7 @@ components:
             back: Back
             next: Continue
         step3:
-          text: In a trainer battle you can't switch Shlagemon! You also can't use healing potions, only passive potion effects apply.
+          text: In a trainer battle, you are not allowed to switch Shlagémon! Moreover, only the effects of certain active and passive potions have an impact on the battle.
           responses:
             back: Back
             next: Continue
@@ -764,6 +764,33 @@ components:
       exit: Leave the village
     Zone:
       capturedAlt: captured
+    Dojo:
+      title: Dojo
+      exit: Leave the dojo
+      introDialog: Welcome to the dojo. Here you can train your schlages.
+      selectMon: Train a Schlagémon
+      selected: Selected Schlagémon
+      rarity:
+        current: Current rarity
+        after: Rarity after
+        points: Training points
+        limitReached: Cannot exceed 100 rarity.
+      cost:
+        label: Cost
+        insufficient: Insufficient funds
+      duration:
+        label: Duration
+        minute: minute
+        minutes: minutes
+        remaining: Remaining time
+        endsAt: Ends at {time}
+      cta:
+        payAndStart: Pay & start
+        selectFirst: Select a Schlagémon
+        trainingRunning: Training in progress
+      toast:
+        started: Training started!
+        finished: Training finished! Rarity improved.
   settings:
     AccessibilityTab:
       autoHide:
@@ -891,6 +918,7 @@ components:
       henhouse: Henhouse
       fightKing: Challenge the {label} of the zone
       kingDefeated: "{label} defeated!"
+      dojo: Dojo
   zone:
     MonsModal:
       title: "{zone} Shlagemons"

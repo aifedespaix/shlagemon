@@ -15,7 +15,7 @@ export interface DojoTrainingJob {
 }
 
 const COST_A = 1000
-const COST_B = 100000 ** (1 / 98)
+const COST_B = 10000 ** (1 / 98)
 
 /**
  * Compute the total training cost for increasing rarity.

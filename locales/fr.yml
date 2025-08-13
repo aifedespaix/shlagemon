@@ -427,7 +427,7 @@ components:
             back: Retour
             next: Continuer
         step3:
-          text: Dans un combat contre dresseur, tu n'as pas le droit de changer de Shlagémon ! De plus, seules le potions de soit et les effets passifs de certaines potions ont un impact sur le combat.
+          text: Dans un combat contre dresseur, tu n'as pas le droit de changer de Shlagémon ! De plus, seuls les effets de certaines potions actives et passifs ont un impact sur le combat.
           responses:
             back: Retour
             next: Continuer
@@ -764,6 +764,33 @@ components:
       exit: Quitter le Village
     Zone:
       capturedAlt: capturé
+    Dojo:
+      title: Dojo
+      exit: Quitter le dojo
+      introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes schlages.
+      selectMon: Entraîner un Schlagémon
+      selected: Schlagémon sélectionné
+      rarity:
+        current: Rareté actuelle
+        after: Rareté après
+        points: Points d’entraînement
+        limitReached: Impossible de dépasser 100 de rareté.
+      cost:
+        label: Coût
+        insufficient: Fonds insuffisants
+      duration:
+        label: Durée
+        minute: minute
+        minutes: minutes
+        remaining: Temps restant
+        endsAt: Se termine à {time}
+      cta:
+        payAndStart: Payer & lancer
+        selectFirst: Sélectionne un Schlagémon
+        trainingRunning: Entraînement en cours
+      toast:
+        started: Entraînement lancé !
+        finished: Entraînement terminé ! Rareté améliorée.
   settings:
     AccessibilityTab:
       autoHide:
@@ -891,6 +918,7 @@ components:
       henhouse: Poulailler
       fightKing: Défier la {label} de la zone
       kingDefeated: "{label} vaincu{suffix} !"
+      dojo: Dojo
   zone:
     MonsModal:
       title: Shlagémons de {zone}
