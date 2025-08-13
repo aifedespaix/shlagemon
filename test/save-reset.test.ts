@@ -1,6 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it } from 'vitest'
 import { useDialogStore } from '../src/stores/dialog'
+import { useMiniGameStore } from '../src/stores/miniGame'
 import { usePlayerStore } from '../src/stores/player'
 import { useSaveStore } from '../src/stores/save'
 import { useZoneProgressStore } from '../src/stores/zoneProgress'
@@ -43,5 +44,24 @@ describe('useSaveStore.reset', () => {
     save.reset()
 
     expect(player.captureLevelCap).toBe(19)
+  })
+
+  it('should reset mini game store', () => {
+    setActivePinia(createPinia())
+    const mini = useMiniGameStore()
+    const save = useSaveStore()
+
+    mini.select('tictactoe')
+    mini.finish('win')
+
+    expect(mini.currentId).toBe('tictactoe')
+    expect(mini.phase).toBe('success')
+    expect(mini.wins).toBe(1)
+
+    save.reset()
+
+    expect(mini.currentId).toBeNull()
+    expect(mini.phase).toBe('intro')
+    expect(mini.wins).toBe(0)
   })
 })

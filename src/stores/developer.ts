@@ -11,9 +11,14 @@ export const useDeveloperStore = defineStore('developer', () => {
     debug.value = value
   }
 
+  function reset() {
+    debug.value = false
+  }
+
   return {
     debug,
     setDebug,
+    reset,
   }
 }, {
   persist: true,
