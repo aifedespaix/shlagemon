@@ -23,6 +23,9 @@ describe('egg persistence', () => {
           rarity: 42,
           startedAt: 1000,
           hatchesAt: 2000,
+          isBreeding: true,
+          forcedMonId: allShlagemons[0].id,
+          forcedRarity: 200,
         },
       ],
     })
@@ -35,5 +38,8 @@ describe('egg persistence', () => {
     expect(egg.hatchesAt).toBe(2000)
     expect(egg.rarity).toBe(42)
     expect(egg.base.id).toBe(allShlagemons[0].id)
+    expect(egg.isBreeding).toBe(true)
+    expect(egg.forcedMonId).toBe(allShlagemons[0].id)
+    expect(egg.forcedRarity).toBe(100)
   })
 })
