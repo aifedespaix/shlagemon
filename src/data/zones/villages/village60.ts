@@ -77,5 +77,11 @@ export const village60: Zone = {
       position: { lat: -96.4523891083971, lng: 134.07193303489305 },
       miniGame: 'connectfour',
     },
+    breeding: {
+      id: 'breeding',
+      type: 'breeding',
+      label: 'Centre d\'élevage',
+      position: { lat: -161.77487856491092, lng: 148.44469099948034 },
+    },
   },
 }

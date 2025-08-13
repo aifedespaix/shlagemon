@@ -11,6 +11,7 @@ const arena = useArenaStore()
 const dialog = useDialogStore()
 const player = usePlayerStore()
 const { t } = useI18n()
+const router = useRouter()
 
 const hasKing = computed(() =>
   zone.current.type === 'sauvage'
@@ -39,6 +40,13 @@ const dojoPoi = computed(() =>
     : undefined,
 )
 const hasDojo = computed(() => !!dojoPoi.value)
+
+const breedingPoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.breeding
+    : undefined,
+)
+const hasBreeding = computed(() => !!breedingPoi.value)
 
 const poulaillerPoi = computed(() =>
   zone.current.type === 'village'
@@ -104,6 +112,12 @@ function openDojo() {
     return
   panel.showDojo()
 }
+
+function openBreeding() {
+  if (arena.inBattle)
+    return
+  router.push('/breeding')
+}
 </script>
 
 <template>
@@ -148,6 +162,13 @@ function openDojo() {
       :label="t('components.village.ZoneActions.henhouse')"
       :disabled="arena.inBattle"
       @click="openPoulailler"
+    />
+    <UiNavigationButton
+      v-if="hasBreeding"
+      icon="i-mdi:heart-plus"
+      :label="t('components.village.ZoneActions.breeding')"
+      :disabled="arena.inBattle"
+      @click="openBreeding"
     />
     <UiNavigationButton
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"
