@@ -4,6 +4,7 @@ fr:
   introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes S hlagémons.
   selectMon: Entraîner un Shlagémon
   selected: Shlagémon sélectionné
+  controls: Contrôles
   rarity:
     current: Rareté actuelle
     after: Rareté après
@@ -31,6 +32,7 @@ en:
   introDialog: Welcome to the dojo. Here you can train your shlaguemons.
   selectMon: Train a Shlagémon
   selected: Selected Shlagémon
+  controls: Controls
   rarity:
     current: Current rarity
     after: Rarity after
