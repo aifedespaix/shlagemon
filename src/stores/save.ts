@@ -22,6 +22,13 @@ export const useSaveStore = defineStore('save', () => {
   const equipment = useEquipmentStore()
   const eggBox = useEggBoxStore()
   const egg = useEggStore()
+  const playtime = usePlaytimeStore()
+  const deckFilter = useDeckFilterStore()
+  const inventoryFilter = useInventoryFilterStore()
+  const shopFilter = useShopFilterStore()
+  const potionInfo = usePotionInfoStore()
+  const kingPotion = useKingPotionStore()
+  const shortcuts = useShortcutsStore()
 
   function reset() {
     dex.reset()
@@ -44,6 +51,13 @@ export const useSaveStore = defineStore('save', () => {
     equipment.reset()
     eggBox.reset()
     egg.reset()
+    playtime.reset()
+    deckFilter.reset()
+    inventoryFilter.reset()
+    shopFilter.reset()
+    potionInfo.reset()
+    kingPotion.reset()
+    shortcuts.reset()
   }
 
   /**
