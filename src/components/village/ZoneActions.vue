@@ -33,6 +33,13 @@ const miniGamePoi = computed(() =>
     ? zone.current.pois.minigame
     : undefined,
 )
+const dojoPoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.dojo
+    : undefined,
+)
+const hasDojo = computed(() => !!dojoPoi.value)
+
 const poulaillerPoi = computed(() =>
   zone.current.type === 'village'
     ? zone.current.pois.poulailler
@@ -91,6 +98,12 @@ function openPoulailler() {
     return
   panel.showPoulailler()
 }
+
+function openDojo() {
+  if (arena.inBattle)
+    return
+  panel.showDojo()
+}
 </script>
 
 <template>
@@ -121,6 +134,13 @@ function openPoulailler() {
       hover="bg-red-700 dark:bg-red-800"
       :disabled="arena.inBattle"
       @click="openArena"
+    />
+    <UiNavigationButton
+      v-if="hasDojo"
+      icon="i-mdi:school"
+      :label="t('components.village.ZoneActions.dojo')"
+      :disabled="arena.inBattle"
+      @click="openDojo"
     />
     <UiNavigationButton
       v-if="hasPoulailler"

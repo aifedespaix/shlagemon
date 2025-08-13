@@ -22,7 +22,7 @@ export interface Position {
 
 export interface VillagePOI {
   readonly id: string
-  readonly type: 'shop' | 'arena' | 'minigame' | 'poulailler' | string
+  readonly type: 'shop' | 'arena' | 'minigame' | 'poulailler' | 'dojo' | string
   readonly label: string
   readonly position: Position
   /** Items available in the shop when the POI type is `shop`. */
