@@ -44,14 +44,21 @@ export function generateSitemap(options: SitemapOptions): void {
       pathGroups.set(group[locale], group)
   }
 
+  const defaultLocale: Locale = 'en' // langue par défaut
+
   const urlEntries = Array.from(pathGroups.keys()).sort().map((path) => {
     const group = pathGroups.get(path)!
     const loc = `${hostname}${path}`
+
+    // x-default = version anglaise correspondante
+    const xDefaultUrl = `${hostname}${group[defaultLocale]}`
+
     const links = [
-      ...locales.map(locale => `<xhtml:link rel="alternate" hreflang="${locale}" href="${hostname}${group[locale]}" />`),
-      `<xhtml:link rel="alternate" hreflang="x-default" href="${rootUrl}" />`,
-    ]
-      .join('\n    ')
+      ...locales.map(locale =>
+        `<xhtml:link rel="alternate" hreflang="${locale}" href="${hostname}${group[locale]}" />`,
+      ),
+      `<xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultUrl}" />`,
+    ].join('\n    ')
 
     return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    ${links}\n  </url>`
   }).join('\n')

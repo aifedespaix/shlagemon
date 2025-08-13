@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
 
+/** === Props ============================================================= */
 interface Props {
   /** Valeur actuelle. */
   value: number
-  /** Valeur max (>0). */
+  /** Valeur max (>= 0). */
   max: number
   /** Classe de couleur UnoCSS (fallback si ni xp ni rainbow). */
   color?: string
@@ -12,10 +13,13 @@ interface Props {
   xp?: boolean
   /** Thème rainbow. */
   rainbow?: boolean
-  /** Réduit les animations. */
+  /** Réduit les animations (préfère un suivi instantané). */
   reduceMotion?: boolean
-  /** Durée cible (ms) du tween de barre. */
-  tweenMs?: number
+  /**
+   * Constante de temps (ms) du lissage vers la cible.
+   * Plus petit = plus réactif. 160–320ms est souvent agréable.
+   */
+  responseMs?: number
   /** Durée (ms) du pulse “gain”. */
   pulseMs?: number
 }
@@ -24,109 +28,113 @@ const props = withDefaults(defineProps<Props>(), {
   xp: false,
   rainbow: false,
   reduceMotion: false,
-  tweenMs: 300,
+  responseMs: 220,
   pulseMs: 400,
 })
 
-/** === State / derived =================================================== */
-const clampedMax = computed(() => Math.max(0, props.max))
+/** === Helpers =========================================================== */
+const clamp01 = (x: number): number => (x < 0 ? 0 : x > 1 ? 1 : x)
+
+/** === Cibles & affichage =============================================== */
+const clampedMax = computed<number>(() => Math.max(0, props.max))
 const targetScale = computed<number>(() => {
   if (clampedMax.value === 0) return 0
-  return Math.min(1, Math.max(0, props.value / clampedMax.value))
+  return clamp01(props.value / clampedMax.value)
 })
 
-/** Valeur affichée, tweenée via rAF (spam-proof). */
+/** Affiché (suivi lissé temps-continu, spam-proof) */
 const displayScale = ref<number>(targetScale.value)
 
-/** rAF tween controller */
+/** === rAF loop (unique) ================================================ */
 let rafId: number | null = null
-let tweenStart = 0
-let startScale = displayScale.value
+let lastTs = 0
 
-function easeOutCubic(t: number) {
-  const u = 1 - t
-  return 1 - u * u * u
-}
-function animateToScale(next: number, duration: number) {
-  if (props.reduceMotion || duration <= 0) {
-    cancelTween()
-    displayScale.value = next
-    return
-  }
-  cancelTween()
-  tweenStart = performance.now()
-  startScale = displayScale.value
-  const dur = Math.max(60, duration) // petite borne basse
+function step(ts: number) {
+  if (lastTs === 0) lastTs = ts
+  const dt = ts - lastTs
+  lastTs = ts
 
-  const tick = (now: number) => {
-    const t = Math.min(1, (now - tweenStart) / dur)
-    const k = easeOutCubic(t)
-    displayScale.value = startScale + (next - startScale) * k
-    if (t < 1) {
-      rafId = requestAnimationFrame(tick)
-    } else {
-      rafId = null
-      displayScale.value = next
-    }
+  const desired = targetScale.value
+
+  if (props.reduceMotion) {
+    // Pas d’anim : on colle instantanément à la cible
+    displayScale.value = desired
+  } else {
+    // Lissage temps-continu (pas d’overshoot, insensible au spam)
+    // gain = 1 - e^(-dt / tau)
+    const tau = Math.max(60, props.responseMs) // borne basse pour stabilité
+    const gain = 1 - Math.exp(-dt / tau)
+    displayScale.value = clamp01(displayScale.value + (desired - displayScale.value) * gain)
   }
-  rafId = requestAnimationFrame(tick)
-}
-function cancelTween() {
-  if (rafId != null) {
-    cancelAnimationFrame(rafId)
-    rafId = null
+
+  // Continue tant qu’on n’est pas “suffisamment proche” pour éviter jitter
+  const epsilon = 0.001
+  if (Math.abs(displayScale.value - desired) > epsilon) {
+    rafId = requestAnimationFrame(step)
+  } else {
+    displayScale.value = desired // snap final
+    rafId = requestAnimationFrame(step) // on laisse la boucle tourner « idle »
   }
 }
 
-/** Pulse (animation de “gain”) — alternance de nom d’anim pour restart fiable. */
+function ensureLoop() {
+  if (rafId == null) {
+    lastTs = 0
+    rafId = requestAnimationFrame(step)
+  }
+}
+onMounted(ensureLoop)
+
+onBeforeUnmount(() => {
+  if (rafId != null) cancelAnimationFrame(rafId)
+  rafId = null
+})
+
+/** Redémarrer la boucle si quelque chose change structurellement */
+watch([() => props.reduceMotion, () => props.responseMs], () => {
+  if (rafId != null) cancelAnimationFrame(rafId)
+  rafId = null
+  ensureLoop()
+})
+
+/** === Pulse (gain uniquement) ========================================== */
 const pulseOn = ref<boolean>(false)
-/** Anti‑spam : on regroupe les pulses sur des hausses rapprochées. */
 let pulseTimer: number | null = null
 const PULSE_COALESCE_MS = 80
 
 function triggerPulse() {
-  // alterne le flag pour changer d’animation-name via classe
-  pulseOn.value = !pulseOn.value
+  pulseOn.value = !pulseOn.value // alterne l’animation-name
 }
 
-/** Watch valeur pour décider tween + pulse */
-let lastValue = props.value
 watch(
   () => props.value,
   (val, old) => {
-    // Coalesce vers la dernière cible (tween unique malgré spam)
-    animateToScale(targetScale.value, props.tweenMs)
-
-    // Pulse seulement si augmentation et thème pulse (xp || rainbow)
+    // Pulse seulement sur augmentation ET si thème le permet
     if ((props.xp || props.rainbow) && val > old) {
       if (pulseTimer != null) window.clearTimeout(pulseTimer)
-      // On coalesce les pulses trop rapprochés
       pulseTimer = window.setTimeout(() => {
         triggerPulse()
         pulseTimer = null
       }, PULSE_COALESCE_MS)
     }
-    lastValue = val
   },
-  { immediate: true },
 )
 
 onBeforeUnmount(() => {
-  cancelTween()
   if (pulseTimer != null) {
     window.clearTimeout(pulseTimer)
     pulseTimer = null
   }
 })
 
-/** Classes visuelles */
-const barClass = computed(() => {
+/** === Classes visuelles ================================================= */
+const barClass = computed<string>(() => {
   if (props.rainbow) return 'rainbow-bar rainbow-aura'
   return props.xp ? 'xp-bar' : props.color!
 })
 
-/** A11y */
-const ariaNow = computed(() => Math.round(props.value))
+/** === A11y ============================================================= */
+const ariaNow = computed<number>(() => Math.round(props.value))
 </script>
 
 <template>
@@ -137,7 +145,7 @@ const ariaNow = computed(() => Math.round(props.value))
     :aria-valuemax="clampedMax"
     :aria-valuenow="ariaNow"
   >
-    <!-- Barre principale transformée (GPU-friendly) -->
+    <!-- Barre principale (transform GPU-friendly) -->
     <div
       class="h-full will-change-transform"
       :class="[barClass]"
@@ -147,17 +155,11 @@ const ariaNow = computed(() => Math.round(props.value))
       }"
     />
 
-    <!-- Overlay de pulse (séparé pour éviter d'impacter le transform principal) -->
+    <!-- Overlay pulse (séparé du transform) -->
     <div
       class="pointer-events-none absolute inset-0"
-      :class="[
-        (props.xp || props.rainbow)
-          ? (pulseOn ? 'pulse-a' : 'pulse-b')
-          : 'no-pulse'
-      ]"
-      :style="{
-        '--pulse-dur': (props.reduceMotion ? Math.min(props.pulseMs, 200) : props.pulseMs) + 'ms'
-      }"
+      :class="[(props.xp || props.rainbow) ? (pulseOn ? 'pulse-a' : 'pulse-b') : 'no-pulse']"
+      :style="{ '--pulse-dur': (props.reduceMotion ? Math.min(props.pulseMs, 200) : props.pulseMs) + 'ms' }"
       aria-hidden="true"
     />
   </div>
@@ -178,27 +180,21 @@ const ariaNow = computed(() => Math.round(props.value))
   background-size: 400% 100%;
   animation: rainbow-shift 5s linear infinite;
 }
-.rainbow-aura {
-  /* Aura légère, plus cheap qu’un gros box-shadow fréquent */
-  box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.45);
-}
-.dark .rainbow-aura {
-  box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.25);
-}
+.rainbow-aura { box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.45); }
+.dark .rainbow-aura { box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.25); }
 
-/* ====== Flux continu (optionnel) ====================================== */
+/* ====== Flux continu optionnel ======================================== */
 @keyframes xp-flow {
   from { background-position: 0% 0%; }
   to   { background-position: -200% 0%; }
 }
 @keyframes rainbow-shift {
-  0%   { background-position:   0% 50%; }
+  0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
-  100% { background-position:   0% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* ====== Pulse de gain, spam-proof via alternance d’animation-name ====== */
-/* On anime un overlay (box-shadow/scaleY simulé via opacity + inner shadow) pour ne pas perturber le transform principal. */
+/* ====== Pulse de gain (spam-proof) ==================================== */
 .pulse-a { animation: pulseGainA var(--pulse-dur) ease; }
 .pulse-b { animation: pulseGainB var(--pulse-dur) ease; }
 .no-pulse { animation: none; }
@@ -216,9 +212,7 @@ const ariaNow = computed(() => Math.round(props.value))
 
 /* ====== Perf hints ===================================================== */
 div[role="progressbar"] > div:first-child {
-  /* couche GPU, évite layout trash sous spam */
   will-change: transform;
   transform: translateZ(0);
 }
-
 </style>
