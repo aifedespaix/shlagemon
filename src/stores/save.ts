@@ -1,5 +1,6 @@
 import type { PersistedStoreId } from '~/utils/save-code'
 import { defineStore } from 'pinia'
+import { useBreedingStore } from '~/stores/breeding'
 import { PERSISTED_STORE_KEYS } from '~/utils/save-code'
 
 interface ResettableStore { reset?: () => void }
@@ -16,6 +17,7 @@ const PERSISTED_STORE_GETTERS = {
   achievementsFilter: useAchievementsFilterStore,
   ball: useBallStore,
   battleStats: useBattleStatsStore,
+  breeding: useBreedingStore,
   deckFilter: useDeckFilterStore,
   dexFilter: useDexFilterStore,
   dialog: useDialogStore,

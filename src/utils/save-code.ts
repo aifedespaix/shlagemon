@@ -11,6 +11,7 @@ export const PERSISTED_STORE_KEYS = [
   'achievementsFilter',
   'ball',
   'battleStats',
+  'breeding',
   'deckFilter',
   'dexFilter',
   'dialog',
