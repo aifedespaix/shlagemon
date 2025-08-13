@@ -16,31 +16,75 @@ export interface Egg {
   rarity: number
   startedAt: number
   hatchesAt: number
+  /**
+   * Indicates the egg was created through breeding rather than found in the world.
+   */
+  isBreeding?: boolean
+  /**
+   * When provided, forces the egg to hatch into the specified Shlagémon identifier.
+   */
+  forcedMonId?: string
+  /**
+   * Overrides the rarity of the hatched Shlagémon. Value is clamped to [1, 100].
+   */
+  forcedRarity?: number
 }
 
 export const useEggStore = defineStore('egg', () => {
   const incubator = ref<Egg[]>([])
   const dex = useShlagedexStore()
 
-  function startIncubation(type: EggType) {
+  interface IncubationConfig {
+    isBreeding?: boolean
+    forcedMonId?: string
+    forcedRarity?: number
+  }
+
+  function clampRarity(value: number) {
+    return Math.min(100, Math.max(1, value))
+  }
+
+  function startIncubation(type: EggType, config: IncubationConfig = {}) {
     if (incubator.value.length >= 4)
       return false
-    const candidates = baseShlagemons
-      .filter(b => b.types.some(t => t.id === type))
-      .filter(b => b.speciality !== 'legendary')
-    const base = pickRandom(candidates)
-    const rarity = generateRarity(100)
+
+    const { isBreeding, forcedMonId, forcedRarity } = config
+
+    let base: BaseShlagemon | undefined
+    if (forcedMonId) {
+      const candidate = baseShlagemons.find(b => b.id === forcedMonId)
+      if (candidate && candidate.types.some(t => t.id === type) && candidate.speciality !== 'legendary')
+        base = candidate
+    }
+    if (!base) {
+      const candidates = baseShlagemons
+        .filter(b => b.types.some(t => t.id === type))
+        .filter(b => b.speciality !== 'legendary')
+      base = pickRandom(candidates)
+    }
+
+    const rarity = clampRarity(forcedRarity ?? generateRarity(100))
     const duration = hatchDurationForRarity(rarity)
     const startedAt = Date.now()
     const id = startedAt + Math.random()
-    incubator.value.push({
+
+    const egg: Egg = {
       id,
       type,
       base,
       rarity,
       startedAt,
       hatchesAt: startedAt + duration,
-    })
+    }
+
+    if (isBreeding)
+      egg.isBreeding = true
+    if (forcedMonId)
+      egg.forcedMonId = forcedMonId
+    if (forcedRarity !== undefined)
+      egg.forcedRarity = rarity
+
+    incubator.value.push(egg)
     return true
   }
 
@@ -56,7 +100,11 @@ export const useEggStore = defineStore('egg', () => {
     if (egg.hatchesAt > Date.now())
       return null
     incubator.value.splice(idx, 1)
-    return dex.captureShlagemon(egg.base, false, egg.rarity)
+    const base = egg.forcedMonId
+      ? baseShlagemons.find(b => b.id === egg.forcedMonId) ?? egg.base
+      : egg.base
+    const rarity = clampRarity(egg.forcedRarity ?? egg.rarity)
+    return dex.captureShlagemon(base, false, rarity)
   }
 
   function cancelIncubation(id: number) {
