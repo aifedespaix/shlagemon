@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 /** === Props ============================================================= */
 interface Props {
@@ -38,7 +38,8 @@ const clamp01 = (x: number): number => (x < 0 ? 0 : x > 1 ? 1 : x)
 /** === Cibles & affichage =============================================== */
 const clampedMax = computed<number>(() => Math.max(0, props.max))
 const targetScale = computed<number>(() => {
-  if (clampedMax.value === 0) return 0
+  if (clampedMax.value === 0)
+    return 0
   return clamp01(props.value / clampedMax.value)
 })
 
@@ -50,7 +51,8 @@ let rafId: number | null = null
 let lastTs = 0
 
 function step(ts: number) {
-  if (lastTs === 0) lastTs = ts
+  if (lastTs === 0)
+    lastTs = ts
   const dt = ts - lastTs
   lastTs = ts
 
@@ -59,19 +61,28 @@ function step(ts: number) {
   if (props.reduceMotion) {
     // Pas d’anim : on colle instantanément à la cible
     displayScale.value = desired
-  } else {
-    // Lissage temps-continu (pas d’overshoot, insensible au spam)
-    // gain = 1 - e^(-dt / tau)
+  }
+  else {
     const tau = Math.max(60, props.responseMs) // borne basse pour stabilité
-    const gain = 1 - Math.exp(-dt / tau)
-    displayScale.value = clamp01(displayScale.value + (desired - displayScale.value) * gain)
+
+    if (desired < displayScale.value) {
+      // Décroissance linéaire pour atteindre rapidement 0 sans traînée
+      const speed = dt / tau
+      displayScale.value = Math.max(desired, displayScale.value - speed)
+    }
+    else {
+      // Lissage exponentiel pour les augmentations (anti-overshoot)
+      const gain = 1 - Math.exp(-dt / tau)
+      displayScale.value = clamp01(displayScale.value + (desired - displayScale.value) * gain)
+    }
   }
 
   // Continue tant qu’on n’est pas “suffisamment proche” pour éviter jitter
   const epsilon = 0.001
   if (Math.abs(displayScale.value - desired) > epsilon) {
     rafId = requestAnimationFrame(step)
-  } else {
+  }
+  else {
     displayScale.value = desired // snap final
     rafId = requestAnimationFrame(step) // on laisse la boucle tourner « idle »
   }
@@ -86,13 +97,15 @@ function ensureLoop() {
 onMounted(ensureLoop)
 
 onBeforeUnmount(() => {
-  if (rafId != null) cancelAnimationFrame(rafId)
+  if (rafId != null)
+    cancelAnimationFrame(rafId)
   rafId = null
 })
 
 /** Redémarrer la boucle si quelque chose change structurellement */
 watch([() => props.reduceMotion, () => props.responseMs], () => {
-  if (rafId != null) cancelAnimationFrame(rafId)
+  if (rafId != null)
+    cancelAnimationFrame(rafId)
   rafId = null
   ensureLoop()
 })
@@ -111,7 +124,8 @@ watch(
   (val, old) => {
     // Pulse seulement sur augmentation ET si thème le permet
     if ((props.xp || props.rainbow) && val > old) {
-      if (pulseTimer != null) window.clearTimeout(pulseTimer)
+      if (pulseTimer != null)
+        window.clearTimeout(pulseTimer)
       pulseTimer = window.setTimeout(() => {
         triggerPulse()
         pulseTimer = null
@@ -129,7 +143,8 @@ onBeforeUnmount(() => {
 
 /** === Classes visuelles ================================================= */
 const barClass = computed<string>(() => {
-  if (props.rainbow) return 'rainbow-bar rainbow-aura'
+  if (props.rainbow)
+    return 'rainbow-bar rainbow-aura'
   return props.xp ? 'xp-bar' : props.color!
 })
 
@@ -139,7 +154,7 @@ const ariaNow = computed<number>(() => Math.round(props.value))
 
 <template>
   <div
-    class="relative w-full overflow-hidden rounded h-2 bg-gray-200 dark:bg-gray-700"
+    class="relative h-2 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700"
     role="progressbar"
     :aria-valuemin="0"
     :aria-valuemax="clampedMax"
@@ -159,7 +174,7 @@ const ariaNow = computed<number>(() => Math.round(props.value))
     <div
       class="pointer-events-none absolute inset-0"
       :class="[(props.xp || props.rainbow) ? (pulseOn ? 'pulse-a' : 'pulse-b') : 'no-pulse']"
-      :style="{ '--pulse-dur': (props.reduceMotion ? Math.min(props.pulseMs, 200) : props.pulseMs) + 'ms' }"
+      :style="{ '--pulse-dur': `${props.reduceMotion ? Math.min(props.pulseMs, 200) : props.pulseMs}ms` }"
       aria-hidden="true"
     />
   </div>
@@ -180,38 +195,76 @@ const ariaNow = computed<number>(() => Math.round(props.value))
   background-size: 400% 100%;
   animation: rainbow-shift 5s linear infinite;
 }
-.rainbow-aura { box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.45); }
-.dark .rainbow-aura { box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.25); }
+.rainbow-aura {
+  box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.45);
+}
+.dark .rainbow-aura {
+  box-shadow: 0 0 6px 1px rgba(255, 128, 255, 0.25);
+}
 
 /* ====== Flux continu optionnel ======================================== */
 @keyframes xp-flow {
-  from { background-position: 0% 0%; }
-  to   { background-position: -200% 0%; }
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -200% 0%;
+  }
 }
 @keyframes rainbow-shift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ====== Pulse de gain (spam-proof) ==================================== */
-.pulse-a { animation: pulseGainA var(--pulse-dur) ease; }
-.pulse-b { animation: pulseGainB var(--pulse-dur) ease; }
-.no-pulse { animation: none; }
+.pulse-a {
+  animation: pulseGainA var(--pulse-dur) ease;
+}
+.pulse-b {
+  animation: pulseGainB var(--pulse-dur) ease;
+}
+.no-pulse {
+  animation: none;
+}
 
 @keyframes pulseGainA {
-  0%   { box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0.0); opacity: 0; }
-  20%  { opacity: 1; box-shadow: inset 0 0 6px 2px rgba(250, 204, 21, 0.65); }
-  100% { opacity: 0; box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0.0); }
+  0% {
+    box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    box-shadow: inset 0 0 6px 2px rgba(250, 204, 21, 0.65);
+  }
+  100% {
+    opacity: 0;
+    box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0);
+  }
 }
 @keyframes pulseGainB {
-  0%   { box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0.0); opacity: 0; }
-  20%  { opacity: 1; box-shadow: inset 0 0 6px 2px rgba(250, 204, 21, 0.65); }
-  100% { opacity: 0; box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0.0); }
+  0% {
+    box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    box-shadow: inset 0 0 6px 2px rgba(250, 204, 21, 0.65);
+  }
+  100% {
+    opacity: 0;
+    box-shadow: inset 0 0 0 0 rgba(250, 204, 21, 0);
+  }
 }
 
 /* ====== Perf hints ===================================================== */
-div[role="progressbar"] > div:first-child {
+div[role='progressbar'] > div:first-child {
   will-change: transform;
   transform: translateZ(0);
 }
