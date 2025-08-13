@@ -15,7 +15,7 @@ components:
     reload: Recharger
     updating: Mise à jour en cours… cela peut prendre quelques secondes.
     explainUpdating: Ne ferme pas l’application pendant la mise à jour.
-    reloading: Rechargement…
+    reloading: Chargement…
     error: La mise à jour a échoué. Réessaie.
     retry: Réessayer
   arena:
