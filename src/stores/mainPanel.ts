@@ -1,3 +1,4 @@
+import type { SfxId } from '~/data/sfx'
 import { defineStore } from 'pinia'
 
 export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler'
@@ -9,6 +10,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   const arena = useArenaStore()
   const ui = useUIStore()
   const mobile = useMobileTabStore()
+  const audio = useAudioStore()
   const current = ref<MainPanel>('village')
 
   const isBattle = computed(() => current.value === 'battle' || current.value === 'trainerBattle')
@@ -22,9 +24,25 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     { immediate: true },
   )
 
-  watch(current, (value) => {
+  const transitionSfx = {
+    shop: { enter: 'shop-enter', leave: 'shop-leave' },
+    miniGame: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
+    arena: { enter: 'arena-enter', leave: 'arena-leave' },
+  } as const satisfies Partial<Record<MainPanel, { enter: SfxId, leave: SfxId }>>
+
+  watch(current, (value, oldValue) => {
     if (value !== 'battle' && value !== 'trainerBattle')
       battle.stopLoop()
+
+    const enter = transitionSfx[value]
+    if (enter)
+      audio.playSfx(enter.enter)
+
+    if (oldValue) {
+      const leave = transitionSfx[oldValue]
+      if (leave)
+        audio.playSfx(leave.leave)
+    }
   })
 
   function showShop() {
