@@ -114,8 +114,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
           <div class="flex items-center gap-2">
             <UiButton
               v-if="hasError"
-              type="secondary"
-              variant="soft"
+              type="default"
+              variant="outline"
               data-state="error"
               @click="handleRetry"
             >
