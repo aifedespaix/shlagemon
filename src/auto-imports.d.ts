@@ -45,6 +45,7 @@ declare global {
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const describeEvolutionMerge: typeof import('./stores/shlagedex.spec')['describeEvolutionMerge']
+  const dojoTrainingCost: typeof import('./stores/dojo')['dojoTrainingCost']
   const drop: typeof import('./composables/useConnectFour')['drop']
   const durationParts: typeof import('./composables/useFormatDuration')['durationParts']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
@@ -207,6 +208,7 @@ declare global {
   const useDiseaseStore: typeof import('./stores/disease')['useDiseaseStore']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
+  const useDojoStore: typeof import('./stores/dojo')['useDojoStore']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
   const useEggBoxStore: typeof import('./stores/eggBox')['useEggBoxStore']
@@ -474,6 +476,9 @@ declare global {
   export type { DialogDone } from './stores/dialog'
   import('./stores/dialog')
   // @ts-ignore
+  export type { DojoTrainingJob } from './stores/dojo'
+  import('./stores/dojo')
+  // @ts-ignore
   export type { EggType, Egg } from './stores/egg'
   import('./stores/egg')
   // @ts-ignore
@@ -543,6 +548,7 @@ declare module 'vue' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly describeEvolutionMerge: UnwrapRef<typeof import('./stores/shlagedex.spec')['describeEvolutionMerge']>
+    readonly dojoTrainingCost: UnwrapRef<typeof import('./stores/dojo')['dojoTrainingCost']>
     readonly drop: UnwrapRef<typeof import('./composables/useConnectFour')['drop']>
     readonly durationParts: UnwrapRef<typeof import('./composables/useFormatDuration')['durationParts']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
@@ -704,6 +710,7 @@ declare module 'vue' {
     readonly useDiseaseStore: UnwrapRef<typeof import('./stores/disease')['useDiseaseStore']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
+    readonly useDojoStore: UnwrapRef<typeof import('./stores/dojo')['useDojoStore']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
     readonly useEggBoxStore: UnwrapRef<typeof import('./stores/eggBox')['useEggBoxStore']>
