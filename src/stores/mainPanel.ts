@@ -1,7 +1,7 @@
 import type { SfxId } from '~/data/sfx'
 import { defineStore } from 'pinia'
 
-export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler'
+export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler' | 'dojo'
 
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
@@ -83,6 +83,12 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'poulailler'
   }
 
+  function showDojo() {
+    if (arena.inBattle)
+      return
+    current.value = 'dojo'
+  }
+
   function showArena() {
     if (arena.inBattle)
       return
@@ -108,6 +114,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     showTrainerBattle,
     showMiniGame,
     showPoulailler,
+    showDojo,
     showArena,
     showVillage,
     reset,
@@ -122,7 +129,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
       const miniGameStore = useMiniGameStore()
       if (store.current === 'arena' && !arenaStore.inBattle)
         store.reset()
-      if (store.current === 'trainerBattle' || store.current === 'poulailler')
+      if (store.current === 'trainerBattle' || store.current === 'poulailler' || store.current === 'dojo')
         store.reset()
       if (store.current === 'miniGame' && !miniGameStore.currentId)
         store.reset()

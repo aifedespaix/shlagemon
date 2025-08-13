@@ -1,0 +1,54 @@
+fr:
+  title: Dojo
+  exit: Quitter le dojo
+  introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes schlages.
+  selectMon: Entraîner un Schlagémon
+  selected: Schlagémon sélectionné
+  rarity:
+    current: Rareté actuelle
+    after: Rareté après
+    points: Points d’entraînement
+    limitReached: Impossible de dépasser 100 de rareté.
+  cost:
+    label: Coût
+    insufficient: Fonds insuffisants
+  duration:
+    label: Durée
+    minute: minute
+    minutes: minutes
+    remaining: Temps restant
+    endsAt: Se termine à {{time}}
+  cta:
+    payAndStart: Payer & lancer
+    selectFirst: Sélectionne un Schlagémon
+    trainingRunning: Entraînement en cours
+  toast:
+    started: Entraînement lancé !
+    finished: Entraînement terminé ! Rareté améliorée.
+en:
+  title: Dojo
+  exit: Leave the dojo
+  introDialog: Welcome to the dojo. Here you can train your schlages.
+  selectMon: Train a Schlagémon
+  selected: Selected Schlagémon
+  rarity:
+    current: Current rarity
+    after: Rarity after
+    points: Training points
+    limitReached: Cannot exceed 100 rarity.
+  cost:
+    label: Cost
+    insufficient: Insufficient funds
+  duration:
+    label: Duration
+    minute: minute
+    minutes: minutes
+    remaining: Remaining time
+    endsAt: Ends at {{time}}
+  cta:
+    payAndStart: Pay & start
+    selectFirst: Select a Schlagémon
+    trainingRunning: Training in progress
+  toast:
+    started: Training started!
+    finished: Training finished! Rarity improved.

@@ -2,6 +2,7 @@ fr:
   shop: Magasin
   minigame: Mini-jeu
   arena: Arène
+  dojo: Dojo
   henhouse: Poulailler
   fightKing: 'Défier la {label} de la zone'
   kingDefeated: '{label} vaincu{suffix} !'
@@ -9,6 +10,7 @@ en:
   shop: Shop
   minigame: Minigame
   arena: Arena
+  dojo: Dojo
   henhouse: Henhouse
   fightKing: 'Challenge the {label} of the zone'
   kingDefeated: '{label} defeated!'
