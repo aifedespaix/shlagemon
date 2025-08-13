@@ -173,6 +173,7 @@ declare global {
   const useBattleship: typeof import('./composables/useBattleship')['useBattleship']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
+  const useBreedingStore: typeof import('./stores/breeding')['useBreedingStore']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
@@ -467,6 +468,9 @@ declare global {
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')
   // @ts-ignore
+  export type { BreedingJob, BreedingState } from './stores/breeding'
+  import('./stores/breeding')
+  // @ts-ignore
   export type { DeckSort } from './stores/deckFilter'
   import('./stores/deckFilter')
   // @ts-ignore
@@ -675,6 +679,7 @@ declare module 'vue' {
     readonly useBattleship: UnwrapRef<typeof import('./composables/useBattleship')['useBattleship']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
+    readonly useBreedingStore: UnwrapRef<typeof import('./stores/breeding')['useBreedingStore']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
