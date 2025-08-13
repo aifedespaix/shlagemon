@@ -93,7 +93,7 @@ onMounted(() => {
   <div class="mx-auto max-w-160 w-full flex flex-col gap-4 p-4">
     <header class="flex items-center gap-2">
       <h1 class="flex-1 text-xl font-bold">
-        {{ t('pages.breeding.title') }}
+        {{ t('pages.breeding.name') }}
       </h1>
       <CharacterImage :id="currentPartner.id" :alt="currentPartner.name" class="h-12 w-12" />
     </header>

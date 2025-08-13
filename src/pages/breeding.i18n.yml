@@ -1,5 +1,5 @@
 fr:
-  title: Élevage
+  name: Élevage
   introDialog: Bienvenue au centre d'élevage. Choisis le Shlagémon à reproduire.
   introOk: C'est parti !
   selectMon: Choisir un Shlagémon
@@ -23,7 +23,7 @@ fr:
     startBreeding: Lancer l'élevage
     goToEgg: Aller à l'œuf
 en:
-  title: Breeding
+  name: Breeding
   introDialog: Welcome to the breeding center. Pick the parent to breed.
   introOk: Let's go!
   selectMon: Choose a Shlagémon
