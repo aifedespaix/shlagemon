@@ -15,7 +15,7 @@ components:
     reload: Reload
     updating: Updating… this may take a few seconds.
     explainUpdating: Do not close the application during the update.
-    reloading: Reloading…
+    reloading: Loading…
     error: The update failed. Please try again.
     retry: Retry
   arena:
