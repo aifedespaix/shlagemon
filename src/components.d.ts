@@ -113,6 +113,7 @@ declare module 'vue' {
     PanelArena: typeof import('./components/panel/Arena.vue')['default']
     PanelBonusDetails: typeof import('./components/panel/BonusDetails.vue')['default']
     PanelDialog: typeof import('./components/panel/Dialog.vue')['default']
+    PanelDojo: typeof import('./components/panel/Dojo.vue')['default']
     PanelInventory: typeof import('./components/panel/Inventory.vue')['default']
     PanelMain: typeof import('./components/panel/Main.vue')['default']
     PanelMap: typeof import('./components/panel/Map.vue')['default']

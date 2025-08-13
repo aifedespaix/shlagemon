@@ -88,5 +88,11 @@ export const village80: Zone = {
       position: { lat: -199.50125361005428, lng: 142.2667046594498 },
       miniGame: 'shlagmind',
     },
+    dojo: {
+      id: 'dojo',
+      type: 'dojo',
+      label: 'Dojo',
+      position: { lat: -170, lng: 160 },
+    },
   },
 }
