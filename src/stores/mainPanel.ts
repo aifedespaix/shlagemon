@@ -1,7 +1,7 @@
 import type { SfxId } from '~/data/sfx'
 import { defineStore } from 'pinia'
 
-export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler' | 'dojo'
+export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler' | 'dojo' | 'breeding'
 
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
@@ -30,6 +30,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     poulailler: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
     arena: { enter: 'arena-enter', leave: 'arena-leave' },
     dojo: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
+    breeding: { enter: 'mini-game-enter', leave: 'mini-game-leave' },
   } as const satisfies Partial<Record<MainPanel, { enter: SfxId, leave: SfxId }>>
 
   watch(current, (value, oldValue) => {
@@ -91,6 +92,12 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'dojo'
   }
 
+  function showBreeding() {
+    if (arena.inBattle)
+      return
+    current.value = 'breeding'
+  }
+
   function showArena() {
     if (arena.inBattle)
       return
@@ -117,6 +124,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     showMiniGame,
     showPoulailler,
     showDojo,
+    showBreeding,
     showArena,
     showVillage,
     reset,
@@ -131,8 +139,14 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
       const miniGameStore = useMiniGameStore()
       if (store.current === 'arena' && !arenaStore.inBattle)
         store.reset()
-      if (store.current === 'trainerBattle' || store.current === 'poulailler' || store.current === 'dojo')
+      if (
+        store.current === 'trainerBattle'
+        || store.current === 'poulailler'
+        || store.current === 'dojo'
+        || store.current === 'breeding'
+      ) {
         store.reset()
+      }
       if (store.current === 'miniGame' && !miniGameStore.currentId)
         store.reset()
     },

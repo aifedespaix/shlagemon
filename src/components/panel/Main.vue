@@ -2,6 +2,7 @@
 import BattleMain from '../battle/Main.vue'
 import BattleTrainer from '../battle/Trainer.vue'
 import ArenaPanel from './Arena.vue'
+import BreedingPanel from './Breeding.vue'
 import DojoPanel from './Dojo.vue'
 import MiniGamePanel from './MiniGame.vue'
 import PoulaillerPanel from './Poulailler.vue'
@@ -29,6 +30,8 @@ const currentComponent = computed(() => {
       return PoulaillerPanel
     case 'dojo':
       return DojoPanel
+    case 'breeding':
+      return BreedingPanel
     case 'village':
       return VillagePanel
     default:
