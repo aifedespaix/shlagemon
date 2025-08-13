@@ -106,119 +106,121 @@ const ids = {
     @exit="panel.showVillage()"
   >
     <!-- Conteneur scrollable dans la hauteur dispo du parent -->
-    <div class="min-h-0 flex flex-1">
-      <div class="flex flex-1 flex-col gap-4 overflow-y-auto px-2 py-3 sm:px-3">
+    <div class="flex-1">
+      <div class="h-full flex flex-1 gap-4 overflow-y-auto px-2 py-3 sm:px-3">
         <!-- CTA sélection si aucun mon -->
         <UiButton v-if="!selected" type="primary" class="mx-auto" @click="openSelector">
           {{ t('components.panel.Dojo.selectMon') }}
         </UiButton>
 
         <!-- Contenu principal -->
-        <div v-else class="mx-auto max-w-120 w-full flex flex-col items-center gap-4">
+        <UiAdaptiveDisplayer v-else class="h-full w-full">
           <ShlagemonImage
             :id="selected.base.id"
             :alt="t(selected.base.name)"
             class="h-32 w-32"
           />
 
-          <!-- Rareté actuelle → ciblée -->
-          <div class="text-sm">
-            {{ t('components.panel.Dojo.rarity.current') }}:
-            {{ selected.rarity }} → {{ Math.min(100, selected.rarity + points) }}
-          </div>
-
-          <!-- Contrôle Points: Slider + Number input synchronisés -->
-          <div class="w-full flex flex-col gap-2">
-            <div class="flex items-center justify-between">
-              <label :for="ids.slider" class="text-sm font-medium">
-                {{ t('components.panel.Dojo.points') }}
-              </label>
-              <span class="text-xs text-gray-500">
-                {{ t('common.min') }} 1 · {{ t('common.max') }} {{ maxPoints }}
-              </span>
+          <div class="flex flex-1 flex-col gap-2">
+            <!-- Rareté actuelle → ciblée -->
+            <div class="text-sm">
+              {{ t('components.panel.Dojo.rarity.current') }}:
+              {{ selected.rarity }} → {{ Math.min(100, selected.rarity + points) }}
             </div>
 
-            <!-- Slider -->
-            <input
-              :id="ids.slider"
-              type="range"
-              class="dojo-slider w-full"
-              :min="1"
-              :max="Math.max(1, maxPoints)"
-              :step="1"
-              :value="clamp(points, 1, Math.max(1, maxPoints))"
-              :aria-valuemin="1"
-              :aria-valuemax="Math.max(1, maxPoints)"
-              :aria-valuenow="clamp(points, 1, Math.max(1, maxPoints))"
-              :aria-describedby="`${ids.cost} ${ids.duration}`"
-              @input="setPointsFromSlider(($event.target as HTMLInputElement).valueAsNumber)"
-            >
+            <!-- Contrôle Points: Slider + Number input synchronisés -->
+            <div class="w-full flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <label :for="ids.slider" class="text-sm font-medium">
+                  {{ t('components.panel.Dojo.points') }}
+                </label>
+                <span class="text-xs text-gray-500">
+                  {{ t('common.min') }} 1 · {{ t('common.max') }} {{ maxPoints }}
+                </span>
+              </div>
 
-            <!-- Number input (UiNumberInput existant), compact -->
-            <div class="w-28 self-end">
-              <UiNumberInput
-                :id="ids.number"
-                v-model="points"
+              <!-- Slider -->
+              <input
+                :id="ids.slider"
+                type="range"
+                class="dojo-slider w-full"
                 :min="1"
                 :max="Math.max(1, maxPoints)"
                 :step="1"
-                density="compact"
-                @update:model-value="setPointsFromNumber"
-              />
-            </div>
-          </div>
+                :value="clamp(points, 1, Math.max(1, maxPoints))"
+                :aria-valuemin="1"
+                :aria-valuemax="Math.max(1, maxPoints)"
+                :aria-valuenow="clamp(points, 1, Math.max(1, maxPoints))"
+                :aria-describedby="`${ids.cost} ${ids.duration}`"
+                @input="setPointsFromSlider(($event.target as HTMLInputElement).valueAsNumber)"
+              >
 
-          <!-- Coût & durée -->
-          <div class="grid grid-cols-1 w-full gap-2 sm:grid-cols-2">
-            <div :id="ids.cost" class="text-sm">
-              {{ t('components.panel.Dojo.cost.label') }}:
-              <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+              <!-- Number input (UiNumberInput existant), compact -->
+              <div class="w-28 self-end">
+                <UiNumberInput
+                  :id="ids.number"
+                  v-model="points"
+                  :min="1"
+                  :max="Math.max(1, maxPoints)"
+                  :step="1"
+                  density="compact"
+                  @update:model-value="setPointsFromNumber"
+                />
+              </div>
             </div>
-            <div :id="ids.duration" class="text-sm">
-              {{ t('components.panel.Dojo.duration.label') }}:
-              {{ durationMin }}
-              {{ durationMin === 1 ? t('components.panel.Dojo.duration.minute') : t('components.panel.Dojo.duration.minutes') }}
+
+            <!-- Coût & durée -->
+            <div class="grid grid-cols-1 w-full gap-2 sm:grid-cols-2">
+              <div :id="ids.cost" class="text-sm">
+                {{ t('components.panel.Dojo.cost.label') }}:
+                <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+              </div>
+              <div :id="ids.duration" class="text-sm">
+                {{ t('components.panel.Dojo.duration.label') }}:
+                {{ durationMin }}
+                {{ durationMin === 1 ? t('components.panel.Dojo.duration.minute') : t('components.panel.Dojo.duration.minutes') }}
+              </div>
             </div>
-          </div>
 
-          <!-- CTA démarrer / Suivi progression -->
-          <UiButton
-            v-if="!job"
-            :disabled="cost > game.shlagidolar || points < 1 || maxPoints === 0"
-            type="primary"
-            class="w-full sm:w-auto"
-            @click="start"
-          >
-            {{ t('components.panel.Dojo.cta.payAndStart') }}
-          </UiButton>
-
-          <div v-else class="w-full flex flex-col gap-2">
-            <div
-              :id="ids.progress"
-              class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
-              role="progressbar"
-              :aria-label="t('components.panel.Dojo.progress')"
-              :aria-valuemin="0"
-              :aria-valuemax="100"
-              :aria-valuenow="Math.round(progress)"
+            <!-- CTA démarrer / Suivi progression -->
+            <UiButton
+              v-if="!job"
+              :disabled="cost > game.shlagidolar || points < 1 || maxPoints === 0"
+              type="primary"
+              class="w-full sm:w-auto"
+              @click="start"
             >
-              <div
-                class="will-change-[width] h-full rounded bg-green-500 transition-all duration-300"
-                :style="{ width: `${progress}%` }"
-              />
-            </div>
-            <p class="text-center text-sm">
-              {{ t('components.panel.Dojo.duration.remaining') }}:
-              {{ Math.ceil(remaining / 60) }}
-              {{ t('components.panel.Dojo.duration.minutes') }}
-            </p>
+              {{ t('components.panel.Dojo.cta.payAndStart') }}
+            </UiButton>
 
-            <!-- Live-update discret pour lecteurs d'écran -->
-            <span aria-live="polite" class="sr-only">
-              {{ t('components.panel.Dojo.progress') }}: {{ Math.round(progress) }}%
-            </span>
+            <div v-else class="w-full flex flex-col gap-2">
+              <div
+                :id="ids.progress"
+                class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
+                role="progressbar"
+                :aria-label="t('components.panel.Dojo.progress')"
+                :aria-valuemin="0"
+                :aria-valuemax="100"
+                :aria-valuenow="Math.round(progress)"
+              >
+                <div
+                  class="will-change-[width] h-full rounded bg-green-500 transition-all duration-300"
+                  :style="{ width: `${progress}%` }"
+                />
+              </div>
+              <p class="text-center text-sm">
+                {{ t('components.panel.Dojo.duration.remaining') }}:
+                {{ Math.ceil(remaining / 60) }}
+                {{ t('components.panel.Dojo.duration.minutes') }}
+              </p>
+
+              <!-- Live-update discret pour lecteurs d'écran -->
+              <span aria-live="polite" class="sr-only">
+                {{ t('components.panel.Dojo.progress') }}: {{ Math.round(progress) }}%
+              </span>
+            </div>
           </div>
-        </div>
+        </UiAdaptiveDisplayer>
       </div>
     </div>
 

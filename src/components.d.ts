@@ -155,6 +155,7 @@ declare module 'vue' {
     ShopItemCard: typeof import('./components/shop/ItemCard.vue')['default']
     ShopItemDetail: typeof import('./components/shop/ItemDetail.vue')['default']
     ThemeToggle: typeof import('./components/ThemeToggle.vue')['default']
+    UiAdaptiveDisplayer: typeof import('./components/ui/AdaptiveDisplayer.vue')['default']
     UiAnimatedNumber: typeof import('./components/ui/AnimatedNumber.vue')['default']
     UiBadge: typeof import('./components/ui/Badge.vue')['default']
     UiButton: typeof import('./components/ui/Button.vue')['default']
