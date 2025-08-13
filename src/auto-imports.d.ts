@@ -53,7 +53,6 @@ declare global {
   const eggIds: typeof import('./stores/eggBox')['eggIds']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const findBestMove: typeof import('./composables/useTicTacToe')['findBestMove']
-  const getActiveHead: typeof import('@unhead/vue')['getActiveHead']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getValidColumns: typeof import('./composables/useConnectFour')['getValidColumns']
@@ -173,7 +172,6 @@ declare global {
   const useBattleship: typeof import('./composables/useBattleship')['useBattleship']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
-  const useBreedingStore: typeof import('./stores/breeding')['useBreedingStore']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
@@ -259,7 +257,6 @@ declare global {
   const useInterval: typeof import('@vueuse/core')['useInterval']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
   const useInventoryFilterStore: typeof import('./stores/inventoryFilter')['useInventoryFilterStore']
-  const useInventoryModalStore: typeof import('./stores/inventoryModal')['useInventoryModalStore']
   const useInventoryStore: typeof import('./stores/inventory')['useInventoryStore']
   const useItemShortcutModalStore: typeof import('./stores/itemShortcutModal')['useItemShortcutModalStore']
   const useItemUsageStore: typeof import('./stores/itemUsage')['useItemUsageStore']
@@ -277,7 +274,6 @@ declare global {
   const useMainPanelStore: typeof import('./stores/mainPanel')['useMainPanelStore']
   const useManualAttackStatsStore: typeof import('./stores/manualAttackStats')['useManualAttackStatsStore']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
-  const useMapModalStore: typeof import('./stores/mapModal')['useMapModalStore']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
   const useMemoize: typeof import('@vueuse/core')['useMemoize']
@@ -289,7 +285,6 @@ declare global {
   const useMouse: typeof import('@vueuse/core')['useMouse']
   const useMouseInElement: typeof import('@vueuse/core')['useMouseInElement']
   const useMousePressed: typeof import('@vueuse/core')['useMousePressed']
-  const useMultiExpStore: typeof import('./stores/multiExp')['useMultiExpStore']
   const useMutationObserver: typeof import('@vueuse/core')['useMutationObserver']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
@@ -383,7 +378,6 @@ declare global {
   const useUIStore: typeof import('./stores/ui')['useUIStore']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
-  const useUserStore: typeof import('./stores/user')['useUserStore']
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
@@ -467,9 +461,6 @@ declare global {
   // @ts-ignore
   export type { AttackResult } from './stores/battle'
   import('./stores/battle')
-  // @ts-ignore
-  export type { BreedingJob, BreedingState } from './stores/breeding'
-  import('./stores/breeding')
   // @ts-ignore
   export type { DeckSort } from './stores/deckFilter'
   import('./stores/deckFilter')
@@ -679,7 +670,6 @@ declare module 'vue' {
     readonly useBattleship: UnwrapRef<typeof import('./composables/useBattleship')['useBattleship']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
-    readonly useBreedingStore: UnwrapRef<typeof import('./stores/breeding')['useBreedingStore']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
