@@ -299,6 +299,16 @@ const ids = {
         </UiButton>
 
         <UiButton
+          v-if="selected && !isRunning"
+          type="default"
+          variant="outline"
+          class="w-full md:w-auto"
+          @click="openSelector"
+        >
+          {{ t('components.panel.Dojo.cta.changeMon') }}
+        </UiButton>
+
+        <UiButton
           type="danger"
           variant="outline"
           class="w-full md:w-auto"
