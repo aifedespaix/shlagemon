@@ -1,7 +1,10 @@
 fr:
   title: Dojo
   exit: Quitter le dojo
-  introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes S hlagémons.
+  intro: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes Shlagémons.
+  outro:
+    running: Ton Shlagémon s'entraîne. Reviens plus tard pour voir les résultats.
+    idle: Aucun entraînement en cours. Reviens quand tu veux renforcer tes Shlagémons.
   selectMon: Entraîner un Shlagémon
   selected: Shlagémon sélectionné
   controls: Contrôles
@@ -32,7 +35,10 @@ fr:
 en:
   title: Dojo
   exit: Leave the dojo
-  introDialog: Welcome to the dojo. Here you can train your shlaguemons.
+  intro: Welcome to the dojo. Here you can train your Shlagémons.
+  outro:
+    running: Your Shlagémon is training. Come back later to see the results.
+    idle: No training in progress. Come back whenever you want to strengthen your Shlagémons.
   selectMon: Train a Shlagémon
   selected: Selected Shlagémon
   controls: Controls

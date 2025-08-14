@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { DojoTrainingJob } from '~/stores/dojo'
+import type { DialogNode } from '~/type/dialog'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { siphanus } from '~/data/characters/siphanus'
 import { toast } from '~/modules/toast'
 import { dojoTrainingCost, useDojoStore } from '~/stores/dojo'
 
@@ -11,6 +13,22 @@ const dojo = useDojoStore()
 const game = useGameStore()
 const dex = useShlagedexStore()
 const { t } = useI18n()
+
+function onExit() {
+  panel.showVillage()
+}
+
+function createIntro(next: () => void): DialogNode[] {
+  return [
+    {
+      id: 'intro',
+      text: t('components.panel.Dojo.intro'),
+      responses: [
+        { label: t('ui.Info.ok'), type: 'primary', action: next },
+      ],
+    },
+  ]
+}
 
 /** === State ============================================================= */
 const selected = ref<DexShlagemon | null>(null)
@@ -34,6 +52,19 @@ const safeMax = computed<number>(() => (selected.value ? Math.max(1, 100 - selec
 /** === Derived =========================================================== */
 const job = computed(() => (selected.value ? dojo.getJob(selected.value.id) : null))
 const isRunning = computed<boolean>(() => !!job.value) // ⟵ NEW
+
+function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
+  const key = isRunning.value ? 'running' : 'idle'
+  return [
+    {
+      id: 'outro',
+      text: t(`components.panel.Dojo.outro.${key}`),
+      responses: [
+        { label: t('ui.Info.ok'), type: 'valid', action: exit },
+      ],
+    },
+  ]
+}
 
 /** Empêche d'ouvrir le sélecteur pendant un entraînement */
 function openSelector() {
@@ -103,9 +134,6 @@ function setPointsFromNumber(val: number | string) {
 }
 
 /** Raccourcis +/- via clavier pour affiner rapidement */
-function nudge(delta: number) {
-  points.value = clamp(points.value + delta, 1, safeMax.value)
-}
 
 function start() {
   if (!selected.value)
@@ -127,163 +155,166 @@ const ids = {
 </script>
 
 <template>
-  <LayoutTitledPanel
+  <PanelPoiDialogFlow
     :title="t('components.panel.Dojo.title')"
     :exit-text="t('components.panel.Dojo.exit')"
-    @exit="panel.showVillage()"
+    :character="siphanus"
+    :create-intro="createIntro"
+    :create-outro="createOutro"
+    @exit="onExit"
   >
-    <!-- Conteneur qui respecte la hauteur du parent (no vh/vw) -->
-    <div class="min-h-0 flex-1">
-      <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
-        <!-- CTA sélection -->
-        <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
-          {{ t('components.panel.Dojo.selectMon') }}
-        </UiButton>
+    <template #default>
+      <!-- Conteneur qui respecte la hauteur du parent (no vh/vw) -->
+      <div class="min-h-0 flex-1">
+        <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
+          <!-- CTA sélection -->
+          <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
+            {{ t('components.panel.Dojo.selectMon') }}
+          </UiButton>
 
-        <!-- Contenu principal -->
-        <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
-          <div
-            class="min-h-0 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
-            @click="openSelector"
-          >
+          <!-- Contenu principal -->
+          <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
             <div
-              class="relative h-full w-full flex items-center justify-center"
+              class="min-h-0 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
+              @click="openSelector"
             >
-              <ShlagemonImage
-                :id="selected.base.id"
-                :alt="t(selected.base.name)"
-                class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
-              />
-              <!-- Badges d’info -->
-              <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
-                <span
-                  class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
-                  aria-label="Rareté actuelle"
-                >
-                  {{ t('components.panel.Dojo.rarity.current') }}: {{ selected.rarity }}
-                </span>
-                <span
-                  class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
-                  aria-label="Rareté après entraînement"
-                >
-                  {{ t('components.panel.Dojo.rarity.after') }}: {{ Math.min(100, selected.rarity + points) }}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="min-w-0 flex flex flex-1 flex-col flex-col justify-center gap-3">
-            <div v-if="!isRunning" class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
-              <div class="flex flex-col items-center justify-between">
-                <label :for="ids.slider" class="text-sm font-medium">
-                  {{ t('components.panel.Dojo.rarity.points') }}
-                </label>
-                <span class="text-xs text-gray-500">
-                  {{ t('common.min') }} 1 · {{ t('common.max') }} {{ safeMax }}
-                </span>
-              </div>
-
-              <div class="flex flex-col items-center gap-3">
-                <input
-                  :id="ids.slider"
-                  type="range"
-                  class="dojo-slider w-full"
-                  :min="1"
-                  :max="safeMax"
-                  :step="1"
-                  :value="clamp(points, 1, safeMax)"
-                  :aria-valuemin="1"
-                  :aria-valuemax="safeMax"
-                  :aria-valuenow="clamp(points, 1, safeMax)"
-                  :aria-labelledby="ids.title"
-                  :aria-describedby="`${ids.cost} ${ids.duration}`"
-                  @input="setPointsFromSlider(($event.target as HTMLInputElement).valueAsNumber)"
-                  @keydown.left.prevent="nudge(-1)"
-                  @keydown.right.prevent="nudge(1)"
-                  @keydown.page-down.prevent="nudge(-5)"
-                  @keydown.page-up.prevent="nudge(5)"
-                  @keydown.home.prevent="points = 1"
-                  @keydown.end.prevent="points = safeMax"
-                >
-
-                <div class="w-28">
-                  <UiNumberInput
-                    :id="ids.number"
-                    v-model="points"
-                    :min="1"
-                    :max="safeMax"
-                    :step="1"
-                    density="compact"
-                    inputmode="numeric"
-                    @update:model-value="setPointsFromNumber"
-                  />
+              <div
+                class="relative h-full w-full flex items-center justify-center"
+              >
+                <ShlagemonImage
+                  :id="selected.base.id"
+                  :alt="t(selected.base.name)"
+                  class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
+                />
+                <!-- Badges d’info -->
+                <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
+                  <span
+                    class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
+                    aria-label="Rareté actuelle"
+                  >
+                    {{ t('components.panel.Dojo.rarity.current') }}: {{ selected.rarity }}
+                  </span>
+                  <span
+                    class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
+                    aria-label="Rareté après entraînement"
+                  >
+                    {{ t('components.panel.Dojo.rarity.after') }}: {{ Math.min(100, selected.rarity + points) }}
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div v-if="!isRunning" class="w-full flex flex-col items-center gap-2">
-              <div :id="ids.duration" class="text-sm">
-                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Dojo.duration.label') }}:</span>
-                <span class="ml-1">{{ durationMin }}</span>
-                <span class="ml-1">{{ durationMin === 1 ? t('components.panel.Dojo.duration.minute') : t('components.panel.Dojo.duration.minutes') }}</span>
-              </div>
-            </div>
+            <div class="min-w-0 flex flex-1 flex-col justify-center gap-3">
+              <div v-if="!isRunning" class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+                <div class="flex flex-col items-center justify-between">
+                  <label :for="ids.slider" class="text-sm font-medium">
+                    {{ t('components.panel.Dojo.rarity.points') }}
+                  </label>
+                  <div class="relative w-full flex items-center gap-2">
+                    <input
+                      :id="ids.slider"
+                      v-model="points"
+                      type="range"
+                      min="1"
+                      :max="safeMax"
+                      class="dojo-slider w-full"
+                      @input="setPointsFromSlider(($event.target as HTMLInputElement).valueAsNumber)"
+                    >
+                    <UiNumberInput
+                      :id="ids.number"
+                      v-model="points"
+                      min="1"
+                      :max="safeMax"
+                      class="w-20"
+                      @input="setPointsFromNumber"
+                    />
+                  </div>
+                  <div v-if="safeMax === 1" class="text-xs text-amber-500">
+                    {{ t('components.panel.Dojo.rarity.limitReached') }}
+                  </div>
+                </div>
 
-            <!-- Progression -->
-            <div v-if="job" class="w-full flex flex-col gap-2 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
-              <div v-if="isRunning" class="w-full flex flex-col items-center rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
-                <div> {{ t('components.panel.Dojo.status.running') }}</div>
-                <div> <span class="tabular-nums">{{ remainingLabel }}</span></div>
+                <div class="flex flex-col items-center gap-1 text-sm" :aria-labelledby="ids.cost">
+                  <span :id="ids.cost" class="font-medium">
+                    {{ t('components.panel.Dojo.cost.label') }}
+                  </span>
+                  <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+                  <span v-if="cost > game.shlagidolar" class="text-red-500">
+                    {{ t('components.panel.Dojo.cost.insufficient') }}
+                  </span>
+                </div>
+
+                <div class="flex flex-col items-center gap-1 text-sm" :aria-labelledby="ids.duration">
+                  <span :id="ids.duration" class="font-medium">
+                    {{ t('components.panel.Dojo.duration.label') }}
+                  </span>
+                  <span>
+                    {{ durationMin }}
+                    <span v-if="durationMin === 1">
+                      {{ t('components.panel.Dojo.duration.minute') }}
+                    </span>
+                    <span v-else>
+                      {{ t('components.panel.Dojo.duration.minutes') }}
+                    </span>
+                  </span>
+                </div>
               </div>
-              <div
-                :id="ids.progress"
-                class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
-                role="progressbar"
-                :aria-label="t('components.panel.Dojo.progress')"
-                :aria-valuemin="0"
-                :aria-valuemax="100"
-                :aria-valuenow="Math.round(progress)"
-              >
+
+              <!-- Progression -->
+              <div v-if="job" class="w-full flex flex-col gap-2 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+                <div v-if="isRunning" class="w-full flex flex-col items-center rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                  <div> {{ t('components.panel.Dojo.status.running') }}</div>
+                  <div> <span class="tabular-nums">{{ remainingLabel }}</span></div>
+                </div>
                 <div
-                  class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
-                  :style="{ width: `${progress}%` }"
-                />
-              </div>
+                  :id="ids.progress"
+                  class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
+                  role="progressbar"
+                  :aria-label="t('components.panel.Dojo.progress')"
+                  :aria-valuemin="0"
+                  :aria-valuemax="100"
+                  :aria-valuenow="Math.round(progress)"
+                >
+                  <div
+                    class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
+                    :style="{ width: `${progress}%` }"
+                  />
+                </div>
 
-              <div class="mt-2 flex items-center justify-between text-sm">
-                <p class="text-gray-600 dark:text-gray-300">
-                  {{ t('components.panel.Dojo.duration.remaining') }}:
-                  <span class="tabular-nums">{{ remainingLabel }}</span>
-                </p>
-                <p class="text-gray-500 dark:text-gray-400">
-                  {{ Math.round(progress) }}%
-                </p>
-              </div>
+                <div class="mt-2 flex items-center justify-between text-sm">
+                  <p class="text-gray-600 dark:text-gray-300">
+                    {{ t('components.panel.Dojo.duration.remaining') }}:
+                    <span class="tabular-nums">{{ remainingLabel }}</span>
+                  </p>
+                  <p class="text-gray-500 dark:text-gray-400">
+                    {{ Math.round(progress) }}%
+                  </p>
+                </div>
 
-              <!-- Live region pour lecteurs d’écran -->
-              <span aria-live="polite" class="sr-only">
-                {{ t('components.panel.Dojo.progress') }}: {{ Math.round(progress) }}%, {{ t('components.panel.Dojo.duration.remaining') }} {{ remainingLabel }}
-              </span>
+                <!-- Live region pour lecteurs d’écran -->
+                <span aria-live="polite" class="sr-only">
+                  {{ t('components.panel.Dojo.progress') }}: {{ Math.round(progress) }}%, {{ t('components.panel.Dojo.duration.remaining') }} {{ remainingLabel }}
+                </span>
+              </div>
             </div>
-          </div>
-        </UiAdaptiveDisplayer>
-      </div>
-    </div>
-
-    <!-- Sélecteur -->
-    <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">
-      <div class="max-w-160 flex flex-col gap-2">
-        <h3 id="dojo-select-title" class="text-center text-lg font-bold">
-          {{ t('components.panel.Dojo.selectMon') }}
-        </h3>
-        <div class="max-h-80 min-h-0 overflow-y-auto">
-          <ShlagemonQuickSelect @select="selectMon" />
+          </UiAdaptiveDisplayer>
         </div>
       </div>
-    </UiModal>
 
+      <!-- Sélecteur -->
+      <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">
+        <div class="max-w-160 flex flex-col gap-2">
+          <h3 id="dojo-select-title" class="text-center text-lg font-bold">
+            {{ t('components.panel.Dojo.selectMon') }}
+          </h3>
+          <div class="max-h-80 min-h-0 overflow-y-auto">
+            <ShlagemonQuickSelect @select="selectMon" />
+          </div>
+        </div>
+      </UiModal>
+    </template>
     <template #footer>
-      <div class="w-full flex justify-end gap-1 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
+      <div class="w-full flex justify-end gap-1 md:flex-nowrap md:justify-end">
         <UiButton
           v-if="selected && !isRunning"
           :disabled="cost > game.shlagidolar || points < 1 || (safeMax === 1 && points === 1)"
@@ -294,19 +325,9 @@ const ids = {
           {{ t('components.panel.Dojo.cta.payAndStart') }}
           <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
         </UiButton>
-
-        <UiButton
-          type="danger"
-          variant="outline"
-          size="xs"
-          @click="panel.showVillage()"
-        >
-          <div class="i-carbon:exit" />
-          {{ t('components.panel.Dojo.exit') }}
-        </UiButton>
       </div>
     </template>
-  </LayoutTitledPanel>
+  </PanelPoiDialogFlow>
 </template>
 
 <style scoped>
