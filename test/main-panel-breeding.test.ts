@@ -68,7 +68,7 @@ function createI18nInstance() {
               exit: 'Quitter l\'élevage',
               intro: 'intro',
               outro: { running: 'running', idle: 'idle' },
-              during: { typing: 'typing' },
+              during: { unselected: 'typing', selected: ['sel'], completed: ['done'] },
             },
           },
         },

@@ -8,7 +8,7 @@ import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 
 /** === Stores / i18n ===================================================== */
-const { t } = useI18n()
+const { t, tm } = useI18n()
 const breeding = useBreedingStore()
 const game = useGameStore()
 const panel = useMainPanelStore()
@@ -33,6 +33,7 @@ function createIntro(next: () => void): DialogNode[] {
 const selected = ref<DexShlagemon | null>(null)
 const selectorOpen = ref(false)
 const now = ref<number>(Date.now())
+const typingText = ref('')
 
 /** === Derived =========================================================== */
 const eggType = computed<EggType | null>(() =>
@@ -99,7 +100,6 @@ function collect() {
   if (breeding.collectEgg(eggType.value)) {
     toast.success(t('components.panel.Breeding.toast.collected'))
     selected.value = null
-    openSelector()
   }
 }
 
@@ -110,6 +110,28 @@ const { pause: pauseTick } = useIntervalFn(() => {
     toast.success(t('components.panel.Breeding.toast.finished'))
 }, 1000)
 onBeforeUnmount(pauseTick)
+
+function randomIndex(list: unknown[]) {
+  return Math.floor(Math.random() * list.length)
+}
+
+watch([selected, isCompleted], () => {
+  if (isCompleted.value) {
+    const msgs = tm('components.panel.Breeding.during.completed') as string[]
+    const i = randomIndex(msgs)
+    typingText.value = t(`components.panel.Breeding.during.completed.${i}`)
+  }
+  else if (!selected.value) {
+    typingText.value = t('components.panel.Breeding.during.unselected')
+  }
+  else {
+    const msgs = tm('components.panel.Breeding.during.selected') as string[]
+    const i = randomIndex(msgs)
+    typingText.value = t(`components.panel.Breeding.during.selected.${i}`, {
+      shlagemon_name: t(selected.value.base.name),
+    })
+  }
+}, { immediate: true })
 </script>
 
 <template>
@@ -228,8 +250,8 @@ onBeforeUnmount(pauseTick)
                 </div>
 
                 <UiTypingText
-                  :text="t('components.panel.Breeding.during.typing')"
-                  :aria-label="t('components.panel.Breeding.a11y.normanCareMessage')"
+                  :text="typingText"
+                  :aria-label="typingText"
                   aria-live="polite"
                   class="text-sm"
                 />
