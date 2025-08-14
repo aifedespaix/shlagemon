@@ -10,11 +10,21 @@ export const useAchievementsFilterStore = defineStore('achievementsFilter', () =
   const sortBy = ref<AchievementSort>('name')
   const sortAsc = ref(true)
 
+  const ascendingSorts: AchievementSort[] = ['name']
+  const saved = typeof window !== 'undefined'
+    ? JSON.parse(window.localStorage.getItem('achievementsFilter') || '{}') as Partial<{ sortBy: AchievementSort }>
+    : {}
+  let skipNext = saved.sortBy && saved.sortBy !== 'name'
+
+  /**
+   * Align orientation with current sort key while preserving stored preference on load.
+   */
   watch(sortBy, (val) => {
-    if (val === 'name')
-      sortAsc.value = true
-    else
-      sortAsc.value = false
+    if (skipNext) {
+      skipNext = false
+      return
+    }
+    sortAsc.value = ascendingSorts.includes(val)
   })
 
   function reset() {

@@ -9,11 +9,21 @@ export const useInventoryFilterStore = defineStore('inventoryFilter', () => {
   const sortAsc = ref(true)
   const category = ref<ItemCategory | 'all'>('all')
 
+  const ascendingSorts: InventorySort[] = ['name', 'type']
+  const saved = typeof window !== 'undefined'
+    ? JSON.parse(window.localStorage.getItem('inventoryFilter') || '{}') as Partial<{ sortBy: InventorySort }>
+    : {}
+  let skipNext = saved.sortBy && saved.sortBy !== 'name'
+
+  /**
+   * Adjust default orientation when sort key changes, preserving persisted order on hydration.
+   */
   watch(sortBy, (val) => {
-    if (val === 'price')
-      sortAsc.value = false
-    else
-      sortAsc.value = true
+    if (skipNext) {
+      skipNext = false
+      return
+    }
+    sortAsc.value = ascendingSorts.includes(val)
   })
 
   function reset() {
