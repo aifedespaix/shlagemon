@@ -431,9 +431,6 @@ declare global {
   export type { Cell } from './composables/useBattleship'
   import('./composables/useBattleship')
   // @ts-ignore
-  export type { BreedingEntry } from './composables/useBreedingEggs'
-  import('./composables/useBreedingEggs')
-  // @ts-ignore
   export type { FaintAutoEmitResult } from './composables/useFaintAutoEmit'
   import('./composables/useFaintAutoEmit')
   // @ts-ignore
@@ -678,7 +675,6 @@ declare module 'vue' {
     readonly useBattleship: UnwrapRef<typeof import('./composables/useBattleship')['useBattleship']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
-    readonly useBreedingEggs: UnwrapRef<typeof import('./composables/useBreedingEggs')['useBreedingEggs']>
     readonly useBreedingStore: UnwrapRef<typeof import('./stores/breeding')['useBreedingStore']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>

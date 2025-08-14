@@ -747,6 +747,10 @@ components:
         incubateEgg: Incuber l’œuf {name}
         eggReady: Œuf {type} prêt
         eggProgress: Progression de l’œuf
+      intro: Bienvenue au poulailler. Ici, tu peux surveiller tes œufs.
+      outro:
+        running: Un œuf a éclos ! Félicitations !
+        idle: Aucun œuf n'a éclos. Reviens bientôt.
     Shop:
       title: Boutique
       details: Détails
@@ -795,6 +799,10 @@ components:
       controls: Contrôles
       status:
         running: Entraînement en cours
+      intro: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes Shlagémons.
+      outro:
+        running: Ton Shlagémon s'entraîne. Reviens plus tard pour voir les résultats.
+        idle: Aucun entraînement en cours. Reviens quand tu veux renforcer tes Shlagémons.
     Breeding:
       name: Élevage
       introDialog: Bienvenue au centre d'élevage. Choisis le Shlagémon à reproduire.
@@ -2466,3 +2474,4 @@ common:
   remove: Supprimer
   min: Min
   max: Max
+  eggOf: Oeuf de {name}

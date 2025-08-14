@@ -747,6 +747,10 @@ components:
         incubateEgg: Incubate the {name} egg
         eggReady: "{type} egg ready"
         eggProgress: Egg progress
+      intro: Welcome to the henhouse. Keep an eye on your eggs.
+      outro:
+        running: An egg has hatched! Congratulations!
+        idle: No egg hatched. Come back soon.
     Shop:
       title: Shop
       details: Details
@@ -795,6 +799,10 @@ components:
       controls: Controls
       status:
         running: Training in progress
+      intro: Welcome to the dojo. Here you can train your Shlagémons.
+      outro:
+        running: Your Shlagémon is training. Come back later to see the results.
+        idle: No training in progress. Come back whenever you want to strengthen your Shlagémons.
     Breeding:
       name: Breeding
       introDialog: Welcome to the breeding center. Pick the parent to breed.
@@ -2473,3 +2481,4 @@ common:
   remove: Remove
   min: Min
   max: Max
+  eggOf: Egg of {name}
