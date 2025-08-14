@@ -23,13 +23,15 @@ vi.mock('../src/stores/mainPanel', () => ({
   useMainPanelStore: () => ({ showVillage: vi.fn() }),
 }))
 
+const mockEggStore = {
+  incubator: [] as any[],
+  startIncubation: vi.fn(),
+  hatchEgg: vi.fn(),
+  isReady: vi.fn(() => false),
+}
+
 vi.mock('../src/stores/egg', () => ({
-  useEggStore: () => ({
-    incubator: [],
-    startIncubation: vi.fn(),
-    hatchEgg: vi.fn(),
-    isReady: vi.fn(() => false),
-  }),
+  useEggStore: () => mockEggStore,
 }))
 
 const mockEggBoxStore = { eggs: {}, breeding: [] as any[] }
@@ -105,6 +107,9 @@ function mountPoulailler() {
 describe('poulailler dialog flow', () => {
   beforeEach(() => {
     mockEggBoxStore.breeding = []
+    mockEggStore.incubator = []
+    mockEggStore.isReady.mockReturnValue(false)
+    mockEggStore.hatchEgg.mockReset()
   })
 
   it('transitions from intro to content to idle outro', async () => {
@@ -122,15 +127,31 @@ describe('poulailler dialog flow', () => {
     expect(flow.vm.outroDialog![0].text).toBe('idle')
   })
 
-  it('uses running outro when result is provided', async () => {
+  it('uses running outro when eggs are incubating', async () => {
+    mockEggStore.incubator.push({ id: 1 } as any)
     const wrapper = mountPoulailler()
     await nextTick()
     const flow = wrapper.findComponent(PoiDialogFlow)
     await wrapper.findComponent(DialogBox).find('button').trigger('click')
     await nextTick()
-    ;(flow.vm as any).finish('hatched')
+    ;(flow.vm as any).finish()
     await nextTick()
     expect(flow.vm.outroDialog![0].text).toBe('running')
+  })
+
+  it('hatching a ready egg does not exit the panel', async () => {
+    mockEggStore.incubator.push({ id: 1, type: 'feu', hatchesAt: 0 } as any)
+    mockEggStore.isReady.mockReturnValue(true)
+    mockEggStore.hatchEgg.mockReturnValue({} as any)
+    const wrapper = mountPoulailler()
+    await nextTick()
+    const flow = wrapper.findComponent(PoiDialogFlow)
+    flow.vm.phase = 'content'
+    await nextTick()
+    ;(wrapper.vm as any).hatch(1)
+    await nextTick()
+    expect(flow.vm.phase).toBe('content')
+    expect(mockEggStore.hatchEgg).toHaveBeenCalledWith(1)
   })
 
   it('ignores breeding eggs with unknown mon id', () => {
