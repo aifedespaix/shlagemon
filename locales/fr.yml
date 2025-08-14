@@ -2475,3 +2475,7 @@ common:
   min: Min
   max: Max
   eggOf: Oeuf de {name}
+
+ui:
+  Info:
+    ok: Ok
