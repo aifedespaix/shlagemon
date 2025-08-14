@@ -9,11 +9,18 @@ export const useInventoryFilterStore = defineStore('inventoryFilter', () => {
   const sortAsc = ref(true)
   const category = ref<ItemCategory | 'all'>('all')
 
-  watch(sortBy, (val) => {
-    if (val === 'price')
-      sortAsc.value = false
-    else
-      sortAsc.value = true
+  const ascendingSorts: InventorySort[] = ['name', 'type']
+  let suppressNextSortAscUpdate = true
+
+  /**
+   * Adjust default orientation when sort key changes, preserving persisted order on hydration.
+   */
+  watch(sortBy, (value) => {
+    if (suppressNextSortAscUpdate) {
+      suppressNextSortAscUpdate = false
+      return
+    }
+    sortAsc.value = ascendingSorts.includes(value)
   })
 
   function reset() {
@@ -25,5 +32,9 @@ export const useInventoryFilterStore = defineStore('inventoryFilter', () => {
 
   return { search, sortBy, sortAsc, category, reset }
 }, {
-  persist: true,
+  persist: {
+    afterRestore: () => {
+      suppressNextSortAscUpdate = false
+    },
+  },
 })

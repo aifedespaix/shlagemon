@@ -18,11 +18,18 @@ export const useDexFilterStore = defineStore('dexFilter', () => {
   const sortBy = ref<DexSort>('level')
   const sortAsc = ref(false)
 
-  watch(sortBy, (val) => {
-    if (val === 'name' || val === 'type' || val === 'date' || val === 'evolution')
-      sortAsc.value = true
-    else
-      sortAsc.value = false
+  const ascendingSorts: DexSort[] = ['name', 'type', 'date', 'evolution']
+  let suppressNextSortAscUpdate = true
+
+  /**
+   * Ensure default orientation per sort key while preserving persisted order on hydration.
+   */
+  watch(sortBy, (value) => {
+    if (suppressNextSortAscUpdate) {
+      suppressNextSortAscUpdate = false
+      return
+    }
+    sortAsc.value = ascendingSorts.includes(value)
   })
 
   function reset() {
@@ -33,5 +40,9 @@ export const useDexFilterStore = defineStore('dexFilter', () => {
 
   return { search, sortBy, sortAsc, reset }
 }, {
-  persist: true,
+  persist: {
+    afterRestore: () => {
+      suppressNextSortAscUpdate = false
+    },
+  },
 })
