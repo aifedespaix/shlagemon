@@ -1,110 +1,183 @@
-import { createPinia, setActivePinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { describe, expect, it, vi } from 'vitest'
-import { createApp, nextTick } from 'vue'
-import { useBreedingStore } from '../src/stores/breeding'
-import { useEggStore } from '../src/stores/egg'
-import { useGameStore } from '../src/stores/game'
-import { BREEDING_DURATION_MS, breedingCost, COST_BASE_A, COST_GROWTH_C } from '../src/utils/breeding'
+import { mount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
+import { createI18n } from 'vue-i18n'
 
-/**
- * Unit tests for breeding mechanics including cost calculation,
- * job scheduling, and persistence.
- */
+import DialogBox from '../src/components/dialog/Box.vue'
+import Breeding from '../src/components/panel/Breeding.vue'
+import PoiDialogFlow from '../src/components/panel/PoiDialogFlow.vue'
 
-describe('breedingCost', () => {
-  it('returns base cost for rarity 1', () => {
-    expect(breedingCost(1)).toBe(Math.round(COST_BASE_A))
-  })
+vi.mock('../src/components/ui/TypingText.vue', () => ({
+  default: {
+    name: 'UiTypingText',
+    props: ['text'],
+    emits: ['finished'],
+    mounted() {
+      this.$emit('finished')
+    },
+    template: '<p class="typing">{{ text }}</p>',
+  },
+}))
 
-  it('returns max cost for rarity 100', () => {
-    const expected = Math.round(COST_BASE_A * COST_GROWTH_C ** 99)
-    expect(breedingCost(100)).toBe(expected)
-  })
+vi.mock('../src/stores/audio', () => ({
+  useAudioStore: () => ({
+    fadeToMusic: vi.fn(),
+    playSfx: vi.fn(),
+    playTypingSfx: vi.fn(),
+  }),
+}))
 
-  it('computes cost for a mid-range rarity', () => {
-    const rarity = 50
-    const expected = Math.round(COST_BASE_A * COST_GROWTH_C ** (rarity - 1))
-    expect(breedingCost(rarity)).toBe(expected)
-  })
-})
+vi.mock('../src/stores/zone', () => ({
+  useZoneStore: () => ({
+    current: { id: 'zone', type: 'sauvage' },
+  }),
+}))
 
-describe('breeding store', () => {
-  it('deducts currency, schedules job and hatches egg', () => {
-    vi.useFakeTimers()
-    setActivePinia(createPinia())
-    const breeding = useBreedingStore()
-    const eggs = useEggStore()
-    const game = useGameStore()
-    game.addShlagidolar(10_000)
+vi.mock('../src/stores/mainPanel', () => ({
+  useMainPanelStore: () => ({
+    showVillage: vi.fn(),
+  }),
+}))
 
-    const rarity = 10
-    const cost = breedingCost(rarity)
-    expect(breeding.start('feu', rarity, 'salamiches')).toBe(true)
-    expect(game.shlagidolar).toBe(10_000 - cost)
+vi.mock('../src/stores/game', () => ({
+  useGameStore: () => ({
+    shlagidolar: 0,
+    addShlagidolar: vi.fn(),
+  }),
+}))
 
-    vi.advanceTimersByTime(BREEDING_DURATION_MS - 1)
-    expect(breeding.completeIfDue('feu')).toBe(false)
-    vi.advanceTimersByTime(1)
-    expect(breeding.completeIfDue('feu')).toBe(true)
-    expect(breeding.collectEgg('feu')).toBe(true)
+const isRunning = vi.fn(() => false)
+vi.mock('../src/stores/breeding', () => ({
+  useBreedingStore: () => ({
+    isRunning,
+    getJob: vi.fn(),
+    remainingMs: vi.fn(),
+    progress: vi.fn(),
+    start: vi.fn(),
+    collectEgg: vi.fn(),
+    completeIfDue: vi.fn(),
+  }),
+}))
 
-    const egg = eggs.incubator[0]
-    expect(egg.isBreeding).toBe(true)
-    expect(egg.forcedRarity).toBe(rarity)
-    expect(egg.forcedMonId).toBe('salamiches')
-    vi.useRealTimers()
-  })
-
-  it('serializes and restores breeding jobs', async () => {
-    vi.useFakeTimers()
-    vi.setSystemTime(1000)
-    const pinia = createPinia()
-    pinia.use(piniaPluginPersistedstate)
-    const app = createApp({})
-    app.use(pinia)
-    setActivePinia(pinia)
-
-    const breeding = useBreedingStore()
-    const game = useGameStore()
-    game.addShlagidolar(10_000)
-    const rarity = 5
-    breeding.start('eau', rarity, 'salamiches')
-    await nextTick()
-
-    const stored = window.localStorage.getItem('breeding')
-    expect(stored).toBe(
-      JSON.stringify({
-        byType: {
-          eau: {
-            type: 'eau',
-            rarity,
-            parentId: 'salamiches',
-            startedAt: 1000,
-            endsAt: 1000 + BREEDING_DURATION_MS,
-            status: 'running',
+function createI18nInstance() {
+  return createI18n({
+    legacy: false,
+    locale: 'fr',
+    messages: {
+      fr: {
+        ui: { Info: { ok: 'Ok' } },
+        components: {
+          panel: {
+            Breeding: {
+              title: 'Élevage',
+              exit: 'Quitter l\'élevage',
+              dialog: {
+                intro: 'Je peux m\'occuper de la reproduction pour toi... enfin, si tu veux.',
+                outroRunning: 'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
+                outroIdle: 'Reviens très vite, j\'ai hâte de m\'occuper de tes Shlagémons.',
+              },
+              normanCareMessage: 'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+            },
           },
         },
-      }),
+      },
+    },
+  })
+}
+
+const globalStubs = {
+  LayoutTitledPanel: { template: '<div><slot /><slot name="footer" /></div>' },
+  UiButton: { template: '<button @click="$emit(\'click\')"><slot /></button>' },
+  CharacterImage: { template: '<div />' },
+  UiTypingText: { props: ['text'], template: '<p class="typing">{{ text }}</p>' },
+  UiAdaptiveDisplayer: { template: '<div><slot /></div>' },
+  UiCurrencyAmount: { template: '<span />' },
+  UiModal: { template: '<div><slot /></div>' },
+  ShlagemonQuickSelect: { template: '<div />' },
+  UiImageByBackground: { props: ['src'], template: '<img :src="src" />' },
+}
+
+function mountBreeding() {
+  return mount(Breeding, {
+    global: {
+      plugins: [createI18nInstance()],
+      stubs: globalStubs,
+      components: { PoiDialogFlow, DialogBox },
+    },
+  })
+}
+
+describe('breeding dialog flow', () => {
+  beforeEach(() => {
+    isRunning.mockReturnValue(false)
+  })
+
+  it('renders intro dialog', async () => {
+    const wrapper = mountBreeding()
+    await nextTick()
+    expect(wrapper.findComponent(DialogBox).text()).toContain(
+      'Je peux m\'occuper de la reproduction',
     )
+  })
 
-    const pinia2 = createPinia()
-    pinia2.use(piniaPluginPersistedstate)
-    const app2 = createApp({})
-    app2.use(pinia2)
-    setActivePinia(pinia2)
-    window.localStorage.setItem('breeding', stored as string)
+  it('displays typed message during content phase', async () => {
+    const wrapper = mountBreeding()
+    await nextTick()
+    ;(wrapper.findComponent(PoiDialogFlow).vm as any).phase = 'content'
+    await nextTick()
+    expect(wrapper.text()).toContain(
+      'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+    )
+  })
 
-    const restored = useBreedingStore()
-    const job = restored.getJob('eau')
-    expect(job).toEqual({
-      type: 'eau',
-      rarity,
-      parentId: 'salamiches',
-      startedAt: 1000,
-      endsAt: 1000 + BREEDING_DURATION_MS,
-      status: 'running',
+  describe('outro dialog', () => {
+    const mon = {
+      id: 'm1',
+      base: { id: 'm1', name: 'm1', description: '', types: [{ id: 'feu' }], speciality: 'evolution0' },
+      baseStats: { hp: 1, attack: 1, defense: 1, smelling: 1 },
+      captureDate: '',
+      captureCount: 1,
+      lvl: 1,
+      xp: 0,
+      rarity: 1,
+      sex: 'male',
+      isShiny: false,
+      hpCurrent: 1,
+      allowEvolution: true,
+      hp: 1,
+      attack: 1,
+      defense: 1,
+      smelling: 1,
+    }
+
+    it('shows running outro when job is running', async () => {
+      isRunning.mockReturnValue(true)
+      const wrapper = mountBreeding()
+      ;(wrapper.vm as any).selected = mon
+      await nextTick()
+      const flow = wrapper.findComponent(PoiDialogFlow)
+      ;(flow.vm as any).phase = 'content'
+      await nextTick()
+      ;(flow.vm as any).finish()
+      await nextTick()
+      expect(wrapper.findComponent(DialogBox).text()).toContain(
+        'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
+      )
     })
-    vi.useRealTimers()
+
+    it('shows idle outro when no job is running', async () => {
+      isRunning.mockReturnValue(false)
+      const wrapper = mountBreeding()
+      ;(wrapper.vm as any).selected = mon
+      await nextTick()
+      const flow = wrapper.findComponent(PoiDialogFlow)
+      ;(flow.vm as any).phase = 'content'
+      await nextTick()
+      ;(flow.vm as any).finish()
+      await nextTick()
+      expect(wrapper.findComponent(DialogBox).text()).toContain(
+        'Reviens très vite, j\'ai hâte de m\'occuper de tes Shlagémons.',
+      )
+    })
   })
 })

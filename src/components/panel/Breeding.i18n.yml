@@ -1,8 +1,10 @@
 fr:
   title: Élevage
   exit: Quitter l'élevage
-  introDialog: Bienvenue au centre d'élevage. Choisis un Shlagémon à confier.
-  outroDialog: À plus tard !
+  dialog:
+    intro: "Je peux m'occuper de la reproduction pour toi... enfin, si tu veux."
+    outroRunning: "Je m'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps."
+    outroIdle: "Reviens très vite, j'ai hâte de m'occuper de tes Shlagémons."
   selectMon: Choisir un Shlagémon
   selected: Shlagémon sélectionné
   rarity: Rareté
@@ -32,8 +34,10 @@ fr:
 en:
   title: Breeding
   exit: Leave the breeding center
-  introDialog: Welcome to the breeding center. Choose a Shlagémon to leave.
-  outroDialog: See you later!
+  dialog:
+    intro: 'I can handle the breeding for you... uh, if you want.'
+    outroRunning: "I'll take care of the breeding right away, you can come back very soon."
+    outroIdle: "Come back very soon, I can't wait to take care of your Shlagémons."
   selectMon: Choose a Shlagémon
   selected: Selected Shlagémon
   rarity: Rarity

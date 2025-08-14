@@ -21,21 +21,9 @@ function createIntro(next: () => void): DialogNode[] {
   return [
     {
       id: 'intro',
-      text: t('components.panel.Breeding.introDialog'),
+      text: t('components.panel.Breeding.dialog.intro'),
       responses: [
         { label: t('ui.Info.ok'), type: 'primary', action: next },
-      ],
-    },
-  ]
-}
-
-function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
-  return [
-    {
-      id: 'outro',
-      text: t('components.panel.Breeding.outroDialog'),
-      responses: [
-        { label: t('ui.Info.ok'), type: 'valid', action: exit },
       ],
     },
   ]
@@ -69,6 +57,19 @@ const remainingLabel = computed<string>(() => {
   const s = total % 60
   return `${m}:${String(s).padStart(2, '0')}`
 })
+
+function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
+  const key = isRunning.value ? 'outroRunning' : 'outroIdle'
+  return [
+    {
+      id: 'outro',
+      text: t(`components.panel.Breeding.dialog.${key}`),
+      responses: [
+        { label: t('ui.Info.ok'), type: 'valid', action: exit },
+      ],
+    },
+  ]
+}
 
 /** === Actions =========================================================== */
 function openSelector() {
