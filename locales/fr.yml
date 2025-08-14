@@ -771,7 +771,7 @@ components:
     Dojo:
       title: Dojo
       exit: Quitter le dojo
-      introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes S hlagémons.
+      introDialog: Bienvenue dans le dojo. C’est ici que tu vas pouvoir faire progresser tes Shlagémons.
       selectMon: Entraîner un Shlagémon
       selected: Shlagémon sélectionné
       rarity:
