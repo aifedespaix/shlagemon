@@ -31,8 +31,8 @@ function createIntro(next: () => void): DialogNode[] {
   ]
 }
 
-function createOutro(result: string | undefined, exit: () => void): DialogNode[] {
-  const key = result ? 'running' : 'idle'
+function createOutro(_result: string | undefined, exit: () => void): DialogNode[] {
+  const key = eggs.incubator.length > 0 ? 'running' : 'idle'
   return [
     {
       id: 'outro',
@@ -160,7 +160,7 @@ function eggReadyLabel(type: EggType) {
     :play-character-track="false"
     @exit="onExit"
   >
-    <template #default="{ finish }">
+    <template #default>
       <div class="area flex-1 overflow-hidden">
         <div class="area-grid h-full w-full gap-2 overflow-hidden">
           <!-- Colonne gauche : Inventaire -->
@@ -286,7 +286,7 @@ function eggReadyLabel(type: EggType) {
                     class="group ring-primary w-full flex flex-col items-center gap-1 outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                     :aria-label="eggs.isReady(slot) ? eggReadyLabel(slot.type) : t('components.panel.Poulailler.a11y.eggProgress')"
                     :title="eggs.isReady(slot) ? (t('components.panel.Poulailler.tapToHatch') as string) : undefined"
-                    @click="eggs.isReady(slot) && (hatch(slot.id), finish('hatched'))"
+                    @click="eggs.isReady(slot) && hatch(slot.id)"
                   >
                     <div
                       class="i-game-icons:egg-eye transition-transform duration-300"

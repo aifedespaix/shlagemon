@@ -3,8 +3,8 @@ fr:
   exit: Quitter
   intro: Bienvenue au poulailler. Ici, tu peux surveiller tes œufs.
   outro:
-    running: Un œuf a éclos ! Félicitations !
-    idle: Aucun œuf n'a éclos. Reviens bientôt.
+    running: "Je m'occupe de tes œufs, t'inquiètes j'en volerai pas un seul, reviens vite pour les voir éclore !"
+    idle: Reviens me voir quand tu voudras faire éclore des œufs de Shlagémons
   incubator: Incubateur
   noEgg: Aucun œuf
   yourEggs: Vos œufs
@@ -27,8 +27,8 @@ en:
   exit: Exit
   intro: Welcome to the henhouse. Keep an eye on your eggs.
   outro:
-    running: An egg has hatched! Congratulations!
-    idle: No egg hatched. Come back soon.
+    running: "I'll take care of your eggs, don't worry I won't steal a single one, come back soon to see them hatch!"
+    idle: Come back whenever you want to hatch Shlagémon eggs
   incubator: Incubator
   noEgg: No egg
   yourEggs: Your eggs
