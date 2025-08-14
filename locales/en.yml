@@ -838,12 +838,26 @@ components:
       eggType: Egg type
       status:
         running: Breeding in progress
-      intro: I can handle the breeding for you... uh, if you want.
+      intro: Hello, I can seed your Shlagémons for you—I'm a pro at it, just hand me one!
       outro:
         running: I'll take care of the breeding right away, you can come back very soon.
         idle: Come back very soon, I can't wait to take care of your Shlagémons.
       during:
         typing: Don't worry, I'll take good care of it, you can trust me
+        unselected: Give me one of your Shlagémons, I'll seed it with tenderness and love!
+        selected:
+          - Oh! I love your {shlagemon_name}, I'll seed that one real good!
+          - Oh, this one… I can tell it'll take the seed nicely!
+          - Mmmh… perfect for some deep seeding!
+          - Watch out {shlagemon_name}, it's going to be a heavy seeding here!
+          - Ohoh… {shlagemon_name}, get ready for a masterful seeding!
+        completed:
+          - All done, I put everything in and it popped out an egg!
+          - "Mission accomplished: it's full… and it laid an egg!"
+          - I gave it all it needed… and bam! An egg.
+          - "I didn't do things halfway: here's the egg!"
+          - 'I stuffed it completely… result: a nice warm egg.'
+          - Filled with happiness… and here's an egg as a gift!
   settings:
     AccessibilityTab:
       autoHide:
@@ -945,6 +959,8 @@ components:
     WearableEquipModal:
       title: Choose an item to equip
       noAvailable: No item available.
+    SelectModal:
+      noAvailable: No Shlagemon available.
   ui:
     CurrencyAmount:
       shlagidiamond: Shlagiamond

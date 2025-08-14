@@ -46,11 +46,10 @@ vi.mock('../src/stores/game', () => ({
   }),
 }))
 
-const isRunning = vi.fn(() => false)
+const getJob = vi.fn(() => null)
 vi.mock('../src/stores/breeding', () => ({
   useBreedingStore: () => ({
-    isRunning,
-    getJob: vi.fn(),
+    getJob,
     remainingMs: vi.fn(),
     progress: vi.fn(),
     start: vi.fn(),
@@ -90,13 +89,15 @@ function createI18nInstance() {
             Breeding: {
               title: 'Élevage',
               exit: 'Quitter l\'élevage',
-              intro: 'Je peux m\'occuper de la reproduction pour toi... enfin, si tu veux.',
+              intro: 'Bonjour, je peux m\'occuper d\'ensemencer tes Shlagémons, je suis un pro pour faire ça, tu n\'as qu\'à m\'en confier un !',
               outro: {
                 running: 'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
                 idle: 'Reviens très vite, j\'ai hâte de m\'occuper de tes Shlagémons.',
               },
               during: {
-                typing: 'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+                unselected: 'Confie moi un de tes Shlagémons, je vais l\'ensemencer avec tendresse et amour !',
+                selected: ['Ho ! J\'adore ton {shlagemon_name}, je vais pouvoir l\'ensemencer bien fort celui là !'],
+                completed: ['ça y est je lui ai tout mis dedans, il a sorti un oeuf !'],
               },
             },
           },
@@ -131,14 +132,14 @@ function mountBreeding() {
 
 describe('breeding dialog flow', () => {
   beforeEach(() => {
-    isRunning.mockReturnValue(false)
+    getJob.mockReturnValue(null)
   })
 
   it('renders intro dialog', async () => {
     const wrapper = mountBreeding()
     await nextTick()
     expect(wrapper.findComponent(DialogBox).text()).toContain(
-      'Je peux m\'occuper de la reproduction',
+      'Bonjour, je peux m\'occuper d\'ensemencer tes Shlagémons',
     )
   })
 
@@ -148,7 +149,7 @@ describe('breeding dialog flow', () => {
     ;(wrapper.findComponent(PoiDialogFlow).vm as any).phase = 'content'
     await nextTick()
     expect(wrapper.text()).toContain(
-      'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+      'Confie moi un de tes Shlagémons, je vais l\'ensemencer avec tendresse et amour !',
     )
   })
 
@@ -161,12 +162,12 @@ describe('breeding dialog flow', () => {
     await nextTick()
     expect(wrapper.findComponent(DialogBox).exists()).toBe(false)
     expect(wrapper.text()).toContain(
-      'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+      'Confie moi un de tes Shlagémons, je vais l\'ensemencer avec tendresse et amour !',
     )
   })
 
   it('completes a job and shows running outro message', async () => {
-    isRunning.mockReturnValue(true)
+    getJob.mockReturnValue({ status: 'running' })
     const wrapper = mountBreeding()
     await nextTick()
     // Skip intro
@@ -182,7 +183,7 @@ describe('breeding dialog flow', () => {
 
   describe('outro dialog', () => {
     it('shows idle outro when no job is running', async () => {
-      isRunning.mockReturnValue(false)
+      getJob.mockReturnValue(null)
       const wrapper = mountBreeding()
       ;(wrapper.vm as any).selected = mon
       await nextTick()
