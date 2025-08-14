@@ -161,6 +161,7 @@ const ids = {
     :character="siphanus"
     :create-intro="createIntro"
     :create-outro="createOutro"
+    :play-character-track="false"
     @exit="onExit"
   >
     <template #default>
@@ -171,9 +172,8 @@ const ids = {
           <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
             {{ t('components.panel.Dojo.selectMon') }}
           </UiButton>
-
-          <!-- Contenu principal -->
           <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
+            <!-- Contenu principal -->
             <div
               class="min-h-0 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
               @click="openSelector"
@@ -297,18 +297,17 @@ const ids = {
                 </span>
               </div>
             </div>
-          </div>
-        </UiAdaptiveDisplayer>
+          </UiAdaptiveDisplayer>
+        </div>
       </div>
-    </div>
 
-    <!-- Sélecteur -->
-    <ShlagemonSelectModal
-      v-model="selectorOpen"
-      :title="t('components.panel.Dojo.selectMon')"
-      title-id="dojo-select-title"
-      @select="selectMon"
-    />
+      <!-- Sélecteur -->
+      <ShlagemonSelectModal
+        v-model="selectorOpen"
+        :title="t('components.panel.Dojo.selectMon')"
+        title-id="dojo-select-title"
+        @select="selectMon"
+      />
 
       <!-- Sélecteur -->
       <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">

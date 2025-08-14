@@ -119,6 +119,7 @@ onBeforeUnmount(pauseTick)
     :character="norman"
     :create-intro="createIntro"
     :create-outro="createOutro"
+    :play-character-track="false"
     @exit="onExit"
   >
     <template #default>
