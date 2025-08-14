@@ -3,7 +3,7 @@ import type { DojoTrainingJob } from '~/stores/dojo'
 import type { DialogNode } from '~/type/dialog'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { siphanus } from '~/data/characters/siphanus'
+import { glandhi } from '~/data/characters/glandhi'
 import { toast } from '~/modules/toast'
 import { dojoTrainingCost, useDojoStore } from '~/stores/dojo'
 
@@ -158,7 +158,7 @@ const ids = {
   <PanelPoiDialogFlow
     :title="t('components.panel.Dojo.title')"
     :exit-text="t('components.panel.Dojo.exit')"
-    :character="siphanus"
+    :character="glandhi"
     :create-intro="createIntro"
     :create-outro="createOutro"
     :play-character-track="false"
