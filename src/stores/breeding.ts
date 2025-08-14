@@ -1,6 +1,7 @@
 import type { EggType } from './egg'
 import { defineStore } from 'pinia'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
+import { useEggBoxStore } from './eggBox'
 
 /**
  * Describes a single breeding job.
@@ -31,7 +32,7 @@ export interface BreedingState {
 export const useBreedingStore = defineStore('breeding', () => {
   const byType = ref<BreedingState['byType']>({})
   const game = useGameStore()
-  const eggs = useEggStore()
+  const eggBox = useEggBoxStore()
 
   /**
    * Retrieve the job associated with the given type.
@@ -74,7 +75,7 @@ export const useBreedingStore = defineStore('breeding', () => {
    * @returns `true` when the job started successfully.
    */
   function start(type: EggType, rarity: number, parentId: string): boolean {
-    if (isRunning(type))
+    if (byType.value[type])
       return false
     const cost = breedingCost(rarity)
     if (game.shlagidolar < cost)
@@ -106,13 +107,13 @@ export const useBreedingStore = defineStore('breeding', () => {
   }
 
   /**
-   * Collect the egg from a completed job and start its incubation.
+   * Collect the egg from a completed job and move it to the egg box.
    */
   function collectEgg(type: EggType): boolean {
     const job = byType.value[type]
     if (!job || job.status !== 'completed')
       return false
-    eggs.startIncubation(type, { isBreeding: true, forcedRarity: job.rarity, forcedMonId: job.parentId })
+    eggBox.addBreedingEgg(job.parentId, job.type, job.rarity)
     delete byType.value[type]
     return true
   }

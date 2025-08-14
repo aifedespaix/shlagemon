@@ -46,7 +46,7 @@ function createOutro(result: string | undefined, exit: () => void): DialogNode[]
 </script>
 
 <template>
-  <PoiDialogFlow
+  <PanelPoiDialogFlow
     v-if="gameDef"
     :title="gameDef.label"
     :exit-text="t('components.panel.MiniGame.exit')"
@@ -64,5 +64,5 @@ function createOutro(result: string | undefined, exit: () => void): DialogNode[]
         @draw="() => { mini.finish('draw'); slot.finish?.('draw') }"
       />
     </template>
-  </PoiDialogFlow>
+  </PanelPoiDialogFlow>
 </template>
