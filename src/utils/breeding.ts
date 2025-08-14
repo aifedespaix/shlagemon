@@ -5,7 +5,7 @@
 /**
  * Fixed duration for a breeding attempt in milliseconds.
  */
-export const BREEDING_DURATION_MS = 300
+export const BREEDING_DURATION_MS = 300_000
 // export const BREEDING_DURATION_MS = 300_000
 
 /**
