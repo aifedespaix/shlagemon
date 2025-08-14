@@ -56,12 +56,12 @@ function createOutro(result: string | undefined, exit: () => void): DialogNode[]
     :exit-track="zoneTrack"
     @exit="leaveGame"
   >
-    <template #default="{ finish }">
+    <template #default="slot">
       <component
         :is="GameComp"
-        @win="() => { mini.finish('win'); finish('win') }"
-        @lose="() => { mini.finish('lose'); finish('lose') }"
-        @draw="() => { mini.finish('draw'); finish('draw') }"
+        @win="() => { mini.finish('win'); slot.finish?.('win') }"
+        @lose="() => { mini.finish('lose'); slot.finish?.('lose') }"
+        @draw="() => { mini.finish('draw'); slot.finish?.('draw') }"
       />
     </template>
   </PoiDialogFlow>
