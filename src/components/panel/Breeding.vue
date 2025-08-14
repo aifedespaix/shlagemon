@@ -90,41 +90,56 @@ onBeforeUnmount(pauseTick)
   >
     <div class="min-h-0 flex-1">
       <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
-        <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
-          {{ t('components.panel.Breeding.selectMon') }}
-        </UiButton>
-
-        <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
+        <!-- On garde toujours la grille adaptative -->
+        <UiAdaptiveDisplayer class="area-grid h-full w-full gap-3 md:gap-4">
+          <!-- Carte gauche : visuel Shlagémon OU bouton de sélection -->
           <div
-            class="min-h-0 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
-            @click="changeMon"
+            class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
+            :class="selected ? 'cursor-pointer' : ''"
+            @click="selected ? changeMon() : null"
           >
             <div class="relative h-full w-full flex items-center justify-center">
-              <ShlagemonImage
-                :id="selected.base.id"
-                :alt="t(selected.base.name)"
-                :shiny="selected.isShiny"
-                class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
-              />
-              <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
-                <span
-                  class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
-                  aria-label="{{ t('components.panel.Breeding.rarity') }}"
+              <!-- Si sélectionné: image + badges -->
+              <template v-if="selected">
+                <ShlagemonImage
+                  :id="selected.base.id"
+                  :alt="t(selected.base.name)"
+                  :shiny="selected.isShiny"
+                  class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
+                />
+                <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
+                  <span
+                    class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
+                    :aria-label="t('components.panel.Breeding.rarity')"
+                  >
+                    {{ t('components.panel.Breeding.rarity') }}: {{ selected.rarity }}
+                  </span>
+                  <span
+                    class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
+                    :aria-label="t('components.panel.Breeding.eggType')"
+                  >
+                    {{ t('components.panel.Breeding.eggType') }}: {{ eggType }}
+                  </span>
+                </div>
+              </template>
+
+              <!-- Si pas sélectionné: bouton à la place de l'image -->
+              <template v-else>
+                <UiButton
+                  type="primary"
+                  class="aspect-square w-24"
+                  @click.stop="openSelector"
                 >
-                  {{ t('components.panel.Breeding.rarity') }}: {{ selected.rarity }}
-                </span>
-                <span
-                  class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
-                  aria-label="{{ t('components.panel.Breeding.eggType') }}"
-                >
-                  {{ t('components.panel.Breeding.eggType') }}: {{ eggType }}
-                </span>
-              </div>
+                  {{ t('components.panel.Breeding.selectMon') }}
+                </UiButton>
+              </template>
             </div>
           </div>
 
-          <div class="min-w-0 flex flex-1 gap-3">
-            <div v-if="!isRunning" class="w-full flex flex-col items-center gap-2">
+          <!-- Colonne droite : infos / progression / Norman -->
+          <div class="min-w-0 flex flex-1 flex-col gap-3">
+            <!-- Bloc coût/durée seulement si un mon est sélectionné et que ça ne tourne pas -->
+            <div v-if="selected && !isRunning" class="w-full flex flex-col items-center gap-2">
               <div class="flex items-center gap-1 text-sm">
                 <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
                 <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
@@ -136,6 +151,7 @@ onBeforeUnmount(pauseTick)
               </div>
             </div>
 
+            <!-- Progression si un job existe -->
             <div class="flex flex-col gap-2">
               <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
                 <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
@@ -172,15 +188,15 @@ onBeforeUnmount(pauseTick)
                 </span>
               </div>
             </div>
-
-            <div class="h-full">
-              <CharacterImage :id="norman.id" :alt="norman.name" class="object-contain" />
-            </div>
+          </div>
+          <div class="h-full">
+            <CharacterImage :id="norman.id" :alt="norman.name" class="object-contain" />
           </div>
         </UiAdaptiveDisplayer>
       </div>
     </div>
 
+    <!-- Sélecteur -->
     <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="breeding-select-title">
       <div class="max-w-160 flex flex-col gap-2">
         <h3 id="breeding-select-title" class="text-center text-lg font-bold">
@@ -192,6 +208,7 @@ onBeforeUnmount(pauseTick)
       </div>
     </UiModal>
 
+    <!-- Footer -->
     <template #footer>
       <div class="w-full flex justify-end gap-2">
         <UiButton
