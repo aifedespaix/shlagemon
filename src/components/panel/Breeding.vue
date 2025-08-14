@@ -113,6 +113,7 @@ onBeforeUnmount(pauseTick)
 </script>
 
 <template>
+  <!-- Avoid replacing breeding music with the character theme -->
   <PanelPoiDialogFlow
     :title="t('components.panel.Breeding.title')"
     :exit-text="t('components.panel.Breeding.exit')"
