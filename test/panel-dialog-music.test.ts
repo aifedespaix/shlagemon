@@ -9,6 +9,7 @@ import Dojo from '../src/components/panel/Dojo.vue'
 import PoiDialogFlow from '../src/components/panel/PoiDialogFlow.vue'
 import Poulailler from '../src/components/panel/Poulailler.vue'
 import { norman } from '../src/data/characters/norman'
+import { useAudioStore } from '../src/stores/audio'
 
 const fadeToMusic = vi.fn()
 vi.mock('../src/stores/audio', () => ({
@@ -142,6 +143,23 @@ describe('panel dialog music', () => {
     ['Poulailler', Poulailler],
   ])('does not play character track in %s panel', async (_, Comp) => {
     mount(Comp, {
+      global: {
+        plugins: [createI18nInstance()],
+        stubs: globalStubs,
+        components: { PoiDialogFlow, DialogBox },
+      },
+    })
+    await nextTick()
+    expect(fadeToMusic).not.toHaveBeenCalled()
+  })
+
+  it('keeps breeding music when the panel opens', async () => {
+    const audio = useAudioStore()
+    audio.fadeToMusic('/audio/musics/breeding.ogg')
+    expect(fadeToMusic).toHaveBeenCalledWith('/audio/musics/breeding.ogg')
+    fadeToMusic.mockClear()
+
+    mount(Breeding, {
       global: {
         plugins: [createI18nInstance()],
         stubs: globalStubs,
