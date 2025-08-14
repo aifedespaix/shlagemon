@@ -59,6 +59,25 @@ vi.mock('../src/stores/breeding', () => ({
   }),
 }))
 
+const mon = {
+  id: 'm1',
+  base: { id: 'm1', name: 'm1', description: '', types: [{ id: 'feu' }], speciality: 'evolution0' },
+  baseStats: { hp: 1, attack: 1, defense: 1, smelling: 1 },
+  captureDate: '',
+  captureCount: 1,
+  lvl: 1,
+  xp: 0,
+  rarity: 1,
+  sex: 'male',
+  isShiny: false,
+  hpCurrent: 1,
+  allowEvolution: true,
+  hp: 1,
+  attack: 1,
+  defense: 1,
+  smelling: 1,
+}
+
 function createI18nInstance() {
   return createI18n({
     legacy: false,
@@ -132,41 +151,35 @@ describe('breeding dialog flow', () => {
     )
   })
 
+  it('launches breeding and closes intro before showing content', async () => {
+    const wrapper = mountBreeding()
+    await nextTick()
+    const flow = wrapper.findComponent(PoiDialogFlow)
+    expect(wrapper.findComponent(DialogBox).exists()).toBe(true)
+    ;(flow.vm as any).phase = 'content'
+    await nextTick()
+    expect(wrapper.findComponent(DialogBox).exists()).toBe(false)
+    expect(wrapper.text()).toContain(
+      'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+    )
+  })
+
+  it('completes a job and shows running outro message', async () => {
+    isRunning.mockReturnValue(true)
+    const wrapper = mountBreeding()
+    await nextTick()
+    // Skip intro
+    ;(wrapper.findComponent(PoiDialogFlow).vm as any).phase = 'content'
+    ;(wrapper.vm as any).selected = mon
+    await nextTick()
+    ;(wrapper.findComponent(PoiDialogFlow).vm as any).finish()
+    await nextTick()
+    expect(wrapper.findComponent(DialogBox).text()).toContain(
+      'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
+    )
+  })
+
   describe('outro dialog', () => {
-    const mon = {
-      id: 'm1',
-      base: { id: 'm1', name: 'm1', description: '', types: [{ id: 'feu' }], speciality: 'evolution0' },
-      baseStats: { hp: 1, attack: 1, defense: 1, smelling: 1 },
-      captureDate: '',
-      captureCount: 1,
-      lvl: 1,
-      xp: 0,
-      rarity: 1,
-      sex: 'male',
-      isShiny: false,
-      hpCurrent: 1,
-      allowEvolution: true,
-      hp: 1,
-      attack: 1,
-      defense: 1,
-      smelling: 1,
-    }
-
-    it('shows running outro when job is running', async () => {
-      isRunning.mockReturnValue(true)
-      const wrapper = mountBreeding()
-      ;(wrapper.vm as any).selected = mon
-      await nextTick()
-      const flow = wrapper.findComponent(PoiDialogFlow)
-      ;(flow.vm as any).phase = 'content'
-      await nextTick()
-      ;(flow.vm as any).finish()
-      await nextTick()
-      expect(wrapper.findComponent(DialogBox).text()).toContain(
-        'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
-      )
-    })
-
     it('shows idle outro when no job is running', async () => {
       isRunning.mockReturnValue(false)
       const wrapper = mountBreeding()
