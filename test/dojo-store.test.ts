@@ -12,7 +12,7 @@ describe('dojo store', () => {
 
   it('computes cost correctly', () => {
     expect(dojoTrainingCost(1, 1)).toBe(1000)
-    expect(dojoTrainingCost(99, 1)).toBe(100000000)
+    expect(dojoTrainingCost(99, 1)).toBe(10000000)
   })
 
   it('starts and completes a training job', () => {
