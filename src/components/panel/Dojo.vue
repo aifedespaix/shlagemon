@@ -166,7 +166,7 @@ const ids = {
   >
     <template #default>
       <!-- Conteneur qui respecte la hauteur du parent (no vh/vw) -->
-      <div class="min-h-0 flex-1">
+      <div class="min-h-0 w-full flex-1">
         <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
           <!-- CTA sélection -->
           <UiButton v-if="!selected" type="primary" class="aspect-square w-24" @click="openSelector">
@@ -210,7 +210,7 @@ const ids = {
                   <label :for="ids.slider" class="text-sm font-medium">
                     {{ t('components.panel.Dojo.rarity.points') }}
                   </label>
-                  <div class="relative w-full flex items-center gap-2">
+                  <div class="relative w-full flex flex-col items-center gap-2">
                     <input
                       :id="ids.slider"
                       v-model="points"
@@ -235,10 +235,6 @@ const ids = {
                 </div>
 
                 <div class="flex flex-col items-center gap-1 text-sm" :aria-labelledby="ids.cost">
-                  <span :id="ids.cost" class="font-medium">
-                    {{ t('components.panel.Dojo.cost.label') }}
-                  </span>
-                  <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
                   <span v-if="cost > game.shlagidolar" class="text-red-500">
                     {{ t('components.panel.Dojo.cost.insufficient') }}
                   </span>
