@@ -1,6 +1,8 @@
 fr:
   title: Élevage
   exit: Quitter l'élevage
+  introDialog: Bienvenue au centre d'élevage. Choisis un Shlagémon à confier.
+  outroDialog: À plus tard !
   selectMon: Choisir un Shlagémon
   selected: Shlagémon sélectionné
   rarity: Rareté
@@ -28,6 +30,8 @@ fr:
 en:
   title: Breeding
   exit: Leave the breeding center
+  introDialog: Welcome to the breeding center. Choose a Shlagémon to leave.
+  outroDialog: See you later!
   selectMon: Choose a Shlagémon
   selected: Selected Shlagémon
   rarity: Rarity
