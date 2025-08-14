@@ -21,9 +21,15 @@ interface Props {
    * Optional music track to play once the flow exits. Defaults to the zone track.
    */
   exitTrack?: string
+  /**
+   * If false, the character track is never played. Defaults to true.
+   */
+  playCharacterTrack?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  playCharacterTrack: true,
+})
 const emit = defineEmits<{ (e: 'exit'): void }>()
 
 const phase = ref<'intro' | 'content' | 'outro'>(props.createIntro ? 'intro' : 'content')
@@ -55,7 +61,7 @@ function onExit() {
 }
 
 onMounted(() => {
-  if (!props.createIntro) {
+  if (!props.createIntro && props.playCharacterTrack) {
     const track = getCharacterTrack(props.character.id)
     if (track)
       audio.fadeToMusic(track)
@@ -76,6 +82,7 @@ onMounted(() => {
         :dialog-tree="introDialog"
         keep-music-on-exit
         orientation="col"
+        :play-character-track="props.playCharacterTrack"
       />
       <slot v-else-if="phase === 'content'" :finish="finish" />
       <DialogBox
@@ -84,6 +91,7 @@ onMounted(() => {
         :dialog-tree="outroDialog!"
         :exit-track="props.exitTrack"
         orientation="col"
+        :play-character-track="props.playCharacterTrack"
       />
     </div>
     <template #footer>

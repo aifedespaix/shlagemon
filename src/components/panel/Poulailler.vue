@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { EggType } from '~/stores/egg'
-import type { EggItemId } from '~/stores/eggBox'
-import type { DialogNode } from '~/type/dialog'
 import type { BreedingEggItem, EggItemId } from '~/stores/eggBox'
+import type { DialogNode } from '~/type/dialog'
 import { eggTypeMap } from '~/constants/egg'
 import { magalieBredouille } from '~/data/characters/magalie-bredouille'
 import { allItems } from '~/data/items'
@@ -167,6 +166,7 @@ function eggReadyLabel(type: EggType) {
     :character="magalieBredouille"
     :create-intro="createIntro"
     :create-outro="createOutro"
+    :play-character-track="false"
     @exit="onExit"
   >
     <template #default="{ finish }">
@@ -342,7 +342,6 @@ function eggReadyLabel(type: EggType) {
     </template>
   </PanelPoiDialogFlow>
 </template>
-
 
 <style scoped>
 /* micro-ajustements focus visibles sur fond translucide */

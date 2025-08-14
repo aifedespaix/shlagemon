@@ -6,7 +6,7 @@ import { getCharacterTrack, getZoneTrack } from '~/data/music'
 /**
  * Props for {@link DialogBox}. Handles dialog tree and music behavior.
  */
-const { dialogTree, character, orientation, exitTrack, keepMusicOnExit }
+const { dialogTree, character, orientation, exitTrack, keepMusicOnExit, playCharacterTrack }
   = withDefaults(defineProps<{
     dialogTree: DialogNode[]
     character: Character
@@ -18,9 +18,15 @@ const { dialogTree, character, orientation, exitTrack, keepMusicOnExit }
      * Useful when a following scene should keep the character track.
      */
     keepMusicOnExit?: boolean
+    /**
+     * Whether the character's music should play when the dialog opens.
+     * Defaults to true to preserve existing behavior.
+     */
+    playCharacterTrack?: boolean
   }>(), {
     orientation: 'row',
     keepMusicOnExit: false,
+    playCharacterTrack: true,
   })
 
 const buttonClass = computed(() =>
@@ -35,11 +41,13 @@ const zone = useZoneStore()
 
 onMounted(() => {
   currentNode.value = dialogTree[0]
-  const track = getCharacterTrack(character.id)
-  if (track)
-    audio.fadeToMusic(track)
-  else
-    console.warn(`Missing music for character ${character.id}`)
+  if (playCharacterTrack) {
+    const track = getCharacterTrack(character.id)
+    if (track)
+      audio.fadeToMusic(track)
+    else
+      console.warn(`Missing music for character ${character.id}`)
+  }
 })
 
 watch(currentNode, () => {
