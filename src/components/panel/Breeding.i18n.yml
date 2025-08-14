@@ -12,6 +12,7 @@ fr:
   minutes: minutes
   progress: Progression
   remaining: Temps restant
+  normanCareMessage: "T'inquiètes pas j'en prendrais bien soin, tu peux me faire confiance"
   cta:
     payAndStart: Payer & lancer
     changeMon: Changer de Shlagémon
@@ -27,6 +28,7 @@ fr:
     startBreeding: Lancer l'élevage
     changeParent: Changer de parent
     collectEgg: Récupérer l'œuf
+    normanCareMessage: Message rassurant de Norman
 en:
   title: Breeding
   exit: Leave the breeding center
@@ -41,6 +43,7 @@ en:
   minutes: minutes
   progress: Progress
   remaining: Remaining time
+  normanCareMessage: "Don't worry, I'll take good care of it, you can trust me"
   cta:
     payAndStart: Pay & start
     changeMon: Change Shlagémon
@@ -56,3 +59,4 @@ en:
     startBreeding: Start breeding
     changeParent: Change parent
     collectEgg: Collect egg
+    normanCareMessage: Reassuring message from Norman

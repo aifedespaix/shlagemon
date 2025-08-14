@@ -170,61 +170,73 @@ onBeforeUnmount(pauseTick)
             </div>
 
             <!-- Colonne droite : infos / progression / Norman -->
-            <div class="min-w-0 flex flex-1 flex-col gap-3">
-              <!-- Bloc coût/durée seulement si un mon est sélectionné et que ça ne tourne pas -->
-              <div v-if="selected && !isRunning" class="w-full flex flex-col items-center gap-2">
-                <div class="flex items-center gap-1 text-sm">
-                  <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
-                  <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
-                </div>
-                <div class="text-sm">
-                  <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.duration') }}:</span>
-                  <span class="ml-1">{{ durationMin }}</span>
-                  <span class="ml-1">{{ t('components.panel.Breeding.minutes') }}</span>
-                </div>
-              </div>
-
-              <!-- Progression si un job existe -->
-              <div class="flex flex-col gap-2">
-                <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
-                  <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
-                    {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
-                    <span class="tabular-nums">{{ remainingLabel }}</span>
+            <UiAdaptiveDisplayer class="area-grid h-full min-w-0 w-full flex-1 gap-3 md:gap-4">
+              <!-- Sous-colonne gauche : infos coût/durée/progression + message -->
+              <div class="min-w-0 w-full flex flex-col gap-3 md:w-2/3">
+                <!-- Bloc coût/durée seulement si un mon est sélectionné et que ça ne tourne pas -->
+                <div v-if="selected && !isRunning" class="w-full flex flex-col items-center gap-2">
+                  <div class="flex items-center gap-1 text-sm">
+                    <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
+                    <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
                   </div>
-                  <div
-                    class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
-                    role="progressbar"
-                    :aria-label="t('components.panel.Breeding.progress')"
-                    :aria-valuemin="0"
-                    :aria-valuemax="100"
-                    :aria-valuenow="Math.round(progress)"
-                  >
-                    <div
-                      class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
-                      :style="{ width: `${progress}%` }"
-                    />
+                  <div class="text-sm">
+                    <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.duration') }}:</span>
+                    <span class="ml-1">{{ durationMin }}</span>
+                    <span class="ml-1">{{ t('components.panel.Breeding.minutes') }}</span>
                   </div>
+                </div>
 
-                  <div class="mt-2 flex items-center justify-between text-sm">
-                    <p class="text-gray-600 dark:text-gray-300">
-                      {{ t('components.panel.Breeding.remaining') }}:
+                <!-- Progression si un job existe -->
+                <div class="flex flex-col gap-2">
+                  <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+                    <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                      {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
                       <span class="tabular-nums">{{ remainingLabel }}</span>
-                    </p>
-                    <p class="text-gray-500 dark:text-gray-400">
-                      {{ Math.round(progress) }}%
-                    </p>
-                  </div>
+                    </div>
+                    <div
+                      class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
+                      role="progressbar"
+                      :aria-label="t('components.panel.Breeding.progress')"
+                      :aria-valuemin="0"
+                      :aria-valuemax="100"
+                      :aria-valuenow="Math.round(progress)"
+                    >
+                      <div
+                        class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
+                        :style="{ width: `${progress}%` }"
+                      />
+                    </div>
 
-                  <span aria-live="polite" class="sr-only">
-                    {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
-                    {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
-                  </span>
+                    <div class="mt-2 flex items-center justify-between text-sm">
+                      <p class="text-gray-600 dark:text-gray-300">
+                        {{ t('components.panel.Breeding.remaining') }}:
+                        <span class="tabular-nums">{{ remainingLabel }}</span>
+                      </p>
+                      <p class="text-gray-500 dark:text-gray-400">
+                        {{ Math.round(progress) }}%
+                      </p>
+                    </div>
+
+                    <span aria-live="polite" class="sr-only">
+                      {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
+                      {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
+                    </span>
+                  </div>
                 </div>
+
+                <UiTypingText
+                  :text="t('components.panel.Breeding.normanCareMessage')"
+                  :aria-label="t('components.panel.Breeding.a11y.normanCareMessage')"
+                  aria-live="polite"
+                  class="text-sm"
+                />
               </div>
-            </div>
-            <div class="h-full">
-              <CharacterImage :id="norman.id" :alt="norman.name" class="object-contain" />
-            </div>
+
+              <!-- Sous-colonne droite : image de Norman -->
+              <div class="h-full w-full md:w-1/3">
+                <CharacterImage :id="norman.id" :alt="norman.name" class="h-full w-full object-contain" />
+              </div>
+            </UiAdaptiveDisplayer>
           </UiAdaptiveDisplayer>
         </div>
 
