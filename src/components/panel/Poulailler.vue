@@ -161,7 +161,7 @@ function eggReadyLabel(type: EggType) {
     @exit="onExit"
   >
     <template #default="{ finish }">
-      <div class="area flex-1 overflow-hidden">
+      <div class="area w-full flex-1 overflow-hidden">
         <div class="area-grid h-full w-full gap-2 overflow-hidden">
           <!-- Colonne gauche : Inventaire -->
           <section
