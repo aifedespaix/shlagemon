@@ -1,6 +1,10 @@
 fr:
   title: Poulailler
   exit: Quitter
+  intro: Bienvenue au poulailler. Ici, tu peux surveiller tes œufs.
+  outro:
+    running: Un œuf a éclos ! Félicitations !
+    idle: Aucun œuf n'a éclos. Reviens bientôt.
   incubator: Incubateur
   noEgg: Aucun œuf
   yourEggs: Vos œufs
@@ -21,6 +25,10 @@ fr:
 en:
   title: Henhouse
   exit: Exit
+  intro: Welcome to the henhouse. Keep an eye on your eggs.
+  outro:
+    running: An egg has hatched! Congratulations!
+    idle: No egg hatched. Come back soon.
   incubator: Incubator
   noEgg: No egg
   yourEggs: Your eggs
