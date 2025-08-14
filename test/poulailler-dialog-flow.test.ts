@@ -32,8 +32,10 @@ vi.mock('../src/stores/egg', () => ({
   }),
 }))
 
+const mockEggBoxStore = { eggs: {}, breeding: [] as any[] }
+
 vi.mock('../src/stores/eggBox', () => ({
-  useEggBoxStore: () => ({ eggs: {} }),
+  useEggBoxStore: () => mockEggBoxStore,
 }))
 
 vi.mock('../src/stores/eggMonsModal', () => ({
@@ -101,7 +103,9 @@ function mountPoulailler() {
 }
 
 describe('poulailler dialog flow', () => {
-  beforeEach(() => {})
+  beforeEach(() => {
+    mockEggBoxStore.breeding = []
+  })
 
   it('transitions from intro to content to idle outro', async () => {
     const wrapper = mountPoulailler()
@@ -127,5 +131,11 @@ describe('poulailler dialog flow', () => {
     ;(flow.vm as any).finish('hatched')
     await nextTick()
     expect(flow.vm.outroDialog![0].text).toBe('running')
+  })
+
+  it('ignores breeding eggs with unknown mon id', () => {
+    mockEggBoxStore.breeding.push({ id: 'egg1', monId: 'missing-mon', type: 'feu', rarity: 1 })
+    const wrapper = mountPoulailler()
+    expect((wrapper.vm as any).breedingEggs.length).toBe(0)
   })
 })

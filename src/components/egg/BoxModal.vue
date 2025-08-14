@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { EggType } from '~/stores/egg'
-import type { BreedingEggItem, EggItemId } from '~/stores/eggBox'
+import type { EggItemId } from '~/stores/eggBox'
 import { allItems } from '~/data/items'
-import { baseShlagemons } from '~/data/shlagemons'
 
 const eggMonsModal = useEggMonsModalStore()
 
@@ -11,27 +10,7 @@ const { t } = useI18n()
 
 const typeEggs = computed(() => eggIds.filter(id => box.eggs[id]))
 
-interface BreedingEntry extends BreedingEggItem {
-  readonly mon: typeof baseShlagemons[number]
-}
-
-/**
- * Breeding eggs that have a matching shlagemon entry.
- * Entries without a corresponding mon are ignored to avoid runtime errors.
- */
-const breedingEggs = computed<BreedingEntry[]>(() =>
-  box.breeding
-    .map((egg) => {
-      const mon = baseShlagemons.find(b => b.id === egg.monId)
-      return mon
-        ? {
-            ...egg,
-            mon,
-          }
-        : null
-    })
-    .filter((entry): entry is BreedingEntry => entry !== null),
-)
+const breedingEggs = useBreedingEggs()
 
 const hasEggs = computed(() => typeEggs.value.length > 0 || breedingEggs.value.length > 0)
 
