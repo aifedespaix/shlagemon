@@ -1,6 +1,12 @@
 fr:
   title: Élevage
   exit: Quitter l'élevage
+  intro: "Je peux m'occuper de la reproduction pour toi... enfin, si tu veux."
+  outro:
+    running: "Je m'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps."
+    idle: "Reviens très vite, j'ai hâte de m'occuper de tes Shlagémons."
+  during:
+    typing: "T'inquiètes pas j'en prendrais bien soin, tu peux me faire confiance"
   selectMon: Choisir un Shlagémon
   selected: Shlagémon sélectionné
   rarity: Rareté
@@ -25,9 +31,16 @@ fr:
     startBreeding: Lancer l'élevage
     changeParent: Changer de parent
     collectEgg: Récupérer l'œuf
+    normanCareMessage: Message rassurant de Norman
 en:
   title: Breeding
   exit: Leave the breeding center
+  intro: 'I can handle the breeding for you... uh, if you want.'
+  outro:
+    running: "I'll take care of the breeding right away, you can come back very soon."
+    idle: "Come back very soon, I can't wait to take care of your Shlagémons."
+  during:
+    typing: "Don't worry, I'll take good care of it, you can trust me"
   selectMon: Choose a Shlagémon
   selected: Selected Shlagémon
   rarity: Rarity
@@ -52,3 +65,4 @@ en:
     startBreeding: Start breeding
     changeParent: Change parent
     collectEgg: Collect egg
+    normanCareMessage: Reassuring message from Norman

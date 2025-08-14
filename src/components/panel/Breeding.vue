@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { EggType } from '~/stores/egg'
-import type { DexShlagemon } from '~/type/shlagemon'
+import type { DialogNode } from '~/type/dialog'
 
+import type { DexShlagemon } from '~/type/shlagemon'
 import { norman } from '~/data/characters/norman'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
@@ -11,6 +12,22 @@ const { t } = useI18n()
 const breeding = useBreedingStore()
 const game = useGameStore()
 const panel = useMainPanelStore()
+
+function onExit() {
+  panel.showVillage()
+}
+
+function createIntro(next: () => void): DialogNode[] {
+  return [
+    {
+      id: 'intro',
+      text: t('components.panel.Breeding.intro'),
+      responses: [
+        { label: t('ui.Info.ok'), type: 'primary', action: next },
+      ],
+    },
+  ]
+}
 
 /** === State ============================================================= */
 const selected = ref<DexShlagemon | null>(null)
@@ -40,6 +57,19 @@ const remainingLabel = computed<string>(() => {
   const s = total % 60
   return `${m}:${String(s).padStart(2, '0')}`
 })
+
+function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
+  const key = isRunning.value ? 'running' : 'idle'
+  return [
+    {
+      id: 'outro',
+      text: t(`components.panel.Breeding.outro.${key}`),
+      responses: [
+        { label: t('ui.Info.ok'), type: 'valid', action: exit },
+      ],
+    },
+  ]
+}
 
 /** === Actions =========================================================== */
 function openSelector() {
@@ -83,132 +113,147 @@ onBeforeUnmount(pauseTick)
 </script>
 
 <template>
-  <LayoutTitledPanel
+  <PoiDialogFlow
     :title="t('components.panel.Breeding.title')"
     :exit-text="t('components.panel.Breeding.exit')"
-    @exit="panel.showVillage()"
+    :character="norman"
+    :create-intro="createIntro"
+    :create-outro="createOutro"
+    @exit="onExit"
   >
-    <div class="min-h-0 flex-1">
-      <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
-        <!-- On garde toujours la grille adaptative -->
-        <UiAdaptiveDisplayer class="area-grid h-full w-full gap-3 md:gap-4">
-          <!-- Carte gauche : visuel Shlagémon OU bouton de sélection -->
-          <div
-            class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
-            :class="selected ? 'cursor-pointer' : ''"
-            @click="selected ? changeMon() : null"
-          >
-            <div class="relative h-full w-full flex items-center justify-center">
-              <!-- Si sélectionné: image + badges -->
-              <template v-if="selected">
-                <ShlagemonImage
-                  :id="selected.base.id"
-                  :alt="t(selected.base.name)"
-                  :shiny="selected.isShiny"
-                  class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
-                />
-                <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
-                  <span
-                    class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
-                    :aria-label="t('components.panel.Breeding.rarity')"
-                  >
-                    {{ t('components.panel.Breeding.rarity') }}: {{ selected.rarity }}
-                  </span>
-                  <span
-                    class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
-                    :aria-label="t('components.panel.Breeding.eggType')"
-                  >
-                    {{ t('components.panel.Breeding.eggType') }}: {{ eggType }}
-                  </span>
-                </div>
-              </template>
-
-              <!-- Si pas sélectionné: bouton à la place de l'image -->
-              <template v-else>
-                <UiButton
-                  type="primary"
-                  class="aspect-square w-24"
-                  @click.stop="openSelector"
-                >
-                  {{ t('components.panel.Breeding.selectMon') }}
-                </UiButton>
-              </template>
-            </div>
-          </div>
-
-          <!-- Colonne droite : infos / progression / Norman -->
-          <div class="min-w-0 flex flex-1 flex-col gap-3">
-            <!-- Bloc coût/durée seulement si un mon est sélectionné et que ça ne tourne pas -->
-            <div v-if="selected && !isRunning" class="w-full flex flex-col items-center gap-2">
-              <div class="flex items-center gap-1 text-sm">
-                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
-                <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
-              </div>
-              <div class="text-sm">
-                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.duration') }}:</span>
-                <span class="ml-1">{{ durationMin }}</span>
-                <span class="ml-1">{{ t('components.panel.Breeding.minutes') }}</span>
-              </div>
-            </div>
-
-            <!-- Progression si un job existe -->
-            <div class="flex flex-col gap-2">
-              <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
-                <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
-                  {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
-                  <span class="tabular-nums">{{ remainingLabel }}</span>
-                </div>
-                <div
-                  class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
-                  role="progressbar"
-                  :aria-label="t('components.panel.Breeding.progress')"
-                  :aria-valuemin="0"
-                  :aria-valuemax="100"
-                  :aria-valuenow="Math.round(progress)"
-                >
-                  <div
-                    class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
-                    :style="{ width: `${progress}%` }"
+    <template #default>
+      <div class="min-h-0 flex-1">
+        <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
+          <!-- On garde toujours la grille adaptative -->
+          <UiAdaptiveDisplayer class="area-grid h-full w-full gap-3 md:gap-4">
+            <!-- Carte gauche : visuel Shlagémon OU bouton de sélection -->
+            <div
+              class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
+              :class="selected ? 'cursor-pointer' : ''"
+              @click="selected ? changeMon() : null"
+            >
+              <div class="relative h-full w-full flex items-center justify-center">
+                <!-- Si sélectionné: image + badges -->
+                <template v-if="selected">
+                  <ShlagemonImage
+                    :id="selected.base.id"
+                    :alt="t(selected.base.name)"
+                    :shiny="selected.isShiny"
+                    class="h-full w-full object-contain transition-transform duration-300 will-change-transform"
                   />
-                </div>
+                  <div class="pointer-events-none absolute left-2 top-2 flex gap-2">
+                    <span
+                      class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
+                      :aria-label="t('components.panel.Breeding.rarity')"
+                    >
+                      {{ t('components.panel.Breeding.rarity') }}: {{ selected.rarity }}
+                    </span>
+                    <span
+                      class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
+                      :aria-label="t('components.panel.Breeding.eggType')"
+                    >
+                      {{ t('components.panel.Breeding.eggType') }}: {{ eggType }}
+                    </span>
+                  </div>
+                </template>
 
-                <div class="mt-2 flex items-center justify-between text-sm">
-                  <p class="text-gray-600 dark:text-gray-300">
-                    {{ t('components.panel.Breeding.remaining') }}:
-                    <span class="tabular-nums">{{ remainingLabel }}</span>
-                  </p>
-                  <p class="text-gray-500 dark:text-gray-400">
-                    {{ Math.round(progress) }}%
-                  </p>
-                </div>
-
-                <span aria-live="polite" class="sr-only">
-                  {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
-                  {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
-                </span>
+                <!-- Si pas sélectionné: bouton à la place de l'image -->
+                <template v-else>
+                  <UiButton
+                    type="primary"
+                    class="aspect-square w-24"
+                    @click.stop="openSelector"
+                  >
+                    {{ t('components.panel.Breeding.selectMon') }}
+                  </UiButton>
+                </template>
               </div>
             </div>
-          </div>
-          <div class="h-full">
-            <CharacterImage :id="norman.id" :alt="norman.name" class="object-contain" />
-          </div>
-        </UiAdaptiveDisplayer>
-      </div>
-    </div>
 
-    <!-- Sélecteur -->
-    <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="breeding-select-title">
-      <div class="max-w-160 flex flex-col gap-2">
-        <h3 id="breeding-select-title" class="text-center text-lg font-bold">
-          {{ t('components.panel.Breeding.selectMon') }}
-        </h3>
-        <div class="max-h-80 min-h-0 overflow-y-auto">
-          <ShlagemonQuickSelect @select="selectMon" />
+            <!-- Colonne droite : infos / progression / Norman -->
+            <UiAdaptiveDisplayer class="area-grid h-full min-w-0 w-full flex-1 gap-3 md:gap-4">
+              <!-- Sous-colonne gauche : infos coût/durée/progression + message -->
+              <div class="min-w-0 w-full flex flex-col gap-3 md:w-2/3">
+                <!-- Bloc coût/durée seulement si un mon est sélectionné et que ça ne tourne pas -->
+                <div v-if="selected && !isRunning" class="w-full flex flex-col items-center gap-2">
+                  <div class="flex items-center gap-1 text-sm">
+                    <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
+                    <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+                  </div>
+                  <div class="text-sm">
+                    <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.duration') }}:</span>
+                    <span class="ml-1">{{ durationMin }}</span>
+                    <span class="ml-1">{{ t('components.panel.Breeding.minutes') }}</span>
+                  </div>
+                </div>
+
+                <!-- Progression si un job existe -->
+                <div class="flex flex-col gap-2">
+                  <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+                    <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                      {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
+                      <span class="tabular-nums">{{ remainingLabel }}</span>
+                    </div>
+                    <div
+                      class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
+                      role="progressbar"
+                      :aria-label="t('components.panel.Breeding.progress')"
+                      :aria-valuemin="0"
+                      :aria-valuemax="100"
+                      :aria-valuenow="Math.round(progress)"
+                    >
+                      <div
+                        class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
+                        :style="{ width: `${progress}%` }"
+                      />
+                    </div>
+
+                    <div class="mt-2 flex items-center justify-between text-sm">
+                      <p class="text-gray-600 dark:text-gray-300">
+                        {{ t('components.panel.Breeding.remaining') }}:
+                        <span class="tabular-nums">{{ remainingLabel }}</span>
+                      </p>
+                      <p class="text-gray-500 dark:text-gray-400">
+                        {{ Math.round(progress) }}%
+                      </p>
+                    </div>
+
+                    <span aria-live="polite" class="sr-only">
+                      {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
+                      {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
+                    </span>
+                  </div>
+                </div>
+
+                <UiTypingText
+                  :text="t('components.panel.Breeding.during.typing')"
+                  :aria-label="t('components.panel.Breeding.a11y.normanCareMessage')"
+                  aria-live="polite"
+                  class="text-sm"
+                />
+              </div>
+
+              <!-- Sous-colonne droite : image de Norman -->
+              <div class="h-full w-full md:w-1/3">
+                <CharacterImage :id="norman.id" :alt="norman.name" class="h-full w-full object-contain" />
+              </div>
+            </UiAdaptiveDisplayer>
+          </UiAdaptiveDisplayer>
         </div>
-      </div>
-    </UiModal>
 
-    <!-- Footer -->
+        <!-- Sélecteur -->
+        <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="breeding-select-title">
+          <div class="max-w-160 flex flex-col gap-2">
+            <h3 id="breeding-select-title" class="text-center text-lg font-bold">
+              {{ t('components.panel.Breeding.selectMon') }}
+            </h3>
+            <div class="max-h-80 min-h-0 overflow-y-auto">
+              <ShlagemonQuickSelect @select="selectMon" />
+            </div>
+          </div>
+        </UiModal>
+      </div>
+    </template>
     <template #footer>
       <div class="w-full flex justify-end gap-2">
         <UiButton
@@ -230,17 +275,7 @@ onBeforeUnmount(pauseTick)
         >
           {{ t('components.panel.Breeding.cta.collectEgg') }}
         </UiButton>
-
-        <UiButton
-          type="danger"
-          variant="outline"
-          size="xs"
-          @click="panel.showVillage()"
-        >
-          <div class="i-carbon:exit" />
-          {{ t('components.panel.Breeding.exit') }}
-        </UiButton>
       </div>
     </template>
-  </LayoutTitledPanel>
+  </PoiDialogFlow>
 </template>

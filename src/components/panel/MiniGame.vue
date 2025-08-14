@@ -1,12 +1,13 @@
 <script setup lang="ts">
+import type { DialogNode } from '~/type/dialog'
 import { getMiniGame } from '~/data/minigames'
 import { getZoneTrack } from '~/data/music'
 
 const mini = useMiniGameStore()
 const panel = useMainPanelStore()
 const zone = useZoneStore()
-const audio = useAudioStore()
 const { t } = useI18n()
+
 const miniGameMusic = '/audio/musics/games/mini-game.ogg'
 const zoneTrack = computed(() => getZoneTrack(zone.current.id, zone.current.type) ?? miniGameMusic)
 const gameDef = computed(() => mini.currentId ? getMiniGame(mini.currentId) : undefined)
@@ -19,74 +20,49 @@ watchEffect(async () => {
     GameComp.value = undefined
 })
 
-function start() {
-  mini.play()
-}
 function leaveGame() {
   mini.quit()
   panel.showVillage()
-  audio.fadeToMusic(zoneTrack.value)
-}
-function win() {
-  mini.finish('win')
-}
-function lose() {
-  mini.finish('lose')
-}
-function draw() {
-  mini.finish('draw')
 }
 
-const intro = computed(() => gameDef.value?.createIntro(start))
-const success = computed(() => gameDef.value?.createSuccess(leaveGame))
-const drawDialog = computed(() => gameDef.value?.createDraw?.(leaveGame))
-const failure = computed(() => gameDef.value?.createFailure(leaveGame))
+const createIntro = computed(() => gameDef.value
+  ? (start: () => void) => gameDef.value!.createIntro(() => {
+      mini.play()
+      start()
+    })
+  : undefined)
+
+function createOutro(result: string | undefined, exit: () => void): DialogNode[] {
+  if (!gameDef.value)
+    return []
+  if (result === 'win')
+    return gameDef.value.createSuccess(exit)
+  if (result === 'lose')
+    return gameDef.value.createFailure(exit)
+  if (result === 'draw' && gameDef.value.createDraw)
+    return gameDef.value.createDraw(exit)
+  return gameDef.value.createFailure(exit)
+}
 </script>
 
 <template>
-  <LayoutTitledPanel
+  <PoiDialogFlow
     v-if="gameDef"
     :title="gameDef.label"
     :exit-text="t('components.panel.MiniGame.exit')"
-    :show-footer="mini.phase === 'game'"
+    :character="gameDef.character"
+    :create-intro="createIntro"
+    :create-outro="createOutro"
+    :exit-track="zoneTrack"
     @exit="leaveGame"
   >
-    <div class="tiny-scrollbar flex flex-1 flex-col items-center overflow-auto">
-      <DialogBox
-        v-if="mini.phase === 'intro'"
-        :character="gameDef.character"
-        :dialog-tree="intro!"
-        keep-music-on-exit
-        orientation="col"
-      />
+    <template #default="{ finish }">
       <component
         :is="GameComp"
-        v-else-if="mini.phase === 'game'"
-        @win="win"
-        @lose="lose"
-        @draw="draw"
+        @win="() => { mini.finish('win'); finish('win') }"
+        @lose="() => { mini.finish('lose'); finish('lose') }"
+        @draw="() => { mini.finish('draw'); finish('draw') }"
       />
-      <DialogBox
-        v-else-if="mini.phase === 'success'"
-        :character="gameDef.character"
-        :dialog-tree="success!"
-        :exit-track="zoneTrack"
-        orientation="col"
-      />
-      <DialogBox
-        v-else-if="mini.phase === 'failure'"
-        :character="gameDef.character"
-        :dialog-tree="failure!"
-        :exit-track="zoneTrack"
-        orientation="col"
-      />
-      <DialogBox
-        v-else-if="mini.phase === 'draw'"
-        :character="gameDef.character"
-        :dialog-tree="drawDialog!"
-        :exit-track="zoneTrack"
-        orientation="col"
-      />
-    </div>
-  </LayoutTitledPanel>
+    </template>
+  </PoiDialogFlow>
 </template>

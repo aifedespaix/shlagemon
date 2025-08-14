@@ -4,6 +4,15 @@ import { carapouffe } from '../src/data/shlagemons/carapouffe'
 import { captureChanceFromHp, getCaptureChance, tryCapture } from '../src/utils/capture'
 import { createDexShlagemon } from '../src/utils/dexFactory'
 
+vi.mock('../src/stores/shlagedex', async () => ({
+  ...(await vi.importActual('../src/stores/shlagedex')),
+}))
+vi.mock('../src/stores/developer', () => ({
+  useDeveloperStore: () => ({ debug: false }),
+}))
+vi.unmock('../src/stores/shlagedex')
+vi.unmock('../src/stores/developer')
+
 describe('capture mechanics', () => {
   beforeEach(() => {
     vi.restoreAllMocks()
