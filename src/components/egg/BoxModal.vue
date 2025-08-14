@@ -15,12 +15,23 @@ interface BreedingEntry extends BreedingEggItem {
   readonly mon: typeof baseShlagemons[number]
 }
 
-const breedingEggs = computed<BreedingEntry[]>(() => {
-  return box.breeding.map(egg => ({
-    ...egg,
-    mon: baseShlagemons.find(b => b.id === egg.monId)!,
-  }))
-})
+/**
+ * Breeding eggs that have a matching shlagemon entry.
+ * Entries without a corresponding mon are ignored to avoid runtime errors.
+ */
+const breedingEggs = computed<BreedingEntry[]>(() =>
+  box.breeding
+    .map((egg) => {
+      const mon = baseShlagemons.find(b => b.id === egg.monId)
+      return mon
+        ? {
+            ...egg,
+            mon,
+          }
+        : null
+    })
+    .filter((entry): entry is BreedingEntry => entry !== null),
+)
 
 const hasEggs = computed(() => typeEggs.value.length > 0 || breedingEggs.value.length > 0)
 
