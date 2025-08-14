@@ -113,7 +113,7 @@ onBeforeUnmount(pauseTick)
 </script>
 
 <template>
-  <PoiDialogFlow
+  <PanelPoiDialogFlow
     :title="t('components.panel.Breeding.title')"
     :exit-text="t('components.panel.Breeding.exit')"
     :character="norman"
@@ -122,7 +122,7 @@ onBeforeUnmount(pauseTick)
     @exit="onExit"
   >
     <template #default>
-      <div class="min-h-0 flex-1">
+      <div class="min-h-0 w-full flex-1">
         <div class="h-full flex flex-1 items-center justify-center overflow-y-auto px-2 py-3 sm:px-3">
           <!-- On garde toujours la grille adaptative -->
           <UiAdaptiveDisplayer class="area-grid h-full w-full gap-3 md:gap-4">
@@ -277,5 +277,5 @@ onBeforeUnmount(pauseTick)
         </UiButton>
       </div>
     </template>
-  </PoiDialogFlow>
+  </PanelPoiDialogFlow>
 </template>

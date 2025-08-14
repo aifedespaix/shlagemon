@@ -120,6 +120,7 @@ declare module 'vue' {
     PanelMap: typeof import('./components/panel/Map.vue')['default']
     PanelMiniGame: typeof import('./components/panel/MiniGame.vue')['default']
     PanelPlayerInfos: typeof import('./components/panel/PlayerInfos.vue')['default']
+    PanelPoiDialogFlow: typeof import('./components/panel/PoiDialogFlow.vue')['default']
     PanelPoulailler: typeof import('./components/panel/Poulailler.vue')['default']
     PanelSelectedShlagemon: typeof import('./components/panel/SelectedShlagemon.vue')['default']
     PanelShlagedex: typeof import('./components/panel/Shlagedex.vue')['default']
