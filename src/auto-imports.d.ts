@@ -481,7 +481,7 @@ declare global {
   export type { EggType, Egg } from './stores/egg'
   import('./stores/egg')
   // @ts-ignore
-  export type { EggItemId } from './stores/eggBox'
+  export type { EggItemId, BreedingEggItem } from './stores/eggBox'
   import('./stores/eggBox')
   // @ts-ignore
   export type { EventMap, EventCallback } from './stores/event'
