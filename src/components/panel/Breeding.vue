@@ -39,7 +39,7 @@ const eggType = computed<EggType | null>(() =>
   selected.value ? selected.value.base.types[0].id as EggType : null,
 )
 const job = computed(() => (eggType.value ? breeding.getJob(eggType.value) : null))
-const isRunning = computed<boolean>(() => (eggType.value ? breeding.isRunning(eggType.value) : false))
+const isRunning = computed<boolean>(() => job.value?.status === 'running')
 const isCompleted = computed<boolean>(() => job.value?.status === 'completed')
 const cost = computed<number>(() => (selected.value ? breedingCost(selected.value.rarity) : 0))
 const durationMin = Math.round(BREEDING_DURATION_MS / 60000)
@@ -73,7 +73,7 @@ function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
 
 /** === Actions =========================================================== */
 function openSelector() {
-  if (isRunning.value)
+  if (job.value)
     return
   selectorOpen.value = true
 }
@@ -82,7 +82,7 @@ function selectMon(mon: DexShlagemon) {
   selectorOpen.value = false
 }
 function changeMon() {
-  if (isRunning.value)
+  if (job.value)
     return
   selected.value = null
   openSelector()
@@ -175,7 +175,7 @@ onBeforeUnmount(pauseTick)
               <!-- Sous-colonne gauche : infos coût/durée/progression + message -->
               <div class="min-w-0 w-full flex flex-col gap-3 md:w-2/3">
                 <!-- Bloc coût/durée seulement si un mon est sélectionné et que ça ne tourne pas -->
-                <div v-if="selected && !isRunning" class="w-full flex flex-col items-center gap-2">
+                <div v-if="selected && !job" class="w-full flex flex-col items-center gap-2">
                   <div class="flex items-center gap-1 text-sm">
                     <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
                     <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
@@ -242,22 +242,18 @@ onBeforeUnmount(pauseTick)
         </div>
 
         <!-- Sélecteur -->
-        <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="breeding-select-title">
-          <div class="max-w-160 flex flex-col gap-2">
-            <h3 id="breeding-select-title" class="text-center text-lg font-bold">
-              {{ t('components.panel.Breeding.selectMon') }}
-            </h3>
-            <div class="max-h-80 min-h-0 overflow-y-auto">
-              <ShlagemonQuickSelect @select="selectMon" />
-            </div>
-          </div>
-        </UiModal>
+        <ShlagemonSelectModal
+          v-model="selectorOpen"
+          :title="t('components.panel.Breeding.selectMon')"
+          title-id="breeding-select-title"
+          @select="selectMon"
+        />
       </div>
     </template>
     <template #footer>
       <div class="w-full flex justify-end gap-2">
         <UiButton
-          v-if="selected && !isRunning"
+          v-if="selected && !job"
           :disabled="cost > game.shlagidolar"
           type="primary"
           class="flex flex-1 flex-wrap items-center gap-1"

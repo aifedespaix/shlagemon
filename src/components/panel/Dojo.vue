@@ -297,9 +297,18 @@ const ids = {
                 </span>
               </div>
             </div>
-          </UiAdaptiveDisplayer>
-        </div>
+          </div>
+        </UiAdaptiveDisplayer>
       </div>
+    </div>
+
+    <!-- Sélecteur -->
+    <ShlagemonSelectModal
+      v-model="selectorOpen"
+      :title="t('components.panel.Dojo.selectMon')"
+      title-id="dojo-select-title"
+      @select="selectMon"
+    />
 
       <!-- Sélecteur -->
       <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">

@@ -2,9 +2,11 @@
 import type { EggType } from '~/stores/egg'
 import type { EggItemId } from '~/stores/eggBox'
 import type { DialogNode } from '~/type/dialog'
+import type { BreedingEggItem, EggItemId } from '~/stores/eggBox'
 import { eggTypeMap } from '~/constants/egg'
 import { magalieBredouille } from '~/data/characters/magalie-bredouille'
 import { allItems } from '~/data/items'
+import { baseShlagemons } from '~/data/shlagemons'
 
 /** === Stores ============================================================ */
 const eggs = useEggStore()
@@ -58,6 +60,10 @@ interface InventoryEntry {
   }
 }
 
+interface BreedingEntry extends BreedingEggItem {
+  readonly mon: typeof baseShlagemons[number]
+}
+
 const colorMap: Record<EggType, string> = {
   feu: 'text-orange-500 dark:text-orange-400',
   eau: 'text-blue-500 dark:text-blue-400',
@@ -74,7 +80,7 @@ useIntervalFn(
 )
 
 /** === Computeds ========================================================= */
-const inventoryEggs = computed<InventoryEntry[]>(() => {
+const typeEggs = computed<InventoryEntry[]>(() => {
   return eggIds
     .map(id => ({
       id,
@@ -82,6 +88,13 @@ const inventoryEggs = computed<InventoryEntry[]>(() => {
       qty: box.eggs[id] ?? 0,
     }))
     .filter(e => e.qty > 0)
+})
+
+const breedingEggs = computed<BreedingEntry[]>(() => {
+  return box.breeding.map(egg => ({
+    ...egg,
+    mon: baseShlagemons.find(b => b.id === egg.monId)!,
+  }))
 })
 
 const incubatorSlots = computed(() => {
@@ -115,6 +128,13 @@ function startIncubation(id: EggItemId): void {
   }
 }
 
+function startBreedingIncubation(entry: BreedingEntry): void {
+  if (eggs.incubator.length >= INCUBATOR_SLOTS)
+    return
+  if (eggs.startIncubation(entry.type, { isBreeding: true, forcedMonId: entry.monId, forcedRarity: entry.rarity }))
+    box.removeBreedingEgg(entry.id)
+}
+
 function hatch(id: number): void {
   const mon = eggs.hatchEgg(id)
   if (mon)
@@ -129,6 +149,10 @@ function showEggMons(id: EggItemId): void {
 /** Accessibilité: aria-labels */
 function incubateLabel(name: string) {
   return t('components.panel.Poulailler.a11y.incubateEgg', { name }) as string
+}
+
+function breedingLabel(entry: BreedingEntry) {
+  return t('common.eggOf', { name: t(entry.mon.name) }) as string
 }
 
 function eggReadyLabel(type: EggType) {
@@ -148,6 +172,7 @@ function eggReadyLabel(type: EggType) {
     <template #default="{ finish }">
       <div class="area flex-1 overflow-hidden">
         <div class="area-grid h-full w-full gap-2 overflow-hidden">
+          <!-- Colonne gauche : Inventaire -->
           <section
             class="min-h-0 flex flex-col border rounded-lg bg-white/60 dark:bg-gray-900/40"
             aria-labelledby="eggs-inventory-title"
@@ -159,13 +184,43 @@ function eggReadyLabel(type: EggType) {
             </header>
 
             <div
-              v-if="inventoryEggs.length"
+              v-if="typeEggs.length || breedingEggs.length"
               class="tiny-scrollbar min-h-0 flex-1 overflow-y-auto pr-1"
               role="list"
               aria-label="Egg inventory list"
             >
+              <!-- Œufs de reproduction -->
               <article
-                v-for="entry in inventoryEggs"
+                v-for="entry in breedingEggs"
+                :key="entry.id"
+                role="listitem"
+                class="group flex items-center justify-between gap-2 border-b p-2 transition-colors last:border-b-0 hover:bg-gray/5"
+              >
+                <div class="min-w-0 flex flex-1 items-center gap-2 overflow-hidden text-left">
+                  <div class="i-ph:egg-fill h-6 w-6 shrink-0" :class="colorClass(entry.type)" aria-hidden="true" />
+                  <span class="truncate text-sm font-medium">
+                    {{ breedingLabel(entry) }}
+                  </span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <UiButton
+                    size="xs"
+                    class="flex items-center gap-1 px-2 py-1 text-xs transition-all hover:translate-y--0.5"
+                    :disabled="eggs.incubator.length >= 4"
+                    :aria-label="incubateLabel(breedingLabel(entry))"
+                    @click="startBreedingIncubation(entry)"
+                  >
+                    <div class="i-carbon:chemistry text-base" aria-hidden="true" />
+                    <span class="hidden sm:inline">
+                      {{ t('components.panel.Poulailler.incubate') }}
+                    </span>
+                  </UiButton>
+                </div>
+              </article>
+
+              <!-- Œufs normaux -->
+              <article
+                v-for="entry in typeEggs"
                 :key="entry.id"
                 role="listitem"
                 class="group flex items-center justify-between gap-2 border-b p-2 transition-colors last:border-b-0 hover:bg-gray/5"
@@ -186,8 +241,6 @@ function eggReadyLabel(type: EggType) {
                     {{ t(entry.item.name) }}
                   </span>
                 </button>
-
-                <!-- Qté + CTA incubate -->
                 <div class="flex items-center gap-2">
                   <span class="shrink-0 text-xs text-gray-700 font-semibold dark:text-gray-200">
                     ×{{ entry.qty }}
@@ -213,7 +266,7 @@ function eggReadyLabel(type: EggType) {
             </p>
           </section>
 
-          <!-- === Colonne droite : Grille 2x2 incubateur ============================= -->
+          <!-- Colonne droite : Incubateur -->
           <section
             class="min-h-0 flex flex-col border rounded-lg bg-white/60 p-3 dark:bg-gray-900/40"
             aria-labelledby="incubator-title"
@@ -230,14 +283,12 @@ function eggReadyLabel(type: EggType) {
               aria-rowcount="2"
               aria-colcount="2"
             >
-              <!-- 4 slots (œufs ou placeholders) -->
               <div
                 v-for="(slot, idx) in incubatorSlots"
                 :key="slot?.id ?? `empty-${idx}`"
                 role="gridcell"
                 class="flex items-center justify-center border rounded-lg bg-white/50 p-2 shadow-sm transition-all dark:bg-gray-950/40 hover:shadow-md"
               >
-                <!-- Slot rempli -->
                 <template v-if="slot">
                   <button
                     type="button"
@@ -271,7 +322,6 @@ function eggReadyLabel(type: EggType) {
                     </span>
                   </button>
                 </template>
-
                 <template v-else>
                   <div class="flex flex-col items-center gap-2 opacity-70">
                     <div class="i-ph:egg-light h-10 w-10" aria-hidden="true" />
@@ -292,6 +342,7 @@ function eggReadyLabel(type: EggType) {
     </template>
   </PanelPoiDialogFlow>
 </template>
+
 
 <style scoped>
 /* micro-ajustements focus visibles sur fond translucide */
