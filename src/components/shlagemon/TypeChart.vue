@@ -43,12 +43,28 @@ function getMultiplier(att: TypeName, def: TypeName) {
 }
 
 /**
- * Toggles the highlighted type. Clicking again clears the selection.
+ * Sets the highlighted type.
  *
- * @param typeId - Type identifier to toggle.
+ * @param typeId - Type identifier to highlight.
  */
-function toggleHighlight(typeId: TypeName) {
-  highlight.value = highlight.value === typeId ? null : typeId
+function setHighlight(typeId: TypeName) {
+  highlight.value = typeId
+}
+
+/**
+ * Returns CSS classes for a multiplier cell.
+ *
+ * @param att - Attacking type identifier.
+ * @param def - Defending type identifier.
+ */
+function getCellClasses(att: TypeName, def: TypeName) {
+  const multiplier = getMultiplier(att, def)
+  return {
+    'bg-blue-200 dark:bg-blue-800': highlight.value === att || highlight.value === def,
+    'font-bold': highlight.value === att && highlight.value === def,
+    'text-blue-600': multiplier === 1.5,
+    'text-red-600': multiplier === 0.5,
+  }
 }
 </script>
 
@@ -81,7 +97,7 @@ function toggleHighlight(typeId: TypeName) {
             <button
               type="button"
               class="w-full"
-              @click="toggleHighlight(typeId)"
+              @click="setHighlight(typeId)"
             >
               <ShlagemonType :value="shlagemonTypes[typeId]" />
             </button>
@@ -98,7 +114,7 @@ function toggleHighlight(typeId: TypeName) {
             <button
               type="button"
               class="w-full text-right"
-              @click="toggleHighlight(atk)"
+              @click="setHighlight(atk)"
             >
               <ShlagemonType :value="shlagemonTypes[atk]" />
             </button>
@@ -107,10 +123,7 @@ function toggleHighlight(typeId: TypeName) {
             v-for="def in typeIds"
             :key="def"
             class="border border-gray-200 p-1 dark:border-gray-700"
-            :class="{
-              'bg-blue-200 dark:bg-blue-800': highlight === atk || highlight === def,
-              'font-bold': highlight === atk && highlight === def,
-            }"
+            :class="getCellClasses(atk, def)"
           >
             {{ getMultiplier(atk, def) }}
           </td>
