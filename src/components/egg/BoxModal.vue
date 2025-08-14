@@ -1,13 +1,40 @@
 <script setup lang="ts">
-import type { EggItemId } from '~/stores/eggBox'
+import type { EggType } from '~/stores/egg'
+import type { BreedingEggItem, EggItemId } from '~/stores/eggBox'
 import { allItems } from '~/data/items'
+import { baseShlagemons } from '~/data/shlagemons'
 
 const eggMonsModal = useEggMonsModalStore()
 
 const box = useEggBoxStore()
 const { t } = useI18n()
 
-const eggList = computed(() => eggIds.filter(id => box.eggs[id]))
+const typeEggs = computed(() => eggIds.filter(id => box.eggs[id]))
+
+interface BreedingEntry extends BreedingEggItem {
+  readonly mon: typeof baseShlagemons[number]
+}
+
+const breedingEggs = computed<BreedingEntry[]>(() => {
+  return box.breeding.map(egg => ({
+    ...egg,
+    mon: baseShlagemons.find(b => b.id === egg.monId)!,
+  }))
+})
+
+const hasEggs = computed(() => typeEggs.value.length > 0 || breedingEggs.value.length > 0)
+
+const colorMap: Record<EggType, string> = {
+  feu: 'text-orange-500 dark:text-orange-400',
+  eau: 'text-blue-500 dark:text-blue-400',
+  plante: 'text-green-500 dark:text-green-400',
+  electrique: 'text-yellow-500 dark:text-yellow-400',
+  psy: 'text-pink-500 dark:text-pink-400',
+}
+
+function colorClass(type: EggType): string {
+  return colorMap[type] ?? ''
+}
 
 function getItem(id: string) {
   return allItems.find(i => i.id === id)!
@@ -24,9 +51,9 @@ function openEgg(id: EggItemId) {
       <h3 class="text-center text-lg font-bold">
         {{ t('components.egg.BoxModal.title') }}
       </h3>
-      <div v-if="eggList.length" class="flex flex-col gap-1 p-1">
+      <div v-if="hasEggs" class="flex flex-col gap-1 p-1">
         <UiListItem
-          v-for="id in eggList"
+          v-for="id in typeEggs"
           :key="id"
           as="div"
           class="cursor-pointer items-center justify-between border-b p-1"
@@ -40,6 +67,19 @@ function openEgg(id: EggItemId) {
           </template>
           <template #right>
             <span class="text-xs font-bold">x{{ box.eggs[id] }}</span>
+          </template>
+        </UiListItem>
+        <UiListItem
+          v-for="entry in breedingEggs"
+          :key="entry.id"
+          as="div"
+          class="items-center justify-between border-b p-1"
+        >
+          <template #left>
+            <div class="flex items-center gap-1">
+              <div class="i-ph:egg-fill h-6 w-6" :class="colorClass(entry.type)" />
+              <span class="text-sm">{{ t('common.eggOf', { name: t(entry.mon.name) }) }}</span>
+            </div>
           </template>
         </UiListItem>
       </div>

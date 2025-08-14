@@ -3,9 +3,11 @@ fr:
   pleaseWait: Veuillez patienter
   copy: Copier
   remove: Supprimer
+  eggOf: 'Oeuf de {name}'
 
 en:
   loading: Loading…
   pleaseWait: Please wait
   copy: Copy
   remove: Remove
+  eggOf: 'Egg of {name}'
