@@ -10,6 +10,8 @@ export interface BreedingJob {
   readonly type: EggType
   /** Target rarity applied to the resulting egg. */
   readonly rarity: number
+  /** Identifier of the parent Shlagémon base. */
+  readonly parentId: string
   /** Timestamp when the job started in milliseconds. */
   readonly startedAt: number
   /** Timestamp when the job ends in milliseconds. */
@@ -71,7 +73,7 @@ export const useBreedingStore = defineStore('breeding', () => {
    *
    * @returns `true` when the job started successfully.
    */
-  function start(type: EggType, rarity: number): boolean {
+  function start(type: EggType, rarity: number, parentId: string): boolean {
     if (isRunning(type))
       return false
     const cost = breedingCost(rarity)
@@ -82,6 +84,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     byType.value[type] = {
       type,
       rarity,
+      parentId,
       startedAt,
       endsAt: startedAt + BREEDING_DURATION_MS,
       status: 'running',
@@ -98,8 +101,19 @@ export const useBreedingStore = defineStore('breeding', () => {
       return false
     if (Date.now() < job.endsAt)
       return false
-    eggs.startIncubation(type, { isBreeding: true, forcedRarity: job.rarity })
     job.status = 'completed'
+    return true
+  }
+
+  /**
+   * Collect the egg from a completed job and start its incubation.
+   */
+  function collectEgg(type: EggType): boolean {
+    const job = byType.value[type]
+    if (!job || job.status !== 'completed')
+      return false
+    eggs.startIncubation(type, { isBreeding: true, forcedRarity: job.rarity, forcedMonId: job.parentId })
+    delete byType.value[type]
     return true
   }
 
@@ -121,6 +135,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     progress,
     start,
     completeIfDue,
+    collectEgg,
     clearFinished,
   }
 }, {

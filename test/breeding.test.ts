@@ -40,17 +40,19 @@ describe('breeding store', () => {
 
     const rarity = 10
     const cost = breedingCost(rarity)
-    expect(breeding.start('feu', rarity)).toBe(true)
+    expect(breeding.start('feu', rarity, 'salamiches')).toBe(true)
     expect(game.shlagidolar).toBe(10_000 - cost)
 
     vi.advanceTimersByTime(BREEDING_DURATION_MS - 1)
     expect(breeding.completeIfDue('feu')).toBe(false)
     vi.advanceTimersByTime(1)
     expect(breeding.completeIfDue('feu')).toBe(true)
+    expect(breeding.collectEgg('feu')).toBe(true)
 
     const egg = eggs.incubator[0]
     expect(egg.isBreeding).toBe(true)
     expect(egg.forcedRarity).toBe(rarity)
+    expect(egg.forcedMonId).toBe('salamiches')
     vi.useRealTimers()
   })
 
@@ -67,7 +69,7 @@ describe('breeding store', () => {
     const game = useGameStore()
     game.addShlagidolar(10_000)
     const rarity = 5
-    breeding.start('eau', rarity)
+    breeding.start('eau', rarity, 'salamiches')
     await nextTick()
 
     const stored = window.localStorage.getItem('breeding')
@@ -77,6 +79,7 @@ describe('breeding store', () => {
           eau: {
             type: 'eau',
             rarity,
+            parentId: 'salamiches',
             startedAt: 1000,
             endsAt: 1000 + BREEDING_DURATION_MS,
             status: 'running',
@@ -97,6 +100,7 @@ describe('breeding store', () => {
     expect(job).toEqual({
       type: 'eau',
       rarity,
+      parentId: 'salamiches',
       startedAt: 1000,
       endsAt: 1000 + BREEDING_DURATION_MS,
       status: 'running',
