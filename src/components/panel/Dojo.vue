@@ -142,8 +142,13 @@ const ids = {
 
         <!-- Contenu principal -->
         <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
-          <div class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800">
-            <div class="relative h-full w-full flex items-center justify-center">
+          <div
+            class="min-h-0 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
+            @click="openSelector"
+          >
+            <div
+              class="relative h-full w-full flex items-center justify-center"
+            >
               <ShlagemonImage
                 :id="selected.base.id"
                 :alt="t(selected.base.name)"
@@ -167,8 +172,7 @@ const ids = {
             </div>
           </div>
 
-          <div class="min-w-0 flex flex-1 flex-col gap-3">
-            <!-- Points: Slider + input -->
+          <div class="min-w-0 flex flex flex-1 flex-col flex-col justify-center gap-3">
             <div v-if="!isRunning" class="w-full flex flex-col gap-4 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
               <div class="flex flex-col items-center justify-between">
                 <label :for="ids.slider" class="text-sm font-medium">
@@ -180,7 +184,6 @@ const ids = {
               </div>
 
               <div class="flex flex-col items-center gap-3">
-                <!-- Slider -->
                 <input
                   :id="ids.slider"
                   type="range"
@@ -203,7 +206,6 @@ const ids = {
                   @keydown.end.prevent="points = safeMax"
                 >
 
-                <!-- Number input compact -->
                 <div class="w-28">
                   <UiNumberInput
                     :id="ids.number"
@@ -219,12 +221,7 @@ const ids = {
               </div>
             </div>
 
-            <!-- Coût & durée -->
             <div v-if="!isRunning" class="w-full flex flex-col items-center gap-2">
-              <div :id="ids.cost" class="flex items-center gap-1 text-sm">
-                <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Dojo.cost.label') }}:</span>
-                <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
-              </div>
               <div :id="ids.duration" class="text-sm">
                 <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Dojo.duration.label') }}:</span>
                 <span class="ml-1">{{ durationMin }}</span>
@@ -233,10 +230,10 @@ const ids = {
             </div>
 
             <!-- Progression -->
-            <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
-              <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
-                {{ t('components.panel.Dojo.status.running') }} — {{ t('components.panel.Dojo.duration.remaining') }}:
-                <span class="tabular-nums">{{ remainingLabel }}</span>
+            <div v-if="job" class="w-full flex flex-col gap-2 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+              <div v-if="isRunning" class="w-full flex flex-col items-center rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                <div> {{ t('components.panel.Dojo.status.running') }}</div>
+                <div> <span class="tabular-nums">{{ remainingLabel }}</span></div>
               </div>
               <div
                 :id="ids.progress"
@@ -286,7 +283,7 @@ const ids = {
     </UiModal>
 
     <template #footer>
-      <div class="w-full flex flex-wrap gap-2 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
+      <div class="w-full flex justify-end gap-1 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
         <UiButton
           v-if="selected && !isRunning"
           :disabled="cost > game.shlagidolar || points < 1 || (safeMax === 1 && points === 1)"
@@ -299,19 +296,8 @@ const ids = {
         </UiButton>
 
         <UiButton
-          v-if="selected && !isRunning"
-          type="default"
-          variant="outline"
-          class="w-full md:w-auto"
-          @click="openSelector"
-        >
-          {{ t('components.panel.Dojo.cta.changeMon') }}
-        </UiButton>
-
-        <UiButton
           type="danger"
           variant="outline"
-          class="w-full md:w-auto"
           size="xs"
           @click="panel.showVillage()"
         >

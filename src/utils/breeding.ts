@@ -6,6 +6,7 @@
  * Fixed duration for a breeding attempt in milliseconds.
  */
 export const BREEDING_DURATION_MS = 300_000
+// export const BREEDING_DURATION_MS = 300_000
 
 /**
  * Base cost applied to a rarity 1 breeding attempt.

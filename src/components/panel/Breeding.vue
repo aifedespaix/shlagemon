@@ -2,6 +2,7 @@
 import type { EggType } from '~/stores/egg'
 import type { DexShlagemon } from '~/type/shlagemon'
 
+import { norman } from '~/data/characters/norman'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 
@@ -94,7 +95,10 @@ onBeforeUnmount(pauseTick)
         </UiButton>
 
         <UiAdaptiveDisplayer v-else class="area-grid h-full w-full gap-3 md:gap-4">
-          <div class="min-h-0 min-w-0 flex-1 overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800">
+          <div
+            class="min-h-0 min-w-0 flex-1 cursor-pointer overflow-hidden rounded-xl bg-gray-50 p-3 dark:bg-gray-800"
+            @click="changeMon"
+          >
             <div class="relative h-full w-full flex items-center justify-center">
               <ShlagemonImage
                 :id="selected.base.id"
@@ -119,7 +123,7 @@ onBeforeUnmount(pauseTick)
             </div>
           </div>
 
-          <div class="min-w-0 flex flex-1 flex-col gap-3">
+          <div class="min-w-0 flex flex-1 gap-3">
             <div v-if="!isRunning" class="w-full flex flex-col items-center gap-2">
               <div class="flex items-center gap-1 text-sm">
                 <span class="text-gray-500 dark:text-gray-400">{{ t('components.panel.Breeding.cost') }}:</span>
@@ -132,39 +136,45 @@ onBeforeUnmount(pauseTick)
               </div>
             </div>
 
-            <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
-              <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
-                {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
-                <span class="tabular-nums">{{ remainingLabel }}</span>
-              </div>
-              <div
-                class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
-                role="progressbar"
-                :aria-label="t('components.panel.Breeding.progress')"
-                :aria-valuemin="0"
-                :aria-valuemax="100"
-                :aria-valuenow="Math.round(progress)"
-              >
-                <div
-                  class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
-                  :style="{ width: `${progress}%` }"
-                />
-              </div>
-
-              <div class="mt-2 flex items-center justify-between text-sm">
-                <p class="text-gray-600 dark:text-gray-300">
-                  {{ t('components.panel.Breeding.remaining') }}:
+            <div class="flex flex-col gap-2">
+              <div v-if="job" class="w-full border border-gray-200 rounded-xl p-3 dark:border-gray-700">
+                <div v-if="isRunning" class="w-full rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100">
+                  {{ t('components.panel.Breeding.status.running') }} — {{ t('components.panel.Breeding.remaining') }}:
                   <span class="tabular-nums">{{ remainingLabel }}</span>
-                </p>
-                <p class="text-gray-500 dark:text-gray-400">
-                  {{ Math.round(progress) }}%
-                </p>
-              </div>
+                </div>
+                <div
+                  class="h-2 w-full rounded bg-gray-300 dark:bg-gray-700"
+                  role="progressbar"
+                  :aria-label="t('components.panel.Breeding.progress')"
+                  :aria-valuemin="0"
+                  :aria-valuemax="100"
+                  :aria-valuenow="Math.round(progress)"
+                >
+                  <div
+                    class="will-change-[width] h-full rounded bg-green-500 transition-[width] duration-300"
+                    :style="{ width: `${progress}%` }"
+                  />
+                </div>
 
-              <span aria-live="polite" class="sr-only">
-                {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
-                {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
-              </span>
+                <div class="mt-2 flex items-center justify-between text-sm">
+                  <p class="text-gray-600 dark:text-gray-300">
+                    {{ t('components.panel.Breeding.remaining') }}:
+                    <span class="tabular-nums">{{ remainingLabel }}</span>
+                  </p>
+                  <p class="text-gray-500 dark:text-gray-400">
+                    {{ Math.round(progress) }}%
+                  </p>
+                </div>
+
+                <span aria-live="polite" class="sr-only">
+                  {{ t('components.panel.Breeding.progress') }}: {{ Math.round(progress) }}%,
+                  {{ t('components.panel.Breeding.remaining') }} {{ remainingLabel }}
+                </span>
+              </div>
+            </div>
+
+            <div class="h-full">
+              <CharacterImage :id="norman.id" :alt="norman.name" class="object-contain" />
             </div>
           </div>
         </UiAdaptiveDisplayer>
@@ -183,7 +193,7 @@ onBeforeUnmount(pauseTick)
     </UiModal>
 
     <template #footer>
-      <div class="w-full flex flex-wrap gap-2 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">
+      <div class="w-full flex justify-end gap-2">
         <UiButton
           v-if="selected && !isRunning"
           :disabled="cost > game.shlagidolar"
@@ -196,20 +206,9 @@ onBeforeUnmount(pauseTick)
         </UiButton>
 
         <UiButton
-          v-if="selected && !isRunning"
-          type="secondary"
-          variant="outline"
-          class="w-full md:w-auto"
-          @click="changeMon"
-        >
-          {{ t('components.panel.Breeding.cta.changeMon') }}
-        </UiButton>
-
-        <UiButton
           v-if="isCompleted"
           type="primary"
           variant="outline"
-          class="w-full md:w-auto"
           @click="collect"
         >
           {{ t('components.panel.Breeding.cta.collectEgg') }}
@@ -218,7 +217,6 @@ onBeforeUnmount(pauseTick)
         <UiButton
           type="danger"
           variant="outline"
-          class="w-full md:w-auto"
           size="xs"
           @click="panel.showVillage()"
         >
