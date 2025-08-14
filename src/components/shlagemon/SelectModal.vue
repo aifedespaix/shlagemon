@@ -34,6 +34,8 @@ const emit = defineEmits<{
 const open = useVModel(props, 'modelValue', emit)
 const defaultTitleId = useId()
 const headingId = computed(() => props.titleId || defaultTitleId)
+const dex = useShlagedexStore()
+const { t } = useI18n()
 
 function onSelect(mon: DexShlagemon) {
   emit('select', mon)
@@ -42,19 +44,22 @@ function onSelect(mon: DexShlagemon) {
 </script>
 
 <template>
-  <UiModal v-model="open" role="dialog" aria-modal="true" :aria-labelledby="headingId">
-    <div class="max-w-160 flex flex-col gap-2">
+  <UiModal v-model="open" footer-close :aria-labelledby="headingId">
+    <div class="flex flex-col gap-2">
       <h3 :id="headingId" class="text-center text-lg font-bold">
         {{ title }}
       </h3>
-      <div class="max-h-80 min-h-0 overflow-y-auto">
-        <ShlagemonQuickSelect
-          :selected="selected"
-          :locked="locked"
-          :selects-active="selectsActive"
-          @select="onSelect"
-        />
-      </div>
+      <ShlagemonQuickSelect
+        v-if="dex.shlagemons.length"
+        class="max-h-60vh"
+        :selected="selected"
+        :locked="locked"
+        :selects-active="selectsActive"
+        @select="onSelect"
+      />
+      <p v-else class="text-center text-sm">
+        {{ t('components.shlagemon.SelectModal.noAvailable') }}
+      </p>
     </div>
   </UiModal>
 </template>

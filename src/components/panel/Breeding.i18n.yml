@@ -1,12 +1,25 @@
 fr:
   title: Élevage
   exit: Quitter l'élevage
-  intro: "Je peux m'occuper de la reproduction pour toi... enfin, si tu veux."
+  intro: "Bonjour, je peux m'occuper d'ensemencer tes Shlagémons, je suis un pro pour faire ça, tu n'as qu'à m'en confier un !"
   outro:
     running: "Je m'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps."
     idle: "Reviens très vite, j'ai hâte de m'occuper de tes Shlagémons."
   during:
-    typing: "T'inquiètes pas j'en prendrais bien soin, tu peux me faire confiance"
+    unselected: "Confie moi un de tes Shlagémons, je vais l'ensemencer avec tendresse et amour !"
+    selected:
+      - "Ho ! J'adore ton {shlagemon_name}, je vais pouvoir l'ensemencer bien fort celui là !"
+      - 'Oh, celui-là… je sens qu’il va bien prendre la graine !'
+      - Mmmh… parfait pour un ensemencement en profondeur !
+      - 'Attention {shlagemon_name}, ça va semer sec ici !'
+      - 'Ohoh… {shlagemon_name}, prépare-toi pour un ensemencement magistral !'
+    completed:
+      - 'ça y est je lui ai tout mis dedans, il a sorti un oeuf !'
+      - 'Mission accomplie : il est plein… et il a pondu !'
+      - Je lui ai mis tout ce qu’il fallait… et paf ! Un œuf.
+      - 'Je n’ai pas fait les choses à moitié : voilà l’œuf !'
+      - 'Je lui ai mis tout le paquet… résultat : un œuf bien chaud.'
+      - Rempli de bonheur… et voilà un œuf en cadeau !
   selectMon: Choisir un Shlagémon
   selected: Shlagémon sélectionné
   rarity: Rareté
@@ -35,12 +48,25 @@ fr:
 en:
   title: Breeding
   exit: Leave the breeding center
-  intro: 'I can handle the breeding for you... uh, if you want.'
+  intro: "Hello, I can seed your Shlagémons for you—I'm a pro at it, just hand me one!"
   outro:
     running: "I'll take care of the breeding right away, you can come back very soon."
     idle: "Come back very soon, I can't wait to take care of your Shlagémons."
   during:
-    typing: "Don't worry, I'll take good care of it, you can trust me"
+    unselected: "Give me one of your Shlagémons, I'll seed it with tenderness and love!"
+    selected:
+      - "Oh! I love your {shlagemon_name}, I'll seed that one real good!"
+      - "Oh, this one… I can tell it'll take the seed nicely!"
+      - Mmmh… perfect for some deep seeding!
+      - "Watch out {shlagemon_name}, it's going to be a heavy seeding here!"
+      - 'Ohoh… {shlagemon_name}, get ready for a masterful seeding!'
+    completed:
+      - 'All done, I put everything in and it popped out an egg!'
+      - "Mission accomplished: it's full… and it laid an egg!"
+      - I gave it all it needed… and bam! An egg.
+      - "I didn't do things halfway: here's the egg!"
+      - 'I stuffed it completely… result: a nice warm egg.'
+      - "Filled with happiness… and here's an egg as a gift!"
   selectMon: Choose a Shlagémon
   selected: Selected Shlagémon
   rarity: Rarity
