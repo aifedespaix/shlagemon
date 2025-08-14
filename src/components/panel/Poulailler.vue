@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { BreedingEntry } from '~/composables/useBreedingEggs'
 import type { EggType } from '~/stores/egg'
-import type { BreedingEggItem, EggItemId } from '~/stores/eggBox'
+import type { EggItemId } from '~/stores/eggBox'
 import type { DialogNode } from '~/type/dialog'
 import { eggTypeMap } from '~/constants/egg'
 import { magalieBredouille } from '~/data/characters/magalie-bredouille'
 import { allItems } from '~/data/items'
-import { baseShlagemons } from '~/data/shlagemons'
 
 /** === Stores ============================================================ */
 const eggs = useEggStore()
@@ -59,10 +59,6 @@ interface InventoryEntry {
   }
 }
 
-interface BreedingEntry extends BreedingEggItem {
-  readonly mon: typeof baseShlagemons[number]
-}
-
 const colorMap: Record<EggType, string> = {
   feu: 'text-orange-500 dark:text-orange-400',
   eau: 'text-blue-500 dark:text-blue-400',
@@ -89,12 +85,7 @@ const typeEggs = computed<InventoryEntry[]>(() => {
     .filter(e => e.qty > 0)
 })
 
-const breedingEggs = computed<BreedingEntry[]>(() => {
-  return box.breeding.map(egg => ({
-    ...egg,
-    mon: baseShlagemons.find(b => b.id === egg.monId)!,
-  }))
-})
+const breedingEggs = useBreedingEggs()
 
 const incubatorSlots = computed(() => {
   // always 4 slots; fill with null placeholders
