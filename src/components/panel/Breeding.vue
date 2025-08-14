@@ -21,7 +21,7 @@ function createIntro(next: () => void): DialogNode[] {
   return [
     {
       id: 'intro',
-      text: t('components.panel.Breeding.dialog.intro'),
+      text: t('components.panel.Breeding.intro'),
       responses: [
         { label: t('ui.Info.ok'), type: 'primary', action: next },
       ],
@@ -59,11 +59,11 @@ const remainingLabel = computed<string>(() => {
 })
 
 function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
-  const key = isRunning.value ? 'outroRunning' : 'outroIdle'
+  const key = isRunning.value ? 'running' : 'idle'
   return [
     {
       id: 'outro',
-      text: t(`components.panel.Breeding.dialog.${key}`),
+      text: t(`components.panel.Breeding.outro.${key}`),
       responses: [
         { label: t('ui.Info.ok'), type: 'valid', action: exit },
       ],
@@ -226,7 +226,7 @@ onBeforeUnmount(pauseTick)
                 </div>
 
                 <UiTypingText
-                  :text="t('components.panel.Breeding.normanCareMessage')"
+                  :text="t('components.panel.Breeding.during.typing')"
                   :aria-label="t('components.panel.Breeding.a11y.normanCareMessage')"
                   aria-live="polite"
                   class="text-sm"

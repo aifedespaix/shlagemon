@@ -71,12 +71,14 @@ function createI18nInstance() {
             Breeding: {
               title: 'Élevage',
               exit: 'Quitter l\'élevage',
-              dialog: {
-                intro: 'Je peux m\'occuper de la reproduction pour toi... enfin, si tu veux.',
-                outroRunning: 'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
-                outroIdle: 'Reviens très vite, j\'ai hâte de m\'occuper de tes Shlagémons.',
+              intro: 'Je peux m\'occuper de la reproduction pour toi... enfin, si tu veux.',
+              outro: {
+                running: 'Je m\'occupe tout de suite de la reproduction, tu pourras repasser dans très peu de temps.',
+                idle: 'Reviens très vite, j\'ai hâte de m\'occuper de tes Shlagémons.',
               },
-              normanCareMessage: 'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+              during: {
+                typing: 'T\'inquiètes pas j\'en prendrais bien soin, tu peux me faire confiance',
+              },
             },
           },
         },
