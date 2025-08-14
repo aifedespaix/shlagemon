@@ -24,6 +24,7 @@ fr:
     running: Entraînement en cours
   cta:
     payAndStart: Payer & lancer
+    changeMon: Changer de Shlagémon
     trainingRunning: Entraînement en cours
   toast:
     started: Entraînement lancé !
@@ -54,6 +55,7 @@ en:
     running: Training in progress
   cta:
     payAndStart: Pay & start
+    changeMon: Change Shlagémon
     trainingRunning: Training in progress
   toast:
     started: Training started!
