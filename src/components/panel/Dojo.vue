@@ -271,16 +271,12 @@ const ids = {
     </div>
 
     <!-- Sélecteur -->
-    <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">
-      <div class="max-w-160 flex flex-col gap-2">
-        <h3 id="dojo-select-title" class="text-center text-lg font-bold">
-          {{ t('components.panel.Dojo.selectMon') }}
-        </h3>
-        <div class="max-h-80 min-h-0 overflow-y-auto">
-          <ShlagemonQuickSelect @select="selectMon" />
-        </div>
-      </div>
-    </UiModal>
+    <ShlagemonSelectModal
+      v-model="selectorOpen"
+      :title="t('components.panel.Dojo.selectMon')"
+      title-id="dojo-select-title"
+      @select="selectMon"
+    />
 
     <template #footer>
       <div class="w-full flex justify-end gap-1 bg-white md:flex-nowrap md:justify-end dark:bg-gray-900">

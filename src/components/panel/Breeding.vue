@@ -242,16 +242,12 @@ onBeforeUnmount(pauseTick)
         </div>
 
         <!-- Sélecteur -->
-        <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="breeding-select-title">
-          <div class="max-w-160 flex flex-col gap-2">
-            <h3 id="breeding-select-title" class="text-center text-lg font-bold">
-              {{ t('components.panel.Breeding.selectMon') }}
-            </h3>
-            <div class="max-h-80 min-h-0 overflow-y-auto">
-              <ShlagemonQuickSelect @select="selectMon" />
-            </div>
-          </div>
-        </UiModal>
+        <ShlagemonSelectModal
+          v-model="selectorOpen"
+          :title="t('components.panel.Breeding.selectMon')"
+          title-id="breeding-select-title"
+          @select="selectMon"
+        />
       </div>
     </template>
     <template #footer>
