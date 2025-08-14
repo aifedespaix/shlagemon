@@ -10,11 +10,18 @@ export const useAchievementsFilterStore = defineStore('achievementsFilter', () =
   const sortBy = ref<AchievementSort>('name')
   const sortAsc = ref(true)
 
-  watch(sortBy, (val) => {
-    if (val === 'name')
-      sortAsc.value = true
-    else
-      sortAsc.value = false
+  const ascendingSorts: AchievementSort[] = ['name']
+  let suppressNextSortAscUpdate = true
+
+  /**
+   * Align orientation with current sort key while preserving stored preference on load.
+   */
+  watch(sortBy, (value) => {
+    if (suppressNextSortAscUpdate) {
+      suppressNextSortAscUpdate = false
+      return
+    }
+    sortAsc.value = ascendingSorts.includes(value)
   })
 
   function reset() {
@@ -26,5 +33,9 @@ export const useAchievementsFilterStore = defineStore('achievementsFilter', () =
 
   return { search, status, sortBy, sortAsc, reset }
 }, {
-  persist: true,
+  persist: {
+    afterRestore: () => {
+      suppressNextSortAscUpdate = false
+    },
+  },
 })
