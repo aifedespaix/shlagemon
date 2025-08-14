@@ -15,14 +15,14 @@ const panel = useMainPanelStore()
 const selected = ref<DexShlagemon | null>(null)
 const selectorOpen = ref(false)
 const now = ref<number>(Date.now())
-const justCompleted = ref(false)
 
 /** === Derived =========================================================== */
 const eggType = computed<EggType | null>(() =>
-  selected.value ? selected.value.base.types[0] as EggType : null,
+  selected.value ? selected.value.base.types[0].id as EggType : null,
 )
 const job = computed(() => (eggType.value ? breeding.getJob(eggType.value) : null))
 const isRunning = computed<boolean>(() => (eggType.value ? breeding.isRunning(eggType.value) : false))
+const isCompleted = computed<boolean>(() => job.value?.status === 'completed')
 const cost = computed<number>(() => (selected.value ? breedingCost(selected.value.rarity) : 0))
 const durationMin = Math.round(BREEDING_DURATION_MS / 60000)
 const remaining = computed<number>(() => {
@@ -50,25 +50,33 @@ function selectMon(mon: DexShlagemon) {
   selected.value = mon
   selectorOpen.value = false
 }
+function changeMon() {
+  if (isRunning.value)
+    return
+  selected.value = null
+  openSelector()
+}
 function start() {
   if (!eggType.value || !selected.value)
     return
-  if (breeding.start(eggType.value, selected.value.rarity)) {
+  if (breeding.start(eggType.value, selected.value.rarity, selected.value.base.id))
     toast.success(t('components.panel.Breeding.toast.started'))
-    justCompleted.value = false
-  }
 }
-function goToEgg() {
-  panel.showPoulailler()
+function collect() {
+  if (!eggType.value)
+    return
+  if (breeding.collectEgg(eggType.value)) {
+    toast.success(t('components.panel.Breeding.toast.collected'))
+    selected.value = null
+    openSelector()
+  }
 }
 
 /** === Tick ============================================================== */
 const { pause: pauseTick } = useIntervalFn(() => {
   now.value = Date.now()
-  if (eggType.value && breeding.completeIfDue(eggType.value)) {
+  if (eggType.value && breeding.completeIfDue(eggType.value))
     toast.success(t('components.panel.Breeding.toast.finished'))
-    justCompleted.value = true
-  }
 }, 1000)
 onBeforeUnmount(pauseTick)
 </script>
@@ -188,13 +196,23 @@ onBeforeUnmount(pauseTick)
         </UiButton>
 
         <UiButton
-          v-if="justCompleted"
+          v-if="selected && !isRunning"
+          type="secondary"
+          variant="outline"
+          class="w-full md:w-auto"
+          @click="changeMon"
+        >
+          {{ t('components.panel.Breeding.cta.changeMon') }}
+        </UiButton>
+
+        <UiButton
+          v-if="isCompleted"
           type="primary"
           variant="outline"
           class="w-full md:w-auto"
-          @click="goToEgg"
+          @click="collect"
         >
-          {{ t('components.panel.Breeding.cta.seeEgg') }}
+          {{ t('components.panel.Breeding.cta.collectEgg') }}
         </UiButton>
 
         <UiButton

@@ -12,16 +12,19 @@ fr:
   remaining: Temps restant
   cta:
     payAndStart: Payer & lancer
-    seeEgg: Voir l'œuf
+    changeMon: Changer de Shlagémon
+    collectEgg: Récupérer l'œuf
   toast:
     started: Élevage lancé !
     finished: Œuf obtenu !
+    collected: Œuf récupéré !
   status:
     running: Élevage en cours
   a11y:
     openSelector: Choisir le parent
     startBreeding: Lancer l'élevage
-    goToEgg: Aller à l'œuf
+    changeParent: Changer de parent
+    collectEgg: Récupérer l'œuf
 en:
   title: Breeding
   exit: Leave the breeding center
@@ -36,13 +39,16 @@ en:
   remaining: Remaining time
   cta:
     payAndStart: Pay & start
-    seeEgg: View egg
+    changeMon: Change Shlagémon
+    collectEgg: Collect egg
   toast:
     started: Breeding started!
     finished: Egg obtained!
+    collected: Egg collected!
   status:
     running: Breeding in progress
   a11y:
     openSelector: Choose parent
     startBreeding: Start breeding
-    goToEgg: Go to egg
+    changeParent: Change parent
+    collectEgg: Collect egg
