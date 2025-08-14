@@ -42,6 +42,13 @@ export const useUIStore = defineStore('ui', () => {
     return classes.join(' ')
   })
 
+  const panelMusics = {
+    shop: '/audio/musics/shop.ogg',
+    poulailler: '/audio/musics/poulailler.ogg',
+    dojo: '/audio/musics/dojo.ogg',
+    breeding: '/audio/musics/breeding.ogg',
+  } as const satisfies Partial<Record<MainPanel, string>>
+
   // Explicit tuple typing keeps arguments in sync when adding new sources
   watch<[MainPanel, ZoneId, string | undefined, ZoneType, boolean], true>(
     () => [
@@ -52,8 +59,9 @@ export const useUIStore = defineStore('ui', () => {
       arena.inBattle,
     ],
     ([panel, zoneId, trainerCharId, zoneType, inArenaBattle]) => {
-      if (panel === 'shop') {
-        audio.fadeToMusic('/audio/musics/shop.ogg')
+      const directTrack = panelMusics[panel]
+      if (directTrack) {
+        audio.fadeToMusic(directTrack)
         return
       }
 
