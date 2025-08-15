@@ -31,7 +31,7 @@ const colorClasses = computed(() => {
         size="sm"
         @click="emit('ok')"
       >
-        {{ t('components.ui.Info.ok') }}
+        {{ t('components.ui.Infos.ok') }}
       </UiButton>
     </div>
   </div>
