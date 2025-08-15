@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { EggType } from '~/stores/egg'
 import type { EggItemId } from '~/stores/eggBox'
+import { eggColorClass } from '~/constants/egg'
 import { allItems } from '~/data/items'
 
 const eggMonsModal = useEggMonsModalStore()
@@ -13,18 +13,6 @@ const typeEggs = computed(() => eggIds.filter(id => box.eggs[id]))
 const breedingEggs = useBreedingEggs()
 
 const hasEggs = computed(() => typeEggs.value.length > 0 || breedingEggs.value.length > 0)
-
-const colorMap: Record<EggType, string> = {
-  feu: 'text-orange-500 dark:text-orange-400',
-  eau: 'text-blue-500 dark:text-blue-400',
-  plante: 'text-green-500 dark:text-green-400',
-  electrique: 'text-yellow-500 dark:text-yellow-400',
-  psy: 'text-pink-500 dark:text-pink-400',
-}
-
-function colorClass(type: EggType): string {
-  return colorMap[type] ?? ''
-}
 
 function getItem(id: string) {
   return allItems.find(i => i.id === id)!
@@ -67,8 +55,10 @@ function openEgg(id: EggItemId) {
         >
           <template #left>
             <div class="flex items-center gap-1">
-              <div class="i-ph:egg-fill h-6 w-6" :class="colorClass(entry.type)" />
-              <span class="text-sm">{{ t('common.eggOf', { name: t(entry.mon.name) }) }}</span>
+              <div class="i-game-icons:cosmic-egg h-6 w-6" :class="eggColorClass(entry.type)" />
+              <span class="text-sm" :class="eggColorClass(entry.type)">
+                {{ t('common.eggOf', { name: t(entry.mon.name) }) }}
+              </span>
             </div>
           </template>
         </UiListItem>
