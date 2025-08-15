@@ -3,6 +3,7 @@ import type { EggType } from '~/stores/egg'
 import type { DialogNode } from '~/type/dialog'
 
 import type { DexShlagemon } from '~/type/shlagemon'
+import { eggColorClass } from '~/constants/egg'
 import { norman } from '~/data/characters/norman'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
@@ -173,7 +174,8 @@ watch([selected, isCompleted], () => {
                       {{ t('components.panel.Breeding.rarity') }}: {{ selected.rarity }}
                     </span>
                     <span
-                      class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-900 font-medium dark:bg-amber-900/50 dark:text-amber-100"
+                      class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium dark:bg-amber-900/50"
+                      :class="eggType ? eggColorClass(eggType) : ''"
                       :aria-label="t('components.panel.Breeding.eggType')"
                     >
                       {{ t('components.panel.Breeding.eggType') }}: {{ eggType }}
@@ -291,9 +293,13 @@ watch([selected, isCompleted], () => {
           v-if="isCompleted"
           type="primary"
           variant="outline"
+          class="flex items-center gap-1"
           @click="collect"
         >
-          {{ t('components.panel.Breeding.cta.collectEgg') }}
+          <div class="i-game-icons:cosmic-egg" :class="eggType ? eggColorClass(eggType) : ''" aria-hidden="true" />
+          <span :class="eggType ? eggColorClass(eggType) : ''">
+            {{ t('components.panel.Breeding.cta.collectEgg') }}
+          </span>
         </UiButton>
       </div>
     </template>

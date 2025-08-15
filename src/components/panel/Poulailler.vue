@@ -3,7 +3,7 @@ import type { BreedingEntry } from '~/composables/useBreedingEggs'
 import type { EggType } from '~/stores/egg'
 import type { EggItemId } from '~/stores/eggBox'
 import type { DialogNode } from '~/type/dialog'
-import { eggTypeMap } from '~/constants/egg'
+import { eggColorClass, eggTypeMap } from '~/constants/egg'
 import { magalieBredouille } from '~/data/characters/magalie-bredouille'
 import { allItems } from '~/data/items'
 
@@ -59,14 +59,6 @@ interface InventoryEntry {
   }
 }
 
-const colorMap: Record<EggType, string> = {
-  feu: 'text-orange-500 dark:text-orange-400',
-  eau: 'text-blue-500 dark:text-blue-400',
-  plante: 'text-green-500 dark:text-green-400',
-  electrique: 'text-yellow-500 dark:text-yellow-400',
-  psy: 'text-pink-500 dark:text-pink-400',
-}
-
 /** === Time tick (1s) ==================================================== */
 const now = ref<number>(Date.now())
 useIntervalFn(
@@ -94,10 +86,6 @@ const incubatorSlots = computed(() => {
 })
 
 /** === Helpers =========================================================== */
-function colorClass(type: EggType): string {
-  return colorMap[type] ?? ''
-}
-
 function remaining(egg: { hatchesAt: number }): number {
   return Math.max(0, Math.ceil((egg.hatchesAt - now.value) / 1000))
 }
@@ -188,8 +176,8 @@ function eggReadyLabel(type: EggType) {
                 class="group flex items-center justify-between gap-2 border-b p-2 transition-colors last:border-b-0 hover:bg-gray/5"
               >
                 <div class="min-w-0 flex flex-1 items-center gap-2 overflow-hidden text-left">
-                  <div class="i-ph:egg-fill h-6 w-6 shrink-0" :class="colorClass(entry.type)" aria-hidden="true" />
-                  <span class="truncate text-sm font-medium">
+                  <div class="i-game-icons:cosmic-egg h-6 w-6 shrink-0" :class="eggColorClass(entry.type)" aria-hidden="true" />
+                  <span class="truncate text-sm font-medium" :class="eggColorClass(entry.type)">
                     {{ breedingLabel(entry) }}
                   </span>
                 </div>
@@ -294,7 +282,7 @@ function eggReadyLabel(type: EggType) {
                         eggs.isReady(slot)
                           ? 'h-14 w-14 animate-pulse-alt animate-count-infinite group-hover:scale-110 cursor-pointer'
                           : 'h-10 w-10 animate-bounce animate-count-infinite',
-                        colorClass(slot.type),
+                        eggColorClass(slot.type),
                       ]"
                       aria-hidden="true"
                     />
