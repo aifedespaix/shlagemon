@@ -23,7 +23,7 @@ function createIntro(next: () => void): DialogNode[] {
       id: 'intro',
       text: t('components.panel.Breeding.intro'),
       responses: [
-        { label: t('ui.Info.ok'), type: 'primary', action: next },
+        { label: t('components.ui.Infos.ok'), type: 'primary', action: next },
       ],
     },
   ]
@@ -66,7 +66,7 @@ function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
       id: 'outro',
       text: t(`components.panel.Breeding.outro.${key}`),
       responses: [
-        { label: t('ui.Info.ok'), type: 'valid', action: exit },
+        { label: t('components.ui.Infos.ok'), type: 'valid', action: exit },
       ],
     },
   ]
