@@ -1,6 +1,7 @@
 import type { EggType } from './egg'
 import { defineStore } from 'pinia'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
+import { findRootAncestorId } from '~/utils/shlagemon-ancestor'
 import { useEggBoxStore } from './eggBox'
 
 /**
@@ -108,12 +109,17 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   /**
    * Collect the egg from a completed job and move it to the egg box.
+   *
+   * The resulting egg always references the earliest known ancestor of the
+   * selected parent so that breeding an evolved Shlagémon yields the base
+   * form's egg.
    */
   function collectEgg(type: EggType): boolean {
     const job = byType.value[type]
     if (!job || job.status !== 'completed')
       return false
-    eggBox.addBreedingEgg(job.parentId, job.type, job.rarity)
+    const ancestorId = findRootAncestorId(job.parentId)
+    eggBox.addBreedingEgg(ancestorId, job.type, job.rarity)
     delete byType.value[type]
     return true
   }

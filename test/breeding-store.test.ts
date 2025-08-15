@@ -39,4 +39,17 @@ describe('breeding store', () => {
 
     expect(breeding.start('feu', 10, 'salamiches')).toBe(true)
   })
+
+  it('breeds evolved shlagemon and returns base ancestor egg', () => {
+    const breeding = useBreedingStore()
+    const game = useGameStore()
+    const box = useEggBoxStore()
+    game.shlagidolar = 1_000_000
+
+    expect(breeding.start('feu', 10, 'raptorincel')).toBe(true)
+    vi.advanceTimersByTime(BREEDING_DURATION_MS + 1)
+    expect(breeding.completeIfDue('feu')).toBe(true)
+    expect(breeding.collectEgg('feu')).toBe(true)
+    expect(box.breeding[0].monId).toBe('salamiches')
+  })
 })
