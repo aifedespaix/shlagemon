@@ -16,6 +16,10 @@ import { applySave, importSave } from '~/utils/save-code'
 const { t } = useI18n()
 const { formatDuration } = useFormatDuration()
 const { copy } = useClipboard() // optional; used for small UX touch (copy error)
+usePageHead({
+  title: () => t('pages.save.ImportPage.title'),
+  description: () => t('pages.save.ImportPage.description'),
+})
 
 /** === Types ============================================================ */
 interface SaveSummary {

@@ -7,6 +7,7 @@ const selected = ref<BaseShlagemon | null>(null)
 const { t } = useI18n()
 usePageHead({
   title: () => t('pages.shlagedex.title'),
+  description: () => t('pages.shlagedex.description'),
 })
 
 function open(mon: BaseShlagemon) {
