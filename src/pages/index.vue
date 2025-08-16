@@ -5,6 +5,9 @@ usePageHead({
   description: () => t('pages.index.description'),
 })
 const app = useAppStore()
+useEggStore()
+useDojoStore()
+useBreedingStore()
 </script>
 
 <template>
