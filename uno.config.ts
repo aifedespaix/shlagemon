@@ -21,7 +21,7 @@ export default defineConfig({
     ['flex-center', 'flex justify-center items-center'],
     // Dynamic viewport height with safe area handling
     // Hauteur "avec barre" par défaut (svh), puis on autorise dvh sur écrans plus grands
-    ['app-root', 'min-h-[100svh] md:min-h-[100dvh] flex flex-col'],
+    ['app-root', 'min-h-[100svh] md:min-h-[100dvh] flex flex-col overflow-hidden'],
 
     // Safe areas (iOS)
     ['safe-top', 'pt-[env(safe-area-inset-top)]'],
