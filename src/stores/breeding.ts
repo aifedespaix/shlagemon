@@ -1,10 +1,12 @@
 import type { EggType } from './egg'
+import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 import { findRootAncestorId } from '~/utils/shlagemon-ancestor'
 import { useEggBoxStore } from './eggBox'
+import { useShlagedexStore } from './shlagedex'
 
 /**
  * Describes a single breeding job.
@@ -16,6 +18,8 @@ export interface BreedingJob {
   readonly rarity: number
   /** Identifier of the parent Shlagémon base. */
   readonly parentId: string
+  /** Identifier of the parent Shlagémon instance. */
+  readonly monId: string
   /** Timestamp when the job started in milliseconds. */
   readonly startedAt: number
   /** Timestamp when the job ends in milliseconds. */
@@ -37,6 +41,7 @@ export const useBreedingStore = defineStore('breeding', () => {
   const now = ref(Date.now())
   const game = useGameStore()
   const eggBox = useEggBoxStore()
+  const dex = useShlagedexStore()
 
   /**
    * Retrieve the job associated with the given type.
@@ -78,22 +83,25 @@ export const useBreedingStore = defineStore('breeding', () => {
    *
    * @returns `true` when the job started successfully.
    */
-  function start(type: EggType, rarity: number, parentId: string): boolean {
+  function start(mon: DexShlagemon): boolean {
+    const type = mon.base.types[0].id as EggType
     if (byType.value[type])
       return false
-    const cost = breedingCost(rarity)
+    const cost = breedingCost(mon.rarity)
     if (game.shlagidolar < cost)
       return false
     game.addShlagidolar(-cost)
     const startedAt = Date.now()
     byType.value[type] = {
       type,
-      rarity,
-      parentId,
+      rarity: mon.rarity,
+      parentId: mon.base.id,
+      monId: mon.id,
       startedAt,
       endsAt: startedAt + BREEDING_DURATION_MS,
       status: 'running',
     }
+    dex.setBusy(mon.id, true)
     toast.success(i18n.global.t('components.panel.Breeding.toast.started'))
     return true
   }
@@ -108,6 +116,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     if (now.value < job.endsAt)
       return false
     job.status = 'completed'
+    dex.setBusy(job.monId, false)
     return true
   }
 
@@ -134,8 +143,10 @@ export const useBreedingStore = defineStore('breeding', () => {
    */
   function clearFinished(): void {
     for (const [key, job] of Object.entries(byType.value)) {
-      if (job?.status === 'completed')
+      if (job?.status === 'completed') {
         delete byType.value[key as EggType]
+        dex.setBusy(job.monId, false)
+      }
     }
   }
 

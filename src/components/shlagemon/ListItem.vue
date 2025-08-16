@@ -29,7 +29,7 @@ const itemClass = computed(() => [
 
 <template>
   <UiListItem
-    class="gap-1"
+    class="relative gap-1"
     :class="itemClass"
     :active="isActive"
     :highlight="shouldHighlight"
@@ -37,9 +37,15 @@ const itemClass = computed(() => [
     as="button"
     role="option"
     @click.stop="() => emit('click')"
-    @contextmenu.stop.prevent="() => emit('activate')"
+    @contextmenu.stop.prevent="() => { if (!mon.busy) emit('activate') }"
     @keydown.enter.space.prevent="() => emit('click')"
   >
+    <div
+      v-if="mon.busy"
+      class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-gray-300/60 dark:bg-gray-700/60"
+    >
+      <div class="i-game-icons:hourglass text-3xl" aria-hidden="true" />
+    </div>
     <!-- Image Shlagemon, carré, prend toute la hauteur -->
     <template #left>
       <div class="relative h-10 w-10 flex flex-shrink-0 items-center justify-center">
@@ -95,7 +101,7 @@ const itemClass = computed(() => [
           class="scale-85"
           :model-value="isActive"
           :disabled="locked || disabled"
-          @update:model-value="() => emit('activate')"
+          @update:model-value="() => { if (!mon.busy) emit('activate') }"
           @click.stop
         />
         <div class="flex-1 text-center text-[10px] text-gray-500 leading-none font-mono dark:text-gray-400">

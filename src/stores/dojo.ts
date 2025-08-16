@@ -91,6 +91,7 @@ export const useDojoStore = defineStore('dojo', () => {
       paid: cost,
       status: 'running',
     }
+    dex.setBusy(monId, true)
     toast.success(i18n.global.t('components.panel.Dojo.toast.started'))
     return { ok: true as const }
   }
@@ -105,14 +106,17 @@ export const useDojoStore = defineStore('dojo', () => {
     if (mon)
       mon.rarity = Math.min(100, job.targetRarity)
     delete byMonId.value[monId]
+    dex.setBusy(monId, false)
     toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
     return true
   }
 
   function clearFinished(): void {
     for (const [id, job] of Object.entries(byMonId.value)) {
-      if (job && now.value >= job.endsAt)
+      if (job && now.value >= job.endsAt) {
         delete byMonId.value[id]
+        dex.setBusy(id, false)
+      }
     }
   }
 
