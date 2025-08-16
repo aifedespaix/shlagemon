@@ -46,11 +46,12 @@ const running = ref(false)
 vi.mock('../src/stores/dojo', () => ({
   dojoTrainingCost: vi.fn(() => 0),
   useDojoStore: () => ({
-    getJob: vi.fn((id: string) => (running.value ? { monId: id } : null)),
+    getJob: vi.fn((id: string) => (running.value ? { monId: id, status: 'running' } : null)),
     remainingMs: vi.fn(() => 0),
     progressRatio: vi.fn(() => 0),
     startTraining: vi.fn(() => ({ ok: true })),
     completeIfDue: vi.fn(() => false),
+    collect: vi.fn(),
     byMonId: {},
   }),
 }))

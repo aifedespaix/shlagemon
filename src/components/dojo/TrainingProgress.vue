@@ -9,6 +9,8 @@ interface Ids {
 interface Props {
   /** Entraînement en cours (affiche le bandeau + timer). */
   isRunning: boolean
+  /** Entraînement terminé (affiche un bandeau de fin). */
+  isCompleted: boolean
   /** Progression 0..100 (peut être décimale, arrondie pour l’ARIA). */
   progress: number
   /** Libellé mm:ss déjà formaté. */
@@ -26,11 +28,15 @@ const ariaNow = computed(() => Math.round(props.progress))
 <template>
   <div class="w-full flex flex-col gap-2 border border-gray-200 rounded-xl p-3 dark:border-gray-700">
     <div
-      v-if="isRunning"
+      v-if="isRunning || isCompleted"
       class="w-full flex flex-col items-center rounded-lg bg-amber-50 px-3 py-2 text-amber-900 dark:bg-amber-900/30 dark:text-amber-100"
     >
-      <div>{{ t('components.panel.Dojo.status.running') }}</div>
-      <div><span class="tabular-nums">{{ remainingLabel }}</span></div>
+      <div>
+        {{ t(`components.panel.Dojo.status.${isRunning ? 'running' : 'completed'}`) }}
+      </div>
+      <div v-if="isRunning">
+        <span class="tabular-nums">{{ remainingLabel }}</span>
+      </div>
     </div>
 
     <div

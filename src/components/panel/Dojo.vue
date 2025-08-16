@@ -45,7 +45,8 @@ const targetValue = computed<number>({
 })
 
 const job = computed(() => (selected.value ? dojo.getJob(selected.value.id) : null))
-const isRunning = computed<boolean>(() => !!job.value) // ⟵ NEW
+const isRunning = computed<boolean>(() => job.value?.status === 'running')
+const isCompleted = computed<boolean>(() => job.value?.status === 'completed')
 
 function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
   const key = isRunning.value ? 'running' : 'idle'
@@ -123,6 +124,13 @@ function start() {
   dojo.startTraining(selected.value.id, selected.value.rarity, points.value)
 }
 
+function collect() {
+  if (!selected.value)
+    return
+  if (dojo.collect(selected.value.id))
+    selected.value = null
+}
+
 /** === A11y IDs ========================================================== */
 const ids = {
   title: 'dojo-title',
@@ -179,6 +187,7 @@ const ids = {
                 <DojoTrainingProgress
                   v-if="job"
                   :is-running="isRunning"
+                  :is-completed="isCompleted"
                   :progress="progress"
                   :remaining-label="remainingLabel"
                   :ids="{ progress: ids.progress }"
@@ -214,7 +223,7 @@ const ids = {
     <template #footer>
       <div class="w-full flex justify-end gap-1 md:flex-nowrap md:justify-end">
         <UiButton
-          v-if="selected && !isRunning"
+          v-if="selected && !job"
           :disabled="cost > game.shlagidolar || points < 1 || (safeMax === 1 && points === 1)"
           type="primary"
           class="flex flex-1 flex-wrap items-center gap-1"
@@ -222,6 +231,16 @@ const ids = {
         >
           {{ t('components.panel.Dojo.cta.payAndStart') }}
           <UiCurrencyAmount :amount="cost" currency="shlagidolar" />
+        </UiButton>
+
+        <UiButton
+          v-if="isCompleted"
+          type="primary"
+          variant="outline"
+          class="flex items-center gap-1"
+          @click="collect"
+        >
+          {{ t('components.panel.Dojo.cta.collect') }}
         </UiButton>
       </div>
     </template>
