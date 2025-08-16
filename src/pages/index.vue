@@ -8,7 +8,7 @@ const app = useAppStore()
 </script>
 
 <template>
-  <div class="relative h-full flex flex-col animate-fade-in select-none overflow-hidden">
+  <div id="game" class="relative h-full flex flex-col animate-fade-in select-none overflow-hidden">
     <LayoutHeader />
     <LayoutGameGrid class="flex-1" />
     <LayoutMobileMenu />

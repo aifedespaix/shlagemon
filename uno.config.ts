@@ -20,7 +20,10 @@ export default defineConfig({
   shortcuts: [
     ['flex-center', 'flex justify-center items-center'],
     // Dynamic viewport height with safe area handling
-    ['h-screen', 'min-h-[100svh] min-h-[100dvh] min-h-[100vh]'],
+    // Hauteur "avec barre" par défaut (svh), puis on autorise dvh sur écrans plus grands
+    ['app-root', 'min-h-[100svh] md:min-h-[100dvh] flex flex-col'],
+
+    // Safe areas (iOS)
     ['safe-top', 'pt-[env(safe-area-inset-top)]'],
     ['safe-bottom', 'pb-[env(safe-area-inset-bottom)]'],
   ],

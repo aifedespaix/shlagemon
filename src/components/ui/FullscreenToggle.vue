@@ -3,7 +3,12 @@ import { useFullscreen } from '@vueuse/core'
 
 const { t } = useI18n()
 
-const target = typeof document !== 'undefined' ? document.documentElement : null
+const target = shallowRef<HTMLElement | null>(null)
+
+onMounted(() => {
+  target.value = document.getElementById('game')
+})
+
 const { isFullscreen, toggle } = useFullscreen(target)
 </script>
 
