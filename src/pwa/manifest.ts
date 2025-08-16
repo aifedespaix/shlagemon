@@ -1,17 +1,32 @@
 // src/pwa/manifest.ts
-
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import type { Locale } from '~/constants/locales'
 
-const base: Partial<ManifestOptions> = {
-  id: '/', // sera surchargé par locale plus bas
-  launch_handler: { client_mode: 'navigate-existing' },
-  orientation: 'any',
+/**
+ * Manifest unique (scope/start_url à la racine).
+ * Localisation gérée par l'app (router/i18n), pas par le manifest.
+ */
+const base: ManifestOptions = {
+  id: '/',
+  start_url: '/',          // ✅ unique & offline-friendly
+  scope: '/',              // ✅ SW couvre toute l'app
   display: 'standalone',
   display_override: ['window-controls-overlay', 'standalone'],
+  launch_handler: { client_mode: 'navigate-existing' },
+  orientation: 'any',
   theme_color: '#1865ab',
   background_color: '#1865ab',
   edge_side_panel: { preferred_width: 400 },
+
+  // Choisis un nom/desc neutres (une seule langue possible dans le manifest)
+  name: 'Shlagémon',
+  short_name: 'Shlagémon',
+  description: 'Catch all the Shlagemons before they rot the whole world.',
+
+  // L’UI sera traduite par l’app ; "lang" ici est purement informatif
+  lang: 'en',
+  dir: 'ltr',
+
   icons: [
     { src: '/pwa-64x64.png', sizes: '64x64', type: 'image/png', purpose: 'any' },
     { src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
@@ -19,6 +34,7 @@ const base: Partial<ManifestOptions> = {
     { src: '/maskable_icon_x192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
     { src: '/maskable_icon_x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
   ],
+
   screenshots: [
     { src: '/screenshots/battle.jpg', sizes: '1200x800', type: 'image/jpeg' },
     { src: '/screenshots/detail.jpg', sizes: '1200x800', type: 'image/jpeg' },
@@ -26,54 +42,21 @@ const base: Partial<ManifestOptions> = {
     { src: '/screenshots/shop.jpg', sizes: '1200x800', type: 'image/jpeg' },
     { src: '/screenshots/with-map.jpg', sizes: '1200x800', type: 'image/jpeg' },
   ],
+
   handle_links: 'auto',
   protocol_handlers: [],
   categories: ['games', 'idle', 'strategy'],
-  dir: 'ltr',
 
+  // File associations à la racine : tu dispatches vers /fr ou /en dans l’app
+  file_handlers: [
+    {
+      action: '/save/import',
+      accept: { 'application/x-shlag': ['.shlag'] },
+    },
+  ],
 }
 
-export function getPwaManifest(locale: Locale): ManifestOptions {
-  // On prépare les champs localisés
-  const localData = locale === 'fr'
-    ? {
-        id: '/fr/',
-        name: 'Shlagémon - Ça sent très fort',
-        short_name: 'Shlagémon',
-        description: 'Attrape tous les Shlagémons pour éviter qu\'ils ne pourrissent la terre entière.',
-        lang: 'fr',
-        start_url: '/fr/',
-        scope: '/fr/',
-        file_handlers: [
-          {
-            action: '/fr/sauvegarde/importer',
-            accept: {
-              'application/x-shlag': ['.shlag'],
-            },
-          },
-        ],
-      }
-    : {
-        id: '/en/',
-        name: 'Shlagemon - It smells very strong',
-        short_name: 'Shlagemon',
-        description: 'Catch all the Shlagemons before they rot the whole world.',
-        lang: 'en',
-        start_url: '/en/',
-        scope: '/en/',
-        file_handlers: [
-          {
-            action: '/en/save/import',
-            accept: {
-              'application/x-shlag': ['.shlag'],
-            },
-          },
-        ],
-      }
-
-  // On merge proprement, puis on caste la sortie pour garantir le contrat strict PWA
-  return {
-    ...base,
-    ...localData,
-  } as ManifestOptions
+export function getPwaManifest(_locale: Locale): ManifestOptions {
+  // On renvoie le manifest unique ; la locale est gérée par l’app au boot.
+  return base
 }

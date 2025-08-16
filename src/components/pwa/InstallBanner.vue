@@ -99,7 +99,7 @@ if (typeof window !== 'undefined') {
       v-if="visible"
       role="dialog"
       aria-live="polite"
-      class="fixed inset-x-0 bottom-0 z-200 mx-auto max-w-[920px] px-3 pb-[env(safe-area-inset-bottom)]"
+      class="fixed inset-x-0 bottom-0 z-2000 mx-auto max-w-[920px] px-3 pb-[env(safe-area-inset-bottom)]"
     >
       <div
         class="flex items-center gap-3 border border-neutral-700/40 rounded-2xl bg-neutral-900/90 p-3 text-neutral-100 shadow-lg backdrop-blur md:p-4"
