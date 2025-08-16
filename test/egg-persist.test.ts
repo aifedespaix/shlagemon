@@ -1,10 +1,17 @@
 import { createPinia, setActivePinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { createApp } from 'vue'
 import { allShlagemons } from '../src/data/shlagemons'
 import { useEggStore } from '../src/stores/egg'
 import { eggSerializer } from '../src/utils/egg-serialize'
+
+vi.mock('../src/modules/toast', () => {
+  const fn = vi.fn()
+  fn.success = vi.fn()
+  return { toast: fn }
+})
+vi.mock('../src/modules/i18n', () => ({ i18n: { global: { t: (k: string) => k } } }))
 
 describe('egg persistence', () => {
   it('restores incubator from storage', () => {
