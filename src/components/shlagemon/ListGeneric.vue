@@ -168,7 +168,7 @@ watch(
 <template>
   <LayoutScrollablePanel ref="panelRef">
     <template #header>
-      <div class="sticky top-0 z-40 w-full flex flex-col gap-1 bg-white/70 backdrop-blur-lg dark:bg-gray-900/70">
+      <div class="sticky top-0 z-40 w-full flex flex-col pt-1 gap-1 bg-white/70 backdrop-blur-lg dark:bg-gray-900/70">
         <div class="flex items-center gap-1">
           <UiSortControls
             v-model:sort-by="filter.sortBy"
@@ -211,17 +211,22 @@ watch(
 </template>
 
 <style scoped>
-.fade-list-move,
-.fade-list-enter-active,
-.fade-list-leave-active {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+:deep(.fade-list-move) {
+  transition: transform .22s cubic-bezier(.2,.7,.2,1);
 }
-.fade-list-enter-from,
-.fade-list-leave-to {
+
+:deep(.fade-list-enter-active),
+:deep(.fade-list-leave-active) {
+  transition: opacity .18s ease, transform .18s ease;
+}
+:deep(.fade-list-enter-from),
+:deep(.fade-list-leave-to) {
   opacity: 0;
-  transform: translateY(12px) scale(0.98);
+  transform: translateY(12px) scale(.98);
 }
-.fade-list-leave-active {
+
+:deep(.fade-list-leave-active) {
   position: absolute;
+  width: 100%;
 }
 </style>
