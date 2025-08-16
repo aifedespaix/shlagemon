@@ -1,5 +1,7 @@
 import type { EggType } from './egg'
 import { defineStore } from 'pinia'
+import { i18n } from '~/modules/i18n'
+import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 import { findRootAncestorId } from '~/utils/shlagemon-ancestor'
 import { useEggBoxStore } from './eggBox'
@@ -32,6 +34,7 @@ export interface BreedingState {
 
 export const useBreedingStore = defineStore('breeding', () => {
   const byType = ref<BreedingState['byType']>({})
+  const now = ref(Date.now())
   const game = useGameStore()
   const eggBox = useEggBoxStore()
 
@@ -56,7 +59,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     const job = byType.value[type]
     if (!job || job.status !== 'running')
       return 0
-    return Math.max(0, job.endsAt - Date.now())
+    return Math.max(0, job.endsAt - now.value)
   }
 
   /**
@@ -91,6 +94,7 @@ export const useBreedingStore = defineStore('breeding', () => {
       endsAt: startedAt + BREEDING_DURATION_MS,
       status: 'running',
     }
+    toast.success(i18n.global.t('components.panel.Breeding.toast.started'))
     return true
   }
 
@@ -101,7 +105,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     const job = byType.value[type]
     if (!job || job.status !== 'running')
       return false
-    if (Date.now() < job.endsAt)
+    if (now.value < job.endsAt)
       return false
     job.status = 'completed'
     return true
@@ -121,6 +125,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     const ancestorId = findRootAncestorId(job.parentId)
     eggBox.addBreedingEgg(ancestorId, job.type, job.rarity)
     delete byType.value[type]
+    toast.success(i18n.global.t('components.panel.Breeding.toast.collected'))
     return true
   }
 
@@ -133,6 +138,14 @@ export const useBreedingStore = defineStore('breeding', () => {
         delete byType.value[key as EggType]
     }
   }
+
+  useIntervalFn(() => {
+    now.value = Date.now()
+    for (const type of Object.keys(byType.value) as EggType[]) {
+      if (completeIfDue(type))
+        toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
+    }
+  }, 1000)
 
   return {
     byType,

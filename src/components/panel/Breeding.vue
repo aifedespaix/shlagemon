@@ -5,7 +5,6 @@ import type { DialogNode } from '~/type/dialog'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { eggColorClass } from '~/constants/egg'
 import { norman } from '~/data/characters/norman'
-import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 
 /** === Stores / i18n ===================================================== */
@@ -33,7 +32,6 @@ function createIntro(next: () => void): DialogNode[] {
 /** === State ============================================================= */
 const selected = ref<DexShlagemon | null>(null)
 const selectorOpen = ref(false)
-const now = ref<number>(Date.now())
 const typingText = ref('')
 
 /** === Derived =========================================================== */
@@ -45,14 +43,8 @@ const isRunning = computed<boolean>(() => job.value?.status === 'running')
 const isCompleted = computed<boolean>(() => job.value?.status === 'completed')
 const cost = computed<number>(() => (selected.value ? breedingCost(selected.value.rarity) : 0))
 const durationMin = Math.round(BREEDING_DURATION_MS / 60000)
-const remaining = computed<number>(() => {
-  void now.value
-  return eggType.value ? breeding.remainingMs(eggType.value) : 0
-})
-const progress = computed<number>(() => {
-  void now.value
-  return eggType.value ? breeding.progress(eggType.value) * 100 : 0
-})
+const remaining = computed<number>(() => eggType.value ? breeding.remainingMs(eggType.value) : 0)
+const progress = computed<number>(() => eggType.value ? breeding.progress(eggType.value) * 100 : 0)
 const remainingLabel = computed<string>(() => {
   const total = Math.ceil(remaining.value / 1000)
   const m = Math.floor(total / 60)
@@ -92,25 +84,14 @@ function changeMon() {
 function start() {
   if (!eggType.value || !selected.value)
     return
-  if (breeding.start(eggType.value, selected.value.rarity, selected.value.base.id))
-    toast.success(t('components.panel.Breeding.toast.started'))
+  breeding.start(eggType.value, selected.value.rarity, selected.value.base.id)
 }
 function collect() {
   if (!eggType.value)
     return
-  if (breeding.collectEgg(eggType.value)) {
-    toast.success(t('components.panel.Breeding.toast.collected'))
+  if (breeding.collectEgg(eggType.value))
     selected.value = null
-  }
 }
-
-/** === Tick ============================================================== */
-const { pause: pauseTick } = useIntervalFn(() => {
-  now.value = Date.now()
-  if (eggType.value && breeding.completeIfDue(eggType.value))
-    toast.success(t('components.panel.Breeding.toast.finished'))
-}, 1000)
-onBeforeUnmount(pauseTick)
 
 function randomIndex(list: unknown[]) {
   return Math.floor(Math.random() * list.length)
