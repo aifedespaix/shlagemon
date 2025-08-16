@@ -449,6 +449,9 @@ declare global {
   export type { PwaEnvironment } from './composables/usePwaEnvironment'
   import('./composables/usePwaEnvironment')
   // @ts-ignore
+  export type { SeoHead } from './composables/useSeoHead'
+  import('./composables/useSeoHead')
+  // @ts-ignore
   export type { SlidingPuzzle, PuzzleDirection } from './composables/useSlidingPuzzle'
   import('./composables/useSlidingPuzzle')
   // @ts-ignore

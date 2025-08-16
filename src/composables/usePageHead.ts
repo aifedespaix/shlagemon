@@ -35,6 +35,12 @@ export function usePageHead(options: PageHeadOptions = {}) {
     const keywords
       = unref(options.keywords)
         ?? 'shlagemon, jeu, pokemon, parodie, capture, combat'
+    const currentLocale = seoHead.currentLocale.value
+    const alternateLocales = seoHead.alternateLocales.value
+    const ogLocaleMeta = [
+      { property: 'og:locale', content: currentLocale },
+      ...alternateLocales.map(locale => ({ property: 'og:locale:alternate', content: locale })),
+    ]
 
     return {
       title,
@@ -50,6 +56,7 @@ export function usePageHead(options: PageHeadOptions = {}) {
         { property: 'og:url', content: seoHead.canonicalUrl.value },
         { property: 'og:image', content: image },
         { property: 'og:site_name', content: 'Shlagémon' },
+        ...ogLocaleMeta,
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: description },
