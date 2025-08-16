@@ -57,6 +57,7 @@ const targetValue = computed<number>({
 
 const job = computed(() => (selected.value ? dojo.getJob(selected.value.id) : null))
 const isRunning = computed<boolean>(() => !!job.value) // ⟵ NEW
+const busyIds = computed(() => dex.shlagemons.filter(m => m.busy).map(m => m.id))
 
 function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
   const key = isRunning.value ? 'running' : 'idle'
@@ -229,6 +230,7 @@ const ids = {
         v-model="selectorOpen"
         :title="t('components.panel.Dojo.selectMon')"
         title-id="dojo-select-title"
+        :disabled-ids="busyIds"
         @select="selectMon"
       />
 
@@ -239,7 +241,7 @@ const ids = {
             {{ t('components.panel.Dojo.selectMon') }}
           </h3>
           <div class="max-h-80 min-h-0 overflow-y-auto">
-            <ShlagemonQuickSelect @select="selectMon" />
+            <ShlagemonQuickSelect :disabled-ids="busyIds" @select="selectMon" />
           </div>
         </div>
       </UiModal>

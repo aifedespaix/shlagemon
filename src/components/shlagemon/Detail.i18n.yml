@@ -17,6 +17,7 @@ fr:
   evolveByItem: "Peut évoluer grâce à l'objet {item}"
   sick: malade
   unequipItemTooltip: Déséquiper cet objet
+  busyTooltip: Ce Shlagémon est occupé
 en:
   equipItemTitle: Equip an item
   allowEvolution: Allow this Shlagemon to evolve?
@@ -36,3 +37,4 @@ en:
   evolveByItem: 'Can evolve with item {item}'
   sick: sick
   unequipItemTooltip: Unequip this item
+  busyTooltip: This Shlagémon is busy

@@ -106,6 +106,7 @@ export const shlagedexSerializer: Serializer = {
           captureCount: mon.captureCount ?? 1,
           heldItemId: mon.heldItemId ?? null,
           rarityFollowsLevel: mon.rarityFollowsLevel ?? false,
+          busy: mon.busy ?? false,
         }
       })
       .filter((m): m is DexShlagemon => Boolean(m))
@@ -131,6 +132,7 @@ export const shlagedexSerializer: Serializer = {
           captureCount: activeData.captureCount ?? 1,
           heldItemId: activeData.heldItemId ?? null,
           rarityFollowsLevel: activeData.rarityFollowsLevel ?? false,
+          busy: activeData.busy ?? false,
         }
       }
       else {

@@ -206,7 +206,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function setActiveShlagemon(mon: DexShlagemon) {
-    if (disease.active)
+    if (disease.active || mon.busy)
       return
     activeShlagemon.value = mon
     markSeen(mon)

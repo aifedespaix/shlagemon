@@ -29,7 +29,7 @@ const itemClass = computed(() => [
 
 <template>
   <UiListItem
-    class="gap-1"
+    class="relative gap-1"
     :class="itemClass"
     :active="isActive"
     :highlight="shouldHighlight"
@@ -103,5 +103,12 @@ const itemClass = computed(() => [
         </div>
       </div>
     </template>
+    <div
+      v-if="mon.busy"
+      class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center rounded bg-gray-500/50 dark:bg-gray-900/50"
+      aria-hidden="true"
+    >
+      <div class="i-game-icons:hourglass text-xl text-white" />
+    </div>
   </UiListItem>
 </template>

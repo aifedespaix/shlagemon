@@ -23,6 +23,7 @@ describe('dojo store', () => {
     const dojo = useDojoStore()
     const result = dojo.startTraining(mon.id, mon.rarity, 1)
     expect(result.ok).toBe(true)
+    expect(mon.busy).toBe(true)
     const job = dojo.getJob(mon.id)
     expect(job).not.toBeNull()
     if (job)
@@ -30,6 +31,7 @@ describe('dojo store', () => {
     const before = mon.rarity
     const completed = dojo.completeIfDue(mon.id)
     expect(completed).toBe(true)
+    expect(mon.busy).toBe(false)
     expect(mon.rarity).toBe(before + 1)
   })
 })

@@ -51,6 +51,11 @@ export interface DexShlagemon extends Stats {
   hpCurrent: number
   allowEvolution: boolean
   /**
+   * Indicates that this Shlagémon is currently unavailable because it is
+   * training at the dojo or participating in breeding.
+   */
+  busy: boolean
+  /**
    * ID of the item currently held by the Shlagémon, if any.
    */
   heldItemId?: string | null

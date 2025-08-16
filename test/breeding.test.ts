@@ -71,6 +71,7 @@ const mon = {
   isShiny: false,
   hpCurrent: 1,
   allowEvolution: true,
+  busy: false,
   hp: 1,
   attack: 1,
   defense: 1,

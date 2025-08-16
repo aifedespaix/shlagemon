@@ -20,6 +20,7 @@ const currentSelection = ref<DexShlagemon | null>(null)
 const selectedEnemy = computed(() =>
   activeSlot.value !== null ? enemyDexTeam.value[activeSlot.value] : undefined,
 )
+const busyIds = computed(() => dex.shlagemons.filter(m => m.busy).map(m => m.id))
 const showDuel = ref(false)
 const infoModal = useDexInfoModalStore()
 let nextTimer: Stoppable<[]> | undefined
@@ -204,6 +205,7 @@ onUnmounted(() => {
             :mon="selectedEnemy"
             :selected="arena.selections.filter(Boolean) as string[]"
             :initial="currentSelection"
+            :disabled-ids="busyIds"
             @select="onMonSelected"
           />
         </UiModal>

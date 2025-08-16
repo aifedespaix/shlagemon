@@ -27,6 +27,7 @@ function createMon(id: string, level: number): DexShlagemon {
     isShiny: false,
     hpCurrent: 10,
     allowEvolution: true,
+    busy: false,
     hp: 10,
     attack: 10,
     defense: 10,

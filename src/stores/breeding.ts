@@ -1,8 +1,10 @@
 import type { EggType } from './egg'
+import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 import { findRootAncestorId } from '~/utils/shlagemon-ancestor'
 import { useEggBoxStore } from './eggBox'
+import { useShlagedexStore } from './shlagedex'
 
 /**
  * Describes a single breeding job.
@@ -12,6 +14,8 @@ export interface BreedingJob {
   readonly type: EggType
   /** Target rarity applied to the resulting egg. */
   readonly rarity: number
+  /** Identifier of the specific parent Shlagémon. */
+  readonly monId: string
   /** Identifier of the parent Shlagémon base. */
   readonly parentId: string
   /** Timestamp when the job started in milliseconds. */
@@ -34,6 +38,7 @@ export const useBreedingStore = defineStore('breeding', () => {
   const byType = ref<BreedingState['byType']>({})
   const game = useGameStore()
   const eggBox = useEggBoxStore()
+  const dex = useShlagedexStore()
 
   /**
    * Retrieve the job associated with the given type.
@@ -75,8 +80,10 @@ export const useBreedingStore = defineStore('breeding', () => {
    *
    * @returns `true` when the job started successfully.
    */
-  function start(type: EggType, rarity: number, parentId: string): boolean {
+  function start(type: EggType, rarity: number, parent: DexShlagemon): boolean {
     if (byType.value[type])
+      return false
+    if (parent.busy)
       return false
     const cost = breedingCost(rarity)
     if (game.shlagidolar < cost)
@@ -86,11 +93,13 @@ export const useBreedingStore = defineStore('breeding', () => {
     byType.value[type] = {
       type,
       rarity,
-      parentId,
+      monId: parent.id,
+      parentId: parent.base.id,
       startedAt,
       endsAt: startedAt + BREEDING_DURATION_MS,
       status: 'running',
     }
+    parent.busy = true
     return true
   }
 
@@ -104,6 +113,9 @@ export const useBreedingStore = defineStore('breeding', () => {
     if (Date.now() < job.endsAt)
       return false
     job.status = 'completed'
+    const mon = dex.shlagemons.find(m => m.id === job.monId)
+    if (mon)
+      mon.busy = false
     return true
   }
 
@@ -129,8 +141,12 @@ export const useBreedingStore = defineStore('breeding', () => {
    */
   function clearFinished(): void {
     for (const [key, job] of Object.entries(byType.value)) {
-      if (job?.status === 'completed')
+      if (job?.status === 'completed') {
+        const mon = dex.shlagemons.find(m => m.id === job.monId)
+        if (mon)
+          mon.busy = false
         delete byType.value[key as EggType]
+      }
     }
   }
 

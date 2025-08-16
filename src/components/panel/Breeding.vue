@@ -13,6 +13,7 @@ const { t, tm } = useI18n()
 const breeding = useBreedingStore()
 const game = useGameStore()
 const panel = useMainPanelStore()
+const dex = useShlagedexStore()
 
 function onExit() {
   panel.showVillage()
@@ -59,6 +60,7 @@ const remainingLabel = computed<string>(() => {
   const s = total % 60
   return `${m}:${String(s).padStart(2, '0')}`
 })
+const busyIds = computed(() => dex.shlagemons.filter(m => m.busy).map(m => m.id))
 
 function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
   const key = isRunning.value ? 'running' : 'idle'
@@ -92,7 +94,7 @@ function changeMon() {
 function start() {
   if (!eggType.value || !selected.value)
     return
-  if (breeding.start(eggType.value, selected.value.rarity, selected.value.base.id))
+  if (breeding.start(eggType.value, selected.value.rarity, selected.value))
     toast.success(t('components.panel.Breeding.toast.started'))
 }
 function collect() {
@@ -184,6 +186,7 @@ watch([selected, isCompleted], () => {
           v-model="selectorOpen"
           :title="t('components.panel.Breeding.selectMon')"
           title-id="breeding-select-title"
+          :disabled-ids="busyIds"
           @select="selectMon"
         />
       </div>

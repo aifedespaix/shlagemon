@@ -9,12 +9,14 @@ interface Props {
    * Defaults to `true` to preserve existing behaviour.
    */
   selectsActive?: boolean
+  disabledIds?: string[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
   selected: () => [],
   locked: false,
   selectsActive: true,
+  disabledIds: () => [],
 })
 const emit = defineEmits<{ (e: 'select', mon: DexShlagemon): void }>()
 const dex = useShlagedexStore()
@@ -32,5 +34,6 @@ function choose(mon: DexShlagemon) {
     :highlight-ids="props.selected"
     :on-item-click="choose"
     :locked="props.locked"
+    :disabled-ids="props.disabledIds"
   />
 </template>

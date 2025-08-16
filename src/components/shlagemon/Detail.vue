@@ -116,6 +116,14 @@ const captureInfo = computed(() => {
       <h2 class="flex items-center justify-between text-lg font-bold">
         <div class="flex items-center gap-1">
           <span :class="mon.isShiny ? 'shiny-text' : ''">{{ t(mon.base.name) }}</span>
+          <span
+            v-if="mon.busy"
+            v-tooltip="t('components.shlagemon.Detail.busyTooltip')"
+            :aria-label="t('components.shlagemon.Detail.busyTooltip')"
+            class="text-sky-600"
+          >
+            <div i-game-icons:hourglass aria-hidden="true" />
+          </span>
           - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> ({{ t('components.shlagemon.Detail.sick') }})</span>
         </div>
         <ShlagemonRarityInfo :rarity="mon.rarity" class="rounded-tr-0" />

@@ -16,6 +16,8 @@ interface Props {
   locked?: boolean
   /** Whether selecting also sets the active combatant. */
   selectsActive?: boolean
+  /** IDs of Shlagémons that cannot be selected. */
+  disabledIds?: string[]
   /** Optional ID for the title element (used for aria-labelledby). */
   titleId?: string
 }
@@ -24,6 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
   selected: () => [],
   locked: false,
   selectsActive: true,
+  disabledIds: () => [],
 })
 
 const emit = defineEmits<{
@@ -54,6 +57,7 @@ function onSelect(mon: DexShlagemon) {
         class="max-h-60vh"
         :selected="selected"
         :locked="locked"
+        :disabled-ids="disabledIds"
         :selects-active="selectsActive"
         @select="onSelect"
       />

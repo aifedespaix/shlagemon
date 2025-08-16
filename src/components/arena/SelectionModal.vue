@@ -8,10 +8,13 @@ interface Props {
    * Currently selected Shlagemon for the opened slot.
    */
   initial?: DexShlagemon | null
+  /** IDs of Shlagémons that cannot be selected. */
+  disabledIds?: string[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
   initial: null,
+  disabledIds: () => [],
 })
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
@@ -51,7 +54,7 @@ function confirm() {
       {{ t('components.arena.SelectionModal.title', { name: t(props.mon.base.name) }) }}
     </h3>
     <ArenaEnemyStatsCompact :mon="props.mon" enemy />
-    <ShlagemonQuickSelect class="flex-1" :selected="props.selected" @select="onSelect" />
+    <ShlagemonQuickSelect class="flex-1" :selected="props.selected" :disabled-ids="props.disabledIds" @select="onSelect" />
     <ArenaEnemyStatsCompact v-if="candidate" :mon="candidate" />
     <UiButton v-if="candidate" class="mt-2" type="primary" @click="confirm">
       {{ t('components.arena.SelectionModal.confirm') }}

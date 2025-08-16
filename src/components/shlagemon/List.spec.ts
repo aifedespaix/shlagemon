@@ -45,6 +45,7 @@ function createMon(heldItemId?: string) {
     isShiny: false,
     hpCurrent: 1,
     allowEvolution: false,
+    busy: false,
     hp: 1,
     attack: 1,
     defense: 1,

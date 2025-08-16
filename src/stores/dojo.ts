@@ -63,6 +63,9 @@ export const useDojoStore = defineStore('dojo', () => {
       return { ok: false as const, reason: 'invalid_points' as const }
     if (isTraining(monId))
       return { ok: false as const, reason: 'already_training' as const }
+    const mon = dex.shlagemons.find(m => m.id === monId)
+    if (!mon || mon.busy)
+      return { ok: false as const, reason: 'busy' as const }
     const capped = Math.min(points, 100 - fromRarity)
     if (capped < 1)
       return { ok: false as const, reason: 'invalid_points' as const }
@@ -81,6 +84,7 @@ export const useDojoStore = defineStore('dojo', () => {
       paid: cost,
       status: 'running',
     }
+    mon.busy = true
     return { ok: true as const }
   }
 
@@ -91,16 +95,22 @@ export const useDojoStore = defineStore('dojo', () => {
     if (Date.now() < job.endsAt)
       return false
     const mon = dex.shlagemons.find(m => m.id === monId)
-    if (mon)
+    if (mon) {
       mon.rarity = Math.min(100, job.targetRarity)
+      mon.busy = false
+    }
     delete byMonId.value[monId]
     return true
   }
 
   function clearFinished(): void {
     for (const [id, job] of Object.entries(byMonId.value)) {
-      if (job && Date.now() >= job.endsAt)
+      if (job && Date.now() >= job.endsAt) {
+        const mon = dex.shlagemons.find(m => m.id === id)
+        if (mon)
+          mon.busy = false
         delete byMonId.value[id]
+      }
     }
   }
 
