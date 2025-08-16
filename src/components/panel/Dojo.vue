@@ -10,6 +10,7 @@ const panel = useMainPanelStore()
 const dojo = useDojoStore()
 const game = useGameStore()
 const dex = useShlagedexStore()
+const busyIds = useBusyShlagemonIds()
 const { t } = useI18n()
 
 function onExit() {
@@ -217,6 +218,7 @@ const ids = {
         v-model="selectorOpen"
         :title="t('components.panel.Dojo.selectMon')"
         title-id="dojo-select-title"
+        :disabled-ids="busyIds"
         @select="selectMon"
       />
     </template>

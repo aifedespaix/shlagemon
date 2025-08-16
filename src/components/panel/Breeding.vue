@@ -14,6 +14,7 @@ const breeding = useBreedingStore()
 const game = useGameStore()
 const panel = useMainPanelStore()
 const dex = useShlagedexStore()
+const busyIds = useBusyShlagemonIds()
 
 function onExit() {
   panel.showVillage()
@@ -176,6 +177,7 @@ watch([selected, isCompleted], () => {
           v-model="selectorOpen"
           :title="t('components.panel.Breeding.selectMon')"
           title-id="breeding-select-title"
+          :disabled-ids="busyIds"
           @select="selectMon"
         />
       </div>

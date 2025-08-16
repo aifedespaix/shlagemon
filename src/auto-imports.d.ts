@@ -176,6 +176,7 @@ declare global {
   const useBreedingStore: typeof import('./stores/breeding')['useBreedingStore']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
+  const useBusyShlagemonIds: typeof import('./composables/useBusyShlagemonIds')['useBusyShlagemonIds']
   const useCached: typeof import('@vueuse/core')['useCached']
   const useCaptureLimitModalStore: typeof import('./stores/captureLimitModal')['useCaptureLimitModalStore']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
@@ -685,6 +686,7 @@ declare module 'vue' {
     readonly useBreedingStore: UnwrapRef<typeof import('./stores/breeding')['useBreedingStore']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
+    readonly useBusyShlagemonIds: UnwrapRef<typeof import('./composables/useBusyShlagemonIds')['useBusyShlagemonIds']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
     readonly useCaptureLimitModalStore: UnwrapRef<typeof import('./stores/captureLimitModal')['useCaptureLimitModalStore']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
