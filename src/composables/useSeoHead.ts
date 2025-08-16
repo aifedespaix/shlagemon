@@ -1,4 +1,5 @@
-import { availableLocales } from '~/constants/locales'
+import type { Locale } from '~/constants/locales'
+import { availableLocales, defaultLocale } from '~/constants/locales'
 import { localizedRoutes } from '~/router/localizedRoutes'
 
 /**
@@ -22,8 +23,17 @@ export function useSeoHead() {
   const baseName = computed(() => String(route.name).replace(`${locale.value}-`, ''))
   const entry = computed(() => localizedRoutes.find(r => r.name === baseName.value))
 
+  const pickBest = (group: Record<Locale, string>, pref: Locale): string =>
+    group[pref]
+    ?? group.en
+    ?? group.fr
+    ?? '/'
+
   const canonicalUrl = computed(() => {
-    const path = entry.value?.paths[locale.value] ?? route.path
+    if (!entry.value)
+      return `${SITE_URL}${route.path}`
+
+    const path = pickBest(entry.value.paths as Record<Locale, string>, locale.value as Locale)
     return `${SITE_URL}${path}`
   })
 
@@ -31,17 +41,18 @@ export function useSeoHead() {
     if (!entry.value)
       return []
 
-    return availableLocales
-      .map((loc) => {
-        const path = entry.value!.paths[loc]
-        if (!path)
-          return null
-        return {
-          hreflang: loc,
-          href: `${SITE_URL}${path}`,
-        }
-      })
-      .filter(Boolean) as AlternateLink[]
+    const paths = entry.value.paths as Record<Locale, string>
+    const isHome = baseName.value === 'home'
+
+    const links = availableLocales.map(loc => ({
+      hreflang: loc,
+      href: `${SITE_URL}${pickBest(paths, loc)}`,
+    }))
+
+    const xDefaultPath = isHome ? '/' : pickBest(paths, defaultLocale)
+    links.push({ hreflang: 'x-default', href: `${SITE_URL}${xDefaultPath}` })
+
+    return links
   })
 
   useHead(() => ({
