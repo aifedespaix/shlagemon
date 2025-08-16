@@ -2501,4 +2501,4 @@ common:
   remove: Supprimer
   min: Min
   max: Max
-  eggOf: Oeuf de {name}
+  eggOf: Œuf de {name}

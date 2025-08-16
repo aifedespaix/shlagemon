@@ -3,7 +3,7 @@ fr:
   pleaseWait: Veuillez patienter
   copy: Copier
   remove: Supprimer
-  eggOf: 'Oeuf de {name}'
+  eggOf: 'Œuf de {name}'
 
 en:
   loading: Loading…
