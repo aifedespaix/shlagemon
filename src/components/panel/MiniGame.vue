@@ -8,6 +8,17 @@ const panel = useMainPanelStore()
 const zone = useZoneStore()
 const { t } = useI18n()
 
+/**
+ * Reference to the dialog flow to control phase transitions.
+ */
+const flow = ref<InstanceType<typeof PanelPoiDialogFlow> | null>(null)
+
+/**
+ * Changes to this key force a remount of the mini-game component,
+ * ensuring its internal state resets on restart.
+ */
+const gameKey = ref(0)
+
 const miniGameMusic = '/audio/musics/games/mini-game.ogg'
 const zoneTrack = computed(() => getZoneTrack(zone.current.id, zone.current.type) ?? miniGameMusic)
 const gameDef = computed(() => mini.currentId ? getMiniGame(mini.currentId) : undefined)
@@ -18,6 +29,13 @@ watchEffect(async () => {
     GameComp.value = (await gameDef.value.component()).default
   else
     GameComp.value = undefined
+})
+
+watch(() => mini.phase, (phase) => {
+  if (phase === 'game') {
+    gameKey.value++
+    flow.value?.startContent()
+  }
 })
 
 function leaveGame() {
@@ -48,6 +66,7 @@ function createOutro(result: string | undefined, exit: () => void): DialogNode[]
 <template>
   <PanelPoiDialogFlow
     v-if="gameDef"
+    ref="flow"
     :title="gameDef.label"
     :exit-text="t('components.panel.MiniGame.exit')"
     :character="gameDef.character"
@@ -59,6 +78,7 @@ function createOutro(result: string | undefined, exit: () => void): DialogNode[]
     <template #default="slot">
       <component
         :is="GameComp"
+        :key="gameKey"
         @win="() => { mini.finish('win'); slot.finish?.('win') }"
         @lose="() => { mini.finish('lose'); slot.finish?.('lose') }"
         @draw="() => { mini.finish('draw'); slot.finish?.('draw') }"

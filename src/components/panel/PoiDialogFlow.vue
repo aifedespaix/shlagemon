@@ -67,6 +67,11 @@ onMounted(() => {
       audio.fadeToMusic(track)
   }
 })
+
+/**
+ * Exposes methods for parent components to control the dialog flow.
+ */
+defineExpose({ startContent })
 </script>
 
 <template>
