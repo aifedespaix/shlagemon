@@ -1,15 +1,10 @@
-// src/pwa/manifest.ts
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import type { Locale } from '~/constants/locales'
 
-/**
- * Manifest unique (scope/start_url à la racine).
- * Localisation gérée par l'app (router/i18n), pas par le manifest.
- */
-const base: ManifestOptions = {
+export const manifest = {
   id: '/',
-  start_url: '/',          // ✅ unique & offline-friendly
-  scope: '/',              // ✅ SW couvre toute l'app
+  start_url: '/',
+  scope: '/',
   display: 'standalone',
   display_override: ['window-controls-overlay', 'standalone'],
   launch_handler: { client_mode: 'navigate-existing' },
@@ -18,12 +13,10 @@ const base: ManifestOptions = {
   background_color: '#1865ab',
   edge_side_panel: { preferred_width: 400 },
 
-  // Choisis un nom/desc neutres (une seule langue possible dans le manifest)
   name: 'Shlagémon',
   short_name: 'Shlagémon',
   description: 'Catch all the Shlagemons before they rot the whole world.',
 
-  // L’UI sera traduite par l’app ; "lang" ici est purement informatif
   lang: 'en',
   dir: 'ltr',
 
@@ -47,16 +40,10 @@ const base: ManifestOptions = {
   protocol_handlers: [],
   categories: ['games', 'idle', 'strategy'],
 
-  // File associations à la racine : tu dispatches vers /fr ou /en dans l’app
   file_handlers: [
     {
       action: '/save/import',
       accept: { 'application/x-shlag': ['.shlag'] },
     },
   ],
-}
-
-export function getPwaManifest(_locale: Locale): ManifestOptions {
-  // On renvoie le manifest unique ; la locale est gérée par l’app au boot.
-  return base
-}
+} satisfies Partial<ManifestOptions>

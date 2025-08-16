@@ -14,7 +14,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 import generateSitemap from './scripts/generate-sitemap/generate-sitemap'
-import { getPwaManifest } from './src/pwa/manifest'
+import { manifest } from './src/pwa/manifest'
 import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
 
@@ -96,24 +96,21 @@ export default defineConfig({
       },
     }),
 
-    // https://github.com/antfu/vite-plugin-pwa
-    ...(['fr', 'en'] as const).map(locale => VitePWA({
-      devOptions: { enabled: true },
-      registerType: 'prompt',
+    VitePWA({
+      devOptions: { enabled: true },         // SW actif en dev
+      registerType: 'prompt',                // comme avant (ou "autoUpdate" si tu préfères)
       includeAssets: ['favicon.svg', 'favicon.png', 'safari-pinned-tab.svg'],
-      manifest: getPwaManifest(locale),
-      manifestFilename: `${locale}/manifest.webmanifest`,
+
+      // ✅ Un seul manifest à la racine
+      manifest, // la locale est ignorée dans ta nouvelle implé, on garde la signature
+      manifestFilename: 'manifest.webmanifest',
+
       workbox: {
-        // Précache : ajoute webp/avif/ogg
-        globPatterns: ['**/*.{js,css,html,ico,svg,webp,avif,ogg}'],
-
-        // Les sons sont souvent > 2Mo → on augmente la limite de précache
-        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15 Mo
-
-        // Runtime caching : images + audio
+        globPatterns: ['**/*.{js,css,html,ico,svg,png,jpg,jpeg,webp,avif,ogg}'],
+        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
+        navigateFallback: '/',
         runtimeCaching: [
           {
-            // IMAGES (webp/avif/png/jpg/svg…)
             urlPattern: ({ request }) => request.destination === 'image',
             handler: 'CacheFirst',
             options: {
@@ -126,7 +123,6 @@ export default defineConfig({
             },
           },
           {
-            // AUDIO (ogg, mp3 si tu en ajoutes plus tard)
             urlPattern: ({ request }) => request.destination === 'audio',
             handler: 'CacheFirst',
             options: {
@@ -139,16 +135,13 @@ export default defineConfig({
             },
           },
           {
-            // Assets Vite sur le même origin → SWR pour les MAJ silencieuses
-            urlPattern: ({ url }) =>
-              url.origin === globalThis.location.origin, // && url.pathname.startsWith('/assets/'),
+            urlPattern: ({ url }) => url.origin === globalThis.location.origin,
             handler: 'StaleWhileRevalidate',
             options: { cacheName: 'static-assets' },
           },
         ],
       },
-    })),
-
+    }),
     // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
