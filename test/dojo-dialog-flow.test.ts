@@ -7,6 +7,13 @@ import DialogBox from '../src/components/dialog/Box.vue'
 import Dojo from '../src/components/panel/Dojo.vue'
 import PoiDialogFlow from '../src/components/panel/PoiDialogFlow.vue'
 
+class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+vi.stubGlobal('ResizeObserver', ResizeObserver)
+
 vi.mock('../src/modules/toast', () => ({
   toast: { success: vi.fn() },
 }))
@@ -76,7 +83,7 @@ const globalStubs = {
   UiAdaptiveDisplayer: { template: '<div><slot /></div>' },
   UiCurrencyAmount: { template: '<span />' },
   UiModal: { template: '<div><slot /></div>' },
-  ShlagemonQuickSelect: { template: '<div />' },
+  ShlagemonSelectModal: { template: '<div />' },
   UiNumberInput: { props: ['modelValue'], emits: ['update:modelValue', 'input'], template: '<input :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value); $emit(\'input\', $event.target.value)" />' },
   ShlagemonImage: { template: '<div />' },
   CharacterImage: { template: '<div />' },

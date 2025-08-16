@@ -62,7 +62,7 @@ function createI18nInstance() {
 }
 
 const globalStubs = {
-  ShlagemonQuickSelect: { name: 'ShlagemonQuickSelect', template: '<div />' },
+  ShlagemonSelectModal: { name: 'ShlagemonSelectModal', template: '<div><slot /></div>' },
   ShlagemonImage: true,
   ShlagemonRarityInfo: { name: 'ShlagemonRarityInfo', template: '<div />' },
   RarityInfo: { name: 'RarityInfo', template: '<div />' },
@@ -88,7 +88,7 @@ describe('arena selection modal', () => {
     const enemy = createMon('enemy', 5)
     const candidate = createMon('candidate', 7)
 
-    const wrapper = mountModal({ mon: enemy, selected: [] })
+    const wrapper = mountModal({ mon: enemy, selected: [], modelValue: true })
     ;(wrapper.vm as unknown as { candidate: DexShlagemon | null }).candidate = candidate
     await nextTick()
 
@@ -104,7 +104,7 @@ describe('arena selection modal', () => {
     const first = createMon('first', 6)
     const second = createMon('second', 8)
 
-    const wrapper = mountModal({ mon: enemy, selected: [], initial: first })
+    const wrapper = mountModal({ mon: enemy, selected: [], initial: first, modelValue: true })
     expect(wrapper.text()).toContain('lvl 6')
 
     await wrapper.setProps({ initial: second })

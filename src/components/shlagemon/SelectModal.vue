@@ -18,6 +18,11 @@ interface Props {
   locked?: boolean
   /** Whether selecting also sets the active combatant. */
   selectsActive?: boolean
+  /**
+   * Close the modal automatically when a Shlagémon is selected.
+   * Defaults to `true` to preserve current behaviour.
+   */
+  closeOnSelect?: boolean
   /** Optional ID for the title element (used for aria-labelledby). */
   titleId?: string
 }
@@ -27,6 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabledIds: () => [],
   locked: false,
   selectsActive: true,
+  closeOnSelect: true,
 })
 
 const emit = defineEmits<{
@@ -44,7 +50,8 @@ function handleClick(mon: DexShlagemon) {
   if (props.selectsActive)
     dex.setActiveShlagemon(mon)
   emit('select', mon)
-  open.value = false
+  if (props.closeOnSelect)
+    open.value = false
 }
 
 function handleActivate(mon: DexShlagemon) {
@@ -75,6 +82,7 @@ function handleActivate(mon: DexShlagemon) {
       <p v-else class="text-center text-sm">
         {{ t('components.shlagemon.SelectModal.noAvailable') }}
       </p>
+      <slot />
     </div>
   </UiModal>
 </template>
