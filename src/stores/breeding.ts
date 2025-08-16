@@ -124,7 +124,6 @@ export const useBreedingStore = defineStore('breeding', () => {
     if (now.value < job.endsAt)
       return false
     job.status = 'completed'
-    dex.setBusy(job.monId, false)
     return true
   }
 
@@ -141,6 +140,7 @@ export const useBreedingStore = defineStore('breeding', () => {
       return false
     const ancestorId = findRootAncestorId(job.parentId)
     eggBox.addBreedingEgg(ancestorId, job.type, job.rarity)
+    dex.setBusy(job.monId, false)
     delete byType.value[type]
     toast.success(i18n.global.t('components.panel.Breeding.toast.collected'))
     return true
@@ -153,7 +153,6 @@ export const useBreedingStore = defineStore('breeding', () => {
     for (const [key, job] of Object.entries(byType.value)) {
       if (job?.status === 'completed') {
         delete byType.value[key as EggType]
-        dex.setBusy(job.monId, false)
       }
     }
   }

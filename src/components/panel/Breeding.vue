@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BreedingJob } from '~/stores/breeding'
 import type { EggType } from '~/stores/egg'
 import type { DialogNode } from '~/type/dialog'
 
@@ -12,6 +13,7 @@ const { t, tm } = useI18n()
 const breeding = useBreedingStore()
 const game = useGameStore()
 const panel = useMainPanelStore()
+const dex = useShlagedexStore()
 
 function onExit() {
   panel.showVillage()
@@ -33,6 +35,15 @@ function createIntro(next: () => void): DialogNode[] {
 const selected = ref<DexShlagemon | null>(null)
 const selectorOpen = ref(false)
 const typingText = ref('')
+
+watchEffect(() => {
+  if (selected.value)
+    return
+  const job = Object.values(breeding.byType).find((j): j is BreedingJob => Boolean(j))
+  if (!job)
+    return
+  selected.value = dex.shlagemons.find(m => m.id === job.monId) ?? null
+})
 
 /** === Derived =========================================================== */
 const eggType = computed<EggType | null>(() =>
