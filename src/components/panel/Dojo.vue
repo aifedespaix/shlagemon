@@ -2,9 +2,8 @@
 import type { DojoTrainingJob } from '~/stores/dojo'
 import type { DialogNode } from '~/type/dialog'
 import type { DexShlagemon } from '~/type/shlagemon'
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { glandhi } from '~/data/characters/glandhi'
-import { toast } from '~/modules/toast'
 import { dojoTrainingCost, useDojoStore } from '~/stores/dojo'
 
 const panel = useMainPanelStore()
@@ -32,16 +31,6 @@ function createIntro(next: () => void): DialogNode[] {
 const selected = ref<DexShlagemon | null>(null)
 const selectorOpen = ref(false)
 const points = ref<number>(1)
-const now = ref<number>(Date.now())
-
-const { pause: pauseTick } = useIntervalFn(
-  () => {
-    now.value = Date.now()
-  },
-  1000,
-)
-onBeforeUnmount(pauseTick)
-
 const clamp = (val: number, min: number, max: number): number => Math.min(max, Math.max(min, val))
 const safeMax = computed<number>(() => (selected.value ? Math.max(1, 100 - selected.value.rarity) : 1))
 
@@ -84,32 +73,14 @@ watch(selected, () => {
 const cost = computed<number>(() => (selected.value ? dojoTrainingCost(selected.value.rarity, clamp(points.value, 1, safeMax.value)) : 0))
 const durationMin = computed<number>(() => clamp(points.value, 1, safeMax.value))
 
-const remaining = computed<number>(() => {
-  void now.value
-  return job.value ? Math.max(0, Math.ceil(dojo.remainingMs(job.value.monId) / 1000)) : 0
-})
-const progress = computed<number>(() => {
-  void now.value
-  return job.value ? Math.min(100, Math.max(0, dojo.progressRatio(job.value.monId) * 100)) : 0
-})
+const remaining = computed<number>(() => (job.value ? Math.max(0, Math.ceil(dojo.remainingMs(job.value.monId) / 1000)) : 0))
+const progress = computed<number>(() => (job.value ? Math.min(100, Math.max(0, dojo.progressRatio(job.value.monId) * 100)) : 0))
 
 const remainingLabel = computed<string>(() => {
   const s = remaining.value
   const m = Math.floor(s / 60)
   const r = s % 60
   return `${m}:${String(r).padStart(2, '0')}`
-})
-
-watch(now, () => {
-  const mon = selected.value
-  if (!mon)
-    return
-  if (dojo.completeIfDue(mon.id)) {
-    toast.success(t('components.panel.Dojo.toast.finished'))
-  }
-})
-watch(selected, () => {
-  points.value = 1
 })
 
 onMounted(() => {
@@ -139,9 +110,7 @@ function setPointsFromNumber(val: number | string) {
 function start() {
   if (!selected.value)
     return
-  const res = dojo.startTraining(selected.value.id, selected.value.rarity, points.value)
-  if (res.ok)
-    toast.success(t('components.panel.Dojo.toast.started'))
+  dojo.startTraining(selected.value.id, selected.value.rarity, points.value)
 }
 
 /** === A11y IDs ========================================================== */
