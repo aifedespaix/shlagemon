@@ -47,8 +47,10 @@ export const useDojoStore = defineStore('dojo', () => {
 
   useIntervalFn(() => {
     now.value = Date.now()
-    for (const id of Object.keys(byMonId.value))
-      completeIfDue(id)
+    for (const id of Object.keys(byMonId.value)) {
+      if (completeIfDue(id))
+        toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
+    }
   }, 1000)
 
   function getJob(monId: string): DojoTrainingJob | null {
@@ -105,16 +107,12 @@ export const useDojoStore = defineStore('dojo', () => {
 
   function completeIfDue(monId: string): boolean {
     const job = byMonId.value[monId]
-    if (!job)
+    if (!job || job.status !== 'running')
       return false
     if (now.value < job.endsAt)
       return false
-    if (job.status === 'running') {
-      job.status = 'completed'
-      toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
-      return true
-    }
-    return false
+    job.status = 'completed'
+    return true
   }
 
   function collect(monId: string): boolean {
