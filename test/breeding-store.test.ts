@@ -5,6 +5,9 @@ import { useEggBoxStore } from '../src/stores/eggBox'
 import { useGameStore } from '../src/stores/game'
 import { BREEDING_DURATION_MS } from '../src/utils/breeding'
 
+vi.mock('../src/modules/toast', () => ({ toast: { success: vi.fn() } }))
+vi.mock('../src/modules/i18n', () => ({ i18n: { global: { t: (k: string) => k } } }))
+
 vi.mock('../src/stores/egg', () => ({
   useEggStore: () => ({ incubator: [], startIncubation: vi.fn() }),
 }))
@@ -28,8 +31,8 @@ describe('breeding store', () => {
     expect(breeding.start('feu', 10, 'salamiches')).toBe(true)
     expect(breeding.start('feu', 10, 'salamiches')).toBe(false)
 
-    vi.advanceTimersByTime(BREEDING_DURATION_MS + 1)
-    expect(breeding.completeIfDue('feu')).toBe(true)
+    vi.advanceTimersByTime(BREEDING_DURATION_MS + 1000)
+    expect(breeding.getJob('feu')?.status).toBe('completed')
     expect(breeding.start('feu', 10, 'salamiches')).toBe(false)
     expect(box.breeding.length).toBe(0)
 
@@ -47,8 +50,7 @@ describe('breeding store', () => {
     game.shlagidolar = 1_000_000
 
     expect(breeding.start('feu', 10, 'raptorincel')).toBe(true)
-    vi.advanceTimersByTime(BREEDING_DURATION_MS + 1)
-    expect(breeding.completeIfDue('feu')).toBe(true)
+    vi.advanceTimersByTime(BREEDING_DURATION_MS + 1000)
     expect(breeding.collectEgg('feu')).toBe(true)
     expect(box.breeding[0].monId).toBe('salamiches')
   })
