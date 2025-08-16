@@ -231,18 +231,6 @@ const ids = {
         title-id="dojo-select-title"
         @select="selectMon"
       />
-
-      <!-- Sélecteur -->
-      <UiModal v-model="selectorOpen" role="dialog" aria-modal="true" aria-labelledby="dojo-select-title">
-        <div class="max-w-160 flex flex-col gap-2">
-          <h3 id="dojo-select-title" class="text-center text-lg font-bold">
-            {{ t('components.panel.Dojo.selectMon') }}
-          </h3>
-          <div class="max-h-80 min-h-0 overflow-y-auto">
-            <ShlagemonQuickSelect @select="selectMon" />
-          </div>
-        </div>
-      </UiModal>
     </template>
     <template #footer>
       <div class="w-full flex justify-end gap-1 md:flex-nowrap md:justify-end">

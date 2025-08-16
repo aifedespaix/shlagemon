@@ -198,15 +198,14 @@ onUnmounted(() => {
             </UiButton>
           </div>
         </div>
-        <UiModal v-model="showDex">
-          <ArenaSelectionModal
-            v-if="selectedEnemy"
-            :mon="selectedEnemy"
-            :selected="arena.selections.filter(Boolean) as string[]"
-            :initial="currentSelection"
-            @select="onMonSelected"
-          />
-        </UiModal>
+        <ArenaSelectionModal
+          v-if="selectedEnemy"
+          v-model="showDex"
+          :mon="selectedEnemy"
+          :selected="arena.selections.filter(Boolean) as string[]"
+          :initial="currentSelection"
+          @select="onMonSelected"
+        />
       </div>
     </div>
     <div v-if="showDuel" class="h-full w-full flex flex-1 flex-col items-center gap-2">
