@@ -49,23 +49,18 @@ function createMon(id = 'm1') {
 }
 
 describe('listGeneric', () => {
-  it('uses store shlagemons and emits callbacks', async () => {
+  it('uses store shlagemons and emits events', async () => {
     const mon = createMon()
     shlagemons.value = [mon]
-    const click = vi.fn()
-    const activate = vi.fn()
-    const wrapper = mount(ListGeneric, {
-      props: { onItemClick: click, onItemActivate: activate },
-      global: { stubs },
-    })
+    const wrapper = mount(ListGeneric, { global: { stubs } })
 
     const item = wrapper.find('.item')
     expect(item.exists()).toBe(true)
 
     await item.trigger('click')
-    expect(click).toHaveBeenCalledWith(mon)
+    expect(wrapper.emitted('select')?.[0]).toEqual([mon])
 
     await item.trigger('activate')
-    expect(activate).toHaveBeenCalledWith(mon)
+    expect(wrapper.emitted('activate')?.[0]).toEqual([mon])
   })
 })

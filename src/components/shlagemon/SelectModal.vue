@@ -46,7 +46,7 @@ const headingId = computed(() => props.titleId || defaultTitleId)
 const dex = useShlagedexStore()
 const { t } = useI18n()
 
-function handleClick(mon: DexShlagemon) {
+function handleSelect(mon: DexShlagemon) {
   if (props.selectsActive)
     dex.setActiveShlagemon(mon)
   emit('select', mon)
@@ -76,8 +76,8 @@ function handleActivate(mon: DexShlagemon) {
         :disabled-ids="disabledIds"
         :locked="locked"
         :active-id="dex.activeShlagemon?.id"
-        :on-item-click="handleClick"
-        :on-item-activate="selectsActive ? handleActivate : undefined"
+        @select="handleSelect"
+        @activate="handleActivate"
       />
       <p v-else class="text-center text-sm">
         {{ t('components.shlagemon.SelectModal.noAvailable') }}

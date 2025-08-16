@@ -13,10 +13,6 @@ interface Props {
   activeId?: string | null
   /** Force the list into a locked state. */
   locked?: boolean
-  /** Callback triggered when an item is clicked. */
-  onItemClick?: (mon: DexShlagemon) => void
-  /** Callback triggered when an item is activated. */
-  onItemActivate?: (mon: DexShlagemon) => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -26,6 +22,13 @@ const props = withDefaults(defineProps<Props>(), {
   activeId: null,
   locked: undefined,
 })
+
+const emit = defineEmits<{
+  /** Emitted when a Shlagémon is selected (clicked). */
+  (e: 'select', mon: DexShlagemon): void
+  /** Emitted when a Shlagémon is activated. */
+  (e: 'activate', mon: DexShlagemon): void
+}>()
 
 const { t } = useI18n()
 
@@ -137,16 +140,16 @@ function evolutionDistance(mon: DexShlagemon): number {
   return Number.POSITIVE_INFINITY
 }
 
-function handleClick(mon: DexShlagemon) {
+function handleSelect(mon: DexShlagemon) {
   if (props.disabledIds.includes(mon.id))
     return
-  props.onItemClick?.(mon)
+  emit('select', mon)
 }
 
 function handleActivate(mon: DexShlagemon) {
   if (isLocked.value)
     return
-  props.onItemActivate?.(mon)
+  emit('activate', mon)
 }
 
 function isActive(mon: DexShlagemon) {
@@ -168,7 +171,7 @@ watch(
 <template>
   <LayoutScrollablePanel ref="panelRef">
     <template #header>
-      <div class="sticky top-0 z-40 w-full flex flex-col pt-1 gap-1 bg-white/70 backdrop-blur-lg dark:bg-gray-900/70">
+      <div class="sticky top-0 z-40 w-full flex flex-col gap-1 bg-white/70 pt-1 backdrop-blur-lg dark:bg-gray-900/70">
         <div class="flex items-center gap-1">
           <UiSortControls
             v-model:sort-by="filter.sortBy"
@@ -202,7 +205,7 @@ watch(
           :locked="isLocked"
           :item="mon.heldItemId ? items[mon.heldItemId] : null"
           :show-checkbox="props.showCheckbox"
-          @click="() => handleClick(mon)"
+          @click="() => handleSelect(mon)"
           @activate="() => handleActivate(mon)"
         />
       </TransitionGroup>
@@ -212,17 +215,19 @@ watch(
 
 <style scoped>
 :deep(.fade-list-move) {
-  transition: transform .22s cubic-bezier(.2,.7,.2,1);
+  transition: transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 :deep(.fade-list-enter-active),
 :deep(.fade-list-leave-active) {
-  transition: opacity .18s ease, transform .18s ease;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 :deep(.fade-list-enter-from),
 :deep(.fade-list-leave-to) {
   opacity: 0;
-  transform: translateY(12px) scale(.98);
+  transform: translateY(12px) scale(0.98);
 }
 
 :deep(.fade-list-leave-active) {

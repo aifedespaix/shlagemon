@@ -41,19 +41,14 @@ function open(mon: DexShlagemon | null) {
     showDetail.value = true
   }
 }
-
-/** Forwarded click handler from the list component. */
-function onItemClick(mon: DexShlagemon) {
-  open(mon)
-}
 </script>
 
 <template>
   <ShlagemonListGeneric
     show-checkbox
     :active-id="dex.activeShlagemon?.id"
-    :on-item-click="onItemClick"
-    :on-item-activate="dex.setActiveShlagemon"
+    @select="open"
+    @activate="dex.setActiveShlagemon"
   >
     <template #header-extra>
       <UiButton
