@@ -1,0 +1,5 @@
+# robots.txt for Shlagemon web application
+# This file tells search engine crawlers to index the entire site.
+
+User-agent: *
+Allow: /
