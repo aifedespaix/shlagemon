@@ -25,13 +25,16 @@ fr:
   progress: Progression
   status:
     running: Entraînement en cours
+    completed: Entraînement terminé
   cta:
     payAndStart: Payer & lancer
     changeMon: Changer de Shlagémon
     trainingRunning: Entraînement en cours
+    collect: Récupérer le Shlagémon
   toast:
     started: Entraînement lancé !
-    finished: Entraînement terminé ! Rareté améliorée.
+    finished: Entraînement terminé ! Récupère ton Shlagémon.
+    collected: Shlagémon récupéré ! Rareté améliorée.
 en:
   title: Dojo
   exit: Leave the dojo
@@ -59,10 +62,13 @@ en:
   progress: Progress
   status:
     running: Training in progress
+    completed: Training completed
   cta:
     payAndStart: Pay & start
     changeMon: Change Shlagémon
     trainingRunning: Training in progress
+    collect: Retrieve Shlagémon
   toast:
     started: Training started!
-    finished: Training finished! Rarity improved.
+    finished: Training finished! Retrieve your Shlagémon.
+    collected: Shlagémon retrieved! Rarity improved.

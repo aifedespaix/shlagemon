@@ -13,7 +13,8 @@ export interface DojoTrainingJob {
   readonly points: number
   readonly targetRarity: number
   readonly paid: number
-  readonly status: 'running'
+  /** Current status of the training job. */
+  status: 'running' | 'completed'
 }
 
 const COST_A = 1000
@@ -30,6 +31,11 @@ export function dojoTrainingCost(rarity: number, points: number): number {
   const k = Math.max(0, points)
   const cost = COST_A * COST_B ** (r - 1) * (COST_B ** k - 1) / (COST_B - 1)
   return Math.ceil(cost)
+}
+
+interface HydratedDojoStore {
+  byMonId: Record<string, DojoTrainingJob | undefined>
+  completeIfDue: (id: string) => boolean
 }
 
 export const useDojoStore = defineStore('dojo', () => {
@@ -103,18 +109,30 @@ export const useDojoStore = defineStore('dojo', () => {
       return false
     if (now.value < job.endsAt)
       return false
+    if (job.status === 'running') {
+      job.status = 'completed'
+      toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
+      return true
+    }
+    return false
+  }
+
+  function collect(monId: string): boolean {
+    const job = byMonId.value[monId]
+    if (!job || job.status !== 'completed')
+      return false
     const mon = dex.shlagemons.find(m => m.id === monId)
     if (mon)
       mon.rarity = Math.min(100, job.targetRarity)
     delete byMonId.value[monId]
     dex.setBusy(monId, false)
-    toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
+    toast.success(i18n.global.t('components.panel.Dojo.toast.collected'))
     return true
   }
 
   function clearFinished(): void {
     for (const [id, job] of Object.entries(byMonId.value)) {
-      if (job && now.value >= job.endsAt) {
+      if (job?.status === 'completed') {
         delete byMonId.value[id]
         dex.setBusy(id, false)
       }
@@ -129,11 +147,19 @@ export const useDojoStore = defineStore('dojo', () => {
     progressRatio,
     startTraining,
     completeIfDue,
+    collect,
     clearFinished,
     now,
   }
 }, {
   persist: {
     pick: ['byMonId'],
+    afterHydrate(ctx) {
+      const store = ctx.store as HydratedDojoStore
+      for (const id of Object.keys(store.byMonId)) {
+        if (store.completeIfDue(id))
+          toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
+      }
+    },
   },
 })

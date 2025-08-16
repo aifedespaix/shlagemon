@@ -15,7 +15,7 @@ describe('dojo store', () => {
     expect(dojoTrainingCost(99, 1)).toBe(10000000)
   })
 
-  it('starts and completes a training job', () => {
+  it('starts, completes and collects a training job', () => {
     const game = useGameStore()
     game.addShlagidolar(200000000)
     const dex = useShlagedexStore()
@@ -28,9 +28,14 @@ describe('dojo store', () => {
     expect(job).not.toBeNull()
     if (job)
       job.endsAt = Date.now() - 1
+    dojo.now = Date.now()
     const before = mon.rarity
     const completed = dojo.completeIfDue(mon.id)
     expect(completed).toBe(true)
+    expect(mon.rarity).toBe(before)
+    expect(mon.busy).toBe(true)
+    const collected = dojo.collect(mon.id)
+    expect(collected).toBe(true)
     expect(mon.rarity).toBe(before + 1)
     expect(mon.busy).toBe(false)
   })
