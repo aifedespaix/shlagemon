@@ -36,6 +36,14 @@ export interface BreedingState {
   byType: Record<EggType, BreedingJob | undefined>
 }
 
+/**
+ * Minimal shape of the store used during hydration.
+ */
+interface HydratedBreedingStore {
+  byType: BreedingState['byType']
+  completeIfDue: (type: EggType) => boolean
+}
+
 export const useBreedingStore = defineStore('breeding', () => {
   const byType = ref<BreedingState['byType']>({})
   const now = ref(Date.now())
@@ -172,5 +180,12 @@ export const useBreedingStore = defineStore('breeding', () => {
 }, {
   persist: {
     pick: ['byType'],
+    afterHydrate(ctx) {
+      const store = ctx.store as HydratedBreedingStore
+      for (const type of Object.keys(store.byType) as EggType[]) {
+        if (store.completeIfDue(type))
+          toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
+      }
+    },
   },
 })
