@@ -113,7 +113,7 @@ describe('main panel breeding', () => {
     ;(flow.vm as any).phase = 'content'
     await nextTick()
     const grids = wrapper.findAll('.area-grid')
-    expect(grids.length).toBeGreaterThan(1)
+    expect(grids.length).toBe(1)
     expect(wrapper.html()).toContain('/characters/norman')
     expect(wrapper.find('.typing').exists()).toBe(true)
   })
