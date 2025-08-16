@@ -1,16 +1,9 @@
 import type { Locale } from '~/constants/locales'
+import type { AlternateLink } from '~/utils/seo-links'
 import { availableLocales, defaultLocale } from '~/constants/locales'
+import { SITE_URL } from '~/constants/site'
 import { localizedRoutes } from '~/router/localizedRoutes'
-
-/**
- * Base URL for the deployed application used to build absolute links.
- */
-const SITE_URL = 'https://shlagemon.aife.io'
-
-interface AlternateLink {
-  hreflang: string
-  href: string
-}
+import { buildLocalizedLinks } from '~/utils/seo-links'
 
 /**
  * Manage canonical and alternate link tags based on the current route and locale.
@@ -19,51 +12,34 @@ interface AlternateLink {
 export function useSeoHead() {
   const route = useRoute()
 
-  const locale = computed(() => String(route.meta.locale))
+  const locale = computed(() => String(route.meta.locale) as Locale)
   const baseName = computed(() => String(route.name).replace(`${locale.value}-`, ''))
   const entry = computed(() => localizedRoutes.find(r => r.name === baseName.value))
 
-  const pickBest = (group: Record<Locale, string>, pref: Locale): string =>
-    group[pref]
-    ?? group.en
-    ?? group.fr
-    ?? '/'
-
-  const canonicalUrl = computed(() => {
+  const seoLinks = computed(() => {
     if (!entry.value)
-      return `${SITE_URL}${route.path}`
-
-    const path = pickBest(entry.value.paths as Record<Locale, string>, locale.value as Locale)
-    return `${SITE_URL}${path}`
-  })
-
-  const alternateLinks = computed<AlternateLink[]>(() => {
-    if (!entry.value)
-      return []
+      return { canonical: `${SITE_URL}${route.path}`, alternates: [] as AlternateLink[] }
 
     const paths = entry.value.paths as Record<Locale, string>
-    const isHome = baseName.value === 'home'
-
-    const links = availableLocales.map(loc => ({
-      hreflang: loc,
-      href: `${SITE_URL}${pickBest(paths, loc)}`,
-    }))
-
-    const xDefaultPath = isHome ? '/' : pickBest(paths, defaultLocale)
-    links.push({ hreflang: 'x-default', href: `${SITE_URL}${xDefaultPath}` })
-
-    return links
+    return buildLocalizedLinks({
+      paths,
+      siteUrl: SITE_URL,
+      currentLocale: locale.value,
+      locales: availableLocales,
+      defaultLocale,
+      isHome: baseName.value === 'home',
+    })
   })
 
   useHead(() => ({
     link: [
-      { rel: 'canonical', href: canonicalUrl.value },
-      ...alternateLinks.value.map(l => ({ rel: 'alternate', hreflang: l.hreflang, href: l.href })),
+      { rel: 'canonical', href: seoLinks.value.canonical },
+      ...seoLinks.value.alternates.map(l => ({ rel: 'alternate', hreflang: l.hreflang, href: l.href })),
     ],
   }))
 
   return {
-    canonicalUrl,
+    canonicalUrl: computed(() => seoLinks.value.canonical),
   }
 }
 
