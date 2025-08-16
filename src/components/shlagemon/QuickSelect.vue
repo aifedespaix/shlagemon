@@ -27,10 +27,11 @@ function choose(mon: DexShlagemon) {
 </script>
 
 <template>
-  <ShlagemonList
-    :mons="dex.shlagemons"
+  <ShlagemonListGeneric
     :highlight-ids="props.selected"
     :on-item-click="choose"
+    :on-item-activate="choose"
     :locked="props.locked"
+    :active-id="dex.activeShlagemon?.id"
   />
 </template>

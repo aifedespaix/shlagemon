@@ -12,7 +12,6 @@ fr:
     count: Nb obtentions
     date: Première capture
     evolution: Proche d'évoluer
-  new: 'Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons'
 en:
   search: Search
   sort:
@@ -27,4 +26,3 @@ en:
     count: Catch count
     date: First capture
     evolution: Ready to evolve
-  new: 'You have {n} new Shlagemon | You have {n} new Shlagemons'

@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
 import InventoryPanel from '../src/components/panel/Inventory.vue'
 import ZonePanel from '../src/components/panel/Zone.vue'
-import ShlagemonList from '../src/components/shlagemon/List.vue'
+import ShlagemonListGeneric from '../src/components/shlagemon/ListGeneric.vue'
 // Zone button components must be registered explicitly in tests because
 // automatic component registration is not available in the unit test environment.
 import ZoneButtonVillage from '../src/components/zone/ButtonVillage.vue'
@@ -45,8 +45,8 @@ describe('feature lock flags', () => {
     dex.createShlagemon(carapouffe)
     const featureLock = useFeatureLockStore()
     featureLock.lockShlagedex()
-    const wrapper = mount(ShlagemonList, {
-      props: { mons: dex.shlagemons, showCheckbox: true },
+    const wrapper = mount(ShlagemonListGeneric, {
+      props: { showCheckbox: true },
       global: { plugins: [pinia], directives: { tooltip: () => {} } },
     })
     await wrapper.vm.$nextTick()
@@ -61,8 +61,8 @@ describe('feature lock flags', () => {
     dex.createShlagemon(carapouffe)
     const featureLock = useFeatureLockStore()
     featureLock.lockShlagedex()
-    const wrapper = mount(ShlagemonList, {
-      props: { mons: dex.shlagemons, showCheckbox: true, locked: false },
+    const wrapper = mount(ShlagemonListGeneric, {
+      props: { showCheckbox: true, locked: false },
       global: { plugins: [pinia], directives: { tooltip: () => {} } },
     })
     await wrapper.vm.$nextTick()

@@ -38,8 +38,6 @@ const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 const panelRef = ref<{ scrollToTop: () => void } | null>(null)
 
-const newCount = computed(() => dex.newCount)
-
 const sortOptions = [
   { label: t('components.shlagemon.ListGeneric.sort.level'), value: 'level' },
   { label: t('components.shlagemon.ListGeneric.sort.rarity'), value: 'rarity' },
@@ -186,22 +184,14 @@ watch(
             v-model="filter.search"
             :placeholder="t('components.shlagemon.ListGeneric.search')"
           />
+          <slot name="header-extra" />
         </div>
       </div>
     </template>
 
     <template #content>
       <TransitionGroup name="fade-list" tag="div" class="grid grid-cols-1 gap-1">
-        <div v-if="newCount > 0" class="mb-1">
-          <UiInfo
-            color="info"
-            class="col-span-2 row-start-3"
-            ok-button
-            @ok="dex.markAllSeen"
-          >
-            {{ t('components.shlagemon.ListGeneric.new', newCount) }}
-          </UiInfo>
-        </div>
+        <slot name="content-top" />
         <ShlagemonListItem
           v-for="mon in displayedMons"
           :key="mon.id"
