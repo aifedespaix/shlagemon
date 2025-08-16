@@ -154,7 +154,6 @@ declare module 'vue' {
     ShlagemonList: typeof import('./components/shlagemon/List.vue')['default']
     ShlagemonListGeneric: typeof import('./components/shlagemon/ListGeneric.vue')['default']
     ShlagemonListItem: typeof import('./components/shlagemon/ListItem.vue')['default']
-    ShlagemonQuickSelect: typeof import('./components/shlagemon/QuickSelect.vue')['default']
     ShlagemonRarity: typeof import('./components/shlagemon/Rarity.vue')['default']
     ShlagemonRarityInfo: typeof import('./components/shlagemon/RarityInfo.vue')['default']
     ShlagemonSelectModal: typeof import('./components/shlagemon/SelectModal.vue')['default']
