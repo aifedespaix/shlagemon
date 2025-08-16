@@ -66,4 +66,11 @@ export interface DexShlagemon extends Stats {
    * Used to display a "new" badge in the dex until acknowledged.
    */
   isNew?: boolean
+
+  /**
+   * True when the Shlagémon is temporarily unavailable because it is engaged
+   * in dojo training or breeding. Busy monsters cannot be activated in the
+   * Shlagédex but remain selectable for other interactions.
+   */
+  busy: boolean
 }

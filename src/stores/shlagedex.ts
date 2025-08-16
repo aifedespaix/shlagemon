@@ -206,10 +206,27 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function setActiveShlagemon(mon: DexShlagemon) {
-    if (disease.active)
+    if (disease.active || mon.busy)
       return
     activeShlagemon.value = mon
     markSeen(mon)
+  }
+
+  /**
+   * Toggle the busy state of a Shlagémon and switch the active entry when
+   * necessary.
+   */
+  function setBusy(id: string, value: boolean) {
+    const mon = shlagemons.value.find(m => m.id === id)
+    if (!mon)
+      return
+    mon.busy = value
+    if (value && activeShlagemon.value?.id === id) {
+      const start = shlagemons.value.findIndex(m => m.id === id) + 1
+      const rotated = shlagemons.value.slice(start).concat(shlagemons.value.slice(0, start))
+      const next = rotated.find(m => !m.busy) || null
+      activeShlagemon.value = next
+    }
   }
 
   function setShlagemons(mons: DexShlagemon[]) {
@@ -713,6 +730,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     markSeen,
     markAllSeen,
     addShlagemon,
+    setBusy,
     setActiveShlagemon,
     setShlagemons,
     reset,

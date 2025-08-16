@@ -82,9 +82,9 @@ function changeMon() {
   openSelector()
 }
 function start() {
-  if (!eggType.value || !selected.value)
+  if (!selected.value)
     return
-  breeding.start(eggType.value, selected.value.rarity, selected.value.base.id)
+  breeding.start(selected.value)
 }
 function collect() {
   if (!eggType.value)
