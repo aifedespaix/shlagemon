@@ -1,5 +1,6 @@
 fr:
   title: Politique de Confidentialité – Shlagémon
+  description: Informations sur la collecte et l'utilisation des données dans Shlagémon.
   lastUpdated: 'Dernière mise à jour : 06/08/2025'
   sections:
     data:
@@ -24,6 +25,7 @@ fr:
       content: "Pour toute question : aife.contacts{'@'}gmail.com"
 en:
   title: Privacy Policy – Shlagémon
+  description: Information about data collection and usage in Shlagémon.
   lastUpdated: 'Last updated: 06/08/2025'
   sections:
     data:

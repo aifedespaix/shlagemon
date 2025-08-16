@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
 
 /** Titre + focale + SEO noindex pour une 404 SPA. */
 const router = useRouter()
 const route = useRoute()
 const { t, locale } = useI18n()
+usePageHead({
+  title: () => t('pages.404.title'),
+  description: () => t('pages.404.description'),
+})
+useHead({ meta: [{ name: 'robots', content: 'noindex' }] })
 
 const h1Ref = ref<HTMLHeadingElement | null>(null)
 const copied = ref(false)
@@ -17,7 +22,8 @@ const attemptedPath = computed<string>(() => String(route.fullPath ?? route.path
 /** Conserve la locale si la route commence par /fr ou /en, sinon on tente depuis i18n, sinon '/'. */
 const homePath = computed<string>(() => {
   const m = /^\/(fr|en)(?=\/|$)/.exec(attemptedPath.value)
-  if (m) return `/${m[1]}`
+  if (m)
+    return `/${m[1]}`
   const loc = String(locale?.value ?? '')
   return loc === 'fr' || loc === 'en' ? `/${loc}` : '/'
 })
@@ -48,7 +54,8 @@ function goHome(): void {
   router.push(homePath.value).catch(() => {})
 }
 function goBack(): void {
-  if (history.length > 1) router.back()
+  if (history.length > 1)
+    router.back()
   else goHome()
 }
 async function copyDebug(): Promise<void> {
@@ -57,50 +64,24 @@ async function copyDebug(): Promise<void> {
     await navigator.clipboard.writeText(debugText.value)
     copied.value = true
     // Reset state après un petit délai
-    window.setTimeout(() => { copied.value = false }, 1500)
-  } catch (err) {
+    window.setTimeout(() => {
+      copied.value = false
+    }, 1500)
+  }
+  catch (err) {
     copyError.value = err instanceof Error ? err.message : 'Copy failed'
   }
 }
 
-/** Gestion du titre et du <meta name="robots"> noindex (restauration au démontage). */
-const prevTitle = ref<string>(document.title)
-const robotsMetaEl = ref<HTMLMetaElement | null>(null)
-const prevRobots = ref<string | null>(null)
-
 onMounted(() => {
-  // Titre
-  const pageTitle = t?.('pages.404.title') ?? 'Page not found'
-  document.title = `${pageTitle} · Shlagémon`
-
   // Focus accessible
   // petit timeout pour laisser le DOM/transition se stabiliser
   window.setTimeout(() => h1Ref.value?.focus(), 0)
-
-  // robots noindex
-  const existing = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null
-  if (existing) {
-    robotsMetaEl.value = existing
-    prevRobots.value = existing.getAttribute('content')
-    existing.setAttribute('content', 'noindex')
-  } else {
-    const m = document.createElement('meta')
-    m.setAttribute('name', 'robots')
-    m.setAttribute('content', 'noindex')
-    document.head.appendChild(m)
-    robotsMetaEl.value = m
-  }
-
   // Raccourcis clavier utiles
   window.addEventListener('keydown', onKeydown)
 })
 
 onBeforeUnmount(() => {
-  document.title = prevTitle.value
-  if (robotsMetaEl.value) {
-    if (prevRobots.value === null) robotsMetaEl.value.remove()
-    else robotsMetaEl.value.setAttribute('content', prevRobots.value)
-  }
   window.removeEventListener('keydown', onKeydown)
 })
 
@@ -109,7 +90,8 @@ function onKeydown(e: KeyboardEvent): void {
   if (e.key === 'h' || e.key === 'H') {
     e.preventDefault()
     goHome()
-  } else if (e.key === 'b' || e.key === 'B') {
+  }
+  else if (e.key === 'b' || e.key === 'B') {
     e.preventDefault()
     goBack()
   }
@@ -123,16 +105,16 @@ function onKeydown(e: KeyboardEvent): void {
     aria-labelledby="notfound-title"
   >
     <section
-      class="rounded-2xl border border-gray-200/60 bg-white/70 p-6 shadow-lg backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60 sm:p-10"
+      class="border border-gray-200/60 rounded-2xl bg-white/70 p-6 shadow-lg backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60 sm:p-10"
     >
       <!-- Bloc visuel -->
       <div class="flex items-center gap-4 sm:gap-6">
         <!-- Badge 404 décoratif -->
         <div
-          class="select-none rounded-xl bg-gradient-to-br from-pink-500 to-sky-500 px-3 py-2 text-white shadow-md sm:px-4 sm:py-3"
+          class="select-none rounded-xl from-pink-500 to-sky-500 bg-gradient-to-br px-3 py-2 text-white shadow-md sm:px-4 sm:py-3"
           aria-hidden="true"
         >
-          <span class="block text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
+          <span class="block text-2xl font-extrabold tracking-tight lg:text-4xl sm:text-3xl">
             404
           </span>
         </div>
@@ -143,11 +125,11 @@ function onKeydown(e: KeyboardEvent): void {
             id="notfound-title"
             ref="h1Ref"
             tabindex="-1"
-            class="text-balance text-2xl font-bold leading-tight text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-4xl"
+            class="text-balance text-2xl text-gray-900 font-bold leading-tight lg:text-4xl sm:text-3xl dark:text-gray-100"
           >
             {{ t?.('pages.404.title') ?? 'Page introuvable' }}
           </h1>
-          <p class="mt-2 text-pretty text-sm text-gray-600 dark:text-gray-300 sm:text-base">
+          <p class="mt-2 text-pretty text-sm text-gray-600 sm:text-base dark:text-gray-300">
             {{ t?.('pages.404.description') ?? "La page que vous cherchez n'existe pas, a été déplacée ou l'URL contient une coquille." }}
           </p>
           <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -161,23 +143,23 @@ function onKeydown(e: KeyboardEvent): void {
       <div class="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
         <button
           type="button"
-          @click="goHome"
-          class="inline-flex items-center gap-2 rounded-xl border border-transparent bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow transition-all hover:translate-y--0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900 dark:bg-white dark:text-gray-900"
+          class="inline-flex items-center gap-2 border border-transparent rounded-xl bg-gray-900 px-4 py-2 text-sm text-white font-medium shadow transition-all hover:translate-y--0.5 dark:bg-white dark:text-gray-900 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
           data-testid="btn-home"
+          @click="goHome"
         >
           <!-- home icon -->
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 3.172 2 12h3v8h6v-6h2v6h6v-8h3L12 3.172z" />
           </svg>
-          {{ t('pages.404.goHome')  }}
+          {{ t('pages.404.goHome') }}
           <span class="sr-only">(H)</span>
         </button>
 
         <button
           type="button"
-          @click="goBack"
-          class="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 shadow-sm transition-all hover:translate-y--0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-100"
+          class="inline-flex items-center gap-2 border border-gray-300 rounded-xl bg-white px-4 py-2 text-sm text-gray-800 font-medium shadow-sm transition-all hover:translate-y--0.5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-100 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
           data-testid="btn-back"
+          @click="goBack"
         >
           <!-- back icon -->
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -189,19 +171,19 @@ function onKeydown(e: KeyboardEvent): void {
 
         <button
           type="button"
-          @click="copyDebug"
-          class="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 shadow-sm transition-all hover:translate-y--0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-100"
+          class="inline-flex items-center gap-2 border border-gray-300 rounded-xl bg-white px-4 py-2 text-sm text-gray-800 font-medium shadow-sm transition-all hover:translate-y--0.5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-100 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
           :aria-pressed="copied ? 'true' : 'false'"
           :title="t?.('pages.404.copyTitle') ?? 'Copier les détails (URL, UA...)'"
           data-testid="btn-copy"
+          @click="copyDebug"
         >
           <!-- copy icon -->
           <svg v-if="!copied" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M8 7V5a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h8V5H10v2H8zm2 4h8v8H10v-8z"/>
+            <path d="M8 7V5a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2h-1v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h8V5H10v2H8zm2 4h8v8H10v-8z" />
           </svg>
           <!-- check icon -->
           <svg v-else class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>
+            <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
           </svg>
           <span>
             {{ copied ? (t?.('pages.404.copied') ?? 'Copié !') : (t?.('pages.404.copy') ?? 'Copier les détails') }}
@@ -210,11 +192,11 @@ function onKeydown(e: KeyboardEvent): void {
 
         <a
           :href="mailtoHref"
-          class="inline-flex items-center gap-2 rounded-xl border border-transparent bg-gradient-to-r from-pink-500 to-sky-500 px-4 py-2 text-sm font-medium text-white shadow transition-all hover:translate-y--0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-pink-500"
+          class="inline-flex items-center gap-2 border border-transparent rounded-xl from-pink-500 to-sky-500 bg-gradient-to-r px-4 py-2 text-sm text-white font-medium shadow transition-all hover:translate-y--0.5 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-pink-500"
           data-testid="btn-report"
         >
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M20 4H4a2 2 0 0 0-2 2v.8l10 6.2 10-6.2V6a2 2 0 0 0-2-2zm0 4.3-8.6 5.3a1 1 0 0 1-1 0L4 8.3V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.3z"/>
+            <path d="M20 4H4a2 2 0 0 0-2 2v.8l10 6.2 10-6.2V6a2 2 0 0 0-2-2zm0 4.3-8.6 5.3a1 1 0 0 1-1 0L4 8.3V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.3z" />
           </svg>
           {{ t('pages.404.report') }}
         </a>
@@ -243,10 +225,10 @@ function onKeydown(e: KeyboardEvent): void {
 <style scoped>
 /* Petites attentions d’animation non intrusives */
 @media (prefers-reduced-motion: no-preference) {
-  [data-testid="btn-home"],
-  [data-testid="btn-back"],
-  [data-testid="btn-copy"],
-  [data-testid="btn-report"] {
+  [data-testid='btn-home'],
+  [data-testid='btn-back'],
+  [data-testid='btn-copy'],
+  [data-testid='btn-report'] {
     transition-property: transform, box-shadow, background-color, border-color;
     transition-duration: 150ms;
   }

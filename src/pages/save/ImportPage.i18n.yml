@@ -1,5 +1,6 @@
 fr:
   title: Importer une sauvegarde
+  description: Importez une sauvegarde Shlagémon depuis un fichier .shlag.
   subtitle: Importez une sauvegarde .shlag pour remplacer vos données locales.
   drop: Déposez votre fichier .shlag ici ou cliquez pour sélectionner
   select: Sélectionner un fichier
@@ -28,6 +29,7 @@ fr:
 
 en:
   title: Import Save
+  description: Import a Shlagémon save from a .shlag file.
   subtitle: Import a .shlag save file to replace your local data.
   drop: Drop your .shlag file here or click to select
   select: Select a file

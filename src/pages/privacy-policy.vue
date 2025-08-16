@@ -2,6 +2,7 @@
 const { t } = useI18n()
 usePageHead({
   title: () => t('pages.privacy-policy.title'),
+  description: () => t('pages.privacy-policy.description'),
 })
 </script>
 
