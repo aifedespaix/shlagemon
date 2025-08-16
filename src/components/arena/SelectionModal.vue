@@ -25,6 +25,7 @@ const emit = defineEmits<{
 
 const open = useVModel(props, 'modelValue', emit)
 const { t } = useI18n()
+const busyIds = useBusyShlagemonIds()
 
 const candidate = ref<DexShlagemon | null>(props.initial)
 
@@ -52,6 +53,7 @@ function confirm() {
     v-model="open"
     :title="t('components.arena.SelectionModal.title', { name: t(props.mon.base.name) })"
     :selected-ids="props.selected"
+    :disabled-ids="busyIds"
     :close-on-select="false"
     @select="onSelect"
   >
