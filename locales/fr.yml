@@ -2369,6 +2369,16 @@ layouts:
   NotFound:
     not-found: Page introuvable
 pages:
+  "404":
+    title: Page introuvable
+    description: La page que vous cherchez n'existe pas, a été déplacée ou l'URL contient une erreur.
+    goHome: Retour à l’accueil
+    goBack: Revenir en arrière
+    copy: Copier les détails
+    copied: Copié !
+    copyTitle: Copier les détails (URL, navigateur...)
+    report: Signaler un lien cassé
+    hint: "Astuce : appuyez sur H pour aller à l’accueil, B pour revenir en arrière."
   index:
     title: Shlagémon - Ça sent très fort
     description: Les Shlagémons ne sentent pas très bon.

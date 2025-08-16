@@ -2376,6 +2376,16 @@ layouts:
   NotFound:
     not-found: Page not found
 pages:
+  "404":
+    title: Page not found
+    description: The page you are looking for does not exist, has been moved, or the URL contains a typo.
+    goHome: Back to Home
+    goBack: Go Back
+    copy: Copy details
+    copied: Copied!
+    copyTitle: Copy details (URL, browser...)
+    report: Report a broken link
+    hint: "Tip: press H to go home, B to go back."
   index:
     title: Shlagemon - It smells very strong
     description: Shlagemons don't smell very good.
