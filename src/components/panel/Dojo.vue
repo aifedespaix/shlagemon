@@ -73,8 +73,18 @@ watch(selected, () => {
 const cost = computed<number>(() => (selected.value ? dojoTrainingCost(selected.value.rarity, clamp(points.value, 1, safeMax.value)) : 0))
 const durationMin = computed<number>(() => clamp(points.value, 1, safeMax.value))
 
-const remaining = computed<number>(() => (job.value ? Math.max(0, Math.ceil(dojo.remainingMs(job.value.monId) / 1000)) : 0))
-const progress = computed<number>(() => (job.value ? Math.min(100, Math.max(0, dojo.progressRatio(job.value.monId) * 100)) : 0))
+const remaining = computed<number>(() => {
+  if (!job.value)
+    return 0
+  return Math.max(0, Math.ceil((job.value.endsAt - dojo.now) / 1000))
+})
+const progress = computed<number>(() => {
+  if (!job.value)
+    return 0
+  const total = job.value.endsAt - job.value.startedAt
+  const elapsed = Math.max(0, dojo.now - job.value.startedAt)
+  return total > 0 ? Math.min(100, Math.max(0, (elapsed / total) * 100)) : 0
+})
 
 const remainingLabel = computed<string>(() => {
   const s = remaining.value
