@@ -2,6 +2,8 @@ import type { PersistedStateOptions } from 'pinia-plugin-persistedstate'
 import type { BaseShlagemon, TypeName } from '~/type'
 import { defineStore } from 'pinia'
 import { baseShlagemons } from '~/data/shlagemons'
+import { i18n } from '~/modules/i18n'
+import { toast } from '~/modules/toast'
 import { generateRarity } from '~/utils/dexFactory'
 import { hatchDurationForRarity } from '~/utils/egg'
 import { eggSerializer } from '~/utils/egg-serialize'
@@ -30,9 +32,12 @@ export interface Egg {
   forcedRarity?: number
 }
 
+const notifiedReady = new Set<number>()
+
 export const useEggStore = defineStore('egg', () => {
   const incubator = ref<Egg[]>([])
   const dex = useShlagedexStore()
+  const now = ref(Date.now())
 
   interface IncubationConfig {
     isBreeding?: boolean
@@ -89,7 +94,14 @@ export const useEggStore = defineStore('egg', () => {
   }
 
   function isReady(egg: Egg) {
-    return egg.hatchesAt <= Date.now()
+    return egg.hatchesAt <= now.value
+  }
+
+  /**
+   * Remaining time before the egg is ready to hatch, in whole seconds.
+   */
+  function remaining(egg: Egg): number {
+    return Math.max(0, Math.ceil((egg.hatchesAt - now.value) / 1000))
   }
 
   function hatchEgg(id: number) {
@@ -97,9 +109,10 @@ export const useEggStore = defineStore('egg', () => {
     if (idx === -1)
       return null
     const egg = incubator.value[idx]
-    if (egg.hatchesAt > Date.now())
+    if (egg.hatchesAt > now.value)
       return null
     incubator.value.splice(idx, 1)
+    notifiedReady.delete(egg.id)
     const base = egg.forcedMonId
       ? baseShlagemons.find(b => b.id === egg.forcedMonId) ?? egg.base
       : egg.base
@@ -109,15 +122,28 @@ export const useEggStore = defineStore('egg', () => {
 
   function cancelIncubation(id: number) {
     const idx = incubator.value.findIndex(e => e.id === id)
-    if (idx !== -1)
+    if (idx !== -1) {
+      notifiedReady.delete(incubator.value[idx].id)
       incubator.value.splice(idx, 1)
+    }
   }
 
   function reset() {
     incubator.value = []
+    notifiedReady.clear()
   }
 
-  return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, reset }
+  useIntervalFn(() => {
+    now.value = Date.now()
+    for (const egg of incubator.value) {
+      if (isReady(egg) && !notifiedReady.has(egg.id)) {
+        notifiedReady.add(egg.id)
+        toast.success(i18n.global.t('stores.egg.toast.ready'))
+      }
+    }
+  }, 1000)
+
+  return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, remaining, now, reset }
 }, {
   persist: {
     pick: ['incubator'],
@@ -126,6 +152,12 @@ export const useEggStore = defineStore('egg', () => {
       const store = ctx.store as ReturnType<typeof useEggStore>
       if (!Array.isArray(store.incubator))
         store.incubator = []
+      for (const egg of store.incubator) {
+        if (store.isReady(egg) && !notifiedReady.has(egg.id)) {
+          notifiedReady.add(egg.id)
+          toast.success(i18n.global.t('stores.egg.toast.ready'))
+        }
+      }
     },
   } as PersistedStateOptions,
 })

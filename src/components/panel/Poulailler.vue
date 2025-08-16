@@ -59,13 +59,6 @@ interface InventoryEntry {
   }
 }
 
-/** === Time tick (1s) ==================================================== */
-const now = ref<number>(Date.now())
-useIntervalFn(
-  () => { now.value = Date.now() },
-  1000,
-)
-
 /** === Computeds ========================================================= */
 const typeEggs = computed<InventoryEntry[]>(() => {
   return eggIds
@@ -86,10 +79,6 @@ const incubatorSlots = computed(() => {
 })
 
 /** === Helpers =========================================================== */
-function remaining(egg: { hatchesAt: number }): number {
-  return Math.max(0, Math.ceil((egg.hatchesAt - now.value) / 1000))
-}
-
 function fmtSec(total: number): string {
   const m = Math.floor(total / 60)
   const s = total % 60
@@ -291,7 +280,7 @@ function eggReadyLabel(type: EggType) {
                       class="text-xs text-gray-700 tabular-nums dark:text-gray-200"
                       aria-live="polite"
                     >
-                      {{ fmtSec(remaining(slot)) }}
+                      {{ fmtSec(eggs.remaining(slot)) }}
                     </span>
                     <span
                       v-else

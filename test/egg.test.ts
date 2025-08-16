@@ -1,13 +1,22 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { describe, expect, it, vi } from 'vitest'
+import { toast } from '../src/modules/toast'
 import { useEggStore } from '../src/stores/egg'
 import { useInventoryStore } from '../src/stores/inventory'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { hatchDurationForRarity } from '../src/utils/egg'
 
+vi.mock('../src/modules/toast', () => {
+  const fn = vi.fn()
+  fn.success = vi.fn()
+  return { toast: fn }
+})
+vi.mock('../src/modules/i18n', () => ({ i18n: { global: { t: (k: string) => k } } }))
+
 describe('egg workflow', () => {
   it('acquires and hatches eggs', () => {
     vi.useFakeTimers()
+    toast.success.mockClear()
     setActivePinia(createPinia())
     const inventory = useInventoryStore()
     const eggs = useEggStore()
@@ -24,7 +33,8 @@ describe('egg workflow', () => {
     expect(egg.rarity).toBeLessThanOrEqual(100)
     expect(duration).toBe(hatchDurationForRarity(egg.rarity))
     expect(egg.startedAt).toBeLessThanOrEqual(Date.now())
-    vi.advanceTimersByTime(duration + 1)
+    vi.advanceTimersByTime(duration + 1000)
+    expect(toast.success).toHaveBeenCalledWith('stores.egg.toast.ready')
     expect(eggs.isReady(egg)).toBe(true)
     const mon = eggs.hatchEgg(egg.id)!
     expect(mon).not.toBeNull()
@@ -35,6 +45,7 @@ describe('egg workflow', () => {
 
   it('hatches breeding egg with forced parameters', () => {
     vi.useFakeTimers()
+    toast.success.mockClear()
     setActivePinia(createPinia())
     const eggs = useEggStore()
     const dex = useShlagedexStore()
@@ -47,7 +58,8 @@ describe('egg workflow', () => {
     expect(egg.forcedRarity).toBe(100)
     const duration = egg.hatchesAt - egg.startedAt
     expect(duration).toBe(hatchDurationForRarity(100))
-    vi.advanceTimersByTime(duration + 1)
+    vi.advanceTimersByTime(duration + 1000)
+    expect(toast.success).toHaveBeenCalledWith('stores.egg.toast.ready')
     const mon = eggs.hatchEgg(egg.id)!
     expect(mon.base.id).toBe('salamiches')
     expect(mon.rarity).toBe(100)
