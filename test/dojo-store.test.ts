@@ -1,5 +1,5 @@
 import { createPinia, setActivePinia } from 'pinia'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { pikachiant } from '../src/data/shlagemons/15-20/pikachiant'
 import { dojoTrainingCost, useDojoStore } from '../src/stores/dojo'
 import { useGameStore } from '../src/stores/game'
@@ -31,5 +31,20 @@ describe('dojo store', () => {
     const completed = dojo.completeIfDue(mon.id)
     expect(completed).toBe(true)
     expect(mon.rarity).toBe(before + 1)
+  })
+
+  it('updates remaining time as time elapses', () => {
+    vi.useFakeTimers()
+    const game = useGameStore()
+    game.addShlagidolar(200000000)
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(pikachiant)
+    const dojo = useDojoStore()
+    dojo.startTraining(mon.id, mon.rarity, 1)
+    const first = dojo.remainingMs(mon.id)
+    vi.advanceTimersByTime(2000)
+    const later = dojo.remainingMs(mon.id)
+    expect(later).toBeLessThan(first)
+    vi.useRealTimers()
   })
 })

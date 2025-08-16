@@ -36,6 +36,7 @@ export const useDojoStore = defineStore('dojo', () => {
   const byMonId = ref<Record<string, DojoTrainingJob | undefined>>({})
   const game = useGameStore()
   const dex = useShlagedexStore()
+  /** Current timestamp used to compute progress for running jobs. */
   const now = ref<number>(Date.now())
 
   useIntervalFn(() => {
@@ -125,6 +126,7 @@ export const useDojoStore = defineStore('dojo', () => {
     startTraining,
     completeIfDue,
     clearFinished,
+    now,
   }
 }, {
   persist: {
