@@ -11,19 +11,28 @@ interface Props {
   /** Displayed title of the modal. */
   title: string
   /** IDs of pre-selected Shlagémons. */
-  selected?: string[]
+  selectedIds?: string[]
+  /** IDs of disabled Shlagémons. */
+  disabledIds?: string[]
   /** Disable selection interactions. */
   locked?: boolean
   /** Whether selecting also sets the active combatant. */
   selectsActive?: boolean
+  /**
+   * Close the modal automatically when a Shlagémon is selected.
+   * Defaults to `true` to preserve current behaviour.
+   */
+  closeOnSelect?: boolean
   /** Optional ID for the title element (used for aria-labelledby). */
   titleId?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  selected: () => [],
+  selectedIds: () => [],
+  disabledIds: () => [],
   locked: false,
   selectsActive: true,
+  closeOnSelect: true,
 })
 
 const emit = defineEmits<{
@@ -37,9 +46,17 @@ const headingId = computed(() => props.titleId || defaultTitleId)
 const dex = useShlagedexStore()
 const { t } = useI18n()
 
-function onSelect(mon: DexShlagemon) {
+function handleClick(mon: DexShlagemon) {
+  if (props.selectsActive)
+    dex.setActiveShlagemon(mon)
   emit('select', mon)
-  open.value = false
+  if (props.closeOnSelect)
+    open.value = false
+}
+
+function handleActivate(mon: DexShlagemon) {
+  if (props.selectsActive)
+    dex.setActiveShlagemon(mon)
 }
 </script>
 
@@ -49,17 +66,23 @@ function onSelect(mon: DexShlagemon) {
       <h3 :id="headingId" class="text-center text-lg font-bold">
         {{ title }}
       </h3>
-      <ShlagemonQuickSelect
+      <p v-if="locked" class="text-center text-sm">
+        {{ t('components.shlagemon.SelectModal.locked') }}
+      </p>
+      <ShlagemonListGeneric
         v-if="dex.shlagemons.length"
         class="max-h-60vh"
-        :selected="selected"
+        :highlight-ids="selectedIds"
+        :disabled-ids="disabledIds"
         :locked="locked"
-        :selects-active="selectsActive"
-        @select="onSelect"
+        :active-id="dex.activeShlagemon?.id"
+        :on-item-click="handleClick"
+        :on-item-activate="selectsActive ? handleActivate : undefined"
       />
       <p v-else class="text-center text-sm">
         {{ t('components.shlagemon.SelectModal.noAvailable') }}
       </p>
+      <slot />
     </div>
   </UiModal>
 </template>

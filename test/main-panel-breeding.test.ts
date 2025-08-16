@@ -84,7 +84,6 @@ const globalStubs = {
   UiAdaptiveDisplayer: { name: 'UiAdaptiveDisplayer', template: '<div><slot /></div>' },
   UiCurrencyAmount: { template: '<span />' },
   UiModal: { template: '<div><slot /></div>' },
-  ShlagemonQuickSelect: { template: '<div />' },
   ShlagemonSelectModal: { template: '<div />' },
   UiImageByBackground: { props: ['src'], template: '<img :src="src" />' },
 }
