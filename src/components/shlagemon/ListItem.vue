@@ -16,15 +16,18 @@ const { t } = useI18n()
 // Highlight newly captured Shlagémon until acknowledged
 const shouldHighlight = computed(() => Boolean(_props.mon.isNew))
 
-const itemClass = computed(() => [
-  _props.isActive
-    ? 'bg-sky-500/10 border-sky-500 ring-2 ring-sky-400'
-    : _props.isHighlighted
-      ? 'bg-sky-400/10 border-sky-400 ring-2 ring-sky-300'
-      : _props.mon.rarity === 100
-        ? 'border-yellow-500 bg-yellow-100/10 dark:bg-yellow-900/5'
-        : '',
-])
+const itemClass = computed(() => {
+  const { isActive, isHighlighted, mon } = _props
+
+  const conditions: [boolean, string][] = [
+    [isActive, 'bg-sky-500/10 border-sky-500 ring-2 ring-sky-400'],
+    [isHighlighted, 'bg-sky-400/10 border-sky-400 ring-2 ring-sky-300'],
+    [mon.rarity === 100, 'border-yellow-500 bg-yellow-100/10 dark:bg-yellow-900/5'],
+  ]
+
+  return conditions.find(([cond]) => cond)?.[1] ?? ''
+})
+
 </script>
 
 <template>
