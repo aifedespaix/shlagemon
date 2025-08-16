@@ -1,6 +1,10 @@
+import type { Locale } from '../../src/constants/locales'
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { availableLocales, defaultLocale as defaultLocaleConst } from '../../src/constants/locales'
+import { SITE_URL } from '../../src/constants/site'
 import { localizedRoutes } from '../../src/router/localizedRoutes'
+import { buildLocalizedLinks } from '../../src/utils/seo-links'
 
 /**
  * Configuration options for sitemap generation.
@@ -8,15 +12,15 @@ import { localizedRoutes } from '../../src/router/localizedRoutes'
 export interface SitemapOptions {
   /** Output directory where sitemap.xml will be written. */
   outDir: string
-  /** Absolute hostname WITHOUT trailing slash, e.g. "https://shlagemon.aife.io" */
-  hostname: string
+  /** Absolute hostname WITHOUT trailing slash. Defaults to {@link SITE_URL}. */
+  hostname?: string
   /**
    * 'root'   => x-default = '/' pour la home, et x-default = defaultLocale pour les pages internes (recommandé si home canonique = '/')
    * 'locale' => x-default = defaultLocale pour TOUTES les pages (y compris la home). À utiliser si la home canonique est localisée (ex: '/en').
    */
   xDefaultMode?: 'root' | 'locale'
   /** Langue par défaut utilisée pour x-default sur les pages internes (ex: 'en'). */
-  defaultLocale?: 'fr' | 'en'
+  defaultLocale?: Locale
 }
 
 /**
@@ -28,27 +32,16 @@ export interface SitemapOptions {
 export function generateSitemap(options: SitemapOptions): void {
   const {
     outDir,
-    hostname,
+    hostname = SITE_URL,
     xDefaultMode = 'root',
-    defaultLocale = 'en',
+    defaultLocale = defaultLocaleConst,
   } = options
 
   // --- Consts & types ----------------------------------------------------
-  const locales = ['fr', 'en'] as const
-  type Locale = (typeof locales)[number]
+  const locales = availableLocales
   type LocalizedPaths = Partial<Record<Locale, string>>
 
-  const rootUrl = `${hostname}/`
   const today = new Date().toISOString().split('T')[0]
-
-  // --- Utilitaires -------------------------------------------------------
-  /** Sélectionne la meilleure URL de fallback si une locale manque. */
-  const pickBest = (group: LocalizedPaths, pref: Locale): string => {
-    return group[pref]
-      ?? group.en
-      ?? group.fr
-      ?? '/' // en dernier recours
-  }
 
   /** Normalise un chemin ('/fr' ok, 'fr' => '/fr') */
   const normPath = (p: string) => (p.startsWith('/') ? p : `/${p}`)
@@ -59,9 +52,8 @@ export function generateSitemap(options: SitemapOptions): void {
 
   // Groupe "home" (doit exister dans localizedRoutes)
   const home = localizedRoutes.find(r => r.name === 'home')
-  if (!home) {
+  if (!home)
     throw new Error('generateSitemap: route "home" introuvable dans localizedRoutes')
-  }
   const homeGroup = home.paths as LocalizedPaths
 
   // On force la home au chemin '/'
@@ -72,7 +64,8 @@ export function generateSitemap(options: SitemapOptions): void {
     const group = route.paths as LocalizedPaths
     for (const locale of locales) {
       const p = group[locale]
-      if (!p) continue
+      if (!p)
+        continue
       pathGroups.set(normPath(p), group)
     }
   }
@@ -80,39 +73,38 @@ export function generateSitemap(options: SitemapOptions): void {
   // Déduplication et tri stable (home en premier, puis alpha)
   const paths = Array.from(new Set(pathGroups.keys()))
     .sort((a, b) => {
-      if (a === '/') return -1
-      if (b === '/') return 1
+      if (a === '/')
+        return -1
+      if (b === '/')
+        return 1
       return a.localeCompare(b)
     })
 
   // --- Construction des entrées URL -------------------------------------
   const urlEntries = paths.map((path) => {
     const group = pathGroups.get(path)!
-    const loc = `${hostname}${path}`
-
     const isHome = path === '/'
 
-    // x-default:
-    // - si 'root' et home => '/'
-    // - sinon => page dans la langue par défaut (avec fallbacks)
-    const xDefaultUrl =
-      (xDefaultMode === 'root' && isHome)
-        ? rootUrl
-        : `${hostname}${pickBest(group, defaultLocale)}`
+    const currentLocale = locales.find(l => path === `/${l}` || path.startsWith(`/${l}/`)) ?? defaultLocale
 
-    // URLs locales (avec fallbacks pour éviter les trous)
-    const frUrl = `${hostname}${pickBest(group, 'fr')}`
-    const enUrl = `${hostname}${pickBest(group, 'en')}`
+    const { canonical, alternates } = buildLocalizedLinks({
+      paths: group,
+      siteUrl: hostname,
+      currentLocale,
+      locales,
+      defaultLocale,
+      isHome,
+      xDefaultMode,
+      canonicalPath: path,
+    })
 
-    const links = [
-      `<xhtml:link rel="alternate" hreflang="fr" href="${frUrl}" />`,
-      `<xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />`,
-      `<xhtml:link rel="alternate" hreflang="x-default" href="${xDefaultUrl}" />`,
-    ].join('\n    ')
+    const links = alternates
+      .map(l => `<xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${l.href}" />`)
+      .join('\n    ')
 
     return [
       '  <url>',
-      `    <loc>${loc}</loc>`,
+      `    <loc>${canonical}</loc>`,
       `    <lastmod>${today}</lastmod>`,
       `    ${links}`,
       '  </url>',
