@@ -2,6 +2,12 @@ App:
   title: Shlagemon - It smells very strong
   description: Catch all the Shlagémons in this hilarious parody game! Collect absurd monsters, engage in wacky battles, and save the planet from a totally crazy invasion. Download now and become the ultimate Shlagitrainer!
   author: Aife
+common:
+  loading: Loading…
+  pleaseWait: Please wait
+  copy: Copy
+  remove: Remove
+  eggOf: Egg of {name}
 components:
   LanguageSelector:
     label: Language
@@ -67,7 +73,7 @@ components:
       captured: You captured {name}!
       fail: Missed!
     DiseaseBadge:
-      tooltip: "Sick: {n} battles remaining"
+      tooltip: 'Sick: {n} battles remaining'
     EffectBadge:
       attack: Your attack is boosted for {remaining} more
       defense: Your defense is boosted for {remaining} more
@@ -99,13 +105,13 @@ components:
       defeat: Defeat...
       queen: queen
       king: king
-      zoneKingChallenge: "{label} zone challenge"
+      zoneKingChallenge: '{label} zone challenge'
       reward: +{amount} Shlagidiamonds
     damageTaken: Took {amount} damage
     healedFor: Healed for {amount} HP
   deck:
     Detail:
-      evolution: "Evolution:"
+      evolution: 'Evolution:'
       level: lvl {n}
     List:
       search: Search
@@ -127,7 +133,7 @@ components:
             retry: Retry
             quit: Quit
     ArenaVictoryDialog:
-      toast: "{name} obtained!"
+      toast: '{name} obtained!'
       steps:
         step1:
           text: Congratulations! You triumphed at the arena.
@@ -232,7 +238,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: "Let me tell you about a curious item: the Cuck Ring."
+          text: 'Let me tell you about a curious item: the Cuck Ring.'
           responses:
             back: Back
             next: Continue
@@ -242,7 +248,7 @@ components:
             back: Back
             next: Continue
         step4:
-          text: "It makes each attack unpredictable: double damage or healing the foe instead."
+          text: 'It makes each attack unpredictable: double damage or healing the foe instead.'
           responses:
             back: Back
             next: Continue
@@ -365,7 +371,7 @@ components:
           responses:
             next: Continue
         step2:
-          text: "As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP."
+          text: 'As {name}, I am proud of you. To help you on your adventure, I will give you a very special item: the Multi-EXP.'
           responses:
             back: Back
             next: Continue
@@ -599,7 +605,7 @@ components:
         step1:
           text: Impressive! You've captured at least {count} Shlagemons.
         step2:
-          text: "Here is a unique item: {name}."
+          text: 'Here is a unique item: {name}.'
         step3:
           text: It increases the holder's {stat} by {percent}%.
         step4:
@@ -676,7 +682,7 @@ components:
         - You're one step away from a brain fart.
         - Rarely seen someone so pathetic.
       validate: Validate
-      attemptsLeft: "{n} attempts left"
+      attemptsLeft: '{n} attempts left'
       win: You've cracked a Shlag's mind!
       lose: Even a Grimer would have done it
       legend:
@@ -685,7 +691,7 @@ components:
         absent: Not in the combination
       selectSlot: Select a slot
     Pairs:
-      attempts: "{n} attempt | {n} attempts"
+      attempts: '{n} attempt | {n} attempts'
     masterMind:
       SelectionModal:
         title: Choose a Shlagemon
@@ -703,9 +709,91 @@ components:
       intro1: The Shlagedex bonus increases the final damage of all your Shlagémons! It represents the maximum bonus you could get by capturing all accessible Shlagémons.
       intro2: It is based on the completion rate of this potential Shlagedex as well as your team's average level.
       formula: Bonus = average level × 2 × (completion rate / 100) / 10
-      completion: "Completion:"
-      averageLevel: "Average level:"
-      currentBonus: "Current bonus:"
+      completion: 'Completion:'
+      averageLevel: 'Average level:'
+      currentBonus: 'Current bonus:'
+    Breeding:
+      title: Breeding
+      exit: Leave the breeding center
+      intro: Hello, I can seed your Shlagémons for you—I'm a pro at it, just hand me one!
+      outro:
+        running: I'll take care of the breeding right away, you can come back very soon.
+        idle: Come back very soon, I can't wait to take care of your Shlagémons.
+      during:
+        unselected: Give me one of your Shlagémons, I'll seed it with tenderness and love!
+        selected:
+          - Oh! I love your {shlagemon_name}, I'll seed that one real good!
+          - Oh, this one… I can tell it'll take the seed nicely!
+          - Mmmh… perfect for some deep seeding!
+          - Watch out {shlagemon_name}, it's going to be a heavy seeding here!
+          - Ohoh… {shlagemon_name}, get ready for a masterful seeding!
+        completed:
+          - All done, I put everything in and it popped out an egg!
+          - "Mission accomplished: it's full… and it laid an egg!"
+          - I gave it all it needed… and bam! An egg.
+          - "I didn't do things halfway: here's the egg!"
+          - 'I stuffed it completely… result: a nice warm egg.'
+          - Filled with happiness… and here's an egg as a gift!
+      selectMon: Choose a Shlagémon
+      changeSelected: Change {name}
+      selected: Selected Shlagémon
+      rarity: Rarity
+      eggType: Egg type
+      cost: Cost
+      duration: Duration
+      minutes: minutes
+      progress: Progress
+      remaining: Remaining time
+      cta:
+        payAndStart: Pay & start
+        changeMon: Change Shlagémon
+        collectEgg: Collect egg
+      toast:
+        started: Breeding started!
+        finished: Egg obtained!
+        collected: Egg collected!
+      status:
+        running: Breeding in progress
+      a11y:
+        openSelector: Choose parent
+        startBreeding: Start breeding
+        changeParent: Change parent
+        collectEgg: Collect egg
+        normanCareMessage: Reassuring message from Norman
+    Dojo:
+      title: Dojo
+      exit: Leave the dojo
+      intro: Welcome to the dojo. Here you can train your Shlagémons.
+      outro:
+        running: Your Shlagémon is training. Come back later to see the results.
+        idle: No training in progress. Come back whenever you want to strengthen your Shlagémons.
+      selectMon: Train a Shlagémon
+      selected: Selected Shlagémon
+      controls: Controls
+      rarity:
+        current: Current rarity
+        after: Rarity after
+        points: Training points
+        limitReached: Cannot exceed 100 rarity.
+      cost:
+        label: Cost
+        insufficient: Insufficient funds
+      duration:
+        label: Duration
+        minute: minute
+        minutes: minutes
+        remaining: Remaining time
+        endsAt: Ends at {time}
+      progress: Progress
+      status:
+        running: Training in progress
+      cta:
+        payAndStart: Pay & start
+        changeMon: Change Shlagémon
+        trainingRunning: Training in progress
+      toast:
+        started: Training started!
+        finished: Training finished! Rarity improved.
     Inventory:
       search: Search
       sort:
@@ -722,7 +810,7 @@ components:
     MiniGame:
       exit: Exit
     PlayerInfos:
-      sick: "Sick: {n} battles left"
+      sick: 'Sick: {n} battles left'
       dex: ShlageDex
       averageLevel: Average level
       bonus: Bonus
@@ -731,6 +819,10 @@ components:
     Poulailler:
       title: Henhouse
       exit: Exit
+      intro: Welcome to the henhouse. Keep an eye on your eggs.
+      outro:
+        running: I'll take care of your eggs, don't worry I won't steal a single one, come back soon to see them hatch!
+        idle: Come back whenever you want to hatch Shlagémon eggs
       incubator: Incubator
       noEgg: No egg
       yourEggs: Your eggs
@@ -745,12 +837,10 @@ components:
       a11y:
         showSpecies: Show species for {name}
         incubateEgg: Incubate the {name} egg
-        eggReady: "{type} egg ready"
+        eggReady: '{type} egg ready'
         eggProgress: Egg progress
-      intro: Welcome to the henhouse. Keep an eye on your eggs.
-      outro:
-        running: I'll take care of your eggs, don't worry I won't steal a single one, come back soon to see them hatch!
-        idle: Come back whenever you want to hatch Shlagémon eggs
+    Shlagedex:
+      new: You have {n} new Shlagemon | You have {n} new Shlagemons
     Shop:
       title: Shop
       details: Details
@@ -768,97 +858,15 @@ components:
       exit: Leave the village
     Zone:
       capturedAlt: captured
-    Dojo:
-      title: Dojo
-      exit: Leave the dojo
-      introDialog: Welcome to the dojo. Here you can train your shlaguemons.
-      selectMon: Train a Shlagémon
-      selected: Selected Shlagémon
-      rarity:
-        current: Current rarity
-        after: Rarity after
-        points: Training points
-        limitReached: Cannot exceed 100 rarity.
-      cost:
-        label: Cost
-        insufficient: Insufficient funds
-      duration:
-        label: Duration
-        minute: minute
-        minutes: minutes
-        remaining: Remaining time
-        endsAt: Ends at {time}
-      cta:
-        payAndStart: Pay & start
-        trainingRunning: Training in progress
-        changeMon: Change Shlagémon
-      toast:
-        started: Training started!
-        finished: Training finished! Rarity improved.
-      progress: Progress
-      controls: Controls
-      status:
-        running: Training in progress
-      intro: Welcome to the dojo. Here you can train your Shlagémons.
-      outro:
-        running: Your Shlagémon is training. Come back later to see the results.
-        idle: No training in progress. Come back whenever you want to strengthen your Shlagémons.
-    Breeding:
-      name: Breeding
-      introDialog: Welcome to the breeding center. Pick the parent to breed.
-      introOk: Let's go!
-      selectMon: Choose a Shlagémon
-      selected: Selected Shlagémon
-      partner: Partner
-      rarity: Rarity
-      cost: Cost
-      duration: Duration
-      minutes: minutes
-      progress: Progress
-      remaining: Remaining time
-      endsAt: Ends at {time}
-      cta:
-        payAndStart: Pay & start
-        seeEgg: View egg
-        changeMon: Change Shlagémon
-        collectEgg: Collect egg
-      toast:
-        started: Breeding started!
-        finished: Egg obtained!
-        collected: Egg collected!
-      a11y:
-        openSelector: Choose parent
-        startBreeding: Start breeding
-        goToEgg: Go to egg
-        changeParent: Change parent
-        collectEgg: Collect egg
-        normanCareMessage: Reassuring message from Norman
-      title: Breeding
-      exit: Leave the breeding center
-      eggType: Egg type
-      status:
-        running: Breeding in progress
-      intro: Hello, I can seed your Shlagémons for you—I'm a pro at it, just hand me one!
-      outro:
-        running: I'll take care of the breeding right away, you can come back very soon.
-        idle: Come back very soon, I can't wait to take care of your Shlagémons.
-      during:
-        typing: Don't worry, I'll take good care of it, you can trust me
-        unselected: Give me one of your Shlagémons, I'll seed it with tenderness and love!
-        selected:
-          - Oh! I love your {shlagemon_name}, I'll seed that one real good!
-          - Oh, this one… I can tell it'll take the seed nicely!
-          - Mmmh… perfect for some deep seeding!
-          - Watch out {shlagemon_name}, it's going to be a heavy seeding here!
-          - Ohoh… {shlagemon_name}, get ready for a masterful seeding!
-        completed:
-          - All done, I put everything in and it popped out an egg!
-          - "Mission accomplished: it's full… and it laid an egg!"
-          - I gave it all it needed… and bam! An egg.
-          - "I didn't do things halfway: here's the egg!"
-          - 'I stuffed it completely… result: a nice warm egg.'
-          - Filled with happiness… and here's an egg as a gift!
-      changeSelected: Change {name}
+  pwa:
+    InstallBanner:
+      title: Install the app?
+      chromium_hint: Faster access, offline, fullscreen.
+      ios_hint: 'On iOS: add to Home Screen via the Share menu.'
+      ios_instructions: "On iPhone/iPad: tap the 'Share' button, then 'Add to Home Screen'."
+      later: Later
+      install: Install
+      how: How?
   settings:
     AccessibilityTab:
       autoHide:
@@ -907,7 +915,7 @@ components:
     Detail:
       equipItemTitle: Equip an item
       allowEvolution: Allow this Shlagemon to evolve?
-      firstCatch: "First capture: {date}"
+      firstCatch: 'First capture: {date}'
       obtainedTimes: Obtained {count} times
       release: Release
       main: Main
@@ -930,7 +938,7 @@ components:
       smell: Smell
       title: Shlagemon Info
     EvolutionModal:
-      evolveTitle: "{name} is evolving"
+      evolveTitle: '{name} is evolving'
       question: '"{from}" wants to evolve into "{to}", will you allow it or stop the spread of shlaguitude?'
       alreadyOwned: You already own this evolution
       yes: Yes
@@ -950,8 +958,25 @@ components:
         date: First capture
         evolution: Ready to evolve
       new: You have {n} new Shlagemon | You have {n} new Shlagemons
+    ListGeneric:
+      search: Search
+      sort:
+        level: Level
+        rarity: Rarity
+        shiny: Shiny
+        item: Held item
+        name: Name
+        type: Type
+        attack: Attack
+        defense: Defense
+        count: Catch count
+        date: First capture
+        evolution: Ready to evolve
     RarityInfo:
       tooltip: Rarity
+    SelectModal:
+      noAvailable: No Shlagemon available.
+      locked: Selection locked.
     TypeChart:
       defense: Defense
       attack: Attack
@@ -960,15 +985,13 @@ components:
     WearableEquipModal:
       title: Choose an item to equip
       noAvailable: No item available.
-    SelectModal:
-      noAvailable: No Shlagemon available.
   ui:
     CurrencyAmount:
       shlagidiamond: Shlagiamond
       shlagidolar: Shlagidollar
     FullscreenToggle:
       label: Fullscreen
-    Info:
+    Infos:
       ok: Ok
     LanguageToggle:
       label: Toggle language
@@ -980,38 +1003,27 @@ components:
     SortControls:
       ascending: Ascending sort
       descending: Descending sort
-    Infos:
-      ok: Ok
   village:
     ZoneActions:
       shop: Shop
       minigame: Minigame
       arena: Arena
+      dojo: Dojo
       henhouse: Henhouse
       breeding: Breeding
       fightKing: Challenge the {label} of the zone
-      kingDefeated: "{label} defeated!"
-      dojo: Dojo
+      kingDefeated: '{label} defeated!'
   zone:
     MonsModal:
-      title: "{zone} Shlagemons"
-  pwa:
-    InstallBanner:
-      title: Install the app?
-      chromium_hint: Faster access, offline, fullscreen.
-      ios_hint: "On iOS: add to Home Screen via the Share menu."
-      ios_instructions: "On iPhone/iPad: tap the 'Share' button, then 'Add to Home Screen'."
-      later: Later
-      install: Install
-      how: How?
+      title: '{zone} Shlagemons'
 composables:
   useFormatDuration:
-    year: "{count} year | {count} years"
-    month: "{count} month | {count} months"
-    day: "{count} day | {count} days"
-    hour: "{count} hour | {count} hours"
-    minute: "{count} minute | {count} minutes"
-    second: "{count} second | {count} seconds"
+    year: '{count} year | {count} years'
+    month: '{count} month | {count} months'
+    day: '{count} day | {count} days'
+    hour: '{count} hour | {count} hours'
+    minute: '{count} minute | {count} minutes'
+    second: '{count} second | {count} seconds'
     and: and
 data:
   Minigame:
@@ -1404,7 +1416,7 @@ data:
         description: Cringeon was once cool. Cringeon spent too much time scratching minor chords at the edge of an extinct volcano. From now on, Cool's not cool wanders with a guitar too big for his wings, freckles crying, and a check shirt that smells wet grass and regrets. His plumage took on a sad rust colour, and his red wick hides a remorseful look, as if he constantly realized that he could have evolved into a legendary raptor, but preferred to release an independent EP. It's always a little cold around him, even in the summer. Its signature capacity, Refrain Getting into trouble, inflicts a deep discomfort on all the arena, reducing the accuracy of enemy attacks as long as they turn their eyes away. He's very good at driving wild Pokémons away… and dating.
         name: Cringeon
       sacdepates:
-        description: "Pasta bag is a living ball of entangled spaghetti, whose long strands form a moving labyrinth. With two piercing eyes in the middle of his pasta, he intimidates anyone who crosses his infernal gaze. His red feet, smooth and glossy, allow him to ride at all speed on his opponents, whom he crushes without mercy in an acute and diabolical laughter. He spends his days painting himself thoroughly with a fine comb, hoping one day to unravel the infinite knot that he has become. It is said that the more tangled his spaghetti, the more formidable he becomes. Talent: Fatal Node — When Pastafreak undergoes a physical attack, he can wrap around the enemy to trap and immobilize."
+        description: 'Pasta bag is a living ball of entangled spaghetti, whose long strands form a moving labyrinth. With two piercing eyes in the middle of his pasta, he intimidates anyone who crosses his infernal gaze. His red feet, smooth and glossy, allow him to ride at all speed on his opponents, whom he crushes without mercy in an acute and diabolical laughter. He spends his days painting himself thoroughly with a fine comb, hoping one day to unravel the infinite knot that he has become. It is said that the more tangled his spaghetti, the more formidable he becomes. Talent: Fatal Node — When Pastafreak undergoes a physical attack, he can wrap around the enemy to trap and immobilize.'
         name: Pastafreak
     05-10:
       aspigros:
@@ -1429,7 +1441,7 @@ data:
         description: A mass of foul mud that drags slowly. Where he passes, nothing grows because of his toxicity. It is made of a toxic mud. He pollutes everything he touches, even the ground becomes sterile. He stinks so much that people vanish just by crossing him. His body is a concentrate of toxins.
         name: Snotto
       ptitocard:
-        description: "Ptitocard is as fragile as a wet and expressive bellboat as an existential crisis in full crisis. His empty, humid and terribly plaintive gaze melts the most hardened hearts - or annoys them deeply, as desired. It flows more than it swim, and its ventral spiral only runs when it has an anxiety attack. He constantly drools, but not in the mouth: it is his whole body that sweats distress. We think it is sad of birth, but some specialists evoke a simple allergy to life. His special capacity, *infinite tear *, causes fatal boredom in the enemy. An opponent who looks at Ptitocard for more than 10 seconds can fall into a coma of deep indifference. Ptitocard dreams of becoming a big champion ... but does nothing for. It is often found floating on the surface of the puddles, wondering if it really deserves to evolve. Spoiler: not sure."
+        description: 'Ptitocard is as fragile as a wet and expressive bellboat as an existential crisis in full crisis. His empty, humid and terribly plaintive gaze melts the most hardened hearts - or annoys them deeply, as desired. It flows more than it swim, and its ventral spiral only runs when it has an anxiety attack. He constantly drools, but not in the mouth: it is his whole body that sweats distress. We think it is sad of birth, but some specialists evoke a simple allergy to life. His special capacity, *infinite tear *, causes fatal boredom in the enemy. An opponent who looks at Ptitocard for more than 10 seconds can fall into a coma of deep indifference. Ptitocard dreams of becoming a big champion ... but does nothing for. It is often found floating on the surface of the puddles, wondering if it really deserves to evolve. Spoiler: not sure.'
         name: Lamewag
     10-15:
       abraquemar:
@@ -1717,7 +1729,7 @@ data:
         description: Its endless language is dragging everywhere and is mainly used to slander. He likes to criticize his opponents until they abandon by weariness.
         name: Gossipbitch
       lecocu:
-        description: "Lecocu always has a sad look: his wife deceives him with all the local trainers. Despite his unlucky love, he cared for others with a disconcerting kindness."
+        description: 'Lecocu always has a sad look: his wife deceives him with all the local trainers. Despite his unlucky love, he cared for others with a disconcerting kindness.'
         name: Cheated
       rhinofaringite:
         description: This sneezed rhinoceros sneezed from the rocks on its enemies. Its nose runs permanently, which makes it as slippery as it is unpredictable.
@@ -2377,7 +2389,7 @@ layouts:
   NotFound:
     not-found: Page not found
 pages:
-  "404":
+  '404':
     title: Page not found
     description: The page you are looking for does not exist, has been moved, or the URL contains a typo.
     goHome: Back to Home
@@ -2386,14 +2398,15 @@ pages:
     copied: Copied!
     copyTitle: Copy details (URL, browser...)
     report: Report a broken link
-    hint: "Tip: press H to go home, B to go back."
+    hint: 'Tip: press H to go home, B to go back.'
   index:
     title: Shlagemon - It smells very strong
     description: Shlagemons don't smell very good.
     welcome: Welcome to Shlagemon
   privacy-policy:
     title: Privacy Policy – Shlagémon
-    lastUpdated: "Last updated: 06/08/2025"
+    description: Information about data collection and usage in Shlagémon.
+    lastUpdated: 'Last updated: 06/08/2025'
     sections:
       data:
         title: 1. Data collected
@@ -2418,9 +2431,14 @@ pages:
   save:
     ImportPage:
       title: Import Save
+      description: Import a Shlagémon save from a .shlag file.
+      subtitle: Import a .shlag save file to replace your local data.
       drop: Drop your .shlag file here or click to select
       select: Select a file
+      hint: Click or drag-and-drop a {ext} file
+      warningTitle: 'Warning: destructive import'
       warning: Importing will overwrite your current save. Make sure you have a backup.
+      fileReady: File ready. Review details below.
       import: Import
       confirmTitle: Confirm Import
       confirmMessage: This will replace your current progress. Continue?
@@ -2428,63 +2446,35 @@ pages:
       cancel: Cancel
       summary:
         title: Summary
-        mons: "Shlagemons: {count}"
-        shlagidolar: "Shlagidollars: {amount}"
-        shlagidiamond: "Shlagidiamonds: {amount}"
-        playtime: "Playtime: {time}"
+        mons: 'Shlagemons: {count}'
+        shlagidolar: 'Shlagidollars: {amount}'
+        shlagidiamond: 'Shlagidiamonds: {amount}'
+        playtime: 'Playtime: {time}'
         monsLabel: Shlagemons
         shlagidolarLabel: Shlagidollars
         shlagidiamondLabel: Shlagidiamonds
         playtimeLabel: Playtime
+      acknowledge: I understand this action replaces ALL my local data.
       errorInvalid: Invalid save file.
       errorApply: Import failed.
-      subtitle: Import a .shlag save file to replace your local data.
-      hint: Click or drag-and-drop a {ext} file
-      warningTitle: "Warning: destructive import"
-      fileReady: File ready. Review details below.
-      acknowledge: I understand this action replaces ALL my local data.
   shlagedex:
     title: Shlagedex
-  breeding:
-    title: Breeding
-    name: Breeding
-    introDialog: Welcome to the breeding center. Pick the parent to breed.
-    introOk: Let's go!
-    selectMon: Choose a Shlagémon
-    selected: Selected Shlagémon
-    partner: Partner
-    rarity: Rarity
-    cost: Cost
-    duration: Duration
-    minutes: minutes
-    progress: Progress
-    remaining: Remaining time
-    endsAt: Ends at {time}
-    cta:
-      payAndStart: Pay & start
-      seeEgg: View egg
-    toast:
-      started: Breeding started!
-      finished: Egg obtained!
-    a11y:
-      openSelector: Choose parent
-      startBreeding: Start breeding
-      goToEgg: Go to egg
+    description: Browse the full compendium of Shlagemons.
 stores:
   achievements:
-    unlocked: "Achievement unlocked: {title}"
-    zoneShinyTitle: "{zone}: Rainbow Hunter"
+    unlocked: 'Achievement unlocked: {title}'
+    zoneShinyTitle: '{zone}: Rainbow Hunter'
     zoneShinyDescription: Capture every Shlagémon in {zone} in shiny form.
-    zoneRarityTitle: "{zone}: Perfectionist"
+    zoneRarityTitle: '{zone}: Perfectionist'
     zoneRarityDescription: Raise every Shlagémon in {zone} to rarity 100.
     zoneCompleteDescription: Capture every Shlagémon in {zone}.
-    zoneWinTitle: "{n} victories - {zone}"
+    zoneWinTitle: '{n} victories - {zone}'
     zoneWinDescription: Defeat {n} Shlagémon in {zone}.
     shinyTitles:
-      "1": Shiny!
-      "10": 10 shinies
-      "100": 100 shinies
-      "1000": Living Legend
+      '1': Shiny!
+      '10': 10 shinies
+      '100': 100 shinies
+      '1000': Living Legend
     shinyDescription: Capture {n} extremely rare shiny Shlagémon.
     itemTitles:
       firstPurchase: First Purchase
@@ -2504,19 +2494,11 @@ stores:
     toast:
       item: You obtained {qty} {item} ({category})!
   shlagedex:
-    rarityReached: "{name} reached rarity {rarity}!"
-    evolved: "{name} evolved!"
+    rarityReached: '{name} reached rarity {rarity}!'
+    evolved: '{name} evolved!'
     obtained: You obtained {name}!
     alreadyMax: You already have this Shlagemon at max rarity
     point: point | points
     level: level | levels
-    rarityChanged: "{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!"
-    released: "{name} was released!"
-common:
-  loading: Loading…
-  pleaseWait: Please wait
-  copy: Copy
-  remove: Remove
-  min: Min
-  max: Max
-  eggOf: Egg of {name}
+    rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
+    released: '{name} was released!'
