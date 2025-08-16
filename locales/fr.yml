@@ -853,11 +853,12 @@ components:
           - Ohoh… {shlagemon_name}, prépare-toi pour un ensemencement magistral !
         completed:
           - ça y est je lui ai tout mis dedans, il a sorti un oeuf !
-          - "Mission accomplie : il est plein… et il a pondu !"
+          - 'Mission accomplie : il est plein… et il a pondu !'
           - Je lui ai mis tout ce qu’il fallait… et paf ! Un œuf.
-          - "Je n’ai pas fait les choses à moitié : voilà l’œuf !"
-          - "Je lui ai mis tout le paquet… résultat : un œuf bien chaud."
+          - 'Je n’ai pas fait les choses à moitié : voilà l’œuf !'
+          - 'Je lui ai mis tout le paquet… résultat : un œuf bien chaud.'
           - Rempli de bonheur… et voilà un œuf en cadeau !
+      changeSelected: Changer {name}
   settings:
     AccessibilityTab:
       autoHide:

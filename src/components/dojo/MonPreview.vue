@@ -27,7 +27,7 @@ const rarityAfter = computed<number>(() => Math.min(100, props.mon.rarity + prop
     <div class="pointer-events-none">
       <span
         class="absolute left-0 right-0 top-0 border border-emerald-100 rounded-full px-2 py-0.5 text-center text-xs text-emerald-800 font-medium dark:border-emerald-900/50 dark:text-emerald-200"
-        aria-label="Rareté actuelle"
+        :aria-label="t('components.panel.Dojo.rarity.current')"
       >
         {{ t('components.panel.Dojo.rarity.current') }}: {{ mon.rarity }}
       </span>
@@ -35,7 +35,7 @@ const rarityAfter = computed<number>(() => Math.min(100, props.mon.rarity + prop
       <span
         class="absolute bottom-0 left-0 right-0 rounded-full bg-emerald-100 px-2 py-0.5 text-center text-xs text-emerald-800 font-medium dark:bg-emerald-900/50 dark:text-emerald-200"
         :class="rarityAfter === 100 ? 'mask-rainbow' : ''"
-        aria-label="Rareté après entraînement"
+        :aria-label="t('components.panel.Dojo.rarity.after')"
       >
         {{ t('components.panel.Dojo.rarity.after') }}: {{ rarityAfter }}
       </span>

@@ -856,8 +856,9 @@ components:
           - "Mission accomplished: it's full… and it laid an egg!"
           - I gave it all it needed… and bam! An egg.
           - "I didn't do things halfway: here's the egg!"
-          - "I stuffed it completely… result: a nice warm egg."
+          - 'I stuffed it completely… result: a nice warm egg.'
           - Filled with happiness… and here's an egg as a gift!
+      changeSelected: Change {name}
   settings:
     AccessibilityTab:
       autoHide:
