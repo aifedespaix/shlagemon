@@ -21,6 +21,7 @@ fr:
       - 'Je lui ai mis tout le paquet… résultat : un œuf bien chaud.'
       - Rempli de bonheur… et voilà un œuf en cadeau !
   selectMon: Choisir un Shlagémon
+  changeSelected: Changer {name}
   selected: Shlagémon sélectionné
   rarity: Rareté
   eggType: Type d'œuf
@@ -68,6 +69,7 @@ en:
       - 'I stuffed it completely… result: a nice warm egg.'
       - "Filled with happiness… and here's an egg as a gift!"
   selectMon: Choose a Shlagémon
+  changeSelected: Change {name}
   selected: Selected Shlagémon
   rarity: Rarity
   eggType: Egg type
