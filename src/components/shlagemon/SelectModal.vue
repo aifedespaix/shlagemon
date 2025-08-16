@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
   selectedIds: () => [],
   disabledIds: () => [],
   locked: false,
-  selectsActive: true,
+  selectsActive: false,
   closeOnSelect: true,
 })
 
