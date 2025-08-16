@@ -853,12 +853,14 @@ components:
           - Ohoh… {shlagemon_name}, prépare-toi pour un ensemencement magistral !
         completed:
           - ça y est je lui ai tout mis dedans, il a sorti un oeuf !
-          - 'Mission accomplie : il est plein… et il a pondu !'
+          - "Mission accomplie : il est plein… et il a pondu !"
           - Je lui ai mis tout ce qu’il fallait… et paf ! Un œuf.
-          - 'Je n’ai pas fait les choses à moitié : voilà l’œuf !'
-          - 'Je lui ai mis tout le paquet… résultat : un œuf bien chaud.'
+          - "Je n’ai pas fait les choses à moitié : voilà l’œuf !"
+          - "Je lui ai mis tout le paquet… résultat : un œuf bien chaud."
           - Rempli de bonheur… et voilà un œuf en cadeau !
       changeSelected: Changer {name}
+    Shlagedex:
+      new: Vous avez {n} nouveau Shlagémon | Vous avez {n} nouveaux Shlagémons
   settings:
     AccessibilityTab:
       autoHide:
@@ -962,6 +964,21 @@ components:
       noAvailable: Aucun objet disponible.
     SelectModal:
       noAvailable: Aucun Shlagémon disponible.
+      locked: Sélection verrouillée.
+    ListGeneric:
+      search: Rechercher
+      sort:
+        level: Niveau
+        rarity: Rareté
+        shiny: Shiny
+        item: Objet équipé
+        name: Nom
+        type: Type
+        attack: Attaque
+        defense: Défense
+        count: Nb obtentions
+        date: Première capture
+        evolution: Proche d'évoluer
   ui:
     CurrencyAmount:
       shlagidiamond: Shlagédiamant
@@ -2408,6 +2425,7 @@ pages:
       contact:
         title: 4. Contact
         content: "Pour toute question : aife.contacts{'@'}gmail.com"
+    description: Informations sur la collecte et l'utilisation des données dans Shlagémon.
   save:
     ImportPage:
       title: Importer une sauvegarde
@@ -2436,8 +2454,10 @@ pages:
       warningTitle: "Attention : import destructif"
       fileReady: Fichier prêt. Vérifiez les détails ci-dessous.
       acknowledge: Je comprends que cette action remplace TOUTES mes données locales.
+      description: Importez une sauvegarde Shlagémon depuis un fichier .shlag.
   shlagedex:
     title: Shlagédex
+    description: Le répertoire complet des Shlagémons capturables.
   breeding:
     title: Élevage
     name: Élevage

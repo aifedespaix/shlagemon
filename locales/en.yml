@@ -856,9 +856,11 @@ components:
           - "Mission accomplished: it's full… and it laid an egg!"
           - I gave it all it needed… and bam! An egg.
           - "I didn't do things halfway: here's the egg!"
-          - 'I stuffed it completely… result: a nice warm egg.'
+          - "I stuffed it completely… result: a nice warm egg."
           - Filled with happiness… and here's an egg as a gift!
       changeSelected: Change {name}
+    Shlagedex:
+      new: You have {n} new Shlagemon | You have {n} new Shlagemons
   settings:
     AccessibilityTab:
       autoHide:
@@ -962,6 +964,21 @@ components:
       noAvailable: No item available.
     SelectModal:
       noAvailable: No Shlagemon available.
+      locked: Selection locked.
+    ListGeneric:
+      search: Search
+      sort:
+        level: Level
+        rarity: Rarity
+        shiny: Shiny
+        item: Held item
+        name: Name
+        type: Type
+        attack: Attack
+        defense: Defense
+        count: Catch count
+        date: First capture
+        evolution: Ready to evolve
   ui:
     CurrencyAmount:
       shlagidiamond: Shlagiamond
@@ -2415,6 +2432,7 @@ pages:
       contact:
         title: 4. Contact
         content: "For any questions: aife.contacts{'@'}gmail.com"
+    description: Information about data collection and usage in Shlagémon.
   save:
     ImportPage:
       title: Import Save
@@ -2443,8 +2461,10 @@ pages:
       warningTitle: "Warning: destructive import"
       fileReady: File ready. Review details below.
       acknowledge: I understand this action replaces ALL my local data.
+      description: Import a Shlagémon save from a .shlag file.
   shlagedex:
     title: Shlagedex
+    description: Browse the full compendium of Shlagemons.
   breeding:
     title: Breeding
     name: Breeding
