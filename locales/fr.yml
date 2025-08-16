@@ -994,6 +994,15 @@ components:
   zone:
     MonsModal:
       title: Shlagémons de {zone}
+  pwa:
+    InstallBanner:
+      title: Installer l’application ?
+      chromium_hint: Accès rapide, hors-ligne, plein écran.
+      ios_hint: "Sur iOS : ajouter à l’écran d’accueil via le menu Partager."
+      ios_instructions: "Sur iPhone/iPad : touchez le bouton 'Partager', puis 'Sur l’écran d’accueil'."
+      later: Plus tard
+      install: Installer
+      how: Comment ?
 composables:
   useFormatDuration:
     year: "{count} an | {count} ans"

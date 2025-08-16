@@ -7,4 +7,5 @@ usePageHead()
 
 <template>
   <RouterView />
+  <PwaInstallBanner />
 </template>

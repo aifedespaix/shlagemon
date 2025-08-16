@@ -994,6 +994,15 @@ components:
   zone:
     MonsModal:
       title: "{zone} Shlagemons"
+  pwa:
+    InstallBanner:
+      title: Install the app?
+      chromium_hint: Faster access, offline, fullscreen.
+      ios_hint: "On iOS: add to Home Screen via the Share menu."
+      ios_instructions: "On iPhone/iPad: tap the 'Share' button, then 'Add to Home Screen'."
+      later: Later
+      install: Install
+      how: How?
 composables:
   useFormatDuration:
     year: "{count} year | {count} years"

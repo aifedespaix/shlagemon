@@ -1,0 +1,17 @@
+fr:
+  title: Installer l’application ?
+  chromium_hint: 'Accès rapide, hors-ligne, plein écran.'
+  ios_hint: 'Sur iOS : ajouter à l’écran d’accueil via le menu Partager.'
+  ios_instructions: "Sur iPhone/iPad : touchez le bouton 'Partager', puis 'Sur l’écran d’accueil'."
+  later: Plus tard
+  install: Installer
+  how: Comment ?
+
+en:
+  title: Install the app?
+  chromium_hint: 'Faster access, offline, fullscreen.'
+  ios_hint: 'On iOS: add to Home Screen via the Share menu.'
+  ios_instructions: "On iPhone/iPad: tap the 'Share' button, then 'Add to Home Screen'."
+  later: Later
+  install: Install
+  how: How?

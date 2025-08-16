@@ -134,6 +134,7 @@ declare module 'vue' {
     PanelShop: typeof import('./components/panel/Shop.vue')['default']
     PanelVillage: typeof import('./components/panel/Village.vue')['default']
     PanelZone: typeof import('./components/panel/Zone.vue')['default']
+    PwaInstallBanner: typeof import('./components/pwa/InstallBanner.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SettingsAccessibilityTab: typeof import('./components/settings/AccessibilityTab.vue')['default']
