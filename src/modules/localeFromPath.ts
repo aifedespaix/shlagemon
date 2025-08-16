@@ -25,12 +25,6 @@ export const install: UserModule = ({ router, isClient, head }) => {
     if (!isClient) {
       head?.push({
         htmlAttrs: { lang: target },
-        link: [
-          {
-            rel: 'manifest',
-            href: `/${target}/manifest.webmanifest`,
-          },
-        ],
       })
     }
     return true

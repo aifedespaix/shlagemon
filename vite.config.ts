@@ -97,12 +97,11 @@ export default defineConfig({
     }),
 
     VitePWA({
-      devOptions: { enabled: true },         // SW actif en dev
-      registerType: 'prompt',                // comme avant (ou "autoUpdate" si tu préfères)
+      devOptions: { enabled: true },    
+      registerType: 'prompt',               
       includeAssets: ['favicon.svg', 'favicon.png', 'safari-pinned-tab.svg'],
 
-      // ✅ Un seul manifest à la racine
-      manifest, // la locale est ignorée dans ta nouvelle implé, on garde la signature
+      manifest,
       manifestFilename: 'manifest.webmanifest',
 
       workbox: {
