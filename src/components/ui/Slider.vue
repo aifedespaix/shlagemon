@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useElementBounding, useEventListener, useFocus, useVModel } from '@vueuse/core'
+import { useFocus, useVModel } from '@vueuse/core'
+import { computed, ref } from 'vue'
 
 type Size = 'sm' | 'md' | 'lg'
 
@@ -10,7 +11,7 @@ interface Props {
   min?: number
   /** Borne max (incluse). */
   max?: number
-  /** Pas (>=0). 0 → continu. */
+  /** Pas (>=0). 0 → continu (step="any"). */
   step?: number
   /** Désactivation. */
   disabled?: boolean
@@ -60,164 +61,85 @@ const emit = defineEmits<{
 }>()
 
 /** === State ============================================================= */
-const trackRef = ref<HTMLDivElement | null>(null)
-const handleRef = ref<HTMLButtonElement | null>(null)
-
-/** v-model contrôlé via VueUse */
+const rangeRef = ref<HTMLInputElement | null>(null)
 const internal = useVModel(props, 'modelValue', emit)
-
-/** bounding rect réactif */
-const { left, width } = useElementBounding(trackRef)
-
-/** focus handle */
-const { focused: isFocused } = useFocus(handleRef)
-
-const isActive = ref(false)
+const { focused: isFocused } = useFocus(rangeRef)
 
 /** === Utils ============================================================= */
+const clamp = (v: number): number => Math.min(props.max, Math.max(props.min, v))
 const safeStep = computed<number>(() => Math.max(0, props.step))
-const range = computed<number>(() => Math.max(0, props.max - props.min))
 const visualSpan = computed<number>(() => Math.max(1e-6, props.max - props.origin))
 
-const clamp = (v: number): number => Math.min(props.max, Math.max(props.min, v))
+/** Delta pour boutons quand step=0 → delta “continu” cohérent */
+const buttonDelta = computed<number>(() => safeStep.value || Math.max((props.max - props.min) / 100, 0.000001))
+
+/** Snap utilisé par les boutons (+/-). Le natif gère déjà step pour le clavier/souris. */
 function snap(v: number): number {
-  if (safeStep.value <= 0)
-    return clamp(v)
+  if (safeStep.value <= 0) return clamp(v)
   const n = Math.round((v - props.min) / safeStep.value)
   return clamp(props.min + n * safeStep.value)
 }
 
-/** mapping pointeur -> valeur */
-function posToValue(clientX: number): number {
-  if (!width.value)
-    return internal.value
-  const ratio = (clientX - left.value) / width.value
-  return snap(props.origin + ratio * visualSpan.value)
-}
-
-/** set helpers (lisibles) */
-function setLive(v: number): void {
-  const next = snap(clamp(v))
-  if (next !== internal.value) {
-    internal.value = next // -> émet update:modelValue via useVModel
-    emit('input', next) // live
-  }
-}
-function commit(): void {
-  emit('change', internal.value) // commit final
-}
-
-/** % pour le track (référentiel [origin..max]) */
-const preMinPercent = computed<number>(() =>
-  props.min <= props.origin ? 0 : ((props.min - props.origin) / visualSpan.value) * 100,
-)
-const handleLeftPercent = computed<number>(() => {
-  const posFromOrigin = Math.min(props.max, Math.max(props.origin, internal.value)) - props.origin
-  return (posFromOrigin / visualSpan.value) * 100
+/** === Pourcentages de décor (pré-min + actif) =========================== */
+const preMinPercent = computed<number>(() => {
+  const from = Math.max(props.origin, Math.min(props.min, props.max))
+  const num = from - props.origin
+  return Math.min(100, Math.max(0, (num / visualSpan.value) * 100))
 })
-const activeWidthPercent = computed<number>(() =>
-  Math.max(0, handleLeftPercent.value - preMinPercent.value),
-)
+const valuePercent = computed<number>(() => {
+  const posFromOrigin = Math.min(props.max, Math.max(props.origin, internal.value)) - props.origin
+  return Math.min(100, Math.max(0, (posFromOrigin / visualSpan.value) * 100))
+})
+const activeWidthPercent = computed<number>(() => Math.max(0, valuePercent.value - preMinPercent.value))
 
-/** tokens taille */
+/** === Taille (tokens) =================================================== */
+/** On fournit à la fois des classes Uno (purgeables) et les rem numériques pour centrer le thumb. */
 const sizeTokens = computed((): Readonly<{
-  trackH: string
-  handle: string
-  ring: string
+  trackHClass: string
+  trackHRem: number
+  thumbRem: number
   btnPad: string
   btnText: string
 }> => {
   switch (props.size) {
-    case 'sm': return { trackH: 'h-1.5', handle: 'h-4 w-4', ring: 'ring-2', btnPad: 'px-2 py-1', btnText: 'text-sm' } as const
-    case 'lg': return { trackH: 'h-3', handle: 'h-6 w-6', ring: 'ring-3', btnPad: 'px-3 py-2', btnText: 'text-base' } as const
-    default: return { trackH: 'h-2', handle: 'h-5 w-5', ring: 'ring-2', btnPad: 'px-2.5 py-1.5', btnText: 'text-sm' } as const
+    case 'sm':
+      return { trackHClass: 'h-1.5', trackHRem: 0.375, thumbRem: 1.0, btnPad: 'px-2 py-1', btnText: 'text-sm' } as const
+    case 'lg':
+      return { trackHClass: 'h-3', trackHRem: 0.75, thumbRem: 1.5, btnPad: 'px-3 py-2', btnText: 'text-base' } as const
+    default:
+      return { trackHClass: 'h-2', trackHRem: 0.5, thumbRem: 1.25, btnPad: 'px-2.5 py-1.5', btnText: 'text-sm' } as const
   }
 })
 
-/** boutons ± : change ici pour ±1 si tu veux */
-const buttonDelta = computed<number>(() => safeStep.value || 1)
-const canDecrement = computed<boolean>(() => !props.disabled && internal.value > props.min)
-const canIncrement = computed<boolean>(() => !props.disabled && internal.value < props.max)
-
+/** === Handlers ========================================================== */
+function onRangeInput(e: Event): void {
+  const el = e.target as HTMLInputElement
+  const next = clamp(Number(el.value))
+  if (next !== internal.value) {
+    internal.value = next
+    emit('input', next)
+  }
+}
+function onRangeChange(): void {
+  emit('change', internal.value)
+}
 function onMinus(): void {
-  if (!canDecrement.value)
-    return
-  setLive(internal.value - buttonDelta.value)
-  commit()
+  if (props.disabled) return
+  const next = snap(internal.value - buttonDelta.value)
+  if (next !== internal.value) {
+    internal.value = next
+    emit('input', next)
+    emit('change', next)
+  }
 }
 function onPlus(): void {
-  if (!canIncrement.value)
-    return
-  setLive(internal.value + buttonDelta.value)
-  commit()
-}
-
-/** drag piste */
-function startDrag(clientX?: number): void {
-  if (props.disabled)
-    return
-  if (clientX == null || Number.isNaN(clientX))
-    return
-  isActive.value = true
-  setLive(posToValue(clientX))
-  nextTick(() => handleRef.value?.focus())
-}
-function stopDrag(): void {
-  if (!isActive.value)
-    return
-  isActive.value = false
-  commit()
-}
-function onMove(e: MouseEvent | TouchEvent): void {
-  if (!isActive.value)
-    return
-  const clientX = 'touches' in e ? e.touches[0]?.clientX : e.clientX
-  if (typeof clientX === 'number')
-    setLive(posToValue(clientX))
-}
-useEventListener(window, 'mousemove', onMove, { passive: true })
-useEventListener(window, 'touchmove', onMove, { passive: true })
-useEventListener(window, 'mouseup', stopDrag, { passive: true })
-useEventListener(window, 'touchend', stopDrag, { passive: true })
-useEventListener(window, 'touchcancel', stopDrag, { passive: true })
-
-/** clavier */
-function onKeydown(e: KeyboardEvent): void {
-  if (props.disabled)
-    return
-  let delta = 0
-  const step = safeStep.value || (range.value / 100)
-  switch (e.key) {
-    case 'ArrowLeft':
-    case 'ArrowDown':
-      delta = -step
-      break
-    case 'ArrowRight':
-    case 'ArrowUp':
-      delta = step
-      break
-    case 'PageDown':
-      delta = -step * 10
-      break
-    case 'PageUp':
-      delta = step * 10
-      break
-    case 'Home':
-      setLive(props.min)
-      commit()
-      e.preventDefault()
-      return
-    case 'End':
-      setLive(props.max)
-      commit()
-      e.preventDefault()
-      return
-    default:
-      return
+  if (props.disabled) return
+  const next = snap(internal.value + buttonDelta.value)
+  if (next !== internal.value) {
+    internal.value = next
+    emit('input', next)
+    emit('change', next)
   }
-  setLive(internal.value + delta)
-  commit()
-  e.preventDefault()
 }
 
 const ariaValueText = computed(() => props.format(internal.value))
@@ -237,10 +159,9 @@ const ariaValueText = computed(() => props.format(internal.value))
     <!-- Ligne principale -->
     <div class="flex items-center gap-1">
       <!-- − -->
-      <!-- Explicit button type prevents unintended form submission when slider sits inside a form -->
       <UiButton
         native-type="button"
-        :disabled="!canDecrement"
+        :disabled="props.disabled || internal <= props.min"
         size="xs"
         :aria-label="`Diminuer de ${buttonDelta} (${format(snap(internal - buttonDelta))}${unit})`"
         :title="`−${buttonDelta} (${format(snap(internal - buttonDelta))}${unit})`"
@@ -251,57 +172,54 @@ const ariaValueText = computed(() => props.format(internal.value))
         −
       </UiButton>
 
-      <!-- Track -->
+      <!-- Track habillée + input natif limité à la zone interactive -->
       <div
-        ref="trackRef"
-        class="relative w-full rounded-full transition-colors"
-        :class="`${sizeTokens.trackH} ${trackClass}`"
-        @mousedown="(e: MouseEvent) => startDrag(e.clientX)"
-        @touchstart="(e: TouchEvent) => startDrag(e.touches[0]?.clientX)"
+        class="relative w-full"
+        :class="sizeTokens.trackHClass"
+        :style="{
+          '--track-h': `${sizeTokens.trackHRem}rem`,
+          '--thumb-h': `${sizeTokens.thumbRem}rem`,
+        }"
       >
-        <!-- pre-min -->
+        <!-- piste de fond -->
+        <div class="absolute inset-y-0 left-0 w-full rounded-full" :class="trackClass" aria-hidden="true" />
+        <!-- pré-min (non diminuable) -->
         <div
-          class="absolute left-0 top-0 h-full rounded-full"
+          class="absolute inset-y-0 left-0 rounded-full"
           :class="preMinClass"
           :style="{ width: `${preMinPercent}%` }"
           aria-hidden="true"
         />
-        <!-- active -->
+        <!-- actif [min→valeur] -->
         <div
-          class="absolute top-0 h-full rounded-full transition-all duration-150 ease-out"
+          class="absolute inset-y-0 rounded-full transition-all duration-150 ease-out"
           :class="colorClass"
           :style="{ left: `${preMinPercent}%`, width: `${activeWidthPercent}%` }"
           aria-hidden="true"
         />
-        <!-- Handle -->
-        <button
-          ref="handleRef"
-          class="absolute top-1/2 border rounded-full shadow-sm outline-none transition-transform duration-150 ease-out -translate-x-1/2 -translate-y-1/2"
-          :class="[
-            sizeTokens.handle,
-            props.disabled ? 'pointer-events-none' : 'pointer-events-auto',
-            (isFocused || isActive) ? `ring ${sizeTokens.ring} ring-offset-2 ring-primary/40` : '',
-            colorClass,
-          ]"
-          type="button"
-          role="slider"
+
+        <!-- Input range limité à [min→max] → commence après la zone pré-min -->
+        <input
+          ref="rangeRef"
+          type="range"
+          class="range-native absolute inset-y-0 bg-transparent cursor-pointer w-auto"
+          :style="{ left: `${preMinPercent}%`, width: `${100 - preMinPercent}%` }"
+          :min="props.min"
+          :max="props.max"
+          :step="safeStep || 'any'"
+          :disabled="props.disabled"
+          :value="internal"
           :aria-label="ariaLabel"
-          :aria-disabled="props.disabled || undefined"
-          :aria-valuemin="props.min"
-          :aria-valuemax="props.max"
-          :aria-valuenow="internal"
           :aria-valuetext="ariaValueText"
-          :style="{ left: `${handleLeftPercent}%` }"
-          :tabindex="props.disabled ? -1 : 0"
-          @keydown="onKeydown"
+          @input="onRangeInput"
+          @change="onRangeChange"
         />
       </div>
 
       <!-- + -->
-      <!-- Explicit button type prevents unintended form submission when slider sits inside a form -->
       <UiButton
         native-type="button"
-        :disabled="!canIncrement"
+        :disabled="props.disabled || internal >= props.max"
         size="xs"
         :aria-label="`Augmenter de ${buttonDelta} (${format(snap(internal + buttonDelta))}${unit})`"
         :title="`+${buttonDelta} (${format(snap(internal + buttonDelta))}${unit})`"
@@ -316,3 +234,85 @@ const ariaValueText = computed(() => props.format(internal.value))
     <input v-if="props.name" type="hidden" :name="props.name" :value="internal" aria-hidden="true">
   </div>
 </template>
+
+<style scoped>
+/* ============================================================
+   Thumb natif, centré à 100% grâce aux variables:
+   --track-h : hauteur de piste (rem)
+   --thumb-h : hauteur du thumb (rem)
+   margin-top = (track - thumb) / 2
+   ============================================================ */
+
+/* WebKit / Blink */
+.range-native::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background: currentColor; /* hérite de la couleur de texte du range */
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  transition: transform .15s ease-out, box-shadow .15s ease-out;
+  cursor: grab;
+
+  width: var(--thumb-h, 1.25rem);
+  height: var(--thumb-h, 1.25rem);
+
+  /* ✅ centrage vertical exact */
+  margin-top: calc((var(--track-h, 0.5rem) - var(--thumb-h, 1.25rem)) / 2);
+}
+
+/* Firefox */
+.range-native::-moz-range-thumb {
+  border: none;
+  border-radius: 9999px;
+  background: currentColor;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  transition: transform .15s ease-out, box-shadow .15s ease-out;
+  cursor: grab;
+
+  width: var(--thumb-h, 1.25rem);
+  height: var(--thumb-h, 1.25rem);
+
+  /* Firefox centre déjà correctement le thumb sur la track */
+  margin-top: 0;
+}
+
+/* Piste native invisible (on affiche nos calques dessous) */
+.range-native::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  height: var(--track-h, 0.5rem);
+}
+.range-native::-moz-range-track {
+  background: transparent;
+  height: var(--track-h, 0.5rem);
+}
+
+/* États d'interaction */
+.range-native:focus-visible::-webkit-slider-thumb {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, .35),
+    0 1px 2px rgba(0,0,0,.25);
+  transform: scale(1.02);
+}
+.range-native:focus-visible::-moz-range-thumb {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, .35),
+    0 1px 2px rgba(0,0,0,.25);
+  transform: scale(1.02);
+}
+.range-native:active::-webkit-slider-thumb,
+.range-native:active::-moz-range-thumb {
+  transform: scale(1.08);
+}
+
+/* Désactivé */
+.range-native:disabled { cursor: not-allowed; }
+.range-native:disabled::-webkit-slider-thumb,
+.range-native:disabled::-moz-range-thumb {
+  opacity: .6;
+}
+</style>
