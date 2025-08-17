@@ -17,6 +17,7 @@ import generateSitemap from './scripts/generate-sitemap/generate-sitemap'
 import { manifest } from './src/pwa/manifest'
 import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
+import { SITE_URL } from '~/constants/site'
 
 function getAllLocalizedPaths(): string[] {
   return ['/', ...localizedRoutes.flatMap(route => Object.values(route.paths))]
@@ -170,7 +171,7 @@ export default defineConfig({
     onFinished() {
       generateSitemap({
         outDir: 'dist',
-        hostname: 'https://shlagemon.aife.io',
+        hostname: SITE_URL,
       })
     },
   },

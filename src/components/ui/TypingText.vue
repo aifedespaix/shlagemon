@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{ text: string, speed?: number }>(), {
-  speed: 20,
+  speed: 15,
 })
 
 const emit = defineEmits<{

@@ -47,7 +47,7 @@ const itemClass = computed(() => {
       v-if="mon.busy"
       class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-gray-300/60 dark:bg-gray-700/60"
     >
-      <div class="i-game-icons:hourglass text-3xl" aria-hidden="true" />
+    <UiHourglass :animated="true" class="text-gray-700 dark:text-gray-300"></UiHourglass>
     </div>
     <!-- Image Shlagemon, carré, prend toute la hauteur -->
     <template #left>

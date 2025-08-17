@@ -173,6 +173,7 @@ declare module 'vue' {
     UiCheckBox: typeof import('./components/ui/CheckBox.vue')['default']
     UiCurrencyAmount: typeof import('./components/ui/CurrencyAmount.vue')['default']
     UiFullscreenToggle: typeof import('./components/ui/FullscreenToggle.vue')['default']
+    UiHourglass: typeof import('./components/ui/Hourglass.vue')['default']
     UiImageByBackground: typeof import('./components/ui/ImageByBackground.vue')['default']
     UiInfo: typeof import('./components/ui/Info.vue')['default']
     UiInputTipRange: typeof import('./components/ui/InputTipRange.vue')['default']
