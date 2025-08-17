@@ -31,7 +31,7 @@ async function renderHead(path: string, routes: RouteRecordRaw[]) {
   return headTags
 }
 
-describe('OG locale metadata', () => {
+describe('oG locale metadata', () => {
   const routes: RouteRecordRaw[] = []
   for (const locale of availableLocales) {
     for (const entry of localizedRoutes) {

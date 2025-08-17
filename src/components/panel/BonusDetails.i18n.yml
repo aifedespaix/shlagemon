@@ -1,5 +1,5 @@
 fr:
-  intro1 : Le bonus du Shlagedex augmente les dégâts finaux de tous vos Shlagémons ! Il représente le bonus maximal que vous pouvez obtenir en capturant tous les Shlagémons accessibles.
+  intro1: Le bonus du Shlagedex augmente les dégâts finaux de tous vos Shlagémons ! Il représente le bonus maximal que vous pouvez obtenir en capturant tous les Shlagémons accessibles.
   intro2: >-
     Il se base sur le pourcentage de complétion de ce Shlagédex potentiel ainsi que sur le niveau moyen de votre équipe.
   formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10

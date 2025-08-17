@@ -42,7 +42,8 @@ function createOutro(_: string | undefined, exit: () => void): DialogNode[] {
 
 /** UI */
 function openSelector() {
-  if (breeding.activeJob) return // verrou pendant un job (running/completed non collecté)
+  if (breeding.activeJob)
+    return // verrou pendant un job (running/completed non collecté)
   selectorOpen.value = true
 }
 function selectMon(mon: Readonly<{ id: string }>) {
@@ -50,16 +51,19 @@ function selectMon(mon: Readonly<{ id: string }>) {
   selectorOpen.value = false
 }
 function changeMon() {
-  if (breeding.activeJob) return
+  if (breeding.activeJob)
+    return
   breeding.setSelected(null)
   openSelector()
 }
 function start() {
-  if (!breeding.canStartSelected) return
+  if (!breeding.canStartSelected)
+    return
   breeding.startSelected()
 }
 function collect() {
-  if (!breeding.activeEggType || !breeding.isCompletedSelected) return
+  if (!breeding.activeEggType || !breeding.isCompletedSelected)
+    return
   breeding.collectEgg(breeding.activeEggType)
 }
 </script>

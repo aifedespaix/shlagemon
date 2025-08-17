@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
         '--dy': `${f.dy}px`,
         '--rot': `${f.rotation}deg`,
         '--scale': String(f.scale),
-        '--dur': (props.reduceMotion ? Math.min(durationMs, 400) : durationMs) + 'ms'
+        '--dur': `${props.reduceMotion ? Math.min(durationMs, 400) : durationMs}ms`,
       }"
       @animationstart="scheduleFallback(f.id)"
       @animationend="onAnimEnd(f.id)"
@@ -81,9 +81,9 @@ onBeforeUnmount(() => {
   position: absolute;
   left: 0;
   top: 0;
-  transform: translate3d(0,0,0) scale(var(--scale, 1)) rotate(var(--rot, 0deg));
+  transform: translate3d(0, 0, 0) scale(var(--scale, 1)) rotate(var(--rot, 0deg));
   will-change: transform, opacity;
-  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   white-space: nowrap;
   /* dur personnalisable */
   --dur: 2000ms;
@@ -91,7 +91,7 @@ onBeforeUnmount(() => {
 
 /* ====== Enter only, on utilise TransitionGroup juste pour la séquence ====== */
 .float-enter-active {
-  animation: floatDamage var(--dur) cubic-bezier(0.22,0.8,0.22,0.99) both;
+  animation: floatDamage var(--dur) cubic-bezier(0.22, 0.8, 0.22, 0.99) both;
 }
 .float-chip.heal.float-enter-active {
   animation-name: floatHeal ease-in-out;
@@ -105,15 +105,21 @@ onBeforeUnmount(() => {
   transition: none !important;
   opacity: 0 !important;
 }
-.float-enter-from { opacity: 0; }
+.float-enter-from {
+  opacity: 0;
+}
 
 @keyframes floatDamage {
   0% {
     opacity: 0;
-    transform: translate3d(0,0,0) scale(0) rotate(0deg);
+    transform: translate3d(0, 0, 0) scale(0) rotate(0deg);
   }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
   100% {
     opacity: 0;
     transform: translate3d(var(--dx), var(--dy), 0) scale(var(--scale)) rotate(var(--rot));
@@ -122,9 +128,11 @@ onBeforeUnmount(() => {
 @keyframes floatHeal {
   0% {
     opacity: 0;
-    transform: translate3d(0,0,0) scale(0.95);
+    transform: translate3d(0, 0, 0) scale(0.95);
   }
-  20% { opacity: 1; }
+  20% {
+    opacity: 1;
+  }
   100% {
     opacity: 0;
     transform: translate3d(var(--dx), var(--dy), 0) scale(1);

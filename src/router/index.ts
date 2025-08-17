@@ -48,7 +48,7 @@ export const routes: RouteRecordRaw[] = [
     meta: { layout: 'empty' },
   },
   ...buildLocalizedRoutes(),
-  { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('~/pages/404.vue'), meta: { is404: true } }
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('~/pages/404.vue'), meta: { is404: true } },
 
 ]
 

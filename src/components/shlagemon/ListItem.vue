@@ -27,7 +27,6 @@ const itemClass = computed(() => {
 
   return conditions.find(([cond]) => cond)?.[1] ?? ''
 })
-
 </script>
 
 <template>
@@ -47,7 +46,7 @@ const itemClass = computed(() => {
       v-if="mon.busy"
       class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-gray-300/60 dark:bg-gray-700/60"
     >
-    <UiHourglass :animated="true" class="text-gray-700 dark:text-gray-300"></UiHourglass>
+      <UiHourglass :animated="true" class="text-gray-700 dark:text-gray-300" />
     </div>
     <!-- Image Shlagemon, carré, prend toute la hauteur -->
     <template #left>

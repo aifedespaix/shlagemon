@@ -239,25 +239,26 @@ function onClick(_e: MouseEvent) {
         </div>
       </div>
       <div class="h-full w-full flex-1">
-      <Transition name="fade-scale" mode="out-in">
-        <div :key="displayedPlayer?.id" class="relative h-full w-full flex justify-center">
-          <BattleShlagemon
-            :mon="displayedPlayer"
-            :hp="playerHp"
-            :fainted="playerFainted"
-            :flash="flashPlayer"
-            flipped
-            :effects="props.showEffects ? dex.effects : []"
-            :disease="disease.active"
-            :disease-remaining="disease.remaining"
-            owned
-            belongs-to-player
-            class="flex-1"
-            @faint-end="onPlayerFaintEnd"
-          />
-          <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
-        </div>
-      </Transition></div>
+        <Transition name="fade-scale" mode="out-in">
+          <div :key="displayedPlayer?.id" class="relative h-full w-full flex justify-center">
+            <BattleShlagemon
+              :mon="displayedPlayer"
+              :hp="playerHp"
+              :fainted="playerFainted"
+              :flash="flashPlayer"
+              flipped
+              :effects="props.showEffects ? dex.effects : []"
+              :disease="disease.active"
+              :disease-remaining="disease.remaining"
+              owned
+              belongs-to-player
+              class="flex-1"
+              @faint-end="onPlayerFaintEnd"
+            />
+            <BattleToast v-if="playerEffect" :message="playerEffect" :variant="playerVariant" />
+          </div>
+        </Transition>
+      </div>
       <div class="vs font-bold">
         {{ t('components.battle.Round.vs') }}
       </div>

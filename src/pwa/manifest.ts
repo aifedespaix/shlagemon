@@ -1,5 +1,4 @@
 import type { ManifestOptions } from 'vite-plugin-pwa'
-import type { Locale } from '~/constants/locales'
 
 export const manifest = {
   id: '/',

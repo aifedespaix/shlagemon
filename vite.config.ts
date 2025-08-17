@@ -13,11 +13,11 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
+import { SITE_URL } from '~/constants/site'
 import generateSitemap from './scripts/generate-sitemap/generate-sitemap'
 import { manifest } from './src/pwa/manifest'
 import { localizedRoutes } from './src/router/localizedRoutes'
 import 'vitest/config'
-import { SITE_URL } from '~/constants/site'
 
 function getAllLocalizedPaths(): string[] {
   return ['/', ...localizedRoutes.flatMap(route => Object.values(route.paths))]
@@ -97,8 +97,8 @@ export default defineConfig({
       },
     }),
 
-    VitePWA({ 
-      registerType: 'prompt',               
+    VitePWA({
+      registerType: 'prompt',
       includeAssets: ['favicon.svg', 'favicon.png', 'safari-pinned-tab.svg'],
 
       manifest,

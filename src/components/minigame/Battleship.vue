@@ -9,10 +9,10 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
 
 <template>
   <!-- parent : s’adapte au parent (pas au viewport) -->
-  <div class="w-full flex flex-1 min-h-0 flex-col gap-2 sm:(flex-row gap-4) items-stretch">
+  <div class="min-h-0 w-full flex flex-1 flex-col items-stretch gap-2 sm:(flex-row gap-4)">
     <!-- Panneau joueur -->
-    <div class="grid flex-1 min-w-0 w-full min-h-0 grid-rows-[auto_1fr]">
-      <div class="text-center text-blue-900 dark:text-blue-200 px-2">
+    <div class="grid grid-rows-[auto_1fr] min-h-0 min-w-0 w-full flex-1">
+      <div class="px-2 text-center text-blue-900 dark:text-blue-200">
         {{ t('components.minigame.Battleship.player') }}
       </div>
 
@@ -23,7 +23,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
             class="grid h-full w-full gap-1 md:gap-2"
             :style="{
               gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
-              gridAutoRows: '1fr'
+              gridAutoRows: '1fr',
             }"
           >
             <div
@@ -47,8 +47,8 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
     </div>
 
     <!-- Panneau IA -->
-    <div class="grid flex-1 min-w-0 w-full min-h-0 grid-rows-[auto_1fr]">
-      <div class="text-center text-red-900 dark:text-red-200 px-2">
+    <div class="grid grid-rows-[auto_1fr] min-h-0 min-w-0 w-full flex-1">
+      <div class="px-2 text-center text-red-900 dark:text-red-200">
         {{ afidaTourments.name }}
       </div>
 
@@ -58,7 +58,7 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
             class="grid h-full w-full gap-1 md:gap-2"
             :style="{
               gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
-              gridAutoRows: '1fr'
+              gridAutoRows: '1fr',
             }"
           >
             <button
@@ -97,14 +97,21 @@ const { playerBoard, aiBoard, turn, finished, attack } = useBattleship(w => emit
 .board-square {
   inline-size: min(100cqi, 100cqb);
   aspect-ratio: 1 / 1;
-  block-size: auto;       /* suit l'aspect-ratio */
-  max-inline-size: 100%;  /* jamais plus large que la colonne */
+  block-size: auto; /* suit l'aspect-ratio */
+  max-inline-size: 100%; /* jamais plus large que la colonne */
 }
 
 /* Anim */
 @keyframes sink {
-  from { transform: scale(1); }
-  to   { transform: scale(0.8); opacity: 0.7; }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
 }
-.animate-sink { animation: sink 0.6s ease forwards; }
+.animate-sink {
+  animation: sink 0.6s ease forwards;
+}
 </style>

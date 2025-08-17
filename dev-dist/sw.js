@@ -13,67 +13,69 @@
 
 // If the loader is already loaded, just stop.
 if (!self.define) {
-  let registry = {};
+  const registry = {}
 
   // Used for `eval` and `importScripts` where we can't get script URL by other means.
   // In both cases, it's safe to use a global var because those functions are synchronous.
-  let nextDefineUri;
+  let nextDefineUri
 
   const singleRequire = (uri, parentUri) => {
-    uri = new URL(uri + ".js", parentUri).href;
+    uri = new URL(`${uri}.js`, parentUri).href
     return registry[uri] || (
-      
-        new Promise(resolve => {
-          if ("document" in self) {
-            const script = document.createElement("script");
-            script.src = uri;
-            script.onload = resolve;
-            document.head.appendChild(script);
-          } else {
-            nextDefineUri = uri;
-            importScripts(uri);
-            resolve();
-          }
-        })
-      
-      .then(() => {
-        let promise = registry[uri];
-        if (!promise) {
-          throw new Error(`Module ${uri} didn’t register its module`);
+
+      new Promise((resolve) => {
+        if ('document' in self) {
+          const script = document.createElement('script')
+          script.src = uri
+          script.onload = resolve
+          document.head.appendChild(script)
         }
-        return promise;
+        else {
+          nextDefineUri = uri
+          importScripts(uri)
+          resolve()
+        }
       })
-    );
-  };
+
+        .then(() => {
+          const promise = registry[uri]
+          if (!promise) {
+            throw new Error(`Module ${uri} didn’t register its module`)
+          }
+          return promise
+        })
+    )
+  }
 
   self.define = (depsNames, factory) => {
-    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    const uri = nextDefineUri || ('document' in self ? document.currentScript.src : '') || location.href
     if (registry[uri]) {
       // Module is already loading or loaded.
-      return;
+      return
     }
-    let exports = {};
-    const require = depUri => singleRequire(depUri, uri);
+    const exports = {}
+    const require = depUri => singleRequire(depUri, uri)
     const specialDeps = {
       module: { uri },
       exports,
-      require
-    };
-    registry[uri] = Promise.all(depsNames.map(
-      depName => specialDeps[depName] || require(depName)
-    )).then(deps => {
-      factory(...deps);
-      return exports;
-    });
-  };
-}
-define(['./workbox-b3e3ee48'], (function (workbox) { 'use strict';
-
-  self.addEventListener('message', event => {
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-      self.skipWaiting();
+      require,
     }
-  });
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName),
+    )).then((deps) => {
+      factory(...deps)
+      return exports
+    })
+  }
+}
+define(['./workbox-b3e3ee48'], (workbox) => {
+  'use strict'
+
+  self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+      self.skipWaiting()
+    }
+  })
 
   /**
    * The precacheAndRoute() method efficiently caches and responds to
@@ -81,43 +83,42 @@ define(['./workbox-b3e3ee48'], (function (workbox) { 'use strict';
    * See https://goo.gl/S9QRab
    */
   workbox.precacheAndRoute([{
-    "url": "registerSW.js",
-    "revision": "3ca0b8505b4bec776b69afdba2768812"
+    url: 'registerSW.js',
+    revision: '3ca0b8505b4bec776b69afdba2768812',
   }, {
-    "url": "index.html",
-    "revision": "0.b8tvskko65"
-  }], {});
-  workbox.cleanupOutdatedCaches();
-  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
-    allowlist: [/^\/$/]
-  }));
+    url: 'index.html',
+    revision: '0.b8tvskko65',
+  }], {})
+  workbox.cleanupOutdatedCaches()
+  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL('index.html'), {
+    allowlist: [/^\/$/],
+  }))
   workbox.registerRoute(({
-    request
-  }) => request.destination === "image", new workbox.CacheFirst({
-    "cacheName": "images",
+    request,
+  }) => request.destination === 'image', new workbox.CacheFirst({
+    cacheName: 'images',
     plugins: [new workbox.ExpirationPlugin({
       maxEntries: 400,
-      maxAgeSeconds: 5184000
+      maxAgeSeconds: 5184000,
     }), new workbox.CacheableResponsePlugin({
-      statuses: [0, 200]
-    })]
-  }), 'GET');
+      statuses: [0, 200],
+    })],
+  }), 'GET')
   workbox.registerRoute(({
-    request
-  }) => request.destination === "audio", new workbox.CacheFirst({
-    "cacheName": "audio",
+    request,
+  }) => request.destination === 'audio', new workbox.CacheFirst({
+    cacheName: 'audio',
     plugins: [new workbox.ExpirationPlugin({
       maxEntries: 100,
-      maxAgeSeconds: 5184000
+      maxAgeSeconds: 5184000,
     }), new workbox.CacheableResponsePlugin({
-      statuses: [0, 200]
-    })]
-  }), 'GET');
+      statuses: [0, 200],
+    })],
+  }), 'GET')
   workbox.registerRoute(({
-    url
+    url,
   }) => url.origin === globalThis.location.origin, new workbox.StaleWhileRevalidate({
-    "cacheName": "static-assets",
-    plugins: []
-  }), 'GET');
-
-}));
+    cacheName: 'static-assets',
+    plugins: [],
+  }), 'GET')
+})
