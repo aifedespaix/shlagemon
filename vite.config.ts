@@ -96,8 +96,7 @@ export default defineConfig({
       },
     }),
 
-    VitePWA({
-      devOptions: { enabled: true },    
+    VitePWA({ 
       registerType: 'prompt',               
       includeAssets: ['favicon.svg', 'favicon.png', 'safari-pinned-tab.svg'],
 
