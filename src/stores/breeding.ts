@@ -160,8 +160,12 @@ export const useBreedingStore = defineStore('breeding', () => {
   useIntervalFn(() => {
     now.value = Date.now()
     for (const type of Object.keys(byType.value) as EggType[]) {
-      if (completeIfDue(type))
-        toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
+      const job = byType.value[type]
+      if (completeIfDue(type) && job) {
+        const mon = dex.shlagemons.find(m => m.id === job.monId)
+        const name = mon ? i18n.global.t(mon.base.name) : '???'
+        toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
+      }
     }
   }, 1000)
 
@@ -181,9 +185,14 @@ export const useBreedingStore = defineStore('breeding', () => {
     pick: ['byType'],
     afterHydrate(ctx) {
       const store = ctx.store as HydratedBreedingStore
+      const dex = useShlagedexStore()
       for (const type of Object.keys(store.byType) as EggType[]) {
-        if (store.completeIfDue(type))
-          toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
+        const job = store.byType[type]
+        if (store.completeIfDue(type) && job) {
+          const mon = dex.shlagemons.find(m => m.id === job.monId)
+          const name = mon ? i18n.global.t(mon.base.name) : '???'
+          toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
+        }
       }
     },
   },
