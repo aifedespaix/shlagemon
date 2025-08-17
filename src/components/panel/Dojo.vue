@@ -206,7 +206,7 @@ const ids = {
               unit=" points"
               :origin="0"
               name="points slider"
-              :format="val => `+${val}`"
+              :format="val => `+${val - base}`"
               @change="setPointsFromNumber"
             />
           </div>
