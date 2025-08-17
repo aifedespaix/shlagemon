@@ -11,6 +11,7 @@ export type ButtonType
 
 export type ButtonVariant = 'solid' | 'outline'
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg'
+export type ButtonNativeType = 'button' | 'submit' | 'reset'
 
 const props = withDefaults(
   defineProps<{
@@ -21,6 +22,11 @@ const props = withDefaults(
     ariaLabel?: string
     iconSize?: string // Ajout d’une prop taille icône : ex "text-xl" ou "text-2xl"
     circle?: boolean
+    /**
+     * Type natif de l’élément `<button>`. Par défaut
+     * `'button'` pour les boutons icône, `'submit'` sinon.
+     */
+    nativeType?: ButtonNativeType
   }>(),
   {
     type: 'default',
@@ -30,6 +36,7 @@ const props = withDefaults(
     ariaLabel: undefined,
     iconSize: '', // vide = auto
     circle: false,
+    nativeType: undefined,
   },
 )
 
@@ -115,7 +122,7 @@ function handleClick(e: MouseEvent) {
 
 <template>
   <button
-    :type="props.type === 'icon' ? 'button' : 'submit'"
+    :type="props.nativeType ?? (props.type === 'icon' ? 'button' : 'submit')"
     :disabled="props.disabled"
     :aria-label="props.ariaLabel"
     :tabindex="props.disabled ? -1 : 0"

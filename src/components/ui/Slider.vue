@@ -239,7 +239,7 @@ const ariaValueText = computed(() => props.format(internal.value))
       <!-- − -->
       <!-- Explicit button type prevents unintended form submission when slider sits inside a form -->
       <UiButton
-        type="button"
+        native-type="button"
         :disabled="!canDecrement"
         size="xs"
         :aria-label="`Diminuer de ${buttonDelta} (${format(snap(internal - buttonDelta))}${unit})`"
@@ -300,7 +300,7 @@ const ariaValueText = computed(() => props.format(internal.value))
       <!-- + -->
       <!-- Explicit button type prevents unintended form submission when slider sits inside a form -->
       <UiButton
-        type="button"
+        native-type="button"
         :disabled="!canIncrement"
         size="xs"
         :aria-label="`Augmenter de ${buttonDelta} (${format(snap(internal + buttonDelta))}${unit})`"
