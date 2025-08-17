@@ -1,15 +1,15 @@
-import { computed, reactive, ref, watch } from 'vue'
-import { useIntervalFn } from '@vueuse/core'
 import type { EggType } from './egg'
 import type { DexShlagemon } from '~/type/shlagemon'
+import { useIntervalFn } from '@vueuse/core'
 import { defineStore } from 'pinia'
+import { computed, reactive, ref, watch } from 'vue'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
 import { BREEDING_DURATION_MS, breedingCost } from '~/utils/breeding'
 import { findRootAncestorId } from '~/utils/shlagemon-ancestor'
 import { useEggBoxStore } from './eggBox'
-import { useShlagedexStore } from './shlagedex'
 import { useGameStore } from './game'
+import { useShlagedexStore } from './shlagedex'
 
 export interface BreedingJob {
   readonly type: EggType
@@ -53,18 +53,21 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   /** Job prioritaire (running > premier autre, ex: completed). */
   const activeJob = computed<BreedingJob | null>(() => {
-    if (!allJobs.value.length) return null
+    if (!allJobs.value.length)
+      return null
     return allJobs.value.find(j => j.status === 'running') ?? allJobs.value[0]
   })
 
   const selectedMon = computed<DexShlagemon | null>(() => {
-    if (!state.selectedMonId) return null
+    if (!state.selectedMonId)
+      return null
     return dex.shlagemons.find(m => m.id === state.selectedMonId) ?? null
   })
 
   /** EggType actif (issu du job actif s’il existe, sinon du mon sélectionné). */
   const activeEggType = computed<EggType | null>(() => {
-    if (activeJob.value) return activeJob.value.type
+    if (activeJob.value)
+      return activeJob.value.type
     const mon = selectedMon.value
     return mon ? (mon.base.types[0].id as EggType) : null
   })
@@ -84,17 +87,21 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   const selectedRemainingMs = computed<number>(() => {
     const t = activeEggType.value
-    if (!t) return 0
+    if (!t)
+      return 0
     const job = state.byType[t]
-    if (!job || job.status !== 'running') return 0
+    if (!job || job.status !== 'running')
+      return 0
     return Math.max(0, job.endsAt - now.value)
   })
 
   const selectedProgress = computed<number>(() => {
     const job = selectedJob.value
-    if (!job) return 0
+    if (!job)
+      return 0
     const total = job.endsAt - job.startedAt
-    if (total <= 0) return 1
+    if (total <= 0)
+      return 1
     return clamp01(1 - selectedRemainingMs.value / total)
   })
 
@@ -145,14 +152,17 @@ export const useBreedingStore = defineStore('breeding', () => {
   }
   function remainingMs(type: EggType): number {
     const job = state.byType[type]
-    if (!job || job.status !== 'running') return 0
+    if (!job || job.status !== 'running')
+      return 0
     return Math.max(0, job.endsAt - now.value)
   }
   function progress(type: EggType): number {
     const job = state.byType[type]
-    if (!job) return 0
+    if (!job)
+      return 0
     const total = job.endsAt - job.startedAt
-    if (total <= 0) return 1
+    if (total <= 0)
+      return 1
     return clamp01(1 - remainingMs(type) / total)
   }
 
@@ -167,7 +177,8 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   /** Aligne la sélection sur le job actif (utile quand on ouvre l’écran). */
   function ensureSelectionFromJobs(): void {
-    if (!activeJob.value) return
+    if (!activeJob.value)
+      return
     if (state.selectedMonId !== activeJob.value.monId) {
       state.selectedMonId = activeJob.value.monId
     }
@@ -176,10 +187,12 @@ export const useBreedingStore = defineStore('breeding', () => {
   function start(mon: DexShlagemon): boolean {
     const { t } = i18n.global
     const type = mon.base.types[0].id as EggType
-    if (state.byType[type]) return false
+    if (state.byType[type])
+      return false
 
     const cost = breedingCost(mon.rarity)
-    if (game.shlagidolar < cost) return false
+    if (game.shlagidolar < cost)
+      return false
 
     game.addShlagidolar(-cost)
     const startedAt = Date.now()
@@ -205,8 +218,10 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   function completeIfDue(type: EggType): boolean {
     const job = state.byType[type]
-    if (!job || job.status !== 'running') return false
-    if (now.value < job.endsAt) return false
+    if (!job || job.status !== 'running')
+      return false
+    if (now.value < job.endsAt)
+      return false
     job.status = 'completed'
     return true
   }
@@ -214,7 +229,8 @@ export const useBreedingStore = defineStore('breeding', () => {
   function collectEgg(type: EggType): boolean {
     const { t } = i18n.global
     const job = state.byType[type]
-    if (!job || job.status !== 'completed') return false
+    if (!job || job.status !== 'completed')
+      return false
 
     const ancestorId = findRootAncestorId(job.parentId)
     eggBox.addBreedingEgg(ancestorId, job.type, job.rarity)
@@ -241,9 +257,11 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   const canStartSelected = computed<boolean>(() => {
     const mon = selectedMon.value
-    if (!mon) return false
+    if (!mon)
+      return false
     const type = mon.base.types[0].id as EggType
-    if (state.byType[type]) return false
+    if (state.byType[type])
+      return false
     return game.shlagidolar >= breedingCost(mon.rarity)
   })
 
@@ -261,7 +279,8 @@ export const useBreedingStore = defineStore('breeding', () => {
         const name = mon ? i18n.global.t(mon.base.name) : undefined
         if (name) {
           toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
-        } else {
+        }
+        else {
           toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
         }
       }
@@ -333,7 +352,8 @@ export const useBreedingStore = defineStore('breeding', () => {
           const name = mon ? i18n.global.t(mon.base.name) : undefined
           if (name) {
             toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
-          } else {
+          }
+          else {
             toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
           }
         }
