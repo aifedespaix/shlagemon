@@ -188,13 +188,32 @@ function onKeydown(e: KeyboardEvent): void {
   let delta = 0
   const step = safeStep.value || (range.value / 100)
   switch (e.key) {
-    case 'ArrowLeft': case 'ArrowDown': delta = -step; break
-    case 'ArrowRight': case 'ArrowUp': delta = step; break
-    case 'PageDown': delta = -step * 10; break
-    case 'PageUp': delta = step * 10; break
-    case 'Home': setLive(props.min); commit(); e.preventDefault(); return
-    case 'End': setLive(props.max); commit(); e.preventDefault(); return
-    default: return
+    case 'ArrowLeft':
+    case 'ArrowDown':
+      delta = -step
+      break
+    case 'ArrowRight':
+    case 'ArrowUp':
+      delta = step
+      break
+    case 'PageDown':
+      delta = -step * 10
+      break
+    case 'PageUp':
+      delta = step * 10
+      break
+    case 'Home':
+      setLive(props.min)
+      commit()
+      e.preventDefault()
+      return
+    case 'End':
+      setLive(props.max)
+      commit()
+      e.preventDefault()
+      return
+    default:
+      return
   }
   setLive(internal.value + delta)
   commit()
@@ -218,7 +237,9 @@ const ariaValueText = computed(() => props.format(internal.value))
     <!-- Ligne principale -->
     <div class="flex items-center gap-1">
       <!-- − -->
+      <!-- Explicit button type prevents unintended form submission when slider sits inside a form -->
       <UiButton
+        type="button"
         :disabled="!canDecrement"
         size="xs"
         :aria-label="`Diminuer de ${buttonDelta} (${format(snap(internal - buttonDelta))}${unit})`"
@@ -277,7 +298,9 @@ const ariaValueText = computed(() => props.format(internal.value))
       </div>
 
       <!-- + -->
+      <!-- Explicit button type prevents unintended form submission when slider sits inside a form -->
       <UiButton
+        type="button"
         :disabled="!canIncrement"
         size="xs"
         :aria-label="`Augmenter de ${buttonDelta} (${format(snap(internal + buttonDelta))}${unit})`"
