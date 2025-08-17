@@ -5,6 +5,7 @@ import { computed } from 'vue'
 interface Props {
   mon: DexShlagemon
   points: number
+  showPreview: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits<{ (e: 'click'): void }>()

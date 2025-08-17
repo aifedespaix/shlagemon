@@ -166,6 +166,7 @@ const ids = {
                 v-if="selected"
                 :mon="selected"
                 :points="points"
+                :show-preview="!isCompleted"
                 class="h-full w-full"
                 @click="openSelector"
               />
