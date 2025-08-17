@@ -36,7 +36,7 @@ fr:
     collectEgg: Récupérer l'œuf
   toast:
     started: Élevage lancé !
-    finished: Œuf obtenu !
+    finished: '{name} a pondu un œuf, vous pouvez le récupérer dès maintenant.'
     collected: Œuf récupéré !
   status:
     running: Élevage en cours
@@ -84,7 +84,7 @@ en:
     collectEgg: Collect egg
   toast:
     started: Breeding started!
-    finished: Egg obtained!
+    finished: '{name} laid an egg, you can collect it now.'
     collected: Egg collected!
   status:
     running: Breeding in progress

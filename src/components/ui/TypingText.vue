@@ -10,19 +10,26 @@ const emit = defineEmits<{
 const audio = useAudioStore()
 
 const display = ref('')
-let timer: ReturnType<typeof useTimeoutFn> | undefined
+let timer: ReturnType<typeof setTimeout> | undefined
+
+function clearTimer() {
+  if (timer !== undefined) {
+    clearTimeout(timer)
+    timer = undefined
+  }
+}
 
 function start() {
   display.value = ''
-  timer?.stop()
+  clearTimer()
   if (!props.text)
     return emit('finished')
-  let i = 0
+  let index = 0
   function typeChar() {
-    display.value += props.text[i++]
+    display.value += props.text[index++]
     audio.playTypingSfx()
-    if (i < props.text.length)
-      timer = useTimeoutFn(typeChar, props.speed)
+    if (index < props.text.length)
+      timer = setTimeout(typeChar, props.speed)
     else
       emit('finished')
   }
@@ -31,9 +38,7 @@ function start() {
 
 watch(() => props.text, start, { immediate: true })
 
-onUnmounted(() => {
-  timer?.stop()
-})
+onUnmounted(clearTimer)
 </script>
 
 <template>

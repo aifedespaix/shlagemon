@@ -1,3 +1,5 @@
+import { computed, reactive, ref, watch } from 'vue'
+import { useIntervalFn } from '@vueuse/core'
 import type { EggType } from './egg'
 import type { DexShlagemon } from '~/type/shlagemon'
 import { defineStore } from 'pinia'
@@ -46,7 +48,8 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   /** ================= Getters sélection / jobs actifs ================== */
   const allJobs = computed<BreedingJob[]>(() =>
-    (Object.values(state.byType).filter(Boolean) as BreedingJob[]))
+    (Object.values(state.byType).filter(Boolean) as BreedingJob[]),
+  )
 
   /** Job prioritaire (running > premier autre, ex: completed). */
   const activeJob = computed<BreedingJob | null>(() => {
@@ -249,10 +252,18 @@ export const useBreedingStore = defineStore('breeding', () => {
   /** ================= Effects / ticks ================================= */
   useIntervalFn(() => {
     now.value = Date.now()
-    const { t } = i18n.global
     for (const type of Object.keys(state.byType) as EggType[]) {
-      if (completeIfDue(type)) {
-        toast.success(t('components.panel.Breeding.toast.finished'))
+      const wasDue = completeIfDue(type)
+      if (wasDue) {
+        const job = state.byType[type]
+        // job existe encore, simplement en "completed"
+        const mon = job ? dex.shlagemons.find(m => m.id === job.monId) : null
+        const name = mon ? i18n.global.t(mon.base.name) : undefined
+        if (name) {
+          toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
+        } else {
+          toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
+        }
       }
     }
   }, 1000)
@@ -313,10 +324,18 @@ export const useBreedingStore = defineStore('breeding', () => {
     pick: ['byType', 'selectedMonId'],
     afterHydrate(ctx) {
       const store = ctx.store as HydratedBreedingStore
-      const { t } = i18n.global
+      const dex = useShlagedexStore()
       for (const type of Object.keys(store.byType) as EggType[]) {
-        if (store.completeIfDue(type)) {
-          toast.success(t('components.panel.Breeding.toast.finished'))
+        const job = store.byType[type]
+        const wasDue = store.completeIfDue(type)
+        if (wasDue) {
+          const mon = job ? dex.shlagemons.find(m => m.id === job.monId) : null
+          const name = mon ? i18n.global.t(mon.base.name) : undefined
+          if (name) {
+            toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
+          } else {
+            toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
+          }
         }
       }
     },
