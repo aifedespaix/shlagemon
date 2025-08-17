@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useElementBounding, useVModel, useFocus, useEventListener } from '@vueuse/core'
+import { useElementBounding, useEventListener, useFocus, useVModel } from '@vueuse/core'
 
 type Size = 'sm' | 'md' | 'lg'
 
@@ -81,14 +81,16 @@ const visualSpan = computed<number>(() => Math.max(1e-6, props.max - props.origi
 
 const clamp = (v: number): number => Math.min(props.max, Math.max(props.min, v))
 function snap(v: number): number {
-  if (safeStep.value <= 0) return clamp(v)
+  if (safeStep.value <= 0)
+    return clamp(v)
   const n = Math.round((v - props.min) / safeStep.value)
   return clamp(props.min + n * safeStep.value)
 }
 
 /** mapping pointeur -> valeur */
 function posToValue(clientX: number): number {
-  if (!width.value) return internal.value
+  if (!width.value)
+    return internal.value
   const ratio = (clientX - left.value) / width.value
   return snap(props.origin + ratio * visualSpan.value)
 }
@@ -97,8 +99,8 @@ function posToValue(clientX: number): number {
 function setLive(v: number): void {
   const next = snap(clamp(v))
   if (next !== internal.value) {
-    internal.value = next        // -> émet update:modelValue via useVModel
-    emit('input', next)          // live
+    internal.value = next // -> émet update:modelValue via useVModel
+    emit('input', next) // live
   }
 }
 function commit(): void {
@@ -126,9 +128,9 @@ const sizeTokens = computed((): Readonly<{
   btnText: string
 }> => {
   switch (props.size) {
-    case 'sm': return { trackH: 'h-1.5', handle: 'h-4 w-4', ring: 'ring-2', btnPad: 'px-2 py-1',   btnText: 'text-sm' } as const
-    case 'lg': return { trackH: 'h-3',   handle: 'h-6 w-6', ring: 'ring-3', btnPad: 'px-3 py-2',   btnText: 'text-base' } as const
-    default:   return { trackH: 'h-2',   handle: 'h-5 w-5', ring: 'ring-2', btnPad: 'px-2.5 py-1.5', btnText: 'text-sm' } as const
+    case 'sm': return { trackH: 'h-1.5', handle: 'h-4 w-4', ring: 'ring-2', btnPad: 'px-2 py-1', btnText: 'text-sm' } as const
+    case 'lg': return { trackH: 'h-3', handle: 'h-6 w-6', ring: 'ring-3', btnPad: 'px-3 py-2', btnText: 'text-base' } as const
+    default: return { trackH: 'h-2', handle: 'h-5 w-5', ring: 'ring-2', btnPad: 'px-2.5 py-1.5', btnText: 'text-sm' } as const
   }
 })
 
@@ -138,33 +140,40 @@ const canDecrement = computed<boolean>(() => !props.disabled && internal.value >
 const canIncrement = computed<boolean>(() => !props.disabled && internal.value < props.max)
 
 function onMinus(): void {
-  if (!canDecrement.value) return
+  if (!canDecrement.value)
+    return
   setLive(internal.value - buttonDelta.value)
   commit()
 }
 function onPlus(): void {
-  if (!canIncrement.value) return
+  if (!canIncrement.value)
+    return
   setLive(internal.value + buttonDelta.value)
   commit()
 }
 
 /** drag piste */
 function startDrag(clientX?: number): void {
-  if (props.disabled) return
-  if (clientX == null || Number.isNaN(clientX)) return
+  if (props.disabled)
+    return
+  if (clientX == null || Number.isNaN(clientX))
+    return
   isActive.value = true
   setLive(posToValue(clientX))
   nextTick(() => handleRef.value?.focus())
 }
 function stopDrag(): void {
-  if (!isActive.value) return
+  if (!isActive.value)
+    return
   isActive.value = false
   commit()
 }
 function onMove(e: MouseEvent | TouchEvent): void {
-  if (!isActive.value) return
+  if (!isActive.value)
+    return
   const clientX = 'touches' in e ? e.touches[0]?.clientX : e.clientX
-  if (typeof clientX === 'number') setLive(posToValue(clientX))
+  if (typeof clientX === 'number')
+    setLive(posToValue(clientX))
 }
 useEventListener(window, 'mousemove', onMove, { passive: true })
 useEventListener(window, 'touchmove', onMove, { passive: true })
@@ -174,16 +183,17 @@ useEventListener(window, 'touchcancel', stopDrag, { passive: true })
 
 /** clavier */
 function onKeydown(e: KeyboardEvent): void {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   let delta = 0
   const step = safeStep.value || (range.value / 100)
   switch (e.key) {
     case 'ArrowLeft': case 'ArrowDown': delta = -step; break
-    case 'ArrowRight': case 'ArrowUp':  delta =  step; break
-    case 'PageDown':                    delta = -step * 10; break
-    case 'PageUp':                      delta =  step * 10; break
+    case 'ArrowRight': case 'ArrowUp': delta = step; break
+    case 'PageDown': delta = -step * 10; break
+    case 'PageUp': delta = step * 10; break
     case 'Home': setLive(props.min); commit(); e.preventDefault(); return
-    case 'End':  setLive(props.max); commit(); e.preventDefault(); return
+    case 'End': setLive(props.max); commit(); e.preventDefault(); return
     default: return
   }
   setLive(internal.value + delta)
@@ -213,9 +223,9 @@ const ariaValueText = computed(() => props.format(internal.value))
         size="xs"
         :aria-label="`Diminuer de ${buttonDelta} (${format(snap(internal - buttonDelta))}${unit})`"
         :title="`−${buttonDelta} (${format(snap(internal - buttonDelta))}${unit})`"
-        @click="onMinus"
-        class="rounded-md border border-gray-300 dark:border-gray-700 bg-gray-1 dark:bg-gray-9 hover:bg-gray-2 dark:hover:bg-gray-8 transition-colors"
+        class="border border-gray-300 rounded-md bg-gray-1 transition-colors dark:border-gray-700 dark:bg-gray-9 hover:bg-gray-2 dark:hover:bg-gray-8"
         :class="[sizeTokens.btnPad, sizeTokens.btnText]"
+        @click="onMinus"
       >
         −
       </UiButton>
@@ -272,14 +282,14 @@ const ariaValueText = computed(() => props.format(internal.value))
         size="xs"
         :aria-label="`Augmenter de ${buttonDelta} (${format(snap(internal + buttonDelta))}${unit})`"
         :title="`+${buttonDelta} (${format(snap(internal + buttonDelta))}${unit})`"
-        @click="onPlus"
-        class="rounded-md border border-gray-300 dark:border-gray-700 bg-gray-1 dark:bg-gray-9 hover:bg-gray-2 dark:hover:bg-gray-8 transition-colors"
+        class="border border-gray-300 rounded-md bg-gray-1 transition-colors dark:border-gray-700 dark:bg-gray-9 hover:bg-gray-2 dark:hover:bg-gray-8"
         :class="[sizeTokens.btnPad, sizeTokens.btnText]"
+        @click="onPlus"
       >
         +
       </UiButton>
     </div>
 
-    <input v-if="props.name" type="hidden" :name="props.name" :value="internal" aria-hidden="true" />
+    <input v-if="props.name" type="hidden" :name="props.name" :value="internal" aria-hidden="true">
   </div>
 </template>
