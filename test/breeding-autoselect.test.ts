@@ -34,9 +34,18 @@ const stubs = {
   PanelPoiDialogFlow: { template: '<div><slot /><slot name="footer" /></div>' },
   UiButton: { template: '<button @click="$emit(\'click\')"><slot /></button>' },
   UiAdaptiveDisplayer: { template: '<div><slot /></div>' },
-  BreedingMonPreview: { props: ['mon', 'eggType'], emits: ['select', 'change'], template: '<div />' },
+  BreedingMonPreview: {
+    name: 'BreedingMonPreview',
+    props: ['mon', 'eggType'],
+    emits: ['select', 'change'],
+    template: '<div class="mon-preview" />',
+  },
   BreedingCharacter: { props: ['character', 'typingText'], template: '<div />' },
-  BreedingWorking: { props: ['isRunning', 'progress', 'remainingLabel'], template: '<div />' },
+  BreedingWorking: {
+    name: 'BreedingWorking',
+    props: ['isRunning', 'progress', 'remainingLabel'],
+    template: '<div class="working" />',
+  },
   BreedingInfos: { props: ['selected', 'cost', 'durationMin'], template: '<div />' },
   ShlagemonSelectModal: { template: '<div />' },
   UiCurrencyAmount: { template: '<span />' },
@@ -100,6 +109,8 @@ describe('breeding panel preselection', () => {
 
     await nextTick()
     expect((wrapper.vm as any).selected?.id).toBe(mon.id)
-    expect(wrapper.find('button').exists()).toBe(true)
+    // Should display the working screen without the shlagemon selector
+    expect(wrapper.findComponent({ name: 'BreedingMonPreview' }).exists()).toBe(false)
+    expect(wrapper.findComponent({ name: 'BreedingWorking' }).exists()).toBe(true)
   })
 })

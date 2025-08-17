@@ -142,34 +142,43 @@ watch([selected, isCompleted], () => {
     <template #default>
       <div class="min-h-0 w-full flex-1">
         <div class="h-full flex flex-1 flex-col items-center justify-center gap-1 overflow-y-auto">
-          <UiAdaptiveDisplayer class="area-grid h-full w-full gap-3 md:gap-4">
-            <BreedingMonPreview
-              :mon="selected"
-              :egg-type="eggType"
-              class="flex-1"
-              @select="openSelector"
-              @change="changeMon"
+          <!-- When a breeding job exists, show its progress only -->
+          <template v-if="job">
+            <BreedingCharacter
+              :character="norman"
+              :typing-text="typingText"
             />
+            <BreedingWorking
+              :is-running="isRunning"
+              :progress="progress"
+              :remaining-label="remainingLabel"
+            />
+          </template>
 
-            <div class="flex-1">
-              <BreedingCharacter
-                :character="norman"
-                :typing-text="typingText"
+          <!-- Otherwise display the selection and information screens -->
+          <template v-else>
+            <UiAdaptiveDisplayer class="area-grid h-full w-full gap-3 md:gap-4">
+              <BreedingMonPreview
+                :mon="selected"
+                :egg-type="eggType"
+                class="flex-1"
+                @select="openSelector"
+                @change="changeMon"
               />
-            </div>
-          </UiAdaptiveDisplayer>
-          <BreedingWorking
-            v-if="job"
-            :is-running="isRunning"
-            :progress="progress"
-            :remaining-label="remainingLabel"
-          />
-          <BreedingInfos
-            v-else
-            :selected="selected"
-            :cost="cost"
-            :duration-min="durationMin"
-          />
+
+              <div class="flex-1">
+                <BreedingCharacter
+                  :character="norman"
+                  :typing-text="typingText"
+                />
+              </div>
+            </UiAdaptiveDisplayer>
+            <BreedingInfos
+              :selected="selected"
+              :cost="cost"
+              :duration-min="durationMin"
+            />
+          </template>
         </div>
 
         <!-- Sélecteur -->

@@ -35,6 +35,7 @@ vi.mock('../src/modules/toast', () => ({
 // Panel specific store mocks
 vi.mock('../src/stores/breeding', () => ({
   useBreedingStore: () => ({
+    byType: {},
     getJob: vi.fn(),
     remainingMs: vi.fn(),
     progress: vi.fn(),
