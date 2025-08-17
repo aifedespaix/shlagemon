@@ -49,6 +49,7 @@ vi.mock('../src/stores/game', () => ({
 const getJob = vi.fn(() => null)
 vi.mock('../src/stores/breeding', () => ({
   useBreedingStore: () => ({
+    byType: {},
     getJob,
     remainingMs: vi.fn(),
     progress: vi.fn(),
