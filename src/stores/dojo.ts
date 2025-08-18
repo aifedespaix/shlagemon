@@ -36,6 +36,7 @@ export function dojoTrainingCost(rarity: number, points: number): number {
 interface HydratedDojoStore {
   byMonId: Record<string, DojoTrainingJob | undefined>
   completeIfDue: (id: string) => boolean
+  notifyCompleted: () => void
 }
 
 export const useDojoStore = defineStore('dojo', () => {
@@ -45,12 +46,16 @@ export const useDojoStore = defineStore('dojo', () => {
   /** Current timestamp used to compute progress for running jobs. */
   const now = ref<number>(Date.now())
 
-  useIntervalFn(() => {
+  function notifyCompleted() {
     now.value = Date.now()
     for (const id of Object.keys(byMonId.value)) {
       if (completeIfDue(id))
         toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
     }
+  }
+
+  useIntervalFn(() => {
+    notifyCompleted()
   }, 1000)
 
   function getJob(monId: string): DojoTrainingJob | null {
@@ -148,16 +153,14 @@ export const useDojoStore = defineStore('dojo', () => {
     collect,
     clearFinished,
     now,
+    notifyCompleted,
   }
 }, {
   persist: {
     pick: ['byMonId'],
     afterHydrate(ctx) {
       const store = ctx.store as HydratedDojoStore
-      for (const id of Object.keys(store.byMonId)) {
-        if (store.completeIfDue(id))
-          toast.success(i18n.global.t('components.panel.Dojo.toast.finished'))
-      }
+      store.notifyCompleted()
     },
   },
 })

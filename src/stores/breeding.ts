@@ -29,6 +29,7 @@ export interface BreedingState {
 interface HydratedBreedingStore {
   byType: BreedingState['byType']
   completeIfDue: (type: EggType) => boolean
+  notifyCompleted: () => void
 }
 
 function clamp01(n: number): number {
@@ -267,24 +268,25 @@ export const useBreedingStore = defineStore('breeding', () => {
 
   const canCollectSelected = computed<boolean>(() => isCompletedSelected.value)
 
-  /** ================= Effects / ticks ================================= */
-  useIntervalFn(() => {
+  function notifyCompleted() {
     now.value = Date.now()
     for (const type of Object.keys(state.byType) as EggType[]) {
       const wasDue = completeIfDue(type)
       if (wasDue) {
         const job = state.byType[type]
-        // job existe encore, simplement en "completed"
         const mon = job ? dex.shlagemons.find(m => m.id === job.monId) : null
         const name = mon ? i18n.global.t(mon.base.name) : undefined
-        if (name) {
+        if (name)
           toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
-        }
-        else {
+        else
           toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
-        }
       }
     }
+  }
+
+  /** ================= Effects / ticks ================================= */
+  useIntervalFn(() => {
+    notifyCompleted()
   }, 1000)
 
   // À chaque changement de jobs, on s’assure que la sélection colle au job actif.
@@ -337,27 +339,15 @@ export const useBreedingStore = defineStore('breeding', () => {
     // guards
     canStartSelected,
     canCollectSelected,
+
+    notifyCompleted,
   }
 }, {
   persist: {
     pick: ['byType', 'selectedMonId'],
     afterHydrate(ctx) {
       const store = ctx.store as HydratedBreedingStore
-      const dex = useShlagedexStore()
-      for (const type of Object.keys(store.byType) as EggType[]) {
-        const job = store.byType[type]
-        const wasDue = store.completeIfDue(type)
-        if (wasDue) {
-          const mon = job ? dex.shlagemons.find(m => m.id === job.monId) : null
-          const name = mon ? i18n.global.t(mon.base.name) : undefined
-          if (name) {
-            toast.success(i18n.global.t('components.panel.Breeding.toast.finished', { name }))
-          }
-          else {
-            toast.success(i18n.global.t('components.panel.Breeding.toast.finished'))
-          }
-        }
-      }
+      store.notifyCompleted()
     },
   },
 })

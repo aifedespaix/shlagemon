@@ -1,6 +1,8 @@
 fr:
   toast:
     ready: Un œuf est prêt à éclore !
+    readyMultiple: "{count} œufs sont prêts à éclore ! Rendez-vous au Poulailler pour assister à l'éclosion."
 en:
   toast:
     ready: An egg is ready to hatch!
+    readyMultiple: '{count} eggs can hatch! Head to the Henhouse to watch them hatch.'
