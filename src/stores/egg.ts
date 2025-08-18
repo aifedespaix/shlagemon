@@ -133,17 +133,21 @@ export const useEggStore = defineStore('egg', () => {
     notifiedReady.clear()
   }
 
-  useIntervalFn(() => {
+  function notifyReady() {
     now.value = Date.now()
-    for (const egg of incubator.value) {
-      if (isReady(egg) && !notifiedReady.has(egg.id)) {
-        notifiedReady.add(egg.id)
-        toast.success(i18n.global.t('stores.egg.toast.ready'))
-      }
-    }
+    const readyEggs = incubator.value.filter(egg => isReady(egg) && !notifiedReady.has(egg.id))
+    if (!readyEggs.length)
+      return
+    readyEggs.forEach(egg => notifiedReady.add(egg.id))
+    const key = readyEggs.length === 1 ? 'stores.egg.toast.ready' : 'stores.egg.toast.readyMultiple'
+    toast.success(i18n.global.t(key, { count: readyEggs.length }))
+  }
+
+  useIntervalFn(() => {
+    notifyReady()
   }, 1000)
 
-  return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, remaining, now, reset }
+  return { incubator, startIncubation, hatchEgg, cancelIncubation, isReady, remaining, now, reset, notifyReady }
 }, {
   persist: {
     pick: ['incubator'],
@@ -152,12 +156,7 @@ export const useEggStore = defineStore('egg', () => {
       const store = ctx.store as ReturnType<typeof useEggStore>
       if (!Array.isArray(store.incubator))
         store.incubator = []
-      for (const egg of store.incubator) {
-        if (store.isReady(egg) && !notifiedReady.has(egg.id)) {
-          notifiedReady.add(egg.id)
-          toast.success(i18n.global.t('stores.egg.toast.ready'))
-        }
-      }
+      store.notifyReady()
     },
   } as PersistedStateOptions,
 })

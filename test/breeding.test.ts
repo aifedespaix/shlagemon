@@ -54,8 +54,25 @@ vi.mock('../src/stores/breeding', () => ({
     remainingMs: vi.fn(),
     progress: vi.fn(),
     start: vi.fn(),
+    startSelected: vi.fn(),
     collectEgg: vi.fn(),
     completeIfDue: vi.fn(),
+    ensureSelectionFromJobs: vi.fn(),
+    selectedMon: null,
+    activeEggType: null,
+    typingText: 'Confie moi un de tes Shlagémons, je vais l\'ensemencer avec tendresse et amour !',
+    get activeJob() {
+      return getJob()
+    },
+    get isRunningSelected() {
+      return this.activeJob?.status === 'running'
+    },
+    selectedProgressPercent: 0,
+    selectedRemainingLabel: '',
+    selectedCost: 0,
+    durationMin: 0,
+    canStartSelected: true,
+    canCollectSelected: false,
   }),
 }))
 

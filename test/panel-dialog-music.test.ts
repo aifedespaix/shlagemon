@@ -40,8 +40,25 @@ vi.mock('../src/stores/breeding', () => ({
     remainingMs: vi.fn(),
     progress: vi.fn(),
     start: vi.fn(),
+    startSelected: vi.fn(),
     collectEgg: vi.fn(),
     completeIfDue: vi.fn(),
+    ensureSelectionFromJobs: vi.fn(),
+    selectedMon: null,
+    activeEggType: null,
+    typingText: '',
+    get activeJob() {
+      return this.getJob?.()
+    },
+    get isRunningSelected() {
+      return this.activeJob?.status === 'running'
+    },
+    selectedProgressPercent: 0,
+    selectedRemainingLabel: '',
+    selectedCost: 0,
+    durationMin: 0,
+    canStartSelected: true,
+    canCollectSelected: false,
   }),
 }))
 
