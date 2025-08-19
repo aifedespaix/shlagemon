@@ -62,16 +62,19 @@ function handleActivate(mon: DexShlagemon) {
 
 <template>
   <UiModal v-model="open" footer-close :aria-labelledby="headingId">
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 overflow-hidden">
       <h3 :id="headingId" class="text-center text-lg font-bold">
         {{ title }}
       </h3>
+
+      <slot name="header" />
+
       <p v-if="locked" class="text-center text-sm">
         {{ t('components.shlagemon.SelectModal.locked') }}
       </p>
       <ShlagemonListGeneric
         v-if="dex.shlagemons.length"
-        class="max-h-60vh"
+        class="flex flex-1 flex-col"
         :highlight-ids="selectedIds"
         :disabled-ids="disabledIds"
         :locked="locked"

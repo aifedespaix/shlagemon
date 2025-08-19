@@ -57,10 +57,14 @@ function confirm() {
     :close-on-select="false"
     @select="onSelect"
   >
-    <ArenaEnemyStatsCompact :mon="props.mon" enemy />
-    <ArenaEnemyStatsCompact v-if="candidate" :mon="candidate" />
-    <UiButton v-if="candidate" class="mt-2" type="primary" @click="confirm">
-      {{ t('components.arena.SelectionModal.confirm') }}
-    </UiButton>
+    <template #header>
+      <ArenaEnemyStatsCompact :mon="props.mon" enemy />
+    </template>
+    <div>
+      <ArenaEnemyStatsCompact v-if="candidate" :mon="candidate" />
+      <UiButton v-if="candidate" class="mt-2" type="primary" @click="confirm">
+        {{ t('components.arena.SelectionModal.confirm') }}
+      </UiButton>
+    </div>
   </ShlagemonSelectModal>
 </template>
