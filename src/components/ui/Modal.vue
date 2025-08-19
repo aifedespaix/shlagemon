@@ -22,6 +22,16 @@ const emit = defineEmits(['update:modelValue', 'close'])
 const attrs = useAttrs()
 const dialogRef = ref<HTMLDialogElement | null>(null)
 
+/**
+ * Display the dialog on the first render when `modelValue` is initially
+ * `true`.
+ */
+onMounted(() => {
+  const dialog = dialogRef.value
+  if (props.modelValue && dialog && typeof dialog.showModal === 'function')
+    dialog.showModal()
+})
+
 onUnmounted(() => {
   const dialog = dialogRef.value
   if (dialog?.open)
@@ -38,7 +48,7 @@ watch(() => props.modelValue, (v) => {
   if (!dialog)
     return
   if (v) {
-    if (!dialog.open)
+    if (!dialog.open && typeof dialog.showModal === 'function')
       dialog.showModal()
   }
   else {
