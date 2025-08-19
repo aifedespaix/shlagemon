@@ -118,7 +118,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tiny-scrollbar relative h-full w-full flex flex-col items-center overflow-auto" :class="showDuel ? '' : 'justify-center'">
+  <div class="tiny-scrollbar relative h-full w-full flex flex-col items-center overflow-auto py-2">
     <div v-show="!showDuel" class="grid grid-rows-[auto_auto_auto_auto] grid-cols-6 max-w-120 w-full gap-1">
       <UiButton
         v-for="(enemy, i) in enemyTeam"
