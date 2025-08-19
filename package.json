@@ -30,6 +30,7 @@
     "@unhead/vue": "catalog:frontend",
     "@unocss/reset": "catalog:frontend",
     "@vueuse/core": "catalog:frontend",
+    "bitecs": "catalog:frontend",
     "crypto-js": "catalog:frontend",
     "floating-vue": "catalog:frontend",
     "howler": "catalog:frontend",
