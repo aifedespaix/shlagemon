@@ -53,6 +53,7 @@ catalogs:
     '@unhead/vue': ^2.0.12
     '@unocss/reset': ^66.3.3
     '@vueuse/core': ^13.5.0
+    bitecs: ^0.3.40
     crypto-js: ^4.2.0
     floating-vue: ^5.2.2
     howler: ^2.2.4
