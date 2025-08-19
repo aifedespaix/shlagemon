@@ -2,6 +2,21 @@ packages:
   - packages/*
 
 catalogs:
+  backend:
+    '@colyseus/schema': ^2.0.25
+    '@fastify/cors': ^10.0.1
+    '@fastify/redis': ^6.1.0
+    '@prisma/client': ^5.22.0
+    colyseus: ^0.15.8
+    colyseus.js: ^0.15.15
+    fastify: ^5.1.0
+    ioredis: ^5.4.1
+    ioredis-mock: ^5.7.0
+    jsonwebtoken: ^9.0.2
+    lucia: ^3.2.2
+    pino: ^9.3.2
+    prisma: ^5.22.0
+    tsx: ^4.19.0
   build:
     '@intlify/unplugin-vue-i18n': ^6.0.8
     '@shikijs/markdown-it': ^3.8.1
