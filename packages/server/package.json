@@ -1,0 +1,32 @@
+{
+  "name": "@shlagemon/server",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@colyseus/schema": "catalog:backend",
+    "@fastify/cors": "catalog:backend",
+    "@fastify/redis": "catalog:backend",
+    "@prisma/client": "catalog:backend",
+    "colyseus": "catalog:backend",
+    "colyseus.js": "catalog:backend",
+    "fastify": "catalog:backend",
+    "ioredis": "catalog:backend",
+    "jsonwebtoken": "catalog:backend",
+    "lucia": "catalog:backend",
+    "pino": "catalog:backend"
+  },
+  "devDependencies": {
+    "ioredis-mock": "catalog:backend",
+    "prisma": "catalog:backend",
+    "tsx": "catalog:backend",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:dev"
+  }
+}

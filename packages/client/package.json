@@ -1,0 +1,33 @@
+{
+  "name": "@shlagemon/client",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@radix-ui/react-progress": "catalog:client",
+    "@react-three/fiber": "catalog:client",
+    "mock-socket": "catalog:client",
+    "next": "catalog:client",
+    "react": "catalog:client",
+    "react-dom": "catalog:client",
+    "three": "catalog:client",
+    "zustand": "catalog:client"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "catalog:client",
+    "@testing-library/react": "catalog:client",
+    "@types/node": "catalog:client",
+    "@types/react": "catalog:client",
+    "@types/react-dom": "catalog:client",
+    "autoprefixer": "catalog:client",
+    "postcss": "catalog:client",
+    "tailwindcss": "catalog:client",
+    "typescript": "catalog:dev",
+    "vitest": "catalog:dev"
+  }
+}
