@@ -199,7 +199,7 @@ onUnmounted(() => {
           </div>
         </div>
         <ArenaSelectionModal
-          v-if="selectedEnemy"
+          v-if="selectedEnemy && showDex"
           v-model="showDex"
           :mon="selectedEnemy"
           :selected="arena.selections.filter(Boolean) as string[]"
