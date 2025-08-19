@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`deterministic simulation > produces stable snapshots 1`] = `
+[
+  {
+    "rngState": 1831565936,
+    "tick": 1,
+    "value": 7,
+  },
+  {
+    "rngState": 3663131749,
+    "tick": 2,
+    "value": 8,
+  },
+  {
+    "rngState": 1199730266,
+    "tick": 3,
+    "value": 17,
+  },
+  {
+    "rngState": 3031296079,
+    "tick": 4,
+    "value": 19,
+  },
+  {
+    "rngState": 567894596,
+    "tick": 5,
+    "value": 22,
+  },
+  {
+    "rngState": 2399460409,
+    "tick": 6,
+    "value": 27,
+  },
+  {
+    "rngState": 4231026222,
+    "tick": 7,
+    "value": 35,
+  },
+  {
+    "rngState": 1767624739,
+    "tick": 8,
+    "value": 44,
+  },
+  {
+    "rngState": 3599190552,
+    "tick": 9,
+    "value": 51,
+  },
+  {
+    "rngState": 1135789069,
+    "tick": 10,
+    "value": 55,
+  },
+]
+`;
