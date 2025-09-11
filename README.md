@@ -2,6 +2,14 @@
   <img src="public/logo.png" alt="Logo" width="240" />
 </p>
 
+<p align="center">
+  <a href="https://shlagemon.aife.io/">
+    <img src="https://img.shields.io/badge/Jouer%20maintenant-shlagemon.aife.io-10b981?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Jouer maintenant – shlagemon.aife.io" />
+  </a>
+  <br />
+  <sub>👉 Cliquez pour lancer le jeu</sub>
+</p>
+
 # Shlagémon
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/S6S61IX3R2)
