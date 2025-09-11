@@ -206,6 +206,7 @@ declare global {
   const useDexDetailModalStore: typeof import('./stores/dexDetailModal')['useDexDetailModalStore']
   const useDexFilterStore: typeof import('./stores/dexFilter')['useDexFilterStore']
   const useDexInfoModalStore: typeof import('./stores/dexInfoModal')['useDexInfoModalStore']
+  const useDexMissingModalStore: typeof import('./stores/dexMissingModal')['useDexMissingModalStore']
   const useDialogStore: typeof import('./stores/dialog')['useDialogStore']
   const useDiseaseStore: typeof import('./stores/disease')['useDiseaseStore']
   const useDisplayMedia: typeof import('@vueuse/core')['useDisplayMedia']
@@ -365,6 +366,7 @@ declare global {
   const useThrottledRefHistory: typeof import('@vueuse/core')['useThrottledRefHistory']
   const useTicTacToe: typeof import('./composables/useTicTacToe')['useTicTacToe']
   const useTimeAgo: typeof import('@vueuse/core')['useTimeAgo']
+  const useTimeAgoIntl: typeof import('@vueuse/core')['useTimeAgoIntl']
   const useTimeout: typeof import('@vueuse/core')['useTimeout']
   const useTimeoutFn: typeof import('@vueuse/core')['useTimeoutFn']
   const useTimeoutPoll: typeof import('@vueuse/core')['useTimeoutPoll']
@@ -716,6 +718,7 @@ declare module 'vue' {
     readonly useDexDetailModalStore: UnwrapRef<typeof import('./stores/dexDetailModal')['useDexDetailModalStore']>
     readonly useDexFilterStore: UnwrapRef<typeof import('./stores/dexFilter')['useDexFilterStore']>
     readonly useDexInfoModalStore: UnwrapRef<typeof import('./stores/dexInfoModal')['useDexInfoModalStore']>
+    readonly useDexMissingModalStore: UnwrapRef<typeof import('./stores/dexMissingModal')['useDexMissingModalStore']>
     readonly useDialogStore: UnwrapRef<typeof import('./stores/dialog')['useDialogStore']>
     readonly useDiseaseStore: UnwrapRef<typeof import('./stores/disease')['useDiseaseStore']>
     readonly useDisplayMedia: UnwrapRef<typeof import('@vueuse/core')['useDisplayMedia']>
@@ -875,6 +878,7 @@ declare module 'vue' {
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>
     readonly useTicTacToe: UnwrapRef<typeof import('./composables/useTicTacToe')['useTicTacToe']>
     readonly useTimeAgo: UnwrapRef<typeof import('@vueuse/core')['useTimeAgo']>
+    readonly useTimeAgoIntl: UnwrapRef<typeof import('@vueuse/core')['useTimeAgoIntl']>
     readonly useTimeout: UnwrapRef<typeof import('@vueuse/core')['useTimeout']>
     readonly useTimeoutFn: UnwrapRef<typeof import('@vueuse/core')['useTimeoutFn']>
     readonly useTimeoutPoll: UnwrapRef<typeof import('@vueuse/core')['useTimeoutPoll']>

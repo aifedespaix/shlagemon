@@ -89,4 +89,5 @@ function open(mon: DexShlagemon | null) {
       @active="showDetail = false"
     />
   </UiModal>
+  <ShlagemonMissingModal />
 </template>

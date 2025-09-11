@@ -200,7 +200,11 @@ watch(
             v-model:sort-asc="filter.sortAsc"
             :options="sortOptions"
           />
-          <span class="ml-auto select-none text-xs font-mono opacity-70">
+          <span
+            class="ml-auto select-none text-xs font-mono opacity-70"
+            :title="t('components.shlagemon.ListGeneric.missingHint')"
+            @contextmenu.prevent="useDexMissingModalStore().open()"
+          >
             {{ displayedMons.length }} / {{ props.mons.length }}
           </span>
         </div>

@@ -1,5 +1,6 @@
 fr:
   search: Rechercher
+  missingHint: Clic droit ici pour voir les Shlagémons manquants
   sort:
     level: Niveau
     rarity: Rareté
@@ -14,6 +15,7 @@ fr:
     evolution: Proche d'évoluer
 en:
   search: Search
+  missingHint: Right-click here to see missing Shlagemons
   sort:
     level: Level
     rarity: Rarity
