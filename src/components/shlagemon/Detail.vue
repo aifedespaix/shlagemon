@@ -125,9 +125,16 @@ const captureInfo = computed(() => {
       class="max-w-xl w-full flex flex-col gap-2 rounded bg-white dark:bg-gray-900"
     >
       <h2 class="flex items-center justify-between text-lg font-bold">
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-1 p-2">
           <span :class="mon.isShiny ? 'shiny-text' : ''">{{ t(mon.base.name) }}</span>
           - lvl {{ mon.lvl }}<span v-if="isActiveAndSick"> ({{ t('components.shlagemon.Detail.sick') }})</span>
+          <UiCheckBox
+            v-if="developer.debug && mon"
+            v-model="shinyOverride"
+            class="ml-auto flex items-center gap-2 text-xs"
+          >
+            {{ t('components.shlagemon.Detail.debug.shiny') }}
+          </UiCheckBox>
         </div>
         <ShlagemonRarityInfo :rarity="mon.rarity" class="rounded-tr-0" />
       </h2>
@@ -138,7 +145,7 @@ const captureInfo = computed(() => {
           :shiny="mon.isShiny"
           class="w-full object-contain"
         />
-        <div class="absolute left-0 top-0 flex gap-2">
+        <div class="absolute left-2 top-0 flex gap-2">
           <ShlagemonType
             v-for="type in mon.base.types"
             :key="type.id"
@@ -146,7 +153,7 @@ const captureInfo = computed(() => {
             open-on-click
           />
         </div>
-        <div class="absolute right-0 top-0 flex items-center gap-1">
+        <div class="absolute right-2 top-0 flex items-center gap-1">
           <template v-if="heldItem">
             <WearableItemIcon
               :item="heldItem"
@@ -172,13 +179,6 @@ const captureInfo = computed(() => {
           </UiButton>
         </div>
       </div>
-      <UiCheckBox
-        v-if="developer.debug && mon"
-        v-model="shinyOverride"
-        class="ml-auto flex items-center gap-2 text-xs"
-      >
-        {{ t('components.shlagemon.Detail.debug.shiny') }}
-      </UiCheckBox>
       <div v-if="evolutionInfo" class="flex-center flex-col gap-1">
         <button
           v-if="ownedEvolution"
@@ -204,12 +204,12 @@ const captureInfo = computed(() => {
           {{ t('components.shlagemon.Detail.allowEvolution') }}
         </UiCheckBox>
       </div>
-      <p class="tiny-scrollbar max-h-25 overflow-auto text-sm italic">
+      <p class="tiny-scrollbar max-h-25 overflow-auto px-2 text-sm italic">
         {{ t(mon.base.description) }}
       </p>
-      <ShlagemonStats :stats="stats" />
-      <ShlagemonXpBar :mon="mon" />
-      <div class="w-full flex items-center justify-center gap-2 text-xs">
+      <ShlagemonStats :stats="stats" class="px-2" />
+      <ShlagemonXpBar :mon="mon" class="px-2" />
+      <div class="w-full flex items-center justify-center gap-2 px-2 text-xs">
         <p class="">
           {{ t('components.shlagemon.Detail.firstCatch', { date: captureInfo.date }) }}
         </p>
@@ -217,7 +217,7 @@ const captureInfo = computed(() => {
           {{ t('components.shlagemon.Detail.obtainedTimes', { count: captureInfo.count }) }}
         </p>
       </div>
-      <div class="flex justify-end gap-2">
+      <div class="flex justify-end gap-2 px-2 pb-1">
         <UiButton type="danger" class="flex items-center gap-1" @click="requestRelease">
           <div i-carbon-trash-can />
           {{ t('components.shlagemon.Detail.release') }}

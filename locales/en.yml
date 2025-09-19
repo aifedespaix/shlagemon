@@ -617,31 +617,31 @@ components:
     LaboratoryUnlockDialog:
       steps:
         step1:
-          text: Great googly goo! You captured the 164 documented Shlagémons.
+          text: Astounding work! You logged every one of the 164 catalogued Shlagémons.
           responses:
             next: Continue
         step2:
-          text: Your stubborn nose and perseverance would make a Taupinet weep. Bravo.
+          text: Yet the Shlagedex counts 170 slots—six legendary specimens refuse to show up.
           responses:
             back: Back
             next: More
         step3:
-          text: Yet our quest never ends. The Shlagedex is only a milestone.
+          text: They exist, hidden in folds of reality that no radar, lure, or hacked ball can pierce.
           responses:
             back: Back
             next: Continue
         step4:
-          text: Six Shlagémons wield infinite rarity. No radar, no hacked ball can track them.
+          text: To flush them out we must analyse their residues, their songs, their cosmic wafts… in my Laboratory.
           responses:
             back: Back
             next: Then what?
         step5:
-          text: Only the strength you've gathered will let you sense them and survive their mystical stench.
+          text: Bring your notes and your champions; we'll devise sensors worthy of their legendary stench.
           responses:
             back: Back
             next: Where do I go?
         step6:
-          text: Meet me at my place. My Laboratory is now open so we can plan the ultimate hunt.
+          text: My Laboratory doors are open—come so we can plan the last hunt and honour the full 170.
           responses:
             back: Back
             valid: On my way!
@@ -908,6 +908,10 @@ components:
       focus: Every capture you bring back feeds my homemade scanners. With time, their signatures will emerge.
       cta: Check the equipment, follow any strange trail, and report to me as soon as you feel an anomaly. We will crack this mystery together.
       locked: The Laboratory isn’t ready yet. Come back once your collection is complete.
+      introDialog:
+        text: Ready to launch the hunt for a legendary Shlagémon?
+        embark: Launch
+      researchInProgress: Research operations in progress…
   settings:
     AccessibilityTab:
       autoHide:
@@ -2448,6 +2452,8 @@ data:
         name: Laboratory
         pois:
           entrance:
+            label: Professor's Laboratory
+          laboratory:
             label: Professor's Laboratory
 layouts:
   NotFound:

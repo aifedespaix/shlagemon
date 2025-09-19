@@ -261,7 +261,7 @@ const sections = computed<DevSection[]>(() => [
     title: 'Arènes',
     icon: 'i-carbon-trophy',
     actions: [
-      ...arenaZoneIds.map<DevAction>((zoneId) => ({
+      ...arenaZoneIds.map<DevAction>(zoneId => ({
         key: `arena-${zoneId}`,
         label: `Valider ${arenaZoneLabels[zoneId]}`,
         icon: 'i-carbon-medal',
@@ -287,11 +287,11 @@ const sections = computed<DevSection[]>(() => [
 </script>
 
 <template>
-  <UiModal v-model="show" footer-close content-padding="none">
+  <UiModal v-model="show" content-padding="none">
     <LayoutScrollablePanel>
       <template #header>
         <div>
-          <h3 class="mb-2 text-center text-lg font-bold">
+          <h3 class="mb-2 p-2 text-center text-lg font-bold">
             Paramètres développeur
           </h3>
           <UiCheckBox v-model="dev.debug" class="flex items-center justify-between">
@@ -301,13 +301,13 @@ const sections = computed<DevSection[]>(() => [
       </template>
 
       <template #content>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        <div class="grid mt-4 gap-3 sm:grid-cols-2 xl:grid-cols-3">
           <section
             v-for="section in sections"
             :key="section.key"
-            class="rounded-lg border border-gray-200/60 bg-white/70 p-3 shadow-sm dark:border-gray-700/60 dark:bg-gray-900/40"
+            class="border border-gray-200/60 rounded-lg bg-white/70 p-3 shadow-sm dark:border-gray-700/60 dark:bg-gray-900/40"
           >
-            <header class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide opacity-80">
+            <header class="mb-3 flex items-center gap-2 text-xs font-semibold tracking-wide uppercase opacity-80">
               <div :class="section.icon" class="text-base" />
               <span>{{ section.title }}</span>
             </header>

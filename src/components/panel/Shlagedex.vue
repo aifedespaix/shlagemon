@@ -79,9 +79,10 @@ function open(mon: DexShlagemon | null) {
   </ShlagemonListGeneric>
   <UiModal
     v-model="showDetail"
-    footer-close
+    content-padding="none"
     :golden-border="detailMon?.rarity === 100"
     @close="showDetail = false"
+    no-close-button
   >
     <ShlagemonDetail
       :mon="detailMon"

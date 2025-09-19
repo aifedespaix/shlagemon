@@ -617,34 +617,37 @@ components:
     LaboratoryUnlockDialog:
       steps:
         step1:
-          text: Nom d'un Rotombalai ! Tu as capturé les 164 Shlagémons répertoriés.
+          text: Incroyable ! Tu as enregistré les 164 espèces classiques du Shlagedex.
           responses:
             next: Continuer
         step2:
-          text: Ton nez de pisteur et ta ténacité feraient pleurer un Taupinet. Bravo.
+          text: "Pourtant le registre comporte 170 cases : six Shlagémons légendaires manquent toujours à l'appel."
           responses:
             back: Retour
             next: Encore
         step3:
-          text: Mais notre quête ne s'arrête jamais. Le Shlagedex n'est qu'une étape.
+          text: Ils existent, tapis dans des replis que ni radar, ni leurre, ni balle trafiquée ne peuvent percer.
           responses:
             back: Retour
             next: Continuer
         step4:
-          text: Six Shlagémons possèdent une rareté infinie. Aucun radar, aucune Pokéball trafiquée ne les signale.
+          text: Pour les débusquer, il va falloir analyser leurs résidus, leurs chants, leur souffle cosmique… dans mon Laboratoire.
           responses:
             back: Retour
             next: Et alors ?
         step5:
-          text: Seule la force que tu as accumulée permettra de flairer leur présence et de survivre à leur puanteur mystique.
+          text: Viens avec tes notes et tes champions ; nous fabriquerons des capteurs dignes de leur puanteur légendaire.
           responses:
             back: Retour
             next: Où les trouver ?
         step6:
-          text: Rejoins-moi chez moi. Mon Laboratoire t'est désormais ouvert pour préparer la chasse ultime.
+          text: "Les portes de mon Laboratoire t'attendent : faisons honneur aux 170 en préparant la chasse finale."
           responses:
             back: Retour
             valid: J'arrive !
+        responses:
+          back: Retour
+          next: Où les trouver ?
   egg:
     BoxModal:
       title: Boîte à œufs
@@ -908,6 +911,10 @@ components:
       focus: Chaque capture que tu ramènes nourrit mes scanners maison. À force, leurs signatures finiront par apparaître.
       cta: Inspecte le matériel, renifle les pistes, et reviens me voir dès que tu sens une anomalie. On percera ce mystère ensemble.
       locked: Le Laboratoire n’est pas encore prêt. Reviens me voir après avoir terminé ta collection.
+      introDialog:
+        text: Veux-tu lancer la recherche d’un Shlagémon légendaire ?
+        embark: Lancer
+      researchInProgress: Travaux de recherche en cours…
   settings:
     AccessibilityTab:
       autoHide:
@@ -2441,6 +2448,8 @@ data:
         name: Laboratoire
         pois:
           entrance:
+            label: Laboratoire du Professeur
+          laboratory:
             label: Laboratoire du Professeur
 layouts:
   NotFound:

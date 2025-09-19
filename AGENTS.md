@@ -51,6 +51,7 @@ All composables, stores, VueUse utilities, and components are auto-imported than
 - `src/stores/` – Pinia stores
 - `src/pages/` – Routed pages (file-based routing)
 - `src/locales/` – i18n translation files
+- `src/modules/three/` – Three.js scene builders and rendering utilities
 - `uno.config.ts` – UnoCSS configuration
 
 ---
@@ -89,6 +90,7 @@ All composables, stores, VueUse utilities, and components are auto-imported than
 - **Code factorization**:
   - Never duplicate logic – always factor shared code into composables or utilities.
   - Keep components atomic, focused, and reusable.
+  - Three.js setup and rendering helpers live in `src/modules/three/`; Vue components should only manage lifecycle wiring.
 - **DirectoryAsNamespace**:
   - For components in subfolders, their folder name is part of the component name (no "Ui" prefix in filenames).
 - **Tests**:

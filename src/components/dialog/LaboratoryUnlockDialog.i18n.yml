@@ -1,62 +1,62 @@
 en:
   steps:
     step1:
-      text: Great googly goo! You captured the 164 documented Shlagémons.
+      text: Astounding work! You logged every one of the 164 catalogued Shlagémons.
       responses:
         next: Continue
     step2:
-      text: Your stubborn nose and perseverance would make a Taupinet weep. Bravo.
+      text: 'Yet the Shlagedex counts 170 slots—six legendary specimens refuse to show up.'
       responses:
         back: Back
         next: More
     step3:
-      text: Yet our quest never ends. The Shlagedex is only a milestone.
+      text: They exist, hidden in folds of reality that no radar, lure, or hacked ball can pierce.
       responses:
         back: Back
         next: Continue
     step4:
-      text: Six Shlagémons wield infinite rarity. No radar, no hacked ball can track them.
+      text: 'To flush them out we must analyse their residues, their songs, their cosmic wafts… in my Laboratory.'
       responses:
         back: Back
         next: Then what?
     step5:
-      text: Only the strength you've gathered will let you sense them and survive their mystical stench.
+      text: 'Bring your notes and your champions; we''ll devise sensors worthy of their legendary stench.'
       responses:
         back: Back
         next: Where do I go?
     step6:
-      text: Meet me at my place. My Laboratory is now open so we can plan the ultimate hunt.
+      text: 'My Laboratory doors are open—come so we can plan the last hunt and honour the full 170.'
       responses:
         back: Back
         valid: On my way!
 fr:
   steps:
     step1:
-      text: Nom d'un Rotombalai ! Tu as capturé les 164 Shlagémons répertoriés.
+      text: Incroyable ! Tu as enregistré les 164 espèces classiques du Shlagedex.
       responses:
         next: Continuer
     step2:
-      text: Ton nez de pisteur et ta ténacité feraient pleurer un Taupinet. Bravo.
+      text: 'Pourtant le registre comporte 170 cases : six Shlagémons légendaires manquent toujours à l''appel.'
       responses:
         back: Retour
         next: Encore
     step3:
-      text: Mais notre quête ne s'arrête jamais. Le Shlagedex n'est qu'une étape.
+      text: 'Ils existent, tapis dans des replis que ni radar, ni leurre, ni balle trafiquée ne peuvent percer.'
       responses:
         back: Retour
         next: Continuer
     step4:
-      text: Six Shlagémons possèdent une rareté infinie. Aucun radar, aucune Pokéball trafiquée ne les signale.
+      text: 'Pour les débusquer, il va falloir analyser leurs résidus, leurs chants, leur souffle cosmique… dans mon Laboratoire.'
       responses:
         back: Retour
         next: Et alors ?
     step5:
-      text: Seule la force que tu as accumulée permettra de flairer leur présence et de survivre à leur puanteur mystique.
-      responses:
-        back: Retour
-        next: Où les trouver ?
+      text: 'Viens avec tes notes et tes champions ; nous fabriquerons des capteurs dignes de leur puanteur légendaire.'
+    responses:
+      back: Retour
+      next: Où les trouver ?
     step6:
-      text: Rejoins-moi chez moi. Mon Laboratoire t'est désormais ouvert pour préparer la chasse ultime.
+      text: 'Les portes de mon Laboratoire t''attendent : faisons honneur aux 170 en préparant la chasse finale.'
       responses:
         back: Retour
         valid: J'arrive !

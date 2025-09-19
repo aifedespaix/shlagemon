@@ -13,12 +13,14 @@ const props = withDefaults(defineProps<{
   dialogAutofocus?: boolean
   goldenBorder?: boolean
   contentPadding?: 'default' | 'none'
+  noCloseButton?: boolean
 }>(), {
   closeOnOutsideClick: true,
   footerClose: false,
   dialogAutofocus: false,
   goldenBorder: false,
   contentPadding: 'default',
+  noCloseButton: false,
 })
 const emit = defineEmits(['update:modelValue', 'close'])
 const attrs = useAttrs()
@@ -90,7 +92,7 @@ function close() {
         ]"
       >
         <button
-          v-if="!props.footerClose"
+          v-if="!props.footerClose && !props.noCloseButton"
           type="button"
           class="absolute right-2 top-2 h-6 w-6 flex items-center justify-center rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           @click.stop="close()"
@@ -100,7 +102,7 @@ function close() {
         <div class="flex flex-1 flex-col overflow-hidden">
           <slot />
         </div>
-        <div v-if="props.footerClose" class="mt-4 flex justify-end">
+        <div v-if="props.footerClose" class="mt-4 flex justify-end" :class="props.contentPadding === 'none' ? 'm-2' : ''">
           <UiButton type="danger" class="flex items-center gap-1" @click.stop="close()">
             <div i-carbon-close />
             Fermer

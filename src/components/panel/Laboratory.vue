@@ -1,47 +1,98 @@
 <script setup lang="ts">
+import type { DialogNode } from '~/type/dialog'
 import { storeToRefs } from 'pinia'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { createLaboratoryScene } from '~/modules/three/laboratoryScene'
 
-const panel = useMainPanelStore()
-const zone = useZoneStore()
 const laboratory = useLaboratoryStore()
 const { unlocked } = storeToRefs(laboratory)
 const { t } = useI18n()
 
 const isUnlocked = computed(() => unlocked.value)
+const rendererHost = ref<HTMLElement | null>(null)
+const hasStarted = ref(false)
 
-function exitPanel() {
-  zone.setZone('cratere-des-legends')
-  panel.showBattle()
+let sceneCleanup: (() => void) | null = null
+
+function mountScene() {
+  if (!rendererHost.value || sceneCleanup || !hasStarted.value)
+    return
+  sceneCleanup = createLaboratoryScene(rendererHost.value).cleanup
 }
+
+function disposeScene() {
+  if (!sceneCleanup)
+    return
+  sceneCleanup()
+  sceneCleanup = null
+}
+
+const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
+
+const dialogTree = computed<DialogNode[]>(() => [
+  {
+    id: 'intro',
+    text: t('components.panel.Laboratory.introDialog.text'),
+    responses: [
+      {
+        label: t('components.panel.Laboratory.introDialog.embark'),
+        type: 'primary',
+        action: () => {
+          hasStarted.value = true
+        },
+      },
+    ],
+  },
+])
+
+watch([isUnlocked, hasStarted], ([unlocked, started]) => {
+  if (unlocked && started)
+    nextTick(mountScene)
+  else
+    disposeScene()
+})
+
+watch(() => rendererHost.value, () => {
+  if (!isUnlocked.value || !hasStarted.value)
+    return
+  disposeScene()
+  nextTick(mountScene)
+})
+
+onUnmounted(disposeScene)
 </script>
 
 <template>
   <LayoutTitledPanel
-    :title="t('components.panel.Laboratory.title')"
-    :exit-text="t('components.panel.Laboratory.exit')"
-    @exit="exitPanel"
+    :title="''"
+    exit-text=""
+    :show-footer="false"
   >
-    <div v-if="isUnlocked" class="h-full flex flex-1 flex-col gap-4" md="gap-6">
-      <div class="flex flex-col items-center gap-4" md="flex-row md:items-start md:gap-6">
-        <CharacterImage
-          :id="profMerdant.id"
-          alt="Professeur Merdant"
-          class="h-32 w-32 shrink-0 md:h-40 md:w-40"
+    <div class="relative h-full flex flex-1 overflow-hidden">
+      <div
+        v-if="shouldShowIntro"
+        class="absolute inset-0 z-20 flex items-center justify-center bg-slate-950/80 p-4"
+      >
+        <DialogBox
+          :character="profMerdant"
+          :dialog-tree="dialogTree"
         />
-        <div class="flex flex-1 flex-col gap-3 text-sm" md="text-base">
-          <p>{{ t('components.panel.Laboratory.intro') }}</p>
-          <UiInfo color="info">
-            {{ t('components.panel.Laboratory.focus') }}
-          </UiInfo>
-          <p>{{ t('components.panel.Laboratory.cta') }}</p>
-        </div>
       </div>
-    </div>
-    <div v-else class="h-full flex flex-1 items-center justify-center">
-      <UiInfo color="alert">
-        {{ t('components.panel.Laboratory.locked') }}
-      </UiInfo>
+
+      <div
+        v-if="isUnlocked"
+        ref="rendererHost"
+        class="absolute inset-0"
+      />
+
+      <div
+        v-else
+        class="relative z-10 flex h-full w-full items-center justify-center p-4"
+      >
+        <UiInfo color="alert" class="max-w-md">
+          {{ t('components.panel.Laboratory.locked') }}
+        </UiInfo>
+      </div>
     </div>
   </LayoutTitledPanel>
 </template>

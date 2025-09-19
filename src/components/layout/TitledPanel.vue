@@ -19,8 +19,8 @@ const emit = defineEmits(['exit'])
 </script>
 
 <template>
-  <section class="h-full w-full flex flex-col gap-1 overflow-hidden p-1" v-bind="$attrs" :class="limitSize ? 'max-w-xl' : ''">
-    <h2 class="text-center font-bold">
+  <section class="h-full w-full flex flex-col gap-1 overflow-hidden" :class="[showFooter ? 'p-1' : 'p-0', limitSize ? 'max-w-xl' : '']" v-bind="$attrs">
+    <h2 v-if="props.title" class="text-center font-bold">
       {{ props.title }}
     </h2>
     <div class="flex flex-1 flex-col gap-2 overflow-hidden">
