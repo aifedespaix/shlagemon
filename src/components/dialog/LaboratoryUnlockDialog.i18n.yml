@@ -1,0 +1,62 @@
+en:
+  steps:
+    step1:
+      text: Great googly goo! You captured the 164 documented Shlagémons.
+      responses:
+        next: Continue
+    step2:
+      text: Your stubborn nose and perseverance would make a Taupinet weep. Bravo.
+      responses:
+        back: Back
+        next: More
+    step3:
+      text: Yet our quest never ends. The Shlagedex is only a milestone.
+      responses:
+        back: Back
+        next: Continue
+    step4:
+      text: Six Shlagémons wield infinite rarity. No radar, no hacked ball can track them.
+      responses:
+        back: Back
+        next: Then what?
+    step5:
+      text: Only the strength you've gathered will let you sense them and survive their mystical stench.
+      responses:
+        back: Back
+        next: Where do I go?
+    step6:
+      text: Meet me at my place. My Laboratory is now open so we can plan the ultimate hunt.
+      responses:
+        back: Back
+        valid: On my way!
+fr:
+  steps:
+    step1:
+      text: Nom d'un Rotombalai ! Tu as capturé les 164 Shlagémons répertoriés.
+      responses:
+        next: Continuer
+    step2:
+      text: Ton nez de pisteur et ta ténacité feraient pleurer un Taupinet. Bravo.
+      responses:
+        back: Retour
+        next: Encore
+    step3:
+      text: Mais notre quête ne s'arrête jamais. Le Shlagedex n'est qu'une étape.
+      responses:
+        back: Retour
+        next: Continuer
+    step4:
+      text: Six Shlagémons possèdent une rareté infinie. Aucun radar, aucune Pokéball trafiquée ne les signale.
+      responses:
+        back: Retour
+        next: Et alors ?
+    step5:
+      text: Seule la force que tu as accumulée permettra de flairer leur présence et de survivre à leur puanteur mystique.
+      responses:
+        back: Retour
+        next: Où les trouver ?
+    step6:
+      text: Rejoins-moi chez moi. Mon Laboratoire t'est désormais ouvert pour préparer la chasse ultime.
+      responses:
+        back: Retour
+        valid: J'arrive !

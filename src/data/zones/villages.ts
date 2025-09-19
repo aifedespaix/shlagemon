@@ -6,6 +6,7 @@ import { village50 } from './villages/village50'
 import { village60 } from './villages/village60'
 import { village80 } from './villages/village80'
 import { village100 } from './villages/village100'
+import { laboratoryVillage } from './villages/laboratory'
 
 export const villageZones: Zone[] = [
   village10,
@@ -15,4 +16,5 @@ export const villageZones: Zone[] = [
   village60,
   village80,
   village100,
+  laboratoryVillage,
 ]

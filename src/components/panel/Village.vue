@@ -97,6 +97,9 @@ function onPoi(poi: VillagePOI) {
     case 'breeding':
       panel.showBreeding()
       break
+    case 'laboratory':
+      panel.showLaboratory()
+      break
     case 'king': {
       const trainer = currentKing.value
       if (!trainer)

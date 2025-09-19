@@ -1,0 +1,10 @@
+en:
+  name: Laboratory
+  pois:
+    laboratory:
+      label: Professor's Laboratory
+fr:
+  name: Laboratoire
+  pois:
+    laboratory:
+      label: Laboratoire du Professeur

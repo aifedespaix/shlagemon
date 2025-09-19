@@ -5,6 +5,7 @@ fr:
   dojo: Dojo
   henhouse: Poulailler
   breeding: Élevage
+  laboratory: Laboratoire
   fightKing: 'Défier la {label} de la zone'
   kingDefeated: '{label} vaincu{suffix} !'
 en:
@@ -14,5 +15,6 @@ en:
   dojo: Dojo
   henhouse: Henhouse
   breeding: Breeding
+  laboratory: Laboratory
   fightKing: 'Challenge the {label} of the zone'
   kingDefeated: '{label} defeated!'

@@ -12,11 +12,13 @@ const props = withDefaults(defineProps<{
   footerClose?: boolean
   dialogAutofocus?: boolean
   goldenBorder?: boolean
+  contentPadding?: 'default' | 'none'
 }>(), {
   closeOnOutsideClick: true,
   footerClose: false,
   dialogAutofocus: false,
   goldenBorder: false,
+  contentPadding: 'default',
 })
 const emit = defineEmits(['update:modelValue', 'close'])
 const attrs = useAttrs()
@@ -82,7 +84,10 @@ function close() {
     >
       <div
         class="modal-content relative flex flex-col overflow-hidden"
-        :class="props.goldenBorder ? 'border-2 border-yellow-500 dark:border-yellow-400' : ''"
+        :class="[
+          props.goldenBorder ? 'border-2 border-yellow-500 dark:border-yellow-400' : '',
+          props.contentPadding === 'none' ? 'p-0' : 'p-4',
+        ]"
       >
         <button
           v-if="!props.footerClose"
@@ -125,7 +130,7 @@ function close() {
   backdrop-filter: blur(2px);
 }
 .modal-content {
-  @apply bg-white dark:bg-gray-900 rounded p-4 w-full h-full shadow-lg;
+  @apply bg-white dark:bg-gray-900 rounded w-full h-full shadow-lg;
 }
 @keyframes fade-in {
   from {

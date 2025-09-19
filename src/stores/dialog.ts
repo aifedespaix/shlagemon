@@ -14,6 +14,7 @@ import DuplicateRarityDialog from '~/components/dialog/DuplicateRarityDialog.vue
 import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
+import LaboratoryUnlockDialog from '~/components/dialog/LaboratoryUnlockDialog.vue'
 import InventoryIntroDialog from '~/components/dialog/InventoryIntroDialog.vue'
 import KingLossDialog from '~/components/dialog/KingLossDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
@@ -43,6 +44,7 @@ import {
 import { advancedXpRing, xpAmulet, xpRing } from '~/data/items/wearables/xpRing'
 import { useMobileTabStore } from '~/stores/mobileTab'
 import { useUIStore } from '~/stores/ui'
+import { useLaboratoryStore } from '~/stores/laboratory'
 
 interface WearableItemDialogProps {
   item: WearableItem
@@ -74,6 +76,7 @@ export const useDialogStore = defineStore('dialog', () => {
   const box = useEggBoxStore()
   const badgeBox = useBadgeBoxStore()
   const player = usePlayerStore()
+  const laboratory = useLaboratoryStore()
   const ui: ReturnType<typeof useUIStore> = useUIStore()
   const mobile = useMobileTabStore()
   const potionInfo = usePotionInfoStore()
@@ -112,6 +115,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'halfDex',
       component: markRaw(HalfDexDialog),
       condition: () => dex.completionPercent >= 50,
+    },
+    {
+      id: 'laboratoryUnlock',
+      component: markRaw(LaboratoryUnlockDialog),
+      condition: () => dex.shlagemons.length >= 164 && !laboratory.isUnlocked,
     },
     {
       id: 'attackPotion',

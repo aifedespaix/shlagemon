@@ -1,7 +1,7 @@
 import type { SfxId } from '~/data/sfx'
 import { defineStore } from 'pinia'
 
-export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler' | 'dojo' | 'breeding'
+export type MainPanel = 'village' | 'battle' | 'trainerBattle' | 'shop' | 'miniGame' | 'arena' | 'poulailler' | 'dojo' | 'breeding' | 'laboratory'
 
 export const useMainPanelStore = defineStore('mainPanel', () => {
   const zone = useZoneStore()
@@ -18,7 +18,11 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
   // Update the panel when the zone changes
   watch(
     [() => zone.current?.type, () => zone.current?.id],
-    ([type]) => {
+    ([type, id]) => {
+      if (id === 'laboratory') {
+        current.value = 'laboratory'
+        return
+      }
       current.value = type === 'village' ? 'village' : 'battle'
     },
     { immediate: true },
@@ -112,8 +116,18 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     current.value = 'village'
   }
 
+  function showLaboratory() {
+    if (arena.inBattle)
+      return
+    current.value = 'laboratory'
+  }
+
   function reset() {
-    current.value = zone.current.type === 'village' ? 'village' : 'battle'
+    current.value = zone.current.id === 'laboratory'
+      ? 'laboratory'
+      : zone.current.type === 'village'
+        ? 'village'
+        : 'battle'
   }
 
   return {
@@ -127,6 +141,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
     showBreeding,
     showArena,
     showVillage,
+    showLaboratory,
     reset,
     isBattle,
   }
@@ -137,6 +152,7 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
       const store = ctx.store as ReturnType<typeof useMainPanelStore>
       const arenaStore = useArenaStore()
       const miniGameStore = useMiniGameStore()
+      const zoneStore = useZoneStore()
       if (store.current === 'arena' && !arenaStore.inBattle)
         store.reset()
       if (
@@ -147,6 +163,8 @@ export const useMainPanelStore = defineStore('mainPanel', () => {
       ) {
         store.reset()
       }
+      if (store.current === 'laboratory' && zoneStore.current.id !== 'laboratory')
+        store.reset()
       if (store.current === 'miniGame' && !miniGameStore.currentId)
         store.reset()
     },

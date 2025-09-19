@@ -29,6 +29,9 @@ const { dialogTree, character, orientation, exitTrack, keepMusicOnExit, playChar
     playCharacterTrack: true,
   })
 
+const developer = useDeveloperStore()
+const { t } = useI18n()
+
 const buttonClass = computed(() =>
   orientation === 'col'
     ? 'flex w-full flex-col items-center justify-center text-xs'
@@ -38,6 +41,18 @@ const currentNode = ref<DialogNode | undefined>()
 const typingDone = ref(false)
 const audio = useAudioStore()
 const zone = useZoneStore()
+
+const finishResponse = computed<DialogResponse | undefined>(() => {
+  for (let nodeIndex = dialogTree.length - 1; nodeIndex >= 0; nodeIndex -= 1) {
+    const node = dialogTree[nodeIndex]
+    for (let responseIndex = node.responses.length - 1; responseIndex >= 0; responseIndex -= 1) {
+      const response = node.responses[responseIndex]
+      if (response.type === 'valid' && !response.nextId)
+        return response
+    }
+  }
+  return undefined
+})
 
 onMounted(() => {
   currentNode.value = dialogTree[0]
@@ -74,10 +89,28 @@ function choose(r: DialogResponse) {
     typingDone.value = false
   }
 }
+
+function skipDialog() {
+  if (!finishResponse.value)
+    return
+  choose(finishResponse.value)
+}
 </script>
 
 <template>
-  <div class="h-full max-w-xl w-full flex flex-1 flex-col justify-center overflow-hidden">
+  <div class="relative h-full max-w-xl w-full flex flex-1 flex-col justify-center overflow-hidden">
+    <UiButton
+      v-if="developer.debug && finishResponse"
+      v-tooltip.bottom="t('components.dialog.Box.debug.skip')"
+      type="icon"
+      size="xs"
+      class="absolute right-2 top-2 z-10"
+      :aria-label="t('components.dialog.Box.debug.skip')"
+      :tabindex="0"
+      @click="skipDialog"
+    >
+      <div class="i-carbon-flash" />
+    </UiButton>
     <div class="grid grid-cols-3 max-h-80 flex-1 justify-center gap-2 rounded" md=" ">
       <div class="flex flex-1 flex-col justify-center gap-1">
         <div class="flex-1 basis-0 overflow-hidden">

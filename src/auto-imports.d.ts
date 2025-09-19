@@ -267,6 +267,7 @@ declare global {
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useKeyboardCaptureStore: typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']
   const useKingPotionStore: typeof import('./stores/kingPotion')['useKingPotionStore']
+  const useLaboratoryStore: typeof import('./stores/laboratory')['useLaboratoryStore']
   const useLangSwitch: typeof import('./composables/useLangSwitch')['useLangSwitch']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLevelUpAnimation: typeof import('./composables/useLevelUpAnimation')['useLevelUpAnimation']
@@ -779,6 +780,7 @@ declare module 'vue' {
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useKeyboardCaptureStore: UnwrapRef<typeof import('./stores/keyboardCapture')['useKeyboardCaptureStore']>
     readonly useKingPotionStore: UnwrapRef<typeof import('./stores/kingPotion')['useKingPotionStore']>
+    readonly useLaboratoryStore: UnwrapRef<typeof import('./stores/laboratory')['useLaboratoryStore']>
     readonly useLangSwitch: UnwrapRef<typeof import('./composables/useLangSwitch')['useLangSwitch']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLevelUpAnimation: UnwrapRef<typeof import('./composables/useLevelUpAnimation')['useLevelUpAnimation']>

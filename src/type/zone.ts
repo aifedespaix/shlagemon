@@ -52,6 +52,7 @@ interface BaseZoneCommon {
   readonly minLevel: number
   readonly shlagemons?: BaseShlagemon[]
   readonly completionAchievement?: string
+  readonly requiresLaboratoryUnlock?: boolean
 }
 
 /** Zone configuration for savage areas. */
@@ -87,7 +88,7 @@ export type Zone = SavageZone | VillageZone
 
 export type ZoneId = SavageZoneId | VillageZoneId
 
-export type VillageZoneId = 'village-paume' | 'village-caca-boudin' | 'village-veaux-du-gland' | 'village-boule' | 'village-cassos-land' | 'village-clitoland' | 'village-giga-schlag'
+export type VillageZoneId = 'village-paume' | 'village-caca-boudin' | 'village-veaux-du-gland' | 'village-boule' | 'village-cassos-land' | 'village-clitoland' | 'village-giga-schlag' | 'laboratory'
 
 export type SavageZoneId
 = | 'plaine-kekette'

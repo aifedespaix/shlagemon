@@ -8,7 +8,11 @@ from typing import Dict, List, Optional, Tuple
 from PIL import Image, ImageOps
 
 # Optionnel : AVIF si pillow-avif-plugin est installé
-import pillow_avif  # noqa: F401
+try:
+    import pillow_avif  # noqa: F401  # enregistre le plugin AVIF dans Pillow
+    AVIF_AVAILABLE = True
+except Exception:
+    AVIF_AVAILABLE = False
 AVIF_AVAILABLE = True
 # try:
 #     AVIF_AVAILABLE = True
@@ -17,9 +21,9 @@ AVIF_AVAILABLE = True
 # print(f"AVIF support: {'oui' if AVIF_AVAILABLE else 'non'}")
 
 ALLOWED_DIRS = [
-    "shlagemons",
+    # "shlagemons",
     # "items",
-    # "icons",
+    "icons",
     # "characters",
 ]
 

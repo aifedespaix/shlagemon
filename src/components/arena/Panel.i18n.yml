@@ -5,6 +5,8 @@ fr:
   fight: Combattre
   title: Arène
   autoSelect: Sélection automatique de l'équipe
+  debug:
+    finish: Terminer l'arène instantanément
 en:
   selectSix: You must select 6 Shlagemon to fight in the arena
   autoBattleInfo: The battle is automatic and proceeds without clicks.
@@ -12,3 +14,5 @@ en:
   fight: Fight
   title: Arena
   autoSelect: Automatic team selection
+  debug:
+    finish: Finish the arena instantly

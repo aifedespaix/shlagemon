@@ -53,6 +53,12 @@ const poulaillerPoi = computed(() =>
     : undefined,
 )
 const hasPoulailler = computed(() => !!poulaillerPoi.value)
+const laboratoryPoi = computed(() =>
+  zone.current.type === 'village'
+    ? zone.current.pois.laboratory
+    : undefined,
+)
+const hasLaboratory = computed(() => !!laboratoryPoi.value)
 const arenaCompleted = computed(() => progress.isArenaCompleted(zone.current.id))
 const currentArenaData = computed(() =>
   zone.current.type === 'village' ? getArenaByZoneId(zone.current.id) : undefined,
@@ -117,6 +123,12 @@ function openBreeding() {
     return
   panel.showBreeding()
 }
+
+function openLaboratory() {
+  if (arena.inBattle)
+    return
+  panel.showLaboratory()
+}
 </script>
 
 <template>
@@ -168,6 +180,13 @@ function openBreeding() {
       :label="t('components.village.ZoneActions.breeding')"
       :disabled="arena.inBattle"
       @click="openBreeding"
+    />
+    <UiNavigationButton
+      v-if="hasLaboratory"
+      icon="i-mdi:flask"
+      :label="t('components.village.ZoneActions.laboratory')"
+      :disabled="arena.inBattle"
+      @click="openLaboratory"
     />
     <UiNavigationButton
       v-if="hasKing && !progress.isKingDefeated(zone.current.id) && progress.canFightKing(zone.current.id)"

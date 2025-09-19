@@ -61,6 +61,7 @@ catalogs:
     nprogress: ^0.2.0
     pinia: ^3.0.3
     pinia-plugin-persistedstate: ^4.4.1
+    three: ^0.180.0
     vue: ^3.5.17
     vue-i18n: ^11.1.10
     vue-number-animation: ^2.0.2
@@ -72,6 +73,7 @@ catalogs:
     '@types/leaflet': ^1.9.20
     '@types/markdown-it-link-attributes': ^3.0.5
     '@types/nprogress': ^0.2.3
+    '@types/three': ^0.155.0
 ignoredBuiltDependencies:
   - vue-demi
 

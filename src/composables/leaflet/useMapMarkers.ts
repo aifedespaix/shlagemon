@@ -44,6 +44,8 @@ export function useMapMarkers(map: LeafletMap) {
     })
   }
   function iconPath(zone: Zone): string {
+    if (zone.id === 'laboratory')
+      return '/icons/village/arena.webp'
     return zone.type === 'village'
       ? `/map/main/icons/village-${zone.villageType}.webp`
       : `/map/main/icons/${zone.id}.webp`

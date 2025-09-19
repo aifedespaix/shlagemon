@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const developer = useDeveloperStore()
 const stats = computed(() => {
   if (!props.mon)
     return []
@@ -63,6 +64,16 @@ const evolutionInfo = computed(() => {
 })
 
 const isActive = computed(() => props.mon?.id === store.activeShlagemon?.id)
+
+const shinyOverride = computed({
+  get: () => props.mon?.isShiny ?? false,
+  set: (value: boolean) => {
+    if (!props.mon)
+      return
+    // eslint-disable-next-line vue/no-mutating-props
+    props.mon.isShiny = value
+  },
+})
 
 function setActive() {
   if (props.mon) {
@@ -161,6 +172,13 @@ const captureInfo = computed(() => {
           </UiButton>
         </div>
       </div>
+      <UiCheckBox
+        v-if="developer.debug && mon"
+        v-model="shinyOverride"
+        class="ml-auto flex items-center gap-2 text-xs"
+      >
+        {{ t('components.shlagemon.Detail.debug.shiny') }}
+      </UiCheckBox>
       <div v-if="evolutionInfo" class="flex-center flex-col gap-1">
         <button
           v-if="ownedEvolution"

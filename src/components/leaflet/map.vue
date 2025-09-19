@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Polyline } from 'leaflet'
+import type { LeafletMouseEvent, Polyline } from 'leaflet'
 import type { Zone, ZoneId } from '~/type'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref, toRef, watch } from 'vue'
+import { onMounted, onUnmounted, ref, toRef, watch } from 'vue'
 import { useLeafletMap } from '~/composables/leaflet/useLeafletMap'
 import { useMapMarkers } from '~/composables/leaflet/useMapMarkers'
 import { buildSimplePath, buildZigzagPath, useMapPaths } from '~/composables/leaflet/useMapPaths'
@@ -21,6 +21,7 @@ const { mapRef, map: leafletMap } = useLeafletMap()
 const zones = props.zones ?? zonesData
 const zoneStore = useZoneStore()
 const { currentId } = storeToRefs(zoneStore)
+const developer = useDeveloperStore()
 
 const getTarget = () => zoneStore.current.position
 
@@ -36,10 +37,19 @@ defineExpose({
   selectZone,
 })
 
+function handleContextMenu(event: LeafletMouseEvent) {
+  if (!developer.debug)
+    return
+  const { lat, lng } = event.latlng
+  console.log('[debug] map context latlng', { lat, lng })
+}
+
 onMounted(() => {
   const map = leafletMap.value!
   const markers = useMapMarkers(map)
   const { drawPolylineWithBorder } = useMapPaths(map)
+
+  map.on('contextmenu', handleContextMenu)
 
   const dex = useShlagedexStore()
   const { canAccess, accessibleZones } = useZoneAccess(toRef(dex, 'highestLevel'))
@@ -104,6 +114,12 @@ onMounted(() => {
     draw()
     markers.highlightActive(currentId.value)
   }, { immediate: true })
+})
+
+onUnmounted(() => {
+  const map = leafletMap.value
+  if (map)
+    map.off('contextmenu', handleContextMenu)
 })
 </script>
 

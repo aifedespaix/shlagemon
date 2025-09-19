@@ -128,3 +128,5 @@ const arenaByZoneId: Record<string, Arena> = {
 export function getArenaByZoneId(zoneId: string): Arena | undefined {
   return arenaByZoneId[zoneId]
 }
+
+export const arenaZoneIds = Object.keys(arenaByZoneId) as Array<keyof typeof arenaByZoneId>

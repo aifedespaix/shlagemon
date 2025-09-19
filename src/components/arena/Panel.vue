@@ -4,11 +4,18 @@ import type { DexShlagemon } from '~/type/shlagemon'
 import { cloneDexShlagemon } from '~/utils/clone'
 import { delay } from '~/utils/delay'
 import { applyCurrentStats, applyStats } from '~/utils/dexFactory'
+import { toast } from '~/modules/toast'
 
 const dex = useShlagedexStore()
 const arena = useArenaStore()
 const featureLock = useFeatureLockStore()
 const panel = useMainPanelStore()
+const zone = useZoneStore()
+const badgeBox = useBadgeBoxStore()
+const player = usePlayerStore()
+const progress = useZoneProgressStore()
+const developer = useDeveloperStore()
+const dialogStore = useDialogStore()
 const savedActive = ref<DexShlagemon | null>(null)
 const { t } = useI18n()
 
@@ -81,6 +88,18 @@ function startBattle() {
   arena.start(team, enemies)
   arena.currentIndex = 0
   showDuel.value = true
+}
+
+function completeArenaDebug() {
+  if (!developer.debug || !arena.arenaData)
+    return
+  player.earnBadge(arena.arenaData.id)
+  badgeBox.addBadge(arena.arenaData.badge)
+  progress.completeArena(zone.current.id)
+  toast.success(t('components.dialog.ArenaVictoryDialog.toast', { name: t(arena.arenaData.badge.name) }))
+  dialogStore.markDone('arenaVictory')
+  arena.reset()
+  panel.showVillage()
 }
 
 function onDuelEnd(win: boolean) {
@@ -195,6 +214,18 @@ onUnmounted(() => {
               @click="autoSelect"
             >
               <div i-carbon-magic-wand />
+            </UiButton>
+            <UiButton
+              v-if="developer.debug && arena.arenaData"
+              v-tooltip="t('components.arena.Panel.debug.finish')"
+              size="xs"
+              type="icon"
+              class="bottom-0 left-0 z-10 rounded-full"
+              :aria-label="t('components.arena.Panel.debug.finish')"
+              :tabindex="0"
+              @click="completeArenaDebug"
+            >
+              <div class="i-carbon-flash-filled" />
             </UiButton>
           </div>
         </div>

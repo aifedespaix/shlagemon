@@ -5,11 +5,11 @@ const { t } = useI18n()
 
 <template>
   <UiModal v-model="store.isVisible" footer-close>
-    <div class="flex flex-col items-center gap-2">
+    <div class="flex flex-col items-center gap-2 overflow-hidden">
       <h3 class="text-center text-lg font-bold">
         {{ t('components.shlagemon.WearableEquipModal.title') }}
       </h3>
-      <div v-if="store.options.length" class="w-full flex flex-col gap-2 p-1">
+      <div v-if="store.options.length" class="tiny-scrollbar w-full flex flex-col gap-2 overflow-auto p-1">
         <UiListItem
           v-for="o in store.options"
           :key="o.item.id"

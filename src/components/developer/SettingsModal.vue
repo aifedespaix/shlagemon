@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { arenaZoneIds, getArenaByZoneId } from '~/data/arenas'
 import { allShlagemons } from '~/data/shlagemons'
 import { applyCurrentStats, applyStats, xpForLevel } from '~/utils/dexFactory'
 
@@ -15,6 +16,10 @@ const game = useGameStore()
 const dex = useShlagedexStore()
 const player = usePlayerStore()
 const progress = useZoneProgressStore()
+const badgeBox = useBadgeBoxStore()
+const trainerBattle = useTrainerBattleStore()
+
+const hasActiveMon = computed(() => Boolean(dex.activeShlagemon))
 
 function addMoney() {
   game.addShlagidolar(100000)
@@ -87,18 +92,202 @@ function resetLevel() {
   mon.hpCurrent = mon.hp
 }
 
-function completeArena(id: string) {
-  progress.completeArena(id)
+const arenaZoneLabels: Record<(typeof arenaZoneIds)[number], string> = {
+  'village-boule': 'Arène Boule',
+  'village-paume': 'Arène Paume',
+  'village-cassos-land': 'Arène Cassos Land',
+  'village-clitoland': 'Arène Clitoland',
+}
+
+function finishArena(zoneId: (typeof arenaZoneIds)[number]) {
+  const arenaConfig = getArenaByZoneId(zoneId)
+  if (!arenaConfig)
+    return
+  progress.completeArena(zoneId)
+  player.earnBadge(arenaConfig.id)
+  badgeBox.addBadge(arenaConfig.badge)
 }
 
 function resetArenas() {
   player.reset()
   progress.reset()
+  badgeBox.reset()
 }
+
+function completeAllArenas() {
+  arenaZoneIds.forEach(zoneId => finishArena(zoneId))
+}
+
+function completeAllTrainerBattles() {
+  const rewarded = new Set<string>()
+  let nextTrainer = trainerBattle.current
+  while (nextTrainer) {
+    if (!rewarded.has(nextTrainer.id) && nextTrainer.reward)
+      game.addShlagidiamond(nextTrainer.reward)
+    rewarded.add(nextTrainer.id)
+    trainerBattle.next()
+    nextTrainer = trainerBattle.current
+  }
+}
+
+interface DevAction {
+  key: string
+  label: string
+  icon?: string
+  onClick: () => void
+  type?: 'primary' | 'secondary' | 'danger' | 'info'
+  variant?: 'outline' | 'ghost'
+  disabled?: () => boolean
+}
+
+interface DevSection {
+  key: string
+  title: string
+  icon: string
+  actions: DevAction[]
+}
+
+const sections = computed<DevSection[]>(() => [
+  {
+    key: 'resources',
+    title: 'Ressources',
+    icon: 'i-carbon-currency-dollar',
+    actions: [
+      {
+        key: 'add-money',
+        label: '+100000 Shlagédolar',
+        icon: 'i-carbon-currency-dollar',
+        onClick: addMoney,
+      },
+      {
+        key: 'add-diamonds',
+        label: '+1000 Shlagédiamant',
+        icon: 'i-carbon-diamond',
+        onClick: addDiamonds,
+      },
+      {
+        key: 'reset-money',
+        label: 'Réinitialiser l\'argent',
+        icon: 'i-carbon-renew',
+        onClick: resetMoney,
+        type: 'danger',
+        variant: 'outline',
+      },
+    ],
+  },
+  {
+    key: 'shlagemon',
+    title: 'Shlagémon actif',
+    icon: 'i-carbon-star',
+    actions: [
+      {
+        key: 'capture-random',
+        label: 'Capturer un nouveau Shlagémon',
+        icon: 'i-carbon-add-alt',
+        onClick: captureRandom,
+      },
+      {
+        key: 'rarity-99',
+        label: 'Rareté 99',
+        icon: 'i-carbon-number-9',
+        onClick: () => setRarity(99),
+        disabled: () => !hasActiveMon.value,
+      },
+      {
+        key: 'rarity-100',
+        label: 'Rareté 100',
+        icon: 'i-carbon-number-0',
+        onClick: () => setRarity(100),
+        disabled: () => !hasActiveMon.value,
+      },
+      {
+        key: 'rarity-reset',
+        label: 'Reset rareté',
+        icon: 'i-carbon-reset',
+        onClick: () => setRarity(1),
+        type: 'danger',
+        variant: 'outline',
+        disabled: () => !hasActiveMon.value,
+      },
+      {
+        key: 'boost-stats',
+        label: 'Booster les stats',
+        icon: 'i-carbon-analytics',
+        onClick: boostStats,
+        disabled: () => !hasActiveMon.value,
+      },
+      {
+        key: 'reset-stats',
+        label: 'Reset stats',
+        icon: 'i-carbon-undo',
+        onClick: resetStats,
+        type: 'danger',
+        variant: 'outline',
+        disabled: () => !hasActiveMon.value,
+      },
+      {
+        key: 'level-up',
+        label: '+10 niveaux',
+        icon: 'i-carbon-up-to-top',
+        onClick: levelUp10,
+        disabled: () => !hasActiveMon.value,
+      },
+      {
+        key: 'reset-level',
+        label: 'Reset niveau',
+        icon: 'i-carbon-arrow-reset',
+        onClick: resetLevel,
+        type: 'danger',
+        variant: 'outline',
+        disabled: () => !hasActiveMon.value,
+      },
+    ],
+  },
+  {
+    key: 'trainers',
+    title: 'Combats de dresseurs',
+    icon: 'i-carbon-user-multiple',
+    actions: [
+      {
+        key: 'complete-trainers',
+        label: 'Valider tous les combats de dresseurs',
+        icon: 'i-carbon-checkmark',
+        onClick: completeAllTrainerBattles,
+      },
+    ],
+  },
+  {
+    key: 'arenas',
+    title: 'Arènes',
+    icon: 'i-carbon-trophy',
+    actions: [
+      ...arenaZoneIds.map<DevAction>((zoneId) => ({
+        key: `arena-${zoneId}`,
+        label: `Valider ${arenaZoneLabels[zoneId]}`,
+        icon: 'i-carbon-medal',
+        onClick: () => finishArena(zoneId),
+      })),
+      {
+        key: 'arenas-all',
+        label: 'Valider toutes les arènes',
+        icon: 'i-carbon-checkmark-multiple',
+        onClick: completeAllArenas,
+      },
+      {
+        key: 'arenas-reset',
+        label: 'Reset arènes et badges',
+        icon: 'i-carbon-trash-can',
+        onClick: resetArenas,
+        type: 'danger',
+        variant: 'outline',
+      },
+    ],
+  },
+])
 </script>
 
 <template>
-  <UiModal v-model="show" footer-close>
+  <UiModal v-model="show" footer-close content-padding="none">
     <LayoutScrollablePanel>
       <template #header>
         <div>
@@ -112,55 +301,31 @@ function resetArenas() {
       </template>
 
       <template #content>
-        <div class="mt-4 flex flex-col gap-2">
-          <UiButton @click="addMoney">
-            +100000 Shlagédolar
-          </UiButton>
-          <UiButton @click="addDiamonds">
-            +1000 Shlagédiamant
-          </UiButton>
-          <UiButton type="danger" variant="outline" @click="resetMoney">
-            Réinitialiser l'argent
-          </UiButton>
-
-          <UiButton :disabled="!dex.activeShlagemon" @click="setRarity(99)">
-            Rareté 99
-          </UiButton>
-          <UiButton :disabled="!dex.activeShlagemon" @click="setRarity(100)">
-            Rareté 100
-          </UiButton>
-          <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="setRarity(1)">
-            Reset Rareté
-          </UiButton>
-
-          <UiButton @click="captureRandom">
-            Capturer un nouveau Shlagémon
-          </UiButton>
-          <UiButton :disabled="!dex.activeShlagemon" @click="boostStats">
-            Booster stats
-          </UiButton>
-          <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="resetStats">
-            Reset stats
-          </UiButton>
-          <UiButton :disabled="!dex.activeShlagemon" @click="levelUp10">
-            +10 niveaux
-          </UiButton>
-          <UiButton type="danger" variant="outline" :disabled="!dex.activeShlagemon" @click="resetLevel">
-            Reset niveau
-          </UiButton>
-
-          <UiButton @click="completeArena('village-boule')">
-            Valider arène 1
-          </UiButton>
-          <UiButton @click="completeArena('village-paume')">
-            Valider arène 2
-          </UiButton>
-          <UiButton @click="completeArena('village-cassos-land')">
-            Valider arène 3
-          </UiButton>
-          <UiButton type="danger" variant="outline" @click="resetArenas">
-            Reset arènes
-          </UiButton>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <section
+            v-for="section in sections"
+            :key="section.key"
+            class="rounded-lg border border-gray-200/60 bg-white/70 p-3 shadow-sm dark:border-gray-700/60 dark:bg-gray-900/40"
+          >
+            <header class="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide opacity-80">
+              <div :class="section.icon" class="text-base" />
+              <span>{{ section.title }}</span>
+            </header>
+            <div class="flex flex-col gap-2">
+              <UiButton
+                v-for="action in section.actions"
+                :key="action.key"
+                :type="action.type"
+                :variant="action.variant"
+                :disabled="action.disabled ? action.disabled() : false"
+                class="flex items-center justify-center gap-2 text-sm"
+                @click="action.onClick()"
+              >
+                <div v-if="action.icon" :class="action.icon" />
+                <span>{{ action.label }}</span>
+              </UiButton>
+            </div>
+          </section>
         </div>
       </template>
     </LayoutScrollablePanel>

@@ -1,0 +1,14 @@
+fr:
+  title: Laboratoire
+  exit: Retourner au village
+  intro: Ici, personne ne viendra se plaindre de l’odeur. On prépare la traque des six Shlagémons à rareté infinie.
+  focus: Chaque capture que tu ramènes nourrit mes scanners maison. À force, leurs signatures finiront par apparaître.
+  cta: Inspecte le matériel, renifle les pistes, et reviens me voir dès que tu sens une anomalie. On percera ce mystère ensemble.
+  locked: Le Laboratoire n’est pas encore prêt. Reviens me voir après avoir terminé ta collection.
+en:
+  title: Laboratory
+  exit: Return to the village
+  intro: Nobody complains about the smell here. This is where we prepare the hunt for the six infinitely rare Shlagémons.
+  focus: Every capture you bring back feeds my homemade scanners. With time, their signatures will emerge.
+  cta: Check the equipment, follow any strange trail, and report to me as soon as you feel an anomaly. We will crack this mystery together.
+  locked: The Laboratory isn’t ready yet. Come back once your collection is complete.

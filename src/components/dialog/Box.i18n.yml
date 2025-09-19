@@ -1,2 +1,6 @@
-fr: {}
-en: {}
+fr:
+  debug:
+    skip: Valider immédiatement
+en:
+  debug:
+    skip: Validate instantly
