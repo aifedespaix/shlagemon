@@ -286,7 +286,7 @@ export const potion: BattlePotion = {
   price: 100,
   currency: 'shlagidolar',
   category: 'battle',
-  battleCooldown: 5,
+  battleCooldown: 120,
   sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'text-red-600 dark:text-red-400',
