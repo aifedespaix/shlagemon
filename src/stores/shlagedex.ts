@@ -9,6 +9,7 @@ import { allItems } from '~/data/items'
 import { allShlagemons } from '~/data/shlagemons'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
+import { useFinalBattleStore } from '~/stores/finalBattle'
 import { useWildLevelStore } from '~/stores/wildLevel'
 import {
   applyCurrentStats,
@@ -208,8 +209,14 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   function setActiveShlagemon(mon: DexShlagemon) {
     if (disease.active || mon.busy)
       return
+    const finalBattle = useFinalBattleStore()
+    const current = activeShlagemon.value
+    if (finalBattle.isActive && current && current.id !== mon.id)
+      finalBattle.snapshot(current, maxHp(current))
     activeShlagemon.value = mon
     markSeen(mon)
+    if (finalBattle.isActive)
+      finalBattle.restore(mon, maxHp(mon))
   }
 
   /**

@@ -12,15 +12,19 @@ const DEFAULT_LEVEL_UP_HEAL_PERCENT = 15
  */
 const DEFAULT_WIN_HEAL_PERCENT = 15
 
+export type TrainerBattleMode = 'standard' | 'final'
+
 export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   const queue = ref<Trainer[]>([])
   const currentIndex = ref(0)
+  const mode = ref<TrainerBattleMode>('standard')
   const levelUpHealPercent = ref(DEFAULT_LEVEL_UP_HEAL_PERCENT)
   const winHealPercent = ref(DEFAULT_WIN_HEAL_PERCENT)
 
-  function setQueue(list: Trainer[]) {
+  function setQueue(list: Trainer[], options?: { mode?: TrainerBattleMode }) {
     queue.value = list
     currentIndex.value = 0
+    mode.value = options?.mode ?? 'standard'
   }
 
   function add(trainer: Trainer) {
@@ -29,6 +33,7 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
 
   const current = computed(() => queue.value[currentIndex.value] ?? null)
   const isActive = computed(() => Boolean(current.value))
+  const isFinalBattle = computed(() => mode.value === 'final')
 
   function next() {
     currentIndex.value += 1
@@ -37,6 +42,7 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
   function reset() {
     queue.value = []
     currentIndex.value = 0
+    mode.value = 'standard'
   }
 
   // init with default trainers
@@ -46,9 +52,11 @@ export const useTrainerBattleStore = defineStore('trainerBattle', () => {
     queue,
     current,
     isActive,
+    isFinalBattle,
     next,
     add,
     setQueue,
+    mode,
     reset,
     levelUpHealPercent,
     winHealPercent,

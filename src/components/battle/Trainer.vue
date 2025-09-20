@@ -29,6 +29,8 @@ const kingLabel = computed(() =>
     ? t('components.battle.Trainer.queen')
     : t('components.battle.Trainer.king'),
 )
+const finalBattle = useFinalBattleStore()
+const isFinalBattle = trainerStore.isFinalBattle
 
 const stage = ref<'before' | 'battle' | 'after'>('before')
 const result = ref<'none' | 'win' | 'lose'>('none')
@@ -139,6 +141,8 @@ function startFight() {
     dex.activeShlagemon.hpCurrent = dex.maxHp(dex.activeShlagemon)
   kingPotion.reset()
   result.value = 'none'
+  if (isFinalBattle.value)
+    finalBattle.begin()
   stage.value = 'battle'
   enemy.value = createEnemy()
 }
@@ -149,6 +153,8 @@ watch(trainer, (t) => {
     enemyIndex.value = 0
     result.value = 'none'
     kingPotion.reset()
+    if (isFinalBattle.value)
+      finalBattle.finish()
   }
 })
 
@@ -182,6 +188,8 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
         progress.defeatKing(zone.current.id)
       result.value = 'win'
       stage.value = 'after'
+      if (isFinalBattle.value)
+        finalBattle.finish()
       return
     }
   }
@@ -193,6 +201,8 @@ async function onEnd(type: 'capture' | 'win' | 'lose' | 'draw') {
     notifyAchievement({ type: 'battle-loss' })
     result.value = 'lose'
     stage.value = 'after'
+    if (isFinalBattle.value)
+      finalBattle.finish()
     return
   }
   enemy.value = createEnemy()
@@ -220,16 +230,34 @@ function finish() {
 }
 
 function cancelFight() {
+  if (isFinalBattle.value)
+    finalBattle.finish()
   panel.showBattle()
 }
 
+watch(isFinalBattle, (value) => {
+  if (value) {
+    featureLock.unlockShlagedex()
+  }
+  else {
+    featureLock.lockShlagedex()
+    finalBattle.finish()
+  }
+})
+
 onMounted(() => {
-  featureLock.lockShlagedex()
+  if (isFinalBattle.value)
+    featureLock.unlockShlagedex()
+  else
+    featureLock.lockShlagedex()
   featureLock.lockZones()
   featureLock.lockAchievements()
   battleCooldown.reset()
 })
-onUnmounted(featureLock.unlockAll)
+onUnmounted(() => {
+  finalBattle.finish()
+  featureLock.unlockAll()
+})
 </script>
 
 <template>

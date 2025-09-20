@@ -15,16 +15,32 @@ export const useFeatureLockStore = defineStore('featureLock', () => {
     inventoryLocked.value = true
   }
 
+  function unlockInventory() {
+    inventoryLocked.value = false
+  }
+
   function lockShlagedex() {
     shlagedexLocked.value = true
+  }
+
+  function unlockShlagedex() {
+    shlagedexLocked.value = false
   }
 
   function lockZones() {
     zonesLocked.value = true
   }
 
+  function unlockZones() {
+    zonesLocked.value = false
+  }
+
   function lockAchievements() {
     achievementsLocked.value = true
+  }
+
+  function unlockAchievements() {
+    achievementsLocked.value = false
   }
 
   function lockAll() {
@@ -50,6 +66,10 @@ export const useFeatureLockStore = defineStore('featureLock', () => {
     lockShlagedex,
     lockAchievements,
     lockZones,
+    unlockInventory,
+    unlockShlagedex,
+    unlockZones,
+    unlockAchievements,
     lockAll,
     unlockAll,
   }
