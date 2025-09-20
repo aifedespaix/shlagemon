@@ -6,6 +6,7 @@ fr:
   point: 'point | points'
   level: 'niveau | niveaux'
   rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
+  legendaryMerged: 'Fusion réussie ! {name} conserve le meilleur (niveau {level}, rareté {rarity}).'
   released: '{name} a été relâché !'
 en:
   rarityReached: '{name} reached rarity {rarity}!'
@@ -15,4 +16,5 @@ en:
   point: 'point | points'
   level: 'level | levels'
   rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
+  legendaryMerged: 'Fusion complete! {name} keeps the best traits (level {level}, rarity {rarity}).'
   released: '{name} was released!'

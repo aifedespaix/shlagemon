@@ -21,6 +21,9 @@ const audio = useAudioStore()
 const battleStats = useBattleStatsStore()
 const zoneMonsModal = useZoneMonsModalStore()
 const wildLevel = useWildLevelStore()
+const laboratory = useLaboratoryStore()
+const hasCompletedDex = computed(() => dex.capturedBaseIds.size >= allShlagemons.length)
+const nonLegendaryShlagemons = allShlagemons.filter(mon => mon.speciality !== 'legendary')
 
 const enemy = ref(null as DexShlagemon | null)
 const { t } = useI18n()
@@ -28,7 +31,17 @@ const info = useZoneInfoStore()
 const zoneName = computed(() => info.hasMultipleZones ? t(zone.current.name) : undefined)
 
 function createEnemy(): DexShlagemon | null {
-  const available = zone.current.shlagemons?.length ? zone.current.shlagemons : allShlagemons
+  const isLaboratoryLegendaryBattle = zone.current.id === 'cratere-des-legends'
+    && hasCompletedDex.value
+  const available = isLaboratoryLegendaryBattle
+    ? nonLegendaryShlagemons
+    : zone.current.shlagemons?.length
+      ? zone.current.shlagemons
+      : allShlagemons
+  if (!available.length) {
+    laboratory.clearLegendaryEncounter()
+    return null
+  }
   let pool = available
   const last = progress.lastEncounters[zone.current.id]
   if (last?.length >= 3 && last.every(id => id === last[0])) {
@@ -39,10 +52,18 @@ function createEnemy(): DexShlagemon | null {
   const count = progress.getEncounterCount(zone.current.id)
   const base = pickByAlphabet(pool, count)
   progress.registerEncounter(zone.current.id, base.id)
-  const min = Number(zone.current.minLevel ?? 1)
-  const zoneMax = zoneMaxLevel.value ?? (min + 1)
-  const max = Math.max(zoneMax - 1, min)
-  const lvl = Math.floor(Math.random() * (max - min + 1)) + min
+  let lvl: number
+  if (isLaboratoryLegendaryBattle) {
+    lvl = 200
+    laboratory.beginLegendaryEncounter(base.id)
+  }
+  else {
+    const min = Number(zone.current.minLevel ?? 1)
+    const zoneMax = zoneMaxLevel.value ?? (min + 1)
+    const max = Math.max(zoneMax - 1, min)
+    lvl = Math.floor(Math.random() * (max - min + 1)) + min
+    laboratory.clearLegendaryEncounter()
+  }
   const created = createDexShlagemon(base, false, lvl, wildLevel.highestWildLevel)
   if (created.isShiny)
     audio.playSfx('shiny')

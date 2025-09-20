@@ -28,6 +28,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const audio = useAudioStore()
   const disease = useDiseaseStore()
   const equipment = useEquipmentStore()
+  const laboratory = useLaboratoryStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   const newCount = computed(() => shlagemons.value.filter(m => m.isNew).length)
   cleanupEffects()
@@ -651,7 +652,27 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function captureEnemy(enemy: DexShlagemon) {
+    const mergeWithLegendaryEncounter = laboratory.consumeLegendaryEncounter(enemy.base.id)
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
+    if (mergeWithLegendaryEncounter && existing) {
+      existing.captureCount += 1
+      const previousRarity = existing.rarity
+      existing.rarity = Math.min(100, Math.max(existing.rarity, enemy.rarity))
+      maybePlayRaritySfx(existing, previousRarity)
+      existing.isShiny ||= enemy.isShiny
+      existing.lvl = Math.max(existing.lvl, enemy.lvl)
+      existing.xp = 0
+      applyStats(existing)
+      applyCurrentStats(existing)
+      existing.hpCurrent = maxHp(existing)
+      updateHighestLevel(existing)
+      toast(i18n.global.t('stores.shlagedex.legendaryMerged', {
+        name: i18n.global.t(existing.base.name),
+        level: existing.lvl,
+        rarity: existing.rarity,
+      }))
+      return existing
+    }
     if (existing) {
       if (existing.rarity >= 100) {
         if (enemy.isShiny && !existing.isShiny) {
