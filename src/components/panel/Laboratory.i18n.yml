@@ -25,6 +25,7 @@ fr:
     intro:
       text: 'On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !'
       hunt: C’est parti !
+      skip: Continuer les recherches
     victory:
       text: 'Nous avons neutralisé {name}, mais la bête s’est dissipée avant la capture. On recalibre les capteurs et on retente dès qu’un nouveau signal apparaît.'
       continue: Retour au laboratoire
@@ -38,6 +39,7 @@ fr:
       intro:
         text: "On a isolé un spécimen d'élite : {name}. Sa puissance dépasse nos mesures."
         hunt: Le confronter
+        skip: Continuer les recherches
       victory:
         text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."
         continue: Retour au laboratoire
@@ -83,6 +85,7 @@ en:
     intro:
       text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
       hunt: Engage the battle
+      skip: Continue research
     victory:
       text: "We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon."
       continue: Back to the lab
@@ -96,6 +99,7 @@ en:
       intro:
         text: "We've isolated an elite specimen: {name}. Its power is off the charts."
         hunt: Engage the battle
+        skip: Continue research
       victory:
         text: "We subdued {name}, but the sample dissipated before we preserved it. The scanners are richer—we'll relaunch the chase soon."
         continue: Back to the lab
