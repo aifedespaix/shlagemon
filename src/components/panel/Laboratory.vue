@@ -98,6 +98,11 @@ const finaleEnemyIndex = ref(0)
 const finaleSessionTriggered = ref(false)
 const finaleHpMemory = reactive<Record<string, number>>({})
 const shouldLaunchFinale = ref(false)
+/**
+ * Legendary and elite laboratory encounters hit significantly harder to reinforce their boss status.
+ * The damage multiplier mirrors the finale's bespoke scaling but with its own tuning.
+ */
+const laboratoryLegendaryDamageMultiplier = 22
 const finaleDamageMultiplier = 123
 const finaleEnemyLevel = 200
 const finaleEnemyRarity = 666
@@ -875,6 +880,7 @@ function onLegendaryCapture() {
               :player="activePlayer"
               :enemy="legendaryEnemy"
               :force-show-owned-ball="true"
+              :damage-multiplier="laboratoryLegendaryDamageMultiplier"
               @end="onLegendaryBattleEnd"
               @capture="onLegendaryCapture"
             >
