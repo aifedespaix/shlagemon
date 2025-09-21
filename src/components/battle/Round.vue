@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
   showEffects?: boolean
   tickDelay?: number
   forceShowOwnedBall?: boolean
+  damageMultiplier?: number
 }>(), {
   clickAttack: true,
   captureEnabled: true,
@@ -18,6 +19,7 @@ const props = withDefaults(defineProps<{
   showEffects: true,
   tickDelay: 1000,
   forceShowOwnedBall: undefined,
+  damageMultiplier: 1,
 })
 
 const emit = defineEmits<{
@@ -77,6 +79,7 @@ const {
 } = useBattleCore({
   createEnemy: () => props.enemy,
   tickDelay: props.tickDelay,
+  damageMultiplier: props.damageMultiplier,
 })
 
 // Throttle manual click attacks to prevent UI freeze during rapid input
