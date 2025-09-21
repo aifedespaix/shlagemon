@@ -31,7 +31,7 @@ fr:
     post:
       intro:
         text: "On a isolé un spécimen d'élite : {name}. Il n'a rien de légendaire, mais sa puissance dépasse nos mesures."
-        hunt: Le capturer
+        hunt: Le confronter
       victory:
         text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."
         continue: Retour au laboratoire
@@ -70,7 +70,7 @@ en:
   legendaryDialog:
     intro:
       text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
-      hunt: Engage the capture
+      hunt: Engage the battle
     victory:
       text: "We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon."
       continue: Back to the lab
@@ -83,7 +83,7 @@ en:
     post:
       intro:
         text: "We've isolated an elite specimen: {name}. Not legendary, yet wildly beyond the charts."
-        hunt: Engage the capture
+        hunt: Engage the battle
       victory:
         text: "We subdued {name}, but the sample dissipated before we preserved it. The scanners are richer—we'll relaunch the chase soon."
         continue: Back to the lab
