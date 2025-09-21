@@ -44,11 +44,27 @@ describe('laboratory store mobile adjustments', () => {
     expect(store.shlagpurRewardPerAsteroid).toBe(1)
   })
 
+  it('scales shlagpur rewards according to asteroid size on desktop', () => {
+    const store = useLaboratoryStore()
+    expect(store.calculateShlagpurReward(1)).toBe(1)
+    expect(store.calculateShlagpurReward(5)).toBe(5)
+    expect(store.calculateShlagpurReward(2.4)).toBe(2)
+    expect(store.calculateShlagpurReward(0)).toBe(1)
+    expect(store.calculateShlagpurReward(10)).toBe(5)
+  })
+
   it('switches to the mobile thresholds when the TWA flag is active', () => {
     isTwaFlag.value = true
     const store = useLaboratoryStore()
     expect(store.legendaryBattleThreshold).toBe(15)
     expect(store.shlagpurRewardPerAsteroid).toBe(3)
+  })
+
+  it('applies the mobile reward multiplier when scaling shlagpur gains', () => {
+    isTwaFlag.value = true
+    const store = useLaboratoryStore()
+    expect(store.calculateShlagpurReward(1)).toBe(3)
+    expect(store.calculateShlagpurReward(5)).toBe(15)
   })
 
   it('computes hits until the next legendary using the active threshold', () => {

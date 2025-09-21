@@ -18,6 +18,14 @@ const LASER_RADIUS_SCALE = 0.34
 const LASER_LIGHT_INTENSITY = 3.6
 const LASER_LIGHT_DISTANCE = 28
 
+const ROCK_SCALE_MIN = 2.0
+const ROCK_SCALE_MAX = 7.2
+const RELIC_SCALE_MIN = 4.5
+const RELIC_SCALE_MAX = 9.5
+const ASTEROID_SCALE_MIN = ROCK_SCALE_MIN
+const ASTEROID_SCALE_MAX = RELIC_SCALE_MAX
+const ASTEROID_REWARD_MAX_MULTIPLIER = 5
+
 interface LaboratorySceneHandle {
   cleanup: () => void
   shoot: (ndcX: number, ndcY: number) => LaboratoryShotResult | null
@@ -27,6 +35,7 @@ type AsteroidType = 'rock' | 'relic'
 
 interface LaboratoryShotResult {
   type: AsteroidType
+  rewardMultiplier: number
 }
 
 interface PlanetBody {
@@ -37,6 +46,8 @@ interface PlanetBody {
   speed: number
   rotation: THREE.Vector3
   type: AsteroidType
+  scale: number
+  rewardMultiplier: number
 }
 
 interface LaserShot {
@@ -65,6 +76,17 @@ function randomPlanetColour(type: AsteroidType) {
   const color = new THREE.Color()
   color.setHSL(THREE.MathUtils.randFloat(0, 1), THREE.MathUtils.randFloat(0.35, 0.6), THREE.MathUtils.randFloat(0.32, 0.55))
   return color
+}
+
+function computeRewardMultiplier(scale: number) {
+  if (!Number.isFinite(scale))
+    return 1
+
+  const clampedScale = THREE.MathUtils.clamp(scale, ASTEROID_SCALE_MIN, ASTEROID_SCALE_MAX)
+  const normalizedScale = (clampedScale - ASTEROID_SCALE_MIN) / (ASTEROID_SCALE_MAX - ASTEROID_SCALE_MIN)
+  const inverted = 1 - normalizedScale
+  const multiplier = 1 + Math.round(inverted * (ASTEROID_REWARD_MAX_MULTIPLIER - 1))
+  return THREE.MathUtils.clamp(multiplier, 1, ASTEROID_REWARD_MAX_MULTIPLIER)
 }
 
 export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHandle {
@@ -146,13 +168,13 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
 
     const coreMaterial = body.core.material as THREE.MeshStandardMaterial
     coreMaterial.color.copy(randomPlanetColour(body.type))
-    coreMaterial.emissive.setHex(body.type === 'relic' ? 0x2768ff : 0x050505)
+    coreMaterial.emissive.setHex(body.type === 'relic' ? 0x2768FF : 0x050505)
     coreMaterial.emissiveIntensity = body.type === 'relic' ? 0.4 : 0.1
 
     if (body.ring) {
       body.ring.visible = isRelic
       const ringMaterial = body.ring.material as THREE.MeshStandardMaterial
-      ringMaterial.color.copy(isRelic ? new THREE.Color(0xfde68a) : new THREE.Color(0x0d0d16))
+      ringMaterial.color.copy(isRelic ? new THREE.Color(0xFDE68A) : new THREE.Color(0x0D0D16))
       ringMaterial.emissiveIntensity = isRelic ? 0.25 : 0.05
       body.ring.rotation.set(Math.PI / 2, 0, 0)
       if (body.ringSpin) {
@@ -167,9 +189,11 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
     }
 
     const scale = isRelic
-      ? THREE.MathUtils.randFloat(4.5, 9.5)
-      : THREE.MathUtils.randFloat(2.0, 7.2)
+      ? THREE.MathUtils.randFloat(RELIC_SCALE_MIN, RELIC_SCALE_MAX)
+      : THREE.MathUtils.randFloat(ROCK_SCALE_MIN, ROCK_SCALE_MAX)
 
+    body.scale = scale
+    body.rewardMultiplier = computeRewardMultiplier(scale)
     body.group.scale.setScalar(scale)
     if (body.ring)
       body.ring.scale.setScalar(isRelic ? THREE.MathUtils.randFloat(1.6, 2.1) : THREE.MathUtils.randFloat(1.2, 1.4))
@@ -207,11 +231,11 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
     let ringMesh: THREE.Mesh | undefined
     if (Math.random() < 0.5) {
       const ringMaterial = new THREE.MeshStandardMaterial({
-        color: 0xfde68a,
+        color: 0xFDE68A,
         side: THREE.DoubleSide,
         transparent: true,
         opacity: 0.68,
-        emissive: 0xfacc15,
+        emissive: 0xFACC15,
         emissiveIntensity: 0.22,
       })
       ringMesh = new THREE.Mesh(torusGeometry, ringMaterial)
@@ -234,6 +258,8 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
       speed: 0,
       rotation: new THREE.Vector3(),
       type: 'rock',
+      scale: 1,
+      rewardMultiplier: 1,
     }
 
     randomizePlanet(body, true)
@@ -300,7 +326,7 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
     mesh.position.copy(origin)
     mesh.quaternion.setFromUnitVectors(laserUpAxis, direction)
     scene.add(mesh)
-    const light = new THREE.PointLight(0x7dd3fc, LASER_LIGHT_INTENSITY * 0.65, LASER_LIGHT_DISTANCE, 1.8)
+    const light = new THREE.PointLight(0x7DD3FC, LASER_LIGHT_INTENSITY * 0.65, LASER_LIGHT_DISTANCE, 1.8)
     light.castShadow = false
     light.position.copy(origin)
     scene.add(light)
@@ -415,8 +441,9 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
       return null
 
     const destroyedType = body.type
+    const rewardMultiplier = body.rewardMultiplier
     randomizePlanet(body, false)
-    return { type: destroyedType }
+    return { type: destroyedType, rewardMultiplier }
   }
 
   function cleanup() {
