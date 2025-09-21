@@ -26,6 +26,18 @@ const ASTEROID_SCALE_MIN = ROCK_SCALE_MIN
 const ASTEROID_SCALE_MAX = RELIC_SCALE_MAX
 const ASTEROID_REWARD_MAX_MULTIPLIER = 5
 
+const EXPLOSION_DURATION = 0.25
+const EXPLOSION_BASE_OPACITY = 0.92
+const EXPLOSION_LIGHT_DISTANCE = 26
+const EXPLOSION_START_SCALE_MIN = 0.6
+const EXPLOSION_START_SCALE_MAX = 1.4
+const EXPLOSION_END_SCALE_MIN = 1.8
+const EXPLOSION_END_SCALE_MAX = 4.6
+const EXPLOSION_BASE_INTENSITY_ROCK = 3.6
+const EXPLOSION_BASE_INTENSITY_RELIC = 4.8
+const EXPLOSION_ROTATION_SPEED_MIN = 2.4
+const EXPLOSION_ROTATION_SPEED_MAX = 4.5
+
 interface LaboratorySceneHandle {
   cleanup: () => void
   shoot: (ndcX: number, ndcY: number) => LaboratoryShotResult | null
@@ -63,6 +75,19 @@ interface LaserShot {
   hasReachedTarget: boolean
 }
 
+interface ExplosionEffect {
+  mesh: THREE.Mesh
+  material: THREE.MeshBasicMaterial
+  light: THREE.PointLight
+  elapsed: number
+  duration: number
+  startScale: number
+  endScale: number
+  baseOpacity: number
+  lightIntensity: number
+  rotationSpeed: THREE.Vector3
+}
+
 function randomSpread(range: number) {
   return THREE.MathUtils.randFloatSpread(range)
 }
@@ -89,8 +114,32 @@ function computeRewardMultiplier(scale: number) {
   return THREE.MathUtils.clamp(multiplier, 1, ASTEROID_REWARD_MAX_MULTIPLIER)
 }
 
+function selectExplosionColor(type: AsteroidType) {
+  if (type === 'relic')
+    return new THREE.Color(0xFDE68A)
+
+  return new THREE.Color(0x7DD3FC)
+}
+
+function computeExplosionScaleRange(asteroidScale: number) {
+  const defaultScale = Number.isFinite(asteroidScale) ? asteroidScale : ASTEROID_SCALE_MIN
+  const sanitized = THREE.MathUtils.clamp(defaultScale, ASTEROID_SCALE_MIN, ASTEROID_SCALE_MAX)
+  const startScale = THREE.MathUtils.clamp(sanitized * 0.28, EXPLOSION_START_SCALE_MIN, EXPLOSION_START_SCALE_MAX)
+  const endScale = THREE.MathUtils.clamp(sanitized * 0.95, EXPLOSION_END_SCALE_MIN, EXPLOSION_END_SCALE_MAX)
+  return { startScale, endScale }
+}
+
+function easeOutCubic(value: number) {
+  const clamped = THREE.MathUtils.clamp(value, 0, 1)
+  const inverted = 1 - clamped
+  return 1 - inverted * inverted * inverted
+}
+
 export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHandle {
   const cleanupCallbacks: Array<() => void> = []
+  const reduceMotionQuery = typeof window !== 'undefined' && 'matchMedia' in window
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : undefined
 
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(0x03040D)
@@ -278,6 +327,12 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
   })
   const lasers: LaserShot[] = []
 
+  const explosionGeometry = new THREE.IcosahedronGeometry(1, 3)
+  cleanupCallbacks.push(() => {
+    explosionGeometry.dispose()
+  })
+  const explosions: ExplosionEffect[] = []
+
   const raycaster = new THREE.Raycaster()
   const pointer = new THREE.Vector2()
 
@@ -344,6 +399,58 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
     })
   }
 
+  function spawnExplosion(position: THREE.Vector3, type: AsteroidType, asteroidScale: number) {
+    if (reduceMotionQuery?.matches)
+      return
+
+    const color = selectExplosionColor(type)
+    const { startScale, endScale } = computeExplosionScaleRange(asteroidScale)
+    const material = new THREE.MeshBasicMaterial({
+      color,
+      transparent: true,
+      opacity: EXPLOSION_BASE_OPACITY,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+    material.toneMapped = false
+
+    const mesh = new THREE.Mesh(explosionGeometry, material)
+    mesh.position.copy(position)
+    mesh.scale.setScalar(startScale)
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI)
+    scene.add(mesh)
+
+    const lightIntensity = type === 'relic' ? EXPLOSION_BASE_INTENSITY_RELIC : EXPLOSION_BASE_INTENSITY_ROCK
+    const light = new THREE.PointLight(color, lightIntensity, EXPLOSION_LIGHT_DISTANCE, 2.2)
+    light.castShadow = false
+    light.position.copy(position)
+    scene.add(light)
+
+    const rotationAxis = new THREE.Vector3(
+      THREE.MathUtils.randFloatSpread(1),
+      THREE.MathUtils.randFloatSpread(1),
+      THREE.MathUtils.randFloatSpread(1),
+    )
+    if (rotationAxis.lengthSq() < 1e-3)
+      rotationAxis.set(1, 0, 0)
+    rotationAxis.normalize()
+    const rotationMagnitude = THREE.MathUtils.randFloat(EXPLOSION_ROTATION_SPEED_MIN, EXPLOSION_ROTATION_SPEED_MAX)
+    const rotationSpeed = rotationAxis.multiplyScalar(rotationMagnitude)
+
+    explosions.push({
+      mesh,
+      material,
+      light,
+      elapsed: 0,
+      duration: EXPLOSION_DURATION,
+      startScale,
+      endScale,
+      baseOpacity: EXPLOSION_BASE_OPACITY,
+      lightIntensity,
+      rotationSpeed,
+    })
+  }
+
   function animate() {
     const delta = clock.getDelta()
     const elapsed = clock.elapsedTime
@@ -377,6 +484,29 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
 
       if (group.position.z > 30)
         randomizePlanet(planet, false)
+    }
+
+    for (let i = explosions.length - 1; i >= 0; i--) {
+      const explosion = explosions[i]
+      explosion.elapsed += delta
+      const progress = explosion.duration === 0 ? 1 : explosion.elapsed / explosion.duration
+      const eased = easeOutCubic(progress)
+      const currentScale = THREE.MathUtils.lerp(explosion.startScale, explosion.endScale, eased)
+      explosion.mesh.scale.setScalar(currentScale)
+      explosion.mesh.rotation.x += explosion.rotationSpeed.x * delta
+      explosion.mesh.rotation.y += explosion.rotationSpeed.y * delta
+      explosion.mesh.rotation.z += explosion.rotationSpeed.z * delta
+      const remainingEnergy = Math.max(0, 1 - eased)
+      explosion.material.opacity = explosion.baseOpacity * remainingEnergy
+      explosion.light.intensity = explosion.lightIntensity * remainingEnergy
+
+      if (progress >= 1) {
+        scene.remove(explosion.mesh)
+        scene.remove(explosion.light)
+        explosion.material.dispose()
+        explosion.light.dispose()
+        explosions.splice(i, 1)
+      }
     }
 
     for (let i = lasers.length - 1; i >= 0; i--) {
@@ -427,9 +557,9 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
     raycaster.setFromCamera(pointer, camera)
     const objects = planets.map(p => p.core)
     const hits = raycaster.intersectObjects(objects, false)
-    const targetPoint = hits.length
-      ? hits[0].point.clone()
-      : camera.position.clone().add(raycaster.ray.direction.clone().multiplyScalar(160))
+    const hitPoint = hits.length ? hits[0].point.clone() : null
+    const targetPoint = hitPoint
+      ?? camera.position.clone().add(raycaster.ray.direction.clone().multiplyScalar(160))
     spawnLaser(targetPoint)
 
     if (!hits.length)
@@ -442,6 +572,8 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
 
     const destroyedType = body.type
     const rewardMultiplier = body.rewardMultiplier
+    if (hitPoint)
+      spawnExplosion(hitPoint, destroyedType, body.scale)
     randomizePlanet(body, false)
     return { type: destroyedType, rewardMultiplier }
   }
@@ -457,6 +589,14 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
       shot.light.dispose()
     })
     lasers.length = 0
+
+    explosions.forEach((explosion) => {
+      scene.remove(explosion.mesh)
+      scene.remove(explosion.light)
+      explosion.material.dispose()
+      explosion.light.dispose()
+    })
+    explosions.length = 0
 
     cleanupCallbacks.forEach(fn => fn())
     composer.dispose()
