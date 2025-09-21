@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { FinaleState } from '~/composables/useFinaleSwitching'
 import type { DialogNode } from '~/type/dialog'
 import type { BaseShlagemon, DexShlagemon } from '~/type/shlagemon'
 import { storeToRefs } from 'pinia'
+import { useFinaleSwitching } from '~/composables/useFinaleSwitching'
 import { profMerdant } from '~/data/characters/prof-merdant'
 import { allShlagemons } from '~/data/shlagemons'
 import artichaud from '~/data/shlagemons/artichaud'
@@ -47,58 +49,31 @@ const legendaryEnemy = ref<DexShlagemon | null>(null)
 const legendaryBase = ref<BaseShlagemon | null>(null)
 const legendaryLevel = ref(150)
 
-const finaleState = ref<'idle' | 'intro' | 'battle' | 'victory' | 'defeat'>('idle')
+const finaleState = ref<FinaleState>('idle')
 const finaleTeam = ref<BaseShlagemon[]>([])
 const finaleEnemy = ref<DexShlagemon | null>(null)
 const finaleEnemyIndex = ref(0)
 const finaleSessionTriggered = ref(false)
 const showFinaleSwitchModal = ref(false)
-const finaleHpMemory = reactive<Record<string, number>>({})
 const shouldLaunchFinale = ref(false)
+
+const {
+  canSwitch: canSwitchFinale,
+  disabledIds: finaleSwitchDisabledIds,
+  prepareActiveForFinale,
+  clearMemory: clearFinaleHpMemory,
+} = useFinaleSwitching(finaleState)
 
 const isLegendaryActive = computed(() => legendaryState.value !== 'idle')
 const isBattleActive = computed(() => legendaryState.value === 'battle' && !!legendaryEnemy.value)
 const isFinaleActive = computed(() => finaleState.value !== 'idle')
 
-const finaleSwitchCandidates = computed(() => {
-  if (finaleState.value !== 'battle')
-    return []
-  const currentId = activePlayer.value?.id
-  return dex.shlagemons.filter((mon) => {
-    if (mon.id === currentId)
-      return false
-    if (mon.busy)
-      return false
-    const stored = finaleHpMemory[mon.id]
-    const hp = stored ?? dex.maxHp(mon)
-    return hp > 0
-  })
-})
-
-const canSwitchFinale = computed(() => finaleState.value === 'battle' && finaleSwitchCandidates.value.length > 0)
-
-const finaleSwitchDisabledIds = computed(() => {
-  if (finaleState.value !== 'battle')
-    return dex.shlagemons.map(mon => mon.id)
-  const currentId = activePlayer.value?.id
-  const disabled: string[] = []
-  for (const mon of dex.shlagemons) {
-    if (mon.id === currentId || mon.busy) {
-      disabled.push(mon.id)
-      continue
-    }
-    const stored = finaleHpMemory[mon.id]
-    const hp = stored ?? dex.maxHp(mon)
-    if (hp <= 0)
-      disabled.push(mon.id)
-  }
-  return disabled
-})
-
 const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
 const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
 
 const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
+
+const finaleSelectedIds = computed(() => (activePlayer.value ? [activePlayer.value.id] : []))
 
 const legendaryBaseName = computed(() => legendaryBase.value ? t(legendaryBase.value.name) : '')
 
@@ -350,8 +325,9 @@ watch(shouldShowIntro, (value) => {
 })
 
 watch(hasStarted, (value) => {
-  if (value)
+  if (value) {
     resetAim()
+  }
   else {
     finaleSessionTriggered.value = false
     shouldLaunchFinale.value = false
@@ -364,8 +340,21 @@ watch(() => legendaryState.value, (state) => {
 })
 
 watch(() => finaleState.value, (state) => {
-  if (state !== 'idle')
+  if (state !== 'idle') {
     resetAim()
+  }
+})
+
+watch(() => finaleState.value, (state) => {
+  if (state !== 'battle') {
+    showFinaleSwitchModal.value = false
+  }
+})
+
+watch(canSwitchFinale, (value) => {
+  if (!value) {
+    showFinaleSwitchModal.value = false
+  }
 })
 
 onUnmounted(() => {
@@ -446,19 +435,19 @@ function nonLegendaryPool() {
 
 function beginLegendaryEncounter() {
   if (isFinaleActive.value) {
-    console.debug('[Laboratory] Legendary encounter skipped: finale active')
+    console.warn('[Laboratory] Legendary encounter skipped: finale active')
     return
   }
   const encounter = selectLegendaryEncounter()
   if (!encounter) {
-    console.debug('[Laboratory] Legendary encounter skipped: no encounter available')
+    console.warn('[Laboratory] Legendary encounter skipped: no encounter available')
     return
   }
   legendaryBase.value = encounter.base
   legendaryLevel.value = encounter.level
   legendaryEnemy.value = null
   legendaryState.value = 'intro'
-  console.debug('[Laboratory] Legendary encounter ready', { baseId: encounter.base.id, level: encounter.level })
+  console.warn('[Laboratory] Legendary encounter ready', { baseId: encounter.base.id, level: encounter.level })
   audio.fadeToMusic(battleMusic)
   resetAim()
 }
@@ -505,6 +494,8 @@ function resetFinaleBattle() {
   finaleEnemy.value = null
   finaleEnemyIndex.value = 0
   finaleTeam.value = []
+  clearFinaleHpMemory()
+  showFinaleSwitchModal.value = false
 }
 
 function beginFinaleEncounter() {
@@ -521,7 +512,7 @@ function startFinaleBattle() {
     finishFinaleEncounter()
     return
   }
-  player.hpCurrent = dex.maxHp(player)
+  prepareActiveForFinale()
   const base = finaleTeam.value[finaleEnemyIndex.value]
   const enemy = createDexShlagemon(base, false, 200, wildLevel.highestWildLevel)
   enemy.hpCurrent = enemy.hp
@@ -639,10 +630,22 @@ function onLegendaryCapture() {
             >
               <template #header>
                 <div class="flex flex-col items-center justify-center gap-1 pb-2 text-center text-slate-100">
-                  <span class="text-xl font-bold uppercase tracking-[0.3em]">
+                  <span class="text-xl font-bold tracking-[0.3em] uppercase">
                     {{ t('components.panel.Laboratory.finaleBattle.title') }}
                   </span>
                   <span class="text-xs text-slate-300/80">{{ t('components.panel.Laboratory.finaleBattle.progress', { current: finaleEnemyIndex + 1, total: finaleTeam.length || 6 }) }}</span>
+                </div>
+              </template>
+              <template #default>
+                <div class="mt-3 flex justify-center">
+                  <UiButton
+                    type="secondary"
+                    size="sm"
+                    :disabled="!canSwitchFinale"
+                    @click="showFinaleSwitchModal = true"
+                  >
+                    {{ t('components.panel.Laboratory.finaleBattle.switch') }}
+                  </UiButton>
                 </div>
               </template>
             </BattleRound>
@@ -728,5 +731,19 @@ function onLegendaryCapture() {
         </UiInfo>
       </div>
     </div>
+    <ShlagemonSelectModal
+      v-model="showFinaleSwitchModal"
+      :title="t('components.panel.Laboratory.finaleBattle.switchTitle')"
+      :selected-ids="finaleSelectedIds"
+      :disabled-ids="finaleSwitchDisabledIds"
+      :locked="!canSwitchFinale"
+      selects-active
+    >
+      <template #header>
+        <p class="text-center text-sm text-slate-200">
+          {{ t('components.panel.Laboratory.finaleBattle.switchHint') }}
+        </p>
+      </template>
+    </ShlagemonSelectModal>
   </LayoutTitledPanel>
 </template>

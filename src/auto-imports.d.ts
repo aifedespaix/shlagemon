@@ -238,6 +238,7 @@ declare global {
   const useFetch: typeof import('@vueuse/core')['useFetch']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
+  const useFinaleSwitching: typeof import('./composables/useFinaleSwitching')['useFinaleSwitching']
   const useFloatingNumbers: typeof import('./composables/useFloatingNumbers')['useFloatingNumbers']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
@@ -441,6 +442,9 @@ declare global {
   // @ts-ignore
   export type { FaintAutoEmitResult } from './composables/useFaintAutoEmit'
   import('./composables/useFaintAutoEmit')
+  // @ts-ignore
+  export type { FinaleState } from './composables/useFinaleSwitching'
+  import('./composables/useFinaleSwitching')
   // @ts-ignore
   export type { FloatingKind, FloatingEntry } from './composables/useFloatingNumbers'
   import('./composables/useFloatingNumbers')
@@ -752,6 +756,7 @@ declare module 'vue' {
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
+    readonly useFinaleSwitching: UnwrapRef<typeof import('./composables/useFinaleSwitching')['useFinaleSwitching']>
     readonly useFloatingNumbers: UnwrapRef<typeof import('./composables/useFloatingNumbers')['useFloatingNumbers']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
@@ -882,7 +887,6 @@ declare module 'vue' {
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>
     readonly useTicTacToe: UnwrapRef<typeof import('./composables/useTicTacToe')['useTicTacToe']>
     readonly useTimeAgo: UnwrapRef<typeof import('@vueuse/core')['useTimeAgo']>
-    readonly useTimeAgoIntl: UnwrapRef<typeof import('@vueuse/core')['useTimeAgoIntl']>
     readonly useTimeout: UnwrapRef<typeof import('@vueuse/core')['useTimeout']>
     readonly useTimeoutFn: UnwrapRef<typeof import('@vueuse/core')['useTimeoutFn']>
     readonly useTimeoutPoll: UnwrapRef<typeof import('@vueuse/core')['useTimeoutPoll']>

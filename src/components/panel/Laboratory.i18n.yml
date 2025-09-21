@@ -34,6 +34,9 @@ fr:
   finaleBattle:
     title: Épreuve ultime – Professeur Merdant
     progress: Spécimen {current}/{total}
+    switch: Changer de Shlagémon
+    switchTitle: Choisis le prochain Shlagémon
+    switchHint: Les Shlagémons qui n'ont pas combattu arrivent au maximum de leurs PV. Ceux déjà entrés reprennent le combat avec leurs PV restants.
 en:
   title: Laboratory
   exit: Return to the village
@@ -70,3 +73,6 @@ en:
   finaleBattle:
     title: Ultimate Trial – Professor Merdant
     progress: Specimen {current}/{total}
+    switch: Switch Shlagémon
+    switchTitle: Pick your next Shlagémon
+    switchHint: Fresh Shlagémon enter the arena at full health. Anyone who already fought returns with whatever HP they had left.
