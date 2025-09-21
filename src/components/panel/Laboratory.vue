@@ -12,6 +12,7 @@ import sulfusouris from '~/data/shlagemons/sulfusouris'
 import zebrapoisbleu from '~/data/shlagemons/zebrapoisbleu'
 import { createLaboratoryScene } from '~/modules/three/laboratoryScene'
 import { createDexShlagemon } from '~/utils/dexFactory'
+import { recallFinaleHp, resetFinaleHpMemory, storeFinaleHp } from '~/utils/finaleHpMemory'
 
 interface HudHandle {
   updateAim: (position: { x: number, y: number }) => void
@@ -105,6 +106,10 @@ const _finaleSwitchDisabledIds = computed(() => {
   }
   return disabled
 })
+
+const _finaleSelectedIds = computed(() =>
+  activeDexShlagemon.value ? [activeDexShlagemon.value.id] : [],
+)
 
 // Depuis main
 const isLegendaryBase = computed(() => legendaryBase.value?.speciality === 'legendary')
@@ -322,6 +327,36 @@ const finaleDialogTree = computed<DialogNode[] | null>(() => {
   }
   return null
 })
+
+function openFinaleSwitchModal() {
+  if (!_canSwitchFinale.value)
+    return
+  _showFinaleSwitchModal.value = true
+}
+
+/**
+ * Apply finale battle switching rules when the player selects a new companion.
+ */
+function handleFinaleSwitchSelect(mon: DexShlagemon) {
+  if (finaleState.value !== 'battle')
+    return
+  const current = activeDexShlagemon.value
+  if (current?.id === mon.id)
+    return
+  const stored = finaleHpMemory[mon.id]
+  if (stored !== undefined && stored <= 0)
+    return
+  if (current)
+    storeFinaleHp(finaleHpMemory, current, dex.maxHp(current))
+  dex.setActiveShlagemon(mon)
+  const nextHp = recallFinaleHp(finaleHpMemory, mon, dex.maxHp(mon))
+  if (nextHp <= 0) {
+    if (current)
+      dex.setActiveShlagemon(current)
+    return
+  }
+  mon.hpCurrent = nextHp
+}
 
 function randomPitch(base = 1, variation = 0.05) {
   return base + (Math.random() * 2 - 1) * variation
@@ -542,6 +577,7 @@ function resetFinaleBattle() {
   finaleEnemy.value = null
   finaleEnemyIndex.value = 0
   finaleTeam.value = []
+  resetFinaleHpMemory(finaleHpMemory)
 }
 
 function beginFinaleEncounter() {
@@ -558,6 +594,7 @@ function startFinaleBattle() {
     finishFinaleEncounter()
     return
   }
+  resetFinaleHpMemory(finaleHpMemory)
   player.hpCurrent = dex.maxHp(player)
   const base = finaleTeam.value[finaleEnemyIndex.value]
   const enemy = createDexShlagemon(base, false, 200, wildLevel.highestWildLevel)
@@ -573,6 +610,7 @@ function advanceFinaleEnemy() {
     finaleState.value = 'victory'
     finaleEnemy.value = null
     audio.fadeToMusic(defaultMusic)
+    resetFinaleHpMemory(finaleHpMemory)
     return
   }
   const nextBase = finaleTeam.value[finaleEnemyIndex.value]
@@ -589,6 +627,7 @@ function onFinaleBattleEnd(result: 'win' | 'lose' | 'draw') {
   finaleState.value = 'defeat'
   finaleEnemy.value = null
   audio.fadeToMusic(defaultMusic)
+  resetFinaleHpMemory(finaleHpMemory)
 }
 
 function finishFinaleEncounter() {
@@ -684,7 +723,29 @@ function onLegendaryCapture() {
                   <span class="text-xs text-slate-300/80">{{ t('components.panel.Laboratory.finaleBattle.progress', { current: finaleEnemyIndex + 1, total: finaleTeam.length || 6 }) }}</span>
                 </div>
               </template>
+              <template #default>
+                <div class="mt-3 flex justify-center">
+                  <UiButton
+                    size="sm"
+                    type="default"
+                    variant="outline"
+                    :disabled="!_canSwitchFinale"
+                    @click="openFinaleSwitchModal"
+                  >
+                    {{ t('components.panel.Laboratory.finaleBattle.switch') }}
+                  </UiButton>
+                </div>
+              </template>
             </BattleRound>
+            <ShlagemonSelectModal
+              v-model="_showFinaleSwitchModal"
+              :title="t('components.panel.Laboratory.finaleBattle.selectTitle')"
+              :selected-ids="_finaleSelectedIds"
+              :disabled-ids="_finaleSwitchDisabledIds"
+              :locked="!_canSwitchFinale"
+              :close-on-select="true"
+              @select="handleFinaleSwitchSelect"
+            />
           </div>
         </div>
 
