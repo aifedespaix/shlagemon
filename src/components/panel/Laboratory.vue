@@ -499,7 +499,18 @@ const LEGENDARY_SEQUENCE: Array<{ id: string, level: number }> = [
 
 const legendaryBaseMap = Object.fromEntries(allShlagemons.map(base => [base.id, base])) as Record<string, BaseShlagemon>
 
-function nonLegendaryPool() {
+/**
+ * Pool of Shlagémon available for repeat research encounters once the Shlagédex is complete.
+ * Every specimen, including legendaries, must remain available to match player expectations.
+ */
+function buildResearchEncounterPool(): readonly BaseShlagemon[] {
+  return allShlagemons
+}
+
+/**
+ * Finale battles deliberately exclude legendaries to preserve the curated difficulty ramp.
+ */
+function buildFinaleEncounterPool(): readonly BaseShlagemon[] {
   return allShlagemons.filter(base => base.speciality !== 'legendary')
 }
 
@@ -550,7 +561,7 @@ function selectLegendaryEncounter(): { base: BaseShlagemon, level: number } | nu
 }
 
 function selectEliteEncounter(): { base: BaseShlagemon, level: number } | null {
-  const pool = nonLegendaryPool()
+  const pool = buildResearchEncounterPool()
   if (!pool.length)
     return null
   const base = pool[Math.floor(Math.random() * pool.length)]
@@ -558,7 +569,7 @@ function selectEliteEncounter(): { base: BaseShlagemon, level: number } | null {
 }
 
 function generateFinaleTeam(): BaseShlagemon[] {
-  const pool = nonLegendaryPool()
+  const pool = buildFinaleEncounterPool()
   if (pool.length <= 6)
     return pool.slice(0, 6)
   const selection: BaseShlagemon[] = []
