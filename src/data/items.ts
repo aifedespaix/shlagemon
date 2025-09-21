@@ -361,7 +361,7 @@ export const shlagPurePotion: BattlePotion = {
   details: 'data.items.shlagPurePotion.details',
   type: 'heal',
   power: 100,
-  price: 2500,
+  price: 1500,
   currency: 'shlagpur',
   category: 'battle',
   battleCooldown: 100,

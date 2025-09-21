@@ -7,7 +7,8 @@ const modal = useDexDetailModalStore()
 <template>
   <UiModal
     v-model="modal.isVisible"
-    footer-close
+    no-close-button
+    content-padding="none"
     :golden-border="modal.mon?.rarity === 100"
     @close="modal.close()"
   >
