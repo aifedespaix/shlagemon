@@ -5,20 +5,13 @@ import argparse
 from io import BytesIO
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, features
 
-# Optionnel : AVIF si pillow-avif-plugin est installé
 try:
-    import pillow_avif  # noqa: F401  # enregistre le plugin AVIF dans Pillow
+    import pillow_avif  # noqa: F401
     AVIF_AVAILABLE = True
 except Exception:
     AVIF_AVAILABLE = False
-AVIF_AVAILABLE = True
-# try:
-#     AVIF_AVAILABLE = True
-# except Exception:
-#     AVIF_AVAILABLE = False
-# print(f"AVIF support: {'oui' if AVIF_AVAILABLE else 'non'}")
 
 ALLOWED_DIRS = [
     "shlagemons",
@@ -27,7 +20,21 @@ ALLOWED_DIRS = [
     # "characters",
 ]
 
-    
+# --- AVIF support (plugin + smoke test) ---
+def _avif_supported() -> bool:
+    try:
+        import pillow_avif  # noqa: F401  # enregistre le codec AVIF
+        from PIL import Image
+        import io
+        buf = io.BytesIO()
+        Image.new("RGB", (2, 2), "red").save(buf, "AVIF", quality=40, speed=6)
+        return True
+    except Exception as e:
+        print(f"[AVIF] désactivé: {e}")
+        return False
+
+AVIF_AVAILABLE = _avif_supported()
+
 
 def save_to_bytes(img: Image.Image, fmt: str, **kwargs) -> bytes:
     buf = BytesIO()
@@ -41,15 +48,16 @@ def try_webp_variants(img: Image.Image, quality_lossy: int) -> Tuple[bytes, bool
     lossless = save_to_bytes(img, "WEBP", lossless=True, method=6)
     return (lossless, True) if len(lossless) < len(lossy) else (lossy, False)
 
-
 def try_avif(img: Image.Image, quality_lossy: int) -> Optional[bytes]:
     if not AVIF_AVAILABLE:
+        print("[AVIF] non supporté (pillow-avif manquant)")
         return None
     try:
-        # quality ~ 28–45 souvent bien; speed=6 (lent mais efficace)
         return save_to_bytes(img, "AVIF", quality=quality_lossy, speed=6)
-    except Exception:
+    except Exception as e:
+        print(f"[AVIF] échec: {e}")
         return None
+
 
 
 def is_flat_art(img: Image.Image, threshold_colors: int = 4096) -> bool:
@@ -167,6 +175,9 @@ def main():
         if not any(f"/{allowed}/" in str(src_path).replace("\\", "/") for allowed in ALLOWED_DIRS):
             continue
         try:
+            if "poisbleu" not in str(src_path).lower():
+                continue ## if (src_path contain "poisbleu")!
+            print(f"[...] {src_path}")
             # Charge + normalise le mode
             img = ensure_rgb_or_rgba(Image.open(src_path))
 
