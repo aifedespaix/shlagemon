@@ -31,6 +31,12 @@ export { hyperShlageball, masterShlageball, shlageball, superShlageball } from '
  */
 type BattlePotion = ItemBattle & Required<Pick<ItemBattle, 'power' | 'price' | 'battleCooldown'>>
 
+/**
+ * Cooldown applied after using a Shlag potion during battle.
+ * Expressed in seconds to stay consistent with the battle cooldown store.
+ */
+const SHLAG_POTION_COOLDOWN_SECONDS = 120
+
 // @unocss-include
 export const defensePotion: Item = {
   id: 'defense-potion',
@@ -340,7 +346,7 @@ export const shlagPotion: BattlePotion = {
   price: 1000,
   currency: 'shlagpur',
   category: 'battle',
-  battleCooldown: hyperPotion.battleCooldown * 2,
+  battleCooldown: SHLAG_POTION_COOLDOWN_SECONDS,
   sfxId: 'items-active-potion',
   icon: 'i-game-icons:health-potion',
   iconClass: 'mask-rainbow',

@@ -28,7 +28,9 @@ export function getCaptureChance(enemy: DexShlagemon, ball: Ball): number {
 }
 
 function masterShlagChance(enemy: DexShlagemon): number {
-  if (enemy.base.speciality !== 'legendary')
+  const treatAsLegendary = enemy.base.speciality === 'legendary'
+    || enemy.captureProfile === 'legendary'
+  if (!treatAsLegendary)
     return 100
   const dev = useDeveloperStore()
   const ratio = Math.min(1, Math.max(0, enemy.hpCurrent / enemy.hp))

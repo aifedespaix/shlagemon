@@ -37,6 +37,8 @@ const developer = useDeveloperStore()
 const { debug } = storeToRefs(developer)
 const { t } = useI18n()
 
+const hasCompletedDex = computed(() => capturedBaseIds.value.size >= allShlagemons.length)
+
 const defaultMusic = '/audio/musics/laboratory/space.ogg'
 const battleMusic = '/audio/musics/laboratory/battle.ogg'
 
@@ -68,6 +70,8 @@ const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
 const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
 
 const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
+
+// Préparation éventuelle pour un switch en finale (features branch)
 const _showFinaleSwitchModal = ref(false)
 const _finaleSwitchCandidates = computed(() => {
   if (finaleState.value !== 'battle')
@@ -102,7 +106,24 @@ const _finaleSwitchDisabledIds = computed(() => {
   return disabled
 })
 
+// Depuis main
+const isLegendaryBase = computed(() => legendaryBase.value?.speciality === 'legendary')
+
 const legendaryBaseName = computed(() => legendaryBase.value ? t(legendaryBase.value.name) : '')
+const legendaryBattleTitle = computed(() => t(
+  isLegendaryBase.value
+    ? 'components.panel.Laboratory.legendaryBattle.title'
+    : 'components.panel.Laboratory.legendaryBattle.eliteTitle',
+))
+
+function legendaryDialogKey(
+  section: 'intro' | 'victory' | 'defeat' | 'capture',
+  field: 'text' | 'hunt' | 'continue',
+): string {
+  if (isLegendaryBase.value)
+    return `components.panel.Laboratory.legendaryDialog.${section}.${field}`
+  return `components.panel.Laboratory.legendaryDialog.post.${section}.${field}`
+}
 
 const dialogTree = computed<DialogNode[]>(() => {
   if (laboratory.finaleUnlocked && finaleState.value === 'idle' && !finaleSessionTriggered.value) {
@@ -159,10 +180,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-intro',
-        text: t('components.panel.Laboratory.legendaryDialog.intro.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('intro', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.intro.hunt'),
+            label: t(legendaryDialogKey('intro', 'hunt')),
             type: 'primary',
             action: startLegendaryBattle,
           },
@@ -174,10 +195,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-victory',
-        text: t('components.panel.Laboratory.legendaryDialog.victory.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('victory', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.victory.continue'),
+            label: t(legendaryDialogKey('victory', 'continue')),
             type: 'primary',
             action: finishLegendaryEncounter,
           },
@@ -189,10 +210,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-defeat',
-        text: t('components.panel.Laboratory.legendaryDialog.defeat.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('defeat', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.defeat.continue'),
+            label: t(legendaryDialogKey('defeat', 'continue')),
             type: 'primary',
             action: finishLegendaryEncounter,
           },
@@ -204,10 +225,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-capture',
-        text: t('components.panel.Laboratory.legendaryDialog.capture.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('capture', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.capture.continue'),
+            label: t(legendaryDialogKey('capture', 'continue')),
             type: 'primary',
             action: finishLegendaryEncounter,
           },
@@ -480,6 +501,8 @@ function finishLegendaryEncounter() {
 }
 
 function selectLegendaryEncounter(): { base: BaseShlagemon, level: number } | null {
+  if (hasCompletedDex.value)
+    return selectEliteEncounter()
   const captured = capturedBaseIds.value
   for (const entry of LEGENDARY_SEQUENCE) {
     if (captured.has(entry.id))
@@ -489,6 +512,14 @@ function selectLegendaryEncounter(): { base: BaseShlagemon, level: number } | nu
       return { base, level: entry.level }
   }
   return null
+}
+
+function selectEliteEncounter(): { base: BaseShlagemon, level: number } | null {
+  const pool = nonLegendaryPool()
+  if (!pool.length)
+    return null
+  const base = pool[Math.floor(Math.random() * pool.length)]
+  return { base, level: 200 }
 }
 
 function generateFinaleTeam(): BaseShlagemon[] {
@@ -583,8 +614,10 @@ function startLegendaryBattle() {
   }
   player.hpCurrent = dex.maxHp(player)
   const enemy = createDexShlagemon(legendaryBase.value, false, legendaryLevel.value, wildLevel.highestWildLevel)
-  enemy.rarity = Math.max(enemy.rarity, 100)
+  if (isLegendaryBase.value)
+    enemy.rarity = Math.max(enemy.rarity, 100)
   enemy.hpCurrent = enemy.hp
+  enemy.captureProfile = 'legendary'
   legendaryEnemy.value = enemy
   legendaryState.value = 'battle'
   laboratory.setLegendaryBattleActive(true)
@@ -694,7 +727,7 @@ function onLegendaryCapture() {
               <template #header>
                 <div class="flex flex-col items-center justify-center gap-1 pb-2 text-center text-slate-100">
                   <span class="text-xs text-slate-200/80 tracking-[0.2em] uppercase">
-                    {{ t('components.panel.Laboratory.legendaryBattle.title') }}
+                    {{ legendaryBattleTitle }}
                   </span>
                   <span class="text-lg font-semibold">{{ legendaryBaseName }}</span>
                 </div>
