@@ -1,7 +1,50 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+
+const laboratory = useLaboratoryStore()
+const { t } = useI18n()
+const { researchProgress, legendaryBattleThreshold, isResearchReady, hitsUntilNextLegendary } = storeToRefs(laboratory)
+const researchPointReward = computed(() => laboratory.researchPointReward)
+
+const progressTotal = computed(() => {
+  const threshold = legendaryBattleThreshold.value
+  return threshold <= 0 ? 1 : threshold
+})
+
+const progressValue = computed(() => {
+  if (legendaryBattleThreshold.value <= 0)
+    return progressTotal.value
+  return Math.min(researchProgress.value, progressTotal.value)
+})
+
+const progressPercent = computed(() => {
+  if (progressTotal.value <= 0)
+    return 100
+  return Math.min((progressValue.value / progressTotal.value) * 100, 100)
+})
+
+const progressSummary = computed(() => t('components.laboratory.Hud.progress', {
+  current: progressValue.value,
+  total: progressTotal.value,
+}))
+
+const statusLabel = computed(() => {
+  if (isResearchReady.value)
+    return t('components.laboratory.Hud.ready')
+  const remaining = Math.max(0, hitsUntilNextLegendary.value)
+  return t('components.laboratory.Hud.researching', { remaining })
+})
+
+const rewardLabel = computed(() => t('components.laboratory.Hud.reward', {
+  value: researchPointReward.value,
+}))
+
+const progressBarValue = computed(() => progressValue.value)
+const progressBarMax = computed(() => progressTotal.value)
+
 const aimPosition = ref({ x: 50, y: 50 })
 
-function updateAim(position: { x: number; y: number }) {
+function updateAim(position: { x: number, y: number }) {
   aimPosition.value = position
 }
 
@@ -63,6 +106,34 @@ defineExpose({ updateAim })
       <div class="absolute right-1/4 top-12 h-16 w-px from-cyan-200/40 via-cyan-200/10 to-transparent bg-gradient-to-b" />
       <div class="absolute bottom-12 left-1/4 h-16 w-px from-transparent via-cyan-200/10 to-cyan-200/40 bg-gradient-to-b" />
       <div class="absolute bottom-12 right-1/4 h-16 w-px from-transparent via-cyan-200/10 to-cyan-200/40 bg-gradient-to-b" />
+    </div>
+
+    <div class="absolute inset-x-0 bottom-0 px-4 pb-6">
+      <div class="mx-auto max-w-4xl w-full">
+        <div class="border border-cyan-300/30 rounded-xl bg-slate-950/70 px-5 py-4 shadow-lg backdrop-blur">
+          <div class="flex items-center justify-between text-xs text-cyan-200/70 tracking-[0.28em] uppercase">
+            <span>{{ t('components.laboratory.Hud.title') }}</span>
+            <span class="text-[0.7rem] text-cyan-100/80 tracking-normal">{{ progressSummary }}</span>
+          </div>
+          <div
+            class="mt-3 h-2 rounded-full bg-cyan-300/10"
+            role="progressbar"
+            :aria-valuemin="0"
+            :aria-valuenow="progressBarValue"
+            :aria-valuemax="progressBarMax"
+            :aria-valuetext="progressSummary"
+          >
+            <div
+              class="h-full rounded-full from-cyan-200 via-cyan-300 to-cyan-100 bg-gradient-to-r transition-[width] duration-500 ease-out"
+              :style="{ width: `${progressPercent}%` }"
+            />
+          </div>
+          <div class="mt-3 flex items-center justify-between text-[0.68rem] text-cyan-100/80">
+            <span>{{ statusLabel }}</span>
+            <span>{{ rewardLabel }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

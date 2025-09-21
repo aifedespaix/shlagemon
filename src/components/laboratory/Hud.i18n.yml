@@ -1,0 +1,12 @@
+fr:
+  title: Recherche légendaire
+  progress: 'Charge de recherche : {current}/{total}'
+  researching: 'Encore {remaining} point(s) avant le prochain signal'
+  ready: Charge maximale – vise un Taurus pour lancer l’attaque
+  reward: '+{value} ShlagPur par point'
+en:
+  title: Legendary Research
+  progress: 'Research charge: {current}/{total}'
+  researching: '{remaining} research point(s) remaining'
+  ready: Charge complete – lock a Taurus to begin the encounter
+  reward: '+{value} ShlagPur per point'

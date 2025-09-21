@@ -1,18 +1,22 @@
 import { defineStore } from 'pinia'
 import { spaceBadge } from '~/data/badges'
 import { useBadgeBoxStore } from '~/stores/badgeBox'
+import { useDeveloperStore } from '~/stores/developer'
 import { usePlayerStore } from '~/stores/player'
 import { usePwaEnvironmentStore } from '~/stores/pwaEnvironment'
 
 /**
  * Handle unlock state and persistence for Professeur Merdant's Laboratory.
  */
+const RESEARCH_POINT_REWARD = 10
+
 export const useLaboratoryStore = defineStore('laboratory', () => {
   const player = usePlayerStore()
   const badgeBox = useBadgeBoxStore()
+  const developer = useDeveloperStore()
   const pwaEnvironment = usePwaEnvironmentStore()
   const unlocked = ref(false)
-  const score = ref(0)
+  const researchProgress = ref(0)
 
   const finaleUnlocked = ref(false)
 
@@ -29,7 +33,17 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
    */
   const shlagpurRewardPerAsteroid = computed(() => (isMobileApp.value ? 3 : 1))
   /** Taurus count required to trigger the next legendary encounter. */
-  const legendaryBattleThreshold = computed(() => (isMobileApp.value ? 15 : 25))
+  const baseLegendaryThreshold = computed(() => (isMobileApp.value ? 15 : 25))
+  const legendaryBattleThreshold = computed(() => (developer.debug.value ? 1 : baseLegendaryThreshold.value))
+  /** Reward granted each time laboratory research advances by one point. */
+  const researchPointReward = RESEARCH_POINT_REWARD
+
+  const isResearchReady = computed(() => {
+    const threshold = legendaryBattleThreshold.value
+    if (threshold <= 0)
+      return true
+    return researchProgress.value >= threshold
+  })
 
   const isUnlocked = computed(() => unlocked.value)
 
@@ -45,8 +59,7 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     const threshold = legendaryBattleThreshold.value
     if (threshold <= 0)
       return 0
-    const remainder = score.value % threshold
-    return remainder === 0 ? threshold : threshold - remainder
+    return Math.max(threshold - researchProgress.value, 0)
   })
 
   const isLegendaryBattleActive = computed(() => legendaryBattleActive.value)
@@ -61,8 +74,27 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     legendaryEncounters.value += 1
   }
 
+  function addResearchProgress(points: number) {
+    if (!Number.isFinite(points))
+      return { added: 0, reachedThreshold: isResearchReady.value }
+
+    const threshold = legendaryBattleThreshold.value
+    if (threshold <= 0)
+      return { added: 0, reachedThreshold: true }
+
+    const safePoints = Math.max(0, Math.floor(points))
+    if (safePoints === 0)
+      return { added: 0, reachedThreshold: isResearchReady.value }
+
+    const previous = researchProgress.value
+    const next = Math.min(previous + safePoints, threshold)
+    researchProgress.value = next
+
+    return { added: next - previous, reachedThreshold: researchProgress.value >= threshold }
+  }
+
   function addScore(points: number) {
-    score.value += points
+    return addResearchProgress(points)
   }
 
   function calculateShlagpurReward(sizeMultiplier: number): number {
@@ -74,8 +106,18 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     return clampedMultiplier * baseReward
   }
 
+  function resetResearchProgress() {
+    researchProgress.value = 0
+  }
+
   function resetScore() {
-    score.value = 0
+    resetResearchProgress()
+  }
+
+  function consumeResearchCharge() {
+    if (!isResearchReady.value)
+      return
+    researchProgress.value = 0
   }
 
   function resetHits() {
@@ -94,12 +136,20 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
 
   function reset() {
     unlocked.value = false
-    score.value = 0
+    researchProgress.value = 0
     hits.value = 0
     hitsSinceLegendary.value = 0
     legendaryEncounters.value = 0
     finaleUnlocked.value = false
   }
+
+  watch(legendaryBattleThreshold, (threshold) => {
+    if (threshold <= 0) {
+      researchProgress.value = 0
+      return
+    }
+    researchProgress.value = Math.min(researchProgress.value, threshold)
+  })
 
   watchEffect(() => {
     if (!unlocked.value)
@@ -112,7 +162,7 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
 
   return {
     unlocked,
-    score,
+    researchProgress,
     hits,
     hitsSinceLegendary,
     legendaryEncounters,
@@ -121,23 +171,28 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     isMobileApp,
     shlagpurRewardPerAsteroid,
     legendaryBattleThreshold,
+    researchPointReward,
+    isResearchReady,
     hitsUntilNextLegendary,
     isLegendaryBattleActive,
     isUnlocked,
     unlock,
     lock,
     unlockFinale,
+    addResearchProgress,
     addScore,
     registerHit,
     recordLegendaryEncounter,
     calculateShlagpurReward,
+    resetResearchProgress,
     resetScore,
+    consumeResearchCharge,
     resetHits,
     setLegendaryBattleActive,
     reset,
   }
 }, {
   persist: {
-    pick: ['unlocked', 'score', 'hits', 'hitsSinceLegendary', 'legendaryEncounters', 'finaleUnlocked'],
+    pick: ['unlocked', 'researchProgress', 'hits', 'hitsSinceLegendary', 'legendaryEncounters', 'finaleUnlocked'],
   },
 })

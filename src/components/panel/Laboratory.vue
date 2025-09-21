@@ -23,11 +23,8 @@ const audio = useAudioStore()
 const game = useGameStore()
 const dex = useShlagedexStore()
 const wildLevel = useWildLevelStore()
-const {
-  unlocked,
-  score,
-  legendaryBattleThreshold,
-} = storeToRefs(laboratory)
+const { unlocked } = storeToRefs(laboratory)
+const researchPointReward = laboratory.researchPointReward
 const {
   capturedBaseIds,
   shlagemons: ownedShlagemons,
@@ -478,18 +475,37 @@ function onPointerDown(event: PointerEvent) {
     game.addShlagpur(reward)
     audio.playSfx('laboratory-explose-a', { rate: randomPitch(1, 0.08) })
     const isTaurus = result.type === 'relic'
+    const { reachedThreshold } = applyResearchProgress(1)
     laboratory.registerHit(isTaurus)
-    if (isTaurus) {
-      laboratory.addScore(1)
-      const threshold = debug.value ? 1 : legendaryBattleThreshold.value
-      const currentScore = score.value
-      if (currentScore > 0 && currentScore % threshold === 0 && legendaryState.value === 'idle') {
-        laboratory.recordLegendaryEncounter()
-        beginLegendaryEncounter()
-      }
+    if (isTaurus && reachedThreshold && legendaryState.value === 'idle') {
+      laboratory.recordLegendaryEncounter()
+      laboratory.consumeResearchCharge()
+      beginLegendaryEncounter()
     }
   }
 }
+
+const RESEARCH_INTERVAL_MS = 10_000
+
+function applyResearchProgress(points: number) {
+  const result = laboratory.addResearchProgress(points)
+  if (result.added > 0)
+    game.addShlagpur(researchPointReward * result.added)
+  return result
+}
+
+const { pause: pauseResearchTimer, resume: resumeResearchTimer } = useIntervalFn(() => {
+  if (!isInteractive.value)
+    return
+  applyResearchProgress(1)
+}, RESEARCH_INTERVAL_MS, { immediate: false, immediateCallback: false })
+
+watch(isInteractive, (value) => {
+  if (value)
+    resumeResearchTimer()
+  else
+    pauseResearchTimer()
+}, { immediate: true })
 
 const LEGENDARY_SEQUENCE: Array<{ id: string, level: number }> = [
   { id: artichaud.id, level: 125 },

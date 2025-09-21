@@ -8,6 +8,7 @@ const hasBadgeMock = vi.fn(() => false)
 const earnBadgeMock = vi.fn()
 const addBadgeMock = vi.fn()
 const isTwaFlag = ref(false)
+const debugFlag = ref(false)
 
 vi.mock('../src/stores/player', () => ({
   usePlayerStore: () => ({
@@ -28,6 +29,18 @@ vi.mock('../src/stores/pwaEnvironment', () => ({
   }),
 }))
 
+vi.mock('../src/stores/developer', () => ({
+  useDeveloperStore: () => ({
+    debug: debugFlag,
+    setDebug: (value: boolean) => {
+      debugFlag.value = value
+    },
+    reset: () => {
+      debugFlag.value = false
+    },
+  }),
+}))
+
 describe('laboratory store mobile adjustments', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
@@ -36,6 +49,7 @@ describe('laboratory store mobile adjustments', () => {
     addBadgeMock.mockClear()
     hasBadgeMock.mockReturnValue(false)
     isTwaFlag.value = false
+    debugFlag.value = false
   })
 
   it('uses the default desktop legendary threshold when not in the mobile app', () => {
@@ -70,9 +84,23 @@ describe('laboratory store mobile adjustments', () => {
   it('computes hits until the next legendary using the active threshold', () => {
     isTwaFlag.value = true
     const store = useLaboratoryStore()
-    store.resetScore()
+    store.resetResearchProgress()
     expect(store.hitsUntilNextLegendary).toBe(15)
-    store.addScore(14)
+    const result = store.addResearchProgress(14)
+    expect(result.added).toBe(14)
     expect(store.hitsUntilNextLegendary).toBe(1)
+    store.addResearchProgress(1)
+    expect(store.isResearchReady).toBe(true)
+    expect(store.hitsUntilNextLegendary).toBe(0)
+  })
+
+  it('falls back to a single-hit threshold in debug mode', () => {
+    debugFlag.value = true
+    const store = useLaboratoryStore()
+    expect(store.legendaryBattleThreshold).toBe(1)
+    store.resetResearchProgress()
+    const { added, reachedThreshold } = store.addResearchProgress(1)
+    expect(added).toBe(1)
+    expect(reachedThreshold).toBe(true)
   })
 })
