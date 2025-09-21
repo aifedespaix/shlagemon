@@ -75,6 +75,10 @@ en:
     name: Shlag Potion
     description: Restores {percent}% of your active Shlagémon's HP in a single chug.
     details: A syrupy shlag brew loaded with neon glitter that instantly refills half of your active Shlagémon's HP bar when the fight gets dire.
+  shlagPurePotion:
+    name: Shlag Pure Potion
+    description: Restores {percent}% of your active Shlagémon's HP in a single chug.
+    details: An ultra-distilled shlag brew swirling with rainbow foam that refills every drop of your active Shlagémon's HP bar instantly.
   multiExp:
     name: Multi-EXP
     description: Shares XP with a Shlagémon.
@@ -226,6 +230,10 @@ fr:
     name: Potion Shlag
     description: Rend {percent}% des PV de votre Shlagémon actif en une lampée.
     details: Un sirop shlag gavé de paillettes fluo qui redonne instantanément la moitié des PV de votre Shlagémon actif quand le combat tourne au vinaigre.
+  shlagPurePotion:
+    name: Potion Shlag Pure
+    description: Rend {percent}% des PV de votre Shlagémon actif en une lampée.
+    details: Un breuvage shlag ultra-distillé aux reflets arc-en-ciel qui recharge intégralement la barre de PV de votre Shlagémon actif en un éclair.
   multiExp:
     name: Multi-EXP
     description: Partage l'XP avec un Shlagémon.
@@ -291,7 +299,7 @@ fr:
   chromaticPotion:
     name: Potion chromatique
     description: Inverse l'état shiny de n'importe quel Shlagémon.
-    details: "Choisis un Shlagémon pour basculer sa chroma : shiny devient terne, terne devient shiny."
+    details: 'Choisis un Shlagémon pour basculer sa chroma : shiny devient terne, terne devient shiny.'
   rainbowPotion:
     name: Potion Arc-en-ciel
     description: A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un soin puissant.

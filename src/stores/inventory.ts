@@ -4,18 +4,19 @@ import { defineStore } from 'pinia'
 import {
   allItems,
   badgeBox as badgeBoxItem,
+  chromaticPotion,
   eggBox as eggBoxItem,
   odorElixir,
-  chromaticPotion,
   shlagPotion,
+  shlagPurePotion,
 } from '~/data/items'
 import { hyperShlageball, masterShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
 import { useAudioStore } from './audio'
-import { useOdorElixirStore } from './odorElixir'
 import { useChromaticPotionStore } from './chromaticPotion'
+import { useOdorElixirStore } from './odorElixir'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Partial<Record<ItemId, number>>>({})
@@ -27,8 +28,8 @@ export const useInventoryStore = defineStore('inventory', () => {
   const itemUsage = useItemUsageStore()
   const eggBox = useEggBoxStore()
   const badgeBox = useBadgeBoxStore()
-  const odorElixirStore = useOdorElixirStore()
   const chromaticPotionStore = useChromaticPotionStore()
+  const odorElixirStore = useOdorElixirStore()
   const audio = useAudioStore()
   const battleCooldown = useBattleItemCooldownStore()
 
@@ -175,6 +176,11 @@ export const useInventoryStore = defineStore('inventory', () => {
       },
       [shlagPotion.id]: () => {
         dex.healActivePercent(shlagPotion.power)
+        remove(id)
+        return true
+      },
+      [shlagPurePotion.id]: () => {
+        dex.healActivePercent(shlagPurePotion.power)
         remove(id)
         return true
       },
