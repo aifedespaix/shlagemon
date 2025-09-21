@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { watch } from 'vue'
 import { spaceBadge } from '~/data/badges'
 import { useBadgeBoxStore } from '~/stores/badgeBox'
 import { usePlayerStore } from '~/stores/player'
@@ -45,8 +46,8 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     const threshold = legendaryBattleThreshold.value
     if (threshold <= 0)
       return 0
-    const remainder = score.value % threshold
-    return remainder === 0 ? threshold : threshold - remainder
+    const cappedScore = Math.min(score.value, threshold)
+    return Math.max(threshold - cappedScore, 0)
   })
 
   const isLegendaryBattleActive = computed(() => legendaryBattleActive.value)
@@ -61,8 +62,30 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     legendaryEncounters.value += 1
   }
 
-  function addScore(points: number) {
-    score.value += points
+  function addScore(points: number, maxThreshold: number = legendaryBattleThreshold.value): boolean {
+    if (!Number.isFinite(points) || points <= 0)
+      return false
+
+    if (!Number.isFinite(maxThreshold) || maxThreshold <= 0) {
+      score.value = 0
+      return false
+    }
+
+    const nextValue = Math.min(score.value + points, maxThreshold)
+    const hasChanged = nextValue !== score.value
+    score.value = nextValue
+    return hasChanged
+  }
+
+  function clampScore(maxThreshold: number): void {
+    if (!Number.isFinite(maxThreshold))
+      return
+    if (maxThreshold <= 0) {
+      score.value = 0
+      return
+    }
+    if (score.value > maxThreshold)
+      score.value = maxThreshold
   }
 
   function calculateShlagpurReward(sizeMultiplier: number): number {
@@ -101,6 +124,13 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     finaleUnlocked.value = false
   }
 
+  watch(legendaryBattleThreshold, (threshold) => {
+    if (threshold <= 0)
+      score.value = 0
+    else if (score.value > threshold)
+      score.value = threshold
+  })
+
   watchEffect(() => {
     if (!unlocked.value)
       return
@@ -128,6 +158,7 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     lock,
     unlockFinale,
     addScore,
+    clampScore,
     registerHit,
     recordLegendaryEncounter,
     calculateShlagpurReward,

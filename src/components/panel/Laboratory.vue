@@ -42,6 +42,43 @@ const hasCompletedDex = computed(() => capturedBaseIds.value.size >= allShlagemo
 const defaultMusic = '/audio/musics/laboratory/space.ogg'
 const battleMusic = '/audio/musics/laboratory/battle.ogg'
 
+const RESEARCH_POINT_REWARD = 10
+
+const researchThreshold = computed(() => {
+  const baseThreshold = legendaryBattleThreshold.value
+  if (debug.value)
+    return 1
+  return baseThreshold
+})
+
+const researchProgress = computed(() => {
+  const threshold = researchThreshold.value
+  if (threshold <= 0)
+    return 0
+  return Math.min(score.value, threshold)
+})
+
+const isResearchReady = computed(() => {
+  const threshold = researchThreshold.value
+  if (threshold <= 0)
+    return false
+  return researchProgress.value >= threshold
+})
+
+watch(researchThreshold, (threshold) => {
+  laboratory.clampScore(threshold)
+})
+
+function tryAdvanceResearchProgress(): boolean {
+  const threshold = researchThreshold.value
+  if (threshold <= 0)
+    return false
+  const progressed = laboratory.addScore(1, threshold)
+  if (progressed)
+    game.addShlagpur(RESEARCH_POINT_REWARD)
+  return progressed
+}
+
 const isUnlocked = computed(() => unlocked.value)
 const rendererHost = ref<HTMLElement | null>(null)
 const hasStarted = ref(false)
@@ -71,6 +108,23 @@ const isFinaleActive = computed(() => finaleState.value !== 'idle')
 
 const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
 const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
+
+const shouldRunResearchTimer = computed(() => isUnlocked.value && hasStarted.value && !isLegendaryActive.value && !isFinaleActive.value)
+
+const { pause: pauseResearchTimer, resume: resumeResearchTimer } = useIntervalFn(() => {
+  if (researchThreshold.value <= 0)
+    return
+  if (isResearchReady.value)
+    return
+  tryAdvanceResearchProgress()
+}, 10_000, { immediate: false })
+
+watch(shouldRunResearchTimer, (active) => {
+  if (active)
+    resumeResearchTimer()
+  else
+    pauseResearchTimer()
+}, { immediate: true })
 
 const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
 
@@ -430,6 +484,7 @@ watch(() => finaleState.value, (state) => {
 })
 
 onUnmounted(() => {
+  pauseResearchTimer()
   disposeScene()
   audio.fadeToMusic(defaultMusic)
   finaleSessionTriggered.value = false
@@ -480,11 +535,15 @@ function onPointerDown(event: PointerEvent) {
     const isTaurus = result.type === 'relic'
     laboratory.registerHit(isTaurus)
     if (isTaurus) {
-      laboratory.addScore(1)
-      const threshold = debug.value ? 1 : legendaryBattleThreshold.value
-      const currentScore = score.value
-      if (currentScore > 0 && currentScore % threshold === 0 && legendaryState.value === 'idle') {
+      const progressBeforeHit = researchProgress.value
+      tryAdvanceResearchProgress()
+      const threshold = researchThreshold.value
+      const shouldTriggerLegendary = threshold > 0
+        && legendaryState.value === 'idle'
+        && (progressBeforeHit >= threshold || researchProgress.value >= threshold)
+      if (shouldTriggerLegendary) {
         laboratory.recordLegendaryEncounter()
+        laboratory.resetScore()
         beginLegendaryEncounter()
       }
     }
@@ -845,6 +904,10 @@ function onLegendaryCapture() {
           v-if="isInteractive"
           ref="hudRef"
           class="absolute inset-0 z-10"
+          :progress="researchProgress"
+          :threshold="researchThreshold"
+          :ready="isResearchReady"
+          :reward="RESEARCH_POINT_REWARD"
         />
       </template>
 
