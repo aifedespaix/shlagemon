@@ -47,11 +47,8 @@ export const useUIStore = defineStore('ui', () => {
     poulailler: '/audio/musics/poulailler.ogg',
     dojo: '/audio/musics/dojo.ogg',
     breeding: '/audio/musics/breeding.ogg',
+    laboratory: '/audio/musics/laboratory/space.ogg',
   }
-  const laboratoryTrack = getCharacterTrack('prof-merdant')
-  if (laboratoryTrack)
-    panelMusics.laboratory = laboratoryTrack
-
   // Explicit tuple typing keeps arguments in sync when adding new sources
   watch<[MainPanel, ZoneId, string | undefined, ZoneType, boolean], true>(
     () => [

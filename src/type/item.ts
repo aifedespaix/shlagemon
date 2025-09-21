@@ -1,6 +1,6 @@
 import type { I18nKey } from './i18n'
 
-export type ItemCurrency = 'shlagidolar' | 'shlagidiamond'
+export type ItemCurrency = 'shlagidolar' | 'shlagidiamond' | 'shlagpur'
 
 export type ItemCategory = 'actif' | 'passif' | 'utilitaire' | 'activable' | 'battle'
 

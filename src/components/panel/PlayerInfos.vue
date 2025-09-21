@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AnimatedNumber from '~/components/ui/AnimatedNumber.vue'
-import { allShlagemons } from '~/data/shlagemons'
 import { ballHues } from '~/utils/ball'
 
 const game = useGameStore()
@@ -13,7 +12,6 @@ const disease = useDiseaseStore()
 const showBonus = ref(false)
 const { t } = useI18n()
 
-const totalInDex = allShlagemons.length
 
 const currentBallHue = computed(() => ballStore.current ? ballHues[ballStore.current] : '0deg')
 const currentBallCount = computed(() => ballStore.current ? inventory.items[ballStore.current] ?? 0 : 0)
@@ -34,11 +32,11 @@ const currentBallCount = computed(() => ballStore.current ? inventory.items[ball
     </span>
     <UiCurrencyAmount :amount="game.shlagidolar" currency="shlagidolar" />
     <UiCurrencyAmount :amount="game.shlagidiamond" currency="shlagidiamond" />
-    <div v-tooltip="t('components.panel.PlayerInfos.dex')" class="min-w-0 flex items-center gap-1">
-      <IconShlagedex class="h-4 w-4" />
-      <AnimatedNumber class="shrink-0 font-bold" :value="dex.shlagemons.length ?? 0" />
-      <span class="shrink-0">/ {{ totalInDex }}</span>
-    </div>
+    <UiCurrencyAmount
+      v-if="game.shlagpur > 0"
+      :amount="game.shlagpur"
+      currency="shlagpur"
+    />
     <div v-tooltip="t('components.panel.PlayerInfos.averageLevel')" class="min-w-0 flex items-center gap-1">
       <IconXp class="h-4 w-4" />
       <AnimatedNumber class="shrink-0 font-bold" :value="Number(dex.averageLevel.toFixed(1))" :precision="1" />

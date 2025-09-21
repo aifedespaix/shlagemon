@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { DialogNode } from '~/type/dialog'
 import { profMerdant } from '~/data/characters/prof-merdant'
+import { spaceBadge } from '~/data/badges'
+import { toast } from '~/modules/toast'
+import { useBadgeBoxStore } from '~/stores/badgeBox'
 import { useLaboratoryStore } from '~/stores/laboratory'
+import { usePlayerStore } from '~/stores/player'
 
 const emit = defineEmits<{
   (e: 'done', id: string): void
@@ -9,6 +13,8 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const laboratory = useLaboratoryStore()
+const badgeBox = useBadgeBoxStore()
+const player = usePlayerStore()
 
 const dialogTree = computed<DialogNode[]>(() => [
   {
@@ -55,11 +61,25 @@ const dialogTree = computed<DialogNode[]>(() => [
     text: t('components.dialog.LaboratoryUnlockDialog.steps.step6.text'),
     responses: [
       { label: t('components.dialog.LaboratoryUnlockDialog.steps.step6.responses.back'), nextId: 'step5', type: 'danger' },
+      { label: t('components.dialog.LaboratoryUnlockDialog.steps.step6.responses.next'), nextId: 'step7', type: 'primary' },
+    ],
+  },
+  {
+    id: 'step7',
+    text: t('components.dialog.LaboratoryUnlockDialog.steps.step7.text'),
+    responses: [
+      { label: t('components.dialog.LaboratoryUnlockDialog.steps.step7.responses.back'), nextId: 'step6', type: 'danger' },
       {
-        label: t('components.dialog.LaboratoryUnlockDialog.steps.step6.responses.valid'),
+        label: t('components.dialog.LaboratoryUnlockDialog.steps.step7.responses.valid'),
         type: 'valid',
         action: () => {
           laboratory.unlock()
+          badgeBox.addBadge(spaceBadge)
+          player.unlockCaptureLevel(spaceBadge.levelCap)
+          toast.success(t('components.dialog.LaboratoryUnlockDialog.reward.toast', {
+            badge: t(spaceBadge.name),
+            level: spaceBadge.levelCap,
+          }))
           emit('done', 'laboratoryUnlock')
         },
       },

@@ -284,6 +284,7 @@ function onUse(item: Item) {
     </div>
   </section>
   <InventoryEvolutionItemModal />
+  <InventoryChromaticPotionModal />
   <InventoryOdorElixirModal />
   <InventoryItemShortcutModal />
   <EggBoxModal />

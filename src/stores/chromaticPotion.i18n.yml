@@ -1,0 +1,8 @@
+fr:
+  toast:
+    shiny: '{name} est maintenant chromatique !'
+    normal: '{name} redevient normal !'
+en:
+  toast:
+    shiny: '{name} is now shiny!'
+    normal: '{name} is back to normal!'

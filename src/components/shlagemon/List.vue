@@ -30,10 +30,14 @@ const equipment = useEquipmentStore()
 const dexDetailModal = useDexDetailModalStore()
 const inventory = useInventoryStore()
 const wearableItem = useWearableItemStore()
-const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
+const laboratory = useLaboratoryStore()
+const baseLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 const newCount = computed(() => dex.newCount)
 const panelRef = ref<{ scrollToTop: () => void } | null>(null)
+
+const isLegendaryBattle = computed(() => laboratory.isLegendaryBattleActive)
+const isSelectionLocked = computed(() => baseLocked.value || isLegendaryBattle.value)
 
 /**
  * Shlagémon currently holding the Multi Exp, if any.
@@ -177,7 +181,7 @@ function isHighlighted(mon: DexShlagemon) {
   return props.highlightIds.includes(mon.id) || Boolean(mon.isNew)
 }
 function changeActive(mon: DexShlagemon) {
-  if (isLocked.value)
+  if (isSelectionLocked.value)
     return
   dex.setActiveShlagemon(mon)
 }
@@ -241,6 +245,14 @@ watch(
             {{ t('components.shlagemon.List.new', newCount) }}
           </UiInfo>
         </div>
+        <div v-if="isLegendaryBattle" class="col-span-2">
+          <UiInfo color="warning">
+            <span class="flex items-center gap-2">
+              <span class="i-lucide:swords text-base" />
+              <span>{{ t('stores.shlagedex.legendarySwitchLocked') }}</span>
+            </span>
+          </UiInfo>
+        </div>
         <ShlagemonListItem
           v-for="mon in displayedMons"
           :key="mon.id"
@@ -248,7 +260,7 @@ watch(
           :is-active="isActive(mon)"
           :is-highlighted="isHighlighted(mon)"
           :disabled="props.disabledIds.includes(mon.id)"
-          :locked="isLocked"
+          :locked="isSelectionLocked"
           :item="mon.heldItemId ? items[mon.heldItemId] : null"
           :show-checkbox="props.showCheckbox"
           @click="() => handleClick(mon)"

@@ -8,6 +8,32 @@ fr:
   introDialog:
     text: Veux-tu lancer la recherche d’un Shlagémon légendaire ?
     embark: Lancer
+    finalChoice: Tu veux lancer le combat final ou accéder au labo de recherche ?
+    fight: Lancer le combat final
+    research: Accéder au labo de recherche
+  score: 'Score : {value}'
+  legendaryCountdown:
+    progress: 'Anomalies analysées : {current}/{total}'
+    active: Signature légendaire localisée !
+  legendaryDialog:
+    intro:
+      text: 'On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !'
+      hunt: C’est parti !
+    victory:
+      text: Nous avons neutralisé {name}, mais la bête s’est dissipée avant la capture. On recalibre les capteurs et on retente dès qu’un nouveau signal apparaît.
+      continue: Retour au laboratoire
+    defeat:
+      text: '{name} nous a repoussés, mais ses effluves saturent encore nos filtres. Reprends ton souffle, on le coincera au prochain essai.'
+      continue: Retour au laboratoire
+    capture:
+      text: Incroyable ! {name} est sécurisé dans ta Shlagéball. Tout le laboratoire applaudit ta prouesse !
+      continue: Retour au laboratoire
+  legendaryBattle:
+    title: Signal légendaire intercepté
+    missingTeam: Aucun Shlagémon prêt au combat. Sélectionne un compagnon avant de relancer la capture.
+  finaleBattle:
+    title: Épreuve ultime – Professeur Merdant
+    progress: Spécimen {current}/{total}
 en:
   title: Laboratory
   exit: Return to the village
@@ -18,3 +44,29 @@ en:
   introDialog:
     text: Ready to launch the hunt for a legendary Shlagémon?
     embark: Launch
+    finalChoice: Do you want to enter the final battle or access the research lab?
+    fight: Enter the final battle
+    research: Access the research lab
+  score: 'Score: {value}'
+  legendaryCountdown:
+    progress: 'Analyzed anomalies: {current}/{total}'
+    active: Legendary signature detected!
+  legendaryDialog:
+    intro:
+      text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
+      hunt: Engage the capture
+    victory:
+      text: We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon.
+      continue: Back to the lab
+    defeat:
+      text: "{name} overwhelmed us, yet its scent still floods the filters. Catch your breath—we'll corner it on the next attempt."
+      continue: Back to the lab
+    capture:
+      text: Outstanding! {name} is sealed in your Shlagéball. The entire lab is cheering!
+      continue: Back to the lab
+  legendaryBattle:
+    title: Legendary Signal Intercepted
+    missingTeam: No battle-ready Shlagémon available. Select a companion before launching the capture.
+  finaleBattle:
+    title: Ultimate Trial – Professor Merdant
+    progress: Specimen {current}/{total}

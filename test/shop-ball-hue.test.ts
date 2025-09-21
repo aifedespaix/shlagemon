@@ -6,7 +6,14 @@ import { hyperShlageball, superShlageball } from '../src/data/items/shlageball'
 
 vi.mock('vue-i18n', () => ({ useI18n: () => ({ t: (k: string) => k }) }))
 vi.mock('../src/stores/game', () => ({
-  useGameStore: () => ({ shlagidolar: 1000, shlagidiamond: 0 }),
+  useGameStore: () => ({
+    shlagidolar: 1000,
+    shlagidiamond: 0,
+    shlagpur: 0,
+    addShlagidolar: vi.fn(),
+    addShlagidiamond: vi.fn(),
+    addShlagpur: vi.fn(),
+  }),
 }))
 
 describe('shop ball hue rotation', () => {

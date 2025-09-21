@@ -7,6 +7,7 @@ fr:
   level: 'niveau | niveaux'
   rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
   released: '{name} a été relâché !'
+  legendarySwitchLocked: Impossible de changer de Shlagémon pendant un combat légendaire.
 en:
   rarityReached: '{name} reached rarity {rarity}!'
   evolved: '{name} evolved!'
@@ -16,3 +17,4 @@ en:
   level: 'level | levels'
   rarityChanged: '{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!'
   released: '{name} was released!'
+  legendarySwitchLocked: You cannot switch Shlagemon during a legendary battle.

@@ -25,10 +25,17 @@ en:
         back: Back
         next: Where do I go?
     step6:
-      text: 'My Laboratory doors are open—come so we can plan the last hunt and honour the full 170.'
+      text: 'Before you step inside, accept this Space Badge. It resonates with cosmic spoor and boosts your capture limit to level 150.'
+      responses:
+        back: Back
+        next: What does it do?
+    step7:
+      text: 'With the badge attuned, the Laboratory doors are open—come, we''ll hunt the remaining six together.'
       responses:
         back: Back
         valid: On my way!
+  reward:
+    toast: '{badge} obtained! Capture limit raised to level {level}.'
 fr:
   steps:
     step1:
@@ -52,11 +59,18 @@ fr:
         next: Et alors ?
     step5:
       text: 'Viens avec tes notes et tes champions ; nous fabriquerons des capteurs dignes de leur puanteur légendaire.'
-    responses:
-      back: Retour
-      next: Où les trouver ?
-    step6:
-      text: 'Les portes de mon Laboratoire t''attendent : faisons honneur aux 170 en préparant la chasse finale.'
       responses:
         back: Retour
-        valid: J'arrive !
+        next: Où les trouver ?
+    step6:
+      text: 'Avant d''entrer, accepte ce Badge Space. Il résonne avec les effluves cosmiques et pousse ton plafond de capture au niveau 150.'
+      responses:
+        back: Retour
+        next: Et lui, il fait quoi ?
+    step7:
+      text: 'Le badge synchronisé, les portes du Laboratoire s''ouvrent : viens, traquons ensemble les six disparus.'
+      responses:
+        back: Retour
+        valid: J''arrive !
+  reward:
+    toast: '{badge} obtenu ! Tu peux maintenant capturer jusqu''au niveau {level}.'

@@ -4,4 +4,5 @@ export const ballHues: Record<BallId, string> = {
   'shlageball': '0deg',
   'super-shlageball': '120deg',
   'hyper-shlageball': '240deg',
+  'master-shlag': '300deg',
 }

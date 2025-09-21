@@ -6,13 +6,16 @@ import {
   badgeBox as badgeBoxItem,
   eggBox as eggBoxItem,
   odorElixir,
+  chromaticPotion,
+  shlagPotion,
 } from '~/data/items'
-import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
+import { hyperShlageball, masterShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { allShlagemons } from '~/data/shlagemons'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
 import { useAudioStore } from './audio'
 import { useOdorElixirStore } from './odorElixir'
+import { useChromaticPotionStore } from './chromaticPotion'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<Partial<Record<ItemId, number>>>({})
@@ -25,6 +28,7 @@ export const useInventoryStore = defineStore('inventory', () => {
   const eggBox = useEggBoxStore()
   const badgeBox = useBadgeBoxStore()
   const odorElixirStore = useOdorElixirStore()
+  const chromaticPotionStore = useChromaticPotionStore()
   const audio = useAudioStore()
   const battleCooldown = useBattleItemCooldownStore()
 
@@ -97,6 +101,11 @@ export const useInventoryStore = defineStore('inventory', () => {
         return false
       game.addShlagidiamond(-cost)
     }
+    else if (item.currency === 'shlagpur') {
+      if (game.shlagpur < cost)
+        return false
+      game.addShlagpur(-cost)
+    }
     else {
       if (game.shlagidolar < cost)
         return false
@@ -155,8 +164,18 @@ export const useInventoryStore = defineStore('inventory', () => {
       [shlageball.id]: capture,
       [superShlageball.id]: capture,
       [hyperShlageball.id]: capture,
+      [masterShlageball.id]: capture,
+      [chromaticPotion.id]: () => {
+        chromaticPotionStore.open(item)
+        return true
+      },
       [odorElixir.id]: () => {
         odorElixirStore.open(item)
+        return true
+      },
+      [shlagPotion.id]: () => {
+        dex.healActivePercent(shlagPotion.power)
+        remove(id)
         return true
       },
     }

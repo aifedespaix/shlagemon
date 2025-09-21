@@ -18,10 +18,12 @@ fr:
     mons: 'Shlagémons : {count}'
     shlagidolar: 'Shlagidolars : {amount}'
     shlagidiamond: 'Shlagidiamonds : {amount}'
+    shlagpur: 'ShlagPur : {amount}'
     playtime: 'Temps de jeu : {time}'
     monsLabel: Shlagémons
     shlagidolarLabel: Shlagidolars
     shlagidiamondLabel: Shlagidiamonds
+    shlagpurLabel: ShlagPur
     playtimeLabel: Temps de jeu
   acknowledge: Je comprends que cette action remplace TOUTES mes données locales.
   errorInvalid: Fichier de sauvegarde invalide.
@@ -47,10 +49,12 @@ en:
     mons: 'Shlagemons: {count}'
     shlagidolar: 'Shlagidollars: {amount}'
     shlagidiamond: 'Shlagidiamonds: {amount}'
+    shlagpur: 'ShlagPur: {amount}'
     playtime: 'Playtime: {time}'
     monsLabel: Shlagemons
     shlagidolarLabel: Shlagidollars
     shlagidiamondLabel: Shlagidiamonds
+    shlagpurLabel: ShlagPur
     playtimeLabel: Playtime
   acknowledge: I understand this action replaces ALL my local data.
   errorInvalid: Invalid save file.

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DexShlagemon } from '~/type/shlagemon'
 import { allItems } from '~/data/items'
+import { allShlagemons } from '~/data/shlagemons'
 
 interface Props {
   /** Display a checkbox next to each item. */
@@ -35,8 +36,11 @@ const { t } = useI18n()
 const filter = useDexFilterStore()
 const dex = useShlagedexStore()
 const featureLock = useFeatureLockStore()
+const laboratory = useLaboratoryStore()
 
-const isLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
+const baseLocked = computed(() => props.locked ?? featureLock.isShlagedexLocked)
+const isLegendaryBattle = computed(() => laboratory.isLegendaryBattleActive)
+const isLocked = computed(() => baseLocked.value || isLegendaryBattle.value)
 
 const items = Object.fromEntries(allItems.map(i => [i.id, i])) as Record<string, typeof allItems[number]>
 const panelRef = ref<{ scrollToTop: () => void } | null>(null)
@@ -44,6 +48,7 @@ const panelRef = ref<{ scrollToTop: () => void } | null>(null)
 const sortOptions = [
   { label: t('components.shlagemon.ListGeneric.sort.level'), value: 'level' },
   { label: t('components.shlagemon.ListGeneric.sort.rarity'), value: 'rarity' },
+  { label: t('components.shlagemon.ListGeneric.sort.legendary'), value: 'legendary' },
   { label: t('components.shlagemon.ListGeneric.sort.shiny'), value: 'shiny' },
   { label: t('components.shlagemon.ListGeneric.sort.item'), value: 'item' },
   { label: t('components.shlagemon.ListGeneric.sort.name'), value: 'name' },
@@ -69,6 +74,9 @@ const displayedMons = computed(() => {
       break
     case 'rarity':
       filtered.sort((a, b) => a.rarity - b.rarity)
+      break
+    case 'legendary':
+      filtered.sort((a, b) => Number(a.base.speciality === 'legendary') - Number(b.base.speciality === 'legendary'))
       break
     case 'shiny':
       filtered.sort((a, b) => Number(a.isShiny) - Number(b.isShiny))
@@ -183,7 +191,7 @@ watch(
             :title="t('components.shlagemon.ListGeneric.missingHint')"
             @contextmenu.prevent="useDexMissingModalStore().open()"
           >
-            {{ displayedMons.length }} / {{ dex.shlagemons.length }}
+            {{ dex.shlagemons.length }} / {{ allShlagemons.length }}
           </span>
         </div>
         <div class="flex gap-1">
@@ -199,6 +207,14 @@ watch(
     <template #content>
       <TransitionGroup name="fade-list" tag="div" class="grid grid-cols-1 gap-1">
         <slot name="content-top" />
+        <div v-if="isLegendaryBattle" class="col-span-1">
+          <UiInfo color="warning">
+            <span class="flex items-center gap-2">
+              <span class="i-lucide:swords text-base" />
+              <span>{{ t('stores.shlagedex.legendarySwitchLocked') }}</span>
+            </span>
+          </UiInfo>
+        </div>
         <ShlagemonListItem
           v-for="mon in displayedMons"
           :key="mon.id"

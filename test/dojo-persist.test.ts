@@ -8,7 +8,14 @@ import { useDojoStore } from '../src/stores/dojo'
 vi.mock('../src/modules/toast', () => ({ toast: { success: vi.fn() } }))
 vi.mock('../src/modules/i18n', () => ({ i18n: { global: { t: (k: string) => k } } }))
 vi.mock('../src/stores/game', () => ({
-  useGameStore: () => ({ shlagidolar: 0, addShlagidolar: vi.fn() }),
+  useGameStore: () => ({
+    shlagidolar: 0,
+    shlagidiamond: 0,
+    shlagpur: 0,
+    addShlagidolar: vi.fn(),
+    addShlagidiamond: vi.fn(),
+    addShlagpur: vi.fn(),
+  }),
 }))
 vi.mock('../src/stores/shlagedex', () => ({
   useShlagedexStore: () => ({ shlagemons: [], setBusy: vi.fn() }),

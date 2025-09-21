@@ -11,6 +11,10 @@ en:
     name: Hyper Shlagéball
     description: Offers very high catch chances.
     details: Designed for tough Shlagémon, it grants a huge bonus.
+  masterShlageball:
+    name: Master Shlag
+    description: Guarantees capture on any non-legendary Shlagémon, with a chance to snag weakened legendaries.
+    details: Seals any standard Shlagémon instantly. Against a laboratory legend, the odds scale from 1% to 10% depending on remaining HP.
 fr:
   shlageball:
     name: Shlagéball
@@ -24,3 +28,7 @@ fr:
     name: Hyper Shlagéball
     description: Offre de très hautes chances de capture.
     details: Conçue pour capturer les Shlagémons coriaces, elle bénéficie d’un gros bonus.
+  masterShlageball:
+    name: Master Shlag
+    description: Capture garantie sur tout Shlagémon non légendaire, avec une chance de capturer les légendaires affaiblis.
+    details: Assure la capture de n'importe quel Shlagémon classique. Sur un légendaire du laboratoire, les chances varient de 1% à 10% selon ses PV restants.

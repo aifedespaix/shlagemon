@@ -1,6 +1,7 @@
 import type { ArenaBadge } from '~/type'
 import { defineStore } from 'pinia'
-import { getArena } from '~/data/arenas'
+import { getArena, getArenaByBadgeId } from '~/data/arenas'
+import { specialBadges } from '~/data/badges'
 
 export const useBadgeBoxStore = defineStore('badgeBox', () => {
   const unlocked = ref(false)
@@ -29,7 +30,11 @@ export const useBadgeBoxStore = defineStore('badgeBox', () => {
    * Removes badges whose identifiers do not match any existing arena.
    */
   function removeUnknownBadges(): void {
-    badges.value = badges.value.filter(badge => Boolean(getArena(badge.id)))
+    badges.value = badges.value.filter((badge) => {
+      const arenaBadge = getArenaByBadgeId(badge.id)
+      const specialBadge = specialBadges[badge.id as keyof typeof specialBadges]
+      return Boolean(arenaBadge || specialBadge)
+    })
   }
 
   normalizeBadges()
@@ -64,12 +69,17 @@ export const useBadgeBoxStore = defineStore('badgeBox', () => {
     removeUnknownBadges()
 
     const player = usePlayerStore()
-    for (const [arenaId, hasBadge] of Object.entries(player.arenaBadges)) {
+    for (const [badgeId, hasBadge] of Object.entries(player.arenaBadges)) {
       if (!hasBadge)
         continue
-      const arena = getArena(arenaId)
-      if (arena)
+      const arena = getArena(badgeId)
+      if (arena) {
         addBadge(arena.badge)
+        continue
+      }
+      const special = specialBadges[badgeId as keyof typeof specialBadges]
+      if (special)
+        addBadge(special)
     }
   }
 

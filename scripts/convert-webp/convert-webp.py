@@ -21,9 +21,9 @@ AVIF_AVAILABLE = True
 # print(f"AVIF support: {'oui' if AVIF_AVAILABLE else 'non'}")
 
 ALLOWED_DIRS = [
-    # "shlagemons",
+    "shlagemons",
     # "items",
-    "icons",
+    # "icons",
     # "characters",
 ]
 

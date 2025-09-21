@@ -63,7 +63,14 @@ vi.mock('../src/stores/breeding', () => ({
 }))
 
 vi.mock('../src/stores/game', () => ({
-  useGameStore: () => ({ shlagidolar: 0 }),
+  useGameStore: () => ({
+    shlagidolar: 0,
+    shlagidiamond: 0,
+    shlagpur: 0,
+    addShlagidolar: vi.fn(),
+    addShlagidiamond: vi.fn(),
+    addShlagpur: vi.fn(),
+  }),
 }))
 
 vi.mock('../src/stores/dojo', () => ({

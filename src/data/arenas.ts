@@ -1,4 +1,4 @@
-import type { Arena, BaseShlagemon } from '~/type'
+import type { Arena, ArenaBadgeId, BaseShlagemon } from '~/type'
 import type { Zone } from '~/type/zone'
 import { profMerdant } from './characters/prof-merdant'
 import { zonesData } from './zones'
@@ -114,6 +114,10 @@ export const arenas: Arena[] = [
 
 export function getArena(id: string): Arena | undefined {
   return arenas.find(a => a.id === id)
+}
+
+export function getArenaByBadgeId(id: ArenaBadgeId): Arena | undefined {
+  return arenas.find(a => a.badge.id === id)
 }
 
 /** Mapping of arena zones by their associated village identifier. */

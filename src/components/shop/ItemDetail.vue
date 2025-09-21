@@ -16,20 +16,38 @@ const ballFilter = computed(() =>
   'catchBonus' in props.item ? { filter: `hue-rotate(${ballHues[props.item.id]})` } : {},
 )
 
-const playerMoney = computed(() =>
-  props.item.currency === 'shlagidiamond'
-    ? game.shlagidiamond
-    : game.shlagidolar,
-)
+const unitPrice = computed(() => props.item.price ?? 0)
 
-const maxQty = computed(() =>
-  Math.max(1, Math.floor(playerMoney.value / (props.item.price ?? 0))),
-)
+function balanceFor(currency: Item['currency'] | undefined) {
+  switch (currency) {
+    case 'shlagidiamond':
+      return game.shlagidiamond
+    case 'shlagpur':
+      return game.shlagpur
+    default:
+      return game.shlagidolar
+  }
+}
+
+const maxQty = computed(() => {
+  const price = unitPrice.value
+  if (price <= 0)
+    return 999
+  const affordable = Math.floor(balanceFor(props.item.currency) / price)
+  return Math.max(1, affordable)
+})
 
 const steps = [1, 10, 100, 1000]
 
 const availableSteps = computed(() =>
-  steps.filter(step => step === 1 || playerMoney.value >= step * (props.item.price ?? 0)),
+  steps.filter((step) => {
+    if (step === 1)
+      return true
+    const price = unitPrice.value
+    if (price <= 0)
+      return true
+    return balanceFor(props.item.currency) >= step * price
+  }),
 )
 
 watch(() => props.qty, (v) => {

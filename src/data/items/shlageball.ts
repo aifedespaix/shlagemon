@@ -39,10 +39,24 @@ export const hyperShlageball: Ball = {
   animation: '/items/shlageball/shlageball.webp',
 }
 
+export const masterShlageball: Ball = {
+  id: 'master-shlag',
+  name: 'data.items.shlageball.masterShlageball.name',
+  description: 'data.items.shlageball.masterShlageball.description',
+  details: 'data.items.shlageball.masterShlageball.details',
+  price: 100,
+  currency: 'shlagpur',
+  category: 'activable',
+  image: '/items/shlageball/shlageball.webp',
+  catchBonus: 999,
+  animation: '/items/shlageball/shlageball.webp',
+}
+
 export const balls = [
   shlageball,
   superShlageball,
   hyperShlageball,
+  masterShlageball,
 ] as const satisfies Ball[]
 
 export type BallId = typeof balls[number]['id']

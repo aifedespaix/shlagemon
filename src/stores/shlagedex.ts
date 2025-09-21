@@ -28,6 +28,7 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   const audio = useAudioStore()
   const disease = useDiseaseStore()
   const equipment = useEquipmentStore()
+  const laboratory = useLaboratoryStore()
   const baseMap = Object.fromEntries(allShlagemons.map(b => [b.id, b]))
   const newCount = computed(() => shlagemons.value.filter(m => m.isNew).length)
   cleanupEffects()
@@ -206,6 +207,10 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
   }
 
   function setActiveShlagemon(mon: DexShlagemon) {
+    if (laboratory.isLegendaryBattleActive && activeShlagemon.value?.id !== mon.id) {
+      toast.warn(i18n.global.t('stores.shlagedex.legendarySwitchLocked'))
+      return
+    }
     if (disease.active || mon.busy)
       return
     activeShlagemon.value = mon
@@ -248,6 +253,19 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
       max,
       activeShlagemon.value.hpCurrent + amount,
     )
+  }
+
+  /**
+   * Heal the active Shlagémon by a percentage of its maximum HP.
+   *
+   * @param percent - Percentage of max HP to restore.
+   */
+  function healActivePercent(percent: number) {
+    if (!activeShlagemon.value || percent <= 0)
+      return
+    const max = maxHp(activeShlagemon.value)
+    const amount = Math.max(1, Math.round((max * Math.min(percent, 100)) / 100))
+    healActive(amount)
   }
 
   function removeEffect(id: number) {
@@ -441,6 +459,16 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     maybePlayRaritySfx(mon, before)
     applyStats(mon)
     applyCurrentStats(mon)
+  }
+
+  function toggleShiny(mon: DexShlagemon): boolean | null {
+    const target = shlagemons.value.find(m => m.id === mon.id)
+    if (!target)
+      return null
+    const nextState = !target.isShiny
+    target.isShiny = nextState
+    mon.isShiny = nextState
+    return nextState
   }
 
   const evolutionStore = useEvolutionStore()
@@ -740,12 +768,14 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     releaseShlagemon,
     gainXp,
     healActive,
+    healActivePercent,
     boostDefense,
     boostAttack,
     boostVitality,
     boostXp,
     boostCapture,
     applyOdorElixir,
+    toggleShiny,
     effectiveAttack,
     effectiveDefense,
     maxHp,

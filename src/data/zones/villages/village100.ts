@@ -3,6 +3,7 @@ import { VILLAGE_OFFSET } from '~/constants/zone'
 import {
   attackPotion,
   capturePotion,
+  chromaticPotion,
   defensePotion,
   fabulousPotion,
   hyperAttackPotion,
@@ -13,6 +14,7 @@ import {
   hyperXpPotion,
   mysteriousPotion,
   potion,
+  shlagPotion,
   specialPotion,
   superAttackPotion,
   superCapturePotion,
@@ -24,7 +26,7 @@ import {
   vitalityPotion,
   xpPotion,
 } from '~/data/items'
-import { hyperShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
+import { hyperShlageball, masterShlageball, shlageball, superShlageball } from '~/data/items/shlageball'
 import { move } from '~/utils/position'
 import { savage95 } from '../savages/95-cratere-des-legends'
 
@@ -51,6 +53,7 @@ export const village100: Zone = {
         potion,
         superPotion,
         hyperPotion,
+        shlagPotion,
         defensePotion,
         superDefensePotion,
         hyperDefensePotion,
@@ -69,6 +72,8 @@ export const village100: Zone = {
         shlageball,
         superShlageball,
         hyperShlageball,
+        masterShlageball,
+        chromaticPotion,
         ultraSteroid,
         specialPotion,
         mysteriousPotion,

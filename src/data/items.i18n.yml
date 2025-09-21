@@ -71,6 +71,10 @@ en:
     name: Hyper Potion
     description: Heals {hp} HP of your Shlagémon.
     details: Restores {hp} HP to your active Shlagémon during battle.
+  shlagPotion:
+    name: Shlag Potion
+    description: Restores {percent}% of your active Shlagémon's HP in a single chug.
+    details: A syrupy shlag brew loaded with neon glitter that instantly refills half of your active Shlagémon's HP bar when the fight gets dire.
   multiExp:
     name: Multi-EXP
     description: Shares XP with a Shlagémon.
@@ -133,6 +137,10 @@ en:
     name: Fabulous Potion
     description: Works only during king battles. Hold to unleash its effect.
     details: During king battles, hold the button to perform a special action.
+  chromaticPotion:
+    name: Chromatic Potion
+    description: Flip a Shlagémon's shiny state.
+    details: Select any Shlagémon to invert its chroma. Shiny becomes normal, dull becomes shiny.
   rainbowPotion:
     name: Rainbow Potion
     description: Use at the end of a king battle for massive damage or strong healing.
@@ -214,6 +222,10 @@ fr:
     name: Hyper Potion
     description: Soigne {hp} HP de votre Shlagémon.
     details: Redonne {hp} points de vie à votre Shlagémon actif pendant le combat.
+  shlagPotion:
+    name: Potion Shlag
+    description: Rend {percent}% des PV de votre Shlagémon actif en une lampée.
+    details: Un sirop shlag gavé de paillettes fluo qui redonne instantanément la moitié des PV de votre Shlagémon actif quand le combat tourne au vinaigre.
   multiExp:
     name: Multi-EXP
     description: Partage l'XP avec un Shlagémon.
@@ -276,6 +288,10 @@ fr:
     name: Potion Fabuleuse
     description: S'utilise seulement contre les rois et se déclenche en maintenant le bouton.
     details: Pendant les combats face aux rois, maintenez le bouton pour effectuer une action fabuleuse.
+  chromaticPotion:
+    name: Potion chromatique
+    description: Inverse l'état shiny de n'importe quel Shlagémon.
+    details: "Choisis un Shlagémon pour basculer sa chroma : shiny devient terne, terne devient shiny."
   rainbowPotion:
     name: Potion Arc-en-ciel
     description: A utiliser en fin de combat contre un roi pour d'énormes dégâts ou un soin puissant.

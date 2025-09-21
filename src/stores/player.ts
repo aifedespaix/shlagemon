@@ -1,6 +1,7 @@
 import type { Character } from '~/type/character'
 import { defineStore } from 'pinia'
 import { getArena } from '~/data/arenas'
+import { specialBadges } from '~/data/badges'
 
 export const usePlayerStore = defineStore('player', () => {
   const pseudo = ref('')
@@ -40,14 +41,25 @@ export const usePlayerStore = defineStore('player', () => {
   }
 
   function earnBadge(id: string) {
-    arenaBadges.value[id] = true
     const arena = getArena(id)
-    if (arena)
+    if (arena) {
+      arenaBadges.value[id] = true
       captureLevelCap.value = Math.max(captureLevelCap.value, arena.badge.levelCap)
+      return
+    }
+    const special = specialBadges[id as keyof typeof specialBadges]
+    if (special) {
+      arenaBadges.value[id] = true
+      captureLevelCap.value = Math.max(captureLevelCap.value, special.levelCap)
+    }
   }
 
   function hasBadge(id: string) {
     return !!arenaBadges.value[id]
+  }
+
+  function unlockCaptureLevel(level: number) {
+    captureLevelCap.value = Math.max(captureLevelCap.value, level)
   }
 
   return {
@@ -62,6 +74,7 @@ export const usePlayerStore = defineStore('player', () => {
     setPlayer,
     earnBadge,
     hasBadge,
+    unlockCaptureLevel,
     reset,
   }
 }, {

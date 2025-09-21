@@ -42,7 +42,11 @@ vi.mock('../src/stores/mainPanel', () => ({
 vi.mock('../src/stores/game', () => ({
   useGameStore: () => ({
     shlagidolar: 0,
+    shlagidiamond: 0,
+    shlagpur: 0,
     addShlagidolar: vi.fn(),
+    addShlagidiamond: vi.fn(),
+    addShlagpur: vi.fn(),
   }),
 }))
 

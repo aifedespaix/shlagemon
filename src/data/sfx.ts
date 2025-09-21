@@ -32,6 +32,7 @@ export function preloadSfx(): Record<SfxId, Howl> {
           stop: () => {},
           loop: () => {},
           volume: () => {},
+          rate: () => {},
         } as unknown as Howl)
       : new Howl({
         src: [url],

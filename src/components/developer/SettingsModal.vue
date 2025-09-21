@@ -22,11 +22,15 @@ const trainerBattle = useTrainerBattleStore()
 const hasActiveMon = computed(() => Boolean(dex.activeShlagemon))
 
 function addMoney() {
-  game.addShlagidolar(100000)
+  game.addShlagidolar(100_000_000)
 }
 
 function addDiamonds() {
   game.addShlagidiamond(1000)
+}
+
+function addShlagpur() {
+  game.addShlagpur(1000)
 }
 
 function resetMoney() {
@@ -155,9 +159,15 @@ const sections = computed<DevSection[]>(() => [
     actions: [
       {
         key: 'add-money',
-        label: '+100000 Shlagédolar',
+        label: '+100000000 Shlagédolar',
         icon: 'i-carbon-currency-dollar',
         onClick: addMoney,
+      },
+      {
+        key: 'add-shlagpur',
+        label: '+1000 ShlagPur',
+        icon: 'i-carbon-earth',
+        onClick: addShlagpur,
       },
       {
         key: 'add-diamonds',

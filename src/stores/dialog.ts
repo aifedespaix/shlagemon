@@ -15,6 +15,8 @@ import EggBoxDialog from '~/components/dialog/EggBoxDialog.vue'
 import FirstLossDialog from '~/components/dialog/FirstLossDialog.vue'
 import HalfDexDialog from '~/components/dialog/HalfDexDialog.vue'
 import LaboratoryUnlockDialog from '~/components/dialog/LaboratoryUnlockDialog.vue'
+import LaboratoryFinaleInvitationDialog from '~/components/dialog/LaboratoryFinaleInvitationDialog.vue'
+import { allShlagemons } from '~/data/shlagemons'
 import InventoryIntroDialog from '~/components/dialog/InventoryIntroDialog.vue'
 import KingLossDialog from '~/components/dialog/KingLossDialog.vue'
 import KingUnlockDialog from '~/components/dialog/KingUnlockDialog.vue'
@@ -120,6 +122,11 @@ export const useDialogStore = defineStore('dialog', () => {
       id: 'laboratoryUnlock',
       component: markRaw(LaboratoryUnlockDialog),
       condition: () => dex.shlagemons.length >= 164 && !laboratory.isUnlocked,
+    },
+    {
+      id: 'laboratoryFinaleInvitation',
+      component: markRaw(LaboratoryFinaleInvitationDialog),
+      condition: () => dex.capturedBaseIds.size === allShlagemons.length && !laboratory.finaleUnlocked,
     },
     {
       id: 'attackPotion',

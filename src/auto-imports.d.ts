@@ -179,6 +179,7 @@ declare global {
   const useBusyShlagemonIds: typeof import('./composables/useBusyShlagemonIds')['useBusyShlagemonIds']
   const useCached: typeof import('@vueuse/core')['useCached']
   const useCaptureLimitModalStore: typeof import('./stores/captureLimitModal')['useCaptureLimitModalStore']
+  const useChromaticPotionStore: typeof import('./stores/chromaticPotion')['useChromaticPotionStore']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useClipboardItems: typeof import('@vueuse/core')['useClipboardItems']
   const useCloned: typeof import('@vueuse/core')['useCloned']
@@ -692,6 +693,7 @@ declare module 'vue' {
     readonly useBusyShlagemonIds: UnwrapRef<typeof import('./composables/useBusyShlagemonIds')['useBusyShlagemonIds']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
     readonly useCaptureLimitModalStore: UnwrapRef<typeof import('./stores/captureLimitModal')['useCaptureLimitModalStore']>
+    readonly useChromaticPotionStore: UnwrapRef<typeof import('./stores/chromaticPotion')['useChromaticPotionStore']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useClipboardItems: UnwrapRef<typeof import('@vueuse/core')['useClipboardItems']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>

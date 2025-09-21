@@ -1,5 +1,5 @@
 import type { Item, ItemBattle } from '~/type/item'
-import { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
+import { hyperShlageball, masterShlageball, shlageball, superShlageball } from './items/shlageball'
 import {
   advancedAttackRing,
   attackAmulet,
@@ -24,7 +24,7 @@ import {
   xpRing,
 } from './items/wearables/xpRing'
 
-export { hyperShlageball, shlageball, superShlageball } from './items/shlageball'
+export { hyperShlageball, masterShlageball, shlageball, superShlageball } from './items/shlageball'
 
 /**
  * Battle items with mandatory power, price, and cooldown.
@@ -330,6 +330,24 @@ export const hyperPotion: BattlePotion = {
   detailsParams: { hp: superPotion.power * 4 },
 }
 
+export const shlagPotion: BattlePotion = {
+  id: 'shlag-potion',
+  name: 'data.items.shlagPotion.name',
+  description: 'data.items.shlagPotion.description',
+  details: 'data.items.shlagPotion.details',
+  type: 'heal',
+  power: 50,
+  price: 1000,
+  currency: 'shlagpur',
+  category: 'battle',
+  battleCooldown: hyperPotion.battleCooldown * 2,
+  sfxId: 'items-active-potion',
+  icon: 'i-game-icons:health-potion',
+  iconClass: 'mask-rainbow',
+  descriptionParams: { percent: 50 },
+  detailsParams: { percent: 50 },
+}
+
 export const multiExp: Item = {
   id: 'multi-exp',
   name: 'data.items.multiExp.name',
@@ -545,10 +563,23 @@ export const fabulousPotion: Item = {
 
 }
 
+export const chromaticPotion: Item = {
+  id: 'chromatic-potion',
+  name: 'data.items.chromaticPotion.name',
+  description: 'data.items.chromaticPotion.description',
+  details: 'data.items.chromaticPotion.details',
+  price: 1000,
+  currency: 'shlagpur',
+  category: 'actif',
+  icon: 'i-game-icons:potion-of-madness',
+  iconClass: 'mask-rainbow',
+}
+
 export const allItems = [
   shlageball,
   superShlageball,
   hyperShlageball,
+  masterShlageball,
   potion,
   defensePotion,
   superDefensePotion,
@@ -564,6 +595,7 @@ export const allItems = [
   hyperCapturePotion,
   superPotion,
   hyperPotion,
+  shlagPotion,
   xpPotion,
   superXpPotion,
   hyperXpPotion,
@@ -600,6 +632,7 @@ export const allItems = [
   specialPotion,
   mysteriousPotion,
   fabulousPotion,
+  chromaticPotion,
 ] as const satisfies Item[]
 
 export type ItemId = typeof allItems[number]['id']

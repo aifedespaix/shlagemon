@@ -12,6 +12,9 @@ vi.mock('~/stores/dexFilter', () => ({ useDexFilterStore: () => filterStore }))
 const featureLockStore = { isShlagedexLocked: false }
 vi.mock('~/stores/featureLock', () => ({ useFeatureLockStore: () => featureLockStore }))
 
+const laboratoryStore = { isLegendaryBattleActive: false }
+vi.mock('~/stores/laboratory', () => ({ useLaboratoryStore: () => laboratoryStore }))
+
 const shlagemons = ref<any[]>([])
 const dexStore = { shlagemons, newCount: 0, markAllSeen: vi.fn() }
 vi.mock('~/stores/shlagedex', () => ({ useShlagedexStore: () => dexStore }))

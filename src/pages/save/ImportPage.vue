@@ -26,6 +26,7 @@ interface SaveSummary {
   readonly mons: number
   readonly shlagidolar: number
   readonly shlagidiamond: number
+  readonly shlagpur: number
   readonly playtime: number
 }
 
@@ -50,6 +51,7 @@ const summary = reactive<SaveSummary>({
   mons: 0,
   shlagidolar: 0,
   shlagidiamond: 0,
+  shlagpur: 0,
   playtime: 0,
 })
 
@@ -103,6 +105,7 @@ function resetSelection() {
   summary.mons = 0
   summary.shlagidolar = 0
   summary.shlagidiamond = 0
+  summary.shlagpur = 0
   summary.playtime = 0
   acknowledgeOverwrite.value = false
   info.value = null
@@ -143,12 +146,13 @@ async function handleFile(file: File) {
 
     // Extract summary safely
     const rawDex = (data as unknown as { shlagedex?: { shlagemons?: unknown[] } }).shlagedex
-    const rawGame = (data as unknown as { game?: { shlagidolar?: number, shlagidiamond?: number } }).game
+    const rawGame = (data as unknown as { game?: { shlagidolar?: number, shlagidiamond?: number, shlagpur?: number } }).game
     const rawPlay = (data as unknown as { playtime?: { seconds?: number } }).playtime
 
     summary.mons = Array.isArray(rawDex?.shlagemons) ? rawDex!.shlagemons!.length : 0
     summary.shlagidolar = Number.isFinite(rawGame?.shlagidolar) ? (rawGame!.shlagidolar as number) : 0
     summary.shlagidiamond = Number.isFinite(rawGame?.shlagidiamond) ? (rawGame!.shlagidiamond as number) : 0
+    summary.shlagpur = Number.isFinite(rawGame?.shlagpur) ? (rawGame!.shlagpur as number) : 0
     summary.playtime = Number.isFinite(rawPlay?.seconds) ? (rawPlay!.seconds as number) : 0
 
     info.value = t('pages.save.ImportPage.fileReady') // add this key in i18n
@@ -342,7 +346,7 @@ function onDropzoneKeydown(e: KeyboardEvent) {
             {{ t('pages.save.ImportPage.summary.title') }}
           </h2>
 
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-5">
             <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
               <p class="text-xs text-gray-500 dark:text-gray-400">
                 {{ t('pages.save.ImportPage.summary.monsLabel') /* add key */ }}
@@ -365,6 +369,14 @@ function onDropzoneKeydown(e: KeyboardEvent) {
               </p>
               <p class="text-xl font-800">
                 {{ summary.shlagidiamond }}
+              </p>
+            </div>
+            <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
+              <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ t('pages.save.ImportPage.summary.shlagpurLabel') /* add key */ }}
+              </p>
+              <p class="text-xl font-800">
+                {{ summary.shlagpur }}
               </p>
             </div>
             <div class="border border-gray-200 rounded-md p-3 dark:border-gray-700">
@@ -428,6 +440,14 @@ function onDropzoneKeydown(e: KeyboardEvent) {
           </dt>
           <dd class="font-700">
             {{ summary.shlagidiamond }}
+          </dd>
+        </div>
+        <div>
+          <dt class="text-xs text-gray-500 dark:text-gray-400">
+            {{ t('pages.save.ImportPage.summary.shlagpurLabel') }}
+          </dt>
+          <dd class="font-700">
+            {{ summary.shlagpur }}
           </dd>
         </div>
       </dl>

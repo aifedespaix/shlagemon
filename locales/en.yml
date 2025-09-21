@@ -641,10 +641,58 @@ components:
             back: Back
             next: Where do I go?
         step6:
-          text: My Laboratory doors are open—come so we can plan the last hunt and honour the full 170.
+          text: Before you step inside, accept this Space Badge. It resonates with cosmic spoor and boosts your capture limit to level 150.
           responses:
             back: Back
             valid: On my way!
+            next: What does it do?
+        step7:
+          text: With the badge attuned, the Laboratory doors are open—come, we'll hunt the remaining six together.
+          responses:
+            back: Back
+            valid: On my way!
+      reward:
+        toast: "{badge} obtained! Capture limit raised to level {level}."
+    LaboratoryFinaleInvitationDialog:
+      steps:
+        step1:
+          text: Shlagémon Trainer, you have filled every slot of the Shlagedex. The academy archives already whisper your name.
+          responses:
+            next: Continue
+        step2:
+          text: I reviewed your notes—no glitch, no forged entry. One hundred percent organic captures.
+          responses:
+            back: Back
+            next: I'm listening
+        step3:
+          text: You've bottled every pest of this continent and choked the shlagitude before it seeped into the stratosphere.
+          responses:
+            back: Back
+            next: Go on
+        step4:
+          text: Frankly, I dreamed of this day. Not because I doubted the data, but because I wanted to see the person who would bend reality back into shape.
+          responses:
+            back: Back
+            next: What's next?
+        step5:
+          text: And yet one test remains. Not a hunt, not a scavenger chase—a duel. My duel.
+          responses:
+            back: Back
+            next: A duel?
+        step6:
+          text: Come to my laboratory. I'll deploy the nastiest, non-legendary specimens I ever cultured, all honed to level 200.
+          responses:
+            back: Back
+            next: I'm ready
+        step7:
+          text: Win, and I will proclaim you the definitive champion of anti-shlagitude. Lose, and you restart the cleansing until you can withstand my orbit.
+          responses:
+            back: Back
+            next: Understood
+        step8:
+          text: Take a breath, sharpen your team, and meet me in the Laboratory. The final experiment awaits.
+          responses:
+            valid: To the laboratory!
   egg:
     BoxModal:
       title: Egg box
@@ -674,6 +722,12 @@ components:
     WearableItemModal:
       title: Choose the holder of {name}
       noAvailable: No Shlagemon available.
+    ChromaticPotionModal:
+      title: Chromatic Potion
+      description: Select a Shlagémon to invert its shiny state.
+      makeShiny: Make shiny
+      makeNormal: Remove shiny
+      empty: You do not own any Shlagémon yet.
   layout:
     GameGrid:
       inventory: Inventory
@@ -911,7 +965,51 @@ components:
       introDialog:
         text: Ready to launch the hunt for a legendary Shlagémon?
         embark: Launch
+        finalChoice: Do you want to enter the final battle or access the research lab?
+        fight: Enter the final battle
+        research: Access the research lab
       researchInProgress: Research operations in progress…
+      score: "Score: {value}"
+      legendaryCountdown:
+        progress: "Analyzed anomalies: {current}/{total}"
+        active: Legendary signature detected!
+      legendaryDialog:
+        intro:
+          text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
+          hunt: Engage the capture
+        victory:
+          text: We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon.
+          continue: Back to the lab
+        defeat:
+          text: "{name} overwhelmed us, yet its scent still floods the filters. Catch your breath—we'll corner it on the next attempt."
+          continue: Back to the lab
+        capture:
+          text: Outstanding! {name} is sealed in your Shlagéball. The entire lab is cheering!
+          continue: Back to the lab
+      legendaryBattle:
+        title: Legendary Signal Intercepted
+        missingTeam: No battle-ready Shlagémon available. Select a companion before launching the capture.
+      finaleDialog:
+        intro:
+          step1: You really came, Shlagémon Master. Let's see how you handle my private stock.
+          step2: No charms, no radar, no backup. Just you, six monstrosities, and my clipboard.
+          step3: Show me that your anti-shlagitude is more than luck.
+          start: Engage
+          next: Next
+        victory:
+          step1: Spectacular! You atomised my best culture dishes without flinching.
+          step2: The shlagitude has no refuge left; with you around, the cosmos can breathe.
+          step3: Return anytime—I'll keep mutating new sparring partners for the sheer thrill of it.
+          next: Continue
+          end: Leave the arena
+        defeat:
+          step1: Ouch. Not quite the cosmic heroics we rehearsed, but the lab floor needed fertiliser.
+          step2: Scrub off the failure, recalibrate, and come back when you can stand my vacuum.
+          next: Continue
+          retry: I will return
+      finaleBattle:
+        title: Ultimate Trial – Professor Merdant
+        progress: Specimen {current}/{total}
   settings:
     AccessibilityTab:
       autoHide:
@@ -1032,6 +1130,7 @@ components:
         count: Catch count
         date: First capture
         evolution: Ready to evolve
+        legendary: Legendary
       missingHint: Right-click here to see missing Shlagemons
     MissingModal:
       title: Missing Shlagemons
@@ -1040,6 +1139,7 @@ components:
     CurrencyAmount:
       shlagidiamond: Shlagiamond
       shlagidolar: Shlagidollar
+      shlagpur: ShlagPur
     FullscreenToggle:
       label: Fullscreen
     Info:
@@ -1089,6 +1189,9 @@ composables:
     second: "{count} second | {count} seconds"
     and: and
 data:
+  badges:
+    space:
+      name: Space Badge
   Minigame:
     Battleship:
       startText: How about a game of Battleship?
@@ -1172,6 +1275,10 @@ data:
         name: Hyper Shlagéball
         description: Offers very high catch chances.
         details: Designed for tough Shlagémon, it grants a huge bonus.
+      masterShlageball:
+        name: Master Shlag
+        description: Guarantees capture on any non-legendary Shlagémon, with a chance to snag weakened legendaries.
+        details: Seals any standard Shlagémon instantly. Against a laboratory legend, the odds scale from 1% to 10% depending on remaining HP.
     wearables:
       attackRing:
         attackRing:
@@ -1380,6 +1487,14 @@ data:
       name: Odor Elixir
       description: A rare scent to bond forever with a Shlagemon.
       details: Use it on a beloved Shlagemon so its rarity matches its level from now on.
+    chromaticPotion:
+      name: Chromatic Potion
+      description: Flip a Shlagémon's shiny state.
+      details: Select any Shlagémon to invert its chroma. Shiny becomes normal, dull becomes shiny.
+    shlagPotion:
+      name: Shlag Potion
+      description: Restores {percent}% of your active Shlagémon's HP in a single chug.
+      details: A syrupy shlag brew loaded with neon glitter that instantly refills half of your active Shlagémon's HP bar when the fight gets dire.
   kings:
     plaine-kekette:
       dialogBefore: Hey, if you win I'll treat you to breakfast!
@@ -2519,6 +2634,8 @@ pages:
         shlagidolarLabel: Shlagidollars
         shlagidiamondLabel: Shlagidiamonds
         playtimeLabel: Playtime
+        shlagpur: "ShlagPur: {amount}"
+        shlagpurLabel: ShlagPur
       errorInvalid: Invalid save file.
       errorApply: Import failed.
       subtitle: Import a .shlag save file to replace your local data.
@@ -2585,6 +2702,7 @@ stores:
     toast:
       shlagidolar: You receive {amount} Shlagidollars!
       shlagidiamond: You receive {amount} Shlagidiamonds!
+      shlagpur: You gather {amount} ShlagPur!
   inventory:
     toast:
       item: You obtained {qty} {item} ({category})!
@@ -2597,10 +2715,15 @@ stores:
     level: level | levels
     rarityChanged: "{name} gains {rarityGain} {point} of rarity and loses {levelLoss} {level}!"
     released: "{name} was released!"
+    legendarySwitchLocked: You cannot switch Shlagemon during a legendary battle.
   egg:
     toast:
       ready: An egg is ready to hatch!
       readyMultiple: "{count} eggs can hatch! Head to the Henhouse to watch them hatch."
+  chromaticPotion:
+    toast:
+      shiny: "{name} is now shiny!"
+      normal: "{name} is back to normal!"
 common:
   loading: Loading…
   pleaseWait: Please wait

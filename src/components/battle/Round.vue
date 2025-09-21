@@ -10,12 +10,14 @@ const props = withDefaults(defineProps<{
   showXpBar?: boolean
   showEffects?: boolean
   tickDelay?: number
+  forceShowOwnedBall?: boolean
 }>(), {
   clickAttack: true,
   captureEnabled: true,
   showXpBar: true,
   showEffects: true,
   tickDelay: 1000,
+  forceShowOwnedBall: undefined,
 })
 
 const emit = defineEmits<{
@@ -38,7 +40,7 @@ const nextPlayer = ref<DexShlagemon | null>(null)
 const displayedEnemy = ref(props.enemy)
 const nextEnemy = ref<DexShlagemon | null>(null)
 
-const showOwnedBall = computed(() => zone.current.type === 'sauvage')
+const showOwnedBall = computed(() => props.forceShowOwnedBall !== undefined ? props.forceShowOwnedBall : zone.current.type === 'sauvage')
 
 const enemyCaptured = computed<boolean>(() =>
   displayedEnemy.value ? dex.capturedBaseIds.has(displayedEnemy.value.base.id) : false,

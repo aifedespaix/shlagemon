@@ -183,7 +183,7 @@ export const useAudioStore = defineStore('audio', () => {
     }
   }
 
-  function playSfx(id: SfxId, options: { loop?: boolean } = {}) {
+  function playSfx(id: SfxId, options: { loop?: boolean; rate?: number } = {}) {
     if (isServer || import.meta.env.VITEST || !isSfxEnabled.value)
       return undefined
     const sound = sfxMap[id]
@@ -191,6 +191,8 @@ export const useAudioStore = defineStore('audio', () => {
       return undefined
     const soundId = sound.play()
     sound.volume(sfxVolume.value, soundId)
+    if (typeof options.rate === 'number')
+      sound.rate(options.rate, soundId)
     if (options.loop)
       sound.loop(true, soundId)
     return soundId

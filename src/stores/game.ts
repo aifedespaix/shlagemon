@@ -5,6 +5,7 @@ import { toast } from '~/modules/toast'
 export const useGameStore = defineStore('game', () => {
   const shlagidolar = ref(0)
   const shlagidiamond = ref(0)
+  const shlagpur = ref(0)
 
   interface CurrencyOptions {
     toast?: boolean
@@ -22,12 +23,19 @@ export const useGameStore = defineStore('game', () => {
       toast.success(i18n.global.t('stores.game.toast.shlagidiamond', { amount }))
   }
 
+  function addShlagpur(amount: number, options: CurrencyOptions = {}) {
+    shlagpur.value += amount
+    if (amount > 0 && options.toast)
+      toast.success(i18n.global.t('stores.game.toast.shlagpur', { amount }))
+  }
+
   function reset() {
     shlagidolar.value = 0
     shlagidiamond.value = 0
+    shlagpur.value = 0
   }
 
-  return { shlagidolar, shlagidiamond, addShlagidolar, addShlagidiamond, reset }
+  return { shlagidolar, shlagidiamond, shlagpur, addShlagidolar, addShlagidiamond, addShlagpur, reset }
 }, {
   persist: true,
 })

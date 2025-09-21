@@ -7,7 +7,7 @@ import type { BaseShlagemon } from './shlagemon'
  * These identifiers also match the corresponding icon filenames located in
  * `public/icons/badges`.
  */
-export type ArenaBadgeId = 'couillasse' | 'sock' | 'mystic-onion' | 'buttered-toast'
+export type ArenaBadgeId = 'couillasse' | 'sock' | 'mystic-onion' | 'buttered-toast' | 'space'
 
 /**
  * Metadata describing an arena badge.

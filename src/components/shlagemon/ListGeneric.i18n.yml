@@ -13,6 +13,7 @@ fr:
     count: Nb obtentions
     date: Première capture
     evolution: Proche d'évoluer
+    legendary: Légendaire
 en:
   search: Search
   missingHint: Right-click here to see missing Shlagemons
@@ -28,3 +29,4 @@ en:
     count: Catch count
     date: First capture
     evolution: Ready to evolve
+    legendary: Legendary

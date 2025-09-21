@@ -8,6 +8,8 @@ import type { Ball, DexShlagemon } from '~/type'
  * @returns The capture probability expressed as a percentage between 0 and 100.
  */
 export function getCaptureChance(enemy: DexShlagemon, ball: Ball): number {
+  if (ball.id === 'master-shlag')
+    return masterShlagChance(enemy)
   const hpChance = captureChanceFromHp(enemy.hpCurrent / enemy.hp)
   const levelBonus = ballLevelMultiplier(ball, enemy.lvl)
   if (levelBonus <= 0)
@@ -23,6 +25,18 @@ export function getCaptureChance(enemy: DexShlagemon, ball: Ball): number {
   // probability by three keeps the overall success rate aligned with the
   // computed chance value.
   return chance / 3
+}
+
+function masterShlagChance(enemy: DexShlagemon): number {
+  if (enemy.base.speciality !== 'legendary')
+    return 100
+  const dev = useDeveloperStore()
+  const ratio = Math.min(1, Math.max(0, enemy.hpCurrent / enemy.hp))
+  const finalChance = 1 + (1 - ratio) * 9
+  const perAttempt = 1 - (1 - finalChance / 100) ** (1 / 2)
+  if (dev.debug)
+    return 100
+  return perAttempt * 100
 }
 
 export function tryCapture(enemy: DexShlagemon, ball: Ball): boolean {

@@ -1,0 +1,80 @@
+en:
+  steps:
+    step1:
+      text: "Shlagémon Trainer, you have filled every slot of the Shlagedex. The academy archives already whisper your name."
+      responses:
+        next: Continue
+    step2:
+      text: "I reviewed your notes—no glitch, no forged entry. One hundred percent organic captures."
+      responses:
+        back: Back
+        next: I'm listening
+    step3:
+      text: "You've bottled every pest of this continent and choked the shlagitude before it seeped into the stratosphere."
+      responses:
+        back: Back
+        next: Go on
+    step4:
+      text: "Frankly, I dreamed of this day. Not because I doubted the data, but because I wanted to see the person who would bend reality back into shape."
+      responses:
+        back: Back
+        next: What's next?
+    step5:
+      text: "And yet one test remains. Not a hunt, not a scavenger chase—a duel. My duel."
+      responses:
+        back: Back
+        next: A duel?
+    step6:
+      text: "Come to my laboratory. I'll deploy the nastiest, non-legendary specimens I ever cultured, all honed to level 200."
+      responses:
+        back: Back
+        next: I'm ready
+    step7:
+      text: "Win, and I will proclaim you the definitive champion of anti-shlagitude. Lose, and you restart the cleansing until you can withstand my orbit."
+      responses:
+        back: Back
+        next: Understood
+    step8:
+      text: "Take a breath, sharpen your team, and meet me in the Laboratory. The final experiment awaits."
+      responses:
+        valid: To the laboratory!
+fr:
+  steps:
+    step1:
+      text: "Dresseur Shlagémon, tu as rempli chaque case du Shlagedex. Les archives de l'académie murmurent déjà ton nom."
+      responses:
+        next: Continuer
+    step2:
+      text: "J'ai vérifié ton carnet : aucune fraude, aucune entrée trafiquée. Cent pour cent de captures authentiques."
+      responses:
+        back: Retour
+        next: Je t'écoute
+    step3:
+      text: "Tu as embouteillé chaque nuisance de ce continent et étouffé la shlagitude avant qu'elle ne s'infiltre dans la stratosphère."
+      responses:
+        back: Retour
+        next: Et ensuite ?
+    step4:
+      text: "J'ai rêvé de ce jour. Non pas parce que je doutais des données, mais parce que je voulais rencontrer la personne capable de redresser la réalité."
+      responses:
+        back: Retour
+        next: Quelle suite ?
+    step5:
+      text: "Il reste pourtant une ultime épreuve. Pas une chasse, pas une collecte : un duel. Mon duel."
+      responses:
+        back: Retour
+        next: Un duel ?
+    step6:
+      text: "Rejoins mon laboratoire. J'y alignerai les pires spécimens non légendaires que j'ai élevés, tous polis au niveau 200."
+      responses:
+        back: Retour
+        next: Je suis prêt
+    step7:
+      text: "Gagne, et je te consacre champion absolu anti-shlagitude. Perds, et tu recommenceras jusqu'à encaisser mon orbite."
+      responses:
+        back: Retour
+        next: Compris
+    step8:
+      text: "Respire, affûte ton équipe, et retrouve-moi au laboratoire. L'expérience finale t'attend."
+      responses:
+        valid: En route pour le labo !

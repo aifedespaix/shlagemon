@@ -13,13 +13,26 @@ export function useShopPurchase() {
   const selectedItem = ref<Item | null>(null)
   const selectedQty = ref(1)
 
+  function balanceFor(item: Item): number {
+    switch (item.currency) {
+      case 'shlagidiamond':
+        return game.shlagidiamond
+      case 'shlagpur':
+        return game.shlagpur
+      default:
+        return game.shlagidolar
+    }
+  }
+
   const maxQty = computed(() => {
-    if (!selectedItem.value)
+    const item = selectedItem.value
+    if (!item)
       return 1
-    const money = selectedItem.value.currency === 'shlagidiamond'
-      ? game.shlagidiamond
-      : game.shlagidolar
-    return Math.max(1, Math.floor(money / (selectedItem.value.price ?? 0)))
+    const price = item.price ?? 0
+    if (price <= 0)
+      return 999
+    const affordable = Math.floor(balanceFor(item) / price)
+    return Math.max(1, affordable)
   })
 
   watch(selectedItem, () => {
@@ -43,12 +56,13 @@ export function useShopPurchase() {
   }
 
   const canBuy = computed(() => {
-    if (!selectedItem.value)
+    const item = selectedItem.value
+    if (!item)
       return false
-    const cost = (selectedItem.value.price ?? 0) * selectedQty.value
-    if (selectedItem.value.currency === 'shlagidiamond')
-      return game.shlagidiamond >= cost
-    return game.shlagidolar >= cost
+    const cost = (item.price ?? 0) * selectedQty.value
+    if (cost <= 0)
+      return true
+    return balanceFor(item) >= cost
   })
 
   /**
@@ -62,10 +76,9 @@ export function useShopPurchase() {
     if (success) {
       audio.playBuySfx()
       const cost = (selectedItem.value.price ?? 0) * selectedQty.value
-      const currency = selectedItem.value.currency === 'shlagidiamond'
-        ? 'Shlagédiamant'
-        : 'Shlagédollar'
-      const currencyName = cost > 1 ? `${currency}s` : currency
+      const currencyKey = selectedItem.value.currency ?? 'shlagidolar'
+      const currencySingular = t(`components.ui.CurrencyAmount.${currencyKey}`)
+      const currencyName = cost > 1 ? `${currencySingular}s` : currencySingular
       toast.success(t('components.panel.Shop.bought', {
         qty: selectedQty.value,
         item: t(selectedItem.value.name),
