@@ -30,7 +30,7 @@ fr:
       continue: Retour au laboratoire
     post:
       intro:
-        text: "On a isolé un spécimen d'élite : {name}. Il n'a rien de légendaire, mais sa puissance dépasse nos mesures."
+        text: "On a isolé un spécimen d'élite : {name}. Sa puissance dépasse nos mesures."
         hunt: Le confronter
       victory:
         text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."
@@ -82,7 +82,7 @@ en:
       continue: Back to the lab
     post:
       intro:
-        text: "We've isolated an elite specimen: {name}. Not legendary, yet wildly beyond the charts."
+        text: "We've isolated an elite specimen: {name}. Its power is off the charts."
         hunt: Engage the battle
       victory:
         text: "We subdued {name}, but the sample dissipated before we preserved it. The scanners are richer—we'll relaunch the chase soon."

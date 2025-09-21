@@ -991,7 +991,7 @@ components:
           continue: Retour au laboratoire
         post:
           intro:
-            text: "On a isolé un spécimen d'élite : {name}. Il n'a rien de légendaire, mais sa puissance dépasse nos mesures."
+            text: "On a isolé un spécimen d'élite : {name}. Sa puissance dépasse nos mesures."
             hunt: Le capturer
           victory:
             text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."

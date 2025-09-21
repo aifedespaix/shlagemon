@@ -988,7 +988,7 @@ components:
           continue: Back to the lab
         post:
           intro:
-            text: "We've isolated an elite specimen: {name}. Not legendary, yet wildly beyond the charts."
+            text: "We've isolated an elite specimen: {name}. Its power is off the charts."
             hunt: Engage the capture
           victory:
             text: We subdued {name}, but the sample dissipated before we preserved it. The scanners are richer—we'll relaunch the chase soon.
