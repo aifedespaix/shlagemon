@@ -69,7 +69,7 @@ components:
       captured: Vous avez capturé {name} !
       fail: Raté !
     DiseaseBadge:
-      tooltip: "Malade : {n} combats restants"
+      tooltip: 'Malade : {n} combats restants'
     EffectBadge:
       attack: Votre attaque est boostée pour encore {remaining}
       defense: Votre défense est boostée pour encore {remaining}
@@ -109,7 +109,7 @@ components:
     healedFor: Soigné de {amount} PV
   deck:
     Detail:
-      evolution: "Évolution :"
+      evolution: 'Évolution :'
       level: lvl {n}
     List:
       search: Rechercher
@@ -131,7 +131,7 @@ components:
             retry: Réessayer
             quit: Quitter
     ArenaVictoryDialog:
-      toast: "{name} obtenu !"
+      toast: '{name} obtenu !'
       steps:
         step1:
           text: Félicitations ! Tu as triomphé de l'arène.
@@ -605,7 +605,7 @@ components:
         step1:
           text: Impressionnant ! Tu as capturé au moins {count} Shlagémons.
         step2:
-          text: "Voici un objet unique : {name}."
+          text: 'Voici un objet unique : {name}.'
         step3:
           text: Il augmente {stat} du porteur de {percent}%.
         step4:
@@ -678,7 +678,7 @@ components:
             back: Retour
             next: Quelle suite ?
         step5:
-          text: "Il reste pourtant une ultime épreuve. Pas une chasse, pas une collecte : un duel. Mon duel."
+          text: 'Il reste pourtant une ultime épreuve. Pas une chasse, pas une collecte : un duel. Mon duel.'
           responses:
             back: Retour
             next: Un duel ?
@@ -770,7 +770,7 @@ components:
         - T'es à deux doigts de faire un pet cérébral.
         - Rarement vu quelqu'un aussi merdique.
       validate: Valider
-      attemptsLeft: "{n} tentatives restantes"
+      attemptsLeft: '{n} tentatives restantes'
       win: T'as percé le cerveau d'un Shlag !
       lose: Même un Petmorv y serait arrivé
       legend:
@@ -779,7 +779,7 @@ components:
         absent: Absent de la combinaison
       selectSlot: Sélectionne une case
     Pairs:
-      attempts: "{n} tentative | {n} tentatives"
+      attempts: '{n} tentative | {n} tentatives'
     masterMind:
       SelectionModal:
         title: Choisis un Shlagémon
@@ -797,9 +797,9 @@ components:
       intro1: Le bonus du Shlagedex augmente les dégâts finaux de tous vos Shlagémons ! Il représente le bonus maximal que vous pouvez obtenir en capturant tous les Shlagémons accessibles.
       intro2: Il se base sur le pourcentage de complétion de ce Shlagédex potentiel ainsi que sur le niveau moyen de votre équipe.
       formula: Bonus = niveau moyen × 2 × (taux de complétion / 100) / 10
-      completion: "Complétion :"
-      averageLevel: "Niveau moyen :"
-      currentBonus: "Bonus actuel :"
+      completion: 'Complétion :'
+      averageLevel: 'Niveau moyen :'
+      currentBonus: 'Bonus actuel :'
     Inventory:
       search: Rechercher
       sort:
@@ -816,7 +816,7 @@ components:
     MiniGame:
       exit: Quitter
     PlayerInfos:
-      sick: "Malade : {n} combats restants"
+      sick: 'Malade : {n} combats restants'
       dex: ShlagéDex
       averageLevel: Niveau moyen
       bonus: Bonus
@@ -921,7 +921,7 @@ components:
         collectEgg: Récupérer l'œuf
       toast:
         started: Élevage lancé !
-        finished: "{name} a pondu un œuf, vous pouvez le récupérer dès maintenant."
+        finished: '{name} a pondu un œuf, vous pouvez le récupérer dès maintenant.'
         collected: Œuf récupéré !
       a11y:
         openSelector: Choisir le parent
@@ -950,10 +950,10 @@ components:
           - Ohoh… {shlagemon_name}, prépare-toi pour un ensemencement magistral !
         completed:
           - ça y est je lui ai tout mis dedans, il a sorti un oeuf !
-          - "Mission accomplie : il est plein… et il a pondu !"
+          - 'Mission accomplie : il est plein… et il a pondu !'
           - Je lui ai mis tout ce qu’il fallait… et paf ! Un œuf.
-          - "Je n’ai pas fait les choses à moitié : voilà l’œuf !"
-          - "Je lui ai mis tout le paquet… résultat : un œuf bien chaud."
+          - 'Je n’ai pas fait les choses à moitié : voilà l’œuf !'
+          - 'Je lui ai mis tout le paquet… résultat : un œuf bien chaud.'
           - Rempli de bonheur… et voilà un œuf en cadeau !
       changeSelected: Changer {name}
     Shlagedex:
@@ -972,20 +972,20 @@ components:
         fight: Lancer le combat final
         research: Accéder au labo de recherche
       researchInProgress: Travaux de recherche en cours…
-      score: "Score : {value}"
+      score: 'Score : {value}'
       legendaryCountdown:
-        progress: "Anomalies analysées : {current}/{total}"
+        progress: 'Anomalies analysées : {current}/{total}'
         active: Signature légendaire localisée !
       legendaryDialog:
         intro:
-          text: "On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !"
+          text: 'On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !'
           hunt: C’est parti !
           skip: Continuer les recherches
         victory:
           text: Nous avons neutralisé {name}, mais la bête s’est dissipée avant la capture. On recalibre les capteurs et on retente dès qu’un nouveau signal apparaît.
           continue: Retour au laboratoire
         defeat:
-          text: "{name} nous a repoussés, mais ses effluves saturent encore nos filtres. Reprends ton souffle, on le coincera au prochain essai."
+          text: '{name} nous a repoussés, mais ses effluves saturent encore nos filtres. Reprends ton souffle, on le coincera au prochain essai.'
           continue: Retour au laboratoire
         capture:
           text: Incroyable ! {name} est sécurisé dans ta Shlagéball. Tout le laboratoire applaudit ta prouesse !
@@ -999,7 +999,7 @@ components:
             text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."
             continue: Retour au laboratoire
           defeat:
-            text: "Le spécimen {name} a tenu bon. Ses données nourrissent toutefois nos scanners : reprends ton souffle, on retente bientôt."
+            text: 'Le spécimen {name} a tenu bon. Ses données nourrissent toutefois nos scanners : reprends ton souffle, on retente bientôt.'
             continue: Retour au laboratoire
           capture:
             text: Magnifique ! {name} rejoint ta collection. J'ai fusionné ses caractéristiques avec ton exemplaire pour conserver le meilleur des deux.
@@ -1011,7 +1011,7 @@ components:
       finaleDialog:
         intro:
           step1: Te voilà, maître Shlagémon. Voyons comment tu encaisses mes cultures privées.
-          step2: "Pas de charme, pas de radar, pas de renfort : juste toi, six horreurs et mon clipboard."
+          step2: 'Pas de charme, pas de radar, pas de renfort : juste toi, six horreurs et mon clipboard.'
           step3: Prouve-moi que ton anti-shlagitude dépasse le simple coup de chance.
           start: Lancer
           next: Suivant
@@ -1033,9 +1033,9 @@ components:
         selectTitle: Choisis le prochain Shlagémon
       researchBar:
         title: Recherche légendaire
-        progress: "Progression : {current}/{total}"
-        remaining: "Points restants : {remaining}"
-        ready: "Taurus suivant : Combat légendaire"
+        progress: 'Progression : {current}/{total}'
+        remaining: 'Points restants : {remaining}'
+        ready: 'Taurus suivant : Combat légendaire'
         reward: +{amount} ShlagPur par point de recherche
   settings:
     AccessibilityTab:
@@ -1085,7 +1085,7 @@ components:
     Detail:
       equipItemTitle: Équiper un objet
       allowEvolution: Autoriser ce Shlagémon à évoluer ?
-      firstCatch: "Première capture : {date}"
+      firstCatch: 'Première capture : {date}'
       obtainedTimes: Obtenu {count} fois
       release: Relâcher
       main: Principal
@@ -1110,7 +1110,7 @@ components:
       smell: Puanteur
       title: Informations Shlagémon
     EvolutionModal:
-      evolveTitle: "{name} évolue"
+      evolveTitle: '{name} évolue'
       question: « {from} » veut évoluer en « {to} », voulez-vous le laisser faire ou l'empêcher de répandre sa shlaguitude ?
       alreadyOwned: Vous possédez déjà l'évolution de ce Shlagémon
       yes: Oui
@@ -1191,7 +1191,7 @@ components:
       henhouse: Poulailler
       breeding: Élevage
       fightKing: Défier la {label} de la zone
-      kingDefeated: "{label} vaincu{suffix} !"
+      kingDefeated: '{label} vaincu{suffix} !'
       dojo: Dojo
       laboratory: Laboratoire
   zone:
@@ -1201,19 +1201,19 @@ components:
     InstallBanner:
       title: Installer l’application ?
       chromium_hint: Accès rapide, hors-ligne, plein écran.
-      ios_hint: "Sur iOS : ajouter à l’écran d’accueil via le menu Partager."
+      ios_hint: 'Sur iOS : ajouter à l’écran d’accueil via le menu Partager.'
       ios_instructions: "Sur iPhone/iPad : touchez le bouton 'Partager', puis 'Sur l’écran d’accueil'."
       later: Plus tard
       install: Installer
       how: Comment ?
 composables:
   useFormatDuration:
-    year: "{count} an | {count} ans"
-    month: "{count} mois"
-    day: "{count} jour | {count} jours"
-    hour: "{count} heure | {count} heures"
-    minute: "{count} minute | {count} minutes"
-    second: "{count} seconde | {count} secondes"
+    year: '{count} an | {count} ans'
+    month: '{count} mois'
+    day: '{count} jour | {count} jours'
+    hour: '{count} heure | {count} heures'
+    minute: '{count} minute | {count} minutes'
+    second: '{count} seconde | {count} secondes'
     and: et
 data:
   badges:
@@ -1518,10 +1518,14 @@ data:
       name: Potion Shlag
       description: Rend {percent}% des PV de votre Shlagémon actif en une lampée.
       details: Un sirop shlag gavé de paillettes fluo qui redonne instantanément la moitié des PV de votre Shlagémon actif quand le combat tourne au vinaigre.
+    shlagPurePotion:
+      name: Potion Shlag Pure
+      description: Rend {percent}% des PV de votre Shlagémon actif en une lampée.
+      details: Un breuvage shlag ultra-distillé aux reflets arc-en-ciel qui recharge intégralement la barre de PV de votre Shlagémon actif en un éclair.
     chromaticPotion:
       name: Potion chromatique
       description: Inverse l'état shiny de n'importe quel Shlagémon.
-      details: "Choisis un Shlagémon pour basculer sa chroma : shiny devient terne, terne devient shiny."
+      details: 'Choisis un Shlagémon pour basculer sa chroma : shiny devient terne, terne devient shiny.'
   kings:
     plaine-kekette:
       dialogBefore: Coucou, si tu gagnes, je te paye le petit déjeuné !
@@ -1621,7 +1625,7 @@ data:
         description: Roux pas Cool était anciennement cool. Roux pas Cool a passé trop de temps à gratter des accords mineurs au bord d’un volcan éteint. Désormais, Roux pas Cool erre avec une guitare trop grande pour ses ailes, des taches de rousseur qui pleurent, et une chemise à carreaux qui sent l’herbe humide et les regrets. Son plumage a pris une teinte rouille triste, et sa mèche rousse cache un regard empli de remords, comme s’il réalisait constamment qu’il aurait pu évoluer en rapace légendaire, mais a préféré sortir un EP en indépendant. Il fait toujours un peu froid autour de lui, même en plein été. Sa capacité signature, Refrain Gênant, inflige un malaise profond à toute l’arène, réduisant la précision des attaques ennemies tant qu’ils détournent le regard. Il est très doué pour faire fuir les Pokémon sauvages… et les rendez-vous galants.
         name: Roux pas Cool
       sacdepates:
-        description: "Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser."
+        description: 'Sac de Pâtes est une boule vivante de spaghettis emmêlés, dont les longs brins forment un labyrinthe mouvant. Doté de deux yeux perçants incrustés au milieu de ses pâtes, il intimide quiconque croise son regard infernal. Ses pieds rouges, lisses et luisants, lui permettent de rouler à toute vitesse sur ses adversaires, qu’il écrase sans pitié dans un rire aigu et diabolique. Il passe ses journées à se peigner minutieusement avec un peigne fin, espérant un jour démêler le nœud infini qu’il est devenu. On raconte que plus ses spaghettis sont emmêlés, plus il devient redoutable. Talent : Nœud Fatal — Quand Sacdepâtes subit une attaque physique, il peut s’enrouler autour de l’ennemi pour le piéger et l’immobiliser.'
         name: Sac de Pâtes
     05-10:
       aspigros:
@@ -1646,7 +1650,7 @@ data:
         description: Une masse de boue nauséabonde qui se traîne lentement. Là où il passe, plus rien ne pousse à cause de sa toxicité. Il est fait d'une boue toxique. Il pollue tout ce qu’il touche, même le sol devient stérile. Il pue tellement que des gens s’évanouissent rien qu’en le croisant. Son corps est un concentré de toxines.
         name: Metamorve
       ptitocard:
-        description: "Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion… mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr."
+        description: 'Ptitocard est aussi fragile qu’une biscotte mouillée et aussi expressif qu’un poisson-panique en pleine crise existentielle. Son regard vide, humide et terriblement plaintif fait fondre les cœurs les plus endurcis — ou les agace profondément, au choix. Il coule plus qu’il ne nage, et sa spirale ventrale ne tourne que lorsqu’il fait une crise d’angoisse. Il bave en permanence, mais pas de la bouche : c’est tout son corps qui transpire la détresse. On pense qu’il est triste de naissance, mais certains spécialistes évoquent une simple allergie à la vie. Sa capacité spéciale, *Larme Infinie*, provoque l’ennui mortel chez l’ennemi. Un adversaire qui regarde Ptitocard pendant plus de 10 secondes peut tomber dans un coma d’indifférence profonde. Ptitocard rêve de devenir un grand champion… mais ne fait rien pour. On le trouve souvent flottant à la surface des flaques, en train de se demander s’il mérite vraiment d’évoluer. Spoiler : pas sûr.'
         name: Ptitocard
     10-15:
       abraquemar:
@@ -1934,7 +1938,7 @@ data:
         description: Sa langue interminable traîne partout et sert principalement à médire. Il aime critiquer ses adversaires jusqu'à ce qu'ils abandonnent par lassitude.
         name: Languedepute
       lecocu:
-        description: "Lecocu porte toujours un air triste : sa femme le trompe avec tous les dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec une gentillesse déconcertante."
+        description: 'Lecocu porte toujours un air triste : sa femme le trompe avec tous les dresseurs du coin. Malgré sa malchance amoureuse, il soigne les autres avec une gentillesse déconcertante.'
         name: Lecocu
       rhinofaringite:
         description: Ce rhinocéros enrhumé éternue des rochers sur ses ennemis. Son nez coule en permanence, ce qui le rend aussi glissant qu'imprévisible.
@@ -1989,7 +1993,7 @@ data:
         Aujourd’hui, Artichaud veille sur les zones de non-droit climatiques, où il impose son règne moite et frigorifié, entre deux éternuements fumants et des engelures de l’aisselle.
       name: Artichaud
     bulgrosboule:
-      description: "Bulgrosboule est connu pour ses fesses titanesques capables d’éclipser le soleil couchant. Il avance à reculons, plus par fierté que par stratégie, laissant échapper des bulles parfumées d’une zone que les dresseurs préfèrent ne pas mentionner. Son cri ressemble à un bain moussant sous pression, et sa capacité signature, *Éruption Fessale*, propulse ses ennemis dans une brume tiède et collante. Doté d’une peau rebondie comme une piscine gonflable de brocante, il adore rebondir sur place en gloussant, ce qui désoriente la plupart des adversaires. Bulgrosboule est très affectueux, surtout avec ceux qui le massent. Attention toutefois : s’il se met à trembler des miches, c’est trop tard. Il va buller."
+      description: 'Bulgrosboule est connu pour ses fesses titanesques capables d’éclipser le soleil couchant. Il avance à reculons, plus par fierté que par stratégie, laissant échapper des bulles parfumées d’une zone que les dresseurs préfèrent ne pas mentionner. Son cri ressemble à un bain moussant sous pression, et sa capacité signature, *Éruption Fessale*, propulse ses ennemis dans une brume tiède et collante. Doté d’une peau rebondie comme une piscine gonflable de brocante, il adore rebondir sur place en gloussant, ce qui désoriente la plupart des adversaires. Bulgrosboule est très affectueux, surtout avec ceux qui le massent. Attention toutefois : s’il se met à trembler des miches, c’est trop tard. Il va buller.'
       name: Bulgrosboule
     carapouffe:
       description: Carapouffe s'est enfoncée dans sa propre carapace moelleuse, elle ne se déplace qu’en roulant lentement, laissant derrière elle une traînée de paillettes et de gloss fondu. Son maquillage dégouline en permanence, formant une couche protectrice impénétrable — les scientifiques appellent ça le « fard d’armure ». Dotée d’un regard mi-séduisant, mi-comateux, elle hypnotise ses adversaires en leur lançant des œillades flasques, accompagnées d’un soupir de lassitude cosmique. Elle passe ses journées à se recoiffer sans bouger la tête, grâce à un système complexe de brosses dissimulées dans son chignon. Sa voix est rauque, son parfum est toxique, et sa principale attaque, "Écrasement Moussant", consiste à s’écrouler violemment sur son ennemi en faisant claquer ses faux ongles.
@@ -2594,7 +2598,7 @@ layouts:
   NotFound:
     not-found: Page introuvable
 pages:
-  "404":
+  '404':
     title: Page introuvable
     description: La page que vous cherchez n'existe pas, a été déplacée ou l'URL contient une erreur.
     goHome: Retour à l’accueil
@@ -2603,14 +2607,14 @@ pages:
     copied: Copié !
     copyTitle: Copier les détails (URL, navigateur...)
     report: Signaler un lien cassé
-    hint: "Astuce : appuyez sur H pour aller à l’accueil, B pour revenir en arrière."
+    hint: 'Astuce : appuyez sur H pour aller à l’accueil, B pour revenir en arrière.'
   index:
     title: Shlagémon - Ça sent très fort
     description: Les Shlagémons ne sentent pas très bon.
     welcome: Bienvenue dans Shlagémon
   privacy-policy:
     title: Politique de Confidentialité – Shlagémon
-    lastUpdated: "Dernière mise à jour : 06/08/2025"
+    lastUpdated: 'Dernière mise à jour : 06/08/2025'
     sections:
       data:
         title: 1. Données collectées
@@ -2646,21 +2650,21 @@ pages:
       cancel: Annuler
       summary:
         title: Récapitulatif
-        mons: "Shlagémons : {count}"
-        shlagidolar: "Shlagidolars : {amount}"
-        shlagidiamond: "Shlagidiamonds : {amount}"
-        playtime: "Temps de jeu : {time}"
+        mons: 'Shlagémons : {count}'
+        shlagidolar: 'Shlagidolars : {amount}'
+        shlagidiamond: 'Shlagidiamonds : {amount}'
+        playtime: 'Temps de jeu : {time}'
         monsLabel: Shlagémons
         shlagidolarLabel: Shlagidolars
         shlagidiamondLabel: Shlagidiamonds
         playtimeLabel: Temps de jeu
-        shlagpur: "ShlagPur : {amount}"
+        shlagpur: 'ShlagPur : {amount}'
         shlagpurLabel: ShlagPur
       errorInvalid: Fichier de sauvegarde invalide.
       errorApply: L'import a échoué.
       subtitle: Importez une sauvegarde .shlag pour remplacer vos données locales.
       hint: Cliquez ou glissez-déposez un fichier {ext}
-      warningTitle: "Attention : import destructif"
+      warningTitle: 'Attention : import destructif'
       fileReady: Fichier prêt. Vérifiez les détails ci-dessous.
       acknowledge: Je comprends que cette action remplace TOUTES mes données locales.
       description: Importez une sauvegarde Shlagémon depuis un fichier .shlag.
@@ -2687,26 +2691,26 @@ pages:
       seeEgg: Voir l'œuf
     toast:
       started: Élevage lancé !
-      finished: "{name} a pondu un œuf, vous pouvez le récupérer dès maintenant."
+      finished: '{name} a pondu un œuf, vous pouvez le récupérer dès maintenant.'
     a11y:
       openSelector: Choisir le parent
       startBreeding: Lancer l'élevage
       goToEgg: Aller à l'œuf
 stores:
   achievements:
-    unlocked: "Succès déverrouillé : {title}"
+    unlocked: 'Succès déverrouillé : {title}'
     zoneShinyTitle: "{zone} : Chasseur d'arc-en-ciel"
     zoneShinyDescription: Capturer tous les Shlagémon de {zone} en version shiny.
-    zoneRarityTitle: "{zone} : Perfectionniste"
+    zoneRarityTitle: '{zone} : Perfectionniste'
     zoneRarityDescription: Amener tous les Shlagémon de {zone} à la rareté 100.
     zoneCompleteDescription: Capturer tous les Shlagémon de {zone}.
-    zoneWinTitle: "{n} victoires - {zone}"
+    zoneWinTitle: '{n} victoires - {zone}'
     zoneWinDescription: Vaincre {n} Shlagémon dans {zone}.
     shinyTitles:
-      "1": Shiny!
-      "10": 10 shinies
-      "100": 100 shinies
-      "1000": Légende vivante
+      '1': Shiny!
+      '10': 10 shinies
+      '100': 100 shinies
+      '1000': Légende vivante
     shinyDescription: Capturer {n} Shlagémon shiny extrêmement rares.
     itemTitles:
       firstPurchase: Premier craquage
@@ -2727,24 +2731,24 @@ stores:
     toast:
       item: Tu obtiens {qty} {item} ({category}) !
   shlagedex:
-    rarityReached: "{name} atteint la rareté {rarity} !"
-    evolved: "{name} a évolué !"
+    rarityReached: '{name} atteint la rareté {rarity} !'
+    evolved: '{name} a évolué !'
     obtained: Tu as obtenu {name} !
     alreadyMax: Vous avez déjà ce Shlagémon au maximum de sa rareté
     point: point | points
     level: niveau | niveaux
-    rarityChanged: "{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !"
-    released: "{name} a été relâché !"
+    rarityChanged: '{name} gagne {rarityGain} {point} de rareté et perd {levelLoss} {level} !'
+    released: '{name} a été relâché !'
     legendarySwitchLocked: Impossible de changer de Shlagémon pendant un combat légendaire.
-    statsMerged: "{name} fusionne ses stats : seules les meilleures valeurs sont conservées !"
+    statsMerged: '{name} fusionne ses stats : seules les meilleures valeurs sont conservées !'
   egg:
     toast:
       ready: Un œuf est prêt à éclore !
       readyMultiple: "{count} œufs sont prêts à éclore ! Rendez-vous au Poulailler pour assister à l'éclosion."
   chromaticPotion:
     toast:
-      shiny: "{name} est maintenant chromatique !"
-      normal: "{name} redevient normal !"
+      shiny: '{name} est maintenant chromatique !'
+      normal: '{name} redevient normal !'
 common:
   loading: Chargement…
   pleaseWait: Veuillez patienter

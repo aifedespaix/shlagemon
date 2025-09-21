@@ -35,7 +35,7 @@ type BattlePotion = ItemBattle & Required<Pick<ItemBattle, 'power' | 'price' | '
  * Cooldown applied after using a Shlag potion during battle.
  * Expressed in seconds to stay consistent with the battle cooldown store.
  */
-const SHLAG_POTION_COOLDOWN_SECONDS = 120
+const SHLAG_POTION_COOLDOWN_SECONDS = 75
 
 // @unocss-include
 export const defensePotion: Item = {
@@ -354,6 +354,24 @@ export const shlagPotion: BattlePotion = {
   detailsParams: { percent: 50 },
 }
 
+export const shlagPurePotion: BattlePotion = {
+  id: 'shlag-pure-potion',
+  name: 'data.items.shlagPurePotion.name',
+  description: 'data.items.shlagPurePotion.description',
+  details: 'data.items.shlagPurePotion.details',
+  type: 'heal',
+  power: 100,
+  price: 2500,
+  currency: 'shlagpur',
+  category: 'battle',
+  battleCooldown: 100,
+  sfxId: 'items-active-potion',
+  icon: 'i-mdi:health-potion-outline',
+  iconClass: 'mask-rainbow',
+  descriptionParams: { percent: 100 },
+  detailsParams: { percent: 100 },
+}
+
 export const multiExp: Item = {
   id: 'multi-exp',
   name: 'data.items.multiExp.name',
@@ -602,6 +620,7 @@ export const allItems = [
   superPotion,
   hyperPotion,
   shlagPotion,
+  shlagPurePotion,
   xpPotion,
   superXpPotion,
   hyperXpPotion,
