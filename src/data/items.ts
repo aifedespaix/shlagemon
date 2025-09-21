@@ -574,7 +574,7 @@ export const chromaticPotion: Item = {
   name: 'data.items.chromaticPotion.name',
   description: 'data.items.chromaticPotion.description',
   details: 'data.items.chromaticPotion.details',
-  price: 1000,
+  price: 666,
   currency: 'shlagpur',
   category: 'actif',
   icon: 'i-game-icons:potion-of-madness',

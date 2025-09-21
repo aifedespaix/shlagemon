@@ -977,6 +977,7 @@ components:
         intro:
           text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
           hunt: Engage the battle
+          skip: Continue research
         victory:
           text: We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon.
           continue: Back to the lab
@@ -990,6 +991,7 @@ components:
           intro:
             text: "We've isolated an elite specimen: {name}. Its power is off the charts."
             hunt: Engage the battle
+            skip: Continue research
           victory:
             text: We subdued {name}, but the sample dissipated before we preserved it. The scanners are richer—we'll relaunch the chase soon.
             continue: Back to the lab

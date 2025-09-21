@@ -980,6 +980,7 @@ components:
         intro:
           text: "On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !"
           hunt: C’est parti !
+          skip: Continuer les recherches
         victory:
           text: Nous avons neutralisé {name}, mais la bête s’est dissipée avant la capture. On recalibre les capteurs et on retente dès qu’un nouveau signal apparaît.
           continue: Retour au laboratoire
@@ -993,6 +994,7 @@ components:
           intro:
             text: "On a isolé un spécimen d'élite : {name}. Sa puissance dépasse nos mesures."
             hunt: Le confronter
+            skip: Continuer les recherches
           victory:
             text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."
             continue: Retour au laboratoire
