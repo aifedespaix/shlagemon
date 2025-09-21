@@ -20,16 +20,30 @@ fr:
       text: 'On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !'
       hunt: C’est parti !
     victory:
-      text: Nous avons neutralisé {name}, mais la bête s’est dissipée avant la capture. On recalibre les capteurs et on retente dès qu’un nouveau signal apparaît.
+      text: 'Nous avons neutralisé {name}, mais la bête s’est dissipée avant la capture. On recalibre les capteurs et on retente dès qu’un nouveau signal apparaît.'
       continue: Retour au laboratoire
     defeat:
       text: '{name} nous a repoussés, mais ses effluves saturent encore nos filtres. Reprends ton souffle, on le coincera au prochain essai.'
       continue: Retour au laboratoire
     capture:
-      text: Incroyable ! {name} est sécurisé dans ta Shlagéball. Tout le laboratoire applaudit ta prouesse !
+      text: 'Incroyable ! {name} est sécurisé dans ta Shlagéball. Tout le laboratoire applaudit ta prouesse !'
       continue: Retour au laboratoire
+    post:
+      intro:
+        text: "On a isolé un spécimen d'élite : {name}. Il n'a rien de légendaire, mais sa puissance dépasse nos mesures."
+        hunt: Le capturer
+      victory:
+        text: "{name} s'est volatilisé avant que nous puissions conserver l'échantillon. Les capteurs se sont enrichis ; on relance la traque dès qu'un nouveau signal répond."
+        continue: Retour au laboratoire
+      defeat:
+        text: 'Le spécimen {name} a tenu bon. Ses données nourrissent toutefois nos scanners : reprends ton souffle, on retente bientôt.'
+        continue: Retour au laboratoire
+      capture:
+        text: Magnifique ! {name} rejoint ta collection. J'ai fusionné ses caractéristiques avec ton exemplaire pour conserver le meilleur des deux.
+        continue: Retour au laboratoire
   legendaryBattle:
     title: Signal légendaire intercepté
+    eliteTitle: Spécimen d'élite détecté
     missingTeam: Aucun Shlagémon prêt au combat. Sélectionne un compagnon avant de relancer la capture.
   finaleBattle:
     title: Épreuve ultime – Professeur Merdant
@@ -56,16 +70,30 @@ en:
       text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
       hunt: Engage the capture
     victory:
-      text: We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon.
+      text: "We overpowered {name}, but it vaporised before the ball latched. Let's recalibrate and strike again soon."
       continue: Back to the lab
     defeat:
       text: "{name} overwhelmed us, yet its scent still floods the filters. Catch your breath—we'll corner it on the next attempt."
       continue: Back to the lab
     capture:
-      text: Outstanding! {name} is sealed in your Shlagéball. The entire lab is cheering!
+      text: 'Outstanding! {name} is sealed in your Shlagéball. The entire lab is cheering!'
       continue: Back to the lab
+    post:
+      intro:
+        text: "We've isolated an elite specimen: {name}. Not legendary, yet wildly beyond the charts."
+        hunt: Engage the capture
+      victory:
+        text: "We subdued {name}, but the sample dissipated before we preserved it. The scanners are richer—we'll relaunch the chase soon."
+        continue: Back to the lab
+      defeat:
+        text: "{name} resisted, yet the readings grew stronger. Catch your breath—we'll resume the hunt shortly."
+        continue: Back to the lab
+      capture:
+        text: "Brilliant! {name} is secured. I've merged its traits with your specimen so only the best stats remain."
+        continue: Back to the lab
   legendaryBattle:
     title: Legendary Signal Intercepted
+    eliteTitle: Elite Specimen Detected
     missingTeam: No battle-ready Shlagémon available. Select a companion before launching the capture.
   finaleBattle:
     title: Ultimate Trial – Professor Merdant
