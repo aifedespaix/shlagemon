@@ -107,39 +107,20 @@ defineExpose({ updateAim })
       </div>
     </div>
 
-    <div class="absolute inset-x-4 bottom-6 flex justify-center">
-      <div class="max-w-3xl w-full border border-cyan-300/20 rounded-2xl bg-slate-950/70 px-5 py-4 shadow-cyan-900/30 shadow-xl backdrop-blur">
-        <div class="flex flex-col gap-2 text-cyan-100/90">
-          <div class="flex items-center justify-between text-[0.65rem] text-cyan-200/80 font-semibold tracking-[0.32em] uppercase">
-            <span>{{ t('components.panel.Laboratory.researchBar.title') }}</span>
-            <span
-              v-if="rewardLabel"
-              class="text-[0.6rem] text-cyan-100/60 font-medium tracking-[0.08em]"
-            >
-              {{ rewardLabel }}
-            </span>
-          </div>
-          <div class="flex items-center justify-between text-xs text-cyan-100/70">
-            <span>{{ progressLabel }}</span>
-            <span :class="ready ? 'text-emerald-200/90 font-semibold' : 'text-cyan-100/60'">
-              {{ statusLabel }}
-            </span>
-          </div>
-          <div
-            class="relative h-2 w-full overflow-hidden rounded-full bg-cyan-300/10"
-            role="progressbar"
-            :aria-label="t('components.panel.Laboratory.researchBar.title')"
-            aria-valuemin="0"
-            :aria-valuemax="safeThreshold"
-            :aria-valuenow="roundedProgress"
-            :aria-valuetext="statusLabel"
-          >
-            <div
-              class="h-full rounded-full from-cyan-400 via-cyan-300 to-emerald-300 bg-gradient-to-r transition-[width] duration-500 ease-out"
-              :style="{ width: barWidthStyle }"
-            />
-          </div>
-        </div>
+    <div class="absolute inset-x-0 bottom-0 flex justify-center opacity-25">
+      <div
+        class="relative h-2 w-full overflow-hidden rounded-full bg-cyan-300/10"
+        role="progressbar"
+        :aria-label="t('components.panel.Laboratory.researchBar.title')"
+        aria-valuemin="0"
+        :aria-valuemax="safeThreshold"
+        :aria-valuenow="roundedProgress"
+        :aria-valuetext="statusLabel"
+      >
+        <div
+          class="h-full rounded-full from-cyan-400 via-cyan-300 to-emerald-300 bg-gradient-to-r transition-[width] duration-500 ease-out"
+          :style="{ width: barWidthStyle }"
+        />
       </div>
     </div>
   </div>

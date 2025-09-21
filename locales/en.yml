@@ -1026,6 +1026,12 @@ components:
         progress: Specimen {current}/{total}
         switch: Switch Shlagémon
         selectTitle: Choose the next Shlagémon
+      researchBar:
+        title: Legendary research
+        progress: "Progress: {current}/{total}"
+        remaining: "{remaining} points remaining"
+        ready: "Next Taurus: Legendary battle"
+        reward: +{amount} ShlagPur per research point
   settings:
     AccessibilityTab:
       autoHide:

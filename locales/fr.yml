@@ -1029,6 +1029,12 @@ components:
         progress: Spécimen {current}/{total}
         switch: Changer de Shlagémon
         selectTitle: Choisis le prochain Shlagémon
+      researchBar:
+        title: Recherche légendaire
+        progress: "Progression : {current}/{total}"
+        remaining: "Points restants : {remaining}"
+        ready: "Taurus suivant : Combat légendaire"
+        reward: +{amount} ShlagPur par point de recherche
   settings:
     AccessibilityTab:
       autoHide:
