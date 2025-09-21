@@ -179,7 +179,7 @@ const legendaryBattleTitle = computed(() => t(
 
 function legendaryDialogKey(
   section: 'intro' | 'victory' | 'defeat' | 'capture',
-  field: 'text' | 'hunt' | 'continue',
+  field: 'text' | 'hunt' | 'continue' | 'skip',
 ): string {
   if (isLegendaryBase.value)
     return `components.panel.Laboratory.legendaryDialog.${section}.${field}`
@@ -247,6 +247,11 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
             label: t(legendaryDialogKey('intro', 'hunt')),
             type: 'primary',
             action: startLegendaryBattle,
+          },
+          {
+            label: t(legendaryDialogKey('intro', 'skip')),
+            type: 'default',
+            action: finishLegendaryEncounter,
           },
         ],
       },
