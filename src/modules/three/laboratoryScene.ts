@@ -25,6 +25,12 @@ const RELIC_SCALE_MAX = 9.5
 const ASTEROID_SCALE_MIN = ROCK_SCALE_MIN
 const ASTEROID_SCALE_MAX = RELIC_SCALE_MAX
 const ASTEROID_REWARD_MAX_MULTIPLIER = 5
+const EXPLOSION_DURATION = 0.25
+const EXPLOSION_MIN_SCALE = 1.6
+const EXPLOSION_MAX_SCALE = 3.4
+const EXPLOSION_INITIAL_OPACITY = 0.9
+const EXPLOSION_ROTATION_SPEED_MIN = 1.2
+const EXPLOSION_ROTATION_SPEED_MAX = 2.8
 
 interface LaboratorySceneHandle {
   cleanup: () => void
@@ -61,6 +67,16 @@ interface LaserShot {
   travelled: number
   elapsed: number
   hasReachedTarget: boolean
+}
+
+interface ExplosionEffect {
+  mesh: THREE.Mesh
+  material: THREE.MeshBasicMaterial
+  elapsed: number
+  duration: number
+  rotationSpeed: THREE.Vector3
+  startScale: number
+  endScale: number
 }
 
 function randomSpread(range: number) {
@@ -161,6 +177,65 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
 
   const planets: PlanetBody[] = []
   const colliderMap = new Map<THREE.Object3D, PlanetBody>()
+
+  const explosionGeometry = new THREE.IcosahedronGeometry(1, 2)
+  cleanupCallbacks.push(() => {
+    explosionGeometry.dispose()
+  })
+  const explosions: ExplosionEffect[] = []
+
+  const prefersReducedMotionQuery = typeof window !== 'undefined' && 'matchMedia' in window
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : null
+  let motionAnimationsEnabled = !prefersReducedMotionQuery?.matches
+  if (prefersReducedMotionQuery) {
+    const handleMotionPreferenceChange = (event: MediaQueryListEvent) => {
+      motionAnimationsEnabled = !event.matches
+    }
+    prefersReducedMotionQuery.addEventListener('change', handleMotionPreferenceChange)
+    cleanupCallbacks.push(() => {
+      prefersReducedMotionQuery.removeEventListener('change', handleMotionPreferenceChange)
+    })
+  }
+
+  function spawnExplosion(position: THREE.Vector3, type: AsteroidType, size: number) {
+    if (!motionAnimationsEnabled)
+      return
+
+    const color = type === 'relic' ? 0xBFDBFE : 0xFCA5A5
+    const material = new THREE.MeshBasicMaterial({
+      color,
+      transparent: true,
+      opacity: EXPLOSION_INITIAL_OPACITY,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    })
+    material.toneMapped = false
+    const mesh = new THREE.Mesh(explosionGeometry, material)
+    mesh.position.copy(position)
+    const normalizedSize = THREE.MathUtils.clamp(size / ASTEROID_SCALE_MAX, 0.35, 1)
+    const endScale = THREE.MathUtils.lerp(EXPLOSION_MIN_SCALE, EXPLOSION_MAX_SCALE, normalizedSize)
+    const startScale = endScale * 0.32
+    mesh.scale.setScalar(startScale)
+    mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI)
+    scene.add(mesh)
+
+    const rotationSpeed = new THREE.Vector3(
+      THREE.MathUtils.randFloat(EXPLOSION_ROTATION_SPEED_MIN, EXPLOSION_ROTATION_SPEED_MAX),
+      THREE.MathUtils.randFloat(EXPLOSION_ROTATION_SPEED_MIN, EXPLOSION_ROTATION_SPEED_MAX),
+      THREE.MathUtils.randFloat(EXPLOSION_ROTATION_SPEED_MIN, EXPLOSION_ROTATION_SPEED_MAX),
+    )
+
+    explosions.push({
+      mesh,
+      material,
+      elapsed: 0,
+      duration: EXPLOSION_DURATION,
+      rotationSpeed,
+      startScale,
+      endScale,
+    })
+  }
 
   function randomizePlanet(body: PlanetBody, initial: boolean) {
     const isRelic = Math.random() < 0.06
@@ -285,7 +360,6 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
   const laserEmitterOffset = new THREE.Vector3(0, -0.75, -0.6)
   const laserMidpoint = new THREE.Vector3()
   const laserTip = new THREE.Vector3()
-
   const cameraBasePosition = camera.position.clone()
 
   function resize() {
@@ -413,6 +487,25 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
       }
     }
 
+    for (let i = explosions.length - 1; i >= 0; i--) {
+      const explosion = explosions[i]
+      explosion.elapsed = Math.min(explosion.duration, explosion.elapsed + delta)
+      const progress = explosion.duration === 0 ? 1 : explosion.elapsed / explosion.duration
+      const easedProgress = THREE.MathUtils.smootherstep(progress, 0, 1)
+      const scale = THREE.MathUtils.lerp(explosion.startScale, explosion.endScale, easedProgress)
+      explosion.mesh.scale.setScalar(scale)
+      explosion.mesh.rotation.x += explosion.rotationSpeed.x * delta
+      explosion.mesh.rotation.y += explosion.rotationSpeed.y * delta
+      explosion.mesh.rotation.z += explosion.rotationSpeed.z * delta
+      explosion.material.opacity = (1 - easedProgress) * EXPLOSION_INITIAL_OPACITY
+
+      if (progress >= 1) {
+        scene.remove(explosion.mesh)
+        explosion.material.dispose()
+        explosions.splice(i, 1)
+      }
+    }
+
     composer.render()
     animationFrame = requestAnimationFrame(animate)
   }
@@ -442,6 +535,8 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
 
     const destroyedType = body.type
     const rewardMultiplier = body.rewardMultiplier
+    const explosionPosition = targetPoint.clone()
+    spawnExplosion(explosionPosition, destroyedType, body.scale)
     randomizePlanet(body, false)
     return { type: destroyedType, rewardMultiplier }
   }
@@ -457,6 +552,12 @@ export function createLaboratoryScene(container: HTMLElement): LaboratorySceneHa
       shot.light.dispose()
     })
     lasers.length = 0
+
+    explosions.forEach((explosion) => {
+      scene.remove(explosion.mesh)
+      explosion.material.dispose()
+    })
+    explosions.length = 0
 
     cleanupCallbacks.forEach(fn => fn())
     composer.dispose()
