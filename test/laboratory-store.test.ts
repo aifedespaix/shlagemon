@@ -75,4 +75,17 @@ describe('laboratory store mobile adjustments', () => {
     store.addScore(14)
     expect(store.hitsUntilNextLegendary).toBe(1)
   })
+
+  it('caps research progress at the active threshold and reports changes', () => {
+    const store = useLaboratoryStore()
+    store.resetScore()
+    expect(store.addScore(10)).toBe(true)
+    expect(store.score).toBe(10)
+    expect(store.addScore(100)).toBe(true)
+    expect(store.score).toBe(store.legendaryBattleThreshold)
+    expect(store.addScore(1)).toBe(false)
+    expect(store.score).toBe(store.legendaryBattleThreshold)
+    store.clampScore(5)
+    expect(store.score).toBe(5)
+  })
 })

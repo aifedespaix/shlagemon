@@ -15,6 +15,12 @@ fr:
   legendaryCountdown:
     progress: 'Anomalies analysées : {current}/{total}'
     active: Signature légendaire localisée !
+  researchBar:
+    title: Recherche légendaire
+    progress: 'Progression : {current}/{total}'
+    remaining: 'Points restants : {remaining}'
+    ready: 'Taurus suivant : Combat légendaire'
+    reward: '+{amount} ShlagPur par point de recherche'
   legendaryDialog:
     intro:
       text: 'On a intercepté un signal légendaire : {name}. C’est ton moment, capture-le avant qu’il ne s’échappe !'
@@ -67,6 +73,12 @@ en:
   legendaryCountdown:
     progress: 'Analyzed anomalies: {current}/{total}'
     active: Legendary signature detected!
+  researchBar:
+    title: Legendary research
+    progress: 'Progress: {current}/{total}'
+    remaining: '{remaining} points remaining'
+    ready: 'Next Taurus: Legendary battle'
+    reward: '+{amount} ShlagPur per research point'
   legendaryDialog:
     intro:
       text: "We've isolated a legendary signal: {name}. It's your moment—snare it before it slips away!"
