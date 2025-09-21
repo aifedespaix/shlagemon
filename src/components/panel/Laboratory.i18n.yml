@@ -48,6 +48,8 @@ fr:
   finaleBattle:
     title: Épreuve ultime – Professeur Merdant
     progress: Spécimen {current}/{total}
+    switch: Changer de Shlagémon
+    selectTitle: Choisis le prochain Shlagémon
 en:
   title: Laboratory
   exit: Return to the village
@@ -98,3 +100,5 @@ en:
   finaleBattle:
     title: Ultimate Trial – Professor Merdant
     progress: Specimen {current}/{total}
+    switch: Switch Shlagémon
+    selectTitle: Choose the next Shlagémon
