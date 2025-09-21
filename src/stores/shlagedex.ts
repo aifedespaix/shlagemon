@@ -678,9 +678,33 @@ export const useShlagedexStore = defineStore('shlagedex', () => {
     return incoming
   }
 
+  function mergeLegendaryProfile(existing: DexShlagemon, enemy: DexShlagemon) {
+    const previousRarity = existing.rarity
+    existing.isShiny ||= enemy.isShiny
+    existing.rarity = Math.max(existing.rarity, enemy.rarity)
+    existing.lvl = Math.max(existing.lvl, enemy.lvl)
+    if (enemy.rarityFollowsLevel)
+      existing.rarityFollowsLevel = true
+    if (existing.rarityFollowsLevel)
+      existing.rarity = existing.lvl
+    existing.xp = 0
+    applyStats(existing)
+    applyCurrentStats(existing)
+    maybePlayRaritySfx(existing, previousRarity)
+    existing.hpCurrent = maxHp(existing)
+    updateHighestLevel(existing)
+    toast(i18n.global.t('stores.shlagedex.statsMerged', { name: i18n.global.t(existing.base.name) }))
+  }
+
   function captureEnemy(enemy: DexShlagemon) {
     const existing = shlagemons.value.find(mon => mon.base.id === enemy.base.id)
     if (existing) {
+      const mergeLegendary = enemy.captureProfile === 'legendary' && enemy.base.speciality !== 'legendary'
+      if (mergeLegendary) {
+        existing.captureCount += 1
+        mergeLegendaryProfile(existing, enemy)
+        return existing
+      }
       if (existing.rarity >= 100) {
         if (enemy.isShiny && !existing.isShiny) {
           existing.captureCount += 1
