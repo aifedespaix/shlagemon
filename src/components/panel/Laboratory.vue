@@ -22,7 +22,12 @@ const audio = useAudioStore()
 const game = useGameStore()
 const dex = useShlagedexStore()
 const wildLevel = useWildLevelStore()
-const { unlocked, score } = storeToRefs(laboratory)
+const {
+  unlocked,
+  score,
+  legendaryBattleThreshold,
+  shlagpurRewardPerAsteroid,
+} = storeToRefs(laboratory)
 const {
   capturedBaseIds,
   shlagemons: ownedShlagemons,
@@ -52,7 +57,6 @@ const finaleTeam = ref<BaseShlagemon[]>([])
 const finaleEnemy = ref<DexShlagemon | null>(null)
 const finaleEnemyIndex = ref(0)
 const finaleSessionTriggered = ref(false)
-const showFinaleSwitchModal = ref(false)
 const finaleHpMemory = reactive<Record<string, number>>({})
 const shouldLaunchFinale = ref(false)
 
@@ -60,7 +64,12 @@ const isLegendaryActive = computed(() => legendaryState.value !== 'idle')
 const isBattleActive = computed(() => legendaryState.value === 'battle' && !!legendaryEnemy.value)
 const isFinaleActive = computed(() => finaleState.value !== 'idle')
 
-const finaleSwitchCandidates = computed(() => {
+const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
+const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
+
+const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
+const _showFinaleSwitchModal = ref(false)
+const _finaleSwitchCandidates = computed(() => {
   if (finaleState.value !== 'battle')
     return []
   const currentId = activePlayer.value?.id
@@ -74,10 +83,8 @@ const finaleSwitchCandidates = computed(() => {
     return hp > 0
   })
 })
-
-const canSwitchFinale = computed(() => finaleState.value === 'battle' && finaleSwitchCandidates.value.length > 0)
-
-const finaleSwitchDisabledIds = computed(() => {
+const _canSwitchFinale = computed(() => finaleState.value === 'battle' && _finaleSwitchCandidates.value.length > 0)
+const _finaleSwitchDisabledIds = computed(() => {
   if (finaleState.value !== 'battle')
     return dex.shlagemons.map(mon => mon.id)
   const currentId = activePlayer.value?.id
@@ -94,11 +101,6 @@ const finaleSwitchDisabledIds = computed(() => {
   }
   return disabled
 })
-
-const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
-const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
-
-const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
 
 const legendaryBaseName = computed(() => legendaryBase.value ? t(legendaryBase.value.name) : '')
 
@@ -350,8 +352,9 @@ watch(shouldShowIntro, (value) => {
 })
 
 watch(hasStarted, (value) => {
-  if (value)
+  if (value) {
     resetAim()
+  }
   else {
     finaleSessionTriggered.value = false
     shouldLaunchFinale.value = false
@@ -413,13 +416,13 @@ function onPointerDown(event: PointerEvent) {
   audio.playSfx('laboratory-laser', { rate: randomPitch(1, 0.05) })
   const result = sceneHandle.shoot(ndcX, ndcY)
   if (result) {
-    game.addShlagpur(1)
+    game.addShlagpur(shlagpurRewardPerAsteroid.value)
     audio.playSfx('laboratory-explose-a', { rate: randomPitch(1, 0.08) })
     const isTaurus = result.type === 'relic'
     laboratory.registerHit(isTaurus)
     if (isTaurus) {
       laboratory.addScore(1)
-      const threshold = debug.value ? 1 : 25
+      const threshold = debug.value ? 1 : legendaryBattleThreshold.value
       const currentScore = score.value
       if (currentScore > 0 && currentScore % threshold === 0 && legendaryState.value === 'idle') {
         laboratory.recordLegendaryEncounter()
@@ -446,19 +449,22 @@ function nonLegendaryPool() {
 
 function beginLegendaryEncounter() {
   if (isFinaleActive.value) {
-    console.debug('[Laboratory] Legendary encounter skipped: finale active')
+    if (debug.value)
+      console.warn('[Laboratory] Legendary encounter skipped: finale active')
     return
   }
   const encounter = selectLegendaryEncounter()
   if (!encounter) {
-    console.debug('[Laboratory] Legendary encounter skipped: no encounter available')
+    if (debug.value)
+      console.warn('[Laboratory] Legendary encounter skipped: no encounter available')
     return
   }
   legendaryBase.value = encounter.base
   legendaryLevel.value = encounter.level
   legendaryEnemy.value = null
   legendaryState.value = 'intro'
-  console.debug('[Laboratory] Legendary encounter ready', { baseId: encounter.base.id, level: encounter.level })
+  if (debug.value)
+    console.warn('[Laboratory] Legendary encounter ready', { baseId: encounter.base.id, level: encounter.level })
   audio.fadeToMusic(battleMusic)
   resetAim()
 }
@@ -639,7 +645,7 @@ function onLegendaryCapture() {
             >
               <template #header>
                 <div class="flex flex-col items-center justify-center gap-1 pb-2 text-center text-slate-100">
-                  <span class="text-xl font-bold uppercase tracking-[0.3em]">
+                  <span class="text-xl font-bold tracking-[0.3em] uppercase">
                     {{ t('components.panel.Laboratory.finaleBattle.title') }}
                   </span>
                   <span class="text-xs text-slate-300/80">{{ t('components.panel.Laboratory.finaleBattle.progress', { current: finaleEnemyIndex + 1, total: finaleTeam.length || 6 }) }}</span>
