@@ -27,7 +27,6 @@ const {
   unlocked,
   score,
   legendaryBattleThreshold,
-  shlagpurRewardPerAsteroid,
 } = storeToRefs(laboratory)
 const {
   capturedBaseIds,
@@ -472,7 +471,8 @@ function onPointerDown(event: PointerEvent) {
   audio.playSfx('laboratory-laser', { rate: randomPitch(1, 0.05) })
   const result = sceneHandle.shoot(ndcX, ndcY)
   if (result) {
-    game.addShlagpur(shlagpurRewardPerAsteroid.value)
+    const reward = laboratory.calculateShlagpurReward(result.rewardMultiplier)
+    game.addShlagpur(reward)
     audio.playSfx('laboratory-explose-a', { rate: randomPitch(1, 0.08) })
     const isTaurus = result.type === 'relic'
     laboratory.registerHit(isTaurus)

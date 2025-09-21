@@ -23,7 +23,10 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
 
   /** True when running inside the Trusted Web Activity mobile build. */
   const isMobileApp = computed(() => pwaEnvironment.isTwa.value)
-  /** Amount of ShlagPur awarded for each destroyed asteroid. */
+  /**
+   * Base amount of ShlagPur awarded for destroying the largest asteroid size tier.
+   * Smaller asteroids grant proportionally larger rewards (up to 5x this base).
+   */
   const shlagpurRewardPerAsteroid = computed(() => (isMobileApp.value ? 3 : 1))
   /** Taurus count required to trigger the next legendary encounter. */
   const legendaryBattleThreshold = computed(() => (isMobileApp.value ? 15 : 25))
@@ -60,6 +63,15 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
 
   function addScore(points: number) {
     score.value += points
+  }
+
+  function calculateShlagpurReward(sizeMultiplier: number): number {
+    const baseReward = shlagpurRewardPerAsteroid.value
+    if (!Number.isFinite(sizeMultiplier))
+      return baseReward
+    const multiplier = Math.round(sizeMultiplier)
+    const clampedMultiplier = Math.min(Math.max(multiplier, 1), 5)
+    return clampedMultiplier * baseReward
   }
 
   function resetScore() {
@@ -118,6 +130,7 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     addScore,
     registerHit,
     recordLegendaryEncounter,
+    calculateShlagpurReward,
     resetScore,
     resetHits,
     setLegendaryBattleActive,
