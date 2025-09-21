@@ -175,8 +175,6 @@ def main():
         if not any(f"/{allowed}/" in str(src_path).replace("\\", "/") for allowed in ALLOWED_DIRS):
             continue
         try:
-            if "poisbleu" not in str(src_path).lower():
-                continue ## if (src_path contain "poisbleu")!
             print(f"[...] {src_path}")
             # Charge + normalise le mode
             img = ensure_rgb_or_rgba(Image.open(src_path))
