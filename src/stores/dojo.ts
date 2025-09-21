@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { i18n } from '~/modules/i18n'
 import { toast } from '~/modules/toast'
+import { applyCurrentStats, applyStats } from '~/utils/dexFactory'
 
 /**
  * Parameters for a dojo training job.
@@ -125,8 +126,12 @@ export const useDojoStore = defineStore('dojo', () => {
     if (!job || job.status !== 'completed')
       return false
     const mon = dex.shlagemons.find(m => m.id === monId)
-    if (mon)
+    if (mon) {
       mon.rarity = Math.min(100, job.targetRarity)
+      applyStats(mon)
+      applyCurrentStats(mon)
+      mon.hpCurrent = dex.maxHp(mon)
+    }
     delete byMonId.value[monId]
     dex.setBusy(monId, false)
     toast.success(i18n.global.t('components.panel.Dojo.toast.collected'))

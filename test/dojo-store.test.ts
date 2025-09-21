@@ -4,6 +4,7 @@ import { pikachiant } from '../src/data/shlagemons/15-20/pikachiant'
 import { dojoTrainingCost, useDojoStore } from '../src/stores/dojo'
 import { useGameStore } from '../src/stores/game'
 import { useShlagedexStore } from '../src/stores/shlagedex'
+import { applyCurrentStats, applyStats } from '../src/utils/dexFactory'
 
 describe('dojo store', () => {
   beforeEach(() => {
@@ -38,6 +39,32 @@ describe('dojo store', () => {
     expect(collected).toBe(true)
     expect(mon.rarity).toBe(before + 1)
     expect(mon.busy).toBe(false)
+  })
+
+  it('recomputes stats after collecting a rarity increase', () => {
+    const game = useGameStore()
+    game.addShlagidolar(200000000)
+    const dex = useShlagedexStore()
+    const mon = dex.createShlagemon(pikachiant)
+    mon.rarity = 10
+    applyStats(mon)
+    applyCurrentStats(mon)
+    const initialBaseHp = mon.baseStats.hp
+    const initialHp = mon.hp
+    const dojo = useDojoStore()
+    const result = dojo.startTraining(mon.id, mon.rarity, 10)
+    expect(result.ok).toBe(true)
+    const job = dojo.getJob(mon.id)
+    expect(job).not.toBeNull()
+    if (job)
+      job.endsAt = Date.now() - 1
+    dojo.now = Date.now()
+    dojo.completeIfDue(mon.id)
+    expect(dojo.collect(mon.id)).toBe(true)
+    expect(mon.rarity).toBe(20)
+    expect(mon.baseStats.hp).toBeGreaterThan(initialBaseHp)
+    expect(mon.hp).toBeGreaterThan(initialHp)
+    expect(mon.hpCurrent).toBe(dex.maxHp(mon))
   })
 
   it('updates remaining time as time elapses', () => {
