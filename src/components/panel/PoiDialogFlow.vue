@@ -27,6 +27,8 @@ interface Props {
   playCharacterTrack?: boolean
 }
 
+defineOptions({ name: 'PanelPoiDialogFlow' })
+
 const props = withDefaults(defineProps<Props>(), {
   playCharacterTrack: true,
 })

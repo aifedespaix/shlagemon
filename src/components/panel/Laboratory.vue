@@ -12,6 +12,7 @@ import sulfusouris from '~/data/shlagemons/sulfusouris'
 import zebrapoisbleu from '~/data/shlagemons/zebrapoisbleu'
 import { createLaboratoryScene } from '~/modules/three/laboratoryScene'
 import { createDexShlagemon } from '~/utils/dexFactory'
+import { recallFinaleHp, resetFinaleHpMemory, storeFinaleHp } from '~/utils/finaleHpMemory'
 
 interface HudHandle {
   updateAim: (position: { x: number, y: number }) => void
@@ -22,7 +23,11 @@ const audio = useAudioStore()
 const game = useGameStore()
 const dex = useShlagedexStore()
 const wildLevel = useWildLevelStore()
-const { unlocked, score } = storeToRefs(laboratory)
+const {
+  unlocked,
+  score,
+  legendaryBattleThreshold,
+} = storeToRefs(laboratory)
 const {
   capturedBaseIds,
   shlagemons: ownedShlagemons,
@@ -31,6 +36,8 @@ const {
 const developer = useDeveloperStore()
 const { debug } = storeToRefs(developer)
 const { t } = useI18n()
+
+const hasCompletedDex = computed(() => capturedBaseIds.value.size >= allShlagemons.length)
 
 const defaultMusic = '/audio/musics/laboratory/space.ogg'
 const battleMusic = '/audio/musics/laboratory/battle.ogg'
@@ -52,7 +59,6 @@ const finaleTeam = ref<BaseShlagemon[]>([])
 const finaleEnemy = ref<DexShlagemon | null>(null)
 const finaleEnemyIndex = ref(0)
 const finaleSessionTriggered = ref(false)
-const showFinaleSwitchModal = ref(false)
 const finaleHpMemory = reactive<Record<string, number>>({})
 const shouldLaunchFinale = ref(false)
 
@@ -60,7 +66,14 @@ const isLegendaryActive = computed(() => legendaryState.value !== 'idle')
 const isBattleActive = computed(() => legendaryState.value === 'battle' && !!legendaryEnemy.value)
 const isFinaleActive = computed(() => finaleState.value !== 'idle')
 
-const finaleSwitchCandidates = computed(() => {
+const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
+const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
+
+const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
+
+// Préparation éventuelle pour un switch en finale (features branch)
+const _showFinaleSwitchModal = ref(false)
+const _finaleSwitchCandidates = computed(() => {
   if (finaleState.value !== 'battle')
     return []
   const currentId = activePlayer.value?.id
@@ -74,10 +87,8 @@ const finaleSwitchCandidates = computed(() => {
     return hp > 0
   })
 })
-
-const canSwitchFinale = computed(() => finaleState.value === 'battle' && finaleSwitchCandidates.value.length > 0)
-
-const finaleSwitchDisabledIds = computed(() => {
+const _canSwitchFinale = computed(() => finaleState.value === 'battle' && _finaleSwitchCandidates.value.length > 0)
+const _finaleSwitchDisabledIds = computed(() => {
   if (finaleState.value !== 'battle')
     return dex.shlagemons.map(mon => mon.id)
   const currentId = activePlayer.value?.id
@@ -95,12 +106,28 @@ const finaleSwitchDisabledIds = computed(() => {
   return disabled
 })
 
-const shouldShowIntro = computed(() => isUnlocked.value && !hasStarted.value)
-const isInteractive = computed(() => isUnlocked.value && hasStarted.value && !shouldShowIntro.value && !isLegendaryActive.value && !isFinaleActive.value)
+const _finaleSelectedIds = computed(() =>
+  activeDexShlagemon.value ? [activeDexShlagemon.value.id] : [],
+)
 
-const activePlayer = computed(() => activeDexShlagemon.value ?? ownedShlagemons.value[0] ?? null)
+// Depuis main
+const isLegendaryBase = computed(() => legendaryBase.value?.speciality === 'legendary')
 
 const legendaryBaseName = computed(() => legendaryBase.value ? t(legendaryBase.value.name) : '')
+const legendaryBattleTitle = computed(() => t(
+  isLegendaryBase.value
+    ? 'components.panel.Laboratory.legendaryBattle.title'
+    : 'components.panel.Laboratory.legendaryBattle.eliteTitle',
+))
+
+function legendaryDialogKey(
+  section: 'intro' | 'victory' | 'defeat' | 'capture',
+  field: 'text' | 'hunt' | 'continue',
+): string {
+  if (isLegendaryBase.value)
+    return `components.panel.Laboratory.legendaryDialog.${section}.${field}`
+  return `components.panel.Laboratory.legendaryDialog.post.${section}.${field}`
+}
 
 const dialogTree = computed<DialogNode[]>(() => {
   if (laboratory.finaleUnlocked && finaleState.value === 'idle' && !finaleSessionTriggered.value) {
@@ -157,10 +184,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-intro',
-        text: t('components.panel.Laboratory.legendaryDialog.intro.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('intro', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.intro.hunt'),
+            label: t(legendaryDialogKey('intro', 'hunt')),
             type: 'primary',
             action: startLegendaryBattle,
           },
@@ -172,10 +199,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-victory',
-        text: t('components.panel.Laboratory.legendaryDialog.victory.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('victory', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.victory.continue'),
+            label: t(legendaryDialogKey('victory', 'continue')),
             type: 'primary',
             action: finishLegendaryEncounter,
           },
@@ -187,10 +214,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-defeat',
-        text: t('components.panel.Laboratory.legendaryDialog.defeat.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('defeat', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.defeat.continue'),
+            label: t(legendaryDialogKey('defeat', 'continue')),
             type: 'primary',
             action: finishLegendaryEncounter,
           },
@@ -202,10 +229,10 @@ const legendaryDialogTree = computed<DialogNode[] | null>(() => {
     return [
       {
         id: 'legendary-capture',
-        text: t('components.panel.Laboratory.legendaryDialog.capture.text', { name: legendaryBaseName.value }),
+        text: t(legendaryDialogKey('capture', 'text'), { name: legendaryBaseName.value }),
         responses: [
           {
-            label: t('components.panel.Laboratory.legendaryDialog.capture.continue'),
+            label: t(legendaryDialogKey('capture', 'continue')),
             type: 'primary',
             action: finishLegendaryEncounter,
           },
@@ -300,6 +327,36 @@ const finaleDialogTree = computed<DialogNode[] | null>(() => {
   return null
 })
 
+function openFinaleSwitchModal() {
+  if (!_canSwitchFinale.value)
+    return
+  _showFinaleSwitchModal.value = true
+}
+
+/**
+ * Apply finale battle switching rules when the player selects a new companion.
+ */
+function handleFinaleSwitchSelect(mon: DexShlagemon) {
+  if (finaleState.value !== 'battle')
+    return
+  const current = activeDexShlagemon.value
+  if (current?.id === mon.id)
+    return
+  const stored = finaleHpMemory[mon.id]
+  if (stored !== undefined && stored <= 0)
+    return
+  if (current)
+    storeFinaleHp(finaleHpMemory, current, dex.maxHp(current))
+  dex.setActiveShlagemon(mon)
+  const nextHp = recallFinaleHp(finaleHpMemory, mon, dex.maxHp(mon))
+  if (nextHp <= 0) {
+    if (current)
+      dex.setActiveShlagemon(current)
+    return
+  }
+  mon.hpCurrent = nextHp
+}
+
 function randomPitch(base = 1, variation = 0.05) {
   return base + (Math.random() * 2 - 1) * variation
 }
@@ -350,8 +407,9 @@ watch(shouldShowIntro, (value) => {
 })
 
 watch(hasStarted, (value) => {
-  if (value)
+  if (value) {
     resetAim()
+  }
   else {
     finaleSessionTriggered.value = false
     shouldLaunchFinale.value = false
@@ -413,13 +471,14 @@ function onPointerDown(event: PointerEvent) {
   audio.playSfx('laboratory-laser', { rate: randomPitch(1, 0.05) })
   const result = sceneHandle.shoot(ndcX, ndcY)
   if (result) {
-    game.addShlagpur(1)
+    const reward = laboratory.calculateShlagpurReward(result.rewardMultiplier)
+    game.addShlagpur(reward)
     audio.playSfx('laboratory-explose-a', { rate: randomPitch(1, 0.08) })
     const isTaurus = result.type === 'relic'
     laboratory.registerHit(isTaurus)
     if (isTaurus) {
       laboratory.addScore(1)
-      const threshold = debug.value ? 1 : 25
+      const threshold = debug.value ? 1 : legendaryBattleThreshold.value
       const currentScore = score.value
       if (currentScore > 0 && currentScore % threshold === 0 && legendaryState.value === 'idle') {
         laboratory.recordLegendaryEncounter()
@@ -446,19 +505,22 @@ function nonLegendaryPool() {
 
 function beginLegendaryEncounter() {
   if (isFinaleActive.value) {
-    console.debug('[Laboratory] Legendary encounter skipped: finale active')
+    if (debug.value)
+      console.warn('[Laboratory] Legendary encounter skipped: finale active')
     return
   }
   const encounter = selectLegendaryEncounter()
   if (!encounter) {
-    console.debug('[Laboratory] Legendary encounter skipped: no encounter available')
+    if (debug.value)
+      console.warn('[Laboratory] Legendary encounter skipped: no encounter available')
     return
   }
   legendaryBase.value = encounter.base
   legendaryLevel.value = encounter.level
   legendaryEnemy.value = null
   legendaryState.value = 'intro'
-  console.debug('[Laboratory] Legendary encounter ready', { baseId: encounter.base.id, level: encounter.level })
+  if (debug.value)
+    console.warn('[Laboratory] Legendary encounter ready', { baseId: encounter.base.id, level: encounter.level })
   audio.fadeToMusic(battleMusic)
   resetAim()
 }
@@ -474,6 +536,8 @@ function finishLegendaryEncounter() {
 }
 
 function selectLegendaryEncounter(): { base: BaseShlagemon, level: number } | null {
+  if (hasCompletedDex.value)
+    return selectEliteEncounter()
   const captured = capturedBaseIds.value
   for (const entry of LEGENDARY_SEQUENCE) {
     if (captured.has(entry.id))
@@ -483,6 +547,14 @@ function selectLegendaryEncounter(): { base: BaseShlagemon, level: number } | nu
       return { base, level: entry.level }
   }
   return null
+}
+
+function selectEliteEncounter(): { base: BaseShlagemon, level: number } | null {
+  const pool = nonLegendaryPool()
+  if (!pool.length)
+    return null
+  const base = pool[Math.floor(Math.random() * pool.length)]
+  return { base, level: 200 }
 }
 
 function generateFinaleTeam(): BaseShlagemon[] {
@@ -505,6 +577,7 @@ function resetFinaleBattle() {
   finaleEnemy.value = null
   finaleEnemyIndex.value = 0
   finaleTeam.value = []
+  resetFinaleHpMemory(finaleHpMemory)
 }
 
 function beginFinaleEncounter() {
@@ -521,6 +594,7 @@ function startFinaleBattle() {
     finishFinaleEncounter()
     return
   }
+  resetFinaleHpMemory(finaleHpMemory)
   player.hpCurrent = dex.maxHp(player)
   const base = finaleTeam.value[finaleEnemyIndex.value]
   const enemy = createDexShlagemon(base, false, 200, wildLevel.highestWildLevel)
@@ -536,6 +610,7 @@ function advanceFinaleEnemy() {
     finaleState.value = 'victory'
     finaleEnemy.value = null
     audio.fadeToMusic(defaultMusic)
+    resetFinaleHpMemory(finaleHpMemory)
     return
   }
   const nextBase = finaleTeam.value[finaleEnemyIndex.value]
@@ -552,6 +627,7 @@ function onFinaleBattleEnd(result: 'win' | 'lose' | 'draw') {
   finaleState.value = 'defeat'
   finaleEnemy.value = null
   audio.fadeToMusic(defaultMusic)
+  resetFinaleHpMemory(finaleHpMemory)
 }
 
 function finishFinaleEncounter() {
@@ -577,8 +653,10 @@ function startLegendaryBattle() {
   }
   player.hpCurrent = dex.maxHp(player)
   const enemy = createDexShlagemon(legendaryBase.value, false, legendaryLevel.value, wildLevel.highestWildLevel)
-  enemy.rarity = Math.max(enemy.rarity, 100)
+  if (isLegendaryBase.value)
+    enemy.rarity = Math.max(enemy.rarity, 100)
   enemy.hpCurrent = enemy.hp
+  enemy.captureProfile = 'legendary'
   legendaryEnemy.value = enemy
   legendaryState.value = 'battle'
   laboratory.setLegendaryBattleActive(true)
@@ -639,13 +717,35 @@ function onLegendaryCapture() {
             >
               <template #header>
                 <div class="flex flex-col items-center justify-center gap-1 pb-2 text-center text-slate-100">
-                  <span class="text-xl font-bold uppercase tracking-[0.3em]">
+                  <span class="text-xl font-bold tracking-[0.3em] uppercase">
                     {{ t('components.panel.Laboratory.finaleBattle.title') }}
                   </span>
                   <span class="text-xs text-slate-300/80">{{ t('components.panel.Laboratory.finaleBattle.progress', { current: finaleEnemyIndex + 1, total: finaleTeam.length || 6 }) }}</span>
                 </div>
               </template>
+              <template #default>
+                <div class="mt-3 flex justify-center">
+                  <UiButton
+                    size="sm"
+                    type="default"
+                    variant="outline"
+                    :disabled="!_canSwitchFinale"
+                    @click="openFinaleSwitchModal"
+                  >
+                    {{ t('components.panel.Laboratory.finaleBattle.switch') }}
+                  </UiButton>
+                </div>
+              </template>
             </BattleRound>
+            <ShlagemonSelectModal
+              v-model="_showFinaleSwitchModal"
+              :title="t('components.panel.Laboratory.finaleBattle.selectTitle')"
+              :selected-ids="_finaleSelectedIds"
+              :disabled-ids="_finaleSwitchDisabledIds"
+              :locked="!_canSwitchFinale"
+              :close-on-select="true"
+              @select="handleFinaleSwitchSelect"
+            />
           </div>
         </div>
 
@@ -688,7 +788,7 @@ function onLegendaryCapture() {
               <template #header>
                 <div class="flex flex-col items-center justify-center gap-1 pb-2 text-center text-slate-100">
                   <span class="text-xs text-slate-200/80 tracking-[0.2em] uppercase">
-                    {{ t('components.panel.Laboratory.legendaryBattle.title') }}
+                    {{ legendaryBattleTitle }}
                   </span>
                   <span class="text-lg font-semibold">{{ legendaryBaseName }}</span>
                 </div>

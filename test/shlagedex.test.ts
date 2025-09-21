@@ -164,6 +164,35 @@ describe('shlagedex capture', () => {
     expect(result.id).toBe(mon.id)
     expect(mon.isShiny).toBe(true)
   })
+
+  it('merges stats when capturing a legendary-profile duplicate', () => {
+    setActivePinia(createPinia())
+    const dex = useShlagedexStore()
+    const existing = dex.createShlagemon(carapouffe)
+    existing.rarity = 20
+    existing.lvl = 50
+    applyStats(existing)
+    applyCurrentStats(existing)
+    const enemy = createDexShlagemon(carapouffe, true, 200)
+    enemy.rarity = 60
+    applyStats(enemy)
+    applyCurrentStats(enemy)
+    enemy.captureProfile = 'legendary'
+    toastMock.mockClear()
+    const result = dex.captureEnemy(enemy)
+    expect(result.id).toBe(existing.id)
+    expect(existing.captureCount).toBe(2)
+    expect(existing.isShiny).toBe(true)
+    expect(existing.lvl).toBe(200)
+    expect(existing.rarity).toBe(60)
+    expect(existing.attack).toBeGreaterThanOrEqual(enemy.attack)
+    expect(existing.defense).toBeGreaterThanOrEqual(enemy.defense)
+    expect(existing.hp).toBeGreaterThanOrEqual(enemy.hp)
+    expect(existing.smelling).toBeGreaterThanOrEqual(enemy.smelling)
+    expect(toastMock).toHaveBeenCalledWith(
+      `${i18n.global.t(existing.base.name)} fusionne ses stats : seules les meilleures valeurs sont conservées !`,
+    )
+  })
 })
 
 describe('shlagedex highest level', () => {

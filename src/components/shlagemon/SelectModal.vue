@@ -27,6 +27,8 @@ interface Props {
   titleId?: string
 }
 
+defineOptions({ name: 'ShlagemonSelectModal' })
+
 const props = withDefaults(defineProps<Props>(), {
   selectedIds: () => [],
   disabledIds: () => [],

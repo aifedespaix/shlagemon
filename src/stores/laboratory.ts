@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { spaceBadge } from '~/data/badges'
 import { useBadgeBoxStore } from '~/stores/badgeBox'
 import { usePlayerStore } from '~/stores/player'
+import { usePwaEnvironmentStore } from '~/stores/pwaEnvironment'
 
 /**
  * Handle unlock state and persistence for Professeur Merdant's Laboratory.
@@ -9,6 +10,7 @@ import { usePlayerStore } from '~/stores/player'
 export const useLaboratoryStore = defineStore('laboratory', () => {
   const player = usePlayerStore()
   const badgeBox = useBadgeBoxStore()
+  const pwaEnvironment = usePwaEnvironmentStore()
   const unlocked = ref(false)
   const score = ref(0)
 
@@ -18,6 +20,16 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
   const hitsSinceLegendary = ref(0)
   const legendaryEncounters = ref(0)
   const legendaryBattleActive = ref(false)
+
+  /** True when running inside the Trusted Web Activity mobile build. */
+  const isMobileApp = computed(() => pwaEnvironment.isTwa.value)
+  /**
+   * Base amount of ShlagPur awarded for destroying the largest asteroid size tier.
+   * Smaller asteroids grant proportionally larger rewards (up to 5x this base).
+   */
+  const shlagpurRewardPerAsteroid = computed(() => (isMobileApp.value ? 3 : 1))
+  /** Taurus count required to trigger the next legendary encounter. */
+  const legendaryBattleThreshold = computed(() => (isMobileApp.value ? 15 : 25))
 
   const isUnlocked = computed(() => unlocked.value)
 
@@ -30,8 +42,11 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
   }
 
   const hitsUntilNextLegendary = computed(() => {
-    const remainder = score.value % 25
-    return remainder === 0 ? 25 : 25 - remainder
+    const threshold = legendaryBattleThreshold.value
+    if (threshold <= 0)
+      return 0
+    const remainder = score.value % threshold
+    return remainder === 0 ? threshold : threshold - remainder
   })
 
   const isLegendaryBattleActive = computed(() => legendaryBattleActive.value)
@@ -48,6 +63,15 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
 
   function addScore(points: number) {
     score.value += points
+  }
+
+  function calculateShlagpurReward(sizeMultiplier: number): number {
+    const baseReward = shlagpurRewardPerAsteroid.value
+    if (!Number.isFinite(sizeMultiplier))
+      return baseReward
+    const multiplier = Math.round(sizeMultiplier)
+    const clampedMultiplier = Math.min(Math.max(multiplier, 1), 5)
+    return clampedMultiplier * baseReward
   }
 
   function resetScore() {
@@ -94,6 +118,9 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     legendaryEncounters,
     legendaryBattleActive,
     finaleUnlocked,
+    isMobileApp,
+    shlagpurRewardPerAsteroid,
+    legendaryBattleThreshold,
     hitsUntilNextLegendary,
     isLegendaryBattleActive,
     isUnlocked,
@@ -103,6 +130,7 @@ export const useLaboratoryStore = defineStore('laboratory', () => {
     addScore,
     registerHit,
     recordLegendaryEncounter,
+    calculateShlagpurReward,
     resetScore,
     resetHits,
     setLegendaryBattleActive,

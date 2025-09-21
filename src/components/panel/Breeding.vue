@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type PanelPoiDialogFlow from './PoiDialogFlow.vue'
 import type { DialogNode } from '~/type/dialog'
 import { eggColorClass } from '~/constants/egg'
+
 import { norman } from '~/data/characters/norman'
 
 const { t } = useI18n()
@@ -9,10 +11,20 @@ const panel = useMainPanelStore()
 const busyIds = useBusyShlagemonIds()
 
 const selectorOpen = ref(false)
+const selected = computed(() => breeding.selectedMon)
+const flowRef = ref<InstanceType<typeof PanelPoiDialogFlow> | null>(null)
+const introFactory = computed(() => (breeding.activeJob ? undefined : createIntro))
+
+defineExpose({
+  /** Currently selected Shlagémon, exposed for unit tests. */
+  selected,
+})
 
 onMounted(() => {
   // ✅ Si un job existe (running ou terminé), on force la sélection du mon lié
   breeding.ensureSelectionFromJobs()
+  if (breeding.activeJob && typeof flowRef.value?.startContent === 'function')
+    flowRef.value.startContent()
 })
 
 function onExit() {
@@ -70,10 +82,11 @@ function collect() {
 
 <template>
   <PanelPoiDialogFlow
+    ref="flowRef"
     :title="t('components.panel.Breeding.title')"
     :exit-text="t('components.panel.Breeding.exit')"
     :character="norman"
-    :create-intro="createIntro"
+    :create-intro="introFactory"
     :create-outro="createOutro"
     :play-character-track="false"
     @exit="onExit"

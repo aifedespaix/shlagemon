@@ -1,10 +1,12 @@
 <script setup lang="ts">
+defineOptions({ name: 'BreedingWorking' })
+
+const props = defineProps<Props>()
 interface Props {
   readonly isRunning: boolean
   readonly progress: number
   readonly remainingLabel: string
 }
-const props = defineProps<Props>()
 const { t } = useI18n()
 </script>
 

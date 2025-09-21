@@ -31,6 +31,8 @@ export interface BaseShlagemon {
   speciality: Speciality
 }
 
+export type CaptureProfile = 'default' | 'legendary'
+
 export interface DexShlagemon extends Stats {
   id: string
   base: BaseShlagemon
@@ -73,4 +75,13 @@ export interface DexShlagemon extends Stats {
    * Shlagédex but remain selectable for other interactions.
    */
   busy: boolean
+
+  /**
+   * Override used to adjust capture formulas for special encounters.
+   *
+   * Legendary laboratory fights now reuse legendary capture odds even when
+   * facing non-legendary specimens. This flag allows us to opt into that
+   * behaviour without mutating the shared base definition.
+   */
+  captureProfile?: CaptureProfile
 }
