@@ -12,6 +12,10 @@ export interface AttackResult {
   crit: 'critical' | 'weak' | 'normal'
 }
 
+interface AttackModifiers {
+  damageMultiplier?: number
+}
+
 export const useBattleStore = defineStore('battle', () => {
   const dex = useShlagedexStore()
   const audio = useAudioStore()
@@ -58,6 +62,7 @@ export const useBattleStore = defineStore('battle', () => {
     isPlayerAttacker = false,
     isPlayerDefender = false,
     reduced = false,
+    modifiers: AttackModifiers = {},
   ): AttackResult {
     const attackerTypes = attacker.base.types.map(t => t.id) as TypeName[]
     const currentIndex = typeCycleIndex.get(attacker) ?? 0
@@ -82,6 +87,10 @@ export const useBattleStore = defineStore('battle', () => {
     let finalDamage = reduced ? Math.round(roundedDamage / 5) : roundedDamage // reduced (case by clicking)
     if (disease.active && attacker.id === dex.activeShlagemon?.id)
       finalDamage = 10
+
+    const damageMultiplier = modifiers.damageMultiplier ?? 1
+    if (damageMultiplier !== 1)
+      finalDamage = Math.max(0, Math.round(finalDamage * damageMultiplier))
 
     if (attacker.heldItemId === preyAmulet.id) {
       if (defender.hpCurrent <= 1)
@@ -122,10 +131,15 @@ export const useBattleStore = defineStore('battle', () => {
    * @param defender - The defending shlagemon.
    * @returns The resulting damage information.
    */
-  function clickAttack(attacker: DexShlagemon, defender: DexShlagemon): AttackResult {
+  function clickAttack(attacker: DexShlagemon, defender: DexShlagemon, modifiers: AttackModifiers = {}): AttackResult {
     manualAttack.registerClick()
 
-    const damage = Math.min(10, defender.hpCurrent)
+    const baseDamage = Math.min(10, defender.hpCurrent)
+    const damageMultiplier = modifiers.damageMultiplier ?? 1
+    const scaledDamage = damageMultiplier !== 1
+      ? Math.max(0, Math.round(baseDamage * damageMultiplier))
+      : baseDamage
+    const damage = Math.min(scaledDamage, defender.hpCurrent)
     defender.hpCurrent -= damage
 
     return {
@@ -135,11 +149,11 @@ export const useBattleStore = defineStore('battle', () => {
     }
   }
 
-  function duel(player: DexShlagemon, enemy: DexShlagemon) {
-    const playerResult = attack(player, enemy, true, false)
+  function duel(player: DexShlagemon, enemy: DexShlagemon, modifiers: AttackModifiers = {}) {
+    const playerResult = attack(player, enemy, true, false, false, modifiers)
     let enemyResult: AttackResult | null = null
     if (enemy.hpCurrent > 0)
-      enemyResult = attack(enemy, player, false, true)
+      enemyResult = attack(enemy, player, false, true, false, modifiers)
     return { player: playerResult, enemy: enemyResult }
   }
 

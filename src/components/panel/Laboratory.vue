@@ -61,6 +61,7 @@ const finaleEnemyIndex = ref(0)
 const finaleSessionTriggered = ref(false)
 const finaleHpMemory = reactive<Record<string, number>>({})
 const shouldLaunchFinale = ref(false)
+const finaleDamageMultiplier = 123
 
 const isLegendaryActive = computed(() => legendaryState.value !== 'idle')
 const isBattleActive = computed(() => legendaryState.value === 'battle' && !!legendaryEnemy.value)
@@ -724,6 +725,7 @@ function onLegendaryCapture() {
               :enemy="finaleEnemy"
               :capture-enabled="false"
               :force-show-owned-ball="true"
+              :damage-multiplier="finaleDamageMultiplier"
               @end="onFinaleBattleEnd"
             >
               <template #header>

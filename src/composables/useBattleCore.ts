@@ -3,6 +3,7 @@ import type { DexShlagemon } from '~/type/shlagemon'
 export interface BattleCoreOptions {
   createEnemy: () => DexShlagemon | null
   tickDelay?: number
+  damageMultiplier?: number
 }
 
 export function useBattleCore(options: BattleCoreOptions) {
@@ -10,6 +11,9 @@ export function useBattleCore(options: BattleCoreOptions) {
   const dex = useShlagedexStore()
   const audio = useAudioStore()
   const manualAttack = useManualAttackStatsStore()
+  const damageModifiers = options.damageMultiplier === undefined
+    ? undefined
+    : { damageMultiplier: options.damageMultiplier }
   const {
     playerEffect,
     enemyEffect,
@@ -67,7 +71,7 @@ export function useBattleCore(options: BattleCoreOptions) {
     if (!battleActive.value || !enemy.value || !dex.activeShlagemon)
       return false
     // Manual click attacks intentionally bypass effectiveness toasts.
-    battle.clickAttack(dex.activeShlagemon, enemy.value)
+    battle.clickAttack(dex.activeShlagemon, enemy.value, damageModifiers)
     enemyHp.value = enemy.value.hpCurrent
     flashEnemy.value = true
     hideFlashEnemy()
@@ -80,6 +84,7 @@ export function useBattleCore(options: BattleCoreOptions) {
     const { player: resPlayer, enemy: resEnemy } = battle.duel(
       dex.activeShlagemon,
       enemy.value,
+      damageModifiers,
     )
     showEffect('enemy', resPlayer.effect, resPlayer.crit)
     enemyHp.value = enemy.value.hpCurrent

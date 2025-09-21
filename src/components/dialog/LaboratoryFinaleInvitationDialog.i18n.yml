@@ -1,11 +1,11 @@
 en:
   steps:
     step1:
-      text: "Shlagémon Trainer, you have filled every slot of the Shlagedex. The academy archives already whisper your name."
+      text: 'Shlagémon Trainer, you have filled every slot of the Shlagedex. The academy archives already whisper your name.'
       responses:
         next: Continue
     step2:
-      text: "I reviewed your notes—no glitch, no forged entry. One hundred percent organic captures."
+      text: 'I reviewed your notes—no glitch, no forged entry. One hundred percent organic captures.'
       responses:
         back: Back
         next: I'm listening
@@ -15,27 +15,27 @@ en:
         back: Back
         next: Go on
     step4:
-      text: "Frankly, I dreamed of this day. Not because I doubted the data, but because I wanted to see the person who would bend reality back into shape."
+      text: 'Frankly, I dreamed of this day. Not because I doubted the data, but because I wanted to see the person who would bend reality back into shape.'
       responses:
         back: Back
         next: What's next?
     step5:
-      text: "And yet one test remains. Not a hunt, not a scavenger chase—a duel. My duel."
+      text: 'And yet one test remains. Not a hunt, not a scavenger chase—a duel. My duel.'
       responses:
         back: Back
         next: A duel?
     step6:
-      text: "Come to my laboratory. I'll deploy the nastiest, non-legendary specimens I ever cultured, all honed to level 200."
+      text: "Come to my laboratory. I'll deploy the nastiest, non-legendary specimens I ever cultured, all honed to level 200 and unleashed at their full potential."
       responses:
         back: Back
         next: I'm ready
     step7:
-      text: "Win, and I will proclaim you the definitive champion of anti-shlagitude. Lose, and you restart the cleansing until you can withstand my orbit."
+      text: 'Win, and I will proclaim you the definitive champion of anti-shlagitude. Lose, and you restart the cleansing until you can withstand my orbit.'
       responses:
         back: Back
         next: Understood
     step8:
-      text: "Take a breath, sharpen your team, and meet me in the Laboratory. The final experiment awaits."
+      text: 'Take a breath, sharpen your team, and meet me in the Laboratory. The final experiment awaits.'
       responses:
         valid: To the laboratory!
 fr:
@@ -60,12 +60,12 @@ fr:
         back: Retour
         next: Quelle suite ?
     step5:
-      text: "Il reste pourtant une ultime épreuve. Pas une chasse, pas une collecte : un duel. Mon duel."
+      text: 'Il reste pourtant une ultime épreuve. Pas une chasse, pas une collecte : un duel. Mon duel.'
       responses:
         back: Retour
         next: Un duel ?
     step6:
-      text: "Rejoins mon laboratoire. J'y alignerai les pires spécimens non légendaires que j'ai élevés, tous polis au niveau 200."
+      text: "Rejoins mon laboratoire. J'y alignerai les pires spécimens non légendaires que j'ai élevés, tous polis au niveau 200 et lâchés à leur plein potentiel."
       responses:
         back: Retour
         next: Je suis prêt
