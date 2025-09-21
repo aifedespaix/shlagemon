@@ -62,6 +62,8 @@ const finaleSessionTriggered = ref(false)
 const finaleHpMemory = reactive<Record<string, number>>({})
 const shouldLaunchFinale = ref(false)
 const finaleDamageMultiplier = 123
+const finaleEnemyLevel = 200
+const finaleEnemyRarity = 666
 
 const isLegendaryActive = computed(() => legendaryState.value !== 'idle')
 const isBattleActive = computed(() => legendaryState.value === 'battle' && !!legendaryEnemy.value)
@@ -585,6 +587,16 @@ function generateFinaleTeam(): BaseShlagemon[] {
   return selection
 }
 
+/**
+ * Create the enemy instance for Professor Merdant's finale battle.
+ * Ensures every Shlagémon has the intended level and the 666 rarity requirement.
+ */
+function createFinaleEnemy(base: BaseShlagemon): DexShlagemon {
+  const enemy = createDexShlagemon(base, false, finaleEnemyLevel, finaleEnemyRarity, finaleEnemyRarity)
+  enemy.hpCurrent = enemy.hp
+  return enemy
+}
+
 function resetFinaleBattle() {
   finaleEnemy.value = null
   finaleEnemyIndex.value = 0
@@ -609,9 +621,11 @@ function startFinaleBattle() {
   resetFinaleHpMemory(finaleHpMemory)
   player.hpCurrent = dex.maxHp(player)
   const base = finaleTeam.value[finaleEnemyIndex.value]
-  const enemy = createDexShlagemon(base, false, 200, wildLevel.highestWildLevel)
-  enemy.hpCurrent = enemy.hp
-  finaleEnemy.value = enemy
+  if (!base) {
+    finishFinaleEncounter()
+    return
+  }
+  finaleEnemy.value = createFinaleEnemy(base)
   finaleState.value = 'battle'
   audio.fadeToMusic(battleMusic)
 }
@@ -626,9 +640,11 @@ function advanceFinaleEnemy() {
     return
   }
   const nextBase = finaleTeam.value[finaleEnemyIndex.value]
-  const enemy = createDexShlagemon(nextBase, false, 200, wildLevel.highestWildLevel)
-  enemy.hpCurrent = enemy.hp
-  finaleEnemy.value = enemy
+  if (!nextBase) {
+    finishFinaleEncounter()
+    return
+  }
+  finaleEnemy.value = createFinaleEnemy(nextBase)
 }
 
 function onFinaleBattleEnd(result: 'win' | 'lose' | 'draw') {
