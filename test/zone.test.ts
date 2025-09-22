@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest'
 import ZonePanel from '../src/components/panel/Zone.vue'
 import ZoneActions from '../src/components/village/ZoneActions.vue'
 import { carapouffe } from '../src/data/shlagemons/carapouffe'
+import { useLaboratoryStore } from '../src/stores/laboratory'
 import { useMainPanelStore } from '../src/stores/mainPanel'
 import { useShlagedexStore } from '../src/stores/shlagedex'
 import { useZoneStore } from '../src/stores/zone'
@@ -18,6 +19,19 @@ describe('zone store', () => {
     expect(store.current.id).toBe(store.zones[0].id)
     store.setZone('chemin-du-slip')
     expect(store.current.id).toBe('chemin-du-slip')
+  })
+
+  it('resets the legendary battle lock when leaving the zone', () => {
+    setActivePinia(createPinia())
+    const zone = useZoneStore()
+    const laboratory = useLaboratoryStore()
+
+    laboratory.setLegendaryBattleActive(true)
+    expect(laboratory.isLegendaryBattleActive).toBe(true)
+
+    zone.setZone('chemin-du-slip')
+
+    expect(laboratory.isLegendaryBattleActive).toBe(false)
   })
 })
 

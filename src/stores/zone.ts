@@ -63,6 +63,12 @@ export const useZoneStore = defineStore('zone', () => {
         // damaging the player's Shlagémon after the zone switch.
         const battle = useBattleStore()
         battle.stopLoop()
+
+        // Leaving a zone should always end any legendary battle state so the
+        // Shlagédex regains the ability to switch the active Shlagémon.
+        const laboratory = useLaboratoryStore()
+        if (laboratory.isLegendaryBattleActive)
+          laboratory.setLegendaryBattleActive(false)
       }
       currentId.value = id
       selectedAt.value = Date.now()
