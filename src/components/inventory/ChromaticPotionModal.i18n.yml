@@ -1,12 +1,6 @@
 en:
   title: Chromatic Potion
   description: Select a Shlagémon to invert its shiny state.
-  makeShiny: Make shiny
-  makeNormal: Remove shiny
-  empty: You do not own any Shlagémon yet.
 fr:
   title: Potion chromatique
   description: Choisis un Shlagémon pour inverser son état shiny.
-  makeShiny: Le rendre shiny
-  makeNormal: Le rendre terne
-  empty: Tu n'as encore aucun Shlagémon dans ta collection.
